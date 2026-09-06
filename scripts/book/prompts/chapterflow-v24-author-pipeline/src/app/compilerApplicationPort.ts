@@ -35,6 +35,7 @@ import {
 import type { ChapterEditPacks } from "../sections/chapterEditGuard.js";
 import type { ChapterEditCache } from "../books/chapterEditCache.js";
 import {
+  assemblyAvoidDigest,
   createRejectedSectionPackWriter,
   readCarryOverRejectedDraft,
   type RejectedSectionPackDraft,
@@ -2137,6 +2138,10 @@ export class CompilerApplicationPort {
               assemblyAvoid = undefined;
             }
           }
+          // The ban set this section's drafts are written against, as one value:
+          // stamped on every rejected record below, and compared against the record
+          // the next round would carry. Null when there is no avoid-context.
+          const avoidDigest = assemblyAvoidDigest(assemblyAvoid);
           // Task 11y — durable cross-run reuse. Before spending a single model call,
           // consult the durable cache for a pack drafted under this exact identity by
           // a prior compile run. A hit is re-validated through the SAME live section
@@ -2179,16 +2184,18 @@ export class CompilerApplicationPort {
           //     breaker restart is drafting against DIFFERENT inputs (a re-drafted
           //     summary, a MUST TEACH brief), so the previous round's draft answers
           //     a question this attempt is no longer asking;
-          //   - no cross-chapter avoid-context for THIS (chapter, kind): an
-          //     assembly-eviction re-draft is the same statement across the run
-          //     boundary — the evicted pack PASSED its section gate and then
-          //     collided, so its brief is to change the wording, while carry-over's
-          //     brief is "change nothing else" around a draft the gate refused.
-          //     Two contradicting briefs in one card is how a re-draft returns the
-          //     same wording, and ASSEMBLY_AVOID_MAX_ROUNDS ends that in an
-          //     operator-only terminal state. Per (chapter, kind), so a ban on one
-          //     section never mutes carry-over on another — and a section-blocked
-          //     round, the case this exists for, never reaches assembly at all;
+          //   - the cross-chapter avoid-context for THIS (chapter, kind) is the SAME
+          //     one the carried draft was written against. A ban is part of the brief
+          //     a draft answered, so seeding a re-draft with a draft written under a
+          //     DIFFERENT ban set hands the writer two briefs that contradict each
+          //     other. It does NOT follow that a ban stands carry-over down outright,
+          //     which is what an earlier cut did: an eviction happens at assembly,
+          //     which ENDS a run, so the drafts of a round already carry that round's
+          //     bans — and live, every section that burns operator slots is an
+          //     eviction re-draft (ch19's example pack: 9 refusals over 3 rounds under
+          //     one SEC96 ban), so standing down on the ban alone switched carry-over
+          //     off for exactly the sections it exists for. Per (chapter, kind), so a
+          //     ban on one section never mutes carry-over on another;
           //   - the run store can say where a run lives (the in-memory fakes cannot).
           // The digest check inside the reader is the one that makes this safe; see
           // readCarryOverRejectedDraft.
@@ -2204,9 +2211,7 @@ export class CompilerApplicationPort {
           ) {
             const label = `[book-run] compiler chapter=${chapter.chapterNumber} kind=${kind}`;
             const carryOverRunDir = this.#dependencies.runStore.runDirectory?.(request.bookId, request.carryOverFromRunId);
-            if (assemblyAvoid !== undefined) {
-              console.error(`${label} action=CARRY_OVER_SKIPPED reason=assembly-avoid`);
-            } else if (carryOverRunDir === undefined) {
+            if (carryOverRunDir === undefined) {
               console.error(`${label} action=CARRY_OVER_SKIPPED reason=no-run-directory`);
             } else {
               const carried = readCarryOverRejectedDraft({
@@ -2214,6 +2219,7 @@ export class CompilerApplicationPort {
                 chapterNumber: chapter.chapterNumber,
                 kind,
                 taskCardDigest,
+                assemblyAvoidDigest: avoidDigest,
                 maxBlockerLines: MAX_FEEDBACK_BLOCKER_LINES,
               });
               if (carried.ok) {
@@ -2366,6 +2372,10 @@ export class CompilerApplicationPort {
               // checks against this one, so a round that itself opened on a carried
               // draft can still be carried from.
               identityTaskCardDigest: taskCardDigest,
+              // …and the ban set this draft was written against, which is the other
+              // half of that check: a re-draft may only open on a draft that answered
+              // the SAME cross-chapter conflict brief.
+              assemblyAvoidDigest: avoidDigest,
               draft,
             });
             // ---- THE INTRA-CHAPTER LIVELOCK BREAKER --------------------------

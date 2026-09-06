@@ -2367,11 +2367,18 @@ function sectionCard(prompts: Parameters<ModelTaskRunner["run"]>[0][], operation
 
 /** Run A: the summary pack is refused on all three attempts, so the run FAILS having
  *  written ch01.summary-pack.attempt{1,2,3}.json under its own run directory. */
-async function exhaustedPriorRun(context: TestContext, suffix: string, runStateSuffix: string, cache?: SectionPackCache) {
+async function exhaustedPriorRun(
+  context: TestContext,
+  suffix: string,
+  runStateSuffix: string,
+  cache?: SectionPackCache,
+  avoidStore?: SectionAvoidStore,
+) {
   const subject = rig(context, suffix, {
     runStateSuffix,
     blockSummaryAttempts: 99,
     ...(cache ? { cache } : {}),
+    ...(avoidStore ? { avoidStore } : {}),
   });
   await assert.rejects(subject.port.run(subject.request), /COMPILER_SECTION_BLOCKED:summary-pack:after 3 attempts/);
   const records = rejectedRecords(subject.runStateRoot, `run-${suffix}`);
@@ -2381,6 +2388,21 @@ async function exhaustedPriorRun(context: TestContext, suffix: string, runStateS
     "ch01.summary-pack.attempt3.json",
   ]);
   return subject;
+}
+
+/** The avoid-context digest a record must carry, recomputed from the entries so the
+ *  CANONICAL FORM itself is pinned: entries in stored order, each rendered with the
+ *  five fields that reach the card (checkId, phrase, keptByChapters, message,
+ *  rounds), an absent `rounds` reading as null. */
+function expectedAvoidDigest(entries: ReadonlyArray<Record<string, unknown>>): string {
+  const canonical = entries.map((entry) => ({
+    checkId: entry.checkId,
+    phrase: entry.phrase,
+    keptByChapters: entry.keptByChapters,
+    message: entry.message,
+    rounds: entry.rounds ?? null,
+  }));
+  return createHash("sha256").update(JSON.stringify(canonical)).digest("hex");
 }
 
 /** Rewrite one of run A's records in place. */
@@ -2396,6 +2418,9 @@ requiredTest("R-285a attempt 1 of the next run opens on the previous run's last 
   const lastRejected = priorRecords[2].draft as Record<string, unknown>;
   const lastBlockers = priorRecords[2].blockerLines as string[];
   assert.ok(lastBlockers.length > 0);
+  // A section with NO cross-chapter avoid-context records a null avoid digest, and
+  // that null is what lets this round's avoid-free attempt open on the draft.
+  for (const record of priorRecords) assert.equal(record.assemblyAvoidDigest, null);
 
   const next = rig(context, "carry-hit-b", { runStateSuffix: "carry-hit", carryOverFromRunId: "run-carry-hit-a" });
   const { value: result, lines } = await withCapturedStderr(() => next.port.run(next.request));
@@ -2606,55 +2631,113 @@ requiredTest("R-285f the section-pack cache identity is byte-identical whether o
   assert.equal(byKind(carryKeys)["summary-pack"].taskCardDigest, byKind(controlKeys)["summary-pack"].taskCardDigest);
 });
 
-requiredTest("R-285h a section carrying assembly avoid-context never opens on the previous run's rejected draft", async (context) => {
-  // The assembly-eviction re-draft is the ONE re-draft in the pipeline whose whole
-  // point is to abandon the previous wording: the pack it evicted was ACCEPTED by
-  // the section gate and then collided across chapters. Seeding it with the prior
-  // run's REJECTED draft under "change nothing else" hands the writer two briefs
-  // that contradict each other, and ASSEMBLY_AVOID_MAX_ROUNDS (3) ends in an
-  // operator-only terminal state. Carry-over stands down whenever avoid-context is
-  // in hand — per (chapter, kind), so one banned phrase cannot mute the rest.
+requiredTest("R-285h an assembly-eviction re-draft opens on the previous run's draft when the avoid-context is UNCHANGED", async (context) => {
+  // The sections that actually burn operator compile slots are assembly-eviction
+  // re-drafts: live, ch19's example pack was refused 9 times across three rounds
+  // under a SEC96 ban and ch14's summary took four rounds under a SEC83 one. A
+  // blanket stand-down on avoid-context therefore switched carry-over off for
+  // exactly the sections it exists for. What makes an old draft unsafe is not the
+  // PRESENCE of a ban but a CHANGE in the bans since the draft was written: an
+  // eviction happens at assembly, which ends a run, so every draft of a round was
+  // already written against that round's bans. Same bans -> carry.
   const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
   const avoidStore = createFileSectionAvoidStore({ booksRoot: context.roots.booksRoot, writeLock });
-  const avoidEntries = {
-    entries: [{
-      checkId: "SEC93.example_venue_stamping",
-      phrase: "kitchen table",
-      keptByChapters: [2],
-      message: `venue "kitchen table" is already used by ch02 — choose a different concrete venue.`,
-    }],
+  const entry = {
+    checkId: "SEC93.example_venue_stamping",
+    phrase: "kitchen table",
+    keptByChapters: [2],
+    message: `venue "kitchen table" is already used by ch02 — choose a different concrete venue.`,
   };
+  const key = { bookId: BOOK, chapterId: `${BOOK}-ch01`, kind: "summary-pack" as const };
+  await avoidStore.write(key, { entries: [entry] });
 
-  // Run A leaves three rejected summary records on disk, exactly as R-285a's does.
-  const prior = await exhaustedPriorRun(context, "carry-avoid-a", "carry-avoid");
-  assert.equal(rejectedRecords(prior.runStateRoot, "run-carry-avoid-a").length, 3);
-
-  // …and assembly then evicted ch01's summary pack and banned a phrase in it.
-  await avoidStore.write({ bookId: BOOK, chapterId: `${BOOK}-ch01`, kind: "summary-pack" }, avoidEntries);
+  // Run A drafts ch01's summary WITH the ban in its card, and is refused 3 times.
+  const prior = await exhaustedPriorRun(context, "carry-avoid-a", "carry-avoid", undefined, avoidStore);
+  const priorRecords = rejectedRecords(prior.runStateRoot, "run-carry-avoid-a");
+  assert.equal(priorRecords.length, 3);
+  // Every record says which avoid entries its draft was written against.
+  for (const record of priorRecords) {
+    assert.equal(record.assemblyAvoidDigest, expectedAvoidDigest([entry]));
+  }
 
   const next = rig(context, "carry-avoid-b", { runStateSuffix: "carry-avoid", carryOverFromRunId: "run-carry-avoid-a", avoidStore });
   const { value: result, lines } = await withCapturedStderr(() => next.port.run(next.request));
   assert.equal(result.runStatus, "COMPLETED");
   const card = sectionCard(next.prompts, "compiler-ch01-summary-pack");
-  assert.match(card, /CROSS-CHAPTER ASSEMBLY CONFLICT/, "the avoid brief is the one that must survive");
-  assert.doesNotMatch(card, /PREVIOUS DRAFT REJECTED BY SECTION GATES/, "the contradicting brief must not be in the same card");
-  assert.equal(lines.filter((line) => line.includes("CARRY_OVER_REJECTED_DRAFT")).length, 0, lines.join("\n"));
+  assert.match(card, /CROSS-CHAPTER ASSEMBLY CONFLICT/, "the avoid brief is still the card's own brief");
+  assert.match(card, /PREVIOUS DRAFT REJECTED BY SECTION GATES/, "…and the round it continues is in the same card");
   assert.ok(
-    lines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_SKIPPED reason=assembly-avoid")),
+    lines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_REJECTED_DRAFT from=run-carry-avoid-a attempt=3")),
     lines.join("\n"),
   );
+});
 
-  // Per (chapter, kind): a ban on a DIFFERENT section leaves summary's carry-over
-  // alone — which is the case this whole mechanism exists for (a section-blocked
-  // round never reaches assembly at all).
-  await avoidStore.write({ bookId: BOOK, chapterId: `${BOOK}-ch01`, kind: "example-pack" }, avoidEntries);
-  const elsewhere = rig(context, "carry-avoid-c", { runStateSuffix: "carry-avoid", carryOverFromRunId: "run-carry-avoid-a", avoidStore });
+requiredTest("R-285i a re-draft whose avoid-context CHANGED, or whose record predates the digest, stands the carry-over down", async (context) => {
+  // The unsafe cases, both of them: the ban set moved after the draft was written
+  // (so the draft answers a brief nobody is being given now), and a record from
+  // before this field existed while a ban is in play (so nothing can say what the
+  // draft was written against). Both drop to a fresh card; neither weakens a gate.
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const avoidStore = createFileSectionAvoidStore({ booksRoot: context.roots.booksRoot, writeLock });
+  const entry = {
+    checkId: "SEC93.example_venue_stamping",
+    phrase: "kitchen table",
+    keptByChapters: [2],
+    message: `venue "kitchen table" is already used by ch02 — choose a different concrete venue.`,
+  };
+  const second = {
+    checkId: "SEC96.example_object_stamping",
+    phrase: "index card",
+    keptByChapters: [3],
+    message: `object "index card" is already used by ch03 — choose a different concrete object.`,
+  };
+  const key = { bookId: BOOK, chapterId: `${BOOK}-ch01`, kind: "summary-pack" as const };
+  await avoidStore.write(key, { entries: [entry] });
+  const prior = await exhaustedPriorRun(context, "carry-changed-a", "carry-changed", undefined, avoidStore);
+  assert.equal(rejectedRecords(prior.runStateRoot, "run-carry-changed-a").length, 3);
+
+  // (b) A LATER assembly banned a second phrase. The digest moves, the draft goes.
+  await avoidStore.write(key, { entries: [entry, second] });
+  const changed = rig(context, "carry-changed-b", { runStateSuffix: "carry-changed", carryOverFromRunId: "run-carry-changed-a", avoidStore });
+  const { value: changedResult, lines: changedLines } = await withCapturedStderr(() => changed.port.run(changed.request));
+  assert.equal(changedResult.runStatus, "COMPLETED");
+  const changedCard = sectionCard(changed.prompts, "compiler-ch01-summary-pack");
+  assert.match(changedCard, /CROSS-CHAPTER ASSEMBLY CONFLICT/);
+  assert.doesNotMatch(changedCard, /PREVIOUS DRAFT REJECTED BY SECTION GATES/, "a draft written under the old ban set must not be seeded");
+  assert.equal(changedLines.filter((line) => line.includes("CARRY_OVER_REJECTED_DRAFT")).length, 0, changedLines.join("\n"));
+  assert.ok(
+    changedLines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_SKIPPED reason=assembly-avoid-changed")),
+    changedLines.join("\n"),
+  );
+
+  // (c) The same records as a pre-R-285 run wrote them: no digest at all. With a
+  //     ban in play there is nothing to compare, so the draft is dropped.
+  for (const attempt of [1, 2, 3]) {
+    patchRecord(prior.runStateRoot, "run-carry-changed-a", `ch01.summary-pack.attempt${attempt}.json`, { assemblyAvoidDigest: undefined });
+  }
+  await avoidStore.write(key, { entries: [entry] });
+  const legacy = rig(context, "carry-changed-c", { runStateSuffix: "carry-changed", carryOverFromRunId: "run-carry-changed-a", avoidStore });
+  const { value: legacyResult, lines: legacyLines } = await withCapturedStderr(() => legacy.port.run(legacy.request));
+  assert.equal(legacyResult.runStatus, "COMPLETED");
+  assert.doesNotMatch(sectionCard(legacy.prompts, "compiler-ch01-summary-pack"), /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+  assert.ok(
+    legacyLines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_SKIPPED reason=assembly-avoid")
+      && !line.includes("assembly-avoid-changed")),
+    legacyLines.join("\n"),
+  );
+
+  // Per (chapter, kind), still: a ban on a DIFFERENT section leaves an avoid-free
+  // section's carry-over alone — its records carry a null digest and so does it.
+  const perKind = await exhaustedPriorRun(context, "carry-perkind-a", "carry-perkind");
+  await avoidStore.write({ bookId: BOOK, chapterId: `${BOOK}-ch01`, kind: "example-pack" }, { entries: [entry] });
+  const elsewhere = rig(context, "carry-perkind-b", { runStateSuffix: "carry-perkind", carryOverFromRunId: "run-carry-perkind-a", avoidStore });
   const { value: elsewhereResult, lines: elsewhereLines } = await withCapturedStderr(() => elsewhere.port.run(elsewhere.request));
   assert.equal(elsewhereResult.runStatus, "COMPLETED");
+  assert.equal(rejectedRecords(perKind.runStateRoot, "run-carry-perkind-a").length, 3);
   assert.match(sectionCard(elsewhere.prompts, "compiler-ch01-example-pack"), /CROSS-CHAPTER ASSEMBLY CONFLICT/);
   assert.match(sectionCard(elsewhere.prompts, "compiler-ch01-summary-pack"), /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
   assert.ok(
-    elsewhereLines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_REJECTED_DRAFT from=run-carry-avoid-a attempt=3")),
+    elsewhereLines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_REJECTED_DRAFT from=run-carry-perkind-a attempt=3")),
     elsewhereLines.join("\n"),
   );
 });

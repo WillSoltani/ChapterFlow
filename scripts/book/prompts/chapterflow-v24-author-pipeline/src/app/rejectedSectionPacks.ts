@@ -31,10 +31,12 @@
  *     gets cut.
  */
 
+import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 
 import type { SectionKind } from "../artifacts/artifactTypes.js";
+import type { SectionAvoidEntry } from "../books/sectionAvoidStore.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 
 /** Where rejected section packs are written, relative to the COMPILER RUN dir
@@ -100,8 +102,43 @@ export interface RejectedSectionPackDraft {
    *  field existed falls back to `taskCardDigest`, which for those records IS the
    *  identity digest. */
   readonly identityTaskCardDigest?: string;
+  /** `assemblyAvoidDigest` of the cross-chapter avoid-context THIS draft was written
+   *  against — null when the section had none. It is what lets an assembly-eviction
+   *  re-draft carry over: the ban set is part of the brief the draft answered, so
+   *  the next round may open on the draft only while that set is unchanged.
+   *
+   *  Optional: a record written before this field existed cannot say what it was
+   *  drafted under, and the reader treats that as unknown (carry-over stands down
+   *  whenever avoid-context is in play). */
+  readonly assemblyAvoidDigest?: string | null;
   /** The raw model output, exactly as it came back and was refused. */
   readonly draft: unknown;
+}
+
+/**
+ * The cross-chapter avoid-context a draft was written against, as one digest.
+ *
+ * Carry-over across compiler runs is safe for an assembly-eviction re-draft exactly
+ * when the ban set has not moved since the draft was written — see the R-285 block
+ * in compilerApplicationPort. This is the comparison both sides use: the writer
+ * stamps it on the record, the reader checks the record against the current one.
+ *
+ * Canonical by construction: entries in STORED ORDER (the store's own merge order,
+ * which is what the card renders), each reduced to the five fields that reach the
+ * card, an absent `rounds` normalized to null so a pre-`rounds` entry and an
+ * explicit round 1 are not confused. `null` — never a digest — when the section has
+ * no avoid-context at all, so "no bans" is a value the reader can compare too.
+ */
+export function assemblyAvoidDigest(entries: readonly SectionAvoidEntry[] | undefined): string | null {
+  if (entries === undefined || entries.length === 0) return null;
+  const canonical = entries.map((entry) => ({
+    checkId: entry.checkId,
+    phrase: entry.phrase,
+    keptByChapters: [...entry.keptByChapters],
+    message: entry.message,
+    rounds: entry.rounds ?? null,
+  }));
+  return createHash("sha256").update(JSON.stringify(canonical)).digest("hex");
 }
 
 /** Diagnostics sink. Never returns a value, never gates anything. */
@@ -151,6 +188,7 @@ export function serializeRejectedSectionPack(
     ...(record.feedback === undefined ? {} : { feedback: record.feedback }),
     taskCardDigest: record.taskCardDigest,
     ...(record.identityTaskCardDigest === undefined ? {} : { identityTaskCardDigest: record.identityTaskCardDigest }),
+    ...(record.assemblyAvoidDigest === undefined ? {} : { assemblyAvoidDigest: record.assemblyAvoidDigest }),
   };
   const render = (body: Record<string, unknown>): string => `${JSON.stringify({ ...head, ...body }, null, 2)}\n`;
   const whole = render({ draft: record.draft });
@@ -231,14 +269,19 @@ export function createRejectedSectionPackWriter(
  * gate, the attempt budget is the same 3, and the card for a section with no
  * carry-over is byte-for-byte the card it is today.
  *
- * The safety of that hinges on ONE precondition, checked here rather than assumed:
- * the prior round's attempt-1 record carries the section's IDENTITY card digest (the
- * feedback-free, avoid-free card the cache key is built from). If it still equals the
- * digest this round computes, the blueprint, the packet, the scars and the card text
- * are all unchanged and the old draft was written against these exact inputs. If it
- * does not, the old draft answers a question no longer being asked, and it is
- * dropped. Every other failure — a missing file, unparseable JSON, a truncated
- * record, a draft of the wrong artifact type — drops it too.
+ * The safety of that hinges on TWO preconditions, checked here rather than assumed.
+ * First, the prior round's attempt-1 record carries the section's IDENTITY card digest
+ * (the feedback-free, avoid-free card the cache key is built from). If it still equals
+ * the digest this round computes, the blueprint, the packet, the scars and the card
+ * text are all unchanged and the old draft was written against these exact inputs.
+ * Second, the carried record carries the AVOID digest — the cross-chapter ban set its
+ * draft was written against — and it must equal this attempt's own. A ban is part of
+ * the brief a draft answered, so a draft written under a different ban set (or a
+ * record too old to say which set it answered, while bans are in play) would hand the
+ * writer two briefs that contradict each other. If either check fails, the old draft
+ * answers a question no longer being asked, and it is dropped. Every other failure — a
+ * missing file, unparseable JSON, a truncated record, a draft of the wrong artifact
+ * type — drops it too.
  *
  * BEST EFFORT, like the writer: this reads diagnostics files off a disk that a
  * previous process wrote, so it returns a reason instead of throwing, and a compile
@@ -284,6 +327,10 @@ export function readCarryOverRejectedDraft(input: Readonly<{
   chapterNumber: number;
   kind: SectionKind;
   taskCardDigest: string;
+  /** This attempt's avoid-context digest (`assemblyAvoidDigest`), null when the
+   *  section has no cross-chapter avoid-context. The carried draft must have been
+   *  written against the SAME value. */
+  assemblyAvoidDigest: string | null;
   maxBlockerLines: number;
 }>): CarryOverRejectedDraftLookup {
   try {
@@ -324,6 +371,17 @@ export function readCarryOverRejectedDraft(input: Readonly<{
     const last = matched[matched.length - 1];
     const record = last.name === first.name ? attempt1 : parse(last.name);
     if (record === null) return { ok: false, reason: "unreadable" };
+    // The AVOID CHECK. An assembly eviction happens at assembly, which ends a run, so
+    // every draft of a round was written against that round's bans — carrying one
+    // forward is safe while the ban set is unchanged, and only then. A record from
+    // before the field existed cannot answer the question at all, so it is usable
+    // only where there are no bans to answer for.
+    const recordedAvoid = record.assemblyAvoidDigest;
+    if (recordedAvoid === undefined) {
+      if (input.assemblyAvoidDigest !== null) return { ok: false, reason: "assembly-avoid" };
+    } else if ((typeof recordedAvoid === "string" ? recordedAvoid : null) !== input.assemblyAvoidDigest) {
+      return { ok: false, reason: "assembly-avoid-changed" };
+    }
     if (record.truncated === true) return { ok: false, reason: "truncated" };
     const draft = record.draft;
     if (!isPlainObject(draft)) return { ok: false, reason: "draft-shape" };
