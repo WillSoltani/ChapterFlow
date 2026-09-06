@@ -258,10 +258,23 @@ function snapshotTask(task: ModelTask): ModelTaskSnapshotResult {
       if (typeof input.name !== "string" || typeof input.mediaType !== "string" || !(input.bytes instanceof Uint8Array)) {
         return { ok: false, attemptId: attemptIdForResult, message: "prompt request rejected" };
       }
+      // `trust` is copied here on purpose, and the R-223 whitelist rule is why
+      // it has to be: a field a call site sets and this snapshot drops goes
+      // WITHOUT ERROR. Dropping this one would be silently worse than never
+      // having it — every port test asserts on the request the runner receives,
+      // one layer above here, so they would all stay green while production kept
+      // rendering the pipeline's own task text inside the untrusted envelope,
+      // which is the contradiction that made five Franklin reader seats refuse
+      // to answer on 2026-09-06. The end-to-end pin is on the process's STDIN
+      // (tests/v25/model-gateway.test.ts), not on the request.
+      if (input.trust !== undefined && input.trust !== "instruction") {
+        return { ok: false, attemptId: attemptIdForResult, message: "prompt request rejected" };
+      }
       inputs.push(Object.freeze({
         name: input.name,
         mediaType: input.mediaType as PromptRequest["inputs"][number]["mediaType"],
         bytes: new Uint8Array(input.bytes),
+        ...(input.trust === undefined ? {} : { trust: "instruction" as const }),
       }));
     }
     const prompt = Object.freeze({

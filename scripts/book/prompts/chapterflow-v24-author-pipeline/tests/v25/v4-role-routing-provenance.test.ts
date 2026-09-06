@@ -267,7 +267,10 @@ requiredTest("createClaudeRoute rejects an unrecognised effort tier at construct
   // The argv-side normalizer stays a defensive no-op: it can no longer be
   // reached with an unknown tier, and it still never emits an invalid flag.
   assert.deepEqual(effortArgs("bogus-effort"), ["--effort", "high"]);
-  assert.deepEqual(createClaudeRoute("claude-sonnet-5", "max").build({
+  // Re-anchored (2026-09-06): the route now also emits --restricted after the
+  // effort pair, so the pin reads the flag/value pair by NAME instead of by a
+  // tail offset that any later argv addition would silently shift.
+  const maxArgs = createClaudeRoute("claude-sonnet-5", "max").build({
     id: "read",
     workDirPolicy: "PIPELINE_ROOT",
     mode: "READ_ONLY",
@@ -276,7 +279,11 @@ requiredTest("createClaudeRoute rejects an unrecognised effort tier at construct
     terminateGraceMs: 1,
     maxStdoutBytes: 1,
     maxStderrBytes: 1,
-  }).args.slice(-4, -2), ["--effort", "max"]);
+  }).args;
+  const effortIndex = maxArgs.indexOf("--effort");
+  assert.notEqual(effortIndex, -1);
+  assert.deepEqual(maxArgs.slice(effortIndex, effortIndex + 2), ["--effort", "max"]);
+  assert.equal(maxArgs.includes("--restricted"), true);
 });
 
 requiredTest("the routing config can express every tier the claude route accepts, and nothing else", () => {

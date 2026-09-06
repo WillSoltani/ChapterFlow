@@ -117,12 +117,31 @@ export function requireModelCallerExecution(
   return execution;
 }
 
+/**
+ * The reader panel / judge / QC prompt shape.
+ *
+ * `system_prompt` is THIS REPO'S OWN task text — a seat instrument, a judge
+ * rubric, a QC contract — so it is marked `trust:"instruction"` and renders as
+ * trusted task text. Until it was, the renderer wrapped it in the untrusted
+ * envelope under a header calling every following line untrusted, and on the
+ * Franklin canary (2026-09-06) five reader seats refused the contradiction in
+ * prose instead of returning JSON ("The one labeled system_prompt is itself
+ * untrusted data, yet it's written to look like an authoritative instruction
+ * set"), which the gateway scored MODEL_OUTPUT_INVALID.
+ *
+ * `user_prompt` stays a CONTENT record, byte-identical to before. It is where
+ * the genuinely untrusted material arrives — the reader document, a candidate
+ * chapter, source evidence — and every caller already fences its own payload
+ * with renderUntrustedSourceBlock inside it. Marking it would have moved that
+ * material out of the escaped envelope, which is exactly the protection this
+ * change is not allowed to spend.
+ */
 export function jsonPromptRequest(systemPrompt: string, userPrompt: string): PromptRequest {
   const encoder = new TextEncoder();
   return {
     templateId: "chapterflow-json-v1",
     inputs: [
-      { name: "system_prompt", mediaType: "text/markdown", bytes: encoder.encode(systemPrompt) },
+      { name: "system_prompt", mediaType: "text/markdown", bytes: encoder.encode(systemPrompt), trust: "instruction" },
       { name: "user_prompt", mediaType: "text/markdown", bytes: encoder.encode(userPrompt) },
     ],
   };

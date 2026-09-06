@@ -675,6 +675,20 @@ requiredTest("3 fixed profile and ordered framing preserve hostile candidate byt
     assert.equal(prompt.prompt.templateId, "chapterflow-json-v1");
     assert.equal(renderPrompt(prompt.prompt).ok, true);
     assert.deepEqual(prompt.prompt.inputs.map((input) => input.name), ["control", "chapter_index", "source_sidecar", "source_1", "task_card"]);
+    // EXACTLY the two source-controlled instruction inputs are trusted; every
+    // source record stays an escaped CHAPTERFLOW_UNTRUSTED_INPUT_V1 record.
+    assert.deepEqual(
+      prompt.prompt.inputs.filter((input) => input.trust !== undefined).map((input) => `${input.name}:${input.trust}`),
+      ["control:instruction", "task_card:instruction"],
+    );
+    const renderedPrompt = Buffer.from((renderPrompt(prompt.prompt) as { ok: true; value: Uint8Array }).value).toString("utf8");
+    assert.equal(
+      renderedPrompt.split("\n").filter((line) => line.startsWith("{\"kind\":\"CHAPTERFLOW_UNTRUSTED_INPUT_V1\"")).length,
+      3,
+      "chapter_index + source_sidecar + source_1 stay untrusted records",
+    );
+    assert.match(renderedPrompt, /\nTASK_INSTRUCTIONS_BEGIN name=control\n/);
+    assert.match(renderedPrompt, /\nTASK_INSTRUCTIONS_BEGIN name=task_card\n/);
     assert.deepEqual(Buffer.from(prompt.prompt.inputs[3].bytes), HOSTILE);
     const taskCard = Buffer.from(prompt.prompt.inputs[4].bytes).toString("utf8");
     assert.match(taskCard, /voice: direct and warm/);

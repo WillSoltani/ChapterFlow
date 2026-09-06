@@ -116,8 +116,9 @@ test("qualifyCodexCli: a probe failure is a fail-closed preflight error", async 
   );
 });
 
-/** Shape captured from `claude --help` (Claude Code 2.1.197, 2026-07-22) — the
- *  option lines the claude route's required flags parse against. */
+/** Shape captured from `claude --help` (Claude Code 2.1.197, 2026-07-22; the
+ *  --restricted lines captured verbatim from 2.1.263, 2026-09-06) — the option
+ *  lines the claude route's required flags parse against. */
 const REAL_CLAUDE_HELP_SHAPE = `
 Options:
   --add-dir <directories...>            Additional directories to allow tool access to
@@ -128,11 +129,39 @@ Options:
   --output-format <format>              Output format (only works with --print): "text" (default), "json"
   --permission-mode <mode>              Permission mode to use for the session
   -p, --print                           Print response and exit
+  --restricted                          Restricted mode: removes the built-in
+                                        tools that run commands or code (Bash,
+                                        PowerShell, REPL and the other
+                                        code-running tools) and WebFetch unless
+                                        --tools names them, and ignores user,
+                                        project and local settings files
+                                        (managed settings and --settings still
+                                        apply; add --strict-mcp-config to skip
+                                        MCP servers too). Also confines the file
+                                        tools to the working directories
+                                        (--add-dir included), refuses
+                                        bypassPermissions, and lets only a
+                                        person or the configured permission
+                                        handler approve writes to settings, git
+                                        and tool-configuration files.
 `;
 
 test("parseClaudeHelpForFlags: the real 2.1.197 help shape yields every claude route flag as supported", () => {
   const flags = parseClaudeHelpForFlags(REAL_CLAUDE_HELP_SHAPE);
   for (const f of CLAUDE_ROUTE_REQUIRED_FLAGS) assert.equal(flags[f], true, `expected ${f} supported`);
+});
+
+test("parseClaudeHelpForFlags: a claude without --restricted fails qualification (operator config would leak in)", () => {
+  // The route emits --restricted on every call to keep the operator's plugins,
+  // hooks and output styles out of pipeline prompts (4 of 9 failed Franklin
+  // reader seats on 2026-09-06 came back decorated with "★ Insight" blocks and
+  // "caveman decoration"). A CLI too old to support it must fail preflight, not
+  // quietly run under those settings.
+  const stripped = REAL_CLAUDE_HELP_SHAPE.replace(/^\s*--restricted[\s\S]*$/m, "");
+  const flags = parseClaudeHelpForFlags(stripped);
+  assert.equal(flags["--restricted"], false);
+  assert.equal(CLAUDE_ROUTE_REQUIRED_FLAGS.includes("--restricted"), true, "--restricted is required, never optional");
+  assert.equal(flags["--permission-mode"], true, "unrelated flags still parse");
 });
 
 test("parseClaudeHelpForFlags: a CLI missing --effort reports it unsupported (fail-closed qualification)", () => {

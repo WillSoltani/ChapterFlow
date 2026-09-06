@@ -65,6 +65,58 @@ function normalizeEffort(effort: string): ClaudeEffort {
  *  model can only return its JSON answer (nothing to read/write/execute). */
 const READ_ONLY_LOCKDOWN_ARGS: readonly string[] = ["--disallowedTools", "*"];
 
+/**
+ * OPERATOR CONFIG ISOLATION — on EVERY call, in both modes.
+ *
+ * `claude -p` runs under the operator's own user configuration, so whatever is
+ * in ~/.claude reaches a pipeline call. On the Franklin canary (2026-09-06,
+ * reader panel, role=review, claude-sonnet-5, effort xhigh) 4 of 9 failed seat
+ * reads came back DECORATED: replies opening with "★ Insight ─────" blocks and
+ * mentioning "caveman decoration" before (or instead of) the JSON, which the
+ * gateway scores MODEL_OUTPUT_INVALID. The operator's settings.json
+ * enabledPlugins carried learning-output-style, explanatory-output-style and
+ * caveman, whose UserPromptSubmit hook injects "CAVEMAN MODE ACTIVE". A
+ * reproducible pipeline cannot let the machine it runs on rewrite its prompts.
+ *
+ * `claude --help` (2.1.263), verbatim:
+ *
+ *   --restricted    Restricted mode: removes the built-in tools that run
+ *                   commands or code (Bash, PowerShell, REPL and the other
+ *                   code-running tools) and WebFetch unless --tools names them,
+ *                   and ignores user, project and local settings files (managed
+ *                   settings and --settings still apply; add --strict-mcp-config
+ *                   to skip MCP servers too). Also confines the file tools to
+ *                   the working directories (--add-dir included), refuses
+ *                   bypassPermissions, and lets only a person or the configured
+ *                   permission handler approve writes to settings, git and
+ *                   tool-configuration files.
+ *
+ * LIVE PROBE 2026-09-06 (claude CLI 2.1.263, subscription auth, API keys
+ * stripped): `claude -p "Reply with exactly the word OK" --output-format json
+ * --model claude-sonnet-5 --effort low --restricted` → is_error=false, result
+ * "OK" — auth is unaffected. Its session transcript contained 0 CAVEMAN /
+ * 0 "Insight" / 0 hook-context / 0 output-style lines, against 4 / 3 / 6 / 5 in
+ * an identical control run WITHOUT the flag. It composes with both of this
+ * route's modes: `--permission-mode acceptEdits` and `--disallowedTools '*'`.
+ *
+ * Two alternatives were probed and REJECTED; neither may come back:
+ *   --bare              UNUSABLE. Its own help: "Anthropic auth is strictly
+ *                       ANTHROPIC_API_KEY or apiKeyHelper via --settings (OAuth
+ *                       and keychain are never read)". This route is
+ *                       subscription auth, and executionPolicy strips API keys,
+ *                       so --bare cannot authenticate at all.
+ *   CLAUDE_CONFIG_DIR   UNUSABLE. Redirecting it to an isolated directory
+ *                       produces "Not logged in".
+ *   --settings '{...}'  Works and keeps auth, but needs the operator's exact
+ *                       plugin list baked into the pipeline — a config that
+ *                       goes stale the moment they install another plugin.
+ *
+ * This TIGHTENS the route: it removes tools and ignores settings. It grants
+ * nothing, so it cannot weaken the READ_ONLY lockdown or the write-mode grant
+ * below, both of which still ride alongside it.
+ */
+const RESTRICTED_ARGS: readonly string[] = ["--restricted"];
+
 /** WORKSPACE_WRITE analog of codex's `--sandbox workspace-write`: auto-accept
  *  edits within the launch cwd (which the executionPolicy has already pinned to
  *  the isolated attempt sub-root — no `--add-dir` needed, cwd IS the grant). */
@@ -170,7 +222,7 @@ export function createClaudeRoute(model: string, effort: string): ModelProcessRo
   return Object.freeze({
     id: CLAUDE_ROUTE_ID,
     build(profile: ExecutionProfile) {
-      const base = ["-p", "--output-format", "json", "--model", model, ...effortArgs(effort)];
+      const base = ["-p", "--output-format", "json", "--model", model, ...effortArgs(effort), ...RESTRICTED_ARGS];
       const mode = profile.mode === "READ_ONLY" ? READ_ONLY_LOCKDOWN_ARGS : WORKSPACE_WRITE_ARGS;
       return { command: "claude", args: [...base, ...mode] };
     },
