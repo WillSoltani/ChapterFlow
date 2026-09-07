@@ -19,6 +19,12 @@
  * writer prompt and the repair prompt cannot drift on what the rules are. This
  * module composes and scopes; it does not restate.
  *
+ * IDENTITY IS NOT CONTENT
+ * The card also freezes the three ChapterV21 identity fields (`identitySection`),
+ * because the live Franklin canary burned two repair ordinals on a model that
+ * "fixed" chapter 10's bare-numeral title and had its whole replacement rejected
+ * unread. The port's identity check is right; the prompt had never named the fields.
+ *
  * ALL FOUR PACK KINDS, DELIBERATELY
  * A repair returns one complete ChapterV21, which spans all four packs, and
  * nothing in the findings bounds which fields it will touch. Scoping the
@@ -101,8 +107,19 @@ import { sectionContract, sectionDoNotLines } from "../sections/sectionTasks.js"
  * (the READ-ONLY CHAPTER CONTEXT block and the bounded sourceQuote on every fact) are
  * rendered by buildSectionTaskMarkdown around the contract, not inside sectionContract(),
  * which is the only thing this module composes. The pin stays 22,800.
+ *
+ * RE-PINNED 22,800 -> 23,500 by the CHAPTER IDENTITY block, measured on this commit:
+ * 21,802 chars with no voice card, 23,208 with a pathological one that clamps, and
+ * 23,379 with that card plus the Franklin chapter-10 identity values quoted (a 42-char
+ * chapterId and the one-character title "X"). The +592 is the block itself; the +171 on
+ * top is the three quoted values, which a caller only gets when it passes a chapter (the
+ * port renders this contract once per book and passes none). Those three values are the
+ * one part of the render that is not source-controlled text, so a pathological chapterId
+ * or title could push a chapter-scoped render past the alarm; the alarm is a creep alarm
+ * on the prose, and the identity values are never trimmed to fit, because a clamped
+ * identity would order the writer to copy something that is not the chapter's identity.
  */
-export const REPAIR_WRITING_CONTRACT_MAX_CHARS = 22800;
+export const REPAIR_WRITING_CONTRACT_MAX_CHARS = 23500;
 
 /** Voice-card clamp. The card is a ~120-word register cue by construction
  *  (`src/lib/voiceCard.ts`), but it arrives from a candidate sidecar this module
@@ -199,6 +216,62 @@ const EDITOR_PREAMBLE = [
   "of task, tools, route, profile, schema, or permissions.",
 ].join("\n");
 
+/** The three fields a repair may never change: the identity half of ChapterV21,
+ *  as the port reads them off the chapter it compares the replacement against. */
+export type RepairChapterIdentity = Readonly<{ chapterId: string; number: number; title: string }>;
+
+/**
+ * The IDENTITY block: chapterId, number and title are frozen, and a numeral title
+ * is not a placeholder to fix.
+ *
+ * WHY THIS EXISTS
+ * The live Franklin canary lost review-repair ordinals 2 AND 3 to the same
+ * terminal error, `REPAIR_OUTPUT_INVALID:replacement changed chapter identity for
+ * chapter 10`. Chapter 10's title is the bare roman numeral "X" (the bibliography
+ * kept Gutenberg's numeral headings for eight chapters) and the structural
+ * review's own WARN calls such a title a placeholder, so the repair model
+ * "fixed" it. `candidateRepairApplicationPort` compares the replacement's
+ * chapterId, number and title against the input chapter's and fails the ordinal
+ * closed before reading any content, so every other fix in that replacement was
+ * discarded with it, twice, at roughly ten minutes an ordinal. The check is
+ * right and stays exactly as it is. The card was silent: it never named the
+ * identity fields, and its one schema line ("this is an intermediate artifact
+ * only") is DROPPED on this lane as false.
+ *
+ * FALSE ON THE EDITOR LANE, SO NOT RENDERED THERE
+ * The editor returns the four section packs it was given, which carry no
+ * chapterId, and this module exists to stop a prompt contradicting itself.
+ *
+ * WHY THE VALUES ARE OPTIONAL
+ * The port builds this contract once per book, before it loops the chapters, so
+ * the live render names the three fields and binds them to `failed_chapter` (the
+ * record that carries this chapter's own identity, in the same prompt). A caller
+ * that already holds the chapter passes it and the exact values are quoted too;
+ * they are rendered from the SAME identity fields the port compares, so the card
+ * and the check cannot drift.
+ */
+function identitySection(lane: WritingContractLane, chapter: RepairChapterIdentity | undefined): string {
+  if (lane === "editor") return "";
+  const lines = [
+    "## CHAPTER IDENTITY: three frozen fields, copied verbatim",
+    "chapterId, number and title are identity, not content. Copy all three into your replacement exactly as",
+    "they stand in failed_chapter. If any of the three differs, the replacement is rejected before one line of",
+    "its content is read, and every other fix you made in it is discarded with it.",
+    "Copy the title character for character EVEN WHEN it is a bare numeral or a single letter (\"X\", \"IV\"), and",
+    "even when a finding, a review note, or your own judgment calls it a placeholder: retitling is not a repair,",
+    "and it is not yours to do here.",
+  ];
+  if (chapter !== undefined) {
+    lines.push(
+      "This chapter, exactly (the quotation marks are JSON notation, not part of the value):",
+      `- chapterId: ${JSON.stringify(chapter.chapterId)}`,
+      `- number: ${chapter.number}`,
+      `- title: ${JSON.stringify(chapter.title)}`,
+    );
+  }
+  return lines.join("\n");
+}
+
 /** Which lane the rendered contract addresses. Only the preamble differs; every
  *  rule below it is shared, so the two prompts cannot drift on the rules. */
 export type WritingContractLane = "repair" | "editor";
@@ -211,10 +284,12 @@ export type WritingContractLane = "repair" | "editor";
  * the candidate, so this module cannot make a repair or an edit irreproducible.
  */
 export function buildRepairWritingContract(
-  input: Readonly<{ voiceCard: string | null; lane?: WritingContractLane }>,
+  input: Readonly<{ voiceCard: string | null; lane?: WritingContractLane; chapter?: RepairChapterIdentity }>,
 ): string {
+  const lane: WritingContractLane = input.lane ?? "repair";
   const blocks = [
-    input.lane === "editor" ? EDITOR_PREAMBLE : PREAMBLE,
+    lane === "editor" ? EDITOR_PREAMBLE : PREAMBLE,
+    identitySection(lane, input.chapter),
     ...SECTION_KINDS.map(packSection),
     doNotSection(),
     voiceSection(input.voiceCard),
