@@ -141,6 +141,49 @@ requiredTest("the writing contract stays inside its stated character budget", ()
   assert.ok(contract.length >= REPAIR_WRITING_CONTRACT_MAX_CHARS * 0.85, `contract is ${contract.length} chars`);
 });
 
+requiredTest("the writing contract freezes the three identity fields, verbatim, bare numeral included", () => {
+  // The live Franklin canary lost repair ordinals 2 and 3 to
+  // REPAIR_OUTPUT_INVALID:replacement changed chapter identity for chapter 10 —
+  // chapter 10's title is the bare roman numeral "X" (the bibliography kept
+  // Gutenberg's numeral headings) and the structural review's WARN calls such a
+  // title a placeholder, so the repair model "fixed" it and the port discarded
+  // the whole replacement unread. The card had never named the identity fields.
+  const contract = buildRepairWritingContract({
+    voiceCard: null,
+    chapter: { chapterId: "the-autobiography-of-benjamin-franklin-ch10", number: 10, title: "X" },
+  });
+  assert.match(contract, /## CHAPTER IDENTITY/, contract);
+  assert.match(contract, /chapterId: "the-autobiography-of-benjamin-franklin-ch10"/, contract);
+  assert.match(contract, /number: 10/, contract);
+  assert.match(contract, /title: "X"/, contract);
+  // The rule the model broke, in words: a numeral title is not a placeholder to fix.
+  assert.match(contract, /retitling is not a repair/, contract);
+
+  // FALSE on the editor lane: an edit returns the four section packs it was
+  // given, which carry no chapterId, and this module ships no contradiction.
+  const editor = buildRepairWritingContract({
+    voiceCard: null,
+    lane: "editor",
+    chapter: { chapterId: "book-ch10", number: 10, title: "X" },
+  });
+  assert.doesNotMatch(editor, /## CHAPTER IDENTITY/, editor);
+
+  // Book-level render (no chapter in hand): the frozen fields are still named,
+  // bound to the failed_chapter record the model is given.
+  const generic = buildRepairWritingContract({ voiceCard: null });
+  assert.match(generic, /## CHAPTER IDENTITY/, generic);
+  assert.match(generic, /failed_chapter/, generic);
+});
+
+requiredTest("an identity title with quotes and non-ASCII renders exactly", () => {
+  const title = 'The "Silent" Partner: caf\u00e9 \u2713';
+  const contract = buildRepairWritingContract({
+    voiceCard: null,
+    chapter: { chapterId: "book-ch07", number: 7, title },
+  });
+  assert.ok(contract.includes(JSON.stringify(title)), contract);
+});
+
 requiredTest("floor-only is decided on the blocker set alone, by one shared predicate", () => {
   const floor: QcIssue = { code: `REVIEW.${READER_PANEL_BELOW_FLOOR_CODE}`, severity: "BLOCKER", message: "composite 67 < 70", location: "ch01" };
   const named: QcIssue = { code: "SEC55", severity: "BLOCKER", message: "quiz prompt cites no specific", location: "ch01" };
@@ -184,6 +227,10 @@ requiredTest("the repair prompt carries writing_contract as instruction, before 
     subject.prompts[0].prompt.inputs.find((input) => input.name === "writing_contract")!.bytes,
   ).toString("utf8");
   assert.match(contract, /CHOICE PARITY METHOD/, contract);
+  // The identity block reaches the live prompt: this is the record the model
+  // rewrote on the Franklin canary when it retitled chapter 10.
+  assert.match(contract, /## CHAPTER IDENTITY/, contract);
+  assert.match(contract, /retitling is not a repair/, contract);
   // The candidate's OWN voice card, read from the frozen section-task sidecar —
   // the same source the compiler reads, so writer and repair cannot diverge.
   assert.match(contract, /analytical, evidence-first register/, contract);
