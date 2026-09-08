@@ -30,6 +30,33 @@ function definition(
   };
 }
 
+function candidateDefinition(bookId: string, runId: string): RunDefinition {
+  return {
+    ...definition(bookId, runId),
+    commandId: "canonical-review",
+    inputCandidate: { candidateId: "candidate-one", manifestDigest: "0".repeat(64) },
+  };
+}
+
+function expectConflict(result: Result<unknown>, runId: string, label: string): void {
+  assert.equal(result.ok, false, `expected CONFLICT for ${label}`);
+  if (result.ok) return;
+  assert.equal(result.error.code, "CONFLICT", label);
+  assert.equal(result.error.message, `run ${runId} already exists with a different definition`, label);
+}
+
+async function captureStderr<T>(task: () => Promise<T>): Promise<{ readonly value: T; readonly lines: readonly string[] }> {
+  const lines: string[] = [];
+  const original = console.error;
+  console.error = (...args: readonly unknown[]): void => { lines.push(args.map((arg) => String(arg)).join(" ")); };
+  try {
+    const value = await task();
+    return { value, lines };
+  } finally {
+    console.error = original;
+  }
+}
+
 function admission(run: RunDefinition, attemptId: string, operationId = "write-ch01"): AttemptAdmission {
   return {
     bookId: run.bookId,
@@ -277,6 +304,78 @@ requiredTest("invalid complete definition writes no run state", async ({ roots }
   const invalid = { ...definition("safe-book", "safe-run"), requiredStages: ["write", "write"] } as RunDefinition;
   expectCode(await store.createRun(invalid), "INVALID_INPUT");
   assert.equal(existsSync(runDir(roots.stateRoot, invalid)), false);
+});
+
+requiredTest("resume under a newer code sha reopens the run instead of conflicting", async ({ roots }) => {
+  const run = candidateDefinition("resume-book", "resume-run");
+  const store = new FileRunStore(roots.stateRoot);
+  expectOk(await store.createRun(run));
+  const runFile = join(runDir(roots.stateRoot, run), "run.json");
+  const beforeBytes = readFileSync(runFile, "utf8");
+
+  const sameSha = await captureStderr(async () => await store.createRun(run));
+  expectOk(sameSha.value);
+  assert.deepEqual(sameSha.lines, [], "an unchanged sha must log nothing");
+
+  const upgraded: RunDefinition = { ...run, sourceGitSha: "b".repeat(40) };
+  const reopened = await captureStderr(async () => await store.createRun(upgraded));
+  const snapshot = expectOk(reopened.value);
+
+  assert.equal(snapshot.definition.sourceGitSha, run.sourceGitSha, "snapshot must carry the STORED sha");
+  assert.equal(readFileSync(runFile, "utf8"), beforeBytes, "the durable record must not be rewritten");
+  assert.deepEqual(reopened.lines, [
+    `[run-state] run=${run.runId} action=REOPENED_UNDER_DIFFERENT_SOURCE_SHA stored=${"a".repeat(12)} current=${"b".repeat(12)}`,
+  ]);
+});
+
+requiredTest("every identity field except the source sha still conflicts", async ({ roots }) => {
+  const run = candidateDefinition("identity-book", "identity-run");
+  const store = new FileRunStore(roots.stateRoot);
+  expectOk(await store.createRun(run));
+  const runFile = join(runDir(roots.stateRoot, run), "run.json");
+  const beforeBytes = readFileSync(runFile, "utf8");
+
+  const mutations: readonly (readonly [string, RunDefinition])[] = [
+    ["candidateId", { ...run, inputCandidate: { candidateId: "candidate-two", manifestDigest: "0".repeat(64) } }],
+    ["manifestDigest", { ...run, inputCandidate: { candidateId: "candidate-one", manifestDigest: "1".repeat(64) } }],
+    ["inputCandidate absent", { ...definition(run.bookId, run.runId), commandId: "canonical-review" }],
+    ["commandId", { ...run, commandId: "author-run" }],
+    ["requiredStages", { ...run, requiredStages: ["review"], attemptLimits: { run: 2, byStage: { review: 2 } } }],
+    ["requiredInventory", {
+      ...run,
+      requiredInventory: [{ kind: "CHAPTER", logicalPath: "chapters/ch02.md", mediaType: "text/markdown" }],
+    }],
+    ["attemptLimits.run", { ...run, attemptLimits: { run: 3, byStage: { write: 2 } } }],
+    ["attemptLimits.byStage", { ...run, attemptLimits: { run: 2, byStage: { write: 1 } } }],
+    ["createdAt", { ...run, createdAt: "2026-01-02T00:00:00.000Z" }],
+  ];
+
+  for (const [label, mutated] of mutations) {
+    expectConflict(await store.createRun(mutated), run.runId, label);
+    expectConflict(await store.createRun({ ...mutated, sourceGitSha: "b".repeat(40) }), run.runId, `${label} + new sha`);
+    assert.equal(readFileSync(runFile, "utf8"), beforeBytes, label);
+  }
+});
+
+requiredTest("bookId and runId stay path-keyed identity", async ({ roots }) => {
+  const run = candidateDefinition("identity-owner-book", "shared-run");
+  const store = new FileRunStore(roots.stateRoot);
+  expectOk(await store.createRun(run));
+  const runFile = join(runDir(roots.stateRoot, run), "run.json");
+  const beforeBytes = readFileSync(runFile, "utf8");
+
+  // A different bookId is never the same run: it is keyed to its own directory,
+  // so it can never reopen — or silently adopt — the stored one.
+  const otherBook: RunDefinition = { ...run, bookId: "identity-other-book" };
+  expectOk(await store.createRun(otherBook));
+  assert.notEqual(runDir(roots.stateRoot, otherBook), runDir(roots.stateRoot, run));
+  assert.equal(readFileSync(runFile, "utf8"), beforeBytes);
+
+  // And a record whose stored bookId disagrees with its path still fails closed.
+  const tampered = JSON.parse(beforeBytes) as { definition: { bookId: string } };
+  tampered.definition.bookId = "identity-other-book";
+  writeFileSync(runFile, `${JSON.stringify(tampered)}\n`);
+  expectCode(await store.createRun(run), "STATE_CORRUPT");
 });
 
 finishV25Tests().catch((error: unknown) => {

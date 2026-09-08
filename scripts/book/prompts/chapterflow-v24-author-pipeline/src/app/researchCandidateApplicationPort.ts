@@ -264,8 +264,15 @@ function requireRequest(input: ResearchCandidateApplicationRequest, pipelineRoot
  *
  * Everything that genuinely makes this a different run still binds: title,
  * author, bookId, v25Root, the source text DIGEST — and, outside this digest,
- * sourceGitSha and the stage/attempt limits, which fileRunStore compares field
- * by field against the persisted definition.
+ * the stage/attempt limits and the staged inventory, which fileRunStore compares
+ * field by field against the persisted definition.
+ *
+ * `sourceGitSha` is NOT one of them, for the same reason as `forceRefresh`: it
+ * is the sha of the code running the round, so folding it into identity made
+ * every resume after a merged fix unresumable. fileRunStore now treats it as
+ * PROVENANCE (see sameIdentity there) and logs the reopen; research-run
+ * compatibility has its own codeVersion/promptHash/configHash fingerprint, which
+ * is what actually guards reusing a bundle across code changes.
  */
 export function intentCommandId(input: ResearchCandidateApplicationRequest): string {
   return intentCommandIdWithRefreshAxis(input, null);

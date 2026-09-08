@@ -302,8 +302,39 @@ function normalizeRoot(stateRoot: string): string {
   return resolve(stateRoot);
 }
 
+/** Everything a run definition pins about WHAT the run is for, minus the sha of
+ *  the code that happened to create it. Identity therefore still includes
+ *  bookId/runId (also keyed by the run's own directory), commandId,
+ *  inputCandidate {candidateId, manifestDigest}, requiredStages,
+ *  requiredInventory, attemptLimits and createdAt — any of those differing is a
+ *  DIFFERENT run and must still CONFLICT.
+ *
+ *  `sourceGitSha` is code PROVENANCE, not identity. Every lane builds its
+ *  definition with the sha of the code running NOW, so under the old whole-object
+ *  compare any resume after a code upgrade conflicted on every run it touched —
+ *  three live wedges in this campaign alone:
+ *    1. compiler-operator-retry-18, worked around only by reconciling from a
+ *       detached worktree checked out at the old sha;
+ *    2. the review-repair runs, which needed a read-only reconcile path (#563)
+ *       purely to avoid calling createRun;
+ *    3. the COMPLETED canonical review run review-run-90caa…, which the resume
+ *       path re-creates rather than reads, failing the Franklin run every round.
+ *  Inputs are guarded where they actually matter and not by this field:
+ *  research-run compatibility uses its own codeVersion/promptHash/configHash
+ *  fingerprint, and section packs compare card/packet/blueprint/scars digests.
+ *  Operators upgrade code BETWEEN rounds and resume (the Franklin run merges a
+ *  fix and resumes every round), which the sha-in-identity rule made impossible
+ *  without a detached old-sha worktree. `createdAt` is deliberately left IN
+ *  the comparison and unchanged: callers reopening a run already read the stored
+ *  definition's createdAt and pass it back (see exactReview in
+ *  bookRunApplicationService), so it never spuriously conflicts. */
+function identityView(definition: RunDefinition): Omit<RunDefinition, "sourceGitSha"> {
+  const { sourceGitSha: _provenance, ...identity } = definition;
+  return identity;
+}
+
 function sameIdentity(left: RunDefinition, right: RunDefinition): boolean {
-  return sameValue(left, right);
+  return sameValue(identityView(left), identityView(right));
 }
 
 function validateFinishInput(input: Readonly<{
@@ -359,6 +390,15 @@ export class FileRunStore implements RunStore {
           const existing = loadRunState(paths, definition.bookId, definition.runId);
           if (!sameIdentity(existing.record.definition, definition)) {
             throw new RunStateFault("CONFLICT", `run ${definition.runId} already exists with a different definition`);
+          }
+          // The STORED definition stays the durable record — the run keeps the sha
+          // it was created under — so the resume is only announced, never rewritten.
+          if (existing.record.definition.sourceGitSha !== definition.sourceGitSha) {
+            console.error(
+              `[run-state] run=${definition.runId} action=REOPENED_UNDER_DIFFERENT_SOURCE_SHA`
+              + ` stored=${existing.record.definition.sourceGitSha.slice(0, 12)}`
+              + ` current=${definition.sourceGitSha.slice(0, 12)}`,
+            );
           }
           return projectRun(existing.record, existing.histories, definition.createdAt);
         }

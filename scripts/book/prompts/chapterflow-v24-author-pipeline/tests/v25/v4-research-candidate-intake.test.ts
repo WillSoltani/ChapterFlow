@@ -396,6 +396,20 @@ requiredTest("2 exact completed resume reuses research while fresh runs work and
   assert.equal(subject.operations.length, calls);
   assert.equal(subject.candidates.stageCalls(), stageCalls);
 
+  // A resume on UPGRADED CODE is the normal round, not a changed intent: the
+  // sourceGitSha is code provenance, so the run REOPENS (this is the wedge that
+  // refused the live Franklin resume after every merged fix), reusing the same
+  // research with no model call and no re-stage.
+  const upgraded = await subject.port.run({
+    ...subject.request,
+    resumeRunId: first.intakeRunId,
+    sourceGitSha: "b20d1cdab0fc33c4c1f840f4cf99089816e022d4",
+  });
+  assert.equal(upgraded.resumed, true);
+  assert.deepEqual(upgraded.candidate, first.candidate);
+  assert.equal(subject.operations.length, calls);
+  assert.equal(subject.candidates.stageCalls(), stageCalls);
+
   const fresh = await subject.port.run(subject.request);
   assert.equal(fresh.resumed, false);
   assert.notEqual(fresh.intakeRunId, first.intakeRunId);
@@ -403,20 +417,12 @@ requiredTest("2 exact completed resume reuses research while fresh runs work and
   assert.equal(subject.operations.length, calls + 3);
   assert.equal(subject.candidates.stageCalls(), stageCalls + 1);
 
-  await assert.rejects(
-    subject.port.run({
-      ...subject.request,
-      resumeRunId: first.intakeRunId,
-      sourceGitSha: "b20d1cdab0fc33c4c1f840f4cf99089816e022d4",
-    }),
-    /RESEARCH_RESUME_CONFLICT:resume run definition differs from requested intent/,
-  );
-  assert.equal(subject.operations.length, calls + 3);
-  assert.equal(subject.candidates.stageCalls(), stageCalls + 1);
-
   const originalRun = await subject.runStore.readRun(BOOK, first.intakeRunId, context.clock.now());
   assert.equal(originalRun.ok, true);
-  if (originalRun.ok) assert.equal(originalRun.value.attempts.length, calls);
+  if (originalRun.ok) {
+    assert.equal(originalRun.value.attempts.length, calls);
+    assert.equal(originalRun.value.definition.sourceGitSha, subject.request.sourceGitSha);
+  }
 });
 
 requiredTest("3 malformed or aggregate-fabricated source-v2 output fails closed before immutable seed", async (context) => {
@@ -1036,7 +1042,6 @@ requiredTest("21 a resumed round still fails closed when the intent that actuall
     // changes is a different run, with or without the regen flag.
     { sourceTextPath },
     { sourceTextPath, forceRefresh: true },
-    { sourceGitSha: "b20d1cdab0fc33c4c1f840f4cf99089816e022d4" },
     { title: "The Power of Other Moments" },
     { v25Root: resolve(context.roots.tempRoot, "other-v25") },
   ];
@@ -1047,6 +1052,16 @@ requiredTest("21 a resumed round still fails closed when the intent that actuall
       JSON.stringify(patch),
     );
   }
+  // …while the CODE SHA is provenance, not intent: the same round on upgraded
+  // code resumes, and still costs no model call.
+  const upgraded = await subject.port.run({
+    ...subject.request,
+    resumeRunId: first.intakeRunId,
+    reconcileUnsettled: true,
+    sourceGitSha: "b20d1cdab0fc33c4c1f840f4cf99089816e022d4",
+  });
+  assert.equal(upgraded.resumed, true);
+
   // A pinned research run is still structurally refused on a resume: the pin
   // names one bundle, the resume names a control run that owns its own.
   await assert.rejects(
