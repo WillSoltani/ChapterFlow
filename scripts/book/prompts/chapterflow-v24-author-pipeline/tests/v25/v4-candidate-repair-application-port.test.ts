@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-import { CANDIDATE_REPAIR_PROFILE_ID } from "../../src/app/candidateRepairApplicationPort.js";
+import { CANDIDATE_REPAIR_PROFILE_ID, CANDIDATE_REPAIR_STAGE_ID } from "../../src/app/candidateRepairApplicationPort.js";
 import { repairReviewIdSeries } from "../../src/app/contentRepairWorkflow.js";
 import type { CandidateSnapshot } from "../../src/books/candidateTypes.js";
 import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../../src/critics/bookPatternAudit.js";
@@ -563,6 +563,77 @@ requiredTest("R-076: a repaired chapter whose prose yields no memorable line fai
     assert.equal(result.error.code, "REPAIR_OUTPUT_INVALID");
     assert.match(result.error.message, /memorable lines/i);
   }
+});
+
+// ────────────────────────────────────────────────────────────────────────────
+// QC-lane parity with the review lane's killed-process wedge: a RUNNING repair
+// run whose admitted attempt never settled answered REPAIR_ATTEMPT_UNCERTAIN on
+// every resume, with no consent-gated recovery anywhere in the lane.
+// ────────────────────────────────────────────────────────────────────────────
+
+requiredTest("a STALE admitted QC-repair attempt reconciles under operator consent, and refuses without it", async (context: TestContext) => {
+  const subject = rig(context);
+  const runRoot = resolve(context.roots.tempRoot, "repair-run-state");
+  const lease = 60_000;
+  const created = await subject.runStore.createRun({
+    schemaVersion: "1",
+    bookId: BOOK,
+    runId: subject.request.repairRunId,
+    commandId: "candidate-repair",
+    sourceGitSha: subject.request.sourceGitSha,
+    requiredStages: [CANDIDATE_REPAIR_STAGE_ID],
+    requiredInventory: subject.predecessor.files.map(({ kind, logicalPath, mediaType }) => ({ kind, logicalPath, mediaType })),
+    inputCandidate: FAILED,
+    attemptLimits: { run: 1, byStage: { [CANDIDATE_REPAIR_STAGE_ID]: 1 } },
+    createdAt: context.clock.now(),
+  });
+  assert.equal(created.ok, true, JSON.stringify(created));
+  const admittedAt = context.clock.now();
+  const admitted = await subject.runStore.admitAttempt({
+    bookId: BOOK,
+    runId: subject.request.repairRunId,
+    attemptId: "rep-wedged-ch01",
+    stageId: CANDIDATE_REPAIR_STAGE_ID,
+    operationId: "repair-ch01",
+    admittedAt,
+    staleAt: new Date(Date.parse(admittedAt) + lease).toISOString(),
+  });
+  assert.equal(admitted.ok, true, JSON.stringify(admitted));
+  context.clock.advance(lease * 2);
+
+  const journal = (): readonly Record<string, unknown>[] =>
+    readFileSync(resolve(runRoot, "books", BOOK, "runs", subject.request.repairRunId, "attempts.jsonl"), "utf8")
+      .split("\n")
+      .filter((line) => line.trim().length > 0)
+      .map((line) => JSON.parse(line) as Record<string, unknown>)
+      .filter((record) => record.type === "ATTEMPT_FINISHED");
+
+  // Without consent: today's fail-closed refusal, byte for byte, nothing written.
+  const refused = await subject.port.run(subject.request);
+  assert.equal(refused.ok, false, JSON.stringify(refused));
+  if (refused.ok) throw new Error("an unsettled admitted attempt must never be replayed");
+  assert.equal(refused.error.code, "REPAIR_ATTEMPT_UNCERTAIN");
+  const stuck = await subject.runStore.readRun(BOOK, subject.request.repairRunId, context.clock.now());
+  assert.equal(stuck.ok && stuck.value.status, "RUNNING");
+  assert.equal(journal().length, 0, "no consent, nothing written");
+
+  // With consent: the attempt is settled ABANDONED with the marker and the run
+  // reaches the terminal FAILED state the caller's ordinal walk steps past.
+  const reconciled = await subject.port.run({ ...subject.request, reconcileUnsettled: true });
+  assert.equal(reconciled.ok, false, JSON.stringify(reconciled));
+  if (reconciled.ok) throw new Error("recovery must not repair under the dead run id");
+  assert.equal(reconciled.error.code, "REPAIR_RUN_TERMINAL");
+  assert.match(reconciled.error.message, /repair run is FAILED/);
+  const recovered = await subject.runStore.readRun(BOOK, subject.request.repairRunId, context.clock.now());
+  assert.equal(recovered.ok, true, JSON.stringify(recovered));
+  if (!recovered.ok) return;
+  assert.equal(recovered.value.status, "FAILED");
+  assert.equal(recovered.value.attempts[0].status, "ABANDONED");
+  assert.equal(
+    journal().filter((record) => record.outcome === "ABANDONED" && record.detail === "RECONCILED_UNSETTLED_ON_RESUME").length,
+    1,
+  );
+  assert.equal(subject.counts.model, 0, "recovery burns zero model calls");
 });
 
 finishV25Tests().catch((error: unknown) => {
