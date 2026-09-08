@@ -83,9 +83,16 @@ requiredTest("changed run identity conflicts without importing checkpoints", asy
   expectOk(await new FileRunStore(roots.stateRoot).createRun(run));
   expectOk(await coordinator.checkpoint(checkpoint(run, "research", "2026-01-01T00:00:00.010Z")));
   const before = readFileSync(join(stagesDir(roots.stateRoot, run), "research.json"), "utf8");
+  const runFile = join(roots.stateRoot, "books", run.bookId, "runs", run.runId, "run.json");
+  const recordBefore = readFileSync(runFile, "utf8");
+  // `sourceGitSha` is deliberately NOT in this list: it is code PROVENANCE, not
+  // identity (see identityView in fileRunStore.ts), and planResume must use the
+  // same identity view as createRun or an operator who merges a fix and resumes
+  // is refused one call later than before. Every variant below is asserted BOTH
+  // at the run's own sha and at a new one, so the narrowing stays exactly one
+  // field wide.
   const variants: RunDefinition[] = [
     { ...run, commandId: "other-command" },
-    { ...run, sourceGitSha: "c".repeat(40) },
     {
       ...run,
       requiredStages: ["write", "research", "review"],
@@ -94,8 +101,20 @@ requiredTest("changed run identity conflicts without importing checkpoints", asy
     { ...run, requiredInventory: [...run.requiredInventory].reverse() },
     { ...run, inputCandidate: { candidateId: "candidate-other", manifestDigest: "2".repeat(64) } },
     { ...run, attemptLimits: { ...run.attemptLimits, run: 7 } },
+    { ...run, createdAt: "2026-01-02T00:00:00.000Z" },
   ];
-  for (const variant of variants) expectCode(await coordinator.planResume(variant), "CONFLICT");
+  for (const variant of variants) {
+    expectCode(await coordinator.planResume(variant), "CONFLICT");
+    expectCode(await coordinator.planResume({ ...variant, sourceGitSha: "c".repeat(40) }), "CONFLICT");
+  }
+  const upgraded = expectOk(await coordinator.planResume({ ...run, sourceGitSha: "c".repeat(40) }));
+  assert.deepEqual(upgraded, {
+    runId: run.runId,
+    completedStages: ["research"],
+    pendingStages: ["write", "review"],
+    cancelled: false,
+  });
+  assert.equal(readFileSync(runFile, "utf8"), recordBefore, "resume must not rewrite the stored definition");
   assert.equal(readFileSync(join(stagesDir(roots.stateRoot, run), "research.json"), "utf8"), before);
   assert.deepEqual(readdirSync(stagesDir(roots.stateRoot, run)).sort(), ["research.json"]);
 });
