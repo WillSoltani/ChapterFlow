@@ -4,6 +4,7 @@ import { basename, isAbsolute, join, resolve } from "node:path";
 import type { Result } from "../contracts/v4Core.js";
 import {
   loadRunState,
+  sameRunIdentity,
   withRunStateLock,
   writeCanonicalJson,
   type RunStatePaths,
@@ -98,7 +99,15 @@ export class FileStageCoordinator implements StageCoordinator {
       const definition = normalizeRunDefinition(definitionInput);
       const value = await withRunStateLock(this.stateRoot, definition.bookId, definition.runId, false, (paths) => {
         const state = loadRunState(paths, definition.bookId, definition.runId);
-        if (!sameValue(state.record.definition, definition)) {
+        // Same identity view as FileRunStore.createRun: sourceGitSha is code
+        // provenance, not identity, so a resume on upgraded code plans against
+        // the run it reopened instead of being refused one call later. The
+        // STORED definition is never rewritten here — planResume only reads.
+        // The reopen is announced once by createRun, which every lane calls with
+        // this same definition before it plans the resume (pipeline.ts:672/686,
+        // compilerApplicationPort, candidateRepairApplicationPort,
+        // researchCandidateApplicationPort), so nothing is logged twice here.
+        if (!sameRunIdentity(state.record.definition, definition)) {
           throw new RunStateFault("CONFLICT", `run ${definition.runId} definition differs from persisted identity`);
         }
         const checkpoints = loadCheckpoints(paths, definition);

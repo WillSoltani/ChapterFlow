@@ -303,8 +303,12 @@ function normalizeRoot(stateRoot: string): string {
 }
 
 /** Everything a run definition pins about WHAT the run is for, minus the sha of
- *  the code that happened to create it. Identity therefore still includes
- *  bookId/runId (also keyed by the run's own directory), commandId,
+ *  the code that happened to create it. This is the ONE identity view of a run
+ *  definition: `createRun` reopens on it and `FileStageCoordinator.planResume`
+ *  compares on it too (via `sameRunIdentity`), because a resume that createRun
+ *  admits and planResume then refuses is the same wedge one call later, under a
+ *  different error code. Identity therefore still includes bookId/runId (also
+ *  keyed by the run's own directory), commandId,
  *  inputCandidate {candidateId, manifestDigest}, requiredStages,
  *  requiredInventory, attemptLimits and createdAt — any of those differing is a
  *  DIFFERENT run and must still CONFLICT.
@@ -333,7 +337,7 @@ function identityView(definition: RunDefinition): Omit<RunDefinition, "sourceGit
   return identity;
 }
 
-function sameIdentity(left: RunDefinition, right: RunDefinition): boolean {
+export function sameRunIdentity(left: RunDefinition, right: RunDefinition): boolean {
   return sameValue(identityView(left), identityView(right));
 }
 
@@ -388,7 +392,7 @@ export class FileRunStore implements RunStore {
       const value = await withRunStateLock(this.stateRoot, definition.bookId, definition.runId, true, (paths) => {
         if (existsSync(paths.runFile)) {
           const existing = loadRunState(paths, definition.bookId, definition.runId);
-          if (!sameIdentity(existing.record.definition, definition)) {
+          if (!sameRunIdentity(existing.record.definition, definition)) {
             throw new RunStateFault("CONFLICT", `run ${definition.runId} already exists with a different definition`);
           }
           // The STORED definition stays the durable record — the run keeps the sha
