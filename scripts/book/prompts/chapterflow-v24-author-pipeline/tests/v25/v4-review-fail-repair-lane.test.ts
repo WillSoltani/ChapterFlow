@@ -13,7 +13,7 @@
 
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdirSync } from "node:fs";
+import { mkdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import {
@@ -23,6 +23,7 @@ import {
 } from "../../src/app/bookRunApplicationService.js";
 import {
   CandidateRepairApplicationPort,
+  REVIEW_REPAIR_STAGE_ID,
   type ReviewRepairApplicationRequest,
 } from "../../src/app/candidateRepairApplicationPort.js";
 import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
@@ -63,6 +64,11 @@ type ReviewRig = Readonly<{
   port: CandidateRepairApplicationPort;
   request: ReviewRepairApplicationRequest;
   predecessor: CandidateSnapshot;
+  /** The lane's real run store, so a case can seed the durable shape a killed
+   *  book-run leaves behind and read back what recovery wrote. */
+  runStore: ReturnType<typeof createFileRunStore>;
+  /** Where that store keeps its journals, for attempt-journal assertions. */
+  runRoot: string;
   counts: { model: number };
   prompts: Parameters<ModelTaskRunner["run"]>[0][];
   /** Every repair-history record this lane appended, in order (R-170). */
@@ -187,6 +193,8 @@ function reviewRig(
   return {
     port,
     predecessor,
+    runStore,
+    runRoot,
     counts,
     prompts,
     appended: (): readonly RepairHistoryRecord[] => appended,
@@ -724,6 +732,186 @@ requiredTest("replayed COMPLETED ordinals do not consume the spend cap: a resume
     if (saved === undefined) delete process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS;
     else process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS = saved;
   }
+});
+
+// ────────────────────────────────────────────────────────────────────────────
+// The killed-process wedge: a RUNNING review-repair run whose admitted attempt
+// never settled. Live on the Franklin canary 2026-09-08 — book-run
+// book-run-4dc2a413…, run review-repair-5-run-90beea…, attempt repair-ch02
+// admitted 12:39:09Z, staleAt 13:09:12Z — where EVERY resume, with or without
+// --reconcile-unsettled, answered REVIEW_REPAIR_ATTEMPT_UNCERTAIN and the book
+// could never advance again.
+// ────────────────────────────────────────────────────────────────────────────
+
+const WEDGED_ATTEMPT = "revrep-wedged-ch02";
+
+/** Stage a RUNNING review-repair run carrying one admitted attempt, exactly as
+ *  a killed process leaves it. `staleAfterMs` is the attempt's lease; advancing
+ *  the clock past it is what turns the projected attempt status from ACTIVE
+ *  into STALE (runProjection.attemptSnapshot). */
+async function seedWedgedReviewRepairRun(
+  context: TestContext,
+  rig: ReviewRig,
+  options: Readonly<{ leaseMs: number; advanceMs: number; sourceGitSha?: string; settleUnknown?: boolean }>,
+): Promise<void> {
+  const created = await rig.runStore.createRun({
+    schemaVersion: "1",
+    bookId: PORT_BOOK,
+    runId: rig.request.repairRunId,
+    commandId: "review-repair",
+    sourceGitSha: options.sourceGitSha ?? rig.request.sourceGitSha,
+    requiredStages: [REVIEW_REPAIR_STAGE_ID],
+    requiredInventory: rig.predecessor.files.map(({ kind, logicalPath, mediaType }) => ({ kind, logicalPath, mediaType })),
+    inputCandidate: FAILED,
+    attemptLimits: { run: 1, byStage: { [REVIEW_REPAIR_STAGE_ID]: 1 } },
+    createdAt: context.clock.now(),
+  });
+  assert.equal(created.ok, true, JSON.stringify(created));
+  const admittedAt = context.clock.now();
+  const admitted = await rig.runStore.admitAttempt({
+    bookId: PORT_BOOK,
+    runId: rig.request.repairRunId,
+    attemptId: WEDGED_ATTEMPT,
+    stageId: REVIEW_REPAIR_STAGE_ID,
+    operationId: "repair-ch02",
+    admittedAt,
+    staleAt: new Date(Date.parse(admittedAt) + options.leaseMs).toISOString(),
+  });
+  assert.equal(admitted.ok, true, JSON.stringify(admitted));
+  if (options.settleUnknown === true) {
+    const settled = await rig.runStore.finishAttempt({
+      bookId: PORT_BOOK,
+      runId: rig.request.repairRunId,
+      attemptId: WEDGED_ATTEMPT,
+      outcome: "UNKNOWN",
+      finishedAt: context.clock.now(),
+    });
+    assert.equal(settled.ok, true, JSON.stringify(settled));
+  }
+  if (options.advanceMs > 0) context.clock.advance(options.advanceMs);
+}
+
+/** Every ATTEMPT_FINISHED record the run's durable journal carries. */
+function attemptJournal(rig: ReviewRig): readonly Record<string, unknown>[] {
+  const path = resolve(rig.runRoot, "books", PORT_BOOK, "runs", rig.request.repairRunId, "attempts.jsonl");
+  return readFileSync(path, "utf8")
+    .split("\n")
+    .filter((line) => line.trim().length > 0)
+    .map((line) => JSON.parse(line) as Record<string, unknown>);
+}
+
+const WEDGE_ISSUES: readonly ReviewIssue[] = [PANEL_BLOCKER];
+
+requiredTest("a STALE admitted review-repair attempt is reconciled under operator consent and the run is driven terminal FAILED", async (context: TestContext) => {
+  const rig = reviewRig(context, { slug: "review-repair-wedge-stale", issues: WEDGE_ISSUES });
+  await seedWedgedReviewRepairRun(context, rig, { leaseMs: 60_000, advanceMs: 120_000 });
+
+  const repaired = await rig.port.runFromReviewFail({ ...rig.request, reconcileUnsettled: true });
+
+  // The lane answers with its ORDINARY terminal failure — the same answer an
+  // already-FAILED ordinal gives — which is what the caller's ordinal walk
+  // knows how to step past (SKIP_FAILED_REPAIR_RUN).
+  assert.equal(repaired.ok, false, JSON.stringify(repaired));
+  if (repaired.ok) throw new Error("a reconciled wedge must not repair under the dead run id");
+  assert.equal(repaired.error.code, "REVIEW_REPAIR_RUN_TERMINAL");
+  assert.match(repaired.error.message, /review-repair run is FAILED/);
+  assert.equal(rig.counts.model, 0, "recovery must burn zero model calls");
+
+  const recovered = await rig.runStore.readRun(PORT_BOOK, rig.request.repairRunId, context.clock.now());
+  assert.equal(recovered.ok, true, JSON.stringify(recovered));
+  if (!recovered.ok) return;
+  assert.equal(recovered.value.status, "FAILED");
+  assert.equal(recovered.value.attempts.length, 1);
+  assert.equal(recovered.value.attempts[0].status, "ABANDONED");
+  assert.ok(recovered.value.terminalReason?.includes("RECONCILED_UNSETTLED_ON_RESUME"), recovered.value.terminalReason);
+
+  // Durably marked as RECOVERY, not as a real model outcome.
+  const reconciled = attemptJournal(rig).filter(
+    (record) => record.type === "ATTEMPT_FINISHED" && record.outcome === "ABANDONED" && record.detail === "RECONCILED_UNSETTLED_ON_RESUME",
+  );
+  assert.equal(reconciled.length, 1);
+  assert.equal(reconciled[0].attemptId, WEDGED_ATTEMPT);
+
+  // FAILED is exactly the durable shape `#chooseLaneOrdinal` walks past — pinned
+  // end to end by "a FAILED review-repair ordinal no longer wedges the book",
+  // which seeds this same status and reaches review-repair-2. The walk chose
+  // THIS ordinal before the port was called, so the next ordinal is minted on
+  // the NEXT resume, never inside the same invocation.
+});
+
+requiredTest("an ACTIVE review-repair attempt is never abandoned, even with operator consent", async (context: TestContext) => {
+  const rig = reviewRig(context, { slug: "review-repair-wedge-active", issues: WEDGE_ISSUES });
+  // Lease still live: the attempt may be a real process still working.
+  await seedWedgedReviewRepairRun(context, rig, { leaseMs: 3_600_000, advanceMs: 0 });
+
+  const repaired = await rig.port.runFromReviewFail({ ...rig.request, reconcileUnsettled: true });
+  assert.equal(repaired.ok, false, JSON.stringify(repaired));
+  if (repaired.ok) throw new Error("a live attempt must never be replayed");
+  assert.equal(repaired.error.code, "REVIEW_REPAIR_ATTEMPT_UNCERTAIN");
+
+  const untouched = await rig.runStore.readRun(PORT_BOOK, rig.request.repairRunId, context.clock.now());
+  assert.equal(untouched.ok, true);
+  if (!untouched.ok) return;
+  assert.equal(untouched.value.status, "RUNNING", "an active attempt's run must stay open");
+  assert.equal(untouched.value.attempts[0].status, "ACTIVE");
+  assert.equal(attemptJournal(rig).filter((record) => record.type === "ATTEMPT_FINISHED").length, 0, "nothing was written");
+});
+
+requiredTest("without --reconcile-unsettled a stale admitted review-repair attempt still refuses replay and writes nothing", async (context: TestContext) => {
+  const rig = reviewRig(context, { slug: "review-repair-wedge-noconsent", issues: WEDGE_ISSUES });
+  await seedWedgedReviewRepairRun(context, rig, { leaseMs: 60_000, advanceMs: 120_000 });
+
+  const repaired = await rig.port.runFromReviewFail(rig.request);
+  assert.equal(repaired.ok, false, JSON.stringify(repaired));
+  if (repaired.ok) throw new Error("no-consent behaviour must be byte-identical to today");
+  assert.equal(repaired.error.code, "REVIEW_REPAIR_ATTEMPT_UNCERTAIN");
+  assert.match(repaired.error.message, /admitted review-repair work is unsettled; replay refused/);
+
+  const untouched = await rig.runStore.readRun(PORT_BOOK, rig.request.repairRunId, context.clock.now());
+  assert.equal(untouched.ok, true);
+  if (!untouched.ok) return;
+  assert.equal(untouched.value.status, "RUNNING");
+  assert.equal(untouched.value.attempts[0].status, "STALE");
+  assert.equal(attemptJournal(rig).filter((record) => record.type === "ATTEMPT_FINISHED").length, 0, "nothing was written");
+});
+
+requiredTest("an UNKNOWN review-repair attempt is reconciled exactly like a STALE one", async (context: TestContext) => {
+  const rig = reviewRig(context, { slug: "review-repair-wedge-unknown", issues: WEDGE_ISSUES });
+  // A recorded UNKNOWN outcome is already settled, so reconcileAttempt answers
+  // CONFLICT for it — tolerated, exactly as the compiler lane tolerates it — and
+  // the run still has to reach a terminal state.
+  await seedWedgedReviewRepairRun(context, rig, { leaseMs: 60_000, advanceMs: 0, settleUnknown: true });
+
+  const repaired = await rig.port.runFromReviewFail({ ...rig.request, reconcileUnsettled: true });
+  assert.equal(repaired.ok, false, JSON.stringify(repaired));
+  if (repaired.ok) throw new Error("an UNKNOWN attempt must not be replayed");
+  assert.equal(repaired.error.code, "REVIEW_REPAIR_RUN_TERMINAL");
+
+  const recovered = await rig.runStore.readRun(PORT_BOOK, rig.request.repairRunId, context.clock.now());
+  assert.equal(recovered.ok, true);
+  if (!recovered.ok) return;
+  assert.equal(recovered.value.status, "FAILED");
+  assert.equal(rig.counts.model, 0);
+});
+
+requiredTest("the wedge is reconciled by READING the stored run: a different sourceGitSha never re-creates its definition", async (context: TestContext) => {
+  const rig = reviewRig(context, { slug: "review-repair-wedge-sha", issues: WEDGE_ISSUES });
+  // The killed run was recorded under a different checkout. fileRunStore.createRun
+  // deep-compares definitions and answers CONFLICT, so recovery that went through
+  // createRun could never un-wedge this book.
+  await seedWedgedReviewRepairRun(context, rig, { leaseMs: 60_000, advanceMs: 120_000, sourceGitSha: "9".repeat(40) });
+
+  const repaired = await rig.port.runFromReviewFail({ ...rig.request, reconcileUnsettled: true });
+  assert.equal(repaired.ok, false, JSON.stringify(repaired));
+  if (repaired.ok) throw new Error("the wedged run must not be repaired under a fresh definition");
+  assert.equal(repaired.error.code, "REVIEW_REPAIR_RUN_TERMINAL", `no CONFLICT path: ${JSON.stringify(repaired)}`);
+  assert.doesNotMatch(repaired.error.message, /CONFLICT/);
+
+  const recovered = await rig.runStore.readRun(PORT_BOOK, rig.request.repairRunId, context.clock.now());
+  assert.equal(recovered.ok, true);
+  if (!recovered.ok) return;
+  assert.equal(recovered.value.status, "FAILED");
+  assert.equal(recovered.value.definition.sourceGitSha, "9".repeat(40), "the stored definition is never rewritten");
 });
 
 finishV25Tests().catch((error: unknown) => {

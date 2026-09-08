@@ -2546,6 +2546,12 @@ export class BookRunApplicationService {
         sourceGitSha: input.sourceGitSha,
         attemptRoot: resolve(input.attemptRoot, label),
         signal: input.signal,
+        // Operator consent travels with the request: a review-repair run that a
+        // killed process left RUNNING with an admitted attempt is otherwise
+        // unrecoverable (live 2026-09-08 Franklin, review-repair-5). The port
+        // reconciles it and answers with its ordinary terminal failure, which
+        // the ordinal walk above skips on the next resume.
+        reconcileUnsettled: input.reconcileUnsettled === true,
       });
       if (!repairedCandidate.ok) {
         await this.#event(
@@ -2828,6 +2834,8 @@ export class BookRunApplicationService {
           sourceGitSha: input.sourceGitSha,
           attemptRoot: resolve(input.attemptRoot, label),
           signal: input.signal,
+          // Same consent-gated crash recovery as the review lane above.
+          reconcileUnsettled: input.reconcileUnsettled === true,
           // Only a chained link carries one. The port's gate answers
           // REPAIR_DIAGNOSIS_STALE if it does not match the request's exact
           // round + candidate, and that error is RETURNED, never swallowed into

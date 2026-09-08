@@ -16,6 +16,7 @@ import { isQcLaneRecord, type RepairHistoryRecord, type RepairHistoryStore } fro
 import type { QcIssue, QcRoundResult, QcService } from "../qc/qcTypes.js";
 import { isReaderPanelInfraCode } from "../review/readerPanelIssueCodes.js";
 import type { CanonicalReviewResult, ReviewIssue, ReviewService } from "../review/reviewTypes.js";
+import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
 import type { RunStore } from "../run-state/runStore.js";
 import type { RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
@@ -98,6 +99,10 @@ export interface CandidateRepairApplicationRequest extends CandidateRepairPrefli
   readonly repairRunId: string;
   readonly sourceGitSha: string;
   readonly attemptRoot: string;
+  /** Operator consent (`--reconcile-unsettled`) to settle a crashed prior run's
+   *  unsettled attempts. Default false = today's fail-closed refusal, verbatim.
+   *  See `#reconcileWedgedRepairRun`. */
+  readonly reconcileUnsettled?: boolean;
 }
 
 export interface CandidateRepairAuthorization {
@@ -153,6 +158,10 @@ export interface ReviewRepairApplicationRequest {
   readonly sourceGitSha: string;
   readonly attemptRoot: string;
   readonly signal: AbortSignal;
+  /** Operator consent (`--reconcile-unsettled`) to settle a crashed prior run's
+   *  unsettled attempts. Default false = today's fail-closed refusal, verbatim.
+   *  See `#reconcileWedgedRepairRun`. */
+  readonly reconcileUnsettled?: boolean;
 }
 
 export interface ReviewRepairApplicationResult {
@@ -816,6 +825,30 @@ function uncertainAttempt(snapshot: RunSnapshot): boolean {
   return snapshot.attempts.some((attempt) => attempt.status === "ACTIVE" || attempt.status === "STALE" || attempt.status === "UNKNOWN");
 }
 
+/** The lane-specific strings crash recovery needs: what to call the lane in the
+ *  operator log, and the lane's OWN existing terminal failure, reused verbatim
+ *  so a reconciled run answers exactly as an already-FAILED one does. */
+type RepairLaneRecovery = Readonly<{
+  name: string;
+  terminalCode: string;
+  terminalNoun: string;
+  reconcileFailedCode: string;
+}>;
+
+const REVIEW_REPAIR_RECOVERY: RepairLaneRecovery = {
+  name: "review-repair",
+  terminalCode: "REVIEW_REPAIR_RUN_TERMINAL",
+  terminalNoun: "review-repair run",
+  reconcileFailedCode: "REVIEW_REPAIR_RECONCILE_FAILED",
+};
+
+const QC_REPAIR_RECOVERY: RepairLaneRecovery = {
+  name: "qc-repair",
+  terminalCode: "REPAIR_RUN_TERMINAL",
+  terminalNoun: "repair run",
+  reconcileFailedCode: "REPAIR_RECONCILE_FAILED",
+};
+
 /** The minimum both repair lanes need to drive their own run terminal. */
 type RepairRunRef = Readonly<{ bookId: string; repairRunId: string; stageId?: string }>;
 
@@ -1088,6 +1121,85 @@ export class CandidateRepairApplicationPort {
     };
   }
 
+  /**
+   * Settle a crashed repair run so the caller's ordinal walk can move past it.
+   *
+   * THE WEDGE (live 2026-09-08, Franklin canary). A book-run process was killed
+   * while review-repair ordinal 5 had an ADMITTED attempt (`repair-ch02`,
+   * admitted 12:39:09Z, staleAt 13:09:12Z). Run state is append-only and an
+   * admitted attempt can never be replayed, so the run stayed durably RUNNING
+   * with an unsettled attempt and EVERY later resume — with or without
+   * `--reconcile-unsettled` — answered REVIEW_REPAIR_ATTEMPT_UNCERTAIN. The book
+   * could not advance again by any path.
+   *
+   * THE RECOVERY is the one the compiler lane already has (task 11c): under
+   * EXPLICIT operator consent, settle each unsettled attempt ABANDONED with the
+   * RECONCILED_UNSETTLED_ON_RESUME marker, drive the crashed run to terminal
+   * FAILED, and hand the caller the lane's ORDINARY terminal failure. The
+   * caller's `#chooseLaneOrdinal` walk skips a FAILED ordinal
+   * (SKIP_FAILED_REPAIR_RUN) and mints the next one — on the NEXT resume, not
+   * inside this invocation, because the walk chose this ordinal before the port
+   * was called. Same shape as the compiler lane's RECONCILE_WEDGED slot:
+   * per-invocation consent is spent un-wedging, never on a silent retry loop.
+   *
+   * READS the stored run; never re-creates it. `fileRunStore.createRun`
+   * deep-compares definitions, so a run recorded under a different
+   * `sourceGitSha` answers CONFLICT — recovery routed through `createRun` could
+   * not un-wedge the very books that need it.
+   *
+   * WHAT IT REFUSES, unchanged. Without consent nothing is written. With an
+   * attempt still ACTIVE (its lease has not expired) nothing is written either:
+   * that attempt may be a live process, and abandoning it would race real work.
+   * Only STALE (expired lease) and UNKNOWN (recorded uncertainty) attempts are
+   * reconciled, and `reconcileAttempt` is a no-op on an already-settled attempt
+   * (CONFLICT tolerated), so a lost race never rewrites a real outcome.
+   *
+   * Returns the lane's terminal failure when it reconciled, `undefined` when it
+   * did nothing — and then the caller behaves exactly as it does today.
+   */
+  async #reconcileWedgedRepairRun<T>(
+    lane: RepairLaneRecovery,
+    bookId: string,
+    runId: string,
+    prior: RunSnapshot,
+  ): Promise<Result<T> | undefined> {
+    if (prior.status !== "RUNNING") return undefined;
+    if (prior.attempts.some((attempt) => attempt.status === "ACTIVE")) return undefined;
+    const unsettled = prior.attempts.filter((attempt) => attempt.status === "STALE" || attempt.status === "UNKNOWN");
+    if (unsettled.length === 0) return undefined;
+    for (const attempt of unsettled) {
+      const settled = await reconcileAttempt(this.#dependencies.runStore, {
+        bookId,
+        runId,
+        attemptId: attempt.admission.attemptId,
+        outcome: "ABANDONED",
+        finishedAt: this.#dependencies.clock.now(),
+        detail: RECONCILED_UNSETTLED_ON_RESUME,
+      });
+      if (!settled.ok && settled.error.code !== "CONFLICT") {
+        return failed(lane.reconcileFailedCode, `${settled.error.code}:${settled.error.message}`);
+      }
+      console.error(
+        `[${lane.name}] book=${bookId} run=${runId} attempt=${attempt.admission.attemptId}`
+        + ` action=${RECONCILED_UNSETTLED_ON_RESUME}`,
+      );
+    }
+    const finished = await this.#dependencies.runStore.finishRun({
+      bookId,
+      runId,
+      status: "FAILED",
+      finishedAt: this.#dependencies.clock.now(),
+      reason: `${RECONCILED_UNSETTLED_ON_RESUME}: ${lane.name} run was killed with `
+        + `${unsettled.length} admitted attempt(s) unsettled; abandoned under operator consent`,
+    });
+    if (!finished.ok) return failed(lane.reconcileFailedCode, `${finished.error.code}:${finished.error.message}`);
+    const verified = await this.#dependencies.runStore.readRun(bookId, runId, this.#dependencies.clock.now());
+    if (!verified.ok || verified.value.status !== "FAILED") {
+      return failed(lane.reconcileFailedCode, `reconciled ${lane.name} run FAILED readback failed`);
+    }
+    return failed(lane.terminalCode, `${lane.terminalNoun} is ${verified.value.status}`);
+  }
+
   async run(request: CandidateRepairApplicationRequest): Promise<Result<ContentRepairResult>> {
     if (!request.repairRunId || !request.sourceGitSha || !request.successorCandidateId || request.successorCandidateId === request.failedCandidate.candidateId) {
       return failed("REPAIR_INPUT_INVALID", "repair run, source SHA, and new successor candidate IDs are required");
@@ -1132,6 +1244,11 @@ export class CandidateRepairApplicationPort {
     const priorRun = await this.#dependencies.runStore.readRun(request.bookId, request.repairRunId, observedAt);
     if (!priorRun.ok && priorRun.error.code !== "NOT_FOUND") {
       return failed("REPAIR_RUN_UNAVAILABLE", `${priorRun.error.code}:${priorRun.error.message}`);
+    }
+    if (request.reconcileUnsettled === true && priorRun.ok) {
+      const reconciled = await this.#reconcileWedgedRepairRun<ContentRepairResult>(
+        QC_REPAIR_RECOVERY, request.bookId, request.repairRunId, priorRun.value);
+      if (reconciled !== undefined) return reconciled;
     }
     const createdAt = priorRun.ok ? priorRun.value.definition.createdAt : observedAt;
     const definition = repairDefinition(request, candidate, authorized.value.targetChapterNumbers.length, createdAt);
@@ -1619,6 +1736,11 @@ export class CandidateRepairApplicationPort {
     const priorRun = await this.#dependencies.runStore.readRun(request.bookId, request.repairRunId, observedAt);
     if (!priorRun.ok && priorRun.error.code !== "NOT_FOUND") {
       return failed("REVIEW_REPAIR_RUN_UNAVAILABLE", `${priorRun.error.code}:${priorRun.error.message}`);
+    }
+    if (request.reconcileUnsettled === true && priorRun.ok) {
+      const reconciled = await this.#reconcileWedgedRepairRun<ReviewRepairApplicationResult>(
+        REVIEW_REPAIR_RECOVERY, request.bookId, request.repairRunId, priorRun.value);
+      if (reconciled !== undefined) return reconciled;
     }
     const createdAt = priorRun.ok ? priorRun.value.definition.createdAt : observedAt;
     const definition = repairDefinition(
