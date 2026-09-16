@@ -122,6 +122,17 @@ export type BookRunHarness = Readonly<{
   /** Drive the canonical-review run for `parentRunId` to terminal FAILED before
    *  the book run reaches it — the infra-loss shape R-186 has to recover from. */
   seedCanonicalReviewRunTerminal: (parentRunId: string) => Promise<void>;
+  /** The durable shape a machine reboot leaves on a panel mid-flight: the
+   *  canonical-review run for `parentRunId` left RUNNING, carrying its one
+   *  attempt in `attemptStatus`, with NO stored review. */
+  seedCanonicalReviewRunInterrupted: (
+    parentRunId: string,
+    attemptStatus: "SUCCEEDED" | "STALE" | "ACTIVE",
+    /** The candidate that run binds (default: the compiled one). A re-review's
+     *  panel run binds the REPAIRED successor, so its interrupted shape can only
+     *  be seeded once that successor exists. */
+    candidate?: CandidateSnapshot,
+  ) => Promise<void>;
   reviewCalls: () => number;
   repairCalls: () => readonly ReviewRepairApplicationRequest[];
   /** Every `repair.run` (fresh-QC lane) request, in call order. */
@@ -196,6 +207,10 @@ export type BookRunHarnessOptions = Readonly<{
    *  the fake repair port returns a synthesized review/QC pair that the real
    *  promotion service has no stored record for. */
   promoteLocal?: boolean;
+  /** Called with the successor candidate the review-FAIL lane has just staged,
+   *  before its re-review panel runs — the only moment a test can plant durable
+   *  state that BINDS that successor (its re-review run definition does). */
+  afterReviewRepair?: (successor: CandidateSnapshot) => Promise<void>;
   /** R-080 — the whole-book catalog-rubric panel. Defaults to a fake that
    *  scores every candidate 84 across the board, which clears the default bar
    *  of 80: the repair-lane cases are about repair, and the gate must be
@@ -442,6 +457,7 @@ export async function buildBookRunHarness(
     successors.set(request.successorCandidateId, staged);
     const finished = await runStore.finishRun({ bookId: book, runId: request.repairRunId, status: "COMPLETED", finishedAt: context.clock.now() });
     assert.equal(finished.ok, true, JSON.stringify(finished));
+    await options.afterReviewRepair?.(staged);
     return { ok: true as const, value: { successor: staged, failedReviewId: request.failedReviewId, targetChapterNumbers: [1], replayed: false } };
   };
 
@@ -641,6 +657,51 @@ export async function buildBookRunHarness(
     rubricStore,
     rubricCalls: () => (options.rubricPanel === undefined ? (rubricPanel as ScriptedRubricPanel).calls() : undefined),
     eventAppendAttempts: () => eventAppendAttempts,
+    async seedCanonicalReviewRunInterrupted(parentRunId: string, attemptStatus: "SUCCEEDED" | "STALE" | "ACTIVE", candidate: CandidateSnapshot = compiled) {
+      // The live reboot shape (book-run-4dc2a413, 2026-09-16): the panel run is
+      // RUNNING, its one canonical attempt is settled (or stale-leased), and no
+      // review was ever stored — the panel died between the attempt and the
+      // durable record. The definition must match what exactReview derives or
+      // createRun answers CONFLICT instead of returning this snapshot.
+      const runId = derivedIdOf("review-run", parentRunId);
+      const createdAt = context.clock.now();
+      const created = await runStore.createRun({
+        schemaVersion: "1",
+        bookId: book,
+        runId,
+        commandId: "canonical-review",
+        sourceGitSha: SOURCE_SHA,
+        requiredStages: ["canonical-review"],
+        requiredInventory: candidate.manifest.entries.map(({ kind, logicalPath, mediaType }) => ({ kind, logicalPath, mediaType })),
+        inputCandidate: identityOf(candidate),
+        attemptLimits: { run: 1, byStage: { "canonical-review": 1 } },
+        createdAt,
+      });
+      assert.equal(created.ok, true, JSON.stringify(created));
+      const admittedAt = context.clock.now();
+      const admitted = await runStore.admitAttempt({
+        bookId: book,
+        runId,
+        attemptId: derivedIdOf("review-attempt", parentRunId),
+        stageId: "canonical-review",
+        operationId: "canonical-review",
+        admittedAt,
+        // An ACTIVE lease is one a live process may still own; anything else has
+        // outlived its lease by the time the resume reads the run.
+        staleAt: new Date(Date.parse(admittedAt) + (attemptStatus === "ACTIVE" ? 3_600_000 : 1)).toISOString(),
+      });
+      assert.equal(admitted.ok, true, JSON.stringify(admitted));
+      if (attemptStatus === "SUCCEEDED") {
+        const finished = await runStore.finishAttempt({
+          bookId: book,
+          runId,
+          attemptId: derivedIdOf("review-attempt", parentRunId),
+          outcome: "SUCCEEDED",
+          finishedAt: context.clock.now(),
+        });
+        assert.equal(finished.ok, true, JSON.stringify(finished));
+      }
+    },
     async seedCanonicalReviewRunTerminal(parentRunId: string) {
       // The durable shape an infra loss leaves on the panel run: the exact run id
       // exactReview derives, its exact definition, driven terminal FAILED. The

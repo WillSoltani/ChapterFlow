@@ -17,13 +17,14 @@
  */
 
 import assert from "node:assert/strict";
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 
 import {
   resolveOperatorCompileRetries,
   resolveQcJudgeRuns,
 } from "../../src/app/bookRunApplicationService.js";
-import { buildBookRunHarness, derivedIdOf } from "./bookRunRepairRig.js";
+import { buildBookRunHarness, derivedIdOf, type BookRunHarness } from "./bookRunRepairRig.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
 /** Run `body` with `name` set to `value` (or unset), restoring it afterwards. */
@@ -276,6 +277,123 @@ requiredTest("R-185/R-178: the judge and operator-retry budgets have env resolve
       delete process.env[name];
     }
   }
+});
+
+// ─────────────────────── interrupted panel (R-219) ───────────────────────
+
+requiredTest("R-219: a panel interrupted mid-flight is reconciled under consent so a fresh successor panel can supersede it", async (context: TestContext) => {
+  const book = "review-run-interrupted-panel";
+  const h = await buildBookRunHarness(context, book, ["PASS"]);
+  // The live 2026-09-16 shape (book-run-4dc2a413): the machine rebooted with the
+  // reader panel mid-flight, so the canonical review run is RUNNING, its one
+  // canonical attempt is SUCCEEDED, and no review was ever stored. The run id is
+  // deterministic and the reader lane's seat attempt ids are too, so re-entering
+  // this review is not viable — the successor panel is the designed remedy.
+  await h.seedCanonicalReviewRunInterrupted(h.bookRunId, "SUCCEEDED");
+  const reviewRunId = derivedIdOf("review-run", h.bookRunId);
+
+  // WITHOUT consent: byte-identical to today — fail closed, same message, no
+  // model call, and the interrupted run is left exactly as it was found.
+  const first = await h.service.run({ ...h.request });
+  assert.equal(first.ok, false, JSON.stringify(first));
+  if (first.ok) throw new Error("an interrupted panel must never be superseded without consent");
+  assert.equal(first.error.code, "BOOK_RUN_REVIEW_FAILED");
+  assert.match(first.error.message, /settled review call lacks durable review; replay refused/, first.error.message);
+  assert.equal(h.reviewCalls(), 0, "a wedged review must not be re-entered");
+  assert.equal(h.events.some((e) => e.detail?.includes("action=REVIEW_SUCCESSOR")), false, "no successor without consent");
+  const untouched = await h.runStore.readRun(book, reviewRunId, context.clock.now());
+  assert.ok(untouched.ok, JSON.stringify(untouched));
+  assert.equal(untouched.value.status, "RUNNING", "an unflagged resume reconciles nothing");
+
+  // WITH consent: the interrupted run is driven terminal FAILED with the
+  // reconcile marker, and the EXISTING successor walk mints one fresh panel in
+  // this same invocation.
+  const flagged = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+  assert.equal(flagged.ok, true, flagged.ok ? "" : `${flagged.error.code}:${flagged.error.message}`);
+  if (!flagged.ok) throw new Error("unreachable");
+  assert.equal(flagged.value.status, "PROMOTED");
+  assert.equal(h.reviewCalls(), 1, "the successor ran the panel exactly once");
+  const successorEvent = h.events.find((e) => e.detail?.includes("action=REVIEW_SUCCESSOR"));
+  assert.ok(successorEvent, JSON.stringify(h.events.map((e) => e.detail)));
+  assert.match(successorEvent.detail ?? "", /label=review-successor-1/, successorEvent.detail);
+  assert.match(successorEvent.detail ?? "", /predecessorError=BOOK_RUN_REVIEW_RUN_TERMINAL/, successorEvent.detail);
+  assert.equal(
+    flagged.value.reviewId,
+    derivedIdOf("review", derivedIdOf("review-successor-1", h.bookRunId)),
+    JSON.stringify(flagged.value),
+  );
+  const abandoned = await h.runStore.readRun(book, reviewRunId, context.clock.now());
+  assert.ok(abandoned.ok, JSON.stringify(abandoned));
+  assert.equal(abandoned.value.status, "FAILED", "the interrupted run must not be left advertising live work");
+});
+
+requiredTest("R-219: an interrupted panel whose lease is still ACTIVE stays fail-closed even under consent", async (context: TestContext) => {
+  const book = "review-run-interrupted-active";
+  const h = await buildBookRunHarness(context, book, ["PASS"]);
+  // An unexpired lease may still be owned by a LIVE process: reconciling it
+  // would settle work nobody abandoned. ACTIVE is never touched.
+  await h.seedCanonicalReviewRunInterrupted(h.bookRunId, "ACTIVE");
+  const reviewRunId = derivedIdOf("review-run", h.bookRunId);
+
+  const flagged = await h.service.run({ ...h.request, reconcileUnsettled: true });
+  assert.equal(flagged.ok, false, JSON.stringify(flagged));
+  if (flagged.ok) throw new Error("a live panel lease must never be superseded");
+  assert.equal(flagged.error.code, "BOOK_RUN_REVIEW_FAILED");
+  assert.match(flagged.error.message, /canonical review attempt is unsettled; replay refused/, flagged.error.message);
+  assert.equal(h.reviewCalls(), 0, "no successor panel may be minted over a live lease");
+  assert.equal(h.events.some((e) => e.detail?.includes("action=REVIEW_SUCCESSOR")), false);
+  const live = await h.runStore.readRun(book, reviewRunId, context.clock.now());
+  assert.ok(live.ok, JSON.stringify(live));
+  assert.equal(live.value.status, "RUNNING");
+  assert.equal(live.value.attempts[0].status, "ACTIVE");
+});
+
+requiredTest("R-219: the repair-loop RE-review reconciles an interrupted panel the same way, with its own successor label", async (context: TestContext) => {
+  const book = "review-repair-interrupted-panel";
+  // base review FAIL opens the repair lane; the repaired successor's re-review
+  // was the panel the reboot caught, and the fresh successor panel PASSes.
+  // The re-review's panel run BINDS the repaired successor, so its interrupted
+  // shape can only be planted once that successor is staged: a STALE lease that
+  // outlived the process that owned it, and no review ever stored.
+  let harness: BookRunHarness | undefined;
+  let seeded = false;
+  const h = await buildBookRunHarness(context, book, ["FAIL", "PASS"], {
+    afterReviewRepair: async (successor) => {
+      if (seeded || harness === undefined) return;
+      seeded = true;
+      await harness.seedCanonicalReviewRunInterrupted(derivedIdOf("review-repair-1", harness.bookRunId), "STALE", successor);
+    },
+  });
+  harness = h;
+  const reReviewParentRunId = derivedIdOf("review-repair-1", h.bookRunId);
+  const reReviewRunId = derivedIdOf("review-run", reReviewParentRunId);
+
+  const first = await h.service.run({ ...h.request });
+  assert.equal(first.ok, false, JSON.stringify(first));
+  if (first.ok) throw new Error("an interrupted re-review must not be superseded without consent");
+  assert.equal(first.error.code, "BOOK_RUN_REVIEW_FAILED");
+  assert.match(first.error.message, /canonical review attempt is unsettled; replay refused/, first.error.message);
+
+  const flagged = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+  assert.equal(flagged.ok, true, flagged.ok ? "" : `${flagged.error.code}:${flagged.error.message}`);
+  if (!flagged.ok) throw new Error("unreachable");
+  assert.equal(flagged.value.status, "PROMOTED");
+  assert.equal(
+    flagged.value.reviewId,
+    derivedIdOf("review", derivedIdOf("review-repair-1-successor-1", h.bookRunId)),
+    JSON.stringify(flagged.value),
+  );
+  const successorEvent = h.events.find((e) => e.detail?.includes("action=REVIEW_SUCCESSOR"));
+  assert.ok(successorEvent, JSON.stringify(h.events.map((e) => e.detail)));
+  assert.match(successorEvent.detail ?? "", /label=review-repair-1-successor-1/, successorEvent.detail);
+  // The stale attempt is settled ABANDONED with the recovery marker, not left
+  // advertising live work, and its run is terminal.
+  const abandoned = await h.runStore.readRun(book, reReviewRunId, context.clock.now());
+  assert.ok(abandoned.ok, JSON.stringify(abandoned));
+  assert.equal(abandoned.value.status, "FAILED");
+  assert.equal(abandoned.value.attempts[0].status, "ABANDONED");
+  const journal = readFileSync(join(h.runStore.runDirectory!(book, reReviewRunId), "attempts.jsonl"), "utf8");
+  assert.match(journal, /RECONCILED_UNSETTLED_ON_RESUME/, journal);
 });
 
 finishV25Tests().catch((error: unknown) => {

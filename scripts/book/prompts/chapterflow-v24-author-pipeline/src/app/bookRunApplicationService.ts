@@ -863,6 +863,10 @@ async function exactReview(
     candidate: CandidateSnapshot;
     attemptRoot: string;
     signal: AbortSignal;
+    /** Per-invocation operator consent (`--reconcile-unsettled`). It licenses
+     *  ONE thing here: abandoning a panel run this process can prove nobody owns
+     *  (see the interrupted-panel block below). Every other path is unchanged. */
+    reconcileUnsettled: boolean;
   }>,
 ): Promise<Result<CanonicalReviewResult>> {
   const runId = derivedId("review-run", input.parentRunId);
@@ -903,6 +907,92 @@ async function exactReview(
       return failed("BOOK_RUN_REVIEW_UNAVAILABLE", "completed review run lacks exact stored review");
     }
     return stored;
+  }
+  // ── An INTERRUPTED panel, under operator consent ──────────────────────────
+  //
+  // The live shape (2026-09-16, book-run-4dc2a413): the machine rebooted with a
+  // 57-seat reader panel mid-flight, so the canonical review run is RUNNING, its
+  // one canonical attempt is settled (SUCCEEDED) or has outlived its lease, and
+  // NO review was ever stored. Both checks below then refuse the run forever
+  // with zero model calls — the run id is deterministic, attemptLimits are
+  // {run:1}, and re-entering this review is not viable anyway (the reader lane
+  // is in-memory with deterministic seat attempt ids, so its settled seats would
+  // be re-admitted). The designed remedy is the SUCCESSOR fresh panel, and the
+  // only thing standing between the operator and it is that reviewIsUncertain
+  // does not count this shape as uncertainty. So say it is: abandon the run this
+  // process can prove nobody owns, and answer with the code the successor walk
+  // already routes around.
+  //
+  // Narrow on purpose, mirroring the fresh-QC RUNNING-predecessor block:
+  //   - consent ONLY (`--reconcile-unsettled`); without it every byte of the
+  //     behaviour below is unchanged, down to the message;
+  //   - an ACTIVE attempt is NEVER touched — an unexpired lease may still be
+  //     owned by a live process (PR #563), and that run stays fail-closed;
+  //   - only a review that is genuinely ABSENT (REVIEW_NOT_FOUND) qualifies; a
+  //     store that cannot answer is uncertainty, not licence;
+  //   - the abandonment must actually land: a run left RUNNING would keep
+  //     advertising live work to every later reader.
+  if (
+    input.reconcileUnsettled
+    && created.value.status === "RUNNING"
+    && created.value.attempts.length > 0
+    && !stored.ok && stored.error.code === "REVIEW_NOT_FOUND"
+  ) {
+    const abandonAt = safeNow(dependencies.clock);
+    // A clock that cannot stamp the abandonment is not a licence to skip it.
+    if (!abandonAt.ok) return abandonAt;
+    // createRun projects attempt status at the run's CREATION time, where an
+    // unsettled attempt always still looks ACTIVE; whether its lease has since
+    // expired is only visible from a reading taken NOW.
+    const live = await dependencies.runStore.readRun(input.bookId, runId, abandonAt.value);
+    if (!live.ok) {
+      return failed(
+        "BOOK_RUN_REVIEW_UNAVAILABLE",
+        `interrupted canonical review run cannot be read back: ${live.error.code}:${live.error.message}`,
+      );
+    }
+    if (live.value.status === "RUNNING" && !live.value.attempts.some((attempt) => attempt.status === "ACTIVE")) {
+      for (const attempt of live.value.attempts) {
+        if (attempt.status !== "STALE" && attempt.status !== "UNKNOWN") continue;
+        const settled = await reconcileAttempt(dependencies.runStore, {
+          bookId: input.bookId,
+          runId,
+          attemptId: attempt.admission.attemptId,
+          outcome: "ABANDONED",
+          finishedAt: abandonAt.value,
+          detail: RECONCILED_UNSETTLED_ON_RESUME,
+        });
+        // CONFLICT = already settled by someone else: the outcome we wanted.
+        if (!settled.ok && settled.error.code !== "CONFLICT") {
+          return failed(
+            "BOOK_RUN_REVIEW_UNAVAILABLE",
+            `interrupted canonical review attempt cannot be reconciled: ${settled.error.code}:${settled.error.message}`,
+          );
+        }
+        console.error(
+          `[book-run] reconcile phase=${REVIEW_STAGE} run=${runId} attempt=${attempt.admission.attemptId} action=${RECONCILED_UNSETTLED_ON_RESUME}`,
+        );
+      }
+      const abandoned = await dependencies.runStore.finishRun({
+        bookId: input.bookId,
+        runId,
+        status: "FAILED",
+        finishedAt: abandonAt.value,
+        reason: "abandoned: panel interrupted, resumed with no stored review",
+      });
+      // Never claim an abandonment that did not happen: a run left RUNNING keeps
+      // advertising live panel work that no process owns.
+      if (!abandoned.ok) {
+        return failed(
+          "BOOK_RUN_REVIEW_UNAVAILABLE",
+          `interrupted canonical review run cannot be abandoned: ${abandoned.error.code}:${abandoned.error.message}`,
+        );
+      }
+      console.error(`[book-run] reconcile phase=review run=${runId} action=${RECONCILED_UNSETTLED_ON_RESUME}`);
+      return failed("BOOK_RUN_REVIEW_RUN_TERMINAL", "canonical review run abandoned: panel interrupted, resumed with no stored review");
+    }
+    // An ACTIVE lease may still be owned by a live process: fall through to the
+    // unchanged fail-closed answer below.
   }
   if (uncertainReviewAttempt(created.value)) {
     return failed("BOOK_RUN_REVIEW_ATTEMPT_UNCERTAIN", "canonical review attempt is unsettled; replay refused");
@@ -1338,6 +1428,12 @@ export class BookRunApplicationService {
         candidate,
         attemptRoot: resolve(input.attemptRoot, label),
         signal: input.signal,
+        // A successor ordinal is NOT reconcilable: this walk skips only an
+        // ordinal whose own stored review is ERROR, so abandoning a successor's
+        // run would trade the wedge for a deeper one (a FAILED ordinal the walk
+        // re-derives and refuses forever). An interrupted successor stays
+        // fail-closed, exactly as today.
+        reconcileUnsettled: false,
       });
     }
     return failed(
@@ -2387,6 +2483,7 @@ export class BookRunApplicationService {
       candidate,
       attemptRoot: resolve(input.attemptRoot, "review"),
       signal: input.signal,
+      reconcileUnsettled: input.reconcileUnsettled === true,
     });
     // Task 11ac / finding 38 LAYER B — supersede an UNCERTAIN review on a flagged
     // resume. A stored ERROR outcome (a transient reader-lane failure fail-closed
@@ -2617,6 +2714,7 @@ export class BookRunApplicationService {
         candidate,
         attemptRoot: resolve(input.attemptRoot, `${label}-review`),
         signal: input.signal,
+        reconcileUnsettled: input.reconcileUnsettled === true,
       });
       // R-165: the re-review is as capable of a transient panel ERROR as the
       // first review, and until now it had no successor at all — so one flaky
