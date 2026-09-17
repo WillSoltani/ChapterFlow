@@ -46,7 +46,7 @@ cross-chapter collisions, and before the candidate is staged for review.
 | per chapter, with `CHAPTERFLOW_EDITOR_ADVISORY_PASS=1` and stored advisories | 2 (4 worst case) |
 | a chapter replayed from the durable edit cache | **0** |
 
-Role `author`, effort `high` (`config/model-routing.json`). The card carries the
+Role `author`, effort `medium` (`config/model-routing.json`). The card carries the
 writing contract, the brief, the chapter in reader order, the four packs, the
 packet projection and, on a source-text run, up to 12,000 characters of the
 chapter's own frozen source text.
