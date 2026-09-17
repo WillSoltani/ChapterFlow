@@ -152,6 +152,31 @@ export function isDegenerateBibliographyOutput(output: unknown): boolean {
   return substantive.length === 0;
 }
 
+/**
+ * A chapter title that carries no content — a bare numeral ("VII", "10"), a
+ * structural label ("Chapter 7", "Part II", "Section"), or a single character.
+ *
+ * Live 2026-09-17 (Franklin, run book-run-4dc2a413): the frozen source text
+ * prints only bare roman numerals as its in-text chapter headings, so the model
+ * copied the numeral for 8 of 19 chapters. The title is FROZEN chapter identity
+ * downstream — the repair lane refuses a replacement whose title differs, the
+ * blueprint/packet/source-v2 equality checks bind it, and the reader panel flags
+ * "Chapter 7: VII" as structurally invalid — so the only place this is fixable
+ * is here, where the retry loop can still ask for a real title.
+ */
+export function isPlaceholderChapterTitle(title: unknown): boolean {
+  if (typeof title !== "string") return false;
+  const trimmed = title.trim();
+  // An EMPTY title is the existing empty-title rule's business, not this one.
+  if (trimmed.length === 0) return false;
+  if (trimmed.length === 1) return true;
+  const normalized = trimmed.toLowerCase();
+  if (/^[ivxlcdm]{1,7}\.?$/.test(normalized)) return true;
+  if (/^\d{1,4}\.?$/.test(normalized)) return true;
+  if (/^(chapter|part|book|section|letter)\s*([ivxlcdm]+|\d+)?\.?$/.test(normalized)) return true;
+  return false;
+}
+
 function retryDirective(problems: readonly string[], degenerate: boolean): string {
   const lines: string[] = ["", "---", ""];
   // Task 11ad: lead with the TASK, not the accusation — an accusatory frame
@@ -250,6 +275,7 @@ function buildUserPrompt(input: BibliographyInput): string {
     parts.push(`Set \`genre\` too: "memoir" for an autobiography or memoir (the author is the SUBJECT of the book), otherwise "narrative-nonfiction", "practical", "argument" or "reference".`);
     parts.push("");
   }
+  parts.push(`Every chapter needs a real title: where the source shows only a numeral ("VII") or no heading at all for a chapter, compose a short descriptive title (3-8 words) from what that chapter is about — never return the numeral or a label like "Chapter 7" as the title.`);
   parts.push(
     typeof input.sourceText === "string" && input.sourceText.length > 0
       ? `Return the canonical bibliographic record and the full chapter list AS THIS EDITION PRINTS IT, plus the chapterMap.`
@@ -323,6 +349,17 @@ function validateBibliography(r: BibliographyResult, input: BibliographyInput): 
     if (ch.title.length > 200) {
       problems.push(`chapter ${ch.number} title suspiciously long (${ch.title.length} chars)`);
       break;
+    }
+  }
+
+  // A numeral or a structural label is not a title (live 2026-09-17). Reported
+  // per chapter, into the SAME problems list as the empty-title rule, so the
+  // existing retry loop re-prompts with it.
+  for (const ch of chapters) {
+    if (isPlaceholderChapterTitle(ch.title)) {
+      problems.push(
+        `chapter ${ch.number} title ${JSON.stringify(ch.title)} is a bare numeral/placeholder — give it a short descriptive title (3-8 words) drawn from what the chapter is about`,
+      );
     }
   }
 

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 
-import { runResearcherBibliography, type BibliographyResult } from "../../src/agents/researcher-bibliography.js";
+import { isPlaceholderChapterTitle, runResearcherBibliography, type BibliographyResult } from "../../src/agents/researcher-bibliography.js";
 import type { ModelTaskContext } from "../../src/contracts/v4Core.js";
 import { createScriptedResultRunner, mintingExecution } from "./fakes/uniquenessRunner.js";
 import { isCredentialFailureMessage, isUnretryableProviderMessage } from "../../src/runtime/modelErrors.js";
@@ -177,6 +177,108 @@ requiredTest("6 CANCELLED propagates immediately with NO retry (Task 11ag)", asy
   ]);
   await assert.rejects(runResearcherBibliography(input(), subject.execution, { sleep: async () => {} }), () => true);
   assert.equal(subject.runs(), 1, "operator intent is never retried");
+});
+
+/**
+ * Live defect (Franklin, run book-run-4dc2a413, 2026-09-17): the frozen source
+ * text carries only bare roman numerals as in-text chapter headings, so the
+ * bibliography agent copied the numeral for 8 of 19 chapters ("VII", "X", ...)
+ * and recalled real titles for the rest. The validator accepted any non-empty
+ * title, and the title is FROZEN chapter identity downstream (the repair lane
+ * refuses a replacement whose title differs, PR #562; the reader panel flags
+ * "Chapter 7: VII" as READER.BLOCKING.structurally_invalid), so it must be
+ * caught HERE, where the existing retry loop can re-prompt for a real title.
+ */
+const FRANKLIN_LIVE_TITLES: readonly string[] = [
+  "I",                              // 1  placeholder
+  "Beginning Life as a Printer",    // 2
+  "Arrival in Philadelphia",        // 3
+  "First Visit to Boston",          // 4
+  "Early Friends in Philadelphia",  // 5
+  "First Visit to London",          // 6
+  "VII",                            // 7  placeholder
+  "VIII",                           // 8  placeholder
+  "IX",                             // 9  placeholder
+  "X",                              // 10 placeholder
+  "Interest in Public Affairs",     // 11
+  "Defense of the Province",        // 12
+  "Public Services and Duties",     // 13
+  "Albany Plan of Union",           // 14
+  "XV",                             // 15 placeholder
+  "Braddock's Expedition",          // 16
+  "XVII",                           // 17 placeholder
+  "Scientific Experiments",         // 18
+  "XIX",                            // 19 placeholder
+];
+
+const PLACEHOLDER_CHAPTERS = [1, 7, 8, 9, 10, 15, 17, 19] as const;
+const REAL_TITLE_CHAPTERS = [2, 3, 4, 5, 6, 11, 12, 13, 14, 16, 18] as const;
+
+function bibliographyWithTitles(titles: readonly string[]): BibliographyResult {
+  const base = validBibliography();
+  return {
+    ...base,
+    edition: { ...base.edition, chapterCount: titles.length },
+    flatChapters: titles.map((title, index) => ({ number: index + 1, title })),
+  };
+}
+
+requiredTest("9 the live Franklin bibliography is rejected naming every bare-numeral chapter and no real-titled one (2026-09-17)", async () => {
+  const bad = bibliographyWithTitles(FRANKLIN_LIVE_TITLES);
+  const subject = scriptedRig([{ outcome: "SUCCEEDED", output: bad }]);
+  await assert.rejects(
+    runResearcherBibliography(input(), subject.execution, { sleep: async () => {} }),
+    (error: unknown) => {
+      const message = (error as Error).message;
+      for (const number of PLACEHOLDER_CHAPTERS) {
+        assert.match(
+          message,
+          new RegExp(`chapter ${number} title "${FRANKLIN_LIVE_TITLES[number - 1]}" is a bare numeral/placeholder`),
+          `chapter ${number} ("${FRANKLIN_LIVE_TITLES[number - 1]}") must be reported as a placeholder title`,
+        );
+      }
+      assert.match(message, /short descriptive title \(3-8 words\)/, "the problem must tell the model what to do instead");
+      for (const number of REAL_TITLE_CHAPTERS) {
+        assert.doesNotMatch(
+          message,
+          new RegExp(`chapter ${number} title`),
+          `chapter ${number} ("${FRANKLIN_LIVE_TITLES[number - 1]}") is a real title and must NOT be reported`,
+        );
+      }
+      return true;
+    },
+  );
+  assert.equal(subject.runs(), 3, "the placeholder titles go through the ordinary retry budget");
+});
+
+requiredTest("10 a numeral-titled first attempt is re-prompted with the placeholder problems and a titled second attempt is accepted (2026-09-17)", async () => {
+  const fixed = FRANKLIN_LIVE_TITLES.map((title, index) =>
+    (PLACEHOLDER_CHAPTERS as readonly number[]).includes(index + 1) ? `Descriptive Title For Chapter ${index + 1}` : title,
+  );
+  const subject = scriptedRig([
+    { outcome: "SUCCEEDED", output: bibliographyWithTitles(FRANKLIN_LIVE_TITLES) },
+    { outcome: "SUCCEEDED", output: bibliographyWithTitles(fixed) },
+  ]);
+  const result = await runResearcherBibliography(input(), subject.execution, { sleep: async () => {} });
+  assert.equal(result.flatChapters?.[6]?.title, "Descriptive Title For Chapter 7");
+  assert.equal(subject.runs(), 2);
+  const retryPrompt = subject.prompts.at(-1) ?? "";
+  assert.match(retryPrompt, /chapter 7 title "VII" is a bare numeral\/placeholder/, "the retry directive must carry the placeholder problem");
+  assert.match(retryPrompt, /chapter 1 title "I" is a bare numeral\/placeholder/);
+});
+
+requiredTest("11 isPlaceholderChapterTitle separates bare numerals and structural labels from real titles (2026-09-17)", () => {
+  // Placeholders: a bare roman numeral, a bare number, a structural label with
+  // or without its number, and any single character.
+  for (const title of ["VII", "x", "10", "10.", "Chapter 7", "Part II", "Section", "X", "A"]) {
+    assert.equal(isPlaceholderChapterTitle(title), true, `"${title}" is a placeholder chapter title`);
+  }
+  // Real titles. "The Year 1776" carries words around the number and passes;
+  // "1776" ALONE would be a bare number and is rejected (asserted below).
+  for (const title of ["Beginning Life as a Printer", "Braddock's Expedition", "The Year 1776", "X-Men Origins"]) {
+    assert.equal(isPlaceholderChapterTitle(title), false, `"${title}" is a real chapter title`);
+  }
+  assert.equal(isPlaceholderChapterTitle("1776"), true, "a bare year is still a bare number");
 });
 
 finishV25Tests().catch((error: unknown) => {
