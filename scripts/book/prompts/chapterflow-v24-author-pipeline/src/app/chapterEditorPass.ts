@@ -5,7 +5,7 @@
  * WHERE IT SITS. Inside the compile stage, after the four packs have passed their
  * own section gates and after assembly has resolved the cross-chapter collisions,
  * and before the candidate is staged for review. One bounded model call per
- * chapter, role `author` (effort high, per config/model-routing.json).
+ * chapter, role `author` (effort medium, per config/model-routing.json).
  *
  * WHAT IT CANNOT DO, BY CONSTRUCTION.
  *   - It cannot ship an ungated edit. Every returned bundle is re-validated

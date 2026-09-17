@@ -125,8 +125,8 @@ model call goes through the `ModelGateway`, which spawns a subscription CLI via 
 [`config/model-routing.json`](config/model-routing.json) (validated fail-closed;
 a `gpt-5.5` model outside the codex fallback + the D1 owner-override sentinel
 trips the NO-GPT-5.5 gate). **The production default is `claude-cli` (Claude
-Sonnet 5), effort-tiered per role** (research/structural-QC `medium`;
-author/repair `high`; canonical review + quiz-key judge `xhigh`); the `codex`
+Sonnet 5), effort-tiered per role** (research/author/structural-QC `medium`;
+repair `high`; canonical review + quiz-key judge `xhigh`); the `codex`
 route is a config-switchable fallback, never the default.
 
 - **`claude-cli`** (`src/runtime/claudeRoute.ts`, id `claude-subscription-v1`) —

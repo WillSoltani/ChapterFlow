@@ -63,11 +63,13 @@ requiredTest("shipped config/model-routing.json is the D1 Sonnet-5 defaults, no 
   assert.equal(config.defaultRoute.route, "claude-cli");
   assert.equal(config.defaultRoute.model, "claude-sonnet-5");
   assert.equal(config.ownerOverride, undefined, "the gpt-5.5 exception override must be gone after the flip");
-  for (const [role, effort] of [["research", "medium"], ["author", "high"], ["repair", "high"], ["review", "xhigh"], ["qc", "xhigh"]] as const) {
+  for (const [role, effort] of [["research", "medium"], ["author", "medium"], ["repair", "high"], ["review", "xhigh"], ["qc", "xhigh"]] as const) {
     assert.equal(config.roles?.[role]?.route, "claude-cli", `${role} route`);
     assert.equal(config.roles?.[role]?.model, "claude-sonnet-5", `${role} model`);
     assert.equal(config.roles?.[role]?.effort, effort, `${role} effort`);
   }
+  // Regression pin: author MUST stay at medium — at high the ch02 learning-pack writer thought to the 64k output cap (all thinking, zero text) and timed out three times.
+  assert.equal(config.roles?.author?.effort, "medium", "author effort must stay medium (64k-thinking-cap timeout defect)");
   assert.equal(checkModelRoutingTripwire(config).length, 0);
 });
 
