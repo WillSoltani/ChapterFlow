@@ -131,6 +131,13 @@ export interface BookRunApplicationRequest {
    * the input boundary with every other budget, never silently reverts.
    */
   readonly rubricBar?: number;
+  /**
+   * How many chapters the COMPILE stage drafts at once (`--compile-concurrency`),
+   * threaded straight to the compiler port's `chapterConcurrency`. Absent leaves
+   * the compiler's own default. The port re-validates it fail-closed, so an
+   * out-of-range value costs nothing.
+   */
+  readonly compileChapterConcurrency?: number;
   readonly signal: AbortSignal;
 }
 
@@ -2445,6 +2452,7 @@ export class BookRunApplicationService {
           profileId: "attempt-read-json-v1",
           reconcileUnsettled: input.reconcileUnsettled === true,
           ...(carryOverFromRunId === undefined ? {} : { carryOverFromRunId }),
+          ...(input.compileChapterConcurrency === undefined ? {} : { chapterConcurrency: input.compileChapterConcurrency }),
           signal: input.signal,
         });
       } catch (cause) {

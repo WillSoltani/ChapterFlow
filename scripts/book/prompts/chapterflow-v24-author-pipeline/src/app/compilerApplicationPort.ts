@@ -119,6 +119,26 @@ export const MAX_SECTION_ATTEMPTS = 3;
 export const MAX_SUMMARY_REDRAFTS_PER_CHAPTER = 1;
 
 /**
+ * How many CHAPTERS the drafting phase keeps in flight at once.
+ *
+ * Chapters are independent at draft time — every section gate reads only THIS
+ * chapter's blueprint, packet, sidecar and drafted prose — so the round's wall
+ * clock is a pure function of how many of them are allowed to draft together.
+ * The cross-chapter gates (SEC89/90/93/96/119…) are not affected: they live
+ * inside `checkSectionGate`, which only `assembleSections` calls, once, after
+ * the whole drafting phase has finished.
+ *
+ * 3 mirrors the research stage's own already-live default (`researcher.ts`
+ * `chapterConcurrency`, `cli.ts --concurrency`): the same order of subprocess
+ * and provider load, at a value that has been run against the real route.
+ * Raising it is an operator decision (`chapterConcurrency` on the request)
+ * rather than a compiled-in one, because the ceiling is the provider's quota
+ * window and the book-level cache write lock's 250ms acquire timeout, neither
+ * of which this process can observe.
+ */
+export const DEFAULT_CHAPTER_CONCURRENCY = 3;
+
+/**
  * Package 2B — the editor pass's whole per-chapter attempt budget, used only to
  * size the run's attempt capacity.
  *
@@ -236,6 +256,15 @@ export interface CompilerApplicationRequest {
    * today's card. The attempt budget, every gate and the cache identity are untouched.
    */
   readonly carryOverFromRunId?: string;
+  /**
+   * How many chapters the drafting phase may keep in flight at once. Absent =
+   * DEFAULT_CHAPTER_CONCURRENCY. Validated fail-closed (a positive safe integer)
+   * at the input boundary, exactly as the research stage validates its own
+   * `chapterConcurrency`, so a typo never silently reverts to the default.
+   *
+   * 1 is the pre-concurrency compile, chapter by chapter in index order.
+   */
+  readonly chapterConcurrency?: number;
   readonly signal: AbortSignal;
 }
 
@@ -1707,6 +1736,12 @@ export class CompilerApplicationPort {
     if (request.profileId !== COMPILER_SECTION_PROFILE_ID) {
       throw new Error(`COMPILER_PROFILE_INVALID:profile must be ${COMPILER_SECTION_PROFILE_ID}`);
     }
+    if (
+      request.chapterConcurrency !== undefined
+      && (!Number.isSafeInteger(request.chapterConcurrency) || request.chapterConcurrency < 1)
+    ) {
+      throw new Error("COMPILER_INPUT_INVALID:chapterConcurrency must be a positive safe integer");
+    }
     if (!isAbsolute(request.attemptRoot)) throw new Error("COMPILER_ATTEMPT_ROOT_INVALID:attempt root must be absolute");
     if (within(this.#dependencies.pipelineRoot, request.attemptRoot) || within(request.attemptRoot, this.#dependencies.pipelineRoot)) {
       throw new Error("COMPILER_ATTEMPT_ROOT_INVALID:attempt root must be isolated from pipeline root");
@@ -2065,7 +2100,57 @@ export class CompilerApplicationPort {
       const rejectedSectionPackSink: RejectedSectionPackSink | null =
         this.#dependencies.rejectedSectionPacks
         ?? (rejectedRunDir === undefined ? null : createRejectedSectionPackWriter(rejectedRunDir));
-      for (const preparedChapter of prepared) {
+      // ── THE CHAPTER POOL ───────────────────────────────────────────────────
+      //
+      // Chapters draft CONCURRENTLY, up to `chapterConcurrency` at a time; the
+      // body below is the same per-chapter pass it has always been, lifted into a
+      // function so a fixed worker pool can call it. Nothing about a GATE moves:
+      //
+      //   - within a chapter the four packs stay strictly sequential in
+      //     SECTION_KINDS order, because summary-pack's accepted prose is a gate
+      //     input for the other three (draftedChapterProse, below);
+      //   - every draft-time gate reads only THIS chapter's blueprint, packet,
+      //     sidecar and prose, so two chapters drafting at once cannot see each
+      //     other and cannot change each other's verdict;
+      //   - the CROSS-chapter gates (SEC89/90/93/96/119…) are not here at all.
+      //     They live inside checkSectionGate, which only assembleSections calls,
+      //     once, strictly after this whole pool has drained — so assembly still
+      //     judges every chapter's packs together, in chapter order, exactly as
+      //     it did when the loop was sequential.
+      //
+      // The pool's shape is the research stage's own already-live one
+      // (researcher.ts researchChaptersInParallel): a shared cursor, a fixed set
+      // of workers, failures recorded rather than thrown inline, and
+      // Promise.allSettled before the round's error is re-thrown. Order-dependent
+      // state is collected per chapter and flattened in CHAPTER order after the
+      // drain — including WHICH failure the round reports — so nothing that is
+      // stored depends on which chapter happened to finish first.
+      const chapterConcurrency = request.chapterConcurrency ?? DEFAULT_CHAPTER_CONCURRENCY;
+      console.error(`[book-run] compiler chapters=${prepared.length} action=DRAFT_POOL concurrency=${chapterConcurrency}`);
+      const assemblyPathsByChapter: Array<AuthorV4SectionChapterPaths | undefined> = new Array(prepared.length);
+      const attemptIdsByChapter: string[][] = prepared.map(() => []);
+      // WHICH failure the round reports, and why it is by CHAPTER and never by
+      // clock. The error thrown here is stored durably as the run's failure
+      // `reason` (failCompilerRun) and its PREFIX is what bookRunApplicationService
+      // matches against RETRYABLE_COMPILER_FAILURES to decide whether the operator
+      // is granted another round — a list COMPILER_SECTION_PROVIDER_BLOCKED is
+      // deliberately absent from (R-001: never retry against a provider wall).
+      // First-failure-by-time would therefore let a race decide whether R-001
+      // holds, so each chapter's failure is recorded in its OWN slot and the round
+      // reports the LOWEST slot's: the same chapter the sequential loop reported,
+      // because it ran the chapters in this order and stopped at the first.
+      const chapterFailures: Array<{ readonly error: unknown } | undefined> = new Array(prepared.length);
+      /** Has a chapter STRICTLY BELOW this one already failed? */
+      const failedBelowChapter = (chapterSlot: number): boolean => {
+        for (let slot = 0; slot < chapterSlot; slot += 1) if (chapterFailures[slot] !== undefined) return true;
+        return false;
+      };
+      /** Has ANY chapter failed? Only the QUEUE asks: every slot it could hand out
+       *  next is strictly above every slot already taken, so a chapter that has not
+       *  started cannot be the lowest failure and never needs to run. */
+      let anyChapterFailed = false;
+      const draftChapter = async (preparedChapter: (typeof prepared)[number], chapterSlot: number): Promise<void> => {
+        const chapterAttemptIds = attemptIdsByChapter[chapterSlot];
         const { chapter, packet, index, blueprint: candidateBlueprint, blueprintDigest, packetDigest, taskCardDigests, packetLogicalPath, blueprintLogicalPath } = preparedChapter;
         const chapterFiles = preparedChapter.files;
         // Every section file this chapter appends is pushed after the three compiler
@@ -2099,6 +2184,30 @@ export class CompilerApplicationPort {
         // 1 + MAX_SUMMARY_REDRAFTS_PER_CHAPTER times in total.
         for (;;) {
         for (const kind of SECTION_KINDS) {
+          // DRAIN. A LOWER-numbered chapter has already failed the round (a
+          // structural COMPILER_SECTION_BLOCKED, a provider block, an abort), so
+          // the round is lost AND its reported failure is already decided: this
+          // chapter's own failure, whatever it turned out to be, would lose to that
+          // one. The attempt this chapter had in flight has settled, and if it
+          // cleared its gate it was stored below — which is the point: the next
+          // operator round reuses it instead of re-drafting it. So stop here rather
+          // than spend a new model call on a round that is already lost and already
+          // reported. Checked here between SECTIONS and again between ATTEMPTS
+          // within a section (below), never MID-attempt: the call in flight when a
+          // sibling fails always settles, so no admitted attempt is abandoned by
+          // this path and a pack that cleared its gate on that call is stored.
+          //
+          // STRICTLY BELOW, not "any": a chapter must never be talked out of
+          // reaching its OWN failure by a HIGHER chapter that failed first, because
+          // the lower chapter's class is the one the round has to report. Stopping
+          // on any sibling's failure would let a chapter 2 gate block mask a
+          // chapter 1 provider wall — the round would be reported retryable and the
+          // operator would be granted a round against a wall that the sequential
+          // compile would have named (pinned by CONC-g). The cost of the narrower
+          // rule is that a chapter below the failure keeps drafting on a lost round;
+          // every pack it lands is cached and reused by the next round, so that work
+          // is banked rather than spent.
+          if (failedBelowChapter(chapterSlot)) return;
           const operation = operations.find((value) => value.chapterNumber === chapter.chapterNumber && value.kind === kind);
           if (!operation) throw new Error("COMPILER_ID_INVALID:missing compiler operation");
           const logicalPath = compilerPath(chapter.chapterNumber, `${kind}.json`);
@@ -2235,6 +2344,15 @@ export class CompilerApplicationPort {
           }
           for (let attemptNumber = 1; !reusedFromCache && attemptNumber <= MAX_SECTION_ATTEMPTS; attemptNumber += 1) {
             if (request.signal.aborted) throw new Error("MODEL_RUN_CANCELLED:compiler cancellation requested");
+            // DRAIN, the second half. The attempt before this one has already
+            // settled through the gateway (admit/finish are paired around every
+            // call), and if its draft cleared the gate it was stored; so once a
+            // LOWER chapter has failed, stopping here spends no further model call
+            // on a round that is already lost and already reported. Placed AFTER
+            // the abort check so a cancelled run still reports its cancellation,
+            // and BEFORE the attempt id is minted so no id is checkpointed for an
+            // attempt that never ran.
+            if (failedBelowChapter(chapterSlot)) return;
             // Pass 1 keeps the deterministic ids (checkpoint/resume identity on the
             // success path is untouched); a breaker restart salts `-s{pass}` so
             // run-state admits pass 2's drafts as new attempts rather than
@@ -2243,7 +2361,7 @@ export class CompilerApplicationPort {
             const attemptId = attemptNumber === 1
               ? `${operation.attemptId}${passSalt}`
               : `${operation.attemptId}${passSalt}-r${attemptNumber}`;
-            invokedAttemptIds.push(attemptId);
+            chapterAttemptIds.push(attemptId);
             const task = buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: candidateBlueprint, sourcePacket: packet, outputPath: logicalPath, context: renderContext, deliveryMode: "DIRECT_JSON", retryFeedback, assemblyAvoid, chapterProse: draftedChapterProse, dealtCaseRedraft: kind === "summary-pack" ? summaryRedraftMustTeach : undefined });
             const result = await this.#dependencies.runner.run({
               profileId: COMPILER_SECTION_PROFILE_ID,
@@ -2512,7 +2630,9 @@ export class CompilerApplicationPort {
         chapterFiles.length = chapterFilesBeforeSections;
         for (const kind of SECTION_KINDS) delete preparedChapter.packs[kind];
         } // end of the bounded PASS loop
-        assemblyPaths.push({
+        // Written to this chapter's OWN slot, never appended: assembly reads the
+        // chapters in index order whatever order they finished in.
+        assemblyPathsByChapter[chapterSlot] = {
           chapterNumber: chapter.chapterNumber,
           blueprint: blueprintLogicalPath,
           sourcePacket: packetLogicalPath,
@@ -2522,7 +2642,54 @@ export class CompilerApplicationPort {
           learning: sectionPaths["learning-pack"],
           action: sectionPaths["action-pack"],
           output: `content/chapters/${chapterFileName(chapter.chapterId)}`,
-        });
+        };
+      };
+
+      // A worker only ever abandons the QUEUE, never the chapter it is holding: once
+      // any chapter has failed it stops taking new ones, and the chapter it is
+      // already holding stops at its next section-or-attempt boundary if — and only
+      // if — the failure was in a lower-numbered chapter (the DRAIN above).
+      // Promise.allSettled then guarantees every worker has finished or was never
+      // dispatched BEFORE the round's error is re-thrown, so no model call is still
+      // in flight when the run is failed and no admitted attempt is left unsettled.
+      let chapterCursor = 0;
+      const chapterWorker = async (): Promise<void> => {
+        for (;;) {
+          if (anyChapterFailed) return;
+          const chapterSlot = chapterCursor;
+          chapterCursor += 1;
+          if (chapterSlot >= prepared.length) return;
+          try {
+            await draftChapter(prepared[chapterSlot], chapterSlot);
+          } catch (chapterError) {
+            // Recorded in this chapter's own slot — never a shared "first" cell, so
+            // the selection below cannot depend on which chapter lost a race. A
+            // wrapper object, so a thrown `undefined` is still a recorded failure.
+            chapterFailures[chapterSlot] = { error: chapterError };
+            anyChapterFailed = true;
+            return;
+          }
+        }
+      };
+      await Promise.allSettled(
+        Array.from({ length: Math.min(chapterConcurrency, prepared.length) }, () => chapterWorker()),
+      );
+      // Attempt ids in CHAPTER order, not completion order — they are checkpointed
+      // on both the success and the failure path, and a stored artifact must not
+      // record which chapter happened to finish first. Flattened BEFORE the throw so
+      // a failed round still names every attempt it spent.
+      for (const ids of attemptIdsByChapter) invokedAttemptIds.push(...ids);
+      // The LOWEST failing chapter's error, exactly as the sequential loop threw the
+      // first chapter's. A chapter only ever stops early for a failure BELOW it, so
+      // no chapter below the lowest recorded failure stopped early either: this is
+      // the same failure this input would produce at chapterConcurrency 1.
+      const chapterFailure = chapterFailures.find((entry) => entry !== undefined);
+      if (chapterFailure !== undefined) throw chapterFailure.error;
+      for (const chapterPaths of assemblyPathsByChapter) {
+        // Fail closed: the pool drained without an error, so every chapter must have
+        // produced its assembly paths. A hole here would silently shorten the book.
+        if (chapterPaths === undefined) throw new Error("COMPILER_ID_INVALID:chapter drafting completed without assembly paths");
+        assemblyPaths.push(chapterPaths);
       }
 
       // Emit in plannedInventory's order: each chapter's three compiler sidecars followed by its

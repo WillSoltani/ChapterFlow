@@ -87,7 +87,7 @@ const V4_QC_AUTO_USAGE = "qc-auto <bookId> --pass --v25-root <absolute> --attemp
 const V4_QC_DIAGNOSE_USAGE = "qc-diagnose <bookId> --round <roundId> --v25-root <absolute> --attempt-root <absolute> --candidate-id <id> --manifest-digest <digest> --source-git-sha <sha>";
 
 function v4BookProductionUsage(command: "book-run" | "book-autopilot"): string {
-  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--source-text <absolute>] [--resume-run-id <id>] [--research-run-id <id>] [--reconcile-unsettled] [--regen] [--max-repair 1] [--rubric-bar <60-95>] [--reader-concurrency N] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
+  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--source-text <absolute>] [--resume-run-id <id>] [--research-run-id <id>] [--reconcile-unsettled] [--regen] [--max-repair 1] [--rubric-bar <60-95>] [--reader-concurrency N] [--compile-concurrency N] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
 }
 
 function firstUnsupportedFlag(
@@ -433,7 +433,7 @@ async function runV4BookProduction(
   }
   const unsupported = firstUnsupportedFlag(flags, [
     "title", "author", "v25-root", "attempt-root", "source-git-sha", "source-text", "resume-run-id", "research-run-id", "regen",
-    "max-repair", "rubric-bar", "reader-concurrency", "promote-local", "no-publish", "reconcile-unsettled", ...(command === "book-run" ? ["log"] : []),
+    "max-repair", "rubric-bar", "reader-concurrency", "compile-concurrency", "promote-local", "no-publish", "reconcile-unsettled", ...(command === "book-run" ? ["log"] : []),
   ]);
   if (unsupported !== undefined) {
     console.error(`UNSUPPORTED_OPTION:${command}:--${unsupported}`);
@@ -481,6 +481,10 @@ async function runV4BookProduction(
   // integer); the evaluator refuses anything else again at construction.
   const readerConcurrencyFlag = flags["reader-concurrency"];
   const readerConcurrency = typeof readerConcurrencyFlag === "string" ? Number(readerConcurrencyFlag) : undefined;
+  // How many chapters the COMPILE keeps in flight, mirroring `research
+  // --concurrency` in name, shape and validation. Absent = the compiler's own
+  // default; the compiler port re-validates and fails closed either way.
+  const compileConcurrency = typeof flags["compile-concurrency"] === "string" ? Number(flags["compile-concurrency"]) : undefined;
   if (args.length !== 1 || !bookId || !title || !author
     || typeof v25Root !== "string" || !isAbsolute(v25Root)
     || typeof attemptRoot !== "string" || !isAbsolute(attemptRoot)
@@ -496,6 +500,7 @@ async function runV4BookProduction(
     || (flags["rubric-bar"] !== undefined && (typeof rubricBarFlag !== "string" || !Number.isInteger(rubricBar)))
     || (flags["reader-concurrency"] !== undefined
       && (readerConcurrency === undefined || !Number.isSafeInteger(readerConcurrency) || readerConcurrency < 1))
+    || (flags["compile-concurrency"] !== undefined && (compileConcurrency === undefined || !Number.isSafeInteger(compileConcurrency) || compileConcurrency < 1))
     || (command === "book-run" && flags["log"] !== undefined && (logPath === undefined || !isAbsolute(logPath)))) {
     console.error(`Usage: ${v4BookProductionUsage(command)}`);
     return 2;
@@ -532,6 +537,7 @@ async function runV4BookProduction(
       reconcileUnsettled: flags["reconcile-unsettled"] === true,
       ...(sourceTextPath === undefined ? {} : { sourceTextPath }),
       ...(rubricBar === undefined ? {} : { rubricBar }),
+      ...(compileConcurrency === undefined ? {} : { compileChapterConcurrency: compileConcurrency }),
       // Compatibility confirmation only: V4 never publishes externally, while
       // --promote-local may still atomically advance the local V25 pointer.
       signal,

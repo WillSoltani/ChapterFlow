@@ -82,13 +82,36 @@ export function creditChapterSpec(bookId: string): ChapterSpec {
 
 export type CreditFixture = { packet: SourcePacketV1; blueprint: ChapterBlueprintV1; summary: SummaryPackV1; examples: ExamplePackV1; learning: LearningPackV1; action: ActionPackV1 };
 
+/** The fixture's sidecar re-keyed to another chapter slot. The CONTENT is the
+ *  credit chapter verbatim; only the chapter coordinates move, which is all the
+ *  positional dealer and the per-chapter gates read. */
+export function creditSidecarForChapter(chapterNumber: number): SourceSidecarV2 {
+  return { ...sidecar(), chapterNumber };
+}
+
+/** The fixture's chapter spec for any chapter slot (`creditChapterSpec` is slot 1). */
+export function creditChapterSpecForChapter(bookId: string, chapterNumber: number): ChapterSpec {
+  return {
+    chapterId: `${bookId}-ch${String(chapterNumber).padStart(2, "0")}`,
+    chapterNumber,
+    chapterTitle: "Optimize Your Credit Cards",
+  };
+}
+
 /** Compile the credit fixture's packet + blueprint + four section packs for `bookId`.
  *  `roots` only affects reads inside compileChapterBlueprint (salts sidecar); pass the same roots
- *  used when writing so a salt bump is honored. */
-export function compileCreditFixture(bookId: string, roots: CompilerStoreRoots = {}): CreditFixture {
-  const spec = creditChapterSpec(bookId);
-  const packet = compileSourcePacketFromSidecar({ bookId, chapter: spec, sidecar: sidecar(), sidecarPath: "/tmp/ch01.source.json", sourceHash: "hash" });
-  const blueprint = compileChapterBlueprint({ bookId, chapter: spec, packet, packetPath: "/tmp/ch01.source-packet.json", roots });
+ *  used when writing so a salt bump is honored.
+ *
+ *  `chapterNumber` (default 1, the original single-chapter fixture) compiles the
+ *  SAME credit chapter into another chapter slot. Every pack below is derived from
+ *  the blueprint this call compiles — dealt names, quiz keys, card ids and slot ids
+ *  all come from `blueprint` — so a fixture built for slot N is gate-clean against
+ *  slot N's own blueprint, which is what a multi-chapter compile needs. */
+export function compileCreditFixture(bookId: string, roots: CompilerStoreRoots = {}, chapterNumber = 1): CreditFixture {
+  const spec = chapterNumber === 1 ? creditChapterSpec(bookId) : creditChapterSpecForChapter(bookId, chapterNumber);
+  const chapterKey = `ch${String(chapterNumber).padStart(2, "0")}`;
+  const packet = compileSourcePacketFromSidecar({ bookId, chapter: spec, sidecar: creditSidecarForChapter(chapterNumber), sidecarPath: `/tmp/${chapterKey}.source.json`, sourceHash: "hash" });
+  const blueprint = compileChapterBlueprint({ bookId, chapter: spec, packet, packetPath: `/tmp/${chapterKey}.source-packet.json`, roots });
   const aid = packet.allowedAnchors[0].id;
   const quizAid = packet.allowedAnchors.find((a) => a.id.includes(".fact.") && a.supportsClaimTypes.includes("quiz_prompt") && a.supportsClaimTypes.includes("quiz_key_evidence"))?.id ?? aid;
   const exampleAid = packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("example"))?.id ?? aid;
