@@ -57,6 +57,7 @@ import { formatSourceV2GateReport, type SourceV2GateReport } from "./qc/sourceV2
 import { evaluateSourceV2Integrity } from "./source/sourceIntegrity.js";
 import { buildCanonicalToc } from "./lib/tocContract.js";
 import { chapterSpanText, resolveChapterMap, type ChapterMapV1 } from "./source/chapterMap.js";
+import { reconcileChapterTitlesFromSource } from "./source/chapterHeadingTitle.js";
 import { ingestSourceText, type IngestedSourceText, type SourceTextProvenance } from "./source/sourceText.js";
 import { collectSourceQuoteProblems } from "./source/sourceQuoteGrounding.js";
 import {
@@ -459,7 +460,7 @@ export async function researchBook(
     leaseTtlMs,
   });
 
-  const chapterList = flattenChapters(bibliography);
+  let chapterList = flattenChapters(bibliography);
 
   // R-046 — the FROZEN text is the only source of truth from here on. It is
   // re-read (and re-verified against the manifest digest) on a resume too, so a
@@ -491,7 +492,84 @@ export async function researchBook(
     if (!resolved.map) {
       throw new Error(`RESEARCH_CHAPTER_MAP_INVALID:${resolved.problems.join("; ")}`);
     }
-    chapterMap = resolved.map;
+    let resolvedMap = resolved.map;
+
+    // TITLES COME FROM THE PAGE. The bibliography researcher returns a chapter
+    // list from what it knows of the book, and that list becomes FROZEN chapter
+    // identity — the repair lane refuses a title change, and the blueprint,
+    // packet and source-v2 equality checks all bind it. On the released Franklin
+    // run (book-run-755fb671) the model recalled seven of nineteen titles: it
+    // listed chapter 15 as "Appointment as Deputy Postmaster General" while the
+    // edition heads that chapter "QUARRELS WITH THE PROPRIETARY GOVERNORS", the
+    // structural review blocked the book over it, and no lane could fix it.
+    //
+    // The heading was in the frozen text all along, printed at the start of the
+    // span that was just resolved. This is the ONE place it is read, because it
+    // is the first moment both halves exist — the chapter list and where each
+    // chapter starts — and it is still before anything downstream has seen a
+    // title: the raw bibliography, toc.json, the manifest's expected chapters
+    // and their hash, the map's own span titles and the chapter researcher's
+    // input are all rewritten here, from the same list, so nothing later can
+    // trip SV2.chapter_title_mismatch or the pin's consistency check.
+    //
+    // A PINNED run is exempt: it is adopted as-is, byte for byte, and rewriting
+    // an operator's pinned bundle would turn a pin into a mutation primitive.
+    //
+    // A run that has ALREADY researched a chapter is exempt too: its sidecars
+    // carry the titles they were researched under, and renaming the list around
+    // them is the split brain this reconcile exists to prevent. A run created by
+    // this code re-derives the same titles on every resume and reports no
+    // change, so only a legacy bundle can reach this branch.
+    const alreadyResearched = activeManifest.expectedChapters
+      .filter((chapter) => activeManifest.chapters[chapterKey(chapter.number)]?.status === "succeeded")
+      .map((chapter) => chapter.number);
+    if (options.pinnedRunId === undefined && alreadyResearched.length === 0) {
+      const reconciliation = reconcileChapterTitlesFromSource({
+        sourceText: frozenSourceText,
+        spans: resolvedMap.spans,
+        chapters: chapterList,
+      });
+      if (reconciliation.changes.length > 0) {
+        for (const change of reconciliation.changes) {
+          log(`[research] title-reconcile ch${chapterKey(change.chapterNumber)} bibliography=${JSON.stringify(change.bibliographyTitle)} source=${JSON.stringify(change.sourceTitle)} action=SOURCE_HEADING`);
+        }
+        log(`[research] title-reconcile ${reconciliation.changes.length} of ${chapterList.length} chapter title(s) taken from the source text's own headings`);
+
+        const titles = new Map(reconciliation.chapters.map((chapter) => [chapter.number, chapter.title]));
+        chapterList = reconciliation.chapters.map((chapter) => ({ number: chapter.number, title: chapter.title }));
+        bibliography = withChapterTitles(bibliography, titles);
+        resolvedMap = {
+          ...resolvedMap,
+          spans: resolvedMap.spans.map((span) => ({ ...span, chapterTitle: titles.get(span.chapterNumber) ?? span.chapterTitle })),
+        };
+
+        // These two artifacts were written by createResearchRun minutes ago,
+        // inside the run being created; they are rewritten in place so the run
+        // never holds two chapter lists.
+        writeFileAtomic(resolve(activeBundlePath, RAW_BIBLIOGRAPHY_REL_PATH), `${JSON.stringify(bibliography, null, 2)}\n`);
+        writeFileAtomic(resolve(sourceFreezeDir, "toc.json"), `${JSON.stringify(bibliographyToTocJson(bibliography), null, 2)}\n`);
+
+        const reconciledBibliographyHash = hashJson(bibliography);
+        const reconciledChapters = chapterList.map((chapter) => ({ number: chapter.number, title: chapter.title }));
+        const changes = reconciliation.changes;
+        activeManifest = updateManifest(activeBundlePath, runId, ownerId, clock, leaseTtlMs, (m, nowIso) => {
+          m.bibliography.hash = reconciledBibliographyHash;
+          m.expectedChapters = reconciledChapters;
+          m.expectedChaptersHash = expectedChaptersHash(reconciledChapters);
+          for (const chapter of reconciledChapters) {
+            const entry = m.chapters[chapterKey(chapter.number)];
+            if (entry) entry.chapterTitle = chapter.title;
+          }
+          appendResearchEvent(m, {
+            type: "bibliography.titles_reconciled",
+            message: `${changes.length} chapter title(s) were taken from the source text's own headings: ${changes.map((change) => `ch${chapterKey(change.chapterNumber)} ${JSON.stringify(change.bibliographyTitle)} -> ${JSON.stringify(change.sourceTitle)}`).join("; ")}`,
+            data: { changes: changes.map((change) => ({ ...change })) },
+          }, nowIso);
+        });
+      }
+    }
+
+    chapterMap = resolvedMap;
     writeFileAtomic(resolve(activeBundlePath, CHAPTER_MAP_REL_PATH), `${JSON.stringify(chapterMap, null, 2)}\n`);
     log(`  chapter map: ${chapterMap.spans.length} span(s) covering ${(chapterMap.coverageFraction * 100).toFixed(1)}% of the source text`);
   }
@@ -1318,6 +1396,19 @@ function leaseExpired(lease: { expiresAt?: string } | undefined, now: Date): boo
   if (!lease) return true;
   const expiresAtMs = Date.parse(lease.expiresAt ?? "");
   return !Number.isFinite(expiresAtMs) || expiresAtMs <= now.getTime();
+}
+
+/** The same bibliography with each chapter renamed to `titles`. Structure —
+ *  sections or a flat list — is preserved exactly; only titles move. */
+function withChapterTitles(b: BibliographyResult, titles: ReadonlyMap<number, string>): BibliographyResult {
+  const rename = <T extends { number: number; title: string }>(chapter: T): T => (
+    { ...chapter, title: titles.get(chapter.number) ?? chapter.title }
+  );
+  return {
+    ...b,
+    ...(b.sections === undefined ? {} : { sections: b.sections.map((section) => ({ ...section, chapters: section.chapters.map(rename) })) }),
+    ...(b.flatChapters === undefined ? {} : { flatChapters: b.flatChapters.map(rename) }),
+  };
 }
 
 /** Convert a BibliographyResult to the toc.json shape expected by
