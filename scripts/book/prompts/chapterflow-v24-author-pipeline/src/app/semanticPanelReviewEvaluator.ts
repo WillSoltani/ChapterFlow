@@ -11,7 +11,10 @@
  *   1. Run the injected baseline evaluator first. Anything other than a baseline
  *      PASS short-circuits — NO reader task runs (the reader lane augments a
  *      passing baseline; it never rescues a failing one).
- *   2. Per CHAPTER file: run the IMP-20 blind reader PANEL — three independent
+ *   2. Per CHAPTER file, through a BOUNDED CONCURRENCY POOL (`chapterConcurrency`,
+ *      the panel's single operator-facing dial; seat fan-out inside a chapter is
+ *      fixed at three and always parallel, so live model subprocesses = dial x 3):
+ *      run the IMP-20 blind reader PANEL — three independent
  *      reader seats (`runReaderLanes`) read the same chapter through the injected
  *      `ModelTaskRunner` (role "review" → the production route once Tasks 6/7
  *      route it), each strict-assembled into a `ReaderExperienceReviewV1`, their
@@ -34,6 +37,22 @@
  *      medians, weakest first. Emitted unconditionally, because the only review
  *      shape that can reach the repair lane is a PASS (see the comment at the
  *      emission site): a diagnosis conditioned on failure would never be read.
+ *   4c. DETERMINISM UNDER CONCURRENCY, and its ONE stated limit: the pool is I/O
+ *      ONLY. It collects, per chapter POSITION, either the panel or the error, and
+ *      every issue below is then emitted in a second, synchronous,
+ *      chapter-ordered pass. So on the UNBLOCKED path — every chapter dispatched,
+ *      which is every run that produces a PASS or a FAIL — nothing about the
+ *      stored review depends on which chapter or which seat returned first: the
+ *      same seat outputs give byte-identical `issues[]` whatever the schedule.
+ *      THE LIMIT: on a PROVIDER-BLOCKED path that guarantee is weaker, and this
+ *      is a real behaviour change, not an oversight. Which chapters were already
+ *      claimed when the block trips is a scheduling artifact, so the SET of error
+ *      issues a blocked review stores is no longer a pure function of the input
+ *      (sequentially it was exactly "the first chapter in order"). Their ORDER is
+ *      still chapter order — phase 2 guarantees that unconditionally — and no
+ *      verdict moves: a blocked panel is ERROR either way, and ERROR is refused
+ *      by BOTH repair gates, so nothing downstream reads those bytes. Bounded by
+ *      the dial (see the `providerBlocked` comment below).
  *   5. Outcome: `ERROR` if any seat run failed; else `FAIL` if any panel (or
  *      baseline) BLOCKER issue exists — including a below-floor median; else
  *      `PASS`. So PASS ⟺ baseline PASS ∧ every chapter's panel median ≥ the
@@ -135,6 +154,22 @@ export function parseCandidateChapterSet(candidate: CandidateSnapshot): { chapte
   return numbered.map(({ chapter, number }) => ({ chapter, number }));
 }
 
+/**
+ * How many CHAPTERS the panel reads at once by default.
+ *
+ * Copied from the research stage's own operator-facing default
+ * (`researcher.ts` / `cli.ts --concurrency`, `?? 3`) rather than invented, so the
+ * two parallel model lanes in this pipeline answer to the same number.
+ *
+ * READ THE MULTIPLIER BEFORE CHANGING IT. Each chapter fans out to
+ * `READER_PANEL_SEATS.length` (3) simultaneous seat reads, so the real load on
+ * the subscription route is `chapterConcurrency x 3` concurrent `claude -p`
+ * processes — 9 at this default, which is THREE TIMES the research lane's
+ * concurrent-process count. That headroom has not been measured under sustained
+ * load; this is the number to lower first if the route starts rate-limiting.
+ */
+export const DEFAULT_PANEL_CHAPTER_CONCURRENCY = 3;
+
 export interface SemanticPanelReviewDependencies {
   readonly baseline: CanonicalReviewEvaluator;
   readonly runner: ModelTaskRunner;
@@ -145,6 +180,13 @@ export interface SemanticPanelReviewDependencies {
    *  to a real setTimeout in production; tests inject an instant fake so the
    *  retry path is exercised without a wall-clock wait. */
   readonly sleep?: (ms: number) => Promise<void>;
+  /** How many CHAPTERS this panel reads concurrently (default
+   *  `DEFAULT_PANEL_CHAPTER_CONCURRENCY`). The ONLY concurrency dial the panel
+   *  exposes: seat fan-out is fixed at `READER_PANEL_SEATS.length` and is not
+   *  separately tunable, so concurrent model subprocesses = this x 3. Shaped and
+   *  placed like the research stage's `chapterConcurrency` option — an injected
+   *  dependency, never `process.env` read at the call site. */
+  readonly chapterConcurrency?: number;
 }
 
 export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
@@ -152,12 +194,21 @@ export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
   readonly #runner: ModelTaskRunner;
   readonly #profileId: string;
   readonly #sleep?: (ms: number) => Promise<void>;
+  readonly #chapterConcurrency: number;
 
   constructor(dependencies: SemanticPanelReviewDependencies) {
     this.#baseline = dependencies.baseline;
     this.#runner = dependencies.runner;
     this.#profileId = dependencies.profileId ?? "attempt-read-json-v1";
     this.#sleep = dependencies.sleep;
+    const chapterConcurrency = dependencies.chapterConcurrency ?? DEFAULT_PANEL_CHAPTER_CONCURRENCY;
+    // Refused, never coerced: a 0 / NaN / fractional dial silently clamped to 1
+    // would turn a typo into a six-hour sequential panel that still reports
+    // success, which is precisely the failure this package exists to remove.
+    if (!Number.isSafeInteger(chapterConcurrency) || chapterConcurrency < 1) {
+      throw new Error("SEMANTIC_PANEL_CONCURRENCY_INVALID:chapterConcurrency must be a positive safe integer");
+    }
+    this.#chapterConcurrency = chapterConcurrency;
   }
 
   async evaluate(input: Readonly<{
@@ -180,42 +231,96 @@ export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
     const issues: ReviewIssue[] = [...baseline.value.issues];
     let errored = false;
 
-    for (const { chapter, number } of chapters) {
-      let panel: ReaderPanelReviewV1;
-      try {
-        panel = await runReaderLanes({
-          chapter,
-          chapterNumber: number,
-          runner: this.#runner,
-          readers: READER_PANEL_SEATS.length,
-          taskContext: input.taskContext,
-          profileId: this.#profileId,
-          ...(this.#sleep === undefined ? {} : { sleep: this.#sleep }),
-        });
-      } catch (error) {
+    // ── PHASE 1: the I/O. A bounded worker pool over the chapters ────────────
+    //
+    // This stage is the pipeline's largest wall-clock term (3 seats x 19
+    // chapters of minutes-long `claude -p` reads, run strictly one at a time,
+    // was 6-7 h per verdict) and every one of those reads is independent. The
+    // pool is the research lane's shipped idiom, verbatim in shape: a shared
+    // cursor, `Math.min(limit, work)` workers, a pre-sized results array written
+    // BY INDEX, a shared stop flag checked before claiming new work, and
+    // `Promise.allSettled` so nothing escapes while a call is still in flight.
+    //
+    // Phase 1 decides NOTHING. It only collects, per chapter position, either the
+    // panel or the error — so which chapter's subprocess returned first cannot
+    // reach the stored record. Scoped claim, deliberately: on the UNBLOCKED path
+    // (every chapter dispatched — every run that stores a PASS or a FAIL) the
+    // record is byte-identical whatever the schedule. On a provider-blocked path
+    // WHICH chapters got claimed before the flag tripped is schedule-dependent,
+    // so the SET of error issues varies run to run even though their ORDER does
+    // not; that path is ERROR, refused by both repair gates. See §4c above.
+    type ChapterOutcome =
+      | { readonly ok: true; readonly panel: ReaderPanelReviewV1 }
+      | { readonly ok: false; readonly error: Error };
+    const panelResults: (ChapterOutcome | undefined)[] = new Array(chapters.length);
+    // R-001/R-224: a PROVIDER BLOCK — an exhausted quota window or a dead
+    // credential — is a wall this run cannot get past, so no NEW chapter is
+    // claimed once one is seen. `runReaderLanes` already refuses to spend a
+    // seat's retry budget on it (`isTransientReaderModelResult`); this flag is
+    // the same refusal one level up. It cannot un-launch the reads already in
+    // flight, which is the one honest behaviour change concurrency forces: a
+    // blocked panel now costs up to `chapterConcurrency x 3` calls instead of
+    // exactly one. It stays bounded by the dial, and it changes no verdict —
+    // `errored` is set either way, and ERROR is refused by BOTH repair gates
+    // (`bookRunApplicationService` enters the review-repair loop only on FAIL,
+    // and `CandidateRepairApplicationPort.reviewRepairPreflight` answers
+    // REVIEW_REPAIR_VERDICT_STALE for anything that is not a stored FAIL).
+    let providerBlocked = false;
+    let cursor = 0;
+    const workerCount = Math.max(1, Math.min(this.#chapterConcurrency, chapters.length));
+    const readChapters = async (): Promise<void> => {
+      while (true) {
+        if (providerBlocked) return;
+        const index = cursor;
+        cursor += 1;
+        if (index >= chapters.length) return;
+        const { chapter, number } = chapters[index];
+        try {
+          panelResults[index] = {
+            ok: true,
+            panel: await runReaderLanes({
+              chapter,
+              chapterNumber: number,
+              runner: this.#runner,
+              readers: READER_PANEL_SEATS.length,
+              taskContext: input.taskContext,
+              profileId: this.#profileId,
+              ...(this.#sleep === undefined ? {} : { sleep: this.#sleep }),
+            }),
+          };
+        } catch (error) {
+          panelResults[index] = { ok: false, error: error as Error };
+          if (isUnretryableProviderMessage((error as Error).message)) providerBlocked = true;
+        }
+      }
+    };
+    // `allSettled` on workers that already catch everything is belt-and-braces:
+    // it guarantees evaluate() cannot return while a reader-lane attempt is still
+    // open, which is what `fileRunStore.finishRun` enforces (UNSETTLED_ATTEMPTS)
+    // when `createReaderLaneRunner.settle(...)` closes the lane run right after.
+    await Promise.allSettled(Array.from({ length: workerCount }, () => readChapters()));
+
+    // ── PHASE 2: the verdict. Synchronous, in chapter order, over the collected
+    // results. Every function below is pure, so running them here instead of
+    // inside the pool is what makes `issues[]` byte-identical to the sequential
+    // panel's for the same seat outputs, with no change to any gate, threshold
+    // or aggregation. A chapter with no entry was never dispatched (the provider
+    // block stopped the pool) and records nothing — the same as the `break` it
+    // replaces.
+    for (let index = 0; index < chapters.length; index += 1) {
+      const result = panelResults[index];
+      if (result === undefined) continue;
+      const { chapter, number } = chapters[index];
+      if (!result.ok) {
         errored = true;
-        const message = (error as Error).message;
-        const code = error instanceof ReaderExperienceReviewError
+        const message = result.error.message;
+        const code = result.error instanceof ReaderExperienceReviewError
           ? READER_PANEL_UNPARSEABLE_CODE
           : READER_PANEL_INFRA_FAILURE_CODE;
         issues.push(issue(code, "BLOCKER", message, `ch${pad(number)}`));
-        // R-001/R-224: a PROVIDER BLOCK — an exhausted quota window or a dead
-        // credential — is a wall this run cannot get past. `runReaderLanes`
-        // already refuses to spend the seat's retry budget on it
-        // (`isTransientReaderModelResult`), but this loop used to `continue`, so
-        // every remaining chapter still opened a fresh seat against the same
-        // wall: one wasted provider call per chapter, per operator round.
-        //
-        // Stopping here changes no verdict. `errored` is already set, so the
-        // outcome is ERROR either way, and ERROR is refused by BOTH repair gates
-        // (`bookRunApplicationService` enters the review-repair loop only on
-        // FAIL, and `CandidateRepairApplicationPort.reviewRepairPreflight`
-        // answers REVIEW_REPAIR_VERDICT_STALE for anything that is not a stored
-        // FAIL). The only thing that changes is how much of the provider's wall
-        // the run walks into before it reports it.
-        if (isUnretryableProviderMessage(message)) break;
         continue;
       }
+      const panel = result.panel;
       // The 3-reader MEDIAN is load-bearing: a panel whose median composite is
       // below the frozen chapter bar fails the chapter even when no seat raised a
       // categorized blocking finding (fail-closed — a uniformly-mediocre panel

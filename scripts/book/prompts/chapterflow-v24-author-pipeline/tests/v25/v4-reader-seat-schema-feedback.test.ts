@@ -115,22 +115,47 @@ function isFailure(value: ScriptEntry): value is { __fail: { outcome: ModelResul
   return typeof value === "object" && value !== null && "__fail" in value;
 }
 
-/** A runner scripted with an ordered queue, recording the SYSTEM PROMPT and the
- *  attempt id of every call so the retry card is directly observable. */
-function scriptedRunner(queue: readonly ScriptEntry[]): {
+/** The one seat every case here scripts. The other two read clean, so each case
+ *  is about a single seat's retry ladder and nothing else. */
+const FOCUS_SEAT = READER_PANEL_SEATS[0].id;
+
+/**
+ * A runner scripted PER SEAT, recording the SYSTEM PROMPT and the attempt id of
+ * every call so the retry card is directly observable.
+ *
+ * Keyed by seat rather than consumed from one flat arrival-ordered queue because
+ * the three seats now run CONCURRENTLY: against a flat queue, seat 2's first
+ * attempt and seat 1's retry race for the same entry and the fixture stops
+ * describing the ladder it says it describes. Keyed by seat, each seat's ladder
+ * is a property of the FIXTURE and not of the scheduler — which is also what
+ * makes "this seat's second attempt" (`promptsFor`) a thing a test can name.
+ */
+function scriptedRunner(focusScript: readonly ScriptEntry[]): {
   runner: ModelTaskRunner;
   prompts: string[];
   attemptIds: string[];
+  /** One seat's prompts, in that seat's ATTEMPT order — never arrival order. */
+  promptsFor(seatId: string): string[];
+  attemptIdsFor(seatId: string): string[];
 } {
-  const pending = [...queue];
+  const pending = [...focusScript];
   const prompts: string[] = [];
   const attemptIds: string[] = [];
+  const seatPrompts = new Map<string, string[]>();
+  const seatAttemptIds = new Map<string, string[]>();
   const runner: ModelTaskRunner = {
     async run(request): Promise<ModelResult> {
+      const seatId = READER_PANEL_SEATS.map((seat) => seat.id)
+        .find((id) => request.context.operationId.endsWith(`-${id}`));
+      if (seatId === undefined) throw new Error(`unexpected reader operationId: ${request.context.operationId}`);
       attemptIds.push(request.context.attemptId);
+      seatAttemptIds.set(seatId, [...(seatAttemptIds.get(seatId) ?? []), request.context.attemptId]);
       const task = request.prompt.inputs.find((input) => input.name === "system_prompt");
-      prompts.push(task ? new TextDecoder().decode(task.bytes) : "");
-      const next = pending.shift();
+      const prompt = task ? new TextDecoder().decode(task.bytes) : "";
+      prompts.push(prompt);
+      seatPrompts.set(seatId, [...(seatPrompts.get(seatId) ?? []), prompt]);
+      // A seat this case did not script reads clean on its first attempt.
+      const next = seatId === FOCUS_SEAT ? pending.shift() : readerContent();
       if (next === undefined) {
         return {
           attemptId: request.context.attemptId,
@@ -144,7 +169,13 @@ function scriptedRunner(queue: readonly ScriptEntry[]): {
       return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: next };
     },
   };
-  return { runner, prompts, attemptIds };
+  return {
+    runner,
+    prompts,
+    attemptIds,
+    promptsFor: (seatId) => [...(seatPrompts.get(seatId) ?? [])],
+    attemptIdsFor: (seatId) => [...(seatAttemptIds.get(seatId) ?? [])],
+  };
 }
 
 function taskContext(): ModelTaskContext {
@@ -171,21 +202,19 @@ function panelInput(chapter: ChapterV21, runner: ModelTaskRunner) {
   };
 }
 
-/** Every seat after the first, scripted clean, so a test can focus on seat 1. */
-function cleanTail(): ScriptEntry[] {
-  return [readerContent(), readerContent()];
-}
-
 requiredTest("a GATEWAY schema rejection retries with the rejection NAMED — and never fabricates the unavailable raw output", async () => {
   const chapter = makeGateCleanChapter(BOOK, 1);
-  const scripted = scriptedRunner([gatewayInvalid(), readerContent(), ...cleanTail()]);
+  const scripted = scriptedRunner([gatewayInvalid(), readerContent()]);
 
   const panel = await runReaderLanes(panelInput(chapter, scripted.runner));
   assert.equal(panel.medianComposite, 80, JSON.stringify(panel.composites));
+  // The scripted seat spent two attempts; the other two seats read clean once each.
   assert.equal(scripted.prompts.length, 4, JSON.stringify(scripted.attemptIds));
 
-  const first = scripted.prompts[0];
-  const retry = scripted.prompts[1];
+  const seatAttempts = scripted.promptsFor(FOCUS_SEAT);
+  assert.equal(seatAttempts.length, 2, JSON.stringify(scripted.attemptIdsFor(FOCUS_SEAT)));
+  const first = seatAttempts[0];
+  const retry = seatAttempts[1];
   // The first attempt is a clean read — no correction block at all.
   assert.ok(
     !first.includes(READER_SEAT_RETRY_FEEDBACK_HEADERS.gatewaySchema),
@@ -211,12 +240,12 @@ requiredTest("a GATEWAY schema rejection retries with the rejection NAMED — an
 
 requiredTest("a LOCAL reader-schema rejection retries with the validator's own message quoted — the defect IS available here", async () => {
   const chapter = makeGateCleanChapter(BOOK, 1);
-  const scripted = scriptedRunner([locallyInvalidReaderContent(), readerContent(), ...cleanTail()]);
+  const scripted = scriptedRunner([locallyInvalidReaderContent(), readerContent()]);
 
   const panel = await runReaderLanes(panelInput(chapter, scripted.runner));
   assert.equal(panel.medianComposite, 80, JSON.stringify(panel.composites));
 
-  const retry = scripted.prompts[1];
+  const retry = scripted.promptsFor(FOCUS_SEAT)[1];
   assert.ok(
     retry.includes(READER_SEAT_RETRY_FEEDBACK_HEADERS.readerSchema),
     `the retry card must name the reader-schema rejection:\n${retry.slice(0, 600)}`,
@@ -235,10 +264,10 @@ requiredTest("a LOCAL reader-schema rejection retries with the validator's own m
 
 requiredTest("a transient non-completion carries the 'nothing was wrong with your content' note and NEVER the schema wording", async () => {
   const chapter = makeGateCleanChapter(BOOK, 1);
-  const scripted = scriptedRunner([processFailure(), readerContent(), ...cleanTail()]);
+  const scripted = scriptedRunner([processFailure(), readerContent()]);
 
   await runReaderLanes(panelInput(chapter, scripted.runner));
-  const retry = scripted.prompts[1];
+  const retry = scripted.promptsFor(FOCUS_SEAT)[1];
   assert.ok(
     retry.includes(READER_SEAT_RETRY_FEEDBACK_HEADERS.transient),
     `a transient retry must say the attempt did not complete:\n${retry.slice(0, 600)}`,
@@ -253,15 +282,17 @@ requiredTest("the informed budget recovers a seat that only clears on its LAST a
   const script: ScriptEntry[] = [];
   for (let attempt = 1; attempt < MAX_READER_SEAT_ATTEMPTS; attempt += 1) script.push(gatewayInvalid());
   script.push(readerContent());
-  const scripted = scriptedRunner([...script, ...cleanTail()]);
+  const scripted = scriptedRunner(script);
 
   const panel = await runReaderLanes(panelInput(chapter, scripted.runner));
   // A VERDICT, not an ERROR: the seat recovered inside its bounded budget.
   assert.equal(panel.medianComposite, 80, JSON.stringify(panel.composites));
   assert.equal(panel.readerCount, READER_PANEL_SEATS.length);
+  // The scripted seat spent its whole budget; the other two read clean once each.
   assert.equal(scripted.prompts.length, MAX_READER_SEAT_ATTEMPTS + 2, JSON.stringify(scripted.attemptIds));
 
-  const seatOne = scripted.prompts.slice(0, MAX_READER_SEAT_ATTEMPTS);
+  const seatOne = scripted.promptsFor(FOCUS_SEAT);
+  assert.equal(seatOne.length, MAX_READER_SEAT_ATTEMPTS, JSON.stringify(scripted.attemptIdsFor(FOCUS_SEAT)));
   assert.equal(
     seatOne.filter((prompt) => prompt.includes(READER_SEAT_RETRY_FEEDBACK_HEADERS.gatewaySchema)).length,
     MAX_READER_SEAT_ATTEMPTS - 1,
@@ -281,7 +312,12 @@ requiredTest("feedback does not weaken the gate: an all-invalid seat still fail-
     () => runReaderLanes(panelInput(chapter, scripted.runner)),
     /^Error: SEMANTIC_PANEL_READER_FAILED:MODEL_OUTPUT_INVALID:/,
   );
-  assert.equal(scripted.prompts.length, MAX_READER_SEAT_ATTEMPTS, JSON.stringify(scripted.attemptIds));
+  // The doomed seat burned exactly its budget and no more. Its two siblings were
+  // launched alongside it and each read once — the panel waits for them to settle
+  // before it rethrows (a reader-lane attempt left open fails `finishRun` with
+  // UNSETTLED_ATTEMPTS), so their calls are counted here rather than abandoned.
+  assert.equal(scripted.attemptIdsFor(FOCUS_SEAT).length, MAX_READER_SEAT_ATTEMPTS, JSON.stringify(scripted.attemptIds));
+  assert.equal(scripted.prompts.length, MAX_READER_SEAT_ATTEMPTS + 2, JSON.stringify(scripted.attemptIds));
 });
 
 requiredTest("the feedback block keeps the seat BLIND — no run/attempt/operation or model identity leaks into a retry", async () => {
@@ -290,7 +326,7 @@ requiredTest("the feedback block keeps the seat BLIND — no run/attempt/operati
   // (anthropic/claude/model/url/profile id) — adversarial review demonstrated
   // the leak through the TRANSIENT card, and the earlier fixture ("overloaded")
   // could not have caught it. Every failure class runs before the scan.
-  const scripted = scriptedRunner([processFailure(), gatewayInvalid(), locallyInvalidReaderContent(), readerContent(), ...cleanTail()]);
+  const scripted = scriptedRunner([processFailure(), gatewayInvalid(), locallyInvalidReaderContent(), readerContent()]);
   await runReaderLanes(panelInput(chapter, scripted.runner));
 
   const identityLeaks = [

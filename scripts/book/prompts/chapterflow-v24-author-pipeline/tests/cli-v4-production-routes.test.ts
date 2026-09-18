@@ -156,6 +156,85 @@ test("the research-run pin is mutually exclusive with resume and is not offered 
   assert.match(`${research.stdout}${research.stderr}`, /UNSUPPORTED_OPTION:research:--research-run-id/);
 });
 
+// The reader panel is the run's largest wall-clock term and it now runs its
+// chapter reads through a bounded pool. The pool's size is the ONE operator-facing
+// concurrency dial, and live concurrent `claude -p` processes = dial x 3 (seat
+// fan-out is fixed at three). A dial that lives only in TypeScript is not a
+// mitigation: the documented response to a subscription route that starts
+// rate-limiting mid-run is "lower the dial", and behind a source edit that costs a
+// restart of a multi-hour run. So the flag is pinned here on BOTH book commands,
+// with research's own validation predicate.
+test("the reader-panel concurrency dial is an operator flag on both book commands, validated like research's", () => {
+  // Shared, not book-run-only. Paired with an invalid --max-repair so the command
+  // stops at the usage gate with no composition and no side effects, while still
+  // proving the flag cleared the allowlist.
+  const autopilot = cli([...bookArgs("book-autopilot"), "--reader-concurrency", "2", "--max-repair", "2"]);
+  assert.equal(autopilot.status, 2);
+  assert.doesNotMatch(
+    `${autopilot.stdout}${autopilot.stderr}`,
+    /UNSUPPORTED_OPTION:book-autopilot:--reader-concurrency/,
+    "--reader-concurrency must be accepted by book-autopilot's allowlist",
+  );
+  const bookRun = cli([...bookArgs("book-run"), "--reader-concurrency", "2", "--max-repair", "2"]);
+  assert.equal(bookRun.status, 2);
+  assert.doesNotMatch(
+    `${bookRun.stdout}${bookRun.stderr}`,
+    /UNSUPPORTED_OPTION:book-run:--reader-concurrency/,
+    "--reader-concurrency must be accepted by book-run's allowlist",
+  );
+
+  // Refused, never coerced — a dial silently clamped to 1 is a typo that buys back
+  // the six-hour sequential panel while still reporting success. Same predicate as
+  // research's --concurrency: a positive safe integer.
+  for (const bad of ["0", "-1", "1.5", "two", ""]) {
+    const rejected = cli([...bookArgs("book-run"), "--reader-concurrency", bad]);
+    assert.equal(rejected.status, 2, `--reader-concurrency ${JSON.stringify(bad)} must be refused`);
+    assert.match(
+      `${rejected.stdout}${rejected.stderr}`,
+      /Usage: book-run .*--reader-concurrency N/,
+      `--reader-concurrency ${JSON.stringify(bad)} must stop at the usage gate`,
+    );
+  }
+  const valueless = cli([...bookArgs("book-run"), "--reader-concurrency"]);
+  assert.equal(valueless.status, 2);
+  assert.match(`${valueless.stdout}${valueless.stderr}`, /Usage: book-run .*--reader-concurrency N/);
+
+  // The dial is not offered by research, which has its own --concurrency for its
+  // own stage; one flag per lane, so neither silently reshapes the other.
+  const research = cli([
+    "research", "Some Title", "Some Author",
+    "--v25-root", "/tmp/cli-v4-state",
+    "--attempt-root", "/tmp/cli-v4-attempts",
+    "--source-git-sha", "deadbeef",
+    "--reader-concurrency", "2",
+  ]);
+  assert.equal(research.status, 2);
+  assert.match(`${research.stdout}${research.stderr}`, /UNSUPPORTED_OPTION:research:--reader-concurrency/);
+
+  // And the parsed value actually REACHES the composition — the half of a dial
+  // that makes it a dial. (That it then reaches the panel evaluator's constructor
+  // is pinned behaviourally in tests/v25/v4-reader-panel-concurrency.test.ts.)
+  const production = sourceBetween("async function runV4BookProduction", "async function runV4SelectedCandidateQc");
+  assert.match(
+    production,
+    /\.\.\.\(readerConcurrency === undefined \? \{\} : \{ readerPanelChapterConcurrency: readerConcurrency \}\)/,
+  );
+  assert.match(production, /!Number\.isSafeInteger\(readerConcurrency\) \|\| readerConcurrency < 1/);
+});
+
+test("help documents the reader-panel dial, including the process multiplier it implies", () => {
+  const result = cli(["help"]);
+  const output = `${result.stdout}${result.stderr}`;
+  assert.equal(result.status, 0);
+  assert.match(output, /book-run <bookId> .*--reader-concurrency N/);
+  assert.match(output, /book-autopilot <bookId> .*--reader-concurrency N/);
+  // The multiplier is the load-bearing number for an operator on a subscription
+  // route: the dial counts CHAPTERS, and each chapter is three seats.
+  assert.match(output, /--reader-concurrency N bounds how many CHAPTERS the reader panel reads at once/);
+  assert.match(output, /live concurrent "claude -p" processes = N x 3 \(9 at the default\)/);
+  assert.match(output, /N=1 is the old strictly sequential panel/);
+});
+
 test("book routes reject retired flags and require absolute book-run log", () => {
   const relativeLog = cli([...bookArgs("book-run"), "--no-publish", "--promote-local", "--log", "events.jsonl"]);
   assert.equal(relativeLog.status, 2);

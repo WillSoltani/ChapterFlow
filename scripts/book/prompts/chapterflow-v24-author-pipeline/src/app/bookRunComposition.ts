@@ -303,45 +303,84 @@ function createReaderLaneRunner(deps: Readonly<{
   settle(input: Readonly<{ bookId: string; parentRunId: string; outcome: "COMPLETED" | "FAILED"; reason?: string }>): Promise<void>;
 } {
   const provisioned = new Set<string>();
+  /**
+   * In-flight provisioning, keyed by reader-lane run id — the ONE thing that has
+   * to be serialized now that the panel calls this runner concurrently.
+   *
+   * The `provisioned` Set alone is a check-then-await race: the panel's seats all
+   * enter `run()` in the same tick, all see an unprovisioned lane, and all walk
+   * the readRun → readRun → createRun path. That is not benign. `createdAt` is
+   * part of a run's IDENTITY (`sameRunIdentity`, run-state fileRunStore), and each
+   * racing caller stamps its own `deps.clock.now()` on a lane that does not exist
+   * yet — so the first `createRun` wins and every other one CONFLICTS on a
+   * different `createdAt`, surfacing as READER_LANE_RUN_UNAVAILABLE and erroring
+   * the whole panel. Sharing one promise makes the losers await the winner's
+   * result instead of racing it, which is also what keeps `createdAt` a single
+   * observation of the clock.
+   */
+  const provisioning = new Map<string, Promise<{ readonly ok: true } | { readonly ok: false; readonly code: string; readonly message: string }>>();
+
+  async function provisionReaderLaneRun(
+    bookId: string,
+    parentRunId: string,
+    readerRunId: string,
+  ): Promise<{ readonly ok: true } | { readonly ok: false; readonly code: string; readonly message: string }> {
+    const observedAt = deps.clock.now();
+    const parent = await deps.runStore.readRun(bookId, parentRunId, observedAt);
+    if (!parent.ok) {
+      return { ok: false, code: "READER_LANE_PARENT_RUN_UNAVAILABLE", message: parent.error.message };
+    }
+    let createdAt = observedAt;
+    const prior = await deps.runStore.readRun(bookId, readerRunId, observedAt);
+    if (prior.ok) createdAt = prior.value.definition.createdAt;
+    else if (prior.error.code !== "NOT_FOUND") {
+      return { ok: false, code: "READER_LANE_RUN_UNAVAILABLE", message: prior.error.message };
+    }
+    const created = await deps.runStore.createRun({
+      schemaVersion: "1",
+      bookId,
+      runId: readerRunId,
+      commandId: "reader-experience-review",
+      sourceGitSha: parent.value.definition.sourceGitSha,
+      requiredStages: [READER_LANE_STAGE],
+      requiredInventory: parent.value.definition.requiredInventory,
+      ...(parent.value.definition.inputCandidate === undefined ? {} : { inputCandidate: parent.value.definition.inputCandidate }),
+      // The parent review run's inventory IS the candidate's inventory, so the
+      // chapter count the panel will read comes straight off it.
+      attemptLimits: (() => {
+        const chapters = parent.value.definition.requiredInventory.filter((entry) => entry.kind === "CHAPTER").length;
+        const cap = readerLaneAttemptCap(chapters);
+        return { run: cap, byStage: { [READER_LANE_STAGE]: cap } };
+      })(),
+      createdAt,
+    });
+    if (!created.ok) {
+      return { ok: false, code: "READER_LANE_RUN_UNAVAILABLE", message: created.error.message };
+    }
+    provisioned.add(readerRunId);
+    return { ok: true };
+  }
+
   return {
     async run(request) {
       const { bookId } = request.context;
       const parentRunId = request.context.runId;
       const readerRunId = readerLaneRunId(parentRunId);
       if (!provisioned.has(readerRunId)) {
-        const observedAt = deps.clock.now();
-        const parent = await deps.runStore.readRun(bookId, parentRunId, observedAt);
-        if (!parent.ok) {
-          return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: "READER_LANE_PARENT_RUN_UNAVAILABLE", message: parent.error.message } };
+        let inflight = provisioning.get(readerRunId);
+        if (inflight === undefined) {
+          inflight = provisionReaderLaneRun(bookId, parentRunId, readerRunId);
+          provisioning.set(readerRunId, inflight);
+          // A FAILED provision is not cached: the next reader task re-attempts it
+          // rather than inheriting a stale refusal for the life of the process.
+          void inflight.then((outcome) => {
+            if (!outcome.ok) provisioning.delete(readerRunId);
+          }, () => provisioning.delete(readerRunId));
         }
-        let createdAt = observedAt;
-        const prior = await deps.runStore.readRun(bookId, readerRunId, observedAt);
-        if (prior.ok) createdAt = prior.value.definition.createdAt;
-        else if (prior.error.code !== "NOT_FOUND") {
-          return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: "READER_LANE_RUN_UNAVAILABLE", message: prior.error.message } };
+        const outcome = await inflight;
+        if (!outcome.ok) {
+          return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: outcome.code, message: outcome.message } };
         }
-        const created = await deps.runStore.createRun({
-          schemaVersion: "1",
-          bookId,
-          runId: readerRunId,
-          commandId: "reader-experience-review",
-          sourceGitSha: parent.value.definition.sourceGitSha,
-          requiredStages: [READER_LANE_STAGE],
-          requiredInventory: parent.value.definition.requiredInventory,
-          ...(parent.value.definition.inputCandidate === undefined ? {} : { inputCandidate: parent.value.definition.inputCandidate }),
-          // The parent review run's inventory IS the candidate's inventory, so the
-          // chapter count the panel will read comes straight off it.
-          attemptLimits: (() => {
-            const chapters = parent.value.definition.requiredInventory.filter((entry) => entry.kind === "CHAPTER").length;
-            const cap = readerLaneAttemptCap(chapters);
-            return { run: cap, byStage: { [READER_LANE_STAGE]: cap } };
-          })(),
-          createdAt,
-        });
-        if (!created.ok) {
-          return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: "READER_LANE_RUN_UNAVAILABLE", message: created.error.message } };
-        }
-        provisioned.add(readerRunId);
       }
       return deps.base.run({
         ...request,
@@ -355,6 +394,10 @@ function createReaderLaneRunner(deps: Readonly<{
       const readerRunId = readerLaneRunId(input.parentRunId);
       if (!provisioned.has(readerRunId)) return;
       provisioned.delete(readerRunId);
+      // Drop the memoized provision with it, so a later reader task for the same
+      // parent run re-reads the (now settled) lane instead of being told by a
+      // cached success that it is still live.
+      provisioning.delete(readerRunId);
       // The REVIEW's outcome is authoritative and already decided by the time
       // this runs; failing a completed review because its advisory-evidence run
       // could not be closed would trade a real result for bookkeeping. Every
@@ -393,6 +436,16 @@ export async function createProductionBookRunComposition(input: Readonly<{
   attemptRoot: string;
   logPath?: string;
   processSupervisor?: ProcessSupervisor;
+  /** How many CHAPTERS the reader panel reads concurrently. Defaults to
+   *  `DEFAULT_PANEL_CHAPTER_CONCURRENCY`; each chapter fans out to
+   *  `READER_PANEL_SEATS.length` seats, so concurrent model subprocesses are
+   *  this x 3. The panel evaluator refuses a non-positive value.
+   *
+   *  OPERATOR-REACHABLE: the `book-run` / `book-autopilot` CLI flag
+   *  `--reader-concurrency N` sets this (cli.ts `runV4BookProduction`), so an
+   *  operator whose subscription route starts rate-limiting mid-run can lower it
+   *  from the command line instead of editing source and restarting. */
+  readerPanelChapterConcurrency?: number;
 }>): Promise<ProductionBookRunComposition> {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(input.bookId)) {
     throw new Error("BOOK_RUN_COMPOSITION_INVALID:bookId must be a lowercase-dash slug");
@@ -469,6 +522,12 @@ export async function createProductionBookRunComposition(input: Readonly<{
   const panel = new SemanticPanelReviewEvaluator({
     baseline: new ModelGatewayReviewEvaluator(runner, "attempt-read-json-v1"),
     runner: readerLaneRunner,
+    // The panel's chapter reads run through a bounded pool. This is the single
+    // operator-facing dial; seat fan-out is fixed at READER_PANEL_SEATS.length,
+    // so live concurrent `claude -p` processes = this value x 3.
+    ...(input.readerPanelChapterConcurrency === undefined
+      ? {}
+      : { chapterConcurrency: input.readerPanelChapterConcurrency }),
   });
   const panelReviewService = createReviewServiceFactory({ booksRoot, contentReader, now: () => clock.now() })
     .create({

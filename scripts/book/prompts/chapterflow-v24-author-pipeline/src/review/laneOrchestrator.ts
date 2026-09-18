@@ -473,6 +473,12 @@ export interface RunReaderLanesInput {
  * throws `ReaderExperienceReviewError`; a seat whose runner did not SUCCEED
  * throws a plain `Error` (`SEMANTIC_PANEL_READER_<outcome>:...`) — the caller
  * classifies the two and never lets an uncertain seat silently pass.
+ *
+ * The three seats run CONCURRENTLY (they read the same rendered page and share
+ * no state), so this is one chapter's wall-clock cost cut to roughly one seat's.
+ * Every seat still gets its own attempt-id ladder and its own bounded retry
+ * budget, and the panel record is assembled in SEAT ORDER regardless of which
+ * seat returned first — see the pre-sized `seatReviews` below.
  */
 export async function runReaderLanes(input: RunReaderLanesInput): Promise<ReaderPanelReviewV1> {
   if (input.readers !== READER_PANEL_SEATS.length) {
@@ -497,8 +503,29 @@ export async function runReaderLanes(input: RunReaderLanesInput): Promise<Reader
   // every seat + every retry reads the same page.
   const readerDocumentBlock = renderUntrustedSourceBlock("reader-document", rendered, "markdown");
 
-  const seatReviews: { seatId: string; review: ReaderExperienceReviewV1 }[] = [];
-  for (const seat of READER_PANEL_SEATS) {
+  // THE THREE SEATS RUN CONCURRENTLY, and the array they write into is PRE-SIZED
+  // and INDEXED BY SEAT POSITION — never `.push()`ed in completion order.
+  //
+  // `aggregateReaderPanel` copies `seats` order straight into `seatIds`,
+  // `composites`, `readerResultSha256s`, `quizDerivations` and the three finding
+  // unions, so appending in completion order would make the stored panel record
+  // a function of which seat's subprocess happened to return first. Writing at
+  // `seatIndex` keeps the record byte-identical to the sequential panel's for the
+  // same three seat outputs. (`medianComposite`/`factorMedians` are already
+  // order-insensitive — `medianOf` sorts first — which is exactly why the raw
+  // per-seat arrays are the part that needs the discipline.)
+  //
+  // The seat fan-out is deliberately NOT a second tunable pool: `READER_PANEL_SEATS`
+  // is a frozen 3-element constant, so this is an unconditional `Promise.all`
+  // over exactly three reads. The only operator-facing concurrency dial is the
+  // CHAPTER pool in `SemanticPanelReviewEvaluator`, and the total number of
+  // concurrent model subprocesses is that dial x READER_PANEL_SEATS.length. That
+  // dial is operator-settable from the command line (`book-run` /
+  // `book-autopilot --reader-concurrency N`), so a route that starts
+  // rate-limiting mid-run is answered by a flag, not a source edit.
+  const seatReviews: ({ seatId: string; review: ReaderExperienceReviewV1 } | undefined)[] =
+    new Array(READER_PANEL_SEATS.length);
+  const runSeat = async (seat: ReaderPanelSeatV1, seatIndex: number): Promise<void> => {
     const baseTask = buildBlindReaderTask(seat, docRelPath);
     const seatAttemptBase = `${input.taskContext.attemptId}-reader-ch${pad(input.chapterNumber)}-${seat.id}`;
     const operationId = `reader-review-ch${pad(input.chapterNumber)}-${seat.id}`;
@@ -574,7 +601,27 @@ export async function runReaderLanes(input: RunReaderLanesInput): Promise<Reader
       // Unreachable: the loop either assigns on success or throws above.
       throw new Error("SEMANTIC_PANEL_READER_UNKNOWN:reader retry loop terminated without a result");
     }
-    seatReviews.push({ seatId: seat.id, review });
+    seatReviews[seatIndex] = { seatId: seat.id, review };
+  };
+
+  // `allSettled`, not `all`: a rejecting seat must NOT let this function return
+  // while its two siblings are still mid-subprocess. The reader lane's model
+  // attempts live in a dedicated run whose `finishRun` hard-fails with
+  // UNSETTLED_ATTEMPTS if any ADMITTED attempt has no finish record
+  // (fileRunStore.finishRun), and `createReaderLaneRunner.settle(...)` is called
+  // the moment the panel returns — so "throw early, leave two reads running" is
+  // not a style choice here, it is a run-state corruption.
+  const settled = await Promise.allSettled(READER_PANEL_SEATS.map((seat, index) => runSeat(seat, index)));
+  // Fail-closed, and deterministically so: the SEAT-ORDER-first rejection is
+  // rethrown, which is the same seat the sequential loop would have thrown on.
+  const rejected = settled.find((outcome): outcome is PromiseRejectedResult => outcome.status === "rejected");
+  if (rejected !== undefined) throw rejected.reason;
+  const ordered = seatReviews.filter(
+    (entry): entry is { seatId: string; review: ReaderExperienceReviewV1 } => entry !== undefined,
+  );
+  if (ordered.length !== READER_PANEL_SEATS.length) {
+    // Unreachable: a seat either assigns its slot or rejects (rethrown above).
+    throw new Error("SEMANTIC_PANEL_READER_UNKNOWN:reader panel finished with a missing seat review");
   }
-  return aggregateReaderPanel(bindings.chapterContentSha256, seatReviews);
+  return aggregateReaderPanel(bindings.chapterContentSha256, ordered);
 }

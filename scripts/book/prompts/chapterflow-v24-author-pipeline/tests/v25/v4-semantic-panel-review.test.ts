@@ -10,7 +10,7 @@ import type {
   CanonicalReviewEvaluator,
 } from "../../src/review/reviewTypes.js";
 import { REVIEW_FACTORS } from "../../src/artifacts/artifactTypes.js";
-import { MAX_READER_SEAT_ATTEMPTS } from "../../src/review/laneOrchestrator.js";
+import { MAX_READER_SEAT_ATTEMPTS, READER_PANEL_SEATS } from "../../src/review/laneOrchestrator.js";
 import type { ChapterV21 } from "../../src/types.js";
 import { makeGateCleanChapter } from "../helpers.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
@@ -211,6 +211,64 @@ function scriptedRunner(outputs: readonly unknown[]): {
   return state as { runner: ModelTaskRunner; calls: number; prompts: string[] };
 }
 
+/** The `ch01/seat-cold` lane key a reader call belongs to, read off the
+ *  operation id the panel builds. */
+function laneKeyOf(operationId: string): string {
+  const match = /^reader-review-(ch\d+)-(seat-[a-z]+)$/.exec(operationId);
+  if (match === null) throw new Error(`unexpected reader operationId: ${operationId}`);
+  return `${match[1]}/${match[2]}`;
+}
+
+/**
+ * A runner scripted PER (chapter, seat) LANE — key `ch01/seat-cold` — with an
+ * ordered ladder of attempts for that lane; every unscripted lane reads clean.
+ *
+ * The flat `scriptedRunner` above stays correct for cases where each lane makes
+ * exactly ONE call, because the panel still DISPATCHES chapter-major then
+ * seat-minor. It stops being able to say what it means the moment a case
+ * involves RETRIES: chapters and seats now run concurrently, so one seat's
+ * second attempt and another seat's first attempt race for the same queue entry.
+ * Keyed by lane, a retry ladder is a property of the fixture rather than of the
+ * scheduler.
+ */
+function laneScriptedRunner(lanes: Readonly<Record<string, readonly unknown[]>>): {
+  runner: ModelTaskRunner;
+  calls: number;
+  /** Lane keys in the order the runner was CALLED. */
+  dispatched: string[];
+} {
+  const pending = new Map<string, unknown[]>(
+    Object.entries(lanes).map(([key, ladder]) => [key, [...ladder]]),
+  );
+  const state = { runner: undefined as unknown as ModelTaskRunner, calls: 0, dispatched: [] as string[] };
+  state.runner = {
+    async run(request): Promise<ModelResult> {
+      const key = laneKeyOf(request.context.operationId);
+      state.calls += 1;
+      state.dispatched.push(key);
+      const ladder = pending.get(key);
+      const output = ladder === undefined ? readerContent() : ladder.shift();
+      if (output === undefined) {
+        return {
+          attemptId: request.context.attemptId,
+          outcome: "FAILED",
+          error: { code: "SCRIPT_EXHAUSTED", message: "no scripted reader output remaining" },
+        };
+      }
+      if (typeof output === "object" && output !== null && "__fail" in output) {
+        const fail = (output as { __fail: { outcome: ModelResult["outcome"]; code: string; message?: string } }).__fail;
+        return {
+          attemptId: request.context.attemptId,
+          outcome: fail.outcome,
+          error: { code: fail.code, message: fail.message ?? "injected transient reader failure" },
+        };
+      }
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: withReadChapterKey(output, request.context.operationId) };
+    },
+  };
+  return state as { runner: ModelTaskRunner; calls: number; dispatched: string[] };
+}
+
 requiredTest("semantic panel passes when baseline passes and every reader review is clean", async () => {
   const candidate = twoChapterCandidate();
   // Three reader seats per chapter (IMP-20 blind panel); one seat of ch1 raises
@@ -250,10 +308,9 @@ requiredTest("semantic panel is ERROR when a reader run is unparseable", async (
   // budget — derived from the constant, never a literal — or the retry would
   // consume a clean entry and the seat would recover. ch1 then errors; ch2's
   // three seats still run clean.
-  const scripted = scriptedRunner([
-    ...Array.from({ length: MAX_READER_SEAT_ATTEMPTS }, () => "this is not reader-review JSON"),
-    readerContent(), readerContent(), readerContent(),
-  ]);
+  const scripted = laneScriptedRunner({
+    "ch01/seat-cold": Array.from({ length: MAX_READER_SEAT_ATTEMPTS }, () => "this is not reader-review JSON"),
+  });
   const evaluator = new SemanticPanelReviewEvaluator({
     baseline: baselineStub({ outcome: "PASS", issues: [] }),
     runner: scripted.runner,
@@ -370,15 +427,9 @@ requiredTest("semantic panel recovers a transient reader failure via bounded ret
   // ch1 seat-cold's FIRST read fails transiently (MODEL_PROCESS_FAILED); its
   // bounded retry succeeds. Previously this one blip fail-closed the whole review
   // to ERROR. The other reads are clean.
-  const scripted = scriptedRunner([
-    { __fail: { outcome: "FAILED", code: "MODEL_PROCESS_FAILED" } },
-    readerContent(),
-    readerContent(),
-    readerContent(),
-    readerContent(),
-    readerContent(),
-    readerContent(),
-  ]);
+  const scripted = laneScriptedRunner({
+    "ch01/seat-cold": [{ __fail: { outcome: "FAILED", code: "MODEL_PROCESS_FAILED" } }, readerContent()],
+  });
   const evaluator = new SemanticPanelReviewEvaluator({
     baseline: baselineStub({ outcome: "PASS", issues: [] }),
     runner: scripted.runner,
@@ -397,12 +448,9 @@ requiredTest("semantic panel stays ERROR (fail-closed) when a reader exhausts it
   // ch1 seat-cold fails transiently on every one of its bounded attempts → the
   // seat still errors and the panel fail-closes to ERROR (retry does not weaken
   // the gate; it only recovers a blip that clears).
-  const scripted = scriptedRunner([
-    ...Array.from({ length: MAX_READER_SEAT_ATTEMPTS }, () => ({ __fail: { outcome: "TIMED_OUT", code: "MODEL_PROCESS_FAILED" } })),
-    readerContent(),
-    readerContent(),
-    readerContent(),
-  ]);
+  const scripted = laneScriptedRunner({
+    "ch01/seat-cold": Array.from({ length: MAX_READER_SEAT_ATTEMPTS }, () => ({ __fail: { outcome: "TIMED_OUT", code: "MODEL_PROCESS_FAILED" } })),
+  });
   const evaluator = new SemanticPanelReviewEvaluator({
     baseline: baselineStub({ outcome: "PASS", issues: [] }),
     runner: scripted.runner,
@@ -426,14 +474,15 @@ requiredTest("R-224/R-001: a provider-blocked reader seat STOPS the panel instea
   //      same exhausted window — one wasted provider call per chapter, per
   //      operator round, on a wall that cannot clear inside the run.
   const quotaMessage = "You've hit your weekly limit \u00b7 resets Sep 1 at 8pm (America/Halifax) (api_error_status=429)";
-  const scripted = scriptedRunner([
-    { __fail: { outcome: "FAILED", code: "MODEL_PROCESS_FAILED", message: quotaMessage } },
-    readerContent(), readerContent(), readerContent(),
-    readerContent(), readerContent(), readerContent(),
-  ]);
+  const scripted = laneScriptedRunner({
+    "ch01/seat-cold": [{ __fail: { outcome: "FAILED", code: "MODEL_PROCESS_FAILED", message: quotaMessage } }],
+  });
   const evaluator = new SemanticPanelReviewEvaluator({
     baseline: baselineStub({ outcome: "PASS", issues: [] }),
     runner: scripted.runner,
+    // A dial of 1 means no LATER chapter has been claimed when the wall is hit,
+    // so "stop launching" is directly observable as "ch02 was never read".
+    chapterConcurrency: 1,
     sleep: async () => { throw new Error("a provider block must never be backed off and retried"); },
   });
 
@@ -442,7 +491,16 @@ requiredTest("R-224/R-001: a provider-blocked reader seat STOPS the panel instea
   assert.ok(evaluated.ok, JSON.stringify(evaluated));
   // Uncertainty, not a verdict: ERROR is what the two repair gates refuse.
   assert.equal(evaluated.value.outcome, "ERROR");
-  assert.equal(scripted.calls, 1, "a provider block must cost exactly one seat call for the whole panel");
+  // The blocked chapter's three seats were launched TOGETHER (the fan-out is
+  // unconditional and fixed at the frozen seat count), so a provider block now
+  // costs one chapter's seats rather than exactly one call — bounded by the dial,
+  // and still nothing at all for any chapter the panel had not started.
+  assert.equal(
+    scripted.calls,
+    READER_PANEL_SEATS.length,
+    "a provider block must cost one chapter's seat fan-out and no more",
+  );
+  assert.ok(scripted.dispatched.every((lane) => lane.startsWith("ch01/")), JSON.stringify(scripted.dispatched));
   const infra = evaluated.value.issues.find((entry) => entry.code === "SEMANTIC_PANEL_READER_FAILED");
   assert.ok(infra, JSON.stringify(evaluated.value.issues));
   // The operator reads the provider's own words rather than an opaque sentence.
@@ -461,11 +519,9 @@ requiredTest("R-224: an ordinary reader-lane failure still reads every remaining
   // Negative control for the stop above. A one-off seat failure carries no
   // provider block, so the panel keeps reading: the early stop must be
   // message-classified, not "any throw ends the panel".
-  const scripted = scriptedRunner([
-    "__MODEL_FAIL__",
-    readerContent(), readerContent(), readerContent(),
-    readerContent(), readerContent(), readerContent(),
-  ]);
+  const scripted = laneScriptedRunner({
+    "ch01/seat-cold": [{ __fail: { outcome: "FAILED", code: "READER_MODEL_DOWN", message: "injected reader model failure" } }],
+  });
   const evaluator = new SemanticPanelReviewEvaluator({
     baseline: baselineStub({ outcome: "PASS", issues: [] }),
     runner: scripted.runner,
@@ -475,8 +531,8 @@ requiredTest("R-224: an ordinary reader-lane failure still reads every remaining
 
   assert.ok(evaluated.ok, JSON.stringify(evaluated));
   assert.equal(evaluated.value.outcome, "ERROR");
-  // ch01 seat 1 failed; ch02's three seats still ran.
-  assert.equal(scripted.calls, 4);
+  // ch01 seat 1 failed; ch01's other two seats and ch02's three seats still ran.
+  assert.equal(scripted.calls, 2 * READER_PANEL_SEATS.length, JSON.stringify(scripted.dispatched));
   assert.ok(
     evaluated.value.issues.some((entry) => (entry.location ?? "").startsWith("ch02")),
     JSON.stringify(evaluated.value.issues),
