@@ -87,7 +87,7 @@ const V4_QC_AUTO_USAGE = "qc-auto <bookId> --pass --v25-root <absolute> --attemp
 const V4_QC_DIAGNOSE_USAGE = "qc-diagnose <bookId> --round <roundId> --v25-root <absolute> --attempt-root <absolute> --candidate-id <id> --manifest-digest <digest> --source-git-sha <sha>";
 
 function v4BookProductionUsage(command: "book-run" | "book-autopilot"): string {
-  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--source-text <absolute>] [--resume-run-id <id>] [--research-run-id <id>] [--reconcile-unsettled] [--regen] [--max-repair 1] [--rubric-bar <60-95>] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
+  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--source-text <absolute>] [--resume-run-id <id>] [--research-run-id <id>] [--reconcile-unsettled] [--regen] [--max-repair 1] [--rubric-bar <60-95>] [--reader-concurrency N] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
 }
 
 function firstUnsupportedFlag(
@@ -433,7 +433,7 @@ async function runV4BookProduction(
   }
   const unsupported = firstUnsupportedFlag(flags, [
     "title", "author", "v25-root", "attempt-root", "source-git-sha", "source-text", "resume-run-id", "research-run-id", "regen",
-    "max-repair", "rubric-bar", "promote-local", "no-publish", "reconcile-unsettled", ...(command === "book-run" ? ["log"] : []),
+    "max-repair", "rubric-bar", "reader-concurrency", "promote-local", "no-publish", "reconcile-unsettled", ...(command === "book-run" ? ["log"] : []),
   ]);
   if (unsupported !== undefined) {
     console.error(`UNSUPPORTED_OPTION:${command}:--${unsupported}`);
@@ -470,6 +470,17 @@ async function runV4BookProduction(
   // shapes the value.
   const rubricBarFlag = flags["rubric-bar"];
   const rubricBar = typeof rubricBarFlag === "string" ? Number(rubricBarFlag) : undefined;
+  // The reader panel's single concurrency dial, exposed for the SAME reason and
+  // in the SAME shape as research's --concurrency: the panel is the run's largest
+  // wall-clock term, and the only mitigation for a subscription route that starts
+  // rate-limiting mid-run is to lower it. Behind a source edit that mitigation is
+  // an edit-and-restart, which is the cost this package exists to remove. Chapters
+  // are the dial; seat fan-out is fixed at READER_PANEL_SEATS.length, so live
+  // concurrent `claude -p` processes = this value x 3 (9 at the default of 3).
+  // Validated here exactly as research validates its own (a positive safe
+  // integer); the evaluator refuses anything else again at construction.
+  const readerConcurrencyFlag = flags["reader-concurrency"];
+  const readerConcurrency = typeof readerConcurrencyFlag === "string" ? Number(readerConcurrencyFlag) : undefined;
   if (args.length !== 1 || !bookId || !title || !author
     || typeof v25Root !== "string" || !isAbsolute(v25Root)
     || typeof attemptRoot !== "string" || !isAbsolute(attemptRoot)
@@ -483,6 +494,8 @@ async function runV4BookProduction(
     || (flags["reconcile-unsettled"] !== undefined && flags["reconcile-unsettled"] !== true)
     || (flags["source-text"] !== undefined && (typeof flags["source-text"] !== "string" || !isAbsolute(flags["source-text"])))
     || (flags["rubric-bar"] !== undefined && (typeof rubricBarFlag !== "string" || !Number.isInteger(rubricBar)))
+    || (flags["reader-concurrency"] !== undefined
+      && (readerConcurrency === undefined || !Number.isSafeInteger(readerConcurrency) || readerConcurrency < 1))
     || (command === "book-run" && flags["log"] !== undefined && (logPath === undefined || !isAbsolute(logPath)))) {
     console.error(`Usage: ${v4BookProductionUsage(command)}`);
     return 2;
@@ -495,6 +508,7 @@ async function runV4BookProduction(
       v25Root,
       attemptRoot,
       ...(logPath === undefined ? {} : { logPath }),
+      ...(readerConcurrency === undefined ? {} : { readerPanelChapterConcurrency: readerConcurrency }),
     });
     if (!composition.app.bookRun) throw new Error("V4 book-run application route is unavailable");
     const result = await composition.app.bookRun.run({
@@ -944,6 +958,12 @@ Commands:
                                      the book is promoted in the V25 store and absent from the shipped set. The run
                                      reports readerPackage=NOT_PRODUCED and prints the promote-book candidate-release
                                      command that writes both artifacts (that release advances the pointer once more).
+                                     --reader-concurrency N bounds how many CHAPTERS the reader panel reads at once
+                                     (default 3). Seat fan-out inside a chapter is fixed at three and is always
+                                     parallel, so live concurrent "claude -p" processes = N x 3 (9 at the default).
+                                     This is the ONE dial to lower first if the route starts rate-limiting mid-run;
+                                     N=1 is the old strictly sequential panel. A non-positive, fractional or
+                                     non-numeric N is refused at the usage gate, never coerced.
                                      --research-run-id pins an existing research run so a content repair reuses its
                                      sidecars and section-pack cache instead of re-minting the bibliography; it fails
                                      closed if the pinned run is missing, foreign, incompatible, or not fully reusable,
