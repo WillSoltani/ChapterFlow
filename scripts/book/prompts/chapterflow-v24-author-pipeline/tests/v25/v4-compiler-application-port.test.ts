@@ -1096,7 +1096,13 @@ requiredTest("4 complete successor inventory preserves input order then compiler
     ...parity.request,
     sources: specs.map((spec, index) => ({ chapterNumber: spec.chapterNumber, sidecarLogicalPath: sidecarPaths[index], sourceLogicalPaths: [sourcePaths[index]] })),
   }), /MODEL_TASK_FAILED:FAKE_GATEWAY/);
-  assert.equal(parity.counts.runner, 1);
+  // TWO calls, not one: this is a two-chapter book and chapters now draft through a
+  // bounded pool, so both chapters had their summary-pack attempt in flight when the
+  // gateway refused. The round still fails on the FIRST structural failure and still
+  // stages nothing; what changed is only that a sibling chapter's already-issued
+  // attempt is allowed to settle instead of being abandoned mid-call. (The drain is
+  // pinned directly in v4-compiler-chapter-concurrency.test.ts.)
+  assert.equal(parity.counts.runner, 2);
   assert.equal(parity.counts.stage, 0);
   const parityRun = await parity.runStore.readRun(BOOK, "run-parity", context.clock.now());
   assert.equal(parityRun.ok, true);
