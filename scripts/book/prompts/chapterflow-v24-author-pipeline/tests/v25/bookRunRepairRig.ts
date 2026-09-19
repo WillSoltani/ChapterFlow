@@ -77,7 +77,7 @@ import { createCatalogRubricStore } from "../../src/review/catalogRubricStore.js
 import type { CatalogRubricPanel } from "../../src/app/catalogRubricPanelEvaluator.js";
 import { passingRubricPanel, type ScriptedRubricPanel } from "./catalogRubricFakes.js";
 import { createReviewServiceFactory } from "../../src/review/reviewService.js";
-import type { CanonicalReviewResult } from "../../src/review/reviewTypes.js";
+import type { CanonicalReviewResult, ReviewIssue } from "../../src/review/reviewTypes.js";
 import { createFileRunStore } from "../../src/run-state/fileRunStore.js";
 import { createFileStageCoordinator } from "../../src/run-state/stageCoordinator.js";
 import type { RunStore } from "../../src/run-state/runStore.js";
@@ -217,6 +217,21 @@ export type BookRunHarnessOptions = Readonly<{
    *  passed through rather than switched off. A case that is ABOUT the rubric
    *  injects its own. */
   rubricPanel?: CatalogRubricPanel;
+  /** The issues every scripted FAIL review carries (default: one
+   *  reader-decidable contradiction). A case about WHICH blocker a FAIL carries
+   *  — R-287's metadata-only PATTERN_AUDIT_DEFECT — scripts its own. */
+  reviewFailIssues?: readonly ReviewIssue[];
+  /** The issues the Nth scripted FAIL carries, in FAIL order — for a case where
+   *  the BASE review and a repair-loop RE-review must carry DIFFERENT blockers.
+   *  R-287's repair-lane successor needs exactly that: the live wedge's base
+   *  review FAILed on READER.BLOCKING.* (ineligible, correctly) and it was the
+   *  RE-review that came back metadata-only. A FAIL past the end of this list
+   *  falls back to `reviewFailIssues` and then to the default. */
+  reviewFailIssuesPerFail?: readonly (readonly ReviewIssue[])[];
+  /** Make the COMPILED candidate's deterministic pattern audit itself FAIL
+   *  (one blocker finding, `passed: false`). The default audit passes, which is
+   *  the live shape R-287 is about: the reviewer contradicting a PASSING audit. */
+  patternAuditFails?: boolean;
 }>;
 
 /**
@@ -273,9 +288,23 @@ export async function buildBookRunHarness(
     runId: "seed-run",
     files: [jsonFile("inputs/chapter-index.json", [{ chapterId: chapter.chapterId, chapterNumber: 1, chapterTitle: chapter.title }])],
   });
+  const compiledAudit = runBookPatternAudit({ bookId: book, chapters: [chapter], requirePlanArtifacts: false, checkSourceAlignment: false });
+  // `passed` must match the blocker findings (parseBookPatternAuditReport), so a
+  // seeded FAILING audit carries a real blocker finding rather than a flipped flag.
   const compiledFiles = [
     jsonFile(chapterLogicalPath, chapter, "CHAPTER"),
-    jsonFile(BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit({ bookId: book, chapters: [chapter], requirePlanArtifacts: false, checkSourceAlignment: false })),
+    jsonFile(BOOK_PATTERN_AUDIT_LOGICAL_PATH, options.patternAuditFails === true
+      ? {
+        ...compiledAudit,
+        passed: false,
+        findings: [...compiledAudit.findings, {
+          code: "SEEDED_REPEATED_EXAMPLE_FRAMES",
+          severity: "blocker" as const,
+          message: "seeded: the deterministic audit itself found repeated example frames",
+          chapters: [1],
+        }],
+      }
+      : compiledAudit),
   ];
   const compiled = await stageLocal({
     candidateId: compiledCandidateId,
@@ -285,7 +314,11 @@ export async function buildBookRunHarness(
   });
 
   let reviewCalls = 0;
+  let reviewFails = 0;
   const outcomes = [...reviewOutcomes];
+  const defaultFailIssues: readonly ReviewIssue[] = [
+    { code: "READER.BLOCKING.contradiction", severity: "BLOCKER", message: "card 5 contradicts the deep read", location: "ch01/reader-b/deep" },
+  ];
   const runner: ModelTaskRunner = {
     async run(request) {
       reviewCalls += 1;
@@ -309,12 +342,18 @@ export async function buildBookRunHarness(
       });
       assert.equal(finished.ok, true, JSON.stringify(finished));
       const outcome = outcomes.shift() ?? "PASS";
+      if (outcome === "FAIL") reviewFails += 1;
       return {
         attemptId: request.context.attemptId,
         outcome: "SUCCEEDED",
         output: outcome === "PASS"
           ? { outcome, issues: [] }
-          : { outcome, issues: [{ code: "READER.BLOCKING.contradiction", severity: "BLOCKER", message: "card 5 contradicts the deep read", location: "ch01/reader-b/deep" }] },
+          : {
+            outcome,
+            issues: outcome === "FAIL"
+              ? options.reviewFailIssuesPerFail?.[reviewFails - 1] ?? options.reviewFailIssues ?? defaultFailIssues
+              : defaultFailIssues,
+          },
       };
     },
   };

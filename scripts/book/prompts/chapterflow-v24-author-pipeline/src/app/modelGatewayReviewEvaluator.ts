@@ -4,7 +4,9 @@ import {
   BOOK_PATTERN_AUDIT_LOGICAL_PATH,
   parseBookPatternAuditReport,
 } from "../critics/bookPatternAudit.js";
+import { stripInternalFields } from "../lib/readerContent.js";
 import type { CanonicalReviewEvaluation, CanonicalReviewEvaluator, ReviewIssue } from "../review/reviewTypes.js";
+import type { ChapterV21 } from "../types.js";
 import type { ModelTaskRunner } from "./modelTaskRunner.js";
 import { jsonPromptRequest } from "./modelTaskRunner.js";
 
@@ -85,6 +87,37 @@ function failure(code: string, message: string): Result<never> {
   return { ok: false, error: { code, message } };
 }
 
+/**
+ * R-287 — THE REVIEWER IS SHOWN WHAT READERS SEE, NOT THE AUTHORING RECORD.
+ *
+ * A CHAPTER file in a candidate carries the writer's internals alongside the
+ * reader's chapter: `examples[].planSpec` (the planner's design rationale —
+ * types.ts: "Not shown to readers"), `sourceAnchorId` (gate-time provenance),
+ * per-chapter `schemaVersion`, `memorableLines[].location/why`. `promoteBook`
+ * deletes every one of them through `stripInternalFields` before a package can
+ * ship, so none of it is in the product.
+ *
+ * The baseline reviewer was handed the RAW file anyway, and on the live Franklin
+ * run (book-run-39a37d06, review-120c5985fc3838d8d670bc914a22c450) it spent its
+ * one BLOCKER on them: a PATTERN_AUDIT_DEFECT whose whole case was that
+ * `planSpec.domain / .audience / .stakes` rotate between chapters. True of the
+ * metadata, invisible in the book — the reader-visible scenarios did not repeat,
+ * the deterministic audit passed, and the repair lane refuses the finding as
+ * compiler/context-owned (REVIEW_REPAIR_FINDING_UNSCOPED), so the stored FAIL
+ * replayed on every resume and the run wedged.
+ *
+ * So the packet now renders each chapter through the SAME projection the shipped
+ * package carries. Everything else about the prompt is unchanged: the system
+ * text, the `FILE <path> (<mediaType>)` framing, chapter ordering, and the
+ * pattern-audit sidecar's bytes. Cross-chapter reuse of what readers actually
+ * read is policed where it is decidable — the deterministic book pattern audit
+ * and the assembly gates — not by a reviewer reading the planner's notes.
+ */
+function readerProjection(file: CandidateSnapshot["files"][number], chapter: unknown): CandidateSnapshot["files"][number] {
+  const bytes = Buffer.from(`${JSON.stringify(stripInternalFields(chapter as ChapterV21), null, 2)}\n`);
+  return { ...file, byteLength: bytes.byteLength, bytes };
+}
+
 function reviewFiles(candidate: CandidateSnapshot): Result<CandidateSnapshot["files"]> {
   const chapters = candidate.files.filter((file) => file.kind === "CHAPTER");
   if (chapters.length === 0) return failure("REVIEW_CANDIDATE_INVALID", "canonical review requires at least one CHAPTER file");
@@ -98,7 +131,7 @@ function reviewFiles(candidate: CandidateSnapshot): Result<CandidateSnapshot["fi
     }
     const number = (value as { number?: unknown } | null)?.number;
     if (!Number.isInteger(number) || (number as number) < 1) throw new Error(`${file.logicalPath} has invalid chapter number`);
-    return { file, number: number as number };
+    return { file: readerProjection(file, value), number: number as number };
   }).sort((left, right) => left.number - right.number || left.file.logicalPath.localeCompare(right.file.logicalPath));
   for (let index = 0; index < numbered.length; index += 1) {
     if (numbered[index].number !== index + 1) throw new Error("CHAPTER files must form one contiguous ordered chapter set");

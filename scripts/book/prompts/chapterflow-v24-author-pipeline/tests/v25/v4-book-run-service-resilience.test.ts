@@ -106,6 +106,165 @@ requiredTest("R-186: a canonical-review run left terminal FAILED is recoverable 
   assert.match(successorEvent.detail ?? "", /predecessorError=BOOK_RUN_REVIEW_RUN_TERMINAL/, successorEvent.detail);
 });
 
+// ───────────────────────────── R-287 ─────────────────────────────
+
+/**
+ * The live wedge, sanitized to this rig's shape: ONE BLOCKER, code
+ * PATTERN_AUDIT_DEFECT, whose entire case is authoring-internal
+ * `examples[].planSpec` metadata recycling — while the deterministic audit the
+ * reviewer was handed says `passed: true`. Copied from
+ * review-120c5985fc3838d8d670bc914a22c450 (Franklin, run book-run-39a37d06).
+ */
+const PATTERN_AUDIT_ONLY_BLOCKER = {
+  code: "PATTERN_AUDIT_DEFECT",
+  severity: "BLOCKER" as const,
+  message: "The pattern audit reports repeatedConcreteAnchors: 0, repeatedExampleFrameGroups: 0,"
+    + " repeatedSurfaceFrameGroups: 0, and passed: true, but the chapter files themselves show"
+    + " extensive, verbatim, systematic reuse of example-scenario settings across the book.",
+  location: "examples[*].planSpec.domain / .audience / .stakes; critics/book-pattern-audit.json stats",
+};
+
+requiredTest("R-287: a PATTERN_AUDIT_DEFECT-only FAIL against a PASSING deterministic audit is superseded under consent, and only under consent", async (context: TestContext) => {
+  const book = "review-pattern-audit-contradiction";
+  // The stored FAIL, then a fresh panel that reads the reader projection and passes.
+  const h = await buildBookRunHarness(context, book, ["FAIL", "PASS"], {
+    reviewFailIssues: [PATTERN_AUDIT_ONLY_BLOCKER],
+    // The live lane's own answer to this finding: compiler/context-owned, not repairable.
+    repairFails: "REVIEW_REPAIR_FINDING_UNSCOPED",
+  });
+
+  // WITHOUT consent: the live wedge, byte-for-byte. A FAIL is a verdict, it
+  // routes into the repair lane, and the lane refuses the finding.
+  const first = await h.service.run({ ...h.request });
+  assert.equal(first.ok, false, JSON.stringify(first));
+  if (first.ok) throw new Error("a FAIL verdict must never promote on its own");
+  assert.equal(first.error.code, "REVIEW_REPAIR_FINDING_UNSCOPED", first.error.message);
+  assert.equal(h.repairCalls().length, 1, "the FAIL still routes to the repair lane without consent");
+  assert.equal(h.events.some((e) => e.detail?.includes("action=REVIEW_SUCCESSOR")), false, "no successor without consent");
+
+  // WITH consent: the stored FAIL is uncertainty — the reviewer contradicting the
+  // deterministic audit about metadata no reader sees — so ONE fresh panel
+  // supersedes it, before the repair lane is asked to fix a phantom.
+  const flagged = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+  assert.equal(flagged.ok, true, flagged.ok ? "" : `${flagged.error.code}:${flagged.error.message}`);
+  if (!flagged.ok) throw new Error("unreachable");
+  assert.equal(flagged.value.status, "PROMOTED");
+  assert.equal(h.repairCalls().length, 1, "the repair lane is not re-entered for a superseded FAIL");
+  const successorEvent = h.events.find((e) => e.detail?.includes("action=REVIEW_SUCCESSOR"));
+  assert.ok(successorEvent, JSON.stringify(h.events.map((e) => e.detail)));
+  assert.match(successorEvent.detail ?? "", /label=review-successor-1/, successorEvent.detail);
+  assert.match(successorEvent.detail ?? "", /reason=PATTERN_AUDIT_CONTRADICTION/, successorEvent.detail);
+  assert.match(successorEvent.detail ?? "", /predecessorReviewId=/, successorEvent.detail);
+  assert.equal(
+    flagged.value.reviewId,
+    derivedIdOf("review", derivedIdOf("review-successor-1", h.bookRunId)),
+    JSON.stringify(flagged.value),
+  );
+});
+
+requiredTest("R-287: a metadata-only FAIL on a repair-loop RE-review is superseded in the REPAIR lane's own label space", async (context: TestContext) => {
+  const book = "review-pattern-audit-contradiction-repair";
+  // THE LIVE LINEAGE, and the reason this case exists separately from the base-lane
+  // one above. Franklin's BASE review (review-06d7596afd1f14dccd3eb2df99b22db6)
+  // FAILed with 34 READER.BLOCKING.* blockers, which normalize away from
+  // PATTERN_AUDIT_DEFECT and are therefore correctly INELIGIBLE — the base-lane
+  // successor does not fire and must not. The review that wedged the run is the
+  // ROUND-6 RE-REVIEW (review-120c5985fc3838d8d670bc914a22c450, bound to candidate
+  // review-repair-6-candidate-06d7596a…), so the ONLY walk that can clear it is
+  // #reviewSuccessor(labelPrefix: "review-repair-N") inside the repair loop. This
+  // asserts that lane's own label space rather than inferring it from the shared
+  // method.
+  const h = await buildBookRunHarness(context, book, ["FAIL", "FAIL", "PASS"], {
+    reviewFailIssuesPerFail: [
+      [{ code: "READER.BLOCKING.internal_contradiction", severity: "BLOCKER", message: "the ruling in card 5 contradicts the deep read", location: "ch01/reader-b/deep" }],
+      [PATTERN_AUDIT_ONLY_BLOCKER],
+    ],
+  });
+  // One repair round, so the metadata-only RE-review ends the run instead of
+  // walking into a second ordinal: the live shape is a run with nowhere left to go.
+  await withEnv("CHAPTERFLOW_REVIEW_REPAIR_ROUNDS", "1", async () => {
+    // WITHOUT consent: round 1 repairs the real blocker, its re-review comes back
+    // metadata-only, the cap ends the run — and the remedy line names this case.
+    const first = await h.service.run({ ...h.request });
+    assert.equal(first.ok, false, JSON.stringify(first));
+    if (first.ok) throw new Error("a FAIL must not promote without consent");
+    assert.equal(first.error.code, "BOOK_RUN_REVIEW_FAILED", first.error.message);
+    assert.match(first.error.message, /PATTERN_AUDIT_DEFECT/, first.error.message);
+    assert.match(first.error.message, /reconcile-unsettled/, first.error.message);
+    assert.equal(h.repairCalls().length, 1, "exactly one repair ran");
+    assert.equal(h.events.some((e) => e.detail?.includes("action=REVIEW_SUCCESSOR")), false, "no successor without consent");
+
+    // WITH consent: the base review replays its READER.BLOCKING FAIL and is STILL
+    // not superseded (exactly one successor event, and it is the repair lane's),
+    // the repair ordinal replays with no new candidate, and the RE-review's stored
+    // FAIL is superseded under the repair ordinal's own label.
+    const flagged = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+    assert.equal(flagged.ok, true, flagged.ok ? "" : `${flagged.error.code}:${flagged.error.message}`);
+    if (!flagged.ok) throw new Error("unreachable");
+    assert.equal(flagged.value.status, "PROMOTED");
+    const successorEvents = h.events.filter((e) => e.detail?.includes("action=REVIEW_SUCCESSOR"));
+    assert.equal(successorEvents.length, 1, JSON.stringify(successorEvents.map((e) => e.detail)));
+    assert.match(successorEvents[0].detail ?? "", /label=review-repair-1-successor-1/, successorEvents[0].detail);
+    assert.match(successorEvents[0].detail ?? "", /reason=PATTERN_AUDIT_CONTRADICTION/, successorEvents[0].detail);
+    assert.equal(
+      flagged.value.reviewId,
+      derivedIdOf("review", derivedIdOf("review-repair-1-successor-1", h.bookRunId)),
+      JSON.stringify(flagged.value),
+    );
+    assert.equal(new Set(h.repairCalls().map((call) => call.successorCandidateId)).size, 1, "the repair ordinal replayed; no second successor candidate");
+  });
+});
+
+requiredTest("R-287: a FAIL carrying ANY other blocker stays a verdict even under consent", async (context: TestContext) => {
+  const book = "review-pattern-audit-plus-contradiction";
+  const h = await buildBookRunHarness(context, book, ["FAIL", "PASS"], {
+    reviewFailIssues: [
+      PATTERN_AUDIT_ONLY_BLOCKER,
+      { code: "INTERNAL_CONTRADICTION", severity: "BLOCKER", message: "card 5 contradicts the deep read", location: "ch01" },
+    ],
+    repairFails: "REVIEW_REPAIR_FINDING_UNSCOPED",
+  });
+  const flagged = await h.service.run({ ...h.request, reconcileUnsettled: true });
+  assert.equal(flagged.ok, false, JSON.stringify(flagged));
+  if (flagged.ok) throw new Error("an on-page contradiction is a verdict, not uncertainty");
+  assert.equal(flagged.error.code, "REVIEW_REPAIR_FINDING_UNSCOPED", flagged.error.message);
+  assert.equal(h.events.some((e) => e.detail?.includes("action=REVIEW_SUCCESSOR")), false, "consent must not launder a real blocker");
+});
+
+requiredTest("R-287: a PATTERN_AUDIT_DEFECT-only FAIL is NOT superseded when the deterministic audit itself failed", async (context: TestContext) => {
+  const book = "review-pattern-audit-agrees";
+  const h = await buildBookRunHarness(context, book, ["FAIL", "PASS"], {
+    reviewFailIssues: [PATTERN_AUDIT_ONLY_BLOCKER],
+    patternAuditFails: true,
+    repairFails: "REVIEW_REPAIR_FINDING_UNSCOPED",
+  });
+  const flagged = await h.service.run({ ...h.request, reconcileUnsettled: true });
+  assert.equal(flagged.ok, false, JSON.stringify(flagged));
+  if (flagged.ok) throw new Error("a reviewer AGREEING with a failing audit is a verdict");
+  assert.equal(flagged.error.code, "REVIEW_REPAIR_FINDING_UNSCOPED", flagged.error.message);
+  assert.equal(h.events.some((e) => e.detail?.includes("action=REVIEW_SUCCESSOR")), false, "no supersession when the audit agrees");
+});
+
+requiredTest("R-287: without consent the terminal message names this case as the remedy", async (context: TestContext) => {
+  const book = "review-pattern-audit-remedy-line";
+  // Round 1 repairs and its re-review returns the same metadata-only FAIL; the
+  // cap then ends the run on the terminal review path, which is where the R-179
+  // remedy line is written.
+  const h = await buildBookRunHarness(context, book, ["FAIL", "FAIL"], {
+    reviewFailIssues: [PATTERN_AUDIT_ONLY_BLOCKER],
+  });
+  await withEnv("CHAPTERFLOW_REVIEW_REPAIR_ROUNDS", "1", async () => {
+    const result = await h.service.run({ ...h.request });
+    assert.equal(result.ok, false, JSON.stringify(result));
+    if (result.ok) throw new Error("a FAIL must not promote without consent");
+    assert.equal(result.error.code, "BOOK_RUN_REVIEW_FAILED");
+    assert.match(result.error.message, /canonical review outcome=FAIL/, result.error.message);
+    assert.match(result.error.message, /PATTERN_AUDIT_DEFECT/, result.error.message);
+    assert.match(result.error.message, /reconcile-unsettled/, result.error.message);
+    assert.equal(h.events.some((e) => e.detail?.includes("action=REVIEW_SUCCESSOR")), false, "the remedy is named, not taken");
+  });
+});
+
 // ───────────────────────────── R-184 ─────────────────────────────
 
 requiredTest("R-184: a fresh-QC ERROR is superseded once under consent instead of replaying model-free forever", async (context: TestContext) => {

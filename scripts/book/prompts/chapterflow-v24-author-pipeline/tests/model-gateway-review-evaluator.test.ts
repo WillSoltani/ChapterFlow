@@ -166,3 +166,69 @@ test("R-152: the reviewer prompt states the closed code list and forbids pass at
   }
   assert.match(prompts[0], /only defects/i, prompts[0]);
 });
+
+/**
+ * R-287 — THE BASELINE REVIEWER JUDGES WHAT READERS SEE.
+ *
+ * Live Franklin (run book-run-39a37d06, review-120c5985fc3838d8d670bc914a22c450):
+ * after six review-repair rounds the panel returned FAIL on ONE blocker,
+ * PATTERN_AUDIT_DEFECT, whose whole case was `examples[*].planSpec.domain /
+ * .audience / .stakes` recycling between chapters — authoring-internal planner
+ * metadata that `promoteBook`/`stripInternalFields` delete before a package ever
+ * ships and that no reader can see. The repair lane refuses that finding
+ * (REVIEW_REPAIR_FINDING_UNSCOPED: compiler/context-owned), the stored FAIL
+ * replays on every resume, and the book wedged.
+ *
+ * The reviewer was shown each chapter's RAW candidate JSON, so it was asked to
+ * judge fields the product does not contain. It is now handed the SAME reader
+ * projection the shipped package carries; the audit sidecar and the framing are
+ * untouched.
+ */
+test("R-287: the reviewer packet carries the READER projection of each chapter, never planSpec or sourceAnchorId", async () => {
+  const base = makeChapter("review-book", 1);
+  const authored = {
+    ...base,
+    examples: base.examples.map((example, index) => ({ ...example, sourceAnchorId: `anchor-${index + 1}` })),
+  } as unknown as typeof base;
+  const authoredBytes = Buffer.from(`${JSON.stringify(authored, null, 2)}\n`);
+  const authoredAuditBytes = Buffer.from(`${JSON.stringify(runBookPatternAudit({
+    bookId: "review-book",
+    chapters: [authored],
+    requirePlanArtifacts: false,
+    checkSourceAlignment: false,
+  }), null, 2)}\n`);
+  const authoredFiles = [
+    { kind: "CHAPTER" as const, logicalPath: "content/chapters/review-book-ch01.v21-native.chapter.json", mediaType: "application/json" as const, byteLength: authoredBytes.byteLength, bytes: authoredBytes },
+    { kind: "SIDECAR" as const, logicalPath: BOOK_PATTERN_AUDIT_LOGICAL_PATH, mediaType: "application/json" as const, byteLength: authoredAuditBytes.byteLength, bytes: authoredAuditBytes },
+  ];
+  const authoredMetadata: CandidateManifestMetadata = {
+    schemaVersion: "1", bookId: "review-book", candidateId: "candidate-authored", createdByRunId: "run-1",
+    entries: authoredFiles.map(({ bytes: _bytes, ...entry }) => entry),
+    createdAt: "2026-09-19T00:00:00.000Z",
+  };
+  const authoredCandidate: CandidateSnapshot = {
+    manifest: { ...authoredMetadata, manifestDigest: candidateManifestDigest(authoredMetadata, authoredFiles) },
+    files: authoredFiles,
+  };
+  // The raw candidate DOES carry both internals — otherwise this test proves nothing.
+  const raw = authoredBytes.toString("utf8");
+  assert.ok(raw.includes("planSpec"), "fixture must carry planSpec");
+  assert.ok(raw.includes("sourceAnchorId"), "fixture must carry sourceAnchorId");
+
+  let document = "";
+  const evaluator = new ModelGatewayReviewEvaluator({
+    async run(request) {
+      document = new TextDecoder().decode(request.prompt.inputs.find((input) => input.name === "user_prompt")!.bytes);
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { outcome: "PASS", issues: [] } };
+    },
+  });
+  const evaluated = await evaluator.evaluate({ candidate: authoredCandidate, taskContext: context });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(document.includes("planSpec"), false, "the reviewer must never be shown the planner's design rationale");
+  assert.equal(document.includes("sourceAnchorId"), false, "the reviewer must never be shown gate-time provenance");
+  // Reader content — and the framing, and the audit sidecar — survive intact.
+  assert.ok(document.includes(`FILE ${authoredFiles[0].logicalPath} (application/json)`), document.slice(0, 200));
+  assert.ok(document.includes(base.title), "the chapter title is reader content");
+  assert.ok(document.includes(base.examples[0].whatToDo), "example prose is reader content");
+  assert.ok(document.includes(authoredAuditBytes.toString("utf8").trimEnd()), "the pattern-audit sidecar is passed through verbatim");
+});
