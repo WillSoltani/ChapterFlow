@@ -77,9 +77,23 @@ type ReviewRig = Readonly<{
 
 function reviewRig(
   context: TestContext,
-  options: Readonly<{ issues: readonly ReviewIssue[]; outcome?: CanonicalReviewResult["outcome"]; slug: string }>,
+  options: Readonly<{
+    issues: readonly ReviewIssue[];
+    outcome?: CanonicalReviewResult["outcome"];
+    slug: string;
+    /** Per-chapter writer output. Given the chapter number under repair and the
+     *  chapter as staged, returns what the writer hands back — so a case can make
+     *  ONE chapter of a multi-chapter ordinal come back byte-identical. Default:
+     *  the single-chapter repaired ch01, exactly as before. */
+    output?: (chapterNumber: number, chapter: ChapterV21) => ChapterV21;
+  }>,
 ): ReviewRig {
   const predecessor = portCandidate(context);
+  const chapterOf = (chapterNumber: number): ChapterV21 => JSON.parse(Buffer.from(
+    predecessor.files.find((file) => file.logicalPath.endsWith(
+      `ch${String(chapterNumber).padStart(2, "0")}.v21-native.chapter.json`,
+    ))!.bytes,
+  ).toString("utf8")) as ChapterV21;
   const chapterOne = JSON.parse(Buffer.from(predecessor.files[0].bytes).toString("utf8")) as ChapterV21;
   const replacement: ChapterV21 = {
     ...chapterOne,
@@ -173,7 +187,11 @@ function reviewRig(
         finishedAt: context.clock.now(),
       });
       assert.equal(finished.ok, true, JSON.stringify(finished));
-      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: replacement };
+      const chapterNumber = Number(/repair-ch(\d+)$/.exec(request.context.operationId)?.[1] ?? "0");
+      const output = options.output
+        ? options.output(chapterNumber, chapterOf(chapterNumber))
+        : replacement;
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output };
     },
   };
   const port = new CandidateRepairApplicationPort({
@@ -912,6 +930,111 @@ requiredTest("the wedge is reconciled by READING the stored run: a different sou
   if (!recovered.ok) return;
   assert.equal(recovered.value.status, "FAILED");
   assert.equal(recovered.value.definition.sourceGitSha, "9".repeat(40), "the stored definition is never rewritten");
+});
+
+// ────────────────────────────────────────────────────────────────────────────
+// A DECLINED chapter (the live Franklin ch06 wedge).
+//
+// The panel filed READER.BLOCKING.schema_or_app_breaking against ch06 for a
+// defect that lived in the reader-doc RENDERER (ten literal spaces before every
+// "Back:" line), not in the chapter JSON. The writer was handed a clean chapter,
+// had nothing to fix, and returned it unchanged — and the ordinal answered
+// REPAIR_OUTPUT_NO_CHANGE and threw away chapters 1 and 4, which had already
+// been repaired in that same ordinal. Every later ordinal replayed the same
+// stored FAIL review and died at ch06 again: 9 of 20 ordinals burned on a
+// deterministic wall.
+//
+// One unchanged chapter is now DECLINED and carried into the successor as-is
+// while the rest of the ordinal completes — the panel re-judges it on the
+// successor. All-unchanged stays fail-closed, because a byte-identical candidate
+// must never be re-reviewed as new work.
+// ────────────────────────────────────────────────────────────────────────────
+
+const CH02_RENDERER_BLOCKER: ReviewIssue = {
+  code: "READER.BLOCKING.schema_or_app_breaking",
+  severity: "BLOCKER",
+  message: "every 'Back:' line in all review cards is preceded by roughly ten literal space characters",
+  location: "ch02/seat-skeptic/Review cards (all 7 cards)",
+};
+
+/** Capture stderr for the duration of one call — the declined record is a stderr
+ *  line, so the test has to read what an operator would read. */
+async function withCapturedStderr<T>(run: () => Promise<T>): Promise<{ value: T; lines: readonly string[] }> {
+  const lines: string[] = [];
+  const original = console.error;
+  console.error = (...args: unknown[]): void => { lines.push(args.map((arg) => String(arg)).join(" ")); };
+  try {
+    return { value: await run(), lines };
+  } finally {
+    console.error = original;
+  }
+}
+
+requiredTest("a chapter the writer returns UNCHANGED is DECLINED and carried as-is; the ordinal still completes for the chapter that changed", async (context: TestContext) => {
+  const rig = reviewRig(context, {
+    slug: "review-repair-declined-mixed",
+    issues: [PANEL_BLOCKER, CH02_RENDERER_BLOCKER],
+    // ch01 is genuinely repaired; ch02 comes back byte-identical.
+    output: (chapterNumber, chapter) => chapterNumber === 1
+      ? { ...chapter, hook: "A repaired opening names the ruling the panel said the chapter never issued." }
+      : chapter,
+  });
+
+  const captured = await withCapturedStderr(() => rig.port.runFromReviewFail(rig.request));
+  const repaired = captured.value;
+  if (!repaired.ok) throw new Error(`a mixed ordinal must complete: ${JSON.stringify(repaired.error)}`);
+
+  assert.deepEqual([...repaired.value.targetChapterNumbers], [1, 2]);
+  assert.equal(rig.counts.model, 2, "both named chapters are still put in front of the writer");
+
+  // The declined chapter reaches the successor BYTE-IDENTICAL — treated exactly
+  // like a chapter the ordinal never targeted.
+  const beforeTwo = rig.predecessor.files.find((file) => file.logicalPath.endsWith("ch02.v21-native.chapter.json"))!;
+  const afterTwo = repaired.value.successor.files.find((file) => file.logicalPath === beforeTwo.logicalPath)!;
+  assert.ok(
+    Buffer.from(afterTwo.bytes).equals(Buffer.from(beforeTwo.bytes)),
+    "a declined chapter must be carried through byte-identical",
+  );
+  // ...and the chapter that DID change is not thrown away with it.
+  const beforeOne = rig.predecessor.files.find((file) => file.logicalPath.endsWith("ch01.v21-native.chapter.json"))!;
+  const afterOne = repaired.value.successor.files.find((file) => file.logicalPath === beforeOne.logicalPath)!;
+  assert.ok(!Buffer.from(afterOne.bytes).equals(Buffer.from(beforeOne.bytes)), "the repaired chapter must be applied");
+
+  // The successor is a real, distinct candidate the panel can re-review.
+  assert.equal(repaired.value.successor.manifest.parentCandidateId, FAILED.candidateId);
+  assert.notEqual(repaired.value.successor.manifest.manifestDigest, FAILED.manifestDigest);
+  const run = await rig.runStore.readRun(PORT_BOOK, rig.request.repairRunId, context.clock.now());
+  assert.equal(run.ok && run.value.status, "COMPLETED");
+
+  // The decline is RECORDED, naming the chapter and the reason.
+  const declined = captured.lines.filter((line) => line.includes("REPAIR_CHAPTER_DECLINED"));
+  assert.equal(declined.length, 1, JSON.stringify(captured.lines));
+  assert.ok(declined[0].includes("chapter=2"), declined[0]);
+  assert.ok(declined[0].includes("action=REPAIR_CHAPTER_DECLINED"), declined[0]);
+  assert.ok(declined[0].includes("reason=unchanged-with-blockers"), declined[0]);
+
+  // Provenance: a declined chapter adds nothing of its own to the ledger — the
+  // ordinal records ONE transition, exactly as it does when every chapter changed.
+  assert.equal(rig.appended().length, 1, JSON.stringify(rig.appended()));
+});
+
+requiredTest("an ordinal whose EVERY targeted chapter comes back unchanged still fails closed with REPAIR_OUTPUT_NO_CHANGE", async (context: TestContext) => {
+  const rig = reviewRig(context, {
+    slug: "review-repair-declined-all",
+    issues: [PANEL_BLOCKER, CH02_RENDERER_BLOCKER],
+    output: (_chapterNumber, chapter) => chapter,
+  });
+
+  const repaired = await rig.port.runFromReviewFail(rig.request);
+  assert.equal(repaired.ok, false, JSON.stringify(repaired));
+  if (repaired.ok) throw new Error("a byte-identical candidate must never be staged for re-review");
+  assert.equal(repaired.error.code, "REPAIR_OUTPUT_NO_CHANGE");
+  assert.equal(repaired.error.message, "replacement did not change chapter 1");
+
+  const run = await rig.runStore.readRun(PORT_BOOK, rig.request.repairRunId, context.clock.now());
+  assert.equal(run.ok && run.value.status, "FAILED");
+  assert.equal(run.ok && run.value.terminalReason, "replacement did not change chapter 1");
+  assert.equal(rig.appended().length, 0, "nothing is promoted, so nothing is recorded");
 });
 
 finishV25Tests().catch((error: unknown) => {

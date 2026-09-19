@@ -189,7 +189,10 @@ test("renderChapterReaderDoc: every reader-facing section header is present, in 
   assert.equal(doc.includes("What to do: "), false, "renderer must not stamp the scaffold label");
   assert.equal(doc.includes("Why it matters: "), false, "renderer must not stamp the scaffold label");
   assert.ok(doc.includes("Card 1 — Front: What is the two-minute rule?"));
-  assert.ok(doc.includes("          Back: Scale any habit down"));
+  // RE-PINNED (2026-09-19): the back line used to be rendered with ten literal
+  // leading spaces. It now carries the card's own label and no indentation — see
+  // the no-indentation case below for why the old bytes were a defect.
+  assert.ok(doc.includes("Card 1 — Back: Scale any habit down"));
   assert.ok(doc.includes("If-then 1: [After I pour my morning coffee] If I sit down at the table"));
   assert.ok(doc.includes("24-hour challenge: "));
   assert.ok(doc.includes("Weekly practice: "));
@@ -201,6 +204,44 @@ test("renderChapterReaderDoc: every reader-facing section header is present, in 
   const keyHeaderAt = doc.indexOf("## ANSWER KEY");
   assert.ok(!doc.slice(0, keyHeaderAt).includes("Explanation:"), "no explanation text above the ANSWER KEY");
   assert.ok(/^Q\d+: [abc] — It caps the start of the habit/m.test(doc.slice(keyHeaderAt)), "explanation rides its key row");
+});
+
+/**
+ * The live Franklin wedge (run book-run-39a37d06, review
+ * review-1720d489b30a46f3d623b99479abbfbb): a panel seat filed
+ * READER.BLOCKING.schema_or_app_breaking at "ch06/seat-skeptic/Review cards (all
+ * 7 cards)" because "every 'Back:' line in all seven review cards is preceded by
+ * roughly ten literal space characters ... risks the card backs being misrendered
+ * as indented/preformatted code blocks". The chapter JSON carried NO leading
+ * whitespace in any card front or back — the ten spaces were this renderer's own
+ * bytes — so the repair writer was handed a clean chapter, saw nothing to fix,
+ * returned it unchanged, and the whole repair ordinal died. A renderer-authored
+ * on-page defect is unrepairable by definition, so the renderer is what has to
+ * stop emitting it.
+ */
+test("renderChapterReaderDoc: no reader-doc line opens a markdown code block, and no card line is indented", () => {
+  const doc = renderChapterReaderDoc(fixtureChapter());
+  const lines = doc.split("\n");
+
+  // (a) Four or more leading spaces (or a tab) is markdown's indented-code-block
+  //     threshold. NO line of a reader-facing document may cross it.
+  const codeBlockish = lines.filter((line) => /^(?: {4,}|\t)/.test(line));
+  assert.deepEqual(codeBlockish, [], `lines that read as a code block: ${JSON.stringify(codeBlockish)}`);
+
+  // (b) The review-card block specifically: not one line starts with whitespace.
+  const cardsAt = doc.indexOf("## Review cards");
+  assert.ok(cardsAt > 0, "the document must have a review-card section");
+  const after = doc.slice(cardsAt + "## Review cards".length);
+  const nextHeaderAt = after.indexOf("\n## ");
+  const cardBlock = (nextHeaderAt >= 0 ? after.slice(0, nextHeaderAt) : after).split("\n");
+  const indentedCardLines = cardBlock.filter((line) => /^\s+\S/.test(line));
+  assert.deepEqual(indentedCardLines, [], `indented review-card lines: ${JSON.stringify(indentedCardLines)}`);
+
+  // (c) Front and back stay separable — each line carries its own card label, so
+  //     the two read distinctly as raw text AND when a soft line break joins them
+  //     into one rendered paragraph.
+  assert.ok(doc.includes("\nCard 1 — Front: What is the two-minute rule?"), doc);
+  assert.ok(doc.includes("\nCard 1 — Back: Scale any habit down"), doc);
 });
 
 test("renderChapterReaderDoc: answer key at the bottom maps correctIndex 0/1/2 to a/b/c", () => {

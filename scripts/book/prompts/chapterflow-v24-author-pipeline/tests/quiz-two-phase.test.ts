@@ -111,7 +111,7 @@ test("phase-1 doc: prose + prompts + choices only — no key header, no key rows
   const legacy = renderChapterReaderDoc(ch);
   assert.ok(legacy.includes("## ANSWER KEY"), "legacy keeps the key");
   assert.ok(legacy.startsWith(renderChapterReaderDocPhase1(ch)), "phase-1 is the legacy body prefix");
-  assert.equal(READER_DOC_PHASE1_VERSION, "phase1-v1");
+  assert.equal(READER_DOC_PHASE1_VERSION, "phase1-v2");
   assert.equal(QUIZ_PHASE2_VERSION, "phase2-v1");
 });
 
@@ -253,7 +253,7 @@ test("adjudicateReview keyCheck semantics are IDENTICAL on the phase-1 doc (cond
   assert.equal(good.keyCheck.of, 2);
   assert.ok(good.pass && good.valid);
   assert.equal(good.hashVersion, "v3");
-  assert.equal(good.phase1DocVersion, "phase1-v1");
+  assert.equal(good.phase1DocVersion, "phase1-v2");
   assert.equal(good.docHash, sha(p1));
   const wrong = adjudicateReview(parseReaderReview(readerReplyJson({ quizDerivation: { answers: ["a", "a"], tells: [] } }))!, p1, ch, { bar: 80, reviewerSessionId: "r2" });
   assert.equal(wrong.keyCheck.matches, 1);

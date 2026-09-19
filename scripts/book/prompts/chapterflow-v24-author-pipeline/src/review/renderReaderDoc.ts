@@ -28,6 +28,17 @@
  * combined renderer is retained for the key-judge blinding slice and the
  * book-sample body build; review carry binds docHash (now over the phase-1
  * bytes, hashVersion v3), so no pre-split review can be reused either.
+ *
+ * DELIBERATE FORMAT CHANGE (2026-09-19, defect removal — NOT cleanup): the
+ * review-card BACK line no longer renders with ten literal leading spaces. Four
+ * or more leading spaces is markdown's indented-code-block threshold, so the
+ * renderer was stamping an on-page formatting defect into every chapter of every
+ * book: a live Franklin panel seat filed READER.BLOCKING.schema_or_app_breaking
+ * against ch06's seven card backs for indentation that exists nowhere in the
+ * chapter JSON, and no repair writer could clear a defect it was never shown.
+ * The back line carries its own card label instead. docHash moves for every
+ * chapter, which re-stales carries by design; phase1DocVersion is bumped so the
+ * instrument change is explicit on every review produced after it.
  */
 
 import type { ChapterV21 } from "../types.js";
@@ -35,7 +46,7 @@ import type { ChapterV21 } from "../types.js";
 /** Phase-1 renderer version (IMP-08). Stamped on reviews produced from the
  *  phase-1 document so a renderer evolution is an EXPLICIT instrument change,
  *  never a silent one (the docHash it feeds re-stales carries anyway). */
-export const READER_DOC_PHASE1_VERSION = "phase1-v1" as const;
+export const READER_DOC_PHASE1_VERSION = "phase1-v2" as const;
 
 /** The shared reader-facing body: title through memorable lines, quiz prompts +
  *  choices included, NO answer key and NO explanations. Exactly the legacy
@@ -68,7 +79,16 @@ function renderReaderBodyLines(ch: ChapterV21): string[] {
     L.push("");
   });
   L.push("## Review cards");
-  (ch.reviewCards ?? []).forEach((c, i) => L.push('Card ' + (i + 1) + ' — Front: ' + c.front, '          Back: ' + c.back, ""));
+  // Both card lines carry the card's own label and NEITHER is indented. The back
+  // line used to be rendered with ten literal leading spaces, which is past
+  // markdown's four-space code-block threshold: a live Franklin panel seat read
+  // all seven of ch06's backs as preformatted code and filed
+  // READER.BLOCKING.schema_or_app_breaking against a defect that existed only in
+  // this renderer (the chapter JSON carries no leading whitespace in any card),
+  // so no repair writer could ever clear it. Labelling the back line instead of
+  // indenting it keeps front and back distinct whether the document is read as
+  // raw text or rendered as markdown, and no line can open a code block.
+  (ch.reviewCards ?? []).forEach((c, i) => L.push('Card ' + (i + 1) + ' — Front: ' + c.front, 'Card ' + (i + 1) + ' — Back: ' + c.back, ""));
   const plan = ch.implementationPlan;
   if (plan) {
     L.push("## Implementation plan", 'Title: ' + plan.title, 'Core skill: ' + plan.coreSkill);

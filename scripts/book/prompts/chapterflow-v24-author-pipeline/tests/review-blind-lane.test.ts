@@ -183,7 +183,7 @@ test("lane: an honest adjudicator lands status=adjudicated with the hash chain; 
     // the band anchors), and a hand-copied literal here would silently assert
     // the old instrument.
     assert.equal(review.rubricVersion, READER_RUBRIC_VERSION);
-    assert.equal(review.phase1DocVersion, "phase1-v1");
+    assert.equal(review.phase1DocVersion, "phase1-v2");
   } finally {
     lane.cleanup();
   }
