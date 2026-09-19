@@ -1337,6 +1337,9 @@ export class CandidateRepairApplicationPort {
     const request = { bookId: pass.bookId, repairRunId: pass.repairRunId, stageId: pass.stageId };
     const replacements = new Map<number, ChapterV21>();
     const repairAttemptIds: string[] = [];
+    /** Chapters the writer handed back byte-identical while they carried named
+     *  blockers, in the order they were attempted. See the decline branch below. */
+    const declined: number[] = [];
 
     for (const chapterNumber of pass.targetChapterNumbers) {
       if (pass.signal.aborted) {
@@ -1478,15 +1481,41 @@ export class CandidateRepairApplicationPort {
         // unchanged return, so this is the writer declining, not the writer
         // failing. Terminal either way — nothing is staged, nothing is promoted,
         // no gate moves — but the durable reason now says which one happened.
-        return floorOnly
-          ? this.#failRun(
+        if (floorOnly) {
+          return this.#failRun(
             request,
             repairAttemptIds,
             REPAIR_NO_CHANGE_JUSTIFIED_CODE,
             `${REPAIR_NO_CHANGE_JUSTIFIED_REASON_PREFIX} chapter ${chapterNumber} carried only the composite score floor,`
             + " and the writer returned it unchanged; the brief permits that outcome and no named defect is left unfixed",
-          )
-          : this.#failRun(request, repairAttemptIds, "REPAIR_OUTPUT_NO_CHANGE", `replacement did not change chapter ${chapterNumber}`);
+          );
+        }
+        // A chapter with NAMED blockers that comes back byte-identical is DECLINED,
+        // not a whole-ordinal failure — as long as some other chapter in this
+        // ordinal produced an accepted change (the check after the loop).
+        //
+        // WHY. A blocker can name a defect the writer cannot reach: the live
+        // Franklin wedge was READER.BLOCKING.schema_or_app_breaking against ch06's
+        // review cards for ten leading spaces that existed only in the reader-doc
+        // RENDERER, never in the chapter JSON. The writer was handed a clean
+        // chapter, changed nothing, and `replacement did not change chapter 6`
+        // discarded chapters 1 and 4 — already repaired in that same ordinal —
+        // and every later ordinal replayed the same stored review and died at
+        // ch06 again: 9 of 20 ordinals spent on a deterministic wall.
+        //
+        // The declined chapter is carried into the successor BYTE-IDENTICAL, which
+        // is exactly how an untargeted chapter is carried (it is simply absent from
+        // `replacements`, so `successorFiles` leaves its file and the recomputed
+        // pattern audit reads its original bytes). Nothing is downgraded: the
+        // blocker is not cleared, the verdict is not rewritten, and the panel
+        // re-judges the declined chapter on the successor candidate, so a genuine
+        // unfixed defect comes straight back on the next review.
+        console.error(
+          `[repair] book=${pass.bookId} run=${pass.repairRunId} stage=${pass.stageId} chapter=${chapterNumber}`
+          + " action=REPAIR_CHAPTER_DECLINED reason=unchanged-with-blockers",
+        );
+        declined.push(chapterNumber);
+        continue;
       }
       // R-076 — re-derive and re-check the memorable lines against the REPAIRED
       // prose (see revalidateMemorableLines). Placed after the no-change comparison
@@ -1502,6 +1531,17 @@ export class CandidateRepairApplicationPort {
         return this.#failRun(request, repairAttemptIds, revalidated.error.code, revalidated.error.message);
       }
       replacements.set(chapterNumber, revalidated.value);
+    }
+    // EVERY targeted chapter declined: today's fail-closed refusal, verbatim code
+    // and message (the first declined chapter, so a single-chapter ordinal reads
+    // exactly as it always did). A successor built from zero accepted changes is
+    // byte-identical to its predecessor, and re-reviewing that as new work is how
+    // a run pays a full panel for nothing. The cost of not failing at the first
+    // decline is the remaining chapters' model calls — unavoidable, because
+    // whether a LATER chapter produces an accepted change is not knowable until
+    // it has been attempted.
+    if (replacements.size === 0 && declined.length > 0) {
+      return this.#failRun(request, repairAttemptIds, "REPAIR_OUTPUT_NO_CHANGE", `replacement did not change chapter ${declined[0]}`);
     }
     return { ok: true, value: replacements };
   }

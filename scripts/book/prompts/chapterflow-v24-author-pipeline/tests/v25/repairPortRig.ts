@@ -86,6 +86,34 @@ export function candidate(context: TestContext, sidecar: SidecarOptions = {}): C
     sourcePacketHash: packetOneHash,
   };
   const sourcePlanOne = { ...(fixture.sourcePlan as Record<string, unknown>), sourcePacketSha256: packetOneHash };
+  // Chapter 2's compiler context, bound as strictly as chapter 1's. It used to be
+  // a shallow id-patched copy of ch01's, which `sourceContextFiles` rejects
+  // (BPV2.plan_identity blocker, plus a source-packet path/hash bound to ch01) —
+  // invisible while every case targeted ch01 alone, and a wall the moment a case
+  // needs a TWO-chapter ordinal (a declined chapter beside a repaired one).
+  const packetTwo = {
+    ...(fixture.packet as Record<string, unknown>),
+    chapterId: `${BOOK}-ch02`,
+    chapterNumber: 2,
+    chapterTitle: second.title,
+    sourceSidecarPath: "research/ch02.source.json",
+  };
+  const packetTwoHash = sourcePacketHash(packetTwo as unknown as SourcePacketV1);
+  const blueprintTwoBase = fixture.blueprint as Record<string, unknown>;
+  const blueprintTwo = {
+    ...blueprintTwoBase,
+    chapterId: `${BOOK}-ch02`,
+    chapterNumber: 2,
+    title: second.title,
+    plan: { ...(blueprintTwoBase.plan as Record<string, unknown>), chapterId: `${BOOK}-ch02`, number: 2, title: second.title },
+    sourcePacketPath: "compiler/ch02/source-packet.json",
+    sourcePacketHash: packetTwoHash,
+  };
+  const sourcePlanTwo = {
+    ...(fixture.sourcePlan as Record<string, unknown>),
+    chapterNumber: 2,
+    sourcePacketSha256: packetTwoHash,
+  };
   const sourceV2 = (number: number, title: string) => ({ schemaVersion: "source-v2", chapterNumber: number, chapterTitle: title });
   const files = [
     { kind: "CHAPTER" as const, logicalPath: `content/chapters/${BOOK}-ch01.v21-native.chapter.json`, mediaType: "application/json" as const, bytes: bytes(fixture.chapter) },
@@ -93,9 +121,9 @@ export function candidate(context: TestContext, sidecar: SidecarOptions = {}): C
     { kind: "SIDECAR" as const, logicalPath: "compiler/ch01/blueprint.json", mediaType: "application/json" as const, bytes: bytes(blueprintOne) },
     { kind: "SIDECAR" as const, logicalPath: "compiler/ch01/source-packet.json", mediaType: "application/json" as const, bytes: bytes(packetOne) },
     { kind: "SIDECAR" as const, logicalPath: "compiler/ch01/source-use-plan.json", mediaType: "application/json" as const, bytes: bytes(sourcePlanOne) },
-    { kind: "SIDECAR" as const, logicalPath: "compiler/ch02/blueprint.json", mediaType: "application/json" as const, bytes: bytes({ ...(fixture.blueprint as object), chapterId: `${BOOK}-ch02`, chapterNumber: 2, title: second.title }) },
-    { kind: "SIDECAR" as const, logicalPath: "compiler/ch02/source-packet.json", mediaType: "application/json" as const, bytes: bytes({ ...(fixture.packet as object), chapterId: `${BOOK}-ch02`, chapterNumber: 2, chapterTitle: second.title }) },
-    { kind: "SIDECAR" as const, logicalPath: "compiler/ch02/source-use-plan.json", mediaType: "application/json" as const, bytes: bytes({ ...(fixture.sourcePlan as object), chapterNumber: 2 }) },
+    { kind: "SIDECAR" as const, logicalPath: "compiler/ch02/blueprint.json", mediaType: "application/json" as const, bytes: bytes(blueprintTwo) },
+    { kind: "SIDECAR" as const, logicalPath: "compiler/ch02/source-packet.json", mediaType: "application/json" as const, bytes: bytes(packetTwo) },
+    { kind: "SIDECAR" as const, logicalPath: "compiler/ch02/source-use-plan.json", mediaType: "application/json" as const, bytes: bytes(sourcePlanTwo) },
     { kind: "SIDECAR" as const, logicalPath: "research/ch01.source.json", mediaType: "application/json" as const, bytes: bytes(sourceV2(1, fixture.chapter.title)) },
     { kind: "SIDECAR" as const, logicalPath: "research/ch02.source.json", mediaType: "application/json" as const, bytes: bytes(sourceV2(2, second.title)) },
     { kind: "PROVENANCE" as const, logicalPath: "research/ch01.source.txt", mediaType: "text/plain" as const, bytes: Buffer.from("chapter one source") },
