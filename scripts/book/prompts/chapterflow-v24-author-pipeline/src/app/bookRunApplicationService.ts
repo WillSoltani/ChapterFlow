@@ -6,6 +6,10 @@ import type { BookContentReader, CandidateSnapshot } from "../books/candidateTyp
 import type { CurrentPointerStore } from "../books/currentPointer.js";
 import type { ReviewAdvisoryStore } from "../books/reviewAdvisoryStore.js";
 import type { CandidateIdentity, Result, UtcIso } from "../contracts/v4Core.js";
+import {
+  BOOK_PATTERN_AUDIT_LOGICAL_PATH,
+  parseBookPatternAuditReport,
+} from "../critics/bookPatternAudit.js";
 import { isSafeResearchRunId } from "../lib/researchRunManifest.js";
 import type { QcDiagnosis, QcDiagnosisIndex, QcRoundResult, QcService } from "../qc/qcTypes.js";
 import type { PromotionService } from "../release/promotionTypes.js";
@@ -1006,11 +1010,71 @@ const MAX_FRESH_QC_SUCCESSOR_ORDINALS = 3;
  *   - a review RUN that is terminal FAILED (R-186): an infra loss on the panel
  *     run made that runId permanently unusable.
  *
- * PASS and FAIL are verdicts and are never eligible — FAIL belongs to the
+ * PASS and FAIL are verdicts and are never eligible HERE — FAIL belongs to the
  * review-repair lane, and neither may be laundered by re-running the panel.
+ *
+ * This predicate is therefore NOT the whole eligibility set any more. R-287 adds
+ * exactly one FAIL shape, in `reviewContradictsPassingPatternAudit` below and
+ * nowhere else: every BLOCKER is PATTERN_AUDIT_DEFECT while the candidate's own
+ * deterministic pattern audit reports `passed: true`. #reviewSuccessor takes the
+ * union of the two, still only under `--reconcile-unsettled`. Every other FAIL
+ * is still a verdict and still reaches the panel again by no path at all.
  */
 function reviewIsUncertain(review: Result<CanonicalReviewResult>): boolean {
   return review.ok ? review.value.outcome === "ERROR" : review.error.code === "BOOK_RUN_REVIEW_RUN_TERMINAL";
+}
+
+/** Did the candidate's own DETERMINISTIC book pattern audit pass? False when the
+ *  sidecar is missing, unparseable, or itself reports a blocker — the safe answer
+ *  in every case, because the caller uses `true` to widen what may be superseded. */
+function patternAuditPassed(candidate: CandidateSnapshot): boolean {
+  const file = candidate.files.find((entry) => entry.logicalPath === BOOK_PATTERN_AUDIT_LOGICAL_PATH);
+  if (file === undefined) return false;
+  try {
+    const report = parseBookPatternAuditReport(JSON.parse(Buffer.from(file.bytes).toString("utf8")), {
+      bookId: candidate.manifest.bookId,
+      chapterCount: candidate.files.filter((entry) => entry.kind === "CHAPTER").length,
+    });
+    return report.passed;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * R-287 — the ONE FAIL shape that is uncertainty rather than a verdict.
+ *
+ * Live Franklin (run book-run-39a37d06, review-120c5985fc3838d8d670bc914a22c450):
+ * the panel returned FAIL on exactly one BLOCKER, PATTERN_AUDIT_DEFECT, saying
+ * the deterministic audit's counters were wrong — while that audit, handed to
+ * the reviewer in the same packet, reported `passed: true`. The reviewer's whole
+ * case was `examples[].planSpec` metadata that never reaches a reader (see
+ * modelGatewayReviewEvaluator's reader projection, which is what stops this
+ * recurring). The repair lane refuses the finding as compiler/context-owned, so
+ * the stored FAIL replayed on every resume and the book could not be finished by
+ * any path.
+ *
+ * A reviewer contradicting the deterministic audit, with no on-page defect named
+ * alongside it, is the panel and the audit disagreeing about the same question —
+ * uncertainty — and is eligible for the SAME bounded, consent-gated successor
+ * walk an ERROR already gets. NOT eligible, and deliberately so:
+ *   - any FAIL carrying a blocker of any other code (a real on-page defect is a
+ *     verdict, and the repair lane owns it);
+ *   - a PATTERN_AUDIT_DEFECT FAIL whose audit sidecar reports `passed: false` —
+ *     there the reviewer AGREES with the deterministic gate, which is a verdict;
+ *   - anything at all without `--reconcile-unsettled` on the invocation.
+ * Nothing here rewrites a verdict or lowers a bar: it only decides whether one
+ * more full panel may judge the same candidate.
+ */
+function reviewContradictsPassingPatternAudit(
+  review: Result<CanonicalReviewResult>,
+  candidate: CandidateSnapshot,
+): boolean {
+  if (!review.ok || review.value.outcome !== "FAIL") return false;
+  const blockers = review.value.issues.filter((issue) => issue.severity === "BLOCKER");
+  if (blockers.length === 0) return false;
+  if (!blockers.every((issue) => issue.code === "PATTERN_AUDIT_DEFECT")) return false;
+  return patternAuditPassed(candidate);
 }
 
 export class BookRunApplicationService {
@@ -1295,6 +1359,14 @@ export class BookRunApplicationService {
    * 11ac was: without the flag the stored uncertainty replays fail-closed and the
    * caller's message names the flag as the remedy (R-179). Exhaustion of the
    * ordinal space is NOT a pass — it fails closed with the ceiling named.
+   *
+   * The ceiling is THREE ordinals only for the shapes whose spent ordinal is an
+   * ERROR, because that is the one the walk skips. R-287's PATTERN_AUDIT_DEFECT
+   * contradiction stores a FAIL, so its ordinal 1 is never spent: a second flagged
+   * resume re-derives ordinal 1, replays that stored FAIL with zero model calls,
+   * and the walk does not advance. That case therefore gets exactly ONE fresh
+   * panel per invocation and then falls back into the repair lane's own terminal
+   * answer — bounded, fail-closed, and never worse than the wedge it replaces.
    */
   async #reviewSuccessor(args: Readonly<{
     input: BookRunApplicationRequest;
@@ -1309,10 +1381,17 @@ export class BookRunApplicationService {
   }>): Promise<Result<CanonicalReviewResult>> {
     const { input, runId, candidate, labelPrefix } = args;
     const review = args.review;
-    if (input.reconcileUnsettled !== true || !reviewIsUncertain(review)) return review;
-    const predecessor = review.ok
+    if (input.reconcileUnsettled !== true) return review;
+    // R-287 adds ONE case to the ERROR/terminal-run uncertainty this walk was
+    // built for; everything else about the gate, the walk and the ceiling is
+    // unchanged. See reviewContradictsPassingPatternAudit for why that FAIL is
+    // uncertainty and why every other FAIL stays a verdict.
+    const contradiction = reviewContradictsPassingPatternAudit(review, candidate);
+    if (!reviewIsUncertain(review) && !contradiction) return review;
+    const predecessor = (review.ok
       ? `predecessorReviewId=${review.value.reviewId}`
-      : `predecessorError=${review.error.code}`;
+      : `predecessorError=${review.error.code}`)
+      + (contradiction ? ";reason=PATTERN_AUDIT_CONTRADICTION" : "");
     for (let ordinal = 1; ordinal <= MAX_REVIEW_SUCCESSOR_ORDINALS; ordinal += 1) {
       const label = `${labelPrefix}-successor-${ordinal}`;
       const parentRunId = derivedId(label, runId);
@@ -2395,7 +2474,12 @@ export class BookRunApplicationService {
     // them as canonical so every resume replays them with ZERO model calls.
     // Fresh-QC binds to the review id it is handed, so reassigning `review` to the
     // successor keeps downstream identity coherent. See #reviewSuccessor for the
-    // ordinal walk, the consent gate, and why FAIL is never eligible.
+    // ordinal walk and the consent gate. A FAIL verdict is not eligible here with
+    // ONE exception (R-287): a FAIL whose BLOCKERs are all PATTERN_AUDIT_DEFECT
+    // while the candidate's deterministic pattern audit passed — the reviewer
+    // contradicting the audit with no on-page defect. See
+    // reviewContradictsPassingPatternAudit for why that shape is uncertainty and
+    // why every other FAIL is still a verdict the repair lane below owns.
     review = await this.#reviewSuccessor({ input, runId, candidate, labelPrefix: "review", review });
     // ── Canonical review FAIL -> repair -> RE-REVIEW, bounded ──────────────────
     //
@@ -2629,11 +2713,21 @@ export class BookRunApplicationService {
       // R-179: 36 live invocations died on the bare string `canonical review
       // outcome=ERROR` while the one thing that could clear it — a flagged
       // resume — went unnamed. Uncertainty says so; a FAIL verdict does not get
-      // this line, because --reconcile-unsettled is not a remedy for a verdict.
-      const remedy = input.reconcileUnsettled !== true && reviewIsUncertain(review)
-        ? "; a stored ERROR canonical review is uncertainty, not a verdict"
-          + " — resume with --reconcile-unsettled to supersede it with a fresh panel"
-        : "";
+      // this line (R-287's metadata-only contradiction excepted, below), because
+      // --reconcile-unsettled is not a remedy for a verdict.
+      // R-287 extends the line to the one FAIL shape that is also uncertainty:
+      // every BLOCKER is PATTERN_AUDIT_DEFECT while the deterministic audit the
+      // reviewer was handed passed. Every other FAIL still gets no remedy line.
+      const remedy = input.reconcileUnsettled === true
+        ? ""
+        : reviewIsUncertain(review)
+          ? "; a stored ERROR canonical review is uncertainty, not a verdict"
+            + " — resume with --reconcile-unsettled to supersede it with a fresh panel"
+          : reviewContradictsPassingPatternAudit(review, candidate)
+            ? "; every BLOCKER is PATTERN_AUDIT_DEFECT while the deterministic pattern audit passed"
+              + " — the reviewer contradicts the audit with no on-page defect, which is uncertainty, not a verdict"
+              + " — resume with --reconcile-unsettled to supersede it with a fresh panel"
+            : "";
       const message = (review.ok ? `canonical review outcome=${review.value.outcome}` : review.error.message) + reviewRepairNote + remedy;
       await this.#event(runId, input.bookId, "review", "FAILED", message, identity(candidate));
       return failed("BOOK_RUN_REVIEW_FAILED", message);
