@@ -705,9 +705,21 @@ requiredTest("R-288: a SECOND flagged resume replays the stored successor verdic
   assert.equal(h.reviewCalls(), 2, "one base panel plus one successor panel");
   assert.equal(h.repairCalls().length, 2, JSON.stringify(h.repairCalls().map((call) => call.repairRunId)));
 
-  // Invocation two: the declining ordinals are durably FAILED, so the walk MUST
-  // spend a fresh ordinal — but the dispute is the same stored review, so the
-  // successor label is the same and its stored verdict is replayed.
+  // Invocation two: the declining ordinals are durably FAILED and the walk steps
+  // over both. Ordinal 1's dispute WAS applied in invocation one — this run's
+  // phase log carries the successor STARTED event to prove it — so R-290
+  // re-applies it and replays the STORED successor verdict with zero model
+  // calls. Ordinal 2's was not: the supersession bound refused it, nothing was
+  // minted, and an ordinal with no durable supersession is left exactly as the
+  // pre-R-290 walk left it — stepped over, with a fresh ordinal spent to
+  // re-discover the decline, which the bound then refuses again.
+  //
+  // WHAT R-290 CHANGED HERE, AND WHY IT IS NOT A WEAKENING. Before it, this
+  // resume walked to FRESH ordinals 3 AND 4, paying a full repair pass each to
+  // re-discover both declines on disk; it now re-applies the one that is
+  // evidenced and spends a single ordinal on the one that is not. The thing this
+  // case exists to forbid — buying a second panel on byte-identical bytes — is
+  // asserted below and unchanged.
   const second = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
   assert.equal(second.ok, false, JSON.stringify(second));
   if (second.ok) throw new Error("a resume must not promote a book by re-rolling the panel that already judged it");
@@ -716,9 +728,19 @@ requiredTest("R-288: a SECOND flagged resume replays the stored successor verdic
     2,
     "a re-disputed review must REPLAY its stored successor verdict, never buy another panel on the same bytes",
   );
-  // The resume really did reach the repair lane (the bound is the panel, not the run).
-  assert.equal(h.repairCalls().length, 4, JSON.stringify(h.repairCalls().map((call) => call.repairRunId)));
-  assert.equal(h.repairCalls()[2].repairRunId, h.reviewRepairRunId("review-repair-3"), "the walk still spends a fresh ordinal");
+  assert.equal(second.error.code, DECLINED, second.error.message);
+  assert.match(second.error.message, /already superseded one DISPUTED review/, second.error.message);
+  assert.equal(
+    h.repairCalls().length,
+    3,
+    `a replayed dispute re-reads run state; it must not re-buy the decline already on disk: ${
+      JSON.stringify(h.repairCalls().map((call) => call.repairRunId))}`,
+  );
+  assert.equal(
+    h.repairCalls()[2].repairRunId,
+    h.reviewRepairRunId("review-repair-3"),
+    "the UNEVIDENCED second dispute still costs the walk a fresh ordinal, exactly as before R-290",
+  );
   // ONE successor STARTED event per invocation, all naming the SAME label: the
   // second is the replay of the first, not a second successor identity.
   const successorEvents = h.events.filter((e) => e.detail?.includes("action=REVIEW_SUCCESSOR"));
@@ -746,6 +768,240 @@ requiredTest("R-288: under consent, a repair ordinal that fails with any OTHER c
   );
   assert.equal(h.reviewCalls(), 1, "no panel is bought for a repair failure that is not a decline");
   assert.equal(h.repairCalls().length, 1, "and the lane fails closed on its own terminal answer");
+});
+
+// ───────────────────────────── R-290 ─────────────────────────────
+//
+// THE DISPUTE HAS TO REPLAY WITH THE WALK.
+//
+// A supersession is not a durable fork in the ordinal walk: it is a decision the
+// loop made IN MEMORY, from the failure of one ordinal. On the next invocation
+// the walk replays — ordinals are re-read from run state, in order — and the
+// declining ordinal comes back as a plain FAILED one that the walk steps over
+// (SKIP_FAILED_REPAIR_RUN), carrying the loop straight to the NEXT ordinal while
+// `review` is still the DISPUTED review. That next ordinal is COMPLETED: it was
+// executed, in the previous invocation, against the SUCCESSOR's verdict and a
+// different chapter set. The port replays it, compares the targeted set derived
+// from the failedReviewId it was handed against the attempts the run recorded,
+// and refuses: REVIEW_REPAIR_COMPLETED_MISMATCH.
+//
+// Live Franklin (run book-run-39a37d06, 2026-09-20 07:30Z). Invocation N:
+// ordinal 15 repaired ch14 against review-3406164e…, the writer declined, the
+// dispute minted `disputed-review-3406164e…-successor-1` (review-6ac3f48f…,
+// FAIL, one ch12 blocker), ordinal 16 repaired ch12 against THAT review and
+// COMPLETED. Invocation N+1: ordinal 15 -> SKIP_FAILED_REPAIR_RUN, ordinal 16 ->
+// REVIEW_REPAIR_REPLAY with failedReviewId=review-3406164e… -> "completed
+// review-repair run attempts do not match exact targeted chapter set"
+// ([repair-ch12] vs a targeted set of [ch14]). Three identical terminal lines,
+// then the driver stopped the run as wedged.
+//
+// The fix: when the walk steps over a FAILED ordinal whose DURABLE terminal
+// reason is the all-declined one, the loop re-applies that ordinal's dispute
+// before spending anything — the successor label is keyed to the review, so the
+// STORED verdict replays with zero model calls and the walk arrives at the next
+// ordinal holding the same review it held the first time.
+
+requiredTest("R-290: a dispute is RE-APPLIED when the ordinal walk replays it on a later resume, instead of mismatching the next ordinal", async (context: TestContext) => {
+  const book = "review-repair-dispute-replays";
+  // Panels, in call order: the base FAIL; the ONE successor panel the dispute
+  // buys, which FAILs with its own (different) blockers; the re-review of the
+  // ordinal that repairs those, which FAILs and hits the round cap; and finally
+  // the re-review the SECOND invocation pays for, which passes.
+  const h = await buildBookRunHarness(context, book, ["FAIL", "FAIL", "FAIL", "PASS"], {
+    repairFailsPerCall: [DECLINED],
+  });
+  const baseReviewId = derivedIdOf("review", h.bookRunId);
+  const successorReviewId = derivedIdOf("review", derivedIdOf(disputedSuccessorLabel(h.bookRunId), h.bookRunId));
+
+  // ── Invocation N: dispute, successor FAIL, a real repair against it, cap ──
+  const first = await h.service.run({ ...h.request, reconcileUnsettled: true });
+  assert.equal(first.ok, false, JSON.stringify(first));
+  if (first.ok) throw new Error("the round cap must stop invocation N short of a verdict");
+  assert.equal(first.error.code, "BOOK_RUN_REVIEW_FAILED", first.error.message);
+  assert.equal(h.repairCalls().length, 2, JSON.stringify(h.repairCalls().map((call) => call.repairRunId)));
+  assert.equal(h.repairCalls()[0].failedReviewId, baseReviewId, "ordinal 1 repaired the DISPUTED review");
+  assert.equal(h.repairCalls()[1].failedReviewId, successorReviewId, "ordinal 2 repaired the SUCCESSOR's verdict");
+  assert.equal(h.reviewCalls(), 3, "base panel, the one successor panel, and the re-review");
+
+  // ── Invocation N+1: the walk replays, and the dispute must replay with it ──
+  const eventsBefore = h.events.length;
+  const second = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+  const resumeEvents = h.events.slice(eventsBefore);
+  assert.equal(
+    second.ok,
+    true,
+    second.ok ? "" : `${second.error.code}:${second.error.message}`,
+  );
+  if (!second.ok) throw new Error("unreachable");
+  assert.equal(second.value.status, "PROMOTED");
+  // The wedge itself: the replayed ordinal 2 must be handed the review it was
+  // executed against, never the disputed one.
+  assert.equal(
+    h.events.some((event) => event.detail?.includes("REVIEW_REPAIR_COMPLETED_MISMATCH")),
+    false,
+    JSON.stringify(h.events.filter((event) => event.detail?.includes("MISMATCH")).map((event) => event.detail)),
+  );
+  assert.equal(h.repairCalls()[2].repairRunId, h.reviewRepairRunId("review-repair-2"), "the walk replays ordinal 2");
+  assert.equal(
+    h.repairCalls()[2].failedReviewId,
+    successorReviewId,
+    "the replayed ordinal must be repaired against the SUCCESSOR review, exactly as it was executed",
+  );
+  // EXACTLY ONE dispute in this invocation, on the same review-keyed label...
+  const disputes = resumeEvents.filter((event) => event.detail?.includes("reason=DISPUTED_REVIEW"));
+  assert.equal(disputes.length, 1, JSON.stringify(resumeEvents.map((event) => event.detail)));
+  assert.ok(
+    disputes[0].detail?.includes(`label=${disputedSuccessorLabel(h.bookRunId)}`),
+    disputes[0].detail,
+  );
+  assert.ok(disputes[0].detail?.includes(`predecessorReviewId=${baseReviewId}`), disputes[0].detail);
+  // ...bought with ZERO fresh panel calls: the stored successor verdict replays.
+  // The only new panel this invocation pays for is the re-review of the FRESH
+  // ordinal it went on to spend.
+  assert.equal(h.reviewCalls(), 4, "a replayed dispute must never buy a second panel on the same bytes");
+  assert.equal(h.repairCalls().length, 4, JSON.stringify(h.repairCalls().map((call) => call.repairRunId)));
+  assert.equal(h.repairCalls()[3].repairRunId, h.reviewRepairRunId("review-repair-3"), "and the walk continues past it");
+});
+
+requiredTest("R-290: WITHOUT consent the replayed dispute fails closed with the same DISPUTED remedy, spending nothing", async (context: TestContext) => {
+  const book = "review-repair-dispute-replay-no-consent";
+  const h = await buildBookRunHarness(context, book, ["FAIL", "FAIL", "FAIL", "PASS"], {
+    repairFailsPerCall: [DECLINED],
+  });
+
+  const first = await h.service.run({ ...h.request, reconcileUnsettled: true });
+  assert.equal(first.ok, false, JSON.stringify(first));
+  assert.equal(h.repairCalls().length, 2, JSON.stringify(h.repairCalls().map((call) => call.repairRunId)));
+
+  // The consent is per invocation. A resume WITHOUT it re-reads the same skipped
+  // ordinal and answers exactly what the declining ordinal answered the first
+  // time: the lane's own terminal code, the durable terminal reason it recorded,
+  // and the R-179 remedy naming the flag and the case.
+  const callsBefore = h.repairCalls().length;
+  const panelsBefore = h.reviewCalls();
+  const second = await h.service.run({ ...h.request, resumeRunId: h.bookRunId });
+  assert.equal(second.ok, false, JSON.stringify(second));
+  if (second.ok) throw new Error("a disputed review must never promote a book without consent");
+  assert.equal(second.error.code, DECLINED, second.error.message);
+  assert.ok(second.error.message.startsWith("replacement did not change chapter "), second.error.message);
+  assert.match(second.error.message, /DISPUTED/, second.error.message);
+  assert.match(second.error.message, /reconcile-unsettled/, second.error.message);
+  assert.equal(h.repairCalls().length, callsBefore, "no ordinal is spent on a dispute the operator has not granted");
+  assert.equal(h.reviewCalls(), panelsBefore, "and no panel is bought");
+});
+
+requiredTest("R-290: an all-declined ordinal that NEVER got a supersession is walked past, not superseded on the resume", async (context: TestContext) => {
+  const book = "review-repair-declined-without-supersession";
+  // THE LIVE FRANKLIN SHAPE THE FIRST TWO R-290 CASES DO NOT COVER.
+  //
+  // Both of those start from an invocation in which the dispute really was
+  // applied, so a stored successor is waiting on disk. The live run carries the
+  // other kind too: ordinal 8 died all-declined ("replacement did not change
+  // chapter 6") against review-1720d489…, on code that had no DISPUTED path at
+  // all, and the run then walked past it and COMPLETED ordinal 10 against THAT
+  // SAME review — `disputed-review-1720d489…-successor-1` is not on disk and
+  // never was. It is also the FIRST all-declined ordinal the walk meets, three
+  // ordinals ahead of the one the fix exists for.
+  //
+  // So a re-application keyed only on "this ordinal died all-declined and its
+  // STARTED event names the review I am holding" fires HERE: it buys a fresh
+  // reader panel nobody asked for on the path whose whole contract is "the
+  // stored successor replays with zero model calls", spends the single
+  // MAX_DISPUTED_REVIEW_SUPERSESSIONS slot on it, and replaces the review the
+  // NEXT ordinal's completed attempts were recorded against. The run never
+  // reaches the ordinal it was supposed to un-wedge.
+  //
+  // The predicate has to be durable EVIDENCE THE SUPERSESSION HAPPENED — this
+  // run's own review-phase STARTED event naming the review-keyed successor label
+  // and reason=DISPUTED_REVIEW — and an ordinal with no such event must leave
+  // the lane behaving exactly as it did before R-290.
+  const h = await buildBookRunHarness(context, book, ["FAIL", "FAIL", "FAIL", "PASS"], {
+    repairFailsPerCall: [DECLINED],
+  });
+  const baseReviewId = derivedIdOf("review", h.bookRunId);
+
+  // ── Invocation one, NO consent: ordinal 1 declines and the run fails closed,
+  // leaving the all-declined ordinal durable and NO successor anywhere. ──
+  const first = await h.service.run({ ...h.request });
+  assert.equal(first.ok, false, JSON.stringify(first));
+  if (first.ok) throw new Error("a declined repair must never promote the book");
+  assert.equal(first.error.code, DECLINED, first.error.message);
+  assert.equal(h.events.some((e) => e.detail?.includes("action=REVIEW_SUCCESSOR")), false, "no successor was minted");
+
+  // ── Invocation two, still NO consent: the walk steps over ordinal 1 and spends
+  // FRESH ordinals against the SAME review — the pre-R-290 behaviour, which an
+  // ordinal that never had a dispute must keep. ──
+  const second = await h.service.run({ ...h.request, resumeRunId: h.bookRunId });
+  assert.equal(second.ok, false, JSON.stringify(second));
+  if (second.ok) throw new Error("the round cap must stop invocation two short of a verdict");
+  assert.equal(second.error.code, "BOOK_RUN_REVIEW_FAILED", second.error.message);
+  assert.equal(h.repairCalls().length, 3, JSON.stringify(h.repairCalls().map((call) => call.repairRunId)));
+  assert.equal(h.repairCalls()[1].repairRunId, h.reviewRepairRunId("review-repair-2"), "the walk spent a fresh ordinal");
+  assert.equal(
+    h.repairCalls()[1].failedReviewId,
+    baseReviewId,
+    "and it repaired the SAME review the declined ordinal was handed",
+  );
+
+  // ── Invocation three, WITH consent: the flag is set, so nothing but the
+  // evidence keeps ordinal 1 out of the successor path. ──
+  const eventsBefore = h.events.length;
+  const panelsBefore = h.reviewCalls();
+  const third = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+  const resumeEvents = h.events.slice(eventsBefore);
+  assert.equal(third.ok, true, third.ok ? "" : `${third.error.code}:${third.error.message}`);
+  if (!third.ok) throw new Error("unreachable");
+  assert.equal(third.value.status, "PROMOTED");
+  // Nothing was superseded: no dispute event, no successor identity, no panel.
+  assert.deepEqual(
+    resumeEvents.filter((event) => event.detail?.includes("action=REVIEW_SUCCESSOR")).map((event) => event.detail),
+    [],
+    "an ordinal with no durable supersession must not acquire one on a resume",
+  );
+  assert.equal(
+    h.reviewCalls(),
+    panelsBefore + 1,
+    "the only panel this invocation may buy is the re-review of the fresh ordinal it spends",
+  );
+  // And the walk still un-wedges: the completed ordinals replay against the
+  // reviews they were executed against, with no mismatch.
+  assert.equal(
+    h.events.some((event) => event.detail?.includes("REVIEW_REPAIR_COMPLETED_MISMATCH")),
+    false,
+    JSON.stringify(h.events.filter((event) => event.detail?.includes("MISMATCH")).map((event) => event.detail)),
+  );
+  assert.equal(h.repairCalls()[3].repairRunId, h.reviewRepairRunId("review-repair-2"), "ordinal 2 replays");
+  assert.equal(h.repairCalls()[3].failedReviewId, baseReviewId, "against the review it was executed against");
+});
+
+requiredTest("R-290: a REPLAYED supersession whose stored successor is gone fails closed instead of buying a panel", async (context: TestContext) => {
+  const book = "review-repair-dispute-replay-successor-gone";
+  // The replay path exists to RE-READ a verdict, not to roll one: the label is
+  // keyed to the disputed review precisely so the second invocation costs zero
+  // model calls. If the stored verdict is not there — deleted, or its landing
+  // ordinal moved on past a stored ERROR — then "replay" is a fresh panel the
+  // declining invocation already paid for, on bytes nothing has changed since.
+  // The LAST scripted panel is a PASS, so a run that ever bought a re-roll here
+  // would promote the book on it.
+  const h = await buildBookRunHarness(context, book, ["FAIL", "FAIL", "FAIL", "PASS"], {
+    repairFailsPerCall: [DECLINED],
+  });
+  const successorReviewId = derivedIdOf("review", derivedIdOf(disputedSuccessorLabel(h.bookRunId), h.bookRunId));
+
+  const first = await h.service.run({ ...h.request, reconcileUnsettled: true });
+  assert.equal(first.ok, false, JSON.stringify(first));
+  assert.equal(h.reviewCalls(), 3, "the base panel, the one successor panel the dispute bought, and one re-review");
+
+  // The supersession is still in the phase log; only its verdict is gone.
+  h.deleteStoredReview(successorReviewId);
+  const panelsBefore = h.reviewCalls();
+  const second = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+  assert.equal(second.ok, false, JSON.stringify(second));
+  if (second.ok) throw new Error("a resume must not promote a book on a panel it re-rolled");
+  assert.equal(second.error.code, DECLINED, second.error.message);
+  assert.ok(second.error.message.startsWith("replacement did not change chapter "), second.error.message);
+  assert.match(second.error.message, /never buys a fresh reader panel/, second.error.message);
+  assert.equal(h.reviewCalls(), panelsBefore, "and it buys no panel on the way to saying so");
 });
 
 // ───────────────────────────── R-289 ─────────────────────────────

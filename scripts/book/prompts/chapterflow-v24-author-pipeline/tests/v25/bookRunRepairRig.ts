@@ -45,7 +45,7 @@
 
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdirSync } from "node:fs";
+import { mkdirSync, rmSync } from "node:fs";
 import { resolve } from "node:path";
 
 import {
@@ -53,10 +53,11 @@ import {
   type BookRunEvent,
 } from "../../src/app/bookRunApplicationService.js";
 import type { CandidateQcEvaluator } from "../../src/app/candidateQcEvaluator.js";
-import type {
-  CandidateRepairApplicationPort,
-  CandidateRepairApplicationRequest,
-  ReviewRepairApplicationRequest,
+import {
+  allDeclinedTerminalReason,
+  type CandidateRepairApplicationPort,
+  type CandidateRepairApplicationRequest,
+  type ReviewRepairApplicationRequest,
 } from "../../src/app/candidateRepairApplicationPort.js";
 import type { CompilerApplicationPort } from "../../src/app/compilerApplicationPort.js";
 import { ModelGatewayReviewEvaluator } from "../../src/app/modelGatewayReviewEvaluator.js";
@@ -92,6 +93,10 @@ const REPAIR_STAGE = "candidate-repair";
 /** The review-FAIL lane's OWN stage — deliberately not the QC lane's, exactly as
  *  `REVIEW_REPAIR_STAGE_ID` in the real port. */
 const REVIEW_REPAIR_STAGE = "review-repair";
+/** The single chapter every review-lane repair in this rig targets, so a
+ *  scripted all-declined ordinal records the real port's durable terminal reason
+ *  for exactly that chapter. */
+const REPAIRED_CHAPTER = 1;
 
 export function derivedIdOf(prefix: string, runId: string): string {
   return `${prefix}-${createHash("sha256").update(runId).digest("hex").slice(0, 32)}`;
@@ -144,6 +149,14 @@ export type BookRunHarness = Readonly<{
   qcRepairRunId: (label: string) => string;
   /** The run id the review-FAIL lane would use for a given identity label. */
   reviewRepairRunId: (label: string) => string;
+  /** Remove a stored review from disk.
+   *
+   *  The ONE state a REPLAYED supersession has to fail closed on and cannot be
+   *  scripted into existence: this run's phase log records that it superseded a
+   *  review, and the successor verdict that replay would re-read is gone (R-290).
+   *  Deleting the file is the honest way to reach it — the store has no API for
+   *  un-writing a review, because production never does. */
+  deleteStoredReview: (reviewId: string) => void;
   /** Drive a QC-lane repair run to a terminal state BEFORE the book run reaches
    *  it — the durable shape a crashed/failed earlier operator round leaves.
    *  `reason` overrides the seeded terminal reason: what a FAILED ordinal DIED
@@ -447,6 +460,21 @@ export async function buildBookRunHarness(
   // state, so the fixed-id wedge it actually has could not be reproduced here.
   const repairCalls: ReviewRepairApplicationRequest[] = [];
   const successors = new Map<string, CandidateSnapshot>();
+  /** Which review each COMPLETED review-repair run actually executed against.
+   *
+   *  The real port derives the TARGETED CHAPTER SET from `request.failedReviewId`
+   *  and, on a COMPLETED replay, refuses when the run's recorded per-chapter
+   *  attempts do not match that set exactly
+   *  (`#readCompletedReviewRepair` -> REVIEW_REPAIR_COMPLETED_MISMATCH). A fake
+   *  that replays a completed ordinal for ANY failedReviewId is blind to the live
+   *  wedge that check produces, so this map stands in for the attempt set: the
+   *  ordinal replays only for the review it was executed against.
+   *
+   *  HONEST COVERAGE NOTE: this mirrors the real check's EFFECT (a different
+   *  review means a different targeted set), not its mechanics (attempt ids on
+   *  the run record); the mechanics are pinned on the real port by
+   *  `v4-candidate-repair-application-port.test.ts`. */
+  const completedAgainstReview = new Map<string, string>();
   const runFromReviewFail = async (request: ReviewRepairApplicationRequest) => {
     repairCalls.push(request);
     const observedAt = context.clock.now();
@@ -464,7 +492,17 @@ export async function buildBookRunHarness(
     if (created.value.status === "COMPLETED") {
       const durable = await candidates.open({ bookId: book, selector: { kind: "CANDIDATE", candidateId: request.successorCandidateId } });
       if (!durable.ok) return { ok: false as const, error: { code: "REVIEW_REPAIR_COMPLETED_MISMATCH", message: "successor missing" } };
-      return { ok: true as const, value: { successor: durable.value, failedReviewId: request.failedReviewId, targetChapterNumbers: [1], replayed: true } };
+      const executedAgainst = completedAgainstReview.get(request.repairRunId);
+      if (executedAgainst !== undefined && executedAgainst !== request.failedReviewId) {
+        return {
+          ok: false as const,
+          error: {
+            code: "REVIEW_REPAIR_COMPLETED_MISMATCH",
+            message: "completed review-repair run attempts do not match exact targeted chapter set",
+          },
+        };
+      }
+      return { ok: true as const, value: { successor: durable.value, failedReviewId: request.failedReviewId, targetChapterNumbers: [REPAIRED_CHAPTER], replayed: true } };
     }
     if (created.value.status === "CANCEL_REQUESTED" || created.value.status === "CANCELLED") {
       return { ok: false as const, error: { code: "REVIEW_REPAIR_CANCELLED", message: "review-repair run is cancelled" } };
@@ -482,13 +520,22 @@ export async function buildBookRunHarness(
         runId: request.repairRunId,
         status: "FAILED",
         finishedAt: context.clock.now(),
-        reason: scriptedFailure,
+        // The real port records `reason: MESSAGE` — the CODE never reaches run
+        // state (`#failRun`) — and a later resume recovers what an ordinal DIED
+        // OF from that reason alone. So the all-declined case must record the
+        // real message shape (`replacement did not change chapter <n>`, minted by
+        // `allDeclinedTerminalReason`), not the rig's scripted code: a fake that
+        // writes the code makes the durable record MORE legible than production's
+        // and hides whether the fix reads something that actually exists.
+        reason: scriptedFailure === "REPAIR_OUTPUT_NO_CHANGE"
+          ? allDeclinedTerminalReason(REPAIRED_CHAPTER)
+          : scriptedFailure,
       });
       assert.equal(failedRun.ok, true, JSON.stringify(failedRun));
       return { ok: false as const, error: { code: scriptedFailure, message: "scripted repair failure" } };
     }
     const existing = successors.get(request.successorCandidateId);
-    if (existing) return { ok: true as const, value: { successor: existing, failedReviewId: request.failedReviewId, targetChapterNumbers: [1], replayed: true } };
+    if (existing) return { ok: true as const, value: { successor: existing, failedReviewId: request.failedReviewId, targetChapterNumbers: [REPAIRED_CHAPTER], replayed: true } };
     const repairedChapter: ChapterV21 = {
       ...chapter,
       hook: `${chapter.hook} (repaired for ${request.successorCandidateId})`,
@@ -507,7 +554,8 @@ export async function buildBookRunHarness(
     const finished = await runStore.finishRun({ bookId: book, runId: request.repairRunId, status: "COMPLETED", finishedAt: context.clock.now() });
     assert.equal(finished.ok, true, JSON.stringify(finished));
     await options.afterReviewRepair?.(staged);
-    return { ok: true as const, value: { successor: staged, failedReviewId: request.failedReviewId, targetChapterNumbers: [1], replayed: false } };
+    completedAgainstReview.set(request.repairRunId, request.failedReviewId);
+    return { ok: true as const, value: { successor: staged, failedReviewId: request.failedReviewId, targetChapterNumbers: [REPAIRED_CHAPTER], replayed: false } };
   };
 
   // ── fresh-QC FAIL lane fake ──────────────────────────────────────────────
@@ -804,6 +852,9 @@ export async function buildBookRunHarness(
       assert.equal(finished.ok, true, JSON.stringify(finished));
     },
     reviewRepairRunId,
+    deleteStoredReview(reviewId) {
+      rmSync(resolve(booksRoot, book, "reviews", `${reviewId}.json`), { force: true });
+    },
     async seedReviewRepairRun(label, status) {
       const runId = reviewRepairRunId(label);
       const createdAt = context.clock.now();
