@@ -83,6 +83,37 @@ export function isJustifiedNoChangeTerminalReason(reason: string | undefined): b
   return reason !== undefined && reason.startsWith(REPAIR_NO_CHANGE_JUSTIFIED_REASON_PREFIX);
 }
 
+/**
+ * The durable terminal reason `#repairChapters` records when EVERY chapter an
+ * ordinal put in front of the writer came back unchanged and none was accepted
+ * (its post-loop all-declined check, PR #573) — the trigger for R-288's DISPUTED
+ * review path in the book-run service.
+ *
+ * MINTED AND MATCHED HERE, TOGETHER, because the code never reaches run state:
+ * `#failRun` records `reason: message`, so the message IS the durable record, and
+ * a resume that has to tell a DISPUTE from any other dead ordinal has nothing
+ * else to read. Keeping the builder and the predicate adjacent to the call site
+ * is what stops the two from drifting.
+ *
+ * NO SELF-IDENTIFYING PREFIX, unlike its neighbours above. The wedge this exists
+ * to clear is already on disk — the live Franklin run
+ * (book-run-39a37d06) has `review-repair-15` terminal FAILED with exactly
+ * `replacement did not change chapter 14` — and a prefix only a future run would
+ * write cannot recognise it. The wording is therefore FROZEN: changing it
+ * silently un-recognises every ordinal already recorded, so change the builder
+ * and this matcher together and keep the old shape matchable, exactly as
+ * `isRepairReviewErrorTerminalReason` keeps its legacy shape.
+ */
+export function allDeclinedTerminalReason(chapterNumber: number): string {
+  return `replacement did not change chapter ${chapterNumber}`;
+}
+
+/** True when a review-repair run's terminal reason says every targeted chapter
+ *  came back unchanged — the DISPUTED-review trigger (R-288/R-290). */
+export function isAllDeclinedTerminalReason(reason: string | undefined): boolean {
+  return reason !== undefined && /^replacement did not change chapter [1-9][0-9]*$/.test(reason);
+}
+
 export interface CandidateRepairPreflightRequest {
   readonly bookId: string;
   readonly failedCandidate: CandidateIdentity;
@@ -1541,7 +1572,7 @@ export class CandidateRepairApplicationPort {
     // whether a LATER chapter produces an accepted change is not knowable until
     // it has been attempted.
     if (replacements.size === 0 && declined.length > 0) {
-      return this.#failRun(request, repairAttemptIds, "REPAIR_OUTPUT_NO_CHANGE", `replacement did not change chapter ${declined[0]}`);
+      return this.#failRun(request, repairAttemptIds, "REPAIR_OUTPUT_NO_CHANGE", allDeclinedTerminalReason(declined[0]));
     }
     return { ok: true, value: replacements };
   }

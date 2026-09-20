@@ -33,7 +33,10 @@ import {
   MAX_RUBRIC_READER_ATTEMPTS,
   type CatalogRubricPanel,
 } from "./catalogRubricPanelEvaluator.js";
-import type { CandidateRepairApplicationPort } from "./candidateRepairApplicationPort.js";
+import {
+  type CandidateRepairApplicationPort,
+  isAllDeclinedTerminalReason,
+} from "./candidateRepairApplicationPort.js";
 import {
   QUIZ_JUDGE_MAX_ATTEMPTS,
   SOURCE_FIDELITY_MAX_ATTEMPTS,
@@ -503,6 +506,39 @@ const MAX_DISPUTED_REVIEW_SUPERSESSIONS = 1;
  */
 function disputedReviewSuccessorLabel(disputedReviewId: string): string {
   return `disputed-${disputedReviewId}`;
+}
+
+/**
+ * DURABLE EVIDENCE that this run already superseded `disputedReviewId` — the
+ * review-phase STARTED event `#reviewSuccessor` writes on the way into the
+ * panel, which names both the review-keyed successor label and the
+ * DISPUTED_REVIEW reason (R-290).
+ *
+ * WHY THE WALK NEEDS THIS AND NOT JUST "AN ALL-DECLINED ORDINAL". A dispute is a
+ * decision this loop makes in memory, and the ordinal it was made from is
+ * durably FAILED either way — so "FAILED all-declined" alone cannot tell an
+ * ordinal whose dispute WAS applied from one the run merely stepped over. Live
+ * Franklin (book-run-39a37d06) carries both: ordinal 8 died all-declined
+ * against review-1720d489… on code with no DISPUTED path at all and the run
+ * walked on to COMPLETE ordinal 10 against that same review, while ordinal 12
+ * died all-declined against review-3406164e… and DID mint
+ * `disputed-review-3406164e…-successor-1`. Re-applying on the first shape would
+ * buy a reader panel nobody asked for, spend the single supersession slot on it,
+ * and swap the review that the next ordinal's recorded attempts belong to — the
+ * very mismatch this lane exists to stop, three ordinals early.
+ *
+ * So the predicate is the EVENT, not the failure: an ordinal with no such event
+ * leaves the lane behaving exactly as it did before R-290.
+ */
+function hasDurableDisputedSupersession(
+  events: readonly BookRunEvent[],
+  disputedReviewId: string,
+): boolean {
+  const label = `;label=${disputedReviewSuccessorLabel(disputedReviewId)}-successor-`;
+  return events.some((event) => event.phase === "review"
+    && event.status === "STARTED"
+    && event.detail?.includes(label) === true
+    && event.detail.includes(";reason=DISPUTED_REVIEW"));
 }
 
 /** The R-179-style remedy clause for a DISPUTED review, appended to the repair
@@ -1439,39 +1475,184 @@ export class BookRunApplicationService {
       ? `predecessorReviewId=${review.value.reviewId}`
       : `predecessorError=${review.error.code}`)
       + (args.disputed === undefined ? "" : `;reason=${args.disputed}`);
+    const landing = await this.#successorLanding(input.bookId, runId, labelPrefix);
+    if (landing === undefined) {
+      return failed(
+        "BOOK_RUN_REVIEW_FAILED",
+        `canonical review successor budget exhausted after ${MAX_REVIEW_SUCCESSOR_ORDINALS} ordinals;`
+        + ` every ${labelPrefix} successor carries a stored ERROR review — the reader lane, not this book,`
+        + " is what needs fixing before another resume",
+      );
+    }
+    const started = await this.#event(
+      runId,
+      input.bookId,
+      "review",
+      "STARTED",
+      `action=REVIEW_SUCCESSOR;ordinal=${landing.ordinal};label=${landing.label};${predecessor}`,
+      identity(candidate),
+    );
+    if (!started.ok) return started;
+    console.error(
+      `[book-run] review-successor book=${input.bookId} run=${runId} ordinal=${landing.ordinal}/${MAX_REVIEW_SUCCESSOR_ORDINALS}`
+      + ` label=${landing.label} ${predecessor} action=REVIEW_SUCCESSOR`,
+    );
+    return exactReview(this.#dependencies, {
+      bookId: input.bookId,
+      sourceGitSha: input.sourceGitSha,
+      parentRunId: landing.parentRunId,
+      candidate,
+      attemptRoot: resolve(input.attemptRoot, landing.label),
+      signal: input.signal,
+    });
+  }
+
+  /**
+   * The successor ordinal a label space lands on next, and whether a verdict is
+   * ALREADY stored there.
+   *
+   * Lifted out of `#reviewSuccessor` unchanged — an ordinal whose stored review
+   * is an ERROR is spent (re-deriving it replays that ERROR with zero model
+   * calls and answers nothing) and is skipped; the first one that is not is
+   * where the panel runs. `undefined` = every ordinal in the space carries a
+   * stored ERROR.
+   *
+   * `replaying` is what the R-288 dispute bound needs and could not get from the
+   * return value of a panel it has already paid for: a STORED successor verdict
+   * costs nothing to re-read, so it must not be refused by a per-invocation
+   * supersession bound that exists to stop a run buying FRESH panels (R-290).
+   */
+  async #successorLanding(bookId: string, runId: string, labelPrefix: string): Promise<Readonly<{
+    ordinal: number;
+    label: string;
+    parentRunId: string;
+    replaying: boolean;
+  }> | undefined> {
     for (let ordinal = 1; ordinal <= MAX_REVIEW_SUCCESSOR_ORDINALS; ordinal += 1) {
       const label = `${labelPrefix}-successor-${ordinal}`;
       const parentRunId = derivedId(label, runId);
-      const stored = await this.#dependencies.reviews.get(input.bookId, derivedId("review", parentRunId));
+      const stored = await this.#dependencies.reviews.get(bookId, derivedId("review", parentRunId));
       if (stored.ok && stored.value.outcome === "ERROR") continue;
-      const started = await this.#event(
-        runId,
-        input.bookId,
-        "review",
-        "STARTED",
-        `action=REVIEW_SUCCESSOR;ordinal=${ordinal};label=${label};${predecessor}`,
-        identity(candidate),
-      );
-      if (!started.ok) return started;
-      console.error(
-        `[book-run] review-successor book=${input.bookId} run=${runId} ordinal=${ordinal}/${MAX_REVIEW_SUCCESSOR_ORDINALS}`
-        + ` label=${label} ${predecessor} action=REVIEW_SUCCESSOR`,
-      );
-      return exactReview(this.#dependencies, {
-        bookId: input.bookId,
-        sourceGitSha: input.sourceGitSha,
-        parentRunId,
-        candidate,
-        attemptRoot: resolve(input.attemptRoot, label),
-        signal: input.signal,
-      });
+      return Object.freeze({ ordinal, label, parentRunId, replaying: stored.ok });
     }
-    return failed(
-      "BOOK_RUN_REVIEW_FAILED",
-      `canonical review successor budget exhausted after ${MAX_REVIEW_SUCCESSOR_ORDINALS} ordinals;`
-      + ` every ${labelPrefix} successor carries a stored ERROR review — the reader lane, not this book,`
-      + " is what needs fixing before another resume",
+    return undefined;
+  }
+
+  /**
+   * Apply — or RE-apply — a DISPUTED review's supersession (R-288, R-290).
+   *
+   * ONE body for both call sites, because they must answer identically. The
+   * first is the ordinal that has just declined every chapter in front of it;
+   * the second is a LATER INVOCATION whose ordinal walk stepped over that same
+   * ordinal, now durably FAILED, and which has to reach the same verdict without
+   * the failure in front of it. A dispute is not a durable fork in the walk — it
+   * is a decision this loop made in memory — so replaying the walk without
+   * replaying the decision carried the loop to the NEXT ordinal holding the
+   * DISPUTED review, and the port refused the mismatch
+   * (REVIEW_REPAIR_COMPLETED_MISMATCH; live Franklin 2026-09-20 07:30Z).
+   *
+   * `reason` is the repair lane's OWN terminal message — from the error at the
+   * first call site, from the FAILED ordinal's durable terminal reason at the
+   * second — so both fail-closed answers are byte-identical to the one an
+   * operator has already read.
+   */
+  async #supersedeDisputedReview(args: Readonly<{
+    input: BookRunApplicationRequest;
+    runId: string;
+    candidate: CandidateSnapshot;
+    /** The disputed verdict itself, which the successor re-judges. */
+    review: Result<CanonicalReviewResult>;
+    disputedReviewId: string;
+    /** The repair ordinal that disclosed the dispute, and its durable run id. */
+    disputedOrdinal: number;
+    disputedRepairRunId: string;
+    /** That ordinal's terminal message (= its durable terminal reason). */
+    reason: string;
+    /**
+     * WHICH CALL SITE THIS IS, because only one of them may buy a panel.
+     * `DECLINING_ORDINAL` is the ordinal that has just declined, under the
+     * MAX_DISPUTED_REVIEW_SUPERSESSIONS bound. `ORDINAL_WALK_REPLAY` is a later
+     * invocation re-applying a supersession its own phase log records; a replay
+     * that found no stored successor is not a replay, and it fails closed rather
+     * than spending a reader panel on an ordinal it merely walked past (R-290).
+     */
+    origin: "DECLINING_ORDINAL" | "ORDINAL_WALK_REPLAY";
+    round: number;
+    roundCap: number;
+    ordinalCap: number;
+    supersessions: number;
+  }>): Promise<Result<Readonly<{ review: Result<CanonicalReviewResult>; supersessions: number }>>> {
+    const { input, runId, candidate } = args;
+    if (input.reconcileUnsettled !== true) {
+      // Fail closed exactly as before, with the remedy named (R-179).
+      return failed(REPAIR_OUTPUT_NO_CHANGE_CODE, args.reason + DISPUTED_REVIEW_REMEDY);
+    }
+    const labelPrefix = disputedReviewSuccessorLabel(args.disputedReviewId);
+    // A STORED successor verdict replays with zero model calls, and the bound
+    // exists to stop a run BUYING panels. Counting a replay against it would
+    // refuse the second invocation of every disputed run — the walk necessarily
+    // replays the dispute before it can reach anything new — so a replay is
+    // never refused. It still OCCUPIES the slot: the chain bound (a successor
+    // whose own ordinal declines in turn is not something another panel can
+    // settle) is what the counter enforces, and a resume must not be able to buy
+    // the fresh panel the first invocation was already refused. A replay can
+    // therefore push the counter ABOVE the bound (one review, one label, but a
+    // pre-R-290 run could record two ordinals against the same disputed review);
+    // every such replay costs nothing and a higher counter only makes a FRESH
+    // panel harder to buy, so the direction is safe.
+    const landing = await this.#successorLanding(input.bookId, runId, labelPrefix);
+    const replaying = landing?.replaying === true;
+    if (args.origin === "ORDINAL_WALK_REPLAY" && !replaying) {
+      // A REPLAY MAY ONLY REPLAY. The walk got here from durable evidence that
+      // this review was superseded once already, so the stored verdict is what
+      // it re-applies; if that verdict is gone (deleted, or its ordinal carries
+      // a stored ERROR and the landing moved past it), the honest answer is the
+      // ordinal's own terminal one. Buying a fresh panel here would hand a
+      // resume a reader roll the declining invocation already paid for, on bytes
+      // nothing has changed since.
+      return failed(
+        REPAIR_OUTPUT_NO_CHANGE_CODE,
+        `${args.reason}; repair ordinal ${args.disputedOrdinal} (run ${args.disputedRepairRunId}) superseded review`
+        + ` ${args.disputedReviewId} on an earlier invocation, but no stored successor verdict remains under ${labelPrefix}`
+        + "; a resume REPLAYS that supersession — it never buys a fresh reader panel for an ordinal it walked past"
+        + " — so restore that successor review or start a fresh run",
+      );
+    }
+    if (!replaying && args.supersessions >= MAX_DISPUTED_REVIEW_SUPERSESSIONS) {
+      return failed(
+        REPAIR_OUTPUT_NO_CHANGE_CODE,
+        `${args.reason}; this run already superseded one DISPUTED review with a fresh panel`
+        + ` and repair ordinal ${args.disputedOrdinal} (run ${args.disputedRepairRunId}) declined every chapter the successor named too`
+        + "; a reviewer and a writer that disagree twice in one run is not something another panel can settle"
+        + " — fix the reviewer or the brief, then start a fresh run",
+      );
+    }
+    const supersessions = args.supersessions + 1;
+    console.error(
+      `[book-run] review-repair book=${input.bookId} run=${runId} round=${args.round}/${args.roundCap}`
+      + ` ordinal=${args.disputedOrdinal}/${args.ordinalCap} action=DISPUTED_REVIEW`
+      + ` disputedReviewId=${args.disputedReviewId} failedRepairRunId=${args.disputedRepairRunId}`
+      + `;supersession=${supersessions}/${MAX_DISPUTED_REVIEW_SUPERSESSIONS}`
+      + (replaying ? ";replayed=true" : ""),
     );
+    // The candidate is UNCHANGED (the ordinal staged nothing), so the successor
+    // panel re-judges exactly what the disputed review judged.
+    //
+    // The label is keyed to the DISPUTED REVIEW, not to the ordinal that
+    // disclosed it: the declining ordinal is durably FAILED and the walk skips
+    // FAILED ordinals, so a later flagged resume disputing the SAME stored review
+    // arrives on a different ordinal — and must land on the same successor
+    // identity, where the stored verdict is replayed with zero model calls. That
+    // is the cross-invocation bound; see MAX_DISPUTED_REVIEW_SUPERSESSIONS.
+    const review = await this.#reviewSuccessor({
+      input,
+      runId,
+      candidate,
+      labelPrefix,
+      review: args.review,
+      disputed: "DISPUTED_REVIEW",
+    });
+    return { ok: true, value: Object.freeze({ review, supersessions }) };
   }
 
   /**
@@ -1542,6 +1723,17 @@ export class BookRunApplicationService {
      * Absent = today's behaviour exactly: every FAILED ordinal is spent.
      */
     forgivableTerminalReason?: (reason: string | undefined) => boolean;
+    /**
+     * R-290 — a FAILED ordinal whose terminal reason satisfies this predicate is
+     * still SPENT and still skipped, but the walk REPORTS the first one it
+     * stepped over (`disputedSkip`), because its failure was a decision the
+     * caller made IN MEMORY and has to make again.
+     *
+     * The walk is the only reader of run state here, so this costs nothing: the
+     * terminal reason is already in hand from the same read that classified the
+     * ordinal as spent.
+     */
+    disputedTerminalReason?: (reason: string | undefined) => boolean;
     /** The CHAPTERFLOW_* override an operator can raise when this lane exhausts,
      *  named verbatim in the exhaustion message (R-168). */
     budgetEnvVar?: string;
@@ -1550,7 +1742,16 @@ export class BookRunApplicationService {
      *  the message never tells an operator to set a value its own resolver would
      *  refuse. */
     budgetEnvRange?: string;
-  }>): Promise<Result<Readonly<{ label: string; ordinal: number; replaying: boolean }>>> {
+  }>): Promise<Result<Readonly<{
+    label: string;
+    ordinal: number;
+    replaying: boolean;
+    /** The FIRST spent ordinal this walk stepped over whose durable terminal
+     *  reason matched `disputedTerminalReason`, with that reason. One at a time,
+     *  on purpose: the caller re-applies it and restarts the walk past it, so a
+     *  run carrying several is re-applied in walk order. */
+    disputedSkip?: Readonly<{ ordinal: number; reason: string }>;
+  }>>> {
     /** Ordinals absorbed as infrastructure loss; each one raises the identity
      *  ceiling by one WITHOUT raising the lane's spend budget.
      *
@@ -1562,6 +1763,8 @@ export class BookRunApplicationService {
      *  reasons so forgiveness is a property of the RUN STATE, not of which call
      *  happens to walk it. */
     let forgiven = 0;
+    /** R-290: the first spent ordinal that died of the caller's disputed reason. */
+    let disputedSkip: Readonly<{ ordinal: number; reason: string }> | undefined;
     if (walk.forgivableTerminalReason !== undefined) {
       for (let below = 1; below < walk.firstOrdinal && forgiven < MAX_FORGIVEN_INFRA_ORDINALS; below += 1) {
         const priorBelow = await this.#dependencies.runStore.readRun(
@@ -1579,14 +1782,22 @@ export class BookRunApplicationService {
         if (prior.error.code !== "NOT_FOUND") {
           return failed(walk.errorCode, `${prior.error.code}:${prior.error.message}`);
         }
-        return { ok: true, value: Object.freeze({ label, ordinal, replaying: false }) };
+        return { ok: true, value: Object.freeze({ label, ordinal, replaying: false, ...(disputedSkip === undefined ? {} : { disputedSkip }) }) };
       }
       if (prior.value.status !== "FAILED") {
         // R-169: a COMPLETED ordinal is a REPLAY — the port re-reads its durable
         // successor with zero model calls — and the caller needs to know that
         // BEFORE it calls the port, so the phase log can say so instead of
         // recording another full STARTED/COMPLETED repair that never happened.
-        return { ok: true, value: Object.freeze({ label, ordinal, replaying: prior.value.status === "COMPLETED" }) };
+        return {
+          ok: true,
+          value: Object.freeze({
+            label,
+            ordinal,
+            replaying: prior.value.status === "COMPLETED",
+            ...(disputedSkip === undefined ? {} : { disputedSkip }),
+          }),
+        };
       }
       const forgivable = forgiven < MAX_FORGIVEN_INFRA_ORDINALS
         && walk.forgivableTerminalReason?.(prior.value.terminalReason) === true;
@@ -1596,6 +1807,10 @@ export class BookRunApplicationService {
         + (forgivable ? `;forgiven=${forgiven + 1}/${MAX_FORGIVEN_INFRA_ORDINALS};reason=${prior.value.terminalReason ?? ""}` : ""),
       );
       if (forgivable) forgiven += 1;
+      const reason = prior.value.terminalReason;
+      if (disputedSkip === undefined && reason !== undefined && walk.disputedTerminalReason?.(reason) === true) {
+        disputedSkip = Object.freeze({ ordinal, reason });
+      }
     }
     // R-168: 64 live invocations died on this exact string with no remedy in it.
     // The escape hatch exists (each lane's CHAPTERFLOW_* override); it just never
@@ -2590,6 +2805,9 @@ export class BookRunApplicationService {
      *  and how the bound holds across resumes. */
     let disputedSupersessions = 0;
     let reviewRepairNote = "";
+    /** ONE spelling of the lane's identity label, so the walk, the dispute
+     *  re-application and the run ids it derives cannot drift apart. */
+    const reviewRepairLabel = (ordinal: number): string => `review-repair-${ordinal}`;
     while (reviewRepair !== undefined && review.ok && review.value.outcome === "FAIL") {
       if (reviewRepairRounds >= reviewRepairCap) {
         reviewRepairNote = `; unresolved after ${reviewRepairRounds} of ${reviewRepairCap} review-repair round(s) (cap reached)`
@@ -2615,7 +2833,13 @@ export class BookRunApplicationService {
         observedAt: walkAt.value,
         firstOrdinal: nextReviewRepairOrdinal,
         maxOrdinal: reviewRepairOrdinalCap,
-        label: (ordinal) => `review-repair-${ordinal}`,
+        label: reviewRepairLabel,
+        // R-290: a spent ordinal that died of an ALL-DECLINED repair disputed the
+        // review the loop is holding right now, on the invocation that spent it.
+        // The walk steps over it either way; reporting it is what lets the loop
+        // re-apply that dispute instead of carrying the disputed review into the
+        // next ordinal, which was executed against the successor's verdict.
+        disputedTerminalReason: isAllDeclinedTerminalReason,
         // The ORDINAL space is what exhausts here, so the remedy named is the
         // ordinal dial. Naming the ROUND dial sent an operator whose identities
         // were spent to raise a cap that bounds spend and would not move the wall.
@@ -2632,6 +2856,81 @@ export class BookRunApplicationService {
           identity(candidate),
         );
         return chosen;
+      }
+      // R-290 — RE-APPLY A DISPUTE THE WALK JUST REPLAYED PAST.
+      //
+      // Before this ordinal is spent, because the dispute happened BEFORE it: on
+      // the invocation that declined, the supersession is what produced the
+      // verdict this ordinal was then executed against. Skipping the decision
+      // and keeping the disputed review is what handed the port a targeted
+      // chapter set the completed run's attempts could not match.
+      const disputedSkip = chosen.value.disputedSkip;
+      const disputedCandidateReviewId = review.value.reviewId;
+      // THE TRIGGER IS TWO PIECES OF DURABLE EVIDENCE, BOTH REQUIRED.
+      //
+      // (1) The skipped ordinal ran against the review the loop is holding right
+      // now — its own repair STARTED event names that failedReviewId — so a
+      // resume arriving along a different path cannot supersede the wrong
+      // verdict. (2) This run ALREADY superseded that review once: a review
+      // STARTED event under the review-keyed successor label with
+      // reason=DISPUTED_REVIEW. Without (2), "FAILED all-declined" is just a
+      // dead ordinal the run stepped over (live Franklin ordinal 8), and
+      // re-applying there buys an unasked-for panel and swaps the review the
+      // NEXT ordinal's recorded attempts belong to; see
+      // `hasDurableDisputedSupersession`. When either is absent the lane behaves
+      // exactly as it did before R-290.
+      //
+      // BOTH READ `priorEvents`, WHICH IS POPULATED ONLY ON A RESUME
+      // (`input.resumeRunId !== undefined`; see where it is read). That is not
+      // an accident this relies on silently: a fresh runId has no ordinals to
+      // walk, so there is nothing to re-apply — and a future caller that
+      // re-drove an existing runId WITHOUT resumeRunId would find no evidence
+      // and degrade to the pre-R-290 behaviour (the mismatch), never to
+      // something looser.
+      if (disputedSkip !== undefined
+        && priorEvents.some((phaseEvent) => (
+          phaseEvent.phase === "repair"
+          && phaseEvent.status === "STARTED"
+          && phaseEvent.detail?.includes(
+            `;label=${reviewRepairLabel(disputedSkip.ordinal)};failedReviewId=${disputedCandidateReviewId};`,
+          ) === true
+        ))
+        && hasDurableDisputedSupersession(priorEvents, disputedCandidateReviewId)) {
+        const applied = await this.#supersedeDisputedReview({
+          input,
+          runId,
+          candidate,
+          review,
+          disputedReviewId: disputedCandidateReviewId,
+          disputedOrdinal: disputedSkip.ordinal,
+          disputedRepairRunId: derivedId(`${reviewRepairLabel(disputedSkip.ordinal)}-run`, runId),
+          reason: disputedSkip.reason,
+          origin: "ORDINAL_WALK_REPLAY",
+          round: reviewRepairRounds,
+          roundCap: reviewRepairCap,
+          ordinalCap: reviewRepairOrdinalCap,
+          supersessions: disputedSupersessions,
+        });
+        if (!applied.ok) {
+          await this.#event(
+            runId,
+            input.bookId,
+            "repair",
+            "FAILED",
+            `action=REVIEW_REPAIR_DISPUTE_REPLAY;ordinal=${disputedSkip.ordinal}`
+            + `;${applied.error.code}:${applied.error.message}`,
+            identity(candidate),
+          );
+          return applied;
+        }
+        review = applied.value.review;
+        disputedSupersessions = applied.value.supersessions;
+        // Restart the walk PAST the ordinal just re-applied — it is terminal and
+        // its decision is now made — so the loop can neither re-apply it nor
+        // spin on it, and a run carrying several disputes re-applies them in
+        // walk order. Nothing was spent: no round, no ordinal, no model call.
+        nextReviewRepairOrdinal = disputedSkip.ordinal + 1;
+        continue;
       }
       reviewRepairRounds += 1;
       const ordinal = chosen.value.ordinal;
@@ -2731,45 +3030,27 @@ export class BookRunApplicationService {
         // moves, no chapter is marked passed, and the successor review is itself a
         // full panel whose FAIL is as binding as its predecessor's.
         if (repairedCandidate.error.code === REPAIR_OUTPUT_NO_CHANGE_CODE) {
-          const disputedRepairRunId = derivedId(`${label}-run`, runId);
-          if (input.reconcileUnsettled !== true) {
-            // Fail closed exactly as before, with the remedy named (R-179).
-            return failed(repairedCandidate.error.code, repairedCandidate.error.message + DISPUTED_REVIEW_REMEDY);
-          }
-          if (disputedSupersessions >= MAX_DISPUTED_REVIEW_SUPERSESSIONS) {
-            return failed(
-              repairedCandidate.error.code,
-              `${repairedCandidate.error.message}; this run already superseded one DISPUTED review with a fresh panel`
-              + ` and repair ordinal ${ordinal} (run ${disputedRepairRunId}) declined every chapter the successor named too`
-              + "; a reviewer and a writer that disagree twice in one run is not something another panel can settle"
-              + " — fix the reviewer or the brief, then start a fresh run",
-            );
-          }
-          disputedSupersessions += 1;
-          console.error(
-            `[book-run] review-repair book=${input.bookId} run=${runId} round=${reviewRepairRounds}/${reviewRepairCap}`
-            + ` ordinal=${ordinal}/${reviewRepairOrdinalCap} action=DISPUTED_REVIEW`
-            + ` disputedReviewId=${failedReviewId} failedRepairRunId=${disputedRepairRunId}`
-            + `;supersession=${disputedSupersessions}/${MAX_DISPUTED_REVIEW_SUPERSESSIONS}`,
-          );
-          // The candidate is UNCHANGED (the ordinal staged nothing), so the
-          // successor panel re-judges exactly what the disputed review judged.
-          //
-          // The label is keyed to the DISPUTED REVIEW, not to `label` (this
-          // ordinal's own): the declining ordinal is durably FAILED and the walk
-          // skips FAILED ordinals, so a later flagged resume disputing the SAME
-          // stored review arrives on a different ordinal — and must land on the
-          // same successor identity, where the stored verdict is replayed with
-          // zero model calls. That is the cross-invocation bound; see
-          // MAX_DISPUTED_REVIEW_SUPERSESSIONS.
-          review = await this.#reviewSuccessor({
+          // Same body as the replay above (#supersedeDisputedReview): what a
+          // resume re-applies has to be what this invocation applied, and the
+          // durable terminal reason the resume reads is this very message.
+          const applied = await this.#supersedeDisputedReview({
             input,
             runId,
             candidate,
-            labelPrefix: disputedReviewSuccessorLabel(failedReviewId),
             review,
-            disputed: "DISPUTED_REVIEW",
+            disputedReviewId: failedReviewId,
+            disputedOrdinal: ordinal,
+            disputedRepairRunId: derivedId(`${label}-run`, runId),
+            reason: repairedCandidate.error.message,
+            origin: "DECLINING_ORDINAL",
+            round: reviewRepairRounds,
+            roundCap: reviewRepairCap,
+            ordinalCap: reviewRepairOrdinalCap,
+            supersessions: disputedSupersessions,
           });
+          if (!applied.ok) return applied;
+          review = applied.value.review;
+          disputedSupersessions = applied.value.supersessions;
           continue;
         }
         return repairedCandidate;
