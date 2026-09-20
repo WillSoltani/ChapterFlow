@@ -193,6 +193,12 @@ export type BookRunHarness = Readonly<{
 export type BookRunHarnessOptions = Readonly<{
   /** Fail every review-lane repair with this code. */
   repairFails?: string;
+  /** Fail the Nth review-lane repair CALL with this code, in call order; an
+   *  `undefined` entry (or a call past the end of the list) falls back to
+   *  `repairFails` and then to succeeding. A case where the repair lane must
+   *  DECLINE once and then work — a disputed review whose successor FAILs with
+   *  real blockers (R-288) — needs exactly that. */
+  repairFailsPerCall?: readonly (string | undefined)[];
   /** Fail every QC-lane repair with this code, driving its run FAILED first —
    *  exactly what the real port does on a model/workflow failure. */
   qcRepairFails?: string;
@@ -466,16 +472,20 @@ export async function buildBookRunHarness(
     if (created.value.status !== "RUNNING") {
       return { ok: false as const, error: { code: "REVIEW_REPAIR_RUN_TERMINAL", message: `review-repair run is ${created.value.status}` } };
     }
-    if (options.repairFails !== undefined) {
+    // Call-indexed first (repairCalls was pushed at entry, so this call is the
+    // last element), then the blanket option. A REPLAYED ordinal returned above
+    // without reaching here, exactly as it does in the real port.
+    const scriptedFailure = options.repairFailsPerCall?.[repairCalls.length - 1] ?? options.repairFails;
+    if (scriptedFailure !== undefined) {
       const failedRun = await runStore.finishRun({
         bookId: book,
         runId: request.repairRunId,
         status: "FAILED",
         finishedAt: context.clock.now(),
-        reason: options.repairFails,
+        reason: scriptedFailure,
       });
       assert.equal(failedRun.ok, true, JSON.stringify(failedRun));
-      return { ok: false as const, error: { code: options.repairFails, message: "scripted repair failure" } };
+      return { ok: false as const, error: { code: scriptedFailure, message: "scripted repair failure" } };
     }
     const existing = successors.get(request.successorCandidateId);
     if (existing) return { ok: true as const, value: { successor: existing, failedReviewId: request.failedReviewId, targetChapterNumbers: [1], replayed: true } };
