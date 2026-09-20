@@ -437,8 +437,114 @@ export const MAX_REVIEW_REPAIR_ROUNDS = 2;
  * zero model calls, so this ceiling bounds identities, never spend — the round
  * cap is what bounds spend. Exhaustion is NOT a pass: it fails closed with the
  * ceiling named.
+ *
+ * The DEFAULT, not the ceiling: see resolveReviewRepairOrdinals below.
  */
 export const MAX_REVIEW_REPAIR_ORDINALS = 20;
+
+/**
+ * The repair port's terminal code for an ordinal in which EVERY targeted chapter
+ * came back byte-identical ("replacement did not change chapter <n>", naming the
+ * first one).
+ *
+ * READ THE PORT BEFORE TRUSTING THAT SENTENCE. This code means "all declined"
+ * only because `#repairChapters` now records each unchanged-with-blockers chapter
+ * in `declined`, finishes the loop, and answers this code AFTER it from
+ * `if (replacements.size === 0 && declined.length > 0)` — i.e. no chapter in the
+ * ordinal produced an accepted change. That post-loop check arrived with the
+ * REPAIR_CHAPTER_DECLINED change (PR #573), which THIS branch is stacked on.
+ * Before it, the port returned this code from INSIDE the per-chapter loop at the
+ * FIRST unchanged chapter, so a multi-chapter ordinal could carry it while the
+ * writer had already repaired earlier chapters and had never been shown the later
+ * ones. Superseding a review on that weaker premise would hand a fresh panel a
+ * candidate still carrying defects the writer had conceded — so if this file is
+ * ever rebased off #573, this branch's premise is gone and the dispute must be
+ * gated on an all-declined signal again, not on this code alone.
+ *
+ * The neighbouring no-change codes are deliberately NOT included: the floor-only
+ * REPAIR_NO_CHANGE_JUSTIFIED (no named defect was left unfixed, so there is no
+ * finding to dispute) and every model/validation failure (a writer that could not
+ * answer has said nothing about the page).
+ */
+const REPAIR_OUTPUT_NO_CHANGE_CODE = "REPAIR_OUTPUT_NO_CHANGE";
+
+/**
+ * How many DISPUTED reviews one flagged invocation may supersede: ONE.
+ *
+ * A dispute is the reviewer and the writer disagreeing about whether a defect is
+ * on the page (R-288). One fresh panel settles that — it re-reads the same
+ * candidate and either confirms the finding or does not. If the SUCCESSOR's own
+ * repair ordinal is all-declined in turn, the disagreement is systematic and no
+ * further panel is evidence: the run fails closed naming both. Without this bound
+ * a reviewer that keeps filing unrepairable findings would alternate
+ * panel/decline for as long as the round cap allowed.
+ *
+ * ACROSS invocations this counter resets, so it is NOT what bounds a resume —
+ * `disputedReviewSuccessorLabel` is. The declining ordinal is written durably
+ * FAILED and the walk skips FAILED ordinals, so a flagged resume necessarily
+ * spends a FRESH ordinal; if the successor label were keyed to that ordinal, each
+ * resume would derive a brand-new successor identity and buy another independent
+ * panel roll on byte-identical bytes — best-of-N against a nondeterministic
+ * reviewer, once per remaining ordinal, and the operator knob below would pay for
+ * up to 50 of them. Keying the label to the DISPUTED REVIEW instead makes the
+ * second resume re-derive the SAME label, find the stored successor verdict, and
+ * replay it with ZERO model calls. One panel per disputed review, for the life of
+ * the run — not one per resume.
+ */
+const MAX_DISPUTED_REVIEW_SUPERSESSIONS = 1;
+
+/**
+ * The successor label space a DISPUTED review owns — keyed to the REVIEW, never
+ * to the repair ordinal that happened to disclose the dispute. See
+ * MAX_DISPUTED_REVIEW_SUPERSESSIONS for why that is the whole cross-invocation
+ * bound. It cannot collide with the lane labels ("review", "review-repair-<n>",
+ * and their own "-successor-<n>" spaces), and a review id is already a stable
+ * derived id, so the label is stable for as long as the disputed review is.
+ */
+function disputedReviewSuccessorLabel(disputedReviewId: string): string {
+  return `disputed-${disputedReviewId}`;
+}
+
+/** The R-179-style remedy clause for a DISPUTED review, appended to the repair
+ *  lane's own terminal message. It names the flag AND the case, because the
+ *  operator reading `replacement did not change chapter 14` cannot otherwise tell
+ *  a declining writer from a broken one.
+ *
+ *  This clause is the operator's sole evidence for granting consent, so it says
+ *  only what the code establishes: every chapter this ordinal put in front of the
+ *  writer came back unchanged and none of them was accepted (see
+ *  REPAIR_OUTPUT_NO_CHANGE_CODE, and the port's post-loop check it depends on). */
+const DISPUTED_REVIEW_REMEDY = "; every chapter this repair ordinal put in front of the writer came back unchanged,"
+  + " so this FAIL review is DISPUTED"
+  + " — a writer handed the chapters the blockers point at and finding nothing to change is uncertainty about the finding,"
+  + " not a verdict about the book"
+  + " — resume with --reconcile-unsettled to supersede that review with ONE fresh panel"
+  + " instead of spending another repair ordinal on it";
+
+/** Resolve the review-repair ORDINAL ceiling, honouring an optional
+ *  CHAPTERFLOW_REVIEW_REPAIR_ORDINALS override — same fail-closed contract and
+ *  same shape as every other budget in this file (resolveBudgetEnv): absent or
+ *  empty keeps the compiled default, anything else must be an integer in range,
+ *  and a malformed value is refused at the INPUT boundary before any model work.
+ *
+ *  WHY AN OPERATOR NEEDS IT. Ordinals are IDENTITIES, and a single bad stored
+ *  review can burn them at no fault of the book: the live Franklin run
+ *  (book-run-39a37d06) spent ordinals 12, 13 and 14 in four minutes against one
+ *  review whose blocker mis-attributed ch09 material to ch14, reaching 14 of 20
+ *  with eleven rounds of real repairs already banked. A fresh run recompiles
+ *  from cached packs, NOT from repaired chapters, so exhausting the ordinal space
+ *  throws that work away. Extending the identity space costs one run-state read
+ *  per skipped ordinal and zero model calls — the ROUND cap
+ *  (CHAPTERFLOW_REVIEW_REPAIR_ROUNDS) is still what bounds spend, and it is
+ *  unchanged by this dial.
+ *
+ *  The default stays 20: a lane that keeps failing must not mint ids forever,
+ *  and raising the ceiling is an operator decision about one specific book.
+ *  Bounded 1-50, matching the other identity ceiling
+ *  (CHAPTERFLOW_OPERATOR_COMPILE_RETRIES). */
+export function resolveReviewRepairOrdinals(): number {
+  return resolveBudgetEnv("CHAPTERFLOW_REVIEW_REPAIR_ORDINALS", MAX_REVIEW_REPAIR_ORDINALS, 1, 50);
+}
 
 /** Resolve the review-repair cap, honouring an optional
  *  CHAPTERFLOW_REVIEW_REPAIR_ROUNDS override — the same shape as the chapter
@@ -1295,6 +1401,14 @@ export class BookRunApplicationService {
    * 11ac was: without the flag the stored uncertainty replays fail-closed and the
    * caller's message names the flag as the remedy (R-179). Exhaustion of the
    * ordinal space is NOT a pass — it fails closed with the ceiling named.
+   *
+   * `reviewIsUncertain` is not the whole eligibility set. A CALLER that has
+   * established unsettledness this predicate cannot see passes `disputed` (R-288:
+   * every chapter the repair ordinal put in front of the writer came back
+   * unchanged). That is a SIBLING condition, never a widening of the predicate —
+   * a FAIL verdict is still ineligible here, and the one caller allowed to say
+   * otherwise is holding the repair lane's own refusal of that review as its
+   * evidence.
    */
   async #reviewSuccessor(args: Readonly<{
     input: BookRunApplicationRequest;
@@ -1303,16 +1417,28 @@ export class BookRunApplicationService {
     /** The lane's own label, so the base review and every review-repair round
      *  walk DISJOINT successor spaces ("review-successor-1",
      *  "review-repair-2-successor-1", …). Ordinal 1 of the base lane keeps the
-     *  historical 11ac id exactly, so a book already carrying one resumes onto it. */
+     *  historical 11ac id exactly, so a book already carrying one resumes onto it.
+     *
+     *  The R-288 dispute caller passes a REVIEW-keyed prefix instead
+     *  (disputedReviewSuccessorLabel), precisely so its space is NOT per-ordinal:
+     *  it wants a later resume to land back on the stored verdict. */
     labelPrefix: string;
     review: Result<CanonicalReviewResult>;
+    /** A reason token the CALLER has established for a review this method's own
+     *  predicate cannot see as unsettled (R-288: DISPUTED_REVIEW). It travels into
+     *  the durable event detail and the stderr line, so a supersession granted on
+     *  a caller's evidence is never anonymous. Absent = the 11ac/R-165/R-186
+     *  uncertainty set, exactly as before. */
+    disputed?: string;
   }>): Promise<Result<CanonicalReviewResult>> {
     const { input, runId, candidate, labelPrefix } = args;
     const review = args.review;
-    if (input.reconcileUnsettled !== true || !reviewIsUncertain(review)) return review;
-    const predecessor = review.ok
+    if (input.reconcileUnsettled !== true) return review;
+    if (args.disputed === undefined && !reviewIsUncertain(review)) return review;
+    const predecessor = (review.ok
       ? `predecessorReviewId=${review.value.reviewId}`
-      : `predecessorError=${review.error.code}`;
+      : `predecessorError=${review.error.code}`)
+      + (args.disputed === undefined ? "" : `;reason=${args.disputed}`);
     for (let ordinal = 1; ordinal <= MAX_REVIEW_SUCCESSOR_ORDINALS; ordinal += 1) {
       const label = `${labelPrefix}-successor-${ordinal}`;
       const parentRunId = derivedId(label, runId);
@@ -1419,6 +1545,11 @@ export class BookRunApplicationService {
     /** The CHAPTERFLOW_* override an operator can raise when this lane exhausts,
      *  named verbatim in the exhaustion message (R-168). */
     budgetEnvVar?: string;
+    /** That override's documented range, printed with it. Defaults to the spend
+     *  dials' 1-10; an IDENTITY ceiling (review-repair ordinals) passes 1-50, so
+     *  the message never tells an operator to set a value its own resolver would
+     *  refuse. */
+    budgetEnvRange?: string;
   }>): Promise<Result<Readonly<{ label: string; ordinal: number; replaying: boolean }>>> {
     /** Ordinals absorbed as infrastructure loss; each one raises the identity
      *  ceiling by one WITHOUT raising the lane's spend budget.
@@ -1473,7 +1604,9 @@ export class BookRunApplicationService {
       walk.errorCode,
       `${walk.lane} successor budget exhausted after ${walk.maxOrdinal} ordinals;`
       + ` every ${walk.lane} ordinal is spent`
-      + (walk.budgetEnvVar === undefined ? "" : `; raise ${walk.budgetEnvVar} (1-10) or start a fresh run`),
+      + (walk.budgetEnvVar === undefined
+        ? ""
+        : `; raise ${walk.budgetEnvVar} (${walk.budgetEnvRange ?? "1-10"}) or start a fresh run`),
     );
   }
 
@@ -2004,6 +2137,7 @@ export class BookRunApplicationService {
     // an input error and is answered like one, before any work is spent.
     let qcRepairBudget: number;
     let reviewRepairCap: number;
+    let reviewRepairOrdinalCap: number;
     let qcJudgeBudget: number;
     let operatorCompileRetryCap: number;
     let rubricBudget: number;
@@ -2011,6 +2145,7 @@ export class BookRunApplicationService {
     try {
       qcRepairBudget = resolveQcRepairRuns();
       reviewRepairCap = resolveReviewRepairRounds();
+      reviewRepairOrdinalCap = resolveReviewRepairOrdinals();
       qcJudgeBudget = resolveQcJudgeRuns();
       operatorCompileRetryCap = resolveOperatorCompileRetries();
       rubricBudget = resolveRubricRuns();
@@ -2450,6 +2585,10 @@ export class BookRunApplicationService {
     /** Where the next round's ordinal walk starts. Advances past every ordinal
      *  this run has already used, so one run never re-enters its own link. */
     let nextReviewRepairOrdinal = 1;
+    /** Disputed reviews this invocation has superseded (R-288). Bounded by
+     *  MAX_DISPUTED_REVIEW_SUPERSESSIONS; see that constant for why one is enough
+     *  and how the bound holds across resumes. */
+    let disputedSupersessions = 0;
     let reviewRepairNote = "";
     while (reviewRepair !== undefined && review.ok && review.value.outcome === "FAIL") {
       if (reviewRepairRounds >= reviewRepairCap) {
@@ -2475,9 +2614,13 @@ export class BookRunApplicationService {
         runId,
         observedAt: walkAt.value,
         firstOrdinal: nextReviewRepairOrdinal,
-        maxOrdinal: MAX_REVIEW_REPAIR_ORDINALS,
+        maxOrdinal: reviewRepairOrdinalCap,
         label: (ordinal) => `review-repair-${ordinal}`,
-        budgetEnvVar: "CHAPTERFLOW_REVIEW_REPAIR_ROUNDS",
+        // The ORDINAL space is what exhausts here, so the remedy named is the
+        // ordinal dial. Naming the ROUND dial sent an operator whose identities
+        // were spent to raise a cap that bounds spend and would not move the wall.
+        budgetEnvVar: "CHAPTERFLOW_REVIEW_REPAIR_ORDINALS",
+        budgetEnvRange: "1-50",
       });
       if (!chosen.ok) {
         await this.#event(
@@ -2529,7 +2672,7 @@ export class BookRunApplicationService {
         // durable identity, and a spent ordinal left by an earlier operator round
         // pushes the second ahead of the first.
         `[book-run] review-repair book=${input.bookId} run=${runId} round=${reviewRepairRounds}/${reviewRepairCap}`
-        + ` ordinal=${ordinal}/${MAX_REVIEW_REPAIR_ORDINALS} label=${label}`
+        + ` ordinal=${ordinal}/${reviewRepairOrdinalCap} label=${label}`
         + ` failedReviewId=${failedReviewId} action=${replaying ? "REVIEW_REPAIR_REPLAY" : "REVIEW_REPAIR"}`,
       );
       const repairedCandidate = await reviewRepair.runFromReviewFail({
@@ -2562,6 +2705,73 @@ export class BookRunApplicationService {
           `action=REVIEW_REPAIR;round=${reviewRepairRounds};${repairedCandidate.error.code}:${repairedCandidate.error.message}`,
           identity(candidate),
         );
+        // R-288 — A DISPUTED REVIEW IS NOT A REPAIR FAILURE.
+        //
+        // REPAIR_OUTPUT_NO_CHANGE means every chapter this ordinal put in front of
+        // the writer came back byte-identical and none was accepted (the port's
+        // post-loop all-declined check from #573, which this branch is stacked on
+        // — see REPAIR_OUTPUT_NO_CHANGE_CODE). Two parties who both read the
+        // candidate disagree about whether the defect is on the page, and the
+        // repair lane has no move left: the writer will decline the identical
+        // brief on every later ordinal.
+        //
+        // Live Franklin (book-run-39a37d06): the baseline reviewer's single BLOCKER
+        // placed ch09 material ("Society of the Free and Easy", notes dated May
+        // 19th, 1731) in ch14's quiz q03. ch14 contains neither string; its q03 is
+        // about the Board of Trade rejecting the union plan. The writer, handed the
+        // real ch14, returned it unchanged — correctly — and ordinals 12, 13 and 14
+        // were spent on that one stored FAIL in four minutes, 14 of 20 gone with
+        // eleven rounds of real repairs banked and a fresh run unable to inherit
+        // any of them.
+        //
+        // So the REVIEW is what gets re-judged, not the book: one fresh panel
+        // (baseline + reader seats) re-reads the SAME candidate and either confirms
+        // the finding — in which case the loop repairs the new findings normally —
+        // or does not. Nothing is laundered: no verdict is rewritten, no gate or bar
+        // moves, no chapter is marked passed, and the successor review is itself a
+        // full panel whose FAIL is as binding as its predecessor's.
+        if (repairedCandidate.error.code === REPAIR_OUTPUT_NO_CHANGE_CODE) {
+          const disputedRepairRunId = derivedId(`${label}-run`, runId);
+          if (input.reconcileUnsettled !== true) {
+            // Fail closed exactly as before, with the remedy named (R-179).
+            return failed(repairedCandidate.error.code, repairedCandidate.error.message + DISPUTED_REVIEW_REMEDY);
+          }
+          if (disputedSupersessions >= MAX_DISPUTED_REVIEW_SUPERSESSIONS) {
+            return failed(
+              repairedCandidate.error.code,
+              `${repairedCandidate.error.message}; this run already superseded one DISPUTED review with a fresh panel`
+              + ` and repair ordinal ${ordinal} (run ${disputedRepairRunId}) declined every chapter the successor named too`
+              + "; a reviewer and a writer that disagree twice in one run is not something another panel can settle"
+              + " — fix the reviewer or the brief, then start a fresh run",
+            );
+          }
+          disputedSupersessions += 1;
+          console.error(
+            `[book-run] review-repair book=${input.bookId} run=${runId} round=${reviewRepairRounds}/${reviewRepairCap}`
+            + ` ordinal=${ordinal}/${reviewRepairOrdinalCap} action=DISPUTED_REVIEW`
+            + ` disputedReviewId=${failedReviewId} failedRepairRunId=${disputedRepairRunId}`
+            + `;supersession=${disputedSupersessions}/${MAX_DISPUTED_REVIEW_SUPERSESSIONS}`,
+          );
+          // The candidate is UNCHANGED (the ordinal staged nothing), so the
+          // successor panel re-judges exactly what the disputed review judged.
+          //
+          // The label is keyed to the DISPUTED REVIEW, not to `label` (this
+          // ordinal's own): the declining ordinal is durably FAILED and the walk
+          // skips FAILED ordinals, so a later flagged resume disputing the SAME
+          // stored review arrives on a different ordinal — and must land on the
+          // same successor identity, where the stored verdict is replayed with
+          // zero model calls. That is the cross-invocation bound; see
+          // MAX_DISPUTED_REVIEW_SUPERSESSIONS.
+          review = await this.#reviewSuccessor({
+            input,
+            runId,
+            candidate,
+            labelPrefix: disputedReviewSuccessorLabel(failedReviewId),
+            review,
+            disputed: "DISPUTED_REVIEW",
+          });
+          continue;
+        }
         return repairedCandidate;
       }
       if (repairedCandidate.value.replayed) {
