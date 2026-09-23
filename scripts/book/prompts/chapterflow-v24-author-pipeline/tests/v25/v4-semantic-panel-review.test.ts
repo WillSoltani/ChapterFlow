@@ -335,30 +335,107 @@ requiredTest("semantic panel is ERROR when a reader run fails to execute", async
   assert.ok(evaluated.value.issues.some((issue) => issue.code === "SEMANTIC_PANEL_READER_FAILED"), JSON.stringify(evaluated.value.issues));
 });
 
-requiredTest("semantic panel FAILS with a BLOCKER when a reader flags an on-page blocker", async () => {
-  const candidate = twoChapterCandidate();
-  // One seat of ch1 raises an on-page blocker; the union blocks (fail-closed).
-  const scripted = scriptedRunner([
-    readerContent({
-      recommendation: "BLOCK",
-      blockingFindings: [{ category: "internal_contradiction", unit: "deep read", problem: "claims A then not-A on the same page", evidenceSpans: [] }],
-    }),
-    readerContent(),
-    readerContent(),
-    readerContent(),
-    readerContent(),
-    readerContent(),
-  ]);
+/** A seat read that raises exactly one on-page blocking finding. */
+function blockingRead(category: string, unit: string, problem: string): Record<string, unknown> {
+  return readerContent({
+    recommendation: "BLOCK",
+    blockingFindings: [{ category, unit, problem, evidenceSpans: [] }],
+  });
+}
+
+async function evaluateLanes(lanes: Readonly<Record<string, readonly unknown[]>>): Promise<CanonicalReviewEvaluation> {
+  const scripted = laneScriptedRunner(lanes);
   const evaluator = new SemanticPanelReviewEvaluator({
     baseline: baselineStub({ outcome: "PASS", issues: [] }),
     runner: scripted.runner,
   });
-  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+  const evaluated = await evaluator.evaluate({ candidate: twoChapterCandidate(), taskContext: taskContext() });
   assert.ok(evaluated.ok, JSON.stringify(evaluated));
-  assert.equal(evaluated.value.outcome, "FAIL");
-  assert.ok(evaluated.value.issues.some(
-    (issue) => issue.code === "READER.BLOCKING.internal_contradiction" && issue.severity === "BLOCKER",
-  ), JSON.stringify(evaluated.value.issues));
+  return evaluated.value;
+}
+
+// Changed by owner decision D2 (A2): this case used to assert the union rule
+// ("semantic panel FAILS with a BLOCKER when a reader flags an on-page blocker":
+// one seat's blocker failed the review). A single seat's finding is now kept in
+// the record as a WARN and does not gate.
+requiredTest("D2: ONE seat's on-page blocker is recorded as WARN READER.SINGLE_SEAT.<category> and the panel PASSES", async () => {
+  const evaluated = await evaluateLanes({
+    "ch01/seat-cold": [blockingRead("internal_contradiction", "deep read", "claims A then not-A on the same page")],
+  });
+  assert.equal(evaluated.outcome, "PASS", JSON.stringify(evaluated.issues));
+  assert.equal(evaluated.issues.filter((issue) => issue.severity === "BLOCKER").length, 0, JSON.stringify(evaluated.issues));
+  const single = evaluated.issues.filter((issue) => issue.code === "READER.SINGLE_SEAT.internal_contradiction");
+  assert.deepEqual(single, [{
+    code: "READER.SINGLE_SEAT.internal_contradiction",
+    severity: "WARN",
+    message: "claims A then not-A on the same page",
+    location: "ch01/seat-cold/deep read",
+  }], JSON.stringify(evaluated.issues));
+});
+
+requiredTest("D2: TWO seats raising the same category on the same chapter FAIL the panel with both as BLOCKER READER.BLOCKING.<category>", async () => {
+  const evaluated = await evaluateLanes({
+    "ch01/seat-cold": [blockingRead("internal_contradiction", "deep read", "cold: A then not-A")],
+    "ch01/seat-skeptic": [blockingRead("internal_contradiction", "example 2", "skeptic: the example contradicts the rule")],
+  });
+  assert.equal(evaluated.outcome, "FAIL");
+  const blockers = evaluated.issues.filter((issue) => issue.severity === "BLOCKER");
+  assert.deepEqual(blockers, [
+    { code: "READER.BLOCKING.internal_contradiction", severity: "BLOCKER", message: "cold: A then not-A", location: "ch01/seat-cold/deep read" },
+    { code: "READER.BLOCKING.internal_contradiction", severity: "BLOCKER", message: "skeptic: the example contradicts the rule", location: "ch01/seat-skeptic/example 2" },
+  ], JSON.stringify(evaluated.issues));
+  assert.equal(evaluated.issues.some((issue) => issue.code.startsWith("READER.SINGLE_SEAT.")), false, JSON.stringify(evaluated.issues));
+});
+
+requiredTest("D2 (A2): a single seat's schema_or_app_breaking finding still FAILS the panel", async () => {
+  const evaluated = await evaluateLanes({
+    "ch02/seat-practitioner": [blockingRead("schema_or_app_breaking", "card 3 back", "the card back renders raw markup")],
+  });
+  assert.equal(evaluated.outcome, "FAIL");
+  assert.deepEqual(evaluated.issues.filter((issue) => issue.severity === "BLOCKER"), [
+    { code: "READER.BLOCKING.schema_or_app_breaking", severity: "BLOCKER", message: "the card back renders raw markup", location: "ch02/seat-practitioner/card 3 back" },
+  ], JSON.stringify(evaluated.issues));
+});
+
+requiredTest("D2 (A2): a single seat's unsafe finding is WARN READER.SINGLE_SEAT.unsafe and the panel PASSES", async () => {
+  const evaluated = await evaluateLanes({
+    "ch02/seat-skeptic": [blockingRead("unsafe", "Implementation plan, If-then 1", "uncaveated legal advice on reviving a debt")],
+  });
+  assert.equal(evaluated.outcome, "PASS", JSON.stringify(evaluated.issues));
+  assert.equal(evaluated.issues.filter((issue) => issue.severity === "BLOCKER").length, 0, JSON.stringify(evaluated.issues));
+  assert.deepEqual(evaluated.issues.filter((issue) => issue.code === "READER.SINGLE_SEAT.unsafe"), [
+    { code: "READER.SINGLE_SEAT.unsafe", severity: "WARN", message: "uncaveated legal advice on reviving a debt", location: "ch02/seat-skeptic/Implementation plan, If-then 1" },
+  ], JSON.stringify(evaluated.issues));
+});
+
+requiredTest("D2: a quiz MAJORITY verdict still blocks and never counts as a seat; one seat's structurally_invalid on the same chapter stays WARN", async () => {
+  // ch01: all three seats confidently derive "a" everywhere (a blind majority on
+  // non-key answers for two thirds of the quiz), and ONE of them also raises a
+  // structurally_invalid finding. The quiz verdicts are strict-majority
+  // adjudications, not seat findings: they must stay BLOCKERs, and they must not
+  // corroborate the lone seat's finding.
+  const wrong = Array.from({ length: QUESTION_COUNT }, () => "a");
+  const evaluated = await evaluateLanes({
+    "ch01/seat-cold": [readerContent({
+      answers: wrong,
+      recommendation: "BLOCK",
+      blockingFindings: [{ category: "structurally_invalid", unit: "Quiz Q2 / Card 1", problem: "the quiz stem names the answer", evidenceSpans: [] }],
+    })],
+    "ch01/seat-skeptic": [readerContent({ answers: wrong })],
+    "ch01/seat-practitioner": [readerContent({ answers: wrong })],
+  });
+  assert.equal(evaluated.outcome, "FAIL");
+  const chapterOne = makeGateCleanChapter(BOOK, 1);
+  const nonKey = chapterOne.quiz.questions.filter((question) => question.correctIndex !== 0);
+  const blockers = evaluated.issues.filter((issue) => issue.severity === "BLOCKER");
+  assert.deepEqual(
+    blockers.map((issue) => `${issue.code} ${issue.location}`),
+    nonKey.map((question) => `READER.BLOCKING.structurally_invalid ch01/quiz/${question.questionId}`),
+    JSON.stringify(evaluated.issues),
+  );
+  assert.deepEqual(evaluated.issues.filter((issue) => issue.location === "ch01/seat-cold/Quiz Q2 / Card 1"), [
+    { code: "READER.SINGLE_SEAT.structurally_invalid", severity: "WARN", message: "the quiz stem names the answer", location: "ch01/seat-cold/Quiz Q2 / Card 1" },
+  ], JSON.stringify(evaluated.issues));
 });
 
 requiredTest("semantic panel FAILS when the 3-reader panel MEDIAN composite is below the chapter bar, even with no categorized blocking finding", async () => {

@@ -1,0 +1,1469 @@
+{
+  "runId": "book-run-39a37d06-59c8-430a-87fe-3ad3b19a1c14",
+  "reviews": [
+    {
+      "reviewId": "review-06d7596afd1f14dccd3eb2df99b22db6",
+      "outcome": "FAIL",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-cold/Deep read vs. Quiz Q4 / Card 4",
+          "message": "Deep read identifies Abiah as Josiah's wife and Franklin's mother, but Quiz Q4's keyed answer and Card 4 both describe Abiah as one of the seventeen children ('the tenth by the second wife'), contradicting her identity as the second wife herself."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-cold/Full read",
+          "message": "Full read is positioned as the deepest, most complete layer but never restates the Peter Folger / Cotton Mather material introduced in Deep read, even though Quiz Q9 tests that material. A reader relying on Full read alone as the standalone 'fullest' account cannot answer Q9 from it."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-skeptic/Example 6",
+          "message": "Example 6 asserts Franklin personally verified the uncle-Thomas birth coincidence against a parish register, an action the base chapter never attributes to him. The Full read instead presents the fact plainly and attributes the resemblance observation to people who 'later remarked' - the passive, reported framing that Example 6 explicitly claims Franklin did NOT rely on."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-practitioner/Card 4",
+          "message": "Card 4 describes Abiah as 'the tenth by the second wife,' treating her as one of the seventeen children, directly contradicting the Deep read's plain statement that Abiah was Franklin's mother (i.e., the second wife herself, not a child born to that marriage)."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-practitioner/Quiz Q4",
+          "message": "The question stem itself identifies Abiah as 'his second wife,' but the apparent intended-correct option c counts her among 'ten more by the second, including Abiah,' contradicting the stem within the same quiz item."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch02/seat-skeptic/deep read",
+          "message": "The Deep read references 'the Assembly's order' pushing the paper into Benjamin's name as if the reader already knows what that order was and why it happened, but Deep read never itself explains that James was jailed or why — that backstory only appears in Fast read (earlier) and is fully explained in Full read (later). A reader who consults only the Deep read layer, which is supposed to stand alone, hits an unexplained reference."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch03/seat-skeptic/Newcastle letter (deep read vs. Example 5 / Implementation plan)",
+          "message": "The chapter contradicts itself about who was physically at Newcastle. Deep read and other sections say Holmes tracked/traced FRANKLIN to or at Newcastle, but Example 5 and the Implementation plan both state Holmes himself 'wrote from Newcastle,' implying Holmes was the one there."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch03/seat-skeptic/Fast read",
+          "message": "In back-to-back sentences, the Fast Read lists the copper coin as currently 'to his name' upon stepping off the boat, then says that same coin had already been paid away — leaving a reader unable to tell, from this standalone section, whether Franklin still had the copper by the time he reached the bakery."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-skeptic/quiz Q6",
+          "message": "The intended answer requires knowing whether and when the Ralph/Franklin swap was revealed to Osborne, but the chapter's own account of the Psalm trick never narrates a reveal, and the closest modern parallel example has the tester stay silent rather than reveal anything -- so no option is forced by the prose and the question cannot be fairly derived."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch06/seat-skeptic/Try this now",
+          "message": "The 'Try this now' section claims the letter addressed to Basket, the king's printer, was the one that turned out to be from Riddlesden. But the Deep read and Card 5 both clearly state these were two different letters: the Basket letter was separate from the stationer's letter that turned out to be from Riddlesden (Card 5 even says the Basket letter 'was genuine'). This is a decidable, on-page contradiction about a fact the practical exercise itself depends on."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch06/seat-practitioner/Full read",
+          "message": "The full read is supposed to be a standalone depth option, but it introduces 'James Ralph' and refers to 'Denham himself' without ever identifying who they are within that section, relying on the reader having already read the fast/deep reads first."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch07/seat-skeptic/Quiz Q1 stem vs. Hook",
+          "message": "Q1 asserts Coleman and Grace personally warned Franklin that Meredith was playing low games, but the Hook establishes they showed up only after word had already spread from elsewhere, and their actual on-page action was offering to cover the shop's cost, not delivering a warning."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch09/seat-cold/Fast read",
+          "message": "The fast read first states Franklin picked thirteen virtues from the outset, then in the same paragraph says adding Humility after the Quaker friend's criticism 'made thirteen virtues in all,' implying the list only reached thirteen after that later addition. Both counts of the starting list size cannot be true at once, and this is decidable from this page alone."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch09/seat-skeptic/Hook / Full read / Example 6 (May 19th, 1731 society)",
+          "message": "The chapter names two different-sounding projects from the same May 19th, 1731 notes — 'Society of the Free and Easy' (Hook, Example 6, and the quiz's Q3 answer key) and 'United Party for Virtue' (Full read) — and attaches the identical defining fact (a thirteen-week practice requirement before admission) to both without ever clarifying whether these are one plan or two nested plans, leaving a careful reader unable to say what Franklin actually proposed or called it."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-cold/quiz Q8",
+          "message": "The distractor logic in options b and c is internally inconsistent, making the intended correct answer impossible to derive with confidence: option b implies that zero inoculation risk would disprove the friend's 'always safer' rule (the rule only requires inoculation to be lower-risk than disease, not risk-free, so this is backward), and option c's 'unless' condition requires the disease's risk to be 'similar to' inoculation's, which would undercut rather than support an 'always safer' claim."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/quiz Q8",
+          "message": "The question requires judging when to refuse a blanket claim about inoculation's safety, but the chapter's only supporting material is one unelaborated sentence with no stated information about inoculation's own risk. The keyed answer depends on a comparison the page never supplies, while the literal anecdote (regret over skipping inoculation) actually points toward the rejected option, making the question unanswerable purely from the prose."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-practitioner/Full read",
+          "message": "The Full read is presented as the deepest standalone layer but presumes facts and named specifics only introduced in the Deep read. It references 'his trick with the Assembly rival' and resolves it with a maxim without ever stating what the trick was (borrowing a book), so a reader who opens Full read without first reading Deep read cannot reconstruct the concrete action being praised."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch11/seat-cold/Deep read",
+          "message": "The passage enumerates only silver dollars and gold pistoles as the money Franklin carried that night, then two sentences later has him give up copper coins first, even though copper was never established as being in his pocket."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch11/seat-skeptic/quiz (Q2, Q6, Q9)",
+          "message": "A wording tell runs through the quiz: wrong options that use 'proof' or 'proves' are consistently incorrect, and no correct answer ever uses either word. In Q6 both wrong options contain 'proves,' so a reader can identify the correct option purely from that pattern without reading or reasoning about the chapter's content, undermining the quiz's validity as an assessment."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch11/seat-practitioner/summaries (fast read)",
+          "message": "The fast read covers only the night-watch/fire-company thread and never mentions Whitefield at all, even though Whitefield's story is roughly half the chapter and is the subject basis for three quiz questions (Q3, Q5, Q9) and several review cards. A reader who consumes only the 'fast' layer gets a materially incomplete picture of the chapter, breaking the standalone promise of a layered fast/deep/full summary."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch13/seat-skeptic/Full read (street lamp passage)",
+          "message": "The chapter first says the lamp is publicly credited to John Clifton rather than Franklin ('An improved street lamp he refined is credited to a man named John Clifton, not to Franklin himself'), which is presented as an instance of Franklin declining credit for his own work. But the very next paragraph attributes the invention outright to Franklin without qualification ('Franklin's replacement used four flat panes...'), and a later reflection calls it 'Clifton's lamp idea' as though the idea itself, not just the public byline, belonged to Clifton. A reader cannot determine from the page whether the lamp was Franklin's invention that he assigned away, or genuinely Clifton's idea that Franklin merely refined, which undercuts the very 'he keeps handing the credit to someone else' claim the passage is making about itself."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch14/seat-skeptic/Deep read vs Example 4 tie-back",
+          "message": "The chapter gives two incompatible accounts of the same rejection vote. Deep read describes an in-session ambush where a member waited for Franklin to leave the room during a sitting. Example 4's tie-back instead says the vote was timed for a whole day when Franklin was already away, a premeditated calendar move rather than a spur-of-the-moment one. The Implementation plan's If-then 3 is built on the calendar-scheduling version, so the practical advice does not actually match the deep-read version of the event it claims to generalize from, and neither version is ever reconciled on the page."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch15/seat-cold/Example 5 (Lola)",
+          "message": "Example 5's callback sentence claims the Sancho Panza dinner joke itself 'nearly cost Morris his post,' but the Deep read attributes his wearing-out-and-quitting to the returned pattern of official-message smearing, not to the private dinner joke, which the text frames as a friendly, in-group jab that never touched the friendship."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch16/seat-skeptic/Review cards, Card 3",
+          "message": "Card 3 asks readers to recall 'What made Franklin ask the Assembly for money to gift Dunbar's officers' as if this is established chapter content, but no such episode appears anywhere in the Fast read, Deep read, or Full read. A reader who studied only the reads (the card's stated source material) has no way to answer or even recognize this card, breaking its standalone/derivable promise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch16/seat-skeptic/Example 6 (rope-walk / Patricia)",
+          "message": "The example's mechanism paragraph claims Patricia's deliberately undisclosed, untracked fix ('no debt gets tracked on either side') runs on 'that same plain logic' as Franklin's waggon deal. But the chapter's own account of Franklin's deal is the opposite of untracked: it was a printed, dated public offer secured by Franklin's own signed bond, which generated real, trackable liability (near-£20,000 in claims against him). Calling these 'the same plain logic' misstates the chapter's central mechanism within the page itself."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch17/seat-skeptic/Deep read vs Review card 3 vs Quiz Q7",
+          "message": "The Deep read attributes the rum-after-prayers fix to Franklin himself ('Franklin's fix was simple'), but Review card 3 attributes the identical action to the chaplain, Mr. Beatty, and Quiz Q7's keyed answer likewise assigns the move to the chaplain rather than Franklin, so the chapter disagrees with itself about who actually solved the attendance problem."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch17/seat-practitioner/Deep read / Review Card 3 / Quiz Q7",
+          "message": "The chapter attributes the decision to move rum distribution to right after prayers to Franklin in the Deep read, but to the chaplain in Review Card 3, and Quiz Q7's correct-reading option assumes it 'falls to the chaplain' to make the change. These three passages disagree about who owns this concrete decision, which also undermines the soundness of Q7's answer key."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-cold/Hook vs. Full read",
+          "message": "The Hook flatly states Franklin never responded to Nollet in writing, but the Full read says he actually began writing a reply and only stopped short of sending it. These are two different claims about the same event, decidable from the page alone."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-cold/Card 6 vs. Quiz Q3 / Example 6",
+          "message": "Card 6 asserts Nollet 'confirmed Franklin wrote the papers' and rejected the experiments anyway, while Quiz Q3 and Example 6 both frame Nollet as doubting that Franklin actually wrote the work. The chapter gives two incompatible accounts of Nollet's stance on authorship."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-skeptic/Hook / Full read",
+          "message": "The Hook flatly states Franklin never replied to Nollet in writing, but the Full read says he drafted a reply and only withheld sending it — a direct factual conflict about whether any writing happened at all, and one that undercuts the chapter's own later instruction to 'draft it, then hold it unsent.'"
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-skeptic/Card 6 / Example 6",
+          "message": "The base narrative gives Nollet's motive as refusing to accept that an untrained American had beaten him to the discovery (a priority dispute), but Card 6 and Example 6 instead claim Nollet doubted Franklin's authorship of the papers and that Canton's replication of the pointed-rod experiment later 'confirmed' who wrote them — a claim about authorship that a physical replication cannot logically settle and that the rest of the page never supports."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-practitioner/Quiz Q3 vs Review Card 6",
+          "message": "Quiz Q3's premise says a Nollet-like rival 'refuses to believe you wrote your own work,' but Card 6 states the opposite: Nollet confirmed Franklin wrote the papers and rejected the findings anyway. The chapter's own review material contradicts the scenario its quiz question is built on."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/Full read",
+          "message": "The Full read introduces 'that dinner' and 'Denny's offer' with a definite article as if already established, then has Franklin refuse it, but no earlier section (Hook, Fast read, Deep read) nor the Full read itself ever explains what the dinner or offer was — that content only appears later in Example 2 and Example 4's connective paragraphs. A reader relying on the Full read as a standalone account hits an unexplained event."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-practitioner/full read",
+          "message": "The Full Read treats 'Denny's offer at that dinner' as already-established background and builds the causal chain on it, but no read layer (fast/deep/full) ever narrates what that offer was; the medal, the Madeira, and the request for a favor only appear later in Example 2 and Quiz Q4/Card 2, so the deepest summary fails its stand-alone promise."
+        }
+      ]
+    },
+    {
+      "reviewId": "review-87c9dc3c5912c84ab463de79f7914dc8",
+      "outcome": "FAIL",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch03/seat-cold/Example 3",
+          "message": "Example 3 describes the Dutchman rescue and the shilling payment to the boatmen as happening on the same boat ride ('during a crossing... for his own passage'), but the chapter's own Deep read and Fast read separate these into two different legs of the journey: the Dutchman is saved on 'the boat crossing toward Amboy,' while the shilling is paid to 'the boatmen who had rowed him in' on the later leg that ends at the Philadelphia market where he buys bread."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch03/seat-skeptic/Full read / Key takeaway / Try this now / Implementation plan",
+          "message": "The chapter explicitly denies there is one unifying lesson ('No single trick explains a life built from many small recoveries'), yet it simultaneously offers three different, non-overlapping single-skill claims as the chapter's takeaway: exact record-keeping (Key takeaway), giving a specific referral (Try this now), and testing a named second opinion (Implementation plan Core skill), with no reconciliation of which one is 'the' lesson."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch03/seat-skeptic/Implementation plan",
+          "message": "The section's own Core skill (get a named second opinion and test it with a small real task before committing) is never instantiated by any of its three If-then rules: If-then 1 is about referring someone else outward, If-then 2 is about repaying a declined favor, and If-then 3 is about repairing a bad first impression through repeated exposure. A reader following the If-thens would not be practicing the stated Core skill at all, breaking the section's own stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-skeptic/quiz Q9",
+          "message": "The quiz stem asserts Franklin's condition for joining Keimer's sect was that Keimer 'also give up keeping the Seventh day, Sabbath,' but the Fast read and Deep read both establish the opposite: Franklin said he would allow the beard and Sabbath-keeping, and his actual condition was that Keimer give up meat. The keyed answer (b) repeats the same reversed claim about 'Sabbath doctrines.'"
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-practitioner/quiz Q3",
+          "message": "The chapter explicitly disclaims that Ralph's and Osborne's later-life outcomes prove anything about the earlier test, yet the quiz's only defensible answer requires readers to use those exact later outcomes (finished prose, career change) as the proof of 'talent' — the quiz's reasoning contradicts the narrative's own stated limit on the same page."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch07/seat-practitioner/Full read",
+          "message": "The Full read is presented as a standalone summary layer, but its closing sentences use a bare pronoun with no antecedent introduced anywhere in that section (Meredith is never named in Full read; he only appears in Deep read). A reader of Full read alone has no way to resolve 'He,' and the only same-section candidate (Keimer) directly conflicts with that section's own earlier account of Keimer and Franklin parting through a shouted quarrel, not a mutually agreed written settlement."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch09/seat-cold/Review card 2",
+          "message": "The card's Front asks a specific factual question (which habit resisted every fix) but the Back never names the answer (Order), instead pivoting to generic transfer advice, so the card fails its stand-alone promise to answer its own Front."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-cold/Full read",
+          "message": "Full read is presented as one of three layered but standalone summaries, yet it repeatedly leans on named events and pronoun antecedents it never defines within itself, so a reader who starts at Full read (a plausible entry point given the stated layering) cannot follow it. It opens with an undefined 'this,' then later refers to 'The Charleston story' and 'The Hemphill affair' as if the reader already knows those episodes from Deep read."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/full read",
+          "message": "The full read is supposed to be the deepest, standalone summary tier, but it repeatedly refers back to people and events (the widow, 'the Charleston story,' 'the Hemphill affair,' 'a hostile Assembly member') without reintroducing who they are or what happened, so it only makes sense to someone who already read the deep read. This fails the stand-alone promise the summaries factor requires."
+        },
+        {
+          "code": "READER.BLOCKING.unsafe",
+          "severity": "BLOCKER",
+          "location": "ch12/seat-practitioner/example 1 (Glenn, the condo relabeling)",
+          "message": "The chapter's own practical example endorses deliberately mislabeling a bylaw-restricted purchase to a governing board and keeping a private 'true use' memo apart from the official minutes so the record won't contradict the cover story. A real reader (e.g., an actual condo treasurer) who follows this could expose themselves to breach-of-fiduciary-duty or fraud liability, and the chapter presents it as an unqualified win with no caveat about that risk."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch13/seat-skeptic/Full read",
+          "message": "Full read introduces 'the small sweeping subscription for the market street' as if it were already established, but no earlier section ever says the Craven-street paid trial became a subscription for a street called 'market street.' A reader relying on Full read (or even Deep read) alone cannot bridge this gap, breaking the section's stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch13/seat-skeptic/Quiz Q2 stem",
+          "message": "The quiz stem restates the Carlisle gathering as 'close to one hundred men,' dropping the women and children the chapter itself says were present, contradicting the chapter's own earlier description of the same event."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch13/seat-practitioner/Example 1 vs. Full read",
+          "message": "Example 1 claims the sect-balanced trustee structure governed 'the academy's building board... before its schools opened, in 1749,' but the Full read describes that same one-per-sect trustee makeup as belonging to the separate Whitefield building the school moved into only after it had already grown and needed a bigger home -- i.e., after the 1749 opening -- and as a different body from the subscription's own twenty-four trustees."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch14/seat-cold/Hook",
+          "message": "The Hook claims a committee compared 'four rival plans,' but no other section gives this count — the Deep read and Example 5 describe an unspecified/plural number of rival drafts, and every other 'four' in the chapter refers only to the four Pennsylvania commissioners, leaving an unresolved numeric conflict."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch14/seat-cold/Deep read",
+          "message": "Deep read opens mid-story ('that spring') and never restates the year or the war-with-France motive established only in Fast read, so a reader entering at Deep read lacks basic who/when/why context, breaking the section's stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch14/seat-cold/Full read",
+          "message": "Full read analyzes 'the plan' and 'the draft' at length but never states what the plan actually proposed (crown-picked president-general, colony-picked grand council); that structural fact only appears in Fast read and 'Try this now,' so Full read cannot stand alone for a reader who hasn't already read the earlier sections."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch15/seat-practitioner/Example 2 (Lorraine's First Day on the Docket)",
+          "message": "Example 2's closing paragraph claims Morris's veto 'ran on the same mechanism' as an exemption that becomes policy by accident, 'not because anyone decided it should but because repeating it is easier than questioning it.' This directly contradicts the Full read's own account that the exemption was a deliberate, explicit requirement the Penn family wrote into every governor's bond from the start."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch15/seat-practitioner/Example 5 (The Gap in Lola's Plan)",
+          "message": "Example 5 states 'neither man read the joke as anything but table talk,' but the Deep read explicitly says Franklin's retort in that same exchange 'was a jab at Morris's own habit of smearing the Assembly's name in his official messages' — i.e. it carried real pointed meaning tied to the public conflict, not mere banter."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch16/seat-cold/Deep read vs. Example 5",
+          "message": "The Deep read states 63 of 86 officers fell in the ambush, but Example 5 later describes the same event as the column having 'lost eighty-six officers,' implying total officer losses rather than 63 of 86. A reader comparing the two figures encounters a direct numeric conflict."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch16/seat-skeptic/Example 4 vs Example 6",
+          "message": "Example 4's takeaway instructs readers to surface problems visibly the instant they're spotted, while Example 6's takeaway instructs the opposite: quietly fix a colleague's error and never disclose it to anyone, including the person in charge. Both are presented as equally valid transferable lessons from the same chapter without reconciling the conflict."
+        },
+        {
+          "code": "READER.BLOCKING.unsafe",
+          "severity": "BLOCKER",
+          "location": "ch16/seat-skeptic/Example 6 (Patricia)",
+          "message": "The bolded, generalized takeaway tells readers to secretly fix another worker's error and tell no one, including the worker or supervisor, in a scenario explicitly about safety-relevant craftsmanship (rope for hoisting). Followed literally, this hides information a supervisor needs to catch a systemic training gap and lets a colleague be falsely credited for uncorrected work."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch16/seat-skeptic/Full read",
+          "message": "Full read references 'Franklin's warning about the marching line' as already-established, but that detail is introduced only in Deep read and is never defined within Full read itself, so a reader who lands only on Full read cannot follow the reference — breaking the chapter's own fast/deep/full standalone design."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch16/seat-practitioner/Example 1 vs. Example 6",
+          "message": "Example 1's stated principle explicitly rejects folding corrections in silently, while Example 6's stated principle explicitly instructs fixing another person's error silently and never disclosing it. The two 'lessons' directly oppose each other on the same behavior (visibility vs. concealment of a fix), decidable from the page alone."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch17/seat-skeptic/Full read",
+          "message": "The Full read references 'the Bethlehem scene' and 'the forts' with a definite article as though already established, but Full read never itself introduces Bethlehem as a location or fort-building as an event — those facts exist only in the Fast read and Deep read above it. A reader who reads only the Full read tier (the promised deepest standalone layer) cannot tell what location or structures are being discussed."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-cold/deep read vs. full read (account of the mocked lightning paper's survival)",
+          "message": "The deep read claims the paper 'survived only because two other men judged it worth printing,' but the full read (and the rest of the chapter) names only one rescuer, Dr. Fothergill, and even calls him 'that second reader' in the singular, never identifying a second man. The headcount of who saved the paper is inconsistent within the chapter itself."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-skeptic/Deep read vs. Full read vs. Card 2",
+          "message": "Deep read states the mocked lightning paper 'survived only because two other men judged it worth printing,' but Full read and Card 2 attribute the entire save to one person, Dr. Fothergill, explicitly calling him 'that second reader' (singular). The chapter gives two incompatible headcounts for the same rescue."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-practitioner/Deep read vs. Full read (account of the lightning paper's survival)",
+          "message": "Deep read claims the mocked lightning/electricity paper 'survived only because two other men judged it worth printing,' but the Full read's account of the same event names only one person, Dr. Fothergill, taking that action and explicitly calls him 'that second reader' (singular). No second name is ever given for this event anywhere on the page, so the count of rescuers is internally inconsistent."
+        }
+      ]
+    },
+    {
+      "reviewId": "review-37df51a286ef80242bf91ab6a70b7a00",
+      "outcome": "FAIL",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-cold/Deep read",
+          "message": "The passage introduces exactly one uncle and one grandfather by name, then refers to them together as 'Two grandparents,' contradicting its own earlier identification of one of the two as an uncle rather than a grandparent."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-skeptic/Deep read",
+          "message": "The passage asserts 'Two grandparents showed Franklin something important' about putting a firm opinion in writing under one's own name, but the only person shown doing that in the surrounding text is Peter Folger, a single grandparent. The other example given right before it is Franklin's uncle Benjamin, who is not a grandparent, so the 'two grandparents' claim is not supported by, and conflicts with, the family relationships stated on the same page."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch02/seat-skeptic/Card 5 vs. Full read",
+          "message": "The chapter gives two incompatible explanations for why Franklin revealed himself as the anonymous essay's author: Full read frames it as a deliberate, patient move made once the verdict on the writing was already locked in, while Card 5 frames the same moment as an involuntary lapse caused by vanity overwhelming restraint."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch02/seat-skeptic/Card 3",
+          "message": "Card 3's answer asserts a specific claim (that Benjamin was formally questioned by the council and only admonished) that is never introduced anywhere in the Fast, Deep, or Full read, so a reader who has only the chapter cannot verify, derive, or even recall this from what was taught. This breaks a review card's job of reinforcing content the chapter actually covered."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch03/seat-practitioner/quiz Q1 (answer key)",
+          "message": "The fast read establishes that Franklin gave his copper coin to the boatmen before reaching the market, leaving only the dollar by the time he bought bread, but the quiz's own correct-answer text asserts he 'still had a Dutch dollar and copper coin' at that point, contradicting the chapter's own established sequence of events."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch04/seat-practitioner/Try this now (vs. Deep read and Full read)",
+          "message": "Try this now compresses the story so that Keith's specific promise to 'personally bankroll his own printing house' occurs during the initial street-crossing/Madeira scene at Keimer's shop. But Deep read explicitly dates that exact promise ('he would pay for the print shop himself') as a later, bigger escalation made only after Franklin's father refused, and Full read explicitly says the street-crossing visit itself 'guaranteed nothing on its own' and was 'just an opening move' with no promise attached."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-skeptic/Implementation plan (Core skill) vs. Deep read / Q4",
+          "message": "The chapter's entire modeled method treats a single unwatched catch as sufficient proof (Keimer's one lapse ends the diet test; Q4's correct answer says one instance of eating alone, not ordering, is the evidence), but the Implementation Plan's Core skill instructs readers to withhold judgment until they have logged forty separate instances before calling any pattern proven, directly contradicting the one-catch standard taught everywhere else on the page."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-practitioner/Deep read / Full read",
+          "message": "The Deep read and Full read each open by referencing 'Keimer' and the diet bargain as already-established facts, never (re)introducing who Keimer is or what the bargain was. A reader who opens directly to Deep or Full — a normal workflow in a layered fast/deep/full format — starts confused about the premise, breaking the standalone promise for two of the three read tiers."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch09/seat-skeptic/Deep read",
+          "message": "The chapter states the notebook 'gave each virtue its own page' and then, in the same passage, describes a single page carrying rows for all thirteen virtues, directly contradicting the claim that each virtue had a separate page."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/Example 6 vs. Full read",
+          "message": "Example 6's closing explanation asserts a much larger and more specific fallout from the Hemphill plagiarism than the chapter's own Full read states elsewhere on the same page."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch11/seat-skeptic/Example 2",
+          "message": "The if-then explicitly warns against moving a demonstration quietly without posting a notice, but the narrative it is drawn from shows Carmen doing exactly that with no notice posted, and it still draws the largest crowd the demonstration ever had, contradicting the lesson's own premise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch11/seat-skeptic/Example 4",
+          "message": "The story shows Nora making a single quiet, private refund out of her own purse to two widows, yet the closing paragraph claims she established 'a habit of publishing the true figure' that became a standing rule the club still follows, a publishing habit the narrative never depicts."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch12/seat-cold/Review cards, Card 7 vs Deep read",
+          "message": "Card 7's answer justifies the lottery by claiming that without it, one pool would have been 'responsible for both signatures and cannon' — implying cannon costs were something the pledge/lottery funds needed to cover. But the Deep read explicitly states pledge money 'could not buy cannon' at all, and that every cannon came from an external loan negotiated with Governor Clinton in New York, never from the lottery or pledge funds. The card's own stated rationale misdescribes what the chapter elsewhere says the lottery and pledge money did and did not fund."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch12/seat-skeptic/Deep read vs. Example 6",
+          "message": "The chapter gives two incompatible sequences for the stove-patent event. Deep read frames Franklin as actively declining an already-offered patent, implying a live choice at the moment of the offer. Example 6 states the design was given away before any patent was ever offered, making the later offer moot rather than actively refused. A reader cannot tell which chronology is accurate from the page."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch12/seat-practitioner/Example 3: Five to One Before the Rain",
+          "message": "The example's title implies a 5-1 vote (echoing the chapter's own 8-to-1 fire-company margin it explicitly calls back to), but the vote it actually describes is three in favor, one opposed (3-1); none of the example's stated numbers (seven members, six others, three absent) combine to produce five, so the title contradicts the body's own tally."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch13/seat-practitioner/full read",
+          "message": "The full read references 'Bond' and 'the hospital plan' as if already known, but that context (Dr. Thomas Bond, the stalled hospital fundraising) is only established in the deep read. A reader who lands on full read without the deep read cannot follow the line, breaking the section's stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch14/seat-skeptic/Fast read",
+          "message": "The Fast read tells a reader that 'two courts said no,' but no court of law is ever involved anywhere in the chapter; the Deep and Full reads consistently identify the two rejecting bodies as the colonial assemblies (a legislature) and the Board of Trade (an administrative board). A reader who only reads the Fast read comes away with a materially wrong picture of what kind of bodies rejected the plan, which breaks the standalone-accuracy promise a summary layer is supposed to keep."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch14/seat-practitioner/Full read",
+          "message": "Unlike Fast read and Deep read, which each restate the year, location, and reason for the trip, Full read opens directly into analysis and later references 'this errand' without ever re-establishing what happened, breaking the stated design promise that each summary layer stands alone."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch16/seat-skeptic/Fast read",
+          "message": "Fast read covers only the waggon-procurement half of the chapter and never mentions Braddock's ambush, Dunbar's collapse, or Braddock's scorn for warnings/scouts. But the Key takeaway states both halves as the chapter's core lesson. A reader who only reads Fast read (the intended quick layer) ends up with a takeaway that references content they never saw, breaking the standalone promise of the fast summary."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-skeptic/Full read vs. Quiz Q3 stem / Example 6 bridge paragraph",
+          "message": "The chapter's own narrative (Full read) says Nollet's objection was that he 'could not accept that an untrained American had beaten him to the discovery' — a dispute over scientific priority/credibility. Two other sections invent a different, more specific claim not supported anywhere in the narrative: that Nollet doubted Franklin literally wrote his own papers (a claim about authorship/authenticity, not priority). A careful reader who checks the quiz stem or Example 6 against the Full read will find the underlying fact restated inconsistently."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/example 3",
+          "message": "Example 3's tie-back claims Loudoun's army 'idled outside Louisburg,' but the Full read explicitly locates the stalled campaign's drills at Halifax and states he returned without ever conducting a siege, contradicting the claim that the army was stationed outside Louisbourg itself."
+        }
+      ]
+    },
+    {
+      "reviewId": "review-ec0e30a89f9b930ae0027fa0cfba87fc",
+      "outcome": "FAIL",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-skeptic/Review cards - Card 6",
+          "message": "Card 6 states the ministry ('tithe-son') plan 'gave way to' grammar school, implying grammar school came as a replacement after the ministry plan ended. The Full read establishes the opposite sequence: grammar school was pursued AS PART OF the ministry plan ('Grammar school seemed to prove the plan right') and both the schooling and the ministry aspiration ended together because of cost."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch03/seat-skeptic/Deep read",
+          "message": "'Old Bradford' is introduced two sentences after 'Andrew Bradford' with no signal that this is a different person (Andrew's father); a first-time reader is likely to read him as the same Bradford who just refused Franklin work, and the only disambiguating clue is an indirect later clause ('his rival's own father') that requires inference to resolve. This leaves the standalone Deep-read layer momentarily incoherent on a load-bearing plot point."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch04/seat-skeptic/Quiz Q3 vs Fast read",
+          "message": "The Fast read states Vernon directly handed Franklin the money to carry, but Quiz Q3's setup describes a different mechanism: Franklin being asked to go collect a debt owed to Vernon from someone in a town he's passing through. These are two incompatible accounts of how Franklin obtained the same sum, decidable purely by comparing the two passages on the page."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch04/seat-practitioner/quiz Q3 vs. Fast read",
+          "message": "The fast read describes Vernon as 'a stranger's friend' who personally handed Franklin the money to carry south, but Q3's stem recasts him as 'a friend of your brother's' who asks Franklin to go collect a debt owed to him in a town he's passing through — a different relationship and a different transaction than the one the narrative describes."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-skeptic/Key takeaway vs Full read",
+          "message": "The Key takeaway groups the Miss Read courtship with the diet and byline bargains as the same kind of 'test' that shows 'what someone truly believed,' directly contradicting the Full read's explicit statement that the courtship was 'not a test of character' and its warning against 'folding every relationship into one shape.'"
+        },
+        {
+          "code": "READER.BLOCKING.schema_or_app_breaking",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-skeptic/Review cards",
+          "message": "Every card's 'Back:' line is preceded by roughly ten leading spaces after the line break, which exceeds the 4-space threshold that triggers an indented code block under standard Markdown/CommonMark rendering, risking the answer text displaying as raw monospaced code instead of normal prose in the app."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch06/seat-cold/deep read vs. Example 3 vs. Review card 1",
+          "message": "The chapter gives three incompatible accounts of how many pressmen adopted Franklin's water-drinking breakfast: the deep read says only a few did, while an example and a review card both claim the whole shop of fifty did, undercutting the 'quiet example over mandate' lesson those very sections are built to teach."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch06/seat-cold/deep read vs. Review card 5",
+          "message": "The deep read states categorically that Keith never wrote any of the letters in the mail bag, but Review card 5 asserts one of those same two letters (to Basket) 'was genuine,' directly contradicting the chapter's own account of the central plot fact the reveal depends on."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch06/seat-skeptic/example 5",
+          "message": "Example 5 attributes the fraudulent/disputed letter to 'Basket's print shop,' but the deep read explicitly separates the two mailbag letters: one genuinely addressed to Basket, and a separate, unnamed stationer's letter that turned out to be from Riddlesden. The example's closing line still credits 'a London stationer' (not Basket) with catching the forgery, so the example's own setup contradicts its own payoff and the source anecdote it claims to mirror."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch06/seat-skeptic/full read",
+          "message": "Every other section establishes Watts's as the only print shop Franklin worked at ('Franklin laid down his composing stick at Watts's printing house', 'At Watts's shop, the compositors asked him...'), then the full read suddenly has him 'setting its type at Palmer's' with no introduction of a second shop or transition between them, breaking the full read's promise to stand alone and be comprehensible on its own terms."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch08/seat-skeptic/Fast read / Full read / Implementation plan / Quiz Q1",
+          "message": "The chapter gives two incompatible explanations for why currency grew from 15,000 to 80,000 pounds without lasting complaint. Fast read and the Implementation plan credit the uncontested pamphlet itself for the sustained growth/acceptance, while Full read, Card 6, Example 6, and the quiz's own designated correct answer (Q1a) instead credit ongoing trade, building, and population growth. A reader who trusts the Fast read is set up to pick the answer the quiz marks wrong."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-cold/Deep read",
+          "message": "The Deep read's opening line presupposes the Fast read's content ('the same trick') without defining the trick within the Deep read itself, so the section fails its standalone-read promise if a reader lands here first."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch13/seat-cold/Full read",
+          "message": "The full read is meant to stand alone but presupposes unexplained context from the deep read: it references 'the funding trick' for the hospital and 'a subscription for the academy' without ever restating what the trick or subscription was within the full read itself, so a reader who starts at full read cannot follow these references."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch16/seat-skeptic/Deep read; Full read",
+          "message": "Deep read opens with an undefined reference to a fix never explained in that section, and Full read — nominally the most complete version — never states the actual waggon-hire terms (fifteen shillings per diem, upfront pay, lost-horse pay) that are the chapter's central technique. A reader who opens directly to either section, as the fast/deep/full format invites, cannot recover the core mechanism from that section alone."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch17/seat-skeptic/Review cards (Card 6)",
+          "message": "Card 6's back text asserts the men were 'mutinous and quarrelsome' on idle days, a materially stronger claim than anything established elsewhere on the page; the deep read this card is meant to summarize only says idle men 'grew sour,' with no mention of mutiny or quarreling anywhere in the chapter."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-skeptic/Full read",
+          "message": "The Full read is supposed to work as a standalone layer, but it opens with a backward-reference ('any of that') that presupposes content only established in the earlier Fast/Deep read sections, so a reader who goes straight to Full read has no referent for the opening sentence."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-practitioner/Example 2 connection vs. Deep read/Quiz Q4",
+          "message": "Example 2's connective gloss recasts the Royal Society's reception of Franklin's paper as passive 'institutional silence' and a merely 'cool reading,' while the chapter elsewhere describes the same event as active ridicule ('simply laughed at it', 'openly mocked by its members'). These are materially different characterizations of one on-page event."
+        }
+      ]
+    },
+    {
+      "reviewId": "review-4a2acca799ee60f570fe346c9ee1fe9f",
+      "outcome": "FAIL",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-skeptic/Key takeaway vs. Try this now / Implementation plan",
+          "message": "The stated 'Key takeaway' is about family plans failing to determine a boy's aptitude (handwriting vs. arithmetic), but the actionable sections that follow (Try this now, Implementation plan, and 5 of 6 worked Examples) build an entirely different lesson -- checking ownership/permission before using someone else's material -- with no bridge between the two, so the chapter never settles on one 'core move' to remember or practice."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-skeptic/Memorable lines",
+          "message": "The 'Memorable lines' section omits the wharf/stones anecdote even though it is the story the rest of the chapter (Try this now, Implementation plan, and Examples 1-6) treats as central and repeatedly returns to; instead it lists three comparatively minor lines, so the section fails the recall-hook job its own name promises."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch02/seat-cold/Card 4",
+          "message": "Card 4 asserts the Socratic questioning shift was made 'after the ballads... had already taught him that ridicule could redirect his practice,' fabricating a causal/temporal link between the ballad-mockery-to-prose switch and the Xenophon-driven arguing-style shift. The Full read presents these as two separate, unconnected lessons (father's mockery -> prose; reading Xenophon's Socrates -> dropping contradiction for questions), with no textual link between them."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch02/seat-skeptic/Review cards Card 6",
+          "message": "The card's front asks which method builds prose skill faster, but the back never answers the question — it only describes a way to measure the comparison, so a reader flipping the card gets no retrievable fact to remember, failing the flashcard's stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch03/seat-practitioner/Example 2 (The Slot Someone Else Already Claimed)",
+          "message": "The example states Brielle arrived 'at eight' but then times the other volunteer's sign-up as 'seven fifty-one, nineteen minutes ahead of her own arrival' -- 7:51 plus nineteen minutes is 8:10, not eight o'clock, so the story's own stated times don't reconcile."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch04/seat-skeptic/Hook / Fast read",
+          "message": "The Hook identifies Franklin's brother as James, but the Fast read attributes the Vernon episode to 'his brother John' with nothing on the page clarifying whether this is a second, previously unmentioned brother or a naming slip -- a reader cannot resolve which."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-skeptic/Full read",
+          "message": "The Full read is supposed to be a standalone layer, but it never itself narrates the roast-pig incident or the Psalm-swap mechanics -- it only alludes to 'the joke about Keimer' and 'The Psalm trick' as if the reader already knows them from the Deep read. A reader who opens straight to the Full read cannot tell what either 'test' actually was."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch08/seat-skeptic/Fast read / Deep read",
+          "message": "Both the Hook and the Fast/Deep reads assert 'no one could prove her first husband was dead/alive' as a bare fact with no explanation of who the husband was or why his status was in doubt; that backstory is only ever supplied in the Full read. A reader relying on the Fast or Deep read alone (the product's own standalone promise for each tier) is left with an unexplained plot point. The same pattern recurs with the Hook's 'crate of printing type sailed off to Barbadoes' teaser, which is only resolved in the Full read's account of Harry following Keimer to Barbados."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/full read",
+          "message": "The Full read fails its stand-alone promise: its first mention of the Charleston widow assumes the reader already read the Deep read's account of her; a reader opening only the Full read has no idea who she is or what she rescued."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-skeptic/Deep read vs Full read",
+          "message": "The 'Full read' section, which should layer new depth beyond 'Deep read', instead near-duplicates large stretches of it (the Marly trial and the Canton/election/fee/medal sequence) with only cosmetic rewording, so the third and supposedly deepest layer repeats rather than deepens the second."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-cold/quiz Q3",
+          "message": "The keyed correct answer asserts that Franklin sent 'one dated follow-up' demanding a reply by a fixed date, but no such event appears anywhere in the Deep read or Full read; the narrative only shows the complaint sitting untouched for a year, so the quiz's own answer key is not derivable from the page it claims to test."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/Deep read",
+          "message": "The Deep read section entirely omits the Lord Loudoun / New York delay / Fort George thread that the Fast read introduces and the Full read elaborates at length, even though several quiz questions (Q1, Q3, Q5, Q8) and Review Cards 3 and 6 depend on that thread. A reader who reads only the 'deep' layer (as the fast/deep/full design invites) gets a materially incomplete account and cannot answer roughly half the quiz or make sense of later cards referencing 'Lord Loudoun' by name."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/quiz Q3",
+          "message": "The credited answer's rationale asserts Franklin sent 'a dated follow-up demanding an answer by a fixed date,' attributing an active step to Franklin, but the chapter's own deep read shows no such action — only Paris letting the complaint sit in silence for 'a year wanting eight days' before a dismissive reply. The quiz's justification is not supported by, and mildly contradicts, the chapter's own narrated sequence."
+        }
+      ]
+    },
+    {
+      "reviewId": "review-8aeae974c127ba568047cde6304175ac",
+      "outcome": "FAIL",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-practitioner/Full read",
+          "message": "The Full read's treatment of the wharf incident ('The wharf theft carried its own harder edge...') never itself establishes what the theft was, whose stones they were, or how it happened; that scene exists only in the Deep read. Since the fast/deep/full layers are meant to each stand alone, a reader who goes straight to Full read is dropped into the argument's aftermath without the setup that makes it comprehensible."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch03/seat-skeptic/Full read",
+          "message": "Full read presupposes the reader already knows who Bradford and Keimer are and what 'the meeting' and composing-stick test refer to (all introduced only in Deep read), so it fails the chapter's own standalone-summary promise for this layer."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch03/seat-skeptic/Fast read vs. Full read (boatmen payment)",
+          "message": "Fast read frames the copper as fare paid to boatmen 'for the ride,' implying Franklin was only a passenger, while Full read (and Example 3/Card 3) states the boatmen refused payment specifically because Franklin 'had rowed alongside them the whole way' — the two accounts disagree on whether he rowed at all."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch04/seat-cold/Full read",
+          "message": "The Full read is positioned as the fullest, most complete account, yet it never mentions the Vernon money thread (the thirty-five pounds Franklin agreed to hold and later let Collins spend) that the Fast read and Deep read establish and that Quiz Q3 directly tests. A reader relying on the Full read alone cannot answer Q3 from what it contains."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch04/seat-skeptic/Quiz Q8 / Full read / Example 1",
+          "message": "The chapter's own Full read and Example 1 both explicitly label Burnet as 'the second governor' (chronologically, after Keith). But Quiz Q8's phrase 'the second governor's promises' can only logically point to Keith, the promise-making governor, given the question's own setup ('the other backs his interest only with his own confident promises'). A reader who remembers the chapter's established label would expect 'the second governor' to mean Burnet, then be confused since Burnet is the checkable-reason governor, not the promise-maker. This is a decidable, on-page contradiction in how an identifying label is used across sections of the same chapter, and it undermines Q8's fairness."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-cold/Fast read summary",
+          "message": "The Fast read never resolves its own story (it sets up the meatless bargain but stops before the pig incident) and omits the Ralph/Osborne Psalm test and Miss Read note entirely, even though the chapter's own Key takeaway frames the chapter as 'two disputes' plus a third courtship note. A reader relying only on the Fast layer gets an incomplete arc and cannot answer roughly half the quiz, breaking the layer's standalone promise."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-skeptic/Fast read",
+          "message": "The Fast read summarizes only the Keimer meat-and-beard bargain and never mentions the Osborne/Ralph Psalm swap or the Miss Read courtship, so it fails to stand alone as a summary of the chapter even though the Key takeaway and several quiz questions assume all three threads are known."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch06/seat-skeptic/Review cards - Card 3",
+          "message": "Card 3 claims the Saturday pay-table fronting anecdote (Franklin covering absent workmen's beer tabs, which the main text presents as building trust with no negative outcome) carries 'a sound stop rule' about refusing credit to people whose balance grows too large. That stop-rule logic actually belongs to the separate, unrelated Ralph-debt story elsewhere in the chapter; the card silently merges the two distinct anecdotes into one, misstating what the chapter itself says happened at the pay-table."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch07/seat-skeptic/Review cards — Card 6",
+          "message": "The card's back-text conflates two unrelated lessons (Webb's leak to Keimer, and Mickle's bad predictions about the city) into one run-on sentence that never cleanly answers its own front-side question, failing the flashcard's stand-alone-recall promise."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch07/seat-practitioner/Full read",
+          "message": "The Full read, which should stand alone as the complete version of the chapter, drops the entire Coleman/Grace loan story and Meredith drinking/gambling backstory established in the Fast and Deep reads. It instead refers to 'the two rescuing friends' and 'that rescue' as if the reader already knows who they are and why a rescue was needed, so a reader who starts at the Full read cannot follow the chapter's own central example."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch09/seat-cold/Review card 1 vs Quiz Q9",
+          "message": "Card 1 teaches that a clean run of zero ledger marks is itself the definitive sign a fix is finished, while Quiz Q9's forced-correct answer treats exactly that behavior (continuing to log and watch the mark count drop, changing nothing else) as the wrong, self-deceiving choice, requiring an active pressure test instead. The chapter never reconciles these two different standards for when a fix is 'done' or 'real.'"
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-practitioner/review card 4",
+          "message": "The card's front asks what kept the partnership from being outright ownership, but the back answers a different question (what nearly ruined the partnership / what fixed it), so the card fails its own stand-alone front-to-back promise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch12/seat-skeptic/full read vs. review card 1",
+          "message": "The full read explicitly hedges the Louisburg link ('likely for the garrison at Louisburg'), but Card 1's back-of-card answer states the same fact as settled ('he spent it on gunpowder for Louisburg') with no hedge, so the chapter asserts two different certainty levels for the identical claim on the same page."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch14/seat-skeptic/Deep read vs. Example 6 bridge paragraph",
+          "message": "The chapter gives two incompatible descriptions of how the 'JOIN, or DIE' cartoon related to the plan document: the deep read says the cartoon ran beside the plan with the caption over it, while Example 6 says the plan itself was printed under the motto, implying the motto headed the plan document directly."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch16/seat-skeptic/Fast read vs Review card 6",
+          "message": "The Fast read frames armed seizure of the waggons as a hypothetical Franklin chose not to use ('Soldiers could have grabbed wagons by force. Franklin tried cash instead.'), but Card 6 later asserts cash 'moved farmers faster than any threat of seizure had' and beat 'the earlier threat of force,' implying an actual prior threat of force was made and was slower. The page cannot support both: force either was never attempted, or it was tried first and failed."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-skeptic/Deep read vs. Full read (sequence of the Royal Society's honors)",
+          "message": "The Deep read attributes the Society's honors directly to Canton's successful test of the pointed rod ('Canton found it worked' immediately precedes the election/fee-waiver/medal). The Full read's closing paragraph instead attributes the honors to a Watson reading explicitly described as a mere 'formality that came before anyone there had actually checked the claim,' then calls that same event 'that late confirmation' the honors 'followed' -- without ever mentioning Canton's check in this passage. The two summaries give incompatible, on-page accounts of what actually triggered the honors and whether real verification preceded them."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-practitioner/Full read",
+          "message": "The Full read is billed as the deepest, standalone tier, but its closing paragraph refers to 'that late confirmation' without ever describing what the confirmation was or who performed it (Canton and the pointed-rod test are named in the Deep read but never appear in the Full read). A reader relying on the Full read alone cannot resolve what confirmed the claim before the medal, membership, and waived fee followed."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-cold/Full read",
+          "message": "The Full read is supposed to stand alone, but it refers to 'that dinner' and 'Denny's offer' as already known without ever introducing the dinner or the offer within the Full read itself, so a reader who starts here (rather than at Deep read) cannot follow the sentence."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/Deep read vs Full read",
+          "message": "The two layered summaries disagree on when the Assembly's sixty-thousand-pound vote and Denny's refusal occurred relative to the dinner scene. Deep read narrates the dinner offer, then says the money dispute broke 'next' (afterward) and caused the trip. Full read instead states the vote and refusal had 'already' happened before the dinner, recasting the dinner as backdrop to an already-settled dispute and naming that prior refusal alone as what sent Franklin to London."
+        }
+      ]
+    },
+    {
+      "reviewId": "review-5ebfffd3ee0f12f34995907dc39e327f",
+      "outcome": "FAIL",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-skeptic/Deep read / Full read",
+          "message": "The George Brownell fair-writing-versus-arithmetic fact is introduced only in the Hook and Fast read and is never carried into the Deep read or Full read, even though Quiz Q1 and Review Card 1 both depend on it. A reader relying on the 'Full read' as the fullest standalone account, or on Review Card 1 without the Fast read in mind, lacks the material needed to answer confidently, breaking the layered summaries' stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch04/seat-skeptic/quiz Q4",
+          "message": "The question turns on a 'window' of time and a docked ship costing a reader an opportunity if they delay replying, but nothing in the chapter states or implies any timing pressure around Burnet's invitation. The correct answer is reachable only by eliminating two absurdly absolute distractors, not by deriving it from the prose, breaking the fairness requirement for a sound quiz key."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-cold/Deep read",
+          "message": "Deep read, one of the chapter's three layered summary tiers, covers only the Keimer diet bargain and the Ralph/Osborne Psalm swap and omits the Miss Read/mother storyline entirely. A reader who consumes only this mid-tier layer (as the fast/deep/full design invites) has no basis for Quiz Q8 or Review Card 4, both of which depend on material that appears only in the one-sentence Fast read aside or the full Miss Read paragraph in Full read."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-skeptic/Fast read",
+          "message": "The Fast read's closing summary sentence groups Miss Read's courtship in with the Keimer and Ralph bargains as working 'the same way,' but the Full read and Key takeaway explicitly reject that exact flattening, stating Miss Read's delay was 'a plain judgment about timing, not a test of character' and warning that treating it as another bargain 'would flatten something the text never claimed.'"
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-skeptic/Example 1: The Forty-Dish Wager",
+          "message": "The example's closing analysis claims the Keimer bargain collapsed because 'an outside rule...sets the real limit,' but the chapter's own account shows Keimer's bargain ended through his own choice to eat the pig alone, with no outside authority involved — the two cases are asserted as showing 'exactly' the same thing while actually describing opposite mechanisms (external shutdown vs. self-caused lapse)."
+        },
+        {
+          "code": "READER.BLOCKING.unsafe",
+          "severity": "BLOCKER",
+          "location": "ch06/seat-cold/Implementation plan — If-then 1",
+          "message": "Directly instructs the reader to reopen an old, already-settled debt by sending the creditor a written note committing to further payment, with no caveat that such a written acknowledgment or payment promise can revive a time-barred or legally released debt and expose the reader to renewed collection action."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch07/seat-cold/Full read",
+          "message": "The Full read is presented as one of three depth options a reader can choose standalone, but its own synthesis line references 'the Junto' without ever defining what it is within that section (the club's Friday meetings and its purpose are only explained in the Deep read). A reader who goes straight to Full read hits an unexplained proper noun at the chapter's climactic summary line."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch07/seat-skeptic/Deep read vs Full read (timing of Coleman/Grace's rescue offer relative to Meredith's departure)",
+          "message": "The Deep read places the friends' rescue offer strictly after Meredith has already taken his settlement and left for North Carolina, while the Full read (echoed by the Hook) frames the same offer as a pre-emptive act made 'before Meredith's habits could sink it,' i.e. while the drinking/gambling problem was still live and Meredith still present. A reader cannot reconcile whether the offer preceded or followed Meredith's exit from these two 'standalone' summaries of the same event."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch09/seat-practitioner/Review card 4",
+          "message": "Card 4 attributes the unwritten companion book to business 'crowd[ing] out time at his ruled pages,' implying the daily tracking itself was interrupted. But the deep read explicitly states the ruled-page tracking never lapsed ('The other twelve virtues still got a nightly check, even in a week he was not actively drilling them'), so the crowding-out applied only to the separate, never-written book, not to the ledger itself."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/Example 4 mirror paragraph and Card 4, versus Deep read / Full read",
+          "message": "The chapter's own historical account of the Charleston partnership states only that Franklin received one-third of the profits (and 'financed' the shop), with no mention of Franklin owing one-third of expenses. Example 4's mirror paragraph and Card 4 both then assert, as established fact, that the real Charleston deal tied Franklin's one-third profit share to a matching one-third expense obligation — a term invented nowhere in the deep/full read account of the actual historical anecdote."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-practitioner/Review cards Card 4 / Example 4",
+          "message": "The Deep and Full reads describe Franklin's Charleston deal only as a 'one-third of the profits' share that he 'financed,' with no mention of an expense-sharing term. Card 4 and Example 4 then assert, as an established fact about that same deal, that Franklin's one-third profit share was tied to paying one-third of expenses — a structural detail invented nowhere else in the chapter and inconsistent with the 'financed' framing, which implies Franklin fronted costs rather than splitting them three ways with an operating partner."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch12/seat-skeptic/Example 4",
+          "message": "The example states quiet recruiting got Alice three households to say yes, then in the same sentence refers to only two who said yes -- an internal numeric mismatch decidable from this page alone."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch12/seat-practitioner/Full read",
+          "message": "Full read references 'a similar dodge in wording' as though a first dodge was already established within this section, but the actual antecedent (gunpowder relabeled as 'grain,' and the rule that 'it could not vote money to buy gunpowder') only appears in the separate Deep read section. A reader who reads only Full read hits an unexplained callback with nothing to compare it to, breaking that section's stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch17/seat-skeptic/Full read vs Quiz Q2",
+          "message": "The Full read explicitly frames the farmers' deaths as an unpreventable limit of Franklin's method ('no amount of careful measuring or fair delegating can dry out a rain cloud'), but Quiz Q2's correct answer treats a simple preventive action (refusing to arm anyone in wet weather) as the obvious right call for the same episode, contradicting the page's own 'this was unavoidable' framing."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/Quiz Q2 / Review Card 1 vs Deep read",
+          "message": "The quiz's correct answer and Card 1 both assert Franklin is the one who must act to turn his 'yes' into a signed engagement, but the Deep read states plainly that Mansfield was the one who had the answer written into the formal engagement, contradicting who performed the documenting action."
+        }
+      ]
+    },
+    {
+      "reviewId": "review-1720d489b30a46f3d623b99479abbfbb",
+      "outcome": "FAIL",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-skeptic/Full read vs. Review Card 6",
+          "message": "The Full read explicitly warns against reducing Franklin's move into the trade to a 'money alone' story, but Card 6 then gives exactly that money-alone story for the same transition, omitting the arithmetic failure the Full read treats as the decisive factor."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch04/seat-cold/Example 6 vs Deep read",
+          "message": "Example 6 asserts Keith 'demanded an actual inventory' of the shop as a precondition of his offer, but the Deep read states it was Franklin who worked out the cost of type and presses on his own; the page assigns the costing initiative to two different actors."
+        },
+        {
+          "code": "READER.BLOCKING.schema_or_app_breaking",
+          "severity": "BLOCKER",
+          "location": "ch06/seat-skeptic/Review cards (all 7 cards)",
+          "message": "Every 'Back:' line in all seven review cards is preceded by roughly ten literal space characters rather than normal paragraph text or list markup. This is a systematic, on-page formatting defect (identical in all 7 cards) that risks the card backs being misrendered as indented/preformatted code blocks or stray whitespace by a markdown-based app, breaking the flashcard display across the entire section."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch09/seat-skeptic/quiz Q8",
+          "message": "No option is unambiguously the intended correct answer from the prose alone. The question's phrasing ('what cost do you pay by waiting even longer') invites a causal, insight-level answer, but the only text-grounded option (a) merely restates the visible symptom already given in the stem, while the more 'insightful'-sounding option (b) asserts a lost-trust consequence that appears nowhere in the chapter."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/Deep read",
+          "message": "The chapter states its unifying pattern is loading a channel/relationship with instruction or goodwill and names a print shop, a friendship, and a public office as equivalent cases, but the print-shop and public-office anecdotes as actually narrated don't show anything being 'loaded' with instruction or goodwill: the print shop survives because of the widow's own bookkeeping, and the postmastership is simply a circulation advantage Franklin received."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/Implementation plan",
+          "message": "The section's stated core skill (draft a binding decision as a letter, sleep on it overnight, test it against a 25-year durability standard) is not modeled by any anecdote in the chapter; none of the Franklin stories (chess wager, Junto cap, book loan, Hemphill backing, newspaper libel policy) involve drafting a letter and sleeping on it before sending, so the section fails its promise to transfer the chapter's own stated lesson (turning an existing channel into a vehicle for teaching thrift, trust, and goodwill)."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-practitioner/Deep read / Full read / Quiz Q6 & Q8",
+          "message": "The 'Full read' layer, presented as the most complete version, never mentions Franklin's son's death from smallpox or his regret over not inoculating; that material lives only in 'Deep read' yet is the entire basis for Quiz Q8. Symmetrically, the newspaper's no-personal-libel policy (the basis for Quiz Q6) appears only in 'Full read' and not in 'Deep read.' Because the two summary layers don't fully overlap, a reader who commits to only one of them cannot derive both quiz answers from what they actually read, breaking each layer's standalone promise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-cold/Full read",
+          "message": "The Full read says Loudoun's delay 'kept him waiting in Philadelphia,' then two sentences later states 'The wait in New York ran from early April to nearly the end of June,' contradicting both itself and the Deep read's explicit claim that Loudoun kept Franklin waiting in New York."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/Implementation plan / if-then 1 vs. Deep read + quiz Q6",
+          "message": "If-then 1 instructs the reader, when a standing policy/instruction blocks a reasonable request, to comply with and shrink the request to fit that instruction. But the chapter's own central story resolves the identical situation (Denny blocked from signing by 'orders from the proprietors') by escalating past the blocker via an appointed agent carrying a petition to the higher authority, not by resizing the request -- and quiz Q6, built directly on this scenario, scores the escalate-past-the-blocker answer as correct. The chapter thus teaches two contradictory responses to the same problem type."
+        }
+      ]
+    },
+    {
+      "reviewId": "review-9827ee5297b7a147584d68c432a93595",
+      "outcome": "FAIL",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-practitioner/Full read",
+          "message": "The Full read is supposed to be a standalone third layer, but its Peter Folger paragraph references 'the 1675 verse' and 'Mather's church history' without ever introducing who Folger is or what the verse/mention was within the Full read itself (that context exists only in Deep read); the same section also references 'Brownell's school' by name for the first time in Full read as though already established. A reader who jumps straight to Full read cannot follow these passages."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch04/seat-skeptic/Fast read vs. Full read (Vernon money thread)",
+          "message": "The Fast read frames Franklin's Vernon mistake as the same kind of failure as Keith's — unverified trust in a person — but the Full read explicitly says these are two different tests, one about vetting a promise-maker and one about honoring custody of money already accepted. A reader who takes the Fast read at face value gets a different, less accurate lesson than the Full read delivers, breaking the standalone accuracy each summary layer is supposed to have."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch04/seat-practitioner/Review card 3 (vs. Review card 2 and Fast read)",
+          "message": "Card 3 asserts Franklin first tried reasoning with Collins and that this attempt 'failed' before the physical response, but no such reasoning attempt appears anywhere else in the chapter — the Fast read and Card 2 both depict the lunge itself as the sole and immediate trigger, with no prior verbal de-escalation phase described or implied."
+        },
+        {
+          "code": "READER.BLOCKING.unsafe",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-practitioner/Implementation plan — If-then 1 / Quiz Q7 / Example 2",
+          "message": "The chapter's actionable technique for testing bias is to secretly misattribute a real piece of work to a different name and feed it to a real person (boss, critic, colleague) without their knowledge or consent, and presents this as clean and consequence-free. No caveat anywhere addresses the real risk of workplace/academic dishonesty, breach of trust, or disciplinary consequences if the deception is discovered, so a reader applying the advice as written could damage their reputation or relationships."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch07/seat-skeptic/Full read",
+          "message": "The narrative says Franklin quit Keimer's shop over a quarrel and then took an independent Burlington job that gave him something 'Keimer's shop never could' — but the very next sentence says that same job 'kept Keimer's failing business alive,' which only makes sense if the job was actually tied to Keimer's shop. The page never reconciles these two claims about the same job."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/Deep read / Key takeaway (core thesis)",
+          "message": "The chapter's organizing thesis claims the newspaper is an example of taking an existing channel and 'loading it with instruction or goodwill instead of building something new,' but the Full read explicitly states the newspaper carried no lesson at all, and its only described policy is a restraint rule (refusing paid personal attacks) rather than an added lesson — directly contradicting the thesis's own named example."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/Deep read / Full read (Junto club example)",
+          "message": "The same thesis claims the shared pattern avoids 'building something new,' but the chapter's own club (Junto) example resolves entirely by building brand-new spinoff clubs — the opposite of what the thesis claims."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch14/seat-skeptic/full read vs. example 5",
+          "message": "The chapter describes the grand council two different ways: chosen indirectly by colonial assemblies in the Full read, but as directly 'elected' in Example 5's tie-back, leaving the council's actual selection method internally inconsistent."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch14/seat-practitioner/Deep read vs. Review card 5",
+          "message": "The chapter gives two different durations for the same pre-vote debate: the Deep read says the arguing lasted 'days,' while Card 5 describing the identical event says 'weeks of daily argument.'"
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch15/seat-skeptic/Hook / Quiz Q3",
+          "message": "The chapter twice states Morris arrived 'from England to New York' and that the fight was waiting for him there, yet the rest of the chapter identifies the colony in conflict as Pennsylvania (Quincy is sent to 'ask Pennsylvania for aid,' and the Penn family's estates are the whole basis of the bond). The chapter never reconciles Morris landing in New York with him governing the Pennsylvania Assembly discussed everywhere else."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch17/seat-skeptic/Deep read vs Review card 3 vs Example 3",
+          "message": "The chapter states the rum ration was distributed twice a day in its main narrative, but two other sections describe the same ration as a single daily gill, so a core numeric detail of the chapter's signature example contradicts itself across sections."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-cold/Deep read / Full read",
+          "message": "The chapter gives two incompatible accounts of when the Royal Society first read Franklin's lightning report aloud. Both the Deep read and Full read state the report was already read before the Society and dismissed prior to the Marly trial, but the Full read later says the Society only had it read aloud 'then' — after news of Marly arrived — contradicting the earlier reading already having taken place."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-cold/Deep read vs Full read (sea-stores timeline)",
+          "message": "Deep read attaches the loss of Franklin's sea-stores to the three-month wait in New York for Loudoun's letters, but Full read places that loss during an earlier, separate delay in Philadelphia (Loudoun's mediation between Denny and the Assembly), before Franklin even reached New York. The two accounts disagree on when and why the sea-stores were lost."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/Deep read vs Full read",
+          "message": "Deep read attributes the loss of Franklin's sea-stores to the three-month wait in New York, but Full read places that same loss earlier, in Philadelphia, before Franklin ever traveled to New York."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/Fast read vs Deep read",
+          "message": "Fast read places Fort George's fall during Loudoun's letter-stalling in New York ('while he stalled'), but Deep read places the same event during the later, separate Halifax/Louisbourg expedition."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/Deep read vs Example 6",
+          "message": "Deep read states the proprietors eventually answered Franklin's complaint (rejecting it on a technicality about titles), while Example 6's callback claims Paris ran the delay 'without ever formally refusing it,' i.e. that no answer ever came."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/Full read vs Example 6",
+          "message": "Full read distinguishes 'a proper officer' who verified Franklin's accounts from Loudoun himself, who refused to pay despite that verification; Example 6 collapses these into Loudoun personally certifying the accounts."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-practitioner/Deep read vs. Full read (sea-stores timeline)",
+          "message": "Deep read attributes the loss of Franklin's sea-stores to the three-month Loudoun delay in New York ('in the delay'), while Full read places the same lost shipment earlier, during the Philadelphia mediation between Denny and the Assembly, before Franklin ever left for New York. Both layers present themselves as accurate, standalone accounts of the same event but give incompatible causal timelines."
+        }
+      ]
+    },
+    {
+      "reviewId": "review-585058c1f411649f3cec13eb4a8ed6d0",
+      "outcome": "FAIL",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch03/seat-skeptic/deep read",
+          "message": "The Deep read opens by referencing 'the bread and the doorway' and later 'his roll' without ever narrating the bread purchase or the doorway encounter within this section itself, so a reader who starts at Deep read (as the layered fast/deep/full design invites) cannot follow these references, breaking the section's stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch04/seat-practitioner/Quiz Q6 / Review Card 2 / Review Card 3",
+          "message": "The quiz question and two review cards treat 'Collins threatened to throw Franklin overboard' as an established fact of the story, but this detail never appears in the chapter's own Fast/Deep/Full read account of the Delaware boat fight, which only describes Collins refusing to row and then lunging. The assessment material asserts a plot fact the chapter's own narrative does not support."
+        },
+        {
+          "code": "READER.BLOCKING.unsafe",
+          "severity": "BLOCKER",
+          "location": "ch06/seat-skeptic/Implementation plan, If-then 1",
+          "message": "The chapter states as flat, uncaveated fact that a fresh written promise can revive an old, already-closed debt, and instructs the reader to act on this (avoid contacting the creditor, send money instead of a pledge) with no mention that this depends on jurisdiction or that a reader should get professional advice before acting on real debt obligations. A reader who follows this could make a costly financial/legal misstep."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/deep read opening / key takeaway",
+          "message": "The deep read explicitly claims Franklin ran 'three related moves,' but the very next sentences and the key takeaway both list four distinct maneuvers (almanac instruction, winning the hostile rival with a favor, holding the newspaper to its promise, and growing the Junto via spinoff clubs), so the chapter's own count contradicts its own enumeration."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch11/seat-skeptic/Example 4",
+          "message": "The chapter's stated thesis (Full read, reinforced by Example 3) is that durable fixes must be written into self-renewing rules rather than depend on one person's ongoing goodwill, since 'it stops functioning the day he can't pay.' Example 4 then celebrates the opposite pattern as its resolution: Nora personally covers the shortfall from her own purse rather than changing the exemption fee itself, and the story frames this ad hoc personal act as the lasting fix, contradicting the chapter's own design principle."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch11/seat-skeptic/Full read",
+          "message": "The layered-summary format promises fast/deep/full reads that are each standalone, but Full read opens and proceeds by referencing 'this,' 'the watch paper,' and 'the fire company' without ever reintroducing them, relying entirely on Fast/Deep read for context. A reader who jumps straight to Full read cannot reconstruct who Whitefield is or what proposal is being discussed from this section alone."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch18/seat-skeptic/Hook vs. Deep read / Full read",
+          "message": "The Hook credits Le Roy's written rebuttal with 'beating' Nollet in print, but the chapter's own repeated thesis is that print arguments never settle anything and only witnessed, repeated results do; the body text itself only says Le Roy 'answered' Nollet, never that his argument produced a win, so the Hook's framing device conflicts with the lesson the rest of the chapter teaches."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/Fast read",
+          "message": "The Fast read asserts its own resolution ('a signed, witnessed promise' moved London) without ever depicting what that promise is — the only prior 'signed' reference in that section is the Assembly naming Franklin its agent to carry a petition, which is a different thing from the Mansfield/tax engagement introduced only later. A reader who treats the Fast read as a standalone summary is left with an unexplained payoff line."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/Fast read vs. Deep read",
+          "message": "The Fast read states the army 'marched toward Louisbourg, drilled at Halifax, and turned back' (march, then drill, then retreat), while the Deep and Full reads both order the same events as drilling at Halifax first and only then turning back from/failing to reach Louisbourg. The two summaries of the same episode give contradictory event order."
+        }
+      ]
+    },
+    {
+      "reviewId": "review-1ca523b6ead85a1632b837c9b3bd1d3f",
+      "outcome": "FAIL",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-skeptic/Deep read; Full read",
+          "message": "The chapter's scoring premise requires fast/deep/full reads to each stand alone, but Deep read opens by referencing 'Josiah' as if already introduced (he is only named as Franklin's father in the preceding Fast read), and Full read opens by referencing 'the Ecton freehold' the same way. A reader who selects only Deep read or only Full read as their depth encounters these names without in-section introduction."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch02/seat-skeptic/Example 2 (The Spare Wick)",
+          "message": "The chapter's own account of the Collins letters says Franklin's prose looked rough compared to Collins's, but Example 2's closing synthesis claims the exchange 'backfired on Collins's side of the argument' — an outcome the source passage never establishes and which sits at odds with the detail actually given (Franklin's style, not Collins's argument, is what's shown exposed)."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-cold/deep read / fast read / full read (Miss Read passage)",
+          "message": "The chapter labels Miss Read's courtship delay 'a third test,' placing it in the same testing framework as Keimer's diet and Ralph's poem, while simultaneously and repeatedly insisting elsewhere that it was not a test of character at all — undermining the exact distinction the takeaway and Q8 depend on."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-skeptic/Weekly practice vs. Example 6 lesson line",
+          "message": "Example 6 explicitly warns that walking someone through a string of undisclosed follow-up questions 'reads as... a trap' unless intent is stated by the second or third question, and shows Gordon losing trust in the warden because of it. The Weekly practice then instructs the reader to do exactly the undisclosed version of this: press positions with only follow-up questions until the other person's view changes, with no instruction to ever disclose what is being tested."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch06/seat-skeptic/Example 4 (Off the Gangplank Alone) vs. Deep read / Quiz Q4",
+          "message": "Deep read states Ralph secured paid teaching work in Berkshire ('a few pennies a week each'), but Example 4 and Quiz Q4 both describe him as someone who 'never found paying work' or who 'kept failing at work' through that same Berkshire stint, directly contradicting the page's own account of that job."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch09/seat-skeptic/Fast read vs. Full read",
+          "message": "The chapter gives two incompatible origin stories for the thirteen-virtue list. Fast/Deep read present it as starting at twelve virtues, with Humility added later only in reaction to a specific friend's criticism. Full read instead frames having thirteen narrow virtues as a pre-existing 'deliberate choice' made to prevent vagueness, erasing the reactive origin of the thirteenth entry."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/Deep read vs Key takeaway",
+          "message": "The chapter characterizes the same newspaper policy two different ways: the Deep read says Franklin kept the newspaper's 'original promise' unchanged, while the Key takeaway calls the same move holding the paper 'to a stricter promise' (implying tightening). These describe one event but are not the same claim."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch12/seat-cold/Key takeaway section",
+          "message": "The declared Key takeaway (parallel funding streams so no single vote controls the outcome) is not the lesson the Quiz, Review cards, Try this now, or Implementation plan actually drill; those materials center overwhelmingly on a different, unnamed lesson (public silence/unity can mask private disagreement, tested by an actual vote or private check). A reader using the Key takeaway as the chapter's distilled promise gets a claim disconnected from the rest of the chapter's own reinforcement machinery."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch13/seat-skeptic/quiz Q4",
+          "message": "The question's own premise states the offered post 'pays a fixed salary no matter how the office performs,' but the designated correct answer instructs the friend to 'ask whether the pay depends on the office turning a profit' — a fact the premise has already foreclosed. A reader deriving the answer purely from the prose has no way to reconcile the correct choice with the stated setup, breaking the item's internal logic."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch17/seat-practitioner/example 3",
+          "message": "The example's payoff line claims the reward change adds or removes nothing, but the change it describes (moving the gear-wash token from an unconditional monthly mailing to a hand-out only 'at the door the moment the refresher ends') functionally makes receipt conditional on attendance, which contradicts the 'no strings added or removed' framing the example uses to explain why it works."
+        }
+      ]
+    },
+    {
+      "reviewId": "review-052e2b676ee900d3f4d378398fe5c121",
+      "outcome": "FAIL",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-skeptic/Fast read / Key takeaway",
+          "message": "The Key takeaway's central line depends entirely on the wharf/stolen-stones anecdote, but the Fast read tier never mentions stones, a wharf, or any theft. A reader who only reads the fast tier then hits the Key takeaway encounters an unexplained callback, breaking that tier's stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch03/seat-skeptic/Full read vs. Implementation plan",
+          "message": "The Full read explicitly states no single trick explains what happened to Franklin, but the chapter's entire actionable apparatus (Try this now, Implementation plan) is organized around exactly one procedural trick presented as the applicable skill."
+        },
+        {
+          "code": "READER.BLOCKING.unusable",
+          "severity": "BLOCKER",
+          "location": "ch03/seat-skeptic/Key takeaway vs. Try this now / Implementation plan",
+          "message": "The stated core move is preserving an exact, unflattering record of one's rough start so success can be measured against it, but the practice sections instead drill a different skill (naming a specific referral / getting a named second opinion), so a reader cannot actually practice the declared core move from what's on the page."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch04/seat-skeptic/Example 4: The Weekend Before the No (vs. Deep read and Card 4)",
+          "message": "Example 4 claims Franklin's father refused Keith's specific offer to fund the shop himself for the one-hundred-pound sum, but the chapter's own Deep read and Card 4 establish that Keith's self-funding offer and the one-hundred-pound inventory only arose AFTER the father's refusal, as Keith's escalation in response to it — not before."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-skeptic/Example 2: The Wrong Name on the Tray",
+          "message": "The chapter asserts the Osborne/Psalm test was 'a test with no name attached,' but the same passage and the earlier Deep/Full reads describe Franklin's name being substituted for Ralph's -- a name (the wrong one) was attached throughout, the opposite of a nameless test."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch06/seat-skeptic/Full read vs Implementation plan If-then 1",
+          "message": "The chapter gives two incompatible accounts of how Denham repaid his old creditors: cash slipped under each man's plate at a dinner, versus a formal banker's order. The Implementation plan then treats the banker's-order version as fact to justify an action rule, contradicting the earlier narrative detail on the same page."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch08/seat-skeptic/Deep read",
+          "message": "Deep read opens by referencing 'credit' and continues discussing Keimer, Bradford, and Godfrey without reintroducing them, so it fails to stand alone for a reader who skips Fast read, contrary to the layered-but-standalone summary design."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch08/seat-skeptic/Full read",
+          "message": "Full read opens by referencing 'the currency fight' and 'a pamphlet' as already-known facts and never defines 'Junto' anywhere in this layer, so a reader who goes straight to Full read without reading Fast/Deep cannot follow the opening reasoning."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch09/seat-skeptic/Hook vs. Full read",
+          "message": "The Hook states that Franklin's notes dated May 19th, 1731 sketched 'a Society of the Free and Easy,' but the Full read says those same dated notes describe a differently-named plan, 'a United Party for Virtue,' which he only 'pictured eventually taking shape as' the Society of the Free and Easy — leaving it internally unclear what the 1731 notes actually named."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/key takeaway vs. full read",
+          "message": "The chapter states two different four-item lists as the chapter's defining moves/tools, and they disagree: the Key Takeaway names the newspaper as one of the four core moves, but the Full Read's own closing recap of 'these moves' drops the newspaper entirely and substitutes a different item, so the chapter contradicts itself about what its own central four things are."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/deep read",
+          "message": "The Deep Read section explicitly promises a bounded structure ('four related moves...not one' plus 'two other episodes' running on a separate stated rule), then narrates several more episodes (the 1757 consolidated speech, the son's smallpox death, the postmaster appointment) inside the same section without indicating which bucket they belong to or that they fall outside the stated scheme, so the section fails its own organizing promise."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch12/seat-cold/Full read",
+          "message": "The chapter's own design promises fast/deep/full summaries that are each standalone, but the Full read references 'The New York loan,' 'Clinton's council,' wine, and 'six cannon' as already-known facts without ever introducing Governor Clinton, the New York trip, or the dinner anywhere in the Full read itself — those facts appear only in the Deep read. A reader who reads only Full read cannot resolve who Clinton is or why wine or six cannon matter."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch13/seat-skeptic/Key takeaway",
+          "message": "The Key takeaway labels 'a paid trial' as the funding method for the street, parallel to 'a subscription for the school' and 'a matching grant for the hospital.' But the chapter's own body text shows the paid trial (paying a woman a shilling to sweep Craven-street) only produced a cost estimate for a written proposal; the street's actual funding mechanism described in the Full read is a neighborhood subscription whose visible results made residents accept a later citywide paving tax. A reader relying on the takeaway's three-way parallel would misidentify how street funding actually worked according to the chapter's own account."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch17/seat-skeptic/Full read",
+          "message": "The Full read is supposed to stand alone, but its opening sentence uses an anaphoric backward reference ('this') to material never restated in that section, so a reader who jumps straight to Full read cannot resolve the referent from the page in front of them."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch19/seat-skeptic/Full read",
+          "message": "The Full read is billed as the fullest account, but it never narrates the chapter's central scene (Lord Mansfield's question, the Clerk of the Council drawing up the paper, Franklin signing) that the shorter Deep read contains; it only alludes to 'the tax would be fair' and a generic signed paper, so a reader who reads only the Full read cannot learn who asked the question or how the signing happened, breaking its stand-alone promise as the most complete read."
+        }
+      ]
+    },
+    {
+      "reviewId": "review-ba9e74443abb6b1ce926c5613d8e6238",
+      "outcome": "FAIL",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch01/seat-cold/Try this now / Deep read",
+          "message": "The same Franklin quote about the wharf is rendered with contradictory pronouns in two places on the page: the third-person narration in 'Try this now' lapses into first person ('our little wharf') while the Deep read renders the same quoted phrase correctly in third person ('their little wharf'), so the page contradicts itself about whose voice is being quoted."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch05/seat-skeptic/Key takeaway vs Full read",
+          "message": "The Key takeaway flatly states the Psalm swap 'caught Osborne's bias,' presenting bias as an established fact, while the Full read explicitly disclaims that exact conclusion, saying the reveal proves only that one verdict tracked a name and stops short of settling Osborne's honesty."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch06/seat-skeptic/Deep read / Full read",
+          "message": "The Hook, Fast read, and Key takeaway all state that Denham's fifty-pound clerkship is how the chapter resolves, but neither the Deep read nor the Full read — the two supposedly more thorough summary layers — ever mentions that Denham offered Franklin the job or that Franklin left printing for it, so a reader who opens only 'Deep read' or 'Full read' never learns how the chapter actually ends."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch07/seat-skeptic/Memorable lines",
+          "message": "The third memorable line is a decontextualized fragment copied from the Deep read that drops the payoff clause ('It drew at most ninety subscribers'), so on its own it is neither memorable nor an insight and fails the section's stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch07/seat-skeptic/Full read",
+          "message": "The text states Franklin quit/walked out on Keimer over a quarrel, then in the immediately following sentence says he carried out the Burlington job 'for him' (Keimer), with no bridging explanation of any re-engagement, reading as self-contradictory on the page."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch09/seat-skeptic/Fast read vs Deep read (virtue count / ledger structure)",
+          "message": "Fast read states Franklin 'picked twelve virtues at first' and only reached thirteen after later adding Humility in response to the Quaker friend's feedback, but Deep read describes the ruled notebook as having 'thirteen virtues' and 'thirteen red lines' without flagging that this was only true after the later addition, leaving the sequence of the ledger's own design contradictory within the same chapter."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/Full read",
+          "message": "The Full read, positioned as the deepest/most complete layer, never mentions the Almanack of 1757 speech even though the shallower Deep read includes it and Quiz Q3, Q5, Card 5, and Example 5 all depend on it. A reader treating Full read as standalone is missing content the product later tests them on, breaking the 'each standalone' promise of the layered summaries."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/Deep read",
+          "message": "The Deep read explicitly sorts episodes into three stated categories (designed moves; episodes opened by someone else's skill or carelessness; episodes with 'no clean pattern, only consequence'), then places the deliberate compiling of decades of proverbs into the 1757 speech inside the third 'no clean pattern' bucket beside the Hemphill controversy and the son's death, even though assembling and publishing that speech was Franklin's own deliberate authorial move, contradicting the chapter's own categorization logic."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/Review card 6",
+          "message": "Card 6's back references '1734's synod fight' as an established event, but no synod or synod fight is named or explained anywhere else in the chapter (only that an opponent traced a Hemphill sermon to a published discourse by Dr. Foster). A reader using this card in isolation, as flashcards are meant to be used, hits an unexplained term with no basis on the page."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-practitioner/Review cards / Card 6",
+          "message": "Card 6's back introduces a specific historical detail ('1734's synod fight') that is never established, defined, or referenced anywhere else in the chapter, so a reader encountering this spaced-repetition card on its own has no way to understand what event it refers to, failing the card's stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch12/seat-cold/Full read / Quiz Q5",
+          "message": "The 'Full read' tier is positioned as the deepest, complete layer, but it never mentions Franklin's stove invention, Robert Grace, or the declined patent — that episode appears only in the earlier 'Deep read' section. Quiz Q5 tests exactly that episode, so a reader who consults only the Full read cannot derive Q5's premise, breaking that section's stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch13/seat-skeptic/Full read",
+          "message": "The Full read functions as the most detailed standalone summary tier, but its closing sentence refers to 'a rum-free negotiation' and 'a paid trial' as already-known shorthand; neither the Carlisle treaty nor the Craven-street shilling trial is ever narrated or even named anywhere else in the Full read. A reader who reads only the Full read cannot tell what these phrases mean, breaking its stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch13/seat-practitioner/Example 2",
+          "message": "The sentence attributes Franklin's venting fix to 'Philadelphia's globe lamps' themselves ('Franklin worked that out for Philadelphia's globe lamps, which stayed sealed, smoked over...'), but the Full read establishes that the sealed, smoking, single-knock-fragile globes were the OLD design Franklin replaced with a separate four-pane fixture -- the globes themselves never received venting. The phrasing makes it read as though the vented fix belongs to the globes, contradicting the chapter's own account of which object has which properties."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch16/seat-skeptic/quiz Q5",
+          "message": "The prose supporting this question only says an outside officer eventually appointed men to settle Franklin's debts; it never shows Franklin proactively seeking that authority. Option a ('wait for a military officer to personally appoint commissioners... since that is what resolved Franklin's waggon debts') restates the text as literally as option b ('recognize... then seek a formal authority'), so a careful reader following the stated derivation rule (answer must be forced by the prose) cannot rule out a in favor of b. The item has no single answer the page actually forces."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch17/seat-cold/Card 2 / Full read / Card 3",
+          "message": "Card 2 claims the farmers' wet-powder deaths had a preventable fix ('check that the powder was still dry before trusting the weapons to work'), but this directly contradicts the Full read's own explicit point that this failure was categorically unfixable by any diligence, and Card 3 independently confirms no procedural trick 'would have done' anything for these farmers."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch17/seat-practitioner/Fast read / Deep read",
+          "message": "The chapter's central caution — that Franklin's whole civilian-habits method had a hard limit weather could expose, illustrated by the wet-powder deaths — is stated only in the Hook and the Full read. Neither the Fast read nor the Deep read (each of which is scored for standing alone) ever surfaces this limit or its interpretation; both jump straight from fort-building details to the handoff to Clapham. A reader relying on either of these shorter tiers gets a version of the lesson that looks unqualified, missing the chapter's own honest caveat about where the method 'ran out of road.'"
+        }
+      ]
+    },
+    {
+      "reviewId": "review-35abdd05c52c1642a511756a397ecd6e",
+      "outcome": "ERROR",
+      "blockers": [
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch04/seat-cold/Hook vs Deep read (James's reaction)",
+          "message": "The Hook attributes James's sense of insult to the mere display of silver and a new suit on arrival, but the Deep read instead attributes the lasting insult to a specific later gesture (the piece of eight to the journeymen) that Franklin intended as a peace offering, not a display of wealth. The two passages disagree on both what triggered the insult and Franklin's intent behind it."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch08/seat-cold/Fast read",
+          "message": "The Fast read never mentions Charles Brockden, the library, or the Junto's failed book pool, yet the Key takeaway that follows the three reads treats that thread as central ('hiding his own name and signing subscribers to fixed payments let the library outlast the Junto's failed book pool'). A reader who consumes only the Fast read cannot make sense of half the Key takeaway, and misses the thread that anchors most of the Examples, the Implementation plan title, Review Card 4, and Quiz Q4 -- so the Fast read fails its stand-alone promise."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch10/seat-skeptic/Full read (smallpox passage)",
+          "message": "The chapter's own reasoning is self-undermining: it states natural smallpox and inoculation carried almost equal mortality risk ('skipping the procedure bought no real safety'), which implies the choice was a wash, yet in the same breath it frames Franklin's regret over not inoculating as the take-away lesson, without resolving why inoculating would have mattered if the risks were nearly equal."
+        },
+        {
+          "code": "READER.BLOCKING.structurally_invalid",
+          "severity": "BLOCKER",
+          "location": "ch12/seat-practitioner/Example 5: One Person at the Microphone",
+          "message": "Every other example pairs its story with a bolded action step that directly practices the story's lesson; this example's action step is about an unrelated procedural requirement (licensing-board disclosure) that has nothing to do with the story's actual lesson (private opinion vs. public silence), breaking the format's teach-then-practice promise for this unit."
+        },
+        {
+          "code": "READER.BLOCKING.internal_contradiction",
+          "severity": "BLOCKER",
+          "location": "ch15/seat-skeptic/Fast read vs Deep read",
+          "message": "The Fast read (and Key takeaway) characterize Franklin as having simply avoided confrontation with Morris ('Franklin skipped the fight'), but the Deep read reveals Franklin was continuously and sometimes harshly combative toward Morris throughout the same dispute, sitting on every committee built to answer him and writing rude rebuttals. A reader relying on the standalone Fast read forms a model of Franklin as conflict-avoidant that the Deep read directly contradicts."
+        },
+        {
+          "code": "SEMANTIC_PANEL_READER_FAILED",
+          "severity": "BLOCKER",
+          "location": "ch16",
+          "message": "SEMANTIC_PANEL_READER_FAILED:MODEL_PROCESS_FAILED:You've hit your weekly limit · resets Sep 22 at 7pm (America/Toronto) (api_error_status=429)"
+        },
+        {
+          "code": "SEMANTIC_PANEL_READER_FAILED",
+          "severity": "BLOCKER",
+          "location": "ch17",
+          "message": "SEMANTIC_PANEL_READER_FAILED:MODEL_PROCESS_FAILED:You've hit your weekly limit · resets Sep 22 at 7pm (America/Toronto) (api_error_status=429)"
+        }
+      ]
+    }
+  ]
+}

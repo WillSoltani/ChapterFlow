@@ -20,8 +20,12 @@
  *      route it), each strict-assembled into a `ReaderExperienceReviewV1`, their
  *      composites MEDIANED and their findings unioned/seat-tagged (Task 9,
  *      IMP-20 §G — the single-reader-per-chapter call of stage 1 is retired).
- *   3. Reader blocking findings (from ANY seat) → `ReviewIssue severity:"BLOCKER"`;
- *      reader advisory findings + escalation signals → `"WARN"`. An unparseable
+ *   3. Reader blocking findings → `ReviewIssue severity:"BLOCKER"` only when two
+ *      distinct seats raise the same category on the same chapter (owner
+ *      decision D2 (A2), `corroboratePanelBlockingFindings`; a single seat's
+ *      `schema_or_app_breaking` still blocks); any other seat blocking finding
+ *      is kept as WARN `READER.SINGLE_SEAT.<category>`. Reader advisory
+ *      findings + escalation signals → `"WARN"`. An unparseable
  *      or failed seat makes the whole evaluation `"ERROR"` (fail-closed — an
  *      uncertain reader lane never silently passes).
  *   4. MEDIAN COMPOSITE FLOOR (the headline 3-reader-median deliverable is
@@ -54,9 +58,11 @@
  *      by BOTH repair gates, so nothing downstream reads those bytes. Bounded by
  *      the dial (see the `providerBlocked` comment below).
  *   5. Outcome: `ERROR` if any seat run failed; else `FAIL` if any panel (or
- *      baseline) BLOCKER issue exists — including a below-floor median; else
- *      `PASS`. So PASS ⟺ baseline PASS ∧ every chapter's panel median ≥ the
- *      chapter bar ∧ zero panel/baseline BLOCKERs.
+ *      baseline) BLOCKER issue exists — including a below-floor median, a
+ *      corroborated (or single-seat `schema_or_app_breaking`) seat finding, or a
+ *      quiz-majority verdict; else `PASS`. So PASS ⟺ baseline PASS ∧ every
+ *      chapter's panel median ≥ the chapter bar ∧ zero panel/baseline BLOCKERs
+ *      (single-seat `READER.SINGLE_SEAT.*` WARNs do not gate — owner decision D2 (A2)).
  *
  * The reader lane holds no external-source-truth authority (IMP-20 §A): its
  * blocking categories are on-page-decidable only, so this stage never invents
@@ -85,6 +91,7 @@ import {
   runReaderLanes,
   type ReaderPanelReviewV1,
 } from "../review/laneOrchestrator.js";
+import { corroboratePanelBlockingFindings } from "../review/panelBlockingCorroboration.js";
 import { adjudicatePanelQuizDerivations } from "../review/panelQuizAdjudication.js";
 import type {
   CanonicalReviewEvaluation,
@@ -358,9 +365,15 @@ export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
       // nothing (PASS is decided on BLOCKERs), and it is the only per-factor
       // record the run keeps once the seat reviews are gone.
       issues.push(issue(READER_PANEL_FACTOR_SCORES_CODE, "WARN", factorScoresMessage(panel), `ch${pad(number)}`));
-      // ANY seat's on-page-decidable blocking finding blocks (union, fail-closed).
-      for (const finding of panel.blockingFindings) {
-        issues.push(issue(`READER.BLOCKING.${finding.category}`, "BLOCKER", finding.problem, `ch${pad(number)}/${finding.seatId}/${finding.unit}`));
+      // Owner decision D2 (A2): a seat's on-page-decidable blocking finding blocks
+      // only when >=2 distinct seats raise the same category on this chapter (a
+      // single seat's schema_or_app_breaking still blocks); otherwise it is kept,
+      // same message and location, as WARN READER.SINGLE_SEAT.<category>. Applied
+      // here, to seat findings only — never as a post-pass over issue codes, which
+      // would also catch the quiz-majority verdicts pushed below.
+      for (const decided of corroboratePanelBlockingFindings(panel.blockingFindings.map((finding) => ({ ...finding, chapter: number })))) {
+        const finding = decided.finding;
+        issues.push(issue(decided.code, decided.severity, finding.problem, `ch${pad(number)}/${finding.seatId}/${finding.unit}`));
       }
       for (const finding of panel.advisoryFindings) {
         issues.push(issue(`READER.ADVISORY.${finding.category}`, "WARN", finding.problem, `ch${pad(number)}/${finding.seatId}/${finding.unit}`));
