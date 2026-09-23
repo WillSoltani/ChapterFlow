@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdirSync } from "node:fs";
+import { mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 import type { UtcIso } from "../../src/contracts/v4Core.js";
@@ -421,6 +421,108 @@ requiredTest("R-001: a NON-ZERO exit still preserves the provider envelope messa
   assert.ok(thrown instanceof Error);
   assert.match(thrown.message, /^MODEL_TASK_FAILED:MODEL_PROCESS_FAILED:/);
   assert.equal(isUnretryableProviderMessage(thrown.message), true);
+});
+
+// ── defect #20: the durable journal names a provider block wherever `result` sits ──
+
+/**
+ * The 2026-09-20 envelope, in the key order claude CLI 2.1.265 prints: `usage`
+ * and friends BEFORE `result`. The live one (review-run-b1066b7e…, 1,192 bytes,
+ * exit 1) put `result` past character 400, so the durable attempt detail — whose
+ * only stdout evidence was a 400-char head — journaled token counters and never
+ * the words "weekly limit", and nothing reading the journal could see the block.
+ * The head of this fixture copies the live head field for field.
+ */
+function liveKeyOrderEnvelope(result: string, apiErrorStatus: number): string {
+  return JSON.stringify({
+    duration_api_ms: 0,
+    stop_reason: "stop_sequence",
+    session_id: "5ef9f894-2c2c-457d-a66e-1683a34d5ddf",
+    total_cost_usd: 0,
+    usage: {
+      output_tokens_details: { thinking_tokens: 0 },
+      input_tokens: 0,
+      cache_creation_input_tokens: 0,
+      cache_read_input_tokens: 0,
+      output_tokens: 0,
+      server_tool_use: { web_search_requests: 0, web_fetch_requests: 0 },
+      service_tier: "standard",
+      cache_creation: { ephemeral_1h_input_tokens: 0, ephemeral_5m_input_tokens: 0 },
+    },
+    modelUsage: {},
+    permission_denials: [],
+    uuid: "0f3c9a52-5d0e-4c1e-9b8a-7d2f4e6a1b3c",
+    type: "result",
+    subtype: "success",
+    is_error: true,
+    api_error_status: apiErrorStatus,
+    duration_ms: 2216,
+    num_turns: 1,
+    result,
+  });
+}
+
+function finishedDetail(roots: TestRoots, run: RunDefinition): string {
+  const journal = readFileSync(join(roots.stateRoot, "books", run.bookId, "runs", run.runId, "attempts.jsonl"), "utf8");
+  const finished = journal
+    .split("\n")
+    .filter((line) => line.trim().length > 0)
+    .map((line) => JSON.parse(line) as Record<string, unknown>)
+    .find((record) => record.type === "ATTEMPT_FINISHED");
+  assert.ok(finished, "a terminal ATTEMPT_FINISHED record must be durable");
+  return String(finished.detail ?? "");
+}
+
+requiredTest("defect #20: a claude 429 envelope whose result sits past the stdout head still journals the provider block", async ({ roots }) => {
+  const run = definition("claude-book", "claude-late-result-run");
+  const store = new FileRunStore(roots.stateRoot);
+  await expectRun(store, run);
+  const envelope = liveKeyOrderEnvelope("You've hit your weekly limit · resets Sep 22 at 7pm (America/Toronto)", 429);
+  // The fixture is only evidence if it has the live shape: `result` AFTER the
+  // 400-char head. Otherwise the head alone would carry the words.
+  assert.ok(envelope.indexOf("\"result\"") > 400, `result must start past char 400: ${envelope.indexOf("\"result\"")}`);
+  const supervisor = new CapturingSupervisor(new TextEncoder().encode(envelope), 1);
+  const gateway = createModelGateway({
+    runStore: store,
+    processSupervisor: supervisor,
+    executionPolicy: policy(roots),
+    route: createClaudeRoute("claude-sonnet-5", "xhigh"),
+    now: clock(),
+    modelCliPreflight: async () => {},
+  });
+  const result = await gateway.execute(task(run, "attempt-late-result", attemptDirectory(roots, "attempt-late-result")));
+  assert.equal(result.outcome, "FAILED");
+  assert.equal(result.error?.code, "MODEL_PROCESS_FAILED");
+
+  const detail = finishedDetail(roots, run);
+  assert.match(detail, /weekly limit/, detail);
+  assert.match(detail, /;providerBlock=quota-exhausted;providerMessage=You've hit your weekly limit · resets Sep 22 at 7pm \(America\/Toronto\) \(api_error_status=429\)/, detail);
+  // Additive: the existing head is still there, byte-for-byte what it was.
+  assert.match(detail, /stdoutHead=\{"duration_api_ms":0,"stop_reason":"stop_sequence"/, detail);
+  assert.equal(detail.includes("\n"), false);
+});
+
+requiredTest("defect #20: an is_error envelope that is NOT a provider block journals no provider field", async ({ roots }) => {
+  const run = definition("claude-book", "claude-not-blocked-run");
+  const store = new FileRunStore(roots.stateRoot);
+  await expectRun(store, run);
+  const envelope = liveKeyOrderEnvelope("API Error: 400 Output blocked by content filtering policy", 400);
+  const supervisor = new CapturingSupervisor(new TextEncoder().encode(envelope), 1);
+  const gateway = createModelGateway({
+    runStore: store,
+    processSupervisor: supervisor,
+    executionPolicy: policy(roots),
+    route: createClaudeRoute("claude-sonnet-5", "xhigh"),
+    now: clock(),
+    modelCliPreflight: async () => {},
+  });
+  const result = await gateway.execute(task(run, "attempt-not-blocked", attemptDirectory(roots, "attempt-not-blocked")));
+  assert.equal(result.outcome, "FAILED");
+  assert.equal(result.error?.code, "MODEL_PROCESS_FAILED");
+  const detail = finishedDetail(roots, run);
+  assert.equal(detail.includes("providerBlock="), false, detail);
+  assert.equal(detail.includes("providerMessage="), false, detail);
+  assert.equal(detail.includes("content filtering"), false, detail);
 });
 
 finishV25Tests().catch((error: unknown) => {

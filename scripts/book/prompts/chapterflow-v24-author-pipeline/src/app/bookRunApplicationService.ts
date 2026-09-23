@@ -14,7 +14,9 @@ import { isSafeResearchRunId } from "../lib/researchRunManifest.js";
 import type { QcDiagnosis, QcDiagnosisIndex, QcRoundResult, QcService } from "../qc/qcTypes.js";
 import type { PromotionService } from "../release/promotionTypes.js";
 import { createFileReleaseJournal } from "../release/releaseJournal.js";
+import { READER_PANEL_INFRA_FAILURE_CODE } from "../review/readerPanelIssueCodes.js";
 import type { CanonicalReviewResult, ReviewService } from "../review/reviewTypes.js";
+import { providerBlockKind, type ProviderBlockKind } from "../runtime/modelErrors.js";
 import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
 import type { RunStore } from "../run-state/runStore.js";
 import type { RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
@@ -1021,6 +1023,10 @@ async function exactReview(
      *  (see the interrupted-panel block below). Every other path is unchanged. */
     reconcileUnsettled: boolean;
   }>,
+  /** Set to true when THIS call ran the panel (reviewCanonical) rather than
+   *  replaying a stored review — a replay and a fresh review return identically
+   *  otherwise, and defect #20's stop applies only to the fresh one. */
+  freshness?: { fresh: boolean },
 ): Promise<Result<CanonicalReviewResult>> {
   const runId = derivedId("review-run", input.parentRunId);
   const reviewId = derivedId("review", input.parentRunId);
@@ -1163,6 +1169,7 @@ async function exactReview(
   } else if (stored.error.code === "REVIEW_NOT_FOUND") {
     if (input.signal.aborted) return failed("BOOK_RUN_CANCELLED", "cancelled before canonical review");
     await mkdir(input.attemptRoot, { recursive: true });
+    if (freshness !== undefined) freshness.fresh = true;
     review = await dependencies.reviews.reviewCanonical({
       reviewId,
       candidate: input.candidate,
@@ -1261,6 +1268,59 @@ const MAX_FRESH_QC_SUCCESSOR_ORDINALS = 3;
  */
 function reviewIsUncertain(review: Result<CanonicalReviewResult>): boolean {
   return review.ok ? review.value.outcome === "ERROR" : review.error.code === "BOOK_RUN_REVIEW_RUN_TERMINAL";
+}
+
+/**
+ * Defect #20 — the INFRASTRUCTURE blocker codes whose message can carry a
+ * provider's own words: a reader seat whose model run did not succeed, and the
+ * baseline reviewer's own failed model call (reviewService's evaluatorError).
+ * Content findings are never read, even when they quote the words.
+ */
+const PROVIDER_BLOCK_INFRA_CODES: ReadonlySet<string> = new Set([READER_PANEL_INFRA_FAILURE_CODE, "REVIEW_EVALUATOR_ERROR"]);
+
+/** The first infrastructure BLOCKER of an ERROR review that providerBlockKind()
+ *  classifies, with its kind — or undefined. */
+function providerBlockOfReview(
+  review: CanonicalReviewResult,
+): Readonly<{ kind: ProviderBlockKind; message: string }> | undefined {
+  if (review.outcome !== "ERROR") return undefined;
+  for (const issue of review.issues) {
+    if (issue.severity !== "BLOCKER" || !PROVIDER_BLOCK_INFRA_CODES.has(issue.code)) continue;
+    const kind = providerBlockKind(issue.message);
+    if (kind !== null) return Object.freeze({ kind, message: issue.message });
+  }
+  return undefined;
+}
+
+/**
+ * Defect #20 (live Franklin 2026-09-20 14:55Z): an ERROR review in which AT LEAST
+ * ONE infrastructure BLOCKER says the provider is walled off — a usage limit or
+ * an expired login. Such a panel is not a flake another panel can clear inside
+ * the window: the successor minted 13 ms later hit the same 429, and three
+ * relaunches spent the whole successor ceiling on the wall.
+ */
+export function isProviderBlockedReview(review: CanonicalReviewResult): boolean {
+  return providerBlockOfReview(review) !== undefined;
+}
+
+/** How many stored provider-blocked successor ordinals one label space's walk
+ *  may step over WITHOUT counting them against MAX_REVIEW_SUCCESSOR_ORDINALS
+ *  (defect #20). Three is the minimum that recovers run book-run-39a37d06, whose
+ *  successors 1-3 all hit the weekly limit. Its own constant, deliberately not
+ *  MAX_FORGIVEN_INFRA_ORDINALS: a different lane with a different history. */
+const MAX_PROVIDER_BLOCKED_SUCCESSOR_ORDINALS = 3;
+
+/**
+ * The stop for a review PRODUCED IN THIS INVOCATION that came back
+ * provider-blocked: minting a successor now would only buy another panel into
+ * the same wall. A review exactReview REPLAYED from the store is never stopped
+ * here — that is uncertainty for the successor walk — so the caller passes the
+ * freshness it observed, never inferred from the record.
+ */
+function providerBlockedStop(review: Result<CanonicalReviewResult>, fresh: boolean): Result<CanonicalReviewResult> | undefined {
+  if (!fresh || !review.ok) return undefined;
+  const block = providerBlockOfReview(review.value);
+  return block === undefined ? undefined : failed("BOOK_RUN_PROVIDER_BLOCKED", `${block.kind}: ${block.message}`);
 }
 
 /** Did the candidate's own DETERMINISTIC book pattern audit pass? False when the
@@ -1659,20 +1719,26 @@ export class BookRunApplicationService {
         + " is what needs fixing before another resume",
       );
     }
+    // Defect #20: provider-blocked ordinals the walk stepped over uncounted are
+    // named, so an ordinal past the ceiling is never anonymous.
+    const providerSkipped = landing.providerBlockedSkipped > 0
+      ? `;providerBlockedSkipped=${landing.providerBlockedSkipped}/${MAX_PROVIDER_BLOCKED_SUCCESSOR_ORDINALS}`
+      : "";
     const started = await this.#event(
       runId,
       input.bookId,
       "review",
       "STARTED",
-      `action=REVIEW_SUCCESSOR;ordinal=${landing.ordinal};label=${landing.label};${predecessor}`,
+      `action=REVIEW_SUCCESSOR;ordinal=${landing.ordinal};label=${landing.label};${predecessor}${providerSkipped}`,
       identity(candidate),
     );
     if (!started.ok) return started;
     console.error(
       `[book-run] review-successor book=${input.bookId} run=${runId} ordinal=${landing.ordinal}/${MAX_REVIEW_SUCCESSOR_ORDINALS}`
-      + ` label=${landing.label} ${predecessor} action=REVIEW_SUCCESSOR`,
+      + ` label=${landing.label} ${predecessor}${providerSkipped} action=REVIEW_SUCCESSOR`,
     );
-    return exactReview(this.#dependencies, {
+    const freshness = { fresh: false };
+    const successor = await exactReview(this.#dependencies, {
       bookId: input.bookId,
       sourceGitSha: input.sourceGitSha,
       parentRunId: landing.parentRunId,
@@ -1685,7 +1751,10 @@ export class BookRunApplicationService {
       // re-derives and refuses forever). An interrupted successor stays
       // fail-closed, exactly as today.
       reconcileUnsettled: false,
-    });
+    }, freshness);
+    // Defect #20: a successor panel that itself hit the provider wall ends this
+    // invocation — the next ordinal would hit it too.
+    return providerBlockedStop(successor, freshness.fresh) ?? successor;
   }
 
   /**
@@ -1708,13 +1777,27 @@ export class BookRunApplicationService {
     label: string;
     parentRunId: string;
     replaying: boolean;
+    providerBlockedSkipped: number;
   }> | undefined> {
-    for (let ordinal = 1; ordinal <= MAX_REVIEW_SUCCESSOR_ORDINALS; ordinal += 1) {
+    // Defect #20: a stored PROVIDER-BLOCKED ERROR ordinal is stepped over
+    // WITHOUT counting against MAX_REVIEW_SUCCESSOR_ORDINALS — up to
+    // MAX_PROVIDER_BLOCKED_SUCCESSOR_ORDINALS of them; past that they count like
+    // any other ERROR. Every other ERROR ordinal still spends the ceiling.
+    let spent = 0;
+    let providerBlockedSkipped = 0;
+    for (let ordinal = 1; spent < MAX_REVIEW_SUCCESSOR_ORDINALS; ordinal += 1) {
       const label = `${labelPrefix}-successor-${ordinal}`;
       const parentRunId = derivedId(label, runId);
       const stored = await this.#dependencies.reviews.get(bookId, derivedId("review", parentRunId));
-      if (stored.ok && stored.value.outcome === "ERROR") continue;
-      return Object.freeze({ ordinal, label, parentRunId, replaying: stored.ok });
+      if (stored.ok && stored.value.outcome === "ERROR") {
+        if (providerBlockedSkipped < MAX_PROVIDER_BLOCKED_SUCCESSOR_ORDINALS && isProviderBlockedReview(stored.value)) {
+          providerBlockedSkipped += 1;
+        } else {
+          spent += 1;
+        }
+        continue;
+      }
+      return Object.freeze({ ordinal, label, parentRunId, replaying: stored.ok, providerBlockedSkipped });
     }
     return undefined;
   }
@@ -2912,6 +2995,7 @@ export class BookRunApplicationService {
 
     const reviewStarted = await this.#event(runId, input.bookId, "review", "STARTED", undefined, identity(candidate));
     if (!reviewStarted.ok) return reviewStarted;
+    const baseFreshness = { fresh: false };
     let review = await exactReview(this.#dependencies, {
       bookId: input.bookId,
       sourceGitSha: input.sourceGitSha,
@@ -2920,7 +3004,7 @@ export class BookRunApplicationService {
       attemptRoot: resolve(input.attemptRoot, "review"),
       signal: input.signal,
       reconcileUnsettled: input.reconcileUnsettled === true,
-    });
+    }, baseFreshness);
     // Task 11ac / finding 38 LAYER B — supersede an UNCERTAIN review on a flagged
     // resume. A stored ERROR outcome (a transient reader-lane failure fail-closed
     // the panel) and a review run left terminal FAILED (R-186) are both
@@ -2934,7 +3018,10 @@ export class BookRunApplicationService {
     // contradicting the audit with no on-page defect. See
     // reviewContradictsPassingPatternAudit for why that shape is uncertainty and
     // why every other FAIL is still a verdict the repair lane below owns.
-    review = await this.#reviewSuccessor({ input, runId, candidate, labelPrefix: "review", review });
+    // Defect #20: a panel THIS invocation ran into a provider wall is not
+    // superseded here — the terminal path below reports the block instead.
+    review = providerBlockedStop(review, baseFreshness.fresh)
+      ?? await this.#reviewSuccessor({ input, runId, candidate, labelPrefix: "review", review });
     // ── Canonical review FAIL -> repair -> RE-REVIEW, bounded ──────────────────
     //
     // A review FAIL used to be TERMINAL here, and that was the convergence
@@ -3289,6 +3376,7 @@ export class BookRunApplicationService {
         identity(candidate),
       );
       if (!reReviewStarted.ok) return reReviewStarted;
+      const reReviewFreshness = { fresh: false };
       review = await exactReview(this.#dependencies, {
         bookId: input.bookId,
         sourceGitSha: input.sourceGitSha,
@@ -3297,13 +3385,21 @@ export class BookRunApplicationService {
         attemptRoot: resolve(input.attemptRoot, `${label}-review`),
         signal: input.signal,
         reconcileUnsettled: input.reconcileUnsettled === true,
-      });
+      }, reReviewFreshness);
       // R-165: the re-review is as capable of a transient panel ERROR as the
       // first review, and until now it had no successor at all — so one flaky
       // reader-lane call mid-repair ended the book permanently, with the repaired
       // successor candidate stranded and the loop unable to advance (it only
       // continues on FAIL). Same consent gate, same bounded walk, own label space.
-      review = await this.#reviewSuccessor({ input, runId, candidate, labelPrefix: label, review });
+      review = providerBlockedStop(review, reReviewFreshness.fresh)
+        ?? await this.#reviewSuccessor({ input, runId, candidate, labelPrefix: label, review });
+    }
+    if (!review.ok && review.error.code === "BOOK_RUN_PROVIDER_BLOCKED") {
+      // Defect #20: the terminal line the driver greps —
+      // BOOK_RUN_PROVIDER_BLOCKED:<kind>: <provider message> — with its own code,
+      // never re-wrapped as a review verdict.
+      await this.#event(runId, input.bookId, "review", "FAILED", `${review.error.code}:${review.error.message}`, identity(candidate));
+      return review;
     }
     if (!review.ok || review.value.outcome !== "PASS") {
       // R-179: 36 live invocations died on the bare string `canonical review

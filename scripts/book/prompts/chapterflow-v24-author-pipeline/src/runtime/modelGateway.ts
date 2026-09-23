@@ -500,6 +500,7 @@ function terminalDetail(
   outcome: ModelResult["outcome"],
   errorCode: ModelErrorCode,
   provenance: string,
+  route: ModelProcessRoute,
 ): string {
   if (process === null) return `gateway=${outcome}; supervisor=rejected;${provenance}`;
   const fields = [
@@ -518,6 +519,23 @@ function terminalDetail(
     if (stdoutHead) fields.push(`stdoutHead=${stdoutHead}`);
     const stderrHead = sanitizedStreamHead(process.stderr);
     if (stderrHead) fields.push(`stderrHead=${stderrHead}`);
+  }
+  // Defect #20: the route's CLASSIFIED provider message, journaled only when it
+  // is a provider block. The stdout head cannot be relied on for it: claude CLI
+  // 2.1.265 prints `usage` before `result`, so a 429 envelope's words sit past
+  // the head (live 2026-09-20, 1,192 bytes). Provider error text only — the
+  // route classifier answers solely for an is_error envelope, never for model
+  // output — sanitized to one line, `;`-free and capped.
+  if (outcome === "FAILED" && errorCode === "MODEL_PROCESS_FAILED") {
+    const classified = classifyRouteStdout(route, process.stdout);
+    const kind = classified === null ? null : providerBlockKind(classified.message);
+    if (classified !== null && kind !== null) {
+      const providerMessage = classified.message
+        .replace(/[\u0000-\u001f;]+/g, " ")
+        .slice(0, DIAGNOSTIC_HEAD_CHARS)
+        .trim();
+      fields.push(`providerBlock=${kind}`, `providerMessage=${providerMessage}`);
+    }
   }
   fields.push(provenance);
   return fields.join(";");
@@ -689,7 +707,7 @@ export function createModelGateway(dependencies: ModelGatewayDependencies): Mode
         attemptId: task.attemptId,
         outcome: attemptOutcome(outcome),
         finishedAt,
-        detail: terminalDetail(process, outcome, errorCode, provenance),
+        detail: terminalDetail(process, outcome, errorCode, provenance, route),
       });
     } catch {
       return result(task.attemptId, "UNKNOWN", "MODEL_TERMINAL_RECORD_FAILED", "attempt terminal state could not be recorded");
