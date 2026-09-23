@@ -170,6 +170,34 @@ requiredTest("candidate QC maps malformed blueprint source-v2 and source-plan in
   }
 });
 
+requiredTest("S05: the book-level soft-ban budget blocker (F4) reaches QC as a BLOCKER with a chNN location", async (context) => {
+  // Live wedge: F4 had no location, and the QC-repair preflight refuses every
+  // location-less BLOCKER (REPAIR_FINDING_UNSCOPED) before any model call.
+  const chapterPath = "content/chapters/candidate-qc-book-ch01.v21-native.chapter.json";
+  const candidate = buildCandidate(context, (files) => files.map((file) => {
+    if (file.logicalPath !== chapterPath) return file;
+    // Neutralize the fixture's own uses so the count is exactly the injected one.
+    const chapter = JSON.parse(Buffer.from(file.bytes).toString("utf8").replace(/rather than/gi, "instead of")) as ReturnType<typeof makeGateCleanChapter>;
+    // 16 occurrences (budget 15) spread over fields the F4 counter reads.
+    for (let index = 0; index < 4; index += 1) {
+      chapter.hook = `${chapter.hook} Pick the note rather than the guess.`;
+      chapter.keyTakeaway = `${chapter.keyTakeaway} Act rather than wait.`;
+      chapter.examples[index % chapter.examples.length].whatToDo = `${chapter.examples[index % chapter.examples.length].whatToDo} Check rather than assume.`;
+      chapter.reviewCards[index % chapter.reviewCards.length].back = `${chapter.reviewCards[index % chapter.reviewCards.length].back} Measure rather than guess.`;
+    }
+    return jsonFile(chapterPath, chapter, "CHAPTER");
+  }));
+  const evaluator = new CandidateQcEvaluator({ async open() { return { ok: true, value: candidate }; } });
+  const evaluated = await evaluator.run({ candidate, canonicalReview: review(), roundId: "round-f4-scope" });
+  assert.ok(evaluated.ok);
+  const f4 = evaluated.value.issues.filter((entry) => entry.code === "F4" && entry.message.includes('"rather than"'));
+  assert.equal(f4.length, 1, JSON.stringify(evaluated.value.issues.filter((entry) => entry.code === "F4"), null, 2));
+  assert.equal(f4[0].severity, "BLOCKER");
+  assert.equal(f4[0].location, "ch01", `F4 must carry a chNN location: ${JSON.stringify(f4[0])}`);
+  assert.match(f4[0].message, /appears 16 times \(budget 15\)\..*Scoped to ch01 \(16\): remove every occurrence in these chapters\.$/);
+  assert.equal(evaluated.value.outcome, "FAIL");
+});
+
 requiredTest("candidate QC refuses caller authority without exact canonical PASS", async (context) => {
   const candidate = buildCandidate(context);
   let opens = 0;
