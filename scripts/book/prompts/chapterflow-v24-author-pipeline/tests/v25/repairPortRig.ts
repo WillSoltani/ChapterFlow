@@ -156,7 +156,14 @@ export function candidate(context: TestContext, sidecar: SidecarOptions = {}): C
 }
 
 export type RigOptions = Readonly<{
-  location?: string;
+  /** The failed round's BLOCKER location. undefined = the chapter-one file (the
+   *  default every existing case relies on); null = NO location at all — the
+   *  shape a book-level finding emitted without `chapters` reaches the port in. */
+  location?: string | null;
+  /** Extra chapter numbers staged as CHAPTER files cloned from chapter one (no
+   *  compiler sidecars) so a PREFLIGHT case can name chapters beyond ch01/ch02.
+   *  Preflight-only: a full `run` over these chapters is not supported. */
+  extraChapterNumbers?: readonly number[];
   history?: readonly RepairHistoryRecord[];
   modelOutcome?: "SUCCEEDED" | "UNKNOWN";
   modelNoChange?: boolean;
@@ -180,11 +187,20 @@ export type RigOptions = Readonly<{
 }>;
 
 export function rig(context: TestContext, options: RigOptions = {}) {
-  const predecessor = candidate(context, {
+  const staged = candidate(context, {
     ...(options.scars === undefined ? {} : { scars: options.scars }),
     ...(options.voiceCard === undefined ? {} : { voiceCard: options.voiceCard }),
   });
-  const chapterOne = JSON.parse(Buffer.from(predecessor.files[0].bytes).toString("utf8")) as ChapterV21;
+  const chapterOne = JSON.parse(Buffer.from(staged.files[0].bytes).toString("utf8")) as ChapterV21;
+  const predecessor: CandidateSnapshot = (options.extraChapterNumbers ?? []).length === 0 ? staged : (() => {
+    const extra = (options.extraChapterNumbers ?? []).map((number) => {
+      const nn = String(number).padStart(2, "0");
+      const fileBytes = bytes({ ...chapterOne, chapterId: `${BOOK}-ch${nn}`, number, title: `Chapter ${nn}` });
+      return { kind: "CHAPTER" as const, logicalPath: `content/chapters/${BOOK}-ch${nn}.v21-native.chapter.json`, mediaType: "application/json" as const, bytes: fileBytes, byteLength: fileBytes.byteLength };
+    });
+    const files = [...staged.files, ...extra];
+    return { manifest: { ...staged.manifest, entries: files.map(({ bytes: _bytes, ...file }) => file) }, files };
+  })();
   const baseReplacement: ChapterV21 = { ...chapterOne, hook: "A repaired opening names the visible credit signal before the reader can miss it." };
   // R-076: the repair lane replaces whole chapters, so a test needs to be able to hand
   // the port a chapter whose prose was rewritten and whose memorableLines were left
@@ -197,7 +213,9 @@ export function rig(context: TestContext, options: RigOptions = {}) {
     reviewId: "review-failed",
     outcome: "FAIL",
     issues: [
-      { code: options.issueCode ?? "CHAPTER_FIX", severity: "BLOCKER", message: "repair chapter opening", location: options.location ?? predecessor.files[0].logicalPath },
+      options.location === null
+        ? { code: options.issueCode ?? "CHAPTER_FIX", severity: "BLOCKER", message: "repair chapter opening" }
+        : { code: options.issueCode ?? "CHAPTER_FIX", severity: "BLOCKER", message: "repair chapter opening", location: options.location ?? predecessor.files[0].logicalPath },
       ...(options.extraIssues ?? []),
     ],
     completedAt: context.clock.now(),

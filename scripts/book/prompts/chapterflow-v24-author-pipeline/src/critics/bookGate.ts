@@ -771,9 +771,14 @@ function checkSoftBannedBudgets(chapters: ChapterV21[]): BookGateFinding[] {
 
   // Concatenate every reader-facing text field across all chapters into one
   // lowercase haystack. We count occurrences book-wide, not per-chapter,
-  // because `perBookBudget` is a book-level allowance.
+  // because `perBookBudget` is a book-level allowance. Each chapter's first
+  // haystack offset is recorded so every book-wide match can be attributed to
+  // the chapter it sits in (per-chapter counts sum to the book count exactly).
   const buf: string[] = [];
+  const chapterStarts: Array<{ number: number; start: number }> = [];
+  let offset = 0;
   for (const ch of chapters) {
+    const before = buf.length;
     if (ch.hook) buf.push(ch.hook);
     if (ch.counterintuition) buf.push(ch.counterintuition);
     if (ch.keyTakeaway) buf.push(ch.keyTakeaway);
@@ -808,8 +813,21 @@ function checkSoftBannedBudgets(chapters: ChapterV21[]): BookGateFinding[] {
         if (it.plan) buf.push(it.plan);
       }
     }
+    for (let i = before; i < buf.length; i += 1) {
+      buf[i] = buf[i].toLowerCase();
+      if (i === before) chapterStarts.push({ number: ch.number, start: offset });
+      offset += buf[i].length + 1;
+    }
   }
-  const haystack = buf.join("\n").toLowerCase();
+  const haystack = buf.join("\n");
+  const chapterAt = (position: number): number => {
+    let owner = chapterStarts[0].number;
+    for (const entry of chapterStarts) {
+      if (entry.start > position) break;
+      owner = entry.number;
+    }
+    return owner;
+  };
 
   const findings: BookGateFinding[] = [];
   for (const entry of softBanned) {
@@ -819,17 +837,37 @@ function checkSoftBannedBudgets(chapters: ChapterV21[]): BookGateFinding[] {
 
     let count = 0;
     let from = 0;
+    const perChapter = new Map<number, number>();
     while ((from = haystack.indexOf(needle, from)) !== -1) {
       count += 1;
+      const owner = chapterAt(from);
+      perChapter.set(owner, (perChapter.get(owner) ?? 0) + 1);
       from += needle.length;
     }
 
     if (count > budget) {
+      // Scope the blocker to the FEWEST chapters whose occurrences, removed,
+      // bring the book back within budget — highest per-chapter count first,
+      // ties to the lower chapter number. A book-level finding with no chapters
+      // reaches QC with no location, and the QC-repair preflight refuses every
+      // location-less blocker (REPAIR_FINDING_UNSCOPED), wedging the lane. The
+      // budget and the severity are unchanged; the message tells each chapter's
+      // repair writer its share.
+      const ranked = [...perChapter.entries()].sort(([na, ca], [nb, cb]) => cb - ca || na - nb);
+      const scope: Array<[number, number]> = [];
+      let removed = 0;
+      for (const hit of ranked) {
+        if (count - removed <= budget) break;
+        scope.push(hit);
+        removed += hit[1];
+      }
+      const scopeText = scope.map(([n, c]) => `ch${String(n).padStart(2, "0")} (${c})`).join(", ");
       findings.push({
         catalogId: "F4",
         severity: "major",
-        message: `soft-banned phrase "${entry.phrase}" appears ${count} times (budget ${budget}). ${entry.reason ?? ""}`.trim(),
+        message: `${`soft-banned phrase "${entry.phrase}" appears ${count} times (budget ${budget}). ${entry.reason ?? ""}`.trim()} Scoped to ${scopeText}: remove every occurrence in these chapters.`,
         evidence: entry.phrase,
+        chapters: scope.map(([n]) => n),
       });
     }
   }
