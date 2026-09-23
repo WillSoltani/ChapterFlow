@@ -78,7 +78,7 @@ import { createCatalogRubricStore } from "../../src/review/catalogRubricStore.js
 import type { CatalogRubricPanel } from "../../src/app/catalogRubricPanelEvaluator.js";
 import { passingRubricPanel, type ScriptedRubricPanel } from "./catalogRubricFakes.js";
 import { createReviewServiceFactory } from "../../src/review/reviewService.js";
-import type { CanonicalReviewResult, ReviewIssue } from "../../src/review/reviewTypes.js";
+import type { CanonicalReviewEvaluator, CanonicalReviewResult, ReviewIssue } from "../../src/review/reviewTypes.js";
 import { createFileRunStore } from "../../src/run-state/fileRunStore.js";
 import { createFileStageCoordinator } from "../../src/run-state/stageCoordinator.js";
 import type { RunStore } from "../../src/run-state/runStore.js";
@@ -247,11 +247,39 @@ export type BookRunHarnessOptions = Readonly<{
    *  RE-review that came back metadata-only. A FAIL past the end of this list
    *  falls back to `reviewFailIssues` and then to the default. */
   reviewFailIssuesPerFail?: readonly (readonly ReviewIssue[])[];
+  /** The shape of the Nth scripted ERROR, in ERROR order (defect #20). `panel`
+   *  stores exactly these issues on the ERROR review — the semantic panel's own
+   *  record (SEMANTIC_PANEL_READER_FAILED blockers beside real READER.BLOCKING
+   *  ones); `modelFailure` fails the reviewer's model call with this message,
+   *  which reviewService stores as a REVIEW_EVALUATOR_ERROR blocker. An
+   *  `undefined` entry, or an ERROR past the end, keeps the default shape. */
+  reviewErrorsPerError?: readonly (ScriptedReviewError | undefined)[];
   /** Make the COMPILED candidate's deterministic pattern audit itself FAIL
    *  (one blocker finding, `passed: false`). The default audit passes, which is
    *  the live shape R-287 is about: the reviewer contradicting a PASSING audit. */
   patternAuditFails?: boolean;
 }>;
+
+/** Wrap the model-backed evaluator so a scripted `panel` ERROR stores its issue
+ *  codes VERBATIM — the baseline evaluator maps any code outside its own
+ *  vocabulary to OTHER, which the semantic panel's infrastructure codes are. */
+function scriptedPanelEvaluator(
+  inner: CanonicalReviewEvaluator,
+  takeScripted: () => readonly ReviewIssue[] | undefined,
+): CanonicalReviewEvaluator {
+  return {
+    async evaluate(input) {
+      const evaluated = await inner.evaluate(input);
+      const issues = takeScripted();
+      if (issues === undefined || !evaluated.ok) return evaluated;
+      return { ok: true, value: { outcome: "ERROR", issues: issues.map((issue) => ({ ...issue })) } };
+    },
+  };
+}
+
+export type ScriptedReviewError =
+  | Readonly<{ kind: "panel"; issues: readonly ReviewIssue[] }>
+  | Readonly<{ kind: "modelFailure"; message: string }>;
 
 /**
  * A book run whose canonical review outcomes and fresh-QC outcomes are scripted
@@ -334,6 +362,10 @@ export async function buildBookRunHarness(
 
   let reviewCalls = 0;
   let reviewFails = 0;
+  let reviewErrors = 0;
+  /** Set by the runner for a scripted `panel` ERROR; the evaluator wrapper below
+   *  stores exactly these issues in place of the model's parsed output. */
+  let scriptedPanelIssues: readonly ReviewIssue[] | undefined;
   const outcomes = [...reviewOutcomes];
   const defaultFailIssues: readonly ReviewIssue[] = [
     { code: "READER.BLOCKING.contradiction", severity: "BLOCKER", message: "card 5 contradicts the deep read", location: "ch01/reader-b/deep" },
@@ -362,6 +394,18 @@ export async function buildBookRunHarness(
       assert.equal(finished.ok, true, JSON.stringify(finished));
       const outcome = outcomes.shift() ?? "PASS";
       if (outcome === "FAIL") reviewFails += 1;
+      if (outcome === "ERROR") {
+        reviewErrors += 1;
+        const scripted = options.reviewErrorsPerError?.[reviewErrors - 1];
+        if (scripted?.kind === "modelFailure") {
+          return {
+            attemptId: request.context.attemptId,
+            outcome: "FAILED",
+            error: { code: "MODEL_PROCESS_FAILED", message: scripted.message },
+          };
+        }
+        if (scripted?.kind === "panel") scriptedPanelIssues = scripted.issues;
+      }
       return {
         attemptId: request.context.attemptId,
         outcome: "SUCCEEDED",
@@ -377,7 +421,11 @@ export async function buildBookRunHarness(
     },
   };
   const reviews = createReviewServiceFactory({ booksRoot, contentReader: reader, now })
-    .create(new ModelGatewayReviewEvaluator(runner));
+    .create(scriptedPanelEvaluator(new ModelGatewayReviewEvaluator(runner), () => {
+      const issues = scriptedPanelIssues;
+      scriptedPanelIssues = undefined;
+      return issues;
+    }));
   const qc = createQcService({ booksRoot, contentReader: reader, reviewService: reviews, writeLock, now });
   // The same durable QC store the service above reads through. The QC-lane fake
   // commits its fresh round here and derives its own status from it, exactly as

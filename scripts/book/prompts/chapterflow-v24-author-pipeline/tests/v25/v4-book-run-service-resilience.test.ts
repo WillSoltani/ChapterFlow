@@ -26,7 +26,12 @@ import {
   resolveQcJudgeRuns,
   resolveReviewRepairOrdinals,
 } from "../../src/app/bookRunApplicationService.js";
-import { buildBookRunHarness, derivedIdOf, type BookRunHarness } from "./bookRunRepairRig.js";
+// Namespace import for the defect-#20 predicate, so this file still LOADS on a
+// base that does not export it (a missing named ESM export is a link error that
+// would take every case in the file down with it).
+import * as bookRunService from "../../src/app/bookRunApplicationService.js";
+import type { CanonicalReviewResult } from "../../src/review/reviewTypes.js";
+import { buildBookRunHarness, derivedIdOf, type BookRunHarness, type ScriptedReviewError } from "./bookRunRepairRig.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
 /** Run `body` with `name` set to `value` (or unset), restoring it afterwards. */
@@ -1061,6 +1066,231 @@ requiredTest("R-289: the ordinal knob caps the walk, is named in the exhaustion 
     assert.equal(result.error.code, "BOOK_RUN_INPUT_INVALID");
     assert.match(result.error.message, /CHAPTERFLOW_REVIEW_REPAIR_ORDINALS must be 1-50/, result.error.message);
   });
+});
+
+// ─────────────────────── defect #20: provider block ───────────────────────
+//
+// Live Franklin 2026-09-20 14:55Z (run book-run-39a37d06): the Claude weekly
+// limit hit mid-panel. The panel stored an ERROR review (two
+// SEMANTIC_PANEL_READER_FAILED blockers carrying the 429 beside five real
+// READER.BLOCKING findings), the flagged invocation minted successor-1 13 ms
+// later, its baseline reviewer hit the same 429 (REVIEW_EVALUATOR_ERROR), and
+// two driver relaunches burned successors 2 and 3 — after which every resume
+// failed closed "successor budget exhausted". The message shapes below are
+// copied from review-35abdd05… (panel) and review-b1066b7e… (baseline).
+
+const WEEKLY_LIMIT = "You've hit your weekly limit · resets Sep 22 at 7pm (America/Toronto) (api_error_status=429)";
+
+/** The panel's own ERROR record: real findings beside the infrastructure ones. */
+const PANEL_PROVIDER_BLOCKED: ScriptedReviewError = {
+  kind: "panel",
+  issues: [
+    {
+      code: "READER.BLOCKING.internal_contradiction",
+      severity: "BLOCKER",
+      message: "The Hook attributes James's sense of insult to the display of silver, but the Deep read attributes it to a later gesture",
+      location: "ch04/seat-cold/Hook vs Deep read (James's reaction)",
+    },
+    { code: "SEMANTIC_PANEL_READER_FAILED", severity: "BLOCKER", message: `SEMANTIC_PANEL_READER_FAILED:MODEL_PROCESS_FAILED:${WEEKLY_LIMIT}`, location: "ch16" },
+    { code: "SEMANTIC_PANEL_READER_FAILED", severity: "BLOCKER", message: `SEMANTIC_PANEL_READER_FAILED:MODEL_PROCESS_FAILED:${WEEKLY_LIMIT}`, location: "ch17" },
+  ],
+};
+
+/** The baseline reviewer's model call itself hit the wall: reviewService stores
+ *  `REVIEW_EVALUATOR_ERROR` with `MODEL_PROCESS_FAILED:<provider words>`. The
+ *  rig's runner is handed the provider's words; the evaluator adds the code. */
+const BASELINE_PROVIDER_BLOCKED: ScriptedReviewError = {
+  kind: "modelFailure",
+  message: "You've hit your weekly limit · resets Sep 22 at 7pm (America/Toronto) (api_error_status=429)",
+};
+
+/** A NON-provider ERROR (review-443335b4…): a seat whose output failed schema
+ *  validation. Uncertainty, but not a wall — its ordinal is still spent. */
+const PANEL_OUTPUT_INVALID: ScriptedReviewError = {
+  kind: "panel",
+  issues: [
+    {
+      code: "READER.BLOCKING.unsafe",
+      severity: "BLOCKER",
+      message: "Tells reader to post real-name criticism publicly today with no caution about retaliation",
+      location: "ch01/seat-cold/Implementation plan / 24-hour challenge",
+    },
+    {
+      code: "SEMANTIC_PANEL_READER_FAILED",
+      severity: "BLOCKER",
+      message: "SEMANTIC_PANEL_READER_FAILED:MODEL_OUTPUT_INVALID:model output failed source-controlled schema validation",
+      location: "ch07",
+    },
+  ],
+};
+
+const successorStarts = (h: BookRunHarness) => h.events.filter((e) => (
+  e.phase === "review" && e.status === "STARTED" && e.detail?.includes("action=REVIEW_SUCCESSOR") === true
+));
+
+requiredTest("defect #20: a usage-limit block on a panel produced in THIS invocation stops the run instead of minting a successor", async (context: TestContext) => {
+  const book = "provider-blocked-fresh-panel";
+  const h = await buildBookRunHarness(context, book, ["ERROR", "ERROR", "PASS"], {
+    reviewErrorsPerError: [PANEL_PROVIDER_BLOCKED, BASELINE_PROVIDER_BLOCKED],
+  });
+  // Consent is set — the driver's resume rounds pass it — and it must not buy a
+  // second panel into the same wall.
+  const result = await h.service.run({ ...h.request, reconcileUnsettled: true });
+  assert.equal(result.ok, false, JSON.stringify(result));
+  if (result.ok) throw new Error("a provider-blocked panel is not a verdict");
+  assert.equal(
+    successorStarts(h).length,
+    0,
+    `no successor may be minted into a provider block: ${JSON.stringify(successorStarts(h).map((e) => e.detail))}`,
+  );
+  assert.equal(h.reviewCalls(), 1, "exactly the one panel that hit the wall");
+  assert.equal(result.error.code, "BOOK_RUN_PROVIDER_BLOCKED", `${result.error.code}:${result.error.message}`);
+  assert.equal(
+    `${result.error.code}:${result.error.message}`,
+    `BOOK_RUN_PROVIDER_BLOCKED:quota-exhausted: SEMANTIC_PANEL_READER_FAILED:MODEL_PROCESS_FAILED:${WEEKLY_LIMIT}`,
+  );
+  const failedEvent = h.events.find((e) => e.phase === "review" && e.status === "FAILED");
+  assert.ok(failedEvent, JSON.stringify(h.events.map((e) => `${e.phase}:${e.status}:${e.detail}`)));
+  assert.match(failedEvent.detail ?? "", /weekly limit/, failedEvent.detail);
+});
+
+requiredTest("defect #20: a usage-limit block on a review-repair RE-review stops the run instead of minting a successor", async (context: TestContext) => {
+  const book = "provider-blocked-fresh-rereview";
+  const h = await buildBookRunHarness(context, book, ["FAIL", "ERROR", "ERROR"], {
+    reviewErrorsPerError: [BASELINE_PROVIDER_BLOCKED, BASELINE_PROVIDER_BLOCKED],
+  });
+  const result = await h.service.run({ ...h.request, reconcileUnsettled: true });
+  assert.equal(result.ok, false, JSON.stringify(result));
+  if (result.ok) throw new Error("a provider-blocked re-review is not a verdict");
+  assert.equal(successorStarts(h).length, 0, JSON.stringify(successorStarts(h).map((e) => e.detail)));
+  assert.equal(h.repairCalls().length, 1, "the repair itself ran");
+  assert.equal(h.reviewCalls(), 2, "the base panel and the one re-review that hit the wall");
+  assert.equal(
+    `${result.error.code}:${result.error.message}`,
+    `BOOK_RUN_PROVIDER_BLOCKED:quota-exhausted: MODEL_PROCESS_FAILED:${WEEKLY_LIMIT}`,
+  );
+});
+
+requiredTest("defect #20: stored provider-blocked successors are walked past without spending the ceiling — the next resume lands on successor-4", async (context: TestContext) => {
+  const book = "provider-blocked-successor-walk";
+  const h = await buildBookRunHarness(context, book, ["ERROR", "ERROR", "ERROR", "ERROR", "PASS"], {
+    reviewErrorsPerError: [PANEL_PROVIDER_BLOCKED, BASELINE_PROVIDER_BLOCKED, PANEL_PROVIDER_BLOCKED, BASELINE_PROVIDER_BLOCKED],
+  });
+  // The live history: the base panel and successors 1-3 all hit the wall, one
+  // panel per invocation.
+  const first = await h.service.run({ ...h.request });
+  assert.equal(first.ok, false, JSON.stringify(first));
+  for (let resume = 1; resume <= 3; resume += 1) {
+    const blocked = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+    assert.equal(blocked.ok, false, JSON.stringify(blocked));
+    assert.equal(h.reviewCalls(), 1 + resume, "one fresh panel per flagged invocation");
+  }
+  assert.equal(successorStarts(h).length, 3);
+
+  // After the reset: the walk steps over the three provider-blocked ordinals
+  // without counting them and gets its panel.
+  const recovered = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+  assert.equal(recovered.ok, true, recovered.ok ? "" : `${recovered.error.code}:${recovered.error.message}`);
+  if (!recovered.ok) throw new Error("unreachable");
+  assert.equal(recovered.value.status, "PROMOTED");
+  assert.equal(h.reviewCalls(), 5);
+  assert.equal(
+    recovered.value.reviewId,
+    derivedIdOf("review", derivedIdOf("review-successor-4", h.bookRunId)),
+    JSON.stringify(recovered.value),
+  );
+  const landing = successorStarts(h).at(-1);
+  assert.match(landing?.detail ?? "", /ordinal=4;label=review-successor-4;/, landing?.detail);
+});
+
+requiredTest("defect #20 GUARD: a stored NON-provider ERROR successor still spends its ordinal, and exhaustion still fails closed", async (context: TestContext) => {
+  const book = "output-invalid-successor-walk";
+  const h = await buildBookRunHarness(context, book, ["ERROR", "ERROR", "ERROR", "ERROR", "PASS"], {
+    reviewErrorsPerError: [PANEL_OUTPUT_INVALID, PANEL_OUTPUT_INVALID, PANEL_OUTPUT_INVALID, PANEL_OUTPUT_INVALID],
+  });
+  const first = await h.service.run({ ...h.request });
+  assert.equal(first.ok, false, JSON.stringify(first));
+  for (let resume = 1; resume <= 3; resume += 1) {
+    const spent = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+    assert.equal(spent.ok, false, JSON.stringify(spent));
+  }
+  assert.equal(h.reviewCalls(), 4);
+  const exhausted = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+  assert.equal(exhausted.ok, false, JSON.stringify(exhausted));
+  if (exhausted.ok) throw new Error("a spent ceiling must fail closed");
+  assert.equal(exhausted.error.code, "BOOK_RUN_REVIEW_FAILED");
+  assert.match(exhausted.error.message, /canonical review successor budget exhausted after 3 ordinals/, exhausted.error.message);
+  assert.equal(h.reviewCalls(), 4, "an exhausted ceiling buys no panel");
+});
+
+requiredTest("defect #20 GUARD: a REPLAYED provider-blocked review is uncertainty — unflagged it keeps today's remedy, flagged it goes to the successor walk", async (context: TestContext) => {
+  const book = "provider-blocked-replayed";
+  const h = await buildBookRunHarness(context, book, ["ERROR", "PASS"], {
+    reviewErrorsPerError: [PANEL_PROVIDER_BLOCKED],
+  });
+  const first = await h.service.run({ ...h.request });
+  assert.equal(first.ok, false, JSON.stringify(first));
+  assert.equal(h.reviewCalls(), 1);
+
+  // Unflagged resume: the stored ERROR replays model-free with today's message
+  // and remedy, byte for byte.
+  const unflagged = await h.service.run({ ...h.request, resumeRunId: h.bookRunId });
+  assert.equal(unflagged.ok, false, JSON.stringify(unflagged));
+  if (unflagged.ok) throw new Error("unreachable");
+  assert.equal(
+    `${unflagged.error.code}:${unflagged.error.message}`,
+    "BOOK_RUN_REVIEW_FAILED:canonical review outcome=ERROR; a stored ERROR canonical review is uncertainty, not a verdict"
+    + " — resume with --reconcile-unsettled to supersede it with a fresh panel",
+  );
+  assert.equal(h.reviewCalls(), 1);
+
+  // Flagged resume: the replayed block is NOT a stop — stopping on it would
+  // wedge the run forever — it is the successor walk's to supersede.
+  const flagged = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+  assert.equal(flagged.ok, true, flagged.ok ? "" : `${flagged.error.code}:${flagged.error.message}`);
+  if (!flagged.ok) throw new Error("unreachable");
+  assert.equal(flagged.value.status, "PROMOTED");
+  assert.equal(h.reviewCalls(), 2);
+  assert.equal(
+    flagged.value.reviewId,
+    derivedIdOf("review", derivedIdOf("review-successor-1", h.bookRunId)),
+    JSON.stringify(flagged.value),
+  );
+});
+
+requiredTest("defect #20: isProviderBlockedReview reads ONLY the infrastructure blockers of an ERROR review", () => {
+  const predicate = (bookRunService as Record<string, unknown>).isProviderBlockedReview as
+    ((review: CanonicalReviewResult) => boolean) | undefined;
+  assert.equal(typeof predicate, "function", "isProviderBlockedReview must be exported");
+  if (predicate === undefined) return;
+  const review = (outcome: CanonicalReviewResult["outcome"], issues: CanonicalReviewResult["issues"]): CanonicalReviewResult => ({
+    schemaVersion: "1",
+    reviewId: "review-x",
+    candidate: { candidateId: "candidate-x", manifestDigest: "a".repeat(64) },
+    outcome,
+    issues,
+    completedAt: "2026-09-20T14:55:00.000Z",
+  } as CanonicalReviewResult);
+  const panel = PANEL_PROVIDER_BLOCKED.kind === "panel" ? PANEL_PROVIDER_BLOCKED.issues : [];
+  const invalid = PANEL_OUTPUT_INVALID.kind === "panel" ? PANEL_OUTPUT_INVALID.issues : [];
+  assert.equal(predicate(review("ERROR", panel)), true, "the live panel shape");
+  assert.equal(predicate(review("ERROR", [
+    { code: "REVIEW_EVALUATOR_ERROR", severity: "BLOCKER", message: `MODEL_PROCESS_FAILED:${WEEKLY_LIMIT}` },
+  ])), true, "the live baseline shape");
+  assert.equal(predicate(review("ERROR", [
+    { code: "REVIEW_EVALUATOR_ERROR", severity: "BLOCKER", message: "MODEL_PROCESS_FAILED:Not logged in · Please run /login" },
+  ])), true, "a credential wall is a provider block too");
+  assert.equal(predicate(review("ERROR", invalid)), false, "schema-invalid seat output is not a provider block");
+  // A content finding that merely QUOTES the words is not infrastructure.
+  assert.equal(predicate(review("ERROR", [
+    { code: "READER.BLOCKING.internal_contradiction", severity: "BLOCKER", message: `the card says ${WEEKLY_LIMIT}`, location: "ch02" },
+  ])), false, "only infrastructure codes are read");
+  // An infrastructure code at WARN is not a blocker.
+  assert.equal(predicate(review("ERROR", [
+    { code: "SEMANTIC_PANEL_READER_FAILED", severity: "WARN", message: `SEMANTIC_PANEL_READER_FAILED:MODEL_PROCESS_FAILED:${WEEKLY_LIMIT}` },
+  ])), false, "a WARN is not a blocker");
+  // Verdicts are never provider-blocked.
+  assert.equal(predicate(review("FAIL", panel)), false, "a FAIL is a verdict");
 });
 
 finishV25Tests().catch((error: unknown) => {
