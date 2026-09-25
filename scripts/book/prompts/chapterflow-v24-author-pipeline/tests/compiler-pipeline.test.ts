@@ -3282,17 +3282,18 @@ test("v23 example-pack validator rejects non-example anchors on examples", () =>
   );
 });
 
-test("v23 example-pack validator rejects named-case examples that omit hard specifics", () => {
+test("D16: the example-pack validator accepts named-case examples that omit hard specifics (SEC33 floor 0)", () => {
   const fx = compileFixture();
   const bad = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
   bad.examples[0].scenario = "Maya stands at her kitchen table with the card app open and chooses whether to pay a small amount before the balance becomes visible. The decision is concrete: leave the signal alone, or make the balance match the careful behavior she already has.";
   bad.examples[0].whatToDo = "Open the account, identify the visible balance, and choose the smallest payment that changes the signal without breaking your cash plan.";
   bad.examples[0].whyItMatters = "The action works because account behavior is read as information, so a smaller visible balance can change what the system has to interpret.";
 
+  // Q06 PR 2 (owner decision D16): an example cites its case for provenance only.
   const findings = validateExamplePack(bad, fx.blueprint, fx.packet);
-  assert.ok(
-    findings.some((f) => f.checkId === "SEC33.example_anchor_specifics" && f.severity === "blocker"),
-    findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
+  assert.deepEqual(
+    findings.filter((f) => f.checkId === "SEC33.example_anchor_specifics").map((f) => f.message),
+    [],
   );
 });
 
@@ -3322,9 +3323,11 @@ test("SEC33 counts a naturalized clipped specific — unit-side folding (Frankli
 
   const scattered = second.split(" ").join(" one two three four five six seven eight nine ");
   ex.scenario = `Maya reviews the statement at the kitchen table while the ${scattered} note sits beside her, and she weighs one small payment against the visible number before the snapshot lands.`;
+  // Q06 PR 2 (owner decision D16): the floor is 0, so even with the tokens scattered
+  // beyond the gap bound SEC33 raises nothing.
   const blocked = validateExamplePack(pack, fx.blueprint, fx.packet)
     .filter((f) => f.checkId === "SEC33.example_anchor_specifics" && f.path === "/examples/0");
-  assert.equal(blocked.length, 1, "tokens scattered beyond the gap bound must still block");
+  assert.equal(blocked.length, 0, "D16: an example with no case specific passes SEC33");
 });
 
 test("v23 example-pack validator rejects whyItMatters lines that explain a neighboring source fact", () => {

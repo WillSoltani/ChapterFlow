@@ -309,7 +309,7 @@ function validateAnchorClaimType(
 //
 // PACKAGE 1B left this primitive with ONE caller family: SEC74, the action pack, at
 // min 1. SEC14 became a chapter-level presence rule, SEC16 became a CAP rather than a
-// floor, SEC56/SEC58 were retired outright, and SEC33 (min 1, pooled across the
+// floor, SEC56/SEC58 were retired outright, and SEC33 (pooled across the
 // example's three fields) has its own inline loop because it pools. The cross-anchor
 // `combine: "any"` mode went with SEC16 and is not reinstated here — a gate primitive
 // with a branch no gate takes is a trap for the next reader.
@@ -454,6 +454,181 @@ function sourceMentionNames(packet: SourcePacketV1): Set<string> {
     ...packet.namedCases.flatMap((c) => [c.label, c.summary, ...c.hardSpecifics].flatMap((value) => extractNamesFromText(value))),
     ...packet.facts.flatMap((f) => [f.claim, f.mechanism, f.commonError, f.whyWrong, ...f.groundedEntities].flatMap((value) => extractNamesFromText(value))),
   ]);
+}
+
+/**
+ * SEC137 (Q06 PR 2, owner decision D16 = B): a whyItMatters that names the source.
+ *
+ * With SEC33 at 0 an example cites its case for provenance only. The tie-back closer
+ * ("Franklin did the same at Brownell's school...") is the shape every rubric reader
+ * named, and 107 of 114 rr21 whyItMatters carried it. The chapter's prose teaches the
+ * case (SEC14/SEC128); the example explains the principle in its own moment.
+ *
+ * The packet's entity lists are NOISY (rr21 ch01 allowedEntities carries "After",
+ * "Though", "Leading", "Opens", "Financial", "Birth"...), and its case labels and
+ * entities are often title-cased headings ("Killed After Guns Failed in the Rain",
+ * "Premature Victory Fireworks Subscription", "Club-Tested Civic Reform"). So a token
+ * counts as a source name only when it passes all of:
+ *   - it is a capitalized word the librarian's name extractor keeps (NAME_STOPWORDS
+ *     dropped) and not a title, month, nationality or function word listed below;
+ *   - its lower-case form never appears as a word in the packet's own text (a common
+ *     noun shows up lower-case somewhere: "leading people", "birth");
+ *   - the packet ATTESTS it as a name: capitalized away from a sentence start in its
+ *     prose (fact claim, mechanism, commonError, whyWrong, case summary, anchor text),
+ *     or inside a sentence-case label or hardSpecific ("a Boston school for writing"),
+ *     or on a case label's figure side ("George Brownell"), or as the first word of a
+ *     capitalized run in prose ("George Webb"). A title-cased heading (no lower-case
+ *     word but connectives such as "of", "in", "the") and allowedEntities attest nothing:
+ *     every word of a heading is capitalized by style, not because it is a name.
+ * A whyItMatters capitalizes every sentence opener, so a hit AT a sentence start
+ * counts only for a FIGURE: a name on a label's figure side (when that side is a name,
+ * not a sentence-case description such as "Massachusetts Bay's Crown Point appeal"),
+ * one the prose writes as
+ * a possessive ("Braddock's") or after a title ("Mr. Denny", "Colonel Dunbar"), or a
+ * protectedSourceNames entry; and never for an institution's word, one the packet
+ * writes after an article or determiner at least as often as without one ("the
+ * Board of Trade", "an Assembly bill", "the Library Company"), unless it also follows
+ * a title. ch09's prose capitalizes the virtue names mid-sentence
+ * ("Temperance, Silence, Order"), so "Silence gives..." opens a clean sentence while
+ * "the rule of Silence" mid-sentence still names the source.
+ * protectedSourceNames (the reserved figure names) join unfiltered. The slot's dealt
+ * invented cast is subtracted per example. Matching is case-sensitive on word
+ * boundaries, so a possessive ("Brownell's") matches and a lower-case word does not.
+ */
+const SOURCE_NAME_NON_NAMES = new Set([
+  // titles and forms of address
+  "Lord", "Lady", "Captain", "Speaker", "Governor", "Uncle", "Aunt", "Bishop", "Reverend", "Colonel", "General",
+  "Major", "King", "Queen", "Prince", "Princess", "Duke", "Earl", "President", "Doctor", "Father", "Mother",
+  "Brother", "Sister", "Saint", "Deacon", "Elder", "Master", "Mistress", "Squire", "Esquire", "Professor",
+  "Sergeant", "Lieutenant", "Admiral", "Mayor", "Senator", "Messrs", "Miss", "Dear", "Doctors", "Lords", "Secretary",
+  "Deputy", "Attorney", "Postmaster",
+  // months (weekdays are already in NAME_STOPWORDS)
+  "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+  // nationalities and faiths used as adjectives
+  "English", "Englishman", "Englishmen", "British", "French", "Dutch", "German", "Spanish", "Irish", "Scottish",
+  "Scotch", "Scots", "Welsh", "American", "Americans", "European", "Italian", "Swedish", "Portuguese",
+  "Protestant", "Protestants", "Catholic", "Catholics", "Christian", "Christians", "Jewish", "Muslim",
+  // sentence-function words the name extractor keeps
+  "Its", "Was", "Were", "Are", "Has", "Had", "Did", "Does", "Can", "Could", "Would", "Should", "Will", "Shall",
+  "Might", "Must", "Why", "How", "Where", "Than", "These", "Those", "Such", "Until", "Unless", "Since", "Though",
+  "Although", "Whether", "Let",
+]);
+
+/** "Mr. George Brownell": the period of a title abbreviation does not open a sentence. */
+const TITLE_ABBREVIATION_BEFORE_RE = /\b(?:Mr|Mrs|Ms|Dr|St|Mt|Jr|Sr|Rev|Capt|Gov|Col|Gen|Messrs)\.\s*$/;
+
+function asciiFold(value: string): string {
+  return value.normalize("NFD").replace(/[̀-ͯ]/g, "");
+}
+
+/** A prose title before a figure's name: "Colonel Dunbar", "Governor Morris". */
+const FIGURE_TITLE_BEFORE_RE = /\b(?:Lord|Lady|Captain|Speaker|Governor|Uncle|Aunt|Bishop|Reverend|Colonel|General|Major|Doctor|Doctors|Brother|Sister|Secretary|Deputy|Judge|Messrs|Miss)\s+$/;
+
+/** "the Pennsylvania Assembly", "the Board of Trade", "an Assembly bill": an
+ *  institution's run, led by an article or determiner. */
+const ARTICLE_LED_RUN_BEFORE_RE = /\b(?:[Tt]he|[Aa]n?|[Aa]ny|[Hh]is|[Hh]er|[Ii]ts|[Tt]heir|[Tt]his|[Tt]hat|[Ee]very|[Ee]ach)\s+(?:[A-Z][a-z]+(?:-[A-Z][a-z]+)*\s+(?:of\s+(?:the\s+)?)?)*$/;
+
+const HEADING_CONNECTIVES = new Set([
+  "a", "an", "the", "and", "or", "nor", "but", "of", "in", "on", "at", "to", "by", "for", "with", "from", "as", "near",
+  "into", "onto", "over", "under", "upon", "via", "vs",
+]);
+
+interface ExampleWhySourceNames {
+  /** Source names a whyItMatters may not carry mid-sentence. */
+  names: Set<string>;
+  /** The subset that also counts at a sentence start: the figures themselves. */
+  figures: Set<string>;
+}
+
+function exampleWhySourceNames(packet: SourcePacketV1, reservedNames: ReadonlySet<string>): ExampleWhySourceNames {
+  const cases = packet.namedCases ?? [];
+  const anchors = packet.allowedAnchors ?? [];
+  const labelFigureSides = cases.map((c) => asciiFold(text(c.label).split(" / ")[0] ?? ""));
+  const candidates = [
+    ...labelFigureSides,
+    ...cases.flatMap((c) => c.hardSpecifics ?? []),
+    ...(packet.facts ?? []).flatMap((f) => f.groundedEntities ?? []),
+    ...(packet.allowedEntities ?? []),
+  ].flatMap((value) => extractNamesFromText(asciiFold(text(value))));
+  const prose = [
+    ...(packet.facts ?? []).flatMap((f) => [f.claim, f.mechanism, f.commonError, f.whyWrong]),
+    ...cases.map((c) => c.summary),
+    ...anchors.map((a) => a.text),
+  ].map((v) => asciiFold(text(v)));
+  const shortFields = [
+    ...cases.flatMap((c) => [c.label, ...(c.hardSpecifics ?? [])]),
+    ...anchors.flatMap((a) => [a.label, ...(a.hardSpecifics ?? [])]),
+  ].map((v) => asciiFold(text(v)));
+  const lowerWords = new Set(
+    [...prose, ...shortFields, ...(packet.facts ?? []).flatMap((f) => f.groundedEntities ?? []), ...(packet.allowedEntities ?? [])]
+      .flatMap((value) => asciiFold(text(value)).match(/\b[a-z]{3,}\b/g) ?? []),
+  );
+  const attested = new Set<string>();
+  const figureEvidence = new Set<string>();
+  // A heading capitalizes every word but its connectives; a sentence-case field has a
+  // lower-case content word ("a Boston school", "act of Parliament").
+  const sentenceCase = (value: string) => (value.match(/\b[a-z]{2,}\b/g) ?? []).some((word) => !HEADING_CONNECTIVES.has(word));
+  for (const value of [...prose, ...shortFields.filter(sentenceCase)]) {
+    for (const m of value.matchAll(/\b[A-Z][a-z]{2,}\b/g)) {
+      const before = value.slice(0, m.index ?? 0);
+      if (!SENTENCE_OPENER_BEFORE_RE.test(before) || TITLE_ABBREVIATION_BEFORE_RE.test(before)) attested.add(m[0]);
+    }
+  }
+  // "George Webb discloses...": a given name that opens a prose sentence, followed by
+  // another capitalized word.
+  for (const value of prose) {
+    for (const m of value.matchAll(/\b([A-Z][a-z]{2,})(?=\s+[A-Z][a-z]+\b)/g)) attested.add(m[1]);
+  }
+  const titled = new Set<string>();
+  const articleLed = new Map<string, number>();
+  const articleFree = new Map<string, number>();
+  for (const value of [...prose, ...shortFields]) {
+    for (const m of value.matchAll(/\b([A-Z][a-z]{2,})\b/g)) {
+      const before = value.slice(0, m.index ?? 0);
+      const after = value.slice((m.index ?? 0) + m[0].length);
+      const led = ARTICLE_LED_RUN_BEFORE_RE.test(before);
+      // "Colonel Dunbar" is a person; "the General Assembly" is not.
+      const title = !led && (TITLE_ABBREVIATION_BEFORE_RE.test(before) || FIGURE_TITLE_BEFORE_RE.test(before));
+      if (title) titled.add(m[1]);
+      if (prose.includes(value) && (title || /^['\u2019]s\b/.test(after))) figureEvidence.add(m[1]);
+      const counts = led ? articleLed : articleFree;
+      counts.set(m[1], (counts.get(m[1]) ?? 0) + 1);
+    }
+  }
+  for (const value of labelFigureSides) {
+    for (const token of extractNamesFromText(value)) {
+      attested.add(token);
+      // "Massachusetts Bay's Crown Point appeal" describes a case; it names no figure.
+      if (!sentenceCase(value)) figureEvidence.add(token);
+    }
+  }
+  // A figure is a person: named after a title, or written without an article more often
+  // than with one. "the Assembly", "the Board of Trade", "the Library Company", "the House"
+  // are institutions whose words open ordinary sentences ("Trade-offs...", "Assembly...").
+  const personLike = (token: string) => titled.has(token) || (articleFree.get(token) ?? 0) > (articleLed.get(token) ?? 0);
+  const names = new Set<string>(reservedNames);
+  const figures = new Set<string>(reservedNames);
+  for (const token of candidates) {
+    if (SOURCE_NAME_NON_NAMES.has(token)) continue;
+    if (lowerWords.has(token.toLowerCase())) continue;
+    if (!attested.has(token)) continue;
+    names.add(token);
+    if (figureEvidence.has(token) && personLike(token)) figures.add(token);
+  }
+  return { names, figures };
+}
+
+/** SEC137: the source names a whyItMatters carries, minus the slot's dealt cast. A hit
+ *  at a sentence start counts only for a figure (see exampleWhySourceNames). */
+function exampleWhySourceNameHits(whyItMatters: string, sourceNames: ExampleWhySourceNames, dealtNames: ReadonlySet<string>): string[] {
+  const why = asciiFold(whyItMatters);
+  return [...sourceNames.names].filter((name) => {
+    if (dealtNames.has(name)) return false;
+    for (const m of why.matchAll(new RegExp(`\\b${escapeRegex(name)}\\b`, "g"))) {
+      if (sourceNames.figures.has(name) || !SENTENCE_OPENER_BEFORE_RE.test(why.slice(0, m.index ?? 0))) return true;
+    }
+    return false;
+  });
 }
 
 function syntheticSceneShell(value: string): boolean {
@@ -2323,8 +2498,17 @@ const FACT_ALIGNMENT_MIN_POOL = 8;
 
 /** SEC33: hardSpecifics of a cited case an example must carry, POOLED across
  *  scenario + whatToDo + whyItMatters (the gate has always pooled the three fields;
- *  the contract now says so). */
-const EXAMPLE_MIN_CASE_SPECIFICS = 1;
+ *  the contract now says so).
+ *
+ *  0 since Q06 PR 2 (owner decision D16 = B). At 1, source figures barred from the
+ *  scene (SEC34) and the recall beat banned (SEC133) left the closing whyItMatters as
+ *  the only place for the token: on the Franklin candidate rr21, 88 of 114 examples
+ *  carried it only there, and every rubric reader named that tie-back closer as the
+ *  book's repeated shape. Grounding is the anchor citation (SEC27/SEC32), the fact
+ *  mechanism (SEC39) and the chapter-level presence rule (SEC14/SEC128/SEC136), as
+ *  #541 already made it for quiz and cards; SEC137 now refuses a whyItMatters that
+ *  names the source. The loop stays so the floor is one constant. */
+const EXAMPLE_MIN_CASE_SPECIFICS = 0;
 
 // ---- chapter-level case grounding (R-059) ----------------------------------
 // CHAPTER_CASE_MIN_SPECIFICS — hard specifics of a cited case that must reach the
@@ -2365,8 +2549,8 @@ const CASE_SPECIFIC_SHARE_MAX_FINDINGS = 6;
  * two-specific example quota manufactured this move — the scene had to carry two of
  * the case's proper nouns while the book's scars forbade the source figure appearing
  * in it, so the invented actor was made to READ the source instead of living a
- * moment of their own. With SEC33 at one pooled specific the writer no longer needs
- * it, and the shape is refused.
+ * moment of their own. With SEC33 at one pooled specific (0 since D16) the writer no
+ * longer needs it, and the shape is refused.
  */
 /**
  * SEC130 / SEC131 — TIER RESTATEMENT AND NOVELTY (R-066, R-072).
@@ -2932,6 +3116,7 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
   const sourceNames = protectedSourceNames(packet);
   const actorReservedNames = new Set([...sourceNames, ...GLOBAL_RESERVED_SOURCE_FIGURE_NAMES]);
   const sourceReferenceNames = sourceMentionNames(packet);
+  const whySourceNames = exampleWhySourceNames(packet, sourceNames);
   const push = (checkId: string, severity: SectionFinding["severity"], message: string, path?: string) => findings.push({ checkId, severity, chapterNumber: ch, section: "example-pack", message, path });
   if (pack.schemaVersion !== SECTION_ARTIFACT_SCHEMA_VERSION || pack.artifactType !== "example-pack") push("SEC20.example_schema", "blocker", "example-pack schema/artifactType mismatch");
   if (pack.chapterId !== bp.chapterId) push("SEC21.example_identity", "blocker", "example-pack chapterId must match blueprint", "/chapterId");
@@ -3066,6 +3251,9 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
           const normalized = normalizeDerivabilityText(specific);
           return normalized.length >= 3 && clippedPhraseDerivable(normalized, normalizedCombined);
         }).length;
+        // D16 (Q06 PR 2): the floor is now 0, see EXAMPLE_MIN_CASE_SPECIFICS; the
+        // history below is why it was one, and why one still moved the token instead
+        // of removing it.
         // R-061/P15: ONE specific, pooled across scenario + whatToDo + whyItMatters.
         // The >=2 quota read as a scenario obligation and collided with the
         // invented-cast rule on a historical source: the writer's only legal move was
@@ -3090,6 +3278,19 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
           "blocker",
           `example ${i + 1} has its invented character READ or REMEMBER the source case ("${beat}"); the scene must live its own moment and use the case's detail directly, not recall the book`,
           `${root}/scenario`,
+        );
+      }
+    }
+    // SEC137 (D16): the example explains the principle in its own moment; the chapter's
+    // prose teaches the case. See exampleWhySourceNames for how the name set is built.
+    {
+      const named = exampleWhySourceNameHits(text(ex.whyItMatters), whySourceNames, slotAllowedNames);
+      if (named.length) {
+        push(
+          "SEC137.example_why_source_name",
+          "blocker",
+          `example ${i + 1} whyItMatters names the source (${named.map((name) => `"${name}"`).join(", ")}); explain why the move works in the scene's own terms, without the source case or its figures: the chapter's prose teaches the case`,
+          `${root}/whyItMatters`,
         );
       }
     }
