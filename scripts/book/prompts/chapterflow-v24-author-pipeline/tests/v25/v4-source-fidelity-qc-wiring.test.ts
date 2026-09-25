@@ -273,14 +273,17 @@ requiredTest("fresh QC blocks a chapter the frozen source contradicts, carrying 
   assert.equal(blocker.severity, "BLOCKER");
   assert.ok(blocker.message.includes(SOURCE_LINE), "the round carries the source line the judge cited");
   assert.equal(blocker.location, "ch01/example[0]/whyItMatters");
-  // The judge saw the frozen bytes, not a paraphrase of them.
-  assert.equal(recorded.fidelityPrompts.length, 1);
-  assert.ok(recorded.fidelityPrompts[0].includes("heads\nof our complaints in writing"));
-  // Its attempt id names the candidate's manifest digest and its own chunk.
-  assert.ok(
-    recorded.attemptIds.some((id) => id.startsWith("qc-base-fidelity-") && id.includes("-ch01-c01-a1")),
-    JSON.stringify(recorded.attemptIds),
-  );
+  // The judge saw the frozen bytes, not a paraphrase of them - in both of the
+  // chunk's surface-group calls (Q07: prose, learning).
+  assert.equal(recorded.fidelityPrompts.length, 2);
+  assert.ok(recorded.fidelityPrompts.every((prompt) => prompt.includes("heads\nof our complaints in writing")));
+  // Its attempt ids name the candidate's manifest digest, its own chunk and group.
+  for (const group of ["prose", "learning"]) {
+    assert.ok(
+      recorded.attemptIds.some((id) => id.startsWith("qc-base-fidelity-") && id.includes(`-ch01-c01-${group}-a1`)),
+      JSON.stringify(recorded.attemptIds),
+    );
+  }
   // A card carrying the book's own bytes runs on the long-timeout pipeline-root
   // route, not on the 300s short-probe profile the original 2 KB judge card was
   // sized for. Both judges carry the span here, so both move.
@@ -302,7 +305,8 @@ requiredTest("a model-memory answer-key judge keeps the short route it always ha
   );
   const evaluated = await evaluator.run({ candidate, canonicalReview: review(), roundId: "round-memory-profile", taskContext: judgeContext() });
   assert.ok(evaluated.ok);
-  const keyJudgeProfiles = recorded.profileIds.filter((_id, index) => index > 0);
+  // The first two calls are the fidelity judge's two surface-group halves (Q07).
+  const keyJudgeProfiles = recorded.profileIds.filter((_id, index) => index > 1);
   assert.ok(keyJudgeProfiles.length > 0);
   assert.ok(
     keyJudgeProfiles.every((id) => id === "pipeline-read-json-v1"),
@@ -335,8 +339,8 @@ requiredTest("a candidate with no frozen text warns under model-memory and never
   assert.equal(fidelity.length, 1, JSON.stringify(fidelity, null, 2));
   assert.equal(fidelity[0].severity, "WARN", "recall is not evidence and may never gate");
   assert.ok(fidelity[0].message.includes("model-memory"), fidelity[0].message);
-  // The judge was told it was reading recall, not the book.
-  assert.equal(recorded.fidelityPrompts.length, 1);
+  // The judge was told it was reading recall, not the book (two surface-group calls, Q07).
+  assert.equal(recorded.fidelityPrompts.length, 2);
   assert.ok(recorded.fidelityPrompts[0].includes("RECALLED CLAIMS"), recorded.fidelityPrompts[0].slice(0, 400));
 });
 
@@ -448,8 +452,9 @@ requiredTest("reader escalations reach the fidelity judge as claim hints", async
     taskContext: judgeContext(),
   });
   assert.ok(evaluated.ok);
-  assert.equal(recorded.fidelityPrompts.length, 1);
-  const prompt = recorded.fidelityPrompts[0];
+  // Two surface-group calls (Q07); read them together as the chapter's judgment.
+  assert.equal(recorded.fidelityPrompts.length, 2);
+  const prompt = recorded.fidelityPrompts.join("\n\n");
   assert.ok(prompt.includes("READER ESCALATIONS"), "escalations are a named section of the judge prompt");
   assert.ok(prompt.includes("the Penn negotiation reads as history and I cannot check it"));
   assert.equal(prompt.includes("belongs to another chapter"), false, "another chapter's escalation is not this chapter's hint");
@@ -555,7 +560,7 @@ requiredTest("panel derivation splits reach the QC lane as flagged question ids"
 
 requiredTest("the fresh-qc run is sized for both judges", async (context) => {
   const candidate = buildCandidate(context, { withSourceText: true });
-  assert.equal(countSourceFidelityCalls(candidate), 1, "one chapter, one chunk");
+  assert.equal(countSourceFidelityCalls(candidate), 2, "one chapter, one chunk, two surface-group calls");
   const definition = freshQcRunDefinition({
     bookId: BOOK,
     runId: "run-capacity",
@@ -564,7 +569,7 @@ requiredTest("the fresh-qc run is sized for both judges", async (context) => {
     createdAt: CREATED,
     questionCount: countQuizQuestions(candidate),
   });
-  const expected = (countQuizQuestions(candidate) * 2) + (1 * 2);
+  const expected = (countQuizQuestions(candidate) * 2) + (2 * 2);
   assert.equal(definition.attemptLimits.run, expected);
   assert.equal(definition.attemptLimits.byStage?.["fresh-qc"], expected);
 });
@@ -889,6 +894,87 @@ requiredTest("a round whose judges did not run says so on the record", async (co
   assert.equal(ran.value.issues.some((entry) => entry.code === SOURCE_FIDELITY_NOT_RUN_CODE), false);
 });
 
+// ── Q07 J2 ──────────────────────────────────────────────────────────────────
+// Each chapter's fidelity judgment is two calls per chunk (prose, learning), so
+// each half needs its own attempt and operation id - the gateway refuses a
+// reused attemptId within a run (MODEL_ATTEMPT_EXISTS) - and the fresh-qc run's
+// capacity must count both halves or the second one wedges the run.
+
+/** The fidelity attempt ids and operation ids a scripted fresh-qc run admitted. */
+async function fidelityAdmissions(
+  candidate: CandidateSnapshot,
+  fidelity: (userPrompt: string, operationId: string) => ModelResult | { findings: unknown[] },
+  roundId: string,
+): Promise<{ attemptIds: string[]; operationIds: string[]; evaluated: Awaited<ReturnType<CandidateQcEvaluator["run"]>> }> {
+  const attemptIds: string[] = [];
+  const operationIds: string[] = [];
+  let operationId = "";
+  const base = runner((userPrompt) => fidelity(userPrompt, operationId), emptyRecorded());
+  const capture: ModelTaskRunner = {
+    async run(request) {
+      if (request.context.operationId.startsWith("source-fidelity-judge-")) {
+        attemptIds.push(request.context.attemptId);
+        operationIds.push(request.context.operationId);
+        operationId = request.context.operationId;
+      }
+      return base.run(request);
+    },
+  };
+  const evaluated = await new CandidateQcEvaluator({ async open() { return { ok: true, value: candidate }; } }, { runner: capture })
+    .run({ candidate, canonicalReview: review(), roundId, taskContext: judgeContext() });
+  return { attemptIds, operationIds, evaluated };
+}
+
+const DIGEST_TAG = DIGEST.replace(/[^A-Za-z0-9]/g, "").slice(0, 12);
+
+requiredTest("Q07: the two halves of one chunk carry distinct attempt and operation ids", async (context) => {
+  const candidate = buildCandidate(context, { withSourceText: true });
+  const { attemptIds, operationIds, evaluated } = await fidelityAdmissions(candidate, () => ({ findings: [] }), "round-q07-ids");
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.deepEqual(attemptIds, [
+    `qc-base-fidelity-${DIGEST_TAG}-ch01-c01-prose-a1`,
+    `qc-base-fidelity-${DIGEST_TAG}-ch01-c01-learning-a1`,
+  ]);
+  assert.deepEqual(operationIds, [
+    "source-fidelity-judge-ch01-c01-prose-a1",
+    "source-fidelity-judge-ch01-c01-learning-a1",
+  ]);
+});
+
+requiredTest("Q07: a failed half retries on its own ids without re-running the other half", async (context) => {
+  const candidate = buildCandidate(context, { withSourceText: true });
+  const { attemptIds, evaluated } = await fidelityAdmissions(
+    candidate,
+    (_prompt, operationId) => operationId === "source-fidelity-judge-ch01-c01-learning-a1"
+      ? { attemptId: "unused", outcome: "FAILED", error: { code: "MODEL_OUTPUT_INVALID", message: "capped" } }
+      : { findings: [] },
+    "round-q07-retry",
+  );
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.deepEqual(attemptIds, [
+    `qc-base-fidelity-${DIGEST_TAG}-ch01-c01-prose-a1`,
+    `qc-base-fidelity-${DIGEST_TAG}-ch01-c01-learning-a1`,
+    `qc-base-fidelity-${DIGEST_TAG}-ch01-c01-learning-a2`,
+  ]);
+});
+
+requiredTest("Q07: countSourceFidelityCalls and the fresh-qc capacity count both halves", async (context) => {
+  const grounded = buildCandidate(context, { withSourceText: true });
+  const recalled = buildCandidate(context);
+  assert.equal(countSourceFidelityCalls(grounded), 2, "one chapter, one chunk, two surface-group calls");
+  assert.equal(countSourceFidelityCalls(recalled), 2, "one chapter, model-memory, two surface-group calls");
+  const definition = freshQcRunDefinition({
+    bookId: BOOK,
+    runId: "run-capacity-q07",
+    sourceGitSha: "0".repeat(40),
+    candidate: grounded,
+    createdAt: CREATED,
+    questionCount: countQuizQuestions(grounded),
+  });
+  const expected = (countQuizQuestions(grounded) * 2) + (2 * 2);
+  assert.equal(definition.attemptLimits.run, expected);
+  assert.equal(definition.attemptLimits.byStage?.["fresh-qc"], expected);
+});
 
 finishV25Tests().catch((error: unknown) => {
   console.error(error);

@@ -632,10 +632,11 @@ requiredTest("production composition reaches isolated local promotion and exact 
   const judgeInitial = specCount(supervisor.specs, "answer-key auditor");
   assert.ok(judgeInitial >= 1, "at least one quiz-key judge task must cross the process boundary during live fresh-qc");
   // Fresh-qc runs a SECOND judge: one source-fidelity call per chapter source
-  // chunk. This fixture book has one chapter and no source text, so its
-  // fidelity judgment is a single model-memory call.
+  // chunk per surface group (Q07: prose, learning). This fixture book has one
+  // chapter and no source text, so its fidelity judgment is one model-memory
+  // chunk judged in two calls.
   const fidelityInitial = specCount(supervisor.specs, "source-fidelity auditor");
-  assert.equal(fidelityInitial, 1, "the source-fidelity judge crosses the process boundary too");
+  assert.equal(fidelityInitial, 2, "the source-fidelity judge crosses the process boundary too");
   assert.equal(
     supervisor.specs.length,
     14 + judgeInitial + fidelityInitial,
@@ -654,11 +655,11 @@ requiredTest("production composition reaches isolated local promotion and exact 
     //   11-13 catalog-rubric readers  +3, #542 (three whole-book readers)
     // and the two variable parts are named rather than numbered: judgeInitial,
     // one answer-key call per quiz question, and fidelityInitial, one
-    // source-fidelity call per chapter source chunk (1 here — one chapter, no
-    // source text, so a single model-memory call).
+    // source-fidelity call per chapter source chunk per surface group (2 here —
+    // one chapter, no source text, one model-memory chunk in two calls).
     "research, compiler, the whole-chapter editor, baseline review, three-seat reader panel,"
     + " one fresh-qc quiz-key judge call per quiz question,"
-    + " one source-fidelity judge call per chapter source chunk,"
+    + " one source-fidelity judge call per chapter source chunk per surface group,"
     + " plus the three whole-book catalog-rubric readers",
   );
   assert.equal(

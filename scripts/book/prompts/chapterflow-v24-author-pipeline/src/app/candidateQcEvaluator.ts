@@ -688,7 +688,9 @@ export class CandidateQcEvaluator {
               source: source.context,
               claimHints: fidelityClaimHints(request.canonicalReview.issues, number),
               ask: async (fidelityRequest) => {
-                const suffix = `${chapterLabel}-c${String(fidelityRequest.chunkIndex + 1).padStart(2, "0")}`;
+                // One id per chunk per surface group (Q07 J2): the two halves of a
+                // chunk are two admissions, and the gateway refuses a reused attemptId.
+                const suffix = `${chapterLabel}-c${String(fidelityRequest.chunkIndex + 1).padStart(2, "0")}-${fidelityRequest.surfaceGroup}`;
                 let lastError: unknown;
                 for (let attempt = 1; attempt <= SOURCE_FIDELITY_MAX_ATTEMPTS; attempt += 1) {
                   if (base.signal.aborted) {

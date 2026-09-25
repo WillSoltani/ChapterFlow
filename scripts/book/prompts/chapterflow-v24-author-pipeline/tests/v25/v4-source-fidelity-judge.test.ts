@@ -242,8 +242,9 @@ requiredTest("an over-long span is chunked deterministically and its findings me
       return { findings: [{ surface: "chapter/keyTakeaway", quote: REV6_ERROR, claim: "c", verdict: "contradicted", sourceQuote: SOURCE_LINE, checkableKind: "sequence", note: "here it is" }] };
     },
   });
-  assert.equal(report.calls, chunks.length);
-  assert.deepEqual(seen, chunks.map((_, index) => index));
+  // Two surface-group calls per chunk (Q07: prose, learning).
+  assert.equal(report.calls, chunks.length * 2);
+  assert.deepEqual(seen, chunks.flatMap((_, index) => [index, index]));
   assert.equal(report.findings.length, 1, JSON.stringify(report.findings, null, 2));
   assert.equal(report.findings[0].verdict, "contradicted");
   const classified = classifySourceFidelityFindings(report);
