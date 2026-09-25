@@ -37,6 +37,7 @@ import type { SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import type { ChapterEditPacks } from "../sections/chapterEditGuard.js";
 import type { ChapterV21 } from "../types.js";
 import { buildRepairWritingContract } from "./candidateRepairWritingContract.js";
+import { MAX_SPAN_PROMPT_CHARS } from "../source/chapterMap.js";
 
 /** The document the editor is handed and must return. Bumping this string is a
  *  brief change: it is hashed into the editor cache key, so every chapter
@@ -44,17 +45,18 @@ import { buildRepairWritingContract } from "./candidateRepairWritingContract.js"
 export const CHAPTER_EDIT_SCHEMA_VERSION = "chapter-edit-v1" as const;
 
 /**
- * How much of the chapter's frozen source span reaches the editor card.
+ * How much of the chapter's frozen source span reaches the editor (as the untrusted
+ * `source_span` record; never card text).
  *
- * The card already carries the writing contract, the reader view, the four packs
- * and the packet projection, and it is paid once per chapter. 12,000 characters
- * is roughly 3,000 tokens: enough of the book's own words for the editor to check
- * a rewritten sentence against the page, and a fifth of the chapter researcher's
- * own span budget (MAX_SPAN_PROMPT_CHARS), which is sized for a call whose whole
- * job is reading the span. A longer span is SAMPLED, not truncated, by the same
- * deterministic windowing the researcher uses.
+ * Q04-W2: the chapter researcher's own span budget, MAX_SPAN_PROMPT_CHARS (60,000
+ * characters, about 15,000 tokens), so an ordinary chapter reaches the editor
+ * WHOLE. It was 12,000, a fifth of that, and on rr21 the sample held 36-54% of each
+ * seeded chapter and none of the cited source lines for 12 of 19 labelled errors:
+ * the editor cannot check a sentence against a passage it was never shown. Only an
+ * oversized unit is still SAMPLED, not truncated, by the same deterministic
+ * windowing the researcher uses.
  */
-export const EDITOR_SOURCE_SPAN_MAX_CHARS = 12_000;
+export const EDITOR_SOURCE_SPAN_MAX_CHARS = MAX_SPAN_PROMPT_CHARS;
 
 /**
  * THE EDITOR BRIEF — the defect classes readers flagged on the released book.
@@ -79,6 +81,7 @@ export const CHAPTER_EDITOR_BRIEF: readonly string[] = Object.freeze([
   "ACTIONS. The three if-then plans are three DIFFERENT moves with three different triggers, not one move with three wordings. tryThisNow, coreSkill and the challenge each open differently.",
   "ORIENTATION. The chapter names its subject, its place and its time early, in the reader's first tier, so nobody has to infer who and when this is about.",
   "CADENCE. Vary sentence length. No sentence over thirty words, and never a run of same-length short declaratives.",
+  "FIDELITY. Check every historical sentence, quiz stem, explanation and card back against the book: against source_span when it is supplied, otherwise against the SOURCE PACKET. Check who acted, in what order, for what stated reason, with what outcome and credit. Where the chapter states a cause, motive, order, credit, membership, or an 'only', 'final' or 'first' that the source does not state, reword it to what the source says, using names and figures already in the chapter.",
 ]);
 
 /**

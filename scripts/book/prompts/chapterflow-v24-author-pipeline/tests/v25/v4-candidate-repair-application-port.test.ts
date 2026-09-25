@@ -636,6 +636,49 @@ requiredTest("a STALE admitted QC-repair attempt reconciles under operator conse
   assert.equal(subject.counts.model, 0, "recovery burns zero model calls");
 });
 
+/**
+ * Q04-W5. A repair rewrites whole reader-facing fields, and on rr21 two source
+ * errors were first written by a repair round whose inputs held no source span
+ * (L06 round 7, L08 round 21). The repair writer now gets the chapter's own frozen
+ * span as an untrusted record, and the control text carries ONE fidelity rule, only
+ * when the record is actually shipped.
+ */
+requiredTest("Q04-W5 a repair of a source-text chapter carries the whole source_span record and one fidelity rule", async (context) => {
+  const span = Array.from({ length: 200 }, (_, index) => `Paragraph ${index + 1}. The printer set down what happened in the shop that season, in order, with who helped and the reason each one gave.`).join("\n\n");
+  const head = "THE BOOK\n\n";
+  const text = `${head}${span}\n\nBack matter.\n`;
+  const map = { schemaVersion: "chapter-map-v1", spans: [{ chapterNumber: 1, startOffset: head.length, endOffset: head.length + span.length }] };
+  const subject = rig(context, {
+    extraFiles: [
+      { kind: "SIDECAR", logicalPath: "inputs/research/source-text.txt", mediaType: "text/plain", bytes: Buffer.from(text, "utf8") },
+      { kind: "SIDECAR", logicalPath: "inputs/research/chapter-map.json", mediaType: "application/json", bytes: Buffer.from(JSON.stringify(map), "utf8") },
+    ],
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, true, JSON.stringify(result));
+  const inputs = subject.prompts[0].prompt.inputs;
+  const record = inputs.find((input) => input.name === "source_span");
+  assert.ok(record, "the repair writer receives the chapter's source_span");
+  assert.equal(record!.trust, undefined, "source_span is an untrusted record");
+  assert.equal(record!.mediaType, "text/plain");
+  assert.equal(Buffer.from(record!.bytes).toString("utf8"), span, "the span is shipped whole");
+  assert.deepEqual(inputs.map((input) => input.name), [
+    "control", "writing_contract", "failed_chapter", "blueprint", "source_packet", "source_use_plan", "source_context_1", "source_context_2", "source_span", "qc_findings", "repair_brief",
+  ]);
+  const control = Buffer.from(inputs[0].bytes).toString("utf8");
+  assert.match(control, /source_span is this chapter's own text from the book/);
+  assert.match(control, /must not state anything it contradicts/);
+  assert.equal(renderPrompt(subject.prompts[0].prompt).ok, true);
+});
+
+requiredTest("Q04-W5 a repair of a candidate WITHOUT frozen text carries no source_span and no rule promising one", async (context) => {
+  const bare = rig(context);
+  const bareResult = await bare.port.run(bare.request);
+  assert.equal(bareResult.ok, true, JSON.stringify(bareResult));
+  assert.equal(bare.prompts[0].prompt.inputs.some((input) => input.name === "source_span"), false);
+  assert.doesNotMatch(Buffer.from(bare.prompts[0].prompt.inputs[0].bytes).toString("utf8"), /source_span/);
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;

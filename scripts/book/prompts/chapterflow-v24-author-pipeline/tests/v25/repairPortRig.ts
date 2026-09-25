@@ -184,6 +184,9 @@ export type RigOptions = Readonly<{
   voiceCard?: string | null;
   /** Rewrite the chapter the repair model returns (R-076 memorable-line lane). */
   replacementChapter?: (chapter: ChapterV21) => ChapterV21;
+  /** Extra files staged with the failed candidate (Q04: the frozen source text
+   *  and its chapter map). Absent = today's candidate exactly. */
+  extraFiles?: readonly Readonly<{ kind: "SIDECAR"; logicalPath: string; mediaType: "application/json" | "text/plain"; bytes: Uint8Array }>[];
 }>;
 
 export function rig(context: TestContext, options: RigOptions = {}) {
@@ -192,14 +195,18 @@ export function rig(context: TestContext, options: RigOptions = {}) {
     ...(options.voiceCard === undefined ? {} : { voiceCard: options.voiceCard }),
   });
   const chapterOne = JSON.parse(Buffer.from(staged.files[0].bytes).toString("utf8")) as ChapterV21;
-  const predecessor: CandidateSnapshot = (options.extraChapterNumbers ?? []).length === 0 ? staged : (() => {
+  const withExtraFiles: CandidateSnapshot = (options.extraFiles ?? []).length === 0 ? staged : (() => {
+    const files = [...staged.files, ...(options.extraFiles ?? []).map((file) => ({ ...file, byteLength: file.bytes.byteLength }))];
+    return { manifest: { ...staged.manifest, entries: files.map(({ bytes: _bytes, ...file }) => file) }, files };
+  })();
+  const predecessor: CandidateSnapshot = (options.extraChapterNumbers ?? []).length === 0 ? withExtraFiles : (() => {
     const extra = (options.extraChapterNumbers ?? []).map((number) => {
       const nn = String(number).padStart(2, "0");
       const fileBytes = bytes({ ...chapterOne, chapterId: `${BOOK}-ch${nn}`, number, title: `Chapter ${nn}` });
       return { kind: "CHAPTER" as const, logicalPath: `content/chapters/${BOOK}-ch${nn}.v21-native.chapter.json`, mediaType: "application/json" as const, bytes: fileBytes, byteLength: fileBytes.byteLength };
     });
-    const files = [...staged.files, ...extra];
-    return { manifest: { ...staged.manifest, entries: files.map(({ bytes: _bytes, ...file }) => file) }, files };
+    const files = [...withExtraFiles.files, ...extra];
+    return { manifest: { ...withExtraFiles.manifest, entries: files.map(({ bytes: _bytes, ...file }) => file) }, files };
   })();
   const baseReplacement: ChapterV21 = { ...chapterOne, hook: "A repaired opening names the visible credit signal before the reader can miss it." };
   // R-076: the repair lane replaces whole chapters, so a test needs to be able to hand

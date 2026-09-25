@@ -106,7 +106,7 @@ function contextBytes(value: unknown = {
   return Buffer.from(JSON.stringify(value));
 }
 
-function snapshot(overrides: { indexBytes?: Uint8Array; sidecarBytes?: Uint8Array; digest?: string; contextBytes?: Uint8Array; contextMediaType?: "application/json" | "text/plain"; omitContext?: boolean; duplicateContext?: boolean } = {}): CandidateSnapshot {
+function snapshot(overrides: { indexBytes?: Uint8Array; sidecarBytes?: Uint8Array; digest?: string; contextBytes?: Uint8Array; contextMediaType?: "application/json" | "text/plain"; omitContext?: boolean; duplicateContext?: boolean; extraFiles?: readonly { kind: "SIDECAR"; mediaType: "application/json" | "text/plain"; logicalPath: string; bytes: Uint8Array }[] } = {}): CandidateSnapshot {
   const files = [
     { kind: "SIDECAR" as const, mediaType: "application/json" as const, logicalPath: INDEX, bytes: overrides.indexBytes ?? Buffer.from(JSON.stringify([creditChapterSpec(BOOK)])) },
     { kind: "SIDECAR" as const, mediaType: "application/json" as const, logicalPath: SIDECAR, bytes: overrides.sidecarBytes ?? Buffer.from(JSON.stringify(creditSidecar())) },
@@ -114,6 +114,7 @@ function snapshot(overrides: { indexBytes?: Uint8Array; sidecarBytes?: Uint8Arra
     ...(!overrides.omitContext ? [{ kind: "SIDECAR" as const, mediaType: overrides.contextMediaType ?? "application/json" as const, logicalPath: CONTEXT, bytes: overrides.contextBytes ?? contextBytes() }] : []),
     ...(overrides.duplicateContext ? [{ kind: "SIDECAR" as const, mediaType: "application/json" as const, logicalPath: CONTEXT, bytes: contextBytes() }] : []),
     { kind: "SIDECAR" as const, mediaType: "application/json" as const, logicalPath: BOOK_PATTERN_AUDIT_LOGICAL_PATH, bytes: Buffer.from('{"bookId":"predecessor-poison"}\n') },
+    ...(overrides.extraFiles ?? []),
   ].map((file) => ({ ...file, byteLength: file.bytes.byteLength }));
   return {
     manifest: {
@@ -2760,6 +2761,137 @@ requiredTest("R-285i a re-draft whose avoid-context CHANGED, or whose record pre
     elsewhereLines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_REJECTED_DRAFT from=run-carry-perkind-a attempt=3")),
     elsewhereLines.join("\n"),
   );
+});
+
+// ---------------------------------------------------------------------------
+// Q04 (waveQ accuracy levers W1/W2/W3): the writers and the chapter editor see the
+// chapter's OWN frozen source span, whole, beside one fidelity rule.
+// ---------------------------------------------------------------------------
+
+/** A ~31,000-character chapter span: over the editor's old 12,000 sample, under
+ *  MAX_SPAN_PROMPT_CHARS, so "whole" and "sampled" are distinguishable. */
+function frozenSpanText(salt = ""): string {
+  return Array.from({ length: 200 }, (_, index) => `Paragraph ${index + 1}${salt}. The printer set down what happened in the shop that season, in order, with who helped and the reason each one gave.`).join("\n\n");
+}
+
+/** A candidate carrying the frozen book text and its chapter map (R-046 layout). */
+function sourceTextSnapshot(span: string): CandidateSnapshot {
+  const head = "THE BOOK\n\nFront matter the chapter map leaves out.\n\n";
+  const text = `${head}${span}\n\nBack matter the chapter map leaves out.\n`;
+  const map = { schemaVersion: "chapter-map-v1", spans: [{ chapterNumber: 1, startOffset: head.length, endOffset: head.length + span.length }] };
+  return snapshot({
+    extraFiles: [
+      { kind: "SIDECAR", mediaType: "text/plain", logicalPath: "inputs/research/source-text.txt", bytes: Buffer.from(text, "utf8") },
+      { kind: "SIDECAR", mediaType: "application/json", logicalPath: "inputs/research/chapter-map.json", bytes: Buffer.from(JSON.stringify(map), "utf8") },
+    ],
+  });
+}
+
+function inputText(prompt: Parameters<ModelTaskRunner["run"]>[0], name: string): string | undefined {
+  const input = prompt.prompt.inputs.find((entry) => entry.name === name);
+  return input === undefined ? undefined : Buffer.from(input.bytes).toString("utf8");
+}
+
+function promptFor(prompts: Parameters<ModelTaskRunner["run"]>[0][], operationId: string): Parameters<ModelTaskRunner["run"]>[0] {
+  const prompt = prompts.find((value) => value.context.operationId === operationId);
+  assert.ok(prompt, `${operationId} prompt missing`);
+  return prompt!;
+}
+
+requiredTest("Q04-W1 a source-text chapter's summary and learning writers get the WHOLE span as an untrusted source_span record and a SOURCE TEXT pointer", async (context) => {
+  const span = frozenSpanText();
+  assert.ok(span.length > 12_000 && span.length < 60_000, `fixture span is ${span.length} chars`);
+  const subject = rig(context, "writer-span", { selected: sourceTextSnapshot(span) });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  for (const kind of ["summary-pack", "learning-pack"]) {
+    const prompt = promptFor(subject.prompts, `compiler-ch01-${kind}`);
+    const record = prompt.prompt.inputs.find((entry) => entry.name === "source_span");
+    assert.ok(record, `${kind}: the writer must receive the chapter's source_span record`);
+    assert.equal(record!.trust, undefined, `${kind}: source_span is an UNTRUSTED record, never instruction`);
+    assert.equal(record!.mediaType, "text/plain");
+    assert.equal(Buffer.from(record!.bytes).toString("utf8"), span, `${kind}: the span is shipped whole, byte-identical`);
+    const card = inputText(prompt, "task_card")!;
+    assert.match(card, /SOURCE TEXT: this chapter's own words from the book\./, `${kind}: the card points at the span`);
+    assert.doesNotMatch(card, /SOURCE TEXT: [^\n]*sampled/, `${kind}: a whole span is not described as sampled`);
+    assert.match(card, /untrusted input record named `?source_span`?/);
+    assert.match(card, /follow the span/);
+    assert.match(card, /State no cause, motive, order, credit, membership/);
+    assert.match(card, /names, numbers and cases still come only from the SOURCE PACKET/);
+    assert.doesNotMatch(card.slice(card.indexOf("SOURCE TEXT:")), /—/, `${kind}: the pointer spends no em dash`);
+    assert.equal(renderPrompt(prompt.prompt).ok, true, `${kind}: the prompt still renders`);
+    const rendered = Buffer.from((renderPrompt(prompt.prompt) as { ok: true; value: Uint8Array }).value).toString("utf8");
+    assert.equal(
+      rendered.split("\n").filter((line) => line.startsWith("{\"kind\":\"CHAPTERFLOW_UNTRUSTED_INPUT_V1\"")).length,
+      4,
+      `${kind}: chapter_index + source_sidecar + source_1 + source_span are the untrusted records`,
+    );
+  }
+  for (const kind of ["example-pack", "action-pack"]) {
+    const prompt = promptFor(subject.prompts, `compiler-ch01-${kind}`);
+    assert.deepEqual(prompt.prompt.inputs.map((input) => input.name), ["control", "chapter_index", "source_sidecar", "source_1", "task_card"], `${kind}: unchanged inputs`);
+    assert.doesNotMatch(inputText(prompt, "task_card")!, /SOURCE TEXT:/, `${kind}: no pointer`);
+  }
+});
+
+requiredTest("Q04-W1 a book WITHOUT frozen text ships no source_span and its summary card is byte-identical to the base render", async (context) => {
+  const subject = rig(context, "writer-nospan");
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  for (const prompt of subject.prompts) {
+    assert.equal(prompt.prompt.inputs.some((input) => input.name === "source_span"), false, prompt.context.operationId);
+    assert.doesNotMatch(inputText(prompt, "task_card")!, /SOURCE TEXT:/, prompt.context.operationId);
+  }
+  const sha = (value: string): string => createHash("sha256").update(value).digest("hex");
+  // Pinned from a render at origin/main 99dc4858f (before Q04).
+  assert.equal(sha(inputText(promptFor(subject.prompts, "compiler-ch01-summary-pack"), "task_card")!), "6093549621a19e4b6d08dafd71320983d0abd59ea72a4fb000458265b99861a9");
+  // W3 rewrites the quiz preflight of EVERY book, so the sourceless learning card may
+  // differ from the base ONLY inside that block: the bytes before it and after it are pinned.
+  const learning = inputText(promptFor(subject.prompts, "compiler-ch01-learning-pack"), "task_card")!;
+  const start = learning.search(/\n\n(?:REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT|QUIZ SLOT CASES)/);
+  const end = learning.indexOf("\n\nCHAPTER PROSE —");
+  assert.ok(start > 0 && end > start, "the fixture must render the quiz preflight and the chapter prose");
+  assert.equal(sha(learning.slice(0, start)), "092255653151471d0a0e6ebf725d3f5ea9910318c70c1a8dbb29a45103360463");
+  assert.equal(sha(learning.slice(end)), "57ff66d669da23610151a9774e506d238527deba4beaaca2f9263e598f17bea7");
+});
+
+requiredTest("Q04-W1 the section-pack cache identity covers the span bytes: a changed span re-drafts, the same span reuses", async (context) => {
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+  const first = rig(context, "span-cache-1", { cache, selected: sourceTextSnapshot(frozenSpanText()) });
+  await first.port.run(first.request);
+  assert.equal(first.counts.runner, 4);
+  // Same span again: every pack is reused.
+  const same = rig(context, "span-cache-2", { cache, selected: sourceTextSnapshot(frozenSpanText()) });
+  await same.port.run(same.request);
+  assert.equal(same.counts.runner, 0, "an identical span replays from the cache");
+  // A span of the same length with different words: the two packs drafted from it
+  // re-draft; the two that never saw it are still reused.
+  const changed = rig(context, "span-cache-3", { cache, selected: sourceTextSnapshot(frozenSpanText("x")) });
+  await changed.port.run(changed.request);
+  assert.deepEqual(
+    changed.prompts.map((prompt) => prompt.context.operationId).sort(),
+    ["compiler-ch01-learning-pack", "compiler-ch01-summary-pack"],
+  );
+});
+
+requiredTest("Q04-W2 the chapter editor gets the WHOLE span (no sampling marker) and a FIDELITY brief line", async (context) => {
+  const span = frozenSpanText();
+  const subject = rig(context, "editor-span", { selected: sourceTextSnapshot(span), chapterEdit: {} });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  const editor = promptFor(subject.prompts, "editor-ch01");
+  const record = inputText(editor, "source_span");
+  assert.ok(record !== undefined, "the editor receives source_span");
+  assert.doesNotMatch(record!, /\[\.\.\. omitted \d+ characters of this chapter \.\.\.\]/, "the editor's span is not sampled");
+  assert.equal(record, span, "the editor's span is the whole chapter span");
+  const card = inputText(editor, "task_card")!;
+  assert.doesNotMatch(card, /SOURCE TEXT: [^\n]*sampled/);
+  const fidelity = card.split("\n").find((line) => line.startsWith("- FIDELITY."));
+  assert.ok(fidelity, "the editor brief carries a FIDELITY line");
+  assert.match(fidelity!, /who acted, in what order, for what stated reason, with what outcome and credit/);
+  assert.match(fidelity!, /source_span/);
+  assert.doesNotMatch(fidelity!, /—/, "no em dash in the brief");
 });
 
 finishV25Tests().catch((error: unknown) => {

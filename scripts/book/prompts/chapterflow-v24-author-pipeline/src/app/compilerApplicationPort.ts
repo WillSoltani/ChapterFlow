@@ -20,7 +20,6 @@ import {
 } from "../critics/bookPatternAudit.js";
 import type { ChapterSpec } from "../generateChapter.js";
 import { chapterFileName } from "../lib/chapterPaths.js";
-import { CANDIDATE_CHAPTER_MAP_LOGICAL_PATH, CANDIDATE_SOURCE_TEXT_LOGICAL_PATH } from "../lib/candidateEvidence.js";
 import { bookScarsDigest, type BookScars } from "../lib/bookScars.js";
 import { buildSectionTaskMarkdown, type SectionRetryFeedback, type SectionTaskRenderContext } from "../sections/sectionTasks.js";
 import { assembleSections, type AssemblyBlocker, type AssembleSectionsResult, type AuthorV4SectionChapterPaths } from "../sections/assembleSections.js";
@@ -42,7 +41,8 @@ import {
   type RejectedSectionPackSink,
 } from "./rejectedSectionPacks.js";
 import type { ReviewAdvisoryStore } from "../books/reviewAdvisoryStore.js";
-import { chapterSpanText, spanExcerptForPrompt, type ChapterMapV1, type SpanExcerpt } from "../source/chapterMap.js";
+import { MAX_SPAN_PROMPT_CHARS } from "../source/chapterMap.js";
+import { frozenChapterSpans } from "../source/candidateSourceContext.js";
 import { EDITOR_SOURCE_SPAN_MAX_CHARS } from "./chapterEditorContract.js";
 import {
   CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH,
@@ -507,44 +507,6 @@ function sidecarHash(snapshot: CandidateSnapshot, mapping: CompilerSourceMapping
   const hash = createHash("sha256");
   for (const logicalPath of mapping.sourceLogicalPaths) hash.update(selectedFile(snapshot, logicalPath).bytes);
   return hash.digest("hex");
-}
-
-/**
- * Package 2B — resolve a per-chapter reader over the run's FROZEN source text.
- *
- * A source-text run stages the normalized book text and its validated chapter map
- * inside the candidate (R-046). When both are present and well-formed, the editor
- * for chapter N is shown chapter N's own span, bounded by the same deterministic
- * windowing the chapter researcher uses. Everything here is best-effort and
- * returns null on ANY doubt: a model-memory run has no frozen text at all, and a
- * span the editor cannot be given is a card without a SOURCE TEXT block, never a
- * card with the wrong chapter's words in it.
- */
-function frozenSourceSpans(snapshot: CandidateSnapshot): ((chapterNumber: number) => SpanExcerpt | undefined) | null {
-  const textFile = snapshot.files.find((file) => file.logicalPath === CANDIDATE_SOURCE_TEXT_LOGICAL_PATH);
-  const mapFile = snapshot.files.find((file) => file.logicalPath === CANDIDATE_CHAPTER_MAP_LOGICAL_PATH);
-  if (!textFile || !mapFile) return null;
-  let map: ChapterMapV1;
-  try {
-    map = JSON.parse(Buffer.from(mapFile.bytes).toString("utf8")) as ChapterMapV1;
-  } catch {
-    return null;
-  }
-  if (!Array.isArray(map?.spans)) return null;
-  const text = Buffer.from(textFile.bytes).toString("utf8");
-  const byChapter = new Map<number, { startOffset: number; endOffset: number }>();
-  for (const span of map.spans) {
-    if (typeof span?.chapterNumber !== "number") continue;
-    if (typeof span.startOffset !== "number" || typeof span.endOffset !== "number") continue;
-    if (span.startOffset < 0 || span.endOffset <= span.startOffset || span.endOffset > text.length) continue;
-    byChapter.set(span.chapterNumber, { startOffset: span.startOffset, endOffset: span.endOffset });
-  }
-  if (byChapter.size === 0) return null;
-  return (chapterNumber: number): SpanExcerpt | undefined => {
-    const span = byChapter.get(chapterNumber);
-    if (!span) return undefined;
-    return spanExcerptForPrompt(chapterSpanText(text, span), EDITOR_SOURCE_SPAN_MAX_CHARS);
-  };
 }
 
 function compilerPath(chapterNumber: number, leaf: string): string {
@@ -2149,6 +2111,11 @@ export class CompilerApplicationPort {
        *  next is strictly above every slot already taken, so a chapter that has not
        *  started cannot be the lowest failure and never needs to run. */
       let anyChapterFailed = false;
+      // Q04-W1: the summary and learning writers see THIS chapter's own frozen
+      // span, whole up to MAX_SPAN_PROMPT_CHARS, as an untrusted record beside a
+      // card pointer. Best-effort, like the editor's: a book with no frozen text
+      // (or a chapter the map is silent about) gets no record and today's card.
+      const writerSourceSpans = frozenChapterSpans(snapshot.files, MAX_SPAN_PROMPT_CHARS);
       const draftChapter = async (preparedChapter: (typeof prepared)[number], chapterSlot: number): Promise<void> => {
         const chapterAttemptIds = attemptIdsByChapter[chapterSlot];
         const { chapter, packet, index, blueprint: candidateBlueprint, blueprintDigest, packetDigest, taskCardDigests, packetLogicalPath, blueprintLogicalPath } = preparedChapter;
@@ -2218,8 +2185,17 @@ export class CompilerApplicationPort {
           // change to the contract, the DO NOT block, the schema hint, the voice
           // card, the scars or the drafted chapter prose mints a new identity and
           // the entry drafted under the old card reads as stale.
+          //
+          // Q04-W1: a writer shown the chapter's source span drafts against those
+          // bytes too, so they join the identity exactly as the editor's do
+          // (chapterEditorPass attemptOnePrompt: card + NUL + span). A chapter with
+          // no span hashes the card alone, which is today's digest to the byte.
+          const sourceSpan = kind === "summary-pack" || kind === "learning-pack"
+            ? writerSourceSpans?.(chapter.chapterNumber)
+            : undefined;
+          const identityCard = buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: candidateBlueprint, sourcePacket: packet, outputPath: logicalPath, context: renderContext, deliveryMode: "DIRECT_JSON", chapterProse: draftedChapterProse, ...(sourceSpan ? { sourceSpan } : {}) });
           const taskCardDigest = createHash("sha256")
-            .update(buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: candidateBlueprint, sourcePacket: packet, outputPath: logicalPath, context: renderContext, deliveryMode: "DIRECT_JSON", chapterProse: draftedChapterProse }))
+            .update(sourceSpan ? `${identityCard}\0${sourceSpan.text}` : identityCard)
             .digest("hex");
           taskCardDigests.set(kind, taskCardDigest);
           const cacheKey: SectionPackCacheKey = {
@@ -2362,7 +2338,7 @@ export class CompilerApplicationPort {
               ? `${operation.attemptId}${passSalt}`
               : `${operation.attemptId}${passSalt}-r${attemptNumber}`;
             chapterAttemptIds.push(attemptId);
-            const task = buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: candidateBlueprint, sourcePacket: packet, outputPath: logicalPath, context: renderContext, deliveryMode: "DIRECT_JSON", retryFeedback, assemblyAvoid, chapterProse: draftedChapterProse, dealtCaseRedraft: kind === "summary-pack" ? summaryRedraftMustTeach : undefined });
+            const task = buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: candidateBlueprint, sourcePacket: packet, outputPath: logicalPath, context: renderContext, deliveryMode: "DIRECT_JSON", retryFeedback, assemblyAvoid, chapterProse: draftedChapterProse, dealtCaseRedraft: kind === "summary-pack" ? summaryRedraftMustTeach : undefined, ...(sourceSpan ? { sourceSpan } : {}) });
             const result = await this.#dependencies.runner.run({
               profileId: COMPILER_SECTION_PROFILE_ID,
               role: "author",
@@ -2407,6 +2383,10 @@ export class CompilerApplicationPort {
                     return { name: `source_${sourceIndex + 1}`, mediaType: file.mediaType, bytes: Buffer.from(file.bytes) };
                   }),
                   { name: "task_card", mediaType: "text/markdown", trust: "instruction" as const, bytes: new TextEncoder().encode(task) },
+                  // Q04-W1: the book's own words, as an escaped untrusted record
+                  // (never card text), only when the card's SOURCE TEXT pointer
+                  // says it is here.
+                  ...(sourceSpan ? [{ name: "source_span", mediaType: "text/plain" as const, bytes: new TextEncoder().encode(sourceSpan.text) }] : []),
                 ],
               },
             });
@@ -2762,7 +2742,9 @@ export class CompilerApplicationPort {
       const editedPackOverrides = new Map<string, Uint8Array>();
       if (this.#dependencies.chapterEdit) {
         const editorConfig = this.#dependencies.chapterEdit;
-        const frozenSource = frozenSourceSpans(snapshot);
+        // Package 2B, widened by Q04-W2: the chapter's own frozen span, whole up to
+        // EDITOR_SOURCE_SPAN_MAX_CHARS. Best-effort: no text, no record.
+        const frozenSource = frozenChapterSpans(snapshot.files, EDITOR_SOURCE_SPAN_MAX_CHARS);
         const entries: ChapterEditProvenanceEntry[] = [];
         const accepted = new Map<number, ChapterEditPacks>();
         let editorAttempts = 0;
