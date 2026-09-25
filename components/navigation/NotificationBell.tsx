@@ -17,6 +17,9 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { fetchBookJson } from "@/lib/client/book-api";
+import { fetchBookJsonCached } from "@/lib/client/book-api-cache";
+
+const NOTIFICATIONS_KEY = "/app/api/book/me/notifications";
 
 type Notification = {
   notificationId: string;
@@ -118,9 +121,14 @@ export function NotificationBell() {
   const [error, setError] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
+  // Every load hits the network (forceRevalidate), but concurrent loads share
+  // one in-flight request — so the dev-mode StrictMode double-mount issues a
+  // single GET, not two (e2e/no-duplicate-endpoint-requests.spec.ts).
   const load = useCallback(() => {
-    fetchBookJson<{ notifications: Notification[]; unreadCount: number }>(
-      "/app/api/book/me/notifications"
+    fetchBookJsonCached<{ notifications: Notification[]; unreadCount: number }>(
+      NOTIFICATIONS_KEY,
+      undefined,
+      { forceRevalidate: true }
     )
       .then((res) => {
         setNotifications(res.notifications);
@@ -163,7 +171,7 @@ export function NotificationBell() {
       prev.map((x) => (x.notificationId === n.notificationId ? { ...x, readAt } : x))
     );
     setUnreadCount((c) => Math.max(0, c - 1));
-    fetchBookJson("/app/api/book/me/notifications", {
+    fetchBookJson(NOTIFICATIONS_KEY, {
       method: "POST",
       body: JSON.stringify({ notificationId: n.notificationId, createdAt: n.createdAt }),
     }).catch(() => {});
