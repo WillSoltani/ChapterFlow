@@ -2859,7 +2859,11 @@ requiredTest("Q04-W1 a book WITHOUT frozen text ships no source_span and its sum
   const start = learning.search(/\n\n(?:REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT|QUIZ SLOT CASES)/);
   const end = learning.indexOf("\n\nCHAPTER PROSE —");
   assert.ok(start > 0 && end > start, "the fixture must render the quiz preflight and the chapter prose");
-  assert.equal(sha(learning.slice(0, start)), "69dccabfb6c6990abdb43334c63f23289ac4551f22320ca026fff23da2e28aa0");
+  // RE-PINNED by Q06 review round 2: the learning DIRECT_JSON card-back placeholder now models ONE
+  // idea ("Answer the front in one concrete idea the reader can act on today.") instead of the
+  // three-part back that contradicted the same card's 25-word card-back ceiling. Measured: putting
+  // the old placeholder back into this render reproduces the round-1 pin 69dccabfb6c6... exactly.
+  assert.equal(sha(learning.slice(0, start)), "1c58361b2d58ee6d0e3f1e9abfd9ffe29a75f39d9677ca624254fab05fc6cdf0");
   assert.equal(sha(learning.slice(end)), "89db44da6bcede361956064bcdafd5254e9064f458b9755d3de0b957c596a5ff");
 });
 

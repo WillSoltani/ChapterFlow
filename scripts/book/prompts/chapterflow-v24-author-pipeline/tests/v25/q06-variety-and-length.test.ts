@@ -155,8 +155,15 @@ function schemaHint(kind: SectionKind): Record<string, unknown> {
 }
 
 requiredTest("Q06: the DIRECT_JSON placeholders do not model the stamps the contract removes", () => {
-  const learning = schemaHint("learning-pack") as { quiz: { questions: Array<{ prompt: string }> } };
+  const learning = schemaHint("learning-pack") as { quiz: { questions: Array<{ prompt: string }> }; cards: { cards: Array<{ back: string }> } };
   const stem = learning.quiz.questions[0].prompt;
+  // The card-back placeholder models ONE idea within the 25-word ceiling the same card states,
+  // and is at least SEC50's 50 characters so the imitated back clears the floor.
+  const back = learning.cards.cards[0].back;
+  assert.doesNotMatch(back, /State the mechanism, its boundary, and the concrete evidence/, `the placeholder back must not model a three-part back: ${back}`);
+  assert.match(back, /one concrete idea/i, `the placeholder back must model one idea: ${back}`);
+  assert.ok(back.length >= 50, `the placeholder back must clear SEC50's 50 characters: ${back.length}`);
+  assert.ok(back.split(/\s+/).filter(Boolean).length <= 25, `the placeholder back must fit the 25-word ceiling: ${back}`);
   const opening = stem.trim().toLowerCase();
   assert.ok(!TRANSFER_CUES.some((cue) => opening.startsWith(cue)), `the placeholder stem must not open on a cue phrase: ${stem}`);
   assert.ok(isTransferQuestion(stem), `the placeholder stem must still carry a cue SEC117 counts: ${stem}`);
@@ -167,6 +174,15 @@ requiredTest("Q06: the DIRECT_JSON placeholders do not model the stamps the cont
   const action = schemaHint("action-pack") as { implementationPlan: { ifThenPlans: Array<{ context: string }> } };
   const context = action.implementationPlan.ifThenPlans[0].context;
   assert.doesNotMatch(context, /^Before\b/, `the placeholder context must not open with "Before": ${context}`);
+});
+
+requiredTest("Q06: the DIRECT_JSON weeklyPractice placeholder opens on the dealt weekly form's trigger, not a cadence", () => {
+  // The same card's craft line says to open weeklyPractice on the dealt weeklyPracticeForm's
+  // trigger and never on a bare cadence; the placeholder the model imitates must agree.
+  const action = schemaHint("action-pack") as { implementationPlan: { weeklyPractice: string } };
+  const weekly = action.implementationPlan.weeklyPractice;
+  assert.doesNotMatch(weekly, /cadence/i, `the placeholder weeklyPractice must not ask for a cadence: ${weekly}`);
+  assert.match(weekly, /^On the trigger of the dealt weekly form\b/, `the placeholder weeklyPractice must open on the dealt form's trigger: ${weekly}`);
 });
 
 requiredTest("Q06: every SEC67 trigger example in the action contract passes the SEC67 gate", () => {
