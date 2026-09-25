@@ -594,6 +594,9 @@ function withBookOnDisk<T>(
   totalChapters: number,
   fn: (ctx: { blueprints: ChapterBlueprintV1[]; packets: SourcePacketV1[]; roots: CompilerStoreRoots; design: BookDesignV1 }) => T,
   sidecarFor: (n: number) => SourceSidecarV2 = (n) => sidecar(n, `Chapter ${n}`),
+  // Q06: edit the derived design before it is stored, to stand in for a design written by an
+  // older compiler (one that still carries minted staging strings).
+  storeDesign: (design: BookDesignV1) => BookDesignV1 = (design) => design,
 ): T {
   const stateRoot = resolve(tmpdir(), `cf-dealing-ondisk-${process.pid}-${Date.now()}-${Math.random().toString(36).slice(2)}`);
   const roots: CompilerStoreRoots = { stateRoot };
@@ -611,7 +614,7 @@ function withBookOnDisk<T>(
       }),
     );
     for (const packet of packets) writeJsonFile(sourcePacketPath(bookId, packet.chapterNumber, roots), packet);
-    const design = deriveBookDesign(bookId, { roots });
+    const design = storeDesign(deriveBookDesign(bookId, { roots }));
     writeJsonFile(bookDesignPath(bookId, roots), design);
     const blueprints = specs.map((spec, i) =>
       compileChapterBlueprint({ bookId, chapter: spec, packet: packets[i], packetPath: sourcePacketPath(bookId, spec.chapterNumber, roots), roots, totalChapters }),
@@ -624,28 +627,24 @@ function withBookOnDisk<T>(
 
 // ── R-065 / R-106 — derived staging is CONTENT, and content may legitimately repeat ─────────
 
-test("R-065/R-106: a mined specific two chapters share is not a BPV11 blocker — it is reported as content", () => {
+test("R-065/R-106 + Q06: chapters that share a mined specific share no staging and stay BPV11-clean", () => {
   // The fixture's hardSpecifics carry no chapter term, so every chapter's best-taught specific is
   // the SAME phrase — the "recurring institution" case (a memoir whose junto club runs through
-  // half the book). The derived staging then puts one byte-identical string in example slot 0,
-  // slot 1 and the practice constraint of every chapter.
+  // half the book). R-065 used to stage that one phrase into example slot 0, slot 1 and the
+  // practice constraint of every chapter, and BPV13 reported the repetition as content. Q06 deals
+  // those slots from the genre pools instead, so the shared topic reaches no slot at all and the
+  // column is audited by BPV11 like every other.
   withBookOnDisk("zz-deal-derived-collision", 12, ({ blueprints, roots, design }) => {
-    const derived = design.perChapter?.["1"];
-    assert.ok(derived?.frameDecision, "the fixture must produce derived staging or this proves nothing");
-    assert.equal(blueprints[0].sections.examples[0].sceneFrame, derived!.frameDecision, "slot 0 must carry the chapter's own derived frame");
-    assert.equal(
-      blueprints.filter((bp) => bp.sections.examples[0].sceneFrame === blueprints[0].sections.examples[0].sceneFrame).length >= 2,
-      true,
-      "the fixture must give at least two chapters the identical derived frame",
-    );
+    const topics = Object.values(design.perChapter ?? {}).map((d) => d.topics[0]);
+    assert.ok(topics.length >= 2 && new Set(topics).size < topics.length, "the fixture must give at least two chapters the same top mined topic");
     const pools = resolvedPoolsForBook("zz-deal-derived-collision", roots);
+    for (const bp of blueprints) {
+      assert.ok(pools.sceneFramesDecision.includes(bp.sections.examples[0].sceneFrame), `ch${bp.chapterNumber}: slot 0 must be pool-dealt`);
+      assert.ok(pools.practiceConstraints.includes(bp.sections.action.practiceConstraint), `ch${bp.chapterNumber}: the practice constraint must be pool-dealt`);
+    }
     const findings = checkPositionalDeals(blueprints, poolSizeOverrides(pools), pools.chapterDerived);
     const blockers = findings.filter((f) => f.severity === "blocker");
     assert.deepEqual(blockers, [], `a book whose chapters share a mined specific must still compile: ${JSON.stringify(blockers.map((b) => b.message))}`);
-    // …but the repetition is still SEEN: the derived column is audited as content (advisory).
-    const advisory = findings.find((f) => f.checkId === "BPV13.content_column_concentration" && f.path === "/positional/exampleSceneFrame/0");
-    assert.ok(advisory, `the shared derived staging must still be reported: ${JSON.stringify(findings.map((f) => f.checkId + " " + f.path))}`);
-    assert.equal(advisory!.severity, "advisory");
   });
 });
 
@@ -684,7 +683,8 @@ test("R-065: ANOTHER chapter's derived staging at a fixed slot is still a BPV11 
   withBookOnDisk("zz-deal-derived-foreign", 4, ({ blueprints, roots }) => {
     const pools = resolvedPoolsForBook("zz-deal-derived-foreign", roots);
     const ownFrames = new Set(blueprints.map((bp) => bp.sections.examples[0].sceneFrame));
-    assert.equal(ownFrames.size, blueprints.length, "the fixture must give every chapter its own derived frame");
+    // Q06: slot 0 is pool-dealt now; the four chapters still carry four distinct frames.
+    assert.equal(ownFrames.size, blueprints.length, "the fixture must give every chapter its own slot-0 frame");
     // (four chapters: the fixture carries one spare specific per chapter, so the deriver can make
     // all four distinct — see the test above.)
     const contaminated = blueprints.map((bp, i) => {
@@ -700,15 +700,80 @@ test("R-065: ANOTHER chapter's derived staging at a fixed slot is still a BPV11 
   }, SPARE_SIDECAR);
 });
 
-test("R-065: two chapters with a spare mined specific do not get the identical staging", () => {
-  // Where the material offers an alternative, the deriver takes it: chapter B's frame falls to its
+test("R-065: two chapters with a spare mined specific do not get the identical top topic", () => {
+  // Where the material offers an alternative, the deriver takes it: chapter B's topic falls to its
   // OWN second-ranked specific rather than repeating chapter A's phrase. (Still chapter-local —
   // only the CHOICE among this chapter's own topics is coordinated, never another chapter's token.)
+  // Q06: the design no longer mints frames from the topics, so the claim is pinned on the topics.
   withBookOnDisk("zz-deal-derived-spare", 4, ({ design }) => {
-    const frames = Object.values(design.perChapter ?? {}).map((d) => d.frameDecision).filter(Boolean);
-    assert.ok(frames.length >= 2, "the fixture must derive a frame for at least two chapters");
-    assert.equal(new Set(frames).size, frames.length, `chapters repeat a derived frame while a spare specific was available: ${frames.join(" | ")}`);
+    const topics = Object.values(design.perChapter ?? {}).map((d) => d.topics[0]).filter(Boolean);
+    assert.ok(topics.length >= 2, "the fixture must derive a topic for at least two chapters");
+    assert.equal(new Set(topics).size, topics.length, `chapters repeat a top topic while a spare specific was available: ${topics.join(" | ")}`);
   }, SPARE_SIDECAR);
+});
+
+// ── Q06: ex01/ex02 and the practice constraint are dealt from the genre pools ───────────
+//
+// R-065 staged example slot 0/1 and the practice constraint from a template around the chapter's
+// best-taught mined specific: "a first attempt at X that gets corrected", "a first encounter with
+// Y that sets a benchmark", "tie the move to X before acting". On the Franklin candidate rr21 all
+// 57 of those values (19 chapters x 3) were the same three shells, several garbled ("a first
+// encounter with failed in the arithmetic that sets a benchmark"), and the readers named the shell.
+// Those slots now deal from the genre pools exactly like slots 2-5, whatever design is stored.
+const Q06_TEMPLATED = [
+  /^a first attempt at .+ that gets corrected$/,
+  /^a first encounter with .+ that sets a benchmark$/,
+  /^tie the move to .+ before acting$/,
+];
+
+function assertPoolDealt(blueprints: ChapterBlueprintV1[], pools: ReturnType<typeof resolvedPoolsForBook>, label: string): void {
+  for (const bp of blueprints) {
+    const [s0, s1] = bp.sections.examples.map((e) => e.sceneFrame);
+    const pc = bp.sections.action.practiceConstraint;
+    for (const value of [s0, s1, pc]) {
+      assert.ok(!Q06_TEMPLATED.some((re) => re.test(value)), `${label} ch${bp.chapterNumber}: templated staging is still dealt: ${value}`);
+    }
+    assert.ok(pools.sceneFramesDecision.includes(s0), `${label} ch${bp.chapterNumber}: slot 0 frame is not a decision-pool member: ${s0}`);
+    assert.ok(pools.sceneFramesExperiential.includes(s1), `${label} ch${bp.chapterNumber}: slot 1 frame is not an experiential-pool member: ${s1}`);
+    assert.ok(pools.practiceConstraints.includes(pc), `${label} ch${bp.chapterNumber}: practiceConstraint is not a pool member: ${pc}`);
+  }
+}
+
+test("Q06: ex01/ex02 sceneFrame and the practiceConstraint are dealt from the genre pools, never a templated frame", () => {
+  withBookOnDisk("zz-deal-q06", 12, ({ blueprints, roots, design }) => {
+    const topics = Object.values(design.perChapter ?? {}).flatMap((d) => d.topics);
+    assert.ok(topics.length > 0, "the fixture must mine topics, or the templated frames could never have been minted");
+    const pools = resolvedPoolsForBook("zz-deal-q06", roots);
+    assertPoolDealt(blueprints, pools, "fresh design");
+    const blockers = checkPositionalDeals(blueprints, poolSizeOverrides(pools), pools.chapterDerived).filter((f) => f.severity === "blocker");
+    assert.deepEqual(blockers, [], `pool-dealt ex01/ex02 must stay BPV11-clean: ${JSON.stringify(blockers.map((b) => b.message))}`);
+  }, SPARE_SIDECAR);
+});
+
+test("Q06: a stored design that still carries minted staging strings is ignored by the dealer", () => {
+  // A design artifact written by the previous compiler: every chapter carries the three minted
+  // strings. The dealer must not read them, so an old artifact on disk deals exactly like a new one.
+  const withMinted = (design: BookDesignV1): BookDesignV1 => ({
+    ...design,
+    perChapter: Object.fromEntries(Object.entries(design.perChapter ?? {}).map(([key, entry]) => [key, {
+      ...entry,
+      frameDecision: `a first attempt at ${entry.topics[0]} that gets corrected`,
+      frameExperiential: `a first encounter with ${entry.topics[1] ?? entry.topics[0]} that sets a benchmark`,
+      practiceConstraint: `tie the move to ${entry.topics[0]} before acting`,
+    }])),
+  });
+  withBookOnDisk("zz-deal-q06-old", 12, ({ blueprints, roots, design }) => {
+    assert.ok(Object.keys(design.perChapter ?? {}).length > 0, "the stored design must carry per-chapter entries");
+    assertPoolDealt(blueprints, resolvedPoolsForBook("zz-deal-q06-old", roots), "stored old design");
+  }, SPARE_SIDECAR, withMinted);
+});
+
+test("Q06: BPV11 audits every slot of the sceneFrame and practiceConstraint columns (no derived exemption)", () => {
+  for (const poolKey of ["exampleSceneFrame", "practiceConstraint"]) {
+    const entry = POSITIONAL_DEALS.find((d) => d.poolKey === poolKey);
+    assert.ok(entry, `${poolKey} must stay registered`);
+    assert.equal(entry!.derivedValueAt, undefined, `${poolKey} must not hand any slot to BPV13 as derived content`);
+  }
 });
 
 // ── R-114 — forbiddenNames is real information, measured on a book that HAS neighbours ──────

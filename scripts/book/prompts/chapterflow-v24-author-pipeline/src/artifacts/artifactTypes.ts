@@ -176,6 +176,9 @@ export type BookDesignPools = {
  * the book's genre pools.
  */
 export type ChapterDerivedDesign = {
+  // Q06: the three staging strings below are no longer minted by deriveBookDesign and never
+  // read by the blueprint (ex01/ex02 and the practice constraint deal from the genre pools).
+  // They stay optional so a design stored by an older compiler still parses.
   /** A decision-scene frame built from this chapter's best-taught mined specific. */
   frameDecision?: string;
   /** An experiential frame built from this chapter's second-best mined specific. */

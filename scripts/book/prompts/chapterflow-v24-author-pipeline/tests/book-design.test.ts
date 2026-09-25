@@ -124,8 +124,13 @@ test("P14 + R-065: pools meet floors and the book's own material is mined PER CH
   // with it: the material must be present, and it must be reachable ONLY from its own chapter.
   const perChapter = d.perChapter ?? {};
   assert.ok(Object.keys(perChapter).length > 0, "a derived artifact must carry per-chapter mined staging");
-  const minedSomewhere = Object.values(perChapter).flatMap((entry) => [entry.frameDecision, entry.frameExperiential, entry.practiceConstraint].filter((x): x is string => !!x));
-  assert.ok(minedSomewhere.some((f) => f.includes("credit utilization")), "per-chapter staging must use the book's own mined material");
+  // Q06: the design keeps each chapter's ranked topics and mints no staging strings from them
+  // (the blueprint deals ex01/ex02 and the practice constraint from the genre pools).
+  const minedSomewhere = Object.values(perChapter).flatMap((entry) => entry.topics);
+  assert.ok(minedSomewhere.some((f) => f.includes("credit utilization")), "per-chapter topics must use the book's own mined material");
+  for (const entry of Object.values(perChapter)) {
+    assert.equal(entry.frameDecision ?? entry.frameExperiential ?? entry.practiceConstraint, undefined, "Q06: no templated staging string is minted");
+  }
   for (const pool of Object.values(d.pools)) {
     assert.equal((pool as string[]).some((entry) => entry.includes("credit utilization")), false, "no mined specific may sit in a book-wide pool, where it would be dealt to another chapter");
   }
@@ -155,7 +160,8 @@ test("derived venues and frames are never ungrammatical for a packet full of fra
   const packets = Array.from({ length: 12 }, (_, i) => fragmentPacket("zz", i + 1));
   const d = deriveBookDesign("zz-frag", { genre: "business-decision", packets, chapters: 12 });
   // R-065 — the mined entries moved from the pools to perChapter, so the grammar check follows
-  // them there; the pools themselves are the genre base and were never templated.
+  // them there; the pools themselves are the genre base and were never templated. (Q06: nothing
+  // templated is minted into perChapter any more, so the last list below is empty by design.)
   const rendered = [
     ...d.pools.venues,
     ...d.pools.sceneFramesDecision,

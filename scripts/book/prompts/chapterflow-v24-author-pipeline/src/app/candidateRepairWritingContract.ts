@@ -118,8 +118,19 @@ import { sectionContract, sectionDoNotLines } from "../sections/sectionTasks.js"
  * or title could push a chapter-scoped render past the alarm; the alarm is a creep alarm
  * on the prose, and the identity values are never trimmed to fit, because a clamped
  * identity would order the writer to copy something that is not the chapter's identity.
+ *
+ * RE-PINNED 23,500 -> 25,800 by Q06 (shorter surfaces, varied shapes), measured on this commit:
+ * 24,100 chars with no voice card, 25,506 with a pathological one that clamps, and 25,677 with
+ * that card plus the Franklin chapter-10 identity values (origin/main 496adf0d2 measured 21,802 /
+ * 23,208 / 23,379). The +2,298 is section-contract text this module composes, on all four
+ * packs: the LENGTH ceilings (example, action, the summary hook and tryThisNow, the learning stem
+ * and card back), the whyItMatters and whatToDo rules with their distribution caps, SEC117's cue
+ * list rendered from TRANSFER_CUES with the three-openers cap, the SEC67 trigger shapes with
+ * their one-first-word cap, the one-hardSpecific SEC74 line, the weeklyPractice opener rule and
+ * the fullRead close cap. A repair and the chapter editor rewrite the same fields, so the
+ * ceilings reach them here or nowhere. The 85% floor holds (24,527 with the test's card = 95.1%).
  */
-export const REPAIR_WRITING_CONTRACT_MAX_CHARS = 23500;
+export const REPAIR_WRITING_CONTRACT_MAX_CHARS = 25800;
 
 /** Voice-card clamp. The card is a ~120-word register cue by construction
  *  (`src/lib/voiceCard.ts`), but it arrives from a candidate sidecar this module

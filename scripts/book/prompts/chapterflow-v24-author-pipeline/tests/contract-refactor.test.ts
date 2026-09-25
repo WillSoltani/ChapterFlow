@@ -411,7 +411,13 @@ test("the production learning-pack card (with drafted chapter prose) is bounded 
   // context block and 1B's contract lines, not prose creep.
   // MERGE RE-MEASURE (1C + wave-1): 44,725 = 83.9%, prose delta 7,290 (unchanged).
   // Below the 45,459 = 85.3% recorded above, for the same reason as the ratio pin; 86% holds.
-  assert.ok(withProse.length <= 0.86 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 86% (re-pin only with a stated rationale)`);
+  // RE-PINNED 86% -> 87% by Q06 (shorter surfaces, varied shapes). Measured on this commit:
+  // 46,050 = 86.4% (it was 45,739 = 85.8% on origin/main 496adf0d2, a 109-char margin). The
+  // growth is contract text the learning writer needs: SEC117's cue list rendered from
+  // TRANSFER_CUES with the rule that the cue need not open the stem and the three-openers cap,
+  // the 30-word stem and 25-word card-back ceilings. The prose delta this test bounds FELL
+  // (8,277 -> 8,104) because the stale "compels one" sentence left the stand-down note.
+  assert.ok(withProse.length <= 0.87 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 87% (re-pin only with a stated rationale)`);
   const delta = withProse.length - bare.length;
   assert.ok(
     delta <= WORST_CASE_PROSE_CHARS + PROSE_BLOCK_SCAFFOLD_ALLOWANCE + DERIVABILITY_BLOCK_ALLOWANCE,
@@ -449,7 +455,13 @@ test("a runaway summary pack cannot blow the learning card: the prose block is c
   // 8,977 — unchanged by both packages, which is exactly what this test asserts below.
   // MERGE RE-MEASURE (1C + wave-1): 46,412 = 87.1%, below the 88.x% the 89% pin was set
   // on; the clamp still holds the card and the pin does not move.
-  assert.ok(withProse.length <= 0.89 * pre, `a 126k-char summary pack rendered ${withProse.length} chars (${(ratio * 100).toFixed(1)}% of ${pre}); the clamp must hold the card at <= 89%`);
+  // RE-PINNED 89% -> 90% by Q06. Measured on this commit: 47,737 = 89.5% against the
+  // 47,447 the 89% pin allows (origin/main 496adf0d2 measured 47,426, 21 chars of margin, so
+  // any learning-contract line would have tripped it). The card grew by the Q06 learning
+  // contract lines (the SEC117 cue list rendered from TRANSFER_CUES, the three-openers cap,
+  // the stem and card-back ceilings); the clamp delta this test guards FELL (9,964 -> 9,791),
+  // which is the proof the growth is contract text and not unbounded prose.
+  assert.ok(withProse.length <= 0.90 * pre, `a 126k-char summary pack rendered ${withProse.length} chars (${(ratio * 100).toFixed(1)}% of ${pre}); the clamp must hold the card at <= 90%`);
   const delta = withProse.length - bare.length;
   assert.ok(
     delta <= CHAPTER_PROSE_CARD_BUDGET + PROSE_BLOCK_SCAFFOLD_ALLOWANCE + DERIVABILITY_BLOCK_ALLOWANCE,
@@ -558,7 +570,9 @@ test("a pathological packet whose anchors all STAND DOWN cannot blow the learnin
   const start = withProse.indexOf("SEC120 STANDS DOWN");
   assert.ok(start > 0, "the stand-down note must render");
   const note = withProse.slice(start, withProse.indexOf("\n\n", start));
-  const rendered = note.slice(note.indexOf(": ") + 2, note.indexOf(". A slot dealt"));
+  // Q06 deleted the stale "A slot dealt one of them may still use its SPECIFICS verbatim"
+  // sentence, so the list now ends where the year-rule sentence begins.
+  const rendered = note.slice(note.indexOf(": ") + 2, note.indexOf(". SEC120's year rule"));
   assert.ok(
     rendered.length <= DERIVABILITY_STANDDOWN_BUDGET,
     `the stand-down list rendered ${rendered.length} chars against a ${DERIVABILITY_STANDDOWN_BUDGET} ceiling`,
@@ -801,6 +815,11 @@ const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 63_000;
  *   ch03 learning-pack 79,392 without the pointer (W3 alone), 80,083 with it
  *   with worst-case prose: 88,011 / 88,702
  * Both below the standing pins (headroom 7,917 and 6,298). The budgets do not move.
+ *
+ * Q06 RE-MEASURE (length ceilings, varied example/quiz/plan shapes). Worst kind per chapter:
+ *   ch03 learning-pack 80,567 (was 80,083), with worst-case prose 88,989 (was 88,678)
+ * Both below the standing pins (headroom 7,433 and 6,011). The budgets do not move. The
+ * model-memory budgets above re-measure at 47,654 / 55,734 (ch03 learning-pack), also unmoved.
  */
 const HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET = 88_000;
 const HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET = 95_000;

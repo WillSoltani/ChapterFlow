@@ -2844,15 +2844,27 @@ requiredTest("Q04-W1 a book WITHOUT frozen text ships no source_span and its sum
   }
   const sha = (value: string): string => createHash("sha256").update(value).digest("hex");
   // Pinned from a render at origin/main 99dc4858f (before Q04).
-  assert.equal(sha(inputText(promptFor(subject.prompts, "compiler-ch01-summary-pack"), "task_card")!), "6093549621a19e4b6d08dafd71320983d0abd59ea72a4fb000458265b99861a9");
+  // RE-PINNED by Q06 (shorter surfaces, varied shapes): Q06 rewrites the section contract of
+  // EVERY book, sourceless or not. Measured on this commit: substituting the pre-Q06 text back
+  // into these renders reproduces the old pins exactly (summary 6093549621a1..., learning prefix
+  // 092255653151..., learning suffix 57ff66d669da...), so the only bytes that moved are Q06's:
+  // summary = the tryThisNow ceiling, the fullRead close line and the hook ceiling; learning
+  // prefix = the SEC117 cue line, the situation-first craft line, the stem and card-back
+  // ceilings and the DIRECT_JSON placeholder stem; learning suffix = the deleted SEC120
+  // "compels one" sentence. The no-source_span half of this test (no span, no pointer) is unchanged.
+  assert.equal(sha(inputText(promptFor(subject.prompts, "compiler-ch01-summary-pack"), "task_card")!), "4b4034a6ad24e3fae0cc50d94941ef7fdba93e37701744d254e14023ae9a2278");
   // W3 rewrites the quiz preflight of EVERY book, so the sourceless learning card may
   // differ from the base ONLY inside that block: the bytes before it and after it are pinned.
   const learning = inputText(promptFor(subject.prompts, "compiler-ch01-learning-pack"), "task_card")!;
   const start = learning.search(/\n\n(?:REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT|QUIZ SLOT CASES)/);
   const end = learning.indexOf("\n\nCHAPTER PROSE —");
   assert.ok(start > 0 && end > start, "the fixture must render the quiz preflight and the chapter prose");
-  assert.equal(sha(learning.slice(0, start)), "092255653151471d0a0e6ebf725d3f5ea9910318c70c1a8dbb29a45103360463");
-  assert.equal(sha(learning.slice(end)), "57ff66d669da23610151a9774e506d238527deba4beaaca2f9263e598f17bea7");
+  // RE-PINNED by Q06 review round 2: the learning DIRECT_JSON card-back placeholder now models ONE
+  // idea ("Answer the front in one concrete idea the reader can act on today.") instead of the
+  // three-part back that contradicted the same card's 25-word card-back ceiling. Measured: putting
+  // the old placeholder back into this render reproduces the round-1 pin 69dccabfb6c6... exactly.
+  assert.equal(sha(learning.slice(0, start)), "1c58361b2d58ee6d0e3f1e9abfd9ffe29a75f39d9677ca624254fab05fc6cdf0");
+  assert.equal(sha(learning.slice(end)), "89db44da6bcede361956064bcdafd5254e9064f458b9755d3de0b957c596a5ff");
 });
 
 requiredTest("Q04-W1 the section-pack cache identity covers the span bytes: a changed span re-drafts, the same span reuses", async (context) => {

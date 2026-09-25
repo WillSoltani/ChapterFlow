@@ -393,8 +393,6 @@ export function deriveBookDesign(
   const genre = genreForBook(bookId, { genre: opts.genre, category: opts.category });
   const base = buildGenrePools(genre, chapters);
 
-  const caseLabelsLower = uniq(packets.flatMap((p) => p.namedCases.map((c) => c.label))).map((l) => l.toLowerCase());
-
   // ── R-065 — derivation is PER CHAPTER, and the book-wide pools are the genre base alone ──
   //
   // The mined material used to be flattened into `pools`, where the positional dealer handed it
@@ -413,7 +411,12 @@ export function deriveBookDesign(
   // the writer is told to realize the venue as scene detail), and the only template available for
   // a mined specific in a venue slot was "a working note on X" — a bookkeeping noun, not a place.
   // Genre venues are real places; that is what R-105's memoir-history pool exists to supply.
-  const clean = (entries: string[]): string[] => entries.filter((e) => bannedContentReason(e, caseLabelsLower) === null);
+  //
+  // Q06: the three staging strings built from the topics ("a first attempt at X that gets
+  // corrected", "a first encounter with Y that sets a benchmark", "tie the move to X before
+  // acting") are no longer minted. On the Franklin candidate rr21 they staged ex01, ex02 and the
+  // practice constraint of every chapter with the same three shells, and the blueprint now deals
+  // those slots from the genre pools. Each chapter keeps only its ranked `topics`.
   const perChapter: Record<string, ChapterDerivedDesign> = {};
   // R-065/R-106 — prefer a specific NO EARLIER CHAPTER has already staged. Two chapters whose
   // best-taught specific is the same recurring institution would otherwise receive the identical
@@ -435,16 +438,7 @@ export function deriveBookDesign(
     const topics = [first, second].filter((t): t is string => typeof t === "string");
     if (topics.length === 0) continue;
     for (const t of topics) claimedTopics.add(t);
-    const frameDecision = first ? clean([`a first attempt at ${first} that gets corrected`])[0] : undefined;
-    const frameExperiential = second ? clean([`a first encounter with ${second} that sets a benchmark`])[0] : undefined;
-    const practiceConstraint = first ? clean([`tie the move to ${first} before acting`])[0] : undefined;
-    const entry: ChapterDerivedDesign = {
-      ...(frameDecision ? { frameDecision } : {}),
-      ...(frameExperiential ? { frameExperiential } : {}),
-      ...(practiceConstraint ? { practiceConstraint } : {}),
-      topics,
-    };
-    if (frameDecision || frameExperiential || practiceConstraint) perChapter[String(packet.chapterNumber)] = entry;
+    perChapter[String(packet.chapterNumber)] = { topics };
   }
 
   const pools: BookDesignPools = {

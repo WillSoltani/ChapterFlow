@@ -34,7 +34,7 @@ import {
   type MemorableCandidate,
   type MemorableTier,
 } from "../optimizers/memorableLines.js";
-import { distractorTell, distractorTellRate, isTransferQuestion, memorableLineClean } from "../metrics/rubricMetrics.js";
+import { distractorTell, distractorTellRate, isTransferQuestion, memorableLineClean, TRANSFER_CUES } from "../metrics/rubricMetrics.js";
 import {
   chapterProseFields,
   chapterProseText,
@@ -3467,7 +3467,11 @@ export function validateLearningPack(
       push(
         "SEC117.quiz_transfer_floor",
         "blocker",
-        `only ${transferCount}/${qs.length} quiz questions pose a NEW scenario (transfer floor ${floor}); these read as bare recall: ${bareRecall.join(", ")}; rewrite them as apply/analyze scenarios ("you are…", "imagine…", "suppose…", "your team…") or give them an apply-level bloomsLevel`,
+        // Q06: the message only. The old remedy listed the cue words as OPENERS (108 of
+        // rr21's 171 stems then opened "Suppose"/"Imagine") and offered an apply-level
+        // bloomsLevel, which has satisfied nothing here since R-069. The cue list is
+        // rendered from TRANSFER_CUES, the lexicon `cued` above actually tests.
+        `only ${transferCount}/${qs.length} quiz questions pose a NEW scenario (transfer floor ${floor}); these read as bare recall: ${bareRecall.join(", ")}; give each listed stem a new situation that contains one of these cue phrases anywhere in the stem, not necessarily first: ${TRANSFER_CUES.map((cue) => `"${cue}"`).join(", ")}; open on the situation itself, and do not open more than 3 of the ${qs.length} stems with the same word`,
         "/quiz/questions",
       );
     } else if (transferCount < target) {

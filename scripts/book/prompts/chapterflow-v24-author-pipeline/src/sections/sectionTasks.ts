@@ -1,5 +1,6 @@
 import { loadBannedPhrases } from "../critics/shared.js";
 import { voiceRegisterLine } from "../lib/voiceCard.js";
+import { TRANSFER_CUES } from "../metrics/rubricMetrics.js";
 import {
   CHAPTER_PROSE_CARD_CAPS,
   chapterProseFields,
@@ -105,11 +106,12 @@ function universalCore(kind: SectionKind): string[] {
   switch (kind) {
     case "summary-pack":
       return [
-        "UNIVERSAL — Write ONLY the hook, tiered summaries, keyTakeaway, and optional tryThisNow; no examples, quiz, review cards, or implementationPlan.",
+        "UNIVERSAL — Write ONLY the hook, tiered summaries, keyTakeaway, and optional tryThisNow (at most 35 words); no examples, quiz, review cards, or implementationPlan.",
         "Cite an allowed sourceAnchorId for the hook, each breakdown tier, keyTakeaway, and tryThisNow.",
         "keyTakeaway: 30 words or fewer.",
         "Tier floors: fastRead >=350 chars at grade <=7 (aim 420-600 — never ride the floor); deepRead >=1000 chars at grade <=8.5 (aim 1150-1600); fullRead >=2400 chars at grade <=9.5 (aim 2700-3400); the assembled breakdown reads at Flesch ease >=70. Vary sentence length: plain verbs, no sentence over 30 words, and never a run of same-length short declaratives — E7.long_sentence and E8.monotone_cadence each raise a major at chapter assembly. Meet the length floors with concrete detail, not padding.",
         "TIER ROLES — a longer tier ADDS, it never restates: fastRead gives the immediate move and why it matters now; deepRead explains the mechanism through this chapter's named cases, complete enough that a reader who stops there can answer the quiz; fullRead adds what deepRead left out, each in its own sentences: the antecedents, the second-order consequence, the hard edge or limit, and the nuance. The first sentence of each tier differs in wording and structure, and no fullRead sentence reuses a deepRead sentence: restating more than a quarter of a tier's sentences, or adding almost no new content words, is refused (SEC130/SEC131).",
+        "Close fullRead on a consequence, a turn in the story, or what the move makes possible. The hard edge or limit belongs in fullRead's body; a closing sentence built on a limit or a negation (not, never, no, only) is the exception, at most one chapter in three.",
         "Teach the chapter, not the provenance discipline: no reader-facing source-grounding rules (\"at least 3 named cases\", \"concrete settings give memory a handle\", \"claims checkable\").",
         "Output SummaryPackV1 JSON only.",
       ];
@@ -118,9 +120,11 @@ function universalCore(kind: SectionKind): string[] {
         "UNIVERSAL — Write ONLY the example pack; no summaries, quiz, cards, or implementation.",
         "Produce exactly the six blueprint slots (the final v21 gate requires six). exampleId = \"ex01\"..\"ex06\" in slot order, or \"chNN-exNN-slug\"; never include the bookId.",
         "Every example is a concrete human scene with a NAMED person living a defining moment. Use a different dealt name per slot; never use a source-figure name as an invented actor.",
-        "Each example cites a namedExample/example anchor; source facts DRIVE the decision and never appear as props, labels, wall cards, desk objects, or title subjects.",
+        "Each example cites a namedExample/example anchor; source facts DRIVE what happens in the scene (the choice, in a decision slot) and never appear as props, labels, wall cards, desk objects, or title subjects.",
         "SCENE ENGINE BY SLOT: even slots (ex01/ex03/ex05) carry their dealt DECISION frame — a person choosing between two concrete options, catching an error, or paying a cost. Odd slots (ex02/ex04/ex06) carry their dealt EXPERIENTIAL frame as the WHOLE scene: a surprise, a ritual, a first time, a recognition — not a lived moment with a deliberation grafted on. Every scenario, either kind, still shows something at stake happening in the scene: a cost, a friction, a consequence, a correction (SEC31); the validator enforces this per example.",
-        "whatToDo adds a new instruction/test/refusal rule not already narrated in the scenario. whyItMatters explains the cited fact's own MECHANISM and the decision shown — repeating the case's names and numbers is not an explanation, and the case is named at most once, never in the first clause (SEC39).",
+        "LENGTH: each scenario runs 50-90 words (and never under the 180-character floor); whyItMatters is at most 2 sentences, about 40 words.",
+        "whatToDo is the ONE move the reader would make in that moment, not already narrated in the scenario. Vary its KIND across the six: a question to ask, something to stop, a timing change, a person to bring in, a limit to set, a record to keep. Use at least four different kinds, in no fixed order, and at most two of the six whatToDo may tell the reader to write, log, sign, date or check a record.",
+        "whyItMatters explains, in the scene's own terms, why the move works or where it stops working, using the cited fact's MECHANISM and what the moment shows (the choice, in a decision slot). Name the source case in at most one short clause and never retell its anecdote: the chapter's prose teaches the case, and repeating its names and numbers is not an explanation (SEC39 checks the mechanism).",
         "Output ExamplePackV1 JSON only.",
       ];
     case "learning-pack":
@@ -137,6 +141,7 @@ function universalCore(kind: SectionKind): string[] {
         "UNIVERSAL — Write ONLY tryThisNow and implementationPlan. Actions must be concrete, low-friction, and provable.",
         "All provenance uses anchors whose supportsClaimTypes include implementation_guidance; concrete namedExample anchors qualify when the packet lists that type.",
         "implementationPlan.coreSkill is built around action.practiceForm and action.practiceConstraint; twentyFourHourChallenge uses the dealt action.practiceForm as its exercise form.",
+        "LENGTH: tryThisNow at most 35 words; coreSkill at most 60; each ifThenPlans[].plan at most 30; twentyFourHourChallenge and weeklyPractice at most 40 each.",
         "The example pack's characters are fictional and exist only there — never name them in tryThisNow or the implementation plan (\"hand it to Sophie by name\"); the reader has no Sophie. Translate the mechanism into a behavior (SEC119); the validator enforces this.",
         "Output ActionPackV1 JSON only.",
       ];
@@ -146,6 +151,10 @@ function universalCore(kind: SectionKind): string[] {
 /** Layer 2 — the cross-chapter / leak rules to DESIGN AROUND. Each names the enforcing
  *  check and ends "the validator enforces this." Everything else class-B is deleted from
  *  prose. The audit-label / CamelCase / " / "-seam leak family is shared by all four. */
+/** Q06: SEC117's cue lexicon, quoted, rendered from the gate's own TRANSFER_CUES so the
+ *  learning contract can never drift from what the validator counts. */
+const TRANSFER_CUE_LIST = TRANSFER_CUES.map((cue) => `"${cue}"`).join(", ");
+
 const LEAK_FAMILY_LINE =
   "Never leak bookkeeping into reader prose: no source-note numbering (\"Fact 2\", \"Source 3\", any form), no jammed CamelCase source labels, and never carry an anchor label's \" / \" separator into a sentence — name the case naturally (SEC103/SEC104/SEC105/SEC88); the validator enforces this.";
 
@@ -177,7 +186,7 @@ function gateAwareness(kind: SectionKind): string[] {
         "SEC81 compares review cards across the book: each card needs its own chapter-specific noun, case, or mechanism; the validator enforces this. The dealt frontShape, retrievalTarget, and backShape steer that variety and no gate reads them.",
         "Distractor discipline: no strawman absolutes in ANY choice INCLUDING THE KEY, the key is never the longest choice by chars (nor >1.4x avg distractor words / >1.5x avg chars), no proof tails; more than 20% of the chapter's questions keying the longest choice blocks (SEC52/SEC53/SEC59/SEC116/SEC121).",
         "CHOICE PARITY METHOD: write the two distractors FIRST (15-22 words of concrete chapter-specific substance each), then write the key to the longer distractor's word count (±3) AND to at most 1.5x the average distractor's characters. SEC53 measures both, so a word-matched key built from longer words still fails. CUT the overflow, never park it in the explanation: the explanation says why the key is right, it does not carry the rest of the key.",
-        "At least 7 of 9 questions pose a NEW scenario IN THE STEM (\"you are…\", \"imagine…\", \"suppose…\", \"your team…\", \"a colleague…\", \"consider a…\") — an apply-level bloomsLevel no longer counts for anything the stem does not say (SEC117); the validator enforces this.",
+        `At least 7 of 9 questions pose a NEW scenario IN THE STEM. SEC117 counts a stem as a scenario only when one of these cue phrases appears somewhere in it, written exactly this way: ${TRANSFER_CUE_LIST} ("you're" does not count as "you are"). The cue does not have to open the stem: open on the situation itself ("A supplier's invoice arrives a week early and you are the clerk who signs it off; ..."), and no single first word may open more than 3 of the 9 stems. An apply-level bloomsLevel counts for nothing the stem does not say (SEC117); the validator enforces this.`,
         LEAK_FAMILY_LINE,
       ];
     case "action-pack":
@@ -186,8 +195,8 @@ function gateAwareness(kind: SectionKind): string[] {
         "AS8 compares implementationPlan fields across chapters: each ifThen carries this chapter's requiredFactIds mechanism in its own words; the validator enforces this. No gate reads the dealt action.ifThenPlanShapes[], practiceForm, or practiceConstraint, so give each ifThen a different dealt shape yourself.",
         "No reused opener/closer/challenge shell across chapters — tryThisNow opener, coreSkill closer, and twentyFourHourChallenge opener must each be chapter-specific (SEC84/SEC94/SEC114); the validator enforces this.",
         "Do not default across chapters to the classify/choose/predict worksheet, the blank/checkpoint-kept-pending template, or the social-pressure-then-pause if-then (SEC102/SEC109/SEC115); the validator enforces this.",
-        "Each ifThenPlans[].context is a situational trigger phrase (\"Before buying a familiar security\"), not a bare venue, source label, or stage direction (SEC67); the validator enforces this.",
-        "Cite implementation_guidance anchors and include at least two of a cited anchor's hardSpecifics verbatim (SEC73/SEC74); the validator enforces this.",
+        "Each ifThenPlans[].context is a situational trigger phrase (\"When a supplier asks for credit\", \"Right after a meeting ends\", \"The first time a new hire asks for help\", \"Before buying a familiar security\"), not a bare venue, source label, or stage direction (SEC67); the validator enforces this. No two of the three contexts open with the same word.",
+        "Cite implementation_guidance anchors (SEC73). Prefer citing the chapter's fact; when a unit cites an anchor that lists hardSpecifics (a case does), include ONE of them verbatim, not more (SEC74), and translate the case's mechanism into the reader's own behavior instead of retelling the case; the validator enforces this.",
         LEAK_FAMILY_LINE,
       ];
   }
@@ -201,7 +210,7 @@ function craftBrief(kind: SectionKind): string[] {
       return [
         "WHAT EXCELLENT LOOKS LIKE: teach the chapter's spine through its real cases as lived moments.",
         SUMMARY_VOICE_PARAGRAPH,
-        "Use reservedVariety.hookShape as the hook's assigned opening move. Seed at least three standalone memorable-line candidates in the breakdown: 8–14 words, portable, not a list, question, or \"if not/if so\" fragment; at least two at 14 words or fewer so they count as clean.",
+        "Use reservedVariety.hookShape as the hook's assigned opening move. The hook is at most 25 words: one short sentence, or two when the dealt hookShape needs a turn (a question into a scene, a contrast of two moments). Seed at least three standalone memorable-line candidates in the breakdown: 8–14 words, portable, not a list, question, or \"if not/if so\" fragment; at least two at 14 words or fewer so they count as clean.",
         "A memorable line STATES THE IDEA and carries AT MOST ONE source specific — the case itself is taught by the tiers, so a line does not have to name it. The three the book ships are picked from your breakdown by principle density, they may not reproduce the hook, the counterintuition or the keyTakeaway, and no two may turn on the same detail (SEC16/SEC118/SEC135); the validator enforces this.",
         "RUBRIC TARGETS: Flesch ease >=70 (grades: fastRead <=7, deepRead <=8.5, fullRead <=9.5); at least two clean (<=14-word) memorable lines.",
         voiceCraftLine(kind),
@@ -216,8 +225,8 @@ function craftBrief(kind: SectionKind): string[] {
       ];
     case "learning-pack":
       return [
-        "WHAT EXCELLENT LOOKS LIKE: transfer-first questions the reader reasons through (\"you are…\", \"imagine…\", \"suppose…\", \"your team…\", \"a colleague…\"), set to apply/analyze/evaluate.",
-        "Distractors are plausible MISCONCEPTIONS on the mechanism, not recognizable by length, hedging or SHAPE: when the key turns on a boundary qualifier (\"only…\", \"not…\", \"unless…\"), give at least one distractor the same shape (SEC134). Keep prompts lean; name at most one case. Cards ask a chapter-specific mechanism/contrast/failure-mode in varied stems, never a generic \"What should you inspect / What check does\" shell.",
+        "WHAT EXCELLENT LOOKS LIKE: transfer-first questions the reader reasons through, each opening on a concrete situation (a person, a moment, a pressure), not on a cue word, set to apply/analyze/evaluate.",
+        "Distractors are plausible MISCONCEPTIONS on the mechanism, not recognizable by length, hedging or SHAPE: when the key turns on a boundary qualifier (\"only…\", \"not…\", \"unless…\"), give at least one distractor the same shape (SEC134). Keep each stem to 30 words or fewer and name at most one case. A card back answers its front in ONE idea, in 25 words or fewer. Cards ask a chapter-specific mechanism/contrast/failure-mode in varied stems, never a generic \"What should you inspect / What check does\" shell.",
         "If a stem names a case, the question must hinge on it, not staple in a standalone case-identifier sentence to hit a quota.",
         "The dealt frontShape, retrievalTarget and backShape are STAGING DIRECTIONS, not text: they name the ANGLE a card takes, never words to write. Never open a back by announcing the angle (\"The contrast is\", \"The boundary is\", \"The trigger is\", \"The failure mode is\", \"The source case is\"); open on the concrete thing itself and let the angle show. Three cards or stems in one chapter opening the same way is refused (SEC132).",
         "RUBRIC TARGETS: low distractor-tell rate (key never longest or most-hedged); high transfer ratio (>=7 of 9 new-scenario).",
@@ -228,6 +237,7 @@ function craftBrief(kind: SectionKind): string[] {
         "WHAT EXCELLENT LOOKS LIKE: actions a reader can actually notice and run today — a concrete trigger, a low-friction move, a provable result.",
         "tryThisNow opens with a chapter-specific trigger. coreSkill ends on a chapter-specific practice. ifThenPlans[].context is a situational trigger, not a bare venue. Vary the behavior across chapters: a two-option comparison, a price cap, a rejection rule, a delegation boundary, a one-minute audit, a cadence change, an owner question.",
         "The dealt practiceForm, practiceConstraint and ifThenPlanShapes are STAGING DIRECTIONS, not text: realize practiceForm and practiceConstraint ONCE, inside coreSkill, in your own words; give each ifThen a different dealt shape and a different observable move; open twentyFourHourChallenge on the reader's trigger, not on a time box (\"In the next 24 hours\").",
+        "Open weeklyPractice on the trigger of the dealt action.weeklyPracticeForm (a Sunday reset opens on Sunday; a recurring conversation opens on that conversation), never on a bare cadence such as \"Once a week\" or \"Every week\".",
         "Never instruct the reader to write or recite a source label (\"write '60-second painful trial beside 90-second trial with milder ending'\"); translate the mechanism into a behavior.",
         "RUBRIC TARGETS: every action concrete, low-friction, and provable; no reused opener/closer/challenge shell across chapters.",
         voiceCraftLine(kind),
@@ -330,9 +340,9 @@ function sectionSchemaHint(kind: SectionKind, deliveryMode: SectionTaskDeliveryM
   if (deliveryMode === "DIRECT_JSON") {
     switch (kind) {
       case "summary-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"summary-pack","chapterId":"chapter-id","hook":{"hook":"A concrete chapter-specific tension opens this lesson with enough detail to orient the reader.","counterintuition":"The intuitive move can hide the mechanism that matters most.","sourceAnchorIds":["anchor-id"],"counterintuitionSourceAnchorIds":["anchor-id"]},"breakdown":{"fastRead":"Write the complete fast-read summary here.","deepRead":"Write the complete deep-read summary here.","fullRead":"Write the complete full-read summary here.","sourceAnchorIds":{"fastRead":["anchor-id"],"deepRead":["anchor-id"],"fullRead":["anchor-id"]}},"keyTakeaway":"State one concrete takeaway.","keyTakeawaySourceAnchorIds":["anchor-id"],"tryThisNow":"State one immediate action grounded in the chapter.","tryThisNowSourceAnchorIds":["anchor-id"],"sourceFactIds":["fact-id"]}`;
-      case "example-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"example-pack","chapterId":"chapter-id","examples":[{"exampleId":"ex01","slotId":"example-slot-id","title":"Concrete Moment","scenario":"A named person faces a specific chapter-grounded decision and experiences its consequence.","whatToDo":"Take one concrete action that applies the demonstrated mechanism.","whyItMatters":"Explain why that action follows from the cited source fact.","sourceAnchorIds":["anchor-id"],"sourceFactIds":["fact-id"],"namedCaseIds":["case-id"],"introducedEntities":["Person Name"],"numbersUsed":["verified number"]}]}`;
-      case "learning-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"learning-pack","chapterId":"chapter-id","quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","sourceAnchorId":"anchor-id","sourceAnchorIds":["anchor-id"],"keyEvidenceAnchorIds":["anchor-id"],"prompt":"Suppose you face a chapter-specific decision; which response best applies the mechanism?","choices":["Plausible response one","Plausible response two","Plausible response three"],"correctIndex":0,"explanation":"Explain why the keyed response follows from the cited evidence.","bloomsLevel":"apply","depthLevel":"standard"}]},"cards":{"cards":[{"cardId":"card01","sourceAnchorId":"anchor-id","sourceAnchorIds":["anchor-id"],"front":"Which chapter-specific mechanism should you retrieve here?","back":"State the mechanism, its boundary, and the concrete evidence that makes it useful.","difficulty":"easy"}]}}`;
-      case "action-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"action-pack","chapterId":"chapter-id","tryThisNow":"Take one concrete, low-friction action that applies the cited mechanism today.","tryThisNowSourceAnchorIds":["anchor-id"],"implementationPlan":{"title":"Practice One Concrete Skill","titleSourceAnchorIds":["anchor-id"],"coreSkill":"Describe the skill, trigger, constraint, and observable result in concrete terms.","coreSkillSourceAnchorIds":["anchor-id"],"ifThenPlans":[{"sourceAnchorId":"anchor-id","sourceAnchorIds":["anchor-id"],"context":"Before a specific recurring decision","plan":"If the trigger appears, then perform the chapter-specific action and check its result."}],"twentyFourHourChallenge":"Run the chapter-specific practice once within twenty-four hours and record the observable result.","twentyFourHourChallengeSourceAnchorIds":["anchor-id"],"weeklyPractice":"Repeat the practice on a specific cadence and adjust from observed results.","weeklyPracticeSourceAnchorIds":["anchor-id"]}}`;
+      case "example-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"example-pack","chapterId":"chapter-id","examples":[{"exampleId":"ex01","slotId":"example-slot-id","title":"Concrete Moment","scenario":"A named person lives a specific chapter-grounded moment and its consequence.","whatToDo":"Take one concrete action that applies the demonstrated mechanism.","whyItMatters":"Explain why that action follows from the cited source fact.","sourceAnchorIds":["anchor-id"],"sourceFactIds":["fact-id"],"namedCaseIds":["case-id"],"introducedEntities":["Person Name"],"numbersUsed":["verified number"]}]}`;
+      case "learning-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"learning-pack","chapterId":"chapter-id","quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","sourceAnchorId":"anchor-id","sourceAnchorIds":["anchor-id"],"keyEvidenceAnchorIds":["anchor-id"],"prompt":"A chapter-specific situation puts a choice in front of you, and you are the one deciding; which response best applies the mechanism?","choices":["Plausible response one","Plausible response two","Plausible response three"],"correctIndex":0,"explanation":"Explain why the keyed response follows from the cited evidence.","bloomsLevel":"apply","depthLevel":"standard"}]},"cards":{"cards":[{"cardId":"card01","sourceAnchorId":"anchor-id","sourceAnchorIds":["anchor-id"],"front":"Which chapter-specific mechanism should you retrieve here?","back":"Answer the front in one concrete idea the reader can act on today.","difficulty":"easy"}]}}`;
+      case "action-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"action-pack","chapterId":"chapter-id","tryThisNow":"Take one concrete, low-friction action that applies the cited mechanism today.","tryThisNowSourceAnchorIds":["anchor-id"],"implementationPlan":{"title":"Practice One Concrete Skill","titleSourceAnchorIds":["anchor-id"],"coreSkill":"Describe the skill, trigger, constraint, and observable result in concrete terms.","coreSkillSourceAnchorIds":["anchor-id"],"ifThenPlans":[{"sourceAnchorId":"anchor-id","sourceAnchorIds":["anchor-id"],"context":"When a specific recurring decision comes up","plan":"If the trigger appears, then perform the chapter-specific action and check its result."}],"twentyFourHourChallenge":"Run the chapter-specific practice once within twenty-four hours and record the observable result.","twentyFourHourChallengeSourceAnchorIds":["anchor-id"],"weeklyPractice":"On the trigger of the dealt weekly form, repeat the practice and adjust from what you observed.","weeklyPracticeSourceAnchorIds":["anchor-id"]}}`;
     }
   }
   switch (kind) {
@@ -712,7 +722,7 @@ function derivabilitySection(derivability?: ProseDerivability | null): string {
     blocks.push(`NAMES THE PROSE NEVER PRINTS — no validator checks these, and that is the point: a reader still cannot recognise a person, group or place this chapter never named. Refer to the case the way the prose does:\n${renderProseSpecificList(derivability.unprintedNames)}`);
   }
   if (derivability.standDownIds.size > 0) {
-    blocks.push(`SEC120 STANDS DOWN for these cases, because the prose shows NONE of their specifics: ${renderProseStandDownIds(derivability.standDownIds)}. A slot dealt one of them may still use its SPECIFICS verbatim — the anchor-specifics gate compels one and nothing else would satisfy it — but only those strings are exempt: SEC120's year rule has NO stand-down, so a four-digit year the prose never states still blocks, even inside a stood-down case's own specific. The chapter's prose does not back this material, so keep such a unit's claim to what the prose does support.`);
+    blocks.push(`SEC120 STANDS DOWN for these cases, because the prose shows NONE of their specifics: ${renderProseStandDownIds(derivability.standDownIds)}. SEC120's year rule has NO stand-down, so a four-digit year the prose never states still blocks, even inside a stood-down case's own specific. The chapter's prose does not back this material, so keep such a unit's claim to what the prose does support.`);
   }
   if (blocks.length === 0) return "";
   return `\n\n${blocks.join("\n\n")}`;
