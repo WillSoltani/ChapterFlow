@@ -27,6 +27,16 @@ export const READER_PANEL_FACTOR_SCORES_CODE = "READER.PANEL.FACTOR_SCORES" as c
 export const READER_BLOCKING_CODE_PREFIX = "READER.BLOCKING." as const;
 
 /**
+ * Prefix of a seat blocking finding that only ONE seat raised (owner decision
+ * D2 (A2), `panelBlockingCorroboration.ts`). The finding is kept in the review
+ * record with its own message and `chNN/<seatId>/<unit>` location, but as a
+ * WARN: no second seat raised the same category on the same chapter, so it gates
+ * nothing. It deliberately does NOT start with `READER.BLOCKING.`, so
+ * `isReaderBlockingCode` does not count it as a named blocking defect.
+ */
+export const READER_SINGLE_SEAT_CODE_PREFIX = "READER.SINGLE_SEAT." as const;
+
+/**
  * The two panel issue codes that are NOT content findings (R-224).
  *
  * `SEMANTIC_PANEL_READER_FAILED` is raised when a seat's model run did not
