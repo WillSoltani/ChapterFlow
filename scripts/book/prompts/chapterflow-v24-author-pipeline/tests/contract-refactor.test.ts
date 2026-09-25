@@ -794,6 +794,14 @@ const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 63_000;
  * numbers (86,225 / 93,515), the same ch03 scar-block drop. The budgets do not move;
  * headroom is 8,630 on the binding card and 8,340 with prose.
  */
+/*
+ * Q04 RE-MEASURE (writers see the source; W1 pointer + W3 preflight rewrite). The
+ * summary and learning cards below now carry the SOURCE TEXT pointer, measured at
+ * its widest (the sampled form with a 6-digit omitted count). Worst kind per chapter:
+ *   ch03 learning-pack 79,392 without the pointer (W3 alone), 80,083 with it
+ *   with worst-case prose: 88,011 / 88,702
+ * Both below the standing pins (headroom 7,917 and 6,298). The budgets do not move.
+ */
 const HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET = 88_000;
 const HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET = 95_000;
 
@@ -888,16 +896,24 @@ test("R-046: the SOURCE-TEXT prompt-length budget is pinned on a packet that act
   assert.ok(bp.packet.facts.every((f) => typeof f.sourceQuote === "string" && f.sourceQuote.length > 0), "every fact must carry a quote");
   assert.ok(bp.packet.namedCases.every((c) => (c.specificPropositions ?? []).length > 0), "every case must carry its R-056 propositions");
 
+  // Q04-W1: a source-text book's summary and learning writers are sent a SOURCE
+  // TEXT pointer beside the untrusted source_span record, so the card measured here
+  // carries it for exactly those two kinds. The widest pointer is the SAMPLED one
+  // (its "(N characters omitted)" clause), measured with a 6-digit count. The span
+  // itself is an input record, never card text, and is not counted.
+  const WIDEST_POINTER = { excerpted: true, omittedChars: 999_999 } as const;
+  const pointerFor = (kind: SectionKind) => (kind === "summary-pack" || kind === "learning-pack" ? { sourceSpan: WIDEST_POINTER } : {});
   for (const chapterNumber of [1, 2, 3, 4, 5, 6, 7, 8]) {
     for (const kind of SECTION_KINDS) {
-      const md = buildSectionTaskMarkdown({ bookId: LARGEST_SCAR_BOOK, kind, blueprint: { ...bp.blueprint, chapterNumber }, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: card, bookScars: scars } });
+      const md = buildSectionTaskMarkdown({ bookId: LARGEST_SCAR_BOOK, kind, blueprint: { ...bp.blueprint, chapterNumber }, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: card, bookScars: scars }, ...pointerFor(kind) });
       assert.match(md, /"sourceQuote"/, `ch${chapterNumber} ${kind}: the book's own words must actually reach the measured card`);
+      if (kind === "summary-pack" || kind === "learning-pack") assert.match(md, /SOURCE TEXT: this chapter's own words from the book, sampled/, `ch${chapterNumber} ${kind}: the pointer must actually render into the measured card`);
       assert.ok(
         md.length <= HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET,
         `ch${chapterNumber} ${kind}: rendered ${md.length} chars against a ${HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET}-char source-text budget; re-pin only with a written rationale`,
       );
     }
-    const withProse = buildSectionTaskMarkdown({ bookId: LARGEST_SCAR_BOOK, kind: "learning-pack", blueprint: { ...bp.blueprint, chapterNumber }, sourcePacket: bp.packet, outputPath: "/tmp/learning-pack.json", context: { voiceCard: card, bookScars: scars }, chapterProse: worstCaseChapterProse() });
+    const withProse = buildSectionTaskMarkdown({ bookId: LARGEST_SCAR_BOOK, kind: "learning-pack", blueprint: { ...bp.blueprint, chapterNumber }, sourcePacket: bp.packet, outputPath: "/tmp/learning-pack.json", context: { voiceCard: card, bookScars: scars }, chapterProse: worstCaseChapterProse(), sourceSpan: WIDEST_POINTER });
     assert.ok(
       withProse.length <= HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET,
       `ch${chapterNumber} learning-pack with prose: rendered ${withProse.length} chars against a ${HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET}-char source-text budget; re-pin only with a written rationale`,

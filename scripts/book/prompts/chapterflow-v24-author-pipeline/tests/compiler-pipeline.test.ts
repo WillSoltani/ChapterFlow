@@ -666,10 +666,12 @@ test("the quiz-specifics preflight marks each required specific against the draf
   });
   // The note itself points the writer at the CHAPTER PROSE block, so slice on the
   // block's own header, not on the first mention of its name.
-  const preflight = card.slice(card.indexOf("REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT"), card.indexOf("\n\nCHAPTER PROSE —"));
+  const preflight = card.slice(card.indexOf("QUIZ SLOT CASES AND THEIR SPECIFICS"), card.indexOf("\n\nCHAPTER PROSE —"));
   assert.ok(preflight.length > 0, "the fixture must actually render the preflight block");
   assert.match(preflight, /\[NOT ON THE PAGE\]/, "a required specific the prose never shows is marked, not silently required");
-  assert.match(preflight, /rejected by SEC120 even though this block requires a verbatim specific/, "the contradiction is named and resolved for the writer");
+  // Q04-W3: the block no longer requires a verbatim specific, so the note names
+  // the SEC120 consequence without the retired contradiction.
+  assert.match(preflight, /\[NOT ON THE PAGE\] is rejected by SEC120 wherever you use it/, "the SEC120 consequence is named for the writer");
 });
 
 // ── Review round 3 — TWO WAYS THE PREFLIGHT'S OWN SENTENCES MISLED ────────────
@@ -690,7 +692,7 @@ test("the preflight's stand-down sentence carries SEC120's year caveat (review r
     context: { voiceCard: null, bookScars: null },
     chapterProse: prose,
   });
-  const preflight = card.slice(card.indexOf("REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT"), card.indexOf("\n\nCHAPTER PROSE —"));
+  const preflight = card.slice(card.indexOf("QUIZ SLOT CASES AND THEIR SPECIFICS"), card.indexOf("\n\nCHAPTER PROSE —"));
   assert.ok(preflight.length > 0, "the fixture must actually render the preflight block");
   // "there you may use one of them" is true of the SPECIFIC AS A STRING and false of a
   // four-digit year inside it: SEC120's second rule has no stand-down. The note under
@@ -733,7 +735,7 @@ test("the preflight marks a folding-only digit-bearing specific distinctly from 
     false,
     "the ALLOWED list must not offer a digit-bearing specific it matched only by folding",
   );
-  const preflight = card.slice(card.indexOf("REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT"), card.indexOf("\n\nCHAPTER PROSE —"));
+  const preflight = card.slice(card.indexOf("QUIZ SLOT CASES AND THEIR SPECIFICS"), card.indexOf("\n\nCHAPTER PROSE —"));
   assert.ok(preflight.includes(citedId), "the modified anchor must be the one the preflight cites");
   // The bug: the mark said "[on the page]" while the ALLOWED list omitted the string,
   // so the two blocks of one card contradicted each other.
@@ -3429,7 +3431,8 @@ test("learning-pack task pre-lists each quiz slot's required verbatim specifics 
     context: { bookScars: { bookId: "money-book", phrases: [], frames: [], notes: [], prohibitions: [] }, voiceCard: null },
     deliveryMode: "DIRECT_JSON",
   });
-  assert.match(md, /REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT/, "preflight block missing");
+  // Q04-W3: renamed; the block lists each slot's dealt case, no longer a demand.
+  assert.match(md, /QUIZ SLOT CASES AND THEIR SPECIFICS/, "preflight block missing");
   const anchored = fx.packet.allowedAnchors.filter((a) => (a.hardSpecifics ?? []).length > 0);
   assert.ok(anchored.length > 0, "fixture needs a specifics-rich anchor");
   for (const a of anchored) {
@@ -3437,8 +3440,40 @@ test("learning-pack task pre-lists each quiz slot's required verbatim specifics 
       assert.ok(md.includes(`"${spec}"`), `missing specific ${spec}`);
     }
   }
-  assert.match(md, /at least 1 of its case's specifics into the prompt/i);
-  assert.match(md, /into the prompt AND at least 1 into the explanation/i);
+  // Q04-W3: the retired SEC56 both-surfaces demand is gone (pinned in the Q04-W3 test).
+  assert.doesNotMatch(md, /into the prompt AND at least 1 into the explanation/i);
+});
+
+test("Q04-W3: the quiz preflight no longer demands a case specific in BOTH the prompt and the explanation, and states the same-episode rule", () => {
+  // SEC56 was retired (R-059, package 1B), but the preflight still ordered each
+  // citing question to weave its case's specifics into the prompt AND the
+  // explanation. On rr21 that forced fact-plus-case pairings into one sentence
+  // (ch19 q04 Denny's Madeira x the sixty-thousand-pound grant; ch07 q05).
+  const fx = compileFixture();
+  const md = buildSectionTaskMarkdown({
+    kind: "learning-pack",
+    bookId: "money-book",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "/tmp/learning.json",
+    context: { bookScars: null, voiceCard: null },
+    deliveryMode: "DIRECT_JSON",
+    chapterProse: bondProse(fx),
+  });
+  assert.doesNotMatch(md, /SEC56 checks the PROMPT and the EXPLANATION separately/);
+  assert.doesNotMatch(md, /into the prompt AND at least 1 into the explanation/i);
+  assert.doesNotMatch(md, /REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT/);
+  assert.doesNotMatch(md, /even though this block requires a verbatim specific/);
+  assert.match(md, /never join a slot's fact and its assigned case into one event, cause or time unless the SOURCE PACKET says they are the same episode/i);
+  assert.match(md, /the assigned case is context, cited by natural reference/i);
+  // What stays useful stays: the per-slot case list, its marks, and SEC120's year caveat.
+  assert.match(md, /Slots: q\d+:/);
+  assert.match(md, /\[NOT ON THE PAGE\]/);
+  assert.match(md, /year rule has NO stand-down/);
+  for (const a of fx.packet.allowedAnchors.filter((anchor) => (anchor.hardSpecifics ?? []).length > 0)) {
+    const cited = (fx.blueprint.sections.quiz ?? []).some((slot) => ((slot as { caseCueIds?: string[] }).caseCueIds ?? []).includes(a.id));
+    if (cited) for (const spec of a.hardSpecifics ?? []) assert.ok(md.includes(`"${spec}"`), `missing specific ${spec}`);
+  }
 });
 
 test("SEC12 assembled-ease blocker names per-tier eases and the lowest tier (Task 11s)", () => {

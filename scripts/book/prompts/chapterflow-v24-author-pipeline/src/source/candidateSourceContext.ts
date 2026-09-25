@@ -31,7 +31,7 @@
 import { createHash } from "crypto";
 
 import type { Result } from "../contracts/v4Core.js";
-import { CHAPTER_MAP_SCHEMA_VERSION, type ChapterMapV1, type ResolvedChapterSpan } from "./chapterMap.js";
+import { CHAPTER_MAP_SCHEMA_VERSION, chapterSpanText, spanExcerptForPrompt, type ChapterMapV1, type ResolvedChapterSpan, type SpanExcerpt } from "./chapterMap.js";
 import type { ChapterSourceContext } from "../critics/semantic/sourceFidelityJudge.js";
 
 /** Where the research intake copies the frozen text and its chapter map. */
@@ -190,5 +190,51 @@ export function resolveCandidateChapterSource(args: Readonly<{
       span: span.value,
       sourceTextSha256: map.value.sourceTextSha256,
     },
+  };
+}
+
+/**
+ * A per-chapter reader over the candidate's FROZEN source text, for the WRITER
+ * lanes (the section writers, the chapter editor, the repair writer).
+ *
+ * The opposite contract to {@link resolveCandidateChapterSource}, on purpose.
+ * That resolver is QC's: the span is what a claim is CHECKED against, so any doubt
+ * about it is an error. Here the span is extra evidence handed to a writer, so
+ * everything is best-effort and returns null (or undefined for one chapter) on ANY
+ * doubt: a model-memory run has no frozen text at all, and a span a writer cannot
+ * be given is a prompt without a `source_span` record, never a prompt with the
+ * wrong chapter's words in it.
+ *
+ * `maxChars` bounds what each call is shown, through the same deterministic
+ * windowing the chapter researcher uses (`spanExcerptForPrompt`): a span at or
+ * under it is passed whole and byte-identically.
+ */
+export function frozenChapterSpans(
+  files: readonly CandidateFileLike[],
+  maxChars: number,
+): ((chapterNumber: number) => SpanExcerpt | undefined) | null {
+  const textFile = files.find((file) => file.logicalPath === CANDIDATE_SOURCE_TEXT_LOGICAL_PATH);
+  const mapFile = files.find((file) => file.logicalPath === CANDIDATE_CHAPTER_MAP_LOGICAL_PATH);
+  if (!textFile || !mapFile) return null;
+  let map: ChapterMapV1;
+  try {
+    map = JSON.parse(Buffer.from(mapFile.bytes).toString("utf8")) as ChapterMapV1;
+  } catch {
+    return null;
+  }
+  if (!Array.isArray(map?.spans)) return null;
+  const text = Buffer.from(textFile.bytes).toString("utf8");
+  const byChapter = new Map<number, { startOffset: number; endOffset: number }>();
+  for (const span of map.spans) {
+    if (typeof span?.chapterNumber !== "number") continue;
+    if (typeof span.startOffset !== "number" || typeof span.endOffset !== "number") continue;
+    if (span.startOffset < 0 || span.endOffset <= span.startOffset || span.endOffset > text.length) continue;
+    byChapter.set(span.chapterNumber, { startOffset: span.startOffset, endOffset: span.endOffset });
+  }
+  if (byChapter.size === 0) return null;
+  return (chapterNumber: number): SpanExcerpt | undefined => {
+    const span = byChapter.get(chapterNumber);
+    if (!span) return undefined;
+    return spanExcerptForPrompt(chapterSpanText(text, span), maxChars);
   };
 }
