@@ -1108,7 +1108,9 @@ Check claims of these kinds against the source, not only names, dates and number
 - credit and attribution (who proposed, invented, wrote or is credited with something);
 - membership (who belonged to which club, company, family or side);
 - finality and exclusivity words (only, ended, never, first, last, final);
-- for every quiz item, whether the keyed choice (surface quiz.qNN/key) is the answer the source supports. If the source supports another choice, report the key as "contradicted" on the quiz.qNN/key surface, with that source line as sourceQuote.`;
+- for every quiz item, whether the keyed choice (surface quiz.qNN/key) is the answer the source supports. If the source supports another choice, report the key as "contradicted" on the quiz.qNN/key surface, with that source line as sourceQuote.
+
+The list above names the kinds of claim to CHECK, not checkableKind values: checkableKind is always exactly one of ${CHECKABLE_KINDS.map((kind) => `"${kind}"`).join(", ")}.`;
 
 const JUDGE_SYSTEM_MODEL_MEMORY = `You are a source-fidelity auditor, and you DO NOT HAVE THE BOOK. This run carried no source text: what follows the chapter is a set of claims a previous model wrote from its own recollection of the book, not the book. You are therefore checking the chapter against YOUR OWN RECALL, and you must judge accordingly.
 

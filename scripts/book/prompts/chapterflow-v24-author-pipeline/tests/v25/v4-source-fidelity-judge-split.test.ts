@@ -20,6 +20,7 @@ import { readFileSync } from "node:fs";
 
 import * as judge from "../../src/critics/semantic/sourceFidelityJudge.js";
 import {
+  CHECKABLE_KINDS,
   SOURCE_FIDELITY_CONTRADICTED_CODE,
   SOURCE_FIDELITY_KEY_CODE,
   SOURCE_FIDELITY_MAX_CONTEXT_CHARS,
@@ -35,6 +36,8 @@ import {
   type SourceFidelityRequest,
 } from "../../src/critics/semantic/sourceFidelityJudge.js";
 import { MAX_SOURCE_QUOTE_CHARS, MIN_SOURCE_QUOTE_CHARS, normalizedQuote, quoteShapeProblem } from "../../src/source/sourceText.js";
+import type { ModelTaskContext } from "../../src/contracts/v4Core.js";
+import type { ModelResult } from "../../src/runtime/modelResult.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 import { FRANKLIN_PROPRIETARIES_SLICE_PATH, makeGateCleanChapter } from "../helpers.js";
 
@@ -152,6 +155,69 @@ requiredTest("Q07 J3: the source-text judge prompt carries the claim-type checkl
     assert.ok(system.includes(item), `checklist item missing: ${item}\n${system}`);
   }
   assert.match(system, /report the key as "contradicted" on the quiz\.qNN\/key surface/);
+});
+
+// Live probe (rr21 d1 ch13 learning a1): the judge took "membership" from the
+// checklist as a checkableKind; isFindingsEnvelope refused the whole envelope
+// and the attempt was spent.
+requiredTest("Q07 J3: after the checklist, the prompt confines checkableKind to the CHECKABLE_KINDS values", () => {
+  const system = sourceFidelitySystemPrompt("source-text");
+  const checklistEnd = system.indexOf("who belonged to which club, company, family or side");
+  assert.ok(checklistEnd >= 0, system);
+  const tail = system.slice(checklistEnd);
+  const kinds = CHECKABLE_KINDS.map((kind) => `"${kind}"`).join(", ");
+  assert.ok(tail.includes(kinds), `after the checklist the prompt must name every checkableKind value (${kinds}):\n${tail}`);
+  assert.match(tail, /names the kinds of claim to CHECK, not checkableKind values/, tail);
+  assert.match(tail, /checkableKind is always exactly one of/, tail);
+});
+
+requiredTest("Q07 J3 GUARD: an out-of-set checkableKind still makes the live ask refuse the envelope", async () => {
+  // UNCHANGED validation: the prompt fix must not loosen isFindingsEnvelope.
+  const ask = judge.makeLiveSourceFidelityAsk({
+    execution: {
+      context: {} as ModelTaskContext,
+      runner: {
+        async run() {
+          return {
+            attemptId: "a1",
+            outcome: "SUCCEEDED",
+            output: {
+              findings: [{
+                surface: "chapter/keyTakeaway",
+                quote: REV6_ERROR,
+                claim: "Franklin belonged to the Junto.",
+                verdict: "unsupported",
+                sourceQuote: null,
+                checkableKind: "membership",
+                note: "n",
+              }],
+            },
+          } as ModelResult;
+        },
+      },
+    },
+  });
+  const chapter = franklinChapter();
+  await assert.rejects(
+    ask({
+      chapterId: chapter.chapterId,
+      chapterNumber: chapter.number,
+      chapterTitle: chapter.title,
+      surfaces: chapterFidelitySurfaces(chapter),
+      provenance: "source-text",
+      sourceContext: SLICE,
+      chunkIndex: 0,
+      chunkCount: 1,
+      claimHints: [],
+      surfaceGroup: "learning",
+      surfaceGroupCount: 2,
+    } as SourceFidelityRequest),
+    (error: unknown) => {
+      assert.ok(error instanceof Error);
+      assert.ok(error.message.startsWith("SOURCE_FIDELITY_MODEL_SUCCEEDED"), error.message);
+      return true;
+    },
+  );
 });
 
 // ── J2: the split ───────────────────────────────────────────────────────────
