@@ -464,36 +464,27 @@ function sourceMentionNames(packet: SourcePacketV1): Set<string> {
  * named, and 107 of 114 rr21 whyItMatters carried it. The chapter's prose teaches the
  * case (SEC14/SEC128); the example explains the principle in its own moment.
  *
- * The packet's entity lists are NOISY (rr21 ch01 allowedEntities carries "After",
- * "Though", "Leading", "Opens", "Financial", "Birth"...), and its case labels and
- * entities are often title-cased headings ("Killed After Guns Failed in the Rain",
- * "Premature Victory Fireworks Subscription", "Club-Tested Civic Reform"). So a token
- * counts as a source name only when it passes all of:
- *   - it is a capitalized word the librarian's name extractor keeps (NAME_STOPWORDS
- *     dropped) and not a title, month, nationality or function word listed below;
- *   - its lower-case form never appears as a word in the packet's own text (a common
- *     noun shows up lower-case somewhere: "leading people", "birth");
- *   - the packet ATTESTS it as a name: capitalized away from a sentence start in its
- *     prose (fact claim, mechanism, commonError, whyWrong, case summary, anchor text),
- *     or inside a sentence-case label or hardSpecific ("a Boston school for writing"),
- *     or on a case label's figure side ("George Brownell"), or as the first word of a
- *     capitalized run in prose ("George Webb"). A title-cased heading (no lower-case
- *     word but connectives such as "of", "in", "the") and allowedEntities attest nothing:
- *     every word of a heading is capitalized by style, not because it is a name.
- * A whyItMatters capitalizes every sentence opener, so a hit AT a sentence start
- * counts only for a FIGURE: a name on a label's figure side (when that side is a name,
- * not a sentence-case description such as "Massachusetts Bay's Crown Point appeal"),
- * one the prose writes as
- * a possessive ("Braddock's") or after a title ("Mr. Denny", "Colonel Dunbar"), or a
- * protectedSourceNames entry; and never for an institution's word, one the packet
- * writes after an article or determiner at least as often as without one ("the
- * Board of Trade", "an Assembly bill", "the Library Company"), unless it also follows
- * a title. ch09's prose capitalizes the virtue names mid-sentence
- * ("Temperance, Silence, Order"), so "Silence gives..." opens a clean sentence while
- * "the rule of Silence" mid-sentence still names the source.
- * protectedSourceNames (the reserved figure names) join unfiltered. The slot's dealt
- * invented cast is subtracted per example. Matching is case-sensitive on word
- * boundaries, so a possessive ("Brownell's") matches and a lower-case word does not.
+ * The packet's entity lists are noisy ("After", "Though", "Opens", "Dear", "Birth",
+ * "Assembly's", "Society's"...), so a word counts as a source name only on evidence.
+ * FIGURES are flagged anywhere, a sentence start included:
+ *   - a protectedSourceNames entry;
+ *   - a word that ANY packet field (sourceQuote aside) writes after a title
+ *     ("Mr. Norris", "Governor Denny's", "The Two Doctors Bond") or as a possessive
+ *     ("Franklin's", "Shirley's");
+ *   - a word on a case label's figure side ("George Brownell", "Robert Grace") that the
+ *     packet never writes in lower case: "Bread Rolls", "Eleven Frontier Farmers" and
+ *     "The Two Doctors" are ordinary words the packet also writes as "bread", "farmers",
+ *     "two".
+ *   Except after a title, a word the packet's prose writes after an article more often
+ *   than without one names an institution, not a figure ("the Assembly's order", "the
+ *   Board of Trade", "the Royal Society's"): its words open ordinary sentences.
+ * NAMES are flagged mid-sentence only: the figures, plus any word of the entity lists,
+ * labels and hardSpecifics that the packet's prose capitalizes away from a sentence
+ * start ("the rule of Silence", "a Boston school"). Every whyItMatters sentence starts
+ * with a capital, so such a word opening a sentence is ordinary English ("Silence
+ * gives..."). Titles, months, nationalities and function words are never names. The
+ * slot's dealt invented cast is subtracted per example. Matching is case-sensitive on
+ * word boundaries, so a possessive ("Brownell's") matches and a lower-case word does not.
  */
 const SOURCE_NAME_NON_NAMES = new Set([
   // titles and forms of address
@@ -501,13 +492,13 @@ const SOURCE_NAME_NON_NAMES = new Set([
   "Major", "King", "Queen", "Prince", "Princess", "Duke", "Earl", "President", "Doctor", "Father", "Mother",
   "Brother", "Sister", "Saint", "Deacon", "Elder", "Master", "Mistress", "Squire", "Esquire", "Professor",
   "Sergeant", "Lieutenant", "Admiral", "Mayor", "Senator", "Messrs", "Miss", "Dear", "Doctors", "Lords", "Secretary",
-  "Deputy", "Attorney", "Postmaster",
+  "Deputy", "Attorney", "Postmaster", "Sir", "Abbe",
   // months (weekdays are already in NAME_STOPWORDS)
   "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
   // nationalities and faiths used as adjectives
   "English", "Englishman", "Englishmen", "British", "French", "Dutch", "German", "Spanish", "Irish", "Scottish",
   "Scotch", "Scots", "Welsh", "American", "Americans", "European", "Italian", "Swedish", "Portuguese",
-  "Protestant", "Protestants", "Catholic", "Catholics", "Christian", "Christians", "Jewish", "Muslim",
+  "Protestant", "Protestants", "Catholic", "Catholics", "Christian", "Christians", "Jewish", "Muslim", "Quaker", "Quakers",
   // sentence-function words the name extractor keeps
   "Its", "Was", "Were", "Are", "Has", "Had", "Did", "Does", "Can", "Could", "Would", "Should", "Will", "Shall",
   "Might", "Must", "Why", "How", "Where", "Than", "These", "Those", "Such", "Until", "Unless", "Since", "Though",
@@ -517,12 +508,13 @@ const SOURCE_NAME_NON_NAMES = new Set([
 /** "Mr. George Brownell": the period of a title abbreviation does not open a sentence. */
 const TITLE_ABBREVIATION_BEFORE_RE = /\b(?:Mr|Mrs|Ms|Dr|St|Mt|Jr|Sr|Rev|Capt|Gov|Col|Gen|Messrs)\.\s*$/;
 
+/** A title right before a name: "Mr. Norris", "Governor Denny", "The Two Doctors Bond".
+ *  Group 1 catches an article before the title: "the General Assembly" is no person. */
+const NAME_TITLE_BEFORE_RE = /(\b(?:[Tt]he|[Aa]n?)\s+)?\b(?:Mr|Mrs|Ms|Dr|St|Messrs|Sir|Lord|Lady|Miss|Captain|Colonel|General|Major|Governor|Speaker|Doctor|Doctors|Judge|Bishop|Reverend|Rev|Uncle|Aunt|Secretary|Abbe|King|Queen)\.?\s+$/;
+
 function asciiFold(value: string): string {
   return value.normalize("NFD").replace(/[̀-ͯ]/g, "");
 }
-
-/** A prose title before a figure's name: "Colonel Dunbar", "Governor Morris". */
-const FIGURE_TITLE_BEFORE_RE = /\b(?:Lord|Lady|Captain|Speaker|Governor|Uncle|Aunt|Bishop|Reverend|Colonel|General|Major|Doctor|Doctors|Brother|Sister|Secretary|Deputy|Judge|Messrs|Miss)\s+$/;
 
 /** "the Pennsylvania Assembly", "the Board of Trade", "an Assembly bill": an
  *  institution's run, led by an article or determiner. */
@@ -540,80 +532,85 @@ interface ExampleWhySourceNames {
   figures: Set<string>;
 }
 
+/** Every string of the packet but its sourceQuote text. */
+function packetStrings(value: unknown, out: string[] = []): string[] {
+  if (typeof value === "string") out.push(value);
+  else if (Array.isArray(value)) for (const item of value) packetStrings(item, out);
+  else if (value && typeof value === "object") for (const [key, item] of Object.entries(value)) if (key !== "sourceQuote") packetStrings(item, out);
+  return out;
+}
+
+/** Each capitalized word of `value` with the text before and after it. */
+function capitalizedWords(value: string): Array<{ word: string; before: string; after: string }> {
+  return [...value.matchAll(/\b[A-Z][a-z]{2,}\b/g)].map((m) => ({
+    word: m[0],
+    before: value.slice(0, m.index ?? 0),
+    after: value.slice((m.index ?? 0) + m[0].length),
+  }));
+}
+
 function exampleWhySourceNames(packet: SourcePacketV1, reservedNames: ReadonlySet<string>): ExampleWhySourceNames {
   const cases = packet.namedCases ?? [];
   const anchors = packet.allowedAnchors ?? [];
-  const labelFigureSides = cases.map((c) => asciiFold(text(c.label).split(" / ")[0] ?? ""));
-  const candidates = [
-    ...labelFigureSides,
-    ...cases.flatMap((c) => c.hardSpecifics ?? []),
-    ...(packet.facts ?? []).flatMap((f) => f.groundedEntities ?? []),
-    ...(packet.allowedEntities ?? []),
-  ].flatMap((value) => extractNamesFromText(asciiFold(text(value))));
-  const prose = [
-    ...(packet.facts ?? []).flatMap((f) => [f.claim, f.mechanism, f.commonError, f.whyWrong]),
-    ...cases.map((c) => c.summary),
+  const facts = packet.facts ?? [];
+  const context = packet.chapterContext;
+  const fold = (values: unknown[]) => values.map((value) => asciiFold(text(value)));
+  const labelFigureSides = fold(cases.map((c) => text(c.label).split(" / ")[0]));
+  const entities = fold([...facts.flatMap((f) => f.groundedEntities ?? []), ...(packet.allowedEntities ?? [])]);
+  const prose = fold([
+    ...facts.flatMap((f) => [f.claim, f.mechanism, f.commonError, f.whyWrong]),
+    ...cases.flatMap((c) => [c.summary, ...(c.specificPropositions ?? []).map((p) => p.proposition)]),
     ...anchors.map((a) => a.text),
-  ].map((v) => asciiFold(text(v)));
-  const shortFields = [
+    ...(context ? [context.focus, context.coreClaim, context.hardEdge, ...(context.keyClaims ?? [])] : []),
+  ]);
+  const shortFields = fold([
     ...cases.flatMap((c) => [c.label, ...(c.hardSpecifics ?? [])]),
     ...anchors.flatMap((a) => [a.label, ...(a.hardSpecifics ?? [])]),
-  ].map((v) => asciiFold(text(v)));
-  const lowerWords = new Set(
-    [...prose, ...shortFields, ...(packet.facts ?? []).flatMap((f) => f.groundedEntities ?? []), ...(packet.allowedEntities ?? [])]
-      .flatMap((value) => asciiFold(text(value)).match(/\b[a-z]{3,}\b/g) ?? []),
-  );
-  const attested = new Set<string>();
-  const figureEvidence = new Set<string>();
-  // A heading capitalizes every word but its connectives; a sentence-case field has a
-  // lower-case content word ("a Boston school", "act of Parliament").
-  const sentenceCase = (value: string) => (value.match(/\b[a-z]{2,}\b/g) ?? []).some((word) => !HEADING_CONNECTIVES.has(word));
-  for (const value of [...prose, ...shortFields.filter(sentenceCase)]) {
-    for (const m of value.matchAll(/\b[A-Z][a-z]{2,}\b/g)) {
-      const before = value.slice(0, m.index ?? 0);
-      if (!SENTENCE_OPENER_BEFORE_RE.test(before) || TITLE_ABBREVIATION_BEFORE_RE.test(before)) attested.add(m[0]);
+  ]);
+  const isName = (word: string) => !SOURCE_NAME_NON_NAMES.has(word) && extractNamesFromText(word).length === 1;
+
+  // Title-led and possessive forms, in any field.
+  const titled = new Set<string>();
+  const possessive = new Set<string>();
+  for (const value of fold(packetStrings(packet))) {
+    for (const { word, before, after } of capitalizedWords(value)) {
+      const title = NAME_TITLE_BEFORE_RE.exec(before);
+      if (title && !title[1]) titled.add(word);
+      if (/^['’]s\b/.test(after) && !ARTICLE_LED_RUN_BEFORE_RE.test(before)) possessive.add(word);
     }
   }
-  // "George Webb discloses...": a given name that opens a prose sentence, followed by
-  // another capitalized word.
-  for (const value of prose) {
-    for (const m of value.matchAll(/\b([A-Z][a-z]{2,})(?=\s+[A-Z][a-z]+\b)/g)) attested.add(m[1]);
-  }
-  const titled = new Set<string>();
+  // How often the prose puts an article before the word. A word that modifies the next
+  // capitalized word ("the Massachusetts Assembly", "the Scilly Isles") is not counted.
   const articleLed = new Map<string, number>();
   const articleFree = new Map<string, number>();
   for (const value of [...prose, ...shortFields]) {
-    for (const m of value.matchAll(/\b([A-Z][a-z]{2,})\b/g)) {
-      const before = value.slice(0, m.index ?? 0);
-      const after = value.slice((m.index ?? 0) + m[0].length);
-      const led = ARTICLE_LED_RUN_BEFORE_RE.test(before);
-      // "Colonel Dunbar" is a person; "the General Assembly" is not.
-      const title = !led && (TITLE_ABBREVIATION_BEFORE_RE.test(before) || FIGURE_TITLE_BEFORE_RE.test(before));
-      if (title) titled.add(m[1]);
-      if (prose.includes(value) && (title || /^['\u2019]s\b/.test(after))) figureEvidence.add(m[1]);
-      const counts = led ? articleLed : articleFree;
-      counts.set(m[1], (counts.get(m[1]) ?? 0) + 1);
+    for (const { word, before, after } of capitalizedWords(value)) {
+      if (/^\s+[A-Z]/.test(after)) continue;
+      const counts = ARTICLE_LED_RUN_BEFORE_RE.test(before) ? articleLed : articleFree;
+      counts.set(word, (counts.get(word) ?? 0) + 1);
     }
   }
-  for (const value of labelFigureSides) {
-    for (const token of extractNamesFromText(value)) {
-      attested.add(token);
-      // "Massachusetts Bay's Crown Point appeal" describes a case; it names no figure.
-      if (!sentenceCase(value)) figureEvidence.add(token);
-    }
-  }
-  // A figure is a person: named after a title, or written without an article more often
-  // than with one. "the Assembly", "the Board of Trade", "the Library Company", "the House"
-  // are institutions whose words open ordinary sentences ("Trade-offs...", "Assembly...").
-  const personLike = (token: string) => titled.has(token) || (articleFree.get(token) ?? 0) > (articleLed.get(token) ?? 0);
-  const names = new Set<string>(reservedNames);
+  const institution = (word: string) => !titled.has(word) && (articleLed.get(word) ?? 0) > (articleFree.get(word) ?? 0);
+  const lowerWords = new Set([...prose, ...shortFields, ...entities].flatMap((value) => value.match(/\b[a-z]{3,}\b/g) ?? []));
+
   const figures = new Set<string>(reservedNames);
-  for (const token of candidates) {
-    if (SOURCE_NAME_NON_NAMES.has(token)) continue;
-    if (lowerWords.has(token.toLowerCase())) continue;
-    if (!attested.has(token)) continue;
-    names.add(token);
-    if (figureEvidence.has(token) && personLike(token)) figures.add(token);
+  for (const word of [...titled, ...possessive]) if (isName(word) && !institution(word)) figures.add(word);
+  for (const word of labelFigureSides.flatMap((side) => extractNamesFromText(side))) {
+    if (isName(word) && !lowerWords.has(word.toLowerCase()) && !institution(word)) figures.add(word);
+  }
+
+  // Capitalized away from a sentence start in prose, or in a sentence-case label or
+  // hardSpecific ("a Boston school"); a title-cased heading capitalizes every word.
+  const sentenceCase = (value: string) => (value.match(/\b[a-z]{2,}\b/g) ?? []).some((word) => !HEADING_CONNECTIVES.has(word));
+  const midSentence = new Set<string>();
+  for (const value of [...prose, ...shortFields.filter(sentenceCase)]) {
+    for (const { word, before } of capitalizedWords(value)) {
+      if (!SENTENCE_OPENER_BEFORE_RE.test(before) || TITLE_ABBREVIATION_BEFORE_RE.test(before)) midSentence.add(word);
+    }
+  }
+  const names = new Set<string>(figures);
+  for (const word of [...labelFigureSides, ...shortFields, ...entities].flatMap((value) => extractNamesFromText(value))) {
+    if (isName(word) && midSentence.has(word)) names.add(word);
   }
   return { names, figures };
 }

@@ -238,6 +238,159 @@ requiredTest("Q06b: SEC137 is silent on a name-free whyItMatters, ordinary capit
   }
 });
 
+// ── round-3 fixtures: verbatim excerpts of the real rr21 packets (ch14, ch15, ch16) ──
+
+// ch16: the named case is "The Two Doctors Bond", and the packet also writes "bond" in
+// lower case ("Franklin's personal bond").
+const CH16_BOND_CASE = {
+  id: "ch16.case.fireworks-subscription",
+  label: "The Two Doctors Bond / Premature Victory Fireworks Subscription",
+  summary: "Before news of the defeat arrived, two men named Bond brought Franklin a subscription paper to fund a celebratory firework display for an assumed victory at Fort Duquesne. Franklin declined, arguing that the outcome of the campaign was still uncertain, and the subscription was abandoned before the bad news made it moot.",
+  hardSpecifics: ["the two Doctors Bond", "a grand firework", "Fort Duquesne"],
+  specificPropositions: [
+    { specific: "the two Doctors Bond", proposition: "Two men both named Bond approached Franklin with a subscription paper to fund a fireworks celebration." },
+    { specific: "a grand firework", proposition: "The subscription money was meant to pay for a large celebratory fireworks display." },
+    { specific: "Fort Duquesne", proposition: "The planned celebration was tied to an assumed victory in capturing Fort Duquesne." },
+  ],
+};
+
+const CH16_PERSONAL_BOND_FACT = {
+  id: "ch16.fact.personal-bond",
+  claim: "Waggon owners required Franklin's personal bond, not Braddock's word, before releasing their equipment.",
+  mechanism: "The owners had no direct knowledge of Braddock or confidence in his promise, so they demanded a guarantor they knew locally.",
+  commonError: "General Braddock's official promise alone was sufficient collateral for the farmers.",
+  whyWrong: "The owners stated they did not know Braddock or trust his promise and insisted on Franklin's bond instead.",
+  groundedEntities: ["Franklin's", "Braddock's", "Braddock"],
+};
+
+function ch16ShapePacket(): SourcePacketV1 {
+  return {
+    chapterTitle: "Braddock's Expedition",
+    allowedAnchors: [BROWNELL_ANCHOR],
+    namedCases: [CH16_BOND_CASE],
+    facts: [CH16_PERSONAL_BOND_FACT],
+    allowedEntities: [
+      "Braddock's Expedition", "British", "Franklin", "Braddock's", "European", "Indian", "Hands-on", "Acting", "Franklin's",
+      "Pennsylvania", "Colonel Dunbar's", "News", "England", "Pennsylvania's", "Benjamin Franklin", "Waggon Advertisement",
+      "General Braddock", "April", "Braddock", "Defeat", "Fort Duquesne", "Indians", "French", "Rigid", "Sixty-three", "Seven",
+      "Colonel Dunbar", "Panicked Retreat", "Broken Promise", "Trenton", "After Braddock's", "Dunbar", "Panic", "Dunbar's",
+      "The Two Doctors Bond", "Premature Victory Fireworks Subscription", "Before", "Bond", "Fort Duquesne. Franklin",
+      "Withholding", "Doctors Bond", "Two", "Britain", "Assembly", "Direct", "Military", "Waggon", "Confidence", "Soldiers",
+      "Only", "The Pennsylvania Assembly", "Shirley", "They", "Colonial", "Assembly's", "Who", "Captain Orme",
+      "The Two Doctors Bond / Premature Victory Fireworks Subscription",
+    ],
+    allowedPlaces: [],
+    allowedNumbers: [],
+  } as unknown as SourcePacketV1;
+}
+
+// ch15: the prose names Franklin only bare ("Morris asked Franklin whether..."), never as
+// "Franklin's" or "Mr. Franklin"; "Franklin's" and "Governor Denny's" sit in allowedEntities.
+function ch15ShapePacket(): SourcePacketV1 {
+  return {
+    chapterTitle: "Quarrels with the Proprietary Governors",
+    allowedAnchors: [
+      BROWNELL_ANCHOR,
+      {
+        id: "ch15.concept.loan-office-orders",
+        kind: "concept",
+        label: "Loan-Office order financing",
+        text: "A way of raising money for a public expense by having the Assembly issue interest-bearing paper drawn on the provincial loan office, instead of relying on a tax bill the governor could veto. It let a legislature fund an urgent commitment even when the executive refused consent, because it never required an act the governor had to sign.",
+        supportsClaimTypes: ["example", "core_move"],
+      },
+    ],
+    namedCases: [
+      {
+        id: "ch15.case.morris-broken-promise",
+        label: "Robert Hunter Morris / promised to avoid Assembly disputes, then didn't",
+        summary: "Newly arrived to succeed Governor Hamilton, Morris asked Franklin whether he should expect an uncomfortable term; Franklin advised avoiding quarrels with the Assembly, and Morris promised to try despite admitting he loved disputing. By the time Franklin returned from a trip to Boston, the Assembly's own voting record already showed Morris locked in constant conflict with the House, a battle that lasted his entire administration.",
+        hardSpecifics: ["Mr. Morris", "Mr. Hamilton", "New York"],
+      },
+      {
+        id: "ch15.case.crown-point-loan-office-orders",
+        label: "Massachusetts Bay's Crown Point appeal / Loan-Office orders funding Pennsylvania's ten-thousand-pound aid",
+        summary: "Massachusetts Bay sent Mr. Quincy to Pennsylvania seeking help for an attack on Crown Point, and Franklin, as Quincy's fellow New Englander and a sitting Assembly member, dictated the address that won the Assembly's vote of ten thousand pounds. Governor Morris refused to sign the funding bill unless the proprietary estate was exempted from the tax paying for it, so Franklin proposed issuing Loan-Office orders instead, letting the Assembly raise the money on its own authority. The orders sold out within weeks as an attractive investment, and Quincy went home with the aid secured and a lasting friendship with Franklin.",
+        hardSpecifics: ["Mr. Quincy", "Crown Point", "ten thousand pounds", "the Loan office"],
+      },
+    ],
+    facts: [
+      {
+        id: "ch15.fact.morris-succeeds-hamilton",
+        claim: "Robert Hunter Morris arrived from England to replace Hamilton as Pennsylvania's governor after Hamilton resigned worn out by disputes forced on him by his proprietary instructions.",
+        mechanism: "Proprietary instructions bound any governor to demands the Assembly resisted, so occupying the office meant inheriting the same forced conflict regardless of personal temperament.",
+        commonError: "Hamilton resigned because he personally disliked politics in general.",
+        whyWrong: "The text ties his exhaustion specifically to disputes generated by his proprietary instructions, not to distaste for the job itself.",
+        groundedEntities: ["Hunter Morris", "England", "Hamilton", "Pennsylvania's", "Assembly"],
+      },
+      {
+        id: "ch15.fact.morris-admits-loving-disputes",
+        claim: "Morris openly told Franklin he loved disputing and considered it one of his greatest pleasures, even while promising to try to avoid disputes with the Assembly.",
+        mechanism: "His pleasure in argument came from being eloquent and a skilled sophister, which made him generally successful in argumentative conversation and thus reluctant to give it up.",
+        commonError: "Morris disliked conflict and was dragged into it unwillingly.",
+        whyWrong: "He explicitly says disputing is one of his greatest pleasures, so the conflict was not merely imposed on him.",
+        groundedEntities: ["Franklin", "Assembly. His"],
+      },
+    ],
+    allowedEntities: [
+      "Quarrels", "Proprietary Governors", "Governor Robert Hunter Morris's", "Pennsylvania Assembly", "Franklin", "Penn",
+      "When Morris", "Assembly", "Chronic", "Pennsylvania's", "Loan-Office", "Robert Hunter Morris", "England",
+      "Governor Hamilton", "Morris", "Habitual", "Morris's", "Assembly's", "Hamilton", "Crown Point", "Newly", "Boston",
+      "House", "Mr. Morris", "Mr. Hamilton", "New York", "Sancho Panza", "Sancho Panza's", "Quakers",
+      "Massachusetts Bay's Crown Point", "Massachusetts Bay", "Mr. Quincy", "Pennsylvania", "Quincy's", "New Englander",
+      "Governor Morris", "Quincy", "Loan", "Mr. Pownall", "Governor", "The Pennsylvania Assembly", "They", "Franklin's",
+      "Governor Denny's", "His", "Despite", "Proprietary", "Habitually", "Winning", "The Assembly's", "Writing",
+      "The Assembly", "The Assemblies", "Continued", "Penns", "Massachusetts Bay's", "Loan-office", "The Loan-Office",
+      "Robert Hunter Morris / promised to avoid Assembly disputes, then didn't",
+      "Massachusetts Bay's Crown Point appeal / Loan-Office orders funding Pennsylvania's ten-thousand-pound aid",
+    ],
+    allowedPlaces: [],
+    allowedNumbers: [],
+  } as unknown as SourcePacketV1;
+}
+
+// ch14: "Mr. Norris" appears only in allowedEntities (and a sourceQuote the gate does not read).
+function ch14ShapePacket(): SourcePacketV1 {
+  return {
+    chapterTitle: "Albany Plan of Union",
+    allowedAnchors: [BROWNELL_ANCHOR],
+    namedCases: [
+      {
+        id: "ch14.case.pa_assembly_rejection",
+        label: "Pennsylvania Assembly / Rejection of the Plan in Franklin's Absence",
+        summary: "Pennsylvania's governor forwarded the union plan to the Assembly with praise for its clarity and judgment, recommending serious attention. A certain member nonetheless managed to bring the plan up for consideration while Franklin happened to be absent, and the House rejected it without giving it real attention.",
+        hardSpecifics: ["great clearness and strength", "a certain member"],
+      },
+    ],
+    facts: [
+      {
+        id: "ch14.fact.albany_order",
+        claim: "The 1754 Albany congress was ordered by the Lords of Trade to coordinate colonial defense against France and relations with the Six Nations.",
+        mechanism: "Renewed fear of war with France prompted London to direct a joint colonial-Indian diplomatic meeting rather than leave it to individual colonies.",
+        commonError: "The congress was a colonial initiative rather than a directive from London.",
+        whyWrong: "Governor Hamilton is described as having \"receiv'd this order\" from the Lords of Trade, meaning the meeting originated with crown authority, not colonial choice.",
+        groundedEntities: ["Albany", "Lords", "Trade", "France", "Six Nations. Renewed", "London", "Indian", "London. Governor Hamilton"],
+      },
+    ],
+    allowedEntities: [
+      "Albany Plan", "Union", "Facing", "France", "Franklin", "American", "Albany", "British Board", "Trade", "England",
+      "Recognizing", "Coordinated", "Six Nations", "Lords", "Opposite", "Rejecting", "America", "Britain", "Albany Congress",
+      "Speaker", "Thomas Penn", "Secretary Peters", "Assembly", "Indian", "June", "The Albany", "The Pennsylvania",
+      "Benjamin Franklin", "Plan", "Colonies", "Traveling", "After", "Franklin's", "JOIN", "DIE", "Mr. James Alexander",
+      "Under", "Board", "British", "Parliament", "The Board", "Pennsylvania Assembly", "Rejection", "Pennsylvania's",
+      "House", "Procedural", "The Governor", "Pennsylvania", "The House", "Look", "Kennedy", "Several", "Officials",
+      "Governor Shirley", "Boston", "Renewed", "London", "Governor Hamilton", "Trade's", "Mr. Norris", "Mr. Thomas Penn",
+      "Mr. Secretary Peters", "The Pennsylvania Assembly", "Obligation", "House's", "The Assembly", "Despite", "Many",
+      "Shirley", "Being", "Pennsylvania Assembly / Rejection of the Plan in Franklin's Absence",
+    ],
+    allowedPlaces: [],
+    allowedNumbers: [],
+  } as unknown as SourcePacketV1;
+}
+
+function sec137Tokens(why: string, packet: SourcePacketV1): string[] {
+  return byCheck(validateExamplePack(pack(why), blueprint(), packet), "SEC137.").flatMap((f) => [...f.message.matchAll(/"([^"]+)"/g)].map((m) => m[1]));
+}
+
 // Round-2 regression: real rr21 case labels carry a title-cased right side (ch16, ch17),
 // and ch09's prose capitalizes the virtue names mid-sentence ("Temperance, Silence,
 // Order"). Those words are ordinary English at the start of a whyItMatters sentence,
@@ -254,12 +407,7 @@ function titleCasedPacket(): SourcePacketV1 {
         summary: "Eleven farmers on the frontier were killed after their guns failed to fire in wet weather, which Franklin used to argue for dry storage.",
         hardSpecifics: ["eleven farmers", "their guns would not go off"],
       },
-      {
-        id: "ch16.case.bond",
-        label: "The Two Doctors Bond / Premature Victory Fireworks Subscription",
-        summary: "Before news of the defeat arrived, two men named Bond brought Franklin a subscription paper for a celebratory firework, and Franklin declined.",
-        hardSpecifics: ["the two Doctors Bond", "a grand firework"],
-      },
+      CH16_BOND_CASE,
       {
         id: "ch09.case.virtues",
         label: "Benjamin Franklin / thirteen-virtue tracking book",
@@ -267,7 +415,9 @@ function titleCasedPacket(): SourcePacketV1 {
         hardSpecifics: ["seven columns", "red ink"],
       },
     ],
-    allowedEntities: [...base.allowedEntities, "Silence", "Club-Tested Civic Reform", "Premature Victory Fireworks Subscription", "Temperance", "Industry"],
+    // Round 3: ch16's own fact writes "bond" in lower case ("Franklin's personal bond").
+    facts: [...base.facts, CH16_PERSONAL_BOND_FACT],
+    allowedEntities: [...base.allowedEntities, "Silence", "Club-Tested Civic Reform", "Premature Victory Fireworks Subscription", "Temperance", "Industry", "The Two Doctors Bond", "Doctors Bond", "Bond", "Two"],
   } as unknown as SourcePacketV1;
 }
 
@@ -297,6 +447,62 @@ requiredTest("Q06b round 2: SEC137 still fires once on Franklin, Bond and Browne
     assert.equal(findings.length, 1, `${token}: expected one SEC137 finding on "${why}"; got ${JSON.stringify(findings)}`);
     assert.match(findings[0].message, new RegExp(`"${token}"`), `${token}: the message must name the token`);
   }
+});
+
+// ── round 3: the real packet shapes the round-2 detector missed ──────────────────
+
+requiredTest("Q06b round 3: ch15 shape, Franklin at a sentence start fires although the prose never writes Franklin's", () => {
+  const packet = ch15ShapePacket();
+  // The fixture reproduces the real ch15 shape: no possessive or titled Franklin outside allowedEntities.
+  const { allowedEntities, ...rest } = packet as unknown as { allowedEntities: string[] };
+  assert.ok(!/Franklin's|Mr\. Franklin/.test(JSON.stringify(rest)), "fixture drift: ch15 prose must not write Franklin's");
+  assert.ok(allowedEntities.includes("Franklin's"));
+  for (const why of [
+    "Franklin stayed out of the dispute and kept the funding moving.",
+    "A second vote moves the money without the governor's signature. Franklin did the same with the governor.",
+    "A second vote moves the money. Franklin found the same route around the governor's blocked funding bill.",
+    "A second vote moves the money. Franklin's own friendship with the governor survived comparable friction.",
+    "A second vote moves the money, as Franklin found.",
+  ]) assert.deepEqual(sec137Tokens(why, packet), ["Franklin"], `must flag Franklin: ${why}`);
+  assert.deepEqual(sec137Tokens(NAME_FREE_WHY, packet), [], "a name-free whyItMatters stays clean in the ch15 shape");
+});
+
+requiredTest("Q06b round 3: ch16 shape, the Doctors Bond fire although the packet also writes lower-case bond", () => {
+  const packet = ch16ShapePacket();
+  assert.match(JSON.stringify(packet.facts), /personal bond/, "fixture drift: ch16 writes bond in lower case");
+  for (const why of [
+    "The Doctors Bond learned what an early celebration costs. A recount waits for the facts.",
+    "Bond's subscription should have waited. A recount waits for the facts.",
+    "A recount waits for the facts, as the Doctors Bond found.",
+    "A recount waits for the facts, the way Bond's subscription should have.",
+  ]) assert.deepEqual(sec137Tokens(why, packet), ["Bond"], `must flag Bond: ${why}`);
+  for (const why of [
+    "Two signatures are cheaper than one bad shipment. A personal bond is only as good as the count behind it.",
+    "Before the truck leaves, the count and the page agree.",
+    "Confidence in a neat page is not a count. Only the recount catches the missing bundle.",
+  ]) assert.deepEqual(sec137Tokens(why, packet), [], `false positive on: ${why}`);
+});
+
+requiredTest("Q06b round 3: Denny and Norris fire from allowedEntities alone (Governor Denny's, Mr. Norris)", () => {
+  for (const [why, token, packet] of [
+    ["Governor Denny would have signed the second bill. A vote the governor cannot veto moves the money.", "Denny", ch15ShapePacket()],
+    ["Denny would have signed the second bill. A vote the governor cannot veto moves the money.", "Denny", ch15ShapePacket()],
+    ["A vote the governor cannot veto moves the money, as Denny found.", "Denny", ch15ShapePacket()],
+    ["Mr. Norris kept the minutes. A plan read while its author is away gets no hearing.", "Norris", ch14ShapePacket()],
+    ["Norris kept the minutes. A plan read while its author is away gets no hearing.", "Norris", ch14ShapePacket()],
+    ["A plan read while its author is away gets no hearing, as Norris's minutes show.", "Norris", ch14ShapePacket()],
+  ] as const) assert.deepEqual(sec137Tokens(why, packet), [token], `must flag ${token}: ${why}`);
+});
+
+requiredTest("Q06b round 3: institution words and entity noise stay clean at a sentence start in the real shapes", () => {
+  // "House's", "Trade's", "Loan", "Writing", "Winning", "Obligation" are in these packets'
+  // entity lists; the packets write the institutions after "the" ("the House", "the Lords of Trade").
+  for (const [why, packet] of [
+    ["House rules decide who signs. Loan terms matter less than who can veto them.", ch15ShapePacket()],
+    ["Writing the vote down first keeps the governor out of it. Winning the argument is not the same as moving the money.", ch15ShapePacket()],
+    ["Trade rules the timing here. Board members read the plan once, and rejection is cheap when nobody who wrote it is in the room.", ch14ShapePacket()],
+    ["House members vote on what is in the room. Obligation to an absent author is not a check.", ch14ShapePacket()],
+  ] as const) assert.deepEqual(sec137Tokens(why, packet), [], `false positive on: ${why}`);
 });
 
 requiredTest("Q06b: SEC137 does not flag the example's own dealt name", () => {
