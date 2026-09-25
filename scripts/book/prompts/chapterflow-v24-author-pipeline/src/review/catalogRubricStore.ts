@@ -368,6 +368,15 @@ class FileCatalogRubricStore implements CatalogRubricStore {
     } catch (cause) {
       return failed(RUBRIC_RECORD_CORRUPT, `${label} JSON is malformed: ${(cause as Error).message}`);
     }
+    if (
+      isRecord(value) && typeof value.instrumentVersion === "string"
+      && value.instrumentVersion !== CATALOG_RUBRIC_INSTRUMENT_VERSION
+    ) {
+      return failed(
+        RUBRIC_RECORD_CORRUPT,
+        `${label} was scored by instrument "${value.instrumentVersion}", not the current "${CATALOG_RUBRIC_INSTRUMENT_VERSION}"; a different instrument's record is never replayed`,
+      );
+    }
     const parsed = parseCatalogRubricRecord(value, candidateId);
     if (!parsed) return failed(RUBRIC_RECORD_CORRUPT, `${label} does not match the catalog-rubric record schema`);
     if (parsed.bookId !== bookId) {
