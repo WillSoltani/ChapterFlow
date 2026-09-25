@@ -81,6 +81,10 @@ export const CHAPTER_EDITOR_BRIEF: readonly string[] = Object.freeze([
   "ACTIONS. The three if-then plans are three DIFFERENT moves with three different triggers, not one move with three wordings. tryThisNow, coreSkill and the challenge each open differently.",
   "ORIENTATION. The chapter names its subject, its place and its time early, in the reader's first tier, so nobody has to infer who and when this is about.",
   "CADENCE. Vary sentence length. No sentence over thirty words, and never a run of same-length short declaratives.",
+  // Q06: rr21 ran about twice the length of the books that meet the bar (median 30,083
+  // reader characters a chapter against 12.7k-18.1k). The ceilings are the section
+  // contracts' own; every floor below them is a section-gate floor and still binds.
+  "LENGTH. Aim the whole chapter at about 16,000 reader-visible characters. Cut restatement, never substance, and never below a floor the section rules set (the tier floors, a scenario's 180 characters). Ceilings: a scenario 50 to 90 words; whyItMatters two sentences, about 40 words; a quiz stem 30 words; a card back 25 words; tryThisNow 35; coreSkill 60; each if-then plan 30; the 24-hour challenge and the weekly practice 40 each; the hook 25.",
   "FIDELITY. Check every historical sentence, quiz stem, explanation and card back against the book: against source_span when it is supplied, otherwise against the SOURCE PACKET. Check who acted, in what order, for what stated reason, with what outcome and credit. Where the chapter states a cause, motive, order, credit, membership, or an 'only', 'final' or 'first' that the source does not state, reword it to what the source says, using names and figures already in the chapter.",
 ]);
 

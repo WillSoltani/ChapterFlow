@@ -761,8 +761,9 @@ export const POSITIONAL_DEALS: PositionalDealDescriptor[] = [
   { poolKey: "cardBackShape", poolSize: CARD_BACK_SHAPES.length, slots: 7, perChapter: false, extract: (bp) => bp.sections.cards.map((c) => c.backShape) },
   // sceneFrame / requiredBeat: even slots deal from the decision pool, odd from
   // the smaller experiential pool. poolSizeAt returns the correct per-slot pool.
-  // Slots 0 and 1 are derived-overridable (R-065): the chapter's own frameDecision / frameExperiential.
-  { poolKey: "exampleSceneFrame", poolSize: EXAMPLE_SCENE_FRAMES.length, slots: 6, perChapter: false, poolSizeAt: exampleParityPoolSize(EXAMPLE_SCENE_FRAMES.length, EXAMPLE_SCENE_FRAMES_EXPERIENTIAL.length), derivedValueAt: (derived, slotIndex) => (slotIndex === 0 ? derived?.frameDecision : slotIndex === 1 ? derived?.frameExperiential : undefined), extract: (bp) => bp.sections.examples.map((e) => e.sceneFrame) },
+  // Q06: every slot deals from the pools, so BPV11 audits all six (slots 0 and 1 were
+  // derived-overridable under R-065 and handed to BPV13; see compileChapterBlueprint).
+  { poolKey: "exampleSceneFrame", poolSize: EXAMPLE_SCENE_FRAMES.length, slots: 6, perChapter: false, poolSizeAt: exampleParityPoolSize(EXAMPLE_SCENE_FRAMES.length, EXAMPLE_SCENE_FRAMES_EXPERIENTIAL.length), extract: (bp) => bp.sections.examples.map((e) => e.sceneFrame) },
   { poolKey: "exampleRequiredBeat", poolSize: EXAMPLE_BEATS.length, slots: 6, perChapter: false, poolSizeAt: exampleParityPoolSize(EXAMPLE_BEATS.length, EXAMPLE_BEATS_EXPERIENTIAL.length), extract: (bp) => bp.sections.examples.map((e) => e.requiredBeat) },
   { poolKey: "ifThenPlanShape", poolSize: IF_THEN_PLAN_SHAPES.length, slots: 3, perChapter: false, extract: (bp) => bp.sections.action.ifThenPlanShapes },
   { poolKey: "hookShape", poolSize: HOOK_SHAPES.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.hookShape] },
@@ -770,7 +771,7 @@ export const POSITIONAL_DEALS: PositionalDealDescriptor[] = [
   { poolKey: "actionMechanism", poolSize: ACTION_MECHANISMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.actionMechanism] },
   { poolKey: "weeklyPracticeForm", poolSize: WEEKLY_FORMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.weeklyPracticeForm] },
   { poolKey: "practiceForm", poolSize: PRACTICE_FORMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.sections.action.practiceForm] },
-  { poolKey: "practiceConstraint", poolSize: PRACTICE_CONSTRAINTS.length, slots: 1, perChapter: true, derivedValueAt: (derived) => derived?.practiceConstraint, extract: (bp) => [bp.sections.action.practiceConstraint] },
+  { poolKey: "practiceConstraint", poolSize: PRACTICE_CONSTRAINTS.length, slots: 1, perChapter: true, extract: (bp) => [bp.sections.action.practiceConstraint] },
   // ── R-128: the deals that were computed OUTSIDE this registry ─────────────────────────
   //
   // BPV11/BPV12 are the only cross-chapter collision audit in the pipeline, and they can only
@@ -1352,7 +1353,6 @@ export function compileChapterBlueprint(args: {
     ...[...siblingNames].sort(),
     ...neighbourCastNames(bookId, n, roots, salts, FORBIDDEN_NAME_GUIDANCE_LIMIT),
   ]);
-  const chapterDerived = pools.chapterDerived(n);
   const venuePalette = pools.venuePaletteFor(n);
   // R-113 — forbiddenVenues is the ADJACENT chapters' palettes, not "four venues this chapter
   // did not draw". The old list was `allVenues.filter(not in palette).slice(0, 4)`: with the
@@ -1399,16 +1399,14 @@ export function compileChapterBlueprint(args: {
       // even slots never collide with a prior chapter's same even slot (and likewise odd),
       // while the 3+3 decision/experiential parity is preserved by the parity switch itself.
       // A `redeal:example-slot` bump (exampleFrames salt) re-deals via the sibling-safe scan.
-      // R-065 — slot 0 and slot 1 stage THIS chapter's own best-taught mined specific when the
-      // design artifact carries one; every other slot draws from the book's genre pool. The
-      // deriver prefers a specific no earlier chapter already staged, but a book whose material
-      // keeps returning to one institution can still hand two chapters the same string — that is
-      // content, not a broken deal, so POSITIONAL_DEALS marks these two slots derived-overridable
-      // and BPV11 hands them to BPV13 (advisory) instead of blocking the book.
-      sceneFrame: (i === 0 ? chapterDerived?.frameDecision : i === 1 ? chapterDerived?.frameExperiential : undefined)
-        ?? (i % 2 === 1
-          ? deal(pools.sceneFramesExperiential, "exampleSceneFrameExperiential", i)
-          : deal(pools.sceneFramesDecision, "exampleSceneFrame", i)),
+      // Q06: every slot, 0 and 1 included, deals from the book's genre pools. R-065 staged
+      // slots 0 and 1 from a template around the chapter's mined specific ("a first attempt at X
+      // that gets corrected", "a first encounter with Y that sets a benchmark"); on the Franklin
+      // candidate rr21 every chapter's ex01/ex02 carried those two shells, several garbled, and
+      // readers named the shell. A stored design that still carries the strings is not read.
+      sceneFrame: i % 2 === 1
+        ? deal(pools.sceneFramesExperiential, "exampleSceneFrameExperiential", i)
+        : deal(pools.sceneFramesDecision, "exampleSceneFrame", i),
       // Deal which palette entry lands in each slot so slot 0's venue is not always
       // venuePalette[0]; a `redeal:venue` bump shifts the ordering (raw rank shift — the
       // palette is chapter-local, so there is no cross-chapter column to scan against).
@@ -1583,7 +1581,8 @@ export function compileChapterBlueprint(args: {
         weeklyPracticeForm,
         ifThenPlanShapes: Array.from({ length: 3 }, (_, i) => deal(IF_THEN_PLAN_SHAPES, "ifThenPlanShape", i)),
         practiceForm,
-        practiceConstraint: chapterDerived?.practiceConstraint ?? deal(pools.practiceConstraints, "practiceConstraint", 0),
+        // Q06: from the pool, never the minted "tie the move to X before acting".
+        practiceConstraint: deal(pools.practiceConstraints, "practiceConstraint", 0),
       },
     },
     constraints: {
