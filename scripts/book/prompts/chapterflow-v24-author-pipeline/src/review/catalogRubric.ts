@@ -102,6 +102,7 @@ import { createHash } from "node:crypto";
 import { REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js";
 import { REVIEW_WEIGHTS } from "./readerReview.js";
 import { renderChapterReaderDoc } from "./renderReaderDoc.js";
+import { spanExcerptForPrompt } from "../source/chapterMap.js";
 import type { ChapterV21 } from "../types.js";
 
 /** The instrument id stamped on every stored rubric record. Bump when the
@@ -109,8 +110,12 @@ import type { ChapterV21 } from "../types.js";
  *  instrument change is attributable in evidence instead of silent. `-v2`
  *  names the book-score SKILL revision this ports (the CF-I/CF-J-calibrated
  *  template with the full gate list, the texture axes and the severity-median
- *  aggregation), not a second version of this file. */
-export const CATALOG_RUBRIC_INSTRUMENT_VERSION = "catalog-rubric-v2" as const;
+ *  aggregation), not a second version of this file. `-source` marks the move
+ *  to a source-grounded correctness gate: a candidate with a frozen source text
+ *  now gives its readers each sampled chapter's span and the claim-level SOURCE
+ *  AUTHORITY rule, so a record from the source-blind `catalog-rubric-v2` is a
+ *  different measurement and is never replayed as this one. */
+export const CATALOG_RUBRIC_INSTRUMENT_VERSION = "catalog-rubric-v2-source" as const;
 
 /** How many independent readers score the book. THREE, matching the book-score
  *  skill and the per-chapter panel: odd, so every factor median is a real
@@ -839,12 +844,21 @@ export function buildRegisterHint(input: Readonly<{
  * The chapter header states the chapter's position in the WHOLE book, so a
  * reader scoring a four-chapter sample of a fourteen-chapter book knows it is
  * reading a sample and can judge sameness across the sample honestly.
+ *
+ * SOURCE TEXT. When the candidate carries a frozen source, `sources` holds each
+ * sampled chapter's span and one block per chapter is appended AFTER the chapter
+ * loop — the author's own words, for the correctness gate only — through the
+ * same 60,000-character `spanExcerptForPrompt` bound fresh QC uses (the header
+ * says so when a span was cut). The chapter bytes are unchanged, so the
+ * sourceless render is an exact byte prefix of the grounded one; with no
+ * sources the document is byte-identical to the source-blind instrument's.
  */
 export function renderBookRubricDocument(input: Readonly<{
   title: string;
   author: string;
   chapters: readonly { readonly chapter: ChapterV21; readonly number: number }[];
   totalChapters: number;
+  sources?: readonly { readonly number: number; readonly text: string }[];
 }>): string {
   if (input.chapters.length === 0) throw new Error("renderBookRubricDocument requires at least one chapter");
   const blocks: string[] = [
@@ -855,6 +869,14 @@ export function renderBookRubricDocument(input: Readonly<{
   for (const { chapter, number } of input.chapters) {
     blocks.push(`===== CHAPTER ${number} OF ${input.totalChapters} =====`);
     blocks.push(renderChapterReaderDoc(chapter));
+  }
+  for (const { number, text } of input.sources ?? []) {
+    const excerpt = spanExcerptForPrompt(text);
+    const scope = excerpt.excerpted
+      ? `the author's own words; for the correctness gate only; EXCERPT: ${text.length - excerpt.omittedChars} of ${text.length} characters shown, gaps marked`
+      : "the author's own words; for the correctness gate only";
+    blocks.push(`===== SOURCE TEXT FOR CHAPTER ${number} OF ${input.totalChapters} (${scope}) =====`);
+    blocks.push(excerpt.text);
   }
   return blocks.join("\n\n");
 }
@@ -881,6 +903,13 @@ export function renderBookRubricDocument(input: Readonly<{
  * copy of the template (`tests/v25/fixtures/book-score-skill-step3-reader-prompt.txt`)
  * line by line and fails on any line that is not carried verbatim, unless that
  * line is one of the four adaptations named in this module's header.
+ *
+ * `sourceGrounded` (the document carries SOURCE TEXT blocks) ADDS lines and
+ * removes none: a pointer line after the "For each read" line, and the
+ * claim-level SOURCE AUTHORITY paragraph after the gate's "If clean" line. The
+ * rule is worded at CLAIM level on purpose — a token-level "names in the source
+ * are correct" would pass an inverted credit whose every name is in the span.
+ * Without it the task is byte-identical to the source-blind instrument's.
  */
 export function buildCatalogRubricReaderTask(input: Readonly<{
   readerNumber: number;
@@ -889,14 +918,24 @@ export function buildCatalogRubricReaderTask(input: Readonly<{
   registerHint: string;
   chapterNumbers: readonly number[];
   totalChapters: number;
+  sourceGrounded?: boolean;
 }>): string {
   const count = input.chapterNumbers.length;
   const chapters = input.chapterNumbers.join(", ");
+  const grounded = input.sourceGrounded === true;
+  const sourcePointer = grounded
+    ? "\nAfter the chapters, the same block carries each chapter's SOURCE TEXT — the author's own words for the events it retells — for the correctness gate only (see SOURCE AUTHORITY below)."
+    : "";
+  const sourceAuthority = grounded
+    ? "\n\nSOURCE AUTHORITY (correctness gate only): for any event inside the author's own account, the SOURCE TEXT sections are the verification for the Factual-accuracy, DATE-AS-EVENT and NAME-DRIFT checks above — the verification the orchestrator would do — so check a suspect claim against them yourself before you FAIL it. A name, date, place or event that the chapter reports the way the source reports it is NOT a violation, even if other histories differ."
+      + "\nA claim that credits, attributes, dates, orders or motivates something differently from the source IS a violation even when every name in it appears in the source; quote the chapter sentence and the source sentence it contradicts."
+      + "\nUse the source for this gate only: score the ten factors, the texture axes and book3_churn on the chapters alone, exactly as you would without it."
+    : "";
   return `You are reader #${input.readerNumber} (independent, skeptical, calibrated) on a content-quality panel scoring ${count} chapters
 of the AI-generated learning book "${input.title}" by ${input.author}. ${input.registerHint}
 
 THE CHAPTERS ARE PROVIDED INLINE, in the reader-document block beside this task. They are chapters ${chapters} of ${input.totalChapters}, rendered as the reader sees them. Read only that block; do not read or write any files.
-For each read: the Hook, Fast read, Deep read, Full read, Key takeaway, Try this now, Examples, Quiz (prompts and choices, with the ANSWER KEY section at the end of each chapter), Review cards, Implementation plan, and Memorable lines.
+For each read: the Hook, Fast read, Deep read, Full read, Key takeaway, Try this now, Examples, Quiz (prompts and choices, with the ANSWER KEY section at the end of each chapter), Review cards, Implementation plan, and Memorable lines.${sourcePointer}
 
 CORRECTNESS GATE (any hit => gate_verdict=FAIL, quote it verbatim):
  - Quiz-key soundness: derive each answer BLIND from the prose, compare to correctIndex; flag any
@@ -919,7 +958,7 @@ CORRECTNESS GATE (any hit => gate_verdict=FAIL, quote it verbatim):
  - Evidence integrity: no first-name/initial-only testimonial worn as proof.
  - Invented witness ("Piper move"): a fictional character cast as a SUBJECT inside a real named study/case.
  - Contested-science hedging: contested/failed claims hedged, not stated as settled law.
-If clean: gate_verdict=PASS, gate_failures="none". Only FAIL on a concrete, quotable violation.
+If clean: gate_verdict=PASS, gate_failures="none". Only FAIL on a concrete, quotable violation.${sourceAuthority}
 
 APPARATUS LEAKAGE (defect-class, NOT a gate fail — report in apparatus_quotes, verbatim):
 source-machinery narrated to the reader: page/chapter citations in prose ("on Ch. 6 p. 138");

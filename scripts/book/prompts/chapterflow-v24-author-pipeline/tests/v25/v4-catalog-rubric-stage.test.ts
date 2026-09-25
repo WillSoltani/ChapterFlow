@@ -10,6 +10,7 @@
  */
 
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
 
 import {
@@ -28,6 +29,7 @@ import {
   selectSeededChapterIndexes,
 } from "../../src/review/catalogRubric.js";
 import { createCatalogRubricStore } from "../../src/review/catalogRubricStore.js";
+import { CHAPTER_MAP_SCHEMA_VERSION } from "../../src/source/chapterMap.js";
 import type { ChapterV21 } from "../../src/types.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
 import { buildBookRunHarness } from "./bookRunRepairRig.js";
@@ -171,10 +173,166 @@ requiredTest("the panel runs three readers over the whole book and binds the rec
     for (const number of [1, 2, 3]) assert.match(document, new RegExp(`===== CHAPTER ${number} OF 3 =====`));
     assert.match(document, /## ANSWER KEY/);
     assert.match(document, /UNTRUSTED SOURCE DATA/);
+    // No frozen source text: today's source-blind document and task, unchanged.
+    assert.equal(document.includes("SOURCE TEXT FOR CHAPTER"), false);
+    assert.equal(task.includes("SOURCE AUTHORITY"), false);
   }
   // Distinct attempt ids per reader: run-state refuses a re-spawned attempt.
   const attemptIds = calls().map((call) => call.context.attemptId);
   assert.equal(new Set(attemptIds).size, 3, JSON.stringify(attemptIds));
+});
+
+// ── Source grounding (rubric-source L1) ─────────────────────────────────────
+
+const FRANKLIN_BOOK = "the-autobiography-of-benjamin-franklin";
+/** rr21 source-text.txt:6300-6311, verbatim — the passage ch19 retells. */
+const FORT_GEORGE_PASSAGE = [
+  "to Louisburg, with the intent to besiege and take that fortress; all",
+  "the packet-boats in company ordered to attend the general's ship,",
+  "ready to receive his dispatches when they should be ready. We were out",
+  "five days before we got a letter with leave to part, and then our ship",
+  "quitted the fleet and steered for England. The other two packets he",
+  "still detained, carried them with him to Halifax, where he stayed some",
+  "time to exercise the men in sham attacks upon sham forts, then altered",
+  "his mind as to besieging Louisburg, and returned to New York, with all",
+  "his troops, together with the two packets above mentioned, and all",
+  "their passengers! During his absence the French and savages had taken",
+  "Fort George, on the frontier of that province, and the savages had",
+  "massacred many of the garrison after capitulation.",
+].join("\n");
+/** rr21 source-text.txt:4842-4866, verbatim — the lamp credit ch13 inverts. */
+const CLIFTON_PASSAGE = [
+  "After some time I drew a bill for paving the city, and brought it into",
+  "the Assembly. It was just before I went to England, in 1757, and did",
+  "not pass till I was gone,[90] and then with an alteration in the mode",
+  "of assessment, which I thought not for the better, but with an",
+  "additional provision for lighting as well as paving the streets, which",
+  "was a great improvement. It was by a private person, the late Mr. John",
+  "Clifton, his giving a sample of the utility of lamps, by placing one",
+  "at his door, that the people were first impress'd with the idea of",
+  "enlighting all the city. The honour of this public benefit has also",
+  "been ascrib'd to me, but it belongs truly to that gentleman. I did but",
+  "follow his example, and have only some merit to claim respecting the",
+  "form of our lamps, as differing from the globe lamps we were at first",
+  "supply'd with from London. Those we found inconvenient in these",
+  "respects: they admitted no air below; the smoke, therefore, did not",
+  "readily go out above, but circulated in the globe, lodg'd on its",
+  "inside, and soon obstructed the light they were intended to afford;",
+  "giving, besides, the daily trouble of wiping them clean; and an",
+  "accidental stroke on one of them would demolish it, and render it",
+  "totally useless. I therefore suggested the composing them of four flat",
+  "panes, with a long funnel above to draw up the smoke, and crevices",
+  "admitting air below, to facilitate the ascent of the smoke; by this",
+  "means they were kept clean, and did not grow dark in a few hours, as",
+  "the London lamps do, but continu'd bright till morning, and an",
+  "accidental stroke would generally break but a single pane, easily",
+  "repair'd.",
+].join("\n");
+/** Lives only in chapter 2's span. Chapter 2 is not sampled, so this must reach no prompt. */
+const UNSAMPLED_MARKER = "UNSAMPLED-CH02-SPAN-MARKER-7f3a";
+const ANTI_INVERSION = "A claim that credits, attributes, dates, orders or motivates something differently from the source IS a violation even when every name in it appears in the source";
+
+/** The frozen-text pair the research intake copies into a source-text
+ *  candidate (built the way v4-source-fidelity-qc-wiring's sourceTextFiles
+ *  does): 19 contiguous spans, ch13 = Clifton, ch19 = Fort George. */
+function franklinSourceFiles(options: Readonly<{ wrongSha?: boolean }> = {}): CandidateInputFile[] {
+  const spanTexts = Array.from({ length: 19 }, (_value, index) => {
+    const number = index + 1;
+    if (number === 13) return CLIFTON_PASSAGE;
+    if (number === 19) return FORT_GEORGE_PASSAGE;
+    if (number === 2) return `The author's own chapter 2 account. ${UNSAMPLED_MARKER}`;
+    return `The author's own account for chapter ${number}, in his words.`;
+  });
+  let text = "";
+  const spans = spanTexts.map((spanText, index) => {
+    if (text.length > 0) text += "\n\n";
+    const startOffset = text.length;
+    text += spanText;
+    return {
+      chapterNumber: index + 1,
+      chapterTitle: `Chapter ${index + 1}`,
+      startOffset,
+      endOffset: text.length,
+      startAnchor: spanText.slice(0, 60),
+      endAnchor: spanText.slice(-60),
+    };
+  });
+  const sha = createHash("sha256").update(text, "utf8").digest("hex");
+  return [
+    { kind: "PROVENANCE", logicalPath: "inputs/research/source-text.txt", mediaType: "text/plain", bytes: Buffer.from(text, "utf8") },
+    jsonFile("inputs/research/chapter-map.json", {
+      schemaVersion: CHAPTER_MAP_SCHEMA_VERSION,
+      bookId: FRANKLIN_BOOK,
+      sourceTextSha256: options.wrongSha === true ? "0".repeat(64) : sha,
+      sourceTextLength: text.length,
+      coverageFraction: 1,
+      spans,
+    }, "PROVENANCE"),
+  ];
+}
+
+requiredTest("a Franklin candidate's readers get each sampled chapter's source text and the claim-level rule", async () => {
+  const candidate = buildCandidate(FRANKLIN_BOOK, chaptersFor(FRANKLIN_BOOK, 19), franklinSourceFiles());
+  const { runner, calls } = scriptedRunner([1, 2, 3].map(
+    (number) => (request: Parameters<ModelTaskRunner["run"]>[0]) => succeeded(request.context.attemptId, readerJson(number)),
+  ));
+  const panel = new CatalogRubricPanelEvaluator({ runner, sleep: instantSleep });
+  const scored = await panel.score({
+    bookId: FRANKLIN_BOOK,
+    title: "The Autobiography of Benjamin Franklin",
+    author: "Benjamin Franklin",
+    candidate,
+    completedAt: "2026-09-02T01:00:00.000Z",
+    taskContext: { ...taskContext(), bookId: FRANKLIN_BOOK },
+  });
+  assert.equal(scored.ok, true, JSON.stringify(scored));
+  if (!scored.ok) return;
+  assert.deepEqual([...scored.value.sampledChapterNumbers], [1, 7, 13, 19]);
+  assert.equal(calls().length, 3);
+  for (const call of calls()) {
+    const task = Buffer.from(call.prompt.inputs[0].bytes).toString("utf8");
+    const document = Buffer.from(call.prompt.inputs[1].bytes).toString("utf8");
+    assert.equal(document.includes(FORT_GEORGE_PASSAGE), true, "ch19's source span (Fort George) must reach every reader");
+    assert.equal(document.includes(CLIFTON_PASSAGE), true, "ch13's source span (Clifton) must reach every reader");
+    for (const number of [1, 7, 13, 19]) {
+      assert.equal(
+        document.includes(`===== SOURCE TEXT FOR CHAPTER ${number} OF 19 (the author's own words; for the correctness gate only) =====`),
+        true,
+        `missing source block for chapter ${number}`,
+      );
+    }
+    // The source rides AFTER the last chapter.
+    assert.equal(
+      document.indexOf("===== SOURCE TEXT FOR CHAPTER 1 OF 19") > document.indexOf("===== CHAPTER 19 OF 19 ====="),
+      true,
+    );
+    assert.equal(document.includes(UNSAMPLED_MARKER), false, "an unsampled chapter's span must not reach any prompt");
+    assert.equal(task.includes(UNSAMPLED_MARKER), false);
+    assert.equal(task.includes(ANTI_INVERSION), true, "the grounded task must carry the anti-inversion clause");
+    assert.match(task, /SOURCE AUTHORITY \(correctness gate only\)/);
+  }
+  assert.equal(scored.value.instrumentVersion, "catalog-rubric-v2-source");
+});
+
+requiredTest("a Franklin candidate whose chapter map is bound to other bytes is INVALID before any reader is spent", async () => {
+  const candidate = buildCandidate(FRANKLIN_BOOK, chaptersFor(FRANKLIN_BOOK, 19), franklinSourceFiles({ wrongSha: true }));
+  const { runner, calls } = scriptedRunner([1, 2, 3].map(
+    (number) => (request: Parameters<ModelTaskRunner["run"]>[0]) => succeeded(request.context.attemptId, readerJson(number)),
+  ));
+  const panel = new CatalogRubricPanelEvaluator({ runner, sleep: instantSleep });
+  const scored = await panel.score({
+    bookId: FRANKLIN_BOOK,
+    title: "The Autobiography of Benjamin Franklin",
+    author: "Benjamin Franklin",
+    candidate,
+    completedAt: "2026-09-02T01:00:00.000Z",
+    taskContext: { ...taskContext(), bookId: FRANKLIN_BOOK },
+  });
+  assert.equal(scored.ok, false, JSON.stringify(scored.ok ? scored.value.sampledChapterNumbers : scored));
+  if (scored.ok) throw new Error("a candidate whose source cannot be resolved must never be scored");
+  assert.equal(scored.error.code, "CATALOG_RUBRIC_CANDIDATE_INVALID");
+  assert.match(scored.error.message, /is bound to source text 0{64}/);
+  assert.equal(calls().length, 0, "the source is resolved before any whole-book read is spent");
 });
 
 requiredTest("a book over the whole-book threshold is sampled with score.py's seeded four", async () => {
@@ -706,6 +864,38 @@ requiredTest("the rubric store refuses a conflicting second record for one immut
   if (!read.ok) return;
   assert.equal(read.value.readers[0].scores.retention, 84, "the first record stands");
   assert.equal((await store.getRecord("store-book", "absent-candidate")).ok, false);
+});
+
+requiredTest("a record from the source-blind instrument is refused with a message naming both versions", async (context: TestContext) => {
+  const booksRoot = context.roots.tempRoot;
+  const store = createCatalogRubricStore({ booksRoot });
+  const record = {
+    schemaVersion: "1" as const,
+    instrumentVersion: CATALOG_RUBRIC_INSTRUMENT_VERSION,
+    bookId: "old-instrument-book",
+    candidate: { candidateId: "old-instrument-candidate", manifestDigest: "c".repeat(64) },
+    title: "Old Instrument Book",
+    author: "Fixture Author",
+    totalChapters: 2,
+    sampledChapterNumbers: [1, 2],
+    documentSha256: "d".repeat(64),
+    readers: unanimousReaders(84),
+    completedAt: "2026-09-02T02:00:00.000Z",
+  };
+  assert.equal((await store.putRecord("old-instrument-book", record)).ok, true);
+  const paths = store.paths("old-instrument-book");
+  assert.equal(paths.ok, true, JSON.stringify(paths));
+  if (!paths.ok) return;
+  const recordPath = paths.value.record("old-instrument-candidate");
+  const onDisk = JSON.parse(readFileSync(recordPath, "utf8")) as Record<string, unknown>;
+  // Exactly what a record written before source grounding carries.
+  writeFileSync(recordPath, `${JSON.stringify({ ...onDisk, instrumentVersion: "catalog-rubric-v2" }, null, 2)}\n`, "utf8");
+  const read = await store.getRecord("old-instrument-book", "old-instrument-candidate");
+  assert.equal(read.ok, false, "a source-blind panel must never replay as the source-grounded instrument");
+  if (read.ok) return;
+  assert.equal(read.error.code, "RUBRIC_RECORD_CORRUPT");
+  assert.match(read.error.message, /"catalog-rubric-v2".*"catalog-rubric-v2-source"/);
+  assert.match(read.error.message, /never replayed/);
 });
 
 finishV25Tests().catch((error: unknown) => {

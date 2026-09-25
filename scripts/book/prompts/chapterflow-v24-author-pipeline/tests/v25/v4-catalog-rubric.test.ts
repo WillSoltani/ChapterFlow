@@ -17,6 +17,7 @@ import { REVIEW_WEIGHTS } from "../../src/review/readerReview.js";
 import {
   CATALOG_RUBRIC_DEFAULT_BAR,
   CATALOG_RUBRIC_FACTOR_FLOOR,
+  CATALOG_RUBRIC_INSTRUMENT_VERSION,
   CATALOG_RUBRIC_WEIGHTS,
   CatalogRubricReaderError,
   aggregateCatalogRubric,
@@ -30,6 +31,7 @@ import {
   medianSeverity,
   roundHalfToEven,
   parseCatalogRubricReaderJson,
+  renderBookRubricDocument,
   renderCatalogRubricScorecard,
   resolveRubricBar,
   selectRubricChapterIndexes,
@@ -38,6 +40,7 @@ import {
   type CatalogRubricSeverity,
   type CatalogRubricTextureAxis,
 } from "../../src/review/catalogRubric.js";
+import { fixtureChapter } from "../model-bakeoff-helpers.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 
 /** The weight table exactly as `.claude/skills/book-score/compose.py` declares
@@ -98,6 +101,8 @@ requiredTest("seeded chapter selection reproduces score.py exactly", () => {
   assert.deepEqual([...selectSeededChapterIndexes("rubric-gate-book", 23)], [2, 3, 13, 14]);
   assert.deepEqual([...selectSeededChapterIndexes("the-autobiography-of-benjamin-franklin", 10)], [0, 1, 2, 3]);
   assert.deepEqual([...selectSeededChapterIndexes("the-autobiography-of-benjamin-franklin", 13)], [0, 3, 7, 10]);
+  // The real Franklin book: every 19-chapter candidate re-reads ch13 (Clifton) and ch19 (Fort George).
+  assert.deepEqual([...selectSeededChapterIndexes("the-autobiography-of-benjamin-franklin", 19)], [0, 6, 12, 18]);
   assert.deepEqual([...selectSeededChapterIndexes("the-autobiography-of-benjamin-franklin", 23)], [2, 3, 14, 15]);
   assert.deepEqual([...selectSeededChapterIndexes("atomic-habits", 14)], [0, 4, 5, 9]);
   // Fewer chapters than the sample size: every chapter, never a duplicate.
@@ -371,6 +376,15 @@ requiredTest("the bar resolves from the flag, then the env, and fails closed on 
  * VERBATIM unless it is named in ADAPTED_LINES below with a reason — so deleting
  * a gate criterion, softening a factor definition or dropping a JSON field fails
  * this test instead of shipping as a "verbatim port".
+ *
+ * ADDED LINES (source grounding, rubric-source L1). With `sourceGrounded: true`
+ * the task ADDS lines the template does not have and removes none: the "After
+ * the chapters, the same block carries each chapter's SOURCE TEXT …" pointer
+ * after the "For each read" line, and the three-line SOURCE AUTHORITY paragraph
+ * (its own block) after the gate's "If clean" line. Added lines cannot fail a
+ * template-line-must-appear check, so this case needs no ADAPTED_LINES entry;
+ * the SOURCE AUTHORITY case below pins their exact text and proves that
+ * deleting them gives back the ungrounded task byte for byte.
  */
 const SKILL_TEMPLATE_PATH = resolve(
   dirname(fileURLToPath(import.meta.url)),
@@ -487,6 +501,129 @@ requiredTest("the scorecard prints compose.py's table plus the promotion verdict
   });
   assert.match(cleanCard, /\*\*Promotion bar\*\*.*\*\*MET\*\*/);
   assert.equal(cleanCard.includes("**CAPPED**"), false);
+});
+
+// ── Source grounding of the correctness gate (rubric-source L1) ─────────────
+
+const FRANKLIN = "the-autobiography-of-benjamin-franklin";
+/** source-text.txt:6300-6311 of the rr21 candidate, verbatim: the passage ch19
+ *  retells, where the author himself names the fort "Fort George". */
+const FORT_GEORGE_SOURCE = [
+  "to Louisburg, with the intent to besiege and take that fortress; all",
+  "the packet-boats in company ordered to attend the general's ship,",
+  "ready to receive his dispatches when they should be ready. We were out",
+  "five days before we got a letter with leave to part, and then our ship",
+  "quitted the fleet and steered for England. The other two packets he",
+  "still detained, carried them with him to Halifax, where he stayed some",
+  "time to exercise the men in sham attacks upon sham forts, then altered",
+  "his mind as to besieging Louisburg, and returned to New York, with all",
+  "his troops, together with the two packets above mentioned, and all",
+  "their passengers! During his absence the French and savages had taken",
+  "Fort George, on the frontier of that province, and the savages had",
+  "massacred many of the garrison after capitulation.",
+].join("\n");
+
+/** The pinned anti-inversion clause. Worded at CLAIM level on purpose: the ch13
+ *  span contains "Clifton", "four flat panes" and "the honour", so a token-level
+ *  rule ("names that appear in the source are correct") would pass the inverted
+ *  lamp credit. A later edit that softens this sentence fails here. */
+const ANTI_INVERSION_SENTENCE = "A claim that credits, attributes, dates, orders or motivates something differently from the source IS a violation even when every name in it appears in the source";
+
+function franklinSample(): { chapter: ReturnType<typeof fixtureChapter>; number: number }[] {
+  return [1, 7, 13, 19].map((number) => ({ chapter: fixtureChapter(FRANKLIN, number, `s${number}`), number }));
+}
+
+const PORT_TASK_INPUT = {
+  readerNumber: 2,
+  title: "The Autobiography",
+  author: "Benjamin Franklin",
+  registerHint: "The source author's register is plainspoken. Judge Tone on fidelity to that voice.",
+  chapterNumbers: [2, 7, 11, 12],
+  totalChapters: 14,
+} as const;
+
+const sha256 = (text: string): string => createHash("sha256").update(text, "utf8").digest("hex");
+
+requiredTest("the rubric document carries each sampled chapter's SOURCE TEXT after the chapters, chapter bytes unchanged", () => {
+  const base = { title: "The Autobiography of Benjamin Franklin", author: "Benjamin Franklin", chapters: franklinSample(), totalChapters: 19 };
+  const sourceless = renderBookRubricDocument(base);
+  const sources = [
+    { number: 1, text: "SPAN-ONE the author's own account of his ancestry." },
+    { number: 7, text: "SPAN-SEVEN the author's own account of the Junto." },
+    { number: 13, text: "SPAN-THIRTEEN the author's own account of the lamps." },
+    { number: 19, text: FORT_GEORGE_SOURCE },
+  ];
+  const grounded = renderBookRubricDocument({ ...base, sources });
+  // The chapter section is an exact byte prefix: the source rides AFTER it.
+  assert.equal(grounded.startsWith(`${sourceless}\n\n`), true, "the sourceless render must be a byte prefix of the grounded one");
+  const tail = grounded.slice(sourceless.length);
+  const headers = [1, 7, 13, 19].map(
+    (number) => `===== SOURCE TEXT FOR CHAPTER ${number} OF 19 (the author's own words; for the correctness gate only) =====`,
+  );
+  let cursor = 0;
+  for (const [index, header] of headers.entries()) {
+    const at = tail.indexOf(header, cursor);
+    assert.notEqual(at, -1, `missing (or out of order): ${header}`);
+    assert.equal(tail.startsWith(`${header}\n\n${sources[index].text}`, at), true, `${header} must be followed by a blank line and the span`);
+    cursor = at + header.length;
+  }
+  assert.equal(tail.includes("had taken\nFort George, on the frontier of that province"), true);
+  assert.equal(grounded.endsWith(FORT_GEORGE_SOURCE), true, "the last block is the last sampled chapter's span");
+
+  // A span over the 60,000-character prompt cap is excerpted, and the header SAYS so.
+  const long = `${"The author remembers a long winter. ".repeat(1800)}\n\n${"He tells of the lamps. ".repeat(1500)}`;
+  assert.equal(long.length > 60_000, true);
+  const excerpted = renderBookRubricDocument({ ...base, sources: [{ number: 13, text: long }] });
+  const match = /===== SOURCE TEXT FOR CHAPTER 13 OF 19 \(the author's own words; for the correctness gate only; EXCERPT: (\d+) of (\d+) characters shown, gaps marked\) =====/.exec(excerpted);
+  assert.notEqual(match, null, "an excerpted span must be declared in its header");
+  assert.equal(Number(match?.[2]), long.length);
+  assert.equal(Number(match?.[1]) <= 60_000, true);
+  assert.match(excerpted, /\[\.\.\. omitted \d+ characters of this chapter \.\.\.\]/);
+});
+
+requiredTest("a candidate with no frozen source renders byte-identically to today", () => {
+  const base = { title: "The Autobiography of Benjamin Franklin", author: "Benjamin Franklin", chapters: franklinSample(), totalChapters: 19 };
+  const sourceless = renderBookRubricDocument(base);
+  // Pinned on origin/main 99dc4858f, before source grounding existed.
+  assert.equal(sha256(sourceless), "5754f07d1dd6ff1b47e79396a92094d4332855a6331d1951f7b53babb558ddde");
+  assert.equal(renderBookRubricDocument({ ...base, sources: [] }), sourceless);
+  assert.equal(sourceless.includes("SOURCE TEXT FOR CHAPTER"), false);
+});
+
+requiredTest("the reader task carries the claim-level SOURCE AUTHORITY rule only when the document is source-grounded", () => {
+  const plain = buildCatalogRubricReaderTask(PORT_TASK_INPUT);
+  // Pinned on origin/main 99dc4858f: an ungrounded task is today's task, byte for byte.
+  assert.equal(sha256(plain), "7c75e350893796433681af88b6049d732aa3fb99f59695620f64cb2770eb019c");
+  assert.equal(buildCatalogRubricReaderTask({ ...PORT_TASK_INPUT, sourceGrounded: false }), plain);
+  assert.equal(plain.includes(ANTI_INVERSION_SENTENCE), false);
+  assert.equal(plain.includes("SOURCE AUTHORITY"), false);
+  assert.equal(plain.includes("SOURCE TEXT"), false);
+
+  const grounded = buildCatalogRubricReaderTask({ ...PORT_TASK_INPUT, sourceGrounded: true });
+  assert.equal(grounded.includes(ANTI_INVERSION_SENTENCE), true, "the anti-inversion clause must be carried literally");
+  const lines = grounded.split("\n");
+  const forEach = lines.findIndex((line) => line.startsWith("For each read: the Hook, Fast read"));
+  assert.equal(
+    lines[forEach + 1],
+    "After the chapters, the same block carries each chapter's SOURCE TEXT — the author's own words for the events it retells — for the correctness gate only (see SOURCE AUTHORITY below).",
+  );
+  const clean = lines.indexOf('If clean: gate_verdict=PASS, gate_failures="none". Only FAIL on a concrete, quotable violation.');
+  assert.notEqual(clean, -1);
+  assert.deepEqual(lines.slice(clean + 1, clean + 6), [
+    "",
+    "SOURCE AUTHORITY (correctness gate only): for any event inside the author's own account, the SOURCE TEXT sections are the verification for the Factual-accuracy, DATE-AS-EVENT and NAME-DRIFT checks above — the verification the orchestrator would do — so check a suspect claim against them yourself before you FAIL it. A name, date, place or event that the chapter reports the way the source reports it is NOT a violation, even if other histories differ.",
+    `${ANTI_INVERSION_SENTENCE}; quote the chapter sentence and the source sentence it contradicts.`,
+    "Use the source for this gate only: score the ten factors, the texture axes and book3_churn on the chapters alone, exactly as you would without it.",
+    "",
+  ]);
+  assert.equal(lines[clean + 6].startsWith("APPARATUS LEAKAGE"), true);
+  // Additions only: removing the added lines gives back today's task exactly.
+  const added = new Set([forEach + 1, clean + 1, clean + 2, clean + 3, clean + 4]);
+  assert.equal(lines.filter((_line, index) => !added.has(index)).join("\n"), plain);
+});
+
+requiredTest("the instrument version moved, so a source-blind record is never read as a source-grounded one", () => {
+  assert.equal(CATALOG_RUBRIC_INSTRUMENT_VERSION, "catalog-rubric-v2-source");
 });
 
 finishV25Tests().catch((error: unknown) => {

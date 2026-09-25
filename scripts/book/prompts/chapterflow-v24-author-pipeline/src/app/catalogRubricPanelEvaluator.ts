@@ -22,8 +22,10 @@
  *   - operator cancellation is `CATALOG_RUBRIC_CANCELLED`;
  *   - output the strict assembly refuses, after the bounded retry, is
  *     `CATALOG_RUBRIC_READER_UNPARSEABLE`;
- *   - a candidate whose CHAPTER set will not parse is
- *     `CATALOG_RUBRIC_CANDIDATE_INVALID`.
+ *   - a candidate whose CHAPTER set will not parse, or whose frozen source
+ *     text cannot be resolved for a sampled chapter (the pure fail-closed
+ *     resolver fresh QC uses), is `CATALOG_RUBRIC_CANDIDATE_INVALID` — before
+ *     any reader is spent.
  * None of these is a gate FAIL. A book that could not be scored is a book that
  * cannot be promoted AND cannot be blamed — the caller reports uncertainty.
  *
@@ -62,6 +64,7 @@ import { isTransientReaderModelResult } from "../review/laneOrchestrator.js";
 import { ensureTrailingNewline } from "../lib/atomicWrite.js";
 import type { ModelResult } from "../runtime/modelResult.js";
 import { isUnretryableProviderMessage } from "../runtime/modelErrors.js";
+import { resolveCandidateChapterSource } from "../source/candidateSourceContext.js";
 import type { ChapterV21 } from "../types.js";
 import {
   jsonPromptRequest,
@@ -185,11 +188,24 @@ export class CatalogRubricPanelEvaluator implements CatalogRubricPanel {
     }
     const indexes = selectRubricChapterIndexes(request.bookId, chapters.length);
     const sampled = indexes.map((index) => chapters[index]);
+    // The correctness gate judges claims inside the author's account against the
+    // author's own text. A candidate with no frozen source is `model-memory` and
+    // keeps the source-blind document; one whose source cannot be resolved is
+    // refused here, before any whole-book read is spent.
+    const sources: { number: number; text: string }[] = [];
+    for (const { number } of sampled) {
+      const resolved = resolveCandidateChapterSource({ files: request.candidate.files, chapterNumber: number, sidecar: undefined });
+      if (!resolved.ok) return failure(CATALOG_RUBRIC_CANDIDATE_INVALID, resolved.error.message);
+      if (resolved.value.context.provenance === "source-text") {
+        sources.push({ number, text: resolved.value.context.spanText });
+      }
+    }
     const document = ensureTrailingNewline(renderBookRubricDocument({
       title: request.title,
       author: request.author,
       chapters: sampled,
       totalChapters: chapters.length,
+      sources,
     }));
     const documentSha256 = createHash("sha256").update(document, "utf8").digest("hex");
     const documentBlock = renderUntrustedSourceBlock("book-document", document, "markdown");
@@ -205,6 +221,7 @@ export class CatalogRubricPanelEvaluator implements CatalogRubricPanel {
         registerHint,
         chapterNumbers,
         totalChapters: chapters.length,
+        sourceGrounded: sources.length > 0,
       });
       const scored = await this.#runReader({
         task,
