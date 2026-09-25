@@ -137,7 +137,7 @@ export function checkReadingLevel(
       finding(
         "prose.reading_level",
         "major",
-        `${tier}: ${targets.measureLabel} ${grade.toFixed(1)} exceeds ceiling ${target.hi} (target ${target.label}). Shorten sentences or use plainer words.`,
+        `${tier}: ${targets.measureLabel} ${grade.toFixed(1)} exceeds ceiling ${target.hi} (target ${target.label}). Lift it with shorter common words first (keep every name and date), then split only the longest sentence; a long clause-linked sentence of short words passes, within the 30-word cap.`,
       ),
     );
   }
@@ -178,7 +178,7 @@ export function checkBreakdownReadingEase(
       finding(
         "prose.reading_ease",
         "major",
-        `assembled breakdown reads at Flesch ease ${ease.toFixed(1)}, below the floor ${floor} (rubric band 72–84). Prefer short sentences and plain, concrete verbs over abstractions.`,
+        `assembled breakdown reads at Flesch ease ${ease.toFixed(1)}, below the floor ${floor} (rubric band 72–84). Lift it with shorter common words first (keep every name and date), then split only the longest sentence; a long clause-linked sentence of short words passes, within the 30-word cap.`,
       ),
     ];
   }

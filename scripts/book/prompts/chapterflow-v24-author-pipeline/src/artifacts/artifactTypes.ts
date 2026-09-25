@@ -147,6 +147,22 @@ export type SourcePacketV1 = {
   /** R-046 — "source-text" when the sidecar this packet was compiled from was
    *  quoted from the book, "model-memory" when it was recalled. */
   sourceProvenance?: "source-text" | "model-memory";
+  /**
+   * Q05 (tone L1) — the book's own words: the research sidecar's verbatim-checked
+   * quotations and this chapter's voiceCues. Set TOGETHER, and only when at least
+   * one quotation survives the D18 exclusions (compiler/sourcePacket.ts), so a
+   * quotation-less packet is byte-identical to the pre-Q05 packet.
+   *
+   * NOT citable material, and never rendered inside the "ONLY allowed facts" block:
+   * the section card strips both fields from its packet JSON and renders them for
+   * the SUMMARY writer only (sectionTasks.ts sourceWordsSection); the chapter editor
+   * sees them beside its packet projection. writerPacketProjection() does not carry
+   * them, so the v24 author card is unchanged. The chapter-repair lane drops both
+   * from the "source_packet" record it sends (candidateRepairApplicationPort.ts
+   * repairSourcePacketBytes).
+   */
+  quotations?: Array<{ quote: string; attributionFrame: string }>;
+  voiceCues?: string[];
 };
 
 /** The nine designable variety pools a book's blueprints draw from. These are the pools that

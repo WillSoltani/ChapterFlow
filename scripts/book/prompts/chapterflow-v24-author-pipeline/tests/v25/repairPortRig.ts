@@ -65,7 +65,13 @@ function chapterFixture(context: TestContext): { chapter: ChapterV21; blueprint:
 /** The frozen section-task sidecar's two writer inputs. `undefined` scars means
  *  NO sidecar at all (the pre-wiring candidate shape); a voice card requires the
  *  sidecar, so passing one implies it. */
-export type SidecarOptions = Readonly<{ scars?: Record<string, unknown> | null; voiceCard?: string | null }>;
+export type SidecarOptions = Readonly<{
+  scars?: Record<string, unknown> | null;
+  voiceCard?: string | null;
+  /** Q05: extra fields merged into chapter one's source packet (the book's own
+   *  words). Absent = today's packet exactly. */
+  packetOneFields?: Record<string, unknown>;
+}>;
 
 export function candidate(context: TestContext, sidecar: SidecarOptions = {}): CandidateSnapshot {
   const scars = sidecar.scars;
@@ -78,7 +84,7 @@ export function candidate(context: TestContext, sidecar: SidecarOptions = {}): C
     title: "Keep The Signal Clean",
     hook: "Noisy account data can hide careful behavior before a lender sees the fuller pattern.",
   };
-  const packetOne = { ...(fixture.packet as Record<string, unknown>), sourceSidecarPath: "research/ch01.source.json" };
+  const packetOne = { ...(fixture.packet as Record<string, unknown>), sourceSidecarPath: "research/ch01.source.json", ...(sidecar.packetOneFields ?? {}) };
   const packetOneHash = sourcePacketHash(packetOne as unknown as SourcePacketV1);
   const blueprintOne = {
     ...(fixture.blueprint as Record<string, unknown>),
@@ -187,12 +193,15 @@ export type RigOptions = Readonly<{
   /** Extra files staged with the failed candidate (Q04: the frozen source text
    *  and its chapter map). Absent = today's candidate exactly. */
   extraFiles?: readonly Readonly<{ kind: "SIDECAR"; logicalPath: string; mediaType: "application/json" | "text/plain"; bytes: Uint8Array }>[];
+  /** Q05: extra fields merged into chapter one's staged source packet. */
+  packetOneFields?: Record<string, unknown>;
 }>;
 
 export function rig(context: TestContext, options: RigOptions = {}) {
   const staged = candidate(context, {
     ...(options.scars === undefined ? {} : { scars: options.scars }),
     ...(options.voiceCard === undefined ? {} : { voiceCard: options.voiceCard }),
+    ...(options.packetOneFields === undefined ? {} : { packetOneFields: options.packetOneFields }),
   });
   const chapterOne = JSON.parse(Buffer.from(staged.files[0].bytes).toString("utf8")) as ChapterV21;
   const withExtraFiles: CandidateSnapshot = (options.extraFiles ?? []).length === 0 ? staged : (() => {

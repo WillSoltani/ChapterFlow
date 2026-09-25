@@ -1,0 +1,305 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 19,
+  "chapterTitle": "Agent of Pennsylvania in London",
+  "focus": "Appointed the Pennsylvania Assembly's agent to carry a petition against the proprietors' restrictive instructions to the king, Franklin is held in the colonies for months by an indecisive military commander before he can sail, then in London secures the disputed tax act's passage in Council through a personally witnessed assurance of honest administration rather than through favor-seeking or force.",
+  "coreClaim": "Influence over distant authority comes from documented grievances, verified accounts, and a formally witnessed personal assurance backed by later audit, while command exercised without accountability squanders resources and exposes the very people it is supposed to protect.",
+  "centralConcept": {
+    "id": "ch19.concept.written-engagement",
+    "name": "the witnessed engagement",
+    "plainDefinition": "When two distrustful parties cannot settle a dispute by argument alone, one side's honest opinion, converted into a signed paper before a neutral officer, can unlock a decision that mere assertion could not.",
+    "whyItMatters": "It shows that credibility in a formal dispute is built by putting a specific, checkable commitment on paper in front of a witness, not by repeating a claim more forcefully or trading on personal reputation."
+  },
+  "keyClaims": [
+    "A newly arrived governor's private cultivation of goodwill at a dinner, including liquor-fueled promises of reward, does not move Franklin once he judges that accepting proprietary favor would conflict with his Assembly membership.",
+    "The Pennsylvania Assembly turns to a formal petition to the crown only after the governor refuses, under his instructions, to pass a sixty-thousand-pound grant for the king's use.",
+    "A military commander's habitual indecision - always about to send letters, never sending them - can strand agents, delay campaigns, and leave frontier posts exposed even while the commander appears constantly busy at his desk.",
+    "Officials who control military logistics can withhold payment from a supplier even after his accounts are certified correct by the proper examining officer, on the unstated assumption that every contractor secretly profits.",
+    "A crown official's claim that royal instructions carry the force of law in the colonies is disputed on the ground that colonial assemblies, not the king, are understood to originate colonial law, subject only to royal assent.",
+    "A proprietary family's solicitor can stall a written complaint for nearly a year by routing it through the Attorney and Solicitor-General, then fault the complainant's paper for lacking proper titles.",
+    "A contested tax act reaches royal assent not because either side out-argues the other but because one party personally assures a Privy Council judge that assessment will be fair, and later an independent Assembly committee's audit confirms that assurance.",
+    "Careless distribution of cargo weight, not hull design alone, can make an otherwise fast ship sail like the dullest in a fleet, which suggests that safe and fast sailing is a matter of systematic testing rather than settled seamanship convention."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch19.case.denny-medal-dinner",
+      "label": "Captain Denny / Royal Society medal presented at a city dinner with solicitations for alliance",
+      "summary": "Governor Denny presents Franklin with a Royal Society medal at a public dinner, then privately urges him, over increasing amounts of Madeira, to help restore harmony with the proprietors in exchange for unspecified rewards. Franklin answers that his own circumstances make proprietary favor unnecessary and that his Assembly seat forbids accepting any.",
+      "teachesWhat": "Personal charm and promised reward do not substitute for an actual change in the substance of a political dispute.",
+      "hardSpecifics": [
+        "Captain Denny",
+        "medal from the Royal Society",
+        "decanter of Madeira"
+      ],
+      "realWorld": true,
+      "sourceQuote": "Our new governor, Captain Denny, brought over for me the before mentioned medal from the Royal Society, which he presented to me at an entertainment given him by the city.",
+      "hardSpecificEvidence": [
+        {
+          "specific": "Captain Denny",
+          "proposition": "Denny was Pennsylvania's newly arrived governor who sought a private alliance with Franklin.",
+          "sourceQuote": "Our new governor, Captain Denny, brought over for me the before mentioned medal from the Royal Society"
+        },
+        {
+          "specific": "medal from the Royal Society",
+          "proposition": "Denny personally delivered and presented Franklin a Royal Society medal at a public entertainment.",
+          "sourceQuote": "brought over for me the before mentioned medal from the Royal Society, which he presented to me at an entertainment given him by the city"
+        },
+        {
+          "specific": "decanter of Madeira",
+          "proposition": "As the two men talked privately, the other diners sent in wine, and Denny grew more insistent with each glass.",
+          "sourceQuote": "The drinkers, finding we did not return immediately to the table, sent us a decanter of Madeira, which the governor made liberal use of"
+        }
+      ]
+    },
+    {
+      "id": "ch19.case.loudoun-delay-fort-george",
+      "label": "Lord Loudoun / months-long departure delay and Fort George's fall during his aborted Louisbourg campaign",
+      "summary": "Lord Loudoun repeatedly promises that Franklin's packet ship is about to sail, holding it in port from April to late June while merchants, passengers, and Franklin himself wait on letters that are perpetually 'ready to-morrow.' Loudoun eventually sails his army toward Louisbourg, then abandons the siege and returns to New York, during which absence the French and their allies capture Fort George and kill many of its garrison after surrender.",
+      "teachesWhat": "Command exercised through habitual indecision can waste months of colonial resources and leave real defenses exposed even while appearing industrious.",
+      "hardSpecifics": [
+        "Lord Loudoun",
+        "Fort George",
+        "Louisburg"
+      ],
+      "realWorld": true,
+      "sourceQuote": "During his absence the French and savages had taken Fort George, on the frontier of that province, and the savages had massacred many of the garrison after capitulation.",
+      "hardSpecificEvidence": [
+        {
+          "specific": "Lord Loudoun",
+          "proposition": "Loudoun controlled the packet-boat schedules and repeatedly delayed Franklin's crossing to England.",
+          "sourceQuote": "his lordship's letters were not ready; and yet whoever waited on him found him always at his desk, pen in hand"
+        },
+        {
+          "specific": "Louisburg",
+          "proposition": "Loudoun's fleet sailed with the stated intent of besieging the fortress of Louisbourg before he changed course.",
+          "sourceQuote": "bound to Louisburg, with the intent to besiege and take that fortress"
+        },
+        {
+          "specific": "Fort George",
+          "proposition": "While Loudoun's army idled at Halifax, enemy forces captured Fort George and killed captured defenders.",
+          "sourceQuote": "the French and savages had taken Fort George, on the frontier of that province, and the savages had massacred many of the garrison"
+        }
+      ]
+    },
+    {
+      "id": "ch19.case.paris-yearlong-delay",
+      "label": "Ferdinand John Paris / nearly a year-long delay answering Franklin's written complaints",
+      "summary": "After Franklin submits the Assembly's heads of complaint in writing, the proprietors hand the paper to their solicitor Ferdinand John Paris, who already bears personal enmity toward Franklin for earlier criticizing his legal arguments. Paris routes the paper to the Attorney and Solicitor-General, where it sits unanswered for almost a full year before the proprietors finally respond by faulting Franklin's paper for lacking proper formality.",
+      "teachesWhat": "A hostile intermediary can neutralize a written complaint indefinitely simply by routing it through additional review without ever formally refusing it.",
+      "hardSpecifics": [
+        "Ferdinand John Paris",
+        "a year wanting eight days",
+        "Lord Baltimore"
+      ],
+      "realWorld": true,
+      "sourceQuote": "where it lay unanswered a year wanting eight days, during which time I made frequent demands of an answer from the proprietaries",
+      "hardSpecificEvidence": [
+        {
+          "specific": "Ferdinand John Paris",
+          "proposition": "Paris was the proprietors' solicitor who managed their legal correspondence and had a personal grudge against Franklin.",
+          "sourceQuote": "they put the paper into the hands of their solicitor, Ferdinand John Paris, who managed for them all their law business"
+        },
+        {
+          "specific": "a year wanting eight days",
+          "proposition": "Franklin's written complaint went unanswered for nearly a full year after being submitted.",
+          "sourceQuote": "where it lay unanswered a year wanting eight days"
+        },
+        {
+          "specific": "Lord Baltimore",
+          "proposition": "Paris was already occupied managing the proprietors' decades-long boundary suit against a neighboring proprietor.",
+          "sourceQuote": "their great suit with the neighbouring proprietary of Maryland, Lord Baltimore, which had subsisted 70 years"
+        }
+      ]
+    },
+    {
+      "id": "ch19.case.mansfield-tax-engagement",
+      "label": "Lord Mansfield / the witnessed engagement that let the Pennsylvania tax act pass",
+      "summary": "When the proprietors petition the king to block a Pennsylvania tax act because it would tax their own estate, Lord Mansfield privately asks Franklin whether he genuinely believes the proprietary estate would be assessed fairly; on Franklin's plain yes, Mansfield has a written assurance to that effect drawn up and signed before the Clerk of the Council, after which the act is allowed to pass. An Assembly committee's later independent audit finds the tax had in fact been assessed with perfect equity.",
+      "teachesWhat": "A disputed decision can turn on converting a sincere private opinion into a specific, signed, witnessed commitment rather than on repeated argument.",
+      "hardSpecifics": [
+        "Lord Mansfield",
+        "Clerk of the Council",
+        "engagement to assure that point"
+      ],
+      "realWorld": true,
+      "sourceQuote": "\"Then,\" says he, \"you can have little objection to enter into an engagement to assure that point.\" I answer'd, \"None at all.\"",
+      "hardSpecificEvidence": [
+        {
+          "specific": "Lord Mansfield",
+          "proposition": "Mansfield, one of the proprietors' own counsel, privately asked Franklin whether the tax act would injure the proprietary estate.",
+          "sourceQuote": "Lord Mansfield, one of the counsel, rose, and beckoning me took me into the clerk's chamber"
+        },
+        {
+          "specific": "engagement to assure that point",
+          "proposition": "Franklin agreed to sign a formal written assurance that the tax would not injure the proprietary estate.",
+          "sourceQuote": "you can have little objection to enter into an engagement to assure that point"
+        },
+        {
+          "specific": "Clerk of the Council",
+          "proposition": "The written assurance was drafted by the Council's own clerk before the act was permitted to receive royal assent.",
+          "sourceQuote": "a paper to the purpose was drawn up by the Clerk of the Council, which I sign'd with Mr. Charles"
+        }
+      ]
+    },
+    {
+      "id": "ch19.case.scilly-near-wreck",
+      "label": "Near-wreck off the Scilly Isles / a half-asleep watchman and a saving yaw of the ship",
+      "summary": "Running at night to slip past enemy privateers near the Channel's entrance, the packet ship is carried off course by an indraught near the Scilly Isles; the bow watchman, though answering 'ay, ay' to checks, fails to see a light hidden by the sails until an accidental yaw reveals rocks and a lighthouse dead ahead. Captain Kennedy, awake while the captain sleeps, orders the ship to wear round in time to escape the wreck.",
+      "teachesWhat": "A watchman's mechanical 'all clear' answer can mask actual inattention, and only a lucky accident or an alert bystander catches the danger in time.",
+      "hardSpecifics": [
+        "Scilly Isles",
+        "Captain Kennedy",
+        "lighthouse"
+      ],
+      "realWorld": true,
+      "sourceQuote": "we escaped shipwreck, for we were running right upon the rocks on which the lighthouse was erected",
+      "hardSpecificEvidence": [
+        {
+          "specific": "Scilly Isles",
+          "proposition": "An indraught near the Scilly Isles pulled the ship off its intended course toward the rocks.",
+          "sourceQuote": "shap'd his course, as he thought, so as to pass wide of the Scilly Isles; but it seems there is sometimes a strong indraught"
+        },
+        {
+          "specific": "Captain Kennedy",
+          "proposition": "Captain Kennedy, awake on deck while the ship's own captain slept, ordered the maneuver that avoided the wreck.",
+          "sourceQuote": "Captain Kennedy, jumping upon deck, and seeing the danger, ordered the ship to wear round, all sails standing"
+        },
+        {
+          "specific": "lighthouse",
+          "proposition": "The ship nearly struck the rocks on which a lighthouse stood, narrowly escaping shipwreck.",
+          "sourceQuote": "we were running right upon the rocks on which the lighthouse was erected"
+        }
+      ]
+    }
+  ],
+  "hardEdge": "It is tempting to read Loudoun's endless delays and his refusal to pay Franklin's certified provision accounts as a colorful travel anecdote about one eccentric, overly busy officer. What actually holds is that Loudoun's indecision functioned as a structural failure of patronage-based command with real costs - a captured fort, a ruinous embargo, a wrecked Carolina fleet, and an agent stranded for months at his own expense - because authority handed out through favor rather than competence produces exactly this kind of costly drift, which the anecdote's comic details tend to obscure.",
+  "voiceCues": [
+    "Recounts Lord Loudoun's delays through deadpan, dated chronology (beginning of April to near the end of June) rather than through direct complaint.",
+    "Quotes other people's exact words at length - the messenger Innis's line about a general who is 'like St. George on the signs, always on horseback, and never rides on,' Shirley's remark about the low seat - letting their speech characterize them.",
+    "Cites the public written record as evidence for his own political actions, pointing to 'the votes of the time' and the Historical Review he later published.",
+    "Breaks from the political and travel narrative into a technical digression on ship design, proposing a systematic program of naval experiments."
+  ],
+  "paraphraseNotes": "Governor Denny, newly arrived, delivers Franklin's Royal Society medal at a public dinner, then privately courts his favor over wine, promising reward if Franklin will help ease tension with the proprietors; Franklin declines any personal benefit, citing his Assembly seat, though the underlying dispute continues unresolved between them personally. After Denny refuses, under his instructions, to pass a sixty-thousand-pound grant, the Assembly appoints Franklin its agent to carry a petition against the proprietary instructions to the king in London. Before Franklin can sail, Lord Loudoun detains him in New York for months, always claiming his dispatches are nearly ready; the delay costs Franklin his pre-shipped sea-stores and, later, payment for certified war-supply accounts Loudoun simply defers to the English treasury. Loudoun's larger campaign toward Louisbourg dissolves into sham drills at Halifax before he turns back, during which Fort George falls and its garrison is massacred. In London, Lord Granville tells Franklin that royal instructions are themselves colonial law, a claim Franklin disputes on the basis of colonial charters. Franklin then meets the Penn proprietors at Spring Garden; their solicitor, Ferdinand John Paris, who bears him personal ill will, lets Franklin's written complaint sit unanswered for nearly a year before objecting to its lack of formal titles. When the Assembly's new tax act, taxing proprietary land alongside everyone else's, comes before the Privy Council, the proprietors fight it; Lord Mansfield privately extracts Franklin's honest opinion that the tax will be assessed fairly, has it put into a signed, witnessed paper, and the act is allowed to pass - later confirmed fair by an Assembly audit committee stacked partly with proprietary friends. Along the way, shipboard episodes - a dull sailer fixed by moving water casks aft, a wagered thirteen-knot run, a near-wreck off the Scilly Isles caught only by an accidental yaw - furnish Franklin's own aside that ship design and handling deserve the same kind of systematic experiment he applies to civic problems. The practical rule that emerges: personal charm, rank, and repeated assertion move little in a contested dispute; documented complaint, verified accounts, and a specific, witnessed commitment do.",
+  "testableFacts": [
+    {
+      "id": "ch19.fact.denny-medal",
+      "claim": "Captain Denny personally delivered and presented Franklin a Royal Society medal at a public entertainment given by the city.",
+      "becauseMechanism": "The medal had been sent over with Denny specifically for delivery to Franklin, and the presentation occurred at Denny's own welcoming dinner.",
+      "commonError": "Assuming the medal was mailed to Franklin directly rather than carried and presented by the new governor.",
+      "errorIsWhy": "The medal was brought over for Franklin by Denny and presented by him personally at the dinner.",
+      "sourceQuote": "Our new governor, Captain Denny, brought over for me the before mentioned medal from the Royal Society, which he presented to me at an entertainment given him by the city."
+    },
+    {
+      "id": "ch19.fact.franklin-refuses-favor",
+      "claim": "Franklin refused proprietary favors on the ground that his Assembly membership made accepting them improper.",
+      "becauseMechanism": "As a sitting Assembly member opposing proprietary measures, accepting personal reward from the proprietary side would compromise his position.",
+      "commonError": "Assuming Franklin refused simply out of personal dislike for Denny or the proprietors.",
+      "errorIsWhy": "Franklin's own stated reason was his Assembly membership, not personal animosity, and he adds he had no personal enmity to the proprietary.",
+      "sourceQuote": "that, being a member of the Assembly, I could not possibly accept of any"
+    },
+    {
+      "id": "ch19.fact.sixty-thousand-bill",
+      "claim": "Governor Denny refused to pass an Assembly bill granting sixty thousand pounds for the king's use because his instructions forbade it.",
+      "becauseMechanism": "Denny was bound by proprietary instructions that took priority over the Assembly's grant as drafted.",
+      "commonError": "Assuming the Assembly's grant was refused for lack of funds rather than for conflicting with the governor's instructions.",
+      "errorIsWhy": "The refusal is tied explicitly to Denny's compliance with his instructions, not to any shortage of money.",
+      "sourceQuote": "which the governor absolutely refus'd to pass, in compliance with his instructions"
+    },
+    {
+      "id": "ch19.fact.assembly-appoints-agent",
+      "claim": "The Pennsylvania Assembly appointed Franklin its agent to carry and support a petition to the king against the proprietary instructions.",
+      "becauseMechanism": "Having found the proprietary instructions unyieldingly at odds with both popular privilege and crown service, the Assembly resolved to escalate the dispute directly to the king.",
+      "commonError": "Assuming Franklin volunteered for or sought the London agency himself.",
+      "errorIsWhy": "The Assembly resolved and appointed him, an institutional decision rather than a personal initiative.",
+      "sourceQuote": "resolv'd to petition the king against them, and appointed me their agent to go over to England, to present and support the petition"
+    },
+    {
+      "id": "ch19.fact.sea-stores-lost",
+      "claim": "Franklin's own sea-stores sailed without him because Loudoun's negotiations delayed his departure past the packet's sailing date.",
+      "becauseMechanism": "Franklin had already put his stores aboard the original packet before Loudoun's mediation kept him in Philadelphia for the accommodation talks.",
+      "commonError": "Assuming Franklin simply forgot or mismanaged his own supplies.",
+      "errorIsWhy": "The loss is directly attributed to the delay caused by Loudoun's intervening negotiation, not to any oversight by Franklin.",
+      "sourceQuote": "in the meantime, the packet had sailed with my sea-stores, which was some loss to me"
+    },
+    {
+      "id": "ch19.fact.three-months-delay",
+      "claim": "Franklin was detained roughly three months in New York, from early April to late June, before Loudoun's fleet finally sailed.",
+      "becauseMechanism": "Loudoun repeatedly postponed departure while waiting for his own letters to be finished, a delay that stretched across the packets already in port.",
+      "commonError": "Assuming the delay was a matter of days or weeks rather than months.",
+      "errorIsWhy": "Franklin states the span directly as from the beginning of April to near the end of June.",
+      "sourceQuote": "It was about the beginning of April that I came to New York, and I think it was near the end of June before we sail'd."
+    },
+    {
+      "id": "ch19.fact.fort-george-falls",
+      "claim": "While Loudoun's expedition idled and then turned back from besieging Louisbourg, French and allied forces captured Fort George and killed many of its garrison after capitulation.",
+      "becauseMechanism": "Loudoun's army was occupied with sham drills at Halifax and an aborted siege rather than defending the frontier, leaving Fort George without relief.",
+      "commonError": "Assuming Fort George fell before or independent of Loudoun's campaign rather than during his absence from proper defense.",
+      "errorIsWhy": "The fort's fall is tied specifically to the period of Loudoun's absence on the failed Louisbourg expedition.",
+      "sourceQuote": "During his absence the French and savages had taken Fort George, on the frontier of that province, and the savages had massacred many of the garrison after capitulation."
+    },
+    {
+      "id": "ch19.fact.loudoun-withholds-payment",
+      "claim": "Lord Loudoun refused to promptly pay Franklin for provisions supplied to Braddock's army even after the accounts were certified correct.",
+      "becauseMechanism": "Loudoun decided not to mix the accounts with his predecessors' and deferred payment to the English treasury instead, while implying Franklin had secretly profited.",
+      "commonError": "Assuming the accounts were disputed or found inaccurate, which is why payment was withheld.",
+      "errorIsWhy": "The proper officer certified the accounts as correct; the withholding came from Loudoun's own decision and suspicion, not from any error found in the accounts.",
+      "sourceQuote": "certified them to be right; and the balance due for which his lordship promis'd to give me an order on the paymaster"
+    },
+    {
+      "id": "ch19.fact.granville-kings-law",
+      "claim": "Lord Granville asserted to Franklin that the king's instructions to colonial governors carried the force of law in the colonies.",
+      "becauseMechanism": "Granville held that instructions, having been drawn by judges, debated in Council, and signed by the king, became binding law for the colonies once issued.",
+      "commonError": "Assuming Franklin agreed with or accepted this account of colonial law.",
+      "errorIsWhy": "Franklin considered this new doctrine and disputed it based on his understanding of colonial charters.",
+      "sourceQuote": "They are then, so far as they relate to you, the law of the land, for the king is the Legislator of the Colonies"
+    },
+    {
+      "id": "ch19.fact.paris-delay",
+      "claim": "The proprietors' solicitor Ferdinand John Paris left Franklin's written complaint unanswered for nearly a full year.",
+      "becauseMechanism": "Paris routed the complaint through the Attorney and Solicitor-General for opinion, and no answer came back through that channel for close to a year.",
+      "commonError": "Assuming the proprietors responded promptly and the delay came from Franklin's side.",
+      "errorIsWhy": "The paper lay unanswered for a year wanting eight days despite Franklin's frequent demands.",
+      "sourceQuote": "where it lay unanswered a year wanting eight days, during which time I made frequent demands of an answer from the proprietaries"
+    },
+    {
+      "id": "ch19.fact.mansfield-engagement-passes-act",
+      "claim": "The disputed Pennsylvania tax act was allowed to receive royal assent after Franklin signed a formal engagement, arranged by Lord Mansfield, assuring fair assessment.",
+      "becauseMechanism": "Mansfield converted Franklin's stated honest opinion into a signed paper before the Clerk of the Council, which satisfied the objection that had blocked the act.",
+      "commonError": "Assuming the act passed purely through legal argument by the lawyers on each side.",
+      "errorIsWhy": "The act's passage is credited specifically to the signed engagement following Mansfield's private question to Franklin, not to the pleadings alone.",
+      "sourceQuote": "which I sign'd with Mr. Charles, who was also an Agent of the Province for their ordinary affairs, when Lord Mansfield returned to the Council Chamber, where finally the law was allowed to pass"
+    },
+    {
+      "id": "ch19.fact.committee-confirms-equity",
+      "claim": "An Assembly committee that included proprietary friends later confirmed unanimously that the tax had been assessed with perfect equity.",
+      "becauseMechanism": "After one year's tax was levied under the act, the Assembly appointed a committee, including proprietary partisans, to examine the assessors' proceedings.",
+      "commonError": "Assuming only Franklin's allies conducted or endorsed the audit.",
+      "errorIsWhy": "The committee deliberately included several particular friends of the proprietaries, yet still signed unanimously that the tax was fairly assessed.",
+      "sourceQuote": "they unanimously sign'd a report that they found the tax had been assess'd with perfect equity"
+    },
+    {
+      "id": "ch19.fact.arrival-date",
+      "claim": "Franklin arrived in London with his son on 27 July 1757 after crossing from Falmouth.",
+      "becauseMechanism": "The packet ship reached soundings near Falmouth after roughly thirty days at sea, and Franklin traveled on to London stopping briefly at Stonehenge and Wilton.",
+      "commonError": "Assuming Franklin never recorded a specific arrival date, only a general summer timeframe for reaching London.",
+      "errorIsWhy": "Franklin gives the exact date directly rather than a vague season.",
+      "sourceQuote": "We arrived in London the 27th of July, 1757."
+    }
+  ],
+  "quotations": [
+    {
+      "id": "ch19.quote.low-seat",
+      "quote": "I find a low seat the easiest.",
+      "attributionFrame": "At the New York dinner honoring his successor, Shirley waved off the slight of a low chair by saying, \"I find a low seat the easiest.\"",
+      "sourceQuote": "\"No matter,\" says he, \"Mr. Franklin, I find a low seat the easiest.\""
+    },
+    {
+      "id": "ch19.quote.st-george",
+      "quote": "he is like St. George on the signs, always on horseback, and never rides on",
+      "attributionFrame": "The messenger Innis, weeks into waiting on Loudoun's letters, summed up the general by saying \"he is like St. George on the signs, always on horseback, and never rides on.\"",
+      "sourceQuote": "\"Yes,\" says Innis, \"but he is like St. George on the signs, always on horseback, and never rides on.\""
+    }
+  ],
+  "sourceProvenance": "source-text",
+  "sourceTextSha256": "8d71d7dc6784b651bfe068dba20e0b6c511357efda3974bd05564193f0899e34"
+}

@@ -135,6 +135,8 @@ export function compileSourcePacketFromSidecar(args: {
     ...((sidecar as { sourceProvenance?: "source-text" | "model-memory" }).sourceProvenance === undefined
       ? {}
       : { sourceProvenance: (sidecar as { sourceProvenance: "source-text" | "model-memory" }).sourceProvenance }),
+    // Q05 (tone L1): the book's own words, only where a quotation survives D18.
+    ...sourceWordsFor(bookId, sidecar),
   };
   // P13: stamp the pedagogical fact ranking (teachingPriority + coreMoveFactId). At single-packet
   // compile time bookWideDuplicate is not yet known, so this is an initial ranking; compileSourcePackets
@@ -161,6 +163,54 @@ function chapterContextFor(sidecar: SourceSidecarV2): SourcePacketV1["chapterCon
   const keyClaims = (Array.isArray(raw.keyClaims) ? raw.keyClaims : []).map(asText).filter(Boolean);
   if (!focus && !coreClaim && !hardEdge && keyClaims.length === 0) return null;
   return { focus, coreClaim, hardEdge, keyClaims };
+}
+
+/**
+ * Q05 / owner decision D18 — research lines that never reach a writer, keyed by book.
+ *
+ * D18 = A lets the writers quote at most two research-verified lines per chapter,
+ * "never a line that demeans a people". Two items in Franklin's pinned research run
+ * (20260918T123418217Z) fail that test and are named here EXACTLY, by quotation id
+ * and by the full voiceCue text: an explicit list the owner can read, not a lexicon
+ * that guesses. This is the one chokepoint: the summary card and the chapter editor
+ * both read the packet this builds.
+ */
+export const SOURCE_WORDS_EXCLUSIONS: Readonly<Record<string, Readonly<{ quotationIds: readonly string[]; voiceCues: readonly string[] }>>> = Object.freeze({
+  "the-autobiography-of-benjamin-franklin": Object.freeze({
+    // ch13: the Carlisle orator's "Let this be for the Indians to get drunk with".
+    quotationIds: Object.freeze(["ch13.quote.great-spirit-rum"]),
+    voiceCues: Object.freeze([
+      // ch15
+      "folds a racially charged period joke into political commentary without separate condemnation, reflecting the era's casual language",
+    ]),
+  }),
+});
+
+/**
+ * Q05 (tone L1) — the sidecar's quotations (quote + attributionFrame) and this
+ * chapter's voiceCues, minus the D18 exclusions. Returns {} unless at least one
+ * quotation survives, so every quotation-less packet (every other book today, and
+ * the Franklin chapters without a usable line) keeps its pre-Q05 bytes and hash.
+ * Only a "source-text" sidecar qualifies: research proved its quotations verbatim
+ * against the frozen span (researcher.ts stampChapterProvenance). A model-memory
+ * or unstamped sidecar's quotations were recalled, never checked, so D18
+ * ("research-verified lines") keeps them from every writer.
+ * voiceCues is not in the SourceSidecarV2 type; it is read raw, the way
+ * chapterContextFor reads focus/coreClaim.
+ */
+function sourceWordsFor(bookId: string, sidecar: SourceSidecarV2): Pick<SourcePacketV1, "quotations" | "voiceCues"> {
+  if ((sidecar as { sourceProvenance?: unknown }).sourceProvenance !== "source-text") return {};
+  const excluded = SOURCE_WORDS_EXCLUSIONS[normSlug(bookId)];
+  const quotations = (Array.isArray(sidecar.quotations) ? sidecar.quotations : [])
+    .filter((entry) => !(excluded?.quotationIds ?? []).includes(asText(entry?.id)))
+    .map((entry) => ({ quote: asText(entry?.quote), attributionFrame: asText(entry?.attributionFrame) }))
+    .filter((entry) => entry.quote.length > 0 && entry.attributionFrame.length > 0);
+  if (quotations.length === 0) return {};
+  const raw = (sidecar as unknown as { voiceCues?: unknown }).voiceCues;
+  const voiceCues = (Array.isArray(raw) ? raw : [])
+    .map(asText)
+    .filter((cue) => cue.length > 0 && !(excluded?.voiceCues ?? []).includes(cue));
+  return { quotations, voiceCues };
 }
 
 export function sourcePacketHash(packet: SourcePacketV1): string {

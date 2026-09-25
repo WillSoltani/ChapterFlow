@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 13,
+  "chapterTitle": "Public Services and Duties",
+  "focus": "Franklin builds several separate Philadelphia and London institutions — a school, a hospital, a paved market street, improved lamps — each through a different mechanism (staged subscription, conditional matching grant, negotiated cession of property, paid demonstration), while repeatedly declining the personal credit for having originated them.",
+  "coreClaim": "A private citizen can found lasting public institutions by matching the right funding or negotiating mechanism to each problem, and can do so more effectively by publicly crediting others than by claiming authorship himself.",
+  "centralConcept": {
+    "id": "ch13.concept.public-service-by-mechanism",
+    "name": "institution-building through matched mechanisms and declined credit",
+    "plainDefinition": "Civic projects succeed when their funding or governance structure is matched to the specific obstacle in front of them — staged subscriptions, conditional government grants, negotiated cession of property, or a paid trial run — rather than relying on one all-purpose method.",
+    "whyItMatters": "Someone who adopts this approach can move unsought public offices and ordinary trade skill into durable public institutions without needing formal authority, personal fame, or a single universal playbook."
+  },
+  "keyClaims": [
+    "A pamphlet distributed free of charge to leading inhabitants, followed by a subscription payable in yearly installments over five years, raised roughly five thousand pounds and founded what became the Academy and later the University of Pennsylvania.",
+    "A stalled hospital subscription drive was revived by drafting an Assembly bill that granted two thousand pounds only if an equal sum was raised privately, a conditional clause that won over legislators who had opposed an outright grant.",
+    "In the space of a few years Franklin accepted a string of unsought civic offices — justice of the peace, common councilman, alderman, and Assembly burgess — and withdrew from the one role (justice of the peace) that required legal knowledge he lacked.",
+    "As a treaty commissioner at Carlisle, withholding liquor from the Indians until after formal business concluded kept negotiations orderly, while the rum released afterward led to a night of drunken disorder.",
+    "A paid neighborhood subscription to sweep a market-adjacent street twice weekly for sixpence a house built enough public goodwill to make citywide paving and, later, street lighting politically acceptable.",
+    "A hired demonstration in which a single poor woman swept an entire London street clean in three hours became the empirical basis for a written street-cleaning proposal sent to a named London physician.",
+    "Appointment as joint Deputy Postmaster General for America in 1753 came with pay contingent on the office actually turning a profit, rather than a guaranteed salary."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch13.case.academy",
+      "label": "Benjamin Franklin / founding the Philadelphia Academy",
+      "summary": "Franklin gathered a circle of associates including Junto members, wrote and freely distributed a pamphlet proposing an academy, then organized a subscription payable in yearly installments over five years that raised roughly five thousand pounds. The subscribers elected twenty-four trustees, and Franklin drafted the school's governing constitution together with attorney-general Tench Francis before the schools opened in 1749.",
+      "teachesWhat": "Shows how preparing potential donors with a free pamphlet before the ask, and structuring a subscription in yearly installments, can enlarge total pledges.",
+      "hardSpecifics": [
+        "five thousand pounds",
+        "Tench Francis",
+        "twenty-four trustees",
+        "1749"
+      ],
+      "realWorld": true,
+      "sourceQuote": "I set on foot a subscription for opening and supporting an academy; it was to be paid in quotas yearly for five years",
+      "hardSpecificEvidence": [
+        {
+          "specific": "five thousand pounds",
+          "proposition": "The academy subscription raised close to five thousand pounds.",
+          "sourceQuote": "amounting to no less, if I remember right, than five thousand pounds"
+        },
+        {
+          "specific": "Tench Francis",
+          "proposition": "Tench Francis served as attorney-general of Pennsylvania during this period.",
+          "sourceQuote": "attorney-general of Pennsylvania from 1741 to 1755"
+        },
+        {
+          "specific": "twenty-four trustees",
+          "proposition": "The subscribers elected twenty-four trustees to carry the academy project into execution.",
+          "sourceQuote": "The subscribers, to carry the project into immediate execution, chose out of their number twenty-four trustees"
+        },
+        {
+          "specific": "1749",
+          "proposition": "The academy's schools opened in 1749.",
+          "sourceQuote": "a house was hired, masters engag'd, and the schools opened, I think, in the same year, 1749"
+        }
+      ]
+    },
+    {
+      "id": "ch13.case.hospital",
+      "label": "Dr. Thomas Bond / founding the Pennsylvania Hospital",
+      "summary": "Thomas Bond conceived the idea of a Philadelphia hospital for the sick poor but struggled to raise subscriptions until Franklin joined the effort by publicizing the plan in the newspapers first. When donations began to flag, Franklin drafted an Assembly bill granting two thousand pounds conditional on an equal sum being raised privately, and that conditional clause carried the bill through a reluctant legislature and doubled the incentive for private donors.",
+      "teachesWhat": "Shows how tying a government grant to a private matching requirement can convert political opposition into support while multiplying individual giving.",
+      "hardSpecifics": [
+        "Dr. Thomas Bond",
+        "two thousand pounds",
+        "1751"
+      ],
+      "realWorld": true,
+      "sourceQuote": "Dr. Thomas Bond, a particular friend of mine, conceived the idea of establishing a hospital in Philadelphia",
+      "hardSpecificEvidence": [
+        {
+          "specific": "Dr. Thomas Bond",
+          "proposition": "Thomas Bond originated the plan to establish a Philadelphia hospital in 1751.",
+          "sourceQuote": "In 1751, Dr. Thomas Bond, a particular friend of mine, conceived the idea of establishing a hospital in Philadelphia"
+        },
+        {
+          "specific": "two thousand pounds",
+          "proposition": "The Assembly's grant to the hospital was conditioned on two thousand pounds being matched by private donation.",
+          "sourceQuote": "to sign an order on the provincial treasurer for the payment of two thousand pounds"
+        },
+        {
+          "specific": "1751",
+          "proposition": "The hospital project began in 1751.",
+          "sourceQuote": "In 1751, Dr. Thomas Bond, a particular friend of mine, conceived the idea of establishing a hospital"
+        }
+      ]
+    },
+    {
+      "id": "ch13.case.carlisle",
+      "label": "Franklin and Speaker Norris / Carlisle Indian treaty commission",
+      "summary": "Appointed alongside Assembly speaker Norris as treaty commissioners, Franklin helped negotiate with roughly a hundred Indians at Carlisle, banning liquor sales until formal business concluded. That evening, once the promised rum was distributed, the group grew drunk and violent around a bonfire; elders apologized the next day, blaming the rum itself for the disorder.",
+      "teachesWhat": "Shows a negotiator using a delayed reward to secure sober cooperation through the formal part of a negotiation.",
+      "hardSpecifics": [
+        "Carlisle",
+        "Mr. Norris",
+        "one hundred men"
+      ],
+      "realWorld": true,
+      "sourceQuote": "we went to Carlisle, and met the Indians accordingly",
+      "hardSpecificEvidence": [
+        {
+          "specific": "Carlisle",
+          "proposition": "The Indian treaty commission met at Carlisle.",
+          "sourceQuote": "a treaty being to be held with the Indians at Carlisle"
+        },
+        {
+          "specific": "Mr. Norris",
+          "proposition": "Speaker Norris was named alongside Franklin as a treaty commissioner.",
+          "sourceQuote": "The House named the speaker (Mr. Norris) and myself"
+        },
+        {
+          "specific": "one hundred men",
+          "proposition": "Close to a hundred Indians, including women and children, attended the Carlisle treaty and were lodged in temporary cabins.",
+          "sourceQuote": "they were near one hundred men, women, and children, and were lodg'd in temporary cabins"
+        }
+      ]
+    },
+    {
+      "id": "ch13.case.sweeper",
+      "label": "unnamed poor woman / Craven-street sweeping demonstration",
+      "summary": "A feeble, sickly woman was found sweeping Franklin's London pavement uninvited, hoping for a tip. Franklin offered her a shilling to sweep the entire street, and she returned three hours later having swept it perfectly clean, which led him to estimate that a strong man could do the same job in half the time and to draft a written street-cleaning proposal for a London physician.",
+      "teachesWhat": "Shows how a small paid trial converts a vague civic problem into a measurable, generalizable labor estimate.",
+      "hardSpecifics": [
+        "Craven-street",
+        "a shilling",
+        "birch broom"
+      ],
+      "realWorld": true,
+      "sourceQuote": "one morning, a poor woman sweeping my pavement with a birch broom",
+      "hardSpecificEvidence": [
+        {
+          "specific": "Craven-street",
+          "proposition": "The sweeping demonstration occurred at Franklin's door on Craven-street in London.",
+          "sourceQuote": "I found at my door in Craven-street"
+        },
+        {
+          "specific": "a shilling",
+          "proposition": "Franklin paid the woman a shilling to sweep the entire street.",
+          "sourceQuote": "I bid her sweep the whole street clean, and I would give her a shilling"
+        },
+        {
+          "specific": "birch broom",
+          "proposition": "The woman was sweeping the pavement with a birch broom.",
+          "sourceQuote": "a poor woman sweeping my pavement with a birch broom"
+        }
+      ]
+    }
+  ],
+  "hardEdge": "It is tempting to conclude that these civic projects show a man engineering his own reputation, since each one — academy, hospital, paved market, street lamps, sweeping proposal — visibly succeeded and elevated his public standing. What actually holds is that credit is repeatedly assigned elsewhere on the page: the hospital's design is called originally Bond's, the street-lighting idea is said to belong truly to John Clifton, and the academy pamphlet is presented as the work of unnamed public-spirited gentlemen rather than its actual drafter — so the mechanism that recurs is not self-promotion but disciplined delegation of visible authorship, which the surface record of offices and honors easily obscures.",
+  "voiceCues": [
+    "Opens the chapter by linking it directly to the prior period's business (\"Peace being concluded, and the association business therefore at an end\") before turning to a new project.",
+    "Interrupts an account of steady public honor to insert a candid confession that his ambition was, in fact, flattered by these promotions despite his usual disavowals of self-interest.",
+    "Narrates civic mechanisms with legalistic precision, quoting or closely paraphrasing the actual conditional clause of the hospital bill rather than summarizing it.",
+    "Shifts registers mid-chapter into an extended practical essay addressed to a named correspondent, Dr. Fothergill, complete with a drafted proposal document and closing moral reflection on small daily conveniences."
+  ],
+  "forbiddenLeakage": [
+    "the Albany Plan of intercolonial union",
+    "militia association for colonial defense"
+  ],
+  "paraphraseNotes": "Franklin moved from organizing wartime defense associations directly into founding an academy: he circulated a free pamphlet to prepare potential donors, then opened a subscription payable in yearly installments over five years, which raised close to five thousand pounds. Twenty-four elected trustees took charge, and Franklin drafted the school's constitution with attorney-general Tench Francis; the schools opened in 1749. He publicly credited the proposal to anonymous \"publick-spirited gentlemen\" rather than to himself. The growing school later occupied a building originally built for Whitefield's preaching, obtained by negotiating a cession from trustees representing multiple religious sects; Franklin was chosen to that board specifically because he belonged to no sect. Around the same time, public offices arrived unsought — justice of the peace, common councilman, alderman, Assembly burgess — and he privately admitted his ambition was flattered even while insisting the honors were unsolicited; he withdrew from the judicial role once he judged his legal knowledge insufficient. As an Assembly-appointed treaty commissioner, he helped negotiate with about a hundred Indians at Carlisle, withholding liquor until business concluded, after which a night of drunken disorder followed and elders apologized, blaming the rum itself. When Dr. Thomas Bond's hospital subscription stalled, Franklin publicized the plan in the newspapers, then drafted an Assembly bill making a two-thousand-pound grant conditional on an equal sum raised privately; that conditional clause won over reluctant legislators and doubled the incentive for private donors. He organized a sixpence-per-house subscription to sweep a market street, which built public goodwill for a citywide paving and lighting law; he separately improved street-lamp design with flat, venting panes rather than smoke-clogged glass globes, crediting the underlying lighting idea to John Clifton. In London, he tested how fast one woman could sweep a street clean for a shilling, then used that data point to draft a formal street-cleaning proposal for Dr. Fothergill. He closed by arguing that small, repeated conveniences do more for ordinary happiness than rare windfalls. In 1753 he was appointed joint Deputy Postmaster General for America, paid only out of the office's profits. The practical rule running through all of it: match the funding or governance mechanism to the specific obstacle, and let credit for the idea rest with whoever else can plausibly claim it.",
+  "testableFacts": [
+    {
+      "id": "ch13.fact.academy-installments",
+      "claim": "The academy subscription was structured as yearly installments over five years, which Franklin believed enlarged the total amount pledged.",
+      "becauseMechanism": "Spreading payments over several years lowers the immediate financial burden on each subscriber, making a larger total pledge feasible for more people.",
+      "commonError": "Subscribers were required to pay their full pledge in a single lump sum.",
+      "errorIsWhy": "Franklin states the subscription was divided into yearly quotas specifically because he judged that division would make the total subscription larger.",
+      "sourceQuote": "it was to be paid in quotas yearly for five years; by so dividing it, I judg'd the subscription might be larger"
+    },
+    {
+      "id": "ch13.fact.academy-anonymous-authorship",
+      "claim": "The academy pamphlet was published as the work of unnamed public-spirited citizens rather than under its actual author's name.",
+      "becauseMechanism": "Avoiding personal credit for a public scheme reduced resistance or jealousy that might otherwise have hurt the proposal's reception.",
+      "commonError": "The pamphlet was published and promoted under its author's own name to lend it authority.",
+      "errorIsWhy": "The text states the publication was presented as the act of \"some publick-spirited gentlemen,\" deliberately avoiding self-attribution.",
+      "sourceQuote": "I stated their publication, not as an act of mine, but of some publick-spirited gentlemen"
+    },
+    {
+      "id": "ch13.fact.building-sect-balance",
+      "claim": "Trustees of the building later used for the academy were deliberately chosen one from each religious sect to prevent any single sect from later claiming the property.",
+      "becauseMechanism": "A balanced, one-per-sect trusteeship removed any single group's incentive or ability to seize permanent control of a jointly funded building.",
+      "commonError": "The building's trustees were drawn entirely from the congregation that had originally built it for Whitefield's preaching.",
+      "errorIsWhy": "The text explicitly lists trustees from multiple denominations chosen so that no predominancy should be given to any sect.",
+      "sourceQuote": "one Church-of-England man, one Presbyterian, one Baptist, one Moravian, etc."
+    },
+    {
+      "id": "ch13.fact.chosen-for-no-sect",
+      "claim": "A vacancy on the building's board of trustees was filled by choosing a man belonging to no religious sect at all.",
+      "becauseMechanism": "Because the deadlock was over which sect would gain a second seat, a candidate with no sectarian affiliation resolved the dispute without favoring any faction.",
+      "commonError": "The vacancy was filled based on reputation as a printer or scientist rather than religious neutrality.",
+      "errorIsWhy": "The text ties the choice explicitly to being \"merely an honest man, and of no sect at all.\"",
+      "sourceQuote": "one mention'd me, with the observation that I was merely an honest man, and of no sect at all, which prevailed with them to chuse me"
+    },
+    {
+      "id": "ch13.fact.hospital-conditional-grant",
+      "claim": "The Assembly's grant toward the Pennsylvania Hospital was written to take effect only if private donors first matched the same amount.",
+      "becauseMechanism": "Making the public grant conditional let opposed legislators support the bill without committing unconditional public funds, since the money would never be paid unless private subscribers matched it.",
+      "commonError": "The Assembly granted the hospital funds outright, with no conditions attached.",
+      "errorIsWhy": "The bill's clause explicitly required the contributors to first raise a matching capital stock before the treasurer could pay the grant, and this condition is what carried the bill through.",
+      "sourceQuote": "This condition carried the bill through"
+    },
+    {
+      "id": "ch13.fact.hospital-doubled-donation",
+      "claim": "Once the conditional Assembly grant passed, fundraisers told potential hospital donors that each gift would effectively be doubled.",
+      "becauseMechanism": "Framing a donation as automatically matched by public funds increases an individual donor's incentive to give, since their money accomplishes twice as much.",
+      "commonError": "Private subscriptions for the hospital were fully raised before any Assembly grant was proposed.",
+      "errorIsWhy": "The text states subscriptions were flagging before the grant, and only after the conditional law passed was the doubling promise used to solicit further donations.",
+      "sourceQuote": "we urg'd the conditional promise of the law as an additional motive to give, since every man's donation would be doubled"
+    },
+    {
+      "id": "ch13.fact.carlisle-liquor-delay",
+      "claim": "Commissioners at the Carlisle Indian treaty withheld liquor from the Indians until formal negotiations were finished.",
+      "becauseMechanism": "Removing alcohol during the negotiation kept participants sober enough to reach and honor an orderly agreement, with the promised rum serving as a delayed reward.",
+      "commonError": "Liquor was freely available to the Indians throughout the entire treaty proceedings.",
+      "errorIsWhy": "The commissioners strictly forbade selling liquor during the treaty and only promised rum once business was concluded.",
+      "sourceQuote": "if they would continue sober during the treaty, we would give them plenty of rum when business was over"
+    },
+    {
+      "id": "ch13.fact.paving-tax-followed-local-success",
+      "claim": "A small, paid neighborhood subscription to sweep a market-adjacent street built enough public goodwill to make people willing to accept a broader paving tax afterward.",
+      "becauseMechanism": "The visible success of the small-scale cleaning trial demonstrated the benefit of a clean pavement, generating public demand for the same result citywide, which then made a tax politically acceptable.",
+      "commonError": "The citywide paving and tax law was adopted independently of, and before, the local market-street sweeping subscription.",
+      "errorIsWhy": "The text states the local success \"rais'd a general desire to have all the streets paved, and made the people more willing to submit to a tax for that purpose,\" placing the local trial first.",
+      "sourceQuote": "made the people more willing to submit to a tax for that purpose"
+    },
+    {
+      "id": "ch13.fact.lamp-design-flat-panes",
+      "claim": "Franklin's improved street-lamp design used four flat panes with a venting funnel above to draw smoke out, rather than the enclosed glass globes previously imported from London.",
+      "becauseMechanism": "Air vents below and a funnel above let smoke escape instead of circulating and blackening the glass, keeping the lamp bright, and a broken flat pane could be replaced individually rather than destroying the whole fixture.",
+      "commonError": "The London-style globe lamps used in Philadelphia stayed clean and bright without needing daily wiping.",
+      "errorIsWhy": "The text says the globe lamps admitted no air, let smoke circulate and obstruct light, required daily wiping, and were destroyed entirely by an accidental stroke.",
+      "sourceQuote": "I therefore suggested the composing them of four flat panes, with a long funnel above to draw up the smoke"
+    },
+    {
+      "id": "ch13.fact.sweeper-timing",
+      "claim": "A hired London woman swept an entire street perfectly clean within three hours in exchange for a single shilling.",
+      "becauseMechanism": "The task was completed within a fixed paid window (nine o'clock to noon), giving Franklin a concrete labor-time measurement he could then generalize and halve for a stronger worker.",
+      "commonError": "The sweeping task took the woman most of a full day to finish.",
+      "errorIsWhy": "The text specifies she began at nine o'clock and returned for the shilling at twelve, with the street confirmed swept perfectly clean.",
+      "sourceQuote": "this was at nine o'clock; at 12 she came for the shilling"
+    },
+    {
+      "id": "ch13.fact.postmaster-profit-pay",
+      "claim": "Franklin's pay as joint Deputy Postmaster General for America depended on the post office actually generating a profit, rather than being a fixed guaranteed salary.",
+      "becauseMechanism": "Tying compensation to profit gave both appointees a direct incentive to improve and expand the office's operations rather than simply hold the title.",
+      "commonError": "Franklin and William Hunter received a guaranteed six hundred pounds a year regardless of the post office's earnings.",
+      "errorIsWhy": "The text states the six hundred pounds a year was contingent on making that sum out of the profits of the office, and that the office initially ran nine hundred pounds in debt to them before turning profitable.",
+      "sourceQuote": "We were to have six hundred pounds a year between us, if we could make that sum out of the profits of the office"
+    }
+  ],
+  "quotations": [
+    {
+      "id": "ch13.quote.great-spirit-rum",
+      "quote": "Let this be for the Indians to get drunk with",
+      "attributionFrame": "An Indian orator at Carlisle explained the rum's disorder by saying the Great Spirit had decreed, \"Let this be for the Indians to get drunk with.\"",
+      "sourceQuote": "Now, when he made rum, he said, 'Let this be for the Indians to get drunk with,' and it must be so."
+    }
+  ],
+  "sourceProvenance": "source-text",
+  "sourceTextSha256": "8d71d7dc6784b651bfe068dba20e0b6c511357efda3974bd05564193f0899e34"
+}

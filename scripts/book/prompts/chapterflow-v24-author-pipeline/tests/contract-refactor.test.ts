@@ -336,6 +336,10 @@ test("every rendered task is <= 72% of its pinned pre-refactor length", () => {
   // 72% pin, so the pin is NOT re-pinned — it is only re-measured here so the next
   // creep starts from a true baseline. (The 69.9% figure the merge note above
   // records for summary had itself drifted to 68.7% before this change.)
+  // Q05 RE-MEASURE (tone: shorter words first, one principle sentence per tier, the
+  // fastRead role). Only the summary card moves: 34,586 = 71.52% on origin/main
+  // 60a25ad63 -> 34,792 = 71.95% (limit 34,816). Q05's contract text was trimmed to
+  // fit rather than re-pinned; the other three kinds render unchanged.
     assert.ok(md.length <= 0.72 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 72%`);
   }
 });
@@ -1422,7 +1426,9 @@ test("R-009: no dealt-field instruction claims the validator enforces it", () =>
 test("R-012: the summary contract states what each tier ADDS, not only its length", () => {
   const summary = sectionContract("summary-pack");
   assert.match(summary, /TIER ROLES/);
-  assert.match(summary, /fastRead[^\n]*immediate move/);
+  // Q05 (existence-proof lever 3): fastRead's job is the core idea and why it
+  // matters; "the immediate move" invited a coaching tag line.
+  assert.match(summary, /fastRead[^\n]*core idea and why it matters/);
   assert.match(summary, /deepRead[^\n]*mechanism/);
   assert.match(summary, /fullRead[^\n]*(hard edge|limit)/);
   assert.match(summary, /never reuses a deepRead sentence|no fullRead sentence reuses/i);
