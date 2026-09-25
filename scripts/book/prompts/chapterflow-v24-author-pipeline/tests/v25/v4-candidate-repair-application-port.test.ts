@@ -667,7 +667,20 @@ requiredTest("Q04-W5 a repair of a source-text chapter carries the whole source_
   ]);
   const control = Buffer.from(inputs[0].bytes).toString("utf8");
   assert.match(control, /source_span is this chapter's own text from the book/);
-  assert.match(control, /must not state anything it contradicts/);
+  // The SAME rule as the section writers' pointer (sectionTasks.ts sourceTextPointer)
+  // and the editor's FIDELITY line, in this lane's input names: every clause, not only
+  // the contradiction half. L06 (a repair made Baird "a member of that club") was an
+  // UNSTATED membership, which contradicts nothing literally.
+  const ruleStart = control.indexOf(" source_span is this chapter's own text from the book");
+  assert.ok(ruleStart >= 0, "the fidelity rule is present");
+  const rule = control.slice(ruleStart);
+  assert.match(rule, /the authority on what happened/, "the span is the book");
+  assert.match(rule, /Where [^.]*failed_chapter[^.]*source_packet[^.]*source_context_N[^.]*repair_brief[^.]* disagrees with it, follow source_span\./, "follow the span where another input's paraphrase disagrees");
+  assert.match(rule, /must not state anything it contradicts \(who acted, in what order, for what stated reason, with what outcome and credit\)/, "the contradiction checklist");
+  assert.match(rule, /State no cause, motive, order, credit, membership, or 'only', 'final' or 'first' that source_span does not state\./, "no unstated cause, motive, order, credit, membership, only/final/first");
+  assert.match(rule, /Paraphrase it; do not copy long runs of its wording\./, "paraphrase, no long copied runs");
+  assert.match(rule, /It adds no citable material: names, numbers and cases still come only from source_packet\./, "adds no citable material");
+  assert.doesNotMatch(rule, /—/, "no em dash in the fidelity rule");
   assert.equal(renderPrompt(subject.prompts[0].prompt).ok, true);
 });
 
