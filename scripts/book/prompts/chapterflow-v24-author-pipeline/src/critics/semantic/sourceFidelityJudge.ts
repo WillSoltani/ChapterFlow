@@ -58,7 +58,12 @@ import {
   jsonPromptRequest,
   type ModelCallerExecution,
 } from "../../app/modelTaskRunner.js";
-import { normalizedQuote, quoteShapeProblem } from "../../source/sourceText.js";
+import {
+  MAX_SOURCE_QUOTE_CHARS,
+  MIN_SOURCE_QUOTE_CHARS,
+  normalizedQuote,
+  quoteShapeProblem,
+} from "../../source/sourceText.js";
 import type { ChapterV21 } from "../../types.js";
 
 // -- codes -------------------------------------------------------------------
@@ -197,6 +202,79 @@ export function chapterFidelitySurfaces(chapter: ChapterV21): readonly ChapterFi
   return out;
 }
 
+/**
+ * Q07 J2 - WHICH CALL JUDGES A SURFACE.
+ *
+ * One chapter used to be one judge call per chunk carrying every surface, and at
+ * the `qc` role's xhigh effort the thinking alone used 75-93% of the 64k output
+ * cap on Franklin (candidate rr21): 1 call in 5 capped and came back
+ * MODEL_OUTPUT_INVALID, and two such failures on one chapter make the whole
+ * fresh-QC evaluation unavailable. So each chunk is judged in two calls: the
+ * prose tiers, and the learning surfaces (examples, quiz stems, choices, keys,
+ * explanations, cards, plan). Both see the same span and the same rules; the
+ * findings merge exactly as one call's would.
+ */
+export type SourceFidelitySurfaceGroup = "prose" | "learning";
+
+/** Call order within a chunk: prose first. */
+export const SOURCE_FIDELITY_SURFACE_GROUPS: readonly SourceFidelitySurfaceGroup[] = ["prose", "learning"];
+
+const SURFACE_GROUP_OF: Readonly<Record<SourceFidelitySurfaceKind, SourceFidelitySurfaceGroup>> = {
+  prose: "prose",
+  memorable_line: "prose",
+  example: "learning",
+  quiz_prompt: "learning",
+  quiz_choices: "learning",
+  quiz_key: "learning",
+  quiz_explanation: "learning",
+  card: "learning",
+  plan: "learning",
+};
+
+export function sourceFidelitySurfaceGroup(kind: SourceFidelitySurfaceKind): SourceFidelitySurfaceGroup {
+  return SURFACE_GROUP_OF[kind];
+}
+
+/** Surface names a reader seat writes in an escalation's location, by group. */
+const HINT_SURFACE_PATTERNS: ReadonlyArray<readonly [SourceFidelitySurfaceGroup, RegExp]> = [
+  ["prose", /\bhooks?\b/],
+  ["prose", /\bcounter[\s_-]*intuition/],
+  ["prose", /\btry[\s_-]*this[\s_-]*now\b/],
+  ["prose", /\bkey[\s_-]*takeaways?\b/],
+  ["prose", /\b(?:fast|deep|full)[\s_-]*read\b/],
+  ["prose", /\bmemorable[\s_-]*lines?/],
+  ["learning", /\bexamples?\b/],
+  ["learning", /\bquiz/],
+  ["learning", /\bquestions?\b/],
+  ["learning", /\bq\d+\b/],
+  ["learning", /\bcards?\b/],
+  ["learning", /\bplans?\b/],
+  ["learning", /\bif[\s_-]*then\b/],
+  ["learning", /\b24[\s_-]*hours?\b/],
+  ["learning", /\bweekly\b/],
+  ["learning", /\bcore[\s_-]*skills?\b/],
+];
+
+/**
+ * Which call(s) a claim hint goes to. The hint is the line
+ * `fidelityClaimHints` mints - `category (location): message` - and only the
+ * LOCATION segment is read (the seat's own `chNN/<seat>/<unit>`). Exactly one
+ * group named -> that call; none, both, or no parseable location -> BOTH calls,
+ * so no hint is ever dropped.
+ */
+export function sourceFidelityHintGroups(hint: string): readonly SourceFidelitySurfaceGroup[] {
+  const open = hint.indexOf(" (");
+  const close = open < 0 ? -1 : hint.indexOf("): ", open + 2);
+  if (close < 0) return SOURCE_FIDELITY_SURFACE_GROUPS;
+  const location = hint.slice(open + 2, close).toLowerCase();
+  const unit = /^ch\d+\/[^/]*\//.test(location)
+    ? location.replace(/^ch\d+\/[^/]*\//, "")
+    : location.replace(/^ch\d+\//, "");
+  const named = new Set<SourceFidelitySurfaceGroup>();
+  for (const [group, pattern] of HINT_SURFACE_PATTERNS) if (pattern.test(unit)) named.add(group);
+  return named.size === 1 ? [...named] : SOURCE_FIDELITY_SURFACE_GROUPS;
+}
+
 // -- source context ----------------------------------------------------------
 
 export type SourceFidelityProvenance = "source-text" | "model-memory";
@@ -234,10 +312,14 @@ export function chunkSourceContext(span: string): readonly string[] {
   return chunks;
 }
 
-/** How many model calls one chapter's fidelity judgment costs, before retries.
- *  Used to size the fresh-qc run's attempt capacity BEFORE the judge runs. */
+/** How many model calls one chapter's fidelity judgment costs, before retries:
+ *  one per chunk per surface group (an upper bound - a group with no surfaces
+ *  issues no call, and over-counting a slot is free while under-counting one
+ *  wedges the run). Used to size the fresh-qc run's attempt capacity BEFORE the
+ *  judge runs. */
 export function sourceFidelityCallCount(source: ChapterSourceContext): number {
-  return source.provenance === "source-text" ? chunkSourceContext(source.spanText).length : 1;
+  const chunks = source.provenance === "source-text" ? chunkSourceContext(source.spanText).length : 1;
+  return chunks * SOURCE_FIDELITY_SURFACE_GROUPS.length;
 }
 
 // -- findings ----------------------------------------------------------------
@@ -455,7 +537,12 @@ export type SourceFidelityRequest = {
   readonly chapterId: string;
   readonly chapterNumber: number;
   readonly chapterTitle: string;
+  /** This call's surfaces: one group's, in `chapterFidelitySurfaces` order. */
   readonly surfaces: readonly ChapterFidelitySurface[];
+  /** Q07 J2 - which part of the chapter this call judges. */
+  readonly surfaceGroup: SourceFidelitySurfaceGroup;
+  /** How many surface-group calls this chunk issues (1 when a group is empty). */
+  readonly surfaceGroupCount: number;
   readonly provenance: SourceFidelityProvenance;
   /** The chunk of span text (source-text) or the recalled claims (model-memory). */
   readonly sourceContext: string;
@@ -478,7 +565,7 @@ export type SourceFidelityReport = {
   readonly chapterNumber: number;
   readonly provenance: SourceFidelityProvenance;
   readonly chunkCount: number;
-  /** Model calls actually issued (one per chunk). */
+  /** Model calls actually issued (one per chunk per non-empty surface group). */
   readonly calls: number;
   readonly findings: readonly SourceFidelityFinding[];
   readonly surfaces: readonly ChapterFidelitySurface[];
@@ -551,9 +638,11 @@ function modelMemoryContext(claims: readonly string[]): string {
 }
 
 /**
- * Judge one chapter against its source. One model call per source chunk; a
- * normal chapter is one call. Every call goes through the injected `ask`, so a
- * failure propagates to the caller as a throw and is never absorbed here.
+ * Judge one chapter against its source. For each source chunk, one model call
+ * per surface group (prose, then learning); a normal chapter is two calls. A
+ * group with no surfaces issues no call, and a hint routed only to it goes to
+ * the other call. Every call goes through the injected `ask`, so a failure
+ * propagates to the caller as a throw and is never absorbed here.
  */
 export async function judgeChapterSourceFidelity(args: Readonly<{
   chapter: ChapterV21;
@@ -565,30 +654,52 @@ export async function judgeChapterSourceFidelity(args: Readonly<{
   const chunks = args.source.provenance === "source-text"
     ? chunkSourceContext(args.source.spanText)
     : [modelMemoryContext(args.source.recalledClaims)];
+  const hints = args.claimHints ?? [];
+  const nonEmpty = SOURCE_FIDELITY_SURFACE_GROUPS.filter((group) =>
+    surfaces.some((surface) => sourceFidelitySurfaceGroup(surface.kind) === group));
+  // Both groups empty: the one call today's code issued, with every hint.
+  const groups = nonEmpty.length > 0 ? nonEmpty : [SOURCE_FIDELITY_SURFACE_GROUPS[0]];
+  const parts = groups.map((group) => ({
+    group,
+    surfaces: nonEmpty.length > 0
+      ? surfaces.filter((surface) => sourceFidelitySurfaceGroup(surface.kind) === group)
+      : surfaces,
+    hints: hints.filter((hint) => {
+      const named = sourceFidelityHintGroups(hint).filter((entry) => groups.includes(entry));
+      // A hint whose only group issues no call goes to the call(s) that run.
+      return named.length === 0 || named.includes(group);
+    }),
+  }));
   const collected: SourceFidelityFinding[] = [];
+  let calls = 0;
   for (let index = 0; index < chunks.length; index += 1) {
-    const answer = await args.ask({
-      chapterId: args.chapter.chapterId,
-      chapterNumber: args.chapter.number,
-      chapterTitle: args.chapter.title,
-      surfaces,
-      provenance: args.source.provenance,
-      sourceContext: chunks[index],
-      chunkIndex: index,
-      chunkCount: chunks.length,
-      claimHints: args.claimHints ?? [],
-    });
-    // Stamped here, over anything the model may have put in the field: a
-    // contested absence must be able to name the part of the span that bore the
-    // claim out, and only this loop knows which part that was.
-    collected.push(...answer.findings.map((finding) => ({ ...finding, chunkIndex: index })));
+    for (const part of parts) {
+      const answer = await args.ask({
+        chapterId: args.chapter.chapterId,
+        chapterNumber: args.chapter.number,
+        chapterTitle: args.chapter.title,
+        surfaces: part.surfaces,
+        surfaceGroup: part.group,
+        surfaceGroupCount: parts.length,
+        provenance: args.source.provenance,
+        sourceContext: chunks[index],
+        chunkIndex: index,
+        chunkCount: chunks.length,
+        claimHints: part.hints,
+      });
+      calls += 1;
+      // Stamped here, over anything the model may have put in the field: a
+      // contested absence must be able to name the part of the span that bore the
+      // claim out, and only this loop knows which part that was.
+      collected.push(...answer.findings.map((finding) => ({ ...finding, chunkIndex: index })));
+    }
   }
   return {
     chapterId: args.chapter.chapterId,
     chapterNumber: args.chapter.number,
     provenance: args.source.provenance,
     chunkCount: chunks.length,
-    calls: chunks.length,
+    calls,
     findings: mergeFindings(collected),
     surfaces,
     spanText: args.source.provenance === "source-text" ? args.source.spanText : null,
@@ -983,11 +1094,21 @@ Rules:
 - Judge CLAIMS, not style. Wording, tone, pacing and teaching choices are not your concern.
 - Quote the chapter VERBATIM. A finding whose quote is not character-for-character in the chapter is discarded.
 - For "contradicted" you MUST quote the source line that settles it, VERBATIM from the SOURCE TEXT you were given. A contradiction with no source quote, or with a quote you reconstructed from memory, is discarded.
+- sourceQuote is the shortest run of the SOURCE TEXT that settles the claim: one or two sentences, between ${MIN_SOURCE_QUOTE_CHARS} and ${MAX_SOURCE_QUOTE_CHARS} characters. A longer or shorter quote cannot be verified, so the finding cannot count as evidence.
 - Use "unsupported" when the source neither states nor denies the claim. Leave sourceQuote null for it.
 - Use "supported" when the source bears the claim out, and say so rather than staying silent.
 - Do not report a claim as unsupported merely because it is a teaching restatement in different words. Report it when the FACT is different, missing, or reversed.
 - checkableKind names what the claim turns on: "date", "number", "sequence", "name", "document", "quotation", or "none" for a generality.
-- Report nothing you cannot quote on both sides.`;
+- Report nothing you cannot quote on both sides.
+
+Check claims of these kinds against the source, not only names, dates and numbers:
+- who acted, spoke, decided or received something;
+- order and timing (before, after, then, while, right as, until);
+- a stated cause or motive (because, so that, in order to);
+- credit and attribution (who proposed, invented, wrote or is credited with something);
+- membership (who belonged to which club, company, family or side);
+- finality and exclusivity words (only, ended, never, first, last, final);
+- for every quiz item, whether the keyed choice (surface quiz.qNN/key) is the answer the source supports. If the source supports another choice, report the key as "contradicted" on the quiz.qNN/key surface, with that source line as sourceQuote.`;
 
 const JUDGE_SYSTEM_MODEL_MEMORY = `You are a source-fidelity auditor, and you DO NOT HAVE THE BOOK. This run carried no source text: what follows the chapter is a set of claims a previous model wrote from its own recollection of the book, not the book. You are therefore checking the chapter against YOUR OWN RECALL, and you must judge accordingly.
 
@@ -1006,6 +1127,15 @@ export function sourceFidelitySystemPrompt(provenance: SourceFidelityProvenance)
   return provenance === "source-text" ? JUDGE_SYSTEM_SOURCE_TEXT : JUDGE_SYSTEM_MODEL_MEMORY;
 }
 
+/** One clause naming the part of the chapter this call covers, when the chunk
+ *  is judged in more than one call. */
+function groupClause(request: SourceFidelityRequest): string {
+  if (request.surfaceGroupCount <= 1) return "";
+  return request.surfaceGroup === "prose"
+    ? " This call covers the chapter's prose; its learning surfaces (examples, quiz, cards, plan) are judged in a separate call."
+    : " This call covers the chapter's learning surfaces (examples, quiz, cards, plan); its prose is judged in a separate call.";
+}
+
 export function buildSourceFidelityUserPrompt(request: SourceFidelityRequest): string {
   const surfaces = request.surfaces
     .map((surface) => `<<${surface.id}>> (${surface.kind})\n${surface.text}`)
@@ -1017,12 +1147,12 @@ export function buildSourceFidelityUserPrompt(request: SourceFidelityRequest): s
       : "RECALLED CLAIMS - a previous model's recollection, NOT the book.";
   return [
     `CHAPTER ${request.chapterNumber}: ${request.chapterTitle} (${request.chapterId})`,
-    `CHAPTER SURFACES - each block is one surface, named by the id in << >>. Cite that id in "surface".\n\n${surfaces}`,
+    `CHAPTER SURFACES - each block is one surface, named by the id in << >>. Cite that id in "surface".${groupClause(request)}\n\n${surfaces}`,
     request.claimHints.length === 0
       ? ""
       : `READER ESCALATIONS - passages readers flagged as reading like fact they could not check. Judge each of these explicitly:\n${request.claimHints.map((hint, index) => `[H${index + 1}] ${hint}`).join("\n")}`,
     `${chunkLine}\n\n${request.sourceContext}`,
-    'Return a single JSON object: {"findings":[{"surface":"<surface id>","quote":"<verbatim chapter text>","claim":"<the proposition it asserts>","verdict":"supported"|"contradicted"|"unsupported","sourceQuote":<verbatim source text or null>,"checkableKind":"date"|"number"|"sequence"|"name"|"document"|"quotation"|"none","note":"<one sentence>"}]}',
+    `Return a single JSON object: {"findings":[{"surface":"<surface id>","quote":"<verbatim chapter text>","claim":"<the proposition it asserts>","verdict":"supported"|"contradicted"|"unsupported","sourceQuote":<verbatim source text of ${MIN_SOURCE_QUOTE_CHARS}-${MAX_SOURCE_QUOTE_CHARS} characters, or null>,"checkableKind":"date"|"number"|"sequence"|"name"|"document"|"quotation"|"none","note":"<one sentence>"}]}`,
   ]
     .filter((part) => part.length > 0)
     .join("\n\n");

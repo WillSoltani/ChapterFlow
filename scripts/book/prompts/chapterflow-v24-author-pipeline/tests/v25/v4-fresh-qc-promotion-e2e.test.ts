@@ -532,13 +532,14 @@ requiredTest("fresh QC judge PASS commits a durable round and promotes the revie
   assert.ok(judgeRun.ok, JSON.stringify(judgeRun));
   assert.equal(judgeRun.value.status, "COMPLETED", "the fresh-qc judge run must not be left RUNNING");
   // One attempt per quiz question (the answer-key judge) plus one per chapter
-  // source chunk (the source-fidelity judge). This fixture book is one chapter
-  // researched WITHOUT a source text, so its fidelity judgment is a single
-  // model-memory call — hence exactly one extra admission.
-  assert.equal(judgeRun.value.attempts.length, world.chapter.quiz.questions.length + 1);
+  // source chunk per surface group (the source-fidelity judge; Q07: prose,
+  // learning). This fixture book is one chapter researched WITHOUT a source
+  // text, so its fidelity judgment is one model-memory chunk judged in two
+  // calls — hence exactly two extra admissions.
+  assert.equal(judgeRun.value.attempts.length, world.chapter.quiz.questions.length + 2);
   assert.equal(
     judgeRun.value.attempts.filter((attempt) => attempt.admission.operationId.startsWith("source-fidelity-judge-")).length,
-    1,
+    2,
     "the source-fidelity judge admits its own attempt against the same fresh-qc run",
   );
   assert.equal(judgeRun.value.attempts.every((attempt) => attempt.status === "SUCCEEDED"), true);

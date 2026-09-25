@@ -936,7 +936,8 @@ export function freshQcRunDefinition(input: Readonly<{
   // and resume replays forever — a permanent dead end from one flaky call).
   //
   // The fresh-qc stage now hosts a SECOND judge — the source-fidelity judge, one
-  // call per chapter source chunk — so the run's capacity covers both families.
+  // call per chapter source chunk per surface group (prose, learning; Q07) — so
+  // the run's capacity covers both families.
   // `countSourceFidelityCalls` derives the chunk count from the candidate's own
   // frozen text and chapter map, which is the same derivation the evaluator
   // performs, so the two cannot drift; an unreadable chapter counts one slot,
