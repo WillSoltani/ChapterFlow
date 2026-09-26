@@ -183,6 +183,49 @@ requiredTest("an unrecognised task role fails closed and starts no process", asy
   assert.equal(supervisor.specs.length, 0);
 });
 
+requiredTest("D20: a fidelity-role task builds at effort high from the shipped config, while qc builds at xhigh", async ({ roots }) => {
+  const run = definition("role-fidelity-book", "role-fidelity-run");
+  const store = new FileRunStore(roots.stateRoot);
+  assert.equal((await store.createRun(run)).ok, true);
+  const supervisor = new RecordingSupervisor();
+  const gateway = createModelGateway({
+    runStore: store,
+    processSupervisor: supervisor,
+    executionPolicy: policy(roots),
+    routeSelector: createDefaultModelRouteSelector(),
+    now: clock(),
+  });
+  const fidelityResult = await gateway.execute(task(run, "attempt-fidelity", attemptDirectory(roots, "fidelity"), "fidelity"));
+  const qcResult = await gateway.execute(task(run, "attempt-qc-tier", attemptDirectory(roots, "qc-tier"), "qc"));
+  assert.equal(fidelityResult.outcome, "SUCCEEDED", JSON.stringify(fidelityResult.error ?? {}));
+  assert.equal(qcResult.outcome, "SUCCEEDED", JSON.stringify(qcResult.error ?? {}));
+  assert.equal(supervisor.specs.length, 2);
+  assert.equal(flagValue(supervisor.specs[0]!.args, "--effort"), "high", "the fidelity judge builds at effort high (D20)");
+  assert.equal(flagValue(supervisor.specs[0]!.args, "--model"), "claude-sonnet-5");
+  assert.equal(flagValue(supervisor.specs[1]!.args, "--effort"), "xhigh", "the answer-key judge's qc role stays at xhigh");
+  const detail = finishDetails(roots, run).get("attempt-fidelity") ?? "";
+  assert.match(detail, /;effort=high;/);
+  assert.match(detail, /;role=fidelity;/);
+});
+
+requiredTest("D20 GUARD: an unknown role near fidelity still fails closed at the gateway and starts no process", async ({ roots }) => {
+  const run = definition("role-fidelity-typo-book", "role-fidelity-typo-run");
+  const store = new FileRunStore(roots.stateRoot);
+  assert.equal((await store.createRun(run)).ok, true);
+  const supervisor = new RecordingSupervisor();
+  const gateway = createModelGateway({
+    runStore: store,
+    processSupervisor: supervisor,
+    executionPolicy: policy(roots),
+    routeSelector: createDefaultModelRouteSelector(),
+    now: clock(),
+  });
+  const result = await gateway.execute(task(run, "attempt-fidelity-typo", attemptDirectory(roots, "fidelity-typo"), "fidelity-judge"));
+  assert.equal(result.outcome, "FAILED");
+  assert.equal(result.error?.code, "MODEL_TASK_INVALID");
+  assert.equal(supervisor.specs.length, 0);
+});
+
 // ── R-223: the snapshot whitelist cannot silently drop a ModelTask field ───
 
 requiredTest("snapshotTask's field whitelist covers every field ModelTask declares", () => {
@@ -320,7 +363,7 @@ requiredTest("the shipped model-routing schema pins the same role keys and effor
     properties: { roles: { propertyNames?: { enum: string[] } } };
   };
   assert.deepEqual(schema.definitions.roleRoute.properties.effort.enum, ["low", "medium", "high", "xhigh", "max"]);
-  assert.deepEqual(schema.properties.roles.propertyNames?.enum, ["research", "author", "repair", "review", "qc"]);
+  assert.deepEqual(schema.properties.roles.propertyNames?.enum, ["research", "author", "repair", "review", "qc", "fidelity"]);
 });
 
 // ── R-204 / R-205: no dead role channels left behind ───────────────────────

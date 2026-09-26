@@ -80,8 +80,9 @@ export function createCodexRoute(model: string, effort: RoleRoute["effort"]): Mo
 /** The pipeline roles a task may declare. Closed set: `model-routing.json`
  *  may key `roles` only by these (R-218 — a typo'd key used to be accepted and
  *  then silently ignored at resolve time), and a ModelTask may carry only
- *  these as its `role`. */
-export const PIPELINE_ROLES = Object.freeze(["research", "author", "repair", "review", "qc"] as const);
+ *  these as its `role`. `fidelity` is the fresh-QC source-fidelity judge's own
+ *  role (D20), so its effort tier is set apart from the answer-key judge's `qc`. */
+export const PIPELINE_ROLES = Object.freeze(["research", "author", "repair", "review", "qc", "fidelity"] as const);
 
 export type PipelineRole = (typeof PIPELINE_ROLES)[number];
 

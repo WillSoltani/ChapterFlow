@@ -79,7 +79,7 @@ export const SOURCE_CONTROLLED_EXECUTION_PROFILES: Readonly<Record<string, Execu
    * source-fidelity prompt adds up to `SOURCE_FIDELITY_MAX_CONTEXT_CHARS`
    * (45,000) of the book's own bytes on top of that — roughly 20k input tokens
    * against the 500 the old card carried. A 300s bound on a call that size, at
-   * the `qc` role's `xhigh` effort, is a foreseeable DETERMINISTIC timeout: the
+   * the judges' `high`/`xhigh` effort, is a foreseeable DETERMINISTIC timeout: the
    * judge would fail, retry, fail, and the evaluation would ERROR — and because
    * the prompt is a function of the candidate, every resume would reproduce it
    * exactly. That is the permanent wedge shape this campaign keeps removing.

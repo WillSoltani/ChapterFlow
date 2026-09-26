@@ -9,6 +9,7 @@ import {
   DEFAULT_MODEL_ROUTING_CONFIG_PATH,
   loadModelRoutingConfig,
   MODEL_ROUTING_OWNER_OVERRIDE_SENTINEL,
+  PIPELINE_ROLES,
   checkModelRoutingTripwire,
   resolveRoleRoute,
   validateModelRoutingConfig,
@@ -71,6 +72,20 @@ requiredTest("shipped config/model-routing.json is the D1 Sonnet-5 defaults, no 
   // Regression pin: author MUST stay at medium — at high the ch02 learning-pack writer thought to the 64k output cap (all thinking, zero text) and timed out three times.
   assert.equal(config.roles?.author?.effort, "medium", "author effort must stay medium (64k-thinking-cap timeout defect)");
   assert.equal(checkModelRoutingTripwire(config).length, 0);
+});
+
+requiredTest("D20: PIPELINE_ROLES appends fidelity after the five existing roles, in their order", () => {
+  assert.deepEqual([...PIPELINE_ROLES], ["research", "author", "repair", "review", "qc", "fidelity"]);
+});
+
+requiredTest("D20: shipped config routes fidelity at claude-cli / claude-sonnet-5 / high while qc stays xhigh", () => {
+  const config = loadModelRoutingConfig();
+  assert.deepEqual(config.roles?.fidelity, { route: "claude-cli", model: "claude-sonnet-5", effort: "high" });
+  assert.deepEqual(resolveRoleRoute(config, "fidelity"), { route: "claude-cli", model: "claude-sonnet-5", effort: "high" });
+  assert.deepEqual(config.roles?.qc, { route: "claude-cli", model: "claude-sonnet-5", effort: "xhigh" });
+  // Routed exactly like qc except the effort tier.
+  assert.equal(config.roles?.fidelity?.route, config.roles?.qc?.route);
+  assert.equal(config.roles?.fidelity?.model, config.roles?.qc?.model);
 });
 
 requiredTest("shipped config/model-routing.json produces zero findings from the runtime config-contract sweep", () => {

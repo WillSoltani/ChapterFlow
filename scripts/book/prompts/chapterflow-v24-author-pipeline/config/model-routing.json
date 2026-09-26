@@ -1,12 +1,13 @@
 {
   "$schema": "./model-routing.schema.json",
-  "_comment": "P/Task 7 Step 6 — D1 production defaults: Claude Sonnet 5 via the claude-cli route (subscription auth), effort-tiered per role (research/author/structural-QC=medium; repair=high; canonical review + quiz-key judge=xhigh). Author dropped high->medium on 2026-09-17: at high the section writer spent its whole 64k output budget on thinking blocks (stop_reason=max_tokens, zero text) and the gateway killed run book-run-755fb671 at ch02 learning-pack after 3x 1800 s timeouts; the same prompt at medium finished in 517 s with a parseable pack. The codex route (gpt-5.5) is retained in code as a config-switchable fallback, never the default. Live-smoke evidence: docs/v25/reports/CLAUDE_ROUTE_SMOKE_2026-07.md. No ownerOverride: the NO-GPT-5.5 tripwire passes because no role uses gpt-5.5.",
+  "_comment": "P/Task 7 Step 6 — D1 production defaults: Claude Sonnet 5 via the claude-cli route (subscription auth), effort-tiered per role (research/author/structural-QC=medium; repair=high; canonical review + quiz-key judge=xhigh; source-fidelity judge=high under its own fidelity role, per owner decision D20, because at xhigh its thinking filled most of the 64k output cap). Author dropped high->medium on 2026-09-17: at high the section writer spent its whole 64k output budget on thinking blocks (stop_reason=max_tokens, zero text) and the gateway killed run book-run-755fb671 at ch02 learning-pack after 3x 1800 s timeouts; the same prompt at medium finished in 517 s with a parseable pack. The codex route (gpt-5.5) is retained in code as a config-switchable fallback, never the default. Live-smoke evidence: docs/v25/reports/CLAUDE_ROUTE_SMOKE_2026-07.md. No ownerOverride: the NO-GPT-5.5 tripwire passes because no role uses gpt-5.5.",
   "defaultRoute": { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "high" },
   "roles": {
     "research": { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "medium" },
     "author":   { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "medium" },
     "repair":   { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "high" },
     "review":   { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "xhigh" },
-    "qc":       { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "xhigh" }
+    "qc":       { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "xhigh" },
+    "fidelity": { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "high" }
   }
 }

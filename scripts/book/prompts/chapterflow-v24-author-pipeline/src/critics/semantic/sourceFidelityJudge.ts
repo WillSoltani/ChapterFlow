@@ -58,7 +58,12 @@ import {
   jsonPromptRequest,
   type ModelCallerExecution,
 } from "../../app/modelTaskRunner.js";
-import { normalizedQuote, quoteShapeProblem } from "../../source/sourceText.js";
+import {
+  MAX_SOURCE_QUOTE_CHARS,
+  MIN_SOURCE_QUOTE_CHARS,
+  normalizedQuote,
+  quoteShapeProblem,
+} from "../../source/sourceText.js";
 import type { ChapterV21 } from "../../types.js";
 
 // -- codes -------------------------------------------------------------------
@@ -983,11 +988,25 @@ Rules:
 - Judge CLAIMS, not style. Wording, tone, pacing and teaching choices are not your concern.
 - Quote the chapter VERBATIM. A finding whose quote is not character-for-character in the chapter is discarded.
 - For "contradicted" you MUST quote the source line that settles it, VERBATIM from the SOURCE TEXT you were given. A contradiction with no source quote, or with a quote you reconstructed from memory, is discarded.
+- sourceQuote is the shortest run of the SOURCE TEXT that settles the claim: one or two sentences, between ${MIN_SOURCE_QUOTE_CHARS} and ${MAX_SOURCE_QUOTE_CHARS} characters. A longer or shorter quote cannot be verified, so the finding cannot count as evidence.
 - Use "unsupported" when the source neither states nor denies the claim. Leave sourceQuote null for it.
 - Use "supported" when the source bears the claim out, and say so rather than staying silent.
 - Do not report a claim as unsupported merely because it is a teaching restatement in different words. Report it when the FACT is different, missing, or reversed.
 - checkableKind names what the claim turns on: "date", "number", "sequence", "name", "document", "quotation", or "none" for a generality.
-- Report nothing you cannot quote on both sides.`;
+- Report nothing you cannot quote on both sides.
+
+Check claims of these kinds against the source, not only names, dates and numbers:
+- who acted, spoke, decided or received something;
+- order and timing (before, after, then, while, right as, until);
+- a stated cause or motive (because, so that, in order to);
+- credit and attribution (who proposed, invented, wrote or is credited with something);
+- membership (who belonged to which club, company, family or side);
+- finality and exclusivity words (only, ended, never, first, last, final);
+- for every quiz item about the book's own history - including one that places the reader inside the book's events, such as "You are Franklin..." or "Suppose you are Franklin in that seat..." - whether the keyed choice (surface quiz.qNN/key) is the answer the source supports; report the key as "contradicted" on the quiz.qNN/key surface, with that source line as sourceQuote, only when the source supports another choice.
+
+The key check does not apply to an invented transfer scenario - a made-up, usually present-day situation that a question opens with "Imagine...", "Suppose..." or "You are..." (a neighborhood board, a colleague, a team) - or to a question built on one of the chapter's example scenarios, because there the keyed choice is a judgment the chapter teaches, not a claim about the book; any history such an item states in its prompt, choices or explanation is still checked like every other claim.
+
+The list above names the kinds of claim to CHECK, not checkableKind values: checkableKind is always exactly one of ${CHECKABLE_KINDS.map((kind) => `"${kind}"`).join(", ")}.`;
 
 const JUDGE_SYSTEM_MODEL_MEMORY = `You are a source-fidelity auditor, and you DO NOT HAVE THE BOOK. This run carried no source text: what follows the chapter is a set of claims a previous model wrote from its own recollection of the book, not the book. You are therefore checking the chapter against YOUR OWN RECALL, and you must judge accordingly.
 
@@ -1022,7 +1041,7 @@ export function buildSourceFidelityUserPrompt(request: SourceFidelityRequest): s
       ? ""
       : `READER ESCALATIONS - passages readers flagged as reading like fact they could not check. Judge each of these explicitly:\n${request.claimHints.map((hint, index) => `[H${index + 1}] ${hint}`).join("\n")}`,
     `${chunkLine}\n\n${request.sourceContext}`,
-    'Return a single JSON object: {"findings":[{"surface":"<surface id>","quote":"<verbatim chapter text>","claim":"<the proposition it asserts>","verdict":"supported"|"contradicted"|"unsupported","sourceQuote":<verbatim source text or null>,"checkableKind":"date"|"number"|"sequence"|"name"|"document"|"quotation"|"none","note":"<one sentence>"}]}',
+    `Return a single JSON object: {"findings":[{"surface":"<surface id>","quote":"<verbatim chapter text>","claim":"<the proposition it asserts>","verdict":"supported"|"contradicted"|"unsupported","sourceQuote":<verbatim source text of ${MIN_SOURCE_QUOTE_CHARS}-${MAX_SOURCE_QUOTE_CHARS} characters, or null>,"checkableKind":"date"|"number"|"sequence"|"name"|"document"|"quotation"|"none","note":"<one sentence>"}]}`,
   ]
     .filter((part) => part.length > 0)
     .join("\n\n");
@@ -1052,7 +1071,9 @@ function isFindingsEnvelope(value: unknown): value is { findings: SourceFidelity
  * this critic owns no provider, process, credential or fallback route, and a
  * runner-less call throws rather than selecting one.
  *
- * Role `qc` - which `config/model-routing.json` routes at effort `xhigh`.
+ * Role `fidelity` - its own routing role (D20), which `config/model-routing.json`
+ * routes like `qc` but at effort `high`: at `xhigh` thinking filled 75-93% of
+ * the 64k output cap and some calls hit it. The answer-key judge stays on `qc`.
  *
  * Profile `pipeline-read-json-long-v1`: the same exact-pipeline-root, read-only,
  * JSON envelope as the short judge profile, with a horizon a card of this size
@@ -1066,7 +1087,7 @@ export function makeLiveSourceFidelityAsk(opts: Readonly<{ execution: ModelCalle
     if (!execution) throw new Error("MODEL_TASK_RUNNER_REQUIRED");
     const result = await execution.runner.run({
       profileId: execution.profileId ?? "pipeline-read-json-long-v1",
-      role: "qc",
+      role: "fidelity",
       prompt: jsonPromptRequest(sourceFidelitySystemPrompt(request.provenance), buildSourceFidelityUserPrompt(request)),
       context: execution.context,
     });
