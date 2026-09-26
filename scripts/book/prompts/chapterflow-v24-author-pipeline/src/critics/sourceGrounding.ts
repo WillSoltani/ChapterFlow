@@ -315,8 +315,9 @@ function placeholderAnchorId(id: string): boolean {
  * with 0 blockers, then gate-chapter threw 42 SC11.2 blockers, all on quiz/cards/plan
  * units). So this table is derived FROM the section gate, one entry per claim type:
  *
- *   example                 -> 1   (SEC33: one specific POOLED across scenario /
- *                                   whatToDo / whyItMatters)
+ *   example                 -> 0   (SEC33 is 0 since Q06 PR 2, owner decision D16:
+ *                                   an example cites its case for provenance only
+ *                                   and never names it; the chapter prose teaches it)
  *   implementation_guidance -> 1   (SEC74, unchanged)
  *   everything else         -> 0   (no per-unit verbatim demand)
  *
@@ -330,7 +331,7 @@ function placeholderAnchorId(id: string): boolean {
  * chapter — it just no longer counts tokens per unit.
  */
 const CLAIM_TYPE_MIN_SPECIFICS: ReadonlyMap<SourceClaimType, number> = new Map<SourceClaimType, number>([
-  ["example", 1],
+  ["example", 0],
   ["implementation_guidance", 1],
 ]);
 

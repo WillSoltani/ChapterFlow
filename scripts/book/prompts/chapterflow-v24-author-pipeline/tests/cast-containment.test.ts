@@ -297,7 +297,7 @@ test("F14 (integration): SEC56 passes a quiz citing an anchor with ONE verbatim 
   assert.deepEqual(sec56, [], `one verbatim specific should clear SEC56; got ${JSON.stringify(sec56.map((f) => f.message))}`);
 });
 
-test("F14/1B (integration): SEC33 takes ONE specific, pooled across the example's three fields", () => {
+test("F14/1B (integration): SEC33 takes ONE specific, pooled across the example's three fields, and since D16 none", () => {
   const anchor: SourceAnchorForPrompt = {
     id: "a1", kind: "named_example", label: "Magic Castle", text: "…",
     hardSpecifics: ["Magic Castle Hotel", "free popsicles"],
@@ -326,12 +326,13 @@ test("F14/1B (integration): SEC33 takes ONE specific, pooled across the example'
   const sec33 = validateExamplePack(example, bp, packetWithAnchor(anchor)).filter((f: SectionFinding) => f.checkId === "SEC33.example_anchor_specifics");
   assert.deepEqual(sec33, [], `one pooled specific clears SEC33; got ${JSON.stringify(sec33.map((f) => f.message))}`);
 
-  // Zero specifics anywhere across scenario/whatToDo/whyItMatters still blocks.
+  // Q06 PR 2 (owner decision D16): the floor is now 0, so zero specifics anywhere
+  // across scenario/whatToDo/whyItMatters no longer blocks; the example cites its case
+  // for provenance only and SEC137 refuses a whyItMatters that names the source.
   const bare = JSON.parse(JSON.stringify(example)) as ExamplePackV1;
   bare.examples[0].scenario = "A manager decides to redesign the hotel checkout after weighing two options.";
   const none = validateExamplePack(bare, bp, packetWithAnchor(anchor)).filter((f: SectionFinding) => f.checkId === "SEC33.example_anchor_specifics");
-  assert.equal(none.length, 1, "an example that cites a case and uses none of its details still fails SEC33");
-  assert.match(none[0].message, /0\/1/, "SEC33 message reports the one-specific floor");
+  assert.deepEqual(none.map((f) => f.message), [], "D16: an example that cites a case and uses none of its details passes SEC33");
 });
 
 test("F14/1B (integration): SEC58 is retired — a card cites its case by natural reference", () => {

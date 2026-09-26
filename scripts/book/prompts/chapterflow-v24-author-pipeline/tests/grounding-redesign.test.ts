@@ -22,8 +22,9 @@
  *     case (advisory above 30%).
  *   - SEC56/SEC58 stop demanding a verbatim token per unit; SEC120 derivability
  *     (unchanged, still a blocker) keeps a unit from naming what the page never says.
- *   - SEC33 keeps a floor of ONE specific pooled across scenario+whatToDo+whyItMatters,
- *     and SEC133 refuses the recall beat the two-specific quota produced.
+ *   - SEC33 keeps a floor of ONE specific pooled across scenario+whatToDo+whyItMatters
+ *     (0 since Q06 PR 2, owner decision D16), and SEC133 refuses the recall beat the
+ *     two-specific quota produced.
  *
  * Fixtures below are the live rev-6 bytes wherever the defect is quoted.
  */
@@ -338,15 +339,16 @@ test("SEC33 accepts ONE specific pooled across scenario, whatToDo and whyItMatte
   assert.deepEqual(findings, [], `one pooled specific is the floor; got:\n${findings.map((f) => f.message).join("\n")}`);
 });
 
-test("SEC33 still blocks an example that cites a case and uses none of its details", () => {
+test("D16: SEC33 no longer blocks an example that cites a case and uses none of its details", () => {
   const pack = examplePack({
     scenario: `Brielle had the flyer ready: one neighbour with money to spare covering the whole cost of a shared tool shed.${SCENE_TAIL}`,
     whatToDo: "Rewrite the ask as twelve small pledges instead of one large gift, and name the amount each one costs.",
     whyItMatters: "Small, repeated commitments buy the thing no single patron will fund.",
   });
+  // Q06 PR 2 (owner decision D16): the example cites its case for provenance only;
+  // the chapter's prose teaches it (SEC14/SEC128).
   const findings = byCheck(validateExamplePack(pack, blueprint(0, 0, 1), packet([ARRIVAL])), "SEC33.example_anchor_specifics");
-  assert.equal(findings.length, 1, "zero specifics anywhere in the example must still block");
-  assert.match(findings[0].message, /0\/1/);
+  assert.deepEqual(findings.map((f) => f.message), [], "zero specifics in the example no longer blocks");
 });
 
 test("SEC133 blocks the recall beat the two-specific quota produced (live rev-6 ch03 ex01)", () => {

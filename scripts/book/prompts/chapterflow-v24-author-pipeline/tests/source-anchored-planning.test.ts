@@ -291,17 +291,15 @@ test("SC11 boundary: supported-but-missing-specific → SC11.2; present-but-unsu
   // silently invert.
 
   // Side A — anchor SUPPORTS the claim type but the unit omits its verbatim specifics → SC11.2.
-  // Package 1B: the unit is an EXAMPLE, not a quiz question. SC11.2's per-unit minimums are
-  // now derived from the section gate, which stopped demanding a verbatim token of quiz
-  // stems and cards (SEC56/SEC58 retired) and keeps one for examples (SEC33) and the
-  // implementation plan (SEC74) — a ship gate that demanded what write-time does not would
-  // re-block every freshly compiled book. The BOUNDARY this test pins is unchanged.
+  // Package 1B: the unit is not a quiz question. SC11.2's per-unit minimums are derived
+  // from the section gate, which stopped demanding a verbatim token of quiz stems and cards
+  // (SEC56/SEC58 retired) and, since Q06 PR 2 (owner decision D16), of examples (SEC33 at
+  // 0); it keeps one for the implementation plan (SEC74), so the unit is the plan's
+  // coreSkill — a ship gate that demanded what write-time does not would re-block every
+  // freshly compiled book. The BOUNDARY this test pins is unchanged.
   const missingSpecific = fullyAnchoredChapter();
-  missingSpecific.examples[0].title = "A quiet morning";
-  missingSpecific.examples[0].scenario = "A reviewer walks the dock and files one note before lunch.";
-  missingSpecific.examples[0].whatToDo = "File the note before the morning meeting.";
-  missingSpecific.examples[0].whyItMatters = "Early notes keep the record honest.";
-  missingSpecific.authoring!.sourceAnchors!.effectiveAnchors["examples[0]"] = ["ch01.ex.compass"];
+  missingSpecific.implementationPlan.coreSkill = "File the note before the morning meeting, every morning, before the shift changes hands.";
+  missingSpecific.authoring!.sourceAnchors!.effectiveAnchors["implementationPlan.coreSkill"] = ["ch01.ex.compass"];
   const specificFindings = checkChapterProvenance(missingSpecific, sidecar());
   const sc112 = specificFindings.filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.evidence === "ch01.ex.compass");
   assert.ok(sc112.length > 0, "supported anchor missing its hardSpecifics must raise SC11.2");
@@ -325,7 +323,7 @@ test("SC11 boundary: supported-but-missing-specific → SC11.2; present-but-unsu
   );
 });
 
-test("SC11.2 minimums are DERIVED from the section gate (package 1B): quiz and cards owe nothing, examples owe one", () => {
+test("SC11.2 minimums are DERIVED from the section gate (package 1B, D16): quiz, cards and examples owe nothing", () => {
   // The ship gate must never demand what the write-time gate does not, or every freshly
   // compiled book re-blocks at QC — this file's own history records that happening twice.
   // Package 1B retired SEC56/SEC58 (a quiz stem, its explanation and a card back no longer
@@ -350,7 +348,8 @@ test("SC11.2 minimums are DERIVED from the section gate (package 1B): quiz and c
     .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("reviewCards[0]"));
   assert.deepEqual(cardHits.map((f) => f.message), [], "a card no longer owes a verbatim specific at ship");
 
-  // An EXAMPLE keeps a floor of one, and the message states it.
+  // An EXAMPLE owes nothing either since Q06 PR 2 (owner decision D16: SEC33 is 0; an
+  // example cites its case for provenance only and never names it).
   const example = fullyAnchoredChapter();
   example.examples[0].title = "A quiet morning";
   example.examples[0].scenario = "A reviewer walks the dock and files one note before lunch.";
@@ -359,8 +358,7 @@ test("SC11.2 minimums are DERIVED from the section gate (package 1B): quiz and c
   example.authoring!.sourceAnchors!.effectiveAnchors["examples[0]"] = ["ch01.ex.compass"];
   const exampleHits = checkChapterProvenance(example, sidecar())
     .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.evidence === "ch01.ex.compass");
-  assert.ok(exampleHits.length >= 1, "an example that names none of its cited case's details still blocks");
-  assert.match(exampleHits[0].message, /<1 of its hardSpecifics/, "and the message states the one-specific floor");
+  assert.deepEqual(exampleHits.map((f) => f.message), [], "D16: an example that names none of its cited case's details no longer blocks at ship");
 
   // One of the two specifics present clears it (the retired demand was two).
   const oneSpecific = fullyAnchoredChapter();
@@ -462,10 +460,9 @@ test("SC11.2 CF-J tolerance: a page-citation-shaped hardSpecific counts as satis
     .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("example[0]"));
   assert.deepEqual(tolerantHits.map((f) => f.message), [], "no page citation is required in reader prose");
 
-  // Package 1B moved the BOUND to write time. At ship, with the example floor at one, a
-  // citation-shaped specific alone satisfies SC11.2 — which is the tolerant direction, the
-  // only safe one for a ship gate. The write-time gate grants no such credit: SEC33 counts
-  // raw inclusion and the same example, with the real specific gone, blocks there.
+  // Package 1B moved the BOUND to write time. Since Q06 PR 2 (owner decision D16) the
+  // example floor is 0 on both sides, so the same example, with the real specific gone,
+  // passes the write-time gate too.
   const bare = {
     schemaVersion: "section-artifact-v1",
     artifactType: "example-pack",
@@ -505,8 +502,7 @@ test("SC11.2 CF-J tolerance: a page-citation-shaped hardSpecific counts as satis
     constraints: { allowedFactIds: [], allowedCaseIds: [], forbiddenClaims: [], forbiddenLeakage: [], bannedHouseTics: [] },
   } as unknown as ChapterBlueprintV1;
   const writeTime = validateExamplePack(bare, bp, packet).filter((f: SectionFinding) => f.checkId === "SEC33.example_anchor_specifics");
-  assert.equal(writeTime.length, 1, "write-time SEC33 grants no page-citation credit — the bound lives there");
-  assert.match(writeTime[0].message, /0\/1/);
+  assert.deepEqual(writeTime.map((f) => f.message), [], "D16: write-time SEC33 asks an example for no specific");
 });
 
 test("source evidence loader validates before rendering explicit editor and planner inputs", () => {

@@ -337,22 +337,21 @@ function compilerOutputs(fixtureRoot: string) {
         ?? blueprint.reservedVariety.allowedNames[index % blueprint.reservedVariety.allowedNames.length]
         ?? "Maya";
       const caseId = slot.requiredCaseIds[0] ?? packet.namedCases[0].id;
-      const caseAnchor = packet.allowedAnchors.find((anchor) => anchor.id === caseId);
-      const hardSpecifics = caseAnchor?.hardSpecifics?.slice(0, 2).join(" and ")
-        ?? "credit reports and account balances";
       const factId = slot.requiredFactIds[0] ?? packet.facts[0].id;
       // Package 1B: SEC39 now draws its overlap terms from the cited fact's MECHANISM
       // and WHY-WRONG only (never its entities, numbers or headline claim), so a
       // whyItMatters that restates the case's proper nouns no longer counts as
       // explaining the fact. This fixture's line was the generic tie-back the check is
       // aimed at; it now carries the fact's own reasoning, which is what a compliant
-      // example does.
+      // example does. Q06 PR 2 (owner decision D16): the closing "This example stays
+      // tied to <case specifics>" sentence went with SEC33's floor, because SEC137 now
+      // refuses a whyItMatters that names the source case.
       const fact = packet.facts.find((entry) => entry.id === factId);
       return {
         ...template,
         slotId: slot.slotId,
         scenario: oldName ? template.scenario.replaceAll(oldName, protagonist) : template.scenario,
-        whyItMatters: `${fact?.mechanism ?? ""} The action changes report-facing account information, so a smaller visible balance gives a lender different evidence to interpret. This example stays tied to ${hardSpecifics}.`.trim(),
+        whyItMatters: `${fact?.mechanism ?? ""} The action changes report-facing account information, so a smaller visible balance gives a lender different evidence to interpret.`.trim(),
         sourceAnchorIds: [caseId],
         sourceFactIds: [factId],
         namedCaseIds: [caseId],

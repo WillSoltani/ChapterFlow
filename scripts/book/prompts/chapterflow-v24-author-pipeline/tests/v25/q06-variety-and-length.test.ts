@@ -39,7 +39,9 @@ const NEW_LINES: Record<SectionKind, string[]> = {
   ],
   "example-pack": [
     "LENGTH: each scenario runs 50-90 words (and never under the 180-character floor); whyItMatters is at most 2 sentences, about 40 words.",
-    "whyItMatters explains, in the scene's own terms, why the move works or where it stops working, using the cited fact's MECHANISM and what the moment shows (the choice, in a decision slot). Name the source case in at most one short clause and never retell its anecdote: the chapter's prose teaches the case, and repeating its names and numbers is not an explanation (SEC39 checks the mechanism).",
+    // Q06 PR 2 (owner decision D16) replaced PR 1's one-short-clause allowance; pinned in
+    // tests/v25/q06-examples-without-case-tokens.test.ts.
+    "whyItMatters explains, in the scene's own terms, why the move works or where it stops working, using the cited fact's MECHANISM and what the moment shows (the choice, in a decision slot). Never name the source case or a source figure and never retell its anecdote: the chapter's prose teaches the case (SEC39 checks the mechanism).",
     "whatToDo is the ONE move the reader would make in that moment, not already narrated in the scenario. Vary its KIND across the six: a question to ask, something to stop, a timing change, a person to bring in, a limit to set, a record to keep. Use at least four different kinds, in no fixed order, and at most two of the six whatToDo may tell the reader to write, log, sign, date or check a record.",
     "source facts DRIVE what happens in the scene (the choice, in a decision slot)",
   ],
