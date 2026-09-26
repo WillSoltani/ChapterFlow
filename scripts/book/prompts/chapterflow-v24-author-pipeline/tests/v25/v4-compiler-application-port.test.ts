@@ -56,6 +56,7 @@ import {
   type RejectedSectionPackSink,
 } from "../../src/app/rejectedSectionPacks.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
+import { reverseSubstituteQ05ContractLines } from "./q05ChangedContractLines.js";
 
 const BOOK = "compiler-port-book";
 const INPUT = "candidate-input";
@@ -2852,7 +2853,13 @@ requiredTest("Q04-W1 a book WITHOUT frozen text ships no source_span and its sum
   // prefix = the SEC117 cue line, the situation-first craft line, the stem and card-back
   // ceilings and the DIRECT_JSON placeholder stem; learning suffix = the deleted SEC120
   // "compels one" sentence. The no-source_span half of this test (no span, no pointer) is unchanged.
-  assert.equal(sha(inputText(promptFor(subject.prompts, "compiler-ch01-summary-pack"), "task_card")!), "4b4034a6ad24e3fae0cc50d94941ef7fdba93e37701744d254e14023ae9a2278");
+  // Q05 then deliberately rewrote three summary contract lines for EVERY book (tone L2/L3 and
+  // the fastRead tier role), so the card is re-pinned at its Q05 bytes, and the proof that those
+  // lines are the ONLY change sits beside it: reverse-substituting them (exact new -> old strings,
+  // q05ChangedContractLines.ts) gives back Q06's pin, 4b4034a6ad24..., byte for byte.
+  const summaryCard = inputText(promptFor(subject.prompts, "compiler-ch01-summary-pack"), "task_card")!;
+  assert.equal(sha(summaryCard), "0b780e5acfa608d97ddb99c8b7309a6d7f3e0d37c88ee527d12f81baba810cd2");
+  assert.equal(sha(reverseSubstituteQ05ContractLines(summaryCard)), "4b4034a6ad24e3fae0cc50d94941ef7fdba93e37701744d254e14023ae9a2278");
   // W3 rewrites the quiz preflight of EVERY book, so the sourceless learning card may
   // differ from the base ONLY inside that block: the bytes before it and after it are pinned.
   const learning = inputText(promptFor(subject.prompts, "compiler-ch01-learning-pack"), "task_card")!;

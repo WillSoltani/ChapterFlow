@@ -1,0 +1,251 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 15,
+  "chapterTitle": "Quarrels with the Proprietary Governors",
+  "focus": "Governor Robert Hunter Morris's admitted love of disputation locks him into continual conflict with the Pennsylvania Assembly despite promising Franklin he would avoid it, and that conflict is traced to proprietary instructions shielding the Penn family's estates from taxation. When Morris blocks a wartime funding bill over that same exemption demand, Franklin sidesteps the governor entirely by having the Assembly issue an interest-bearing financial instrument instead of a tax.",
+  "coreClaim": "Chronic disputes between Pennsylvania's governors and its Assembly stemmed from proprietary instructions protecting the Penn family's estates from taxation, and the way out of such a deadlock lay in engineering a financial instrument rather than winning the argument.",
+  "centralConcept": {
+    "id": "ch15.concept.loan-office-orders",
+    "name": "Loan-Office order financing",
+    "plainDefinition": "A way of raising money for a public expense by having the Assembly issue interest-bearing paper drawn on the provincial loan office, instead of relying on a tax bill the governor could veto.",
+    "whyItMatters": "It let a legislature fund an urgent commitment even when the executive refused consent, because it never required an act the governor had to sign."
+  },
+  "keyClaims": [
+    "Robert Hunter Morris arrived from England to replace Governor Hamilton, who had resigned worn out by disputes forced on him by his proprietary instructions.",
+    "Morris openly admitted enjoying disputation and predicted, accurately, that he would keep quarreling with the Assembly despite promising Franklin he would try to avoid it.",
+    "Habitual disputants may win individual arguments but generally forfeit the goodwill that would serve them better, a pattern Morris's upbringing at his father's dinner table had trained into him.",
+    "Franklin and Morris kept a warm personal friendship even while Franklin drafted the Assembly's harshest replies against him, showing institutional conflict need not become personal animosity.",
+    "A joking exchange about selling off an ungovernable people escalated into a public insult contest that damaged Morris's own reputation more than the Assembly's, and he eventually quit the post as Hamilton had.",
+    "The recurring governor-Assembly conflict was rooted in the Penn family's instructions binding their deputies by bond to block any tax act that did not exempt the proprietors' own estates.",
+    "When Morris refused assent to a Crown Point relief bill over that same tax exemption, Franklin devised interest-bearing Loan-Office orders that raised the needed money without the governor's signature, and the orders sold out within weeks as an attractive investment."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch15.case.morris-broken-promise",
+      "label": "Robert Hunter Morris / promised to avoid Assembly disputes, then didn't",
+      "summary": "Newly arrived to succeed Governor Hamilton, Morris asked Franklin whether he should expect an uncomfortable term; Franklin advised avoiding quarrels with the Assembly, and Morris promised to try despite admitting he loved disputing. By the time Franklin returned from a trip to Boston, the Assembly's own voting record already showed Morris locked in constant conflict with the House, a battle that lasted his entire administration.",
+      "teachesWhat": "A stated intention to change behavior does not override an ingrained temperament.",
+      "hardSpecifics": [
+        "Mr. Morris",
+        "Mr. Hamilton",
+        "New York"
+      ],
+      "realWorld": true,
+      "sourceQuote": "governor, Mr. Morris, just arriv'd there from England, with whom I had",
+      "hardSpecificEvidence": [
+        {
+          "specific": "Mr. Morris",
+          "proposition": "Robert Hunter Morris arrived at New York from England as Pennsylvania's newly commissioned governor.",
+          "sourceQuote": "governor, Mr. Morris, just arriv'd there from England, with whom I had"
+        },
+        {
+          "specific": "Mr. Hamilton",
+          "proposition": "Hamilton resigned the governorship worn out by disputes his proprietary instructions forced on him.",
+          "sourceQuote": "supersede Mr. Hamilton, who, tir'd with the disputes his proprietary"
+        },
+        {
+          "specific": "New York",
+          "proposition": "Franklin met the incoming governor at New York while on his own journey to Boston.",
+          "sourceQuote": "In my journey to Boston this year, I met at New York with our new"
+        }
+      ]
+    },
+    {
+      "id": "ch15.case.disputation-upbringing",
+      "label": "Morris family dinner table / childhood training in disputation",
+      "summary": "Morris's taste for argument traced back to a habit his father had cultivated, setting the children against one another in debate after dinner purely for his own amusement. Franklin judged that upbringing unwise, observing that people who habitually dispute, contradict, and confute others may win individual arguments but permanently forfeit the goodwill that would have served them better.",
+      "teachesWhat": "A skill trained for entertainment in childhood can become a liability once applied to governance.",
+      "hardSpecifics": [
+        "his father",
+        "sitting at table after dinner"
+      ],
+      "realWorld": true,
+      "sourceQuote": "his children to dispute with one another for his diversion, while",
+      "hardSpecificEvidence": [
+        {
+          "specific": "sitting at table after dinner",
+          "proposition": "Morris's father set his children to disputing with each other at the dinner table for his own entertainment.",
+          "sourceQuote": "sitting at table after dinner; but I think the practice was not wise;"
+        },
+        {
+          "specific": "his father",
+          "proposition": "Morris had been raised from boyhood to argue by his own father's deliberate practice.",
+          "sourceQuote": "brought up to it from a boy, his father, as I have heard, accustoming"
+        }
+      ]
+    },
+    {
+      "id": "ch15.case.sancho-panza-insult-exchange",
+      "label": "Morris's dinner party / the Sancho Panza joke and the \"blacked enough\" retort",
+      "summary": "At a dinner during the height of the public feud, Morris jokingly praised Sancho Panza's wish for a government of blacks so he could sell them off if they proved ungovernable; a friend of Morris's then asked Franklin why he sided with the Quakers instead of selling them to the proprietor. Franklin retorted that the governor hadn't yet blackened them enough, a jab at Morris's own attempts to blacken the Assembly's reputation in his messages, attempts the Assembly threw back onto him until he, like Hamilton before him, quit the post.",
+      "teachesWhat": "An attack aimed at damaging an opponent's reputation can rebound onto the attacker instead.",
+      "hardSpecifics": [
+        "Sancho Panza",
+        "a government of blacks"
+      ],
+      "realWorld": true,
+      "sourceQuote": "after supper, he told us, jokingly, that he much admir'd the idea of",
+      "hardSpecificEvidence": [
+        {
+          "specific": "Sancho Panza",
+          "proposition": "Morris said at dinner he admired Sancho Panza's wish to govern only blacks so he could sell them if they displeased him.",
+          "sourceQuote": "after supper, he told us, jokingly, that he much admir'd the idea of"
+        },
+        {
+          "specific": "a government of blacks",
+          "proposition": "Sancho Panza, if given a government, asked that it be one of blacks so he could sell his people if he could not agree with them.",
+          "sourceQuote": "requested it might be a government of blacks, as then, if he could"
+        }
+      ]
+    },
+    {
+      "id": "ch15.case.crown-point-loan-office-orders",
+      "label": "Massachusetts Bay's Crown Point appeal / Loan-Office orders funding Pennsylvania's ten-thousand-pound aid",
+      "summary": "Massachusetts Bay sent Mr. Quincy to Pennsylvania seeking help for an attack on Crown Point, and Franklin, as Quincy's fellow New Englander and a sitting Assembly member, dictated the address that won the Assembly's vote of ten thousand pounds. Governor Morris refused to sign the funding bill unless the proprietary estate was exempted from the tax paying for it, so Franklin proposed issuing Loan-Office orders instead, letting the Assembly raise the money on its own authority. The orders sold out within weeks as an attractive investment, and Quincy went home with the aid secured and a lasting friendship with Franklin.",
+      "teachesWhat": "A legislative deadlock created by an executive veto can sometimes be dissolved by inventing a new financial instrument rather than winning the underlying argument.",
+      "hardSpecifics": [
+        "Mr. Quincy",
+        "Crown Point",
+        "ten thousand pounds",
+        "the Loan office"
+      ],
+      "realWorld": true,
+      "sourceQuote": "Massachusetts Bay projected an attack upon Crown Point,[95] and sent",
+      "hardSpecificEvidence": [
+        {
+          "specific": "Mr. Quincy",
+          "proposition": "Massachusetts Bay sent Mr. Quincy to Pennsylvania to solicit assistance for the Crown Point expedition.",
+          "sourceQuote": "Mr. Quincy to Pennsylvania, and Mr. Pownall, afterward Governor"
+        },
+        {
+          "specific": "Crown Point",
+          "proposition": "Massachusetts Bay planned an attack on Crown Point and sought aid from neighboring colonies.",
+          "sourceQuote": "Massachusetts Bay projected an attack upon Crown Point,[95] and sent"
+        },
+        {
+          "specific": "ten thousand pounds",
+          "proposition": "The Pennsylvania Assembly voted an aid of ten thousand pounds toward provisions for the expedition.",
+          "sourceQuote": "They voted an aid of ten thousand pounds, to be laid"
+        },
+        {
+          "specific": "the Loan office",
+          "proposition": "Franklin's funding proposal drew orders on the trustees of the Loan office rather than needing a new tax act.",
+          "sourceQuote": "by orders on the trustees of the Loan office, which, by law, the"
+        }
+      ]
+    }
+  ],
+  "hardEdge": "It is tempting to conclude that the endless quarrels between the Assembly and its governors were personal squabbles, driven by a contentious temperament like Morris's, and that a more agreeable governor could simply have avoided them. What actually holds is that the conflict was structural: the Penn family bound every deputy governor by bond to block any tax act that did not exempt their own estates, so no governor's personality could resolve it, and the deadlock only broke when a financial instrument was invented that never required the governor's assent at all — which is exactly what the personal-friction reading misses.",
+  "voiceCues": [
+    "opens with a personal, almost gossipy conversation with the incoming governor before turning to institutional analysis",
+    "inserts a direct generalized moral aside about disputatious people (\"in the course of my observation...\")",
+    "folds a racially charged period joke into political commentary without separate condemnation, reflecting the era's casual language",
+    "breaks narrative order with an explicit aside acknowledging he has gotten ahead of his own story before returning to it",
+    "narrates the financial fix in step-by-step procedural detail, naming the interest rate, funding source, and disposal committee"
+  ],
+  "forbiddenLeakage": [
+    "Governor Denny's eventual defiance of the proprietary tax instructions",
+    "Franklin's later military and defense actions taken during Morris's term"
+  ],
+  "paraphraseNotes": "Robert Hunter Morris arrived at New York from England to take over the Pennsylvania governorship from Hamilton, who had resigned exhausted by disputes his proprietary instructions forced on him. Franklin told Morris he could have a comfortable term if he simply avoided quarreling with the Assembly; Morris admitted he loved disputing, called it one of his greatest pleasures, and promised only to try avoiding it. His taste for argument traced back to a habit his own father had cultivated, setting his children against each other at the dinner table for entertainment — a training Franklin judged unwise, since people who habitually dispute and confute others may win arguments but permanently lose the goodwill that would serve them better. By the time Franklin returned from a trip to Boston, the Assembly's own records already showed Morris locked in a continual battle with the House that lasted his whole administration; Franklin himself sat on every committee assigned to answer Morris's messages and usually wrote the replies, which were often tart and sometimes indecently abusive. Despite this, the two men's personal friendship survived intact, and they often dined together. At one such dinner, Morris joked about admiring Sancho Panza's wish to govern only blacks so he could sell them if they proved troublesome; when a friend of Morris's needled Franklin for siding with the Quakers instead of selling them, Franklin retorted that the governor hadn't yet blackened them enough — a jab at Morris's own attempts to blacken the Assembly's reputation, attempts that rebounded onto him until, worn out, he quit the post as Hamilton had. The underlying cause of these clashes was structural: the Penn family bound its deputy governors by bond to block any tax act that did not exempt the proprietors' own vast estates, and the Assembly held out against this for three years before bending. When Morris blocked a ten-thousand-pound relief bill for the Crown Point expedition on that same exemption demand, Franklin sidestepped the governor entirely by having the Assembly issue interest-bearing Loan-Office orders, which sold out within weeks because they doubled as an attractive investment. The practical rule: when an executive veto is structurally guaranteed, invent a financial instrument that needs no veto, rather than trying to win an argument nobody in that seat is free to concede.",
+  "testableFacts": [
+    {
+      "id": "ch15.fact.morris-succeeds-hamilton",
+      "claim": "Robert Hunter Morris arrived from England to replace Hamilton as Pennsylvania's governor after Hamilton resigned worn out by disputes forced on him by his proprietary instructions.",
+      "becauseMechanism": "Proprietary instructions bound any governor to demands the Assembly resisted, so occupying the office meant inheriting the same forced conflict regardless of personal temperament.",
+      "commonError": "Hamilton resigned because he personally disliked politics in general.",
+      "errorIsWhy": "The text ties his exhaustion specifically to disputes generated by his proprietary instructions, not to distaste for the job itself.",
+      "sourceQuote": "supersede Mr. Hamilton, who, tir'd with the disputes his proprietary"
+    },
+    {
+      "id": "ch15.fact.morris-admits-loving-disputes",
+      "claim": "Morris openly told Franklin he loved disputing and considered it one of his greatest pleasures, even while promising to try to avoid disputes with the Assembly.",
+      "becauseMechanism": "His pleasure in argument came from being eloquent and a skilled sophister, which made him generally successful in argumentative conversation and thus reluctant to give it up.",
+      "commonError": "Morris disliked conflict and was dragged into it unwillingly.",
+      "errorIsWhy": "He explicitly says disputing is one of his greatest pleasures, so the conflict was not merely imposed on him.",
+      "sourceQuote": "disputes? You know I love disputing; it is one of my greatest"
+    },
+    {
+      "id": "ch15.fact.disputants-lose-goodwill",
+      "claim": "Habitually disputing, contradicting, and confuting people may win arguments but generally forfeit the goodwill that would serve them better.",
+      "becauseMechanism": "Winning a dispute concedes nothing to the other side's feelings, so repeated victories accumulate resentment rather than cooperation.",
+      "commonError": "Winning more arguments should produce more influence and success over time.",
+      "errorIsWhy": "The observation states such people are generally unfortunate in their affairs despite occasional victories, because goodwill matters more than being proven right.",
+      "sourceQuote": "get victory sometimes, but they never get good will, which would be of"
+    },
+    {
+      "id": "ch15.fact.continual-battle-with-assembly",
+      "claim": "Morris's promise to avoid disputes with the Assembly proved false almost immediately, and the two remained in a continual battle for his entire administration.",
+      "becauseMechanism": "The conflict was driven by proprietary instructions rather than personal choice, so it resumed regardless of any promise.",
+      "commonError": "Morris kept his promise for a while before conflict resumed later.",
+      "errorIsWhy": "The Assembly's votes already showed high contention by the time of a single return trip from Boston, meaning conflict resumed almost immediately.",
+      "sourceQuote": "House were already in high contention; and it was a continual battle"
+    },
+    {
+      "id": "ch15.fact.franklin-drafts-assembly-answers",
+      "claim": "Franklin was placed on every Assembly committee tasked with answering Morris's speeches and messages, and was regularly asked to write the drafts himself.",
+      "becauseMechanism": "His known skill and prior role as the Assembly's writer made him the default choice whenever a formal reply to the governor was needed.",
+      "commonError": "Franklin stayed out of the dispute since he was personally friendly with Morris.",
+      "errorIsWhy": "He was in fact the Assembly's chief drafter against Morris, producing replies that were often tart and sometimes indecently abusive.",
+      "sourceQuote": "on every committee for answering his speeches and messages, and by the"
+    },
+    {
+      "id": "ch15.fact.personal-friendship-survives",
+      "claim": "Despite drafting the Assembly's harshest replies to Morris, Franklin maintained a personal friendship with him and the two often dined together.",
+      "becauseMechanism": "Morris's good-natured temperament kept him from treating institutional criticism as a personal insult.",
+      "commonError": "Writing the harshest official replies against a governor would end a personal friendship with him.",
+      "errorIsWhy": "No personal difference between them was occasioned by the contest, and they often dined together despite the harsh exchanges.",
+      "sourceQuote": "occasion'd by the contest, and we often din'd together."
+    },
+    {
+      "id": "ch15.fact.blackening-backfires",
+      "claim": "Morris's repeated attempts to blacken the Assembly's reputation in his official messages were thrown back onto him, and he grew tired of the contest and quit, as Hamilton had before him.",
+      "becauseMechanism": "The Assembly answered each accusation in kind, so the reputational damage Morris aimed outward returned onto his own public image.",
+      "commonError": "Morris's rhetorical attacks weakened the Assembly's public standing more than his own.",
+      "errorIsWhy": "The Assembly wiped off his colouring as fast as he laid it on and placed it back thick on his own face, so he was the one who quit worn out.",
+      "sourceQuote": "Mr. Hamilton, grew tir'd of the contest, and quitted the government."
+    },
+    {
+      "id": "ch15.fact.proprietary-tax-exemption-cause",
+      "claim": "The recurring governor-Assembly quarrels were rooted in the Penn family's instructions ordering their deputies to block any tax act unless their own vast estates were expressly exempted.",
+      "becauseMechanism": "The proprietors bound their deputy governors with bonds to obey these instructions, so no governor could sign an unqualified tax bill without breaching a financial obligation.",
+      "commonError": "The quarrels arose mainly from clashing personalities between the Assembly and its governors.",
+      "errorIsWhy": "The quarrels are traced to the proprietaries' instructions exempting their estates, enforced by bonds on the deputies, not to any governor's personal manner.",
+      "sourceQuote": "meanness instructed their deputies to pass no act for levying the"
+    },
+    {
+      "id": "ch15.fact.assemblies-held-out-three-years",
+      "claim": "The Assemblies resisted the proprietary tax-exemption demand for three years before finally being constrained to bend.",
+      "becauseMechanism": "Continued refusal to pass any exempting tax act eventually became untenable as wartime funding needs mounted, forcing compliance.",
+      "commonError": "The Assembly capitulated to the proprietors immediately once the demand was made.",
+      "errorIsWhy": "The Assemblies held out against the injustice for three years before being constrained to bend at last.",
+      "sourceQuote": "against this injustice, tho' constrained to bend at last. At length"
+    },
+    {
+      "id": "ch15.fact.crown-point-bill-blocked",
+      "claim": "Governor Morris refused his assent to the Assembly's ten-thousand-pound aid bill for the Crown Point expedition unless a clause exempted the proprietary estate from the necessary tax.",
+      "becauseMechanism": "His proprietary instructions bound him to withhold assent from any tax bill that did not exempt the Penns' estates.",
+      "commonError": "Morris blocked the bill because he opposed helping Massachusetts Bay's military campaign.",
+      "errorIsWhy": "The refusal was conditioned specifically on the proprietary tax exemption clause, not on opposition to the expedition, which the Assembly was very desirous of funding.",
+      "sourceQuote": "crown), unless a clause were inserted exempting the proprietary estate"
+    },
+    {
+      "id": "ch15.fact.loan-office-orders-bypass",
+      "claim": "Franklin proposed funding the ten-thousand-pound aid through Loan-Office orders, letting the Assembly raise the money without the governor's assent.",
+      "becauseMechanism": "The Assembly already held the legal right to draw orders on the Loan office, so this route required no new act needing the governor's signature.",
+      "commonError": "The Assembly could only fund the aid by eventually forcing the governor to sign a tax bill.",
+      "errorIsWhy": "The proposal used an existing legal authority to draw Loan-office orders, sidestepping the governor's veto entirely, without any tax act.",
+      "sourceQuote": "I then suggested a method of doing the business without the governor,"
+    },
+    {
+      "id": "ch15.fact.orders-sold-out-as-investment",
+      "claim": "The Loan-Office orders were bought up by moneyed people as an investment because they bore interest and could be used as money, so all of them sold within a few weeks.",
+      "becauseMechanism": "The orders' backing by paper-currency interest and excise revenue gave them instant credit, making them attractive to hold even for people not needing them to purchase provisions.",
+      "commonError": "The orders had to be forced onto reluctant buyers to fund the provisions.",
+      "errorIsWhy": "The orders obtained instant credit and were eagerly all bought up within a few weeks, since they were advantageous to hold.",
+      "sourceQuote": "were eagerly all bought up, and in a few weeks none of them were to be"
+    }
+  ],
+  "sourceProvenance": "source-text",
+  "sourceTextSha256": "8d71d7dc6784b651bfe068dba20e0b6c511357efda3974bd05564193f0899e34"
+}

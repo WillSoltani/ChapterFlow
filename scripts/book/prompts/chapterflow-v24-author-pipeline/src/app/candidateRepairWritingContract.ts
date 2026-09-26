@@ -191,7 +191,7 @@ function voiceSection(card: string | null): string {
   return [
     "## VOICE CARD: how THIS book sounds (register only; match it, never quote it)",
     clamped,
-    "- Keep explanations and actions in this register too: plain verbs, short sentences, not a neutral textbook voice.",
+    "- Keep explanations and actions in this register too, not a neutral textbook voice.",
   ].join("\n");
 }
 

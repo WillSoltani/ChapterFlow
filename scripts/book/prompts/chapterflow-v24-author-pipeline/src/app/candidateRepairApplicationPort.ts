@@ -268,6 +268,22 @@ function jsonBytes(value: unknown): Uint8Array {
   return new TextEncoder().encode(`${JSON.stringify(value, null, 2)}\n`);
 }
 
+/**
+ * Q05 (D18): the source packet as the repair writer sees it. The compiler stages the
+ * whole packet, and this lane forwards it as "source_packet", the record its control
+ * text names as the only source of names, numbers and cases. The book's own words
+ * (quotations, voiceCues) are rendered only for the summary writer and the chapter
+ * editor, beside the D18 rule; here they would arrive without it, so they are
+ * dropped. A packet without them (every other book, and a quotation-less chapter)
+ * is sent as the exact staged bytes.
+ */
+function repairSourcePacketBytes(bytes: Uint8Array): Uint8Array {
+  const packet = parseJson(bytes) as Record<string, unknown>;
+  if (!("quotations" in packet) && !("voiceCues" in packet)) return bytes;
+  const { quotations: _quotations, voiceCues: _voiceCues, ...rest } = packet;
+  return jsonBytes(rest);
+}
+
 function readChapters(candidate: CandidateSnapshot): Result<readonly ChapterEntry[]> {
   const entries: ChapterEntry[] = [];
   for (const file of candidate.files) {
@@ -1491,7 +1507,7 @@ export class CandidateRepairApplicationPort {
             ...contextFiles.map((file, index) => ({
               name: index === 0 ? "blueprint" : index === 1 ? "source_packet" : index === 2 ? "source_use_plan" : `source_context_${index - 2}`,
               mediaType: file.mediaType,
-              bytes: Buffer.from(file.bytes),
+              bytes: Buffer.from(index === 1 ? repairSourcePacketBytes(file.bytes) : file.bytes),
             })),
             ...(sourceSpan ? [{ name: "source_span", mediaType: "text/plain" as const, bytes: new TextEncoder().encode(sourceSpan.text) }] : []),
             { name: "qc_findings", mediaType: "application/json", bytes: jsonBytes(bounded.listed) },
