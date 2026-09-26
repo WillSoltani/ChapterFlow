@@ -370,6 +370,24 @@ function ch14ShapePacket(): SourcePacketV1 {
         whyWrong: "Governor Hamilton is described as having \"receiv'd this order\" from the Lords of Trade, meaning the meeting originated with crown authority, not colonial choice.",
         groundedEntities: ["Albany", "Lords", "Trade", "France", "Six Nations. Renewed", "London", "Indian", "London. Governor Hamilton"],
       },
+      // Round 4: the real ch14 prose writes the institutions' possessives article-led
+      // ("the Lords of Trade's order", "the House's preference") and names Thomas Penn.
+      {
+        id: "ch14.fact.pa_commissioners",
+        claim: "Pennsylvania's delegation to the Albany congress consisted of four named men: the Speaker, Franklin, Thomas Penn, and Secretary Peters.",
+        mechanism: "Governor Hamilton named this group jointly to represent the province in response to the Lords of Trade's order.",
+        commonError: "Franklin attended Albany as Pennsylvania's sole representative.",
+        whyWrong: "The text names four commissioners appointed together, not Franklin alone.",
+        groundedEntities: ["Pennsylvania's", "Albany", "Speaker", "Franklin", "Thomas Penn", "Secretary Peters. Governor Hamilton", "Lords", "Trade's"],
+      },
+      {
+        id: "ch14.fact.house_reluctance",
+        claim: "The Pennsylvania Assembly funded the Indian presents for Albany despite disliking negotiations conducted outside the province.",
+        mechanism: "Obligation to support the crown's directive outweighed the House's preference for keeping such dealings within Pennsylvania's own borders.",
+        commonError: "The Assembly enthusiastically embraced sending commissioners to Albany.",
+        whyWrong: "The text explicitly notes the House approved funding even though it \"did not much like treating out of the provinces.\"",
+        groundedEntities: ["Pennsylvania Assembly", "Indian", "Albany", "House's", "Pennsylvania's", "Assembly", "Albany. The", "House"],
+      },
     ],
     allowedEntities: [
       "Albany Plan", "Union", "Facing", "France", "Franklin", "American", "Albany", "British Board", "Trade", "England",
@@ -503,6 +521,185 @@ requiredTest("Q06b round 3: institution words and entity noise stay clean at a s
     ["Trade rules the timing here. Board members read the plan once, and rejection is cheap when nobody who wrote it is in the room.", ch14ShapePacket()],
     ["House members vote on what is in the room. Obligation to an absent author is not a check.", ch14ShapePacket()],
   ] as const) assert.deepEqual(sec137Tokens(why, packet), [], `false positive on: ${why}`);
+});
+
+// ── round 4: the three recall misses of the round-3 correctness review ─────────────
+
+// ch04: "Colonel French" is a person the packet names only in allowedEntities
+// (verbatim rr21 ch04 list); "French" is also a nationality word.
+function ch04ShapePacket(): SourcePacketV1 {
+  return {
+    chapterTitle: "First Visit to Boston",
+    allowedAnchors: [BROWNELL_ANCHOR],
+    namedCases: [
+      {
+        id: "ch04.case.keith_offer",
+        label: "Sir William Keith / Offer to Finance Franklin's Business",
+        summary: "Newly returned to Boston, Franklin carries Sir William Keith's letter urging his father to back a printing house, and his father declines.",
+        hardSpecifics: ["Sir William Keith", "a printing house"],
+      },
+    ],
+    facts: [],
+    allowedEntities: [
+      "First Visit", "Boston", "Newly", "Franklin", "Pennsylvania", "Sir William Keith's", "Keith's", "Newport", "New York",
+      "Philadelphia. Along", "Reliance", "Unverified Patron", "Committing", "Someone", "Sir William Keith", "Franklin's", "James's",
+      "James", "A Quaker", "Newport-to-New York", "Once", "Collins", "Vernon", "Access", "Burnet", "Faced", "Offer",
+      "Finance Franklin's Business", "Pennsylvania's", "Keimer's", "Madeira", "Keith", "England", "Annis", "Shows", "Newcastle",
+      "Colonel French", "James Franklin", "Cold Reception", "Returning", "James Collins", "Thrown Overboard", "Delaware",
+      "Delaware River", "Collins's", "Vernon's Money", "Debt Entrusted", "Spent", "In Newport", "John Franklin's", "Vernon's",
+      "Governor Burnet", "Unsolicited Library Visit", "Hearing", "New York's", "Bishop Burnet", "Burnet's", "Captain Holmes",
+      "Junto's", "Third-street", "Delaware. Keith", "April", "After", "John", "Without Franklin's", "When Collins", "Two",
+      "Seeing", "People", "Sir William Keith / Offer to Finance Franklin's Business",
+    ],
+    allowedPlaces: [],
+    allowedNumbers: [],
+  } as unknown as SourcePacketV1;
+}
+
+// ch12: the packet writes the bare possessive "Philadelphia's" (commonError,
+// groundedEntities) and also "the Philadelphia regiment" (verbatim rr21 ch12 excerpts).
+function ch12ShapePacket(): SourcePacketV1 {
+  return {
+    chapterTitle: "Defense of the Province",
+    // The real anchors repeat the facts: with them the prose writes "the Philadelphia
+    // regiment" 4 times and a bare "Philadelphia" 3 times, the ratio the round-3
+    // institution rule read as an institution.
+    allowedAnchors: [
+      BROWNELL_ANCHOR,
+      {
+        id: "ch12.fact.mass_signing",
+        kind: "testable_fact",
+        label: "The Plain Truth pamphlet produced a mass signing, exceeding ten thousand subscribers province-wide.",
+        text: "The Plain Truth pamphlet produced a mass signing, exceeding ten thousand subscribers province-wide. Publishing the danger in strong terms before asking for signatures created urgency that a bare recruitment drive would not have. Participation stayed limited to Philadelphia's city population. Additional copies dispersed into the country carried the subscription beyond the city to the wider province.",
+        supportsClaimTypes: ["breakdown_claim", "quiz_prompt"],
+      },
+      {
+        id: "ch12.fact.declined_colonelcy",
+        kind: "testable_fact",
+        label: "The colonelcy of the Philadelphia regiment was declined in favor of Mr. Lawrence.",
+        text: "The colonelcy of the Philadelphia regiment was declined in favor of Mr. Lawrence. Self-judged unfitness for the post, combined with a preference to redirect the honor to someone with recognized standing, drove the recommendation. The colonelcy was accepted since the association's organizer had built the entire effort. The station was explicitly declined and Lawrence put forward instead, who \"was accordingly appointed.\"",
+        supportsClaimTypes: ["breakdown_claim", "quiz_prompt"],
+      },
+    ],
+    namedCases: [
+      {
+        id: "ch12.case.plain_truth_association",
+        label: "Benjamin Franklin / Plain Truth pamphlet and the Association",
+        summary: "After the governor's push for a militia law failed in the Quaker Assembly, Franklin published the pamphlet Plain Truth describing the province's defenselessness and promising a voluntary association to sign. The association's instrument, drafted with a few friends and read aloud at a public meeting, was signed on the spot by well over a thousand Philadelphians and eventually by more than ten thousand people province-wide.",
+        hardSpecifics: ["Plain Truth", "twelve hundred hands", "ten thousand", "Mr. Lawrence"],
+        specificPropositions: [
+          { specific: "Plain Truth", proposition: "Franklin published a pamphlet titled Plain Truth to argue publicly for a voluntary defense association." },
+          { specific: "twelve hundred hands", proposition: "The initial Philadelphia signing of the association produced more than twelve hundred signatures." },
+          { specific: "ten thousand", proposition: "Total subscribers to the association across the province eventually exceeded ten thousand." },
+          { specific: "Mr. Lawrence", proposition: "Franklin recommended Mr. Lawrence to command the Philadelphia regiment rather than take the post himself." },
+        ],
+      },
+    ],
+    facts: [
+      {
+        id: "ch12.fact.mass_signing",
+        claim: "The Plain Truth pamphlet produced a mass signing, exceeding ten thousand subscribers province-wide.",
+        mechanism: "Publishing the danger in strong terms before asking for signatures created urgency that a bare recruitment drive would not have.",
+        commonError: "Participation stayed limited to Philadelphia's city population.",
+        whyWrong: "Additional copies dispersed into the country carried the subscription beyond the city to the wider province.",
+        groundedEntities: ["Plain Truth", "Philadelphia's"],
+      },
+      {
+        id: "ch12.fact.declined_colonelcy",
+        claim: "The colonelcy of the Philadelphia regiment was declined in favor of Mr. Lawrence.",
+        mechanism: "Self-judged unfitness for the post, combined with a preference to redirect the honor to someone with recognized standing, drove the recommendation.",
+        commonError: "The colonelcy was accepted since the association's organizer had built the entire effort.",
+        whyWrong: "The station was explicitly declined and Lawrence put forward instead, who \"was accordingly appointed.\"",
+        groundedEntities: ["Philadelphia", "Mr. Lawrence. Self-judged", "Lawrence"],
+      },
+    ],
+    allowedEntities: [
+      "Defense", "Province", "Pennsylvania", "Assembly's Quaker", "Quaker", "Quakers", "Benjamin Franklin", "Plain Truth",
+      "Association", "After", "Quaker Assembly", "Franklin", "Philadelphians", "Mr. Lawrence", "Philadelphia", "Total",
+      "Franklin's", "Pennsylvania Assembly", "Assembly", "The Assembly", "The Assembly's", "Pennsylvania's", "Assembly's",
+      "Participation", "Philadelphia's", "Additional", "Self-judged", "Lawrence",
+      "Benjamin Franklin / Plain Truth pamphlet and the Association",
+    ],
+    allowedPlaces: [],
+    allowedNumbers: [],
+  } as unknown as SourcePacketV1;
+}
+
+requiredTest("Q06b round 4: ch04 shape, Colonel French fires although French is also a nationality word", () => {
+  const packet = ch04ShapePacket();
+  assert.ok((packet.allowedEntities as string[]).includes("Colonel French"), "fixture drift: ch04 lists Colonel French");
+  for (const why of [
+    "A second look matters, as Colonel French found.",
+    "A second look matters, as French found.",
+    "French crossed the street to check the story himself. A second look matters.",
+  ]) assert.deepEqual(sec137Tokens(why, packet), ["French"], `must flag French: ${why}`);
+  assert.deepEqual(sec137Tokens(NAME_FREE_WHY, packet), [], "a name-free whyItMatters stays clean in the ch04 shape");
+});
+
+requiredTest("Q06b round 4: ch12 shape, a bare possessive place (Philadelphia's) fires at a sentence start", () => {
+  const packet = ch12ShapePacket();
+  assert.match(JSON.stringify(packet.facts), /Philadelphia's city/, "fixture drift: ch12 writes the bare possessive");
+  assert.match(JSON.stringify(packet), /the Philadelphia regiment/, "fixture drift: ch12 also writes the Philadelphia regiment");
+  for (const why of [
+    "Philadelphia's volunteers signed first, so a second look matters.",
+    "Philadelphia signed first. A second look matters.",
+    "A second look matters, as Philadelphia's volunteers found.",
+  ]) assert.deepEqual(sec137Tokens(why, packet), ["Philadelphia"], `must flag Philadelphia: ${why}`);
+  // The Assembly is written article-led ("The Assembly's"): an institution, so its word
+  // still opens an ordinary sentence cleanly.
+  assert.deepEqual(sec137Tokens("Assembly lines stop for a recount too. A second look matters.", packet), [], "institution word at a sentence start");
+  assert.deepEqual(sec137Tokens(NAME_FREE_WHY, packet), [], "a name-free whyItMatters stays clean in the ch12 shape");
+});
+
+requiredTest("Q06b round 4: ch14 shape, Mr. Thomas Penn attests Penn with a first name between title and surname", () => {
+  const packet = ch14ShapePacket();
+  assert.ok((packet.allowedEntities as string[]).includes("Mr. Thomas Penn"), "fixture drift: ch14 lists Mr. Thomas Penn");
+  for (const why of [
+    "Penn's refusal shows why a second look matters.",
+    "Penn stayed quiet. A second look matters.",
+    "A second look matters, as Penn found.",
+  ]) assert.deepEqual(sec137Tokens(why, packet), ["Penn"], `must flag Penn: ${why}`);
+});
+
+// ch09: the Junto's only attestation is the article-led possessive "The Junto's" in
+// allowedEntities (verbatim rr21 ch09 list): an institution, so it counts mid-sentence
+// (bar clarification iii) while its word may still open a sentence.
+function ch09ShapePacket(): SourcePacketV1 {
+  return {
+    chapterTitle: "Plan for Attaining Moral Perfection",
+    allowedAnchors: [BROWNELL_ANCHOR],
+    namedCases: [
+      {
+        id: "ch09.case.virtues",
+        label: "Benjamin Franklin / thirteen-virtue tracking book",
+        summary: "Franklin kept a little book with a page for each of thirteen virtues, ruled into seven columns, and marked each day's faults against the week's virtue.",
+        hardSpecifics: ["seven columns", "red ink"],
+      },
+    ],
+    facts: [],
+    allowedEntities: [
+      "Plan", "Attaining Moral Perfection", "Deliberate", "The Daily Virtue-Tracking Ledger", "Relying", "Franklin", "Temperance", "Silence",
+      "Order", "Resolution", "Frugality", "Industry", "Sincerity", "Justice", "Tracking", "Franklin's", "Outside", "Quaker", "Benjamin Franklin",
+      "Each", "Shows", "Illustrates", "A Quaker", "Humility", "United Party", "Virtue", "Free", "Easy", "Virtue. He", "The Society", "May",
+      "Observations", "Library", "American Agent", "France", "According", "France. Visitors", "Demonstrates", "Strangers", "Professor McMaster",
+      "Visitors", "Opens", "Reproduces", "Cites", "Addison's Cato", "Cicero", "Proverbs", "Undercuts", "The Junto's", "Society", "Large-scale",
+      "Habit", "Believing", "Using", "Assuming Franklin", "Assuming", "His", "Assuming Franklin's", "Focusing", "Being", "Softening",
+      "To Temperance", "The Art", "Ongoing", "Assuming The Art", "Requiring", "God", "Yes", "Imitate Jesus", "Socrates", "The Thirteen Virtues",
+      "Moderation", "Cleanliness", "Tranquillity", "Chastity", "Benjamin Franklin / thirteen-virtue tracking book",
+    ],
+    allowedPlaces: [],
+    allowedNumbers: [],
+  } as unknown as SourcePacketV1;
+}
+
+requiredTest("Q06b round 4: ch09 shape, an institution written only as \"The Junto's\" fires mid-sentence", () => {
+  const packet = ch09ShapePacket();
+  assert.ok((packet.allowedEntities as string[]).includes("The Junto's"), "fixture drift: ch09 lists The Junto's");
+  for (const why of [
+    "A second look matters, as the Junto found.",
+    "A second look matters, as the Junto's members found.",
+  ]) assert.deepEqual(sec137Tokens(why, packet), ["Junto"], `must flag Junto: ${why}`);
+  assert.deepEqual(sec137Tokens(NAME_FREE_WHY, packet), [], "a name-free whyItMatters stays clean in the ch09 shape");
 });
 
 requiredTest("Q06b: SEC137 does not flag the example's own dealt name", () => {

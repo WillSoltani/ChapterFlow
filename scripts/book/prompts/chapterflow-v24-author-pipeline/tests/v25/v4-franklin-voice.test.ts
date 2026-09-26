@@ -106,7 +106,11 @@ function moneySidecar(): SourceSidecarV2 {
 /** Base values, pinned from renders at origin/main (before Q05). The packet hashes were
  *  taken at 496adf0d2 and re-measured unchanged at 60a25ad63 (#585, Q06, which does not
  *  touch the packet builder); the card shas are re-pinned from renders at 60a25ad63,
- *  because Q06 rewrote section-contract text on every card. */
+ *  because Q06 rewrote section-contract text on every card. The six example-pack shas
+ *  are re-pinned for Q06 PR 2 (owner decision D16), measured on the tree rebased onto
+ *  b5efca3f5: each new card, with PR 2's two example-pack contract lines (the
+ *  gateAwareness anchor line and the universalCore whyItMatters line) reverse-substituted,
+ *  hashes to exactly its previous pin, so only those two lines moved. */
 const BASE = {
   moneyPacketHash: "sha256:707bcb7b5a1da21961f30e1d016d14da28ada791a44e6f4ace0690e51b866ddb",
   ch13PacketHash: "sha256:1eaba3a69138c0fe6d5ea1ad6385a9016b9201f170bb068a850d58b6894c93fc",
@@ -120,24 +124,24 @@ const BASE = {
   cards: {
     "money.summary-pack.FILE_WRITE": "60fd51d46faa1ac32a411c2c8efe7d884ca33a97248b6b0b0c2757f39fe5d520",
     "money.summary-pack.DIRECT_JSON": "734289173b1da4705a762f338554d5406f604df1bfa6792641f00de71fdc567e",
-    "money.example-pack.FILE_WRITE": "7ee47079c9d92e7b4cbfcd121299f542e3bc223a9671372d637fecd81b645622",
-    "money.example-pack.DIRECT_JSON": "22d2d65312be722aae0083e4f96ac6835ea54934739b322e2f91bc9919ac8459",
+    "money.example-pack.FILE_WRITE": "0ddc8bb12dd80ee693331891e8214ad80076a0e7530f7513f7b18f999b867692",
+    "money.example-pack.DIRECT_JSON": "89b57b1bd540038c00ae90fc901ad8259c8b132fd29a8d8b4e4c64d97ccc4d99",
     "money.learning-pack.FILE_WRITE": "b1cafbd013513bba79df058e9715f6b8b44a67553700236fff4616b6b495c314",
     "money.learning-pack.DIRECT_JSON": "abbf17d80d166d8cc34e3863e4fb1e81ab9a2082e334238e5d3aaf7eec4c432b",
     "money.action-pack.FILE_WRITE": "85cbb4795f7ade6c944895b059fcf2dc3b1466e082b63a534f8d2777dd7e6b9f",
     "money.action-pack.DIRECT_JSON": "3eae1f13fe1c3f36fb5700e27bf1c91faef1aaf667d29e98c3c52a3000ac646a",
     "ch13.summary-pack.FILE_WRITE": "5a557ecdaaabf1136b57067c9200cb6e4d95e11e97a8f992679a0c90a317205f",
     "ch13.summary-pack.DIRECT_JSON": "f5b18dca1929046a25f39ffaf6dfc774b12c3aa382a112eca79a922b9c5d5bb4",
-    "ch13.example-pack.FILE_WRITE": "d6ef754aac2d339d1dfe5b6ddb69283a9efd4ff02294f697378a4dc468a8813c",
-    "ch13.example-pack.DIRECT_JSON": "fde23de16e1d373154245c3229a3f5931e3e48a7090ee136d01b6fb3495c26b9",
+    "ch13.example-pack.FILE_WRITE": "08ff7d04369f9c426c3eb228d131c189179b1dabeaca095dc4e026ec90f7391e",
+    "ch13.example-pack.DIRECT_JSON": "e6f259ffe73ab2355c1bd5ab414794f8f259f4334baa530502d79a3316e57418",
     "ch13.learning-pack.FILE_WRITE": "d4b5cff62c17c46bc8ff136ef95466585249599fcb1190fe9fb8a8b9a340b729",
     "ch13.learning-pack.DIRECT_JSON": "40873a7316ac7f07b61a96c7e9be671e339e04a92b5c58f78da1a9694441ea1e",
     "ch13.action-pack.FILE_WRITE": "80232e34e68cbfb2aea35cc002ac62e13edea1236a96acabdbff2a538e4207bb",
     "ch13.action-pack.DIRECT_JSON": "d65e309fd52f7edc1fb5dd9ad12d1c36d284d8e438b75f9c198ddc78578ef589",
     "ch19.summary-pack.FILE_WRITE": "a75dcd35ff1295d4c7c0328f5f1ed5a2c434f32534dfb5129594cfc415901595",
     "ch19.summary-pack.DIRECT_JSON": "843721c22c36de55c8da8d3caede3c23dec339d9a5d9fd6737a0ca09375a474f",
-    "ch19.example-pack.FILE_WRITE": "8abd7712462582a7e9a20c8a01d9f8acdc79a570178a85ce219eeaca7805e5ce",
-    "ch19.example-pack.DIRECT_JSON": "4e5c9f231067a4b8d8e5531cd510867853f40e65a83a43d53bd1dbfd188eb146",
+    "ch19.example-pack.FILE_WRITE": "9fb78dd3346d7923ec78160e307c90628eda8877cfc46d6dbcd15d88f1eb9f1e",
+    "ch19.example-pack.DIRECT_JSON": "e6e216f204ed22b2dcba43d5f5ae89051f0bc2a40b6a3e6c79ce018779583136",
     "ch19.learning-pack.FILE_WRITE": "dda222caa974b05198529ae201b72ee4074df2b8e847e024f32446eab2076a66",
     "ch19.learning-pack.DIRECT_JSON": "18da6847ce8560ec7199d90bf51030b455134455f56bfdbd01df22f6677cb4a6",
     "ch19.action-pack.FILE_WRITE": "450fe16f7d795ebf65aafa809433cce2d0bbe466f408d437091a4ec3ada53ce5",

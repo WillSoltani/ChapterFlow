@@ -468,17 +468,21 @@ function sourceMentionNames(packet: SourcePacketV1): Set<string> {
  * "Assembly's", "Society's"...), so a word counts as a source name only on evidence.
  * FIGURES are flagged anywhere, a sentence start included:
  *   - a protectedSourceNames entry;
- *   - a word that ANY packet field (sourceQuote aside) writes after a title
- *     ("Mr. Norris", "Governor Denny's", "The Two Doctors Bond") or as a possessive
- *     ("Franklin's", "Shirley's");
+ *   - a word that ANY packet field (sourceQuote aside) writes after a title, a first
+ *     name between allowed ("Mr. Norris", "Governor Denny's", "The Two Doctors Bond",
+ *     "Mr. Thomas Penn", "Colonel French": a titled nationality word is a person), or
+ *     as a possessive ("Franklin's", "Shirley's", "Philadelphia's");
  *   - a word on a case label's figure side ("George Brownell", "Robert Grace") that the
  *     packet never writes in lower case: "Bread Rolls", "Eleven Frontier Farmers" and
  *     "The Two Doctors" are ordinary words the packet also writes as "bread", "farmers",
  *     "two".
  *   Except after a title, a word the packet's prose writes after an article more often
  *   than without one names an institution, not a figure ("the Assembly's order", "the
- *   Board of Trade", "the Royal Society's"): its words open ordinary sentences.
- * NAMES are flagged mid-sentence only: the figures, plus any word of the entity lists,
+ *   Board of Trade", "the Royal Society's"): its words open ordinary sentences. A bare
+ *   possessive overrides that unless the packet also writes the possessive after an
+ *   article ("the Assembly's", "the Lords of Trade's"); "Philadelphia's" stays a figure.
+ * NAMES are flagged mid-sentence only: the figures, an institution's possessive ("the
+ * Junto's", "the Assembly's"), plus any word of the entity lists,
  * labels and hardSpecifics that the packet's prose capitalizes away from a sentence
  * start ("the rule of Silence", "a Boston school"). Every whyItMatters sentence starts
  * with a capital, so such a word opening a sentence is ordinary English ("Silence
@@ -486,13 +490,17 @@ function sourceMentionNames(packet: SourcePacketV1): Set<string> {
  * slot's dealt invented cast is subtracted per example. Matching is case-sensitive on
  * word boundaries, so a possessive ("Brownell's") matches and a lower-case word does not.
  */
-const SOURCE_NAME_NON_NAMES = new Set([
-  // titles and forms of address
+/** Titles and forms of address: never a name, even right after another title. */
+const SOURCE_NAME_TITLES = new Set([
   "Lord", "Lady", "Captain", "Speaker", "Governor", "Uncle", "Aunt", "Bishop", "Reverend", "Colonel", "General",
   "Major", "King", "Queen", "Prince", "Princess", "Duke", "Earl", "President", "Doctor", "Father", "Mother",
   "Brother", "Sister", "Saint", "Deacon", "Elder", "Master", "Mistress", "Squire", "Esquire", "Professor",
   "Sergeant", "Lieutenant", "Admiral", "Mayor", "Senator", "Messrs", "Miss", "Dear", "Doctors", "Lords", "Secretary",
   "Deputy", "Attorney", "Postmaster", "Sir", "Abbe",
+]);
+
+const SOURCE_NAME_NON_NAMES = new Set([
+  ...SOURCE_NAME_TITLES,
   // months (weekdays are already in NAME_STOPWORDS)
   "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
   // nationalities and faiths used as adjectives
@@ -572,11 +580,13 @@ function exampleWhySourceNames(packet: SourcePacketV1, reservedNames: ReadonlySe
   // Title-led and possessive forms, in any field.
   const titled = new Set<string>();
   const possessive = new Set<string>();
+  const articleLedPossessive = new Set<string>();
   for (const value of fold(packetStrings(packet))) {
     for (const { word, before, after } of capitalizedWords(value)) {
-      const title = NAME_TITLE_BEFORE_RE.exec(before);
+      // "Mr. Thomas Penn": one first name may sit between the title and the surname.
+      const title = NAME_TITLE_BEFORE_RE.exec(before) ?? NAME_TITLE_BEFORE_RE.exec(before.replace(/\b[A-Z][a-z]+\s+$/, ""));
       if (title && !title[1]) titled.add(word);
-      if (/^['’]s\b/.test(after) && !ARTICLE_LED_RUN_BEFORE_RE.test(before)) possessive.add(word);
+      if (/^['’]s\b/.test(after)) (ARTICLE_LED_RUN_BEFORE_RE.test(before) ? articleLedPossessive : possessive).add(word);
     }
   }
   // How often the prose puts an article before the word. A word that modifies the next
@@ -594,7 +604,8 @@ function exampleWhySourceNames(packet: SourcePacketV1, reservedNames: ReadonlySe
   const lowerWords = new Set([...prose, ...shortFields, ...entities].flatMap((value) => value.match(/\b[a-z]{3,}\b/g) ?? []));
 
   const figures = new Set<string>(reservedNames);
-  for (const word of [...titled, ...possessive]) if (isName(word) && !institution(word)) figures.add(word);
+  for (const word of titled) if (!SOURCE_NAME_TITLES.has(word) && extractNamesFromText(word).length === 1) figures.add(word);
+  for (const word of possessive) if (isName(word) && (!institution(word) || !articleLedPossessive.has(word))) figures.add(word);
   for (const word of labelFigureSides.flatMap((side) => extractNamesFromText(side))) {
     if (isName(word) && !lowerWords.has(word.toLowerCase()) && !institution(word)) figures.add(word);
   }
@@ -612,6 +623,8 @@ function exampleWhySourceNames(packet: SourcePacketV1, reservedNames: ReadonlySe
   for (const word of [...labelFigureSides, ...shortFields, ...entities].flatMap((value) => extractNamesFromText(value))) {
     if (isName(word) && midSentence.has(word)) names.add(word);
   }
+  // "The Junto's": an institution's possessive still names the source mid-sentence.
+  for (const word of articleLedPossessive) if (isName(word)) names.add(word);
   return { names, figures };
 }
 
