@@ -1,0 +1,979 @@
+<title>Franklin v26 Run-Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#f4f6f8; --surface:#ffffff; --surface-2:#eaeef2; --ink:#18212b; --ink-2:#4a5663; --rule:#d3dae1;
+  --accent:#0b6b6b; --accent-ink:#ffffff; --accent-soft:#dcefee; --ochre:#9a6512; --ochre-soft:#f6ead3;
+  --good:#1f7a3f; --warn:#9a6512; --stop:#a33a2b; --code-bg:#eef2f5;
+  --serif:"Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --sans:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1419; --surface:#161d24; --surface-2:#1d262f; --ink:#e4e9ee; --ink-2:#a3aeb9; --rule:#2c3742;
+    --accent:#45b8b1; --accent-ink:#0b1417; --accent-soft:#17312f; --ochre:#e2a94a; --ochre-soft:#33280f;
+    --good:#58c27d; --warn:#e2a94a; --stop:#ec7a67; --code-bg:#1b232b; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f1419; --surface:#161d24; --surface-2:#1d262f; --ink:#e4e9ee; --ink-2:#a3aeb9; --rule:#2c3742;
+  --accent:#45b8b1; --accent-ink:#0b1417; --accent-soft:#17312f; --ochre:#e2a94a; --ochre-soft:#33280f;
+  --good:#58c27d; --warn:#e2a94a; --stop:#ec7a67; --code-bg:#1b232b; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:900px;margin:0 auto}
+h1,h2{font-family:var(--serif);font-weight:700;text-wrap:balance;letter-spacing:.005em}
+h1{font-size:clamp(1.9rem,4.6vw,2.7rem);line-height:1.15;margin:.2em 0 .3em}
+h2{font-size:1.6rem;line-height:1.25;margin:2.4em 0 .6em;padding-top:.6em;border-top:1px solid var(--rule)}
+h3{font-size:1.1rem;margin:1.4em 0 .4em}
+h4,h5{font-size:1rem;margin:1.2em 0 .3em}
+p,li{max-width:68ch}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.86em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;overflow-wrap:anywhere}
+.eyebrow{font:500 .78rem/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-top:28px}
+.lede{font-size:1.1rem;color:var(--ink)}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+nav.toc a{font-size:.88rem;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:999px;padding:4px 12px}
+nav.toc a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.start{background:var(--accent-soft);border:1px solid var(--accent);border-radius:10px;padding:18px 20px;margin:22px 0}
+.start h2{border:0;margin:0 0 .4em;padding:0;font-size:1.3rem}
+.start ol{margin:.2em 0 0;padding-left:1.2em}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:14px 0}
+.stat{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px 14px}
+.stat b{display:block;font:600 1.5rem/1.2 var(--sans);font-variant-numeric:tabular-nums}
+.stat span{font-size:.86rem;color:var(--ink-2)}
+.causes{counter-reset:c;list-style:none;padding:0;display:grid;gap:10px}
+.causes li{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px 14px;max-width:none}
+.causes li b{display:block;margin-bottom:2px}
+.causes li .ev{display:block;font-size:.88rem;color:var(--ink-2)}
+.tag{display:inline-block;font:600 .7rem/1.4 var(--sans);letter-spacing:.06em;text-transform:uppercase;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:1px}
+.tag.new{background:var(--ochre-soft);color:var(--ochre)}
+.tbl{overflow-x:auto;border:1px solid var(--rule);border-radius:8px;background:var(--surface);margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:640px}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--rule)}
+th{font-weight:600;background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+pre.mermaid{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px;overflow-x:auto}
+.decisions{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:6px 20px 18px}
+.decisions h2{border:0;font-size:1.25rem;margin-top:1.4em;padding:0}
+.decisions h4{font-size:1.02rem;margin-top:1.6em;padding-top:.8em;border-top:1px dashed var(--rule)}
+.decisions blockquote{margin:.6em 0;padding:.4em .9em;border-left:3px solid var(--ochre);background:var(--ochre-soft)}
+.decisions hr{border:0;border-top:1px solid var(--rule);margin:1.4em 0}
+.prompt{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;margin:14px 0}
+.prompt.is-done{opacity:.72}
+.prompt-head{display:flex;gap:14px;align-items:flex-start}
+.prompt-id{font:600 .95rem/1 var(--mono);background:var(--accent);color:var(--accent-ink);border-radius:6px;padding:8px 9px;min-width:3.4em;text-align:center}
+.prompt-title{flex:1;min-width:0}
+.prompt-title h3{margin:0;font-size:1.05rem}
+.when{margin:.2em 0 0;font-size:.85rem;color:var(--ink-2)}
+label.done{font-size:.88rem;white-space:nowrap;display:flex;gap:6px;align-items:center;cursor:pointer}
+ul.meta{margin:.6em 0 .2em;padding-left:1.1em;font-size:.88rem;color:var(--ink-2)}
+details summary{cursor:pointer;font-weight:500;color:var(--accent);margin-top:6px}
+.copyrow{display:flex;gap:10px;align-items:center;margin:10px 0 6px}
+button.copy{font:500 .9rem var(--sans);background:var(--accent);color:var(--accent-ink);border:0;border-radius:6px;padding:7px 14px;cursor:pointer}
+.copied{font-size:.85rem;color:var(--good)}
+pre.prompt-text{font:.8rem/1.5 var(--mono);background:var(--code-bg);border:1px solid var(--rule);border-radius:6px;padding:12px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:520px;overflow:auto}
+.note{font-size:.9rem;color:var(--ink-2)}
+footer{margin-top:3em;font-size:.85rem;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:1em}
+@media (max-width:560px){.prompt-head{flex-wrap:wrap}.prompt-id{min-width:auto}}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}}
+</style>
+
+<div class="wrap">
+<p class="eyebrow">ChapterFlow · book pipeline · planned 2026-09-27</p>
+<h1>Finish Franklin with a writer, not a rulebook</h1>
+<p class="lede">The v25 pipeline never actually wrote a chapter. Four blind section writers filled template slots from a paraphrase of the book, and more than 330 proxy checks and graders that cannot tell good books from bad decided the rest. This plan hands each chapter to one strong writer working from Franklin's own text. A second model checks every fact against that text, and you read the result. On 2026-09-27 a single exploratory call showed the core step working.</p>
+
+<nav class="toc" aria-label="Sections">
+  <a href="#start">Start here</a><a href="#probe">Today's probe</a><a href="#causes">What went wrong</a><a href="#design">New pipeline</a><a href="#waves">Waves</a><a href="#decisions">Your decisions</a><a href="#prompts">Prompts</a><a href="#files">Files</a>
+</nav>
+
+<section class="start" id="start">
+  <h2>Start here</h2>
+  <ol>
+    <li><b>Decide now (optional):</b> N1 (start Wave 1 before or after Tuesday's reset), N2 (which two chapters) and N3 (add a GPT arm or not). The defaults are fine: after the reset, ch01 + ch13, Claude only.</li>
+    <li><b>Paste <code>W1-prototype</code></b> into a fresh Claude Code session started in <code>~/cf-wt</code>. It copies this kit from the repo branch <code>claude/vibrant-ritchie-xaf7dm</code> to <code>~/cf-wt/v26-plan/</code> and installs the campaign memory note.</li>
+    <li><b>About a day later, read</b> the reading pack it builds (about an hour) and answer R1-a to R1-d in <code>DECISIONS.md</code>.</li>
+  </ol>
+  <p class="note">Timeline if Wave 1 starts at the reset on Tue 09-29 23:00Z: you read the prototype on 10-01 and the whole Franklin book about 10-03. Franklin could be in the app about <b>10-06/07</b>, and the second book (Bennett) ready about 10-09. Planned pipeline spend is about $175 in total, against $700–1,100 per v25 run. Your reading time is about 1 h + 2–3 h + 1 h.</p>
+</section>
+
+<h2 id="probe">What today's probe showed</h2>
+<p>One call with the pipeline's own CLI flags (<code>claude-opus-5</code>, effort high) was given a 3.4k-character brief and chapter I of the Autobiography. It returned a whole chapter in the app's v21 shape, and the app validator accepted it on the first try.</p>
+<div class="stats">
+  <div class="stat"><b>167 s · $0.45</b><span>one whole chapter (v25: ~311 calls, ~$120, ~16 h for a book's compile)</span></div>
+  <div class="stat"><b>44 / 44</b><span>quotations verbatim in Franklin's text (rr21: 0 quotation marks in 20.5k summary words)</span></div>
+  <div class="stat"><b>7 / 7</b><span>planted errors caught by an Opus 5 fact check ($0.27). Sonnet 5 caught 5/7. Real-error recall is measured in W1.</span></div>
+  <div class="stat"><b>13.6k of 64k</b><span>output tokens used; the v25 writer at high effort hit the 64k cap thinking</span></div>
+</div>
+<p class="note">It also kept Franklin's "second edition" opening, which rr21 lost, and it got right two ch01 facts rr21 got wrong. Weak spots: the full telling ran to 1,432 words, and the quiz key was the longest choice in 5 of 6 questions. Files: <code>evidence/probe/</code>.</p>
+
+<h2 id="causes">What went wrong (root causes)</h2>
+<ol class="causes">
+  <li><b>Nobody writes a chapter.</b><span class="ev">Four section writers per chapter fill dealt slots from a 64–80k-character card that is 63% paraphrase; in ch13 only 1,350 of 43,030 packet characters are Franklin's. The example and action writers never see the chapter text. They run at medium effort because the rulebook is too big for high effort.</span></li>
+  <li><b>The rulebook replaced the goal.</b><span class="ev">More than 330 checks, and not one of the 138 section checks can tell whether a fact is true. They reject 1,902 of 1,903 catalog chapters on one rule alone. The readability floor caps Franklin at about 12 words a sentence (he writes 30). The code's own comments record about 7 "rule → tic → new rule" cascades.</span></li>
+  <li><b>We steered by graders that can't tell good from bad.</b><span class="ev">Known-good books fail the rubric. Identical text drew a panel blocker on 41% of re-reads, so all 19 chapters passing at once had odds of about 1 in 25,000. Panels took 58% of the money. Catalog "quality" tracks which grader a book got more than how it was made.</span></li>
+  <li><b>Accuracy had no owner until the very end.</b><span class="ev">About a third of errors came from the paraphrase and two thirds from writers forced to pair facts with cases. The editor cannot change a fact by design. The only fact check sat behind a panel pass that never came, and a footnote marker like "[7]" silently demotes its findings.</span></li>
+  <li><b>The app hides the writing.</b><span class="tag new">new</span><span class="ev">A new reader sees a ~100-word summary, one example and 5 quiz questions. The full telling is locked behind "Challenge" mode, clicking "Standard" does nothing, and Settings resets the depth. Rev-6 gave a default reader 522 words of Franklin for the whole book.</span></li>
+  <li><b>Every experiment cost a day and $100+.</b><span class="tag new">new</span><span class="ev">77% of busy hours went to runs later thrown away. Fixing the machine used as much quota as running it ($766 vs $826 in the heavy week). A whole chapter now costs $0.45 and 3 minutes, so your reading becomes the pace-setter.</span></li>
+  <li><b>The release path had quietly broken.</b><span class="tag new">new</span><span class="ev">Every commit expires a release (fingerprints), so rev-6 cannot ship today. The catalog file moved in July and the publish tools still write the old path. Both release routes demand grader passes. The app itself needs only the package.</span></li>
+  <li><b>The template is a pipeline choice, not an app rule.</b><span class="ev">The app accepts any counts. The 6-examples / 9-quiz / 7-cards / 30k-character template turned memoirs into invented-character guides (Man's Search for Meaning, Meditations). No catalog book carries its author's voice.</span></li>
+</ol>
+<p class="note">The previous diagnosis holds on points 1, 2, 4 and 6, is refined on 3 and 5, and missed 5–7 above. The "good books were GPT whole-chapter" premise does not hold. No book met the full bar in July. Two of the top three came mostly from Claude Opus 4.7 with small prompts, and the GPT-5.5 whole-chapter books were mixed. The lever is a strong model with a small prompt and the real text, not the model family. Full evidence: <code>ANALYSIS.md</code> and <code>scan/*.md</code>.</p>
+
+<h2 id="design">The new pipeline (v26)</h2>
+<div class="tbl"><table>
+<thead><tr><th>Stage</th><th>What happens</th><th>Calls / chapter</th><th>Blocks?</th></tr></thead>
+<tbody>
+<tr><td>Source</td><td>Frozen text + chapter map (reused for Franklin); footnote markers stripped, editor's notes labelled</td><td class="num">0</td><td>—</td></tr>
+<tr><td>Brief</td><td>One page per book: reader, voice, book type → chapter shape</td><td class="num">0</td><td>—</td></tr>
+<tr><td>Write</td><td>One strong writer (Opus, effort high) writes the whole chapter from its source text</td><td class="num">1</td><td>—</td></tr>
+<tr><td>Check</td><td>Validator, verbatim quotes, key in range (0 calls); an Opus fact check hunting the 5 error kinds; a blind quiz solve</td><td class="num">2</td><td><b>Only facts, quiz keys, renderability</b></td></tr>
+<tr><td>Fix</td><td>Targeted find/replace edits for flagged text only, then a full re-check (at most 2 rounds)</td><td class="num">0–2</td><td>—</td></tr>
+<tr><td>You read</td><td>Reading pack in the app's order; your notes become targeted fixes</td><td class="num">—</td><td><b>Your yes is the gate</b></td></tr>
+<tr><td>Release</td><td>Assemble the package → ship through <code>publishFinal()</code> with the app validator (dry run by the session, real run by you) → deploy</td><td class="num">0</td><td>—</td></tr>
+</tbody></table></div>
+<p class="note">About <b>$25–40</b> and <b>1–2 hours</b> of machine time per 19-chapter book. The research sidecars, section writers, 330+ checks, panel, repair loops, QC, rubric and promotion state machine are <b>bypassed</b> (frozen, not deleted until Franklin ships). The code lives in <code>scripts/book/v26/</code> and its tests run in CI.</p>
+
+<h2 id="waves">Waves</h2>
+<div class="tbl"><table>
+<thead><tr><th>Wave</th><th>Sessions</th><th>Model</th><th>Wall time</th><th>Cap (pipeline / subagents)</th><th>Exit</th><th>If it fails</th></tr></thead>
+<tbody>
+<tr><td><b>W1</b> Prototype</td><td>W1</td><td>Opus 5.5</td><td class="num">5–8 h</td><td class="num">$25 / 12</td><td>2 chapters + reading pack → <b>you read (R1, ~1 h)</b></td><td>R1 = C → W1b (GPT-5.5 writer or another format)</td></tr>
+<tr><td><b>W2</b> Build + write Franklin</td><td>W2 ∥ W2w (if R1-d = B/C)</td><td>Opus 5.5</td><td class="num">1–1.5 d</td><td class="num">$80 / 25</td><td>Tool merged with tests; 19 chapters checked; ship dry run passes → <b>you read (R2, 2–3 h)</b></td><td>Chapters with open issues are listed for you</td></tr>
+<tr><td><b>W3</b> Finish</td><td>W3 (Part A, then Part B)</td><td>Opus 5.5</td><td class="num">0.5 d</td><td class="num">$30 / 10</td><td>Your notes applied; <b>you run ship + deploy</b>; then <code>verify:live</code></td><td>R2 = C → reassess point</td></tr>
+<tr><td><b>W4</b> Next book + cleanup</td><td>W4a ∥ W4b</td><td>Opus 5.5 ∥ Sonnet 5</td><td class="num">1–2 d</td><td class="num">$40 / 16</td><td>Bennett reading pack in days; v25 driver retired; CI, branches, worktrees, docs, memory</td><td>Problems become brief changes, never new rules</td></tr>
+</tbody></table></div>
+<pre class="mermaid">
+graph TD
+  N[You: N1-N3, defaults OK] --> W1[W1 prototype: 2 chapters]
+  W1 --> R1{R1: you read}
+  R1 -- not better --> W1b[W1b variant] --> R1b{R1 again}
+  R1b -- still not better --> STOP[Reassess: stop and replan]
+  R1b -- better --> W2
+  R1 -- better --> W2[W2 build + write 19 chapters]
+  R1 -- R1-d = B/C --> W2w[W2w reader app]
+  W2 --> R2{R2: you read the book}
+  W2w --> R2
+  R2 -- approve --> W3[W3 finish + release]
+  R2 -- reject --> STOP
+  W3 --> P[You: ship + deploy]
+  P --> V[W3 Part B: verify live]
+  V --> W4a[W4a Bennett]
+  W3 --> W4b[W4b cleanup]
+</pre>
+<p class="note"><b>Stop rules.</b> Each session stops before its cap and hands over. On a usage-limit hit it writes <code>WAITING-FOR-RESET</code> and resumes from files after Tuesday's 23:00Z reset. <b>Reassess point:</b> if the prototype is not clearly better after W1 and W1b, or you reject the full book, the plan stops and nobody adds rules to rescue it.</p>
+
+<h2 id="decisions">Your decisions</h2>
+<p class="note">Each one has a default that sessions use when you leave it blank. Write answers on the <code>Owner:</code> lines in <code>~/cf-wt/v26-plan/DECISIONS.md</code>.</p>
+<div class="decisions">
+<p>Each decision has a <strong>default</strong>. A session takes the default whenever the owner&#x27;s answer line is blank, and says in its status file that it did. To decide, write your choice on the <code>Owner:</code> line (in <code>~/cf-wt/v26-plan/DECISIONS.md</code> on the Mac). There are three batches: <strong>now</strong> (before Wave 1), <strong>at the first reading</strong> (R1, after Wave 1), and <strong>at the book reading</strong> (R2, after Wave 2). The only other things that wait for you are <code>publish-final</code> and the deploy, which are yours by rule.</p>
+<hr>
+<h3 id="d-batch-1-decide-now-all-three-have-safe-defaults-">Batch 1 — decide now (all three have safe defaults; you can leave them blank)</h3>
+<h4 id="d-n1-when-does-wave-1-start">N1. When does Wave 1 start?</h4>
+<p>Wave 1 costs very little in pipeline calls: about 10–20 model calls, under $15 API-equivalent. The main cost is the session itself. The weekly limit resets <strong>Tuesday 2026-09-29 23:00Z (7 pm Toronto)</strong>, and how much quota is left this week is unknown.</p>
+<ul><li><strong>A — after the reset.</strong> You read the prototype on Wednesday or Thursday. There is no risk of a usage-limit stop mid-wave.</li><li><strong>B — now,</strong> if your usage page shows about 20% or more of the weekly limit left. You read it about two days sooner. If the limit hits, the session stops with <code>WAITING-FOR-RESET</code> and resumes after the reset.</li><li><strong>Recommended: B if the usage page shows room, otherwise A.</strong> Default: <strong>A</strong>.</li></ul>
+<p>Owner:</p>
+<h4 id="d-n2-which-two-chapters-does-the-prototype-write">N2. Which two chapters does the prototype write?</h4>
+<ul><li><strong>A — ch01 &quot;Family History and Boyhood in Boston&quot; and ch13 &quot;Public Services and Duties&quot;.</strong> ch01 is the book&#x27;s first impression: the stolen-stones wharf, &quot;nothing was useful which was not honest&quot;. ch13 covers the hospital, the paving and the lamps, and it was the strongest chapter in rr21, so beating it is a fair test.</li><li><strong>B — ch01 and ch07 &quot;Beginning Business in Philadelphia&quot;.</strong> ch07 had the most errors in rr21 (15 contradicted claims, 10 major: Baird&#x27;s club, the Burlington job, the half-from-each-friend reason), so it is the harshest accuracy test.</li><li><strong>Recommended: A.</strong> Accuracy is tested anyway: every prototype chapter is fact-checked, and the checker&#x27;s recall is measured with planted errors. Default: <strong>A</strong>.</li></ul>
+<p>Owner:</p>
+<h4 id="d-n3-should-wave-1-also-try-a-gpt-5-5-writer">N3. Should Wave 1 also try a GPT-5.5 writer?</h4>
+<p>The handoff assumed &quot;the good books were all GPT-written&quot;. The repo says otherwise (<code>scan/existence-proof.md</code>):</p>
+<ul><li><strong>In July no catalog book met your full bar.</strong> Five scored 85 or more, and all five had churn HIGH.</li><li><strong>Two of the top three books came mostly from Claude.</strong> Atomic Habits and Getting Things Done, plus How to Win Friends (your quality reference in May), came mostly from a May <code>claude -p</code> pipeline with <strong>Claude Opus 4.7</strong> as the writer and small prompts; a Codex pass followed.</li><li><strong>The six v24 books written whole-chapter by GPT-5.5 averaged 77.6 on book-score,</strong> below the catalog mean. One of them, The Power of Moments, ranks #3 on the close-read evaluation.</li><li>So the evidence favours <strong>neither model family</strong>. What the better books share is one strong model per unit, with a small prompt and tight length.</li></ul>
+<p>The options:</p>
+<ul><li><strong>A — Claude only.</strong> Wave 1 writes with Opus (5.5 if the newer CLI works, otherwise Opus 5). If you do not find it clearly better, Wave 1b tries GPT-5.5 as the next variant.</li><li><strong>B — add a GPT-5.5 arm now.</strong> The same two chapters are also written by GPT-5.5 (codex, effort xhigh) with the same brief and shown to you blind as a third version. That is about 20 more minutes of reading. It uses your OpenAI/Codex subscription, not the Claude weekly limit.</li><li><strong>Recommended: A.</strong> Nothing in the repo shows either family writing better. The exploratory Opus draft already reads far better than rr21, and GPT stays the planned next variant. Default: <strong>A</strong>.</li></ul>
+<p>Owner:</p>
+<hr>
+<h3 id="d-batch-2-at-the-first-reading-r1-wave-1-stops-her">Batch 2 — at the first reading (R1). Wave 1 stops here and hands you a reading pack.</h3>
+<h4 id="d-r1-a-is-the-prototype-clearly-better-the-plan-s-">R1-a. Is the prototype clearly better? (the plan&#x27;s main fork)</h4>
+<ul><li><strong>A — yes, build it.</strong> Wave 2 turns the prototype into the pipeline and writes all of Franklin.</li><li><strong>B — yes, with changes.</strong> Write what to change in <code>reading/W1/NOTES.md</code> (for example &quot;fewer modern examples, more of his own stories&quot;). Wave 2 applies your notes to the brief first.</li><li><strong>C — no.</strong> Wave 1b tries a different prototype variant (the GPT-5.5 writer, and/or a different chapter format), never a return to tuning section rules. If the variant also fails, the plan stops at the reassess point.</li><li>No default: this one needs your reading. The session waits.</li></ul>
+<p>Owner:</p>
+<h4 id="d-r1-b-the-chapter-format-for-a-memoir">R1-b. The chapter format for a memoir</h4>
+<p>Today every v25 chapter has 6 invented modern examples, 9 quiz questions and 7 cards. That comes to about 30k characters, while the best catalog books have about 16k. The Wave 1 prototype uses 3 modern examples, 7 quiz questions (3 choices each; q1–q5 are answerable from the short summary a new reader sees), 5 cards and a small practice plan. It also shows you <strong>ch01 once with its examples in format B</strong>, so you can compare the two.</p>
+<ul><li><strong>A — keep the prototype&#x27;s shape.</strong></li><li><strong>B — Franklin&#x27;s own stories as the examples.</strong> 1 modern example plus 2 &quot;Franklin did this&quot; cases told from the source (e.g. ch07: Coleman and Grace each offer to back him and he takes half from each &quot;because I would not give an unkind preference to either&quot;). Everything else as in A.</li><li><strong>C — something else</strong> (write it, e.g. &quot;no examples at all for chapters that are pure narrative&quot;).</li><li><strong>Recommended: B for Franklin.</strong> Readers remember his stories, and the invented scenarios are what they kept calling samey. The how-to book (Bennett) keeps modern examples. Default: <strong>A</strong> (the shape you will have just read).</li></ul>
+<p>Owner:</p>
+<h4 id="d-r1-c-how-many-chapters">R1-c. How many chapters?</h4>
+<p>The book grew from 4 &quot;Parts&quot; (revision 6) to the edition&#x27;s 19 chapter headings on 09-04 without a recorded decision. Cost no longer depends on the count: a whole chapter is about $1–2 of model calls.</p>
+<ul><li><strong>A — 19 chapters,</strong> one per heading in the Pine edition (#20203). Each covers about 3,500 words of Franklin and takes about 7 minutes to read. The titles match the real book.</li><li><strong>B — about 10 chapters,</strong> pairing neighbouring headings. Fewer, longer chapters; about 12 minutes each.</li><li><strong>Recommended: A.</strong> It is shorter per sitting and follows Franklin&#x27;s own structure. Default: <strong>A</strong>.</li></ul>
+<p>Owner:</p>
+<h4 id="d-r1-d-what-a-new-reader-sees-first-an-app-change-">R1-d. What a new reader sees first (an app change for every book)</h4>
+<p>A new user who has not customized their settings reads only the <strong>short summary</strong> (<code>fastRead</code>, a median of 94 words in the catalog). They then see one example, 5 quiz questions, and a practice screen that repeats the same plans up to 4 times. About a quarter of what they see is the book&#x27;s prose. The full telling (<code>fullRead</code>, where the stories and quotations are) appears only in &quot;Challenge&quot; mode, which also brings a 10-question quiz with no retries. Rev-6 gave a default reader <strong>522 words of Franklin for the whole book</strong>. Two app bugs make it worse. Clicking &quot;Standard&quot; does nothing. Picking a reading profile in Settings resets the reader to the short summary. (Evidence: <code>scan/app-render.md</code>: <code>ChapterReaderClient.tsx:144,262</code>, <code>useReaderSettings.ts:31</code>, <code>BookSettingsClient.tsx:429</code>.)</p>
+<ul><li><strong>A — no app change.</strong> The prototype&#x27;s short summary is written to carry the chapter&#x27;s best scene and 1–2 of his lines. Readers who want more must find &quot;Challenge&quot;.</li><li><strong>B — show the full telling by default, for every book, and keep the 5-question quiz for new readers.</strong> It also fixes the Standard no-op and shows memorable lines once, as quotes. For Franklin ch01 a new reader would read about 1,000 words in his order and with his lines, instead of about 180. A catalog book&#x27;s fullRead is a median of about 480 words (about 3 minutes). This is a small web PR (about 3 lines plus tests, plus the two bug fixes) in Wave 2, in parallel with the book.</li><li><strong>C — show the middle depth (<code>deepRead</code>, about 300–500 words) by default,</strong> with the same bug fixes.</li><li><strong>Recommended: B.</strong> The writing is the product, and today the product hides it. Default: <strong>A</strong> (no app change without your yes).</li></ul>
+<p>Owner:</p>
+<hr>
+<h3 id="d-batch-3-at-the-book-reading-r2-after-wave-2">Batch 3 — at the book reading (R2, after Wave 2)</h3>
+<h4 id="d-r2-approve-the-franklin-book">R2. Approve the Franklin book?</h4>
+<p>Wave 2 hands you the whole book in the app&#x27;s form, the fact-check report for every chapter, and a short list of anything the checks could not settle.</p>
+<ul><li><strong>A — approve.</strong> Wave 3 releases it and prints your <code>publish-final</code> and deploy commands.</li><li><strong>B — approve after fixes.</strong> Note each fix in <code>reading/W2/NOTES.md</code> by chapter (e.g. &quot;ch05: the fullRead drags in the middle; cut the Keimer digression&quot;). Wave 3 applies them, re-checks the facts, and shows you only the changed chapters.</li><li><strong>C — not good enough.</strong> This is the reassess point: the plan stops and a planning session reviews it with you. No new machinery is added.</li></ul>
+<p>Owner:</p>
+<hr>
+<h3 id="d-batch-4-at-the-end-wave-4-uses-these-defaults-un">Batch 4 — at the end (Wave 4 uses these defaults unless you write otherwise)</h3>
+<h4 id="d-e1-the-v25-pipeline-code-once-franklin-has-shipp">E1. The v25 pipeline code once Franklin has shipped on the new path</h4>
+<ul><li><strong>A — freeze it.</strong> It stays in the repo, is marked legacy in the docs, and is no longer run or tested in CI. The launchd agent is unloaded and the driver archived.</li><li><strong>B — delete the bypassed parts</strong> (research sidecars, section compiler, panel, review-repair, fresh QC, rubric, promotion machine) in one reviewed PR. The v21 gold corpus stays.</li><li><strong>Recommended: A now, B after the second book ships.</strong> Default: <strong>A</strong>.</li></ul>
+<p>Owner:</p>
+<h4 id="d-e2-dependabot-prs-576-420-429-521-524">E2. Dependabot PRs (#576, #420, #429, #521–#524)</h4>
+<ul><li><strong>Default:</strong> Wave 4 merges the ones whose CI is green, closes #576 with the lockfile note (its lockfile desync fails the workspace contract test), and lists the rest for you.</li></ul>
+<p>Owner:</p>
+<hr>
+<h3 id="d-standing-defaults-sessions-use-no-owner-input-ne">Standing defaults sessions use (no owner input needed)</h3>
+<ul><li><strong>Writer model:</strong> Opus 5.5 if the 2.1.280 CLI runs it (checked in W1 with one tiny call), otherwise <code>claude-opus-5</code>, at effort <code>high</code>. <strong>Checker model:</strong> the same, at effort <code>high</code> (in the planning probe, Opus 5 caught 7/7 planted errors and Sonnet 5 caught 5/7).</li><li><strong>Blocking checks</strong> are only facts vs source, quiz keys, and &quot;the app can render it&quot; (<code>BRIEF.md</code> §4). Everything else is advisory.</li><li><strong>Stale PRs</strong> #559, #401 and #406 are closed in Wave 4 with a one-line reason. Their branches are kept, renamed under <code>archive/</code>, only if they carry unmerged work; otherwise they are deleted.</li><li><strong>Second book:</strong> Arnold Bennett, <em>How to Live on 24 Hours a Day</em> (a how-to, public domain, short), in Wave 4.</li></ul>
+</div>
+
+<h2 id="prompts">Session prompts</h2>
+<p class="note">Paste the text of one prompt into a fresh Claude Code session started in <code>~/cf-wt</code>. The "Done" box is saved only in this browser.</p>
+
+<article class="prompt" id="p-W1" data-id="W1">
+  <header class="prompt-head">
+    <div class="prompt-id">W1</div>
+    <div class="prompt-title">
+      <h3>Side-by-side prototype: two whole Franklin chapters, then the owner reads</h3>
+      <p class="when">Run: first · file <code>prompts/W1-prototype.md</code></p>
+    </div>
+    <label class="done"><input type="checkbox" id="done-W1" data-done="W1"> Done</label>
+  </header>
+  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code> (a fresh Claude Code session)</li><li><strong>Depends on:</strong> nothing. It starts per DECISIONS N1: after the weekly reset (Tue 2026-09-29 23:00Z) by default.</li><li><strong>Estimate:</strong> 5–8 hours wall time. Pipeline model calls about $5–10 API-equivalent (hard cap $25). At most 12 subagents.</li><li><strong>Ends with:</strong> <code>RESULT: NEEDS-OWNER</code> and a reading pack (reading checkpoint R1)</li></ul>
+  <details>
+    <summary>Show the prompt (2915 words)</summary>
+    <div class="copyrow"><button type="button" class="copy" data-target="text-W1">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
+    <pre class="prompt-text" id="text-W1">You are running Wave 1 of the v26 ChapterFlow book campaign on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. You stop only by writing your status file: at the reading checkpoint (the normal end), when the quota cap below would be exceeded, or on a usage-limit stop.
+
+## Why this wave exists
+For three months the v25 pipeline assembled each chapter from four separate &quot;section writers&quot; (Sonnet 5 at medium effort, 150–190k-character rulebooks, 137 section checks, a reader panel, repair loops), and it produced no book the owner would publish. The latest 19-chapter Franklin candidate (rr21) is 66% accurate on 182 audited claims, twice as long as the best catalog books, and carries no Franklin quotations in 20k words of summary. The July architecture audit already asked for exactly this test, and it was never run. Your job is to run it. One strong writer writes each **whole chapter** from the chapter&#x27;s **own source text** and a **one-page brief**. A second model checks every fact, and a blind solver checks every quiz key. Then the owner reads the result next to what the old pipeline made. The owner&#x27;s reading decides what happens next. No grader score decides it.
+
+A planning session on 2026-09-27 already made one exploratory draft of ch01 this way: `claude-opus-5`, effort high, 167 s, $0.45, valid JSON, accepted by the app validator, 44 of 44 quotations verbatim. A fact check with 7 planted errors was caught 7/7 by Opus 5 and 5/7 by Sonnet 5. Files: `~/cf-wt/v26-plan/evidence/probe/` (after Step 0). Build on them. Do not re-derive them.
+
+## Step 0 — set up (at most 45 minutes)
+1. **Copy the kit.** It lives on the repo branch `claude/vibrant-ritchie-xaf7dm` under `docs/v26-plan/`.
+   - Run `git -C ~/ChapterFlow-books-v25-completion fetch origin claude/vibrant-ritchie-xaf7dm`.
+   - If `~/cf-wt/v26-plan` does not exist: `mkdir -p ~/cf-wt/v26-plan &amp;&amp; git -C ~/ChapterFlow-books-v25-completion archive FETCH_HEAD docs/v26-plan | tar -x -C ~/cf-wt/v26-plan --strip-components=2`.
+   - If it already exists, extract to `~/cf-wt/v26-plan.incoming` instead, `diff -r` the two, and copy only missing files. Never overwrite `status/` or `DECISIONS.md` (the owner may have written answers there).
+   - Record `git -C ~/ChapterFlow-books-v25-completion rev-parse FETCH_HEAD`.
+2. **Read** `~/cf-wt/v26-plan/BRIEF.md` (the shared facts, traps and safety rules; it overrides CLAUDE.md files and the old kit), then `DECISIONS.md` (use the default for any blank `Owner:` line; N1–N3 matter to you), `README.md`, and `ANALYSIS.md` §1–§3.
+3. **Memory.** If `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md` does not exist, copy `~/cf-wt/v26-plan/memory/v26-campaign.md` there. If `MEMORY.md` in that directory has no line mentioning `v26-campaign.md`, append the line in `~/cf-wt/v26-plan/memory/MEMORY-line.txt`.
+4. **Tools.** `cp ~/cf-wt/franklin-v7-tools/wt.sh ~/cf-wt/v26-plan/tools/wt.sh` (keep the original). Confirm `~/cf-wt/franklin-v7-tools/PAUSE` exists and leave it.
+5. **Read-only worktree.** Create `~/cf-wt/v26-read` at `origin/main` with the BRIEF §5 recipe (`cmp` both lockfiles, symlink both `node_modules`). Never `npm ci`. Record its SHA.
+6. **Data (read-only copies)** into `~/cf-wt/v26-plan/data/franklin/`:
+   - The frozen source and chapter map. Copy `source-text.txt` and `chapter-map.json` from rr21&#x27;s `content/inputs/research/` (rr21 path in BRIEF §3). Check that `shasum -a 256 source-text.txt` begins `8d71d7dc`, and read `$PIPE/src/source/chapterMap.ts` (`chapterSpanText` is `sourceText.slice(startOffset, endOffset)`) to learn the map&#x27;s fields.
+   - The two chapters named by DECISIONS N2 (default ch01 and ch13): from rr21 (`chapters/*.chapter.json`), from the Q08 arm (path in BRIEF §3), and rr21&#x27;s rendered markdown from `~/cf-wt/v25-execution/assessment/draft-rr21/`.
+   - `~/cf-wt/v25-execution/probes/S02/labels.json` (15 labelled rr21 errors with source line ranges).
+   - The comparison published book: `book-packages/decisive.v21.json` from the worktree. It is the &quot;known good&quot; book Q08 used, it ranks high on both catalog graders, and it opens on scenes with the author&#x27;s own cases. Also copy `book-packages/how-to-win-friends-and-influence-people.v21.json` if it exists (`ls` it first): the owner held it up as the quality bar in May. Neither carries its author&#x27;s voice the way Franklin should (`scan/existence-proof.md` §3).
+7. **Known traps (0 calls).** Build `~/cf-wt/v26-plan/data/franklin/known-traps.json`, which maps each FACT PIN and NAMED ACTOR entry in the scar file (`$PIPE/config/book-scars/the-autobiography-of-benjamin-franklin.json`, keyed to the old 4-part numbering) to its 19-chapter number.
+   - Locate each pin&#x27;s quoted source words in the frozen spans. The expected mapping is in `docs/v25/execution/prompts/S09b-franklin-scar-rekey.md` in the worktree.
+   - List any pin you cannot place.
+   - **Do not edit the scar file.** These are hints for the fact checker (&quot;facts this book has been wrong about before&quot;), not rules for the writer. Five of them fall in ch13, including the Clifton lamp credit that rr21 inverted.
+8. **Which Opus.**
+   - `ls -d ~/.vscode/extensions/anthropic.claude-code-2.1.2*` and pick the newest one at 2.1.280 or later. Set `B=&lt;that dir&gt;/resources/native-binary/claude` and run `&quot;$B&quot; --version`.
+   - Then one tiny call: `echo &#x27;Reply with the single word OK.&#x27; | env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY &quot;$B&quot; -p --output-format json --model claude-opus-5-5 --effort low --disallowedTools &#x27;*&#x27;`.
+   - If the envelope has `is_error:false` and the result says OK: set `WRITER_BIN=&quot;$B&quot;` and `WRITER_MODEL=claude-opus-5-5`. Otherwise set `WRITER_BIN=claude` and `WRITER_MODEL=claude-opus-5`, and paste the refusal text.
+   - The checker uses the same bin and model. The blind quiz solver uses `claude-sonnet-5` at effort medium.
+   - Never change the global PATH, and never point the v25 driver at the new binary.
+
+## Step 1 — a small harness, outside the repo (at most 90 minutes)
+Write it in `~/cf-wt/v26-plan/tools/proto/`. Python 3 or `npx tsx` from the worktree are both fine. Keep it small; Wave 2 turns it into real code.
+- `span`: given a chapter number, print its exact source text from `data/franklin/source-text.txt` plus `chapter-map.json`, and the chapter&#x27;s title as the map gives it.
+- `call`: run one model call with exactly these flags, prompt on stdin:
+  `env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY CLAUDE_CODE_MAX_OUTPUT_TOKENS=64000 &quot;$BIN&quot; -p --output-format json --model &quot;$MODEL&quot; --effort &quot;$EFFORT&quot; --restricted --disallowedTools &#x27;*&#x27;`. Keep `--restricted`, which isolates the call from the operator&#x27;s `~/.claude` plugins. If a binary rejects the flag, record the error, drop only that flag for that binary, and say so.
+  - Save the envelope and extract `.result`, stripping a surrounding code fence.
+  - Append a line (step, chapter, model, `total_cost_usd`, output tokens, `stop_reason`, seconds) to `~/cf-wt/v26-plan/scratch/W1/ledger.tsv`.
+  - If `is_error` is true and the message mentions a usage or rate limit (e.g. &quot;limit&quot;, &quot;429&quot;), stop the wave and write `RESULT: WAITING-FOR-RESET`.
+  - Before every call, sum the ledger. If the next call could take the total past **$25**, stop and write `RESULT: NEEDS-OWNER — quota cap`.
+- `checks` (0 model calls). **Blocking** failures go to the fix step; **advisory** ones are reported.
+  - (a) Blocking: the JSON parses and has the v21 chapter fields listed below, with the right types.
+  - (b) Blocking: the app validator accepts a 1-chapter package. Copy `~/cf-wt/v26-plan/evidence/probe/validate.mts`, point its import at `~/cf-wt/v26-read/app/app/api/book/_lib/validate-book-package.ts`, and run it with `npx tsx` from the worktree. Build the package&#x27;s `book` block from rev-6&#x27;s `book` block.
+  - (c) Blocking: every double-quoted span of 8 or more characters in reader text appears verbatim in the chapter&#x27;s source span after normalization. Normalization drops `[n]` footnote markers and `_`, straightens curly quotes, turns dashes into spaces, lowercases, drops punctuation and collapses whitespace. The probe&#x27;s inline Python in `evidence/probe/` is the model.
+  - (d) Blocking: `correctIndex` is in range.
+  - (e) Advisory: paragraphs are separated by blank lines, and none is over 180 words.
+  - (f) Advisory: lengths against the brief&#x27;s bands; meta chatter such as &quot;this chapter&quot;, &quot;the source&quot;, &quot;the text&quot;, &quot;the author writes&quot;.
+- `render`: turns a v21 chapter JSON into HTML in the app&#x27;s order (see &quot;Reading pack&quot;).
+
+## Step 2 — the brief (at most 60 minutes)
+- If the skill `engineering-skills:senior-prompt-engineer` is in your skill list, load it. Otherwise skip it.
+- Start from `evidence/probe/brief-ch01.md` and make it one book brief for Franklin, at most about 4,000 characters, plus a short per-chapter header (chapter number and title from the map, the previous and next chapter titles for continuity).
+- Write positive guidance: who the reader is, the voice, what each field is for, and the target lengths and counts. **Do not** add lists of banned phrases, rhythm quotas, or rules that answer old tics. The old pipeline&#x27;s tics came from such rules. The probe draft shows none of them.
+- Read the probe draft `evidence/probe/ch01.opus5.chapter.json` critically first. Its fullRead ran to 1,432 words (asked 900–1,300), and its paragraphs reached 204 words. Tighten the brief where the draft missed it.
+- **Chapter shape (DECISIONS R1-b default A).** It follows what the app actually shows (`~/cf-wt/v26-plan/scan/app-render.md`). A new user sees the hook, the **fastRead only**, 1 example (the rest sit behind &quot;Show more&quot;), quiz questions **1–5**, and then the practice screen. So:
+  - `title`, `hook` (a scene, 1–2 sentences), `counterintuition`, `keyTakeaway`, `tryThisNow`.
+  - `breakdown.fastRead`, 150–220 words: a mini-story of the chapter&#x27;s best scene with 1–2 of Franklin&#x27;s own lines. For most readers this is the whole chapter.
+  - `breakdown.deepRead`, 350–500 words, in 3–5 paragraphs.
+  - `breakdown.fullRead`, 900–1,200 words, in 7–10 paragraphs of 60–140 words. This is the full telling, in Franklin&#x27;s order, with his words.
+  - Paragraphs are separated by `\n\n`.
+  - 3 `examples` (`exampleId`, `title`, `tags` from &quot;work&quot;/&quot;school&quot;/&quot;personal&quot;, `scenario`, `whatToDo`, `whyItMatters`). The first one is the only one shown by default, so it must be the best. No character who has &quot;read about&quot; Franklin, and no retelling of his anecdote inside an example.
+  - `quiz` with `passingScorePercent` 70 and **7 questions of 3 choices** (the catalog&#x27;s house style), each with `questionId`, `prompt`, `choices`, `correctIndex`, `explanation`, `bloomsLevel`.
+    - q1–q5 are answerable from what a default reader saw (hook, fastRead, first example) and test the story and its idea.
+    - q6–q7 may draw on the deeper tiers or apply the idea.
+    - Stems stay under 25 words, and each stem and its choices are about one situation.
+    - Choices are similar in length; the key is not the longest.
+    - Spread the keys across positions.
+  - 5 `reviewCards` (`cardId`, `front`, `back`, `difficulty`): plain question and answer on a Franklin line or idea.
+  - `implementationPlan` (`coreSkill`, 2 `ifThenPlans` {`context`, `plan`}, `twentyFourHourChallenge`, `weeklyPractice`).
+  - 3 `memorableLines` [{`text`}], each quoted verbatim from Franklin.
+  - Your assembler adds `chapterId`, `number` and `readingTimeMinutes`. Keep the probe&#x27;s field names; the validator accepted them.
+
+## Step 3 — write, check, fix (model calls)
+For each chapter (DECISIONS N2):
+1. **Write:** writer model, effort `high`. Stdin: brief + chapter header + `&lt;source&gt;` span `&lt;/source&gt;`.
+2. **Checks** (0 calls).
+3. **Fact check:** checker model, effort `high`, with this chapter&#x27;s entries from `known-traps.json` appended as &quot;facts this book has been wrong about before; check them especially&quot;, prompt = `evidence/probe/factcheck-brief.md` generalized to any chapter (keep its five error kinds from `factcheck-brief-v2.md`: WHO, WHY, WHEN/ORDER, HOW MUCH, WORDS). Input: source span plus the chapter rendered as labelled reader text (the probe&#x27;s `planted-reader` layout).
+4. **Blind quiz solve:** `claude-sonnet-5`, effort `medium`. For q1–q5 it sees only what a default reader saw (hook, counterintuition, fastRead, the first example). For q6–q7 it sees all three tiers. It gets the questions with choices (no keys, no explanations) and returns the chosen index and a one-line reason per question. A disagreement with the key is a blocking issue: either the key or the question is wrong or ambiguous.
+5. **Fix,** only if anything blocking was found: writer model, effort `high`. Input: the chapter JSON, the issue list and the source span. Output: `{&quot;edits&quot;:[{&quot;field&quot;:&quot;breakdown.fullRead&quot;,&quot;find&quot;:&quot;&lt;exact text&gt;&quot;,&quot;replace&quot;:&quot;&lt;new text&gt;&quot;}]}`. Apply the edits as exact string replacements. A fix never moves text between quiz choices. A key change must restate the keyed choice&#x27;s full text, and it is applied only when that text equals `choices[correctIndex]`. If a `find` is missing, ask once more with the error. Then re-run steps 2–4 in full. At most 2 fix rounds. Whatever is still open goes into the reading pack as an **open issue**, in plain words.
+
+Then, once each:
+- **Checker recall test on your ch13** (or your second chapter). Copy the checked chapter, plant 7 errors in it (one per kind: WHO, WHY, WHEN/ORDER, HOW MUCH ×2, WORDS, plus one wrong quiz key), run the fact check once, and report caught/7 with the misses quoted. Never let the planted copy near the reading pack.
+- **Checker calibration on real errors (about $1):** run the same fact check on rr21&#x27;s **ch07 and ch19** (from the rr21 path, rendered with the probe&#x27;s reader layout) against their source spans. Score its flags against the known errors for those chapters: the `labels.json` entries and the ch07/ch19 lists in `docs/v25/execution/assessment/reports/source-accuracy.md` §4 (in the worktree). Report recall on real errors and the number of false flags, with quotes. If recall on real major errors is below about 80%, try once with the five-kind prompt `evidence/probe/factcheck-brief-v2.md`, report both, and recommend one for Wave 2.
+- **Labelled errors:** for each `labels.json` entry that falls in your two chapters, say whether the prototype restates it. Quote the chapter or the absence.
+- **Format B sample for DECISIONS R1-b:** write ch01 once more with the brief&#x27;s examples section changed to &quot;1 short modern example plus 2 of Franklin&#x27;s own episodes from this chapter, each told from the source with what to do today&quot;. Run checks and the fact check on it, and fix per step 5 if needed. It appears in the reading pack only as &quot;ch01, examples in format B&quot;.
+
+Expect about 14–20 calls and $6–12 in total.
+
+## Step 4 — read it yourself, then an advisory panel
+- Read both prototype chapters in full next to rr21 and the Q08 arm. Write a plain, honest comparison with quotes: what is better, what is worse, and what the owner should look at. No scores.
+- Then run one small Workflow (you are authorized): 3 blind reader agents per chapter, 6 agents in total.
+  - Each gets the three versions of one chapter, rendered as reader text, labelled X/Y/Z in a different random order per reader (pass the order in the prompt; `Math.random` is unavailable in workflows).
+  - Each ranks them for &quot;would I keep reading this app&quot; and &quot;did I learn something I will remember&quot;, with 3 quoted reasons, and names any factual doubt.
+  - Report the rankings as advisory only. They do not decide anything.
+
+## Step 5 — the reading pack (the deliverable)
+Build `~/cf-wt/v26-plan/reading/W1/index.html` plus one page per chapter. It must be self-contained (inline CSS), open locally in a browser, and fit a phone.
+- **Per chapter,** three versions labelled **X / Y / Z**: the prototype, rr21 and the Q08 arm, in a fixed shuffled order. The key sits in a collapsed &quot;Reveal which is which&quot; block at the bottom.
+- **Each version renders in the app&#x27;s order and form:**
+  - chapter header (title, reading time), hook;
+  - the Summary step, showing the depth a new user sees by default (`fastRead`, because `defaultToFastPath` → &quot;simple&quot;; see `app/book/library/[bookId]/chapter/[chapterId]/ChapterReaderClient.tsx:144` and `hooks/useReaderSettings.ts:31`), with buttons to switch to `deepRead` and `fullRead`;
+  - memorable lines, then Examples, Quiz (choices shown and the answer revealed on click with its explanation), review cards, and Practice (`tryThisNow`, `implementationPlan`).
+  - Confirm this order by reading `ReaderPhaseContent.tsx` (phase order is `summary → examples → quiz → practice` in `lib/reader-flow-core.ts`) and `~/cf-wt/v26-plan/scan/app-render.md` §3 (a screen-by-screen walkthrough of the real reader), and follow the app where they differ.
+  - Split paragraphs exactly as the server adapter `app/app/api/book/_lib/v21-adapter.ts` does (blank lines only), so a wall of text shows as the owner&#x27;s readers would see it.
+- **A &quot;what the app&#x27;s books feel like today&quot; page:** chapter 1 of `decisive` in the same form, marked as a different book. Add chapter 1 of How to Win Friends if you copied it.
+- **A &quot;What was checked&quot; page:** per prototype chapter, the checker&#x27;s flags, what the fix changed (before → after), open issues, the blind-solver disagreements, the checker recall result (caught/7), the labelled-error result, the ledger totals, and your own comparison.
+- **A &quot;How to read this&quot; box on the index:** about 45–60 minutes. Read each chapter at the default depth first, the way a new user would, then open the full telling. Then answer DECISIONS R1-a to R1-d; copy those four questions onto the index verbatim.
+- **No in-app preview in this wave.** The chapter route loads the book from the published manifest in DynamoDB and S3 (`app/book/library/[bookId]/chapter/[chapterId]/page.tsx:12-35`) and calls `notFound()` without it, even under `npm run dev`. Registering a book on any AWS stack is an owner step, so the HTML pack is the deliverable. In the status file, add the optional owner commands for a **dev-stack** preview (from `~/cf-wt/v26-plan/scan/publish-path.md` §5 step 5, with the 2-chapter package path filled in) and label them &quot;optional, owner only, dev stack only&quot;.
+
+## Boundaries
+- No repo PRs in this wave. No changes to the v25 pipeline. Do not run the v25 driver. `PAUSE` stays.
+- `~/cf-canary`, `~/cf-canary-att` and `~/cf-wt/v25-execution` are read-only.
+- Do not invoke `superpowers:brainstorming`, `superpowers:writing-plans` or `superpowers:executing-plans`.
+- Do not claim anything you did not verify. Paste envelope fields and validator output as evidence.
+
+## Definition of done
+- Two prototype chapters (plus the ch01 format-B sample) exist in `~/cf-wt/v26-plan/scratch/W1/`. For each:
+  - it passes the blocking checks, or its open issues are listed;
+  - it is fact-checked and blind-key-checked;
+  - it has a fix history.
+- The reading pack exists and opens. Test it by opening `index.html` with `open` and checking every link resolves (`ls` the targets).
+- `status/W1.md` is written. Its first line is `RESULT: NEEDS-OWNER — W1 prototype ready: read ~/cf-wt/v26-plan/reading/W1/index.html (R1)`. It then contains:
+  - the Opus 5.5 check result (verbatim envelope fields);
+  - the harness paths;
+  - the ledger totals (calls and $);
+  - per chapter: flags found, fixed, and open;
+  - the recall result (planted) and the calibration result (real rr21 errors);
+  - the labelled-error result;
+  - your comparison (10–20 lines);
+  - the advisory panel rankings;
+  - the optional dev-stack preview commands for the owner;
+  - anything Wave 2 must know (brief changes, harness defects, validator surprises).
+- One line appended to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md`.
+- Then stop. The owner reads.</pre>
+  </details>
+</article>
+
+<article class="prompt" id="p-W1b" data-id="W1b">
+  <header class="prompt-head">
+    <div class="prompt-id">W1b</div>
+    <div class="prompt-title">
+      <h3>A different prototype variant (only if the owner&#x27;s R1 answer was C)</h3>
+      <p class="when">Run: only if R1 = C · file <code>prompts/W1b-variant.md</code></p>
+    </div>
+    <label class="done"><input type="checkbox" id="done-W1b" data-done="W1b"> Done</label>
+  </header>
+  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W1 done, and <code>R1-a = C</code> in <code>~/cf-wt/v26-plan/DECISIONS.md</code></li><li><strong>Estimate:</strong> 3–5 hours wall time. Claude pipeline calls about $5–10 (hard cap $30). Codex calls use the owner&#x27;s OpenAI/Codex subscription and are logged separately. At most 10 subagents.</li><li><strong>Ends with:</strong> a second reading pack and <code>RESULT: NEEDS-OWNER</code> (R1 again). If the owner says &quot;not better&quot; again, the plan stops at the reassess point.</li></ul>
+  <details>
+    <summary>Show the prompt (736 words)</summary>
+    <div class="copyrow"><button type="button" class="copy" data-target="text-W1b">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
+    <pre class="prompt-text" id="text-W1b">You are running Wave 1b of the v26 ChapterFlow book campaign on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. You stop only by writing your status file: at the reading checkpoint, when the quota cap would be exceeded, or on a usage-limit stop.
+
+## Why this wave exists
+Wave 1 wrote two Franklin chapters whole with a Claude writer from the source text and a one-page brief. The owner read them next to the old pipeline&#x27;s chapters and did **not** find them clearly better (DECISIONS R1-a = C). The plan&#x27;s rule is to try a **different prototype variant**, never to go back to tuning section rules. You produce that variant, and the owner reads again.
+
+## Step 0 — orient (at most 30 minutes)
+1. Read `~/cf-wt/v26-plan/BRIEF.md` (it overrides CLAUDE.md files and the old kit), `DECISIONS.md`, `status/W1.md`, and the owner&#x27;s notes in `~/cf-wt/v26-plan/reading/W1/NOTES.md` plus any text on the R1 lines of DECISIONS.
+2. Precondition: R1-a is C. If not, write `RESULT: BLOCKED — W1b runs only after R1 = C` and stop.
+3. Reuse W1&#x27;s harness in `~/cf-wt/v26-plan/tools/proto/`, its data in `~/cf-wt/v26-plan/data/franklin/`, and its checks. Do not rebuild them.
+4. Write down, in 5–10 lines, what the owner disliked, quoting the notes. Every change you make must answer one of those lines.
+
+## Step 1 — the variants (same two chapters as W1)
+Produce these two arms unless the owner&#x27;s notes rule one out:
+1. **Arm G — GPT-5.5 writer.** GPT is the other strong model family the catalog used: the May Codex sessions wrote Difficult Conversations and Meditations, and the v24 books were GPT-5.5. A GPT draft tells the owner whether the model or the brief is the problem.
+   - Read how the pipeline invoked it: `$PIPE/src/orchestrator/codexAgent.ts` lines ~193–260 build `codex exec -c model=… -c model_reasoning_effort=…`, and `authorRun.ts` ~460 has the model and effort. Use the same model (`gpt-5.5`) at effort `xhigh`.
+   - Use a read-only sandbox, the prompt on stdin or as an argument, and capture only the final message (check `codex exec --help` for the output-file flag of the installed `~/.local/bin/codex`).
+   - Strip `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` from its env so it uses the subscription login.
+   - Give it the same brief (with the owner&#x27;s changes) and the same source span.
+   - Everything after the draft is unchanged: the Claude fact check, the blind solver and the fix step.
+2. **Arm F — a different format or brief, with the Claude writer.** Apply the owner&#x27;s notes to the brief. If the notes point at the format rather than the writing, write the chapters in the memoir-native shape. Examples:
+   - the full telling as the default body, with the summary as an &quot;in one minute&quot; recap;
+   - 1 modern example plus 2 Franklin episodes;
+   - 5 story questions and 2 application questions.
+
+   It must still be the v21 JSON shape the app validator accepts.
+
+If the notes say something else entirely (for example &quot;too long&quot;, &quot;too modern&quot;, &quot;too academic&quot;), change the brief accordingly for both arms, and record the change.
+
+## Step 2 — check, read, compare
+- Run W1&#x27;s checks, fact check, blind solve and fix on each arm&#x27;s chapters.
+- Read everything yourself. Compare the two arms with W1&#x27;s prototype and rr21 in 10–20 plain lines with quotes.
+- Build `~/cf-wt/v26-plan/reading/W1b/index.html` in W1&#x27;s form: blind labels, a reveal block, the app&#x27;s order, and a &quot;What was checked&quot; page. Show, per chapter: arm G, arm F, W1&#x27;s prototype and rr21.
+- Put the owner&#x27;s R1 questions on the index again, plus one line: &quot;If none of these is clearly better, write STOP on the R1-a line.&quot;
+
+## Boundaries
+- No repo PRs. No v25 changes. `~/cf-canary`, `~/cf-canary-att` and `~/cf-wt/v25-execution` are read-only. `PAUSE` stays.
+- Every Claude call keeps the BRIEF §5 flags, including `--restricted`, on the stripped env.
+- Track Claude spend in `~/cf-wt/v26-plan/scratch/W1b/ledger.tsv` and stop before $30. Log each Codex call too, with its duration and whatever usage it prints.
+- Do not invoke `superpowers:brainstorming`, `superpowers:writing-plans` or `superpowers:executing-plans`.
+
+## Definition of done
+`status/W1b.md` starts with `RESULT: NEEDS-OWNER — W1b variants ready: read ~/cf-wt/v26-plan/reading/W1b/index.html (R1 again)`. It then contains:
+- the owner&#x27;s dislikes, quoted;
+- what each arm changed;
+- the ledger totals (Claude $, Codex calls);
+- the check results per chapter;
+- your comparison;
+- a clear statement that a second &quot;not better&quot; is the plan&#x27;s reassess point (README §4).
+
+Append one line to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md`. Then stop.</pre>
+  </details>
+</article>
+
+<article class="prompt" id="p-W2" data-id="W2">
+  <header class="prompt-head">
+    <div class="prompt-id">W2</div>
+    <div class="prompt-title">
+      <h3>Build the v26 book tool in the repo, then write all of Franklin with it</h3>
+      <p class="when">Run: after R1 = A/B · file <code>prompts/W2-pipeline-and-book.md</code></p>
+    </div>
+    <label class="done"><input type="checkbox" id="done-W2" data-done="W2"> Done</label>
+  </header>
+  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W1 <code>DONE</code>/<code>NEEDS-OWNER</code>, and the owner&#x27;s R1-a = A or B in <code>~/cf-wt/v26-plan/DECISIONS.md</code></li><li><strong>Estimate:</strong> 1–1.5 days wall time. Pipeline model calls about $30–50 (hard cap $80). At most 25 subagents.</li><li><strong>Ends with:</strong> a merged PR (the tool + tests + the catalog-path fix), a 19-chapter Franklin package that passes every app check and a ship dry run, a reading pack, and <code>RESULT: NEEDS-OWNER</code> (reading checkpoint R2)</li></ul>
+  <details>
+    <summary>Show the prompt (2517 words)</summary>
+    <div class="copyrow"><button type="button" class="copy" data-target="text-W2">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
+    <pre class="prompt-text" id="text-W2">You are running Wave 2 of the v26 ChapterFlow book campaign on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. You stop only by writing your status file: at the reading checkpoint (the normal end), when the quota cap below would be exceeded, or on a usage-limit stop. For every other choice, take the default stated here and report it.
+
+## Goal
+1. Turn the Wave 1 prototype harness into a small, tested tool in the repo at `scripts/book/v26/`, landed by PR.
+2. Fix the two release-path defects that would stop any new book: the catalog path drift, and the lack of a ship route that does not require the v25 production manifest.
+3. Use the tool to write, check and fix **all 19 chapters** of Franklin&#x27;s Autobiography.
+4. Assemble the package, prove the ship route with a dry run against the real checkout, and hand the owner a reading pack for the whole book.
+
+The owner&#x27;s reading is the gate. Automated checks block only on facts, quiz keys and renderability (BRIEF §4).
+
+## Step 0 — orient (at most 30 minutes)
+1. Read `~/cf-wt/v26-plan/BRIEF.md` first. It overrides CLAUDE.md files and the old kit.
+2. Read `DECISIONS.md`. R1-a..R1-d apply; a blank answer means the default.
+3. Read `status/W1.md` and `reading/W1/NOTES.md` if it exists (the owner&#x27;s reading notes). Apply every note to the brief before writing anything.
+4. Read `ANALYSIS.md` §2 (the design) and these scan reports: `scan/reuse-v24-writer.md` §4–§6, `scan/publish-path.md` §3–§6 and its verification, `scan/accuracy-chain.md` §5 and §7, and `scan/app-render.md` §6.
+5. Precondition: R1-a is A or B. If it is C, blank, or `status/W1b.md` is not DONE after a C, write `RESULT: BLOCKED — R1 is not A/B` and stop.
+6. Fetch, then create the change worktree `~/cf-wt/v26-tool` on branch `v26/tool` from `origin/main` (BRIEF §5 recipe: `cmp` the lockfiles, symlink both `node_modules`, never `npm ci`).
+7. Load these skills if they are in your skill list: `superpowers:test-driven-development`, `superpowers:verification-before-completion`. Do not invoke brainstorming, writing-plans or executing-plans.
+
+## Step 1 — the tool (`scripts/book/v26/`), test-first
+Put it under `scripts/book/v26/` so `typecheck:book` (`tsconfig.book.json` includes `scripts/book/**`) covers it. Put its tests under the repo-root `tests/v26/` so root `npm run test` (and CI) runs them. Before relying on that, confirm how root `npm run test` discovers files and which CI job runs it (`package.json` `test` script: it finds `*.test.ts` under `app lib components tests` with a discovery floor of 163; `.github/workflows/ci.yml` runs `npm run test`), and say so in the status. If a repo boundary check (`npm run typecheck:boundary`, `tests/frontend-import-boundaries.test.ts`) objects to root tests importing `scripts/book/**`, find the least invasive placement that the CI test run still discovers, and report it.
+Import only pure modules from `$PIPE` (for example `src/runtime/claudeRoute.ts` `createClaudeRoute`, and `src/source/chapterMap.ts` `chapterSpanText`). Do not import the model gateway, run-state or any v25 compiler module. Target 600–1,000 lines of code plus tests, and prompt templates as `.md` files.
+
+**Book config** `scripts/book/v26/books/&lt;bookId&gt;.json` holds:
+- `bookId`, `title`, `author`;
+- `categories` (validated against the app taxonomy `lib/category-taxonomy.ts`, not `$PIPE/config/categories.json`) and `tags`;
+- `source` {`textPath`, `chapterMapPath`, or `headings` for a new book}, `briefPath`, `shape` (counts and length bands);
+- `writer`/`checker`/`solver` {`bin`, `model`, `effort`}, `concurrency` (default 3), `budgetUsd`, `runDir`.
+
+Paths may point outside the repo (`~/cf-wt/v26-plan/data/...`). Franklin&#x27;s source and map stay out of git.
+
+**CLI:** `npx tsx scripts/book/v26/cli.ts &lt;command&gt; --book &lt;config.json&gt; [--chapters 1,13] [--force]`
+
+| Command | What it does |
+|---|---|
+| `write` | For each chapter, slice the span. Strip `[n]` footnote markers, and move indented footnote bodies and `[Illustration…]` lines into a trailing block labelled &quot;EDITOR&#x27;S NOTES (not Franklin; do not quote as Franklin)&quot;. Render brief + chapter header + `&lt;source&gt;` span, call the writer, and save `draft.json`. |
+| `check` | Deterministic checks, then a fact check (checker), then a blind quiz solve (solver). |
+| `fix` | Find/replace edits for blocking issues only, then a full re-check. At most 2 rounds. Leftovers are recorded as open issues. |
+| `run` | `write` + `check` + `fix` for the selected chapters, with the concurrency and budget caps. |
+| `status` | A table per chapter: stage, open issues, spend. |
+| `assemble` | Build `book-packages/&lt;bookId&gt;.v21.json` from the final chapters. Top-level fields follow `book-packages/radical-candor.v21.json`; the assembler adds `chapterId` `&lt;bookId&gt;-chNN`, `number` and `readingTimeMinutes`. Then run the app checks. |
+| `report` | The book-level advisory report (below). |
+| `render` | The reading pack HTML (from W1&#x27;s renderer). |
+| `ship --dry-run` | Explained below. |
+
+**Model calls:**
+- Argv and env come from `createClaudeRoute(model, effort).build({mode:&quot;READ_ONLY&quot;})` and `.env()`, with an explicit `bin` from config (W1 recorded which binary runs Opus 5.5). The prompt goes on stdin.
+- Parse the envelope with `JSON.parse`. If `is_error` is true and the text or `api_error_status` indicates a usage or rate limit, **stop the whole run** with a clear `USAGE_LIMIT` message and exit code 3, never retrying it.
+- One retry is allowed only for a non-limit process failure or unparseable JSON. If `stop_reason` is `max_tokens` (thinking filled the cap, a failure v25&#x27;s repair role never escaped), retry once at one effort level lower and log it. The fix step&#x27;s find/replace output is small by design.
+- Run long `run` commands under `caffeinate -dimsu` (BRIEF §7). Each call also has a wall-clock timeout (default 900 s for writes, 600 s for checks).
+- Every call appends `{ts, chapter, step, model, effort, cost: total_cost_usd, outTokens, stopReason, seconds}` to `&lt;runDir&gt;/ledger.jsonl`. Before each call, if the ledger total plus a conservative estimate would pass `budgetUsd`, stop with exit code 4.
+
+**State is files, not a state machine:**
+- `&lt;runDir&gt;/chNN/` holds `draft.json`, `checks.json`, `factcheck.json`, `keysolve.json`, `fix-1.json`, `final.json`, `status.json`.
+- A rerun skips chapters whose `status.json` says `clean` or `open-issues` unless `--force`.
+- Nothing else is persisted.
+
+**Blocking checks** (BRIEF §4):
+- JSON shape per `shape`;
+- the app validator `validateBookPackage` on a 1-chapter wrapper;
+- verbatim quotations after normalization, where a miss is an issue for the fix step. Normalization folds `[n]` footnote markers and `_` on **both** the quote and the span (stripping only the span turns a correct marker-copying quote into a miss), folds typography, and tolerates edge punctuation and ellipsis splits;
+- `correctIndex` in range;
+- the fact check&#x27;s CONTRADICTED/UNSUPPORTED items whose `sourceText` verifies against the span with the same tolerant matcher. An item whose quote does not verify goes to the owner&#x27;s list and is not auto-fixed;
+- blind-solver disagreements.
+
+**Advisory** (in `checks.json` and the report, never a retry):
+- lengths against the bands;
+- paragraph over 180 words, or a tier over 250 words with fewer than 2 paragraphs;
+- key-is-the-uniquely-longest-choice count;
+- stem openers;
+- meta chatter;
+- cross-chapter repeats (the book report).
+
+**Prompts** `scripts/book/v26/prompts/{write,factcheck,keysolve,fix}.md` start from W1&#x27;s final versions:
+- The fact check keeps the five kinds WHO / WHY / WHEN-ORDER / HOW MUCH / WORDS, plus &quot;credited to someone vague when the source names a person&quot;. It also receives the chapter&#x27;s entries from W1&#x27;s `data/franklin/known-traps.json` (the old scar pins mapped to 19 chapters) as &quot;facts this book has been wrong about before&quot;. They are hints for the checker, never rules for the writer. The book config names the file (`knownTrapsPath`, optional).
+- The key solve gets only the default-visible fields for q1–q5, and every tier for the rest.
+- The fix call returns `{&quot;edits&quot;:[{&quot;field&quot;,&quot;find&quot;,&quot;replace&quot;}], &quot;rekeys&quot;:[{&quot;questionId&quot;,&quot;correctIndex&quot;,&quot;keyedText&quot;}]}`. A re-key is applied only if `keyedText` equals `choices[correctIndex]` exactly. That avoids the old &quot;moved the text, kept the index&quot; defect by construction.
+
+**The Franklin brief** `scripts/book/v26/briefs/the-autobiography-of-benjamin-franklin.md` is W1&#x27;s final brief plus the owner&#x27;s R1 notes and the R1-b shape. A short, generic section on book types (memoir / how-to / argument: what the examples are for, and how much to quote) lives in `scripts/book/v26/briefs/README.md` so the next book starts from it. **Do not add rules to the brief to fix a single chapter.** Fix that chapter&#x27;s text.
+
+**Book report** (`report`, 0 calls, advisory):
+- per-chapter words and quotations;
+- open issues;
+- 5-word n-grams shared by 3+ chapters;
+- repeated example titles, names and settings;
+- the first 5 words of hooks and of quiz stems across chapters;
+- key-position spread;
+- the key-longest rate.
+
+**Tests** (hermetic, no model calls): build a fake `claude` executable (a small script that prints canned envelopes chosen by the prompt&#x27;s first line) and cover:
+1. span slicing and footnote handling;
+2. prompt rendering;
+3. envelope parsing, including the fence strip, `is_error` and the usage-limit stop (exit 3, no retry);
+4. the budget stop (exit 4);
+5. resume skipping;
+6. the quotation matcher, with good, modernized, ellipsis and missing quotes;
+7. the fix application: find present, find missing, and a re-key that is accepted and one that is rejected;
+8. assemble → app validator + `app/book/data/bookPackages.slim-contract.test.ts` + the title-quality and category-taxonomy tests;
+9. `ship --dry-run` against a hermetic outer repo (`scan/publish-path.md` built one; reuse the idea).
+
+Write each test to fail first, and paste the RED line in the PR body.
+
+## Step 2 — the release route (same PR, or a second small PR if cleaner)
+1. **Catalog path fix:** point `scripts/book/generate-catalog-metadata.ts:27`, `$PIPE/src/publish/publishToLive.ts:70` and `scripts/book/register-api-books.ts:251` at `lib/books-catalog.metadata.json`, and update the two test fixtures that use the old path (`$PIPE/tests/publish-final.test.ts:52,76`). Prove it: regenerating from `BOOK_PACKAGES` reproduces `lib/books-catalog.metadata.json` byte for byte (135/135).
+2. **`ship`:** a thin wrapper over the library function `publishFinal()` (`$PIPE/src/publish/publishFinal.ts:276-333`). It passes:
+   - `localPackagePath` = the assembled package;
+   - `manifestPath` = a path that does not exist (the app never reads the sidecar; never forge one);
+   - `verify` = the app validator plus the taxonomy check;
+   - `keepDebris: true`, which is mandatory: cleanup would delete source and brief copies.
+
+   Behaviour:
+   - It runs on the current branch, and refuses on `main`.
+   - It writes a short provenance note (writer and checker models, brief sha256, source sha256, per-chapter check summary) to `book-packages/&lt;bookId&gt;.v26-provenance.md`.
+   - `ship --dry-run` prints the plan and mutates nothing.
+   - The real `ship` is the owner&#x27;s command: this session never runs it without `--dry-run`.
+3. Leave the tracked rev-6 Franklin package and sidecar under `$PIPE` alone. `ship` does not read them. Mention in the PR that `publish-final` (the CLI) still would.
+
+Then open the PR (title like `feat(book): v26 whole-chapter book tool and a direct ship route; fix the catalog metadata path`).
+- The body lists what the tool bypasses and why (link `docs/v26-plan/ANALYSIS.md` on the kit branch).
+- Run `npm run typecheck`, `npm run lint`, `npm run test` and `npm run typecheck:book` locally first, with their pass lines pasted.
+- Have one independent reviewer subagent (Opus) re-run the tests from a clean checkout of the branch and review the diff for correctness and for anything that could publish without the owner.
+- Merge (squash) when CI is green and the review passed. If the merge is refused, print the command for the owner and continue: Step 3 can run from the branch.
+
+## Step 3 — write Franklin (model calls; cap $80 for the wave)
+1. **Data:** reuse `~/cf-wt/v26-plan/data/franklin/source-text.txt` and `chapter-map.json` from W1 (check the sha256 again).
+2. **Write** ch01 and ch13 first, reusing W1&#x27;s final versions if the brief did not change; if the brief changed, re-write them. Read them. Then run chapters 2–19 at concurrency 3.
+3. **Read the whole book yourself before any fixes beyond the tool&#x27;s.** Use one Workflow (you are authorized): 5 reader agents, each reading about 4 chapters in order next to their source spans. They report, with quotes:
+   - what a reader would stumble on (dull stretches, confusion, repetition across chapters, a missing famous moment such as the Scilly lighthouse or &quot;St. George on the signs&quot;);
+   - any factual doubt.
+
+   Turn real problems into targeted fix edits, or a re-write of that chapter with a one-line note appended to its header. Never add a rule to the shared brief because of one chapter. If a problem shows up in 5 or more chapters, change the brief once, re-write only the affected chapters, and record it in the status.
+4. **Optional, advisory:** a blind 3-reader panel on ch01/07/13/19 comparing the new chapters with rr21 (as in W1). Report it, but it decides nothing.
+5. **Assemble.** Categories default to the app taxonomy&#x27;s `Memoir`, `Classics` and `Self Improvement`; tags default to `virtue`, `habit formation`, `self-education`, `civic projects`, `American history`, `writing`. Run:
+   - every app check;
+   - `register-api-books --dry-run` for the package (`npx tsx scripts/book/register-api-books.ts --dry-run the-autobiography-of-benjamin-franklin` from a directory whose `book-packages/` holds it; see `scan/publish-path.md` §5);
+   - `ship --dry-run` from the real canonical checkout state on a branch (never on main).
+
+   Paste the plan output.
+
+## Step 4 — the reading pack for R2
+Build `~/cf-wt/v26-plan/reading/W2/index.html` with every chapter rendered in the app&#x27;s order and form (R1-d decides which tier is shown first; the others are toggles). It includes:
+- a contents list with one line per chapter;
+- a &quot;What was checked&quot; page per chapter (flags, fixes, open issues, blind-solver result);
+- the book report;
+- a `NOTES.md` template with one heading per chapter.
+
+&quot;How to read this&quot; suggests about 2–3 hours: read ch01, ch02, ch08 (the thirteen virtues, if that is its content), ch13 and ch16 in full at the default depth and then the full telling, skim the rest, and write notes per chapter. Copy the R2 question from DECISIONS verbatim onto the index.
+
+Also list the **optional owner-only dev-stack preview commands**, with the package path filled in: `register:api` **and** the S3 package upload to the **dev** stack (`scan/publish-path.md` §5 step 5 and its verification PP5). Label them &quot;optional; dev stack only; do not run against prod before R2&quot;.
+
+## Boundaries
+- Never run the real `ship`, `publish-final`, `register:api`, an S3 upload or a deploy. Print them for the owner.
+- Do not modify the v25 compiler, review or QC code. The catalog-path fix in `publishToLive.ts` is the only `$PIPE` source edit allowed, plus its test fixture.
+- `~/cf-canary`, `~/cf-canary-att` and `~/cf-wt/v25-execution` are read-only. `PAUSE` stays.
+- Keep every model call on the stripped env and the `claudeRoute` argv (with `--restricted`).
+- If a usage limit hits: finish writing files for completed chapters, write `RESULT: WAITING-FOR-RESET — &lt;what is done, what to resume&gt;`, and stop. A re-run of `run` resumes from the files.
+
+## Definition of done
+- The PR is merged, or its merge command is printed for the owner. It has local and CI pass lines, the RED lines and an independent review.
+- `status` shows 19 chapters, each `clean` or `open-issues`, with every open issue in plain words in the reading pack.
+- `book-packages/the-autobiography-of-benjamin-franklin.v21.json` has been assembled on a branch or in the run dir (not committed to main by this session). It passes the app validator, the slim-contract, title-quality and taxonomy tests and `register-api-books --dry-run`, and `ship --dry-run` printed a plan (pasted).
+- The reading pack opens (use `open`, and `ls` every linked file).
+- `status/W2.md` starts with `RESULT: NEEDS-OWNER — Franklin book ready for reading (R2): ~/cf-wt/v26-plan/reading/W2/index.html`. It then gives:
+  - the PR number and URL and the merge SHA (looked up);
+  - the test counts;
+  - the ledger totals (calls, $, per stage);
+  - the chapters with open issues;
+  - brief changes and why;
+  - the advisory panel if run;
+  - the exact ship command the owner will run in W3;
+  - anything W3 must know.
+- One line appended to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md`.</pre>
+  </details>
+</article>
+
+<article class="prompt" id="p-W2w" data-id="W2w">
+  <header class="prompt-head">
+    <div class="prompt-id">W2w</div>
+    <div class="prompt-title">
+      <h3>Show readers the writing: the reader&#x27;s default depth and two mode bugs (only if R1-d = B or C)</h3>
+      <p class="when">Run: with W2, only if R1-d = B/C · file <code>prompts/W2w-reader-app.md</code></p>
+    </div>
+    <label class="done"><input type="checkbox" id="done-W2w" data-done="W2w"> Done</label>
+  </header>
+  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> R1-d = B or C in <code>~/cf-wt/v26-plan/DECISIONS.md</code>. Runs in parallel with W2.</li><li><strong>Estimate:</strong> 3–5 hours wall time. No pipeline model calls. At most 6 subagents.</li><li><strong>Ends with:</strong> one merged web PR (or its merge command printed), and <code>RESULT: DONE</code>. It deploys with Franklin&#x27;s release in W3 (the deploy is the owner&#x27;s).</li></ul>
+  <details>
+    <summary>Show the prompt (813 words)</summary>
+    <div class="copyrow"><button type="button" class="copy" data-target="text-W2w">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
+    <pre class="prompt-text" id="text-W2w">You are running the web-app part of Wave 2 of the v26 ChapterFlow campaign on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. You stop only by writing your status file.
+
+## Why
+A new user who has not customized their settings reads only a chapter&#x27;s short summary (`fastRead`, a median of 94 words across the catalog). They then get one example, 5 quiz questions and a practice screen. The full telling (`fullRead`) appears only in &quot;Challenge&quot; mode, together with a 10-question, no-retry quiz. Two bugs make it worse. Clicking &quot;Standard&quot; does nothing. Picking a reading profile in Settings resets the reader to the short summary. The owner decided at R1-d to change what a new reader sees first:
+- **B** = the full telling by default, for every book;
+- **C** = the middle depth (`deepRead`) by default.
+
+Evidence, with file:line, is in `~/cf-wt/v26-plan/scan/app-render.md` (§2, §3, §7 and its &quot;Adversarial verification&quot; section).
+
+## Step 0
+1. Read `~/cf-wt/v26-plan/BRIEF.md` (it overrides CLAUDE.md files) and the R1-d answer in `DECISIONS.md`. If R1-d is A or blank, write `RESULT: NOT NEEDED — R1-d = A` and stop.
+2. Read `scan/app-render.md` in full.
+3. Create a change worktree `~/cf-wt/v26-reader` on branch `v26/reader-default-depth` from `origin/main` (BRIEF §5: `cmp` the lockfiles, symlink both `node_modules`, never `npm ci`).
+4. Read the repo&#x27;s `app/CLAUDE.md` and `components/CLAUDE.md` for the web-app conventions. They apply to this web change.
+5. Load `superpowers:test-driven-development` and `superpowers:verification-before-completion` if they are in your skill list.
+
+## The change (keep it minimal; each item test-first)
+1. **Default depth.** On the fast path (`defaultToFastPath`, `app/book/library/[bookId]/chapter/[chapterId]/ChapterReaderClient.tsx:144`), use `&quot;deeper&quot;` (fullRead) for B or `&quot;standard&quot;` (deepRead) for C, instead of `&quot;simple&quot;`.
+   - Keep the default quiz at **5 questions** for these readers. Today the quiz count follows the depth (`lib/quiz-question-counts.ts`, `learning-mode.ts:101,141-150`), so decouple exactly that, and nothing more.
+   - Update the pinned contract test `ChapterReaderClient.contract.test.ts` (lines ~13 and ~50–59) to pin the new default. Do not delete it.
+2. **Standard is a no-op.** At `ChapterReaderClient.tsx:262` (`if (mode === learningMode) return;`), a click on the already-selected mode must still apply its depth when the displayed depth differs.
+3. **The settings profile reset.** `BookSettingsClient.tsx:419-434` writes `profileCustomized:false` when a profile is chosen, so a &quot;Deep&quot; profile still reads the short summary. Picking a profile is a customization, so the reader should get that profile&#x27;s depth.
+   - While there, make the side effects at `:458,468,477` (daily goal, persona, streak writing `profileCustomized:true`) not change reading depth by themselves.
+   - Fix only what these lines do. Do not redesign settings.
+4. **Memorable lines once.** Today they render as an unquoted &quot;Key Takeaways&quot; list and again as quoted &quot;Lines worth keeping&quot; (`app/book/lib/v21-adapter.ts:134-139` → `SummaryCard.tsx`; `ReaderPhaseContent.tsx:158-160`). Keep one rendering, the quoted &quot;Lines worth keeping&quot;. Check that removing the takeaway copy does not blank another surface that reads `takeaways` (grep the consumers). If it does, keep the data and hide only the duplicate list.
+5. **Header reading time.** If it is a small change, make &quot;N min read&quot; (`ChapterHeader.tsx` ~430) reflect the depth being shown (words / 230 wpm). If it is not small, skip it and say why.
+
+Do not touch the quiz content, the phases, the points economy, or anything else the app-render report lists as &quot;not worth doing alone&quot; (the single-newline split).
+
+## Verify
+- Unit and contract tests are RED first and then GREEN, with both lines pasted.
+- Run `npm run typecheck`, `npm run lint`, `npm run test`, then `npm run verify`, and paste the pass lines.
+- Start `npm run dev` in the background and load a catalog chapter page. The chapter route needs AWS, so if it returns 404 or needs credentials, say so and rely on the component tests. Confirm with `curl` or the test render that the default depth now shows the longer tier.
+- One independent reviewer subagent (Opus) re-runs the tests on a clean checkout of the branch and reviews the diff for regressions: a reader in Challenge still gets fullRead and 10 questions, a Guided reader still gets fastRead, and SSR and hydration do not flash a different tier.
+
+## PR
+- Title like `fix(reader): show the chapter&#x27;s full telling by default; fix the Standard no-op and the settings depth reset; show memorable lines once`.
+- The body gives the owner decision (R1-d = B or C), the before/after words a new reader sees for one catalog chapter and one Franklin chapter, and the test evidence.
+- Squash-merge when CI is green and the review passed. If refused, print the command for the owner.
+- It ships with the next web deploy, which the owner runs in W3.
+
+## Definition of done
+`status/W2w.md` starts with `RESULT: DONE — reader default depth = &lt;B|C&gt;; PR #&lt;n&gt; merged (&lt;sha&gt;)`, or `NEEDS-OWNER — merge refused, command: …`. Include the test counts, the files changed, and anything W3 must include in the deploy note. Append one line to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md`.</pre>
+  </details>
+</article>
+
+<article class="prompt" id="p-W3" data-id="W3">
+  <header class="prompt-head">
+    <div class="prompt-id">W3</div>
+    <div class="prompt-title">
+      <h3>Finish Franklin: apply the owner&#x27;s notes, release, hand over the publish commands, verify live</h3>
+      <p class="when">Run: after R2 = A/B (re-run for Part B after you publish) · file <code>prompts/W3-finish-franklin.md</code></p>
+    </div>
+    <label class="done"><input type="checkbox" id="done-W3" data-done="W3"> Done</label>
+  </header>
+  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W2 done, and R2 = A or B in <code>~/cf-wt/v26-plan/DECISIONS.md</code>. W2w must be merged if R1-d was B/C.</li><li><strong>Estimate:</strong> Part A 3–6 hours wall time. Pipeline calls about $5–20 (hard cap $30). At most 10 subagents. Part B takes under an hour.</li><li><strong>Ends with:</strong> Part A: <code>RESULT: NEEDS-OWNER — publish commands ready</code>. Part B (the same prompt, re-run after the owner published): <code>RESULT: DONE — Franklin live</code>.</li></ul>
+  <details>
+    <summary>Show the prompt (888 words)</summary>
+    <div class="copyrow"><button type="button" class="copy" data-target="text-W3">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
+    <pre class="prompt-text" id="text-W3">You are running Wave 3 of the v26 ChapterFlow book campaign on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. You stop only by writing your status file: when the publish commands are ready (they are the owner&#x27;s to run), when the quota cap would be exceeded, or on a usage-limit stop.
+
+## Which part you are in
+Read `~/cf-wt/v26-plan/status/W3.md` if it exists.
+- If it does not exist, or its first line is not `RESULT: NEEDS-OWNER — publish commands ready`, run **Part A**.
+- If that is its first line **and** the owner has written `published` on the `P1` line of `DECISIONS.md` (or the ship PR is merged and `book-packages/.pending-deploy.json` on origin/main lists the Franklin package), run **Part B**.
+
+## Step 0 (both parts)
+1. Read `~/cf-wt/v26-plan/BRIEF.md` (it overrides CLAUDE.md files and the old kit) and `DECISIONS.md`.
+2. Read `status/W2.md`, `status/W2w.md` if present, and `reading/W2/NOTES.md`.
+3. The v26 tool is `scripts/book/v26/` on origin/main (W2&#x27;s PR). Its usage is in `scripts/book/v26/README.md` or the W2 status.
+4. Create a change worktree `~/cf-wt/v26-franklin-ship` on branch `books/franklin-v26` from `origin/main` (BRIEF §5 recipe).
+
+## Part A — make the book final
+1. **Precondition:** R2 is A or B. If it is C or blank, write `RESULT: BLOCKED — R2 is not A/B (C = the plan&#x27;s reassess point)` and stop.
+2. **Apply the owner&#x27;s notes** (R2 = B), chapter by chapter, with the tool:
+   - a note about wording or a specific passage becomes a targeted `fix` issue;
+   - a note like &quot;this chapter drags, cut X&quot; becomes a re-write of that chapter, with the note appended to its header.
+
+   Never turn a note into a rule in the shared brief unless the owner&#x27;s note says it applies to every chapter.
+
+   Then run the full `check` on every changed chapter (fact check, blind solver, deterministic checks). Record each note → change → check result.
+3. **The changed-chapters page:** `~/cf-wt/v26-plan/reading/W3/changes.html`. Per note, show a before/after of the changed passages, plus the check result. The owner can read this before running the publish commands.
+4. **Presentation.** New books otherwise get a boilerplate synopsis (&quot;A modern reading of …&quot;).
+   - Add a curated `BOOK_PACKAGE_PRESENTATION` entry for Franklin in `app/book/data/bookPackages.ts`. Follow an existing entry&#x27;s shape: a 2–3 sentence synopsis written from the book (no invented claims) and the fields the other entries use.
+   - If `public/book-covers/` has no Franklin cover, leave it for the owner and list it.
+   - Categories come from the app taxonomy (`Memoir`, `Classics`, `Self Improvement`), plus the W2 tags.
+5. **Assemble** the final package with the tool.
+   - Run every app check: `validateBookPackage`; the slim-contract, title-quality and category-taxonomy tests; and `npx tsx scripts/book/register-api-books.ts --dry-run the-autobiography-of-benjamin-franklin` from a directory whose `book-packages/` holds the package.
+   - Then run `npx tsx scripts/book/v26/cli.ts ship --dry-run --book scripts/book/v26/books/the-autobiography-of-benjamin-franklin.json` on the `books/franklin-v26` branch, and paste its plan.
+6. **Hand over.** Write the exact commands, filled in, in the status and on `~/cf-wt/v26-plan/reading/W3/PUBLISH.md`, in this order:
+   - (1) the real ship, on the branch (commits the package, the registry block, the catalog row, the deploy sentinel and the provenance note, then pushes the branch);
+   - (2) open the PR (`gh pr create …` with a filled body);
+   - (3) after CI is green and the PR is merged: the S3 package upload (`BOOK_CONTENT_BUCKET=&lt;prod&gt; AWS_REGION=us-east-1 npx tsx scripts/book/upload-book-packages-to-s3.ts --dry-run`, then without `--dry-run`);
+   - (4) the web deploy (`gh workflow run deploy.yml -f environment=prod -f deploy_app=true`, which also ships W2w&#x27;s reader change);
+   - (5) `npm run register:api -- the-autobiography-of-benjamin-franklin` with the prod table and bucket env, `--dry-run` first;
+   - (6) `npm run verify:live`.
+
+   Use `scan/publish-path.md` §5 and the repo&#x27;s `docs/SCRIPTS.md` for the exact env names. Mark every AWS value the session cannot know as `&lt;prod …&gt;`, and say where the owner finds it. Add an optional dev-stack rehearsal (the same steps against dev) before prod.
+7. Write `status/W3.md` starting with `RESULT: NEEDS-OWNER — publish commands ready`. Include:
+   - the note → change table;
+   - the check results;
+   - the package path and sha256;
+   - the dry-run plan;
+   - the command list;
+   - the line &quot;When done, write `published` on the P1 line of DECISIONS.md and re-run this prompt for Part B.&quot;
+
+   Stop.
+
+## Part B — after the owner published
+1. Confirm from origin/main that the ship PR is merged, and look up its number and SHA.
+2. Run `npm run verify:live` with the owner&#x27;s env (it reads S3 and DynamoDB), and paste its result lines.
+3. If it passes: commit the sentinel change it makes (`book-packages/.pending-deploy.json`) on a branch, open a PR, and merge it per BRIEF §6.
+4. If it fails: paste the failing check, say which of the owner&#x27;s steps it points to, and write `RESULT: NEEDS-OWNER — verify:live failed: &lt;line&gt;`.
+5. On success, write `status/W3.md` starting with `RESULT: DONE — Franklin live, verify:live passed (&lt;date&gt;)`.
+6. Append one line to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md`, and add a durable one-liner to that directory&#x27;s `MEMORY.md`: &quot;Franklin v26 published &lt;date&gt; via scripts/book/v26 (PR #…)&quot;.
+
+## Boundaries
+- Never run the real ship, `publish-final`, S3 uploads, deploys or `register:api` yourself. You may run their `--dry-run` forms and `verify:live`.
+- `~/cf-canary`, `~/cf-canary-att` and `~/cf-wt/v25-execution` are read-only. `PAUSE` stays.
+- Every model call keeps the BRIEF §5 flags (`--restricted`) on the stripped env. Stop before the $30 cap. A usage limit means `RESULT: WAITING-FOR-RESET`.
+- Do not invoke `superpowers:brainstorming`, `superpowers:writing-plans` or `superpowers:executing-plans`.</pre>
+  </details>
+</article>
+
+<article class="prompt" id="p-W4a" data-id="W4a">
+  <header class="prompt-head">
+    <div class="prompt-id">W4a</div>
+    <div class="prompt-title">
+      <h3>The second book in days: Arnold Bennett, <em>How to Live on 24 Hours a Day</em></h3>
+      <p class="when">Run: after W3 Part A · file <code>prompts/W4a-second-book.md</code></p>
+    </div>
+    <label class="done"><input type="checkbox" id="done-W4a" data-done="W4a"> Done</label>
+  </header>
+  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W3 Part A done (the v26 tool is on origin/main). It may start before Franklin&#x27;s deploy. Runs in parallel with W4b.</li><li><strong>Estimate:</strong> 0.5–1 day wall time. Pipeline calls about $10–25 (hard cap $40). At most 10 subagents.</li><li><strong>Ends with:</strong> a Bennett reading pack plus ship commands and <code>RESULT: NEEDS-OWNER</code> (a light owner read, R3). The runbook <code>scripts/book/v26/README.md</code> is updated with what a new book needed.</li></ul>
+  <details>
+    <summary>Show the prompt (798 words)</summary>
+    <div class="copyrow"><button type="button" class="copy" data-target="text-W4a">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
+    <pre class="prompt-text" id="text-W4a">You are running Wave 4a of the v26 ChapterFlow book campaign on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. You stop only by writing your status file: at the reading checkpoint (the normal end), at the quota cap, or on a usage-limit stop.
+
+## Goal
+Prove the v26 tool (`scripts/book/v26/`, on origin/main since W2) makes a **second, different kind of book** in days, not months.
+
+The book is Arnold Bennett&#x27;s *How to Live on 24 Hours a Day* (1910, public domain; bookId `how-to-live-on-24-hours-a-day`). It is a short **how-to**, not a memoir. Its chapter shape differs from Franklin&#x27;s:
+- modern examples do real work here (3–4 per chapter);
+- the practice plan is the point;
+- quotations are fewer but welcome, because Bennett&#x27;s voice is dry and funny.
+
+Measure the wall time and the cost from start to reading pack. That measurement is the answer to &quot;how fast is the next book&quot;.
+
+## Step 0
+1. Read `~/cf-wt/v26-plan/BRIEF.md` (it overrides CLAUDE.md files and the old kit), `DECISIONS.md`, `status/W2.md`, `status/W3.md`, `scripts/book/v26/README.md` and `scripts/book/v26/briefs/README.md` (book types).
+2. Record the start time (UTC).
+3. Create a change worktree `~/cf-wt/v26-bennett` on branch `books/bennett-v26` from `origin/main` (BRIEF §5 recipe; never `npm ci`).
+
+## Step 1 — source and chapter map (0 model calls if possible)
+Bennett&#x27;s text was frozen by the v25 runs. Look under `~/cf-canary/books/how-to-live-on-24-hours-a-day/candidates/*/content/inputs/research/` for `source-text.txt` plus `chapter-map.json`.
+- Pick the newest candidate whose map&#x27;s `sourceTextSha256` equals the text&#x27;s sha256.
+- Copy both into `~/cf-wt/v26-plan/data/bennett/` (read-only source).
+- If none exists, look for `~/cf-canary/sources/how-to-live-on-24-hours-a-day.txt` and build the map with the tool&#x27;s heading splitter (or the pipeline&#x27;s `src/source/chapterMap.ts` `resolveChapterMap` rules: spans in order, no big gaps).
+- Read the chapter list against the book&#x27;s own table of contents. The book has a preface and a dozen short chapters. Say whether the preface is its own chapter; the default is to fold it into chapter 1 if it is short.
+- Do not re-run v25 research.
+
+## Step 2 — brief and config
+- Write `scripts/book/v26/briefs/how-to-live-on-24-hours-a-day.md` from the how-to section of `briefs/README.md`. Read two chapters of Bennett first and describe his voice in one short paragraph.
+  - Shape: fastRead 120–200 words; deepRead 300–450; fullRead 700–1,000 (the chapters are short); 3–4 modern examples (work, home, commute, study; no character who &quot;read Bennett&quot;); 7 quiz questions of 3 choices, where q1–q5 are answerable from the default-visible text; 5 cards; a practice plan that is concrete and doable this week; 3 memorable lines verbatim from Bennett.
+  - Keep it under about 4,000 characters.
+- Categories must be valid in `lib/category-taxonomy.ts`. Pick the closest to Productivity and Self Improvement, and check them.
+- Add `scripts/book/v26/books/how-to-live-on-24-hours-a-day.json`.
+
+## Step 3 — run
+1. Run `npx tsx scripts/book/v26/cli.ts run --book scripts/book/v26/books/how-to-live-on-24-hours-a-day.json` on chapter 1 and one middle chapter first, and read them.
+2. Adjust the brief only if something is wrong in both, then run the rest.
+3. Run `report`, then read every chapter yourself. This is a short book, so one Workflow of 3 reader agents is optional.
+4. Fix real problems with targeted `fix` issues. Never add a brief rule for one chapter.
+5. `assemble`, all app checks, `register-api-books --dry-run` (as in W3), and `ship --dry-run` on the branch.
+6. Build the reading pack `~/cf-wt/v26-plan/reading/W4a/index.html` in the app&#x27;s order.
+
+## Step 4 — the runbook
+Update `scripts/book/v26/README.md` with a section &quot;Making the next book&quot;. It covers the exact steps you took, each with its time and cost:
+- source → map → brief → config → run → read → fix → assemble → ship dry run → owner commands;
+- everything you had to work around (a surprise in the source format, a check that misfired, a brief line that did not generalize).
+
+Open a PR with the Bennett brief, the config and the runbook change. Do not commit the package itself: the owner&#x27;s real `ship` does that. Merge it per BRIEF §6.
+
+## Boundaries
+- Never run the real `ship`, `publish-final`, `register:api`, S3 uploads or deploys. Print them for the owner.
+- `~/cf-canary`, `~/cf-canary-att` and `~/cf-wt/v25-execution` are read-only.
+- Every call keeps the BRIEF §5 flags (`--restricted`) on the stripped env. Stop before $40. A usage limit means `RESULT: WAITING-FOR-RESET`.
+- The v25 SEC137 detector false-fired on Bennett (&quot;Time&quot;, &quot;Choosing&quot;). It is not in the v26 tool. Do not import any v25 gate to &quot;be safe&quot;.
+
+## Definition of done
+`status/W4a.md` starts with `RESULT: NEEDS-OWNER — Bennett ready for a light read (R3): ~/cf-wt/v26-plan/reading/W4a/index.html`. It contains:
+- **start → reading-pack wall time and total $** (the headline number);
+- chapters and open issues;
+- brief notes;
+- the PR number and SHA;
+- the ship command set for the owner, with the line &quot;Publishing Bennett is optional; the campaign&#x27;s goal was proving the next book takes days&quot;.
+
+Append one line to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md`.</pre>
+  </details>
+</article>
+
+<article class="prompt" id="p-W4b" data-id="W4b">
+  <header class="prompt-head">
+    <div class="prompt-id">W4b</div>
+    <div class="prompt-title">
+      <h3>Close out: retire the v25 driver, CI, PRs, branches, worktrees, docs and memory</h3>
+      <p class="when">Run: after W3 Part A, parallel with W4a · file <code>prompts/W4b-cleanup.md</code></p>
+    </div>
+    <label class="done"><input type="checkbox" id="done-W4b" data-done="W4b"> Done</label>
+  </header>
+  <ul class="meta"><li><strong>Model:</strong> Sonnet 5. The work is mechanical and checklist-shaped, and every step is verifiable.</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W3 Part A done. It can run in parallel with W4a. Step 1 (retire the driver) is safe any time after W2.</li><li><strong>Estimate:</strong> 2–4 hours wall time. No pipeline model calls. At most 6 subagents.</li><li><strong>Ends with:</strong> <code>RESULT: DONE</code>, or <code>PARTIAL</code> with a list of what the owner must do (refused merges, dirty worktrees).</li></ul>
+  <details>
+    <summary>Show the prompt (1043 words)</summary>
+    <div class="copyrow"><button type="button" class="copy" data-target="text-W4b">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
+    <pre class="prompt-text" id="text-W4b">You are running Wave 4b, the closeout of the v26 ChapterFlow book campaign, on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. Every step below states its default. Take the default, report it, and continue. Stop only by writing your status file.
+
+## Step 0
+1. Read `~/cf-wt/v26-plan/BRIEF.md` (it overrides CLAUDE.md files and the old kit), `DECISIONS.md` (E1 and E2 apply; blank means default), and every `status/*.md`.
+2. Do not touch `~/ChapterFlow`, `~/ChapterFlow-books`, or any worktree registered to them or to the iOS repo.
+
+## Step 1 — retire the v25 driver (default: yes)
+1. Check `ls ~/cf-wt/v26-plan/tools/wt.sh`. W1 copied it; if it is missing, copy it now from `~/cf-wt/franklin-v7-tools/wt.sh`.
+2. Unload the launchd agent: `launchctl list | command grep franklin`, then `launchctl bootout gui/$(id -u)/com.chapterflow.franklin-autoresume`. If that fails, find the plist with `ls ~/Library/LaunchAgents | command grep -i franklin` and run `launchctl unload ~/Library/LaunchAgents/&lt;plist&gt;`. Confirm `launchctl list | command grep franklin` prints nothing, and paste the output.
+3. Move the plist to `~/cf-wt/_archive/` so the agent does not reload at login.
+4. Archive the driver directories: `mkdir -p ~/cf-wt/_archive &amp;&amp; mv ~/cf-wt/franklin-v7-tools ~/cf-wt/_archive/franklin-v7-tools-2026-10 &amp;&amp; mv ~/cf-wt/franklin-v7-tools.bak-20260925T0109Z ~/cf-wt/_archive/`. The `PAUSE` file moves with the directory; that is intended, since nothing polls it any more.
+
+## Step 2 — CI runs the tests that matter
+1. Confirm the v26 tests run in CI. Find the latest `main` CI run (`gh run list --branch main --limit 5`), open its test job log, and find the `tests/v26` (or W2&#x27;s chosen path) test names in it. Paste the lines.
+2. If they are not in the log, open a small PR that adds them to the root `npm run test` discovery or to a CI step, and merge it per BRIEF §6.
+3. The v25 suite stays out of CI (E1 = A, freeze). Record that in `docs/CI_CD.md` in one line under the pipeline job.
+
+## Step 3 — pull requests (check each state with `gh pr view &lt;n&gt; --json state,mergeable,statusCheckRollup` first)
+
+| PR | Default action |
+|---|---|
+| #559 (draft-time banned-phrase refusal, conflicting) | Close. Comment: &quot;Superseded: the v26 whole-chapter tool (scripts/book/v26) replaces the section compiler this guarded.&quot; |
+| #401 (`feat/v25-pipeline-live`), #406 (evidence draft) | Close. Comment: &quot;July v25 line, never merged; superseded by v26.&quot; |
+| #576 (Dependabot app minor/patch; fails the workspace lockfile contract test) | Close. Comment: &quot;Lockfile desync (see memory note dependabot-squash-lockfile-desync.md); Dependabot will regenerate.&quot; |
+| #420 (actions/setup-node 6→7), #429 (infra minor/patch) | Merge (squash) if every check is green. Otherwise leave open and list. |
+| #521 openai 6→7, #522 framer-motion 12→13, #523 jsdom, #524 web-vitals 5→6 (major bumps) | Leave open. List them for the owner with their CI state. Major bumps can change runtime behaviour tests do not cover. |
+
+If the classifier refuses a merge or close, print the exact `gh` command for the owner and continue.
+
+## Step 4 — branches (remote)
+1. List remote branches with `git ls-remote --heads origin`. For each, look up its PR: `gh pr list --state all --head &lt;branch&gt; --json number,state`.
+2. **Delete** remote branches whose PR is MERGED, plus the head branches of the PRs you closed in Step 3 (except Dependabot&#x27;s, which Dependabot deletes). Use `git push origin --delete &lt;branch&gt;`, one per command, and paste each result.
+3. **Rename to `archive/&lt;name&gt;`** (push the same SHA to the new name, then delete the old one) the unmerged July lines: `feat/v25-pipeline-live`, `plan/v25-s-tier-implementation`, `impl/v25-evaluator-selection`, `evidence/v25-retained-2026-07-15`, `feat/v25-pipeline`, `codex/v25-pipeline-completion-recovered`.
+4. **Leave** every other branch that has no merged PR (for example `codex/*`, `fix/ws*`, `wave*`, `security/*` web work). List them, with their last commit dates, for the owner.
+5. Never delete `main` or the kit branch `claude/vibrant-ritchie-xaf7dm`. Never force-push.
+
+## Step 5 — worktrees (local)
+1. Run `git -C ~/ChapterFlow-books-v25-completion worktree list --porcelain`.
+2. For each worktree under `~/cf-wt/` registered to that checkout, consider removal if one of these holds:
+   - it is one of the old kit&#x27;s (`~/cf-wt/wq-*`, `~/cf-wt/q0*-main`, `~/cf-wt/s0*`);
+   - it is on a branch whose PR is merged or closed;
+   - it is detached and older than 7 days.
+
+   Check `git -C &lt;wt&gt; status --porcelain` first. Remove it (`git -C ~/ChapterFlow-books-v25-completion worktree remove &lt;path&gt;`, never `--force`) **only if clean**, and remember its `node_modules` symlinks are just symlinks. List dirty ones for the owner.
+3. Keep `~/cf-wt/v26-read` and any worktree a v26 status file says is in use.
+4. Run `git -C ~/ChapterFlow-books-v25-completion worktree prune`.
+5. Canonical checkout: if `package-lock.json` (root and `$PIPE`) is identical between its HEAD and `origin/main` (`git diff --quiet HEAD origin/main -- package-lock.json scripts/book/prompts/chapterflow-v24-author-pipeline/package-lock.json`), fast-forward it with `git -C ~/ChapterFlow-books-v25-completion merge --ff-only origin/main`. Otherwise leave it and say why (its `node_modules` are shared by every worktree). Leave its 4 untracked entries alone.
+
+## Step 6 — docs and repo pointers (one PR, merged per BRIEF §6)
+1. Root `CLAUDE.md`:
+   - The &quot;Where things live&quot; bullet for the ACTIVE pipeline now names `scripts/book/v26/` (the whole-chapter tool; runbook `scripts/book/v26/README.md`).
+   - `scripts/book/prompts/chapterflow-v24-author-pipeline/` becomes &quot;LEGACY v24/v25 pipeline, frozen (not run, not in CI tests)&quot;.
+   - Also correct the line that calls `app/book/*Client.tsx` &quot;largely dead&quot;: `app/book/library/[bookId]/chapter/[chapterId]/ChapterReaderClient.tsx` is the live reader.
+2. Kit record: copy the Mac kit&#x27;s current `status/` into the repo kit (`docs/v26-plan/status/`). Then move the campaign records into `docs/archive/` with `git mv`, per `docs/CLAUDE.md` (&quot;Finishing a campaign? git mv its outputs into archive/&quot;):
+   - `docs/v26-plan/` (kit plus final status);
+   - `docs/v25/execution/`.
+
+   Both go under `docs/archive/`, with index entries in `docs/README.md`. The kit lives on branch `claude/vibrant-ritchie-xaf7dm`: merge that branch&#x27;s `docs/v26-plan/` into your PR first. **Do not archive** `scripts/book/v26/README.md`; it is the living runbook.
+3. `docs/SCRIPTS.md`: add the v26 CLI verbs.
+
+## Step 7 — memory
+1. Append the final line to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md`.
+2. In that directory&#x27;s `MEMORY.md`:
+   - mark the v25 notes (`v25-status-assessment-2026-09-23.md` and the Phase B notes) as history &quot;(superseded by v26-campaign.md)&quot;;
+   - make sure the index line for `v26-campaign.md` reads as the current pipeline pointer.
+
+   Do not rewrite other notes.
+
+## Definition of done
+`status/W4b.md` starts with `RESULT: DONE — driver retired, CI covers v26, &lt;n&gt; PRs closed/merged, &lt;n&gt; branches deleted/archived, &lt;n&gt; worktrees removed` (or `PARTIAL — owner items listed`). It contains:
+- pasted command output for each step;
+- the PR and branch actions table;
+- the owner&#x27;s leftover list (refused commands, dirty worktrees, major-bump PRs).
+
+Append one line to the campaign memory.</pre>
+  </details>
+</article>
+
+<h2 id="files">Files</h2>
+<ul>
+  <li><b>Kit on the Mac:</b> <code>~/cf-wt/v26-plan/</code>. W1 creates it from the repo: <code>git -C ~/ChapterFlow-books-v25-completion fetch origin claude/vibrant-ritchie-xaf7dm && mkdir -p ~/cf-wt/v26-plan && git -C ~/ChapterFlow-books-v25-completion archive FETCH_HEAD docs/v26-plan | tar -x -C ~/cf-wt/v26-plan --strip-components=2</code></li>
+  <li><code>README.md</code> roadmap · <code>BRIEF.md</code> shared facts, traps and safety rules · <code>DECISIONS.md</code> · <code>ANALYSIS.md</code> root causes with evidence · <code>prompts/</code> · <code>status/</code> · <code>scan/</code> the ten lens reports, each adversarially verified · <code>evidence/probe/</code> today's 3 model calls · <code>memory/</code> the campaign memory note.</li>
+  <li>This page is built by <code>tools/build_runsheet.py</code>, and <code>--check</code> diffs every embedded prompt against its file.</li>
+</ul>
+<footer>Planning session 2026-09-27 · repo <code>WillSoltani/ChapterFlow</code> at <code>22e021d84</code> · 3 model calls ($0.86) · this page supersedes the v25 run-sheet (v6).</footer>
+</div>
+
+<script>
+(function(){
+  function store(){ try { return window.localStorage; } catch (e) { return null; } }
+  var ls = store();
+  document.querySelectorAll('input[data-done]').forEach(function(box){
+    var id = box.getAttribute('data-done'), card = document.getElementById('p-' + id), key = 'v26-done-' + id;
+    try { if (ls && ls.getItem(key) === '1') { box.checked = true; card.classList.add('is-done'); } } catch (e) {}
+    box.addEventListener('change', function(){
+      card.classList.toggle('is-done', box.checked);
+      try { if (ls) { if (box.checked) ls.setItem(key, '1'); else ls.removeItem(key); } } catch (e) {}
+    });
+  });
+  document.querySelectorAll('button.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var pre = document.getElementById(btn.getAttribute('data-target'));
+      var note = btn.parentNode.querySelector('.copied');
+      var text = pre.textContent;
+      function selectIt(){
+        var r = document.createRange(); r.selectNodeContents(pre);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        note.textContent = 'Selected: press Cmd+C to copy';
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function(){ note.textContent = 'Copied'; }, selectIt);
+      } else { selectIt(); }
+    });
+  });
+})();
+</script>

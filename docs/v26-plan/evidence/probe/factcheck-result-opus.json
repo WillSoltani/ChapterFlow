@@ -1,0 +1,62 @@
+{
+  "claimsChecked": 88,
+  "issues": [
+    {
+      "field": "breakdown.fullRead",
+      "chapterText": "Franklin saw the old man's gravestone in 1768.",
+      "verdict": "CONTRADICTED",
+      "sourceText": "There my grandfather died and lies buried. We saw his gravestone in 1758.",
+      "fix": "Change 1768 to 1758."
+    },
+    {
+      "field": "breakdown.fullRead",
+      "chapterText": "When they heard old people at Ecton describe Thomas's character, people who had known Thomas remarked that had the death fallen on the same day, \"one might have supposed a transmigration.\"",
+      "verdict": "CONTRADICTED",
+      "sourceText": "The account we received of his life and character from some old people at Ecton, I remember, struck you as something extraordinary... \"Had he died on the same day,\" you said, \"one might have supposed a transmigration.\"",
+      "fix": "Attribute the remark to Franklin's son, who is addressed as \"you,\" not to old people at Ecton."
+    },
+    {
+      "field": "breakdown.fullRead",
+      "chapterText": "around 1682 Josiah carried his wife and five children to New England",
+      "verdict": "CONTRADICTED",
+      "sourceText": "Josiah, my father, married young, and carried his wife with three children into New England, about 1682.",
+      "fix": "Change five children to three children."
+    },
+    {
+      "field": "breakdown.fullRead",
+      "chapterText": "In his first year he started at the head of his class and slipped to the middle.",
+      "verdict": "CONTRADICTED",
+      "sourceText": "I had risen gradually from the middle of the class of that year to be the head of it, and farther was removed into the next class above it",
+      "fix": "Reverse it: he rose from the middle of the class to the head of it, and was moved up a class."
+    },
+    {
+      "field": "breakdown.fullRead",
+      "chapterText": "because his early tutors had praised the boy's arithmetic, moved him to Mr. George Brownell's school for writing and arithmetic",
+      "verdict": "UNSUPPORTED",
+      "sourceText": "altered his first intention, took me from the grammar-school, and sent me to a school for writing and arithmetic, kept by a then famous man, Mr. George Brownell",
+      "fix": "Delete the invented motive; the source gives only the cost of college and the mean livings as reasons."
+    },
+    {
+      "field": "breakdown.fullRead",
+      "chapterText": "Two generations later the pressure ran the other way",
+      "verdict": "UNSUPPORTED",
+      "sourceText": "none",
+      "fix": "Drop the generation count; Josiah is three generations after the great-great-grandfather, and the source gives no such tally."
+    },
+    {
+      "field": "reviewCards.rc3",
+      "chapterText": "The registers went back only to 1455.",
+      "verdict": "CONTRADICTED",
+      "sourceText": "I found an account of their births, marriages and burials from the year 1555 only, there being no registers kept in that parish at any time preceding.",
+      "fix": "Change 1455 to 1555."
+    }
+  ],
+  "quizIssues": [
+    {
+      "questionId": "quiz.q2",
+      "keyedIndex": 1,
+      "supportedIndex": 0,
+      "problem": "The key points to \"Timber left over from his father's candle and soap workshop,\" but the source and the question's own explanation both say a heap of stones intended for a new house near the marsh (choice 0). Set KEY to 0."
+    }
+  ]
+}
