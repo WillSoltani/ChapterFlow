@@ -21,7 +21,7 @@ PROMPT_ORDER = [
     ("W2-pipeline-and-book.md", "W2", "after R1 = A/B"),
     ("W2w-reader-app.md", "W2w", "with W2, only if R1-d = B/C"),
     ("W3-finish-franklin.md", "W3", "after R2 = A/B (re-run for Part B after you publish)"),
-    ("W4a-second-book.md", "W4a", "after W3 Part A"),
+    ("W4a-second-book.md", "W4a", "after W3 Part A (you need not have published); parallel with W4b"),
     ("W4b-cleanup.md", "W4b", "after W3 Part A, parallel with W4a"),
 ]
 
@@ -130,9 +130,9 @@ def build():
     <label class="done"><input type="checkbox" id="done-{pid}" data-done="{pid}"> Done</label>
   </header>
   <ul class="meta">{meta_html}</ul>
+  <div class="copyrow"><button type="button" class="copy" data-target="text-{pid}">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
   <details>
-    <summary>Show the prompt ({len(body.split())} words)</summary>
-    <div class="copyrow"><button type="button" class="copy" data-target="text-{pid}">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
+    <summary>Show the prompt text ({len(body.split())} words)</summary>
     <pre class="prompt-text" id="text-{pid}">{esc(body)}</pre>
   </details>
 </article>""")
@@ -155,7 +155,9 @@ def check():
     sys.exit(1 if bad else 0)
 
 
-TEMPLATE = r"""<title>Franklin v26 Run-Sheet</title>
+TEMPLATE = r"""<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Franklin v26 Run-Sheet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -181,7 +183,7 @@ TEMPLATE = r"""<title>Franklin v26 Run-Sheet</title>
   --good:#58c27d; --warn:#e2a94a; --stop:#ec7a67; --code-bg:#1b232b; color-scheme:dark;
 }
 *{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);padding-inline:16px;padding-block:0 64px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);padding-inline:16px;padding-block:0 64px}
 .wrap{max-width:900px;margin:0 auto}
 h1,h2{font-family:var(--serif);font-weight:700;text-wrap:balance;letter-spacing:.005em}
 h1{font-size:clamp(1.9rem,4.6vw,2.7rem);line-height:1.15;margin:.2em 0 .3em}
@@ -236,6 +238,10 @@ button.copy{font:500 .9rem var(--sans);background:var(--accent);color:var(--acce
 .copied{font-size:.85rem;color:var(--good)}
 pre.prompt-text{font:.8rem/1.5 var(--mono);background:var(--code-bg);border:1px solid var(--rule);border-radius:6px;padding:12px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:520px;overflow:auto}
 .note{font-size:.9rem;color:var(--ink-2)}
+ol.flow{padding-left:1.3em;margin:.6em 0}
+ol.flow li{margin:.25em 0}
+details.graph{margin:10px 0}
+details.graph summary{cursor:pointer;color:var(--accent);font-weight:500}
 footer{margin-top:3em;font-size:.85rem;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:1em}
 @media (max-width:560px){.prompt-head{flex-wrap:wrap}.prompt-id{min-width:auto}}
 @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}}
@@ -253,11 +259,12 @@ footer{margin-top:3em;font-size:.85rem;color:var(--ink-2);border-top:1px solid v
 <section class="start" id="start">
   <h2>Start here</h2>
   <ol>
-    <li><b>Decide now (optional):</b> N1 (start Wave 1 before or after Tuesday's reset), N2 (which two chapters) and N3 (add a GPT arm or not). The defaults are fine: after the reset, ch01 + ch13, Claude only.</li>
-    <li><b>Paste <code>W1-prototype</code></b> into a fresh Claude Code session started in <code>~/cf-wt</code>. It copies this kit from the repo branch <code>claude/vibrant-ritchie-xaf7dm</code> to <code>~/cf-wt/v26-plan/</code> and installs the campaign memory note.</li>
-    <li><b>About a day later, read</b> the reading pack it builds (about an hour) and answer R1-a to R1-d in <code>DECISIONS.md</code>.</li>
+    <li><b>Decide now (optional):</b> only N2, which two chapters the prototype writes. The default is ch01 + ch13; do nothing to keep it. To choose ch01 + ch07, put this line at the top of the W1 prompt when you paste it: <code>Owner answers: N2 = B</code>.</li>
+    <li><b>Paste <code>W1-prototype</code></b> after Tuesday's reset (Tue 09-29, 7 pm Toronto), or earlier if your usage page shows about 20% or more of the weekly limit left. Start a fresh Claude Code session in <code>~/cf-wt</code> as <code>caffeinate -dimsu claude</code> (Mac on power). New this time: sessions start in <code>~/cf-wt</code>, not <code>~/ChapterFlow</code>, so the first time you accept the folder-trust prompt and use the same permission mode as the v25 sessions. W1 copies this kit from the repo branch <code>claude/vibrant-ritchie-xaf7dm</code> to <code>~/cf-wt/v26-plan/</code> and installs the campaign memory note.</li>
+    <li><b>About a day later, read</b> the reading pack it builds (about an hour), then answer R1-a, R1-b and R1-d in <code>~/cf-wt/v26-plan/DECISIONS.md</code>.</li>
   </ol>
-  <p class="note">Timeline if Wave 1 starts at the reset on Tue 09-29 23:00Z: you read the prototype on 10-01 and the whole Franklin book about 10-03. Franklin could be in the app about <b>10-06/07</b>, and the second book (Bennett) ready about 10-09. Planned pipeline spend is about $175 in total, against $700–1,100 per v25 run. Your reading time is about 1 h + 2–3 h + 1 h.</p>
+  <p class="note"><b>Timeline</b> if Wave 1 starts at the reset on Tue 09-29 23:00Z: you read the prototype on 10-01 and the whole Franklin book about 10-03. Franklin could be in the app about <b>10-06/07</b>, and the second book (Bennett) ready about 10-09. Your reading time is about 1 h + 2–3 h, plus an optional light read of Bennett.</p>
+  <p class="note"><b>Cost.</b> Model calls made by the pipeline are expected to come to about $50–100 API-equivalent for Franklin plus Bennett, with hard caps adding up to $175 (one v25 run cost $700–1,100). The Claude Code sessions themselves also use your weekly limit and are not estimated. In the heavy v25 week they used as much as the pipeline. W2 is the heavy session, so start it early in a quota week.</p>
 </section>
 
 <h2 id="probe">What today's probe showed</h2>
@@ -275,10 +282,10 @@ footer{margin-top:3em;font-size:.85rem;color:var(--ink-2);border-top:1px solid v
   <li><b>Nobody writes a chapter.</b><span class="ev">Four section writers per chapter fill dealt slots from a 64–80k-character card that is 63% paraphrase; in ch13 only 1,350 of 43,030 packet characters are Franklin's. The example and action writers never see the chapter text. They run at medium effort because the rulebook is too big for high effort.</span></li>
   <li><b>The rulebook replaced the goal.</b><span class="ev">More than 330 checks, and not one of the 138 section checks can tell whether a fact is true. They reject 1,902 of 1,903 catalog chapters on one rule alone. The readability floor caps Franklin at about 12 words a sentence (he writes 30). The code's own comments record about 7 "rule → tic → new rule" cascades.</span></li>
   <li><b>We steered by graders that can't tell good from bad.</b><span class="ev">Known-good books fail the rubric. Identical text drew a panel blocker on 41% of re-reads, so all 19 chapters passing at once had odds of about 1 in 25,000. Panels took 58% of the money. Catalog "quality" tracks which grader a book got more than how it was made.</span></li>
-  <li><b>Accuracy had no owner until the very end.</b><span class="ev">About a third of errors came from the paraphrase and two thirds from writers forced to pair facts with cases. The editor cannot change a fact by design. The only fact check sat behind a panel pass that never came, and a footnote marker like "[7]" silently demotes its findings.</span></li>
+  <li><b>Accuracy had no owner until the very end.</b><span class="ev">About a third of errors came from the paraphrase and two thirds from writers forced to pair facts with cases. The editor can reword a sentence, but it cannot put in a correct name, date or number that the chapter does not already contain. The only fact check sat behind a panel pass that never came, and a footnote marker like "[7]" silently demotes its findings.</span></li>
   <li><b>The app hides the writing.</b><span class="tag new">new</span><span class="ev">A new reader sees a ~100-word summary, one example and 5 quiz questions. The full telling is locked behind "Challenge" mode, clicking "Standard" does nothing, and Settings resets the depth. Rev-6 gave a default reader 522 words of Franklin for the whole book.</span></li>
   <li><b>Every experiment cost a day and $100+.</b><span class="tag new">new</span><span class="ev">77% of busy hours went to runs later thrown away. Fixing the machine used as much quota as running it ($766 vs $826 in the heavy week). A whole chapter now costs $0.45 and 3 minutes, so your reading becomes the pace-setter.</span></li>
-  <li><b>The release path had quietly broken.</b><span class="tag new">new</span><span class="ev">Every commit expires a release (fingerprints), so rev-6 cannot ship today. The catalog file moved in July and the publish tools still write the old path. Both release routes demand grader passes. The app itself needs only the package.</span></li>
+  <li><b>The release path had quietly broken.</b><span class="tag new">new</span><span class="ev">Any change to the pipeline's code, config or prompts expires a finished release (fingerprints), so the only released Franklin (rev-6) cannot ship today. The catalog file moved in July and the publish tools still write the old path. Both release routes demand grader passes. The app itself needs only the package.</span></li>
   <li><b>The template is a pipeline choice, not an app rule.</b><span class="ev">The app accepts any counts. The 6-examples / 9-quiz / 7-cards / 30k-character template turned memoirs into invented-character guides (Man's Search for Meaning, Meditations). No catalog book carries its author's voice.</span></li>
 </ol>
 <p class="note">The previous diagnosis holds on points 1, 2, 4 and 6, is refined on 3 and 5, and missed 5–7 above. The "good books were GPT whole-chapter" premise does not hold. No book met the full bar in July. Two of the top three came mostly from Claude Opus 4.7 with small prompts, and the GPT-5.5 whole-chapter books were mixed. The lever is a strong model with a small prompt and the real text, not the model family. Full evidence: <code>ANALYSIS.md</code> and <code>scan/*.md</code>.</p>
@@ -293,7 +300,7 @@ footer{margin-top:3em;font-size:.85rem;color:var(--ink-2);border-top:1px solid v
 <tr><td>Check</td><td>Validator, verbatim quotes, key in range (0 calls); an Opus fact check hunting the 5 error kinds; a blind quiz solve</td><td class="num">2</td><td><b>Only facts, quiz keys, renderability</b></td></tr>
 <tr><td>Fix</td><td>Targeted find/replace edits for flagged text only, then a full re-check (at most 2 rounds)</td><td class="num">0–2</td><td>—</td></tr>
 <tr><td>You read</td><td>Reading pack in the app's order; your notes become targeted fixes</td><td class="num">—</td><td><b>Your yes is the gate</b></td></tr>
-<tr><td>Release</td><td>Assemble the package → ship through <code>publishFinal()</code> with the app validator (dry run by the session, real run by you) → deploy</td><td class="num">0</td><td>—</td></tr>
+<tr><td>Release</td><td>Assemble the package → <code>ship --dry-run</code> (session) → the real <code>ship</code> on a branch, PR, S3 upload, deploy and <code>register:api</code> (you). <code>ship</code> calls the <code>publishFinal()</code> library with the app validator; the old <code>publish-final</code> command refuses a new Franklin package.</td><td class="num">0</td><td>—</td></tr>
 </tbody></table></div>
 <p class="note">About <b>$25–40</b> and <b>1–2 hours</b> of machine time per 19-chapter book. The research sidecars, section writers, 330+ checks, panel, repair loops, QC, rubric and promotion state machine are <b>bypassed</b> (frozen, not deleted until Franklin ships). The code lives in <code>scripts/book/v26/</code> and its tests run in CI.</p>
 
@@ -302,38 +309,47 @@ footer{margin-top:3em;font-size:.85rem;color:var(--ink-2);border-top:1px solid v
 <thead><tr><th>Wave</th><th>Sessions</th><th>Model</th><th>Wall time</th><th>Cap (pipeline / subagents)</th><th>Exit</th><th>If it fails</th></tr></thead>
 <tbody>
 <tr><td><b>W1</b> Prototype</td><td>W1</td><td>Opus 5.5</td><td class="num">5–8 h</td><td class="num">$25 / 12</td><td>2 chapters + reading pack → <b>you read (R1, ~1 h)</b></td><td>R1 = C → W1b (GPT-5.5 writer or another format)</td></tr>
-<tr><td><b>W2</b> Build + write Franklin</td><td>W2 ∥ W2w (if R1-d = B/C)</td><td>Opus 5.5</td><td class="num">1–1.5 d</td><td class="num">$80 / 25</td><td>Tool merged with tests; 19 chapters checked; ship dry run passes → <b>you read (R2, 2–3 h)</b></td><td>Chapters with open issues are listed for you</td></tr>
-<tr><td><b>W3</b> Finish</td><td>W3 (Part A, then Part B)</td><td>Opus 5.5</td><td class="num">0.5 d</td><td class="num">$30 / 10</td><td>Your notes applied; <b>you run ship + deploy</b>; then <code>verify:live</code></td><td>R2 = C → reassess point</td></tr>
+<tr><td><b>W2</b> Build + write Franklin</td><td>W2 ∥ W2w (if R1-d = B/C)</td><td>Opus 5.5</td><td class="num">1–1.5 d</td><td class="num">$80 / 25</td><td>Tool merged with tests in CI; 19 chapters checked; <code>ship --dry-run</code> passes → <b>you read (R2, 2–3 h)</b></td><td>Chapters with open issues are listed for you</td></tr>
+<tr><td><b>W3</b> Finish</td><td>W3 (Part A, then Part B)</td><td>Opus 5.5</td><td class="num">0.5 d</td><td class="num">$30 / 10</td><td>Your notes applied; <b>you run ship, S3, deploy, register (P1)</b>; then Part B runs <code>verify:live</code></td><td>R2 = C → reassess point</td></tr>
 <tr><td><b>W4</b> Next book + cleanup</td><td>W4a ∥ W4b</td><td>Opus 5.5 ∥ Sonnet 5</td><td class="num">1–2 d</td><td class="num">$40 / 16</td><td>Bennett reading pack in days; v25 driver retired; CI, branches, worktrees, docs, memory</td><td>Problems become brief changes, never new rules</td></tr>
 </tbody></table></div>
+<ol class="flow">
+  <li><b>W1</b> writes two chapters → <b>you read (R1)</b>.</li>
+  <li>If R1 = C: <b>W1b</b> tries a GPT-5.5 writer and/or another format → you read again, or write STOP (reassess point).</li>
+  <li>If R1 = A/B: <b>W2</b> builds the tool and writes all 19 chapters (plus <b>W2w</b> if you chose an app change) → <b>you read the book (R2)</b>.</li>
+  <li>If R2 = A/B: <b>W3 Part A</b> makes it final and writes your publish commands → <b>you publish (P1)</b> → <b>W3 Part B</b> checks it is live.</li>
+  <li>After W3 Part A: <b>W4a</b> (Bennett) and <b>W4b</b> (cleanup) run together.</li>
+</ol>
+<details class="graph"><summary>Dependency graph (mermaid)</summary>
 <pre class="mermaid">
 graph TD
-  N[You: N1-N3, defaults OK] --> W1[W1 prototype: 2 chapters]
+  N[You: N2 optional] --> W1[W1 prototype: 2 chapters]
   W1 --> R1{R1: you read}
   R1 -- not better --> W1b[W1b variant] --> R1b{R1 again}
-  R1b -- still not better --> STOP[Reassess: stop and replan]
+  R1b -- STOP --> STOP[Reassess: stop and replan]
   R1b -- better --> W2
   R1 -- better --> W2[W2 build + write 19 chapters]
   R1 -- R1-d = B/C --> W2w[W2w reader app]
   W2 --> R2{R2: you read the book}
   W2w --> R2
-  R2 -- approve --> W3[W3 finish + release]
+  R2 -- approve --> W3[W3 Part A: final + commands]
   R2 -- reject --> STOP
-  W3 --> P[You: ship + deploy]
+  W3 --> P[You: ship + deploy, P1]
   P --> V[W3 Part B: verify live]
-  V --> W4a[W4a Bennett]
+  W3 --> W4a[W4a Bennett]
   W3 --> W4b[W4b cleanup]
 </pre>
-<p class="note"><b>Stop rules.</b> Each session stops before its cap and hands over. On a usage-limit hit it writes <code>WAITING-FOR-RESET</code> and resumes from files after Tuesday's 23:00Z reset. <b>Reassess point:</b> if the prototype is not clearly better after W1 and W1b, or you reject the full book, the plan stops and nobody adds rules to rescue it.</p>
+</details>
+<p class="note"><b>Stop rules.</b> Each session stops before its cap and hands over. <b>If the weekly limit runs out,</b> the session stops. It writes <code>WAITING-FOR-RESET</code> if it still can; if the session itself shows a usage-limit message, that means the same thing. Nothing restarts on its own: after Tuesday's reset (7 pm Toronto), paste the same prompt into a fresh session, and it continues from the files already on disk. <b>Reassess point:</b> if the prototype is not clearly better after W1 and W1b, or you reject the full book, the plan stops and nobody adds rules to rescue it.</p>
 
 <h2 id="decisions">Your decisions</h2>
-<p class="note">Each one has a default that sessions use when you leave it blank. Write answers on the <code>Owner:</code> lines in <code>~/cf-wt/v26-plan/DECISIONS.md</code>.</p>
+<p class="note">Most have a default that a session uses when you leave the line blank. R1-a and R2 need your answer, and P1 is you saying you have published. Write answers on the <code>Owner:</code> lines in <code>~/cf-wt/v26-plan/DECISIONS.md</code> (it exists once W1 has run).</p>
 <div class="decisions">
 {{DECISIONS}}
 </div>
 
 <h2 id="prompts">Session prompts</h2>
-<p class="note">Paste the text of one prompt into a fresh Claude Code session started in <code>~/cf-wt</code>. The "Done" box is saved only in this browser.</p>
+<p class="note">Paste the text of one prompt into a fresh Claude Code session started in <code>~/cf-wt</code> as <code>caffeinate -dimsu claude</code>. Copy works with the prompt text collapsed. The "Done" box is saved only in this browser.</p>
 {{PROMPTS}}
 
 <h2 id="files">Files</h2>

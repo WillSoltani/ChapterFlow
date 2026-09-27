@@ -14,16 +14,16 @@ Wave 1 wrote two Franklin chapters whole with a Claude writer from the source te
 
 ## Step 0 — orient (at most 30 minutes)
 1. Read `~/cf-wt/v26-plan/BRIEF.md` (it overrides CLAUDE.md files and the old kit), `DECISIONS.md`, `status/W1.md`, and the owner's notes in `~/cf-wt/v26-plan/reading/W1/NOTES.md` plus any text on the R1 lines of DECISIONS.
-2. Precondition: R1-a is C. If not, write `RESULT: BLOCKED — W1b runs only after R1 = C` and stop.
+2. Precondition: R1-a is C. If not, write `RESULT: BLOCKED — W1b runs only after R1 = C` and stop. If `status/W1b.md` exists with `WAITING-FOR-RESET` or `PARTIAL`, resume from the files in `scratch/W1b/`.
 3. Reuse W1's harness in `~/cf-wt/v26-plan/tools/proto/`, its data in `~/cf-wt/v26-plan/data/franklin/`, and its checks. Do not rebuild them.
 4. Write down, in 5–10 lines, what the owner disliked, quoting the notes. Every change you make must answer one of those lines.
 
 ## Step 1 — the variants (same two chapters as W1)
 Produce these two arms unless the owner's notes rule one out:
 1. **Arm G — GPT-5.5 writer.** GPT is the other strong model family the catalog used: the May Codex sessions wrote Difficult Conversations and Meditations, and the v24 books were GPT-5.5. A GPT draft tells the owner whether the model or the brief is the problem.
-   - Read how the pipeline invoked it: `$PIPE/src/orchestrator/codexAgent.ts` lines ~193–260 build `codex exec -c model=… -c model_reasoning_effort=…`, and `authorRun.ts` ~460 has the model and effort. Use the same model (`gpt-5.5`) at effort `xhigh`.
-   - Use a read-only sandbox, the prompt on stdin or as an argument, and capture only the final message (check `codex exec --help` for the output-file flag of the installed `~/.local/bin/codex`).
-   - Strip `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` from its env so it uses the subscription login.
+   - Use the pipeline's **hermetic** codex call, not the legacy one: `$PIPE/src/exec/executionEnvelope.ts` `buildIsolatedSession` (~222-272: a fresh temp `CODEX_HOME` holding only a copy of `~/.codex/auth.json`) and `hermeticExecArgv` (~335-370: `exec --sandbox read-only --skip-git-repo-check --ignore-user-config --ignore-rules -c project_doc_max_bytes=0 -c model=gpt-5.5 -c model_reasoning_effort=xhigh --output-last-message <file> <task>`). This is the codex equivalent of Claude's `--restricted`. Keep only the flags `codex exec --help` lists.
+   - Find the binary as `$PIPE/src/orchestrator/codexAgent.ts` `findCodexBinary` does: `$CHAPTERFLOW_CODEX_BIN`, then `~/.npm-global/bin/codex`, `/opt/homebrew/bin/codex`, `/usr/local/bin/codex`, then `command -v codex`. Record which binary ran and its `--version`.
+   - Run it as `env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY CODEX_HOME=<temp dir> <codex> …`, from an empty working directory.
    - Give it the same brief (with the owner's changes) and the same source span.
    - Everything after the draft is unchanged: the Claude fact check, the blind solver and the fix step.
 2. **Arm F — a different format or brief, with the Claude writer.** Apply the owner's notes to the brief. If the notes point at the format rather than the writing, write the chapters in the memoir-native shape. Examples:
@@ -38,8 +38,9 @@ If the notes say something else entirely (for example "too long", "too modern", 
 ## Step 2 — check, read, compare
 - Run W1's checks, fact check, blind solve and fix on each arm's chapters.
 - Read everything yourself. Compare the two arms with W1's prototype and rr21 in 10–20 plain lines with quotes.
-- Build `~/cf-wt/v26-plan/reading/W1b/index.html` in W1's form: blind labels, a reveal block, the app's order, and a "What was checked" page. Show, per chapter: arm G, arm F, W1's prototype and rr21.
-- Put the owner's R1 questions on the index again, plus one line: "If none of these is clearly better, write STOP on the R1-a line."
+- Build `~/cf-wt/v26-plan/reading/W1b/index.html` in W1's form: blind labels, a reveal block, the app's order, and a "What was checked" page linked under "After you have read (reveals the versions)", as in W1. Show, per chapter: arm G, arm F, W1's prototype and rr21.
+- Put the owner's R1 questions on the index again, plus the answer format: "On the R1-a line write `A` or `B` plus the version that goes forward (`W1`, `F` or `G`), e.g. `A — G`; or `STOP` if none is clearly better."
+- Under "What W2 must know" in the status file, record the exact brief file for each arm and, for arm G, the codex argv and env you used, so W2 can wire a codex writer if G wins.
 
 ## Boundaries
 - No repo PRs. No v25 changes. `~/cf-canary`, `~/cf-canary-att` and `~/cf-wt/v25-execution` are read-only. `PAUSE` stays.

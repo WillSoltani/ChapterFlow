@@ -22,29 +22,30 @@ Measure the wall time and the cost from start to reading pack. That measurement 
 ## Step 0
 1. Read `~/cf-wt/v26-plan/BRIEF.md` (it overrides CLAUDE.md files and the old kit), `DECISIONS.md`, `status/W2.md`, `status/W3.md`, `scripts/book/v26/README.md` and `scripts/book/v26/briefs/README.md` (book types).
 2. Record the start time (UTC).
-3. Create a change worktree `~/cf-wt/v26-bennett` on branch `books/bennett-v26` from `origin/main` (BRIEF §5 recipe; never `npm ci`).
+3. Check the tool is on main (`git -C ~/ChapterFlow-books-v25-completion fetch origin && git -C ~/ChapterFlow-books-v25-completion cat-file -e origin/main:scripts/book/v26/cli.ts`). If it is missing, base the worktree on `origin/v26/tool` and say so.
+4. Create the change worktree, or reuse it if it exists: `git -C ~/ChapterFlow-books-v25-completion worktree add -b books/bennett-v26 ~/cf-wt/v26-bennett origin/main`. Then `cmp` the lockfiles and symlink both `node_modules` (BRIEF §5). Never `npm ci`.
 
 ## Step 1 — source and chapter map (0 model calls if possible)
 Bennett's text was frozen by the v25 runs. Look under `~/cf-canary/books/how-to-live-on-24-hours-a-day/candidates/*/content/inputs/research/` for `source-text.txt` plus `chapter-map.json`.
 - Pick the newest candidate whose map's `sourceTextSha256` equals the text's sha256.
 - Copy both into `~/cf-wt/v26-plan/data/bennett/` (read-only source).
 - If none exists, look for `~/cf-canary/sources/how-to-live-on-24-hours-a-day.txt` and build the map with the tool's heading splitter (or the pipeline's `src/source/chapterMap.ts` `resolveChapterMap` rules: spans in order, no big gaps).
-- Read the chapter list against the book's own table of contents. The book has a preface and a dozen short chapters. Say whether the preface is its own chapter; the default is to fold it into chapter 1 if it is short.
+- The v25 map has 13 chapters (the preface plus I–XII). By default, keep them as frozen, with the preface as chapter 1. Rebuild the spans with a heading split only if they disagree with the book's own table of contents, and say why.
 - Do not re-run v25 research.
 
 ## Step 2 — brief and config
 - Write `scripts/book/v26/briefs/how-to-live-on-24-hours-a-day.md` from the how-to section of `briefs/README.md`. Read two chapters of Bennett first and describe his voice in one short paragraph.
   - Shape: fastRead 120–200 words; deepRead 300–450; fullRead 700–1,000 (the chapters are short); 3–4 modern examples (work, home, commute, study; no character who "read Bennett"); 7 quiz questions of 3 choices, where q1–q5 are answerable from the default-visible text; 5 cards; a practice plan that is concrete and doable this week; 3 memorable lines verbatim from Bennett.
   - Keep it under about 4,000 characters.
-- Categories must be valid in `lib/category-taxonomy.ts`. Pick the closest to Productivity and Self Improvement, and check them.
+- Categories: `["Productivity", "Self Improvement"]` (both canonical in `lib/category-taxonomy.ts`). Tags: `time management`, `habits`, `self-education`, `daily routine`.
 - Add `scripts/book/v26/books/how-to-live-on-24-hours-a-day.json`.
 
 ## Step 3 — run
-1. Run `npx tsx scripts/book/v26/cli.ts run --book scripts/book/v26/books/how-to-live-on-24-hours-a-day.json` on chapter 1 and one middle chapter first, and read them.
+1. Run `caffeinate -dimsu npx tsx scripts/book/v26/cli.ts run --book scripts/book/v26/books/how-to-live-on-24-hours-a-day.json --chapters 1,7` first, and read both chapters.
 2. Adjust the brief only if something is wrong in both, then run the rest.
 3. Run `report`, then read every chapter yourself. This is a short book, so one Workflow of 3 reader agents is optional.
 4. Fix real problems with targeted `fix` issues. Never add a brief rule for one chapter.
-5. `assemble`, all app checks, `register-api-books --dry-run` (as in W3), and `ship --dry-run` on the branch.
+5. `assemble` (into the run dir, never a checkout's `book-packages/`), all app checks, `register-api-books --dry-run` (with `TSX_TSCONFIG_PATH`, as in W3), and `ship --dry-run` in `~/cf-wt/v26-bennett`.
 6. Build the reading pack `~/cf-wt/v26-plan/reading/W4a/index.html` in the app's order.
 
 ## Step 4 — the runbook
@@ -54,6 +55,13 @@ Update `scripts/book/v26/README.md` with a section "Making the next book". It co
 
 Open a PR with the Bennett brief, the config and the runbook change. Do not commit the package itself: the owner's real `ship` does that. Merge it per BRIEF §6.
 
+After the PR merges, print the owner's ship commands for a **fresh** branch:
+- `git -C ~/ChapterFlow-books-v25-completion fetch origin && git -C ~/ChapterFlow-books-v25-completion worktree add -b books/bennett-v26-ship ~/cf-wt/v26-bennett-ship origin/main`, plus the BRIEF §5 symlinks;
+- then, in that worktree, `npx tsx scripts/book/v26/cli.ts ship --book scripts/book/v26/books/how-to-live-on-24-hours-a-day.json`;
+- then the same PR, S3, deploy and `register:api` steps as W3's PUBLISH.md, run from a checkout at the merged origin/main.
+
+The package stays in the run dir.
+
 ## Boundaries
 - Never run the real `ship`, `publish-final`, `register:api`, S3 uploads or deploys. Print them for the owner.
 - `~/cf-canary`, `~/cf-canary-att` and `~/cf-wt/v25-execution` are read-only.
@@ -61,7 +69,7 @@ Open a PR with the Bennett brief, the config and the runbook change. Do not comm
 - The v25 SEC137 detector false-fired on Bennett ("Time", "Choosing"). It is not in the v26 tool. Do not import any v25 gate to "be safe".
 
 ## Definition of done
-`status/W4a.md` starts with `RESULT: NEEDS-OWNER — Bennett ready for a light read (R3): ~/cf-wt/v26-plan/reading/W4a/index.html`. It contains:
+`status/W4a.md` starts with `RESULT: NEEDS-OWNER — Bennett ready for an optional light read (R3, default: not now): ~/cf-wt/v26-plan/reading/W4a/index.html`. It contains:
 - **start → reading-pack wall time and total $** (the headline number);
 - chapters and open issues;
 - brief notes;

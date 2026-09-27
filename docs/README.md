@@ -35,6 +35,8 @@ docs:
 - [pipeline-hardening/](pipeline-hardening/) — book-pipeline hardening verification records
 - [book-score/](book-score/) — book content-quality scoring baseline + design notes
 - [v24/](v24/) — v24 book-pipeline campaign reports (background tooling, not the web app)
+- [v25/](v25/) — v25 book-pipeline campaign: S-tier plan, Phase A report, the 2026-09-23 assessment and execution kit (`v25/execution/`)
+- [v26-plan/](v26-plan/) — v26 campaign kit (2026-09-27): root-cause analysis, whole-chapter writer plan, session prompts, run-sheet. Paths under `~/` in it refer to the owner's Mac.
 
 ## Archived audit artifacts
 Point-in-time campaign records (completed audits, fix logs, one-shot redesign

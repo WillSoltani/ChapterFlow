@@ -17,7 +17,7 @@ Session: 2026-09-27, cloud session `claude/vibrant-ritchie-xaf7dm` (claude.ai/co
   (`$PIPE/tests/fixtures/franklin-autobiography-slice.txt` = the start of chapter I through the parents' epitaph, 365 lines;
   `...-proprietaries-slice.txt`, 354 lines, from the Loudoun/proprietaries and kite passages) and research sidecars for ch13/15/19
   (`$PIPE/tests/fixtures/q05/*.source.json`).
-- The kit is written to `docs/v26-plan/` in the repo (branch `claude/vibrant-ritchie-xaf7dm`). Wave 0's first step copies it to
+- The kit is written to `docs/v26-plan/` in the repo (branch `claude/vibrant-ritchie-xaf7dm`). W1's Step 0 copies it to
   `~/cf-wt/v26-plan/` on the Mac. The memory note is written to `docs/v26-plan/memory/v26-campaign.md` for the same reason.
 
 ## 0.1 Budget for this session
@@ -237,7 +237,8 @@ If the plan reaches its reassess point, `scan/hb-alternative.md` §1 is the orde
 See `README.md` §2. In short: a frozen source + chapter map → a one-page brief → one Opus writer call per chapter → 0-call
 checks plus an Opus fact check plus a Sonnet blind quiz solve → at most 2 targeted fix rounds → a book report → the owner
 reads → assemble → ship through `publishFinal()` with the app validator. The code lives in `scripts/book/v26/` (covered by
-`typecheck:book`), with tests under root `tests/` (run by root `npm run test` in CI).
+`typecheck:book`), with tests in `scripts/book/v26/tests/`, added to the roots of root `npm run test` so CI runs them. A root
+`tests/` file importing `scripts/book/**` would break `npm run typecheck`; the plan review measured this.
 
 **Bypassed, not deleted:** research sidecars, blueprint and dealing, the four section writers and SEC gates, editor, panel,
 review-repair, fresh QC, rubric, the promotion state machine and the v25 driver.
@@ -287,11 +288,12 @@ calls for 19 chapters).
 
 ## 10. Orchestration used by this session
 
-The budget was ≤ 50 subagents. What ran:
-- **Scan:** one launch stopped after 2 agents (it restarted when I split it into three parallel workflows because the
-  container allows only 2 concurrent agents per workflow), then 10 investigators and 10 adversarial verifiers.
-- **Step 5:** one review workflow (see the final reply for counts).
+The budget was ≤ 50 subagents.
+- **Scan:** 22 subagents in total.
+  - 2 were aborted when I split the first launch: the container allows only 2 concurrent agents per workflow, so I split it into three parallel workflows.
+  - 10 investigators and 10 adversarial verifiers, whose reports are in `scan/`.
+- **Step 5 review:** 6 reviewers (facts, goal fit, W1 executability, W2/W2w executability, the other prompts, the owner's eye). They found 23 must-fix and about 70 should-fix items. All must-fix items and nearly all should-fix items were applied.
+- **Declined:** one should-fix, dropping the Q08 arm from W1's pack. The owner asked for it explicitly.
+- **Final check:** one verification pass on the fixed kit (see the final reply).
 
 Pipeline model calls: 3 of the 5 allowed, $0.86 (§9).
-
-
