@@ -1,5 +1,7 @@
 # v26 — finish Franklin with a writer, not a rulebook
 
+**Run-sheet (private artifact):** https://claude.ai/artifact/PV5eE6p56KDCSXGFuNwZYP (source: `run-sheet.html`, built by `tools/build_runsheet.py`).
+
 Planning session 2026-09-27. Kit source: repo branch `claude/vibrant-ritchie-xaf7dm` → `docs/v26-plan/`. On the Mac it is
 copied to `~/cf-wt/v26-plan/` by the first session (W1). Everything a session needs is in `BRIEF.md`, plus its prompt in `prompts/`.
 
@@ -82,7 +84,7 @@ graph TD
 
 ## 5. How to run
 1. Optionally choose N2 (which two chapters). The default is ch01 + ch13. To change it, put a line at the top of the pasted W1 prompt, e.g. `Owner answers: N2 = B`.
-2. After Tuesday's reset (2026-09-29 23:00Z, 7 pm Toronto), or earlier if your usage page shows about 20% or more of the weekly limit left, start a fresh Claude Code session in `~/cf-wt` as `caffeinate -dimsu claude` (Mac on power). Then paste `prompts/W1-prototype.md` (the text between `---PROMPT---` and `---END---`). The first time, accept the folder-trust prompt and use the same permission mode you used for the v25 sessions, so the session does not stop for approvals.
+2. After Tuesday's reset (2026-09-29 23:00Z, 7 pm Toronto), or earlier if your usage page shows about 20% or more of the weekly limit left, start a fresh Claude Code session in `~/cf-wt` as `caffeinate -dimsu claude` (Mac on power). If `claude --version` is below 2.1.280, it cannot run Opus 5.5. Start the session with the VS Code extension's binary instead: `caffeinate -dimsu "$(ls -d ~/.vscode/extensions/anthropic.claude-code-* | tail -1)/resources/native-binary/claude"`. Otherwise, pick Opus 5 in the session. Then paste `prompts/W1-prototype.md` (the text between `---PROMPT---` and `---END---`). The first time, accept the folder-trust prompt and use the same permission mode you used for the v25 sessions, so the session does not stop for approvals.
 3. When a session ends, read its `status/<ID>.md`. `NEEDS-OWNER` means it is your turn: read the reading pack and answer the batch in DECISIONS.
 4. Paste the next prompt per the graph. Sessions shown with ∥ can run at the same time (at most 3 at once).
 

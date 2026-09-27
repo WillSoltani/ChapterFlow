@@ -1,6 +1,6 @@
 # W2w — Show readers the writing: the reader's default depth and two mode bugs (only if R1-d = B or C)
 
-- **Model:** Opus 5.5 (Claude Code session)
+- **Model:** Opus 5.5 (Claude Code session, started as `caffeinate -dimsu claude` in `~/cf-wt`; if `claude --version` is below 2.1.280, use the VS Code extension's binary as in W1's header)
 - **Start directory:** `~/cf-wt`
 - **Depends on:** R1-d = B or C in `~/cf-wt/v26-plan/DECISIONS.md`. Runs in parallel with W2.
 - **Estimate:** 3–5 hours wall time. No pipeline model calls. At most 6 subagents.

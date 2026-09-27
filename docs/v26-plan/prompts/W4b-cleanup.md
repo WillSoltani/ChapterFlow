@@ -51,10 +51,10 @@ If the classifier refuses a merge or close, print the exact `gh` command for the
      - the heads of the PRs closed in Step 3: #559 `v25/draft-time-avoid-phrase`, #401 `feat/v25-pipeline-live`, #406 `evidence/v25-retained-2026-07-15`;
      - the unmerged July lines: `plan/v25-s-tier-implementation`, `impl/v25-evaluator-selection`, `feat/v25-pipeline`, `codex/v25-pipeline-completion-recovered`.
    - For each one:
-     - get its SHA with `git -C ~/ChapterFlow-books-v25-completion ls-remote origin refs/heads/<name>`;
+     - get its SHA with `git -C ~/ChapterFlow-books-v25-completion ls-remote origin refs/heads/<name>`. If that prints nothing, skip the branch and record "already archived or absent". Check the SHA matches `^[0-9a-f]{40}$` before any push, and never push with an empty SHA;
      - push `git -C ~/ChapterFlow-books-v25-completion push origin <sha>:refs/heads/archive/<name>`;
      - confirm the new ref with `ls-remote`;
-     - only then delete the old name with `git push origin --delete <name>`, one per command.
+     - only then delete the old name with `git -C ~/ChapterFlow-books-v25-completion push origin --delete <name>`, one per command.
 2. **Then delete merged branches.**
    - List remote heads with `git -C ~/ChapterFlow-books-v25-completion ls-remote --heads origin`. For each branch, find its PR: `gh pr list -R WillSoltani/ChapterFlow --state all --head <branch> --json number,state,headRefOid`.
    - Delete a branch only if its PR is MERGED **and** the branch head SHA equals the PR's `headRefOid`, so nothing was added after the merge.
@@ -84,7 +84,7 @@ If the classifier refuses a merge or close, print the exact `gh` command for the
    - `git checkout origin/claude/vibrant-ritchie-xaf7dm -- docs/v26-plan`, then copy the Mac kit's `status/*.md` and `DECISIONS.md` (with the owner's answers) over it.
    - Then `git mv docs/v26-plan docs/archive/v26-plan` and `git mv docs/v25/execution docs/archive/v25-execution`, and index both under "Archived audit artifacts" in `docs/README.md`.
    - Keep code out of the typecheck and lint projects: the kit's `evidence/probe/validate.mts.txt` is already renamed. Check `command grep -rln --include='*.mts' --include='*.ts' . docs/archive/v26-plan` prints nothing. Leave `docs/v25/execution/tools/detqc.mts`; it passes today.
-   - Then run `npm run typecheck` and `npm run lint:ratchet`, and paste their pass lines.
+   - Then run `npm run typecheck`, `npm run lint:ratchet`, `npm run scan:style` and `npm run scan:secrets`, and paste their pass lines. For any style-drift hit in an archived file, reword it or add a `docs/archive/...` line to `scripts/ci/style-drift-allowlist.txt`.
    - The docs/CLAUDE.md path-existence rule does not apply to archived campaign records; their `~/` paths refer to the owner's Mac.
    - **Do not archive** `scripts/book/v26/README.md`; it is the living runbook.
 3. **`docs/SCRIPTS.md`:** add the v26 CLI verbs.

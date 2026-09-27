@@ -294,6 +294,7 @@ The budget was ≤ 50 subagents.
   - 10 investigators and 10 adversarial verifiers, whose reports are in `scan/`.
 - **Step 5 review:** 6 reviewers (facts, goal fit, W1 executability, W2/W2w executability, the other prompts, the owner's eye). They found 23 must-fix and about 70 should-fix items. All must-fix items and nearly all should-fix items were applied.
 - **Declined:** one should-fix, dropping the Q08 arm from W1's pack. The owner asked for it explicitly.
-- **Final check:** one verification pass on the fixed kit (see the final reply).
+- **Final check:** 2 rechecks on the fixed kit, one on the prompts and one on the owner-facing files. They found 17 items (wrong paths, missing resume clauses, unsafe cleanup order, a Model-line fallback, one style-scan hit), and all 17 were applied.
+- **Total:** 30 of the 50 subagents allowed (scan 22, review 6, recheck 2).
 
 Pipeline model calls: 3 of the 5 allowed, $0.86 (§9).

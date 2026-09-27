@@ -245,10 +245,10 @@ graph TD
     </div>
     <label class="done"><input type="checkbox" id="done-W1" data-done="W1"> Done</label>
   </header>
-  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session, started as <code>caffeinate -dimsu claude</code> in <code>~/cf-wt</code>)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> nothing. The owner pastes it when there is quota, by default after the weekly reset on Tue 2026-09-29 23:00Z. If you are running, start, whatever the date.</li><li><strong>Estimate:</strong> 5–8 hours wall time. About 14–20 pipeline model calls, $6–12 API-equivalent (hard cap $25). At most 4 subagents.</li><li><strong>Ends with:</strong> <code>RESULT: NEEDS-OWNER</code> and a reading pack (reading checkpoint R1)</li></ul>
+  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session, started as <code>caffeinate -dimsu claude</code> in <code>~/cf-wt</code>. If <code>claude --version</code> is below 2.1.280, start it with the VS Code extension&#x27;s binary instead, <code>caffeinate -dimsu &quot;$(ls -d ~/.vscode/extensions/anthropic.claude-code-* | tail -1)/resources/native-binary/claude&quot;</code>, or run the session on Opus 5)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> nothing. The owner pastes it when there is quota, by default after the weekly reset on Tue 2026-09-29 23:00Z. If you are running, start, whatever the date.</li><li><strong>Estimate:</strong> 5–8 hours wall time. About 14–20 pipeline model calls, $6–12 API-equivalent (hard cap $25). At most 4 subagents.</li><li><strong>Ends with:</strong> <code>RESULT: NEEDS-OWNER</code> and a reading pack (reading checkpoint R1)</li></ul>
   <div class="copyrow"><button type="button" class="copy" data-target="text-W1">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
   <details>
-    <summary>Show the prompt text (3245 words)</summary>
+    <summary>Show the prompt text (3360 words)</summary>
     <pre class="prompt-text" id="text-W1">You are running Wave 1 of the v26 ChapterFlow book campaign on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. You stop only by writing your status file:
 - at the reading checkpoint (the normal end);
 - when the quota cap below would be exceeded;
@@ -268,7 +268,11 @@ On 2026-09-27 a planning session made one exploratory ch01 draft this way:
 - The files are in `~/cf-wt/v26-plan/evidence/probe/` (after Step 0). Build on them. Do not re-derive them.
 
 ## Step 0 — set up (at most 45 minutes)
-0. **Resume check.** If `~/cf-wt/v26-plan/status/W1.md` exists and starts with `RESULT: WAITING-FOR-RESET` or `RESULT: PARTIAL`, this is a re-run. Reuse everything that exists (`~/cf-wt/v26-read`, `data/franklin/`, `tools/proto/`, `scratch/W1/`, the ledger). Continue from the first missing output, and never re-write a chapter file that already passed its checks.
+0. **Resume check.** This is a re-run in either case:
+   - `~/cf-wt/v26-plan/status/W1.md` starts with `RESULT: WAITING-FOR-RESET`, `RESULT: PARTIAL` or `RESULT: NEEDS-OWNER — quota cap`;
+   - `status/W1.md` is missing but `~/cf-wt/v26-plan/scratch/W1/ledger.tsv` exists (a session killed by the usage limit may not have written its status).
+
+   On a re-run, reuse everything that exists (`~/cf-wt/v26-read`, `data/franklin/`, `tools/proto/`, `scratch/W1/`, the ledger). Continue from the first missing output, and never re-write a chapter file that already passed its checks.
 1. **Copy the kit.** It lives on the repo branch `claude/vibrant-ritchie-xaf7dm` under `docs/v26-plan/`.
    - Run `git -C ~/ChapterFlow-books-v25-completion fetch origin claude/vibrant-ritchie-xaf7dm`.
    - If `~/cf-wt/v26-plan` does not exist: `mkdir -p ~/cf-wt/v26-plan &amp;&amp; git -C ~/ChapterFlow-books-v25-completion archive FETCH_HEAD docs/v26-plan | tar -x -C ~/cf-wt/v26-plan --strip-components=2`.
@@ -296,8 +300,8 @@ On 2026-09-27 a planning session made one exploratory ch01 draft this way:
 9. **Which Opus.**
    - `ls -d ~/.vscode/extensions/anthropic.claude-code-*` and take the newest version at 2.1.280 or later. Set `B=&lt;that dir&gt;/resources/native-binary/claude` and run `&quot;$B&quot; --version`.
    - Run one tiny call with the exact harness flags: `cd ~/cf-wt/v26-plan/scratch/W1/cwd &amp;&amp; echo &#x27;Reply with the single word OK.&#x27; | env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY CLAUDE_CODE_MAX_OUTPUT_TOKENS=64000 &quot;$B&quot; -p --output-format json --model claude-opus-5-5 --effort low --restricted --disallowedTools &#x27;*&#x27;` (create the empty `cwd` directory first).
-   - If it rejects `--restricted`, run once more without it and record both results.
-   - If the envelope has `is_error:false` and the result says OK, the writer is `$B` with `claude-opus-5-5`. Otherwise it is `/opt/homebrew/bin/claude` with `claude-opus-5`; paste the refusal text.
+   - Use `$B` only if the call **with** `--restricted` returns `is_error:false` and OK. The writer is then `$B` with `claude-opus-5-5`.
+   - If `$B` rejects `--restricted` or refuses the model, record the refusal and fall back to `/opt/homebrew/bin/claude` with `claude-opus-5`, keeping `--restricted`. Paste the refusal text.
    - The checker uses the same binary and model. The blind quiz solver uses the same binary with `claude-sonnet-5`.
    - Write the choice to `~/cf-wt/v26-plan/tools/proto/models.json` as `{writerBin, writerModel, checkerBin, checkerModel, solverBin, solverModel, restricted: true|false}`, because shell variables do not survive between Bash calls. Never change the global PATH.
 
@@ -310,7 +314,7 @@ Write it in `~/cf-wt/v26-plan/tools/proto/`, in Python 3. Start from `~/cf-wt/v2
 
   The writer and checker always get the writer&#x27;s form.
 - **`call`** runs one model call.
-  - It reads bin, model and restricted from `models.json` and takes the step&#x27;s effort as an argument.
+  - It reads bin, model and restricted from `models.json` and takes the step&#x27;s effort as an argument. It also takes `--ledger &lt;path&gt;` (default `scratch/W1/ledger.tsv`), `--cwd &lt;dir&gt;` (default `scratch/W1/cwd`) and `--cap &lt;usd&gt;` (default 25), and the budget check sums only that ledger.
   - It runs `env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY CLAUDE_CODE_MAX_OUTPUT_TOKENS=64000 &lt;bin&gt; -p --output-format json --model &lt;model&gt; --effort &lt;effort&gt; [--restricted] --disallowedTools &#x27;*&#x27;` as a subprocess, with the prompt on stdin.
   - The subprocess runs with `cwd` set to the empty `~/cf-wt/v26-plan/scratch/W1/cwd/`, under `caffeinate -i`, with a harness-enforced timeout (`subprocess.run(..., timeout=1200)`). Run each `call` with the Bash tool timeout at 600000 ms, or in the background with a log.
   - It saves the envelope, extracts `.result` (stripping a surrounding code fence), and appends a line to `~/cf-wt/v26-plan/scratch/W1/ledger.tsv`: step, chapter, model, `total_cost_usd`, output tokens, `stop_reason`, seconds.
@@ -323,8 +327,15 @@ Write it in `~/cf-wt/v26-plan/tools/proto/`, in Python 3. Start from `~/cf-wt/v2
     - Copy `~/cf-wt/v26-plan/evidence/probe/validate.mts.txt` to `tools/proto/validate.mts`, point its import at `~/cf-wt/v26-read/app/app/api/book/_lib/validate-book-package.ts`, and run it with `~/cf-wt/v26-read/node_modules/.bin/tsx`.
     - Build the package from rev-6 (`$PIPE/book-packages/the-autobiography-of-benjamin-franklin.v21.json` in the worktree). Keep its root fields `schemaVersion`, `packageId`, `createdAt`, `contentOwner` and `book`, and replace `chapters` with this one chapter, adding `chapterId` `ch-NN`, `number` NN and `readingTimeMinutes` = round(fullRead words / 230).
     - Any output other than `APP_VALIDATOR_OK` is a failure.
-  - (c) **Blocking:** every span in straight or curly double quotes (&quot;…&quot; or “…”) of 8 or more characters in reader text appears verbatim in the Franklin part of the span. The match normalizes both sides as `probe_tools.py` `norm()` does. Print the number of quotations found. A fullRead with 0 quotations is a failure, not a pass.
-  - (d) **Blocking:** `correctIndex` is in range. No summary tier over 180 words is a single paragraph. No model or meta chatter appears (e.g. &quot;as an AI&quot;, &quot;here is the JSON&quot;, &quot;this chapter&quot;, &quot;the author writes&quot;).
+  - (c) **Blocking: quotations are Franklin&#x27;s real words.** The check covers every span in straight or curly double quotes (&quot;…&quot; or “…”) of 8 or more characters in:
+    - the three tiers, `hook`, `counterintuition`, `keyTakeaway` and `tryThisNow`;
+    - quiz explanations, review-card backs and `memorableLines` (the fields `probe_tools.py` `quote_spans` covers);
+    - in format B, the Franklin episodes in the examples.
+
+    Each such span must appear verbatim in the Franklin part of the span. The match normalizes both sides as `norm()` does.
+    - Quoted speech inside modern examples is invented by design, so report it but do not block on it.
+    - Print the number of quotations found. A fullRead with 0 quotations is a failure, not a pass.
+  - (d) **Blocking:** `correctIndex` is in range. No summary tier over 180 words is a single paragraph. No model or meta chatter appears (e.g. &quot;as an AI&quot;, &quot;here is the JSON&quot;, &quot;the author writes&quot;).
   - (e) **Advisory:** lengths against the brief&#x27;s bands; paragraphs over 140 words; the key-is-the-uniquely-longest-choice count; repeated stem openers.
 - **`render`** turns a v21 chapter JSON into HTML in the app&#x27;s order (see Step 5).
 
@@ -457,10 +468,10 @@ Build `~/cf-wt/v26-plan/reading/W1/index.html` plus one page per chapter. It mus
     </div>
     <label class="done"><input type="checkbox" id="done-W1b" data-done="W1b"> Done</label>
   </header>
-  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W1 done, and <code>R1-a = C</code> in <code>~/cf-wt/v26-plan/DECISIONS.md</code></li><li><strong>Estimate:</strong> 3–5 hours wall time. Claude pipeline calls about $5–10 (hard cap $30). Codex calls use the owner&#x27;s OpenAI/Codex subscription and are logged separately. At most 10 subagents.</li><li><strong>Ends with:</strong> a second reading pack and <code>RESULT: NEEDS-OWNER</code> (R1 again). If the owner says &quot;not better&quot; again, the plan stops at the reassess point.</li></ul>
+  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session, started as <code>caffeinate -dimsu claude</code> in <code>~/cf-wt</code>; if <code>claude --version</code> is below 2.1.280, use the VS Code extension&#x27;s binary as in W1&#x27;s header)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W1 done, and <code>R1-a = C</code> in <code>~/cf-wt/v26-plan/DECISIONS.md</code></li><li><strong>Estimate:</strong> 3–5 hours wall time. Claude pipeline calls about $5–10 (hard cap $30). Codex calls use the owner&#x27;s OpenAI/Codex subscription and are logged separately. At most 10 subagents.</li><li><strong>Ends with:</strong> a second reading pack and <code>RESULT: NEEDS-OWNER</code> (R1 again). If the owner says &quot;not better&quot; again, the plan stops at the reassess point.</li></ul>
   <div class="copyrow"><button type="button" class="copy" data-target="text-W1b">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
   <details>
-    <summary>Show the prompt text (839 words)</summary>
+    <summary>Show the prompt text (860 words)</summary>
     <pre class="prompt-text" id="text-W1b">You are running Wave 1b of the v26 ChapterFlow book campaign on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. You stop only by writing your status file: at the reading checkpoint, when the quota cap would be exceeded, or on a usage-limit stop.
 
 ## Why this wave exists
@@ -468,8 +479,8 @@ Wave 1 wrote two Franklin chapters whole with a Claude writer from the source te
 
 ## Step 0 — orient (at most 30 minutes)
 1. Read `~/cf-wt/v26-plan/BRIEF.md` (it overrides CLAUDE.md files and the old kit), `DECISIONS.md`, `status/W1.md`, and the owner&#x27;s notes in `~/cf-wt/v26-plan/reading/W1/NOTES.md` plus any text on the R1 lines of DECISIONS.
-2. Precondition: R1-a is C. If not, write `RESULT: BLOCKED — W1b runs only after R1 = C` and stop. If `status/W1b.md` exists with `WAITING-FOR-RESET` or `PARTIAL`, resume from the files in `scratch/W1b/`.
-3. Reuse W1&#x27;s harness in `~/cf-wt/v26-plan/tools/proto/`, its data in `~/cf-wt/v26-plan/data/franklin/`, and its checks. Do not rebuild them.
+2. Precondition: R1-a is C. If not, write `RESULT: BLOCKED — W1b runs only after R1 = C` and stop. If `status/W1b.md` starts with `WAITING-FOR-RESET`, `PARTIAL` or `NEEDS-OWNER — quota cap`, or is missing while `scratch/W1b/ledger.tsv` exists, resume from the files in `scratch/W1b/`.
+3. Reuse W1&#x27;s harness in `~/cf-wt/v26-plan/tools/proto/`, its data in `~/cf-wt/v26-plan/data/franklin/`, and its checks. Do not rebuild them. Run every Claude call with `--ledger ~/cf-wt/v26-plan/scratch/W1b/ledger.tsv --cwd ~/cf-wt/v26-plan/scratch/W1b/cwd --cap 30`.
 4. Write down, in 5–10 lines, what the owner disliked, quoting the notes. Every change you make must answer one of those lines.
 
 ## Step 1 — the variants (same two chapters as W1)
@@ -524,10 +535,10 @@ Append one line to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v2
     </div>
     <label class="done"><input type="checkbox" id="done-W2" data-done="W2"> Done</label>
   </header>
-  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session, started as <code>caffeinate -dimsu claude</code> in <code>~/cf-wt</code>)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W1 (and W1b if it ran) finished, and the owner&#x27;s R1-a line reads A or B in <code>~/cf-wt/v26-plan/DECISIONS.md</code></li><li><strong>Estimate:</strong> 1–1.5 days wall time. Pipeline model calls about $30–50 (hard cap $80). At most 25 subagents.</li><li><strong>Ends with:</strong> a merged PR (the tool + tests + the catalog-path fix), a 19-chapter Franklin package that passes every app check and a ship dry run, a reading pack, and <code>RESULT: NEEDS-OWNER</code> (reading checkpoint R2)</li></ul>
+  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session, started as <code>caffeinate -dimsu claude</code> in <code>~/cf-wt</code>; if <code>claude --version</code> is below 2.1.280, use the VS Code extension&#x27;s binary as in W1&#x27;s header)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W1 (and W1b if it ran) finished, and the owner&#x27;s R1-a line reads A or B in <code>~/cf-wt/v26-plan/DECISIONS.md</code></li><li><strong>Estimate:</strong> 1–1.5 days wall time. Pipeline model calls about $30–50 (hard cap $80). At most 25 subagents.</li><li><strong>Ends with:</strong> a merged PR (the tool + tests + the catalog-path fix), a 19-chapter Franklin package that passes every app check and a ship dry run, a reading pack, and <code>RESULT: NEEDS-OWNER</code> (reading checkpoint R2)</li></ul>
   <div class="copyrow"><button type="button" class="copy" data-target="text-W2">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
   <details>
-    <summary>Show the prompt text (3027 words)</summary>
+    <summary>Show the prompt text (3256 words)</summary>
     <pre class="prompt-text" id="text-W2">You are running Wave 2 of the v26 ChapterFlow book campaign on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. You stop only by writing your status file: at the reading checkpoint (the normal end), when the quota cap below would be exceeded, or on a usage-limit stop. For every other choice, take the default stated here and report it.
 
 ## Goal
@@ -541,7 +552,7 @@ Append one line to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v2
 The owner&#x27;s reading is the gate. Automated checks block only on facts, quiz keys and renderability (BRIEF §4).
 
 ## Resuming
-If `~/cf-wt/v26-plan/status/W2.md` exists and starts with `RESULT: WAITING-FOR-RESET` or `RESULT: PARTIAL`, this is a re-run:
+If `~/cf-wt/v26-plan/status/W2.md` starts with `RESULT: WAITING-FOR-RESET`, `RESULT: PARTIAL` or `RESULT: NEEDS-OWNER — quota cap`, or `~/cf-wt/v26-tool` already exists without a final `status/W2.md`, this is a re-run:
 - Reuse `~/cf-wt/v26-tool` and do not re-create it.
 - Look up the PR with `gh pr list -R WillSoltani/ChapterFlow --head v26/tool --state all`. If it is merged, skip Steps 1–2.
 - Run `npx tsx scripts/book/v26/cli.ts status --book &lt;config&gt;` and continue Step 3 with `run`, which skips finished chapters.
@@ -575,6 +586,8 @@ If `~/cf-wt/v26-plan/status/W2.md` exists and starts with `RESULT: WAITING-FOR-R
 - Before the PR, run `npm run typecheck:shared-closure -- --base origin/main` and paste its PASS line.
 
 Target 600–1,000 lines of code plus tests, with prompt templates as `.md` files.
+
+**Runbook.** Write `scripts/book/v26/README.md` and include it in the PR. It covers what the tool is, the config fields, each CLI verb with an example, where the run dir and ledger live, the rule that the real `ship` is the owner&#x27;s, and how to run the tests. W4a extends it with &quot;Making the next book&quot;.
 
 **Book config** `scripts/book/v26/books/&lt;bookId&gt;.json` holds:
 - `bookId`, `title`, `author`;
@@ -649,7 +662,7 @@ If the version going forward is **G** (GPT-5.5), the `writer` entry is `{&quot;k
 
 ## Step 2 — the release route (same PR, or a second small PR if cleaner)
 1. **Catalog path fix.** Point `scripts/book/generate-catalog-metadata.ts:27`, `$PIPE/src/publish/publishToLive.ts:70` and `scripts/book/register-api-books.ts:251` at `lib/books-catalog.metadata.json`.
-   - Update the fixture lines that pin the old path: `$PIPE/tests/publish-final.test.ts:52,76` and `$PIPE/tests/publish-final-outcomes.test.ts:36,60` (`command grep -rn booksCatalog.metadata $PIPE/tests` for any others).
+   - Update the fixture lines that pin the old path: `$PIPE/tests/publish-final.test.ts:52,76` and `$PIPE/tests/publish-final-outcomes.test.ts:36,60`. Leave `$PIPE/tests/publish-after-qc-git.test.ts` alone: it pins `src/qc/publishAfterQc.ts`, which keeps the old path (the frozen v25 route).
    - Prove it: regenerating from `BOOK_PACKAGES` reproduces `lib/books-catalog.metadata.json` byte for byte (135/135).
    - CI does not run the `$PIPE` suite, so run both test files locally and paste their pass lines: `cd $PIPE &amp;&amp; CHAPTERFLOW_NO_API_CODEX_QC=1 env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npx tsx tests/publish-final.test.ts`, then the same for `publish-final-outcomes.test.ts`.
 2. **`ship`** is a thin wrapper over `publishFinal()`. It passes:
@@ -662,7 +675,7 @@ If the version going forward is **G** (GPT-5.5), the `writer` entry is `{&quot;k
    Behaviour:
    - It refuses on `main`.
    - It refuses when `git -C &lt;outerRoot&gt; status --porcelain -- book-packages/&lt;bookId&gt;.v21.json` is non-empty, in dry runs too, and prints why.
-   - On a real run it first writes a short provenance note to `&lt;outerRoot&gt;/book-packages/&lt;bookId&gt;.v26-provenance.md`: writer and checker models, brief sha256, source sha256, and a per-chapter check summary. It commits that note on the current branch (`git -C &lt;outerRoot&gt; commit -- &#x27;:(literal)book-packages/&lt;bookId&gt;.v26-provenance.md&#x27;`), and only then calls `publishFinal`, whose commit covers only the package, sentinel, registry and catalog.
+   - On a real run it first writes a short provenance note to `&lt;outerRoot&gt;/book-packages/&lt;bookId&gt;.v26-provenance.md`: writer and checker models, brief sha256, source sha256, and a per-chapter check summary. It commits that note on the current branch (`git -C &lt;outerRoot&gt; add -- &#x27;:(literal)book-packages/&lt;bookId&gt;.v26-provenance.md&#x27; &amp;&amp; git -C &lt;outerRoot&gt; commit -m &quot;docs(book): &lt;bookId&gt; v26 provenance&quot; -- &#x27;:(literal)book-packages/&lt;bookId&gt;.v26-provenance.md&#x27;`; the note is a new, untracked file), and only then calls `publishFinal`, whose commit covers only the package, sentinel, registry and catalog.
    - `--dry-run` prints the note, the commit it would make and publishFinal&#x27;s plan, and mutates nothing.
    - The real `ship` is the owner&#x27;s command. This session never runs it without `--dry-run`.
 3. Leave the tracked rev-6 Franklin package and sidecar under `$PIPE` alone. `ship` does not read them. Mention in the PR that the `publish-final` CLI still would.
@@ -689,6 +702,12 @@ If the version going forward is **G** (GPT-5.5), the `writer` entry is `{&quot;k
    - Run `ship --dry-run` from a worktree on a branch, never from the canonical checkout (it is on main and must not switch branches): use `~/cf-wt/v26-tool` on `v26/tool`. If that branch was squash-merged, make a fresh change worktree `~/cf-wt/v26-franklin-dry` on branch `books/franklin-v26-dry` from origin/main (remove it afterwards, and never push its branch).
    - Paste the plan output.
 
+## Step 3b — land what changed after the merge
+The brief, the Franklin config (categories, tags, runDir) and any tool fixes made during Step 3 are not on main yet.
+- Commit them on a new branch `v26/tool-2`: `git -C ~/cf-wt/v26-tool fetch origin &amp;&amp; git -C ~/cf-wt/v26-tool switch -c v26/tool-2 origin/main`, then bring the changed files over.
+- Open a PR and merge it per BRIEF §6. If the merge is refused, print the command.
+- Record in the status the origin/main SHA after the merge, and the sha256 of the Franklin config and brief, so W3 can confirm it ships what you wrote.
+
 ## Step 4 — the reading pack for R2
 Build `~/cf-wt/v26-plan/reading/W2/index.html` with every chapter rendered in the app&#x27;s order and form (R1-d decides which tier opens first; the others are toggles). It includes:
 - a contents list with one line per chapter;
@@ -705,7 +724,7 @@ Build `~/cf-wt/v26-plan/reading/W2/index.html` with every chapter rendered in th
 - If a usage limit hits: finish writing files for completed chapters, write `RESULT: WAITING-FOR-RESET — &lt;what is done, what to resume&gt;`, and stop.
 
 ## Definition of done
-- The PR is merged, or its merge command is printed for the owner. The PR has pass lines and an independent review.
+- The PR (tool, tests, runbook `scripts/book/v26/README.md`, catalog-path fix) is merged, or its merge command is printed for the owner. It has pass lines and an independent review. The Step 3b follow-up PR is merged too, or its command is printed.
 - `status` shows every chapter as `clean` or `open-issues`, with every open issue in plain words in the reading pack.
 - The Franklin package is assembled in the run dir. It passes the app validator, the slim-contract, title-quality and taxonomy rules and `register-api-books --dry-run`, and `ship --dry-run` printed a plan (pasted).
 - The reading pack opens (use `open`, and `ls` every linked file).
@@ -716,6 +735,7 @@ Build `~/cf-wt/v26-plan/reading/W2/index.html` with every chapter rendered in th
   - the chapters with open issues;
   - brief changes and why;
   - the run-dir path and the package sha256;
+  - the origin/main SHA and the sha256 of the Franklin config and brief (Step 3b);
   - the exact ship command W3 will hand the owner;
   - anything W3 must know.
 - One line appended to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md`.</pre>
@@ -731,7 +751,7 @@ Build `~/cf-wt/v26-plan/reading/W2/index.html` with every chapter rendered in th
     </div>
     <label class="done"><input type="checkbox" id="done-W2w" data-done="W2w"> Done</label>
   </header>
-  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> R1-d = B or C in <code>~/cf-wt/v26-plan/DECISIONS.md</code>. Runs in parallel with W2.</li><li><strong>Estimate:</strong> 3–5 hours wall time. No pipeline model calls. At most 6 subagents.</li><li><strong>Ends with:</strong> one merged web PR (or its merge command printed), and <code>RESULT: DONE</code>. It deploys with Franklin&#x27;s release in W3 (the deploy is the owner&#x27;s).</li></ul>
+  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session, started as <code>caffeinate -dimsu claude</code> in <code>~/cf-wt</code>; if <code>claude --version</code> is below 2.1.280, use the VS Code extension&#x27;s binary as in W1&#x27;s header)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> R1-d = B or C in <code>~/cf-wt/v26-plan/DECISIONS.md</code>. Runs in parallel with W2.</li><li><strong>Estimate:</strong> 3–5 hours wall time. No pipeline model calls. At most 6 subagents.</li><li><strong>Ends with:</strong> one merged web PR (or its merge command printed), and <code>RESULT: DONE</code>. It deploys with Franklin&#x27;s release in W3 (the deploy is the owner&#x27;s).</li></ul>
   <div class="copyrow"><button type="button" class="copy" data-target="text-W2w">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
   <details>
     <summary>Show the prompt text (1054 words)</summary>
@@ -798,10 +818,10 @@ Do not touch the quiz content, the phases, the points economy, or anything else 
     </div>
     <label class="done"><input type="checkbox" id="done-W3" data-done="W3"> Done</label>
   </header>
-  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session, started as <code>caffeinate -dimsu claude</code> in <code>~/cf-wt</code>)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W2 done, and R2 = A or B in <code>~/cf-wt/v26-plan/DECISIONS.md</code>. If R1-d was B/C, W2w should be merged.</li><li><strong>Estimate:</strong> Part A 3–6 hours wall time; pipeline calls about $5–20 (hard cap $30); at most 10 subagents. Part B under an hour.</li><li><strong>Ends with:</strong></li></ul>
+  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session, started as <code>caffeinate -dimsu claude</code> in <code>~/cf-wt</code>; if <code>claude --version</code> is below 2.1.280, use the VS Code extension&#x27;s binary as in W1&#x27;s header)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W2 done, and R2 = A or B in <code>~/cf-wt/v26-plan/DECISIONS.md</code>. If R1-d was B/C, W2w should be merged.</li><li><strong>Estimate:</strong> Part A 3–6 hours wall time; pipeline calls about $5–20 (hard cap $30); at most 10 subagents. Part B under an hour.</li><li><strong>Ends with:</strong></li></ul>
   <div class="copyrow"><button type="button" class="copy" data-target="text-W3">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
   <details>
-    <summary>Show the prompt text (1264 words)</summary>
+    <summary>Show the prompt text (1420 words)</summary>
     <pre class="prompt-text" id="text-W3">You are running Wave 3 of the v26 ChapterFlow book campaign on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. You stop only by writing your status file:
 - when the publish commands are ready (they are the owner&#x27;s to run);
 - when the quota cap would be exceeded;
@@ -809,12 +829,14 @@ Do not touch the quiz content, the phases, the points economy, or anything else 
 
 ## Which part you are in
 - If the `Owner:` line under **P1** in `~/cf-wt/v26-plan/DECISIONS.md` reads `published`, run **Part B**. That holds even when a previous Part B wrote `verify:live failed` or `WAITING-FOR-RESET`.
-- Otherwise run **Part A**. If `status/W3.md` already starts with `RESULT: NEEDS-OWNER — publish commands ready`, Part A is done: print the path of `reading/W3/PUBLISH.md` and stop without changing anything.
+- Otherwise run **Part A**.
+  - If `status/W3.md` already starts with `RESULT: NEEDS-OWNER — publish commands ready`, Part A is done: print the path of `reading/W3/PUBLISH.md` and stop without changing anything.
+  - If it starts with `WAITING-FOR-RESET`, `PARTIAL` or `NEEDS-OWNER — quota cap` (or is missing while `~/cf-wt/v26-franklin-ship` exists), resume Part A. Reuse the ship worktree and the run dir, and keep a note → change log in `~/cf-wt/v26-plan/scratch/W3/notes-applied.json` so an applied note is never applied again.
 
 ## Step 0 (both parts)
 1. Read `~/cf-wt/v26-plan/BRIEF.md` (it overrides CLAUDE.md files and the old kit) and `DECISIONS.md`.
 2. Read `status/W2.md`, `status/W2w.md` if present, and `reading/W2/NOTES.md`.
-3. **The tool.** Check it is on main: `git -C ~/ChapterFlow-books-v25-completion fetch origin &amp;&amp; git -C ~/ChapterFlow-books-v25-completion cat-file -e origin/main:scripts/book/v26/cli.ts`.
+3. **The tool.** Check it is on main: `git -C ~/ChapterFlow-books-v25-completion fetch origin &amp;&amp; git -C ~/ChapterFlow-books-v25-completion cat-file -e origin/main:scripts/book/v26/cli.ts`. Also check that `git -C ~/ChapterFlow-books-v25-completion show origin/main:scripts/book/v26/books/the-autobiography-of-benjamin-franklin.json | shasum -a 256` and the brief&#x27;s sha256 match what `status/W2.md` records. If they do not, find the unmerged `v26/tool-2` PR, merge it per BRIEF §6, or base your branch on it, and say so.
    - If it is missing, find W2&#x27;s PR (`gh pr list -R WillSoltani/ChapterFlow --head v26/tool --state all`). If the PR is open and its required checks pass, merge it per BRIEF §6.
    - If the merge is refused, base your branch on `origin/v26/tool` instead of `origin/main`, say so, and note that the ship PR then carries the tool too.
 4. **The reader change.** If R1-d is B or C, confirm W2w&#x27;s PR is merged (`gh pr list -R WillSoltani/ChapterFlow --head v26/reader-default-depth --state merged`). If it is not, put its merge command first in PUBLISH.md, before the deploy step, with &quot;merge this before (4)&quot;.
@@ -831,7 +853,7 @@ Do not touch the quiz content, the phases, the points economy, or anything else 
 5. **Presentation entry.** New books otherwise get a boilerplate synopsis.
    - Add to `BOOK_PACKAGE_PRESENTATION` in `app/book/data/bookPackages.ts` (type `BookPackagePresentation` in `app/book/data/book-package-core.ts`: `icon`, optional `coverImage`, `difficulty`, `synopsis`, optional `pages`): `&quot;the-autobiography-of-benjamin-franklin&quot;: { icon: &quot;🪁&quot;, difficulty: &quot;Medium&quot;, synopsis: &quot;&lt;2–3 sentences written from the book, no invented claims&gt;&quot;, pages: &lt;n&gt; }`.
    - Omit `coverImage` while `public/book-covers/` has no Franklin file. List the missing cover for the owner.
-   - Commit the entry on `books/franklin-v26` (`git add &#x27;:(literal)app/book/data/bookPackages.ts&#x27; &amp;&amp; git commit -m &quot;feat(book): Franklin presentation entry&quot;`) before the dry run.
+   - Commit the entry on `books/franklin-v26` before the dry run: `git -C ~/cf-wt/v26-franklin-ship add &#x27;:(literal)app/book/data/bookPackages.ts&#x27; &amp;&amp; git -C ~/cf-wt/v26-franklin-ship commit -m &quot;feat(book): Franklin presentation entry&quot; -- &#x27;:(literal)app/book/data/bookPackages.ts&#x27;`. Skip this if `git -C ~/cf-wt/v26-franklin-ship log --oneline origin/main..HEAD` already shows it.
    - Expected: `app/book/data/bookPackages.test.ts` &quot;every BOOK_PACKAGE_PRESENTATION key is a known bookId&quot; fails on this commit alone. It passes once the owner&#x27;s ship commit adds the registry block, and CI runs on the PR with both. Say so in the status; do not &quot;fix&quot; it.
 6. **Assemble** the final package with the tool (it goes to the run dir, never into a checkout&#x27;s `book-packages/`). Then:
    - Run every app check, and `(cd &lt;runDir&gt; &amp;&amp; TSX_TSCONFIG_PATH=~/cf-wt/v26-franklin-ship/tsconfig.json ~/cf-wt/v26-franklin-ship/node_modules/.bin/tsx ~/cf-wt/v26-franklin-ship/scripts/book/register-api-books.ts --dry-run the-autobiography-of-benjamin-franklin)`.
@@ -860,9 +882,13 @@ Do not touch the quiz content, the phases, the points economy, or anything else 
 
 ## Part B — after the owner published
 1. Confirm from origin/main that the ship PR is merged, and look up its number and SHA.
-2. In `~/cf-wt/v26-read` at the merged `origin/main` (refresh it as in Part A step 7), run `AWS_REGION=us-east-1 BOOK_CONTENT_BUCKET=$(aws ssm get-parameter --name /chapterflow/prod/BOOK_CONTENT_BUCKET --query Parameter.Value --output text) npm run verify:live` and paste its result lines.
+2. In `~/cf-wt/v26-read` at the merged `origin/main` (refresh it as in Part A step 7), run `export AWS_REGION=us-east-1; B=$(aws ssm get-parameter --region us-east-1 --name /chapterflow/prod/BOOK_CONTENT_BUCKET --query Parameter.Value --output text)`, check that `$B` is non-empty, then run `BOOK_CONTENT_BUCKET=$B npm run verify:live` and paste its result lines.
    - A SKIPPED check is not a pass. If AWS credentials are missing on this Mac, write `RESULT: NEEDS-OWNER — verify:live needs AWS credentials` and stop.
-3. If it passes: commit the sentinel change it makes (`book-packages/.pending-deploy.json`) on a new branch from a BRIEF §5 change worktree, open a PR, and merge it per BRIEF §6.
+3. If it passes, land the sentinel change it made:
+   - Create `~/cf-wt/v26-sentinel` on branch `books/franklin-v26-verified` from origin/main (BRIEF §5 recipe).
+   - `cp ~/cf-wt/v26-read/book-packages/.pending-deploy.json ~/cf-wt/v26-sentinel/book-packages/.pending-deploy.json`, then restore `v26-read` with `git -C ~/cf-wt/v26-read checkout -- &#x27;:(literal)book-packages/.pending-deploy.json&#x27;`.
+   - Commit with `git -C ~/cf-wt/v26-sentinel add -- &#x27;:(literal)book-packages/.pending-deploy.json&#x27; &amp;&amp; git -C ~/cf-wt/v26-sentinel commit -m &quot;chore(book): Franklin verified live&quot; -- &#x27;:(literal)book-packages/.pending-deploy.json&#x27;`.
+   - Push, open the PR, and merge it per BRIEF §6.
 4. If it fails: paste the failing check, say which owner step it points to, and write `RESULT: NEEDS-OWNER — verify:live failed: &lt;line&gt;`. A re-run of this prompt comes back to Part B.
 5. On success, write `status/W3.md` starting with `RESULT: DONE — Franklin live, verify:live passed (&lt;date&gt;)`. Append one line to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md`, and add a durable one-liner to that directory&#x27;s `MEMORY.md`: &quot;Franklin v26 published &lt;date&gt; via scripts/book/v26 (PR #…)&quot;.
 
@@ -883,10 +909,10 @@ Do not touch the quiz content, the phases, the points economy, or anything else 
     </div>
     <label class="done"><input type="checkbox" id="done-W4a" data-done="W4a"> Done</label>
   </header>
-  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W3 Part A done (the v26 tool is on origin/main). It may start before Franklin&#x27;s deploy. Runs in parallel with W4b.</li><li><strong>Estimate:</strong> 0.5–1 day wall time. Pipeline calls about $10–25 (hard cap $40). At most 10 subagents.</li><li><strong>Ends with:</strong> a Bennett reading pack plus ship commands and <code>RESULT: NEEDS-OWNER</code> (a light owner read, R3). The runbook <code>scripts/book/v26/README.md</code> is updated with what a new book needed.</li></ul>
+  <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session, started as <code>caffeinate -dimsu claude</code> in <code>~/cf-wt</code>; if <code>claude --version</code> is below 2.1.280, use the VS Code extension&#x27;s binary as in W1&#x27;s header)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W3 Part A done (the v26 tool is on origin/main). It may start before Franklin&#x27;s deploy. Runs in parallel with W4b.</li><li><strong>Estimate:</strong> 0.5–1 day wall time. Pipeline calls about $10–25 (hard cap $40). At most 10 subagents.</li><li><strong>Ends with:</strong> a Bennett reading pack plus ship commands and <code>RESULT: NEEDS-OWNER</code> (a light owner read, R3). The runbook <code>scripts/book/v26/README.md</code> is updated with what a new book needed.</li></ul>
   <div class="copyrow"><button type="button" class="copy" data-target="text-W4a">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
   <details>
-    <summary>Show the prompt text (928 words)</summary>
+    <summary>Show the prompt text (983 words)</summary>
     <pre class="prompt-text" id="text-W4a">You are running Wave 4a of the v26 ChapterFlow book campaign on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. You stop only by writing your status file: at the reading checkpoint (the normal end), at the quota cap, or on a usage-limit stop.
 
 ## Goal
@@ -901,9 +927,9 @@ Measure the wall time and the cost from start to reading pack. That measurement 
 
 ## Step 0
 1. Read `~/cf-wt/v26-plan/BRIEF.md` (it overrides CLAUDE.md files and the old kit), `DECISIONS.md`, `status/W2.md`, `status/W3.md`, `scripts/book/v26/README.md` and `scripts/book/v26/briefs/README.md` (book types).
-2. Record the start time (UTC).
+2. Record the start time (UTC) in `~/cf-wt/v26-plan/scratch/W4a/start.txt` only if that file does not exist; otherwise reuse it. If `status/W4a.md` starts with `WAITING-FOR-RESET`, `PARTIAL` or `NEEDS-OWNER — quota cap` (or is missing while `~/cf-wt/v26-bennett` exists), this is a re-run: reuse the worktree, the data and the run dir, and continue with `run`, which skips finished chapters.
 3. Check the tool is on main (`git -C ~/ChapterFlow-books-v25-completion fetch origin &amp;&amp; git -C ~/ChapterFlow-books-v25-completion cat-file -e origin/main:scripts/book/v26/cli.ts`). If it is missing, base the worktree on `origin/v26/tool` and say so.
-4. Create the change worktree, or reuse it if it exists: `git -C ~/ChapterFlow-books-v25-completion worktree add -b books/bennett-v26 ~/cf-wt/v26-bennett origin/main`. Then `cmp` the lockfiles and symlink both `node_modules` (BRIEF §5). Never `npm ci`.
+4. Create the change worktree, or reuse it if it exists: `git -C ~/ChapterFlow-books-v25-completion worktree add -b books/bennett-v26 ~/cf-wt/v26-bennett origin/main` (or `origin/v26/tool`, per step 3). Then `cmp` the lockfiles and symlink both `node_modules` (BRIEF §5). Never `npm ci`.
 
 ## Step 1 — source and chapter map (0 model calls if possible)
 Bennett&#x27;s text was frozen by the v25 runs. Look under `~/cf-canary/books/how-to-live-on-24-hours-a-day/candidates/*/content/inputs/research/` for `source-text.txt` plus `chapter-map.json`.
@@ -972,7 +998,7 @@ Append one line to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v2
   <ul class="meta"><li><strong>Model:</strong> Sonnet 5. The work is mechanical and checklist-shaped, and every step is verifiable.</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> W3 Part A done. It can run in parallel with W4a. Step 6 (archiving the kit) waits for W4a&#x27;s status file.</li><li><strong>Estimate:</strong> 2–4 hours wall time. No pipeline model calls. At most 6 subagents.</li><li><strong>Ends with:</strong> <code>RESULT: DONE</code>, or <code>RESULT: PARTIAL</code> with a list of what the owner must do (refused commands, dirty worktrees).</li></ul>
   <div class="copyrow"><button type="button" class="copy" data-target="text-W4b">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
   <details>
-    <summary>Show the prompt text (1380 words)</summary>
+    <summary>Show the prompt text (1433 words)</summary>
     <pre class="prompt-text" id="text-W4b">You are running Wave 4b, the closeout of the v26 ChapterFlow book campaign, on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. Every step below states its default. Take the default, report it, and continue. Stop only by writing your status file.
 
 ## Step 0
@@ -1017,10 +1043,10 @@ If the classifier refuses a merge or close, print the exact `gh` command for the
      - the heads of the PRs closed in Step 3: #559 `v25/draft-time-avoid-phrase`, #401 `feat/v25-pipeline-live`, #406 `evidence/v25-retained-2026-07-15`;
      - the unmerged July lines: `plan/v25-s-tier-implementation`, `impl/v25-evaluator-selection`, `feat/v25-pipeline`, `codex/v25-pipeline-completion-recovered`.
    - For each one:
-     - get its SHA with `git -C ~/ChapterFlow-books-v25-completion ls-remote origin refs/heads/&lt;name&gt;`;
+     - get its SHA with `git -C ~/ChapterFlow-books-v25-completion ls-remote origin refs/heads/&lt;name&gt;`. If that prints nothing, skip the branch and record &quot;already archived or absent&quot;. Check the SHA matches `^[0-9a-f]{40}$` before any push, and never push with an empty SHA;
      - push `git -C ~/ChapterFlow-books-v25-completion push origin &lt;sha&gt;:refs/heads/archive/&lt;name&gt;`;
      - confirm the new ref with `ls-remote`;
-     - only then delete the old name with `git push origin --delete &lt;name&gt;`, one per command.
+     - only then delete the old name with `git -C ~/ChapterFlow-books-v25-completion push origin --delete &lt;name&gt;`, one per command.
 2. **Then delete merged branches.**
    - List remote heads with `git -C ~/ChapterFlow-books-v25-completion ls-remote --heads origin`. For each branch, find its PR: `gh pr list -R WillSoltani/ChapterFlow --state all --head &lt;branch&gt; --json number,state,headRefOid`.
    - Delete a branch only if its PR is MERGED **and** the branch head SHA equals the PR&#x27;s `headRefOid`, so nothing was added after the merge.
@@ -1050,7 +1076,7 @@ If the classifier refuses a merge or close, print the exact `gh` command for the
    - `git checkout origin/claude/vibrant-ritchie-xaf7dm -- docs/v26-plan`, then copy the Mac kit&#x27;s `status/*.md` and `DECISIONS.md` (with the owner&#x27;s answers) over it.
    - Then `git mv docs/v26-plan docs/archive/v26-plan` and `git mv docs/v25/execution docs/archive/v25-execution`, and index both under &quot;Archived audit artifacts&quot; in `docs/README.md`.
    - Keep code out of the typecheck and lint projects: the kit&#x27;s `evidence/probe/validate.mts.txt` is already renamed. Check `command grep -rln --include=&#x27;*.mts&#x27; --include=&#x27;*.ts&#x27; . docs/archive/v26-plan` prints nothing. Leave `docs/v25/execution/tools/detqc.mts`; it passes today.
-   - Then run `npm run typecheck` and `npm run lint:ratchet`, and paste their pass lines.
+   - Then run `npm run typecheck`, `npm run lint:ratchet`, `npm run scan:style` and `npm run scan:secrets`, and paste their pass lines. For any style-drift hit in an archived file, reword it or add a `docs/archive/...` line to `scripts/ci/style-drift-allowlist.txt`.
    - The docs/CLAUDE.md path-existence rule does not apply to archived campaign records; their `~/` paths refer to the owner&#x27;s Mac.
    - **Do not archive** `scripts/book/v26/README.md`; it is the living runbook.
 3. **`docs/SCRIPTS.md`:** add the v26 CLI verbs.

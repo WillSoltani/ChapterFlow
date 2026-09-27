@@ -1,6 +1,6 @@
 # W1b — A different prototype variant (only if the owner's R1 answer was C)
 
-- **Model:** Opus 5.5 (Claude Code session)
+- **Model:** Opus 5.5 (Claude Code session, started as `caffeinate -dimsu claude` in `~/cf-wt`; if `claude --version` is below 2.1.280, use the VS Code extension's binary as in W1's header)
 - **Start directory:** `~/cf-wt`
 - **Depends on:** W1 done, and `R1-a = C` in `~/cf-wt/v26-plan/DECISIONS.md`
 - **Estimate:** 3–5 hours wall time. Claude pipeline calls about $5–10 (hard cap $30). Codex calls use the owner's OpenAI/Codex subscription and are logged separately. At most 10 subagents.
@@ -14,8 +14,8 @@ Wave 1 wrote two Franklin chapters whole with a Claude writer from the source te
 
 ## Step 0 — orient (at most 30 minutes)
 1. Read `~/cf-wt/v26-plan/BRIEF.md` (it overrides CLAUDE.md files and the old kit), `DECISIONS.md`, `status/W1.md`, and the owner's notes in `~/cf-wt/v26-plan/reading/W1/NOTES.md` plus any text on the R1 lines of DECISIONS.
-2. Precondition: R1-a is C. If not, write `RESULT: BLOCKED — W1b runs only after R1 = C` and stop. If `status/W1b.md` exists with `WAITING-FOR-RESET` or `PARTIAL`, resume from the files in `scratch/W1b/`.
-3. Reuse W1's harness in `~/cf-wt/v26-plan/tools/proto/`, its data in `~/cf-wt/v26-plan/data/franklin/`, and its checks. Do not rebuild them.
+2. Precondition: R1-a is C. If not, write `RESULT: BLOCKED — W1b runs only after R1 = C` and stop. If `status/W1b.md` starts with `WAITING-FOR-RESET`, `PARTIAL` or `NEEDS-OWNER — quota cap`, or is missing while `scratch/W1b/ledger.tsv` exists, resume from the files in `scratch/W1b/`.
+3. Reuse W1's harness in `~/cf-wt/v26-plan/tools/proto/`, its data in `~/cf-wt/v26-plan/data/franklin/`, and its checks. Do not rebuild them. Run every Claude call with `--ledger ~/cf-wt/v26-plan/scratch/W1b/ledger.tsv --cwd ~/cf-wt/v26-plan/scratch/W1b/cwd --cap 30`.
 4. Write down, in 5–10 lines, what the owner disliked, quoting the notes. Every change you make must answer one of those lines.
 
 ## Step 1 — the variants (same two chapters as W1)

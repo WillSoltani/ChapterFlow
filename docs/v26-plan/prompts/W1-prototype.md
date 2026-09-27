@@ -1,6 +1,6 @@
 # W1 — Side-by-side prototype: two whole Franklin chapters, then the owner reads
 
-- **Model:** Opus 5.5 (Claude Code session, started as `caffeinate -dimsu claude` in `~/cf-wt`)
+- **Model:** Opus 5.5 (Claude Code session, started as `caffeinate -dimsu claude` in `~/cf-wt`. If `claude --version` is below 2.1.280, start it with the VS Code extension's binary instead, `caffeinate -dimsu "$(ls -d ~/.vscode/extensions/anthropic.claude-code-* | tail -1)/resources/native-binary/claude"`, or run the session on Opus 5)
 - **Start directory:** `~/cf-wt`
 - **Depends on:** nothing. The owner pastes it when there is quota, by default after the weekly reset on Tue 2026-09-29 23:00Z. If you are running, start, whatever the date.
 - **Estimate:** 5–8 hours wall time. About 14–20 pipeline model calls, $6–12 API-equivalent (hard cap $25). At most 4 subagents.
@@ -26,7 +26,11 @@ On 2026-09-27 a planning session made one exploratory ch01 draft this way:
 - The files are in `~/cf-wt/v26-plan/evidence/probe/` (after Step 0). Build on them. Do not re-derive them.
 
 ## Step 0 — set up (at most 45 minutes)
-0. **Resume check.** If `~/cf-wt/v26-plan/status/W1.md` exists and starts with `RESULT: WAITING-FOR-RESET` or `RESULT: PARTIAL`, this is a re-run. Reuse everything that exists (`~/cf-wt/v26-read`, `data/franklin/`, `tools/proto/`, `scratch/W1/`, the ledger). Continue from the first missing output, and never re-write a chapter file that already passed its checks.
+0. **Resume check.** This is a re-run in either case:
+   - `~/cf-wt/v26-plan/status/W1.md` starts with `RESULT: WAITING-FOR-RESET`, `RESULT: PARTIAL` or `RESULT: NEEDS-OWNER — quota cap`;
+   - `status/W1.md` is missing but `~/cf-wt/v26-plan/scratch/W1/ledger.tsv` exists (a session killed by the usage limit may not have written its status).
+
+   On a re-run, reuse everything that exists (`~/cf-wt/v26-read`, `data/franklin/`, `tools/proto/`, `scratch/W1/`, the ledger). Continue from the first missing output, and never re-write a chapter file that already passed its checks.
 1. **Copy the kit.** It lives on the repo branch `claude/vibrant-ritchie-xaf7dm` under `docs/v26-plan/`.
    - Run `git -C ~/ChapterFlow-books-v25-completion fetch origin claude/vibrant-ritchie-xaf7dm`.
    - If `~/cf-wt/v26-plan` does not exist: `mkdir -p ~/cf-wt/v26-plan && git -C ~/ChapterFlow-books-v25-completion archive FETCH_HEAD docs/v26-plan | tar -x -C ~/cf-wt/v26-plan --strip-components=2`.
@@ -54,8 +58,8 @@ On 2026-09-27 a planning session made one exploratory ch01 draft this way:
 9. **Which Opus.**
    - `ls -d ~/.vscode/extensions/anthropic.claude-code-*` and take the newest version at 2.1.280 or later. Set `B=<that dir>/resources/native-binary/claude` and run `"$B" --version`.
    - Run one tiny call with the exact harness flags: `cd ~/cf-wt/v26-plan/scratch/W1/cwd && echo 'Reply with the single word OK.' | env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY CLAUDE_CODE_MAX_OUTPUT_TOKENS=64000 "$B" -p --output-format json --model claude-opus-5-5 --effort low --restricted --disallowedTools '*'` (create the empty `cwd` directory first).
-   - If it rejects `--restricted`, run once more without it and record both results.
-   - If the envelope has `is_error:false` and the result says OK, the writer is `$B` with `claude-opus-5-5`. Otherwise it is `/opt/homebrew/bin/claude` with `claude-opus-5`; paste the refusal text.
+   - Use `$B` only if the call **with** `--restricted` returns `is_error:false` and OK. The writer is then `$B` with `claude-opus-5-5`.
+   - If `$B` rejects `--restricted` or refuses the model, record the refusal and fall back to `/opt/homebrew/bin/claude` with `claude-opus-5`, keeping `--restricted`. Paste the refusal text.
    - The checker uses the same binary and model. The blind quiz solver uses the same binary with `claude-sonnet-5`.
    - Write the choice to `~/cf-wt/v26-plan/tools/proto/models.json` as `{writerBin, writerModel, checkerBin, checkerModel, solverBin, solverModel, restricted: true|false}`, because shell variables do not survive between Bash calls. Never change the global PATH.
 
@@ -68,7 +72,7 @@ Write it in `~/cf-wt/v26-plan/tools/proto/`, in Python 3. Start from `~/cf-wt/v2
 
   The writer and checker always get the writer's form.
 - **`call`** runs one model call.
-  - It reads bin, model and restricted from `models.json` and takes the step's effort as an argument.
+  - It reads bin, model and restricted from `models.json` and takes the step's effort as an argument. It also takes `--ledger <path>` (default `scratch/W1/ledger.tsv`), `--cwd <dir>` (default `scratch/W1/cwd`) and `--cap <usd>` (default 25), and the budget check sums only that ledger.
   - It runs `env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY CLAUDE_CODE_MAX_OUTPUT_TOKENS=64000 <bin> -p --output-format json --model <model> --effort <effort> [--restricted] --disallowedTools '*'` as a subprocess, with the prompt on stdin.
   - The subprocess runs with `cwd` set to the empty `~/cf-wt/v26-plan/scratch/W1/cwd/`, under `caffeinate -i`, with a harness-enforced timeout (`subprocess.run(..., timeout=1200)`). Run each `call` with the Bash tool timeout at 600000 ms, or in the background with a log.
   - It saves the envelope, extracts `.result` (stripping a surrounding code fence), and appends a line to `~/cf-wt/v26-plan/scratch/W1/ledger.tsv`: step, chapter, model, `total_cost_usd`, output tokens, `stop_reason`, seconds.
@@ -81,8 +85,15 @@ Write it in `~/cf-wt/v26-plan/tools/proto/`, in Python 3. Start from `~/cf-wt/v2
     - Copy `~/cf-wt/v26-plan/evidence/probe/validate.mts.txt` to `tools/proto/validate.mts`, point its import at `~/cf-wt/v26-read/app/app/api/book/_lib/validate-book-package.ts`, and run it with `~/cf-wt/v26-read/node_modules/.bin/tsx`.
     - Build the package from rev-6 (`$PIPE/book-packages/the-autobiography-of-benjamin-franklin.v21.json` in the worktree). Keep its root fields `schemaVersion`, `packageId`, `createdAt`, `contentOwner` and `book`, and replace `chapters` with this one chapter, adding `chapterId` `ch-NN`, `number` NN and `readingTimeMinutes` = round(fullRead words / 230).
     - Any output other than `APP_VALIDATOR_OK` is a failure.
-  - (c) **Blocking:** every span in straight or curly double quotes ("…" or “…”) of 8 or more characters in reader text appears verbatim in the Franklin part of the span. The match normalizes both sides as `probe_tools.py` `norm()` does. Print the number of quotations found. A fullRead with 0 quotations is a failure, not a pass.
-  - (d) **Blocking:** `correctIndex` is in range. No summary tier over 180 words is a single paragraph. No model or meta chatter appears (e.g. "as an AI", "here is the JSON", "this chapter", "the author writes").
+  - (c) **Blocking: quotations are Franklin's real words.** The check covers every span in straight or curly double quotes ("…" or “…”) of 8 or more characters in:
+    - the three tiers, `hook`, `counterintuition`, `keyTakeaway` and `tryThisNow`;
+    - quiz explanations, review-card backs and `memorableLines` (the fields `probe_tools.py` `quote_spans` covers);
+    - in format B, the Franklin episodes in the examples.
+
+    Each such span must appear verbatim in the Franklin part of the span. The match normalizes both sides as `norm()` does.
+    - Quoted speech inside modern examples is invented by design, so report it but do not block on it.
+    - Print the number of quotations found. A fullRead with 0 quotations is a failure, not a pass.
+  - (d) **Blocking:** `correctIndex` is in range. No summary tier over 180 words is a single paragraph. No model or meta chatter appears (e.g. "as an AI", "here is the JSON", "the author writes").
   - (e) **Advisory:** lengths against the brief's bands; paragraphs over 140 words; the key-is-the-uniquely-longest-choice count; repeated stem openers.
 - **`render`** turns a v21 chapter JSON into HTML in the app's order (see Step 5).
 

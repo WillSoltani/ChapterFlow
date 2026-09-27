@@ -1,6 +1,6 @@
 # W3 — Finish Franklin: apply the owner's notes, release, hand over the publish commands, verify live
 
-- **Model:** Opus 5.5 (Claude Code session, started as `caffeinate -dimsu claude` in `~/cf-wt`)
+- **Model:** Opus 5.5 (Claude Code session, started as `caffeinate -dimsu claude` in `~/cf-wt`; if `claude --version` is below 2.1.280, use the VS Code extension's binary as in W1's header)
 - **Start directory:** `~/cf-wt`
 - **Depends on:** W2 done, and R2 = A or B in `~/cf-wt/v26-plan/DECISIONS.md`. If R1-d was B/C, W2w should be merged.
 - **Estimate:** Part A 3–6 hours wall time; pipeline calls about $5–20 (hard cap $30); at most 10 subagents. Part B under an hour.
@@ -16,12 +16,14 @@ You are running Wave 3 of the v26 ChapterFlow book campaign on the owner's Mac. 
 
 ## Which part you are in
 - If the `Owner:` line under **P1** in `~/cf-wt/v26-plan/DECISIONS.md` reads `published`, run **Part B**. That holds even when a previous Part B wrote `verify:live failed` or `WAITING-FOR-RESET`.
-- Otherwise run **Part A**. If `status/W3.md` already starts with `RESULT: NEEDS-OWNER — publish commands ready`, Part A is done: print the path of `reading/W3/PUBLISH.md` and stop without changing anything.
+- Otherwise run **Part A**.
+  - If `status/W3.md` already starts with `RESULT: NEEDS-OWNER — publish commands ready`, Part A is done: print the path of `reading/W3/PUBLISH.md` and stop without changing anything.
+  - If it starts with `WAITING-FOR-RESET`, `PARTIAL` or `NEEDS-OWNER — quota cap` (or is missing while `~/cf-wt/v26-franklin-ship` exists), resume Part A. Reuse the ship worktree and the run dir, and keep a note → change log in `~/cf-wt/v26-plan/scratch/W3/notes-applied.json` so an applied note is never applied again.
 
 ## Step 0 (both parts)
 1. Read `~/cf-wt/v26-plan/BRIEF.md` (it overrides CLAUDE.md files and the old kit) and `DECISIONS.md`.
 2. Read `status/W2.md`, `status/W2w.md` if present, and `reading/W2/NOTES.md`.
-3. **The tool.** Check it is on main: `git -C ~/ChapterFlow-books-v25-completion fetch origin && git -C ~/ChapterFlow-books-v25-completion cat-file -e origin/main:scripts/book/v26/cli.ts`.
+3. **The tool.** Check it is on main: `git -C ~/ChapterFlow-books-v25-completion fetch origin && git -C ~/ChapterFlow-books-v25-completion cat-file -e origin/main:scripts/book/v26/cli.ts`. Also check that `git -C ~/ChapterFlow-books-v25-completion show origin/main:scripts/book/v26/books/the-autobiography-of-benjamin-franklin.json | shasum -a 256` and the brief's sha256 match what `status/W2.md` records. If they do not, find the unmerged `v26/tool-2` PR, merge it per BRIEF §6, or base your branch on it, and say so.
    - If it is missing, find W2's PR (`gh pr list -R WillSoltani/ChapterFlow --head v26/tool --state all`). If the PR is open and its required checks pass, merge it per BRIEF §6.
    - If the merge is refused, base your branch on `origin/v26/tool` instead of `origin/main`, say so, and note that the ship PR then carries the tool too.
 4. **The reader change.** If R1-d is B or C, confirm W2w's PR is merged (`gh pr list -R WillSoltani/ChapterFlow --head v26/reader-default-depth --state merged`). If it is not, put its merge command first in PUBLISH.md, before the deploy step, with "merge this before (4)".
@@ -38,7 +40,7 @@ You are running Wave 3 of the v26 ChapterFlow book campaign on the owner's Mac. 
 5. **Presentation entry.** New books otherwise get a boilerplate synopsis.
    - Add to `BOOK_PACKAGE_PRESENTATION` in `app/book/data/bookPackages.ts` (type `BookPackagePresentation` in `app/book/data/book-package-core.ts`: `icon`, optional `coverImage`, `difficulty`, `synopsis`, optional `pages`): `"the-autobiography-of-benjamin-franklin": { icon: "🪁", difficulty: "Medium", synopsis: "<2–3 sentences written from the book, no invented claims>", pages: <n> }`.
    - Omit `coverImage` while `public/book-covers/` has no Franklin file. List the missing cover for the owner.
-   - Commit the entry on `books/franklin-v26` (`git add ':(literal)app/book/data/bookPackages.ts' && git commit -m "feat(book): Franklin presentation entry"`) before the dry run.
+   - Commit the entry on `books/franklin-v26` before the dry run: `git -C ~/cf-wt/v26-franklin-ship add ':(literal)app/book/data/bookPackages.ts' && git -C ~/cf-wt/v26-franklin-ship commit -m "feat(book): Franklin presentation entry" -- ':(literal)app/book/data/bookPackages.ts'`. Skip this if `git -C ~/cf-wt/v26-franklin-ship log --oneline origin/main..HEAD` already shows it.
    - Expected: `app/book/data/bookPackages.test.ts` "every BOOK_PACKAGE_PRESENTATION key is a known bookId" fails on this commit alone. It passes once the owner's ship commit adds the registry block, and CI runs on the PR with both. Say so in the status; do not "fix" it.
 6. **Assemble** the final package with the tool (it goes to the run dir, never into a checkout's `book-packages/`). Then:
    - Run every app check, and `(cd <runDir> && TSX_TSCONFIG_PATH=~/cf-wt/v26-franklin-ship/tsconfig.json ~/cf-wt/v26-franklin-ship/node_modules/.bin/tsx ~/cf-wt/v26-franklin-ship/scripts/book/register-api-books.ts --dry-run the-autobiography-of-benjamin-franklin)`.
@@ -67,9 +69,13 @@ You are running Wave 3 of the v26 ChapterFlow book campaign on the owner's Mac. 
 
 ## Part B — after the owner published
 1. Confirm from origin/main that the ship PR is merged, and look up its number and SHA.
-2. In `~/cf-wt/v26-read` at the merged `origin/main` (refresh it as in Part A step 7), run `AWS_REGION=us-east-1 BOOK_CONTENT_BUCKET=$(aws ssm get-parameter --name /chapterflow/prod/BOOK_CONTENT_BUCKET --query Parameter.Value --output text) npm run verify:live` and paste its result lines.
+2. In `~/cf-wt/v26-read` at the merged `origin/main` (refresh it as in Part A step 7), run `export AWS_REGION=us-east-1; B=$(aws ssm get-parameter --region us-east-1 --name /chapterflow/prod/BOOK_CONTENT_BUCKET --query Parameter.Value --output text)`, check that `$B` is non-empty, then run `BOOK_CONTENT_BUCKET=$B npm run verify:live` and paste its result lines.
    - A SKIPPED check is not a pass. If AWS credentials are missing on this Mac, write `RESULT: NEEDS-OWNER — verify:live needs AWS credentials` and stop.
-3. If it passes: commit the sentinel change it makes (`book-packages/.pending-deploy.json`) on a new branch from a BRIEF §5 change worktree, open a PR, and merge it per BRIEF §6.
+3. If it passes, land the sentinel change it made:
+   - Create `~/cf-wt/v26-sentinel` on branch `books/franklin-v26-verified` from origin/main (BRIEF §5 recipe).
+   - `cp ~/cf-wt/v26-read/book-packages/.pending-deploy.json ~/cf-wt/v26-sentinel/book-packages/.pending-deploy.json`, then restore `v26-read` with `git -C ~/cf-wt/v26-read checkout -- ':(literal)book-packages/.pending-deploy.json'`.
+   - Commit with `git -C ~/cf-wt/v26-sentinel add -- ':(literal)book-packages/.pending-deploy.json' && git -C ~/cf-wt/v26-sentinel commit -m "chore(book): Franklin verified live" -- ':(literal)book-packages/.pending-deploy.json'`.
+   - Push, open the PR, and merge it per BRIEF §6.
 4. If it fails: paste the failing check, say which owner step it points to, and write `RESULT: NEEDS-OWNER — verify:live failed: <line>`. A re-run of this prompt comes back to Part B.
 5. On success, write `status/W3.md` starting with `RESULT: DONE — Franklin live, verify:live passed (<date>)`. Append one line to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md`, and add a durable one-liner to that directory's `MEMORY.md`: "Franklin v26 published <date> via scripts/book/v26 (PR #…)".
 

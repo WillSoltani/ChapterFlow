@@ -1,6 +1,6 @@
 # W4a — The second book in days: Arnold Bennett, *How to Live on 24 Hours a Day*
 
-- **Model:** Opus 5.5 (Claude Code session)
+- **Model:** Opus 5.5 (Claude Code session, started as `caffeinate -dimsu claude` in `~/cf-wt`; if `claude --version` is below 2.1.280, use the VS Code extension's binary as in W1's header)
 - **Start directory:** `~/cf-wt`
 - **Depends on:** W3 Part A done (the v26 tool is on origin/main). It may start before Franklin's deploy. Runs in parallel with W4b.
 - **Estimate:** 0.5–1 day wall time. Pipeline calls about $10–25 (hard cap $40). At most 10 subagents.
@@ -21,9 +21,9 @@ Measure the wall time and the cost from start to reading pack. That measurement 
 
 ## Step 0
 1. Read `~/cf-wt/v26-plan/BRIEF.md` (it overrides CLAUDE.md files and the old kit), `DECISIONS.md`, `status/W2.md`, `status/W3.md`, `scripts/book/v26/README.md` and `scripts/book/v26/briefs/README.md` (book types).
-2. Record the start time (UTC).
+2. Record the start time (UTC) in `~/cf-wt/v26-plan/scratch/W4a/start.txt` only if that file does not exist; otherwise reuse it. If `status/W4a.md` starts with `WAITING-FOR-RESET`, `PARTIAL` or `NEEDS-OWNER — quota cap` (or is missing while `~/cf-wt/v26-bennett` exists), this is a re-run: reuse the worktree, the data and the run dir, and continue with `run`, which skips finished chapters.
 3. Check the tool is on main (`git -C ~/ChapterFlow-books-v25-completion fetch origin && git -C ~/ChapterFlow-books-v25-completion cat-file -e origin/main:scripts/book/v26/cli.ts`). If it is missing, base the worktree on `origin/v26/tool` and say so.
-4. Create the change worktree, or reuse it if it exists: `git -C ~/ChapterFlow-books-v25-completion worktree add -b books/bennett-v26 ~/cf-wt/v26-bennett origin/main`. Then `cmp` the lockfiles and symlink both `node_modules` (BRIEF §5). Never `npm ci`.
+4. Create the change worktree, or reuse it if it exists: `git -C ~/ChapterFlow-books-v25-completion worktree add -b books/bennett-v26 ~/cf-wt/v26-bennett origin/main` (or `origin/v26/tool`, per step 3). Then `cmp` the lockfiles and symlink both `node_modules` (BRIEF §5). Never `npm ci`.
 
 ## Step 1 — source and chapter map (0 model calls if possible)
 Bennett's text was frozen by the v25 runs. Look under `~/cf-canary/books/how-to-live-on-24-hours-a-day/candidates/*/content/inputs/research/` for `source-text.txt` plus `chapter-map.json`.

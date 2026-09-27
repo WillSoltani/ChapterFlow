@@ -1,6 +1,6 @@
 # W2 — Build the v26 book tool in the repo, then write all of Franklin with it
 
-- **Model:** Opus 5.5 (Claude Code session, started as `caffeinate -dimsu claude` in `~/cf-wt`)
+- **Model:** Opus 5.5 (Claude Code session, started as `caffeinate -dimsu claude` in `~/cf-wt`; if `claude --version` is below 2.1.280, use the VS Code extension's binary as in W1's header)
 - **Start directory:** `~/cf-wt`
 - **Depends on:** W1 (and W1b if it ran) finished, and the owner's R1-a line reads A or B in `~/cf-wt/v26-plan/DECISIONS.md`
 - **Estimate:** 1–1.5 days wall time. Pipeline model calls about $30–50 (hard cap $80). At most 25 subagents.
@@ -20,7 +20,7 @@ You are running Wave 2 of the v26 ChapterFlow book campaign on the owner's Mac. 
 The owner's reading is the gate. Automated checks block only on facts, quiz keys and renderability (BRIEF §4).
 
 ## Resuming
-If `~/cf-wt/v26-plan/status/W2.md` exists and starts with `RESULT: WAITING-FOR-RESET` or `RESULT: PARTIAL`, this is a re-run:
+If `~/cf-wt/v26-plan/status/W2.md` starts with `RESULT: WAITING-FOR-RESET`, `RESULT: PARTIAL` or `RESULT: NEEDS-OWNER — quota cap`, or `~/cf-wt/v26-tool` already exists without a final `status/W2.md`, this is a re-run:
 - Reuse `~/cf-wt/v26-tool` and do not re-create it.
 - Look up the PR with `gh pr list -R WillSoltani/ChapterFlow --head v26/tool --state all`. If it is merged, skip Steps 1–2.
 - Run `npx tsx scripts/book/v26/cli.ts status --book <config>` and continue Step 3 with `run`, which skips finished chapters.
@@ -54,6 +54,8 @@ If `~/cf-wt/v26-plan/status/W2.md` exists and starts with `RESULT: WAITING-FOR-R
 - Before the PR, run `npm run typecheck:shared-closure -- --base origin/main` and paste its PASS line.
 
 Target 600–1,000 lines of code plus tests, with prompt templates as `.md` files.
+
+**Runbook.** Write `scripts/book/v26/README.md` and include it in the PR. It covers what the tool is, the config fields, each CLI verb with an example, where the run dir and ledger live, the rule that the real `ship` is the owner's, and how to run the tests. W4a extends it with "Making the next book".
 
 **Book config** `scripts/book/v26/books/<bookId>.json` holds:
 - `bookId`, `title`, `author`;
@@ -128,7 +130,7 @@ If the version going forward is **G** (GPT-5.5), the `writer` entry is `{"kind":
 
 ## Step 2 — the release route (same PR, or a second small PR if cleaner)
 1. **Catalog path fix.** Point `scripts/book/generate-catalog-metadata.ts:27`, `$PIPE/src/publish/publishToLive.ts:70` and `scripts/book/register-api-books.ts:251` at `lib/books-catalog.metadata.json`.
-   - Update the fixture lines that pin the old path: `$PIPE/tests/publish-final.test.ts:52,76` and `$PIPE/tests/publish-final-outcomes.test.ts:36,60` (`command grep -rn booksCatalog.metadata $PIPE/tests` for any others).
+   - Update the fixture lines that pin the old path: `$PIPE/tests/publish-final.test.ts:52,76` and `$PIPE/tests/publish-final-outcomes.test.ts:36,60`. Leave `$PIPE/tests/publish-after-qc-git.test.ts` alone: it pins `src/qc/publishAfterQc.ts`, which keeps the old path (the frozen v25 route).
    - Prove it: regenerating from `BOOK_PACKAGES` reproduces `lib/books-catalog.metadata.json` byte for byte (135/135).
    - CI does not run the `$PIPE` suite, so run both test files locally and paste their pass lines: `cd $PIPE && CHAPTERFLOW_NO_API_CODEX_QC=1 env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npx tsx tests/publish-final.test.ts`, then the same for `publish-final-outcomes.test.ts`.
 2. **`ship`** is a thin wrapper over `publishFinal()`. It passes:
@@ -141,7 +143,7 @@ If the version going forward is **G** (GPT-5.5), the `writer` entry is `{"kind":
    Behaviour:
    - It refuses on `main`.
    - It refuses when `git -C <outerRoot> status --porcelain -- book-packages/<bookId>.v21.json` is non-empty, in dry runs too, and prints why.
-   - On a real run it first writes a short provenance note to `<outerRoot>/book-packages/<bookId>.v26-provenance.md`: writer and checker models, brief sha256, source sha256, and a per-chapter check summary. It commits that note on the current branch (`git -C <outerRoot> commit -- ':(literal)book-packages/<bookId>.v26-provenance.md'`), and only then calls `publishFinal`, whose commit covers only the package, sentinel, registry and catalog.
+   - On a real run it first writes a short provenance note to `<outerRoot>/book-packages/<bookId>.v26-provenance.md`: writer and checker models, brief sha256, source sha256, and a per-chapter check summary. It commits that note on the current branch (`git -C <outerRoot> add -- ':(literal)book-packages/<bookId>.v26-provenance.md' && git -C <outerRoot> commit -m "docs(book): <bookId> v26 provenance" -- ':(literal)book-packages/<bookId>.v26-provenance.md'`; the note is a new, untracked file), and only then calls `publishFinal`, whose commit covers only the package, sentinel, registry and catalog.
    - `--dry-run` prints the note, the commit it would make and publishFinal's plan, and mutates nothing.
    - The real `ship` is the owner's command. This session never runs it without `--dry-run`.
 3. Leave the tracked rev-6 Franklin package and sidecar under `$PIPE` alone. `ship` does not read them. Mention in the PR that the `publish-final` CLI still would.
@@ -168,6 +170,12 @@ If the version going forward is **G** (GPT-5.5), the `writer` entry is `{"kind":
    - Run `ship --dry-run` from a worktree on a branch, never from the canonical checkout (it is on main and must not switch branches): use `~/cf-wt/v26-tool` on `v26/tool`. If that branch was squash-merged, make a fresh change worktree `~/cf-wt/v26-franklin-dry` on branch `books/franklin-v26-dry` from origin/main (remove it afterwards, and never push its branch).
    - Paste the plan output.
 
+## Step 3b — land what changed after the merge
+The brief, the Franklin config (categories, tags, runDir) and any tool fixes made during Step 3 are not on main yet.
+- Commit them on a new branch `v26/tool-2`: `git -C ~/cf-wt/v26-tool fetch origin && git -C ~/cf-wt/v26-tool switch -c v26/tool-2 origin/main`, then bring the changed files over.
+- Open a PR and merge it per BRIEF §6. If the merge is refused, print the command.
+- Record in the status the origin/main SHA after the merge, and the sha256 of the Franklin config and brief, so W3 can confirm it ships what you wrote.
+
 ## Step 4 — the reading pack for R2
 Build `~/cf-wt/v26-plan/reading/W2/index.html` with every chapter rendered in the app's order and form (R1-d decides which tier opens first; the others are toggles). It includes:
 - a contents list with one line per chapter;
@@ -184,7 +192,7 @@ Build `~/cf-wt/v26-plan/reading/W2/index.html` with every chapter rendered in th
 - If a usage limit hits: finish writing files for completed chapters, write `RESULT: WAITING-FOR-RESET — <what is done, what to resume>`, and stop.
 
 ## Definition of done
-- The PR is merged, or its merge command is printed for the owner. The PR has pass lines and an independent review.
+- The PR (tool, tests, runbook `scripts/book/v26/README.md`, catalog-path fix) is merged, or its merge command is printed for the owner. It has pass lines and an independent review. The Step 3b follow-up PR is merged too, or its command is printed.
 - `status` shows every chapter as `clean` or `open-issues`, with every open issue in plain words in the reading pack.
 - The Franklin package is assembled in the run dir. It passes the app validator, the slim-contract, title-quality and taxonomy rules and `register-api-books --dry-run`, and `ship --dry-run` printed a plan (pasted).
 - The reading pack opens (use `open`, and `ls` every linked file).
@@ -195,6 +203,7 @@ Build `~/cf-wt/v26-plan/reading/W2/index.html` with every chapter rendered in th
   - the chapters with open issues;
   - brief changes and why;
   - the run-dir path and the package sha256;
+  - the origin/main SHA and the sha256 of the Franklin config and brief (Step 3b);
   - the exact ship command W3 will hand the owner;
   - anything W3 must know.
 - One line appended to `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md`.

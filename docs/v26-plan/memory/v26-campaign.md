@@ -8,7 +8,7 @@ type: project
 
 **Kit:** `~/cf-wt/v26-plan/` (source of truth: repo branch `claude/vibrant-ritchie-xaf7dm`, `docs/v26-plan/`).
 Start with `README.md` (roadmap), `BRIEF.md` (shared facts, traps, safety), `DECISIONS.md` (owner choices + defaults),
-`ANALYSIS.md` (root causes with evidence). Run-sheet artifact: see README.
+`ANALYSIS.md` (root causes with evidence). Run-sheet artifact: https://claude.ai/artifact/PV5eE6p56KDCSXGFuNwZYP
 
 **Why:** v25 (research sidecars → 4 section writers per chapter at Sonnet-medium → 138 SEC checks → panel → repair loops → QC →
 rubric) produced no publishable book in ~10 weeks. The 2026-09-27 planning probe showed one Opus 5 call writes a whole Franklin
