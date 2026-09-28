@@ -42,22 +42,22 @@ stronger practice plan, and fewer quotations.
 | Wave | Sessions (parallel where shown) | Model | Wall time | Quota cap (pipeline calls / session) | Exit | If it fails |
 |---|---|---|---|---|---|---|
 | **W1 Prototype** | `W1-prototype` | Opus 5.5 | 5–8 h | $25 / ~12 subagents | Reading pack; `RESULT: NEEDS-OWNER` → **R1: the owner reads (~1 h)** | R1 = C → `W1b-variant` (GPT-5.5 writer and/or another format), then R1 again |
-| **W2 Build + write Franklin** | `W2-pipeline-and-book` ∥ `W2w-reader-app` (only if R1-d = B/C) | Opus 5.5 (both) | 1–1.5 days | $80 / ~25 subagents | `scripts/book/v26/` merged with tests in CI; all 19 chapters written + checked; `ship --dry-run` prints a plan for the book; reading pack → **R2: the owner reads the book (~2–3 h)** | Code: fix and re-run (tests are the gate). Book: failing chapters listed; the owner decides at R2 |
+| **W2 Build + write Franklin** | `W2-pipeline-and-book` ∥ `W2w-reader-app` (R1-d = B, answered 09-28) | Opus 5.5 (both) | 1–1.5 days | $80 / ~25 subagents | `scripts/book/v26/` merged with tests in CI; all 19 chapters written + checked; `ship --dry-run` prints a plan for the book; reading pack → **R2: the owner reads the book (~2–3 h)** | Code: fix and re-run (tests are the gate). Book: failing chapters listed; the owner decides at R2 |
 | **W3 Finish Franklin** | `W3-finish-franklin` | Opus 5.5 | 0.5 day | $30 / ~10 | Owner notes applied + re-checked; release package; ship, S3, deploy and `register:api` commands in `reading/W3/PUBLISH.md` → **the owner publishes** (P1) → Part B runs `verify:live` | R2 = C → reassess point |
 | **W4 Next book + cleanup** | `W4a-second-book` ∥ `W4b-cleanup` | Opus 5.5 ∥ Sonnet 5 | 1–2 days | $40 / ~16 | Bennett reading pack + release commands (owner light read); v25 driver retired, CI runs the v26 tests, stale PRs, branches and worktrees cleaned, memory and docs updated | Bennett problems are recorded as brief/profile changes, never new rules |
 
 **Timeline** (if W1 starts at the reset on Tue 09-29 23:00Z): R1 on 10-01, the Franklin book to read about 10-03, Franklin in the
-app about **10-06/07**, and Bennett ready about 10-09 (W4a can start right after W3 Part A). Owner reading time in total: about 1 h (R1) + 2–3 h (R2) + about 1 h (Bennett).
+app about **10-06/07**, and Bennett ready about 10-09 (W4a can start right after W3 Part A). Owner reading time in total: about 1–1.5 h (R1) + 2–3 h (R2) + about 1 h (Bennett).
 
 ```mermaid
 graph TD
-  N[Owner: N2 optional<br/>default OK] --> W1[W1 prototype<br/>2 chapters + reading pack]
+  N[Owner: N2 = A, R1-d = B<br/>answered 09-28] --> W1[W1 prototype<br/>2 chapters + reading pack]
   W1 --> R1{R1: owner reads}
   R1 -- C: not better --> W1b[W1b variant<br/>GPT-5.5 / other format] --> R1b{R1 again}
   R1b -- still not better --> STOP[Reassess point:<br/>stop, replan with owner]
   R1b -- better --> W2
   R1 -- A/B: better --> W2[W2 build scripts/book/v26 +<br/>write all 19 chapters]
-  R1 -- R1-d = B/C --> W2w[W2w reader-app change]
+  R1 -- A/B, and R1-d = B --> W2w[W2w reader-app change]
   W2 --> R2{R2: owner reads book}
   W2w --> R2
   R2 -- A/B --> W3[W3 finish + release]
@@ -83,7 +83,7 @@ graph TD
   real output (BRIEF §4).
 
 ## 5. How to run
-1. Optionally choose N2 (which two chapters). The default is ch01 + ch13. To change it, put a line at the top of the pasted W1 prompt, e.g. `Owner answers: N2 = B`.
+1. Already decided on 2026-09-28: N2 = A (ch01 + ch13) and R1-d = B (new readers see the full telling). Both are on their `Owner:` lines in `DECISIONS.md`, so paste the W1 prompt as it is.
 2. After Tuesday's reset (2026-09-29 23:00Z, 7 pm Toronto), or earlier if your usage page shows about 20% or more of the weekly limit left, start a fresh Claude Code session in `~/cf-wt` as `caffeinate -dimsu claude` (Mac on power). If `claude --version` is below 2.1.280, it cannot run Opus 5.5. Start the session with the VS Code extension's binary instead: `caffeinate -dimsu "$(ls -d ~/.vscode/extensions/anthropic.claude-code-* | tail -1)/resources/native-binary/claude"`. Otherwise, pick Opus 5 in the session. Then paste `prompts/W1-prototype.md` (the text between `---PROMPT---` and `---END---`). The first time, accept the folder-trust prompt and use the same permission mode you used for the v25 sessions, so the session does not stop for approvals.
 3. When a session ends, read its `status/<ID>.md`. `NEEDS-OWNER` means it is your turn: read the reading pack and answer the batch in DECISIONS.
 4. Paste the next prompt per the graph. Sessions shown with ∥ can run at the same time (at most 3 at once).
@@ -93,7 +93,7 @@ graph TD
 | `W1-prototype.md` | first |
 | `W1b-variant.md` | only if R1 = C |
 | `W2-pipeline-and-book.md` | after R1 = A/B |
-| `W2w-reader-app.md` | with W2, only if R1-d = B or C |
+| `W2w-reader-app.md` | with W2 (R1-d = B) |
 | `W3-finish-franklin.md` | after R2 = A/B |
 | `W4a-second-book.md`, `W4b-cleanup.md` | after W3 Part A (you do not need to have published Franklin); they can run together |
 

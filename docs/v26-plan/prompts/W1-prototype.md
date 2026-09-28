@@ -37,7 +37,7 @@ On 2026-09-27 a planning session made one exploratory ch01 draft this way:
    - If it exists, extract to `~/cf-wt/v26-plan.incoming` instead, `diff -r` the two, and copy only missing files. Never overwrite `status/` or `DECISIONS.md`.
    - Record the `FETCH_HEAD` SHA. If `~/cf-wt/v26-plan/prompts/W1-prototype.md` differs from the prompt you were given, say so in your status file and follow the pasted prompt.
 2. **Owner answers.** If the owner's message has a line starting `Owner answers:` (e.g. `Owner answers: N2 = B`), write each answer onto its `Owner:` line in `~/cf-wt/v26-plan/DECISIONS.md` before reading it.
-3. **Read** `~/cf-wt/v26-plan/BRIEF.md` first (the shared facts, traps and safety rules; it overrides CLAUDE.md files and the old kit). Then read `DECISIONS.md` (N2 applies to you; a blank answer means the default), `README.md`, and `ANALYSIS.md` §1–§4.
+3. **Read** `~/cf-wt/v26-plan/BRIEF.md` first (the shared facts, traps and safety rules; it overrides CLAUDE.md files and the old kit). Then read `DECISIONS.md` (N2 applies to you, and R1-d sets the depth the reading pack opens at; a blank answer means the default), `README.md`, and `ANALYSIS.md` §1–§4.
 4. **Memory.** If `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md` does not exist, copy `~/cf-wt/v26-plan/memory/v26-campaign.md` there. If `MEMORY.md` in that directory has no line mentioning `v26-campaign.md`, append the line in `~/cf-wt/v26-plan/memory/MEMORY-line.txt`.
 5. **PAUSE.** Confirm `~/cf-wt/franklin-v7-tools/PAUSE` exists, and leave it.
 6. **Read-only worktree.** Create `~/cf-wt/v26-read` at `origin/main` with the BRIEF §5 recipe (`cmp` both lockfiles, symlink both `node_modules`, never `npm ci`), or reuse it if it exists. Record its SHA.
@@ -161,7 +161,7 @@ Build `~/cf-wt/v26-plan/reading/W1/index.html` plus one page per chapter. It mus
 - **Each version renders in the app's order and form:**
   - the chapter header (title, reading time);
   - the hook and counterintuition;
-  - the Summary step at the depth a new user sees by default (`fastRead`), with buttons to switch to `deepRead` and `fullRead`;
+  - the Summary step, opened at the depth R1-d in `DECISIONS.md` gives a new user (`fullRead` for B, `deepRead` for C, `fastRead` for A or blank), with buttons to switch to the other two;
   - the memorable lines and tryThisNow;
   - Examples (first one open, the rest behind "Show more");
   - Quiz (choices shown; the answer revealed on click, with its explanation);
@@ -185,7 +185,7 @@ Build `~/cf-wt/v26-plan/reading/W1/index.html` plus one page per chapter. It mus
   - the ledger totals;
   - your comparison.
 - **`~/cf-wt/v26-plan/reading/W1/NOTES.md`,** with a "General" heading and one heading per chapter. Link it from the index.
-- **A "How to read this" box at the top of the index:** about 45–60 minutes. Read each chapter at the default depth first, the way a new user would, then open the full telling. Then answer R1-a, R1-b and R1-d in `DECISIONS.md`; copy those three questions onto the index verbatim.
+- **A "How to read this" box at the top of the index:** about 60–90 minutes. Read each chapter at the depth it opens at (what a new user will see), then glance at the short summary (`fastRead`). Then answer R1-a and R1-b in `DECISIONS.md`, and R1-d too if its `Owner:` line is blank. If R1-d already has an answer (B was given on 2026-09-28), say so in the box: it can still be changed there before W2. Copy the questions still open onto the index verbatim.
 - **No in-app preview in this wave.** The chapter route loads the book from the published manifest in DynamoDB and S3, and calls `notFound()` without it (`app/book/library/[bookId]/chapter/[chapterId]/page.tsx:12-60`).
 
 ## Boundaries

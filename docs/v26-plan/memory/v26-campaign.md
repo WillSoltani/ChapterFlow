@@ -25,3 +25,4 @@ Each session appends exactly one line below.
 
 ## Progress
 - 2026-09-27 PLAN DONE — kit written, run-sheet published; first prompt: prompts/W1-prototype.md (planning session, 3 model calls, $0.86)
+- 2026-09-28 OWNER — N2 = A (ch01 + ch13), R1-d = B (new readers see the full telling); recorded in DECISIONS.md on the kit branch

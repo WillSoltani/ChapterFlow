@@ -19,7 +19,7 @@ PROMPT_ORDER = [
     ("W1-prototype.md", "W1", "first"),
     ("W1b-variant.md", "W1b", "only if R1 = C"),
     ("W2-pipeline-and-book.md", "W2", "after R1 = A/B"),
-    ("W2w-reader-app.md", "W2w", "with W2, only if R1-d = B/C"),
+    ("W2w-reader-app.md", "W2w", "with W2 (R1-d = B)"),
     ("W3-finish-franklin.md", "W3", "after R2 = A/B (re-run for Part B after you publish)"),
     ("W4a-second-book.md", "W4a", "after W3 Part A (you need not have published); parallel with W4b"),
     ("W4b-cleanup.md", "W4b", "after W3 Part A, parallel with W4a"),
@@ -259,9 +259,9 @@ footer{margin-top:3em;font-size:.85rem;color:var(--ink-2);border-top:1px solid v
 <section class="start" id="start">
   <h2>Start here</h2>
   <ol>
-    <li><b>Decide now (optional):</b> only N2, which two chapters the prototype writes. The default is ch01 + ch13; do nothing to keep it. To choose ch01 + ch07, put this line at the top of the W1 prompt when you paste it: <code>Owner answers: N2 = B</code>.</li>
+    <li><b>Already decided (09-28):</b> the prototype writes ch01 + ch13 (N2 = A), and new readers will see the full telling (R1-d = B). Both are recorded in <code>DECISIONS.md</code>, so paste the W1 prompt as it is.</li>
     <li><b>Paste <code>W1-prototype</code></b> after Tuesday's reset (Tue 09-29, 7 pm Toronto), or earlier if your usage page shows about 20% or more of the weekly limit left. Start a fresh Claude Code session in <code>~/cf-wt</code> as <code>caffeinate -dimsu claude</code> (Mac on power). New this time: sessions start in <code>~/cf-wt</code>, not <code>~/ChapterFlow</code>, so the first time you accept the folder-trust prompt and use the same permission mode as the v25 sessions. W1 copies this kit from the repo branch <code>claude/vibrant-ritchie-xaf7dm</code> to <code>~/cf-wt/v26-plan/</code> and installs the campaign memory note.</li>
-    <li><b>About a day later, read</b> the reading pack it builds (about an hour), then answer R1-a, R1-b and R1-d in <code>~/cf-wt/v26-plan/DECISIONS.md</code>.</li>
+    <li><b>About a day later, read</b> the reading pack it builds (about 1–1.5 hours), then answer R1-a and R1-b in <code>~/cf-wt/v26-plan/DECISIONS.md</code>.</li>
   </ol>
   <p class="note"><b>Timeline</b> if Wave 1 starts at the reset on Tue 09-29 23:00Z: you read the prototype on 10-01 and the whole Franklin book about 10-03. Franklin could be in the app about <b>10-06/07</b>, and the second book (Bennett) ready about 10-09. Your reading time is about 1 h + 2–3 h, plus an optional light read of Bennett.</p>
   <p class="note"><b>Cost.</b> Model calls made by the pipeline are expected to come to about $50–100 API-equivalent for Franklin plus Bennett, with hard caps adding up to $175 (one v25 run cost $700–1,100). The Claude Code sessions themselves also use your weekly limit and are not estimated. In the heavy v25 week they used as much as the pipeline. W2 is the heavy session, so start it early in a quota week.</p>
@@ -309,7 +309,7 @@ footer{margin-top:3em;font-size:.85rem;color:var(--ink-2);border-top:1px solid v
 <thead><tr><th>Wave</th><th>Sessions</th><th>Model</th><th>Wall time</th><th>Cap (pipeline / subagents)</th><th>Exit</th><th>If it fails</th></tr></thead>
 <tbody>
 <tr><td><b>W1</b> Prototype</td><td>W1</td><td>Opus 5.5</td><td class="num">5–8 h</td><td class="num">$25 / 12</td><td>2 chapters + reading pack → <b>you read (R1, ~1 h)</b></td><td>R1 = C → W1b (GPT-5.5 writer or another format)</td></tr>
-<tr><td><b>W2</b> Build + write Franklin</td><td>W2 ∥ W2w (if R1-d = B/C)</td><td>Opus 5.5</td><td class="num">1–1.5 d</td><td class="num">$80 / 25</td><td>Tool merged with tests in CI; 19 chapters checked; <code>ship --dry-run</code> passes → <b>you read (R2, 2–3 h)</b></td><td>Chapters with open issues are listed for you</td></tr>
+<tr><td><b>W2</b> Build + write Franklin</td><td>W2 ∥ W2w (R1-d = B)</td><td>Opus 5.5</td><td class="num">1–1.5 d</td><td class="num">$80 / 25</td><td>Tool merged with tests in CI; 19 chapters checked; <code>ship --dry-run</code> passes → <b>you read (R2, 2–3 h)</b></td><td>Chapters with open issues are listed for you</td></tr>
 <tr><td><b>W3</b> Finish</td><td>W3 (Part A, then Part B)</td><td>Opus 5.5</td><td class="num">0.5 d</td><td class="num">$30 / 10</td><td>Your notes applied; <b>you run ship, S3, deploy, register (P1)</b>; then Part B runs <code>verify:live</code></td><td>R2 = C → reassess point</td></tr>
 <tr><td><b>W4</b> Next book + cleanup</td><td>W4a ∥ W4b</td><td>Opus 5.5 ∥ Sonnet 5</td><td class="num">1–2 d</td><td class="num">$40 / 16</td><td>Bennett reading pack in days; v25 driver retired; CI, branches, worktrees, docs, memory</td><td>Problems become brief changes, never new rules</td></tr>
 </tbody></table></div>
@@ -323,13 +323,13 @@ footer{margin-top:3em;font-size:.85rem;color:var(--ink-2);border-top:1px solid v
 <details class="graph"><summary>Dependency graph (mermaid)</summary>
 <pre class="mermaid">
 graph TD
-  N[You: N2 optional] --> W1[W1 prototype: 2 chapters]
+  N[You: N2 = A, R1-d = B] --> W1[W1 prototype: 2 chapters]
   W1 --> R1{R1: you read}
   R1 -- not better --> W1b[W1b variant] --> R1b{R1 again}
   R1b -- STOP --> STOP[Reassess: stop and replan]
   R1b -- better --> W2
   R1 -- better --> W2[W2 build + write 19 chapters]
-  R1 -- R1-d = B/C --> W2w[W2w reader app]
+  R1 -- better --> W2w[W2w reader app]
   W2 --> R2{R2: you read the book}
   W2w --> R2
   R2 -- approve --> W3[W3 Part A: final + commands]

@@ -5,19 +5,19 @@ Two have no default and need your reading: **R1-a** (after Wave 1) and **R2** (a
 saying you have run the publish commands.
 
 Your turns:
-- **now** (optional, N2);
-- **R1** after Wave 1 (about 1 hour of reading);
+- **now:** done on 2026-09-28 (N2 = A, R1-d = B, recorded below);
+- **R1** after Wave 1 (about 1–1.5 hours of reading);
 - **R2** after Wave 2 (2–3 hours);
 - **P1** once you have run the publish commands;
 - an optional light read of the second book after Wave 4.
 
 Batch 4 has defaults only. To answer, write on the `Owner:` line in `~/cf-wt/v26-plan/DECISIONS.md` on the Mac. That file
-exists only once W1 has copied the kit, so **Batch 1 answers go on a line at the top of the W1 prompt when you paste it**,
-for example `Owner answers: N2 = B`.
+exists only once W1 has copied the kit. To change an answer before then, put a line at the top of the W1 prompt when you
+paste it, for example `Owner answers: N2 = B`.
 
 ---
 
-## Batch 1 — now (optional; one question)
+## Batch 1 — now (answered 2026-09-28)
 
 ### N2. Which two chapters does the prototype write?
 - **A — ch01 "Family History and Boyhood in Boston" and ch13 "Public Services and Duties".**
@@ -26,7 +26,7 @@ for example `Owner answers: N2 = B`.
 - **B — ch01 and ch07 "Beginning Business in Philadelphia".** ch07 had the most errors of the four audited rr21 chapters (15 contradicted claims, 10 of them major, e.g. Baird's club and why Franklin took half from each friend). That makes it the harshest accuracy test.
 - **Recommended and default: A.** Accuracy is tested either way. Wave 1 also checks the fact checker against rr21's real ch07 and ch19 errors.
 
-Owner:
+Owner: A (answered 2026-09-28)
 
 ---
 
@@ -70,8 +70,10 @@ The options:
   - Trade-off: in some older catalog books the full telling is one long block, and new readers of those books would now see it.
 - **C — show the middle depth (`deepRead`, about 300–500 words) by default,** with the same bug fixes.
 - **Recommended: B.** The writing is the product, and today the product hides it. Default: **A** (no app change without your yes).
+- **Answered early,** on 2026-09-28, before the Wave 1 reading. The W1 reading pack opens each chapter at the full telling.
+  If the reading changes your mind, change the letter below before W2 starts.
 
-Owner:
+Owner: B (answered 2026-09-28)
 
 ---
 

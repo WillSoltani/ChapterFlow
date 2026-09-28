@@ -102,9 +102,9 @@ footer{margin-top:3em;font-size:.85rem;color:var(--ink-2);border-top:1px solid v
 <section class="start" id="start">
   <h2>Start here</h2>
   <ol>
-    <li><b>Decide now (optional):</b> only N2, which two chapters the prototype writes. The default is ch01 + ch13; do nothing to keep it. To choose ch01 + ch07, put this line at the top of the W1 prompt when you paste it: <code>Owner answers: N2 = B</code>.</li>
+    <li><b>Already decided (09-28):</b> the prototype writes ch01 + ch13 (N2 = A), and new readers will see the full telling (R1-d = B). Both are recorded in <code>DECISIONS.md</code>, so paste the W1 prompt as it is.</li>
     <li><b>Paste <code>W1-prototype</code></b> after Tuesday's reset (Tue 09-29, 7 pm Toronto), or earlier if your usage page shows about 20% or more of the weekly limit left. Start a fresh Claude Code session in <code>~/cf-wt</code> as <code>caffeinate -dimsu claude</code> (Mac on power). New this time: sessions start in <code>~/cf-wt</code>, not <code>~/ChapterFlow</code>, so the first time you accept the folder-trust prompt and use the same permission mode as the v25 sessions. W1 copies this kit from the repo branch <code>claude/vibrant-ritchie-xaf7dm</code> to <code>~/cf-wt/v26-plan/</code> and installs the campaign memory note.</li>
-    <li><b>About a day later, read</b> the reading pack it builds (about an hour), then answer R1-a, R1-b and R1-d in <code>~/cf-wt/v26-plan/DECISIONS.md</code>.</li>
+    <li><b>About a day later, read</b> the reading pack it builds (about 1–1.5 hours), then answer R1-a and R1-b in <code>~/cf-wt/v26-plan/DECISIONS.md</code>.</li>
   </ol>
   <p class="note"><b>Timeline</b> if Wave 1 starts at the reset on Tue 09-29 23:00Z: you read the prototype on 10-01 and the whole Franklin book about 10-03. Franklin could be in the app about <b>10-06/07</b>, and the second book (Bennett) ready about 10-09. Your reading time is about 1 h + 2–3 h, plus an optional light read of Bennett.</p>
   <p class="note"><b>Cost.</b> Model calls made by the pipeline are expected to come to about $50–100 API-equivalent for Franklin plus Bennett, with hard caps adding up to $175 (one v25 run cost $700–1,100). The Claude Code sessions themselves also use your weekly limit and are not estimated. In the heavy v25 week they used as much as the pipeline. W2 is the heavy session, so start it early in a quota week.</p>
@@ -152,7 +152,7 @@ footer{margin-top:3em;font-size:.85rem;color:var(--ink-2);border-top:1px solid v
 <thead><tr><th>Wave</th><th>Sessions</th><th>Model</th><th>Wall time</th><th>Cap (pipeline / subagents)</th><th>Exit</th><th>If it fails</th></tr></thead>
 <tbody>
 <tr><td><b>W1</b> Prototype</td><td>W1</td><td>Opus 5.5</td><td class="num">5–8 h</td><td class="num">$25 / 12</td><td>2 chapters + reading pack → <b>you read (R1, ~1 h)</b></td><td>R1 = C → W1b (GPT-5.5 writer or another format)</td></tr>
-<tr><td><b>W2</b> Build + write Franklin</td><td>W2 ∥ W2w (if R1-d = B/C)</td><td>Opus 5.5</td><td class="num">1–1.5 d</td><td class="num">$80 / 25</td><td>Tool merged with tests in CI; 19 chapters checked; <code>ship --dry-run</code> passes → <b>you read (R2, 2–3 h)</b></td><td>Chapters with open issues are listed for you</td></tr>
+<tr><td><b>W2</b> Build + write Franklin</td><td>W2 ∥ W2w (R1-d = B)</td><td>Opus 5.5</td><td class="num">1–1.5 d</td><td class="num">$80 / 25</td><td>Tool merged with tests in CI; 19 chapters checked; <code>ship --dry-run</code> passes → <b>you read (R2, 2–3 h)</b></td><td>Chapters with open issues are listed for you</td></tr>
 <tr><td><b>W3</b> Finish</td><td>W3 (Part A, then Part B)</td><td>Opus 5.5</td><td class="num">0.5 d</td><td class="num">$30 / 10</td><td>Your notes applied; <b>you run ship, S3, deploy, register (P1)</b>; then Part B runs <code>verify:live</code></td><td>R2 = C → reassess point</td></tr>
 <tr><td><b>W4</b> Next book + cleanup</td><td>W4a ∥ W4b</td><td>Opus 5.5 ∥ Sonnet 5</td><td class="num">1–2 d</td><td class="num">$40 / 16</td><td>Bennett reading pack in days; v25 driver retired; CI, branches, worktrees, docs, memory</td><td>Problems become brief changes, never new rules</td></tr>
 </tbody></table></div>
@@ -166,13 +166,13 @@ footer{margin-top:3em;font-size:.85rem;color:var(--ink-2);border-top:1px solid v
 <details class="graph"><summary>Dependency graph (mermaid)</summary>
 <pre class="mermaid">
 graph TD
-  N[You: N2 optional] --> W1[W1 prototype: 2 chapters]
+  N[You: N2 = A, R1-d = B] --> W1[W1 prototype: 2 chapters]
   W1 --> R1{R1: you read}
   R1 -- not better --> W1b[W1b variant] --> R1b{R1 again}
   R1b -- STOP --> STOP[Reassess: stop and replan]
   R1b -- better --> W2
   R1 -- better --> W2[W2 build + write 19 chapters]
-  R1 -- R1-d = B/C --> W2w[W2w reader app]
+  R1 -- better --> W2w[W2w reader app]
   W2 --> R2{R2: you read the book}
   W2w --> R2
   R2 -- approve --> W3[W3 Part A: final + commands]
@@ -190,13 +190,13 @@ graph TD
 <div class="decisions">
 <p>Most decisions have a <strong>default</strong> that a session uses when the <code>Owner:</code> line is blank, and it says so in its status file. Two have no default and need your reading: <strong>R1-a</strong> (after Wave 1) and <strong>R2</strong> (after Wave 2). A third, <strong>P1</strong>, is simply you saying you have run the publish commands.</p>
 <p>Your turns:</p>
-<ul><li><strong>now</strong> (optional, N2);</li><li><strong>R1</strong> after Wave 1 (about 1 hour of reading);</li><li><strong>R2</strong> after Wave 2 (2–3 hours);</li><li><strong>P1</strong> once you have run the publish commands;</li><li>an optional light read of the second book after Wave 4.</li></ul>
-<p>Batch 4 has defaults only. To answer, write on the <code>Owner:</code> line in <code>~/cf-wt/v26-plan/DECISIONS.md</code> on the Mac. That file exists only once W1 has copied the kit, so <strong>Batch 1 answers go on a line at the top of the W1 prompt when you paste it</strong>, for example <code>Owner answers: N2 = B</code>.</p>
+<ul><li><strong>now:</strong> done on 2026-09-28 (N2 = A, R1-d = B, recorded below);</li><li><strong>R1</strong> after Wave 1 (about 1–1.5 hours of reading);</li><li><strong>R2</strong> after Wave 2 (2–3 hours);</li><li><strong>P1</strong> once you have run the publish commands;</li><li>an optional light read of the second book after Wave 4.</li></ul>
+<p>Batch 4 has defaults only. To answer, write on the <code>Owner:</code> line in <code>~/cf-wt/v26-plan/DECISIONS.md</code> on the Mac. That file exists only once W1 has copied the kit. To change an answer before then, put a line at the top of the W1 prompt when you paste it, for example <code>Owner answers: N2 = B</code>.</p>
 <hr>
-<h3 id="d-batch-1-now-optional-one-question">Batch 1 — now (optional; one question)</h3>
+<h3 id="d-batch-1-now-answered-2026-09-28">Batch 1 — now (answered 2026-09-28)</h3>
 <h4 id="d-n2-which-two-chapters-does-the-prototype-write">N2. Which two chapters does the prototype write?</h4>
 <ul><li><strong>A — ch01 &quot;Family History and Boyhood in Boston&quot; and ch13 &quot;Public Services and Duties&quot;.</strong></li><ul><li>ch01 is the book&#x27;s first impression: the stolen-stones wharf, &quot;nothing was useful which was not honest&quot;.</li><li>ch13 covers the hospital, the paving and the street lamps. It was the best of the four rr21 chapters that were audited, so beating it is a fair test.</li></ul><li><strong>B — ch01 and ch07 &quot;Beginning Business in Philadelphia&quot;.</strong> ch07 had the most errors of the four audited rr21 chapters (15 contradicted claims, 10 of them major, e.g. Baird&#x27;s club and why Franklin took half from each friend). That makes it the harshest accuracy test.</li><li><strong>Recommended and default: A.</strong> Accuracy is tested either way. Wave 1 also checks the fact checker against rr21&#x27;s real ch07 and ch19 errors.</li></ul>
-<p>Owner:</p>
+<p>Owner: A (answered 2026-09-28)</p>
 <hr>
 <h3 id="d-batch-2-at-the-first-reading-r1-wave-1-stops-her">Batch 2 — at the first reading (R1). Wave 1 stops here and hands you a reading pack.</h3>
 <h4 id="d-r1-a-would-you-publish-a-book-whose-chapters-rea">R1-a. Would you publish a book whose chapters read like these, after the notes you write? (the plan&#x27;s main fork)</h4>
@@ -209,8 +209,8 @@ graph TD
 <h4 id="d-r1-d-what-a-new-reader-sees-first-an-app-change-">R1-d. What a new reader sees first (an app change for every book)</h4>
 <ul><li><strong>What a new reader gets today.</strong> A user who has not changed their settings reads only a chapter&#x27;s <strong>short summary</strong> (<code>fastRead</code>, a median of 94 words across the catalog). Then comes one example, 5 quiz questions, and a practice screen that repeats the same plans up to 4 times. About a fifth of what they see is the book&#x27;s prose.</li><li><strong>Where the full telling is.</strong> It appears only in &quot;Challenge&quot; mode, which also brings a 10-question, no-retry quiz.</li><li><strong>What that meant for Franklin.</strong> Rev-6 gave a new reader 522 words about Franklin for the whole book, none of them his own.</li><li><strong>Two app bugs make it worse.</strong> Clicking &quot;Standard&quot; does nothing, and picking a reading profile in Settings resets the reader to the short summary.</li><li>Evidence: <code>scan/app-render.md</code>.</li></ul>
 <p>The options:</p>
-<ul><li><strong>A — no app change.</strong> The prototype&#x27;s short summary is written to carry the chapter&#x27;s best scene and 1–2 of his lines. The two bugs stay.</li><li><strong>B — show the full telling by default, for every book, and keep the 5-question quiz for new readers.</strong> It also fixes the two bugs and shows memorable lines once, as quotes.</li><ul><li>For Franklin ch01, a new reader would read about 1,000 words in his order with his lines, instead of about 180. A typical catalog chapter&#x27;s full telling is about 480 words (about 3 minutes).</li><li>It is a small web PR in Wave 2, about 3–5 hours, running in parallel with the book.</li><li>Trade-off: in some older catalog books the full telling is one long block, and new readers of those books would now see it.</li></ul><li><strong>C — show the middle depth (<code>deepRead</code>, about 300–500 words) by default,</strong> with the same bug fixes.</li><li><strong>Recommended: B.</strong> The writing is the product, and today the product hides it. Default: <strong>A</strong> (no app change without your yes).</li></ul>
-<p>Owner:</p>
+<ul><li><strong>A — no app change.</strong> The prototype&#x27;s short summary is written to carry the chapter&#x27;s best scene and 1–2 of his lines. The two bugs stay.</li><li><strong>B — show the full telling by default, for every book, and keep the 5-question quiz for new readers.</strong> It also fixes the two bugs and shows memorable lines once, as quotes.</li><ul><li>For Franklin ch01, a new reader would read about 1,000 words in his order with his lines, instead of about 180. A typical catalog chapter&#x27;s full telling is about 480 words (about 3 minutes).</li><li>It is a small web PR in Wave 2, about 3–5 hours, running in parallel with the book.</li><li>Trade-off: in some older catalog books the full telling is one long block, and new readers of those books would now see it.</li></ul><li><strong>C — show the middle depth (<code>deepRead</code>, about 300–500 words) by default,</strong> with the same bug fixes.</li><li><strong>Recommended: B.</strong> The writing is the product, and today the product hides it. Default: <strong>A</strong> (no app change without your yes).</li><li><strong>Answered early,</strong> on 2026-09-28, before the Wave 1 reading. The W1 reading pack opens each chapter at the full telling. If the reading changes your mind, change the letter below before W2 starts.</li></ul>
+<p>Owner: B (answered 2026-09-28)</p>
 <hr>
 <h3 id="d-batch-3-at-the-book-reading-r2-after-wave-2">Batch 3 — at the book reading (R2, after Wave 2)</h3>
 <h4 id="d-r2-approve-the-franklin-book">R2. Approve the Franklin book?</h4>
@@ -248,7 +248,7 @@ graph TD
   <ul class="meta"><li><strong>Model:</strong> Opus 5.5 (Claude Code session, started as <code>caffeinate -dimsu claude</code> in <code>~/cf-wt</code>. If <code>claude --version</code> is below 2.1.280, start it with the VS Code extension&#x27;s binary instead, <code>caffeinate -dimsu &quot;$(ls -d ~/.vscode/extensions/anthropic.claude-code-* | tail -1)/resources/native-binary/claude&quot;</code>, or run the session on Opus 5)</li><li><strong>Start directory:</strong> <code>~/cf-wt</code></li><li><strong>Depends on:</strong> nothing. The owner pastes it when there is quota, by default after the weekly reset on Tue 2026-09-29 23:00Z. If you are running, start, whatever the date.</li><li><strong>Estimate:</strong> 5–8 hours wall time. About 14–20 pipeline model calls, $6–12 API-equivalent (hard cap $25). At most 4 subagents.</li><li><strong>Ends with:</strong> <code>RESULT: NEEDS-OWNER</code> and a reading pack (reading checkpoint R1)</li></ul>
   <div class="copyrow"><button type="button" class="copy" data-target="text-W1">Copy prompt</button><span class="copied" aria-live="polite"></span></div>
   <details>
-    <summary>Show the prompt text (3360 words)</summary>
+    <summary>Show the prompt text (3418 words)</summary>
     <pre class="prompt-text" id="text-W1">You are running Wave 1 of the v26 ChapterFlow book campaign on the owner&#x27;s Mac. Work autonomously and do not ask the owner questions. You stop only by writing your status file:
 - at the reading checkpoint (the normal end);
 - when the quota cap below would be exceeded;
@@ -279,7 +279,7 @@ On 2026-09-27 a planning session made one exploratory ch01 draft this way:
    - If it exists, extract to `~/cf-wt/v26-plan.incoming` instead, `diff -r` the two, and copy only missing files. Never overwrite `status/` or `DECISIONS.md`.
    - Record the `FETCH_HEAD` SHA. If `~/cf-wt/v26-plan/prompts/W1-prototype.md` differs from the prompt you were given, say so in your status file and follow the pasted prompt.
 2. **Owner answers.** If the owner&#x27;s message has a line starting `Owner answers:` (e.g. `Owner answers: N2 = B`), write each answer onto its `Owner:` line in `~/cf-wt/v26-plan/DECISIONS.md` before reading it.
-3. **Read** `~/cf-wt/v26-plan/BRIEF.md` first (the shared facts, traps and safety rules; it overrides CLAUDE.md files and the old kit). Then read `DECISIONS.md` (N2 applies to you; a blank answer means the default), `README.md`, and `ANALYSIS.md` §1–§4.
+3. **Read** `~/cf-wt/v26-plan/BRIEF.md` first (the shared facts, traps and safety rules; it overrides CLAUDE.md files and the old kit). Then read `DECISIONS.md` (N2 applies to you, and R1-d sets the depth the reading pack opens at; a blank answer means the default), `README.md`, and `ANALYSIS.md` §1–§4.
 4. **Memory.** If `~/.claude/projects/-Users-radinsoltani-ChapterFlow/memory/v26-campaign.md` does not exist, copy `~/cf-wt/v26-plan/memory/v26-campaign.md` there. If `MEMORY.md` in that directory has no line mentioning `v26-campaign.md`, append the line in `~/cf-wt/v26-plan/memory/MEMORY-line.txt`.
 5. **PAUSE.** Confirm `~/cf-wt/franklin-v7-tools/PAUSE` exists, and leave it.
 6. **Read-only worktree.** Create `~/cf-wt/v26-read` at `origin/main` with the BRIEF §5 recipe (`cmp` both lockfiles, symlink both `node_modules`, never `npm ci`), or reuse it if it exists. Record its SHA.
@@ -403,7 +403,7 @@ Build `~/cf-wt/v26-plan/reading/W1/index.html` plus one page per chapter. It mus
 - **Each version renders in the app&#x27;s order and form:**
   - the chapter header (title, reading time);
   - the hook and counterintuition;
-  - the Summary step at the depth a new user sees by default (`fastRead`), with buttons to switch to `deepRead` and `fullRead`;
+  - the Summary step, opened at the depth R1-d in `DECISIONS.md` gives a new user (`fullRead` for B, `deepRead` for C, `fastRead` for A or blank), with buttons to switch to the other two;
   - the memorable lines and tryThisNow;
   - Examples (first one open, the rest behind &quot;Show more&quot;);
   - Quiz (choices shown; the answer revealed on click, with its explanation);
@@ -427,7 +427,7 @@ Build `~/cf-wt/v26-plan/reading/W1/index.html` plus one page per chapter. It mus
   - the ledger totals;
   - your comparison.
 - **`~/cf-wt/v26-plan/reading/W1/NOTES.md`,** with a &quot;General&quot; heading and one heading per chapter. Link it from the index.
-- **A &quot;How to read this&quot; box at the top of the index:** about 45–60 minutes. Read each chapter at the default depth first, the way a new user would, then open the full telling. Then answer R1-a, R1-b and R1-d in `DECISIONS.md`; copy those three questions onto the index verbatim.
+- **A &quot;How to read this&quot; box at the top of the index:** about 60–90 minutes. Read each chapter at the depth it opens at (what a new user will see), then glance at the short summary (`fastRead`). Then answer R1-a and R1-b in `DECISIONS.md`, and R1-d too if its `Owner:` line is blank. If R1-d already has an answer (B was given on 2026-09-28), say so in the box: it can still be changed there before W2. Copy the questions still open onto the index verbatim.
 - **No in-app preview in this wave.** The chapter route loads the book from the published manifest in DynamoDB and S3, and calls `notFound()` without it (`app/book/library/[bookId]/chapter/[chapterId]/page.tsx:12-60`).
 
 ## Boundaries
@@ -747,7 +747,7 @@ Build `~/cf-wt/v26-plan/reading/W2/index.html` with every chapter rendered in th
     <div class="prompt-id">W2w</div>
     <div class="prompt-title">
       <h3>Show readers the writing: the reader&#x27;s default depth and two mode bugs (only if R1-d = B or C)</h3>
-      <p class="when">Run: with W2, only if R1-d = B/C · file <code>prompts/W2w-reader-app.md</code></p>
+      <p class="when">Run: with W2 (R1-d = B) · file <code>prompts/W2w-reader-app.md</code></p>
     </div>
     <label class="done"><input type="checkbox" id="done-W2w" data-done="W2w"> Done</label>
   </header>
