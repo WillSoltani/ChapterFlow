@@ -631,9 +631,15 @@ export async function runChapter(ctx: PipelineCtx, n: number, opts: { force?: bo
   }
 
   // A lesson issue cannot be fixed by editing, so it alone never starts a fix call.
-  const toFix = (r: RoundResult): Issue[] => r.fixable.filter((i) => i.source !== "lesson");
+  // On the last fix round with a blocking issue present, send only the blocking ones: late reported-only edits
+  // (e.g. quiz rewrites for guessability) were creating new blocking issues that no round was left to fix.
+  const toFix = (r: RoundResult, last = false): Issue[] => {
+    const all = r.fixable.filter((i) => i.source !== "lesson");
+    const blocking = all.filter((i) => i.blocking);
+    return last && blocking.length > 0 ? blocking : all;
+  };
   while (toFix(result).length > 0 && round < MAX_FIX_ROUNDS) {
-    if (!fs.existsSync(file(`r${round + 1}.chapter.json`))) await fixChapter(ctx, n, round, toFix(result));
+    if (!fs.existsSync(file(`r${round + 1}.chapter.json`))) await fixChapter(ctx, n, round, toFix(result, round === MAX_FIX_ROUNDS - 1));
     round++;
     result = await checked(round);
   }

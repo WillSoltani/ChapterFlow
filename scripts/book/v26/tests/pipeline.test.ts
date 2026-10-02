@@ -992,6 +992,83 @@ test("runChapter: non-blocking leftovers are listed as open (marked) but the cha
   assert.deepEqual([st.open[0]!.source, st.open[0]!.blocking, st.open[0]!.leftover], ["coldreader", false, true]);
 });
 
+/** The numbered issue lines that reached a fix call (what sits between ISSUES: and LESSON: in the test template). */
+const fixIssues = (h: Harness, index: number): string => /ISSUES:\n([\s\S]*?)\nLESSON:/.exec(h.calls("pipe-fix")[index]!.prompt)![1]!;
+
+const UNCLEAR_A = "the ledger of small wins";
+const UNCLEAR_B = "a daily friction budget";
+const COLD_TWO = { lesson: "x", unclear: [{ text: UNCLEAR_A, why: "abstract" }, { text: UNCLEAR_B, why: "jargon" }] };
+
+test("runChapter: the first fix round sends blocking and reported issues together", async () => {
+  const h = harness();
+  h.script({
+    "pipe-factcheck": [{ result: factWith({ issues: [factFlag()] }) }],
+    "pipe-coldreader": [{ result: COLD_TWO }],
+    "pipe-fix": [{ result: FIX_NONE }],
+  });
+  await runChapter(h.ctx, 1);
+  assert.equal(h.calls("pipe-fix").length, 2);
+  const first = fixIssues(h, 0);
+  assert.match(first, /1\. \[FACT BLOCKING\] breakdown\.fastRead:/);
+  assert.ok(first.includes(UNCLEAR_A) && first.includes(UNCLEAR_B), "both reported issues go to the first fix");
+  assert.equal(first.split("\n").length, 3, "one blocking and two reported lines");
+});
+
+test("runChapter: the last fix round sends only the blocking issues; reported ones stay open as leftovers", async () => {
+  const h = harness();
+  h.script({
+    "pipe-factcheck": [{ result: factWith({ issues: [factFlag()] }) }],
+    "pipe-coldreader": [{ result: COLD_TWO }],
+    "pipe-fix": [{ result: FIX_NONE }],
+  });
+  const st = await runChapter(h.ctx, 1);
+  assert.equal(h.calls("pipe-fix").length, 2);
+  const last = fixIssues(h, 1);
+  assert.match(last, /^1\. \[FACT BLOCKING\] breakdown\.fastRead:/);
+  assert.equal(last.split("\n").length, 1, "only the blocking issue");
+  assert.ok(!last.includes(UNCLEAR_A) && !last.includes(UNCLEAR_B), "no reported issue in the last fix");
+  assert.doesNotMatch(last, /REPORTED/);
+  // The reported issues were not sent, but status.json still lists them next to the blocking one.
+  assert.equal(st.stage, "open-issues");
+  assert.deepEqual(st.open.map((i) => [i.source, i.blocking, i.leftover ?? false]), [["fact", true, false], ["coldreader", false, true], ["coldreader", false, true]]);
+  assert.ok(st.open[1]!.text.includes(UNCLEAR_A) && st.open[2]!.text.includes(UNCLEAR_B));
+});
+
+test("runChapter: the last fix round sends the reported issues when nothing blocking is left", async () => {
+  const h = harness();
+  h.script({
+    "pipe-factcheck": [{ result: factWith({ issues: [factFlag()] }) }, { result: FACT_OK }],
+    "pipe-coldreader": [{ result: COLD_TWO }],
+    "pipe-fix": [{ result: FIX_NONE }],
+  });
+  const st = await runChapter(h.ctx, 1);
+  assert.equal(h.calls("pipe-fix").length, 2);
+  assert.match(fixIssues(h, 0), /\[FACT BLOCKING\]/);
+  const last = fixIssues(h, 1);
+  assert.doesNotMatch(last, /BLOCKING/);
+  assert.ok(last.includes(UNCLEAR_A) && last.includes(UNCLEAR_B), "both reported issues go to the last fix");
+  assert.equal(last.split("\n").length, 2);
+  assert.equal(st.stage, "clean");
+  assert.deepEqual(st.open.map((i) => i.leftover), [true, true]);
+});
+
+test("runChapter: a lesson issue never counts as the blocking issue that narrows the last fix round", async () => {
+  const h = harness();
+  h.script({
+    "pipe-factcheck": [{ result: factWith({ lesson: { rating: "STRETCHED", reason: "not quite", sourceText: "none" } }) }],
+    "pipe-write": [{ result: draft(KEY) }, { result: draft(KEY2) }],
+    "pipe-coldreader": [{ result: COLD_TWO }],
+    "pipe-fix": [{ result: FIX_NONE }],
+  });
+  await runChapter(h.ctx, 1);
+  assert.equal(h.calls("pipe-fix").length, 2);
+  for (const i of [0, 1]) {
+    const sent = fixIssues(h, i);
+    assert.ok(sent.includes(UNCLEAR_A) && sent.includes(UNCLEAR_B), `fix ${i + 1} still gets the reported issues`);
+    assert.doesNotMatch(sent, /LESSON/);
+  }
+});
+
 test("runChapter: a STRETCHED lesson reruns the writer once with the reason, then continues", async () => {
   const h = harness();
   h.script({
