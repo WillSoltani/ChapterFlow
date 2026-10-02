@@ -426,7 +426,7 @@ export async function checkChapter(ctx: PipelineCtx, n: number, round: number): 
     for (const raw of list(fc.quizIssues)) {
       const i = obj(raw);
       const supported = typeof i.supportedIndex === "number" ? `choice ${i.supportedIndex}` : "no single choice";
-      const q = issue("quiz", true, `quiz.${text(i.questionId)}`, `the key is choice ${String(i.keyedIndex)} but the lesson supports ${supported}: ${text(i.problem)}`);
+      const q = issue("quiz", true, `quiz.${text(i.questionId).replace(/^quiz\./, "")}`, `the key is choice ${String(i.keyedIndex)} but the lesson supports ${supported}: ${text(i.problem)}`);
       blocking.push(q);
       fixable.push(q);
     }

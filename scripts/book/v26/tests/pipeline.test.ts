@@ -561,6 +561,13 @@ test("checkChapter: a quiz issue from the fact check is blocking, with the quest
   assert.match(r.blocking[0]!.text, /the key is choice 0 but the lesson supports choice 2: the second choice/);
 });
 
+test("checkChapter: a quiz issue whose questionId already says quiz.q2 still points at quiz.q2", async () => {
+  const h = harness();
+  h.script({ "pipe-factcheck": [{ result: factWith({ quizIssues: [{ questionId: "quiz.q2", keyedIndex: 0, supportedIndex: null, problem: "two choices fit" }] }) }] });
+  const r = await drafted(h);
+  assert.equal(r.blocking[0]!.field, "quiz.q2");
+});
+
 test("checkChapter: a lesson that is not SUPPORTED is blocking (source lesson) but is not sent to the fix", async () => {
   for (const rating of ["STRETCHED", "UNSUPPORTED", "MAYBE", undefined]) {
     const h = harness();
