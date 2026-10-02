@@ -41,7 +41,8 @@ Write one JSON object with the keys in this order:
 - "quiz": {"passingScorePercent": 70, "questions": 7 objects {"questionId": "q1".., "prompt", "choices" (3 strings), "correctIndex", "explanation", "bloomsLevel": "understand" | "apply" | "analyze"}}.
   - Each question puts the reader in a new, modern situation (no names from the book) and asks what to do or why. Answering it needs the lesson; remembering the story never helps.
   - One wrong choice acts out the wrong belief and should sound sensible. The other wrong choice is a near-miss: it sounds close, but the lesson clearly rules it out, so a reader who knows the lesson would never call it equally right. Two checkers block any question where a second choice is also defensible.
-  - The right choice is not the longest, not the only hedged one, not the only one using the chapter's words, and not simply the kindest-sounding.
+  - Write the three choices in the same form and about the same length (roughly 8 to 16 words each): if one gives a reason, all three give one. The tempting choice is tempting because a sensible person would really pick it before reading this chapter, not because it carries a longer justification. The near-miss is something a thoughtful person might also pick, never a silly option.
+  - The right choice is not the longest or the shortest, not the only plain one, not the only hedged one, not the only one using the chapter's words, and not simply the kindest-sounding.
   - q1-q5 must be answerable by a reader who read only the hook, counterintuition, fastRead, memorable lines, tryThisNow and the first example. q6 and q7 may be harder.
   - Spread the keys: each position is the right answer at least twice.
   - "explanation": up to 40 words. Which part of the lesson the right choice uses, and why the tempting choice fails.
