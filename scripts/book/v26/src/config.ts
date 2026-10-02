@@ -30,6 +30,8 @@ export interface BookConfig {
   concurrency: number;
   budgetUsd: number;
   runDir: string;
+  /** Optional shared ledger (default <runDir>/ledger.jsonl), so several books can share one budget. */
+  ledgerPath?: string;
 }
 
 const BOOK_TYPES = ["memoir", "how-to", "argument"] as const;
@@ -146,5 +148,6 @@ export function loadBookConfig(configPath: string): BookConfig {
   };
   // Optional, so the key is left off entirely when the config does not name one.
   if (raw.knownTrapsPath !== undefined) cfg.knownTrapsPath = p(raw.knownTrapsPath, "knownTrapsPath");
+  if (raw.ledgerPath !== undefined) cfg.ledgerPath = p(raw.ledgerPath, "ledgerPath");
   return cfg;
 }

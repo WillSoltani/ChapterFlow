@@ -65,3 +65,23 @@ export interface ChapterSpan {
   startOffset: number;
   endOffset: number;
 }
+
+/** The writer's private note on the one lesson a chapter teaches; it rides along as `_lesson` and is stripped before checks. */
+export interface LessonCard {
+  lesson: string;
+  wrongBelief: string;
+  keyPhrase: string;
+  hookQuestion: string;
+  storyNames: string[];
+  evidence: string[];
+}
+
+/** Which step raised an issue. */
+export type IssueSource = "det" | "fact" | "lesson" | "quiz" | "keysolve" | "coldreader" | "nochapter" | "review";
+
+export interface Issue {
+  source: IssueSource;
+  blocking: boolean;
+  field?: string;
+  text: string;
+}
