@@ -55,7 +55,7 @@ Write one JSON object with the keys in this order:
     1. Open with the hook's question in a fresh form: an everyday scene, a question or a puzzle.
     2. Widen the problem: why the wrong belief feels true, and what it costs, shown with a concrete case rather than general talk about "today's world" or "most of us".
     3. Tell only the part of the story that shows the lesson, in plain modern words; leave out the chapter's other events, however good. Name only the people the lesson needs and call the rest by their role (his brother, a friend). Add one sentence that says how the story shows the lesson.
-    4. In the last part, state the lesson once, plainly and in general words, so it lands as the payoff. Word it freshly (not the keyTakeaway sentence copied) and stop there: no sermon or "so next time" pep talk after it.
+    4. End by answering the opening question. Go back for a sentence or two to the opening scene or the reader's own situation and show what the lesson changes there; then state the lesson once, plainly and in general words, as the payoff. Word it freshly (not the keyTakeaway sentence copied) and stop there: no sermon or "so next time" pep talk after it.
   - "fastRead": 150 to 220 words in 2-3 paragraphs. It may quote the author once.
   - "deepRead": 350 to 500 words in 3-5 paragraphs, with at most 2 short quotes.
   - "fullRead": 800 to 1,100 words in 6-9 paragraphs of 60 to 140 words, with at most 3 short quotes. It adds evidence, not plot: more of the episode that shows the lesson, or a second episode that shows the same lesson. The story stays under about half the words; use the rest on why the lesson works, and still end on the lesson.
