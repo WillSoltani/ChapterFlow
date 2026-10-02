@@ -382,7 +382,7 @@ export async function checkChapter(ctx: PipelineCtx, n: number, round: number): 
         P1QUESTIONS: questionsBlock(first),
         P2QUESTIONS: rest.length ? questionsBlock(rest) : "(no questions in this part)",
       }),
-      coldreader: render("coldreader", { FASTREAD: chapter.breakdown.fastRead }),
+      coldreader: render("coldreader", { SUMMARY: `SHORT VERSION:\n${chapter.breakdown.fastRead}\n\nFULL VERSION:\n${chapter.breakdown.fullRead}` }),
       nochapter: noChapterPrompt(chapter),
       review: ctx.review ? render("review", { CHAPTER: readerText(chapter) }) : "",
     };
@@ -462,7 +462,7 @@ export async function checkChapter(ctx: PipelineCtx, n: number, round: number): 
     report.coldReaderLesson = text(cr.lesson);
     for (const raw of list(cr.unclear)) {
       const u = obj(raw);
-      fixable.push(issue("coldreader", false, "breakdown.fastRead", `a new reader may not follow "${text(u.text)}": ${text(u.why)}`));
+      fixable.push(issue("coldreader", false, /full/i.test(text(u.why)) ? "breakdown.fullRead" : "breakdown.fastRead", `a new reader may not follow "${text(u.text)}": ${text(u.why)}`));
     }
 
     // No-chapter solver: a question it gets right in 2 of 3 runs is guessable.

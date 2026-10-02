@@ -155,7 +155,7 @@ const TEMPLATES: Record<string, string> = {
   write: "SCENARIO pipe-write\nBOOK:\n@@BOOK_SECTION@@\nHEADER:\n@@HEADER@@\nRERUN:\n@@RERUN_NOTE@@\nSOURCE:\n@@SOURCE@@\n",
   factcheck: "SCENARIO pipe-factcheck\nTRAPS:\n@@KNOWN_TRAPS@@\nLESSON:\n@@LESSON@@\nSOURCE:\n@@SOURCE@@\nCHAPTER:\n@@CHAPTER@@\n",
   keysolve: "SCENARIO pipe-keysolve\nP1 @@P1IDS@@\n@@NEWREADER@@\n@@P1QUESTIONS@@\nP2 @@P2IDS@@\n@@ALLTIERS@@\n@@P2QUESTIONS@@\n",
-  coldreader: "SCENARIO pipe-coldreader\n@@FASTREAD@@\n",
+  coldreader: "SCENARIO pipe-coldreader\n@@SUMMARY@@\n",
   nochapter: "SCENARIO pipe-nochapter\n@@QUESTIONS@@\n",
   fix: "SCENARIO pipe-fix\nISSUES:\n@@ISSUES@@\nLESSON:\n@@LESSON@@\nCHAPTER:\n@@CHAPTER@@\nSOURCE:\n@@SOURCE@@\n",
   review: "SCENARIO pipe-review\n@@CHAPTER@@\n",
@@ -416,7 +416,8 @@ test("checkChapter: a good draft has nothing blocking or fixable; every step is 
   assert.doesNotMatch(ks.prompt, /KEY:/, "the solver never sees the key");
 
   assert.equal(h.calls("pipe-coldreader")[0]!.effort, "low");
-  assert.match(h.calls("pipe-coldreader")[0]!.prompt, /^SCENARIO pipe-coldreader\nAs a young man he kept a little book/);
+  assert.match(h.calls("pipe-coldreader")[0]!.prompt, /^SCENARIO pipe-coldreader\nSHORT VERSION:\nAs a young man he kept a little book/);
+  assert.match(h.calls("pipe-coldreader")[0]!.prompt, /\n\nFULL VERSION:\n/, "the cold reader also reads the full telling, the tier new readers open on");
   assert.equal(h.calls("pipe-nochapter")[0]!.effort, "medium");
   assert.doesNotMatch(h.calls("pipe-nochapter")[0]!.prompt, /KEY:|Hook:/);
   assert.equal(h.calls("pipe-review").length, 0, "the editor review runs only with --review");
@@ -672,13 +673,14 @@ test("checkChapter: q6 and later are split into part 2 and a wrong answer there 
 
 test("checkChapter: the cold reader's unclear items are fixable summary issues", async () => {
   const h = harness();
-  h.script({ "pipe-coldreader": [{ result: { lesson: "Naming faults helps.", unclear: [{ text: "every shilling", why: "an old coin" }, { text: "virtue", why: "abstract" }] } }] });
+  h.script({ "pipe-coldreader": [{ result: { lesson: "Naming faults helps.", unclear: [{ text: "every shilling", why: "an old coin" }, { text: "virtue", why: "abstract, in the full version" }] } }] });
   const r = await drafted(h);
   assert.deepEqual(r.blocking, []);
   const cold = r.fixable.filter((i) => i.source === "coldreader");
   assert.equal(cold.length, 2);
   assert.deepEqual([cold[0]!.field, cold[0]!.blocking], ["breakdown.fastRead", false]);
   assert.match(cold[0]!.text, /"every shilling": an old coin/);
+  assert.equal(cold[1]!.field, "breakdown.fullRead", "an item the reader found in the full version points the fix at fullRead");
   assert.equal(r.report.coldReaderLesson, "Naming faults helps.");
 });
 

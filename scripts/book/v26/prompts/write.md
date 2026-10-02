@@ -10,7 +10,7 @@ STEP 1. FIND THE LESSON, and write it first, in "_lesson".
 - Read the whole source. Choose the one lesson with the best evidence in this chapter that is most useful to a reader today. If the author states his own reflection or rule, build the lesson on it.
 - "lesson": one sentence of 8 to 20 plain words, present tense, no names. It must be a claim about how to think or act that a reader could repeat a week later. Example of the form (from a different book): "Asking for help early saves more time than struggling alone."
 - "wrongBelief": the common belief this lesson corrects, the way a sensible beginner would say it. If no sensible adult would believe it, the lesson is a cliché (work hard, be honest, learn from mistakes): choose a sharper one that names a specific move and when to use it.
-- "keyPhrase": 2 to 4 words that name the lesson's move. Other fields reuse this phrase instead of repeating the whole lesson.
+- "keyPhrase": 2 to 4 words that name the lesson's move. Use it in a few places where it helps the reader remember (the coreSkill, one card, a tier ending); everywhere else say the specific move in plain words. It is not a label to stamp on every field.
 - "hookQuestion": the question the hook makes the reader wonder about. The lesson is its answer.
 - "storyNames": the names of people and places from the source that you use.
 - "evidence": 1 to 3 short passages, copied word for word from the source, that show the lesson.
@@ -22,7 +22,7 @@ Write one JSON object with the keys in this order:
 - "keyTakeaway": exactly the lesson sentence.
 - "counterintuition": up to 45 words, in the shape "Many people think [the wrong belief]. Actually [the correction], because [the reason]." End on the correction.
 - "hook": up to 40 words. Open the hookQuestion with a real problem from the reader's own life: a moment where the obvious move (the wrongBelief) backfires, a surprising contrast between two people or two choices, or a small puzzle set in a concrete moment. The reader should feel the problem and not yet know the answer. It does not have to mention the book. No dates, no facts about the author, no statistics, and no teasers like "the secret is".
-- "tryThisNow": up to 40 words. One small, visible action the reader can do today that uses the lesson: something they write, say, send, set or remove, never "think about" or "reflect on". Start with a verb, say when or where, and give one short reason about what they will see or gain, not the lesson restated. Never a summary, a moral, or the story.
+- "tryThisNow": up to 40 words. One small, visible action any reader can do today that uses the lesson, even if they are not in the chapter's situation right now: something they write, say, send, set or remove, never "think about" or "reflect on". Start with a verb, say when or where, and give one short reason about what they will see or gain, not the lesson restated. Never a summary, a moral, or the story.
 - "memorableLines": 1 to 3 objects {"text"}.
   - Item 1 is the lesson in fresh words: up to 15 words, general, present tense, one useful sentence a reader can act on, not a slogan.
   - Items 2 and 3 are optional; most chapters need none. They are the author's own words, copied exactly from the source, only if they carry the same lesson and a beginner can read them without help (a quoted line cannot be explained, so no old or hard words).
@@ -30,13 +30,13 @@ Write one JSON object with the keys in this order:
 - "examples": 3 objects {"exampleId": "ex01".., "title", "tags", "scenario", "whatToDo", "whyItMatters"}.
   - Each is one modern person at one moment where the wrong belief tempts them. Use one setting each: "work", "school" and "personal" (that word is the example's only tag).
   - "scenario": 40 to 75 words, simple and specific.
-  - "whatToDo": up to 35 words. What this person should do here, using the keyPhrase.
+  - "whatToDo": up to 35 words. The concrete step this person should take here, starting with the step itself.
   - "whyItMatters": up to 30 words. Why it matters for this person, here.
   - Nobody in an example has read the book, and no example retells the story.
 - "implementationPlan": {"coreSkill", "ifThenPlans", "twentyFourHourChallenge", "weeklyPractice"}.
   - "coreSkill": up to 20 words.
   - "ifThenPlans": 2 objects {"context": "When [a specific moment the reader will meet]", "plan": "then I [one visible action from the lesson]"}. Cues are real moments (after dinner, before a meeting), never "tomorrow" or "when I have time".
-  - "twentyFourHourChallenge": a slightly bigger step than tryThisNow.
+  - "twentyFourHourChallenge": a different action from tryThisNow that builds on it, not the same task again.
   - "weeklyPractice": a short habit that keeps using the lesson.
 - "quiz": {"passingScorePercent": 70, "questions": 7 objects {"questionId": "q1".., "prompt", "choices" (3 strings), "correctIndex", "explanation", "bloomsLevel": "understand" | "apply" | "analyze"}}.
   - Each question puts the reader in a new, modern situation (no names from the book) and asks what to do or why. Answering it needs the lesson; remembering the story never helps.
@@ -82,7 +82,7 @@ PLAIN WORDS (every field): use a 12-year-old's vocabulary for an adult's intelli
 Before you answer, check the rules most often missed:
 - "storyNames" and "evidence" in _lesson are arrays of strings; each example's "tags" is a one-item array such as ["work"]; "correctIndex" is 0, 1 or 2.
 - The lesson is not one of the earlier lessons listed above the source.
-- Besides keyTakeaway, the lesson sentence's exact words appear in at most two fields. End each tier on the lesson in that tier's own words, and use the keyPhrase in examples, explanations, card backs and the plan.
+- Besides keyTakeaway, the lesson sentence's exact words appear in at most two fields. End each tier on the lesson in that tier's own words. Do not open whatToDo, explanations or card backs with the keyPhrase; say the specific move instead.
 - In the quiz, each position is the key at least twice, the key is never the longest choice, and no prompt is over 30 words.
 - No sentence is over 25 words, and every quotation of the author is copied exactly from the source.
 

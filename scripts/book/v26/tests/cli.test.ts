@@ -77,7 +77,7 @@ const TEMPLATES: Record<string, string> = {
   write: "SCENARIO pipe-write\nBOOK:\n@@BOOK_SECTION@@\nHEADER:\n@@HEADER@@\nRERUN:\n@@RERUN_NOTE@@\nSOURCE:\n@@SOURCE@@\n",
   factcheck: "SCENARIO pipe-factcheck\nTRAPS:\n@@KNOWN_TRAPS@@\nLESSON:\n@@LESSON@@\nSOURCE:\n@@SOURCE@@\nCHAPTER:\n@@CHAPTER@@\n",
   keysolve: "SCENARIO pipe-keysolve\nP1 @@P1IDS@@\n@@NEWREADER@@\n@@P1QUESTIONS@@\nP2 @@P2IDS@@\n@@ALLTIERS@@\n@@P2QUESTIONS@@\n",
-  coldreader: "SCENARIO pipe-coldreader\n@@FASTREAD@@\n",
+  coldreader: "SCENARIO pipe-coldreader\n@@SUMMARY@@\n",
   nochapter: "SCENARIO pipe-nochapter\n@@QUESTIONS@@\n",
   fix: "SCENARIO pipe-fix\nISSUES:\n@@ISSUES@@\nLESSON:\n@@LESSON@@\nCHAPTER:\n@@CHAPTER@@\nSOURCE:\n@@SOURCE@@\n",
   review: "SCENARIO pipe-review\n@@CHAPTER@@\n",
