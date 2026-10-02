@@ -270,6 +270,15 @@ export async function runChecks(c: Chapter, lesson: LessonCard | null, ctx: Chec
     }
   }
 
+  // 3b. memorableLines[1..] are the author's own words shown without quote marks: the whole line must be verbatim.
+  c.memorableLines.forEach((m, i) => {
+    if (i === 0) return;
+    const line = m.text.trim().replace(/^["“]+|["”]+$/g, "");
+    if (line && !quoteInSource(line, source)) {
+      blocking.push(det(true, `memorableLines.${i}`, `line ${i + 1} is shown as the author's words but is not in the author's text: "${line}". Copy it exactly or remove it.`));
+    }
+  });
+
   // 4. Answer keys, walls of text, meta chatter.
   quizzes.forEach((q, i) => {
     const ok = Number.isInteger(q.correctIndex) && q.correctIndex >= 0 && q.correctIndex < q.choices.length;

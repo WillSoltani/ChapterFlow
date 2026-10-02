@@ -141,7 +141,7 @@ function chapter(): Chapter {
     },
     memorableLines: [
       { text: "Write the fault down and half the work is done." },
-      { text: 'He called it "a fault named is half mended."' },
+      { text: "a fault named is half mended" },
     ],
   };
 }
@@ -243,7 +243,7 @@ test("readerFields: ids follow the W1 layout", () => {
   }
   assert.equal(f["keyTakeaway"], KEY);
   assert.equal(f["quiz.q2.choices.1"], "Wait until she feels calm again");
-  assert.equal(f["memorableLines.1"], 'He called it "a fault named is half mended."');
+  assert.equal(f["memorableLines.1"], "a fault named is half mended");
 });
 
 // ---------------------------------------------------------------- the valid chapter
@@ -875,4 +875,12 @@ test("info: quotes are counted per tier", async () => {
   });
   const r = await runChecks(c, lessonCard(), ctx());
   assert.equal((r.info as any).quotesPerTier.fastRead, 3);
+});
+
+test("quotes: memorableLines[1..] without quote marks must still be the author's exact words", async () => {
+  const ok = await runChecks(chapter(), lessonCard(), ctx());
+  assert.equal(find(ok.blocking, /not in the author's text/, "memorableLines.1"), undefined);
+  const bad = edit((x) => (x.memorableLines[1].text = "a fault you name is half fixed"));
+  const r = await runChecks(bad, lessonCard(), ctx());
+  assert.ok(find(r.blocking, /not in the author's text/, "memorableLines.1"));
 });
