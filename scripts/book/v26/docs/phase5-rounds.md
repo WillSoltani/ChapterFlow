@@ -18,3 +18,10 @@ After round 3 the bar was still not met (no-chapter solver, the ch01 SPINE digre
 3. **Hard words survived in fullRead**, the tier new readers open on (R1-d = B): "mill-pond", and "sixpence" unexplained. The cold reader read only fastRead; it now reads both.
 
 **Round 5** regenerates all three chapters with these final prompts. Bennett ch04 is still never tuned on: every change above is backed by the two Franklin chapters on their own. Then the pipeline's reader round (`fix --issues`) takes each chapter's evidence-backed, non-taste reader findings.
+| 5 | Final prompts: the key-phrase stamping rule deleted, tryThisNow for any reader, the cold reader also reads fullRead | 34/35 | **35/35** | 5,5,5 / 5,5,5 | ch01: q2 second defensible answer; Bennett: a spurious NOT IN TEXT | Bennett held out: 34/35. Owner-proxy pass 2: 9/9 accept with notes |
+| reader + finish | Reader round (`fix --issues`, the readers' evidence-backed findings), then a finish round (`fix --finish`, blocking items plus the judge's local failures) | **35/35** | **35/35** | 5,5,5 / 5,5,5 | **all three clean** | Bennett final: 34/35 (PRACTICE: the 24-hour challenge mentions a list never made). Key-solver prompt now writes NOT IN TEXT only when applying the lesson does not settle the question |
+
+**Still failing:**
+- **No-chapter solver:** 5/5 in every run on all three final chapters. It is reported, not tuned against (see design.md revision 1).
+- **Bennett PRACTICE:** the 24-hour challenge mentions a list no step creates.
+- **Reading grade under the 5.0 floor in places:** ch13 fastRead 4.6; Bennett deepRead 4.5 and fullRead 4.8. That is simpler than the band, and the judge's PLAIN item passes.
