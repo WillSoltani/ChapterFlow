@@ -1,6 +1,6 @@
 /** The v26 chapter tool's command line. See README.md.
  *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render> --book <config.json>
- *      [--chapters 1,13] [--force] [--review] [--issues <findings.json>] [--file <chapter.json> --tag <t> --out <dir>]
+ *      [--chapters 1,13] [--force] [--review] [--issues <findings.json>] [--finish] [--file <chapter.json> --tag <t> --out <dir>]
  *  Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget. */
 import * as fs from "node:fs";
 import * as path from "node:path";
@@ -33,6 +33,7 @@ const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --boo
   --force           write/run: start the chapter again (the old run is kept as chNN.prev-<time>)
   --review          check/fix/run: also run the editor review and send its failed items to the fix call
   --issues <f>      fix: reader findings, a JSON array of {"field","text"}; one extra "reader" fix round on one chapter (--chapters N), which then becomes its final.json
+  --finish          fix: one finish round (--chapters N), once, after the reader round: sends only the blocking issues the reader round left (plus the --issues findings, if given), and the result becomes final.json
   --file <f>        eval: the chapter JSON to judge (default <runDir>/chNN/final.json)
   --tag <t>         eval: name for the output files (default chNN, so each chapter keeps its own)
   --out <dir>       eval: where <tag>.eval.json goes (default <runDir>/eval)
@@ -77,8 +78,8 @@ interface Finding {
   text: string;
 }
 
-/** What status.json holds for a chapter that had its reader round. */
-type ReaderStatus = ChapterStatus & { readerRound: true; readerIssues: number };
+/** What status.json holds for a chapter that had its reader round, and its finish round if it had one. */
+type ReaderStatus = ChapterStatus & { readerRound: true; readerIssues: number; finishRound?: true; finishIssues?: number };
 
 /** Reads the --issues file: a non-empty JSON array of {field, text} strings. Anything else is a usage error. */
 function readFindings(file: string): Finding[] {
@@ -188,7 +189,7 @@ async function cmdFix(ctx: PipelineCtx, chapters: number[], findings: Finding[] 
     const next = await checkChapter(ctx, n, round + 1);
     printRound(io, n, next);
     if (findings) {
-      const status = refreshFinal(ctx, n, round, next, findings.length);
+      const status = refreshFinal(ctx, n, round, next, { readerIssues: findings.length });
       io.out(`${chName(n)}: reader round done; final.json is now r${next.round} (${status.stage})\n`);
     }
     if (next.blocking.length > 0) code = 1;
@@ -196,9 +197,51 @@ async function cmdFix(ctx: PipelineCtx, chapters: number[], findings: Finding[] 
   return code;
 }
 
-/** After a reader round the new round becomes the chapter's final: final.json = rN.chapter.json (the old one is kept as
- *  final.r<old>.json) and status.json says where the chapter stands, as `run` would write it, plus readerRound and readerIssues. */
-function refreshFinal(ctx: PipelineCtx, n: number, old: number, next: RoundResult, readerIssues: number): ReaderStatus {
+/** The finish round: once per chapter, after its reader round. It sends only the blocking issues the reader round's check left
+ *  (a lesson issue cannot be mended by edits, so it is not sent) plus the findings of --issues, if given; the reported
+ *  (non-blocking) issues are left alone. */
+async function cmdFinish(ctx: PipelineCtx, chapters: number[], findings: Finding[] | undefined, io: Io): Promise<number> {
+  const [n] = chapters;
+  if (chapters.length !== 1 || n === undefined) throw new UsageError("--finish needs exactly one chapter: --chapters N");
+  const dir = chDir(ctx, n);
+  const before = readJson<ReaderStatus>(path.join(dir, "status.json"));
+  if (before?.readerRound !== true) {
+    io.err(`${chName(n)}: --finish comes after the reader round (fix --issues), and this chapter has not had one\n`);
+    return 1;
+  }
+  const round = latestRound(dir, "chapter.json");
+  if (before.finishRound === true) {
+    io.err(`${chName(n)}: already had its finish round (r${round}); at most one finish round per chapter, so what is left stays open\n`);
+    return 1;
+  }
+  const result = round < 0 ? null : readJson<RoundResult>(path.join(dir, `r${round}.result.json`));
+  if (!result) throw new Error(`NO_CHECK: ${chName(n)} has no check result for its latest draft; run check first`);
+  const issues: Issue[] = [
+    ...result.blocking.filter((i) => i.source !== "lesson"),
+    ...(findings ?? []).map((f): Issue => ({ source: "review", blocking: false, field: f.field, text: f.text })),
+  ];
+  if (issues.length === 0) {
+    io.out(`${chName(n)} r${round}: nothing to finish\n`);
+    return result.blocking.length > 0 ? 1 : 0;
+  }
+  await fixChapter(ctx, n, round, issues);
+  const next = await checkChapter(ctx, n, round + 1);
+  printRound(io, n, next);
+  const status = refreshFinal(ctx, n, round, next, { readerIssues: before.readerIssues, finishIssues: issues.length });
+  io.out(`${chName(n)}: finish round done; final.json is now r${next.round} (${status.stage})\n`);
+  return next.blocking.length > 0 ? 1 : 0;
+}
+
+/** After a reader or finish round the new round becomes the chapter's final: final.json = rN.chapter.json (the old one is kept as
+ *  final.r<old>.json) and status.json says where the chapter stands, as `run` would write it, plus readerRound and readerIssues
+ *  (and, for the finish round, finishRound and finishIssues). */
+function refreshFinal(
+  ctx: PipelineCtx,
+  n: number,
+  old: number,
+  next: RoundResult,
+  { readerIssues, finishIssues }: { readerIssues: number; finishIssues?: number },
+): ReaderStatus {
   const file = (name: string): string => path.join(chDir(ctx, n), name);
   const before = readJson<ChapterStatus>(file("status.json"));
   if (fs.existsSync(file("final.json"))) fs.copyFileSync(file("final.json"), file(`final.r${old}.json`));
@@ -214,6 +257,7 @@ function refreshFinal(ctx: PipelineCtx, n: number, old: number, next: RoundResul
     lesson: readJson<LessonCard>(file("lesson.json"))?.lesson ?? "",
     readerRound: true,
     readerIssues,
+    ...(finishIssues === undefined ? {} : { finishRound: true as const, finishIssues }),
   };
   fs.writeFileSync(file("status.json"), JSON.stringify(status, null, 2));
   return status;
@@ -295,6 +339,7 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
           force: { type: "boolean" },
           review: { type: "boolean" },
           issues: { type: "string" },
+          finish: { type: "boolean" },
           file: { type: "string" },
           tag: { type: "string" },
           out: { type: "string" },
@@ -310,6 +355,7 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
     }
     if (!values.book) throw new UsageError("--book <config.json> is required");
     if (values.issues !== undefined && verb !== "fix") throw new UsageError("--issues only goes with the fix command");
+    if (values.finish === true && verb !== "fix") throw new UsageError("--finish only goes with the fix command");
     const findings = values.issues === undefined ? undefined : readFindings(values.issues);
 
     const ctx = makeCtx(loadBookConfig(values.book), { review: values.review === true });
@@ -322,7 +368,7 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
       case "check":
         return await guarded(ctx, () => cmdCheck(ctx, chapters, io));
       case "fix":
-        return await guarded(ctx, () => cmdFix(ctx, chapters, findings, io));
+        return await guarded(ctx, () => (values.finish === true ? cmdFinish(ctx, chapters, findings, io) : cmdFix(ctx, chapters, findings, io)));
       case "run":
         return await cmdRun(ctx, chapters, force, io);
       case "status":

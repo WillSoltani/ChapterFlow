@@ -769,6 +769,221 @@ test("fix --issues also works on a chapter below round 2 (it is the chapter's re
   assert.equal(h.calls("pipe-fix").length, 1);
 });
 
+// ---------------------------------------------------------------- fix --finish (the finish round)
+
+const BLOCKING_TEXT = "BLOCKING-NOTE the lesson supports another choice for q1";
+const REPORTED_A = "REPORTED-A a new reader may not follow VIRTUE-ALPHA";
+const REPORTED_B = "REPORTED-B a new reader may not follow VIRTUE-BETA";
+const CH_R3 = { ...CH, title: "The chapter after the reader round" };
+const FIX_Q2 = { edits: [{ field: "quiz.q2.prompt", find: "What fits?", replace: "What fits best?" }], keyChanges: [], declined: [] };
+
+/** Chapter n as the reader round leaves it: r3 checked (one blocking, two reported), final.json = r3, status says readerRound. */
+function afterReaderRound(h: Harness, n = 1, result: { blocking: unknown[]; fixable: unknown[] } | null = null): void {
+  afterTwoFixRounds(h, n);
+  const blocking = { source: "quiz", blocking: true, field: "quiz.q1", text: BLOCKING_TEXT };
+  const res = result ?? {
+    blocking: [blocking],
+    fixable: [
+      blocking,
+      { source: "coldreader", blocking: false, field: "breakdown.fastRead", text: REPORTED_A },
+      { source: "coldreader", blocking: false, field: "breakdown.fullRead", text: REPORTED_B },
+    ],
+  };
+  h.put(n, "r3.chapter.json", CH_R3);
+  h.put(n, "r3.result.json", { round: 3, lessonRating: "SUPPORTED", lessonReason: "", ...res, report: {} });
+  h.put(n, "final.json", CH_R3);
+  h.put(n, "final.r2.json", CH_R2);
+  h.put(n, "status.json", {
+    chapter: n,
+    stage: "open-issues",
+    round: 3,
+    rerun: true,
+    lessonRating: "SUPPORTED",
+    open: res.blocking,
+    spend: 3,
+    lesson: KEY,
+    readerRound: true,
+    readerIssues: 1,
+  });
+}
+
+test("fix --finish: one fix call with only the blocking issues, a check, and final.json and status.json move to the new round", async () => {
+  const h = harness();
+  afterReaderRound(h);
+  h.script({ ...CHECK_SCRIPT, "pipe-fix": [{ result: FIX_Q3 }] });
+
+  const r = await h.cli("fix", "--finish", "--book", h.configPath, "--chapters", "1");
+  assert.equal(r.code, 0, `${r.out}${r.err}`);
+  assert.equal(h.calls("pipe-fix").length, 1, "exactly one fix call");
+  const prompt = h.calls("pipe-fix")[0]!.prompt;
+  assert.ok(prompt.includes(BLOCKING_TEXT), "the blocking issue is in the fix prompt");
+  assert.match(prompt, /\[QUIZ BLOCKING\] quiz\.q1: BLOCKING-NOTE/);
+  assert.ok(!prompt.includes("REPORTED-A") && !prompt.includes("REPORTED-B"), "the reported issues are not sent");
+  assert.ok(!prompt.includes("REVIEW REPORTED"));
+  assert.equal(h.calls("pipe-factcheck").length, 1, "the new round is checked once");
+  assert.match(r.out, /ch01 r4/, "the round is printed like a normal fix");
+
+  const r4 = readJson(h.file(1, "r4.chapter.json"));
+  assert.match(r4.quiz.questions[2].prompt, /the better first step/);
+  assert.ok(fs.existsSync(h.file(1, "r4.result.json")));
+  assert.deepEqual(readJson(h.file(1, "final.json")), r4, "final.json is r4");
+  assert.deepEqual(readJson(h.file(1, "final.r3.json")), CH_R3, "the old final is kept as final.r3.json");
+  assert.deepEqual(readJson(h.file(1, "final.r2.json")), CH_R2, "an earlier kept final is left alone");
+
+  const st = readJson(h.file(1, "status.json"));
+  assert.equal(st.finishRound, true);
+  assert.equal(st.finishIssues, 1);
+  assert.equal(st.readerRound, true, "readerRound stays true");
+  assert.equal(st.readerIssues, 1, "and so does what the reader round sent");
+  assert.deepEqual([st.chapter, st.round, st.stage, st.rerun, st.lessonRating, st.lesson], [1, 4, "clean", true, "SUPPORTED", KEY]);
+  assert.deepEqual(st.open, []);
+  assert.equal(st.spend, 1.75, "7 calls of the new round at $0.25 on top of an empty ledger");
+});
+
+test("fix --finish --issues: the listed findings go in as non-blocking review issues beside the blocking one", async () => {
+  const h = harness();
+  afterReaderRound(h);
+  h.script({ ...CHECK_SCRIPT, "pipe-fix": [{ result: FIX_Q3 }] });
+
+  const r = await h.cli("fix", "--finish", "--book", h.configPath, "--chapters", "1", "--issues", findings(h, FINDING));
+  assert.equal(r.code, 0, `${r.out}${r.err}`);
+  assert.equal(h.calls("pipe-fix").length, 1);
+  const prompt = h.calls("pipe-fix")[0]!.prompt;
+  assert.ok(prompt.includes(BLOCKING_TEXT));
+  assert.ok(prompt.includes(FINDING.text), "the finding is in the fix prompt");
+  assert.match(prompt, /\[REVIEW REPORTED\] quiz\.q3: the right answer is guessable/, "as a non-blocking review issue with its field");
+  assert.ok(!prompt.includes("REPORTED-A") && !prompt.includes("REPORTED-B"), "the reported issues are still not sent");
+  const st = readJson(h.file(1, "status.json"));
+  assert.deepEqual([st.finishRound, st.finishIssues, st.readerRound, st.readerIssues, st.round], [true, 2, true, 1, 4]);
+});
+
+test("fix --finish: a second finish round on the same chapter is refused, with no model call", async () => {
+  const h = harness();
+  afterReaderRound(h);
+  h.script({ ...CHECK_SCRIPT, "pipe-fix": [{ result: FIX_Q3 }] });
+  const first = await h.cli("fix", "--finish", "--book", h.configPath, "--chapters", "1");
+  assert.equal(first.code, 0, `${first.out}${first.err}`);
+  const callsAfterFirst = h.calls().length;
+  const statusAfterFirst = fs.readFileSync(h.file(1, "status.json"), "utf8");
+  const finalAfterFirst = fs.readFileSync(h.file(1, "final.json"), "utf8");
+
+  for (const extra of [[], ["--issues", findings(h, { field: "hook", text: "SECOND-FINDING" })]]) {
+    const again = await h.cli("fix", "--finish", "--book", h.configPath, "--chapters", "1", ...extra);
+    assert.equal(again.code, 1);
+    assert.match(again.err, /ch01/);
+    assert.match(again.err, /finish round/);
+    assert.match(again.err, /at most one/);
+    assert.equal(h.calls().length, callsAfterFirst, "no model call was made");
+    assert.ok(!fs.existsSync(h.file(1, "r5.chapter.json")));
+    assert.equal(fs.readFileSync(h.file(1, "status.json"), "utf8"), statusAfterFirst, "status.json is untouched");
+    assert.equal(fs.readFileSync(h.file(1, "final.json"), "utf8"), finalAfterFirst, "final.json is untouched");
+  }
+  // Neither a plain fix nor another reader round gets past what is already used.
+  const plain = await h.cli("fix", "--book", h.configPath, "--chapters", "1");
+  assert.equal(plain.code, 1);
+  const reader = await h.cli("fix", "--book", h.configPath, "--chapters", "1", "--issues", findings(h, FINDING));
+  assert.equal(reader.code, 1);
+  assert.equal(h.calls().length, callsAfterFirst);
+});
+
+test("fix --finish: refused before the chapter has had its reader round, with no model call", async () => {
+  const h = harness();
+  afterTwoFixRounds(h, 1); // checked, open issues, but no reader round
+  const before = fs.readFileSync(h.file(1, "status.json"), "utf8");
+  h.script({ ...CHECK_SCRIPT, "pipe-fix": [{ result: FIX_Q3 }] });
+
+  for (const n of [1, 2]) {
+    // Chapter 2 has no files at all.
+    const r = await h.cli("fix", "--finish", "--book", h.configPath, "--chapters", String(n));
+    assert.equal(r.code, 1, `chapter ${n}`);
+    assert.match(r.err, new RegExp(`ch0${n}`));
+    assert.match(r.err, /reader round/);
+    assert.match(r.err, /--finish/);
+  }
+  const withFile = await h.cli("fix", "--finish", "--book", h.configPath, "--chapters", "1", "--issues", findings(h, FINDING));
+  assert.equal(withFile.code, 1, "the findings do not stand in for the reader round");
+  assert.equal(h.calls().length, 0, "no model call was made");
+  assert.ok(!fs.existsSync(h.file(1, "r3.chapter.json")));
+  assert.ok(!fs.existsSync(h.file(2, "r0.chapter.json")));
+  assert.equal(fs.readFileSync(h.file(1, "status.json"), "utf8"), before, "status.json is untouched");
+});
+
+test("fix --finish: with no blocking issue left and no --issues file it says nothing to finish, exits 0 and calls no model", async () => {
+  const h = harness();
+  afterReaderRound(h, 1, { blocking: [], fixable: [{ source: "coldreader", blocking: false, field: "breakdown.fastRead", text: REPORTED_A }] });
+  const before = fs.readFileSync(h.file(1, "status.json"), "utf8");
+  h.script({ ...CHECK_SCRIPT, "pipe-fix": [{ result: FIX_Q3 }] });
+
+  const r = await h.cli("fix", "--finish", "--book", h.configPath, "--chapters", "1");
+  assert.equal(r.code, 0, `${r.out}${r.err}`);
+  assert.match(r.out, /nothing to finish/);
+  assert.equal(h.calls().length, 0, "no model call was made");
+  assert.ok(!fs.existsSync(h.file(1, "r4.chapter.json")));
+  assert.equal(fs.readFileSync(h.file(1, "status.json"), "utf8"), before, "status.json is untouched, so the one finish round is still there");
+
+  // Only a lesson issue blocks: an edit cannot mend it, so nothing is sent, and the chapter still has a blocking issue.
+  const lesson = { source: "lesson", blocking: true, field: "keyTakeaway", text: "lesson rated STRETCHED: LESSON-NOTE" };
+  afterReaderRound(h, 2, { blocking: [lesson], fixable: [lesson] });
+  const stuck = await h.cli("fix", "--finish", "--book", h.configPath, "--chapters", "2");
+  assert.equal(stuck.code, 1);
+  assert.match(stuck.out, /nothing to finish/);
+  assert.equal(h.calls().length, 0);
+});
+
+test("fix --finish: after a real reader round it sends only what that round left blocking, and keeps what the reader round wrote", async () => {
+  const h = harness();
+  afterTwoFixRounds(h);
+  h.script({
+    ...CHECK_SCRIPT,
+    // The reader round's check (call 0) leaves one blocking and two reported issues; the finish round's check (call 1) is clean.
+    "pipe-factcheck": [{ result: { ...FACT_OK, quizIssues: [{ questionId: "q1", keyedIndex: 1, supportedIndex: 0, problem: "BLOCKING-NOTE" }] } }, { result: FACT_OK }],
+    "pipe-coldreader": [{ result: { lesson: "Write faults down.", unclear: [{ text: "VIRTUE-ALPHA", why: "abstract" }, { text: "VIRTUE-BETA", why: "vague" }] } }, { result: COLD }],
+    "pipe-fix": [{ result: FIX_Q3 }, { result: FIX_Q2 }],
+  });
+  const reader = await h.cli("fix", "--book", h.configPath, "--chapters", "1", "--issues", findings(h, FINDING));
+  assert.equal(reader.code, 1, "r3 still has the blocking issue");
+  const r3 = readJson(h.file(1, "r3.chapter.json"));
+  assert.equal(readJson(h.file(1, "r3.result.json")).blocking.length, 1);
+
+  const r = await h.cli("fix", "--finish", "--book", h.configPath, "--chapters", "1");
+  assert.equal(r.code, 0, `${r.out}${r.err}`);
+  assert.equal(h.calls("pipe-fix").length, 2, "one reader-round call and one finish call");
+  const prompt = h.calls("pipe-fix")[1]!.prompt;
+  assert.ok(prompt.includes("BLOCKING-NOTE"));
+  assert.ok(!prompt.includes("VIRTUE-ALPHA") && !prompt.includes("VIRTUE-BETA"), "the cold reader's reported issues are not sent");
+  assert.deepEqual(readJson(h.file(1, "final.json")), readJson(h.file(1, "r4.chapter.json")));
+  assert.deepEqual(readJson(h.file(1, "final.r3.json")), r3, "the reader round's final is kept");
+  assert.deepEqual(readJson(h.file(1, "final.r2.json")), CH_R2, "and so is the one before it");
+  const st = readJson(h.file(1, "status.json"));
+  assert.deepEqual([st.round, st.stage, st.readerRound, st.readerIssues, st.finishRound, st.finishIssues], [4, "clean", true, 1, true, 1]);
+});
+
+test("fix --finish: only goes with fix and needs exactly one chapter, and a bad --issues file is still a usage error", async () => {
+  const h = harness();
+  afterReaderRound(h);
+  const before = fs.readFileSync(h.file(1, "status.json"), "utf8");
+  const bad = path.join(h.dir, "bad.json");
+  fs.writeFileSync(bad, "[]");
+  for (const args of [
+    ["status", "--book", h.configPath, "--finish"],
+    ["check", "--book", h.configPath, "--chapters", "1", "--finish"],
+    ["run", "--book", h.configPath, "--chapters", "1", "--finish"],
+    ["eval", "--book", h.configPath, "--chapters", "1", "--finish"],
+    ["fix", "--book", h.configPath, "--finish"],
+    ["fix", "--book", h.configPath, "--chapters", "1,2", "--finish"],
+    ["fix", "--book", h.configPath, "--chapters", "1", "--finish", "--issues", bad],
+  ]) {
+    const r = await h.cli(...args);
+    assert.equal(r.code, 1, JSON.stringify(args));
+    assert.match(r.err, /--finish|--issues/, JSON.stringify(args));
+    assert.match(r.err, /Usage:/, JSON.stringify(args));
+  }
+  assert.equal(h.calls().length, 0);
+  assert.equal(fs.readFileSync(h.file(1, "status.json"), "utf8"), before);
+  const usage = await h.cli("nonsense");
+  assert.match(usage.err, /--finish/, "the usage text lists --finish");
+});
+
 // ---------------------------------------------------------------- render
 
 test("render: writes <runDir>/reading/chNN.html for chapters that have a final.json and skips the rest", async () => {
