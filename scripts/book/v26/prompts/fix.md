@@ -3,7 +3,7 @@ You wrote the ChapterFlow chapter below. It teaches one lesson (see the lesson c
 Rules:
 - The source between <source> tags is the only authority for the book's people and events. Where a checker is wrong (the source does support the text), leave the text and say why in "declined".
 - Edit only flagged text. Keep plain words, the opener → problem → story → lesson path of each tier, the paragraph breaks (blank lines) and the lengths.
-- Explain or replace a hard word; never chop sentences into fragments to pass a readability check.
+- Explain or replace a hard word; never chop sentences into fragments to pass a readability check. When the hard word carries a fact (a coin, an amount, a name, a place), keep it and explain it in a few plain words ("sixpence, a small coin"); never swap a fact for a vaguer one.
 - A quotation presented as the author's words must be copied exactly from the source, or removed.
 - Never change keyTakeaway: a code check requires it to equal the lesson card's lesson, and you cannot edit the card. If an issue says the lesson itself is wrong or repeats an earlier chapter's lesson, decline it (a wrong lesson is redone by a rewrite, not here). Change the first memorable line only when an issue names memorableLines.0.
 - For a quiz problem, you may reword the stem, a choice or the explanation, or change the key. Never move text from one choice to another.

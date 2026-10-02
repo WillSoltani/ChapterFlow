@@ -86,3 +86,23 @@ Using W1's measured costs:
 3. **Guessable quizzes.** If the no-chapter median is above 3/5 in both tuning chapters, strengthen the wrong-belief distractor in the brief.
 4. **Ambiguous modern keys, and chapters that sound alike.** Track second-defensible flags and repeated openings.
 5. **Preachy repetition.** D-REPEATS ≤ 2, plus keyPhrase reuse instead of the full sentence.
+
+## Revision 1 (after Phase 5 tuning rounds 1–3)
+
+What three rounds on Franklin ch01 and ch13 showed (details: `phase5-rounds.md`):
+- **The LF- judge items are met.** Both chapters scored 34–35 of 35 in every round (W1's prototype scored 11/35). The changes that moved items were all prompt changes: the tier ending (END) and the quiz choice form.
+- **The no-chapter solver is not a fair proxy for a beginner when the lesson agrees with common morality.**
+  - On ch01 ("check the means": a useful plan still needs honest steps), Sonnet scored 5/5 without the chapter in every sample. This held even after the choices were made equal in length (the max/min length ratio fell from about 2.2 to 1.1).
+  - The one quiz it could not guess (ch13, round 1) was one where it actually believed the wrong belief.
+  - So the measure stays reported, not tuned against. Gaming it (for example a weaker solver) would hide the problem instead of fixing it.
+- **Two causes of late blocking leftovers.**
+  - (a) A fix call that simplified a fact-bearing word ("sixpence" → "a few pennies") created a HOW MUCH error.
+  - (b) Last-round quiz rewrites for guessability created a second defensible answer.
+- **The ch01 fullRead kept adding a second episode** (Peter Folger's signed poem) that teaches a nearby virtue, not the lesson. The judge failed SPINE on it in 2 of 3 samples.
+
+Changes:
+1. `fix.md`: keep a fact-bearing hard word and explain it; never swap a fact for a vaguer one.
+2. `write.md`: fullRead may add a second episode only if it shows exactly the same lesson.
+3. `pipeline.ts`: the last allowed fix round sends only the blocking issues when there are any. Reported items stay as owner leftovers instead of risking new blockers.
+
+These are a prompt tweak and a loop rule. No stage was added.

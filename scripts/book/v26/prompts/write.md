@@ -59,7 +59,7 @@ Write one JSON object with the keys in this order:
     4. End by answering the opening question. Go back for a sentence or two to the opening scene or the reader's own situation and show what the lesson changes there; then state the lesson once, plainly and in general words, as the payoff. Word it freshly (not the keyTakeaway sentence copied) and stop there: no sermon or "so next time" pep talk after it.
   - "fastRead": 150 to 220 words in 2-3 paragraphs. It may quote the author once.
   - "deepRead": 350 to 500 words in 3-5 paragraphs, with at most 2 short quotes.
-  - "fullRead": 800 to 1,100 words in 6-9 paragraphs of 60 to 140 words, with at most 3 short quotes. It adds evidence, not plot: more of the episode that shows the lesson, or a second episode that shows the same lesson. The story stays under about half the words; use the rest on why the lesson works, and still end on the lesson.
+  - "fullRead": 800 to 1,100 words in 6-9 paragraphs of 60 to 140 words, with at most 3 short quotes. It adds evidence, not plot: more of the episode that shows the lesson. Use a second episode only if it shows exactly the same lesson in a new situation; a nearby virtue (honesty in general, courage, speaking openly) is a different lesson, so leave it out. The story stays under about half the words; use the rest on why the lesson works, and still end on the lesson.
   - Quote the author only where his words carry the lesson. Copy them exactly from the source, inside double quotes, and explain any old-fashioned word in the same sentence.
   - Separate paragraphs with a blank line ("\n\n").
 - "title": up to 60 characters. It names the problem or the lesson, not a scene.
