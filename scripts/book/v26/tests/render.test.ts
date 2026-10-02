@@ -56,9 +56,9 @@ test("chapter text is escaped in the output", () => {
 
 test("paragraphs split on blank lines, trimmed, empties dropped, inner whitespace collapsed", () => {
   const html = renderChapter(makeChapter(), {});
-  const full = html.match(/<div class="tier[^"]*" data-depth="fullRead">(.*?)<\/div>/s)?.[1];
+  const full = html.match(/<div class="tier[^"]*" data-depth="fullRead">([\s\S]*?)<\/div>/)?.[1];
   assert.equal(full, "<p>Full one.</p><p>Full two wraps here.</p><p>Full three.</p>");
-  const fast = html.match(/<div class="tier[^"]*" data-depth="fastRead">(.*?)<\/div>/s)?.[1];
+  const fast = html.match(/<div class="tier[^"]*" data-depth="fastRead">([\s\S]*?)<\/div>/)?.[1];
   assert.equal(fast, "<p>Fast one.</p><p>Fast two.</p>");
 });
 
