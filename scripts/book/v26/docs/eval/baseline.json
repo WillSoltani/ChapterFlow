@@ -1,0 +1,272 @@
+{
+ "X-ch01 (rr21)": {
+  "judgePrompt": "judge.md (v2)",
+  "lessonAsRead": "A useful result never makes taking someone else's things honest; ask the owner first.",
+  "singleLesson": false,
+  "judgePass": "2/45",
+  "groups": {
+   "OPENER": "0/4",
+   "ARC": "0/3",
+   "END": "1/3",
+   "PLAIN": "0/2",
+   "EX": "0/6",
+   "EXFIT": "0/6",
+   "QUIZ": "0/9",
+   "CARD": "1/7"
+  },
+  "single": {
+   "COUNTER": false,
+   "TRY": false,
+   "LINES-1": false,
+   "PRACTICE": false,
+   "SPINE": false
+  },
+  "noChapterSolver": "5/5",
+  "det": {
+   "fk": {
+    "fastRead": 5.7,
+    "deepRead": 5.9,
+    "fullRead": 7.8
+   },
+   "fkRest": 12.4,
+   "keyTakeawayWords": 26,
+   "exampleScenarioWords": [
+    165,
+    168,
+    193,
+    203,
+    184,
+    158
+   ],
+   "D-READ-summary": true,
+   "D-READ-rest": false,
+   "D-LESSON-LEN": false,
+   "D-REPEATS": true,
+   "D-EX-LEN": false
+  }
+ },
+ "Y-ch01 (W1 proto)": {
+  "judgePrompt": "judge.md (v2)",
+  "lessonAsRead": "A useful result never excuses a dishonest method; using what isn't yours without asking isn't truly useful.",
+  "singleLesson": true,
+  "judgePass": "11/35",
+  "groups": {
+   "OPENER": "0/4",
+   "ARC": "1/3",
+   "END": "1/3",
+   "PLAIN": "0/2",
+   "EX": "3/3",
+   "EXFIT": "2/3",
+   "QUIZ": "1/7",
+   "CARD": "1/5"
+  },
+  "single": {
+   "COUNTER": false,
+   "TRY": true,
+   "LINES-1": false,
+   "PRACTICE": true,
+   "SPINE": false
+  },
+  "noChapterSolver": "5/5",
+  "det": {
+   "fk": {
+    "fastRead": 7.0,
+    "deepRead": 9.3,
+    "fullRead": 9.0
+   },
+   "fkRest": 7.9,
+   "keyTakeawayWords": 19,
+   "exampleScenarioWords": [
+    84,
+    85,
+    63
+   ],
+   "D-READ-summary": false,
+   "D-READ-rest": true,
+   "D-LESSON-LEN": true,
+   "D-REPEATS": true,
+   "D-EX-LEN": false
+  }
+ },
+ "Z-ch01 (Q08)": {
+  "judgePrompt": "judge.md (v2)",
+  "lessonAsRead": "A useful result never excuses getting it by wrong means, such as taking what isn't yours.",
+  "singleLesson": false,
+  "judgePass": "5/45",
+  "groups": {
+   "OPENER": "0/4",
+   "ARC": "0/3",
+   "END": "0/3",
+   "PLAIN": "0/2",
+   "EX": "1/6",
+   "EXFIT": "3/6",
+   "QUIZ": "0/9",
+   "CARD": "1/7"
+  },
+  "single": {
+   "COUNTER": false,
+   "TRY": false,
+   "LINES-1": false,
+   "PRACTICE": false,
+   "SPINE": false
+  },
+  "noChapterSolver": "5/5",
+  "det": {
+   "fk": {
+    "fastRead": 5.0,
+    "deepRead": 6.8,
+    "fullRead": 7.2
+   },
+   "fkRest": 9.2,
+   "keyTakeawayWords": 28,
+   "exampleScenarioWords": [
+    72,
+    70,
+    75,
+    79,
+    83,
+    81
+   ],
+   "D-READ-summary": true,
+   "D-READ-rest": false,
+   "D-LESSON-LEN": false,
+   "D-REPEATS": true,
+   "D-EX-LEN": false
+  }
+ },
+ "proto-ch13": {
+  "judgePrompt": "judge-v1.md",
+  "lessonAsRead": "A promise that pays only after others act first wins over doubters and motivates contributors at the same time.",
+  "singleLesson": false,
+  "judgePass": "5/35",
+  "groups": {
+   "OPENER": "0/4",
+   "ARC": "1/3",
+   "END": "1/3",
+   "PLAIN": "0/2",
+   "EX": "1/3",
+   "EXFIT": "0/3",
+   "QUIZ": "1/7",
+   "CARD": "0/5"
+  },
+  "single": {
+   "COUNTER": false,
+   "TRY": true,
+   "LINES-1": false,
+   "PRACTICE": false,
+   "SPINE": false
+  },
+  "noChapterSolver": "4/5",
+  "det": {
+   "fk": {
+    "fastRead": 6.9,
+    "deepRead": 8.7,
+    "fullRead": 8.2
+   },
+   "fkRest": 7.5,
+   "keyTakeawayWords": 22,
+   "exampleScenarioWords": [
+    83,
+    84,
+    75
+   ],
+   "D-READ-summary": false,
+   "D-READ-rest": true,
+   "D-LESSON-LEN": false,
+   "D-REPEATS": true,
+   "D-EX-LEN": false
+  }
+ },
+ "rr21-ch13": {
+  "judgePrompt": "judge-v1.md",
+  "lessonAsRead": "Different kinds of public resistance need different fixes, so match each funding or governance method to the specific obstacle.",
+  "singleLesson": false,
+  "judgePass": "1/45",
+  "groups": {
+   "OPENER": "0/4",
+   "ARC": "0/3",
+   "END": "1/3",
+   "PLAIN": "0/2",
+   "EX": "0/6",
+   "EXFIT": "0/6",
+   "QUIZ": "0/9",
+   "CARD": "0/7"
+  },
+  "single": {
+   "COUNTER": false,
+   "TRY": false,
+   "LINES-1": false,
+   "PRACTICE": false,
+   "SPINE": false
+  },
+  "noChapterSolver": "5/5",
+  "det": {
+   "fk": {
+    "fastRead": 6.4,
+    "deepRead": 5.7,
+    "fullRead": 6.8
+   },
+   "fkRest": 11.1,
+   "keyTakeawayWords": 27,
+   "exampleScenarioWords": [
+    122,
+    123,
+    117,
+    109,
+    113,
+    134
+   ],
+   "D-READ-summary": true,
+   "D-READ-rest": false,
+   "D-LESSON-LEN": false,
+   "D-REPEATS": true,
+   "D-EX-LEN": false
+  }
+ },
+ "q08-ch13": {
+  "judgePrompt": "judge-v1.md",
+  "lessonAsRead": "Fit each public project's design to its own obstacle, and give credit away so others keep helping.",
+  "singleLesson": false,
+  "judgePass": "14/45",
+  "groups": {
+   "OPENER": "0/4",
+   "ARC": "0/3",
+   "END": "0/3",
+   "PLAIN": "0/2",
+   "EX": "3/6",
+   "EXFIT": "3/6",
+   "QUIZ": "3/9",
+   "CARD": "5/7"
+  },
+  "single": {
+   "COUNTER": false,
+   "TRY": false,
+   "LINES-1": false,
+   "PRACTICE": false,
+   "SPINE": false
+  },
+  "noChapterSolver": "4/5",
+  "det": {
+   "fk": {
+    "fastRead": 5.8,
+    "deepRead": 7.2,
+    "fullRead": 6.3
+   },
+   "fkRest": 9.4,
+   "keyTakeawayWords": 24,
+   "exampleScenarioWords": [
+    87,
+    75,
+    79,
+    81,
+    87,
+    80
+   ],
+   "D-READ-summary": true,
+   "D-READ-rest": false,
+   "D-LESSON-LEN": false,
+   "D-REPEATS": true,
+   "D-EX-LEN": false
+  }
+ }
+}
