@@ -39,7 +39,7 @@ This tool does **not** publish. The real `ship` (the step that puts a book into 
 ## Commands
 
 ```
-npx tsx scripts/book/v26/cli.ts <verb> --book scripts/book/v26/books/<bookId>.json [--chapters 1,13] [--force] [--review]
+npx tsx scripts/book/v26/cli.ts <verb> --book scripts/book/v26/books/<bookId>.json [--chapters 1,13] [--force] [--review] [--issues <file.json>]
 ```
 
 `--chapters` defaults to every chapter. Under a long `run`, use `caffeinate -dimsu npx tsx ...` so the machine does not sleep.
@@ -48,7 +48,7 @@ npx tsx scripts/book/v26/cli.ts <verb> --book scripts/book/v26/books/<bookId>.js
 |---|---|
 | `write` | Writes the draft (`r0`) of each chapter. A chapter that already has a draft is skipped; `--force` keeps the old run as `chNN.prev-<time>` and writes again. |
 | `check` | Code checks, then fact check, blind quiz solve, cold reader and no-chapter solver, on the chapter's latest draft. Lists the issues; `!` marks a blocking one. |
-| `fix` | One fix round on the latest check (edits for what the check flagged), then a re-check. Stops at 2 fix rounds. |
+| `fix` | One fix round on the latest check (edits for what the check flagged), then a re-check. Stops at 2 fix rounds. `--issues <file.json> --chapters N` (reader findings, `[{"field","text"}]`) adds one reader round after the 2 fix rounds and makes it the chapter's `final.json` and `status.json`; once per chapter. |
 | `run` | Everything for the chapters, with the concurrency and budget caps: write, check, one rewrite if the lesson is wrong, up to 2 fix rounds, then `final.json` and `status.json`. It picks up from the files that exist, and skips a chapter whose status is `clean` or `open-issues` unless `--force`. `--review` adds the editor review and sends its failed items to the fix call. |
 | `status` | A table per chapter: stage, open issues, spend, lesson. No model call. |
 | `eval` | Judges one chapter with the calibrated judge and the no-chapter solver (see `docs/eval/`). `--chapters N` is required; `--file` defaults to `<runDir>/chNN/final.json`, `--tag` to `chNN`, `--out` to `<runDir>/eval`. Writes `<out>/<tag>.eval.json` (it records `chapter` and `file`) and the judge and solver answers beside it as `<tag>.judge.*` and `<tag>.nochapter-K.*`. With the defaults each chapter has its own `chNN.*` files; give two evals the same `--tag` and `--out` and the second overwrites the first. |

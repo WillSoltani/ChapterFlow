@@ -1,6 +1,6 @@
 /** The v26 chapter tool's command line. See README.md.
  *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render> --book <config.json>
- *      [--chapters 1,13] [--force] [--review] [--file <chapter.json> --tag <t> --out <dir>]
+ *      [--chapters 1,13] [--force] [--review] [--issues <findings.json>] [--file <chapter.json> --tag <t> --out <dir>]
  *  Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget. */
 import * as fs from "node:fs";
 import * as path from "node:path";
@@ -23,7 +23,7 @@ import {
   type RoundResult,
 } from "./src/pipeline";
 import { page, renderChapter } from "./src/render";
-import type { Chapter, Issue } from "./src/types";
+import type { Chapter, Issue, LessonCard } from "./src/types";
 
 const VERBS = ["write", "check", "fix", "run", "status", "eval", "render"] as const;
 type Verb = (typeof VERBS)[number];
@@ -32,6 +32,7 @@ const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --boo
   --chapters 1,13   chapter numbers (default: every chapter; eval takes exactly one)
   --force           write/run: start the chapter again (the old run is kept as chNN.prev-<time>)
   --review          check/fix/run: also run the editor review and send its failed items to the fix call
+  --issues <f>      fix: reader findings, a JSON array of {"field","text"}; one extra "reader" fix round on one chapter (--chapters N), which then becomes its final.json
   --file <f>        eval: the chapter JSON to judge (default <runDir>/chNN/final.json)
   --tag <t>         eval: name for the output files (default chNN, so each chapter keeps its own)
   --out <dir>       eval: where <tag>.eval.json goes (default <runDir>/eval)
@@ -68,6 +69,35 @@ function chapterList(raw: string | undefined, ctx: PipelineCtx): number[] {
   });
   for (const n of picked) if (!all.includes(n)) throw new Error(`NO_SUCH_CHAPTER: ${n} (this book has ${all[0]}-${all[all.length - 1]})`);
   return [...new Set(picked)];
+}
+
+/** A finding from a reader of the finished chapter: where it is and what is wrong. */
+interface Finding {
+  field: string;
+  text: string;
+}
+
+/** What status.json holds for a chapter that had its reader round. */
+type ReaderStatus = ChapterStatus & { readerRound: true; readerIssues: number };
+
+/** Reads the --issues file: a non-empty JSON array of {field, text} strings. Anything else is a usage error. */
+function readFindings(file: string): Finding[] {
+  let raw: unknown;
+  try {
+    raw = JSON.parse(fs.readFileSync(file, "utf8"));
+  } catch (e) {
+    throw new UsageError(`--issues ${file}: cannot read it as JSON (${(e as Error).message})`);
+  }
+  if (!Array.isArray(raw) || raw.length === 0) {
+    throw new UsageError(`--issues ${file}: expected a non-empty JSON array of {"field": string, "text": string}`);
+  }
+  return raw.map((item: unknown, k): Finding => {
+    const o = typeof item === "object" && item !== null && !Array.isArray(item) ? (item as Record<string, unknown>) : null;
+    if (!o || typeof o.field !== "string" || typeof o.text !== "string" || o.text.trim() === "") {
+      throw new UsageError(`--issues ${file}: item ${k + 1} must be {"field": string, "text": a non-empty string}`);
+    }
+    return { field: o.field, text: o.text };
+  });
 }
 
 /** The highest round that has a file called r<k>.<suffix>, or -1. */
@@ -127,20 +157,28 @@ async function cmdCheck(ctx: PipelineCtx, chapters: number[], io: Io): Promise<n
   return code;
 }
 
-async function cmdFix(ctx: PipelineCtx, chapters: number[], io: Io): Promise<number> {
+async function cmdFix(ctx: PipelineCtx, chapters: number[], findings: Finding[] | undefined, io: Io): Promise<number> {
+  if (findings && chapters.length !== 1) throw new UsageError("--issues needs exactly one chapter: --chapters N");
   let code = 0;
   for (const n of chapters) {
     const dir = chDir(ctx, n);
     const round = latestRound(dir, "chapter.json");
     const result = round < 0 ? null : readJson<RoundResult>(path.join(dir, `r${round}.result.json`));
     if (!result) throw new Error(`NO_CHECK: ${chName(n)} has no check result for its latest draft; run check first`);
-    if (round >= MAX_FIX_ROUNDS) {
+    if (findings) {
+      // The reader round is one more round after the 2 fix rounds, and a chapter has only one.
+      if (round >= MAX_FIX_ROUNDS + 1 || readJson<{ readerRound?: boolean }>(path.join(dir, "status.json"))?.readerRound === true) {
+        io.err(`${chName(n)}: already had its reader round (r${round}); at most one reader round per chapter, so what is left stays open\n`);
+        return 1;
+      }
+    } else if (round >= MAX_FIX_ROUNDS) {
       io.out(`${chName(n)}: already had ${MAX_FIX_ROUNDS} fix rounds; what is left stays open\n`);
       code = 1;
       continue;
     }
     // A wrong lesson cannot be mended by edits, so a lesson issue alone does not start a fix call.
-    const issues = result.fixable.filter((i) => i.source !== "lesson");
+    const fixable = result.fixable.filter((i) => i.source !== "lesson");
+    const issues: Issue[] = [...(findings ?? []).map((f): Issue => ({ source: "review", blocking: false, field: f.field, text: f.text })), ...fixable];
     if (issues.length === 0) {
       io.out(`${chName(n)} r${round}: nothing to fix\n`);
       if (result.blocking.length > 0) code = 1;
@@ -149,9 +187,36 @@ async function cmdFix(ctx: PipelineCtx, chapters: number[], io: Io): Promise<num
     await fixChapter(ctx, n, round, issues);
     const next = await checkChapter(ctx, n, round + 1);
     printRound(io, n, next);
+    if (findings) {
+      const status = refreshFinal(ctx, n, round, next, findings.length);
+      io.out(`${chName(n)}: reader round done; final.json is now r${next.round} (${status.stage})\n`);
+    }
     if (next.blocking.length > 0) code = 1;
   }
   return code;
+}
+
+/** After a reader round the new round becomes the chapter's final: final.json = rN.chapter.json (the old one is kept as
+ *  final.r<old>.json) and status.json says where the chapter stands, as `run` would write it, plus readerRound and readerIssues. */
+function refreshFinal(ctx: PipelineCtx, n: number, old: number, next: RoundResult, readerIssues: number): ReaderStatus {
+  const file = (name: string): string => path.join(chDir(ctx, n), name);
+  const before = readJson<ChapterStatus>(file("status.json"));
+  if (fs.existsSync(file("final.json"))) fs.copyFileSync(file("final.json"), file(`final.r${old}.json`));
+  fs.copyFileSync(file(`r${next.round}.chapter.json`), file("final.json"));
+  const status: ReaderStatus = {
+    chapter: n,
+    stage: next.blocking.length > 0 ? "open-issues" : "clean",
+    round: next.round,
+    rerun: before?.rerun === true || fs.existsSync(file("r0-pre-rerun.chapter.json")),
+    lessonRating: next.lessonRating,
+    open: [...next.blocking, ...next.fixable.filter((i) => !i.blocking).map((i) => ({ ...i, leftover: true as const }))],
+    spend: statusRows(ctx).find((r) => r.chapter === n)?.spend ?? 0,
+    lesson: readJson<LessonCard>(file("lesson.json"))?.lesson ?? "",
+    readerRound: true,
+    readerIssues,
+  };
+  fs.writeFileSync(file("status.json"), JSON.stringify(status, null, 2));
+  return status;
 }
 
 async function cmdRun(ctx: PipelineCtx, chapters: number[], force: boolean, io: Io): Promise<number> {
@@ -229,6 +294,7 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
           chapters: { type: "string" },
           force: { type: "boolean" },
           review: { type: "boolean" },
+          issues: { type: "string" },
           file: { type: "string" },
           tag: { type: "string" },
           out: { type: "string" },
@@ -243,6 +309,8 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
       throw new UsageError(verb === undefined ? "no command given" : `unknown command or extra argument: ${positionals.join(" ")}`);
     }
     if (!values.book) throw new UsageError("--book <config.json> is required");
+    if (values.issues !== undefined && verb !== "fix") throw new UsageError("--issues only goes with the fix command");
+    const findings = values.issues === undefined ? undefined : readFindings(values.issues);
 
     const ctx = makeCtx(loadBookConfig(values.book), { review: values.review === true });
     const chapters = chapterList(values.chapters, ctx);
@@ -254,7 +322,7 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
       case "check":
         return await guarded(ctx, () => cmdCheck(ctx, chapters, io));
       case "fix":
-        return await guarded(ctx, () => cmdFix(ctx, chapters, io));
+        return await guarded(ctx, () => cmdFix(ctx, chapters, findings, io));
       case "run":
         return await cmdRun(ctx, chapters, force, io);
       case "status":
