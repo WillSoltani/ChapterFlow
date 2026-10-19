@@ -204,13 +204,15 @@ function withIds(component: Component, variants: Obj[]): Obj[] {
 
 // ---------------------------------------------------------------- deterministic checks
 
-/** Quotations in a summary that are not in the author's text, word for word (footnote markers and typography folded). */
-export function summaryDetIssues(variants: SummaryVariant[], authorText: string): DetIssue[] {
-  const src = norm(authorText);
+/** Quotations in a summary that are not in the author's text, word for word (footnote markers and typography folded).
+ *  With no source text (authorText null), every quotation is flagged: nothing can verify it. */
+export function summaryDetIssues(variants: SummaryVariant[], authorText: string | null): DetIssue[] {
+  const src = authorText === null ? null : norm(authorText);
   const out: DetIssue[] = [];
   for (const v of variants) {
     for (const q of findQuotes(v.summary)) {
-      if (!quoteInSource(q, src)) out.push({ variant: v.label, text: `quotation not in the source word for word: "${q}"` });
+      if (src === null) out.push({ variant: v.label, text: `quotation in a chapter with no source text, so nothing can verify it: "${q}"` });
+      else if (!quoteInSource(q, src)) out.push({ variant: v.label, text: `quotation not in the source word for word: "${q}"` });
     }
     const words = wordsIn(v.summary);
     if (words < 200 || words > 400) out.push({ variant: v.label, text: `summary is ${words} words (asked for 250 to 350)` });
@@ -246,11 +248,40 @@ function summariesBlock(variants: SummaryVariant[]): string {
     .join("\n\n");
 }
 
+const TEXT_RULES =
+  "THE SOURCE is between <source> tags. It is the only authority for the book's people and events: names, numbers, dates, order, " +
+  "causes and motives. If the source does not say why something happened, do not supply a reason. The block headed EDITOR'S NOTES " +
+  "was written by a later editor, not the author. Read the whole source.";
+const TEXT_QUOTE_RULE =
+  "Quote the author only where his words carry the lesson, copied exactly, inside double quotes, with any old word explained in the same sentence.";
+const TEXT_EVIDENCE_RULE = "1 to 3 short passages copied word for word from the source that show the lesson.";
+const KNOWLEDGE_RULES =
+  "THERE IS NO SOURCE TEXT. Write from your own knowledge of this book and of this chapter. Use only what you are confident the chapter " +
+  "actually says: its named stories and people, and the author's claims and reasoning. If you are unsure of a detail (a date, a number, " +
+  "a name, who did what), leave it out rather than guess, and never borrow a story from another chapter or another book.";
+const KNOWLEDGE_QUOTE_RULE =
+  "Never quote the author or the book: no passage in quotation marks presented as their words, because nothing here can verify it. " +
+  "Tell the chapter's stories in your own plain words.";
+const KNOWLEDGE_EVIDENCE_RULE = "1 to 3 short descriptions, in your own words, of the chapter's stories or claims that show the lesson (no quotations).";
+
+/** The source-related template variables: the tagged text in text mode, the no-source rules in knowledge mode. */
+export function sourceVars(ctx: PipelineCtx, n: number): Record<string, string> {
+  if (ctx.source.mode === "knowledge") {
+    return { SOURCE_RULES: KNOWLEDGE_RULES, QUOTE_RULE: KNOWLEDGE_QUOTE_RULE, EVIDENCE_RULE: KNOWLEDGE_EVIDENCE_RULE, SOURCE_BLOCK: "" };
+  }
+  return {
+    SOURCE_RULES: TEXT_RULES,
+    QUOTE_RULE: TEXT_QUOTE_RULE,
+    EVIDENCE_RULE: TEXT_EVIDENCE_RULE,
+    SOURCE_BLOCK: `<source>\n${writerFormText(spanText(ctx.source, n))}\n</source>`,
+  };
+}
+
 function componentPrompt(ctx: PipelineCtx, n: number, component: Component, lesson: LessonCandidate, plain: string): string {
   const vars: Record<string, string> = { LESSON: lessonText(lesson), PLAIN: plain };
   if (component === "summary") {
-    vars.BOOK_SECTION = ctx.bookSection;
-    vars.SOURCE = writerFormText(spanText(ctx.source, n));
+    const { SOURCE_RULES, QUOTE_RULE, SOURCE_BLOCK } = sourceVars(ctx, n);
+    Object.assign(vars, { BOOK_SECTION: ctx.bookSection, SOURCE_RULES, QUOTE_RULE, SOURCE_BLOCK });
   }
   return renderTemplate(loadPrompt(`variants-${component}`), vars);
 }
@@ -291,10 +322,13 @@ export async function generateVariants(ctx: PipelineCtx, n: number, opts: Varian
   // 1. The lesson: five candidates, best first.
   let lessons = readJson<{ lessons: LessonCandidate[] }>(file("lessons"))?.lessons ?? null;
   if (lessons === null || (force && opts.only === undefined)) {
+    const { SOURCE_RULES, EVIDENCE_RULE, SOURCE_BLOCK } = sourceVars(ctx, n);
     const prompt = renderTemplate(loadPrompt("variants-lessons"), {
       BOOK_SECTION: ctx.bookSection,
       HEADER: chapterHeader(n, titles, []),
-      SOURCE: writerFormText(spanText(ctx.source, n)),
+      SOURCE_RULES,
+      EVIDENCE_RULE,
+      SOURCE_BLOCK,
       PLAIN: plain,
     });
     const raw = (await callShaped(ctx, n, { role: ctx.config.writer, prompt, step: "lessons", kind: "write", errors: lessonsShapeErrors })) as { lessons: LessonCandidate[] };
@@ -335,11 +369,12 @@ export async function generateVariants(ctx: PipelineCtx, n: number, opts: Varian
   // 3. The fact check of the five summaries, plus the 0-call checks.
   let issues: FactIssue[] = readJson<{ issues: FactIssue[] }>(file("factcheck"))?.issues ?? [];
   if (summary.length > 0 && (summaryFresh || !fs.existsSync(file("factcheck")))) {
-    const prompt = renderTemplate(loadPrompt("variants-factcheck"), {
+    const knowledge = ctx.source.mode === "knowledge";
+    const prompt = renderTemplate(loadPrompt(knowledge ? "variants-factcheck-knowledge" : "variants-factcheck"), {
       KNOWN_TRAPS: knownTrapsSection(ctx.knownTraps[n] ?? []),
       LESSON: lessonText(lesson),
-      SOURCE: writerFormText(spanText(ctx.source, n)),
       SUMMARIES: summariesBlock(summary),
+      ...(knowledge ? { BOOK_SECTION: ctx.bookSection } : { SOURCE: writerFormText(spanText(ctx.source, n)) }),
     });
     const raw = await callShaped(ctx, n, {
       role: ctx.config.checker,
@@ -359,7 +394,8 @@ export async function generateVariants(ctx: PipelineCtx, n: number, opts: Varian
     }));
     writeJson(file("factcheck"), { issues });
   }
-  const det = summary.length > 0 ? summaryDetIssues(summary, writerForm(spanText(ctx.source, n)).text) : [];
+  const det =
+    summary.length > 0 ? summaryDetIssues(summary, ctx.source.mode === "knowledge" ? null : writerForm(spanText(ctx.source, n)).text) : [];
 
   const run: VariantsRun = {
     chapter: n,

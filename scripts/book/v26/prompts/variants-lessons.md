@@ -4,9 +4,9 @@ You are choosing the lesson for one chapter of a ChapterFlow book: a short lesso
 
 @@HEADER@@
 
-THE SOURCE is between <source> tags. It is the only authority for the book's people and events. The block headed EDITOR'S NOTES was written by a later editor, not the author.
+@@SOURCE_RULES@@
 
-Read the whole source. Then propose FIVE different lessons this chapter could teach, each with real evidence in the source. Make them genuinely different: not five wordings of one idea. Rank them, best first: the one most useful to a reader today with the strongest evidence. If the author states his own reflection or rule, at least one lesson builds on it.
+Propose FIVE different lessons this chapter could teach, each with real evidence in the chapter. Make them genuinely different: not five wordings of one idea. Rank them, best first: the one most useful to a reader today with the strongest evidence. If the author states his own reflection or rule, at least one lesson builds on it.
 
 A lesson no sensible adult would disagree with (work hard, be honest, learn from mistakes) is a cliché. Sharpen it until it names a specific move and when to use it.
 
@@ -15,8 +15,8 @@ For each lesson give:
 - "wrongBelief": the common belief this lesson corrects, the way a sensible beginner would say it.
 - "keyPhrase": 2 to 4 words that name the move.
 - "hookQuestion": the question a hook would make the reader wonder about. The lesson is its answer.
-- "storyNames": the names of people and places from the source that the evidence uses.
-- "evidence": 1 to 3 short passages copied word for word from the source that show the lesson.
+- "storyNames": the names of people and places from the chapter that the evidence uses.
+- "evidence": @@EVIDENCE_RULE@@
 - "whyThisOne": one sentence for the owner: why a reader would want this lesson, or, for a lower-ranked one, what makes it weaker.
 
 @@PLAIN@@
@@ -24,6 +24,4 @@ For each lesson give:
 Output only this JSON (no code fence):
 {"lessons": [ {"lesson": "...", "wrongBelief": "...", "keyPhrase": "...", "hookQuestion": "...", "storyNames": ["..."], "evidence": ["..."], "whyThisOne": "..."}, ... five items, best first ]}
 
-<source>
-@@SOURCE@@
-</source>
+@@SOURCE_BLOCK@@

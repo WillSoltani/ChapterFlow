@@ -19,7 +19,7 @@ import {
 } from "./prompts";
 import { norm, quoteInSource } from "./quotes";
 import { fkGrade } from "./readability";
-import { loadSource, spanText, writerForm, writerFormText, type BookSource } from "./source";
+import { knowledgeSource, loadSource, spanText, writerForm, writerFormText, type BookSource } from "./source";
 import type { Chapter, Issue, LessonCard, QuizQuestion, RoleConfig } from "./types";
 import { wordsIn } from "./validate";
 
@@ -198,7 +198,9 @@ function earlierLessons(ctx: PipelineCtx, n: number): string[] {
 // ---------------------------------------------------------------- makeCtx
 
 export function makeCtx(config: BookConfig, opts: { review?: boolean } = {}): PipelineCtx {
-  const source = loadSource(config.source.textPath, config.source.chapterMapPath);
+  const source = config.chapters
+    ? knowledgeSource(config.chapters)
+    : loadSource(config.source!.textPath, config.source!.chapterMapPath);
   const knownTraps: Record<number, string[]> = {};
   if (config.knownTrapsPath) {
     const entries = obj(readJson(config.knownTrapsPath)).entries;
@@ -224,7 +226,15 @@ export function makeCtx(config: BookConfig, opts: { review?: boolean } = {}): Pi
 
 // ---------------------------------------------------------------- write
 
+/** The write, check, fix and eval steps need the source text; only `variants` works without it. */
+function requireText(ctx: PipelineCtx, step: string): void {
+  if (ctx.source.mode === "knowledge") {
+    throw new Error(`KNOWLEDGE_MODE_UNSUPPORTED: ${step} needs the book's source text; only the variants command works for a book without one`);
+  }
+}
+
 export async function writeChapter(ctx: PipelineCtx, n: number, opts: { rerunNote?: string } = {}): Promise<void> {
+  requireText(ctx, "write");
   const dir = chapterDir(ctx, n);
   const titles = Object.fromEntries(ctx.source.spans.map((s) => [s.chapterNumber, s.chapterTitle]));
   const prompt = renderTemplate(loadPrompt("write"), {
@@ -331,6 +341,7 @@ function reviewField(id: string): string | undefined {
 }
 
 export async function checkChapter(ctx: PipelineCtx, n: number, round: number): Promise<RoundResult> {
+  requireText(ctx, "check");
   const dir = chapterDir(ctx, n);
   const chapterFile = path.join(dir, `r${round}.chapter.json`);
   const chapter = readJson<Chapter>(chapterFile);
@@ -512,6 +523,7 @@ function changesProtected(before: Chapter, after: Chapter, issues: Issue[]): boo
 }
 
 export async function fixChapter(ctx: PipelineCtx, n: number, round: number, issues: Issue[]): Promise<void> {
+  requireText(ctx, "fix");
   const dir = chapterDir(ctx, n);
   const chapter = readJson<Chapter>(path.join(dir, `r${round}.chapter.json`));
   const lesson = readJson<LessonCard>(path.join(dir, "lesson.json"));
@@ -754,6 +766,7 @@ function detMetrics(c: Chapter): Record<string, unknown> {
 }
 
 export async function evalChapter(ctx: PipelineCtx, chapterPath: string, n: number, tag: string, outDir: string): Promise<EvalResult> {
+  requireText(ctx, "eval");
   const { _lesson, ...c } = obj(readJson(chapterPath));
   void _lesson;
   const chapter = c as unknown as Chapter;

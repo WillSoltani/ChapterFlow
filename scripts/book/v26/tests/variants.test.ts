@@ -10,7 +10,7 @@ import { main } from "../cli";
 import { CallFailedError } from "../src/call";
 import { loadBookConfig } from "../src/config";
 import { readLedger } from "../src/ledger";
-import { makeCtx, type PipelineCtx } from "../src/pipeline";
+import { makeCtx, writeChapter, type PipelineCtx } from "../src/pipeline";
 import {
   COMPONENTS,
   generateVariants,
@@ -122,7 +122,7 @@ interface Harness {
   file(name: string): string;
 }
 
-function harness(opts: { concurrency?: number } = {}): Harness {
+function harness(opts: { concurrency?: number; knowledge?: boolean } = {}): Harness {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "v26-variants-"));
   roots.push(dir);
   const pipeDir = path.join(dir, "pipe");
@@ -155,7 +155,9 @@ function harness(opts: { concurrency?: number } = {}): Harness {
       bookType: "memoir",
       categories: ["Memoir"],
       tags: ["demo"],
-      source: { textPath: "source.txt", chapterMapPath: "map.json" },
+      ...(opts.knowledge
+        ? { chapters: [{ number: 1, title: "Title 1" }, { number: 2, title: "Title 2" }] }
+        : { source: { textPath: "source.txt", chapterMapPath: "map.json" } }),
       briefPath: "brief.md",
       shape: { examples: 3, quizQuestions: 7, choices: 3, reviewCards: 5, memorableLines: 3, ifThenPlans: 2, fastRead: [150, 220], deepRead: [350, 500], fullRead: [800, 1100] },
       writer: role("claude-opus-5-5"),
@@ -362,4 +364,78 @@ test("cli: variants writes the pack and prints its path; its options are refused
   assert.match(bad.err, /unknown component poems/);
   assert.equal(await main(["variants", "--book", h.configPath, "--lesson", "9"], badSink), 1);
   assert.match(bad.err, /--lesson must be 1 to 5/);
+});
+
+// ---------------------------------------------------------------- knowledge mode (no source text)
+
+test("knowledge mode: the prompts carry the no-source rules, no <source> block, and the knowledge fact check; a quotation is flagged", async () => {
+  const h = harness({ knowledge: true });
+  assert.equal(h.ctx.source.mode, "knowledge");
+  assert.equal(h.ctx.source.title(1), "Title 1");
+  h.script({ "pipe-vsummary": [{ result: { variants: SUMMARY.variants.map((v, i) => (i === 1 ? v : { ...v, summary: longText(v.label) })) } }] });
+  const run = await generateVariants(h.ctx, 1);
+  assert.equal(h.calls().length, 7);
+  for (const scenario of ["pipe-vlessons", "pipe-vsummary"]) {
+    const prompt = h.calls(scenario)[0].prompt;
+    assert.match(prompt, /THERE IS NO SOURCE TEXT/, scenario);
+    assert.doesNotMatch(prompt, /<source>/, scenario);
+    assert.doesNotMatch(prompt, /@@[A-Z_]+@@/, scenario);
+  }
+  assert.match(h.calls("pipe-vlessons")[0].prompt, /short descriptions, in your own words/);
+  assert.match(h.calls("pipe-vsummary")[0].prompt, /Never quote the author or the book/);
+  const fact = h.calls("pipe-vfactcheck")[0].prompt;
+  assert.match(fact, /^You are the fact checker for five summary variants of one ChapterFlow chapter, without the source text/);
+  assert.match(fact, /THE BOOK: a test memoir/);
+  assert.doesNotMatch(fact, /<source>/);
+  // Only B kept its quotation, and with no source text that is flagged.
+  assert.deepEqual(run.factcheck.det.map((i) => i.variant), ["B"]);
+  assert.match(run.factcheck.det[0].text, /no source text/);
+  assert.match(run.factcheck.det[0].text, /a fault named is half mended/);
+});
+
+test("knowledge mode: write refuses with KNOWLEDGE_MODE_UNSUPPORTED; text mode is untouched", async () => {
+  const h = harness({ knowledge: true });
+  await assert.rejects(writeChapter(h.ctx, 1), /KNOWLEDGE_MODE_UNSUPPORTED: write needs the book's source text/);
+  const t = harness();
+  assert.equal(t.ctx.source.mode, "text");
+  await generateVariants(t.ctx, 1);
+  assert.match(t.calls("pipe-vsummary")[0].prompt, /<source>\nChapter 1\. /);
+  assert.match(t.calls("pipe-vlessons")[0].prompt, /copied word for word from the source/);
+  assert.match(t.calls("pipe-vfactcheck")[0].prompt, /^You are the fact checker for five summary variants of one ChapterFlow chapter\. /);
+});
+
+test("config: a book needs exactly one of source and chapters, and chapters must be unique", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "v26-variants-cfg-"));
+  roots.push(dir);
+  fs.writeFileSync(path.join(dir, "brief.md"), "x");
+  const base = {
+    bookId: "b", title: "T", author: "A", bookType: "argument", categories: [], tags: [], briefPath: "brief.md",
+    shape: { examples: 3, quizQuestions: 7, choices: 3, reviewCards: 5, memorableLines: 3, ifThenPlans: 2, fastRead: [1, 2], deepRead: [1, 2], fullRead: [1, 2] },
+    writer: { bin: FAKE, model: "m", effort: "high" }, checker: { bin: FAKE, model: "m", effort: "high" }, solver: { bin: FAKE, model: "m", effort: "high" },
+    budgetUsd: 1, runDir: "run",
+  };
+  const write = (name: string, extra: Record<string, unknown>): string => {
+    const file = path.join(dir, `${name}.json`);
+    fs.writeFileSync(file, JSON.stringify({ ...base, ...extra }));
+    return file;
+  };
+  assert.throws(() => loadBookConfig(write("neither", {})), /CONFIG_INVALID: source: give either source/);
+  assert.throws(() => loadBookConfig(write("both", { source: { textPath: "s", chapterMapPath: "m" }, chapters: [{ number: 1, title: "t" }] })), /not both/);
+  assert.throws(() => loadBookConfig(write("dup", { chapters: [{ number: 1, title: "t" }, { number: 1, title: "u" }] })), /chapter 1 appears twice/);
+  assert.throws(() => loadBookConfig(write("empty", { chapters: [] })), /non-empty array/);
+  const ok = loadBookConfig(write("ok", { chapters: [{ number: 2, title: "Two" }, { number: 1, title: "One" }] }));
+  assert.deepEqual(ok.chapters, [{ number: 2, title: "Two" }, { number: 1, title: "One" }]);
+  assert.equal(ok.source, undefined);
+});
+
+test("the committed 48 Laws config is a knowledge-mode book with 48 titled chapters", () => {
+  const cfg = loadBookConfig(fileURLToPath(new URL("../books/the-48-laws-of-power.json", import.meta.url)));
+  assert.equal(cfg.bookType, "argument");
+  assert.equal(cfg.source, undefined);
+  assert.equal(cfg.chapters?.length, 48);
+  assert.equal(cfg.chapters?.[0].title, "Never Outshine the Master");
+  assert.ok(fs.existsSync(cfg.briefPath));
+  const ctx = makeCtx(cfg);
+  assert.equal(ctx.source.mode, "knowledge");
+  assert.equal(ctx.source.title(48), "Assume Formlessness");
 });

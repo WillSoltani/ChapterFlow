@@ -10,7 +10,10 @@ export interface BookConfig {
   bookType: "memoir" | "how-to" | "argument";
   categories: string[];
   tags: string[];
-  source: { textPath: string; chapterMapPath: string };
+  /** The frozen source text and its chapter map (text mode). Absent in knowledge mode. */
+  source?: { textPath: string; chapterMapPath: string };
+  /** Knowledge mode: no source text; the writer uses what it knows of the book. Exactly one of `source` and `chapters` is set. */
+  chapters?: Array<{ number: number; title: string }>;
   knownTrapsPath?: string;
   briefPath: string;
   shape: {
@@ -107,7 +110,9 @@ export function loadBookConfig(configPath: string): BookConfig {
     invalid("bookType", `must be one of ${BOOK_TYPES.join(", ")} (got "${bookType}")`);
   }
 
-  const source = obj(raw.source, "source");
+  if ((raw.source === undefined) === (raw.chapters === undefined)) {
+    invalid("source", "give either source {textPath, chapterMapPath} (text mode) or chapters [{number, title}] (knowledge mode), not both and not neither");
+  }
   const shape = obj(raw.shape, "shape");
 
   const concurrency = raw.concurrency === undefined ? DEFAULT_CONCURRENCY : posInt(raw.concurrency, "concurrency");
@@ -123,10 +128,6 @@ export function loadBookConfig(configPath: string): BookConfig {
     bookType: bookType as BookConfig["bookType"],
     categories: strList(raw.categories, "categories"),
     tags: strList(raw.tags, "tags"),
-    source: {
-      textPath: p(source.textPath, "source.textPath"),
-      chapterMapPath: p(source.chapterMapPath, "source.chapterMapPath"),
-    },
     briefPath: p(raw.briefPath, "briefPath"),
     shape: {
       examples: posInt(shape.examples, "shape.examples"),
@@ -146,6 +147,21 @@ export function loadBookConfig(configPath: string): BookConfig {
     budgetUsd: budgetUsd as number,
     runDir: p(raw.runDir, "runDir"),
   };
+  if (raw.source !== undefined) {
+    const source = obj(raw.source, "source");
+    cfg.source = { textPath: p(source.textPath, "source.textPath"), chapterMapPath: p(source.chapterMapPath, "source.chapterMapPath") };
+  } else {
+    const chapters = raw.chapters;
+    if (!Array.isArray(chapters) || chapters.length === 0) invalid("chapters", "must be a non-empty array of {number, title}");
+    const seen = new Set<number>();
+    cfg.chapters = (chapters as unknown[]).map((c, i) => {
+      const o = obj(c, `chapters[${i}]`);
+      const number = posInt(o.number, `chapters[${i}].number`);
+      if (seen.has(number)) invalid(`chapters[${i}].number`, `chapter ${number} appears twice`);
+      seen.add(number);
+      return { number, title: str(o.title, `chapters[${i}].title`) };
+    });
+  }
   // Optional, so the key is left off entirely when the config does not name one.
   if (raw.knownTrapsPath !== undefined) cfg.knownTrapsPath = p(raw.knownTrapsPath, "knownTrapsPath");
   if (raw.ledgerPath !== undefined) cfg.ledgerPath = p(raw.ledgerPath, "ledgerPath");
