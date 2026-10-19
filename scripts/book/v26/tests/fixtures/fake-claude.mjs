@@ -17,6 +17,13 @@ for await (const c of process.stdin) chunks.push(c);
 const prompt = Buffer.concat(chunks).toString("utf8");
 const firstLine = prompt.split("\n")[0] ?? "";
 const REAL_TEMPLATES = [
+  [/^You are choosing the lesson/, "pipe-vlessons"],
+  [/^You are writing five versions of the summary/, "pipe-vsummary"],
+  [/^You are writing five sets of examples/, "pipe-vexamples"],
+  [/^You are writing five versions of the quiz/, "pipe-vquiz"],
+  [/^You are writing five sets of review cards/, "pipe-vcards"],
+  [/^You are writing five versions of the practice plan/, "pipe-vpractice"],
+  [/^You are the fact checker for five summary variants/, "pipe-vfactcheck"],
   [/writing one chapter/, "pipe-write"],
   [/fact checker/, "pipe-factcheck"],
   [/taking the quiz/, "pipe-keysolve"],

@@ -130,7 +130,7 @@ export async function guarded<T>(ctx: PipelineCtx, fn: () => Promise<T>): Promis
   }
 }
 
-async function call(
+export async function call(
   ctx: PipelineCtx,
   o: { role: RoleConfig; prompt: string; step: string; n: number | string; kind: "write" | "fix" | "other"; outPrefix: string },
 ): Promise<CallResult> {

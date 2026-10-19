@@ -1011,7 +1011,7 @@ test("render: with no final chapter it exits 1 and says what to do", async () =>
 
 // ---------------------------------------------------------------- the committed book configs
 
-test("the committed book configs load, use canonical categories, and give the shape W1c measured", () => {
+test("the committed book configs load, use canonical categories, point at the runs dir, and give the shape W1c measured", () => {
   for (const name of ["the-autobiography-of-benjamin-franklin", "how-to-live-on-24-hours-a-day"]) {
     const cfg = loadBookConfig(path.join(BOOKS, `${name}.json`));
     assert.equal(cfg.bookId, name);
@@ -1024,9 +1024,9 @@ test("the committed book configs load, use canonical categories, and give the sh
     assert.deepEqual([cfg.checker.model, cfg.checker.effort], ["claude-opus-5-5", "high"]);
     assert.deepEqual([cfg.solver.model, cfg.solver.effort], ["claude-sonnet-5", "medium"]);
     assert.ok(cfg.writer.bin.endsWith("native-binary/claude"));
-    assert.equal(cfg.budgetUsd, 80);
-    assert.equal(cfg.runDir, path.join(os.homedir(), "cf-wt/v26-plan/scratch/W1c/run", name));
-    assert.equal(cfg.ledgerPath, path.join(os.homedir(), "cf-wt/v26-plan/scratch/W1c/ledger.jsonl"));
+    assert.equal(cfg.budgetUsd, 60);
+    assert.equal(cfg.runDir, path.join(os.homedir(), "cf-wt/v26-plan/runs", name));
+    assert.equal(cfg.ledgerPath, path.join(os.homedir(), "cf-wt/v26-plan/runs/ledger.jsonl"));
     assert.equal(cfg.briefPath, path.resolve(BOOKS, "../briefs", `${name}.md`));
   }
   const franklin = loadBookConfig(path.join(BOOKS, "the-autobiography-of-benjamin-franklin.json"));
