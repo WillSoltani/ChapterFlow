@@ -1,0 +1,65 @@
+{
+  "title": "The Little Book of Faults",
+  "hook": "What did the trying look like each day?",
+  "counterintuition": "You might think a man fixes faults by hating them. He wrote them down.",
+  "keyTakeaway": "Name each fault in writing and you have already begun to mend it.",
+  "tryThisNow": "Write down one small fault from today.",
+  "breakdown": {
+    "fastRead": "He kept a little book.\n\nHe was happier for the trying.",
+    "deepRead": "He kept a little book with a page per virtue.\n\nOrder was hardest.",
+    "fullRead": "He grew up counting shillings.\n\nHe kept a book.\n\nOrder was hardest, and he was happier for the trying."
+  },
+  "examples": [
+    {
+      "exampleId": "ex1",
+      "title": "The unread inbox",
+      "tags": [
+        "work"
+      ],
+      "scenario": "Mia avoids her inbox.",
+      "whatToDo": "Write one line naming it.",
+      "whyItMatters": "A named habit can change."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q1",
+        "prompt": "Sam misses deadlines. First step?",
+        "choices": [
+          "Try harder",
+          "Note which slipped",
+          "Stop thinking"
+        ],
+        "correctIndex": 1,
+        "explanation": "Writing it down is the first move.",
+        "bloomsLevel": "apply"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc1",
+      "front": "What did the book record?",
+      "back": "The faults of the day.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Naming a fault plainly.",
+    "ifThenPlans": [
+      {
+        "context": "When I slip",
+        "plan": "I write it down."
+      }
+    ],
+    "twentyFourHourChallenge": "Write three faults tonight.",
+    "weeklyPractice": "Read the list on Sunday."
+  },
+  "memorableLines": [
+    {
+      "text": "Write the fault down and half the work is done."
+    }
+  ]
+}
