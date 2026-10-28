@@ -2,7 +2,6 @@
 
 /** palace-00 — The Pop-up Book. A closed book opens, a paper tower rises from the gutter, the camera pushes into its doorway. HERO. */
 
-import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { FREE_OFFER_LABEL } from "@/lib/pricing";
@@ -41,9 +40,12 @@ export function FoldChapter({ film, index }: { film: FilmManifest; index: number
             review that comes back right before you would forget.
           </FramePin>
           <FramePin from={book} to={pushIn} ease={10} interactive className="flex flex-wrap items-center justify-center gap-4">
-            <Link href={AUTH_LOGIN_BOOK_URL} className="film-btn film-btn-primary">
+            {/* External (Cognito) URL: a plain <a>, like every other auth CTA on
+                the public site — a Next <Link> would try to prefetch it and
+                trip CSP connect-src 'self' in the console. */}
+            <a href={AUTH_LOGIN_BOOK_URL} className="film-btn film-btn-primary">
               Start reading free <ArrowRight size={17} strokeWidth={2.25} aria-hidden />
-            </Link>
+            </a>
             <a href="#how-it-works" className="film-btn film-btn-ghost">
               Step inside <ChevronRight size={16} strokeWidth={2.25} aria-hidden />
             </a>
