@@ -136,7 +136,10 @@ export function useScrubLoop({
       if (fetchKey !== lastFetchKey) {
         lastFetchKey = fetchKey;
         cache.prefetch(target, 24, direction);
-        if (p > 0.8) {
+        // Warm the next film's opening well before its box enters the
+        // viewport (which is at p = 1 of this one, see pickActive): 60 % gives
+        // ~1.4 viewports of scroll for 16 frames to arrive on a slow network.
+        if (p > 0.6) {
           const next = segments.current.get(seg.index + 1);
           if (next) cacheFor(next.film).prefetch(0, 16, 1);
         }

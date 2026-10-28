@@ -75,6 +75,19 @@ follow-up PR:
   the portrait ones. `FilmBackdrop` now reads the query synchronously into a
   ref during the first client render and picks variants from it; the state
   (and hydration markup) is unchanged. Phone load: 0 landscape requests.
+- **Phones: tab killed after a scrub ("it won't reload").** Each FrameCache
+  kept up to 160 decoded bitmaps; a portrait frame is 1080×1920×4 ≈ 8.3 MB,
+  so one film could hold 1.3 GB and the page has seven. Mobile Safari's
+  per-tab ceiling is ~1–1.5 GB: a scrub through the reel on a real iPhone hit
+  it, Safari killed the tab, and the reload never came back (the Simulator
+  has desktop memory and does not reproduce it). `FrameBudget` (frame-cache.ts)
+  is one decoded-pixel budget shared by every cache with a single LRU across
+  them — 160 MB on phones/tablets, 384 MB desktop, or `deviceMemory`×48 MB on
+  Chrome — and `nearest()` covers an evicted frame like one in flight. Mount
+  warm-up also dropped from all seven films (~84 requests before any scroll)
+  to the first two — every film still gets its cache and poster at mount, so
+  a chapter reached on a slow network draws its poster, never black — and the
+  loop warms each next film from 60 % of the previous (was 80 %).
 - **No footer.** `PublicSiteShell` renders the shared footer OUTSIDE `main`;
   `main` is `z-10` and forms the stacking context that holds the fixed canvas,
   so the footer (z auto) painted underneath it and the Home chapter's last

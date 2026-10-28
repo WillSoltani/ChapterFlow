@@ -49,6 +49,10 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
 - Prefetch is directional (24 ahead / 10 behind) and CANCELLABLE: moving the
   window aborts speculative fetches outside it, so a fast scrub never piles
   up a reel's worth of requests in front of the app's own navigations.
+- Decoded frames live under ONE byte budget shared by every film's cache
+  (`FrameBudget`, LRU across caches): 160 MB on phones/tablets, 384 MB on
+  desktop, `deviceMemory`×48 MB where Chrome reports it. Without it a single
+  portrait film could hold 1.3 GB of bitmaps and mobile Safari killed the tab.
 - Breath: `±amp` slow sinusoidal zoom while held (off under reduced motion).
 - Reduced motion (OS or in-app toggle): progress quantised to `reducedSteps` (5).
 - `<html data-reel-chrome="film|body" data-reel-section="…">` + `cf-reel-chrome`
