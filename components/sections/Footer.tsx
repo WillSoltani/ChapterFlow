@@ -88,16 +88,24 @@ export function Footer() {
               <ul>
                 {EXPLORE_LINKS.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      data-public-sticky-cta-suppress={
-                        link.href === AUTH_LOGIN_BOOK_URL ? true : undefined
-                      }
-                      className={linkClass}
-                      style={linkStyle}
-                    >
-                      {link.label}
-                    </Link>
+                    {link.href === AUTH_LOGIN_BOOK_URL ? (
+                      // The auth route redirects to Cognito (another origin). A
+                      // Next <Link> would prefetch it and the browser blocks that
+                      // under CSP connect-src 'self' — a console error on every
+                      // page view. Plain <a>, like the other auth CTAs.
+                      <a
+                        href={link.href}
+                        data-public-sticky-cta-suppress
+                        className={linkClass}
+                        style={linkStyle}
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link href={link.href} className={linkClass} style={linkStyle}>
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
