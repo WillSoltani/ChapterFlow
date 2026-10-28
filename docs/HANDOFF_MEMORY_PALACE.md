@@ -59,6 +59,27 @@ Found by re-running the gates on main (all fixed, all in this branch):
 - `film-perf` polls for the anchor landing (the Link round-trips first) and
   selects the link via `header.rl-nav nav[aria-label="Primary"]`.
 
+Found on the LIVE site after the first prod deploy (2026-10-28), fixed in the
+follow-up PR:
+
+- **CSP console errors on the auth CTAs.** The hero and close CTAs were Next
+  `<Link>`s to the external Cognito URL; Next tried to prefetch it and the
+  browser blocked the fetch under `connect-src 'self'` (three errors per page
+  view). They are plain `<a>`s now, like every other auth CTA on the public
+  site. Clicks were never affected.
+- **Phones downloaded the landscape variants first.** The rendered orientation
+  starts as "landscape" (SSR) and the media query was applied in an effect,
+  but child segments register in THEIR effects (which run first) and the scrub
+  loop's first tick follows at once — so every phone warmed the first 12
+  frames of all seven landscape films (~5 MB, 97 requests) before flipping to
+  the portrait ones. `FilmBackdrop` now reads the query synchronously into a
+  ref during the first client render and picks variants from it; the state
+  (and hydration markup) is unchanged. Phone load: 0 landscape requests.
+- **No footer.** `PublicSiteShell` renders the shared footer OUTSIDE `main`;
+  `main` is `z-10` and forms the stacking context that holds the fixed canvas,
+  so the footer (z auto) painted underneath it and the Home chapter's last
+  frame covered it. `html[data-reel-chrome] .rl-public-footer { z-index: 11 }`.
+
 ## 0a. Round 4 — evaluation + finish (2026-10-27, Claude)
 
 Everything in §0–§9 below was Cline's state at its handoff. A full evaluation

@@ -32,7 +32,17 @@ export function FilmBackdrop({ reel, children, className }: Props) {
   const drawn = useRef({ segment: -1, frame: -1 });
   const reduced = usePrefersReducedMotion();
   const reducedRef = useRef(false);
+  // The RENDERED orientation starts as "landscape" on both server and client so
+  // hydration matches; the media query is applied in the effect below. But the
+  // caches must pick the right variant from the very first tick: child
+  // segments register (and warm their caches) in their own effects, which run
+  // before this component's, and the scrub loop's first frame follows at once.
+  // So variant selection reads a ref that is filled synchronously during the
+  // first client render — otherwise every phone downloaded the first frames of
+  // all seven landscape variants (~5 MB) before switching to the portrait ones.
   const [orientation, setOrientation] = useState<Orientation>("landscape");
+  const orientationRef = useRef<Orientation | null>(null);
+  if (orientationRef.current === null) orientationRef.current = readOrientation();
 
   useEffect(() => {
     reducedRef.current = reduced;
@@ -40,7 +50,11 @@ export function FilmBackdrop({ reel, children, className }: Props) {
 
   useEffect(() => {
     const mq = window.matchMedia(PORTRAIT_QUERY);
-    const sync = () => setOrientation(readOrientation());
+    const sync = () => {
+      const o = readOrientation();
+      orientationRef.current = o;
+      setOrientation(o);
+    };
     sync();
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
@@ -48,7 +62,7 @@ export function FilmBackdrop({ reel, children, className }: Props) {
 
   const cacheFor = useCallback(
     (film: FilmManifest): FrameCache => {
-      const v = pickVariant(film, orientation);
+      const v = pickVariant(film, orientationRef.current ?? orientation);
       const key = `${v.name}@${v.v ?? "0"}`;
       let c = caches.current.get(key);
       if (!c) {
@@ -58,6 +72,8 @@ export function FilmBackdrop({ reel, children, className }: Props) {
       }
       return c;
     },
+    // `orientation` is in the deps so the callback (and everything keyed on it,
+    // e.g. the scrub loop's effect) refreshes when the media query flips.
     [orientation],
   );
 
