@@ -6,6 +6,7 @@ import {
   PUBLIC_NAV_MENU_ID,
   isPublicNavCurrent,
   publicNavHref,
+  publicNavPrefetchProps,
   shouldShowPersistentCta,
 } from "./RecallNavModel";
 
@@ -104,4 +105,18 @@ test("the persistent CTA appears only after the hero boundary, or immediately wi
 test("the public menu owns one stable id and the 1024px navigation breakpoint", () => {
   assert.equal(PUBLIC_NAV_MENU_ID, "chapterflow-public-navigation");
   assert.equal(PUBLIC_NAV_DESKTOP_QUERY, "(min-width: 1024px)");
+});
+
+test("auth-gated routes are not prefetched for anonymous visitors", () => {
+  const books = PUBLIC_NAV_LINKS.find((l) => l.id === "books")!;
+  const pricing = PUBLIC_NAV_LINKS.find((l) => l.id === "pricing")!;
+  const how = PUBLIC_NAV_LINKS.find((l) => l.id === "how")!;
+  // /books 307s to /auth/login → Cognito for anonymous visitors; a prefetch
+  // would follow that to another origin and trip CSP connect-src 'self'.
+  assert.deepEqual(publicNavPrefetchProps(books, false), { prefetch: false });
+  // Logged in, the route renders, so Next's default prefetch is fine.
+  assert.deepEqual(publicNavPrefetchProps(books, true), {});
+  // Public routes and section anchors keep the default either way.
+  assert.deepEqual(publicNavPrefetchProps(pricing, false), {});
+  assert.deepEqual(publicNavPrefetchProps(how, false), {});
 });

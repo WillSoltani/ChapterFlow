@@ -19,6 +19,7 @@ import { performLogout } from "@/lib/logout";
 import {
   PUBLIC_NAV_DESKTOP_QUERY,
   PUBLIC_NAV_LINKS,
+  publicNavPrefetchProps,
   PUBLIC_NAV_MENU_ID,
   isPublicNavCurrent,
   publicNavHref,
@@ -241,6 +242,7 @@ export function RecallNav() {
               <Link
                 key={link.id}
                 href={href}
+                {...publicNavPrefetchProps(link, isLoggedIn)}
                 aria-current={current ? "page" : undefined}
                 className={navLinkClass}
                 style={{
@@ -351,6 +353,7 @@ export function RecallNav() {
                   <li key={link.id}>
                     <Link
                       href={href}
+                      {...publicNavPrefetchProps(link, isLoggedIn)}
                       onClick={closeMobile}
                       aria-current={current ? "page" : undefined}
                       className={menuLinkClass}

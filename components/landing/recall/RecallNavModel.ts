@@ -23,6 +23,30 @@ export const PUBLIC_NAV_LINKS = [
   { id: "support", label: "Support", kind: "route", target: "/contact" },
 ] as const satisfies readonly PublicNavLink[];
 
+/**
+ * Routes that middleware auth-gates (307 → /auth/login → Cognito) for
+ * anonymous visitors. A Next <Link> prefetches its route on viewport entry;
+ * for these routes the prefetch follows that redirect chain to another origin
+ * and the browser blocks it under CSP connect-src 'self' — a console error on
+ * every public page view and a wasted request. Clicks are unaffected.
+ */
+export const AUTH_GATED_NAV_ROUTES: ReadonlySet<string> = new Set(["/books"]);
+
+/**
+ * Extra <Link> props for a public nav link: `{ prefetch: false }` for an
+ * auth-gated route while the visitor is not known to be logged in (loading
+ * counts as not logged in — the first paint is anonymous), otherwise nothing,
+ * so Next's default prefetch applies. Returned as a spreadable object because
+ * exactOptionalPropertyTypes forbids passing `prefetch={undefined}`.
+ */
+export function publicNavPrefetchProps(
+  link: PublicNavLink,
+  loggedIn: boolean,
+): { prefetch: false } | Record<string, never> {
+  if (link.kind !== "route") return {};
+  return !loggedIn && AUTH_GATED_NAV_ROUTES.has(link.target) ? { prefetch: false } : {};
+}
+
 export function publicNavHref(pathname: string, link: PublicNavLink): string {
   if (link.kind === "route") return link.target;
   return pathname === "/" ? `#${link.target}` : `/#${link.target}`;
