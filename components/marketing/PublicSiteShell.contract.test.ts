@@ -47,7 +47,9 @@ test("every route masthead or hero owns a post-hero CTA boundary", () => {
   const contact = source("app/contact/page.tsx");
   const legal = source("app/legal/layout.tsx");
 
-  assert.match(home, /<RecallHeroSplit\s*\/>\s*<div[^>]*data-public-hero-end/);
+  // The home hero is the first chapter of the film reel; the sentinel is passed
+  // into BookReelLanding, which mounts it right after that chapter.
+  assert.match(home, /<BookReelLanding\b[\s\S]*?afterHero=\{\s*<div[^>]*data-public-hero-end/);
   assert.match(catalog, /<BrowseLibraryHero[\s\S]*?\/>\s*<div[^>]*data-public-hero-end/);
   for (const route of [pricing, contact, legal]) {
     assert.match(route, /<PublicMasthead[\s\S]*?\/>\s*<div[^>]*data-public-hero-end/);

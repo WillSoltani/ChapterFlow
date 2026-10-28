@@ -47,7 +47,9 @@
     "test:integration": "FILES=$(find app lib tests -name '*.itest.ts' -not -path '*/node_modules/*'); if [ -z \"$FILES\" ]; then echo 'no integration test files found' >&2; exit 1; fi; tsx --test $FILES",
     "test:e2e": "playwright test",
     "test:visual": "RUN_VISUAL=1 playwright test",
-    "test:visual:update": "RUN_VISUAL=1 playwright test --update-snapshots"
+    "test:visual:update": "RUN_VISUAL=1 playwright test --update-snapshots",
+    "test:film": "RUN_AUDIT=1 playwright test e2e/film-audit.spec.ts e2e/film-perf.spec.ts e2e/film-reel.spec.ts e2e/film-truth.spec.ts --project=chromium",
+    "test:film:safari": "RUN_AUDIT=1 PW_WEBKIT=1 playwright test e2e/film-audit.spec.ts e2e/film-perf.spec.ts e2e/film-reel.spec.ts e2e/film-truth.spec.ts --project=webkit"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.120.0",

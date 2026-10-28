@@ -77,7 +77,14 @@ export default defineConfig({
     trace: "on-first-retry",
     extraHTTPHeaders: IS_PROD ? PROD_E2E_HEADERS : undefined,
   },
-  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  projects: [
+    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    // Safari parity for the film reel (svh, color-mix, ImageBitmap, sticky).
+    // Opt-in (PW_WEBKIT=1) so CI — which only installs chromium — is untouched.
+    ...(process.env.PW_WEBKIT === "1"
+      ? [{ name: "webkit", use: { ...devices["Desktop Safari"] } }]
+      : []),
+  ],
   webServer: {
     command: IS_PROD ? PROD_COMMAND : "npm run dev",
     url: BASE_URL,

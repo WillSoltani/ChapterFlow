@@ -1,0 +1,86 @@
+{
+  "description": "Memory Palace reel. Named keyframes per film, 0-based. Authored against docs/MEMORY_PALACE_SHOTLIST.md; counts are synced by scripts/film/encode.mjs.",
+  "films": {
+    "palace-00": {
+      "count": 241,
+      "keys": {
+        "book": 0,
+        "cover_lifts": 28,
+        "building_up": 100,
+        "doorway": 156,
+        "push_in": 172,
+        "through": 240
+      },
+      "v": "mvrn6xy5"
+    },
+    "palace-01": {
+      "count": 241,
+      "keys": {
+        "enter": 0,
+        "walls_dense": 56,
+        "compress": 84,
+        "lines_lit": 136,
+        "junction": 240
+      },
+      "v": "mvqazjby"
+    },
+    "palace-02": {
+      "count": 279,
+      "keys": {
+        "turn": 0,
+        "room_a": 101,
+        "room_b": 170,
+        "room_c": 215,
+        "door_ahead": 278
+      },
+      "v": "mvqeuie1"
+    },
+    "palace-03": {
+      "count": 281,
+      "keys": {
+        "door": 0,
+        "line_approach": 16,
+        "line_lock": 104,
+        "pulse": 112,
+        "door_folds": 195,
+        "fold_to_book": 238,
+        "book_closed": 280
+      },
+      "v": "mvrf4w3w"
+    },
+    "palace-04": {
+      "count": 241,
+      "keys": {
+        "lift": 0,
+        "floors": 50,
+        "light_1": 100,
+        "light_4": 135,
+        "light_12": 165,
+        "light_36": 200,
+        "tower_lit": 240
+      },
+      "v": "mvrf9r3t"
+    },
+    "palace-05": {
+      "count": 241,
+      "keys": {
+        "pull_back": 0,
+        "skyline": 40,
+        "orbit": 100,
+        "one_bright": 240
+      },
+      "v": "mvrhae71"
+    },
+    "palace-06": {
+      "count": 169,
+      "keys": {
+        "descend": 0,
+        "window": 70,
+        "lamp_on": 105,
+        "lamp_warm": 130,
+        "hold": 168
+      },
+      "v": "mvq825y0"
+    }
+  }
+}
