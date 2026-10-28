@@ -3566,3 +3566,360 @@ html[data-motion="reduced"] .rl-faq-chevron {
     var(--cf-recall-panel-inset) 100%
   );
 }
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   FILM REEL — scroll-scrubbed image-sequence landing (components/film/*).
+
+   Compose layer: copy sits over the painted canvas. Three scrims keep text
+   legible on any frame without flattening the render:
+     .film-halo   — soft radial dark bloom behind a headline block
+     .film-box    — horizontal gradient band for a left/right split column
+     [data-film-body] — body content after the scrub; fades in from the film
+   Chrome: <html data-reel-chrome="film|body"> flips the nav scrim.
+   All colour token-only (--cf-recall-*). FramePin owns its own motion.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.film-stage-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  /* Top: clear the fixed nav (bottom ≈ 83px at 1280×720 on main) by ≥ 8px on
+     short viewports; 12svh takes over from ~800px tall. */
+  padding: clamp(6rem, 12svh, 8rem) clamp(1.25rem, 5vw, 4rem) clamp(2rem, 8svh, 5rem);
+  gap: 1rem;
+}
+.film-stage-grid > * {
+  grid-row: 2;
+}
+@container (min-width: 64rem) {
+  .film-stage-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(2rem, 6vw, 6rem);
+    align-items: center;
+  }
+  /* Copy column slightly narrower than the object column so the render's
+     subject (centred-ish in most shots) clears the scrim. */
+  .film-stage-grid[data-split="left"] { grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr); }
+  .film-stage-grid[data-split="right"] { grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); }
+  .film-stage-grid[data-split="left"] > * { grid-column: 1; }
+  .film-stage-grid[data-split="right"] > * { grid-column: 2; }
+  .film-stage-grid[data-split="center"] > * { grid-column: 1 / -1; justify-self: center; text-align: center; }
+}
+/* Hero stack: headline block pinned to the TOP row, lede/CTA block to the
+   BOTTOM row, leaving the middle clear for a centred object in the render. */
+.film-stage-grid[data-stack="hero"] {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  align-items: start;
+}
+.film-stage-grid[data-stack="hero"] > * {
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: 56rem;
+}
+.film-stage-grid[data-stack="hero"] > :first-child { grid-row: 1; }
+.film-stage-grid[data-stack="hero"] > :last-child { grid-row: 3; align-self: end; }
+.film-stage-grid[data-stack="hero"] .film-h1 {
+  font-size: clamp(2.4rem, 5.6vw, 5.2rem);
+}
+/* Over bright paper the halo needs to be denser than over the void. */
+.film-stage-grid[data-stack="hero"] .film-halo::before {
+  inset: -3rem -5rem;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--cf-recall-bg) 92%, transparent) 0%,
+    color-mix(in srgb, var(--cf-recall-bg) 70%, transparent) 50%,
+    transparent 75%
+  );
+}
+
+/* Secondary stage for one-line beats (ticks, captions): bottom-centre, so it
+   never collides with the main copy column. */
+.film-stage-grid[data-anchor="bottom"] {
+  grid-template-rows: 1fr auto;
+  align-items: end;
+}
+.film-stage-grid[data-anchor="bottom"] > * {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  justify-self: center;
+  text-align: center;
+  /* One-line beats sit directly on the render with no column scrim, so each
+     carries its own pill-shaped scrim (on the element itself: a ::before with
+     z-index:-1 would paint behind the stage and never show). */
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  /* Near-solid: a blurred glass pill let the Vault's pulse bloom through. */
+  background: color-mix(in srgb, var(--cf-recall-bg) 93%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--cf-recall-ink) 8%, transparent);
+}
+
+/* Safety net under every pinned line: a soft ink-coloured shadow so a bright
+   frame flicker (fog, paper highlight) never washes the text out. */
+[data-frame-pin] {
+  text-shadow: 0 1px 3px color-mix(in srgb, var(--cf-recall-bg) 85%, transparent);
+}
+
+.film-halo {
+  position: relative;
+  isolation: isolate;
+}
+.film-halo::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -2.5rem -3.5rem;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--cf-recall-bg) 82%, transparent) 0%,
+    color-mix(in srgb, var(--cf-recall-bg) 55%, transparent) 45%,
+    transparent 72%
+  );
+}
+
+.film-box {
+  position: relative;
+  isolation: isolate;
+}
+.film-box::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -2.5rem -7rem -2.5rem -100vw;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--cf-recall-bg) 92%, transparent) 0%,
+    color-mix(in srgb, var(--cf-recall-bg) 90%, transparent) calc(100% - 15rem),
+    color-mix(in srgb, var(--cf-recall-bg) 70%, transparent) calc(100% - 8rem),
+    transparent 100%
+  );
+  mask-image: linear-gradient(to bottom, transparent 0, #000 2.5rem, #000 calc(100% - 2.5rem), transparent 100%);
+}
+.film-stage-grid[data-split="right"] .film-box::before {
+  inset: -2.5rem -100vw -2.5rem -7rem;
+  background: linear-gradient(
+    to left,
+    color-mix(in srgb, var(--cf-recall-bg) 92%, transparent) 0%,
+    color-mix(in srgb, var(--cf-recall-bg) 90%, transparent) calc(100% - 15rem),
+    color-mix(in srgb, var(--cf-recall-bg) 70%, transparent) calc(100% - 8rem),
+    transparent 100%
+  );
+}
+
+[data-film-body] {
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    color-mix(in srgb, var(--cf-recall-bg) 85%, transparent) 10svh,
+    color-mix(in srgb, var(--cf-recall-bg) 92%, transparent) 100%
+  );
+}
+
+/* Soft focus: while a segment with `softFocus` is active, the footage drops
+   out of focus so its own printed pseudo-text reads as texture under the real
+   prose overlay. Filter lives on the fixed wrapper (own compositor layer). */
+.film-canvas {
+  transition: filter 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+html[data-reel-soft] .film-canvas {
+  filter: blur(2.5px) saturate(0.92);
+}
+
+/* ── Hall of Summary: real prose on the corridor walls (components/film/HallText) ──
+   Two planes rotated into the corridor's one-point perspective. The footage's
+   pseudo-text sits behind, soft; these lines are the legible layer. */
+.hall-text {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  perspective: 900px;
+  perspective-origin: 50% 46%;
+  overflow: hidden;
+}
+.hall-wall {
+  position: absolute;
+  top: 18%;
+  width: 34%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  transform-style: preserve-3d;
+  /* walls slide toward the camera as the dolly advances */
+  --hall-dolly: 0;
+}
+.hall-wall-left {
+  left: 2%;
+  transform-origin: left center;
+  transform: rotateY(42deg) translate3d(calc(var(--hall-dolly) * 6%), 0, 0);
+}
+.hall-wall-right {
+  right: 2%;
+  transform-origin: right center;
+  transform: rotateY(-42deg) translate3d(calc(var(--hall-dolly) * -6%), 0, 0);
+  text-align: right;
+}
+.hall-line {
+  font-family: var(--font-newsreader);
+  font-size: clamp(0.95rem, 1.35vw, 1.35rem);
+  line-height: 1.35;
+  letter-spacing: 0.005em;
+  color: var(--cf-recall-ink);
+  opacity: 0.55;
+  will-change: opacity, transform;
+  text-shadow: 0 1px 2px color-mix(in srgb, var(--cf-recall-bg) 70%, transparent);
+  transition: color 240ms ease-out;
+}
+/* Narrow stages: the box band runs edge to edge, so feather it top and bottom
+   and lighten it — a solid black slab over a lantern-lit diorama reads heavy. */
+@container (max-width: 63.99rem) {
+  .film-box::before,
+  .film-stage-grid[data-split="right"] .film-box::before {
+    inset: -3rem -100vw;
+    mask-image: none;
+    background: linear-gradient(
+      to bottom,
+      transparent 0,
+      color-mix(in srgb, var(--cf-recall-bg) 86%, transparent) 3rem,
+      color-mix(in srgb, var(--cf-recall-bg) 86%, transparent) calc(100% - 3rem),
+      transparent 100%
+    );
+  }
+  /* Hall of Summary: wall prose owns the top of a tall portrait frame, so the
+     headline block sits in the lower third instead of the dead centre. */
+  .film-stage-grid[data-hall] {
+    grid-template-rows: 1.7fr auto 0.55fr;
+  }
+  /* Down there the block sits over the lit paper floor: hero-density halo. */
+  .film-stage-grid[data-hall] .film-halo::before {
+    inset: -3rem -3rem;
+    background: radial-gradient(
+      ellipse at center,
+      color-mix(in srgb, var(--cf-recall-bg) 92%, transparent) 0%,
+      color-mix(in srgb, var(--cf-recall-bg) 72%, transparent) 50%,
+      transparent 76%
+    );
+  }
+}
+@media (max-width: 63.99rem) {
+  .hall-wall { top: 13%; width: 44%; gap: 0.8rem; }
+  .hall-wall-left { transform: rotateY(32deg) translate3d(calc(var(--hall-dolly) * 4%), 0, 0); }
+  .hall-wall-right { transform: rotateY(-32deg) translate3d(calc(var(--hall-dolly) * -4%), 0, 0); }
+  .hall-line { font-size: 0.85rem; }
+}
+
+/* Editorial mono rail label: "01 · SUMMARY" */
+.film-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.4;
+  text-wrap: balance;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cf-recall-ink);
+  opacity: 0.72;
+}
+.film-h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+  text-wrap: balance;
+  font-size: clamp(2.6rem, 7vw, 6.5rem);
+  color: var(--cf-recall-ink);
+}
+.film-h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
+  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  color: var(--cf-recall-ink);
+}
+.film-lede {
+  font-family: var(--font-newsreader);
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  line-height: 1.45;
+  max-width: 34rem;
+  color: var(--cf-recall-ink);
+  opacity: 0.88;
+}
+
+/* While a reel is mounted, paint the root dark too so programmatic scrolls /
+   rubber-band overscroll never flash the light body background above the
+   fixed canvas. Also drop smooth scrolling: an anchor jump (#how-it-works)
+   would otherwise animate through thousands of px of scrub and whip the film. */
+html[data-reel-chrome] {
+  background: var(--cf-recall-bg, #06070A);
+  scroll-behavior: auto;
+  /* Anchors must land EXACTLY on a segment's top so its sticky stage is
+     pinned at frame 0; the global 88px nav offset would leave the previous
+     film half-visible above it. */
+  scroll-padding-top: 0;
+}
+html[data-reel-chrome] section[data-film-segment] {
+  scroll-margin-top: 0;
+}
+html[data-reel-chrome] body {
+  background: var(--cf-recall-bg, #06070A);
+}
+
+/* Nav scrim goes nearly transparent while the film is in frame so the render
+   is never muddied at the top; returns when body copy takes over. */
+html[data-reel-chrome="film"] .rl-nav-scrim {
+  opacity: 0.35;
+  transition: opacity 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+html[data-reel-chrome="body"] .rl-nav-scrim {
+  opacity: 1;
+  transition: opacity 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* CTA pair used over the film (same shape as the RECALL hero buttons). */
+.film-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  border-radius: 999px;
+  padding: 0.95rem 2rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: transform 150ms ease-out, filter 150ms ease-out;
+}
+.film-btn:active { transform: scale(0.98); }
+.film-btn:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--cf-recall-bg), 0 0 0 4px var(--cf-recall-accent); }
+.film-btn-primary {
+  background: var(--cf-recall-accent);
+  color: var(--cf-recall-bg);
+  box-shadow: 0 14px 40px -12px var(--cf-recall-glow);
+}
+.film-btn-primary:hover { filter: brightness(1.05); }
+.film-btn-ghost {
+  color: var(--cf-recall-ink-soft);
+  padding-inline: 0.5rem;
+  text-underline-offset: 4px;
+}
+.film-btn-ghost:hover { text-decoration: underline; }
+
+/* Frame counter HUD (preview only) */
+.film-hud {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 60;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--cf-recall-accent);
+  background: color-mix(in srgb, var(--cf-recall-bg) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cf-recall-accent) 30%, transparent);
+  border-radius: 999px;
+  padding: 0.4rem 0.7rem;
+  pointer-events: none;
+}

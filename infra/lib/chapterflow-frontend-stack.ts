@@ -1103,6 +1103,29 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       },
     );
 
+    // Film-reel frames (components/film) live at `_assets/films/<film>/f_NNNN.webp`
+    // in the assets bucket, uploaded out of band (`docs/FILM_REEL.md` "Encode +
+    // ship": they are ~200 MB of generated frames, gitignored, never part of the
+    // OpenNext build). Every frame URL carries `?v=<content version>` from the
+    // film's manifest, and a re-encode changes that version in place of the
+    // path — so the cache key MUST include `v`, or CloudFront would serve the
+    // previous render for up to a month after a re-upload. Everything else
+    // matches the static policy.
+    const filmCachePolicy = new cloudfront.CachePolicy(
+      this,
+      "FilmCachePolicy",
+      {
+        cachePolicyName: name("ChapterFlowFilmPolicy"),
+        defaultTtl: cdk.Duration.days(30),
+        maxTtl: cdk.Duration.days(365),
+        minTtl: cdk.Duration.days(1),
+        queryStringBehavior: cloudfront.CacheQueryStringBehavior.allowList("v"),
+        cookieBehavior: cloudfront.CacheCookieBehavior.none(),
+        enableAcceptEncodingGzip: true,
+        enableAcceptEncodingBrotli: true,
+      },
+    );
+
     // Origin request policy for server function.
     // IMPORTANT: Do NOT forward the Host header — Lambda Function URLs
     // reject requests where Host doesn't match their own domain, returning
@@ -1238,6 +1261,17 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
           viewerProtocolPolicy:
             cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
           cachePolicy: staticCachePolicy,
+        },
+        // Film-reel frames: same-origin `/films/<film>/f_NNNN.webp?v=…` from the
+        // assets bucket (see filmCachePolicy above). Same-origin means the CSP
+        // img-src/connect-src need no CDN entry and NEXT_PUBLIC_FILM_BASE stays
+        // at its default (`/films`).
+        "films/*": {
+          origin: s3Origin,
+          viewerProtocolPolicy:
+            cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          cachePolicy: filmCachePolicy,
+          allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD,
         },
         // WS6-012: library covers on the app origin, routed to the content
         // bucket via OAC (contentCoversOrigin). library-catalog.ts mints

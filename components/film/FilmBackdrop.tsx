@@ -1,0 +1,114 @@
+"use client";
+
+/**
+ * FilmBackdrop — the one fixed <canvas> behind the whole landing.
+ *
+ * Owns:
+ *   • a FrameCache per film variant (landscape/portrait picked by media query)
+ *   • registration of FilmSegments (they report their DOM element + film)
+ *   • the scrub loop (./use-scrub-loop.ts) that paints frames, dissolves
+ *     between films, breathes while idle, quantises under reduced motion, and
+ *     publishes <html data-reel-chrome="film|body" data-reel-section="…">
+ *
+ * Math lives in ./scrub.ts (pure, tested). Nothing here re-renders per frame.
+ */
+
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
+import { FrameCache } from "./frame-cache";
+import { ReelContext, PORTRAIT_QUERY, pickVariant, readOrientation, type ReelApi } from "./reel-context";
+import { useScrubLoop } from "./use-scrub-loop";
+import type { FilmManifest, Orientation, SegmentRegistration } from "./types";
+
+export { REEL_CHROME_EVENT } from "./use-scrub-loop";
+
+type Props = { reel: FilmManifest[]; children: ReactNode; className?: string };
+
+export function FilmBackdrop({ reel, children, className }: Props) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const segments = useRef(new Map<number, SegmentRegistration>());
+  const caches = useRef(new Map<string, FrameCache>());
+  const drawnListeners = useRef(new Set<() => void>());
+  const drawn = useRef({ segment: -1, frame: -1 });
+  const reduced = usePrefersReducedMotion();
+  const reducedRef = useRef(false);
+  const [orientation, setOrientation] = useState<Orientation>("landscape");
+
+  useEffect(() => {
+    reducedRef.current = reduced;
+  }, [reduced]);
+
+  useEffect(() => {
+    const mq = window.matchMedia(PORTRAIT_QUERY);
+    const sync = () => setOrientation(readOrientation());
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  const cacheFor = useCallback(
+    (film: FilmManifest): FrameCache => {
+      const v = pickVariant(film, orientation);
+      const key = `${v.name}@${v.v ?? "0"}`;
+      let c = caches.current.get(key);
+      if (!c) {
+        c = new FrameCache(v);
+        caches.current.set(key, c);
+        void c.loadPoster();
+      }
+      return c;
+    },
+    [orientation],
+  );
+
+  useEffect(() => {
+    const map = caches.current;
+    return () => {
+      for (const c of map.values()) c.dispose();
+      map.clear();
+    };
+  }, []);
+
+  const api = useMemo<ReelApi>(
+    () => ({
+      reel,
+      orientation,
+      register: (reg) => {
+        segments.current.set(reg.index, reg);
+        cacheFor(reg.film).prefetch(0, 12, 1);
+        return () => {
+          if (segments.current.get(reg.index) === reg) segments.current.delete(reg.index);
+        };
+      },
+      subscribeDrawn: (fn) => {
+        drawnListeners.current.add(fn);
+        return () => {
+          drawnListeners.current.delete(fn);
+        };
+      },
+      drawnSegment: () => drawn.current.segment,
+      drawnFrame: () => drawn.current.frame,
+    }),
+    [reel, orientation, cacheFor],
+  );
+
+  useScrubLoop({ canvasRef, segments, drawn, drawnListeners, reducedRef, orientation, cacheFor });
+
+  return (
+    <ReelContext.Provider value={api}>
+      {/* The canvas is a fixed layer at z-0 INSIDE the page's stacking
+          context; chapters/body sit above at z-10. (A -z-10 layer would fall
+          behind the .landing-dark background and never show.) */}
+      <div
+        aria-hidden
+        className={`film-canvas pointer-events-none fixed inset-0 z-0 h-dvh w-full ${className ?? ""}`}
+        // Own compositor layer: scrolling the page must not re-rasterise the
+        // canvas, and the canvas repaint must not invalidate the page.
+        style={{ transform: "translateZ(0)", contain: "strict" }}
+      >
+        <canvas ref={canvasRef} className="h-full w-full" />
+      </div>
+      <div className="relative z-10">{children}</div>
+    </ReelContext.Provider>
+  );
+}

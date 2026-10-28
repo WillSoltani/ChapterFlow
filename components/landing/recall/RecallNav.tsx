@@ -173,15 +173,20 @@ export function RecallNav() {
       });
       if (sentinel) observer.observe(sentinel);
       suppressionZones.forEach((zone) => observer?.observe(zone));
-    } else {
-      window.addEventListener("scroll", update, { passive: true });
     }
+    // The observer only reports CHANGES in intersection. A jump that carries
+    // the sentinel from below the viewport to above it in one step (an anchor
+    // link into a later section, a restored scroll position, a tall hero such
+    // as the film reel's) never intersects, so nothing fires. The rAF-throttled
+    // scroll listener covers that; the observer still catches the common case
+    // without a scroll handler doing the work.
+    window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update, { passive: true });
 
     return () => {
       window.cancelAnimationFrame(frame);
       observer?.disconnect();
-      if (!supportsObserver) window.removeEventListener("scroll", update);
+      window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
   }, [pathname]);

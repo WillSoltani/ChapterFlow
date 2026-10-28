@@ -126,9 +126,11 @@ test("the complete landing import graph is strict-LazyMotion compatible", () => 
     [...reachable].map((file) => path.relative(projectRoot, file)),
   );
 
+  // Sanity anchors for the walk itself: the film reel (the landing's hero
+  // through close), the nav's dialog, and pricing's segmented control.
   for (const expected of [
-    "components/reader/PhaseStepper.tsx",
-    "components/reader/SummaryCard.tsx",
+    "components/film/BookReelLanding.tsx",
+    "components/film/FramePin.tsx",
     "components/ui/Dialog.tsx",
     "components/ui/SegmentedControl.tsx",
   ]) {

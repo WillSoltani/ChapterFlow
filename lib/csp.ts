@@ -44,8 +44,30 @@ function resolveCspCoverHosts(): string[] {
     : ["https://*.amazonaws.com"];
 }
 
+// Film-reel frames (components/film) are served from /films in dev and from a
+// CDN in production via NEXT_PUBLIC_FILM_BASE=https://<cdn>/films. The frame
+// cache loads them with fetch() + createImageBitmap (connect-src) and falls
+// back to <img> (img-src), so the CDN origin needs both. Read at build time:
+// NEXT_PUBLIC_* is inlined into the client bundle and this module runs on the
+// server with the same value.
+export function resolveFilmOrigin(): string | null {
+  const base = process.env.NEXT_PUBLIC_FILM_BASE ?? "";
+  if (!/^https?:\/\//.test(base)) return null;
+  try {
+    return new URL(base).origin;
+  } catch {
+    return null;
+  }
+}
+
 export function buildCspImgSrc(): string {
-  return ["'self'", "data:", "blob:", ...resolveCspCoverHosts()].join(" ");
+  const film = resolveFilmOrigin();
+  return ["'self'", "data:", "blob:", ...resolveCspCoverHosts(), ...(film ? [film] : [])].join(" ");
+}
+
+export function buildCspConnectSrc(): string {
+  const film = resolveFilmOrigin();
+  return ["'self'", ...(film ? [film] : [])].join(" ");
 }
 
 // Directives shared by every rendered document response. Everything except
@@ -63,7 +85,7 @@ export function buildCspBaseDirectives(): string[] {
     "style-src 'self' 'unsafe-inline'",
     `font-src 'self' data: ${FONT_CDN}`,
     "media-src 'self' blob:",
-    "connect-src 'self'",
+    `connect-src ${buildCspConnectSrc()}`,
     "worker-src 'self' blob:",
     "manifest-src 'self'",
   ];

@@ -44,18 +44,27 @@ async function scrollToViewportCenter(target: Locator): Promise<void> {
   });
 }
 
+// Under reduced motion (OS media query or the in-app toggle) the film reel is
+// quantised to a handful of discrete frames and FramePin skips its transform
+// (WCAG 2.3.3); the copy must still read in its final, fully-arrived state and
+// nothing may loop forever.
 async function expectReducedMotionFinalState(page: Page): Promise<void> {
   await expect(page.getByRole("heading", { name: /stop forgetting/i })).toBeVisible();
-  await expect(page.locator(".rl-plate-wrap")).toHaveCSS("transform", "none");
-  await expect(page.locator(".rl-plate-scan")).toBeHidden();
-  await expect(page.locator(".recall-reader-demo")).toBeVisible();
-  await expect(page.locator(".recall-reader-demo")).toHaveCSS("opacity", "1");
 
   const library = page.locator("#library");
-  await library.scrollIntoViewIfNeeded();
-  await expect(library.locator(".rl-lib-stage")).toHaveCSS("position", "static");
+  await expect(library).toHaveCount(1);
+  // Scroll to the END of the chapter so its "hold" pins are up.
+  await library.evaluate((el) => {
+    const r = el.getBoundingClientRect();
+    window.scrollTo({
+      top: r.top + window.scrollY + r.height - window.innerHeight - 2,
+      behavior: "instant" as ScrollBehavior,
+    });
+  });
+  await page.waitForTimeout(400);
+  await expect(library.locator("[data-frame-pin]").first()).toHaveCSS("transform", "none");
   await expect(
-    library.getByRole("heading", { name: /books, all real/i }),
+    library.getByRole("heading", { name: /books\. every one a building/i }),
   ).toBeVisible();
 
   const continuousAnimations = await page.evaluate(() =>
@@ -96,33 +105,28 @@ test.describe("public funnel", () => {
   });
 });
 
-// Landing redesign (RECALL) regressions — the three behaviours most at risk of
-// silent breakage: the mobile hero order (a conversion bug if it flips), the
-// scroll-pinned library section's reduced-motion fallback (WCAG 2.3.3), and a
-// present/clickable primary CTA. Run in dev mode (DEV_AUTH_BYPASS, no data
-// plane). The landing reveals on scroll/in-view, so the section is scrolled into
-// view before asserting.
+// Landing (MEMORY PALACE film reel) regressions — the three behaviours most at
+// risk of silent breakage: the mobile hero above the fold (a conversion bug if
+// the headline/CTA land below it), the scrub's reduced-motion fallback (WCAG
+// 2.3.3), and a present/clickable primary CTA. Run in dev mode (DEV_AUTH_BYPASS,
+// no data plane).
 test.describe("landing redesign", () => {
-  test("at 390px the headline precedes the hero showcase", async ({ page }) => {
+  test("at 390px the headline and CTA are above the fold on first paint", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
 
     const h1 = page.locator("main h1").first();
     await expect(h1).toBeVisible();
-
-    // The hero's framed visual (the FSRS retention-curve plate) renders inside
-    // the .rl-hero-showcase wrapper, below the headline on phones.
-    const showcase = page.locator(".rl-hero-showcase").first();
+    const cta = page.getByRole("link", { name: /start reading free/i }).first();
+    await expect(cta).toBeVisible();
 
     const h1Box = await h1.boundingBox();
-    const showcaseBox = await showcase.boundingBox();
+    const ctaBox = await cta.boundingBox();
     expect(h1Box, "headline must have a layout box").toBeTruthy();
-    expect(showcaseBox, "hero showcase must have a layout box").toBeTruthy();
-
-    // Headline is ABOVE the showcase (DOM-first, no order-* flip) ...
-    expect(h1Box!.y).toBeLessThan(showcaseBox!.y);
-    // ... and is the first thing in view above the fold.
-    expect(h1Box!.y).toBeLessThan(844);
+    expect(ctaBox, "CTA must have a layout box").toBeTruthy();
+    // Headline precedes the CTA, both inside the first viewport (no scroll).
+    expect(h1Box!.y).toBeLessThan(ctaBox!.y);
+    expect(ctaBox!.y + ctaBox!.height).toBeLessThanOrEqual(844);
   });
 
   test("primary 'Start reading free' CTA is present and clickable", async ({
@@ -137,7 +141,7 @@ test.describe("landing redesign", () => {
     expect(await cta.getAttribute("href")).toBeTruthy();
   });
 
-  test("with reduced motion, the scroll-pinned library section is static and legible", async ({
+  test("with reduced motion, the library chapter is legible and the scrub is stepped", async ({
     page,
   }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
@@ -146,20 +150,20 @@ test.describe("landing redesign", () => {
 
     const section = page.locator("#library");
     await expect(section).toHaveCount(1);
-    await section.scrollIntoViewIfNeeded();
+    // Scroll to the END of the chapter so its "hold" pins are up.
+    await section.evaluate((el) => {
+      const r = el.getBoundingClientRect();
+      window.scrollTo({ top: r.top + window.scrollY + r.height - window.innerHeight - 2, behavior: "instant" as ScrollBehavior });
+    });
+    await page.waitForTimeout(400);
 
-    // Reduced motion drops the scroll-pin: the inner stage is no longer sticky,
-    // so nothing pins to the viewport (WCAG 2.3.3) and the choreography is
-    // snapped to its final, fully-arrived state.
-    await expect(section.locator(".rl-lib-stage")).toHaveCSS(
-      "position",
-      "static",
-    );
+    // Under reduced motion the film is quantised to a handful of discrete
+    // frames (no continuous scrub, WCAG 2.3.3); FramePin skips its transform.
+    const pin = section.locator("[data-frame-pin]").first();
+    await expect(pin).toHaveCSS("transform", "none");
 
-    // ... and the section heading is rendered and legible at rest.
-    await expect(
-      section.getByRole("heading", { name: /books, all real/i }),
-    ).toBeVisible();
+    // ... and the chapter heading is rendered and legible at rest.
+    await expect(section.getByRole("heading", { name: /books\. every one a building/i })).toBeVisible();
   });
 });
 
