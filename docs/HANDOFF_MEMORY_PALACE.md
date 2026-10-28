@@ -30,6 +30,14 @@ had changed underneath, and how the reel now fits:
   state (library chapter pins at `transform: none`, no infinite animations).
 - `public/films` is a symlink in the worktree, so the ignore is `/public/films`
   (no trailing slash).
+- **Frames are in production storage.** `public/films` was synced to the
+  ChapterFlowFrontend StaticAssets bucket under `_assets/films/` (3,414
+  objects, 197 MB, immutable cache headers) and the frontend stack gained a
+  `films/*` CloudFront behavior on the assets origin with a cache policy that
+  keys on `?v`. Same-origin, so no CSP entry and `NEXT_PUBLIC_FILM_BASE` stays
+  default. The behavior goes live with the next app deploy
+  (`deploy.yml`, deploy_app) — until then `/films/*` on prod 404s from the
+  server origin, which is fine because the page is not deployed either.
 
 Found by re-running the gates on main (all fixed, all in this branch):
 

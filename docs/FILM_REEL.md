@@ -106,10 +106,26 @@ node scripts/film/encode.mjs ~/renders/P03.mp4 palace-03 --from-video --fps 24 -
 # counts are synced into book.timeline.json automatically; then edit the keys.
 
 # dev: serve from public/films (gitignored)
-npm run dev → http://localhost:3000/film?hud=1
+npm run dev → http://localhost:3000/?hud=1
 
-# prod: upload to CloudFront and point the app at it
-aws s3 sync public/films s3://<bucket>/films --cache-control 'public,max-age=31536000,immutable'
+# prod: the frames live in the frontend stack's static-assets bucket under
+# `_assets/films/` and CloudFront serves them SAME-ORIGIN at /films/* (the
+# `films/*` behavior in infra/lib/chapterflow-frontend-stack.ts, cache key
+# includes ?v). Nothing to configure in the app: NEXT_PUBLIC_FILM_BASE stays at
+# its default (/films). Upload after every encode (the bucket name is the
+# StaticAssets resource of the ChapterFlowFrontend stack):
+B=s3://$(aws cloudformation describe-stack-resources --stack-name ChapterFlowFrontend \
+    --query 'StackResources[?LogicalResourceId==`StaticAssetsDDEE9873`].PhysicalResourceId' --output text)/_assets/films
+aws s3 sync public/films "$B" --exclude '*' --include '*.webp' --content-type image/webp \
+    --cache-control 'public,max-age=31536000,immutable'
+aws s3 sync public/films "$B" --exclude '*' --include '*.json' --content-type application/json \
+    --cache-control 'public,max-age=300'
+# (`--content-type` is explicit because the CLI's mime map is not guaranteed to
+# know .webp.) Last done 2026-10-28: 3,414 objects / 197 MB. The OpenNext
+# BucketDeployments are prune:false, so app deploys never remove them.
+
+# optional: an external CDN instead — then set the origin at BUILD time and
+# lib/csp.ts adds it to img-src + connect-src
 NEXT_PUBLIC_FILM_BASE=https://<cdn>/films
 ```
 
@@ -131,11 +147,13 @@ it into `book.timeline.json`, and every frame/poster URL carries `?v=…`. A
 re-render can never be served from a stale browser cache. `FilmBackdrop` keys
 its in-memory caches by `name@v` for the same reason.
 
-Cross-origin CDN: `next.config.ts` adds the origin of `NEXT_PUBLIC_FILM_BASE`
-(when it is an absolute URL) to CSP `img-src` and `connect-src` — the frame
-cache fetches with `fetch()` + `createImageBitmap` and falls back to `<img>`,
-so both directives are needed. Set the variable at BUILD time (it is inlined
-into the client bundle and read by `next.config.ts` for the headers).
+Cross-origin CDN (not the default — production serves `/films/*` same-origin
+from the assets bucket, see above): `lib/csp.ts` adds the origin of
+`NEXT_PUBLIC_FILM_BASE` (when it is an absolute URL) to CSP `img-src` and
+`connect-src` — the frame cache fetches with `fetch()` + `createImageBitmap`
+and falls back to `<img>`, so both directives are needed. Set the variable at
+BUILD time (it is inlined into the client bundle and read on the server for
+the headers).
 
 Letterboxed stills: a video model seeded from a letterboxed start/end image
 bakes the black bars into every frame it generates toward that image.
