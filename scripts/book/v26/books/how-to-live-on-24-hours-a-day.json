@@ -1,0 +1,52 @@
+{
+  "bookId": "how-to-live-on-24-hours-a-day",
+  "title": "How to Live on 24 Hours a Day",
+  "author": "Arnold Bennett",
+  "bookType": "how-to",
+  "categories": [
+    "Productivity",
+    "Self Improvement"
+  ],
+  "tags": [
+    "time",
+    "attention",
+    "habits",
+    "daily-routine",
+    "focus"
+  ],
+  "source": {
+    "textPath": "~/cf-wt/v26-plan/data/bennett/source-text.txt",
+    "chapterMapPath": "~/cf-wt/v26-plan/data/bennett/chapter-map.json"
+  },
+  "briefPath": "../briefs/how-to-live-on-24-hours-a-day.md",
+  "shape": {
+    "examples": 3,
+    "quizQuestions": 7,
+    "choices": 3,
+    "reviewCards": 5,
+    "memorableLines": 3,
+    "ifThenPlans": 2,
+    "fastRead": [150, 220],
+    "deepRead": [350, 500],
+    "fullRead": [800, 1100]
+  },
+  "writer": {
+    "bin": "~/.vscode/extensions/anthropic.claude-code-2.1.282-darwin-arm64/resources/native-binary/claude",
+    "model": "claude-opus-5-5",
+    "effort": "high"
+  },
+  "checker": {
+    "bin": "~/.vscode/extensions/anthropic.claude-code-2.1.282-darwin-arm64/resources/native-binary/claude",
+    "model": "claude-opus-5-5",
+    "effort": "high"
+  },
+  "solver": {
+    "bin": "~/.vscode/extensions/anthropic.claude-code-2.1.282-darwin-arm64/resources/native-binary/claude",
+    "model": "claude-sonnet-5",
+    "effort": "medium"
+  },
+  "concurrency": 3,
+  "budgetUsd": 80,
+  "runDir": "~/cf-wt/v26-plan/scratch/W1c/run/how-to-live-on-24-hours-a-day",
+  "ledgerPath": "~/cf-wt/v26-plan/scratch/W1c/ledger.jsonl"
+}

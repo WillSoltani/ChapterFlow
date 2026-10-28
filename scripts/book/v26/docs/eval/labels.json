@@ -1,0 +1,24 @@
+{
+  "source": "~/cf-wt/v26-plan/reading/W1/NOTES.md (owner, ch01 section; ch13 section empty). X = rr21, Y = W1 prototype, Z = Q08 arm.",
+  "calibrateOn": ["X", "Z"],
+  "heldOut": ["Y"],
+  "labels": [
+    {"id": "L01", "version": "X", "item": "ARC-fastRead", "verdict": "fail", "owner": "Short form is kinda vague. It doesn't teach the lesson properly."},
+    {"id": "L02", "version": "X", "item": "TRY", "verdict": "fail", "owner": "The try this now is there for a purpose. A shorter summary and moral of the story doesn't belong there"},
+    {"id": "L03", "version": "X", "item": "LINES-1", "verdict": "fail", "owner": "Lines worth keeping aren't really useful. It should have the moral of the story in sentence."},
+    {"id": "L04", "version": "X", "item": "AGG-EX", "verdict": "fail", "owner": "Examples are super long and don't reflect the lesson learned."},
+    {"id": "L05", "version": "X", "item": "AGG-EXFIT", "verdict": "fail", "owner": "what to do and why it matters should be directly relavant to the example not the lesson."},
+    {"id": "L06", "version": "X", "item": "PLAIN-summary", "verdict": "fail", "owner": "The choice of word can be a lot simpler specially for beginners"},
+    {"id": "L07", "version": "X", "item": "SPINE", "verdict": "fail", "owner": "I don't like version X / ... heavily focused on the story itself rather than teaching a lesson"},
+    {"id": "L08", "version": "Y", "item": "OPENER-deepRead", "verdict": "fail", "owner": "Standard could be lot more interesting. Some opener that makes the reader curious and make them wanna read is very needed."},
+    {"id": "L09", "version": "Y", "item": "AGG-EX", "verdict": "pass", "owner": "Examples are good"},
+    {"id": "L10", "version": "Y", "item": "AGG-QUIZ", "verdict": "fail", "owner": "The quizes should test the lesson itself not what the summary is about."},
+    {"id": "L11", "version": "Y", "item": "PRACTICE", "verdict": "pass", "owner": "Practice is good. Implementation plan is good."},
+    {"id": "L12", "version": "Y", "item": "AGG-CARDS", "verdict": "fail", "owner": "Review cards are useless as it tests the Frankin story and not the lesson learned."},
+    {"id": "L13", "version": "Y", "item": "SPINE", "verdict": "fail", "owner": "All these are failures ... heavily focused on the story itself rather than teaching a lesson"},
+    {"id": "L14", "version": "Z", "item": "OPENER-hook", "verdict": "fail", "owner": "How is the opening 'Franklin read almost before he could remember...' trigger curiosity ... It doesn't seem relevant to the lesson at all."},
+    {"id": "L15", "version": "Z", "item": "PLAIN-summary", "verdict": "fail", "owner": "It should be interesting. And easier to read"},
+    {"id": "L16", "version": "Z", "item": "TRY", "verdict": "fail", "owner": "Try this now is not relevant to the lesson."},
+    {"id": "L17", "version": "Z", "item": "SPINE", "verdict": "fail", "owner": "All these are failures ... heavily focused on the story itself rather than teaching a lesson"}
+  ]
+}
