@@ -75,6 +75,10 @@ follow-up PR:
   the portrait ones. `FilmBackdrop` now reads the query synchronously into a
   ref during the first client render and picks variants from it; the state
   (and hydration markup) is unchanged. Phone load: 0 landscape requests.
+- **No footer.** `PublicSiteShell` renders the shared footer OUTSIDE `main`;
+  `main` is `z-10` and forms the stacking context that holds the fixed canvas,
+  so the footer (z auto) painted underneath it and the Home chapter's last
+  frame covered it. `html[data-reel-chrome] .rl-public-footer { z-index: 11 }`.
 
 ## 0a. Round 4 — evaluation + finish (2026-10-27, Claude)
 
