@@ -15,6 +15,82 @@ export function frameUrl(variant: FilmVariant, index: number): string {
   return `${variant.base}/f_${n}.${variant.ext}${variant.v ? `?v=${variant.v}` : ""}`;
 }
 
+/**
+ * FrameBudget — one decoded-pixel budget shared by every FrameCache on the
+ * page, with a single LRU across them.
+ *
+ * Why: each FrameCache kept up to 160 bitmaps, and a portrait frame decodes to
+ * 1080×1920×4 ≈ 8.3 MB — 1.3 GB per film, seven films on the page. Mobile
+ * Safari's per-tab memory ceiling is around 1–1.5 GB, so a scrub through the
+ * reel on a phone hit it and the tab was killed ("a problem repeatedly
+ * occurred" / a reload that never comes back). Everything decoded now counts
+ * against one limit sized for the device; the oldest-used frame anywhere is
+ * evicted first. `nearest()` covers a hole, as for a frame still in flight.
+ */
+export class FrameBudget {
+  private used = 0;
+  private readonly entries: Array<{ cache: FrameCache; index: number; bytes: number }> = [];
+
+  constructor(public readonly limitBytes: number) {}
+
+  get usedBytes(): number {
+    return this.used;
+  }
+
+  get count(): number {
+    return this.entries.length;
+  }
+
+  /** Register a decoded frame; evicts least-recently-used frames over the limit. */
+  track(cache: FrameCache, index: number, bytes: number) {
+    this.entries.push({ cache, index, bytes });
+    this.used += bytes;
+    // Keep at least the frame just added, even if it alone exceeds the limit.
+    while (this.used > this.limitBytes && this.entries.length > 1) {
+      const e = this.entries.shift()!;
+      this.used -= e.bytes;
+      e.cache.evict(e.index);
+    }
+  }
+
+  /** Mark a frame as just used, so it is evicted last. */
+  touch(cache: FrameCache, index: number) {
+    const i = this.entries.findIndex((e) => e.cache === cache && e.index === index);
+    if (i < 0 || i === this.entries.length - 1) return;
+    const [e] = this.entries.splice(i, 1);
+    if (e) this.entries.push(e);
+  }
+
+  /** Forget a frame the cache dropped on its own (local cap, dispose). */
+  release(cache: FrameCache, index: number) {
+    const i = this.entries.findIndex((e) => e.cache === cache && e.index === index);
+    if (i < 0) return;
+    const [e] = this.entries.splice(i, 1);
+    if (e) this.used -= e.bytes;
+  }
+}
+
+/**
+ * Decoded-frame budget for this device. Chrome exposes `deviceMemory` (GB,
+ * capped at 8); Safari does not, so phones and tablets (portrait / narrow)
+ * get the conservative figure and desktops a larger one. All well under any
+ * per-tab ceiling; the reel only ever needs a window around the playhead.
+ */
+export function pickFrameBudgetBytes(): number {
+  const MB = 1024 * 1024;
+  if (typeof window === "undefined") return 160 * MB;
+  const mem = (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
+  if (typeof mem === "number" && mem > 0) return Math.min(512, Math.max(96, mem * 48)) * MB;
+  const small = window.innerWidth < 1024 || window.innerHeight > window.innerWidth;
+  return (small ? 160 : 384) * MB;
+}
+
+function bitmapBytes(bmp: ImageBitmap | HTMLImageElement): number {
+  const w = "naturalWidth" in bmp ? bmp.naturalWidth || bmp.width : bmp.width;
+  const h = "naturalHeight" in bmp ? bmp.naturalHeight || bmp.height : bmp.height;
+  return w * h * 4;
+}
+
 export class FrameCache {
   private readonly bitmaps = new Map<number, ImageBitmap | HTMLImageElement>();
   private readonly inflight = new Map<number, Promise<void>>();
@@ -28,6 +104,7 @@ export class FrameCache {
   constructor(
     public readonly variant: FilmVariant,
     private readonly capacity = 160,
+    private readonly budget: FrameBudget | null = null,
   ) {}
 
   subscribe(fn: () => void): () => void {
@@ -42,7 +119,9 @@ export class FrameCache {
   }
 
   get(index: number): ImageBitmap | HTMLImageElement | undefined {
-    return this.bitmaps.get(index);
+    const b = this.bitmaps.get(index);
+    if (b) this.budget?.touch(this, index);
+    return b;
   }
 
   has(index: number): boolean {
@@ -51,16 +130,36 @@ export class FrameCache {
 
   /** Closest decoded frame ≤ index, else closest ≥ index, else poster. */
   nearest(index: number): ImageBitmap | HTMLImageElement | null {
-    if (this.bitmaps.has(index)) return this.bitmaps.get(index)!;
+    const exact = this.bitmaps.get(index);
+    if (exact) {
+      this.budget?.touch(this, index);
+      return exact;
+    }
     for (let i = index - 1; i >= 0; i--) {
       const b = this.bitmaps.get(i);
-      if (b) return b;
+      if (b) {
+        this.budget?.touch(this, i);
+        return b;
+      }
     }
     for (let i = index + 1; i < this.variant.count; i++) {
       const b = this.bitmaps.get(i);
-      if (b) return b;
+      if (b) {
+        this.budget?.touch(this, i);
+        return b;
+      }
     }
     return this.poster;
+  }
+
+  /** Drop one decoded frame (budget eviction). A later `load` refetches it. */
+  evict(index: number) {
+    const old = this.bitmaps.get(index);
+    if (!old) return;
+    if ("close" in old) old.close();
+    this.bitmaps.delete(index);
+    const i = this.order.indexOf(index);
+    if (i >= 0) this.order.splice(i, 1);
   }
 
   async loadPoster(): Promise<HTMLImageElement> {
@@ -119,7 +218,9 @@ export class FrameCache {
       const old = this.bitmaps.get(evict);
       if (old && "close" in old) old.close();
       this.bitmaps.delete(evict);
+      this.budget?.release(this, evict);
     }
+    this.budget?.track(this, index, bitmapBytes(bmp));
     this.notify();
   }
 
@@ -170,6 +271,7 @@ export class FrameCache {
   dispose() {
     for (const ctl of this.speculative.values()) ctl.abort();
     this.speculative.clear();
+    for (const i of this.bitmaps.keys()) this.budget?.release(this, i);
     for (const b of this.bitmaps.values()) if ("close" in b) b.close();
     this.bitmaps.clear();
     this.order.length = 0;
