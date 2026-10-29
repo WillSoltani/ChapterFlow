@@ -96,7 +96,9 @@ follow-up PR:
   letterboxed on the darkest corner colour: 62 % of the width, band ≈ 51 % of
   the screen); the hero ramp now ends at that zoom so the P00→P01 seam keeps
   one scale. One zoom for all films, picked from a 6-film × 4-zoom sheet.
-  Portrait-only encodes bump the film's `v` so both variants refetch.
+  Portrait-only encodes bump the film's `v` so both variants refetch. Bars
+  are the page background (`--portrait-bars '#06070A'`): the darkest-corner
+  default gave brown bars on the Hall and Examples (warm paper corners).
 - **No footer.** `PublicSiteShell` renders the shared footer OUTSIDE `main`;
   `main` is `z-10` and forms the stacking context that holds the fixed canvas,
   so the footer (z auto) painted underneath it and the Home chapter's last
