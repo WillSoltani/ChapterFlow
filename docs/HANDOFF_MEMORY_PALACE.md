@@ -88,6 +88,15 @@ follow-up PR:
   to the first two — every film still gets its cache and poster at mount, so
   a chapter reached on a slow network draws its poster, never black — and the
   loop warms each next film from 60 % of the previous (was 80 %).
+- **Phones saw a third of every scene.** The portrait variants were a blind
+  9:16 centre crop of the 16:9 frame: 608 of 1920 source px, 32 % of the
+  scene width (the Hall was three doorways, the city four buildings). Owner:
+  "only half the visuals are visible". Re-framed every `-p` variant with
+  `encode.mjs --portrait-zoom 1.6 --portrait-only` (frame at 1.6× contain,
+  letterboxed on the darkest corner colour: 62 % of the width, band ≈ 51 % of
+  the screen); the hero ramp now ends at that zoom so the P00→P01 seam keeps
+  one scale. One zoom for all films, picked from a 6-film × 4-zoom sheet.
+  Portrait-only encodes bump the film's `v` so both variants refetch.
 - **No footer.** `PublicSiteShell` renders the shared footer OUTSIDE `main`;
   `main` is `z-10` and forms the stacking context that holds the fixed canvas,
   so the footer (z auto) painted underneath it and the Home chapter's last
