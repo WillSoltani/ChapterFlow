@@ -367,6 +367,11 @@ left "INSIDE." orphaned; `.film-h1` and `.film-label` now carry
 Turbopack served the stale label rule until `.next-chapterflow` was cleared
 and dev restarted — the known trap, not an HMR bug in the edit.
 
+Phone framing (2026-10-28, after launch): every `-p` variant re-encoded with
+`--portrait-zoom 1.6 --portrait-only` from the film's own landscape frames
+(the blind 9:16 centre crop showed 32 % of each scene); the hero ramp ends at
+the same zoom. Versions bumped: all seven films.
+
 ### Round 4 — evaluation + seam repair (2026-10-27, Claude; 0 credits)
 
 Reading the encoded frames (not the HUD) found that **P04's start still was

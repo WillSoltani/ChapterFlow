@@ -102,9 +102,15 @@ OAuth token on a 401 (Cline keeps the server disabled, so it never does).
 ```bash
 # from a PNG sequence
 node scripts/film/encode.mjs ~/renders/P00 palace-00 --portrait --quality 78
-# portrait contain→cover ramp (hero: whole frame letterboxed on the velvet until
-# f150, zooming to the centre cover crop by f200 so the push-in matches P01-p)
-node scripts/film/encode.mjs ~/renders/p00v4_blend palace-00 --portrait --quality 78 --portrait-ramp 150,200
+# PHONES: never the blind 9:16 centre crop — that shows 32 % of a 16:9 scene.
+# Every portrait variant is framed with --portrait-zoom 1.6 (frame scaled to
+# 1.6× contain, letterboxed on the frame's darkest corner colour: ~62 % of the
+# scene width visible, band ≈ 51 % of the screen). One zoom for ALL films so
+# the seams keep one scale. --portrait-only re-frames from the film's own
+# landscape frames and bumps the film's version (both variants refetch).
+node scripts/film/encode.mjs public/films/palace-01 palace-01 --portrait --portrait-only --portrait-zoom 1.6
+# hero: contain (z = 1) until f150, ramping to the same zoom 1.6 by f200
+node scripts/film/encode.mjs ~/renders/p00v4_blend palace-00 --portrait --portrait-only --portrait-ramp 150,200 --portrait-zoom 1.6
 # from a Higgsfield mp4 (needs ffmpeg: brew install ffmpeg)
 node scripts/film/encode.mjs ~/renders/P03.mp4 palace-03 --from-video --fps 24 --portrait
 # counts are synced into book.timeline.json automatically; then edit the keys.

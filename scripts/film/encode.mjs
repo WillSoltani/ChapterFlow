@@ -19,11 +19,19 @@
  *   --every 1            keep every Nth source frame (2 = halve frame count)
  *   --portrait           also emit a 1080×1920 portrait variant
  *   --portrait-crop x,y,w,h  explicit source crop for portrait (defaults centre)
- *   --portrait-ramp a,b  portrait fit: CONTAIN (whole 16:9 frame letterboxed on
- *                        the velvet, object small and centred under the stacked
- *                        hero copy) up to frame a, zooming to the centre COVER
- *                        crop by frame b (smoothstep), cover after. Bars take
- *                        the frame's own top-row colour so no edge shows.
+ *   --portrait-zoom z    portrait framing for a 16:9 source: z = 1 is CONTAIN
+ *                        (whole frame 1080 wide, letterboxed top and bottom on
+ *                        the frame's darkest corner colour); larger z scales
+ *                        the frame up around its centre, so less of the scene
+ *                        width shows but the band is taller. The plain centre
+ *                        9:16 cover crop is z = 3.16 for 1920×1080 and shows
+ *                        only 32 % of the scene width — too little on a phone.
+ *                        Default (no flag): the cover crop, as before.
+ *   --portrait-ramp a,b  animate the portrait zoom: contain (z = 1) up to frame
+ *                        a, smoothstep to --portrait-zoom (or cover) by frame b.
+ *   --portrait-only      write only the portrait variant (landscape dir and
+ *                        its manifest/version untouched); input may be the
+ *                        film's own public/films/<name> landscape frames.
  *   --out public/films   output root
  *   --dry                print plan, write nothing
  *
@@ -86,11 +94,14 @@ const portrait = Boolean(opt("portrait", false));
 const portraitCrop = opt("portrait-crop", null);
 const portraitRamp = opt("portrait-ramp", null);
 const ramp = portraitRamp ? String(portraitRamp).split(",").map(Number) : null;
+const portraitZoom = opt("portrait-zoom", null);
+const zoom = portraitZoom ? Number(portraitZoom) : null;
+const portraitOnly = Boolean(opt("portrait-only", false));
 const dry = Boolean(opt("dry", false));
 
 const naturalSort = (a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" });
 const srcFiles = (await fs.readdir(path.resolve(ROOT, inputDir)))
-  .filter((f) => /\.(png|jpe?g|webp|tiff?)$/i.test(f))
+  .filter((f) => /\.(png|jpe?g|webp|tiff?)$/i.test(f) && f !== "poster.webp")
   .sort(naturalSort)
   .filter((_, i) => i % every === 0);
 
@@ -118,13 +129,44 @@ if (portrait) {
   }
 }
 
-console.log(`film ${filmName}: ${srcFiles.length} frames  src ${srcW}×${srcH}  → ${width}×${landH}${portrait ? "  + portrait 1080×1920" : ""}`);
+console.log(`film ${filmName}: ${srcFiles.length} frames  src ${srcW}×${srcH}  → ${portraitOnly ? "(landscape untouched)" : `${width}×${landH}`}${portrait ? `  + portrait 1080×1920${zoom ? ` zoom ${zoom}` : ""}${ramp ? ` ramp ${ramp.join("→")}` : ""}` : ""}`);
 if (dry) process.exit(0);
 
 const landDir = path.join(OUT_ROOT, filmName);
 const portDir = path.join(OUT_ROOT, `${filmName}-p`);
-await fs.mkdir(landDir, { recursive: true });
+if (!portraitOnly) await fs.mkdir(landDir, { recursive: true });
 if (portrait) await fs.mkdir(portDir, { recursive: true });
+
+// Portrait framing as a scale factor on the source: contain → cover.
+const sContain = 1080 / srcW;
+const sCover = 1920 / srcH;
+const sEnd = zoom ? sContain * zoom : sCover;
+
+/** Letterbox-or-crop one frame at scale `sc` into a 1080×1920 webp. */
+async function portraitAt(base, sc, outFile) {
+  const w = Math.round(srcW * sc);
+  const h = Math.round(srcH * sc);
+  const left = Math.round((w - 1080) / 2);
+  const top = Math.round((h - 1920) / 2); // negative while letterboxed
+  const scaled = await base.clone().resize({ width: w, height: h }).toBuffer();
+  if (top < 0) {
+    // Letterboxed: bars take the colour of the frame's darkest corner patch
+    // (the velvet), so the void runs through and no edge shows.
+    let bg = { r: 0, g: 0, b: 0 };
+    let darkest = Infinity;
+    const P = 48;
+    for (const [cx, cy] of [[0, 0], [w - P, 0], [0, h - P], [w - P, h - P]]) {
+      const { data } = await sharp(scaled).extract({ left: cx, top: cy, width: P, height: P }).resize(1, 1, { fit: "fill" }).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+      const lum = data[0] * 0.3 + data[1] * 0.59 + data[2] * 0.11;
+      if (lum < darkest) { darkest = lum; bg = { r: data[0], g: data[1], b: data[2] }; }
+    }
+    await sharp({ create: { width: 1080, height: 1920, channels: 3, background: bg } })
+      .composite([{ input: await sharp(scaled).extract({ left, top: 0, width: 1080, height: h }).toBuffer(), left: 0, top: -top }])
+      .webp({ quality, effort: 4 }).toFile(outFile);
+  } else {
+    await sharp(scaled).extract({ left, top, width: 1080, height: 1920 }).webp({ quality, effort: 4 }).toFile(outFile);
+  }
+}
 
 const CONCURRENCY = 8;
 let done = 0;
@@ -132,37 +174,15 @@ async function encodeOne(i) {
   const src = path.resolve(ROOT, inputDir, srcFiles[i]);
   const name = `f_${String(i + 1).padStart(pad, "0")}.webp`;
   const base = sharp(src);
-  await base.clone().resize({ width }).webp({ quality, effort: 4 }).toFile(path.join(landDir, name));
+  if (!portraitOnly) await base.clone().resize({ width }).webp({ quality, effort: 4 }).toFile(path.join(landDir, name));
   if (portrait && crop && ramp) {
-    // t = 0 → contain (scale so the frame is 1080 wide), t = 1 → cover crop.
+    // t = 0 → contain (scale so the frame is 1080 wide), t = 1 → the end zoom.
     const [a, b] = ramp;
     const u = i <= a ? 0 : i >= b ? 1 : (i - a) / (b - a);
     const t = u * u * (3 - 2 * u);
-    const sContain = 1080 / srcW;
-    const sCover = 1920 / srcH;
-    const sc = sContain + (sCover - sContain) * t;
-    const w = Math.round(srcW * sc);
-    const h = Math.round(srcH * sc);
-    const left = Math.round((w - 1080) / 2);
-    const top = Math.round((h - 1920) / 2); // negative while letterboxed
-    const scaled = await base.clone().resize({ width: w, height: h }).toBuffer();
-    if (top < 0) {
-      // Letterboxed: bars take the colour of the frame's darkest corner patch
-      // (the velvet), so the void runs through and no edge shows.
-      let bg = { r: 0, g: 0, b: 0 };
-      let darkest = Infinity;
-      const P = 48;
-      for (const [cx, cy] of [[0, 0], [w - P, 0], [0, h - P], [w - P, h - P]]) {
-        const { data } = await sharp(scaled).extract({ left: cx, top: cy, width: P, height: P }).resize(1, 1, { fit: "fill" }).removeAlpha().raw().toBuffer({ resolveWithObject: true });
-        const lum = data[0] * 0.3 + data[1] * 0.59 + data[2] * 0.11;
-        if (lum < darkest) { darkest = lum; bg = { r: data[0], g: data[1], b: data[2] }; }
-      }
-      await sharp({ create: { width: 1080, height: 1920, channels: 3, background: bg } })
-        .composite([{ input: await sharp(scaled).extract({ left, top: 0, width: 1080, height: h }).toBuffer(), left: 0, top: -top }])
-        .webp({ quality, effort: 4 }).toFile(path.join(portDir, name));
-    } else {
-      await sharp(scaled).extract({ left, top, width: 1080, height: 1920 }).webp({ quality, effort: 4 }).toFile(path.join(portDir, name));
-    }
+    await portraitAt(base, sContain + (sEnd - sContain) * t, path.join(portDir, name));
+  } else if (portrait && crop && zoom) {
+    await portraitAt(base, sEnd, path.join(portDir, name));
   } else if (portrait && crop) {
     await base.clone().extract(crop).resize({ width: 1080, height: 1920 }).webp({ quality, effort: 4 }).toFile(path.join(portDir, name));
   }
@@ -184,10 +204,24 @@ async function writeVariant(dir, w, h) {
   const manifest = { name: path.basename(dir), count: srcFiles.length, pad, ext: "webp", width: w, height: h, v: VERSION };
   await fs.writeFile(path.join(dir, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
 }
-await writeVariant(landDir, width, landH);
+if (!portraitOnly) await writeVariant(landDir, width, landH);
 if (portrait) await writeVariant(portDir, 1080, 1920);
+if (portraitOnly) {
+  // One content version per film (timeline.ts stamps ?v= on both variants from
+  // the landscape manifest), so a portrait-only re-encode must bump the
+  // landscape manifest's v too — otherwise browsers keep the old portrait
+  // frames from cache under the unchanged URL. Landscape frames are untouched.
+  const lm = path.join(landDir, "manifest.json");
+  try {
+    const m = JSON.parse(await fs.readFile(lm, "utf8"));
+    m.v = VERSION;
+    await fs.writeFile(lm, JSON.stringify(m, null, 2) + "\n");
+  } catch {
+    console.warn(`no landscape manifest at ${lm}; timeline v not bumped`);
+  }
+}
 await syncTimeline();
-console.log(`done → ${path.relative(ROOT, landDir)}${portrait ? `, ${path.relative(ROOT, portDir)}` : ""}`);
+console.log(`done → ${portraitOnly ? "" : path.relative(ROOT, landDir)}${portrait ? `${portraitOnly ? "" : ", "}${path.relative(ROOT, portDir)}` : ""}`);
 
 async function syncTimeline() {
   let tl;
