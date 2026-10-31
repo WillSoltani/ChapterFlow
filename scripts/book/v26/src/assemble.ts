@@ -10,6 +10,7 @@ import { readLedger } from "./ledger";
 import { runChecks, type CheckContext } from "./checks";
 import { call, type ChapterStatus, type PipelineCtx } from "./pipeline";
 import { chapterHeader, knownTrapsSection, loadPrompt, renderTemplate } from "./prompts";
+import { keysBlock, keysFor } from "./keysText";
 import { page, renderChapter } from "./render";
 import { spanText, writerForm, writerFormText } from "./source";
 import type { Chapter, Issue, LessonCard } from "./types";
@@ -244,6 +245,7 @@ export async function assembleChapter(ctx: PipelineCtx, n: number, p: Picks): Pr
       KNOWN_TRAPS: knownTrapsSection(ctx.knownTraps[n] ?? []),
       LESSON: lessonText(run.lesson),
       SUMMARIES: tiers,
+      KEYS: keysBlock(ctx, n),
       ...(knowledge ? { BOOK_SECTION: ctx.bookSection } : { SOURCE: writerFormText(spanText(ctx.source, n)) }),
     });
     const fact = await callShaped(ctx, n, {
@@ -303,6 +305,10 @@ export async function assembleChapter(ctx: PipelineCtx, n: number, p: Picks): Pr
     chapter: n,
     chapterTitle: run.chapterTitle,
     lesson,
+    // Later chapters rotate their summary opener among these approaches; the owner widens the list (for example to the openers rated Excellent).
+    approved: { summary: [p.picks.summary] },
+    // The book's own people and places, from every candidate lesson: a later chapter may name them; the exemplar's invented names it may not.
+    bookNames: [...new Set(run.lessons.flatMap((l) => l.storyNames))].sort(),
     picks: Object.fromEntries(COMPONENTS.map((c) => [c, { label: p.picks[c], approach: (chosen[c] as { approach: string }).approach }])),
     notes: p.notes,
     chosen,
@@ -315,7 +321,7 @@ export async function assembleChapter(ctx: PipelineCtx, n: number, p: Picks): Pr
     chapterFile: files.final,
   });
   const flagLine = blockingCount > 0 ? `${status.stage}: ${blockingCount} open` : "";
-  const body = renderChapter({ ...chapter, number: n }, { label: flagLine, bookLine: `${title} by ${author}`, uid: `v${n}` });
+  const body = renderChapter({ ...chapter, number: n }, { label: flagLine, bookLine: `${title} by ${author}`, uid: `v${n}`, authorAdvice: keysFor(ctx, n) });
   fs.mkdirSync(path.dirname(files.reading), { recursive: true });
   fs.writeFileSync(files.reading, page(`${title}: chapter ${n}`, body));
   return { chapter, status, files };

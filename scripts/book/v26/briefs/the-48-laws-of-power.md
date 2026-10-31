@@ -3,3 +3,4 @@ THE BOOK: The 48 Laws of Power by Robert Greene, an argument book. Each chapter 
 - The chapter's stories are the evidence. Tell them in plain words, in the right order, naming only who the lesson needs, and never add what the chapter does not say.
 - The chapter's reversal (when the law does not apply) belongs in the counterintuition or near the end of the summary, so the reader knows the limits.
 - There is no source text here, so no quotations: tell the stories in your own words.
+- Tell what Greene advises as he gives it, blunt and whole, even where the lesson for the reader is gentler; then say in one sentence where the lesson goes softer. Never quietly nice-ify a law.

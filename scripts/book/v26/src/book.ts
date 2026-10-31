@@ -16,6 +16,7 @@ import { page, renderChapter } from "./render";
 import { spanText, writerForm, writerFormText } from "./source";
 import type { Chapter, Issue, LessonCard, QuizQuestion } from "./types";
 import { wordsIn } from "./validate";
+import { keysBlock, keysFor } from "./keysText";
 import { COMPONENTS, callShaped, lessonText, lessonsPrompt, lessonsShapeErrors, sourceVars, type Component, type FactIssue, type LessonCandidate } from "./variants";
 
 export interface Exemplar {
@@ -26,14 +27,22 @@ export interface Exemplar {
   /** Invented first names in the exemplar's hook, examples, quiz, cards and practice (0-call extraction): a later chapter that
    *  uses one is blocked. */
   names: string[];
-  /** Names that appear only in the exemplar's summaries, where the book's own people and an invented scene mix: a later chapter
-   *  that uses one is reported, not blocked. */
+  /** Names that appear only in the exemplar's summaries and cannot be told from the book's own people (no candidate lessons on
+   *  file): a later chapter that uses one is reported, not blocked. */
   sceneNames: string[];
+  /** The book's own people and places (every candidate lesson's storyNames): a later chapter may name them. */
+  bookNames: string[];
+  /** Summary approaches later chapters rotate through, A to E; the owner widens it beyond the pick. */
+  approvedSummary: string[];
 }
 export interface Variety {
   names: string[];
   settings: string[];
   analogies: string[];
+  /** The summary approach this chapter opened with. */
+  approach?: string;
+  /** Four sentences cut from fastRead: its first, the first that names the book's story, the first of the last paragraph, the last. */
+  openers?: string[];
 }
 export interface VarietyLedger {
   chapters: Record<string, Variety>;
@@ -126,14 +135,39 @@ export function loadExemplar(ctx: PipelineCtx, n?: number): Exemplar {
     if (found.length === 0) throw new Error(`NO_EXEMPLAR: no exemplar under ${dir}; assemble an approved chapter first`);
     pick = Math.max(...found);
   }
-  const rec = readJson<{ picks: Exemplar["picks"]; notes: Record<string, string>; lesson?: LessonCard }>(path.join(dir, `${chapterName(pick)}.json`));
+  const rec = readJson<{ picks: Exemplar["picks"]; notes: Record<string, string>; lesson?: LessonCard; approved?: { summary?: string[] }; bookNames?: string[] }>(
+    path.join(dir, `${chapterName(pick)}.json`),
+  );
   if (!rec) throw new Error(`NO_EXEMPLAR: ${path.join(dir, `${chapterName(pick)}.json`)} does not exist`);
   const chapterJson = readJson<Chapter>(path.join(ctx.config.runDir, chapterName(pick), "final.json"));
   if (!chapterJson) throw new Error(`NO_EXEMPLAR: ${chapterName(pick)} has no final.json`);
-  const story = rec.lesson?.storyNames ?? [];
-  const names = extractNames(chapterJson, story, "invented");
-  const sceneNames = extractNames(chapterJson, story, "all").filter((x) => !names.includes(x));
-  return { chapter: pick, chapterJson, picks: rec.picks, notes: rec.notes ?? {}, names, sceneNames };
+  // The book's own people: the record's list, else every candidate lesson's storyNames from the variants page, else the lesson card.
+  const candidates = readJson<{ lessons: Array<{ storyNames?: string[] }> }>(path.join(ctx.config.runDir, chapterName(pick), "variants", "lessons.json"));
+  const known = rec.bookNames ?? candidates?.lessons.flatMap((l) => l.storyNames ?? []) ?? null;
+  const bookNames = [...new Set([...(known ?? []), ...(rec.lesson?.storyNames ?? [])])].sort();
+  const invented = extractNames(chapterJson, bookNames, "invented");
+  const tierOnly = extractNames(chapterJson, bookNames, "all").filter((x) => !invented.includes(x));
+  // With the book's people known, a summary-only name that is not one of them is an invented scene (Maya) and blocks; without
+  // that list it cannot be told apart from the book's people, so it is only reported.
+  const names = known !== null ? [...new Set([...invented, ...tierOnly])].sort() : invented;
+  const sceneNames = known !== null ? [] : tierOnly;
+  const approvedSummary = (rec.approved?.summary ?? []).filter((l) => /^[A-E]$/.test(l));
+  return {
+    chapter: pick,
+    chapterJson,
+    picks: rec.picks,
+    notes: rec.notes ?? {},
+    names,
+    sceneNames,
+    bookNames,
+    approvedSummary: approvedSummary.length ? approvedSummary : [rec.picks.summary.label],
+  };
+}
+
+/** Chapter n's summary approach: the approved openers in turn, so neighbouring chapters never open the same way. */
+export function summaryApproachFor(ex: Exemplar, n: number): string {
+  const k = ex.approvedSummary.length;
+  return ex.approvedSummary[((n - 1) % k + k) % k];
 }
 
 function paragraphs(t: string): number {
@@ -141,15 +175,19 @@ function paragraphs(t: string): number {
 }
 
 /** The form sheet the writer gets: the picked approach rule per part plus the exemplar's measurements. */
-export function formText(ex: Exemplar): string {
+export function formText(ex: Exemplar, summaryLabel: string = ex.picks.summary.label): string {
   const c = ex.chapterJson;
-  const rule = (comp: Component): string => {
-    const a = approach(comp, ex.picks[comp].label);
+  const rule = (comp: Component, label: string = ex.picks[comp].label): string => {
+    const a = approach(comp, label);
     return `${a.label}, "${a.name}": ${a.rule}`;
   };
+  const openerNote =
+    summaryLabel === ex.picks.summary.label
+      ? ""
+      : ` (The exemplar opens as ${ex.picks.summary.label}, "${approach("summary", ex.picks.summary.label).name}"; THIS chapter opens as ${summaryLabel} instead. Keep the exemplar's path, lengths and ending; change only the kind of opener.)`;
   const avg = (xs: number[]): number => Math.round(xs.reduce((s, x) => s + x, 0) / Math.max(1, xs.length));
   return [
-    `- summary (hook, counterintuition, the three lengths, tryThisNow, memorable line): ${rule("summary")} Measurements: hook ${wordsIn(c.hook)} words; counterintuition ${wordsIn(c.counterintuition)} words; fastRead ${wordsIn(c.breakdown.fastRead)} words in ${paragraphs(c.breakdown.fastRead)} paragraphs; deepRead ${wordsIn(c.breakdown.deepRead)} words in ${paragraphs(c.breakdown.deepRead)} paragraphs; fullRead ${wordsIn(c.breakdown.fullRead)} words in ${paragraphs(c.breakdown.fullRead)} paragraphs; tryThisNow ${wordsIn(c.tryThisNow)} words.`,
+    `- summary (hook, counterintuition, the three lengths, tryThisNow, memorable line): ${rule("summary", summaryLabel)}${openerNote} Measurements: hook ${wordsIn(c.hook)} words; counterintuition ${wordsIn(c.counterintuition)} words; fastRead ${wordsIn(c.breakdown.fastRead)} words in ${paragraphs(c.breakdown.fastRead)} paragraphs; deepRead ${wordsIn(c.breakdown.deepRead)} words in ${paragraphs(c.breakdown.deepRead)} paragraphs; fullRead ${wordsIn(c.breakdown.fullRead)} words in ${paragraphs(c.breakdown.fullRead)} paragraphs; tryThisNow ${wordsIn(c.tryThisNow)} words.`,
     `- examples: ${c.examples.length} examples; ${rule("examples")} Measurements: scenario about ${avg(c.examples.map((e) => wordsIn(e.scenario)))} words, whatToDo about ${avg(c.examples.map((e) => wordsIn(e.whatToDo)))}, whyItMatters about ${avg(c.examples.map((e) => wordsIn(e.whyItMatters)))}.`,
     `- quiz: ${c.quiz.questions.length} questions with ${c.quiz.questions[0]?.choices.length ?? 3} choices each; ${rule("quiz")}`,
     `- review cards: ${c.reviewCards.length} cards; ${rule("cards")}`,
@@ -181,24 +219,53 @@ export function usedText(ledger: VarietyLedger, ex: Exemplar, except: number): s
     v.analogies.forEach((x) => analogies.add(x));
   }
   const line = (label: string, s: Set<string>): string => `${label}: ${s.size ? [...s].sort().join(", ") : "(none yet)"}`;
-  return [line("names", names), line("settings", settings), line("analogies", analogies)].join("\n");
+  const recent = Object.entries(ledger.chapters)
+    .filter(([k]) => k !== chapterName(except))
+    .sort(([a], [b]) => Number(a.slice(2)) - Number(b.slice(2)))
+    .slice(-5)
+    .flatMap(([k, v]) => (v.openers ?? []).map((o) => `${k}: ${o}`));
+  const openers = recent.length ? `do not start or end like these (recent chapters):\n${recent.map((o) => `- ${o}`).join("\n")}` : "";
+  return [line("names", names), line("settings", settings), line("analogies", analogies), openers].filter(Boolean).join("\n");
+}
+
+/** Four sentences that carry a chapter's rhythm: fastRead's first, the first that names the book's story, the first of the last
+ *  paragraph, and the last. */
+export function openerSentences(c: Chapter, storyNames: string[]): string[] {
+  const paras = c.breakdown.fastRead.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+  const sentences = (t: string): string[] => t.split(/(?<=[.!?])\s+/).map((x) => x.trim()).filter(Boolean);
+  const all = sentences(c.breakdown.fastRead);
+  const story = storyNames.flatMap((s) => s.split(/\s+/)).filter((w) => w.length > 2);
+  const out = new Set<string>();
+  if (all[0]) out.add(all[0]);
+  const withStory = all.find((x) => story.some((w) => x.includes(w)));
+  if (withStory) out.add(withStory);
+  const last = paras[paras.length - 1];
+  if (last) {
+    const ls = sentences(last);
+    if (ls[0]) out.add(ls[0]);
+  }
+  if (all[all.length - 1]) out.add(all[all.length - 1]);
+  return [...out];
 }
 
 function usedOf(raw: Record<string, unknown>): Variety {
   const u = isObj(raw._used) ? raw._used : {};
   const list = (v: unknown): string[] => (Array.isArray(v) ? v.filter((x): x is string => typeof x === "string" && x.trim() !== "").map((x) => x.trim()) : []);
-  return { names: list(u.names), settings: list(u.settings), analogies: list(u.analogies) };
+  const out: Variety = { names: list(u.names), settings: list(u.settings), analogies: list(u.analogies) };
+  if (typeof u.approach === "string" && /^[A-E]$/.test(u.approach.trim())) out.approach = u.approach.trim();
+  return out;
 }
 
 // ---------------------------------------------------------------- exemplar-copy and variety checks (0 calls)
 
 const wordsOf = (t: string): string[] => t.toLowerCase().replace(/’/g, "'").match(/[a-z0-9']+/g) ?? [];
-function grams8(t: string): Set<string> {
+function gramsN(t: string, n: number): Set<string> {
   const ws = wordsOf(t);
   const s = new Set<string>();
-  for (let i = 0; i + 8 <= ws.length; i++) s.add(ws.slice(i, i + 8).join(" "));
+  for (let i = 0; i + n <= ws.length; i++) s.add(ws.slice(i, i + n).join(" "));
   return s;
 }
+const grams8 = (t: string): Set<string> => gramsN(t, 8);
 const escapeRe = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 /** Every reader-visible string of a chapter, grouped by field id. Each string is one leaf (a prompt, one choice, one paragraph
@@ -222,10 +289,40 @@ function readerLeaves(c: Chapter): Record<string, string[]> {
   return out;
 }
 
-/** Blocking: a name or an eight-word run copied from the exemplar. Reported: a name from the variety ledger (another chapter). */
-export function copyAndVarietyIssues(c: Chapter, ex: Exemplar, ledger: VarietyLedger, n: number): { blocking: Issue[]; reported: Issue[] } {
+/** Blocking: a name or an eight-word run copied from the exemplar. Reported: a name from the variety ledger (another chapter), a
+ *  six-word run shared with another landed chapter's summaries (`earlierTiers`), or an opener that repeats the previous chapter's. */
+export function copyAndVarietyIssues(
+  c: Chapter,
+  ex: Exemplar,
+  ledger: VarietyLedger,
+  n: number,
+  opts: { earlierTiers?: Record<string, string>; approach?: string; expectedApproach?: string } = {},
+): { blocking: Issue[]; reported: Issue[] } {
   const blocking: Issue[] = [];
   const reported: Issue[] = [];
+  if (opts.expectedApproach && opts.approach && opts.approach !== opts.expectedApproach) {
+    reported.push({ source: "det", blocking: false, field: "breakdown.fastRead", text: `opener: the chapter says it opened as ${opts.approach}, the form asked for ${opts.expectedApproach}` });
+  }
+  const previous = Object.entries(ledger.chapters)
+    .filter(([k]) => Number(k.slice(2)) < n)
+    .sort(([a], [b]) => Number(b.slice(2)) - Number(a.slice(2)))[0];
+  if (previous && previous[1].approach && opts.expectedApproach && previous[1].approach === opts.expectedApproach && ex.approvedSummary.length > 1) {
+    reported.push({ source: "det", blocking: false, field: "breakdown.fastRead", text: `opener: the same kind of opener (${opts.expectedApproach}) as ${previous[0]}` });
+  }
+  if (opts.earlierTiers) {
+    const mine = TIERS.map((t) => c.breakdown[t]).join("\n");
+    const myGrams = gramsN(mine, 6);
+    for (const [ch, text] of Object.entries(opts.earlierTiers)) {
+      let hit: string | null = null;
+      for (const g of gramsN(text, 6)) {
+        if (myGrams.has(g)) {
+          hit = g;
+          break;
+        }
+      }
+      if (hit) reported.push({ source: "det", blocking: false, field: "breakdown", text: `variety: the words "${hit}" also appear in ${ch}'s summaries` });
+    }
+  }
   const exGrams = new Set<string>();
   for (const leaves of Object.values(readerLeaves(ex.chapterJson))) for (const leaf of leaves) for (const g of grams8(leaf)) exGrams.add(g);
   const whole = (name: string): RegExp => new RegExp(`(?<![\\p{L}\\p{N}_])${escapeRe(name)}(?![\\p{L}\\p{N}_])`, "u");
@@ -316,7 +413,28 @@ interface Round {
   advisory: string[];
 }
 
-async function checkRound(ctx: PipelineCtx, n: number, round: number, chapter: Chapter, lesson: LessonCard, ex: Exemplar, bdir: string): Promise<Round> {
+/** The summaries of every other landed chapter (the exemplar included), by chapter name, for the cross-chapter variety check. */
+function earlierTiers(ctx: PipelineCtx, n: number, ex: Exemplar): Record<string, string> {
+  const out: Record<string, string> = {};
+  if (!fs.existsSync(ctx.config.runDir)) return out;
+  for (const f of fs.readdirSync(ctx.config.runDir)) {
+    if (!/^ch\d+$/.test(f) || f === chapterName(n) || f === chapterName(ex.chapter)) continue;
+    const c = readJson<Chapter>(path.join(ctx.config.runDir, f, "final.json"));
+    if (c?.breakdown) out[f] = TIERS.map((t) => c.breakdown[t] ?? "").join("\n");
+  }
+  return out;
+}
+
+async function checkRound(
+  ctx: PipelineCtx,
+  n: number,
+  round: number,
+  chapter: Chapter,
+  lesson: LessonCard,
+  ex: Exemplar,
+  bdir: string,
+  opts: { approach?: string; expectedApproach?: string } = {},
+): Promise<Round> {
   const knowledge = ctx.source.mode === "knowledge";
   const { bookId, title, author, categories, tags, bookType } = ctx.config;
   const checkCtx: CheckContext = {
@@ -332,7 +450,7 @@ async function checkRound(ctx: PipelineCtx, n: number, round: number, chapter: C
   const reported: Issue[] = [...det.reported];
   if (det.blocking.some((i) => i.text.startsWith("shape:"))) return { chapter, blocking, reported, advisory: det.advisory };
 
-  const copy = copyAndVarietyIssues(chapter, ex, readVariety(ctx), n);
+  const copy = copyAndVarietyIssues(chapter, ex, readVariety(ctx), n, { earlierTiers: earlierTiers(ctx, n, ex), approach: opts.approach, expectedApproach: opts.expectedApproach });
   blocking.push(...copy.blocking);
   reported.push(...copy.reported);
 
@@ -341,6 +459,7 @@ async function checkRound(ctx: PipelineCtx, n: number, round: number, chapter: C
     KNOWN_TRAPS: knownTrapsSection(ctx.knownTraps[n] ?? []),
     LESSON: lessonText({ ...lesson, whyThisOne: "" }),
     SUMMARIES: tiers,
+    KEYS: keysBlock(ctx, n),
     ...(knowledge ? { BOOK_SECTION: ctx.bookSection } : { SOURCE: writerFormText(spanText(ctx.source, n)) }),
   });
   const [fact, solve] = await Promise.all([
@@ -394,6 +513,7 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
   }
   const candidate = lessons[0];
   const lesson: LessonCard = { lesson: candidate.lesson, wrongBelief: candidate.wrongBelief, keyPhrase: candidate.keyPhrase, hookQuestion: candidate.hookQuestion, storyNames: candidate.storyNames, evidence: candidate.evidence };
+  const expectedApproach = summaryApproachFor(ex, n);
 
   // 2. The chapter, in the exemplar's form.
   let chapter = readJson<Chapter>(path.join(bdir, "r0.chapter.json"));
@@ -409,8 +529,9 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
       QUOTE_RULE,
       SOURCE_BLOCK,
       NOTES: notes,
-      FORM: formText(ex),
+      FORM: formText(ex, expectedApproach),
       USED: usedText(readVariety(ctx), ex, n),
+      KEYS: keysBlock(ctx, n),
       MEMORABLE_RULE: knowledge ? "" : ", up to 2 more {\"text\"} objects with the author's exact words from the source that carry the same lesson (most chapters need none)",
       PLAIN: loadPrompt("variants-plain"),
       LESSON: lessonText(candidate),
@@ -427,7 +548,8 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
 
   // 3. Checks, one fix round on blocking issues, checks again.
   let round = 0;
-  let r = await checkRound(ctx, n, round, chapter, lesson, ex, bdir);
+  const checkOpts = { approach: used.approach, expectedApproach };
+  let r = await checkRound(ctx, n, round, chapter, lesson, ex, bdir, checkOpts);
   let fixed = false;
   const fixable = r.blocking.filter((i) => !i.text.startsWith("shape:"));
   if (fixable.length > 0 && !r.blocking.some((i) => i.text.startsWith("shape:"))) {
@@ -435,7 +557,7 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
     if (applied) {
       chapter = applied;
       round = 1;
-      r = await checkRound(ctx, n, round, chapter, lesson, ex, bdir);
+      r = await checkRound(ctx, n, round, chapter, lesson, ex, bdir, checkOpts);
       fixed = true;
     }
   }
@@ -459,9 +581,14 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
   writeJson(path.join(dir, "final.json"), chapter);
   writeJson(path.join(dir, "lesson.json"), lesson);
   writeJson(statusFile, status);
-  writeVariety(ctx, n, { ...used, names: [...new Set([...used.names, ...extractNames(chapter, lesson.storyNames, "invented")])].sort() });
+  writeVariety(ctx, n, {
+    ...used,
+    names: [...new Set([...used.names, ...extractNames(chapter, lesson.storyNames, "invented")])].sort(),
+    approach: used.approach ?? expectedApproach,
+    openers: openerSentences(chapter, lesson.storyNames),
+  });
   const flag = status.stage === "clean" ? "" : `${status.stage}: ${r.blocking.length} open`;
-  const body = renderChapter({ ...chapter, number: n }, { label: flag, bookLine: `${ctx.config.title} by ${ctx.config.author}`, uid: `v${n}` });
+  const body = renderChapter({ ...chapter, number: n }, { label: flag, bookLine: `${ctx.config.title} by ${ctx.config.author}`, uid: `v${n}`, authorAdvice: keysFor(ctx, n) });
   const reading = path.join(ctx.config.runDir, "reading", `${chapterName(n)}.html`);
   fs.mkdirSync(path.dirname(reading), { recursive: true });
   fs.writeFileSync(reading, page(`${ctx.config.title}: chapter ${n}`, body));
@@ -473,7 +600,7 @@ async function fixRound(ctx: PipelineCtx, n: number, chapter: Chapter, lesson: L
   const knowledge = ctx.source.mode === "knowledge";
   const issuesText = issues.map((i, k) => `${k + 1}. [${i.field ?? "(chapter)"}] ${i.text}`).join("\n");
   const fixPrompt = knowledge
-    ? renderTemplate(loadPrompt("fix-knowledge"), { BOOK_SECTION: ctx.bookSection, ISSUES: issuesText, LESSON: JSON.stringify(lesson, null, 2), CHAPTER: readerText(chapter) })
+    ? renderTemplate(loadPrompt("fix-knowledge"), { BOOK_SECTION: ctx.bookSection, ISSUES: issuesText, LESSON: JSON.stringify(lesson, null, 2), CHAPTER: readerText(chapter), KEYS: keysBlock(ctx, n) })
     : renderTemplate(loadPrompt("fix"), { ISSUES: issuesText, LESSON: JSON.stringify(lesson, null, 2), CHAPTER: readerText(chapter), SOURCE: writerFormText(spanText(ctx.source, n)) });
   const fixRaw = await callShaped(ctx, n, { role: ctx.config.writer, prompt: fixPrompt, step: `r${round}.fix`, kind: "fix", errors: (v) => (isObj(v) ? [] : ["answer must be an object"]), outPrefix: path.join(bdir, "calls", `r${round}.fix`), ledgerStep: "book-fix" });
   const applied = applyFix(chapter, fixRaw as FixOutput);
@@ -514,7 +641,7 @@ export async function fixLanded(ctx: PipelineCtx, n: number): Promise<ChapterSta
   writeJson(path.join(dir, "final.json"), applied);
   writeJson(path.join(dir, "status.json"), next);
   const flag = next.stage === "clean" ? "" : `${next.stage}: ${r.blocking.length} open`;
-  const body = renderChapter({ ...applied, number: n }, { label: flag, bookLine: `${ctx.config.title} by ${ctx.config.author}`, uid: `v${n}` });
+  const body = renderChapter({ ...applied, number: n }, { label: flag, bookLine: `${ctx.config.title} by ${ctx.config.author}`, uid: `v${n}`, authorAdvice: keysFor(ctx, n) });
   const reading = path.join(ctx.config.runDir, "reading", `${chapterName(n)}.html`);
   fs.mkdirSync(path.dirname(reading), { recursive: true });
   fs.writeFileSync(reading, page(`${ctx.config.title}: chapter ${n}`, body));
@@ -599,7 +726,7 @@ export function renderPack(ctx: PipelineCtx, chapters: number[], title: string):
     const st = readJson<ChapterStatus>(path.join(ctx.config.runDir, chapterName(n), "status.json"));
     const label = st && st.stage !== "clean" ? `${st.stage}: ${st.open.filter((i) => i.blocking).length} open` : "";
     nav.push(`<a href="#v${n}">Ch ${n}</a>`);
-    sections.push(renderChapter({ ...c, number: n }, { label, bookLine: `${ctx.config.title} by ${ctx.config.author}`, uid: `v${n}` }));
+    sections.push(renderChapter({ ...c, number: n }, { label, bookLine: `${ctx.config.title} by ${ctx.config.author}`, uid: `v${n}`, authorAdvice: keysFor(ctx, n) }));
   }
   return page(title, `<h1>${title}</h1><div class="nav">${nav.join("")}</div>${sections.join("\n")}`);
 }

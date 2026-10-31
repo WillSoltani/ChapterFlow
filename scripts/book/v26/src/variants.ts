@@ -13,6 +13,7 @@ import { spanText, writerForm, writerFormText } from "./source";
 import type { Example, IfThenPlan, LessonCard, QuizQuestion, ReviewCard, RoleConfig } from "./types";
 import { wordsIn } from "./validate";
 import { approachesText } from "./approaches";
+import { keysBlock } from "./keysText";
 
 export const COMPONENTS = ["summary", "examples", "quiz", "cards", "practice"] as const;
 export type Component = (typeof COMPONENTS)[number];
@@ -323,6 +324,7 @@ export function lessonsPrompt(ctx: PipelineCtx, n: number, earlierLessons: strin
     SOURCE_RULES,
     EVIDENCE_RULE,
     SOURCE_BLOCK,
+    KEYS: keysBlock(ctx, n),
     PLAIN: loadPrompt("variants-plain"),
   });
 }
@@ -384,6 +386,7 @@ export async function generateVariants(ctx: PipelineCtx, n: number, opts: Varian
       KNOWN_TRAPS: knownTrapsSection(ctx.knownTraps[n] ?? []),
       LESSON: lessonText(lesson),
       SUMMARIES: summariesBlock(summary),
+      KEYS: keysBlock(ctx, n),
       ...(knowledge ? { BOOK_SECTION: ctx.bookSection } : { SOURCE: writerFormText(spanText(ctx.source, n)) }),
     });
     const raw = await callShaped(ctx, n, {

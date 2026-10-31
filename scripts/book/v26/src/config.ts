@@ -12,8 +12,10 @@ export interface BookConfig {
   tags: string[];
   /** The frozen source text and its chapter map (text mode). Absent in knowledge mode. */
   source?: { textPath: string; chapterMapPath: string };
-  /** Knowledge mode: no source text; the writer uses what it knows of the book. Exactly one of `source` and `chapters` is set. */
-  chapters?: Array<{ number: number; title: string }>;
+  /** Knowledge mode: no source text; the writer uses what it knows of the book. Exactly one of `source` and `chapters` is set.
+   *  `keys` is the chapter's advice as the author gives it, in blunt plain words (drafted by `keys`, edited by the owner); the
+   *  lessons, writer, checker and fix calls all read it, and the reading page shows it under the takeaway. */
+  chapters?: Array<{ number: number; title: string; keys?: string }>;
   knownTrapsPath?: string;
   briefPath: string;
   shape: {
@@ -219,7 +221,9 @@ export function loadBookConfig(configPath: string): BookConfig {
       const number = posInt(o.number, `chapters[${i}].number`);
       if (seen.has(number)) invalid(`chapters[${i}].number`, `chapter ${number} appears twice`);
       seen.add(number);
-      return { number, title: str(o.title, `chapters[${i}].title`) };
+      const entry: { number: number; title: string; keys?: string } = { number, title: str(o.title, `chapters[${i}].title`) };
+      if (o.keys !== undefined) entry.keys = str(o.keys, `chapters[${i}].keys`);
+      return entry;
     });
   }
   // Optional, so the key is left off entirely when the config does not name one.

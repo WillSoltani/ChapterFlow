@@ -8,8 +8,9 @@ import { fileURLToPath } from "node:url";
 import { main } from "../cli";
 import { loadBookConfig } from "../src/config";
 import { makeCtx, type PipelineCtx } from "../src/pipeline";
-import { copyAndVarietyIssues, extractNames, formText, loadExemplar, readVariety, runBookChapters, usedText, writeBookChapter } from "../src/book";
+import { copyAndVarietyIssues, extractNames, formText, loadExemplar, openerSentences, readVariety, runBookChapters, summaryApproachFor, usedText, writeBookChapter } from "../src/book";
 import { readLedger } from "../src/ledger";
+import { draftKeys } from "../src/keys";
 import type { Chapter } from "../src/types";
 
 // ---------------------------------------------------------------- fixtures
@@ -77,7 +78,7 @@ interface Harness {
 }
 
 /** A knowledge-mode book with three chapters whose ch01 is an approved exemplar (final.json + exemplars/ch01.json). */
-function harness(opts: { concurrency?: number } = {}): Harness {
+function harness(opts: { concurrency?: number; approved?: string[]; keys?: boolean; candidates?: boolean } = {}): Harness {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "v26-book-"));
   roots.push(dir);
   const pipeDir = path.join(dir, "pipe");
@@ -92,7 +93,7 @@ function harness(opts: { concurrency?: number } = {}): Harness {
     configPath,
     JSON.stringify({
       bookId: "demo", title: "Demo Book", author: "A. Author", bookType: "argument", categories: ["Productivity"], tags: ["demo"],
-      chapters: [{ number: 1, title: "Law One" }, { number: 2, title: "Law Two" }, { number: 3, title: "Law Three" }],
+      chapters: [{ number: 1, title: "Law One" }, { number: 2, title: "Law Two", ...(opts.keys ? { keys: "Make the boss shine. Never look smarter than him. Reversal: a falling boss cannot punish you." } : {}) }, { number: 3, title: "Law Three" }],
       briefPath: "brief.md",
       shape: { examples: 3, quizQuestions: 7, choices: 3, reviewCards: 5, memorableLines: 1, ifThenPlans: 2, fastRead: [100, 220], deepRead: [250, 500], fullRead: [500, 1100] },
       writer: role("claude-opus-5-5"), checker: role("claude-opus-5-5"), solver: role("claude-sonnet-5-5"),
@@ -112,8 +113,13 @@ function harness(opts: { concurrency?: number } = {}): Harness {
       bookId: "demo", chapter: 1, lesson: { lesson: LESSON1, storyNames: ["Galileo"] },
       picks: { summary: { label: "A", approach: "problem scene" }, examples: { label: "A", approach: "one decision moment" }, quiz: { label: "E", approach: "one of each" }, cards: { label: "E", approach: "mixed" }, practice: { label: "B", approach: "specific cues" } },
       notes: { summary: "A: excellent", general: "keep it plain" },
+      ...(opts.approved ? { approved: { summary: opts.approved } } : {}),
     }),
   );
+  if (opts.candidates) {
+    fs.mkdirSync(path.join(runDir, "ch01", "variants"), { recursive: true });
+    fs.writeFileSync(path.join(runDir, "ch01", "variants", "lessons.json"), JSON.stringify({ lessons: [{ storyNames: ["Galileo", "Nicolas Fouquet"] }, { storyNames: ["Louis XIV"] }] }));
+  }
   const h: Harness = {
     ctx: makeCtx(loadBookConfig(configPath)),
     configPath,
@@ -186,7 +192,7 @@ test("writeBookChapter: lessons, write, fact check and key solver; the prompt ca
   assert.match(wp, /names: Marcus, Maya, Priya/);
   assert.match(wp, /<exemplar>\n\{\n "title": "A A title"/);
   assert.match(wp, /Lessons already taught by other chapters of this book/);
-  assert.match(wp, /"_used": \{"names"/);
+  assert.match(wp, /"_used": \{"approach": "A", "names"/);
   const fp = h.calls("pipe-vfactcheck")[0].prompt;
   assert.match(fp, /\[fastRead\]\n/);
   const kp = h.calls("pipe-keysolve")[0].prompt;
@@ -269,7 +275,7 @@ test("cli: book prints the exemplar, each chapter and the duplicate-name report;
   const io = { out: "", err: "" };
   const sink = { out: (s: string) => void (io.out += s), err: (s: string) => void (io.err += s) };
   assert.equal(await main(["book", "--book", h.configPath, "--chapters", "2"], sink), 0, io.err);
-  assert.match(io.out, /exemplar: ch01 \(summary A, examples A, quiz E, cards E, practice B\); 3 names off limits/);
+  assert.match(io.out, /exemplar: ch01 \(summary A, examples A, quiz E, cards E, practice B\); openers rotate A; names off limits: Marcus, Maya, Priya/);
   assert.match(io.out, /ch02  clean, spend \$0\.90: Ask one question/);
   assert.match(io.out, /1 of 1 chapters clean/);
 
@@ -288,4 +294,76 @@ test("cli: book prints the exemplar, each chapter and the duplicate-name report;
   assert.match(bad.err, /--exemplar only goes with the book command/);
   assert.equal(await main(["book", "--book", h.configPath, "--chapters", "3", "--exemplar", "x"], badSink), 1);
   assert.match(bad.err, /--exemplar must be a chapter number/);
+});
+
+// ---------------------------------------------------------------- critique changes: openers, names, keys, leak
+
+test("the summary opener rotates through the approved approaches; the form sheet says which one this chapter opens as", () => {
+  const h = harness({ approved: ["A", "B", "D"] });
+  const ex = loadExemplar(h.ctx);
+  assert.deepEqual(ex.approvedSummary, ["A", "B", "D"]);
+  assert.deepEqual([1, 2, 3, 4, 24, 48].map((n) => summaryApproachFor(ex, n)), ["A", "B", "D", "A", "D", "D"]);
+  assert.match(formText(ex, "B"), /B, "question or puzzle": open with a sharp question .* \(The exemplar opens as A, "problem scene"; THIS chapter opens as B instead\./);
+  assert.doesNotMatch(formText(ex, "A"), /THIS chapter opens as/);
+  const one = loadExemplar(harness().ctx);
+  assert.deepEqual(one.approvedSummary, ["A"], "no approved list: the pick alone");
+});
+
+test("book names from the candidate lessons: a summary-only invented name blocks, the book's own people pass", () => {
+  const h = harness({ candidates: true });
+  const ex = loadExemplar(h.ctx);
+  assert.deepEqual(ex.bookNames, ["Galileo", "Louis XIV", "Nicolas Fouquet"]);
+  assert.deepEqual(ex.sceneNames, []);
+  const withScene = chapter("A", { breakdown: { fastRead: "Maya has landed a client. Fouquet threw a party for Louis, and Maya smiled.", deepRead: "x", fullRead: "y" } });
+  fs.writeFileSync(path.join(h.runDir, "ch01", "final.json"), JSON.stringify(withScene));
+  const ex2 = loadExemplar(h.ctx);
+  assert.ok(ex2.names.includes("Maya"), "Maya is invented, so it blocks");
+  assert.ok(!ex2.names.includes("Fouquet") && !ex2.names.includes("Louis"), "the book's people pass");
+});
+
+test("the writer prompt carries the chapter's keys and the opener; _used.approach and the openers land in the ledger; a repeated opener and a shared six-word run are reported", async () => {
+  const h = harness({ approved: ["A", "B"], keys: true, concurrency: 1 });
+  const ex = loadExemplar(h.ctx);
+  h.script({ "pipe-bwrite": [{ result: written({ _used: { approach: "B", names: ["Jonah"], settings: [], analogies: [] } }) }] });
+  const st = await writeBookChapter(h.ctx, 2, ex);
+  assert.equal(st.stage, "clean", JSON.stringify(st.open));
+  const wp = h.calls("pipe-bwrite")[0].prompt;
+  assert.match(wp, /WHAT THE AUTHOR ADVISES IN THIS CHAPTER, in blunt plain words .*\nMake the boss shine\. Never look smarter than him\./);
+  assert.match(wp, /THIS chapter opens as B instead/);
+  assert.match(wp, /tell it as he gives it, even where it is harsh/);
+  assert.match(h.calls("pipe-vlessons")[0].prompt, /Make the boss shine/);
+  assert.match(h.calls("pipe-vfactcheck")[0].prompt, /Make the boss shine/);
+  const v = readVariety(h.ctx).chapters.ch02;
+  assert.equal(v.approach, "B");
+  assert.ok(v.openers && v.openers.length >= 2 && v.openers[0].startsWith("wB10"), JSON.stringify(v.openers));
+  assert.match(fs.readFileSync(path.join(h.runDir, "reading", "ch02.html"), "utf8"), /WHAT THE AUTHOR ADVISES/);
+
+  // Chapter 3 is asked to open as A (3-1 mod 2 = 0); the writer says it opened as B, and copies six words of chapter 2's summary.
+  const copy6 = written({ keyTakeaway: "L2b", _used: { approach: "B", names: ["Zara"], settings: [], analogies: [] } });
+  (copy6 as { breakdown: { fastRead: string } }).breakdown.fastRead = `${para("C", 1)} wB10 wB11 wB12 wB13 wB14 wB15 and so on.`;
+  h.script({ "pipe-bwrite": [{ result: copy6 }], "pipe-vlessons": [{ result: { lessons: [lesson("L2b", 0), ...LESSONS2.lessons.slice(1)] } }] });
+  const st3 = await writeBookChapter(h.ctx, 3, ex);
+  assert.equal(st3.stage, "clean");
+  const texts = st3.open.map((i) => i.text);
+  assert.ok(texts.some((x) => /opener: the chapter says it opened as B, the form asked for A/.test(x)), texts.join("\n"));
+  assert.ok(texts.some((x) => /variety: the words "wb10 wb11 wb12 wb13 wb14 wb15" also appear in ch02's summaries/.test(x)), texts.join("\n"));
+  assert.match(h.calls("pipe-bwrite")[1].prompt, /do not start or end like these \(recent chapters\):\n- ch02: wB10/);
+});
+
+test("openerSentences cuts the first, the story, the last-paragraph and the last sentences of fastRead", () => {
+  const c = chapter("A", { breakdown: { fastRead: "One sentence here. Galileo did a thing. Another line.\n\nLast paragraph starts. It ends here.", deepRead: "x", fullRead: "y" } });
+  assert.deepEqual(openerSentences(c, ["Galileo"]), ["One sentence here.", "Galileo did a thing.", "Last paragraph starts.", "It ends here."]);
+});
+
+test("draftKeys writes keys for the chapters that lack them into the config file and leaves the others alone", async () => {
+  const h = harness({ keys: true });
+  h.script({ "pipe-keys": [{ result: { chapters: [{ number: 1, keys: "Law one, blunt." }, { number: 3, keys: "Law three, blunt. Reversal: none." }] }, cost: 0.4 }] });
+  assert.equal(await draftKeys(h.ctx, h.configPath), 2);
+  const cfg = JSON.parse(fs.readFileSync(h.configPath, "utf8"));
+  assert.deepEqual(cfg.chapters.map((c: { keys?: string }) => c.keys), ["Law one, blunt.", "Make the boss shine. Never look smarter than him. Reversal: a falling boss cannot punish you.", "Law three, blunt. Reversal: none."]);
+  assert.match(h.calls("pipe-keys")[0].prompt, /CHAPTERS:\n1\. Law One\n3\. Law Three/);
+  assert.equal(await draftKeys(h.ctx, h.configPath), 0, "nothing left to draft");
+  const io = { out: "", err: "" };
+  assert.equal(await main(["keys", "--book", h.configPath], { out: (x) => void (io.out += x), err: (x) => void (io.err += x) }), 0, io.err);
+  assert.match(io.out, /every chapter already has keys/);
 });

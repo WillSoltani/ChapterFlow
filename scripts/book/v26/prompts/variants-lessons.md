@@ -6,6 +6,8 @@ You are choosing the lesson for one chapter of a ChapterFlow book: a short lesso
 
 @@SOURCE_RULES@@
 
+@@KEYS@@
+
 Propose FIVE different lessons this chapter could teach, each with real evidence in the chapter. Make them genuinely different: not five wordings of one idea. Rank them, best first: the one most useful to a reader today with the strongest evidence. If the author states his own reflection or rule, at least one lesson builds on it.
 
 A lesson no sensible adult would disagree with (work hard, be honest, learn from mistakes) is a cliché. Sharpen it until it names a specific move and when to use it.

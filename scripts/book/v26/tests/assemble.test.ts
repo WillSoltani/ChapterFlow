@@ -226,6 +226,8 @@ test("assemble: the prompt carries the picked parts, the fix and the quiz extens
   assert.deepEqual(exemplar.rejected.summary.map((v: { label: string }) => v.label), ["B", "C", "D", "E"]);
   assert.equal(exemplar.rejected.summary[0].hook, "Hook B: the obvious move backfires.");
   assert.equal(exemplar.notes.general, "keep it short");
+  assert.deepEqual(exemplar.approved, { summary: ["A"] });
+  assert.deepEqual(exemplar.bookNames, ["Franklin"]);
   const html = fs.readFileSync(r.files.reading, "utf8");
   assert.match(html, /The Little Book of Faults/);
   assert.doesNotMatch(html, /open-issues/);

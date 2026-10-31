@@ -8,7 +8,9 @@ THE READER: an adult beginner, busy and curious, not a scholar. They read everyd
 
 @@SOURCE_RULES@@ @@QUOTE_RULE@@
 
-THE LESSON this chapter teaches is in the lesson card between <lesson> tags. "keyTakeaway" is exactly its "lesson" sentence. Every part of the chapter serves this lesson and adds something: a case, a reason or a step.
+@@KEYS@@
+
+THE LESSON this chapter teaches is in the lesson card between <lesson> tags. "keyTakeaway" is exactly its "lesson" sentence. Every part of the chapter serves this lesson and adds something: a case, a reason or a step. The lesson may be the version a fair reader would use today. When you tell what the author advises, tell it as he gives it, even where it is harsh, and say in one plain sentence where the lesson goes softer than he does. The bar is what this book says: where the book and history differ, follow the book and do not correct it.
 
 THE EXEMPLAR between <exemplar> tags is a chapter of this book that the owner read and approved. Match its FORM exactly and copy NOTHING from it.
 - Match: the length of every field (within about 20 percent), the number of paragraphs in each summary length, the kind of opener, the path each summary follows (opener; why the wrong belief feels true; the chapter's story as evidence; back to the opening; the lesson in fresh words), the shape of the examples, the forms of the quiz questions in their order, the forms of the review cards, the style of the practice cues, and the plainness of the words.
@@ -31,7 +33,7 @@ Write one JSON object with exactly these keys and shapes (the app rejects any ot
  "quiz": {"passingScorePercent": 70, "questions": [{"questionId": "q1", "prompt": "...", "choices": ["...", "...", "..."], "correctIndex": 0, "explanation": "...", "bloomsLevel": "apply"}, ...]},
  "reviewCards": [{"cardId": "rc1", "front": "...", "back": "...", "difficulty": "easy"}, ...],
  "implementationPlan": {"coreSkill": "...", "ifThenPlans": [{"context": "When ...", "plan": "then I ..."}, {"context": "When ...", "plan": "then I ..."}], "twentyFourHourChallenge": "...", "weeklyPractice": "..."},
- "_used": {"names": ["..."], "settings": ["..."], "analogies": ["..."]}}
+ "_used": {"approach": "A", "names": ["..."], "settings": ["..."], "analogies": ["..."]}}
 Field rules:
 - "title": up to 60 characters; names the lesson or the problem, not a scene.
 - "hook": up to 40 words, in the picked opener's approach, about the reader's own life. No dates, no facts about the author, no statistics, no teasers.
@@ -42,7 +44,7 @@ Field rules:
 - Quiz: a new modern situation in every question, no names from the book; one wrong choice acts out the wrong belief, the other is a near-miss; three choices in one form and about one length; the key is never the longest choice; each position is the key at least twice; questions 1 to 5 are answerable from the hook, counterintuition, fastRead, memorable line, tryThisNow and the first example; "explanation" up to 40 words.
 - Cards: for weeks later, without the chapter; no names from the book; at most one asks for the lesson itself.
 - Practice: cues are real moments, never "tomorrow"; the 24-hour challenge differs from tryThisNow.
-- "_used": every first name you used anywhere in the chapter, every setting (a workplace, a sport, a room, a shop), and every analogy or object the summaries lean on. Readers never see it.
+- "_used": "approach" is the letter of the summary opener you used (the one THE FORM asks for); then every first name you used anywhere in the chapter, every setting (a workplace, a sport, a room, a shop), and every analogy or object the summaries lean on. Readers never see it.
 
 @@PLAIN@@
 

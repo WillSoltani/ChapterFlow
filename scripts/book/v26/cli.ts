@@ -1,5 +1,5 @@
 /** The v26 chapter tool's command line. See README.md.
- *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render|variants|assemble|book|pack> --book <config.json>
+ *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render|variants|assemble|book|pack|keys> --book <config.json>
  *      [--chapters 1,13] [--force] [--review] [--issues <findings.json>] [--finish] [--file <chapter.json> --tag <t> --out <dir>]
  *  Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget. */
 import * as fs from "node:fs";
@@ -28,8 +28,9 @@ import { COMPONENTS, generateVariants, variantsDir, type Component } from "./src
 import { renderVariantsPage } from "./src/variantsRender";
 import { assembleChapter, parsePicks } from "./src/assemble";
 import { duplicateNames, fixLanded, loadExemplar, renderPack, runBookChapters } from "./src/book";
+import { draftKeys } from "./src/keys";
 
-const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack"] as const;
+const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys"] as const;
 type Verb = (typeof VERBS)[number];
 
 const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --book <config.json> [options]
@@ -405,7 +406,7 @@ async function cmdBook(ctx: PipelineCtx, chapters: number[], opts: { exemplar?: 
     exemplar = Number(opts.exemplar);
   }
   const ex = loadExemplar(ctx, exemplar);
-  io.out(`exemplar: ${chName(ex.chapter)} (${COMPONENTS.map((c) => `${c} ${ex.picks[c].label}`).join(", ")}); ${ex.names.length} names off limits\n`);
+  io.out(`exemplar: ${chName(ex.chapter)} (${COMPONENTS.map((c) => `${c} ${ex.picks[c].label}`).join(", ")}); openers rotate ${ex.approvedSummary.join("/")}; names off limits: ${ex.names.join(", ") || "(none)"}\n`);
   const statuses = await runBookChapters(ctx, chapters, { exemplar: ex.chapter, force: opts.force });
   for (const s of statuses) {
     io.out(`${chName(s.chapter)}  ${s.stage}${s.fixed ? " (after one fix round)" : ""}, spend ${money(s.spend)}: ${clip(s.lesson, 90)}\n`);
@@ -425,6 +426,13 @@ function cmdPack(ctx: PipelineCtx, chapters: number[], out: string | undefined, 
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, html);
   io.out(`${file}\n`);
+  return 0;
+}
+
+/** Drafts every chapter's `keys` (the author's advice in blunt words) into the config file, for the owner to edit. */
+async function cmdKeys(ctx: PipelineCtx, configPath: string, force: boolean, io: Io): Promise<number> {
+  const n = await draftKeys(ctx, configPath, { force });
+  io.out(n === 0 ? `every chapter already has keys (use --force to draft them again)\n` : `drafted keys for ${n} chapters into ${configPath}; read and edit them before writing the book\n`);
   return 0;
 }
 
@@ -499,6 +507,8 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
         return await guarded(ctx, () => cmdBook(ctx, chapters, { exemplar: values.exemplar, force }, io));
       case "pack":
         return cmdPack(ctx, chapters, values.out, io);
+      case "keys":
+        return await guarded(ctx, () => cmdKeys(ctx, values.book!, force, io));
     }
   } catch (e) {
     if (e instanceof UsageLimitError || e instanceof BudgetError) {

@@ -18,8 +18,8 @@ The approved chapter becomes the **exemplar**: the model of form every other cha
 | Step | Call | What |
 |---|---|---|
 | 1. Lesson | Opus | Five candidate lessons, best first (the existing variants prompt), with every lesson already taught in this book listed as off limits. Candidate 1 drives the chapter. |
-| 2. Write | Opus | One call. Inputs: the exemplar chapter JSON, the approach rule for each part the owner picked, the owner's notes, the lesson card, the source rules (text or knowledge), and the variety ledger (names, settings and analogies already used: never reuse). Output: the full chapter JSON in the exemplar's form, plus a `_used` sidecar naming the new chapter's names, settings and analogies. |
-| 3. Checks | none | App validator, shape, counts and tier lengths against the exemplar (±20%), no quotations in knowledge mode, meta chatter, outside facts, exemplar copy (none of its names or sentences), variety (nothing from the ledger). |
+| 2. Write | Opus | One call. Inputs: the exemplar chapter JSON, the approach rule for each part the owner picked (the summary opener rotates through the openers the owner approved, so neighbouring chapters never open the same way), the owner's notes, the lesson card, the chapter's `keys` (the author's advice in blunt words, knowledge mode), the source rules (text or knowledge), and the variety ledger (names, settings, analogies and the recent chapters' opening and closing sentences: never reuse). Output: the full chapter JSON in the exemplar's form, plus a `_used` sidecar naming the opener used and the new chapter's names, settings and analogies. |
+| 3. Checks | none | App validator, shape, counts and tier lengths against the exemplar (±20%), no quotations in knowledge mode, meta chatter, outside facts, prompt vocabulary in reader text (reported), exemplar copy (its invented names and any eight-word run block; the book's own people pass), variety (a name from another chapter, a six-word run shared with another chapter's summaries, or a repeated opener: reported). |
 | 4. Fact and keys | Opus + Sonnet | Fact check of the three summary lengths (knowledge or text prompt). Blind key solver: questions 1 to 5 from what a new reader sees; a wrong pick, a second defensible choice or "not in text" blocks. |
 | 5. Fix | Opus, at most once | Only blocking issues, smallest edits (find/replace through the existing fix engine), then steps 3 and 4 again. Leftovers go to the owner. |
 | 6. Land | none | `final.json`, `status.json`, `lesson.json`, the reading page; `_used` appended to `variety.json`. |
@@ -27,6 +27,17 @@ The approved chapter becomes the **exemplar**: the model of form every other cha
 Book level: chapters run three at a time, resume from files, stop at the budget or a usage limit; a duplicate-name report across chapters at the end; `pack` renders chosen chapters into one reading page.
 
 **Rollout.** Pilot three laws first (2, 24, 48: early, middle, last). The owner reads them next to Law 1. If they hold, the remaining 44 run unattended (about $55, about 90 minutes). Any chapter the owner dislikes goes back through `variants` and `assemble`, and its approved result joins the exemplars.
+
+### Changes from the critique pass (2026-10-31)
+
+Three lenses (sameness, exemplar leakage, knowledge-mode accuracy), each finding refuted by two skeptics; 4 of 18 survived:
+
+1. **Rotate the opener.** The owner rated summary openers A, B and D Excellent; the exemplar record carries `approved.summary` and chapter n opens as `approved[(n-1) mod k]`. The exemplar's path, lengths and ending stay the model.
+2. **Prompt words leak into reader text.** "acts out the wrong belief", "near-miss", "the story shows" came back verbatim. The shared plain-words block forbids them and a 0-call check reports them.
+3. **Forbid invented names only.** The exemplar's own people (Fouquet, Louis XIV) recur in later laws legitimately; the book's people come from the five candidate lessons' story names, and only the exemplar's invented names block.
+4. **Softening is systematic.** Writer and checker share a gentler reading of a blunt book. Each chapter carries `keys`: the author's advice in blunt words, drafted once by `keys` and edited by the owner. The lessons, writer, checker and fix calls read it; the rule is "the lesson may be gentler; the account of his advice may not, and say where you go softer"; the reading page shows it under the takeaway so the owner spots a nice-ified law at a glance.
+
+Dropped by the synthesis as judges in disguise: parsing the owner's notes for "Excellent", a model call to sort names, a check that the lesson covers the whole law, any opener-rhythm detector beyond the ledger sentences and the six-word report.
 
 ## Part 3. What stays out
 
