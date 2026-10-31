@@ -1,5 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import { fileURLToPath } from "node:url";
 import type { Chapter, LessonCard, Issue } from "../src/types";
 import { readerFields, runChecks, splitLesson, type CheckContext } from "../src/checks";
 
@@ -883,4 +885,16 @@ test("quotes: memorableLines[1..] without quote marks must still be the author's
   const bad = edit((x) => (x.memorableLines[1].text = "a fault you name is half fixed"));
   const r = await runChecks(bad, lessonCard(), ctx());
   assert.ok(find(r.blocking, /not in the author's text/, "memorableLines.1"));
+});
+
+test("prompt vocabulary in reader text is reported, not blocking", async () => {
+  const { runChecks } = await import("../src/checks");
+  const base = JSON.parse(fs.readFileSync(fileURLToPath(new URL("./fixtures/reference-chapter.json", import.meta.url)), "utf8"));
+  base.quiz.questions[0].explanation = "The first choice acts out the wrong belief, and the second is a near-miss.";
+  const lesson = { lesson: base.keyTakeaway, wrongBelief: "w", keyPhrase: "k", hookQuestion: "h", storyNames: [], evidence: [] };
+  const r = await runChecks(base, lesson, { n: 1, book: { bookId: "b", title: "T", author: "A", categories: [], tags: [], bookType: "memoir" }, authorText: "a fault named is half mended", shape: { examples: 1, quizQuestions: 1, choices: 3, reviewCards: 1, memorableLines: 1, ifThenPlans: 1, fastRead: [1, 999], deepRead: [1, 999], fullRead: [1, 999] }, earlierLessons: [] });
+  const leaks = r.reported.filter((i) => /prompt vocabulary/.test(i.text));
+  assert.equal(leaks.length, 1, JSON.stringify(r.reported));
+  assert.match(leaks[0].text, /"acts out"/);
+  assert.ok(!r.blocking.some((i) => /prompt vocabulary/.test(i.text)));
 });

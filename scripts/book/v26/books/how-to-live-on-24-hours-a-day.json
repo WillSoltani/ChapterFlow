@@ -26,27 +26,36 @@
     "reviewCards": 5,
     "memorableLines": 3,
     "ifThenPlans": 2,
-    "fastRead": [150, 220],
-    "deepRead": [350, 500],
-    "fullRead": [800, 1100]
+    "fastRead": [
+      150,
+      220
+    ],
+    "deepRead": [
+      350,
+      500
+    ],
+    "fullRead": [
+      800,
+      1100
+    ]
   },
   "writer": {
-    "bin": "~/.vscode/extensions/anthropic.claude-code-2.1.282-darwin-arm64/resources/native-binary/claude",
+    "bin": "~/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude",
     "model": "claude-opus-5-5",
     "effort": "high"
   },
   "checker": {
-    "bin": "~/.vscode/extensions/anthropic.claude-code-2.1.282-darwin-arm64/resources/native-binary/claude",
+    "bin": "~/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude",
     "model": "claude-opus-5-5",
     "effort": "high"
   },
   "solver": {
-    "bin": "~/.vscode/extensions/anthropic.claude-code-2.1.282-darwin-arm64/resources/native-binary/claude",
+    "bin": "~/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude",
     "model": "claude-sonnet-5",
     "effort": "medium"
   },
   "concurrency": 3,
-  "budgetUsd": 80,
-  "runDir": "~/cf-wt/v26-plan/scratch/W1c/run/how-to-live-on-24-hours-a-day",
-  "ledgerPath": "~/cf-wt/v26-plan/scratch/W1c/ledger.jsonl"
+  "budgetUsd": 60,
+  "runDir": "~/cf-wt/v26-plan/runs/how-to-live-on-24-hours-a-day",
+  "ledgerPath": "~/cf-wt/v26-plan/runs/ledger.jsonl"
 }

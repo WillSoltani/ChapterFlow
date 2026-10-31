@@ -61,14 +61,14 @@ test("loadBookConfig: relative paths resolve against the config file's directory
   const dir = tmp();
   const file = writeConfig(dir, validConfig());
   const cfg = loadBookConfig(file);
-  assert.equal(cfg.source.textPath, path.join(dir, "source/book.txt"));
-  assert.equal(cfg.source.chapterMapPath, path.join(dir, "source/map.json"));
+  assert.equal(cfg.source!.textPath, path.join(dir, "source/book.txt"));
+  assert.equal(cfg.source!.chapterMapPath, path.join(dir, "source/map.json"));
   assert.equal(cfg.briefPath, path.join(dir, "brief.md"));
   assert.equal(cfg.runDir, path.join(dir, "runs/example"));
   assert.equal(cfg.knownTrapsPath, undefined);
   assert.equal(cfg.bookType, "memoir");
   assert.deepEqual(cfg.shape.fastRead, [90, 140]);
-  assert.deepEqual(cfg.writer, { bin: "claude", model: "opus", effort: "high" });
+  assert.deepEqual(cfg.writer, { bin: "claude", model: "opus", effort: "high", role: "writer" });
 });
 
 test("loadBookConfig: ~ is expanded in every path field, absolute paths are untouched", () => {
@@ -83,8 +83,8 @@ test("loadBookConfig: ~ is expanded in every path field, absolute paths are unto
   raw.solver.bin = "~/bin/solver";
   const cfg = loadBookConfig(writeConfig(dir, raw));
   const home = os.homedir();
-  assert.equal(cfg.source.textPath, `${home}/src/book.txt`);
-  assert.equal(cfg.source.chapterMapPath, "/abs/map.json");
+  assert.equal(cfg.source!.textPath, `${home}/src/book.txt`);
+  assert.equal(cfg.source!.chapterMapPath, "/abs/map.json");
   assert.equal(cfg.knownTrapsPath, `${home}/traps.md`);
   assert.equal(cfg.briefPath, `${home}/brief.md`);
   assert.equal(cfg.runDir, `${home}/runs/x`);

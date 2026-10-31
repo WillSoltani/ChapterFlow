@@ -8,6 +8,8 @@ export interface RoleConfig {
   readonly bin: string;
   readonly model: string;
   readonly effort: Effort;
+  /** The config field this role came from ("writer", "checker", "solver"), so a bin error can name it. */
+  readonly role?: string;
 }
 
 export interface Example {

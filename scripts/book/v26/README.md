@@ -53,6 +53,7 @@ npx tsx scripts/book/v26/cli.ts <verb> --book scripts/book/v26/books/<bookId>.js
 | `status` | A table per chapter: stage, open issues, spend, lesson. No model call. |
 | `eval` | Judges one chapter with the calibrated judge and the no-chapter solver (see `docs/eval/`). `--chapters N` is required; `--file` defaults to `<runDir>/chNN/final.json`, `--tag` to `chNN`, `--out` to `<runDir>/eval`. Writes `<out>/<tag>.eval.json` (it records `chapter` and `file`) and the judge and solver answers beside it as `<tag>.judge.*` and `<tag>.nochapter-K.*`. With the defaults each chapter has its own `chNN.*` files; give two evals the same `--tag` and `--out` and the second overwrites the first. |
 | `render` | Writes `<runDir>/reading/chNN.html` for each chapter that has a `final.json`: a self-contained page (no external files) for reading the chapter the way a reader would, on a phone. |
+| `variants` | Five versions of each component (summary, examples, quiz, cards, practice) for the owner to pick from, and the pick page `<runDir>/chNN/variants/pack.html`. See "Variants" below. `--only summary,quiz` redoes those components; `--force` redoes what exists; `--lesson 3` drives every component from the third candidate lesson; `--reference <chapter.json>` folds that chapter at the bottom of the page for comparison. |
 
 Examples:
 
@@ -91,11 +92,33 @@ After `write`, `check` or `fix`, `run` carries on from the files and writes `fin
 - `rK.result.json`: the round's verdict: lesson rating, blocking issues, what goes to the fix call;
 - `rK.fix.json`, `rK.fix-applied.json`: the fix call and what was applied;
 - `r0-pre-rerun.*`: the first draft and its verdict, kept when the lesson was rewritten;
-- `final.json` (the chapter, without `_lesson`) and `status.json`: `clean` or `open-issues`, the open issues, the spend.
+- `final.json` (the chapter, without `_lesson`) and `status.json`: `clean` or `open-issues`, the open issues, the spend;
+- `variants/`: the pick page and its parts (see "Variants" below).
 
 Open issues are for the owner: a chapter that still has blocking issues after 2 fix rounds and one rewrite is never changed by hand here.
 
 `<ledgerPath>` is one JSON line per model call attempt: `{ts, chapter, step, model, effort, cost, outTokens, stopReason, seconds, isError}`. Before every call the tool adds the cost of one call ($2 for a write or fix, $1 otherwise) to the ledger total and stops if that passes `budgetUsd`.
+
+## Variants (the owner's pick loop)
+
+`variants` is how the owner's taste becomes data. For one chapter it makes:
+
+1. **Five candidate lessons** (one writer call, best first). The first drives everything below unless `--lesson k` says otherwise.
+2. **Five versions of each component**, one writer call per component, in parallel. Each version is labelled A to E and takes a named approach (for the summary: problem scene, question or puzzle, two people two choices, surprising claim first, concrete analogy; the other components have their own five, listed in `prompts/variants-*.md`), so a pick says what kind of thing the owner wants, not only which one.
+3. **A fact check of the five summaries** against the source (one checker call), plus 0-call checks (quotations verbatim, summary length). Flags show under the summary they belong to.
+4. **The pick page**: `<runDir>/chNN/variants/pack.html`, self-contained. A Pick button per version, a notes box per component, and a "Copy my picks" button that puts a short text block on the clipboard for the owner to paste into chat. Picks and notes survive a reload (localStorage).
+
+Files under `<runDir>/chNN/variants/`: `lessons.json`, `summary.json`, `examples.json`, `quiz.json`, `cards.json`, `practice.json`, `factcheck.json`, `run.json` (everything the page shows), `pack.html`, and `calls/` (every model call's envelope, raw answer and parsed JSON). A run picks up what exists: a stopped run resumes, and `--only` or `--force` redoes a part. A new lesson (`--lesson`) clears every component.
+
+Cost per chapter: 7 calls, about $5 to $8, about 15 minutes.
+
+**After the pick: `assemble`.** `assemble --book <cfg> --chapters N --picks <file>` takes the "Copy my picks" text (or JSON `{picks, notes}`) and makes one writer call that copies the picked parts into a full chapter: three lengths of the picked summary (same opener, path and ending), the picked examples, cards and plan unchanged, the picked quiz extended to the shape's count in the same form, and the fact-check fixes on the picked summary applied. Then the 0-call checks and a fact check of the three lengths run. The chapter lands as `<runDir>/chNN/final.json` with `status.json` (so `status` and `render` work), a reading page `<runDir>/reading/chNN.html`, and `<runDir>/exemplars/chNN.json` (the picks, the chosen and rejected versions and the owner's notes, for the writer prompt of later chapters). Nothing is fixed automatically: open issues are listed for the owner. Exit 0 when clean, 1 with open issues.
+
+**The book: `book`.** `book --book <cfg> --chapters 2,24,48 [--exemplar 1] [--force]` writes every listed chapter (the exemplar itself is skipped) in the form of the approved chapter: per chapter, the lessons call (every lesson the book already teaches is off limits), one writer call with the exemplar chapter, the approach rule for each part the owner picked (`src/approaches.ts`), the owner's notes and the variety ledger (`<runDir>/variety.json`: names, settings and analogies already used), then the 0-call checks plus an exemplar-copy check (a name or an eight-word run from the approved chapter blocks) and a variety check, the fact check of the three summary lengths, the blind key solver on questions 1 to 5, at most one fix round on blocking issues, and the chapter lands as `final.json`, `status.json`, `lesson.json` and `reading/chNN.html`. Chapters run `concurrency` at a time and resume from files; the run ends with a report of names used in more than one chapter. `pack --chapters 1,2,24,48 --out <file>` renders chosen chapters into one reading page. `fix --chapters N` on a book without source text runs one more fix round on a landed chapter's open flags (`prompts/fix-knowledge.md`).
+
+**`keys` (knowledge mode).** `keys --book <cfg> [--force]` makes one call that drafts, for every chapter without one, `chapters[].keys`: the author's advice in that chapter in blunt plain words plus its reversal, written into the config file for the owner to edit. The lessons, writer, checker and fix calls read it (the lesson may be gentler than the author; the account of his advice may not), and reading pages show it under the takeaway as "What the author advises".
+
+**Books without source text (knowledge mode).** A config may give `chapters: [{number, title}]` instead of `source`. Then `variants` and `assemble` work from the writer's own knowledge of the book, quotations are forbidden, and the fact check is a consistency check against the model's knowledge of the book (`prompts/variants-factcheck-knowledge.md`). `write`, `check`, `fix` and `eval` refuse in this mode.
 
 ## Tests
 

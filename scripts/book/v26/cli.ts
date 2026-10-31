@@ -1,5 +1,5 @@
 /** The v26 chapter tool's command line. See README.md.
- *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render> --book <config.json>
+ *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render|variants|assemble|book|pack|keys> --book <config.json>
  *      [--chapters 1,13] [--force] [--review] [--issues <findings.json>] [--finish] [--file <chapter.json> --tag <t> --out <dir>]
  *  Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget. */
 import * as fs from "node:fs";
@@ -24,8 +24,13 @@ import {
 } from "./src/pipeline";
 import { page, renderChapter } from "./src/render";
 import type { Chapter, Issue, LessonCard } from "./src/types";
+import { COMPONENTS, generateVariants, variantsDir, type Component } from "./src/variants";
+import { renderVariantsPage } from "./src/variantsRender";
+import { assembleChapter, parsePicks } from "./src/assemble";
+import { duplicateNames, fixLanded, loadExemplar, renderPack, runBookChapters } from "./src/book";
+import { draftKeys } from "./src/keys";
 
-const VERBS = ["write", "check", "fix", "run", "status", "eval", "render"] as const;
+const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys"] as const;
 type Verb = (typeof VERBS)[number];
 
 const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --book <config.json> [options]
@@ -37,6 +42,12 @@ const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --boo
   --file <f>        eval: the chapter JSON to judge (default <runDir>/chNN/final.json)
   --tag <t>         eval: name for the output files (default chNN, so each chapter keeps its own)
   --out <dir>       eval: where <tag>.eval.json goes (default <runDir>/eval)
+  --only <list>     variants: components to (re)generate, from summary,examples,quiz,cards,practice (default all)
+  --lesson <k>      variants: which candidate lesson drives the components, 1-5 (default 1, the writer's best)
+  --reference <f>   variants: a chapter JSON to fold at the bottom of the pick page for comparison
+  --picks <f>       assemble: the owner's picks, the "Copy my picks" text (or JSON {picks, notes}); one chapter (--chapters N)
+  --exemplar <k>    book: the approved chapter to write against (default: the newest under <runDir>/exemplars)
+  --out <f>         pack: where the one-page reading pack goes (default <runDir>/reading/pack.html)
 Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget.
 `;
 
@@ -160,6 +171,17 @@ async function cmdCheck(ctx: PipelineCtx, chapters: number[], io: Io): Promise<n
 
 async function cmdFix(ctx: PipelineCtx, chapters: number[], findings: Finding[] | undefined, io: Io): Promise<number> {
   if (findings && chapters.length !== 1) throw new UsageError("--issues needs exactly one chapter: --chapters N");
+  if (ctx.source.mode === "knowledge") {
+    // No source text: the fix round runs on the landed chapter's open issues (an assembled or book-written chapter).
+    if (findings) throw new UsageError("--issues is not supported for a book without source text");
+    let code = 0;
+    for (const n of chapters) {
+      const st = await fixLanded(ctx, n);
+      printStatus(io, st);
+      if (st.stage !== "clean") code = 1;
+    }
+    return code;
+  }
   let code = 0;
   for (const n of chapters) {
     const dir = chDir(ctx, n);
@@ -324,6 +346,96 @@ function cmdRender(ctx: PipelineCtx, chapters: number[], io: Io): number {
   return 0;
 }
 
+/** Five versions of each component for the owner to pick from, and the pick page. */
+async function cmdVariants(
+  ctx: PipelineCtx,
+  chapters: number[],
+  opts: { only?: string; lesson?: string; reference?: string; force: boolean },
+  io: Io,
+): Promise<number> {
+  let only: Component[] | undefined;
+  if (opts.only !== undefined) {
+    only = opts.only.split(",").map((x) => x.trim()) as Component[];
+    const bad = only.filter((c) => !(COMPONENTS as readonly string[]).includes(c));
+    if (bad.length > 0) throw new UsageError(`--only: unknown component ${bad.join(", ")} (choose from ${COMPONENTS.join(", ")})`);
+  }
+  let lessonIndex: number | undefined;
+  if (opts.lesson !== undefined) {
+    if (!/^[1-5]$/.test(opts.lesson)) throw new UsageError(`--lesson must be 1 to 5 (got "${opts.lesson}")`);
+    lessonIndex = Number(opts.lesson) - 1;
+  }
+  const reference = opts.reference === undefined ? undefined : readJson<Chapter>(opts.reference);
+  if (opts.reference !== undefined && !reference) throw new UsageError(`--reference ${opts.reference}: no such file`);
+  const { bookId, title, author } = ctx.config;
+  for (const n of chapters) {
+    const run = await generateVariants(ctx, n, { only, lessonIndex, force: opts.force });
+    const file = path.join(variantsDir(ctx, n), "pack.html");
+    fs.writeFileSync(file, renderVariantsPage(run, { bookId, title, author, ...(reference ? { reference } : {}) }));
+    const flags = run.factcheck.issues.length + run.factcheck.det.length;
+    io.out(`${chName(n)}: lesson ${run.lessonIndex + 1} of ${run.lessons.length}: ${clip(run.lesson.lesson, 90)}\n`);
+    io.out(`${chName(n)}: ${COMPONENTS.map((c) => `${c} ${run[c].length}`).join(", ")}; ${flags} fact flag${flags === 1 ? "" : "s"} on the summaries; spend ${money(run.spend)}\n`);
+    io.out(`${file}\n`);
+  }
+  return 0;
+}
+
+/** The full chapter from the owner's picks: one writer call, the checks, final.json, the reading page and the exemplar. */
+async function cmdAssemble(ctx: PipelineCtx, chapters: number[], picksFile: string | undefined, io: Io): Promise<number> {
+  const [n] = chapters;
+  if (chapters.length !== 1 || n === undefined) throw new UsageError("assemble needs exactly one chapter: --chapters N");
+  if (picksFile === undefined) throw new UsageError("assemble needs --picks <file> (the \"Copy my picks\" text)");
+  let picks;
+  try {
+    picks = parsePicks(fs.readFileSync(picksFile, "utf8"));
+  } catch (e) {
+    throw new UsageError(`--picks ${picksFile}: ${(e as Error).message}`);
+  }
+  const r = await assembleChapter(ctx, n, picks);
+  io.out(`${chName(n)}: assembled from ${COMPONENTS.map((c) => `${c} ${picks.picks[c]}`).join(", ")}\n`);
+  io.out(`${chName(n)}: ${r.status.stage}; ${r.status.open.filter((i) => i.blocking).length} blocking, ${r.status.open.filter((i) => !i.blocking).length} reported; spend ${money(r.status.spend)}\n`);
+  listIssues(io, r.status.open);
+  io.out(`${r.files.final}\n${r.files.reading}\n${r.files.exemplar}\n`);
+  return r.status.stage === "clean" ? 0 : 1;
+}
+
+/** Every chapter in the exemplar's form: lessons, write, checks, fact check, key solver, one fix round, land. */
+async function cmdBook(ctx: PipelineCtx, chapters: number[], opts: { exemplar?: string; force: boolean }, io: Io): Promise<number> {
+  let exemplar: number | undefined;
+  if (opts.exemplar !== undefined) {
+    if (!/^\d+$/.test(opts.exemplar)) throw new UsageError(`--exemplar must be a chapter number (got "${opts.exemplar}")`);
+    exemplar = Number(opts.exemplar);
+  }
+  const ex = loadExemplar(ctx, exemplar);
+  io.out(`exemplar: ${chName(ex.chapter)} (${COMPONENTS.map((c) => `${c} ${ex.picks[c].label}`).join(", ")}); openers rotate ${ex.approvedSummary.join("/")}; names off limits: ${ex.names.join(", ") || "(none)"}\n`);
+  const statuses = await runBookChapters(ctx, chapters, { exemplar: ex.chapter, force: opts.force });
+  for (const s of statuses) {
+    io.out(`${chName(s.chapter)}  ${s.stage}${s.fixed ? " (after one fix round)" : ""}, spend ${money(s.spend)}: ${clip(s.lesson, 90)}\n`);
+    listIssues(io, s.open.filter((i) => i.blocking));
+  }
+  const dups = duplicateNames(ctx, ex);
+  if (dups.length > 0) io.out(`names used in more than one chapter: ${dups.map((d) => `${d.name} (${d.chapters.join(", ")})`).join("; ")}\n`);
+  const clean = statuses.filter((s) => s.stage === "clean").length;
+  io.out(`${clean} of ${statuses.length} chapters clean; ledger ${money(ledgerTotal(ctx.ledgerPath))} of ${money(ctx.config.budgetUsd)}; reading pages under ${path.join(ctx.config.runDir, "reading")}\n`);
+  return clean === statuses.length ? 0 : 1;
+}
+
+/** One reading page with the given chapters, for the owner to read side by side. */
+function cmdPack(ctx: PipelineCtx, chapters: number[], out: string | undefined, io: Io): number {
+  const file = out ?? path.join(ctx.config.runDir, "reading", "pack.html");
+  const html = renderPack(ctx, chapters, `${ctx.config.title}: chapters ${chapters.join(", ")}`);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, html);
+  io.out(`${file}\n`);
+  return 0;
+}
+
+/** Drafts every chapter's `keys` (the author's advice in blunt words) into the config file, for the owner to edit. */
+async function cmdKeys(ctx: PipelineCtx, configPath: string, force: boolean, io: Io): Promise<number> {
+  const n = await draftKeys(ctx, configPath, { force });
+  io.out(n === 0 ? `every chapter already has keys (use --force to draft them again)\n` : `drafted keys for ${n} chapters into ${configPath}; read and edit them before writing the book\n`);
+  return 0;
+}
+
 // ---------------------------------------------------------------- main
 
 export async function main(argv: string[], io: Io = { out: (s) => void process.stdout.write(s), err: (s) => void process.stderr.write(s) }): Promise<number> {
@@ -343,6 +455,11 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
           file: { type: "string" },
           tag: { type: "string" },
           out: { type: "string" },
+          only: { type: "string" },
+          lesson: { type: "string" },
+          reference: { type: "string" },
+          picks: { type: "string" },
+          exemplar: { type: "string" },
         },
       });
     } catch (e) {
@@ -356,6 +473,11 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
     if (!values.book) throw new UsageError("--book <config.json> is required");
     if (values.issues !== undefined && verb !== "fix") throw new UsageError("--issues only goes with the fix command");
     if (values.finish === true && verb !== "fix") throw new UsageError("--finish only goes with the fix command");
+    for (const k of ["only", "lesson", "reference"] as const) {
+      if (values[k] !== undefined && verb !== "variants") throw new UsageError(`--${k} only goes with the variants command`);
+    }
+    if (values.picks !== undefined && verb !== "assemble") throw new UsageError("--picks only goes with the assemble command");
+    if (values.exemplar !== undefined && verb !== "book") throw new UsageError("--exemplar only goes with the book command");
     const findings = values.issues === undefined ? undefined : readFindings(values.issues);
 
     const ctx = makeCtx(loadBookConfig(values.book), { review: values.review === true });
@@ -377,6 +499,16 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
         return await guarded(ctx, () => cmdEval(ctx, chapters, values, io));
       case "render":
         return cmdRender(ctx, chapters, io);
+      case "variants":
+        return await guarded(ctx, () => cmdVariants(ctx, chapters, { only: values.only, lesson: values.lesson, reference: values.reference, force }, io));
+      case "assemble":
+        return await guarded(ctx, () => cmdAssemble(ctx, chapters, values.picks, io));
+      case "book":
+        return await guarded(ctx, () => cmdBook(ctx, chapters, { exemplar: values.exemplar, force }, io));
+      case "pack":
+        return cmdPack(ctx, chapters, values.out, io);
+      case "keys":
+        return await guarded(ctx, () => cmdKeys(ctx, values.book!, force, io));
     }
   } catch (e) {
     if (e instanceof UsageLimitError || e instanceof BudgetError) {

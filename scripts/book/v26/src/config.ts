@@ -10,7 +10,12 @@ export interface BookConfig {
   bookType: "memoir" | "how-to" | "argument";
   categories: string[];
   tags: string[];
-  source: { textPath: string; chapterMapPath: string };
+  /** The frozen source text and its chapter map (text mode). Absent in knowledge mode. */
+  source?: { textPath: string; chapterMapPath: string };
+  /** Knowledge mode: no source text; the writer uses what it knows of the book. Exactly one of `source` and `chapters` is set.
+   *  `keys` is the chapter's advice as the author gives it, in blunt plain words (drafted by `keys`, edited by the owner); the
+   *  lessons, writer, checker and fix calls all read it, and the reading page shows it under the takeaway. */
+  chapters?: Array<{ number: number; title: string; keys?: string }>;
   knownTrapsPath?: string;
   briefPath: string;
   shape: {
@@ -42,8 +47,13 @@ export function expandHome(p: string): string {
   return p.startsWith("~/") ? os.homedir() + "/" + p.slice(2) : p;
 }
 
+/** A config problem. It is never retried and it stops a run, unlike a failed model call. */
+export class ConfigError extends Error {
+  readonly exitCode = 1;
+}
+
 function invalid(field: string, reason: string): never {
-  throw new Error(`CONFIG_INVALID: ${field}: ${reason}`);
+  throw new ConfigError(`CONFIG_INVALID: ${field}: ${reason}`);
 }
 
 type Obj = Record<string, unknown>;
@@ -83,8 +93,63 @@ function role(v: unknown, field: string, base: string): RoleConfig {
   }
   // A bin with no "/" is a command looked up on PATH ("claude"), so it must not be turned into a path.
   const rawBin = expandHome(str(o.bin, `${field}.bin`));
+  // A "*" segment (the VS Code extension folder carries its version) is kept as written and resolved when a call is made,
+  // so a config loads on a machine without the binary (CI, a fresh checkout) and the newest install wins at run time.
   const bin = rawBin.includes("/") ? resolveFrom(base, rawBin) : rawBin;
-  return { bin, model: str(o.model, `${field}.model`), effort: effort as Effort };
+  return { bin, model: str(o.model, `${field}.model`), effort: effort as Effort, role: field };
+}
+
+/** Natural version order: "2.1.311" sorts after "2.1.301" and after "2.1.9". */
+function versionKey(name: string): number[] {
+  return (name.match(/\d+/g) ?? []).map(Number);
+}
+
+/** One path segment may hold a "*" (for example the VS Code extension folder, whose name carries the version and changes on
+ *  every update): the newest matching folder whose full path exists wins, by version order, so a half-extracted update
+ *  (a folder with no binary inside) is skipped. Called before a model call (call.ts) and by preflightBins, not when the
+ *  config loads, so a config loads on a machine without the binary. No match is a ConfigError named after the field. */
+export function expandBinGlob(p: string, field = "bin"): string {
+  const parts = p.split("/");
+  const i = parts.findIndex((seg) => seg.includes("*"));
+  if (i < 0) return p;
+  const parent = parts.slice(0, i).join("/") || "/";
+  const re = new RegExp(`^${parts[i].split("*").map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join(".*")}$`);
+  const matches = fs.existsSync(parent) ? fs.readdirSync(parent).filter((name) => re.test(name)) : [];
+  matches.sort((a, b) => {
+    const ka = versionKey(a);
+    const kb = versionKey(b);
+    for (let k = 0; k < Math.max(ka.length, kb.length); k++) {
+      const d = (kb[k] ?? -1) - (ka[k] ?? -1);
+      if (d !== 0) return d;
+    }
+    return b.localeCompare(a);
+  });
+  for (const name of matches) {
+    try {
+      const resolved = expandBinGlob([...parts.slice(0, i), name, ...parts.slice(i + 1)].join("/"), field);
+      if (fs.existsSync(resolved)) return resolved;
+    } catch {
+      /* a deeper glob had no match under this folder: try the next */
+    }
+  }
+  return invalid(field, `nothing matches ${parts[i]} under ${parent} with ${parts.slice(i + 1).join("/") || "a file"} inside`);
+}
+
+/** Resolves every role's binary before a run starts, so a wrong or missing binary stops the run before any call, any
+ *  ledger row, or any chapter folder is touched. A bare command name (no "/") is left to PATH. Returns the resolved bins. */
+export function preflightBins(cfg: BookConfig): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const r of [cfg.writer, cfg.checker, cfg.solver]) {
+    const field = `${r.role ?? "role"}.bin`;
+    if (!r.bin.includes("/")) {
+      out[field] = r.bin;
+      continue;
+    }
+    const resolved = expandBinGlob(r.bin, field);
+    if (!fs.existsSync(resolved)) invalid(field, `no such file: ${resolved}`);
+    out[field] = resolved;
+  }
+  return out;
 }
 
 function resolveFrom(base: string, p: string): string {
@@ -107,7 +172,9 @@ export function loadBookConfig(configPath: string): BookConfig {
     invalid("bookType", `must be one of ${BOOK_TYPES.join(", ")} (got "${bookType}")`);
   }
 
-  const source = obj(raw.source, "source");
+  if ((raw.source === undefined) === (raw.chapters === undefined)) {
+    invalid("source", "give either source {textPath, chapterMapPath} (text mode) or chapters [{number, title}] (knowledge mode), not both and not neither");
+  }
   const shape = obj(raw.shape, "shape");
 
   const concurrency = raw.concurrency === undefined ? DEFAULT_CONCURRENCY : posInt(raw.concurrency, "concurrency");
@@ -123,10 +190,6 @@ export function loadBookConfig(configPath: string): BookConfig {
     bookType: bookType as BookConfig["bookType"],
     categories: strList(raw.categories, "categories"),
     tags: strList(raw.tags, "tags"),
-    source: {
-      textPath: p(source.textPath, "source.textPath"),
-      chapterMapPath: p(source.chapterMapPath, "source.chapterMapPath"),
-    },
     briefPath: p(raw.briefPath, "briefPath"),
     shape: {
       examples: posInt(shape.examples, "shape.examples"),
@@ -146,6 +209,23 @@ export function loadBookConfig(configPath: string): BookConfig {
     budgetUsd: budgetUsd as number,
     runDir: p(raw.runDir, "runDir"),
   };
+  if (raw.source !== undefined) {
+    const source = obj(raw.source, "source");
+    cfg.source = { textPath: p(source.textPath, "source.textPath"), chapterMapPath: p(source.chapterMapPath, "source.chapterMapPath") };
+  } else {
+    const chapters = raw.chapters;
+    if (!Array.isArray(chapters) || chapters.length === 0) invalid("chapters", "must be a non-empty array of {number, title}");
+    const seen = new Set<number>();
+    cfg.chapters = (chapters as unknown[]).map((c, i) => {
+      const o = obj(c, `chapters[${i}]`);
+      const number = posInt(o.number, `chapters[${i}].number`);
+      if (seen.has(number)) invalid(`chapters[${i}].number`, `chapter ${number} appears twice`);
+      seen.add(number);
+      const entry: { number: number; title: string; keys?: string } = { number, title: str(o.title, `chapters[${i}].title`) };
+      if (o.keys !== undefined) entry.keys = str(o.keys, `chapters[${i}].keys`);
+      return entry;
+    });
+  }
   // Optional, so the key is left off entirely when the config does not name one.
   if (raw.knownTrapsPath !== undefined) cfg.knownTrapsPath = p(raw.knownTrapsPath, "knownTrapsPath");
   if (raw.ledgerPath !== undefined) cfg.ledgerPath = p(raw.ledgerPath, "ledgerPath");
