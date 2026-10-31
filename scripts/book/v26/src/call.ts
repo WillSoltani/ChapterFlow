@@ -77,7 +77,7 @@ interface Attempt {
   envelope: Record<string, unknown> | null;
 }
 
-function runClaude(o: CallOptions, effort: string): Promise<Attempt> {
+function runClaude(o: CallOptions, effort: string, bin: string): Promise<Attempt> {
   return new Promise((resolve) => {
     const started = Date.now();
     const out: Buffer[] = [];
@@ -95,13 +95,6 @@ function runClaude(o: CallOptions, effort: string): Promise<Attempt> {
       resolve({ stdout, stderr, code, seconds: (Date.now() - started) / 1000, timedOut, envelope: parseEnvelope(stdout) });
     };
 
-    let bin: string;
-    try {
-      bin = expandBinGlob(o.role.bin, "bin");
-    } catch (e) {
-      finish(null, (e as Error).message);
-      return;
-    }
     const child = spawn(bin, buildArgv(o.role.model, effort), {
       cwd: o.cwd,
       env: childEnv(),
@@ -151,12 +144,14 @@ export async function callModel(o: CallOptions): Promise<CallResult> {
     throw new BudgetError(`BUDGET_STOP: spent $${spent.toFixed(2)} + reserve $${reserve.toFixed(2)} exceeds budget $${o.budgetUsd.toFixed(2)}`);
   }
   fs.mkdirSync(o.cwd, { recursive: true });
+  // A glob bin resolves to the newest install now; a bin that matches nothing is a ConfigError, never retried or ledgered.
+  const bin = o.role.bin.includes("/") ? expandBinGlob(o.role.bin, `${o.role.role ?? "role"}.bin`) : o.role.bin;
 
   let effort: string = o.role.effort;
   let retried = false;
 
   for (;;) {
-    const a = await runClaude(o, effort);
+    const a = await runClaude(o, effort, bin);
     const env = a.envelope;
     const isError = env === null || env.is_error === true;
     const usage = env?.usage as { output_tokens?: unknown } | undefined;

@@ -68,7 +68,7 @@ test("loadBookConfig: relative paths resolve against the config file's directory
   assert.equal(cfg.knownTrapsPath, undefined);
   assert.equal(cfg.bookType, "memoir");
   assert.deepEqual(cfg.shape.fastRead, [90, 140]);
-  assert.deepEqual(cfg.writer, { bin: "claude", model: "opus", effort: "high" });
+  assert.deepEqual(cfg.writer, { bin: "claude", model: "opus", effort: "high", role: "writer" });
 });
 
 test("loadBookConfig: ~ is expanded in every path field, absolute paths are untouched", () => {

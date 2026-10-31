@@ -12,6 +12,7 @@ import { findQuotes, norm, quoteInSource } from "./quotes";
 import { spanText, writerForm, writerFormText } from "./source";
 import type { Example, IfThenPlan, LessonCard, QuizQuestion, ReviewCard, RoleConfig } from "./types";
 import { wordsIn } from "./validate";
+import { approachesText } from "./approaches";
 
 export const COMPONENTS = ["summary", "examples", "quiz", "cards", "practice"] as const;
 export type Component = (typeof COMPONENTS)[number];
@@ -278,7 +279,7 @@ export function sourceVars(ctx: PipelineCtx, n: number): Record<string, string> 
 }
 
 function componentPrompt(ctx: PipelineCtx, n: number, component: Component, lesson: LessonCandidate, plain: string): string {
-  const vars: Record<string, string> = { LESSON: lessonText(lesson), PLAIN: plain };
+  const vars: Record<string, string> = { LESSON: lessonText(lesson), PLAIN: plain, APPROACHES: approachesText(component) };
   if (component === "summary") {
     const { SOURCE_RULES, QUOTE_RULE, SOURCE_BLOCK } = sourceVars(ctx, n);
     Object.assign(vars, { BOOK_SECTION: ctx.bookSection, SOURCE_RULES, QUOTE_RULE, SOURCE_BLOCK });

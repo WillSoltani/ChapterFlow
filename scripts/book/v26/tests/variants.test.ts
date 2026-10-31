@@ -8,9 +8,9 @@ import { fileURLToPath } from "node:url";
 
 import { main } from "../cli";
 import { CallFailedError } from "../src/call";
-import { expandBinGlob, loadBookConfig } from "../src/config";
+import { ConfigError, expandBinGlob, loadBookConfig, preflightBins } from "../src/config";
 import { readLedger } from "../src/ledger";
-import { makeCtx, writeChapter, type PipelineCtx } from "../src/pipeline";
+import { makeCtx, runBook, writeChapter, type PipelineCtx } from "../src/pipeline";
 import {
   COMPONENTS,
   generateVariants,
@@ -439,6 +439,9 @@ test("a bin glob resolves to the newest version folder, and a glob with no match
   assert.equal(expandBinGlob(path.join(dir, "anthropic.claude-code-*", "resources", "native-binary", "claude")), path.join(dir, "anthropic.claude-code-2.1.311-darwin-arm64", "resources", "native-binary", "claude"));
   assert.equal(expandBinGlob("/usr/bin/claude"), "/usr/bin/claude");
   assert.throws(() => expandBinGlob(path.join(dir, "nothing-*", "claude")), /CONFIG_INVALID: bin: nothing matches nothing-\*/);
+  // A newer folder with no binary inside (a half-extracted update) is skipped for the newest complete one.
+  fs.mkdirSync(path.join(dir, "anthropic.claude-code-2.1.320-darwin-arm64.vsctmp"), { recursive: true });
+  assert.equal(expandBinGlob(path.join(dir, "anthropic.claude-code-*", "resources", "native-binary", "claude")), path.join(dir, "anthropic.claude-code-2.1.311-darwin-arm64", "resources", "native-binary", "claude"));
 });
 
 test("a glob bin loads as written and is resolved to the newest install when a call is made; no install is a call error", async () => {
@@ -464,7 +467,16 @@ test("a glob bin loads as written and is resolved to the newest install when a c
   for (const role of ["writer", "checker", "solver"]) cfg[role].bin = path.join(dir, "nothing-*", "claude");
   fs.writeFileSync(h.configPath, JSON.stringify(cfg));
   const none = makeCtx(loadBookConfig(h.configPath));
-  await assert.rejects(generateVariants(none, 2), /CONFIG_INVALID: bin: nothing matches nothing-\*/);
+  const before = readLedger(none.ledgerPath).length;
+  await assert.rejects(generateVariants(none, 2), (e: unknown) => e instanceof ConfigError && /CONFIG_INVALID: writer\.bin: nothing matches nothing-\*/.test((e as Error).message));
+  assert.equal(readLedger(none.ledgerPath).length, before, "a missing binary is never retried or ledgered");
+  // Preflight: a run stops before any call or any chapter folder is touched.
+  const chDir = path.join(h.runDir, "ch01");
+  const filesBefore = fs.readdirSync(chDir).length;
+  await assert.rejects(runBook(none, [1, 2], { force: true }), /CONFIG_INVALID: writer\.bin/);
+  assert.ok(fs.existsSync(chDir) && fs.readdirSync(chDir).length === filesBefore, "the chapter folder was not moved aside");
+  assert.throws(() => preflightBins(none.config), /CONFIG_INVALID: writer\.bin/);
+  assert.deepEqual(Object.keys(preflightBins(loaded)), ["writer.bin", "checker.bin", "solver.bin"]);
 });
 
 test("the committed 48 Laws config is a knowledge-mode book with 48 titled chapters", () => {

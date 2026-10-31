@@ -8,11 +8,7 @@ Every version has:
 No names or events from the book.
 
 THE FIVE APPROACHES, one per version, in this order:
-- A, "two-minute actions": every action takes under two minutes and needs nothing new.
-- B, "specific cues": the if-then cues are unusually precise moments (a place, a person, a phrase someone says), and the actions follow from those cues.
-- C, "with another person": every action involves telling, asking or showing someone else.
-- D, "track and count": the actions make the reader count, log or mark something, so they can see the lesson working.
-- E, "the shortest possible": the fewest words that still give one clear action per field.
+@@APPROACHES@@
 
 @@PLAIN@@
 

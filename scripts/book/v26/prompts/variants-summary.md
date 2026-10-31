@@ -15,11 +15,7 @@ Each version has:
 - "memorableLine": up to 15 words. The lesson in fresh words: one useful sentence a reader can act on, not a slogan. No quotation marks inside it.
 
 THE FIVE APPROACHES, one per version, in this order:
-- A, "problem scene": open on a modern everyday moment where the obvious move (the wrong belief) is about to backfire. The reader feels the problem before knowing the answer.
-- B, "question or puzzle": open with a sharp question or a small puzzle the reader cannot yet answer. The summary answers it at the end.
-- C, "two people, two choices": open with two people facing the same situation and choosing differently. The difference is the lesson.
-- D, "surprising claim first": open by stating the counterintuitive claim bluntly in the first sentence, then earn it.
-- E, "concrete analogy": open with a physical, everyday analogy (a leaky tap, a scoreboard, a cold room) that carries the lesson, and come back to it at the end.
+@@APPROACHES@@
 
 Across the five versions, never reuse a modern scene, a name or an analogy. Each version stands alone.
 

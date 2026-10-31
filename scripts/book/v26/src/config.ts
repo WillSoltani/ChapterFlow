@@ -45,8 +45,13 @@ export function expandHome(p: string): string {
   return p.startsWith("~/") ? os.homedir() + "/" + p.slice(2) : p;
 }
 
+/** A config problem. It is never retried and it stops a run, unlike a failed model call. */
+export class ConfigError extends Error {
+  readonly exitCode = 1;
+}
+
 function invalid(field: string, reason: string): never {
-  throw new Error(`CONFIG_INVALID: ${field}: ${reason}`);
+  throw new ConfigError(`CONFIG_INVALID: ${field}: ${reason}`);
 }
 
 type Obj = Record<string, unknown>;
@@ -89,7 +94,7 @@ function role(v: unknown, field: string, base: string): RoleConfig {
   // A "*" segment (the VS Code extension folder carries its version) is kept as written and resolved when a call is made,
   // so a config loads on a machine without the binary (CI, a fresh checkout) and the newest install wins at run time.
   const bin = rawBin.includes("/") ? resolveFrom(base, rawBin) : rawBin;
-  return { bin, model: str(o.model, `${field}.model`), effort: effort as Effort };
+  return { bin, model: str(o.model, `${field}.model`), effort: effort as Effort, role: field };
 }
 
 /** Natural version order: "2.1.311" sorts after "2.1.301" and after "2.1.9". */
@@ -98,8 +103,9 @@ function versionKey(name: string): number[] {
 }
 
 /** One path segment may hold a "*" (for example the VS Code extension folder, whose name carries the version and changes on
- *  every update): the newest matching folder wins, by version order. Called when a model call starts (call.ts), not when
- *  the config loads. A glob that matches nothing is an error named after the config field. */
+ *  every update): the newest matching folder whose full path exists wins, by version order, so a half-extracted update
+ *  (a folder with no binary inside) is skipped. Called before a model call (call.ts) and by preflightBins, not when the
+ *  config loads, so a config loads on a machine without the binary. No match is a ConfigError named after the field. */
 export function expandBinGlob(p: string, field = "bin"): string {
   const parts = p.split("/");
   const i = parts.findIndex((seg) => seg.includes("*"));
@@ -107,17 +113,41 @@ export function expandBinGlob(p: string, field = "bin"): string {
   const parent = parts.slice(0, i).join("/") || "/";
   const re = new RegExp(`^${parts[i].split("*").map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join(".*")}$`);
   const matches = fs.existsSync(parent) ? fs.readdirSync(parent).filter((name) => re.test(name)) : [];
-  if (matches.length === 0) invalid(field, `nothing matches ${parts[i]} under ${parent}`);
   matches.sort((a, b) => {
     const ka = versionKey(a);
     const kb = versionKey(b);
     for (let k = 0; k < Math.max(ka.length, kb.length); k++) {
-      const d = (ka[k] ?? -1) - (kb[k] ?? -1);
+      const d = (kb[k] ?? -1) - (ka[k] ?? -1);
       if (d !== 0) return d;
     }
-    return a.localeCompare(b);
+    return b.localeCompare(a);
   });
-  return expandBinGlob([...parts.slice(0, i), matches[matches.length - 1], ...parts.slice(i + 1)].join("/"), field);
+  for (const name of matches) {
+    try {
+      const resolved = expandBinGlob([...parts.slice(0, i), name, ...parts.slice(i + 1)].join("/"), field);
+      if (fs.existsSync(resolved)) return resolved;
+    } catch {
+      /* a deeper glob had no match under this folder: try the next */
+    }
+  }
+  return invalid(field, `nothing matches ${parts[i]} under ${parent} with ${parts.slice(i + 1).join("/") || "a file"} inside`);
+}
+
+/** Resolves every role's binary before a run starts, so a wrong or missing binary stops the run before any call, any
+ *  ledger row, or any chapter folder is touched. A bare command name (no "/") is left to PATH. Returns the resolved bins. */
+export function preflightBins(cfg: BookConfig): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const r of [cfg.writer, cfg.checker, cfg.solver]) {
+    const field = `${r.role ?? "role"}.bin`;
+    if (!r.bin.includes("/")) {
+      out[field] = r.bin;
+      continue;
+    }
+    const resolved = expandBinGlob(r.bin, field);
+    if (!fs.existsSync(resolved)) invalid(field, `no such file: ${resolved}`);
+    out[field] = resolved;
+  }
+  return out;
 }
 
 function resolveFrom(base: string, p: string): string {

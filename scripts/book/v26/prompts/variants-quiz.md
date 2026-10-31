@@ -9,11 +9,7 @@ Every version has 5 questions with 3 choices each. Rules for every question:
 - "bloomsLevel": "understand", "apply" or "analyze".
 
 THE FIVE APPROACHES, one per version, in this order:
-- A, "what do you do": every question puts the reader in a situation and asks what to do (apply).
-- B, "spot the trap": every question shows someone's reasoning and asks which thought is the trap, or which belief led them wrong (analyze).
-- C, "predict what happens": every question describes a choice someone made and asks what most likely happens next (understand or apply).
-- D, "best reply": every question quotes something a friend or coworker says that carries the wrong belief, and asks which reply uses the lesson (apply).
-- E, "one of each": one question in each of the forms A to D, plus one "why does this work?" question (understand).
+@@APPROACHES@@
 
 Across the five versions, never reuse a situation.
 

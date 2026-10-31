@@ -3,7 +3,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { BudgetError, CallFailedError, UsageLimitError, callModel, type CallResult } from "./call";
-import type { BookConfig } from "./config";
+import { ConfigError, preflightBins, type BookConfig } from "./config";
 import { readerFields, runChecks, splitLesson } from "./checks";
 import { applyFix, type FixEdit, type FixError, type FixOutput } from "./fix";
 import { readLedger } from "./ledger";
@@ -110,7 +110,9 @@ function issue(source: Issue["source"], blocking: boolean, field: string | undef
   return field ? { source, blocking, field, text: message } : { source, blocking, text: message };
 }
 
-const isLimit = (e: unknown): e is UsageLimitError | BudgetError => e instanceof UsageLimitError || e instanceof BudgetError;
+/** Errors that stop a whole run: the usage limit, the budget, and a config problem such as a binary that is not there. */
+const isLimit = (e: unknown): e is UsageLimitError | BudgetError | ConfigError =>
+  e instanceof UsageLimitError || e instanceof BudgetError || e instanceof ConfigError;
 
 /** The runBook runs in progress, by ctx. The moment any call of a run hits a usage limit or the budget, `stop` is set and
  *  every call of that run that has not started yet (other chapters, a retry, the rest of a check round) is refused.
@@ -122,6 +124,7 @@ const runs = new WeakMap<object, { stop: Error | null }>();
  *  once a call hits a usage limit or the budget, no call of `fn` that has not started yet is made. */
 export async function guarded<T>(ctx: PipelineCtx, fn: () => Promise<T>): Promise<T> {
   if (runs.has(ctx)) return fn();
+  preflightBins(ctx.config);
   runs.set(ctx, { stop: null });
   try {
     return await fn();
@@ -673,6 +676,7 @@ export async function runChapter(ctx: PipelineCtx, n: number, opts: { force?: bo
 }
 
 export async function runBook(ctx: PipelineCtx, chapters: number[], opts: { force?: boolean } = {}): Promise<ChapterStatus[]> {
+  preflightBins(ctx.config);
   const out: ChapterStatus[] = new Array(chapters.length);
   const run: { stop: Error | null } = { stop: null };
   runs.set(ctx, run);
