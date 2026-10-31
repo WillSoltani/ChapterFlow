@@ -441,6 +441,32 @@ test("a bin glob resolves to the newest version folder, and a glob with no match
   assert.throws(() => expandBinGlob(path.join(dir, "nothing-*", "claude")), /CONFIG_INVALID: bin: nothing matches nothing-\*/);
 });
 
+test("a glob bin loads as written and is resolved to the newest install when a call is made; no install is a call error", async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "v26-bin-glob-call-"));
+  roots.push(dir);
+  for (const v of ["2.1.301", "2.1.311"]) {
+    const d = path.join(dir, `anthropic.claude-code-${v}-darwin-arm64`, "resources", "native-binary");
+    fs.mkdirSync(d, { recursive: true });
+    fs.symlinkSync(FAKE, path.join(d, "claude"));
+  }
+  const glob = path.join(dir, "anthropic.claude-code-*", "resources", "native-binary", "claude");
+  const h = harness();
+  const cfg = JSON.parse(fs.readFileSync(h.configPath, "utf8"));
+  for (const role of ["writer", "checker", "solver"]) cfg[role].bin = glob;
+  fs.writeFileSync(h.configPath, JSON.stringify(cfg));
+  const loaded = loadBookConfig(h.configPath);
+  assert.equal(loaded.writer.bin, glob, "the config keeps the glob as written");
+  const ctx = makeCtx(loaded);
+  const run = await generateVariants(ctx, 1);
+  assert.equal(run.summary.length, 5);
+  assert.equal(h.calls().length, 7);
+
+  for (const role of ["writer", "checker", "solver"]) cfg[role].bin = path.join(dir, "nothing-*", "claude");
+  fs.writeFileSync(h.configPath, JSON.stringify(cfg));
+  const none = makeCtx(loadBookConfig(h.configPath));
+  await assert.rejects(generateVariants(none, 2), /CONFIG_INVALID: bin: nothing matches nothing-\*/);
+});
+
 test("the committed 48 Laws config is a knowledge-mode book with 48 titled chapters", () => {
   const cfg = loadBookConfig(fileURLToPath(new URL("../books/the-48-laws-of-power.json", import.meta.url)));
   assert.equal(cfg.bookType, "argument");

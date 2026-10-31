@@ -86,7 +86,9 @@ function role(v: unknown, field: string, base: string): RoleConfig {
   }
   // A bin with no "/" is a command looked up on PATH ("claude"), so it must not be turned into a path.
   const rawBin = expandHome(str(o.bin, `${field}.bin`));
-  const bin = rawBin.includes("/") ? expandBinGlob(resolveFrom(base, rawBin), `${field}.bin`) : rawBin;
+  // A "*" segment (the VS Code extension folder carries its version) is kept as written and resolved when a call is made,
+  // so a config loads on a machine without the binary (CI, a fresh checkout) and the newest install wins at run time.
+  const bin = rawBin.includes("/") ? resolveFrom(base, rawBin) : rawBin;
   return { bin, model: str(o.model, `${field}.model`), effort: effort as Effort };
 }
 
@@ -96,7 +98,8 @@ function versionKey(name: string): number[] {
 }
 
 /** One path segment may hold a "*" (for example the VS Code extension folder, whose name carries the version and changes on
- *  every update): the newest matching folder wins, by version order. A glob that matches nothing is a config error. */
+ *  every update): the newest matching folder wins, by version order. Called when a model call starts (call.ts), not when
+ *  the config loads. A glob that matches nothing is an error named after the config field. */
 export function expandBinGlob(p: string, field = "bin"): string {
   const parts = p.split("/");
   const i = parts.findIndex((seg) => seg.includes("*"));

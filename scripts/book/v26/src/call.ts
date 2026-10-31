@@ -4,6 +4,7 @@ import path from "node:path";
 
 import type { ExecutionProfile } from "../../prompts/chapterflow-v24-author-pipeline/src/runtime/executionPolicyTypes";
 import { createClaudeRoute } from "../../prompts/chapterflow-v24-author-pipeline/src/runtime/claudeRoute";
+import { expandBinGlob } from "./config";
 import { appendLedger, ledgerTotal } from "./ledger";
 import { EFFORTS, type Effort, type RoleConfig } from "./types";
 
@@ -84,21 +85,29 @@ function runClaude(o: CallOptions, effort: string): Promise<Attempt> {
     let timedOut = false;
     let settled = false;
 
+    let timer: NodeJS.Timeout | undefined;
     const finish = (code: number | null, spawnError?: string) => {
       if (settled) return;
       settled = true;
-      clearTimeout(timer);
+      if (timer) clearTimeout(timer);
       const stdout = Buffer.concat(out).toString("utf8");
       const stderr = Buffer.concat(err).toString("utf8") + (spawnError ?? "");
       resolve({ stdout, stderr, code, seconds: (Date.now() - started) / 1000, timedOut, envelope: parseEnvelope(stdout) });
     };
 
-    const child = spawn(o.role.bin, buildArgv(o.role.model, effort), {
+    let bin: string;
+    try {
+      bin = expandBinGlob(o.role.bin, "bin");
+    } catch (e) {
+      finish(null, (e as Error).message);
+      return;
+    }
+    const child = spawn(bin, buildArgv(o.role.model, effort), {
       cwd: o.cwd,
       env: childEnv(),
       stdio: ["pipe", "pipe", "pipe"],
     });
-    const timer = setTimeout(() => {
+    timer = setTimeout(() => {
       timedOut = true;
       child.kill("SIGKILL");
     }, o.timeoutMs);
