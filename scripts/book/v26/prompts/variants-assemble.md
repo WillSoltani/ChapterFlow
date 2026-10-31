@@ -24,6 +24,16 @@ Write the chapter as one JSON object with these keys, in this order:
 
 @@PLAIN@@
 
+Use exactly these keys and shapes (the app rejects any other field name):
+{"title": "...", "hook": "...", "counterintuition": "...", "keyTakeaway": "...", "tryThisNow": "...",
+ "memorableLines": [{"text": "..."}],
+ "breakdown": {"fastRead": "...", "deepRead": "...", "fullRead": "..."},
+ "examples": [{"exampleId": "ex01", "title": "...", "tags": ["work"], "scenario": "...", "whatToDo": "...", "whyItMatters": "..."}, ...],
+ "quiz": {"passingScorePercent": 70, "questions": [{"questionId": "q1", "prompt": "...", "choices": ["...", "...", "..."], "correctIndex": 0, "explanation": "...", "bloomsLevel": "apply"}, ...]},
+ "reviewCards": [{"cardId": "rc1", "front": "...", "back": "...", "difficulty": "easy"}, ...],
+ "implementationPlan": {"coreSkill": "...", "ifThenPlans": [{"context": "When ...", "plan": "then I ..."}, {"context": "When ...", "plan": "then I ..."}], "twentyFourHourChallenge": "...", "weeklyPractice": "..."}}
+"tags" is an array of strings, each question has "prompt" (not "question") and "correctIndex" (0, 1 or 2), and each if-then plan is an object with "context" and "plan".
+
 Output only the JSON object: no code fence, no commentary, and no "_lesson" key.
 
 <lesson>

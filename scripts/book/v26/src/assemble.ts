@@ -104,18 +104,18 @@ function picksBlock(run: VariantsRun, p: Picks): { text: string; quiz: QuizVaria
   out.push(`SUMMARY (version ${s.label}, ${s.approach})\nhook: ${s.hook}\ncounterintuition: ${s.counterintuition}\nsummary:\n${s.summary}\ntryThisNow: ${s.tryThisNow}\nmemorableLine: ${s.memorableLine}`);
   out.push(
     `EXAMPLES (version ${e.label}, ${e.approach})\n` +
-      e.examples.map((x) => `[${x.exampleId}] ${x.title} (${x.tags.join(", ")})\nscenario: ${x.scenario}\nwhatToDo: ${x.whatToDo}\nwhyItMatters: ${x.whyItMatters}`).join("\n\n"),
+      e.examples.map((x) => `[${x.exampleId}] title: ${x.title}\ntags: ${JSON.stringify(x.tags)}\nscenario: ${x.scenario}\nwhatToDo: ${x.whatToDo}\nwhyItMatters: ${x.whyItMatters}`).join("\n\n"),
   );
   out.push(
     `QUIZ (version ${q.label}, ${q.approach})\n` +
       q.questions
-        .map((x) => `[${x.questionId}] ${x.prompt}\n${x.choices.map((ch, i) => `  ${i}. ${ch}`).join("\n")}\n  KEY: ${x.correctIndex}\n  explanation: ${x.explanation}\n  bloomsLevel: ${x.bloomsLevel}`)
+        .map((x) => `[${x.questionId}] prompt: ${x.prompt}\n${x.choices.map((ch, i) => `  choices[${i}]: ${ch}`).join("\n")}\n  correctIndex: ${x.correctIndex}\n  explanation: ${x.explanation}\n  bloomsLevel: ${x.bloomsLevel}`)
         .join("\n\n"),
   );
   out.push(`REVIEW CARDS (version ${c.label}, ${c.approach})\n` + c.cards.map((x) => `[${x.cardId}] front: ${x.front}\nback: ${x.back}\ndifficulty: ${x.difficulty}`).join("\n\n"));
   out.push(
     `PRACTICE PLAN (version ${pr.label}, ${pr.approach})\ncoreSkill: ${pr.coreSkill}\n` +
-      pr.ifThenPlans.map((x, i) => `ifThenPlans[${i}]: ${x.context} / ${x.plan}`).join("\n") +
+      pr.ifThenPlans.map((x, i) => `ifThenPlans[${i}].context: ${x.context}\nifThenPlans[${i}].plan: ${x.plan}`).join("\n") +
       `\ntwentyFourHourChallenge: ${pr.twentyFourHourChallenge}\nweeklyPractice: ${pr.weeklyPractice}`,
   );
   const notes = Object.entries(p.notes).map(([k, v]) => `${k}: ${v}`);
@@ -133,15 +133,45 @@ function fixesBlock(run: VariantsRun, label: string): string {
 
 // ---------------------------------------------------------------- shape of the assembled chapter
 
-function chapterShapeErrors(raw: unknown): string[] {
+/** Why an assembled answer is unusable (a wrong field name counts: the app rejects it). A failing shape is asked for once more. */
+export function chapterShapeErrors(raw: unknown): string[] {
   if (!isObj(raw)) return ["answer must be a JSON object"];
   const errors: string[] = [];
-  for (const k of ["title", "hook", "counterintuition", "keyTakeaway", "tryThisNow"]) if (typeof raw[k] !== "string" || !raw[k]) errors.push(`${k} must be a non-empty string`);
+  const isText = (v: unknown): boolean => typeof v === "string" && v.trim() !== "";
+  const items = (v: unknown, key: string, min: number): Record<string, unknown>[] => {
+    if (!Array.isArray(v) || v.length < min || !v.every(isObj)) {
+      errors.push(`${key} must be an array of at least ${min} objects`);
+      return [];
+    }
+    return v as Record<string, unknown>[];
+  };
+  const textKeys = (o: Record<string, unknown>, keys: string[], where: string): void => {
+    for (const k of keys) if (!isText(o[k])) errors.push(`${where}.${k} must be a non-empty string`);
+  };
+  textKeys(raw, ["title", "hook", "counterintuition", "keyTakeaway", "tryThisNow"], "chapter");
   const b = raw.breakdown;
-  if (!isObj(b) || ["fastRead", "deepRead", "fullRead"].some((t) => typeof b[t] !== "string" || !b[t])) errors.push("breakdown needs fastRead, deepRead and fullRead");
-  for (const k of ["examples", "reviewCards", "memorableLines"]) if (!Array.isArray(raw[k]) || raw[k].length === 0) errors.push(`${k} must be a non-empty array`);
-  if (!isObj(raw.quiz) || !Array.isArray(raw.quiz.questions) || raw.quiz.questions.length === 0) errors.push("quiz.questions must be a non-empty array");
-  if (!isObj(raw.implementationPlan)) errors.push("implementationPlan must be an object");
+  if (!isObj(b)) errors.push("breakdown must be an object");
+  else textKeys(b, ["fastRead", "deepRead", "fullRead"], "breakdown");
+  items(raw.memorableLines, "memorableLines", 1).forEach((m, i) => textKeys(m, ["text"], `memorableLines[${i}]`));
+  items(raw.examples, "examples", 1).forEach((e, i) => {
+    textKeys(e, ["exampleId", "title", "scenario", "whatToDo", "whyItMatters"], `examples[${i}]`);
+    if (!Array.isArray(e.tags) || e.tags.length === 0 || !e.tags.every(isText)) errors.push(`examples[${i}].tags must be a non-empty array of strings`);
+  });
+  if (!isObj(raw.quiz)) errors.push("quiz must be an object");
+  else {
+    items(raw.quiz.questions, "quiz.questions", 1).forEach((q, i) => {
+      textKeys(q, ["questionId", "prompt", "explanation", "bloomsLevel"], `quiz.questions[${i}]`);
+      if (!Array.isArray(q.choices) || q.choices.length < 2 || !q.choices.every(isText)) errors.push(`quiz.questions[${i}].choices must be an array of strings`);
+      if (!Number.isInteger(q.correctIndex)) errors.push(`quiz.questions[${i}].correctIndex must be an integer`);
+    });
+  }
+  items(raw.reviewCards, "reviewCards", 1).forEach((c, i) => textKeys(c, ["cardId", "front", "back", "difficulty"], `reviewCards[${i}]`));
+  const plan = raw.implementationPlan;
+  if (!isObj(plan)) errors.push("implementationPlan must be an object");
+  else {
+    textKeys(plan, ["coreSkill", "twentyFourHourChallenge", "weeklyPractice"], "implementationPlan");
+    items(plan.ifThenPlans, "implementationPlan.ifThenPlans", 1).forEach((x, i) => textKeys(x, ["context", "plan"], `implementationPlan.ifThenPlans[${i}]`));
+  }
   if ("_lesson" in raw) errors.push("_lesson must not be in the chapter");
   return errors;
 }

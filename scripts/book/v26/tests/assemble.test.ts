@@ -195,7 +195,7 @@ test("assemble: the prompt carries the picked parts, the fix and the quiz extens
   assert.doesNotMatch(prompt, /Hook B:/);
   assert.match(prompt, /EXAMPLES \(version A, examples A\)/);
   assert.match(prompt, /QUIZ \(version E, quiz E\)/);
-  assert.match(prompt, /\[q1\] Question E0/);
+  assert.match(prompt, /\[q1\] prompt: Question E0/);
   assert.match(prompt, /REVIEW CARDS \(version E, cards E\)/);
   assert.match(prompt, /PRACTICE PLAN \(version B, practice B\)/);
   assert.match(prompt, /the picked 5 questions unchanged .* then 2 more in the same form and approach \("quiz E"\)/);
@@ -204,6 +204,9 @@ test("assemble: the prompt carries the picked parts, the fix and the quiz extens
   assert.match(prompt, /general: keep it short/);
   assert.match(prompt, /<source>\nChapter 1\. /);
   assert.match(prompt, /plus up to 2 more objects with the author's exact words/);
+  assert.match(prompt, /"examples": \[\{"exampleId": "ex01", "title": "\.\.\.", "tags": \["work"\]/);
+  assert.match(prompt, /\[q1\] prompt: Question E0/);
+  assert.match(prompt, /ifThenPlans\[0\]\.context: When I slip\nifThenPlans\[0\]\.plan: then I write it down/);
 
   // The fact check of the three lengths went out with tier labels.
   const fact = h.calls("pipe-vfactcheck");
@@ -247,6 +250,23 @@ test("assemble: a fact flag on a length, or a quotation in knowledge mode, leave
   assert.doesNotMatch(prompt, /<source>/);
   assert.equal(rk.status.stage, "open-issues");
   assert.ok(rk.status.open.some((i) => i.blocking && i.field === "hook" && /quotation not found/.test(i.text)));
+});
+
+test("assemble: an answer with the wrong field names is asked for once more; a second wrong answer fails", async () => {
+  const h = harness();
+  await generateVariants(h.ctx, 1);
+  const wrong = assembled();
+  (wrong as Record<string, unknown>).quiz = { passingScorePercent: 70, questions: wrong.quiz.questions.map(({ prompt, ...q }) => ({ ...q, question: prompt })) };
+  (wrong as Record<string, unknown>).examples = wrong.examples.map(({ tags, ...e }) => ({ ...e, category: tags[0] }));
+  h.script({ "pipe-vassemble": [{ result: wrong }, { result: assembled() }] });
+  const r = await assembleChapter(h.ctx, 1, parsePicks(PICKS_TEXT));
+  assert.equal(h.calls("pipe-vassemble").length, 2);
+  assert.equal(r.status.stage, "clean");
+
+  const h2 = harness();
+  await generateVariants(h2.ctx, 1);
+  h2.script({ "pipe-vassemble": [{ result: wrong }] });
+  await assert.rejects(assembleChapter(h2.ctx, 1, parsePicks(PICKS_TEXT)), /VARIANTS_OUTPUT_INVALID: ch01 assemble: .*quiz\.questions\[0\]\.prompt must be a non-empty string/);
 });
 
 test("assemble refuses without a variants page, and a pick with no such version", async () => {
