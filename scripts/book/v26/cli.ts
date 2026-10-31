@@ -1,5 +1,5 @@
 /** The v26 chapter tool's command line. See README.md.
- *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render|variants|assemble> --book <config.json>
+ *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render|variants|assemble|book|pack> --book <config.json>
  *      [--chapters 1,13] [--force] [--review] [--issues <findings.json>] [--finish] [--file <chapter.json> --tag <t> --out <dir>]
  *  Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget. */
 import * as fs from "node:fs";
@@ -27,8 +27,9 @@ import type { Chapter, Issue, LessonCard } from "./src/types";
 import { COMPONENTS, generateVariants, variantsDir, type Component } from "./src/variants";
 import { renderVariantsPage } from "./src/variantsRender";
 import { assembleChapter, parsePicks } from "./src/assemble";
+import { duplicateNames, fixLanded, loadExemplar, renderPack, runBookChapters } from "./src/book";
 
-const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble"] as const;
+const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack"] as const;
 type Verb = (typeof VERBS)[number];
 
 const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --book <config.json> [options]
@@ -44,6 +45,8 @@ const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --boo
   --lesson <k>      variants: which candidate lesson drives the components, 1-5 (default 1, the writer's best)
   --reference <f>   variants: a chapter JSON to fold at the bottom of the pick page for comparison
   --picks <f>       assemble: the owner's picks, the "Copy my picks" text (or JSON {picks, notes}); one chapter (--chapters N)
+  --exemplar <k>    book: the approved chapter to write against (default: the newest under <runDir>/exemplars)
+  --out <f>         pack: where the one-page reading pack goes (default <runDir>/reading/pack.html)
 Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget.
 `;
 
@@ -167,6 +170,17 @@ async function cmdCheck(ctx: PipelineCtx, chapters: number[], io: Io): Promise<n
 
 async function cmdFix(ctx: PipelineCtx, chapters: number[], findings: Finding[] | undefined, io: Io): Promise<number> {
   if (findings && chapters.length !== 1) throw new UsageError("--issues needs exactly one chapter: --chapters N");
+  if (ctx.source.mode === "knowledge") {
+    // No source text: the fix round runs on the landed chapter's open issues (an assembled or book-written chapter).
+    if (findings) throw new UsageError("--issues is not supported for a book without source text");
+    let code = 0;
+    for (const n of chapters) {
+      const st = await fixLanded(ctx, n);
+      printStatus(io, st);
+      if (st.stage !== "clean") code = 1;
+    }
+    return code;
+  }
   let code = 0;
   for (const n of chapters) {
     const dir = chDir(ctx, n);
@@ -383,6 +397,37 @@ async function cmdAssemble(ctx: PipelineCtx, chapters: number[], picksFile: stri
   return r.status.stage === "clean" ? 0 : 1;
 }
 
+/** Every chapter in the exemplar's form: lessons, write, checks, fact check, key solver, one fix round, land. */
+async function cmdBook(ctx: PipelineCtx, chapters: number[], opts: { exemplar?: string; force: boolean }, io: Io): Promise<number> {
+  let exemplar: number | undefined;
+  if (opts.exemplar !== undefined) {
+    if (!/^\d+$/.test(opts.exemplar)) throw new UsageError(`--exemplar must be a chapter number (got "${opts.exemplar}")`);
+    exemplar = Number(opts.exemplar);
+  }
+  const ex = loadExemplar(ctx, exemplar);
+  io.out(`exemplar: ${chName(ex.chapter)} (${COMPONENTS.map((c) => `${c} ${ex.picks[c].label}`).join(", ")}); ${ex.names.length} names off limits\n`);
+  const statuses = await runBookChapters(ctx, chapters, { exemplar: ex.chapter, force: opts.force });
+  for (const s of statuses) {
+    io.out(`${chName(s.chapter)}  ${s.stage}${s.fixed ? " (after one fix round)" : ""}, spend ${money(s.spend)}: ${clip(s.lesson, 90)}\n`);
+    listIssues(io, s.open.filter((i) => i.blocking));
+  }
+  const dups = duplicateNames(ctx, ex);
+  if (dups.length > 0) io.out(`names used in more than one chapter: ${dups.map((d) => `${d.name} (${d.chapters.join(", ")})`).join("; ")}\n`);
+  const clean = statuses.filter((s) => s.stage === "clean").length;
+  io.out(`${clean} of ${statuses.length} chapters clean; ledger ${money(ledgerTotal(ctx.ledgerPath))} of ${money(ctx.config.budgetUsd)}; reading pages under ${path.join(ctx.config.runDir, "reading")}\n`);
+  return clean === statuses.length ? 0 : 1;
+}
+
+/** One reading page with the given chapters, for the owner to read side by side. */
+function cmdPack(ctx: PipelineCtx, chapters: number[], out: string | undefined, io: Io): number {
+  const file = out ?? path.join(ctx.config.runDir, "reading", "pack.html");
+  const html = renderPack(ctx, chapters, `${ctx.config.title}: chapters ${chapters.join(", ")}`);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, html);
+  io.out(`${file}\n`);
+  return 0;
+}
+
 // ---------------------------------------------------------------- main
 
 export async function main(argv: string[], io: Io = { out: (s) => void process.stdout.write(s), err: (s) => void process.stderr.write(s) }): Promise<number> {
@@ -406,6 +451,7 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
           lesson: { type: "string" },
           reference: { type: "string" },
           picks: { type: "string" },
+          exemplar: { type: "string" },
         },
       });
     } catch (e) {
@@ -423,6 +469,7 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
       if (values[k] !== undefined && verb !== "variants") throw new UsageError(`--${k} only goes with the variants command`);
     }
     if (values.picks !== undefined && verb !== "assemble") throw new UsageError("--picks only goes with the assemble command");
+    if (values.exemplar !== undefined && verb !== "book") throw new UsageError("--exemplar only goes with the book command");
     const findings = values.issues === undefined ? undefined : readFindings(values.issues);
 
     const ctx = makeCtx(loadBookConfig(values.book), { review: values.review === true });
@@ -448,6 +495,10 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
         return await guarded(ctx, () => cmdVariants(ctx, chapters, { only: values.only, lesson: values.lesson, reference: values.reference, force }, io));
       case "assemble":
         return await guarded(ctx, () => cmdAssemble(ctx, chapters, values.picks, io));
+      case "book":
+        return await guarded(ctx, () => cmdBook(ctx, chapters, { exemplar: values.exemplar, force }, io));
+      case "pack":
+        return cmdPack(ctx, chapters, values.out, io);
     }
   } catch (e) {
     if (e instanceof UsageLimitError || e instanceof BudgetError) {

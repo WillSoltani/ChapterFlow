@@ -223,18 +223,22 @@ export function summaryDetIssues(variants: SummaryVariant[], authorText: string 
 
 // ---------------------------------------------------------------- calls
 
+/** One model call whose answer must have a shape; a wrong shape is asked for once more under a ":reshape" step.
+ *  `outPrefix` (default <variants dir>/calls/<step>) is where the envelope and answer land; `ledgerStep` (default
+ *  "variants-<step>") is the ledger's step name. */
 export async function callShaped(
   ctx: PipelineCtx,
   n: number,
-  o: { role: RoleConfig; prompt: string; step: string; kind: "write" | "fix" | "other"; errors: (raw: unknown) => string[] },
+  o: { role: RoleConfig; prompt: string; step: string; kind: "write" | "fix" | "other"; errors: (raw: unknown) => string[]; outPrefix?: string; ledgerStep?: string },
 ): Promise<unknown> {
-  const dir = variantsDir(ctx, n);
+  const base = o.outPrefix ?? path.join(variantsDir(ctx, n), "calls", o.step);
+  const ledger = o.ledgerStep ?? `variants-${o.step}`;
   for (let attempt = 0; ; attempt++) {
-    const step = attempt === 0 ? o.step : `${o.step}:reshape`;
-    const r = await call(ctx, { role: o.role, prompt: o.prompt, step: `variants-${step}`, n, kind: o.kind, outPrefix: path.join(dir, "calls", step) });
+    const outPrefix = attempt === 0 ? base : `${base}.reshape`;
+    const r = await call(ctx, { role: o.role, prompt: o.prompt, step: attempt === 0 ? ledger : `${ledger}:reshape`, n, kind: o.kind, outPrefix });
     const errors = r.json === null ? ["the answer is not JSON"] : o.errors(r.json);
     if (errors.length === 0) return r.json;
-    if (attempt >= 1) throw new CallFailedError(`VARIANTS_OUTPUT_INVALID: ${chapterName(n)} ${o.step}: ${errors.join("; ")} (raw answer: ${path.join(dir, "calls", step)}.result.txt)`);
+    if (attempt >= 1) throw new CallFailedError(`VARIANTS_OUTPUT_INVALID: ${chapterName(n)} ${o.step}: ${errors.join("; ")} (raw answer: ${outPrefix}.result.txt)`);
   }
 }
 
@@ -309,6 +313,20 @@ function spendOn(ctx: PipelineCtx, n: number): number {
   return round4(readLedger(ctx.ledgerPath).filter((r) => r.chapter === label && r.step.startsWith("variants-")).reduce((s, r) => s + r.cost, 0));
 }
 
+/** The five-candidate lessons prompt; `earlierLessons` are off limits (the book's other chapters). */
+export function lessonsPrompt(ctx: PipelineCtx, n: number, earlierLessons: string[]): string {
+  const titles = Object.fromEntries(ctx.source.spans.map((s) => [s.chapterNumber, s.chapterTitle]));
+  const { SOURCE_RULES, EVIDENCE_RULE, SOURCE_BLOCK } = sourceVars(ctx, n);
+  return renderTemplate(loadPrompt("variants-lessons"), {
+    BOOK_SECTION: ctx.bookSection,
+    HEADER: chapterHeader(n, titles, earlierLessons),
+    SOURCE_RULES,
+    EVIDENCE_RULE,
+    SOURCE_BLOCK,
+    PLAIN: loadPrompt("variants-plain"),
+  });
+}
+
 // ---------------------------------------------------------------- generateVariants
 
 export async function generateVariants(ctx: PipelineCtx, n: number, opts: VariantsOptions = {}): Promise<VariantsRun> {
@@ -318,20 +336,11 @@ export async function generateVariants(ctx: PipelineCtx, n: number, opts: Varian
   const force = opts.force === true;
   const wanted = new Set<Component>(opts.only ?? COMPONENTS);
   const plain = loadPrompt("variants-plain");
-  const titles = Object.fromEntries(ctx.source.spans.map((s) => [s.chapterNumber, s.chapterTitle]));
 
   // 1. The lesson: five candidates, best first.
   let lessons = readJson<{ lessons: LessonCandidate[] }>(file("lessons"))?.lessons ?? null;
   if (lessons === null || (force && opts.only === undefined)) {
-    const { SOURCE_RULES, EVIDENCE_RULE, SOURCE_BLOCK } = sourceVars(ctx, n);
-    const prompt = renderTemplate(loadPrompt("variants-lessons"), {
-      BOOK_SECTION: ctx.bookSection,
-      HEADER: chapterHeader(n, titles, []),
-      SOURCE_RULES,
-      EVIDENCE_RULE,
-      SOURCE_BLOCK,
-      PLAIN: plain,
-    });
+    const prompt = lessonsPrompt(ctx, n, []);
     const raw = (await callShaped(ctx, n, { role: ctx.config.writer, prompt, step: "lessons", kind: "write", errors: lessonsShapeErrors })) as { lessons: LessonCandidate[] };
     lessons = raw.lessons;
     writeJson(file("lessons"), { lessons });

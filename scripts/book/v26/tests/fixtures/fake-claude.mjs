@@ -25,6 +25,7 @@ const REAL_TEMPLATES = [
   [/^You are writing five versions of the practice plan/, "pipe-vpractice"],
   [/^You are the fact checker for the summary variants/, "pipe-vfactcheck"],
   [/^You are assembling one ChapterFlow chapter/, "pipe-vassemble"],
+  [/^You are writing one chapter of a ChapterFlow book in the form of a chapter the owner approved/, "pipe-bwrite"],
   [/writing one chapter/, "pipe-write"],
   [/fact checker/, "pipe-factcheck"],
   [/taking the quiz/, "pipe-keysolve"],
