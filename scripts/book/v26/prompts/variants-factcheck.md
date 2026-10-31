@@ -1,4 +1,4 @@
-You are the fact checker for five summary variants of one ChapterFlow chapter. The chapter's SOURCE text is between <source> tags and is the only authority for the book's people and events; the block headed EDITOR'S NOTES inside it was written by a later editor, not the author. The five SUMMARIES are between <summaries> tags, each labelled [A] to [E], and each has a hook, counterintuition, summary, tryThisNow and memorableLine. The lesson they all teach is between <lesson> tags.
+You are the fact checker for the summary variants of one ChapterFlow chapter. The chapter's SOURCE text is between <source> tags and is the only authority for the book's people and events; the block headed EDITOR'S NOTES inside it was written by a later editor, not the author. The SUMMARIES are between <summaries> tags, each with its label in brackets: a version letter such as [A], or a length such as [fullRead]. A labelled block holds a hook, counterintuition, summary, tryThisNow and memorableLine, or one summary on its own. The lesson they all teach is between <lesson> tags.
 
 Hunt, in every sentence about the book's people and events, for these five error kinds:
 1. WHO: an action, remark, opinion or discovery credited to the wrong person.
@@ -12,8 +12,8 @@ Plain modern retelling outside quotation marks is never a WORDS error; judge it 
 
 @@KNOWN_TRAPS@@
 
-Output only this JSON (no code fence). List only problems; a variant with none has no entries. "chapterText" is copied exactly from the variant. "sourceText" is copied exactly from the source, up to 40 words, or "none" when the source says nothing on the point.
-{"sentencesChecked": <int>, "issues": [ {"variant": "A", "kind": "WHO|WHY|WHEN/ORDER|HOW MUCH|WORDS|OTHER", "field": "summary|hook|counterintuition|tryThisNow|memorableLine", "chapterText": "...", "verdict": "CONTRADICTED|UNSUPPORTED", "sourceText": "...", "fix": "..."} ]}
+Output only this JSON (no code fence). List only problems; a block with none has no entries. "chapterText" is copied exactly from the variant. "sourceText" is copied exactly from the source, up to 40 words, or "none" when the source says nothing on the point.
+{"sentencesChecked": <int>, "issues": [ {"variant": "<the label>", "kind": "WHO|WHY|WHEN/ORDER|HOW MUCH|WORDS|OTHER", "field": "summary|hook|counterintuition|tryThisNow|memorableLine", "chapterText": "...", "verdict": "CONTRADICTED|UNSUPPORTED", "sourceText": "...", "fix": "..."} ]}
 
 <lesson>
 @@LESSON@@

@@ -86,8 +86,35 @@ function role(v: unknown, field: string, base: string): RoleConfig {
   }
   // A bin with no "/" is a command looked up on PATH ("claude"), so it must not be turned into a path.
   const rawBin = expandHome(str(o.bin, `${field}.bin`));
-  const bin = rawBin.includes("/") ? resolveFrom(base, rawBin) : rawBin;
+  const bin = rawBin.includes("/") ? expandBinGlob(resolveFrom(base, rawBin), `${field}.bin`) : rawBin;
   return { bin, model: str(o.model, `${field}.model`), effort: effort as Effort };
+}
+
+/** Natural version order: "2.1.311" sorts after "2.1.301" and after "2.1.9". */
+function versionKey(name: string): number[] {
+  return (name.match(/\d+/g) ?? []).map(Number);
+}
+
+/** One path segment may hold a "*" (for example the VS Code extension folder, whose name carries the version and changes on
+ *  every update): the newest matching folder wins, by version order. A glob that matches nothing is a config error. */
+export function expandBinGlob(p: string, field = "bin"): string {
+  const parts = p.split("/");
+  const i = parts.findIndex((seg) => seg.includes("*"));
+  if (i < 0) return p;
+  const parent = parts.slice(0, i).join("/") || "/";
+  const re = new RegExp(`^${parts[i].split("*").map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join(".*")}$`);
+  const matches = fs.existsSync(parent) ? fs.readdirSync(parent).filter((name) => re.test(name)) : [];
+  if (matches.length === 0) invalid(field, `nothing matches ${parts[i]} under ${parent}`);
+  matches.sort((a, b) => {
+    const ka = versionKey(a);
+    const kb = versionKey(b);
+    for (let k = 0; k < Math.max(ka.length, kb.length); k++) {
+      const d = (ka[k] ?? -1) - (kb[k] ?? -1);
+      if (d !== 0) return d;
+    }
+    return a.localeCompare(b);
+  });
+  return expandBinGlob([...parts.slice(0, i), matches[matches.length - 1], ...parts.slice(i + 1)].join("/"), field);
 }
 
 function resolveFrom(base: string, p: string): string {

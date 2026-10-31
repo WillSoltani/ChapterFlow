@@ -1,5 +1,5 @@
 /** The v26 chapter tool's command line. See README.md.
- *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render|variants> --book <config.json>
+ *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render|variants|assemble> --book <config.json>
  *      [--chapters 1,13] [--force] [--review] [--issues <findings.json>] [--finish] [--file <chapter.json> --tag <t> --out <dir>]
  *  Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget. */
 import * as fs from "node:fs";
@@ -26,8 +26,9 @@ import { page, renderChapter } from "./src/render";
 import type { Chapter, Issue, LessonCard } from "./src/types";
 import { COMPONENTS, generateVariants, variantsDir, type Component } from "./src/variants";
 import { renderVariantsPage } from "./src/variantsRender";
+import { assembleChapter, parsePicks } from "./src/assemble";
 
-const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants"] as const;
+const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble"] as const;
 type Verb = (typeof VERBS)[number];
 
 const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --book <config.json> [options]
@@ -42,6 +43,7 @@ const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --boo
   --only <list>     variants: components to (re)generate, from summary,examples,quiz,cards,practice (default all)
   --lesson <k>      variants: which candidate lesson drives the components, 1-5 (default 1, the writer's best)
   --reference <f>   variants: a chapter JSON to fold at the bottom of the pick page for comparison
+  --picks <f>       assemble: the owner's picks, the "Copy my picks" text (or JSON {picks, notes}); one chapter (--chapters N)
 Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget.
 `;
 
@@ -362,6 +364,25 @@ async function cmdVariants(
   return 0;
 }
 
+/** The full chapter from the owner's picks: one writer call, the checks, final.json, the reading page and the exemplar. */
+async function cmdAssemble(ctx: PipelineCtx, chapters: number[], picksFile: string | undefined, io: Io): Promise<number> {
+  const [n] = chapters;
+  if (chapters.length !== 1 || n === undefined) throw new UsageError("assemble needs exactly one chapter: --chapters N");
+  if (picksFile === undefined) throw new UsageError("assemble needs --picks <file> (the \"Copy my picks\" text)");
+  let picks;
+  try {
+    picks = parsePicks(fs.readFileSync(picksFile, "utf8"));
+  } catch (e) {
+    throw new UsageError(`--picks ${picksFile}: ${(e as Error).message}`);
+  }
+  const r = await assembleChapter(ctx, n, picks);
+  io.out(`${chName(n)}: assembled from ${COMPONENTS.map((c) => `${c} ${picks.picks[c]}`).join(", ")}\n`);
+  io.out(`${chName(n)}: ${r.status.stage}; ${r.status.open.filter((i) => i.blocking).length} blocking, ${r.status.open.filter((i) => !i.blocking).length} reported; spend ${money(r.status.spend)}\n`);
+  listIssues(io, r.status.open);
+  io.out(`${r.files.final}\n${r.files.reading}\n${r.files.exemplar}\n`);
+  return r.status.stage === "clean" ? 0 : 1;
+}
+
 // ---------------------------------------------------------------- main
 
 export async function main(argv: string[], io: Io = { out: (s) => void process.stdout.write(s), err: (s) => void process.stderr.write(s) }): Promise<number> {
@@ -384,6 +405,7 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
           only: { type: "string" },
           lesson: { type: "string" },
           reference: { type: "string" },
+          picks: { type: "string" },
         },
       });
     } catch (e) {
@@ -400,6 +422,7 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
     for (const k of ["only", "lesson", "reference"] as const) {
       if (values[k] !== undefined && verb !== "variants") throw new UsageError(`--${k} only goes with the variants command`);
     }
+    if (values.picks !== undefined && verb !== "assemble") throw new UsageError("--picks only goes with the assemble command");
     const findings = values.issues === undefined ? undefined : readFindings(values.issues);
 
     const ctx = makeCtx(loadBookConfig(values.book), { review: values.review === true });
@@ -423,6 +446,8 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
         return cmdRender(ctx, chapters, io);
       case "variants":
         return await guarded(ctx, () => cmdVariants(ctx, chapters, { only: values.only, lesson: values.lesson, reference: values.reference, force }, io));
+      case "assemble":
+        return await guarded(ctx, () => cmdAssemble(ctx, chapters, values.picks, io));
     }
   } catch (e) {
     if (e instanceof UsageLimitError || e instanceof BudgetError) {

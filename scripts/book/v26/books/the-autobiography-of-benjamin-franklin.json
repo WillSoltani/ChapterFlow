@@ -42,17 +42,17 @@
     ]
   },
   "writer": {
-    "bin": "~/.vscode/extensions/anthropic.claude-code-2.1.301-darwin-arm64/resources/native-binary/claude",
+    "bin": "~/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude",
     "model": "claude-opus-5-5",
     "effort": "high"
   },
   "checker": {
-    "bin": "~/.vscode/extensions/anthropic.claude-code-2.1.301-darwin-arm64/resources/native-binary/claude",
+    "bin": "~/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude",
     "model": "claude-opus-5-5",
     "effort": "high"
   },
   "solver": {
-    "bin": "~/.vscode/extensions/anthropic.claude-code-2.1.301-darwin-arm64/resources/native-binary/claude",
+    "bin": "~/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude",
     "model": "claude-sonnet-5",
     "effort": "medium"
   },

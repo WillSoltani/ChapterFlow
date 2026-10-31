@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 
 import { main } from "../cli";
 import { CallFailedError } from "../src/call";
-import { loadBookConfig } from "../src/config";
+import { expandBinGlob, loadBookConfig } from "../src/config";
 import { readLedger } from "../src/ledger";
 import { makeCtx, writeChapter, type PipelineCtx } from "../src/pipeline";
 import {
@@ -384,7 +384,7 @@ test("knowledge mode: the prompts carry the no-source rules, no <source> block, 
   assert.match(h.calls("pipe-vlessons")[0].prompt, /short descriptions, in your own words/);
   assert.match(h.calls("pipe-vsummary")[0].prompt, /Never quote the author or the book/);
   const fact = h.calls("pipe-vfactcheck")[0].prompt;
-  assert.match(fact, /^You are the fact checker for five summary variants of one ChapterFlow chapter, without the source text/);
+  assert.match(fact, /^You are the fact checker for the summary variants of one ChapterFlow chapter, without the source text/);
   assert.match(fact, /THE BOOK: a test memoir/);
   assert.doesNotMatch(fact, /<source>/);
   // Only B kept its quotation, and with no source text that is flagged.
@@ -401,7 +401,7 @@ test("knowledge mode: write refuses with KNOWLEDGE_MODE_UNSUPPORTED; text mode i
   await generateVariants(t.ctx, 1);
   assert.match(t.calls("pipe-vsummary")[0].prompt, /<source>\nChapter 1\. /);
   assert.match(t.calls("pipe-vlessons")[0].prompt, /copied word for word from the source/);
-  assert.match(t.calls("pipe-vfactcheck")[0].prompt, /^You are the fact checker for five summary variants of one ChapterFlow chapter\. /);
+  assert.match(t.calls("pipe-vfactcheck")[0].prompt, /^You are the fact checker for the summary variants of one ChapterFlow chapter\. /);
 });
 
 test("config: a book needs exactly one of source and chapters, and chapters must be unique", () => {
@@ -426,6 +426,19 @@ test("config: a book needs exactly one of source and chapters, and chapters must
   const ok = loadBookConfig(write("ok", { chapters: [{ number: 2, title: "Two" }, { number: 1, title: "One" }] }));
   assert.deepEqual(ok.chapters, [{ number: 2, title: "Two" }, { number: 1, title: "One" }]);
   assert.equal(ok.source, undefined);
+});
+
+test("a bin glob resolves to the newest version folder, and a glob with no match is a config error", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "v26-bin-glob-"));
+  roots.push(dir);
+  for (const v of ["2.1.9", "2.1.301", "2.1.311"]) {
+    const d = path.join(dir, `anthropic.claude-code-${v}-darwin-arm64`, "resources", "native-binary");
+    fs.mkdirSync(d, { recursive: true });
+    fs.writeFileSync(path.join(d, "claude"), "");
+  }
+  assert.equal(expandBinGlob(path.join(dir, "anthropic.claude-code-*", "resources", "native-binary", "claude")), path.join(dir, "anthropic.claude-code-2.1.311-darwin-arm64", "resources", "native-binary", "claude"));
+  assert.equal(expandBinGlob("/usr/bin/claude"), "/usr/bin/claude");
+  assert.throws(() => expandBinGlob(path.join(dir, "nothing-*", "claude")), /CONFIG_INVALID: bin: nothing matches nothing-\*/);
 });
 
 test("the committed 48 Laws config is a knowledge-mode book with 48 titled chapters", () => {

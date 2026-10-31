@@ -222,7 +222,7 @@ export function summaryDetIssues(variants: SummaryVariant[], authorText: string 
 
 // ---------------------------------------------------------------- calls
 
-async function callShaped(
+export async function callShaped(
   ctx: PipelineCtx,
   n: number,
   o: { role: RoleConfig; prompt: string; step: string; kind: "write" | "fix" | "other"; errors: (raw: unknown) => string[] },
@@ -237,7 +237,7 @@ async function callShaped(
   }
 }
 
-function lessonText(l: LessonCandidate): string {
+export function lessonText(l: LessonCandidate): string {
   const { whyThisOne: _why, ...card } = l;
   return JSON.stringify(card, null, 2);
 }

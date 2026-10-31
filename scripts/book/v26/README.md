@@ -112,7 +112,9 @@ Files under `<runDir>/chNN/variants/`: `lessons.json`, `summary.json`, `examples
 
 Cost per chapter: 7 calls, about $5 to $8, about 15 minutes.
 
-What comes after the pick (not built yet): `assemble` builds the full chapter from the picks and runs `check`; the picks, the rejected versions and the owner's notes become the chapter's exemplar, which the writer prompt carries for the rest of the book.
+**After the pick: `assemble`.** `assemble --book <cfg> --chapters N --picks <file>` takes the "Copy my picks" text (or JSON `{picks, notes}`) and makes one writer call that copies the picked parts into a full chapter: three lengths of the picked summary (same opener, path and ending), the picked examples, cards and plan unchanged, the picked quiz extended to the shape's count in the same form, and the fact-check fixes on the picked summary applied. Then the 0-call checks and a fact check of the three lengths run. The chapter lands as `<runDir>/chNN/final.json` with `status.json` (so `status` and `render` work), a reading page `<runDir>/reading/chNN.html`, and `<runDir>/exemplars/chNN.json` (the picks, the chosen and rejected versions and the owner's notes, for the writer prompt of later chapters). Nothing is fixed automatically: open issues are listed for the owner. Exit 0 when clean, 1 with open issues.
+
+**Books without source text (knowledge mode).** A config may give `chapters: [{number, title}]` instead of `source`. Then `variants` and `assemble` work from the writer's own knowledge of the book, quotations are forbidden, and the fact check is a consistency check against the model's knowledge of the book (`prompts/variants-factcheck-knowledge.md`). `write`, `check`, `fix` and `eval` refuse in this mode.
 
 ## Tests
 
