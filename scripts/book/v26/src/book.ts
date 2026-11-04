@@ -703,8 +703,12 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
     const mentions = (c: Chapter): number => styleNames.reduce((s, nm) => s + (TIERS.map((t) => c.breakdown[t]).join("\n").match(new RegExp(wholeWord(nm).source, "gu")) ?? []).length, 0);
     r.reported.push({ source: "det", blocking: false, field: "breakdown", text: `style: the invented people are named ${mentions(applied)} times in the summaries, down from ${mentions(chapter)}` });
   }
-  if (!factCheck) r.reported.push(...status.open.filter((i) => !i.blocking && i.source === "fact"));
-  if (!keySolve) r.reported.push(...status.open.filter((i) => !i.blocking && i.source === "keysolve"));
+  // A check that was not rolled again leaves its earlier verdicts standing, open flags included: a style or rename round
+  // cannot clear a fact or key flag it never looked at.
+  for (const [skip, source] of [[!factCheck, "fact"], [!keySolve, "keysolve"]] as const) {
+    if (!skip) continue;
+    for (const i of status.open.filter((x) => x.source === source)) (i.blocking ? r.blocking : r.reported).push(i);
+  }
   // A rename that still landed on a used name is reported, so the next fix pass sees it.
   const before = new Set(extractNames(chapter, lesson.storyNames, "invented"));
   for (const name of extractNames(applied, lesson.storyNames, "invented")) {

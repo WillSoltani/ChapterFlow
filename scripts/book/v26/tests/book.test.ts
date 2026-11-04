@@ -487,3 +487,14 @@ test("fixLanded style pass: the style prompt names the invented people, runs wit
   await fixLanded(h2.ctx, 2, [{ field: "hook", text: "the hook repeats another chapter's hook" }], { style: true });
   assert.match(h2.calls("pipe-fix")[0].prompt, /ISSUES:\n1\. \[hook\] the hook repeats another chapter's hook/);
 });
+
+test("fixLanded style pass: an open fact flag the skipped checker never looked at stays open", async () => {
+  const h = harness();
+  const flag: Issue = { source: "fact", blocking: true, field: "breakdown.deepRead", text: "WHY (UNSUPPORTED): \"wB20\" | book: none | fix: cut it" };
+  landed(h, 2, chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] }), [flag]);
+  h.script({ "pipe-fix": [{ result: { edits: [{ field: "hook", find: "What does Jonah B tell", replace: "What does he B tell" }], keyChanges: [], declined: [] } }] });
+  const st = await fixLanded(h.ctx, 2, [], { style: true });
+  assert.equal(st.stage, "open-issues");
+  assert.ok(st.open.some((i) => i.source === "fact" && i.blocking), JSON.stringify(st.open));
+  assert.equal(h.calls("pipe-vfactcheck").length, 0);
+});
