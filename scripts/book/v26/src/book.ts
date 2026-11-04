@@ -618,7 +618,8 @@ export async function fixLanded(ctx: PipelineCtx, n: number): Promise<ChapterSta
   const status = readJson<ChapterStatus>(path.join(dir, "status.json"));
   const lesson = readJson<LessonCard>(path.join(dir, "lesson.json"));
   if (!chapter || !status || !lesson) throw new Error(`NO_FINAL_CHAPTER: ${chapterName(n)} has no final.json, status.json and lesson.json`);
-  const issues = status.open.filter((i) => i.blocking && !i.text.startsWith("shape:"));
+  // Blocking issues, plus a name reused from another chapter: a rename is mechanical and safe, so it rides along.
+  const issues = status.open.filter((i) => (i.blocking && !i.text.startsWith("shape:")) || /^variety: ".+" is already used in another chapter/.test(i.text));
   if (issues.length === 0) return status;
   const bdir = path.join(dir, "book");
   const round = (status.round ?? 0) + 1;
