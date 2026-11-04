@@ -293,6 +293,16 @@ function readerLeaves(c: Chapter): Record<string, string[]> {
   return out;
 }
 
+/** First names from many places, for a rename: the fix call picks from the ones this book has not used yet. A model told
+ *  "pick from these" obeys; one told "avoid these two hundred" does not. */
+const NAME_POOL = (
+  "Adaeze Aiko Alejandra Amadou Anders Aroha Asel Bao Beatriz Benedek Catalina Cyrus Dagny Damaris Dilnoza Eitan Elif Emeka Enzo Fatou " +
+  "Fenna Gael Giulia Gudrun Hamid Hinata Idris Ilse Isko Jelena Joaquín Jorunn Kaede Kamau Kasia Keanu Lior Lucero Maarten Malak Manon " +
+  "Matteo Mehmet Mirela Nadir Nikolai Oona Orla Paulo Petra Quynh Rosalind Sachin Selin Sigrid Simo Suki Tadeo Tariq Thandi Tomás Tove " +
+  "Umar Valentina Vikram Wren Xiomara Yara Yosef Zanele Zoran Ayla Bastien Chiamaka Dario Esperanza Farida Hugo Leandro Maren Nuru Oskar " +
+  "Priyanka Rutger Saoirse Tendai Ulla Veda Wiktor Yemi Zélie"
+).split(" ");
+
 /** Matches `name` as a whole word: letters, digits and underscores on either side do not count. */
 function wholeWord(name: string): RegExp {
   return new RegExp(`(?<![\\p{L}\\p{N}_])${escapeRe(name)}(?![\\p{L}\\p{N}_])`, "u");
@@ -664,10 +674,13 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
   const exemplarFile = path.join(ctx.config.runDir, "exemplars", `${chapterName(n)}.json`);
   const ex: Exemplar = fs.existsSync(exemplarFile) ? { ...loadExemplar(ctx, n), chapterJson: emptyChapter(), names: [], sceneNames: [] } : loadExemplar(ctx);
   const renameOnly = issues.every((i) => VARIETY.test(i.text));
+  const used = new Set<string>([...ex.names, ...Object.values(ledger.chapters).flatMap((v) => v.names)]);
   if (issues.some((i) => VARIETY.test(i.text))) {
-    // The fix call cannot see the ledger, so a rename would often land on a name another chapter uses.
-    const used = new Set<string>([...ex.names, ...Object.values(ledger.chapters).flatMap((v) => v.names)]);
-    issues.push({ source: "det", blocking: false, field: "(chapter)", text: `for each rename above, choose a first name that fits the scene and is not already used in this book: ${[...used].sort().join(", ")}` });
+    // The fix call cannot see the ledger, so a rename would land on a name another chapter uses; offered a dozen free
+    // names (rotated by chapter so neighbours get different ones) it picks one of them.
+    const free = NAME_POOL.filter((x) => !used.has(x));
+    const offer = free.length > 0 ? Array.from({ length: Math.min(12, free.length) }, (_, i) => free[(n * 7 + i) % free.length]) : [];
+    issues.push({ source: "det", blocking: false, field: "(chapter)", text: `for each rename above, replace the name everywhere it appears with one of these names this book has not used yet (or another name that fits the scene and that no other chapter of this book uses): ${offer.join(", ")}` });
   }
   const bdir = path.join(dir, "book");
   const round = (status.round ?? 0) + 1;
@@ -680,6 +693,11 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
   const r = await checkRound(ctx, n, round, applied, lesson, ex, bdir, { factCheck, keySolve });
   if (!factCheck) r.reported.push(...status.open.filter((i) => !i.blocking && i.source === "fact"));
   if (!keySolve) r.reported.push(...status.open.filter((i) => !i.blocking && i.source === "keysolve"));
+  // A rename that still landed on a used name is reported, so the next fix pass sees it.
+  const before = new Set(extractNames(chapter, lesson.storyNames, "invented"));
+  for (const name of extractNames(applied, lesson.storyNames, "invented")) {
+    if (!before.has(name) && used.has(name)) r.reported.push({ source: "det", blocking: false, field: "(chapter)", text: `variety: the rename landed on "${name}", which another chapter of this book uses` });
+  }
   const label = `${ctx.config.bookId}/${chapterName(n)}`;
   const spend = round4(readLedger(ctx.ledgerPath).filter((x) => x.chapter === label).reduce((s, x) => s + x.cost, 0));
   const next: ChapterStatus & { fixed: true } = {

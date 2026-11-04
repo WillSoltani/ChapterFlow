@@ -417,7 +417,10 @@ test("fixLanded: a name an earlier chapter used first is renamed on the ledger's
   const fixPrompt = h.calls("pipe-fix")[0].prompt;
   assert.match(fixPrompt, /\[hook\] variety: "Jonah" is already used in another chapter of this book/);
   assert.match(fixPrompt, /\[examples\.ex01\] variety: "Jonah"/);
-  assert.match(fixPrompt, /not already used in this book: Jonah, Lena, Marcus, Maya, Nia, Omar, Priya, Teo/);
+  assert.match(fixPrompt, /replace the name everywhere it appears with one of these names this book has not used yet/);
+  const offered = /not used yet \(or [^:]+\): ([^\n]+)/.exec(fixPrompt)?.[1]?.split(", ") ?? [];
+  assert.equal(offered.length, 12, fixPrompt);
+  for (const x of ["Jonah", "Lena", "Omar", "Nia", "Teo", "Maya", "Priya", "Marcus"]) assert.ok(!offered.includes(x), offered.join(","));
   // A rename changes no fact and no key: the checker and the solver are not rolled again.
   assert.equal(h.calls("pipe-vfactcheck").length, 0);
   assert.equal(h.calls("pipe-keysolve").length, 0);
