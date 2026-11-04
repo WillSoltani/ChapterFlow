@@ -891,10 +891,12 @@ test("prompt vocabulary in reader text is reported, not blocking", async () => {
   const { runChecks } = await import("../src/checks");
   const base = JSON.parse(fs.readFileSync(fileURLToPath(new URL("./fixtures/reference-chapter.json", import.meta.url)), "utf8"));
   base.quiz.questions[0].explanation = "The first choice acts out the wrong belief, and the second is a near-miss.";
+  base.reviewCards[0].back = "The lesson is softer in only one way: you may aim higher later.";
   const lesson = { lesson: base.keyTakeaway, wrongBelief: "w", keyPhrase: "k", hookQuestion: "h", storyNames: [], evidence: [] };
   const r = await runChecks(base, lesson, { n: 1, book: { bookId: "b", title: "T", author: "A", categories: [], tags: [], bookType: "memoir" }, authorText: "a fault named is half mended", shape: { examples: 1, quizQuestions: 1, choices: 3, reviewCards: 1, memorableLines: 1, ifThenPlans: 1, fastRead: [1, 999], deepRead: [1, 999], fullRead: [1, 999] }, earlierLessons: [] });
   const leaks = r.reported.filter((i) => /prompt vocabulary/.test(i.text));
-  assert.equal(leaks.length, 1, JSON.stringify(r.reported));
+  assert.equal(leaks.length, 2, JSON.stringify(r.reported));
   assert.match(leaks[0].text, /"acts out"/);
+  assert.match(leaks[1].text, /"The lesson is softer"/);
   assert.ok(!r.blocking.some((i) => /prompt vocabulary/.test(i.text)));
 });

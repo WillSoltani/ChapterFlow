@@ -622,13 +622,16 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
 }
 
 /** One fix call on the given issues (smallest find/replace edits, key changes); the edited chapter, or null when nothing applied. */
-async function fixRound(ctx: PipelineCtx, n: number, chapter: Chapter, lesson: LessonCard, issues: Issue[], bdir: string, round: number): Promise<Chapter | null> {
+async function fixRound(ctx: PipelineCtx, n: number, chapter: Chapter, lesson: LessonCard, issues: Issue[], bdir: string, round: number, opts: { style?: { names: string[] } } = {}): Promise<Chapter | null> {
   const knowledge = ctx.source.mode === "knowledge";
-  const issuesText = issues.map((i, k) => `${k + 1}. [${i.field ?? "(chapter)"}] ${i.text}`).join("\n");
-  const fixPrompt = knowledge
-    ? renderTemplate(loadPrompt("fix-knowledge"), { BOOK_SECTION: ctx.bookSection, ISSUES: issuesText, LESSON: JSON.stringify(lesson, null, 2), CHAPTER: readerText(chapter), KEYS: keysBlock(ctx, n) })
-    : renderTemplate(loadPrompt("fix"), { ISSUES: issuesText, LESSON: JSON.stringify(lesson, null, 2), CHAPTER: readerText(chapter), SOURCE: writerFormText(spanText(ctx.source, n)) });
-  const fixRaw = await callShaped(ctx, n, { role: ctx.config.writer, prompt: fixPrompt, step: `r${round}.fix`, kind: "fix", errors: (v) => (isObj(v) ? [] : ["answer must be an object"]), outPrefix: path.join(bdir, "calls", `r${round}.fix`), ledgerStep: "book-fix" });
+  const issuesText = issues.length > 0 ? issues.map((i, k) => `${k + 1}. [${i.field ?? "(chapter)"}] ${i.text}`).join("\n") : "(none)";
+  const common = { ISSUES: issuesText, LESSON: JSON.stringify(lesson, null, 2), CHAPTER: readerText(chapter) };
+  const fixPrompt = opts.style
+    ? renderTemplate(loadPrompt("fix-style"), { ...common, BOOK_SECTION: ctx.bookSection, NAMES: opts.style.names.length > 0 ? opts.style.names.join(", ") : "(none found)" })
+    : knowledge
+      ? renderTemplate(loadPrompt("fix-knowledge"), { ...common, BOOK_SECTION: ctx.bookSection, KEYS: keysBlock(ctx, n) })
+      : renderTemplate(loadPrompt("fix"), { ...common, SOURCE: writerFormText(spanText(ctx.source, n)) });
+  const fixRaw = await callShaped(ctx, n, { role: ctx.config.writer, prompt: fixPrompt, step: `r${round}.fix`, kind: "fix", errors: (v) => (isObj(v) ? [] : ["answer must be an object"]), outPrefix: path.join(bdir, "calls", `r${round}.fix`), ledgerStep: opts.style ? "book-style" : "book-fix" });
   const applied = applyFix(chapter, fixRaw as FixOutput);
   // A takeaway trimmed to the word limit is the lesson now: the card follows it, so the equality check still holds.
   if (applied.applied > 0 && applied.chapter.keyTakeaway !== chapter.keyTakeaway) lesson.lesson = applied.chapter.keyTakeaway;
@@ -640,8 +643,11 @@ async function fixRound(ctx: PipelineCtx, n: number, chapter: Chapter, lesson: L
 
 /** A landed chapter (assembled, or written here) that still has blocking issues in its status: one fix round on those issues
  *  (plus any reader findings given), then the checks again, and final.json, status.json and the reading page are rewritten.
- *  Returns the new status. */
-export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ field: string; text: string }> = []): Promise<ChapterStatus> {
+ *  Returns the new status. With `style`, the round is the style pass instead (prompts/fix-style.md: pronouns for the
+ *  invented people, no sentence about "the lesson" being gentler, plus the findings), which changes no fact and no key,
+ *  so neither the checker nor the solver is rolled. */
+export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ field: string; text: string }> = [], opts: { style?: boolean } = {}): Promise<ChapterStatus> {
+  const style = opts.style === true;
   const dir = path.join(ctx.config.runDir, chapterName(n));
   const chapter = readJson<Chapter>(path.join(dir, "final.json"));
   const status = readJson<ChapterStatus>(path.join(dir, "status.json"));
@@ -655,11 +661,11 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
   for (const [k, v] of Object.entries(ledger.chapters)) if (Number(k.slice(2)) < n) v.names.forEach((x) => earlierNames.add(x));
   const VARIETY = /^variety: "(.+)" is already used in another chapter/;
   const issues: Issue[] = [
-    ...status.open.filter((i) => (i.blocking && !i.text.startsWith("shape:")) || earlierNames.has(VARIETY.exec(i.text)?.[1] ?? "")),
+    ...(style ? [] : status.open.filter((i) => (i.blocking && !i.text.startsWith("shape:")) || earlierNames.has(VARIETY.exec(i.text)?.[1] ?? ""))),
     ...findings.map((f): Issue => ({ source: "review", blocking: false, field: f.field, text: f.text })),
   ];
   const seen = new Set(issues.map((i) => `${i.field}|${i.text}`));
-  for (const [id, leaves] of Object.entries(readerLeaves(chapter))) {
+  for (const [id, leaves] of style ? [] : Object.entries(readerLeaves(chapter))) {
     const text = leaves.join("\n");
     for (const name of ledger.chapters[chapterName(n)]?.names ?? []) {
       if (!earlierNames.has(name) || !wholeWord(name).test(text)) continue;
@@ -669,13 +675,14 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
       issues.push(issue);
     }
   }
-  if (issues.length === 0) return status;
+  if (!style && issues.length === 0) return status;
   // Checks need an exemplar for the copy check; a chapter that is itself the exemplar is checked against nothing.
   const exemplarFile = path.join(ctx.config.runDir, "exemplars", `${chapterName(n)}.json`);
   const ex: Exemplar = fs.existsSync(exemplarFile) ? { ...loadExemplar(ctx, n), chapterJson: emptyChapter(), names: [], sceneNames: [] } : loadExemplar(ctx);
-  const renameOnly = issues.every((i) => VARIETY.test(i.text));
+  const renameOnly = !style && issues.every((i) => VARIETY.test(i.text));
   const used = new Set<string>([...ex.names, ...Object.values(ledger.chapters).flatMap((v) => v.names)]);
-  if (issues.some((i) => VARIETY.test(i.text))) {
+  const styleNames = style ? [...new Set([...(ledger.chapters[chapterName(n)]?.names ?? []), ...extractNames(chapter, lesson.storyNames, "invented")])].sort() : [];
+  if (!style && issues.some((i) => VARIETY.test(i.text))) {
     // The fix call cannot see the ledger, so a rename would land on a name another chapter uses; offered a dozen free
     // names (rotated by chapter so neighbours get different ones) it picks one of them.
     const free = NAME_POOL.filter((x) => !used.has(x));
@@ -684,13 +691,18 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
   }
   const bdir = path.join(dir, "book");
   const round = (status.round ?? 0) + 1;
-  const applied = await fixRound(ctx, n, chapter, lesson, issues, bdir, status.round ?? 0);
+  const applied = await fixRound(ctx, n, chapter, lesson, issues, bdir, status.round ?? 0, style ? { style: { names: styleNames } } : {});
   if (!applied) return status;
   // The checker is rolled again only where it could see a change: a summary tier edited (or a fact flag it must confirm
-  // gone), a quiz edited (or a key flag). A rename, a card or an example edit leaves the earlier verdicts standing.
-  const factCheck = !renameOnly && (TIERS.some((t) => applied.breakdown[t] !== chapter.breakdown[t]) || issues.some((i) => i.source === "fact"));
-  const keySolve = !renameOnly && (JSON.stringify(applied.quiz) !== JSON.stringify(chapter.quiz) || issues.some((i) => i.source === "keysolve"));
+  // gone), a quiz edited (or a key flag). A rename, a style pass, a card or an example edit leaves the earlier verdicts standing.
+  const factCheck = !style && !renameOnly && (TIERS.some((t) => applied.breakdown[t] !== chapter.breakdown[t]) || issues.some((i) => i.source === "fact"));
+  const keySolve = !style && !renameOnly && (JSON.stringify(applied.quiz) !== JSON.stringify(chapter.quiz) || issues.some((i) => i.source === "keysolve"));
   const r = await checkRound(ctx, n, round, applied, lesson, ex, bdir, { factCheck, keySolve });
+  if (style) {
+    // How far the pronoun rule got: the invented people's mentions across the three summary lengths, before and after.
+    const mentions = (c: Chapter): number => styleNames.reduce((s, nm) => s + (TIERS.map((t) => c.breakdown[t]).join("\n").match(new RegExp(wholeWord(nm).source, "gu")) ?? []).length, 0);
+    r.reported.push({ source: "det", blocking: false, field: "breakdown", text: `style: the invented people are named ${mentions(applied)} times in the summaries, down from ${mentions(chapter)}` });
+  }
   if (!factCheck) r.reported.push(...status.open.filter((i) => !i.blocking && i.source === "fact"));
   if (!keySolve) r.reported.push(...status.open.filter((i) => !i.blocking && i.source === "keysolve"));
   // A rename that still landed on a used name is reported, so the next fix pass sees it.

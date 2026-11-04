@@ -39,6 +39,7 @@ const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --boo
   --review          check/fix/run: also run the editor review and send its failed items to the fix call
   --issues <f>      fix: reader findings, a JSON array of {"field","text"}; one extra "reader" fix round on one chapter (--chapters N), which then becomes its final.json
   --finish          fix: one finish round (--chapters N), once, after the reader round: sends only the blocking issues the reader round left (plus the --issues findings, if given), and the result becomes final.json
+  --style           fix (knowledge mode): the style pass on landed chapters (pronouns for the invented people, no sentence about "the lesson" being gentler, plus --issues findings if given); no checker or solver re-roll
   --file <f>        eval: the chapter JSON to judge (default <runDir>/chNN/final.json)
   --tag <t>         eval: name for the output files (default chNN, so each chapter keeps its own)
   --out <dir>       eval: where <tag>.eval.json goes (default <runDir>/eval)
@@ -169,13 +170,14 @@ async function cmdCheck(ctx: PipelineCtx, chapters: number[], io: Io): Promise<n
   return code;
 }
 
-async function cmdFix(ctx: PipelineCtx, chapters: number[], findings: Finding[] | undefined, io: Io): Promise<number> {
+async function cmdFix(ctx: PipelineCtx, chapters: number[], findings: Finding[] | undefined, io: Io, style = false): Promise<number> {
   if (findings && chapters.length !== 1) throw new UsageError("--issues needs exactly one chapter: --chapters N");
+  if (style && ctx.source.mode !== "knowledge") throw new UsageError("--style is for a book without source text (landed chapters)");
   if (ctx.source.mode === "knowledge") {
     // No source text: the fix round runs on the landed chapter's open issues (an assembled or book-written chapter).
     let code = 0;
     for (const n of chapters) {
-      const st = await fixLanded(ctx, n, findings);
+      const st = await fixLanded(ctx, n, findings, { style });
       printStatus(io, st);
       if (st.stage !== "clean") code = 1;
     }
@@ -451,6 +453,7 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
           review: { type: "boolean" },
           issues: { type: "string" },
           finish: { type: "boolean" },
+          style: { type: "boolean" },
           file: { type: "string" },
           tag: { type: "string" },
           out: { type: "string" },
@@ -472,6 +475,7 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
     if (!values.book) throw new UsageError("--book <config.json> is required");
     if (values.issues !== undefined && verb !== "fix") throw new UsageError("--issues only goes with the fix command");
     if (values.finish === true && verb !== "fix") throw new UsageError("--finish only goes with the fix command");
+    if (values.style === true && verb !== "fix") throw new UsageError("--style only goes with the fix command");
     for (const k of ["only", "lesson", "reference"] as const) {
       if (values[k] !== undefined && verb !== "variants") throw new UsageError(`--${k} only goes with the variants command`);
     }
@@ -489,7 +493,7 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
       case "check":
         return await guarded(ctx, () => cmdCheck(ctx, chapters, io));
       case "fix":
-        return await guarded(ctx, () => (values.finish === true ? cmdFinish(ctx, chapters, findings, io) : cmdFix(ctx, chapters, findings, io)));
+        return await guarded(ctx, () => (values.finish === true ? cmdFinish(ctx, chapters, findings, io) : cmdFix(ctx, chapters, findings, io, values.style === true)));
       case "run":
         return await cmdRun(ctx, chapters, force, io);
       case "status":

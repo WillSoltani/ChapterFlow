@@ -10,7 +10,7 @@ THE READER: an adult beginner, busy and curious, not a scholar. They read everyd
 
 @@KEYS@@
 
-THE LESSON this chapter teaches is in the lesson card between <lesson> tags. "keyTakeaway" is exactly its "lesson" sentence. Every part of the chapter serves this lesson and adds something: a case, a reason or a step. The lesson may be the version a fair reader would use today. When you tell what the author advises, tell it as he gives it, even where it is harsh, and say in one plain sentence where the lesson goes softer than he does. The bar is what this book says: where the book and history differ, follow the book and do not correct it.
+THE LESSON this chapter teaches is in the lesson card between <lesson> tags. "keyTakeaway" is exactly its "lesson" sentence. Every part of the chapter serves this lesson and adds something: a case, a reason or a step. The lesson may be the version a fair reader would use today. When you tell what the author advises, tell it as he gives it, even where it is harsh, and where you go softer than he does, say so straight to the reader ("For you, the milder move is ..."), never in a sentence about "the lesson" or "the rule" being gentler or softer. The bar is what this book says: where the book and history differ, follow the book and do not correct it.
 
 THE EXEMPLAR between <exemplar> tags is a chapter of this book that the owner read and approved. Match its FORM exactly and copy NOTHING from it.
 - Match: the length of every field (within about 20 percent), the number of paragraphs in each summary length, the kind of opener, the path each summary follows (opener; why the wrong belief feels true; the chapter's story as evidence; back to the opening; the lesson in fresh words), the shape of the examples, the forms of the quiz questions in their order, the forms of the review cards, the style of the practice cues, and the plainness of the words.
@@ -19,6 +19,8 @@ The owner's notes on the exemplar: @@NOTES@@
 
 THE FORM, part by part (the approaches the owner picked, with the exemplar's measurements):
 @@FORM@@
+
+PRONOUNS. Give each invented person a pronoun (he, she or they, chosen to fit the name and kept through the chapter) and use it the way a novelist would after the first mention in each part; repeat the name only where two people share a sentence. Never "Maren has just taken over the diner from Maren's father".
 
 VARIETY. The first names, settings and analogies already used in this book are listed between <used> tags. Use none of them. Choose new first names (varied in origin and gender), new workplaces, homes, sports and hobbies, and new everyday objects. Vary the opening rhythm too: do not start the hook or the summaries with the same sentence shape the exemplar uses.
 <used>

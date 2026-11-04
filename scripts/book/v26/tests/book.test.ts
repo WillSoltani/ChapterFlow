@@ -462,3 +462,28 @@ test("fixLanded: a reader finding that edits a summary tier rolls the checker ag
   assert.equal(h2.calls("pipe-vfactcheck").length, 0);
   assert.equal(h2.calls("pipe-keysolve").length, 1);
 });
+
+test("fixLanded style pass: the style prompt names the invented people, runs with no findings, rolls neither checker nor solver, and lands the edits", async () => {
+  const h = harness();
+  landed(h, 2, chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] }));
+  fs.writeFileSync(path.join(h.runDir, "variety.json"), JSON.stringify({ chapters: { ch02: { names: ["Jonah", "Lena", "Omar"], settings: ["a bakery"], analogies: ["a flashlight"], approach: "A" } } }));
+  h.script({ "pipe-fix": [{ result: { edits: [{ field: "hook", find: "What does Jonah B tell", replace: "What does he B tell" }], keyChanges: [], declined: [] } }] });
+  const st = await fixLanded(h.ctx, 2, [], { style: true });
+  assert.equal(st.stage, "clean", JSON.stringify(st.open));
+  assert.equal(st.round, 1);
+  const prompt = h.calls("pipe-fix")[0].prompt;
+  assert.match(prompt, /^You wrote the ChapterFlow chapter below for a published book whose text is not available here\. It teaches one lesson \(see the lesson card\)\. Three style rules/);
+  assert.match(prompt, /are: Jonah, Lena, Omar\./);
+  assert.match(prompt, /ISSUES:\n\(none\)/);
+  assert.equal(h.calls("pipe-vfactcheck").length, 0);
+  assert.equal(h.calls("pipe-keysolve").length, 0);
+  const final = JSON.parse(fs.readFileSync(path.join(h.runDir, "ch02", "final.json"), "utf8"));
+  assert.match(final.hook, /What does he B tell/);
+  assert.ok(st.open.some((i) => /^style: the invented people are named \d+ times in the summaries, down from \d+/.test(i.text)), JSON.stringify(st.open));
+  // A finding rides along in the same call.
+  const h2 = harness();
+  landed(h2, 2, chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] }));
+  h2.script({ "pipe-fix": [{ result: { edits: [{ field: "hook", find: "What does Jonah B tell", replace: "What does he B tell" }], keyChanges: [], declined: [] } }] });
+  await fixLanded(h2.ctx, 2, [{ field: "hook", text: "the hook repeats another chapter's hook" }], { style: true });
+  assert.match(h2.calls("pipe-fix")[0].prompt, /ISSUES:\n1\. \[hook\] the hook repeats another chapter's hook/);
+});

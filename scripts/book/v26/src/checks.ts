@@ -231,7 +231,8 @@ const isQuizCardWording = (id: string): boolean => /^quiz\..+\.(prompt|choices\.
 const CHATTER =
   /as an ai\b|language model|here is the json|here's the json|the author writes|```|in this chapter we will|\bthe source text\b|\bthe source span\b|\bmy draft\b/i;
 /** Words from the prompts and the lesson card that must not reach reader text. */
-const LEAK = /\b(wrong belief|near-miss|acts? out|tempting choice|the story shows)\b/i;
+// Prompt vocabulary, and the chapter talking about its own lesson ("The lesson is softer in only one way: ...").
+const LEAK = /\b(wrong belief|near-miss|acts? out|tempting choice|the story shows)\b|\b(the|this|your) lesson( for you)? (is|goes|stays) (gentler|softer|milder)\b/i;
 const OUTSIDE_FACT =
   /\d+(\.\d+)?\s?%|\b(1[5-9]|20)\d{2}\b|\b(stud(y|ies)|survey|research(ers)? (shows?|found|suggests)|according to|scientists|statistics?)\b/gi;
 
