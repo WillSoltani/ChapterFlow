@@ -439,4 +439,23 @@ test("fixLanded: a takeaway over 20 words may be trimmed, and the lesson card fo
   assert.match(h.calls("pipe-fix")[0].prompt, /2\. \[hook\] the hook asks the question twice/);
   assert.equal(JSON.parse(fs.readFileSync(path.join(dir, "lesson.json"), "utf8")).lesson, short);
   assert.equal(JSON.parse(fs.readFileSync(path.join(dir, "final.json"), "utf8")).keyTakeaway, short);
+  // Neither a summary tier nor the quiz changed, so neither the checker nor the solver was rolled again.
+  assert.equal(h.calls("pipe-vfactcheck").length, 0);
+  assert.equal(h.calls("pipe-keysolve").length, 0);
+});
+
+test("fixLanded: a reader finding that edits a summary tier rolls the checker again, and one that edits the quiz rolls the solver", async () => {
+  const h = harness();
+  landed(h, 2, chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] }));
+  h.script({ "pipe-fix": [{ result: { edits: [{ field: "breakdown.fullRead", find: "wB80", replace: "the father" }], keyChanges: [], declined: [] } }] });
+  const st = await fixLanded(h.ctx, 2, [{ field: "breakdown.fullRead", text: "the father is never named" }]);
+  assert.equal(st.stage, "clean", JSON.stringify(st.open));
+  assert.equal(h.calls("pipe-vfactcheck").length, 1);
+  assert.equal(h.calls("pipe-keysolve").length, 0);
+  const h2 = harness();
+  landed(h2, 2, chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] }));
+  h2.script({ "pipe-fix": [{ result: { edits: [{ field: "quiz.q2.explanation", find: "Naming the fault", replace: "Writing the fault" }], keyChanges: [], declined: [] } }] });
+  await fixLanded(h2.ctx, 2, [{ field: "quiz.q2", text: "the explanation repeats the stem" }]);
+  assert.equal(h2.calls("pipe-vfactcheck").length, 0);
+  assert.equal(h2.calls("pipe-keysolve").length, 1);
 });

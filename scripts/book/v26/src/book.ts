@@ -442,7 +442,7 @@ async function checkRound(
   lesson: LessonCard,
   ex: Exemplar,
   bdir: string,
-  opts: { approach?: string; expectedApproach?: string; modelChecks?: boolean } = {},
+  opts: { approach?: string; expectedApproach?: string; factCheck?: boolean; keySolve?: boolean } = {},
 ): Promise<Round> {
   const knowledge = ctx.source.mode === "knowledge";
   const { bookId, title, author, categories, tags, bookType } = ctx.config;
@@ -462,8 +462,9 @@ async function checkRound(
   const copy = copyAndVarietyIssues(chapter, ex, readVariety(ctx), n, { earlierTiers: earlierTiers(ctx, n, ex), approach: opts.approach, expectedApproach: opts.expectedApproach });
   blocking.push(...copy.blocking);
   reported.push(...copy.reported);
-  // A round that only renamed people changed no fact and no key: the earlier verdicts stand, and the checker is not rolled again.
-  if (opts.modelChecks === false) return { chapter, blocking, reported, advisory: det.advisory };
+  // A round that changed no summary tier changed no fact, and one that changed no quiz changed no key: the earlier
+  // verdicts stand, and the checker is not rolled again (every roll finds something new to doubt).
+  if (opts.factCheck === false && opts.keySolve === false) return { chapter, blocking, reported, advisory: det.advisory };
 
   const tiers = TIERS.map((t) => `[${t}]\n${chapter.breakdown[t]}`).join("\n\n");
   const factPrompt = renderTemplate(loadPrompt(knowledge ? "variants-factcheck-knowledge" : "variants-factcheck"), {
@@ -474,8 +475,12 @@ async function checkRound(
     ...(knowledge ? { BOOK_SECTION: ctx.bookSection } : { SOURCE: writerFormText(spanText(ctx.source, n)) }),
   });
   const [fact, solve] = await Promise.all([
-    callShaped(ctx, n, { role: ctx.config.checker, prompt: factPrompt, step: `r${round}.factcheck`, kind: "other", errors: (v) => (isObj(v) && Array.isArray(v.issues) ? [] : ["answer must be an object with an issues array"]), outPrefix: path.join(bdir, "calls", `r${round}.factcheck`), ledgerStep: "book-factcheck" }),
-    callShaped(ctx, n, { role: ctx.config.solver, prompt: keysolvePrompt(chapter), step: `r${round}.keysolve`, kind: "other", errors: (v) => (isObj(v) && Array.isArray(v.answers) ? [] : ["answer must be an object with an answers array"]), outPrefix: path.join(bdir, "calls", `r${round}.keysolve`), ledgerStep: "book-keysolve" }),
+    opts.factCheck === false
+      ? Promise.resolve({ issues: [] })
+      : callShaped(ctx, n, { role: ctx.config.checker, prompt: factPrompt, step: `r${round}.factcheck`, kind: "other", errors: (v) => (isObj(v) && Array.isArray(v.issues) ? [] : ["answer must be an object with an issues array"]), outPrefix: path.join(bdir, "calls", `r${round}.factcheck`), ledgerStep: "book-factcheck" }),
+    opts.keySolve === false
+      ? Promise.resolve({ answers: [] })
+      : callShaped(ctx, n, { role: ctx.config.solver, prompt: keysolvePrompt(chapter), step: `r${round}.keysolve`, kind: "other", errors: (v) => (isObj(v) && Array.isArray(v.answers) ? [] : ["answer must be an object with an answers array"]), outPrefix: path.join(bdir, "calls", `r${round}.keysolve`), ledgerStep: "book-keysolve" }),
   ]);
   const factIssues = ((fact as { issues: unknown[] }).issues.filter(isObj) as unknown as Partial<FactIssue>[]).map((i) => ({
     source: "fact" as const,
@@ -484,7 +489,7 @@ async function checkRound(
     text: `${String(i.kind ?? "OTHER")} (${String(i.verdict ?? "UNSUPPORTED")}): "${String(i.chapterText ?? "")}" | book: ${String(i.sourceText ?? "none")} | fix: ${String(i.fix ?? "")}`,
   }));
   blocking.push(...factIssues);
-  const keys = keysolveIssues(chapter, solve);
+  const keys = opts.keySolve === false ? [] : keysolveIssues(chapter, solve);
   blocking.push(...keys.filter((i) => i.blocking));
   reported.push(...keys.filter((i) => !i.blocking));
   return { chapter, blocking, reported, advisory: det.advisory };
@@ -668,9 +673,13 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
   const round = (status.round ?? 0) + 1;
   const applied = await fixRound(ctx, n, chapter, lesson, issues, bdir, status.round ?? 0);
   if (!applied) return status;
-  const r = await checkRound(ctx, n, round, applied, lesson, ex, bdir, { modelChecks: !renameOnly });
-  // With no new verdicts, the checker's and the solver's earlier reported items stay on the record.
-  if (renameOnly) r.reported.push(...status.open.filter((i) => !i.blocking && (i.source === "fact" || i.source === "keysolve")));
+  // The checker is rolled again only where it could see a change: a summary tier edited (or a fact flag it must confirm
+  // gone), a quiz edited (or a key flag). A rename, a card or an example edit leaves the earlier verdicts standing.
+  const factCheck = !renameOnly && (TIERS.some((t) => applied.breakdown[t] !== chapter.breakdown[t]) || issues.some((i) => i.source === "fact"));
+  const keySolve = !renameOnly && (JSON.stringify(applied.quiz) !== JSON.stringify(chapter.quiz) || issues.some((i) => i.source === "keysolve"));
+  const r = await checkRound(ctx, n, round, applied, lesson, ex, bdir, { factCheck, keySolve });
+  if (!factCheck) r.reported.push(...status.open.filter((i) => !i.blocking && i.source === "fact"));
+  if (!keySolve) r.reported.push(...status.open.filter((i) => !i.blocking && i.source === "keysolve"));
   const label = `${ctx.config.bookId}/${chapterName(n)}`;
   const spend = round4(readLedger(ctx.ledgerPath).filter((x) => x.chapter === label).reduce((s, x) => s + x.cost, 0));
   const next: ChapterStatus & { fixed: true } = {
