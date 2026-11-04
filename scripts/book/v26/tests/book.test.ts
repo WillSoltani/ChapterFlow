@@ -374,6 +374,12 @@ test("extractNames: a word that only ever starts sentences is an opener, unless 
   assert.ok(names.includes("Kenji"), names.join(","));
   assert.ok(!names.includes("Within") && !names.includes("Cut"), names.join(","));
   assert.ok(!extractNames(chapter("A", { hook: "We meet on Fridays. Fridays are slow." }), ["Galileo"]).includes("Fridays"));
+  // A terminator inside a closing quote still ends the sentence, and example titles (Title Case) do not count.
+  const quoted = chapter("A", { hook: 'She added "unless that is a problem." Within a day, half the parents agreed.' });
+  assert.ok(!extractNames(quoted, ["Galileo"]).includes("Within"), extractNames(quoted, ["Galileo"]).join(","));
+  const titled = chapter("A");
+  titled.examples[0].title = "Keep the Plan Within Reach";
+  assert.ok(!extractNames(titled, ["Galileo"]).includes("Within") && !extractNames(titled, ["Galileo"]).includes("Reach"));
 });
 
 /** A chapter landed by the book writer: final.json, lesson.json and status.json, with the open issues given. */
@@ -411,6 +417,10 @@ test("fixLanded: a name an earlier chapter used first is renamed on the ledger's
   const fixPrompt = h.calls("pipe-fix")[0].prompt;
   assert.match(fixPrompt, /\[hook\] variety: "Jonah" is already used in another chapter of this book/);
   assert.match(fixPrompt, /\[examples\.ex01\] variety: "Jonah"/);
+  assert.match(fixPrompt, /not already used in this book: Jonah, Lena, Marcus, Maya, Nia, Omar, Priya, Teo/);
+  // A rename changes no fact and no key: the checker and the solver are not rolled again.
+  assert.equal(h.calls("pipe-vfactcheck").length, 0);
+  assert.equal(h.calls("pipe-keysolve").length, 0);
   const final = JSON.parse(fs.readFileSync(path.join(h.runDir, "ch03", "final.json"), "utf8"));
   assert.ok(!/Jonah/.test(JSON.stringify(final)) && /Tariq/.test(final.hook));
   assert.deepEqual(readVariety(h.ctx).chapters.ch03.names, ["Nia", "Tariq", "Teo"]);

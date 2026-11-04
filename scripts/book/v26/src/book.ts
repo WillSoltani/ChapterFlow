@@ -93,7 +93,8 @@ export function extractNames(c: Chapter, storyNames: string[] = [], fields: "inv
     c.counterintuition,
     c.tryThisNow,
     ...(fields === "all" ? TIERS.map((t) => c.breakdown[t]) : []),
-    ...c.examples.flatMap((e) => [e.title, e.scenario, e.whatToDo, e.whyItMatters]),
+    // Example titles are Title Case ("Keep the Plan Within Reach"), so every word in them would look like a name.
+    ...c.examples.flatMap((e) => [e.scenario, e.whatToDo, e.whyItMatters]),
     ...c.quiz.questions.flatMap((q) => [q.prompt, ...q.choices, q.explanation]),
     ...c.reviewCards.flatMap((r) => [r.front, r.back]),
     c.implementationPlan.coreSkill,
@@ -106,8 +107,9 @@ export function extractNames(c: Chapter, storyNames: string[] = [], fields: "inv
   const lowercaseToo = new Set((everything.match(/(?<![A-Za-z])[a-z][a-z'’]+/g) ?? []).map((w) => w.replace(/['’]s?$/, "")));
   const count = new Map<string, { starts: number; mid: number; poss: number }>();
   for (const text of texts) {
-    // Sentences: split on a terminator (or a line break) followed by space; quotes and brackets around a sentence start are stripped.
-    for (const sentence of text.split(/(?<=[.!?])\s+|\n+/)) {
+    // Sentences: split on a terminator, with any closing quote or bracket after it ('problem." Within a day'), or a line
+    // break, followed by space; quotes and brackets around a sentence start are stripped.
+    for (const sentence of text.split(/(?<=[.!?]["'”’)\]]*)\s+|\n+/)) {
       const words = sentence.replace(/^[\s"'“‘(\[]+/, "").match(/[A-Za-z][A-Za-z'’]*/g) ?? [];
       words.forEach((raw, i) => {
         const w = raw.replace(/['’]s?$/, "");
@@ -440,7 +442,7 @@ async function checkRound(
   lesson: LessonCard,
   ex: Exemplar,
   bdir: string,
-  opts: { approach?: string; expectedApproach?: string } = {},
+  opts: { approach?: string; expectedApproach?: string; modelChecks?: boolean } = {},
 ): Promise<Round> {
   const knowledge = ctx.source.mode === "knowledge";
   const { bookId, title, author, categories, tags, bookType } = ctx.config;
@@ -460,6 +462,8 @@ async function checkRound(
   const copy = copyAndVarietyIssues(chapter, ex, readVariety(ctx), n, { earlierTiers: earlierTiers(ctx, n, ex), approach: opts.approach, expectedApproach: opts.expectedApproach });
   blocking.push(...copy.blocking);
   reported.push(...copy.reported);
+  // A round that only renamed people changed no fact and no key: the earlier verdicts stand, and the checker is not rolled again.
+  if (opts.modelChecks === false) return { chapter, blocking, reported, advisory: det.advisory };
 
   const tiers = TIERS.map((t) => `[${t}]\n${chapter.breakdown[t]}`).join("\n\n");
   const factPrompt = renderTemplate(loadPrompt(knowledge ? "variants-factcheck-knowledge" : "variants-factcheck"), {
@@ -651,14 +655,22 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
     }
   }
   if (issues.length === 0) return status;
+  // Checks need an exemplar for the copy check; a chapter that is itself the exemplar is checked against nothing.
+  const exemplarFile = path.join(ctx.config.runDir, "exemplars", `${chapterName(n)}.json`);
+  const ex: Exemplar = fs.existsSync(exemplarFile) ? { ...loadExemplar(ctx, n), chapterJson: emptyChapter(), names: [], sceneNames: [] } : loadExemplar(ctx);
+  const renameOnly = issues.every((i) => VARIETY.test(i.text));
+  if (issues.some((i) => VARIETY.test(i.text))) {
+    // The fix call cannot see the ledger, so a rename would often land on a name another chapter uses.
+    const used = new Set<string>([...ex.names, ...Object.values(ledger.chapters).flatMap((v) => v.names)]);
+    issues.push({ source: "det", blocking: false, field: "(chapter)", text: `for each rename above, choose a first name that fits the scene and is not already used in this book: ${[...used].sort().join(", ")}` });
+  }
   const bdir = path.join(dir, "book");
   const round = (status.round ?? 0) + 1;
   const applied = await fixRound(ctx, n, chapter, lesson, issues, bdir, status.round ?? 0);
   if (!applied) return status;
-  // Checks need an exemplar for the copy check; a chapter that is itself the exemplar is checked against nothing.
-  const exemplarFile = path.join(ctx.config.runDir, "exemplars", `${chapterName(n)}.json`);
-  const ex: Exemplar = fs.existsSync(exemplarFile) ? { ...loadExemplar(ctx, n), chapterJson: emptyChapter(), names: [], sceneNames: [] } : loadExemplar(ctx);
-  const r = await checkRound(ctx, n, round, applied, lesson, ex, bdir);
+  const r = await checkRound(ctx, n, round, applied, lesson, ex, bdir, { modelChecks: !renameOnly });
+  // With no new verdicts, the checker's and the solver's earlier reported items stay on the record.
+  if (renameOnly) r.reported.push(...status.open.filter((i) => !i.blocking && (i.source === "fact" || i.source === "keysolve")));
   const label = `${ctx.config.bookId}/${chapterName(n)}`;
   const spend = round4(readLedger(ctx.ledgerPath).filter((x) => x.chapter === label).reduce((s, x) => s + x.cost, 0));
   const next: ChapterStatus & { fixed: true } = {
