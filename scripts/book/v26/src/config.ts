@@ -32,6 +32,8 @@ export interface BookConfig {
   writer: RoleConfig;
   checker: RoleConfig;
   solver: RoleConfig;
+  /** Optional: the model for fix rounds; default the writer. A cheap writer with a strong fixer is a real option. */
+  fixer?: RoleConfig;
   concurrency: number;
   budgetUsd: number;
   runDir: string;
@@ -139,7 +141,7 @@ export function expandBinGlob(p: string, field = "bin"): string {
  *  ledger row, or any chapter folder is touched. A bare command name (no "/") is left to PATH. Returns the resolved bins. */
 export function preflightBins(cfg: BookConfig): Record<string, string> {
   const out: Record<string, string> = {};
-  for (const r of [cfg.writer, cfg.checker, cfg.solver]) {
+  for (const r of [cfg.writer, cfg.checker, cfg.solver, ...(cfg.fixer ? [cfg.fixer] : [])]) {
     const field = `${r.role ?? "role"}.bin`;
     if (!r.bin.includes("/")) {
       out[field] = r.bin;
@@ -205,6 +207,7 @@ export function loadBookConfig(configPath: string): BookConfig {
     writer: role(raw.writer, "writer", base),
     checker: role(raw.checker, "checker", base),
     solver: role(raw.solver, "solver", base),
+    ...(raw.fixer === undefined ? {} : { fixer: role(raw.fixer, "fixer", base) }),
     concurrency,
     budgetUsd: budgetUsd as number,
     runDir: p(raw.runDir, "runDir"),

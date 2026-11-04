@@ -550,7 +550,7 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
     const notes = Object.entries(ex.notes).map(([k, v]) => `${k}: ${v}`).join(" | ") || "(none)";
     const prompt = renderTemplate(loadPrompt("write-exemplar"), {
       BOOK_SECTION: ctx.bookSection,
-      HEADER: chapterHeaderWithLessons(n, titles, taught),
+      HEADER: chapterHeaderWithLessons(n, titles, taught, ex.bookNames),
       SOURCE_RULES,
       QUOTE_RULE,
       SOURCE_BLOCK,
@@ -631,7 +631,7 @@ async function fixRound(ctx: PipelineCtx, n: number, chapter: Chapter, lesson: L
     : knowledge
       ? renderTemplate(loadPrompt("fix-knowledge"), { ...common, BOOK_SECTION: ctx.bookSection, KEYS: keysBlock(ctx, n) })
       : renderTemplate(loadPrompt("fix"), { ...common, SOURCE: writerFormText(spanText(ctx.source, n)) });
-  const fixRaw = await callShaped(ctx, n, { role: ctx.config.writer, prompt: fixPrompt, step: `r${round}.fix`, kind: "fix", errors: (v) => (isObj(v) ? [] : ["answer must be an object"]), outPrefix: path.join(bdir, "calls", `r${round}.fix`), ledgerStep: opts.style ? "book-style" : "book-fix" });
+  const fixRaw = await callShaped(ctx, n, { role: ctx.config.fixer ?? ctx.config.writer, prompt: fixPrompt, step: `r${round}.fix`, kind: "fix", errors: (v) => (isObj(v) ? [] : ["answer must be an object"]), outPrefix: path.join(bdir, "calls", `r${round}.fix`), ledgerStep: opts.style ? "book-style" : "book-fix" });
   const applied = applyFix(chapter, fixRaw as FixOutput);
   // A takeaway trimmed to the word limit is the lesson now: the card follows it, so the equality check still holds.
   if (applied.applied > 0 && applied.chapter.keyTakeaway !== chapter.keyTakeaway) lesson.lesson = applied.chapter.keyTakeaway;
@@ -752,12 +752,13 @@ function emptyChapter(): Chapter {
   };
 }
 
-function chapterHeaderWithLessons(n: number, titles: Record<number, string>, taught: string[]): string {
+function chapterHeaderWithLessons(n: number, titles: Record<number, string>, taught: string[], exemplarPeople: string[] = []): string {
   const total = Math.max(...Object.keys(titles).map(Number));
   const prev = Object.hasOwn(titles, n - 1) ? `The previous chapter is "${titles[n - 1]}".` : "This is the first chapter of the book.";
   const next = Object.hasOwn(titles, n + 1) ? `The next chapter is "${titles[n + 1]}".` : "This is the last chapter of the book.";
   let head = `CHAPTER ${n} of ${total}: "${titles[n]}". ${prev} ${next} Write only this chapter.`;
   if (taught.length > 0) head += `\nLessons already taught by other chapters of this book (teach none of these again):\n${taught.map((l) => `- ${l}`).join("\n")}`;
+  if (exemplarPeople.length > 0) head += `\nThese people belong to another chapter's story, not this one; this chapter's evidence is its own story: ${exemplarPeople.join(", ")}.`;
   return head;
 }
 

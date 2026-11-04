@@ -290,6 +290,8 @@ test("a wrong shape is asked for once more under a reshape step, then fails with
   assert.equal(run.cards.length, 5);
   assert.equal(h.calls("pipe-vcards").length, 2);
   assert.ok(readLedger(h.ledgerPath).some((r) => r.step === "variants-cards:reshape"));
+  assert.match(h.calls("pipe-vcards")[1].prompt, /YOUR PREVIOUS ANSWER WAS REJECTED[^\n]*\n- variants must have exactly 5 items/);
+  assert.ok(!/PREVIOUS ANSWER/.test(h.calls("pipe-vcards")[0].prompt));
 
   const h2 = harness();
   h2.script({ "pipe-vpractice": [{ result: { variants: [] } }] });

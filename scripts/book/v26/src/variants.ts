@@ -236,12 +236,15 @@ export async function callShaped(
 ): Promise<unknown> {
   const base = o.outPrefix ?? path.join(variantsDir(ctx, n), "calls", o.step);
   const ledger = o.ledgerStep ?? `variants-${o.step}`;
+  let prompt = o.prompt;
   for (let attempt = 0; ; attempt++) {
     const outPrefix = attempt === 0 ? base : `${base}.reshape`;
-    const r = await call(ctx, { role: o.role, prompt: o.prompt, step: attempt === 0 ? ledger : `${ledger}:reshape`, n, kind: o.kind, outPrefix });
+    const r = await call(ctx, { role: o.role, prompt, step: attempt === 0 ? ledger : `${ledger}:reshape`, n, kind: o.kind, outPrefix });
     const errors = r.json === null ? ["the answer is not JSON"] : o.errors(r.json);
     if (errors.length === 0) return r.json;
     if (attempt >= 1) throw new CallFailedError(`VARIANTS_OUTPUT_INVALID: ${chapterName(n)} ${o.step}: ${errors.join("; ")} (raw answer: ${outPrefix}.result.txt)`);
+    // The retry says what was wrong; sent blind, a model that overshot a limit overshoots it again.
+    prompt = `${o.prompt}\n\nYOUR PREVIOUS ANSWER WAS REJECTED for these reasons; answer the whole task again and fix each one (count words where a limit is named):\n${errors.map((e) => `- ${e}`).join("\n")}`;
   }
 }
 

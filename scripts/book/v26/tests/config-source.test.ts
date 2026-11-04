@@ -362,3 +362,13 @@ test("writerFormText: with notes it appends the editor's-notes block", () => {
       "[1] The note.\n\n[Illustration: map]",
   );
 });
+
+test("an optional fixer role parses like the others and is absent when not given", () => {
+  const dir = tmp();
+  const raw = validConfig();
+  assert.equal(loadBookConfig(writeConfig(dir, raw)).fixer, undefined);
+  raw.fixer = { bin: "claude", model: "claude-opus-5-5", effort: "high" };
+  const cfg = loadBookConfig(writeConfig(dir, raw, "with-fixer.json"));
+  assert.equal(cfg.fixer?.model, "claude-opus-5-5");
+  assert.equal(cfg.fixer?.role, "fixer");
+});

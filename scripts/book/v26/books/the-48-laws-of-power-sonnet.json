@@ -292,5 +292,10 @@
   },
   "concurrency": 3,
   "budgetUsd": 30,
-  "runDir": "~/cf-wt/v26-plan/runs/the-48-laws-of-power-sonnet"
+  "runDir": "~/cf-wt/v26-plan/runs/the-48-laws-of-power-sonnet",
+  "fixer": {
+    "bin": "~/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude",
+    "model": "claude-opus-5-5",
+    "effort": "high"
+  }
 }

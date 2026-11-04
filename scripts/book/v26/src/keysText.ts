@@ -9,5 +9,5 @@ export function keysFor(ctx: PipelineCtx, n: number): string {
 export function keysBlock(ctx: PipelineCtx, n: number): string {
   const keys = keysFor(ctx, n);
   if (!keys) return "";
-  return `WHAT THE AUTHOR ADVISES IN THIS CHAPTER, in blunt plain words (the lesson may be gentler; the account of his advice may not):\n${keys}`;
+  return `WHAT THE AUTHOR ADVISES IN THIS CHAPTER, in blunt plain words (the lesson may be gentler; the account of his advice may not). This is a note for you, not text for the reader: tell his advice in your own plain words, never by copying this note:\n${keys}`;
 }
