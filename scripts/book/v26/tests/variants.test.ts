@@ -203,6 +203,8 @@ test("variantsShapeErrors accepts the fixtures and names what is wrong otherwise
   assert.match(variantsShapeErrors("quiz", twoChoices).join(";"), /choices must be 3 strings/);
   assert.match(variantsShapeErrors("practice", "nope").join(";"), /variants array/);
   assert.match(lessonsShapeErrors({ lessons: LESSONS.lessons.map((l) => ({ ...l, evidence: "x" })) }).join(";"), /evidence must be an array/);
+  const long = { lessons: LESSONS.lessons.map((l, i) => (i === 0 ? { ...l, lesson: Array.from({ length: 21 }, () => "word").join(" ") } : l)) };
+  assert.match(lessonsShapeErrors(long).join(";"), /lessons\[0\]\.lesson must be at most 20 words \(got 21\)/);
 });
 
 test("summaryDetIssues flags a quotation the source does not contain, and a summary far off the length band", () => {

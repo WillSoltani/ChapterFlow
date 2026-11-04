@@ -188,6 +188,8 @@ export function lessonsShapeErrors(raw: unknown): string[] {
       return;
     }
     textFields(l, ["lesson", "wrongBelief", "keyPhrase", "hookQuestion", "whyThisOne"], where, errors);
+    // keyTakeaway is the lesson word for word, and the chapter check caps it at 20 words; a longer lesson is a retry, not a fix.
+    if (typeof l.lesson === "string" && wordsIn(l.lesson) > 20) errors.push(`${where}.lesson must be at most 20 words (got ${wordsIn(l.lesson)})`);
     for (const k of ["storyNames", "evidence"]) if (!isTextList(l[k])) errors.push(`${where}.${k} must be an array of strings`);
   });
   return errors;

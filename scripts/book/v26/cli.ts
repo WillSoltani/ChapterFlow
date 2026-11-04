@@ -173,10 +173,9 @@ async function cmdFix(ctx: PipelineCtx, chapters: number[], findings: Finding[] 
   if (findings && chapters.length !== 1) throw new UsageError("--issues needs exactly one chapter: --chapters N");
   if (ctx.source.mode === "knowledge") {
     // No source text: the fix round runs on the landed chapter's open issues (an assembled or book-written chapter).
-    if (findings) throw new UsageError("--issues is not supported for a book without source text");
     let code = 0;
     for (const n of chapters) {
-      const st = await fixLanded(ctx, n);
+      const st = await fixLanded(ctx, n, findings);
       printStatus(io, st);
       if (st.stage !== "clean") code = 1;
     }

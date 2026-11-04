@@ -70,7 +70,7 @@ const NOT_NAMES = new Set(
     "the a an this that these those it its he she they we you i me him her them us my your our their his hers ours theirs mine yours " +
     "when if so but and or then now here there what why how who whom which whose many most some every each all any no not never always " +
     "often sometimes once soon later today tonight tomorrow yesterday morning afternoon evening night week month year day days weeks months years " +
-    "monday tuesday wednesday thursday friday saturday sunday january february march april may june july august september october november december " +
+    "monday tuesday wednesday thursday friday saturday sunday mondays tuesdays wednesdays thursdays fridays saturdays sundays january february march april may june july august september october november december " +
     "write send ask tell thank share open pick give take make do does did done is are was were be been being have has had can could should would " +
     "will may might must let think picture imagine instead still even also only just with without from for to in on at by of as like than because " +
     "while until unless although though since where whether yet nothing something anything everything none both either neither much more less " +
@@ -84,9 +84,9 @@ const NOT_NAMES = new Set(
 );
 
 /** Capitalized words that look like the invented first names of a chapter, in every reader-visible field. A word counts when
- *  it appears inside a sentence (not as its first word) at least once, or starts two or more sentences; a word that also
- *  appears in lowercase anywhere in the chapter, a common sentence opener, a royal or geographic word, and the book's story
- *  names (the lesson card's storyNames) are left out. */
+ *  it appears inside a sentence (not as its first word) at least once, or as a possessive ("Kenji's shift"); a word that
+ *  only ever starts sentences ("Within a week...", "Cut the talk."), one that also appears in lowercase anywhere in the
+ *  chapter, a royal or geographic word, and the book's story names (the lesson card's storyNames) are left out. */
 export function extractNames(c: Chapter, storyNames: string[] = [], fields: "invented" | "all" = "all"): string[] {
   const texts = [
     c.hook,
@@ -104,7 +104,7 @@ export function extractNames(c: Chapter, storyNames: string[] = [], fields: "inv
   const story = new Set(storyNames.flatMap((s) => s.split(/\s+/)).map((w) => w.toLowerCase()));
   const everything = texts.join("\n");
   const lowercaseToo = new Set((everything.match(/(?<![A-Za-z])[a-z][a-z'’]+/g) ?? []).map((w) => w.replace(/['’]s?$/, "")));
-  const count = new Map<string, { starts: number; mid: number }>();
+  const count = new Map<string, { starts: number; mid: number; poss: number }>();
   for (const text of texts) {
     // Sentences: split on a terminator (or a line break) followed by space; quotes and brackets around a sentence start are stripped.
     for (const sentence of text.split(/(?<=[.!?])\s+|\n+/)) {
@@ -112,16 +112,18 @@ export function extractNames(c: Chapter, storyNames: string[] = [], fields: "inv
       words.forEach((raw, i) => {
         const w = raw.replace(/['’]s?$/, "");
         if (!/^[A-Z][a-z]{2,}$/.test(w)) return;
-        const e = count.get(w) ?? { starts: 0, mid: 0 };
+        const e = count.get(w) ?? { starts: 0, mid: 0, poss: 0 };
         if (i === 0) e.starts++;
         else e.mid++;
+        if (/['’]s$/.test(raw)) e.poss++;
         count.set(w, e);
       });
     }
   }
   return [...count.entries()]
-    // A word that only ever starts sentences and ends in "ing" is a gerund opener ("Believing a big win..."), not a name.
-    .filter(([w, e]) => !NOT_NAMES.has(w.toLowerCase()) && !story.has(w.toLowerCase()) && !lowercaseToo.has(w.toLowerCase()) && (e.mid > 0 || (e.starts > 1 && !/ing$/.test(w))))
+    // A word that only ever starts sentences is an opener ("Within a week...", "Cut the talk.", "Believing..."), not a name,
+    // unless it also owns something ("Kenji's shift"): openers never take a possessive.
+    .filter(([w, e]) => !NOT_NAMES.has(w.toLowerCase()) && !story.has(w.toLowerCase()) && !lowercaseToo.has(w.toLowerCase()) && (e.mid > 0 || e.poss > 0))
     .map(([w]) => w)
     .sort();
 }
@@ -289,6 +291,11 @@ function readerLeaves(c: Chapter): Record<string, string[]> {
   return out;
 }
 
+/** Matches `name` as a whole word: letters, digits and underscores on either side do not count. */
+function wholeWord(name: string): RegExp {
+  return new RegExp(`(?<![\\p{L}\\p{N}_])${escapeRe(name)}(?![\\p{L}\\p{N}_])`, "u");
+}
+
 /** Blocking: a name or an eight-word run copied from the exemplar. Reported: a name from the variety ledger (another chapter), a
  *  six-word run shared with another landed chapter's summaries (`earlierTiers`), or an opener that repeats the previous chapter's. */
 export function copyAndVarietyIssues(
@@ -325,7 +332,7 @@ export function copyAndVarietyIssues(
   }
   const exGrams = new Set<string>();
   for (const leaves of Object.values(readerLeaves(ex.chapterJson))) for (const leaf of leaves) for (const g of grams8(leaf)) exGrams.add(g);
-  const whole = (name: string): RegExp => new RegExp(`(?<![\\p{L}\\p{N}_])${escapeRe(name)}(?![\\p{L}\\p{N}_])`, "u");
+  const whole = wholeWord;
   const otherNames = new Set<string>();
   for (const [k, v] of Object.entries(ledger.chapters)) if (k !== chapterName(n)) v.names.forEach((x) => otherNames.add(x));
   for (const [id, leaves] of Object.entries(readerLeaves(c))) {
@@ -604,22 +611,45 @@ async function fixRound(ctx: PipelineCtx, n: number, chapter: Chapter, lesson: L
     : renderTemplate(loadPrompt("fix"), { ISSUES: issuesText, LESSON: JSON.stringify(lesson, null, 2), CHAPTER: readerText(chapter), SOURCE: writerFormText(spanText(ctx.source, n)) });
   const fixRaw = await callShaped(ctx, n, { role: ctx.config.writer, prompt: fixPrompt, step: `r${round}.fix`, kind: "fix", errors: (v) => (isObj(v) ? [] : ["answer must be an object"]), outPrefix: path.join(bdir, "calls", `r${round}.fix`), ledgerStep: "book-fix" });
   const applied = applyFix(chapter, fixRaw as FixOutput);
+  // A takeaway trimmed to the word limit is the lesson now: the card follows it, so the equality check still holds.
+  if (applied.applied > 0 && applied.chapter.keyTakeaway !== chapter.keyTakeaway) lesson.lesson = applied.chapter.keyTakeaway;
   writeJson(path.join(bdir, `r${round}.fix-applied.json`), { applied: applied.applied, errors: applied.errors });
   if (applied.applied === 0) return null;
   writeJson(path.join(bdir, `r${round + 1}.chapter.json`), applied.chapter);
   return applied.chapter;
 }
 
-/** A landed chapter (assembled, or written here) that still has blocking issues in its status: one fix round on those issues,
- *  then the checks again, and final.json, status.json and the reading page are rewritten. Returns the new status. */
-export async function fixLanded(ctx: PipelineCtx, n: number): Promise<ChapterStatus> {
+/** A landed chapter (assembled, or written here) that still has blocking issues in its status: one fix round on those issues
+ *  (plus any reader findings given), then the checks again, and final.json, status.json and the reading page are rewritten.
+ *  Returns the new status. */
+export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ field: string; text: string }> = []): Promise<ChapterStatus> {
   const dir = path.join(ctx.config.runDir, chapterName(n));
   const chapter = readJson<Chapter>(path.join(dir, "final.json"));
   const status = readJson<ChapterStatus>(path.join(dir, "status.json"));
   const lesson = readJson<LessonCard>(path.join(dir, "lesson.json"));
   if (!chapter || !status || !lesson) throw new Error(`NO_FINAL_CHAPTER: ${chapterName(n)} has no final.json, status.json and lesson.json`);
-  // Blocking issues, plus a name reused from another chapter: a rename is mechanical and safe, so it rides along.
-  const issues = status.open.filter((i) => (i.blocking && !i.text.startsWith("shape:")) || /^variety: ".+" is already used in another chapter/.test(i.text));
+  // Blocking issues, plus a name an earlier chapter used first: a rename is mechanical and safe, so it rides along, and only
+  // the later chapter of a pair renames. Chapters written side by side never saw each other's names, so the ledger is read
+  // again here instead of trusting the issues the landing check left.
+  const ledger = readVariety(ctx);
+  const earlierNames = new Set<string>();
+  for (const [k, v] of Object.entries(ledger.chapters)) if (Number(k.slice(2)) < n) v.names.forEach((x) => earlierNames.add(x));
+  const VARIETY = /^variety: "(.+)" is already used in another chapter/;
+  const issues: Issue[] = [
+    ...status.open.filter((i) => (i.blocking && !i.text.startsWith("shape:")) || earlierNames.has(VARIETY.exec(i.text)?.[1] ?? "")),
+    ...findings.map((f): Issue => ({ source: "review", blocking: false, field: f.field, text: f.text })),
+  ];
+  const seen = new Set(issues.map((i) => `${i.field}|${i.text}`));
+  for (const [id, leaves] of Object.entries(readerLeaves(chapter))) {
+    const text = leaves.join("\n");
+    for (const name of ledger.chapters[chapterName(n)]?.names ?? []) {
+      if (!earlierNames.has(name) || !wholeWord(name).test(text)) continue;
+      const issue: Issue = { source: "det", blocking: false, field: id, text: `variety: "${name}" is already used in another chapter of this book` };
+      if (seen.has(`${issue.field}|${issue.text}`)) continue;
+      seen.add(`${issue.field}|${issue.text}`);
+      issues.push(issue);
+    }
+  }
   if (issues.length === 0) return status;
   const bdir = path.join(dir, "book");
   const round = (status.round ?? 0) + 1;
@@ -641,6 +671,17 @@ export async function fixLanded(ctx: PipelineCtx, n: number): Promise<ChapterSta
   };
   writeJson(path.join(dir, "final.json"), applied);
   writeJson(path.join(dir, "status.json"), next);
+  writeJson(path.join(dir, "lesson.json"), lesson);
+  // The ledger follows the edits: a renamed name leaves, a new one enters, and the openers are cut again.
+  const mine = readVariety(ctx).chapters[chapterName(n)];
+  if (mine) {
+    const text = Object.values(readerLeaves(applied)).flat().join("\n");
+    writeVariety(ctx, n, {
+      ...mine,
+      names: [...new Set([...mine.names.filter((x) => wholeWord(x).test(text)), ...extractNames(applied, lesson.storyNames, "invented")])].sort(),
+      openers: openerSentences(applied, lesson.storyNames),
+    });
+  }
   const flag = next.stage === "clean" ? "" : `${next.stage}: ${r.blocking.length} open`;
   const body = renderChapter({ ...applied, number: n }, { label: flag, bookLine: `${ctx.config.title} by ${ctx.config.author}`, uid: `v${n}`, authorAdvice: keysFor(ctx, n) });
   const reading = path.join(ctx.config.runDir, "reading", `${chapterName(n)}.html`);
