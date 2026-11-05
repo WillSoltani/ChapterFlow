@@ -174,10 +174,46 @@ behind (`<runDir>/chNN/final.json` per chapter plus the pack), since putting a b
 separate step. A chapter the owner dislikes is not regenerated: `variants --chapters N`, then `assemble`, and it
 becomes an added exemplar (`book --exemplar N` for later rewrites).
 
+## 9. Score (one judge call and three solver runs per chapter, about $0.17 each)
+
+`CLI score --book <cfg>` (reuses `<runDir>/eval/chNN.eval.json`; `--force` re-judges). Per chapter: the share of
+the judge's items passed, 0 to 100; the book: the mean. Prints a row per chapter (open flags, "quiz guessable" when
+the no-chapter solver answers 4 or 5 of the first five keys without reading, the failed item ids), then
+`band AUTO|MANUAL|FAIL` with the reasons and the chapters to redo; writes `<runDir>/score.json`. Exit 0, 1, 2.
+Thresholds are the config's `gate` (`{"auto": 80, "manual": 70}` by default). A chapter edited after the score
+makes the score stale; run `score` again.
+
+## 10. Publish, by band (the owner's gate, 2026-11-05)
+
+- **auto** (mean at or above `auto`, every chapter at or above `manual`, no open fact or key flag): run
+  `CLI publish --book <cfg>` at once, no question asked.
+- **manual** (otherwise, mean at or above `manual`): hand the owner the pack, the score and the reasons; on a yes,
+  `CLI publish --book <cfg> --approve`. On a no, treat their notes as findings (step 7) and score again.
+- **fail** (mean under `manual`): hand over the score and the `redo` list and ask permission to redo those chapters;
+  only on a yes run `CLI book --book <cfg> --chapters <redo> --force`, then steps 7, 8 and 9 again. Two redo loops at
+  most; after that it is the owner's call.
+
+What `publish` does, in order, and stops at the first failure: builds `book-packages/<bookId>.v21.json` from the
+landed chapters (chapterId `<bookId>-chNN`, number, readingTimeMinutes from the full read at 230 words a minute,
+packageId `<bookId>-v26-<time>`, book metadata from the config) and runs the app's own validator and category
+check on it; commits it on the current branch and pushes; uploads it to `book-content/packages/<bookId>.v21.json`
+in the content bucket (the server reads it there at runtime); registers it in the API catalog with the repo's
+`register-api-books` script (DynamoDB plus versioned artifacts; live at once for the logged-in library and iOS);
+checks the live API for the new packageId; writes `<runDir>/publish.json`. Names come from `BOOK_TABLE_NAME`,
+`BOOK_CONTENT_BUCKET`, `BOOK_INGEST_BUCKET` in the environment or from SSM `/chapterflow/prod/BOOK_*`; AWS profile
+`chapterflow`, region us-east-1. `--dry-run` builds and validates the package only. `--out <dir>` writes the package
+elsewhere with no git.
+
+Still the owner's after a publish: a **new** book needs the static catalog wiring (an import and `BOOK_PACKAGES`
+entry in `app/book/data/bookPackages.ts`, a row with an authored synopsis in `lib/books-catalog.metadata.json`,
+`npx tsx scripts/book/generate-chapter-meta.ts`, `npm run verify`) and a prod web deploy (`deploy.yml`, approved in
+GitHub) before the public grid shows it; a **replaced** book is live once the server's warm cache turns over (the
+next deploy or cold start). Say which applies in the hand-off.
+
 Housekeeping: commit the config (with keys) and the brief on `v26/variants` with a `chore(v26): <book> config
-and brief` message; push only if the owner asks. Append one dated line to `~/cf-wt/v26-plan/status/V1-variants.md`
-and one to the `v26-campaign` memory file, in their existing shape:
-`- <YYYY-MM-DD> <bookId> <DONE|NEEDS-OWNER> — <chapters clean of N>, $<cost>, pack <path>; open: <flags or none>; owner's: publish`.
+and brief` message (the package commit is made by `publish`); push only if the owner asks. Append one dated line
+to `~/cf-wt/v26-plan/status/V1-variants.md` and one to the `v26-campaign` memory file, in their existing shape:
+`- <YYYY-MM-DD> <bookId> <PUBLISHED|NEEDS-OWNER> — <chapters clean of N>, score <x> band <auto|manual|fail>, $<cost>, pack <path>; open: <flags or none>; owner's: <deploy or nothing>`.
 
 ## Failure table
 
@@ -193,6 +229,10 @@ and one to the `v26-campaign` memory file, in their existing shape:
 | `rename landed on "X"` | the rename picked a used name | `fix` once more on that chapter |
 | lesson over 20 words refused twice | the lessons cap | rerun; the retry carries the error |
 | `NO_FINAL_CHAPTER` from `fix` | a chapter never landed | drop it, rerun `book` for it |
+| `publish`: `no score yet` / `changed after the score` | score missing or stale | run `score`, then `publish` |
+| `publish`: `app validator:` or `category ... is not canonical` | the package would be rejected at ingest | fix the config's categories or the chapter it names; score and publish again |
+| `publish`: `register:api failed` | AWS names or credentials | check `AWS_PROFILE=chapterflow` works (`aws sts get-caller-identity --profile chapterflow`) and the SSM names; rerun `publish` (idempotent by packageId) |
+| `publish`: `not verified ... CDN caches` | the list is cached up to an hour | fine; check again later |
 | trailing comma in `--chapters` | `seq -s,` | `seq a b \| paste -sd, -` |
 
 ## Cost (from the 48 Laws ledgers, 2026-11-04)

@@ -30,9 +30,10 @@ import { assembleChapter, parsePicks } from "./src/assemble";
 import { duplicateNames, fixLanded, loadExemplar, renderPack, runBookChapters } from "./src/book";
 import { draftKeys } from "./src/keys";
 import { scoreBook } from "./src/score";
+import { publishBook } from "./src/publish";
 import { keysFor } from "./src/keysText";
 
-const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys", "score"] as const;
+const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys", "score", "publish"] as const;
 type Verb = (typeof VERBS)[number];
 
 const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --book <config.json> [options]
@@ -53,7 +54,12 @@ const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --boo
   --out <f>         pack: where the one-page reading pack goes (default <runDir>/reading/pack.html)
   score             the publish gate: every landed chapter through eval (reused unless --force), the book's 0-100 score and band
                     (auto / manual / fail; thresholds from the config's gate, default 80 and 70) into <runDir>/score.json
-Exit codes: 0 ok (score: the auto band), 1 open issues or a usage error (score: manual), 2 score: fail, 3 usage limit, 4 budget.
+  publish           after score: the landed chapters become book-packages/<bookId>.v21.json (app-validated), committed and pushed,
+                    uploaded to the content bucket and registered in the API catalog; auto band publishes, manual needs --approve,
+                    fail refuses. --dry-run builds and validates only; --out <dir> puts the package elsewhere (then no git).
+  --approve         publish: the owner has read the pack and said yes (the manual band)
+  --dry-run         publish: everything but git, S3 and the catalog
+Exit codes: 0 ok (score: the auto band; publish: published or dry run), 1 open issues or a usage error (score: manual; publish: needs the owner), 2 score/publish: fail, 3 usage limit, 4 budget.
 `;
 
 export interface Io {
@@ -235,6 +241,16 @@ async function cmdScore(ctx: PipelineCtx, chapters: number[], force: boolean, io
   if (s.redo.length > 0) io.out(`redo before the next try: ${s.redo.map(chName).join(", ")}\n`);
   io.out(`${path.join(ctx.config.runDir, "score.json")}\n`);
   return s.band === "auto" ? 0 : s.band === "manual" ? 1 : 2;
+}
+
+async function cmdPublish(ctx: PipelineCtx, opts: { approve: boolean; dryRun: boolean; out?: string }, io: Io): Promise<number> {
+  const r = await publishBook(ctx, { approve: opts.approve, dryRun: opts.dryRun, packagesDir: opts.out, noGit: opts.out !== undefined });
+  io.out(`${r.bookId}: score ${r.score}, band ${r.band.toUpperCase()}: ${r.outcome.toUpperCase()}\n`);
+  for (const x of r.reasons) io.out(`  ${x}\n`);
+  for (const x of r.steps) io.out(`  ${x}\n`);
+  if (r.packageId) io.out(`  packageId ${r.packageId}\n`);
+  for (const x of r.remaining) io.out(`  still to do: ${x}\n`);
+  return r.outcome === "published" || r.outcome === "dry-run" ? 0 : r.outcome === "needs-approval" ? 1 : 2;
 }
 
 /** The finish round: once per chapter, after its reader round. It sends only the blocking issues the reader round's check left
@@ -471,6 +487,8 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
           issues: { type: "string" },
           finish: { type: "boolean" },
           style: { type: "boolean" },
+          approve: { type: "boolean" },
+          "dry-run": { type: "boolean" },
           file: { type: "string" },
           tag: { type: "string" },
           out: { type: "string" },
@@ -527,6 +545,8 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
         return await guarded(ctx, () => cmdBook(ctx, chapters, { exemplar: values.exemplar, force }, io));
       case "score":
         return await guarded(ctx, () => cmdScore(ctx, chapters, force, io));
+      case "publish":
+        return await cmdPublish(ctx, { approve: values.approve === true, dryRun: values["dry-run"] === true, out: values.out }, io);
       case "pack":
         return cmdPack(ctx, chapters, values.out, io);
       case "keys":

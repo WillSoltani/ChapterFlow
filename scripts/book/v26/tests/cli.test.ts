@@ -1103,3 +1103,96 @@ test("score: a book whose mean is under the manual bar fails, and the gate thres
   const r3 = await h.cli("score", "--book", h.configPath, "--chapters", "1");
   assert.match(r3.err + r3.out, /CONFIG_INVALID.*gate.*manual must not be above auto/);
 });
+
+// ---------------------------------------------------------------- publish (behind the gate)
+
+import { publishBook, type Publisher } from "../src/publish";
+import { makeCtx } from "../src/pipeline";
+import { loadBookConfig } from "../src/config";
+
+const scoreFile = (h: ReturnType<typeof harness>, over: Record<string, unknown> = {}) => {
+  const chapters = [1, 2, 3].map((n) => ({ chapter: n, score: 100, passCount: 10, total: 10, failed: [], stage: "clean", blocking: 0, guessable: false }));
+  const s = { bookId: "demo-book", at: new Date(Date.now() + 5000).toISOString(), thresholds: { auto: 80, manual: 70 }, chapters, skipped: [], mean: 100, min: 100, score: 100, band: "auto", reasons: [], redo: [], ...over };
+  fs.writeFileSync(path.join(h.runDir, "score.json"), JSON.stringify(s));
+};
+const landAll = (h: ReturnType<typeof harness>) => {
+  for (const n of [1, 2, 3]) {
+    h.put(n, "final.json", CH);
+    h.put(n, "status.json", landedStatus(n));
+  }
+};
+
+test("publish: refused without a score, with a stale score, in the fail band, and manual without --approve", async () => {
+  const h = harness();
+  landAll(h);
+  const out = path.join(h.dir, "pkgs");
+  let r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+  assert.equal(r.code, 2);
+  assert.match(r.out, /no score yet/);
+  scoreFile(h, { at: new Date(Date.now() - 60_000).toISOString() });
+  r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+  assert.equal(r.code, 2);
+  assert.match(r.out, /changed after the score; run `score` again/);
+  scoreFile(h, { band: "fail", score: 55, mean: 55, reasons: ["mean 55 is under 70"], redo: [2, 3] });
+  r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+  assert.equal(r.code, 2);
+  assert.match(r.out, /band FAIL: REFUSED/);
+  assert.match(r.out, /redo ch02, ch03 with the owner's permission/);
+  scoreFile(h, { band: "manual", score: 75, mean: 75, reasons: ["mean 75 is under 80"] });
+  r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+  assert.equal(r.code, 1);
+  assert.match(r.out, /NEEDS-APPROVAL/);
+  assert.match(r.out, /publish --approve/);
+  assert.ok(!fs.existsSync(path.join(out, "demo-book.v21.json")), "nothing is written before the gate opens");
+});
+
+test("publish --dry-run: the auto band builds the app-validated package with the three added fields, and touches nothing else", async () => {
+  const h = harness();
+  landAll(h);
+  scoreFile(h);
+  const out = path.join(h.dir, "pkgs");
+  const r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+  assert.equal(r.code, 0, r.err + r.out);
+  assert.match(r.out, /band AUTO: DRY-RUN/);
+  assert.match(r.out, /package: 3 chapters, demo-book-v26-\d+/);
+  assert.match(r.out, /dry run: no git, no S3, no catalog registration/);
+  const pkg = JSON.parse(fs.readFileSync(path.join(out, "demo-book.v21.json"), "utf8"));
+  assert.equal(pkg.schemaVersion, "chapterflow-v21-authored");
+  assert.equal(pkg.contentOwner, "chapterflow");
+  assert.deepEqual(pkg.chapters.map((c: { chapterId: string; number: number }) => [c.chapterId, c.number]), [["demo-book-ch01", 1], ["demo-book-ch02", 2], ["demo-book-ch03", 3]]);
+  assert.ok(pkg.chapters.every((c: { readingTimeMinutes: number }) => Number.isInteger(c.readingTimeMinutes) && c.readingTimeMinutes >= 1));
+  assert.ok(!("_lesson" in pkg.chapters[0]));
+  assert.ok(!fs.existsSync(path.join(h.runDir, "publish.json")), "a dry run leaves no publish record");
+  // A chapter that has not landed refuses the package.
+  fs.rmSync(h.file(3, "final.json"));
+  scoreFile(h);
+  const r2 = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+  assert.equal(r2.code, 2);
+  assert.match(r2.out, /2 of 3 chapters have landed/);
+});
+
+test("publishBook: the auto band runs S3, the catalog registration and the live check through the publisher, and records publish.json", async () => {
+  const h = harness();
+  landAll(h);
+  scoreFile(h);
+  const calls: string[] = [];
+  const fake: Publisher = {
+    async names() { return { table: "T", contentBucket: "content-bucket", ingestBucket: "ingest-bucket", region: "us-east-1", profile: "chapterflow" }; },
+    async putPackage(names, key, body) { calls.push(`put ${names.contentBucket}/${key} ${body.length > 100 ? "body" : "empty"}`); },
+    async register(_names, bookId) { calls.push(`register ${bookId}`); return "demo-book: PUBLISHED v000001"; },
+    async verifyLive(bookId, packageId) { calls.push(`verify ${bookId} ${packageId}`); return { ok: true, detail: `live: ${bookId} serves ${packageId}` }; },
+  };
+  const ctx = makeCtx(loadBookConfig(h.configPath));
+  const r = await publishBook(ctx, { packagesDir: path.join(h.dir, "pkgs"), noGit: true, publisher: fake });
+  assert.equal(r.outcome, "published", JSON.stringify(r));
+  assert.deepEqual(calls, [`put content-bucket/book-content/packages/demo-book.v21.json body`, "register demo-book", `verify demo-book ${r.packageId}`]);
+  assert.ok(r.steps.some((s) => s.startsWith("verified live:")), r.steps.join("|"));
+  const rec = JSON.parse(fs.readFileSync(path.join(h.runDir, "publish.json"), "utf8"));
+  assert.equal(rec.packageId, r.packageId);
+  assert.equal(rec.band, "auto");
+  // The manual band with --approve publishes the same way and says the owner approved it.
+  scoreFile(h, { band: "manual", score: 76, mean: 76, reasons: ["mean 76 is under 80"] });
+  const r2 = await publishBook(ctx, { packagesDir: path.join(h.dir, "pkgs"), noGit: true, publisher: fake, approve: true });
+  assert.equal(r2.outcome, "published");
+  assert.match(r2.reasons[0]!, /approved by the owner/);
+});

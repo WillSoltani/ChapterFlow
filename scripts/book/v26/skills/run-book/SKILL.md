@@ -1,17 +1,18 @@
 ---
 name: run-book
-description: Use when the owner wants a book written with the ChapterFlow v26 chapter tool from nothing to a reading pack (a new title, "run <book> from 0 to 100", "make the next book"), or when resuming a book run that stopped on auth, budget, a usage limit or a crash.
+description: Use when the owner wants a book written with the ChapterFlow v26 chapter tool from nothing to a scored, published book (a new title, "run <book> from 0 to 100", "make the next book"), or when resuming a book run that stopped on auth, budget, a usage limit or a crash.
 ---
 
-# Run a book from zero to a reading pack
+# Run a book from zero to a published book
 
 ## Overview
 
 The v26 tool (`scripts/book/v26` in the worktree `~/cf-wt/v26-lesson-first`, branch `v26/variants`) writes one
-book in the form of a chapter the owner approved. Code gates are facts, quiz keys and render; the owner's reading is
-the only taste gate. Never add a judge, rubric or reader panel in its place. The run has exactly two owner waits:
-picks on one chapter's pick page, and approval of the chapter assembled from those picks. Everything else runs
-unattended and resumes from files.
+book in the form of a chapter the owner approved, scores it, and publishes it through a gate the owner set. Code
+gates are facts, quiz keys and render; the owner's reading decides the calibration chapter and any band that asks.
+The run has two owner waits always (picks on one chapter's pick page; approval of the chapter assembled from those
+picks) and a third only when the score lands in the manual band or fails. Everything else runs unattended and
+resumes from files.
 
 **REQUIRED READING:** `reference.md` in this skill's folder holds every step with its command, the config and
 brief templates, what each check prints, the hand-off and the failure table. Follow it in order; the README is
@@ -33,6 +34,8 @@ background, not the procedure.
 | 6 Book | `CLI book --book <cfg> --chapters 2,3,...` in the background, log wrapped with `date` and `EXIT $?` | |
 | 7 Fix passes | `CLI fix --book <cfg> --chapters 2,3,...` (at most two passes) | |
 | 8 Pack | `CLI pack --book <cfg> --chapters 1,...,N --out <runDir>/reading/all.html`; `open` it and, in the Claude app, attach it with SendUserFile | reads a sample |
+| 9 Score | `CLI score --book <cfg>` (0 to 100; exit 0 auto, 1 manual, 2 fail) | |
+| 10 Publish | auto: `CLI publish --book <cfg>` at once. Manual: hand over the pack and the reasons, publish with `--approve` on a yes. Fail: hand over the redo list, and only with a yes `book --force` those chapters, then steps 7 to 10 again | **yes** on manual; **permission** to redo on fail |
 
 ## Models and cost (owner decision 2026-11-05)
 
@@ -40,6 +43,14 @@ Writer Sonnet 5.5 high; checker and fixer Opus 5.5 high (the fixer defaults to t
 absent); solver Sonnet 5.5 medium. Keys are drafted by the fixer. Estimate $5 + chapters x $0.9 + a third of the
 chapters x $0.6: a 13-chapter book about $20, a 48-chapter book about $60. Each book gets its own ledger (no
 `ledgerPath`) and a `budgetUsd` of twice the estimate.
+
+## The gate (owner decision 2026-11-05)
+
+Score = mean over chapters of the share of judge items passed (the judge calibrated on the owner's labels). Bands
+from the config's `gate` (default `auto` 80, `manual` 70): 80 and up publishes unread, provided no chapter is under
+70 and no fact or key flag is open; 70 to 79 waits for the owner's yes; under 70 fails and is redone only with
+permission. A wrong fact never publishes unread. Calibration: the owner-approved 48 Laws scored 97 and 100 on its
+first two chapters.
 
 ## Red flags: stop and read reference.md
 
@@ -49,11 +60,12 @@ chapters x $0.6: a 13-chapter book about $20, a 48-chapter book about $60. Each 
 - Every chapter opening the same way (`approved.summary` holds one letter).
 - Wanting to regenerate a chapter the owner disliked: it goes through `variants` and `assemble` on that chapter
   and becomes an added exemplar.
-- Thinking the tool publishes. Its output is `<runDir>/chNN/final.json` per chapter and the reading pack; putting a
-  book into the app (book packages, ship, deploy) is the owner's separate step.
+- Publishing without a fresh score, or with `--approve` the owner did not give.
+- A new book after `publish`: the public grid still needs the static catalog wiring and a prod deploy the owner
+  approves (reference.md step 10 says what); the logged-in library and iOS are live at once.
 
 ## Done
 
-The owner can open `<runDir>/reading/all.html` and read every chapter; `status` shows every chapter clean or the
-open flags are quoted in the hand-off; one dated line is in `~/cf-wt/v26-plan/status/V1-variants.md` and in the
-`v26-campaign` memory file; the config (with keys) and brief are committed on `v26/variants`.
+The book is published (`<runDir>/publish.json` records the packageId, band and the live check) or the owner has
+the pack, the score and the reasons it stopped; one dated line is in `~/cf-wt/v26-plan/status/V1-variants.md` and
+in the `v26-campaign` memory file; the config (with keys), the brief and the package are committed on `v26/variants`.
