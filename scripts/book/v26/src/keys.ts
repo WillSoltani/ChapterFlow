@@ -18,7 +18,7 @@ export async function draftKeys(ctx: PipelineCtx, configPath: string, opts: { fo
   });
   // The keys are the fact backbone every later call reads, so the strongest model drafts them: the fixer when one is set.
   const raw = (await callShaped(ctx, 0, {
-    role: ctx.config.fixer ?? ctx.config.writer,
+    role: ctx.config.fixer ?? ctx.config.checker,
     prompt,
     step: "keys",
     kind: "write",

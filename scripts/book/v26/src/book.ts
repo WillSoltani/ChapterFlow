@@ -631,7 +631,7 @@ async function fixRound(ctx: PipelineCtx, n: number, chapter: Chapter, lesson: L
     : knowledge
       ? renderTemplate(loadPrompt("fix-knowledge"), { ...common, BOOK_SECTION: ctx.bookSection, KEYS: keysBlock(ctx, n) })
       : renderTemplate(loadPrompt("fix"), { ...common, SOURCE: writerFormText(spanText(ctx.source, n)) });
-  const fixRaw = await callShaped(ctx, n, { role: ctx.config.fixer ?? ctx.config.writer, prompt: fixPrompt, step: `r${round}.fix`, kind: "fix", errors: (v) => (isObj(v) ? [] : ["answer must be an object"]), outPrefix: path.join(bdir, "calls", `r${round}.fix`), ledgerStep: opts.style ? "book-style" : "book-fix" });
+  const fixRaw = await callShaped(ctx, n, { role: ctx.config.fixer ?? ctx.config.checker, prompt: fixPrompt, step: `r${round}.fix`, kind: "fix", errors: (v) => (isObj(v) ? [] : ["answer must be an object"]), outPrefix: path.join(bdir, "calls", `r${round}.fix`), ledgerStep: opts.style ? "book-style" : "book-fix" });
   const applied = applyFix(chapter, fixRaw as FixOutput);
   // A takeaway trimmed to the word limit is the lesson now: the card follows it, so the equality check still holds.
   if (applied.applied > 0 && applied.chapter.keyTakeaway !== chapter.keyTakeaway) lesson.lesson = applied.chapter.keyTakeaway;

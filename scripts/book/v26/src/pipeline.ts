@@ -545,7 +545,7 @@ export async function fixChapter(ctx: PipelineCtx, n: number, round: number, iss
   const ask = async (p: string, name: string): Promise<FixOutput> =>
     obj(
       required(
-        await callJson(ctx, { role: ctx.config.writer, prompt: p, step: "fix", n, kind: "fix", outPrefix: path.join(dir, `r${next}.${name}`) }),
+        await callJson(ctx, { role: ctx.config.fixer ?? ctx.config.checker, prompt: p, step: "fix", n, kind: "fix", outPrefix: path.join(dir, `r${next}.${name}`) }),
         `fix of chapter ${n}`,
       ),
     ) as FixOutput;

@@ -30,7 +30,7 @@ This tool does **not** publish. The real `ship` (the step that puts a book into 
 | `knownTrapsPath` | optional; facts this book has been wrong about before, given to the fact checker as hints |
 | `briefPath` | the book's section of the brief |
 | `shape` | counts (`examples`, `quizQuestions`, `choices`, `reviewCards`, `memorableLines`, `ifThenPlans`) and word bands (`fastRead`, `deepRead`, `fullRead`) |
-| `writer`, `checker`, `solver`, `fixer` (optional) | each `{bin, model, effort}`; `bin` is the `claude` binary. `fixer` is the model for fix rounds; default the writer. The configs here use Sonnet 5.5 as the writer with Opus 5.5 as checker and fixer: in a blind A/B on four laws (2026-11-05) the owner preferred Sonnet's summaries, at about 60 percent of the writing cost; Sonnet's one weakness, recalling which story a book tells in which chapter, is covered by the story line in `keys`. |
+| `writer`, `checker`, `solver`, `fixer` (optional) | each `{bin, model, effort}`; `bin` is the `claude` binary. `fixer` is the model for fix rounds and the keys draft; default the checker, so a cheap writer never fixes its own work. The configs here use Sonnet 5.5 as the writer with Opus 5.5 as checker and fixer: in a blind A/B on four laws (2026-11-05) the owner preferred Sonnet's summaries, at about 60 percent of the writing cost; Sonnet's one weakness, recalling which story a book tells in which chapter, is covered by the story line in `keys`. |
 | `concurrency` | chapters in parallel for `run` (default 3) |
 | `budgetUsd` | spending cap for the ledger |
 | `runDir` | where the run's files go |

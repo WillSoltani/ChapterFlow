@@ -32,7 +32,7 @@ export interface BookConfig {
   writer: RoleConfig;
   checker: RoleConfig;
   solver: RoleConfig;
-  /** Optional: the model for fix rounds; default the writer. A cheap writer with a strong fixer is a real option. */
+  /** Optional: the model for fix rounds and the keys draft; default the checker, so a cheap writer never fixes its own work. */
   fixer?: RoleConfig;
   concurrency: number;
   budgetUsd: number;

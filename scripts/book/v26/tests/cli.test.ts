@@ -1024,7 +1024,7 @@ test("the committed book configs load, use canonical categories, point at the ru
     assert.deepEqual([cfg.writer.model, cfg.writer.effort], ["claude-sonnet-5-5", "high"]);
     assert.deepEqual([cfg.checker.model, cfg.checker.effort], ["claude-opus-5-5", "high"]);
     assert.deepEqual([cfg.fixer?.model, cfg.fixer?.effort], ["claude-opus-5-5", "high"]);
-    assert.deepEqual([cfg.solver.model, cfg.solver.effort], ["claude-sonnet-5", "medium"]);
+    assert.deepEqual([cfg.solver.model, cfg.solver.effort], ["claude-sonnet-5-5", "medium"]);
     assert.ok(cfg.writer.bin.endsWith("native-binary/claude"));
     assert.equal(cfg.budgetUsd, 60);
     assert.equal(cfg.runDir, path.join(os.homedir(), "cf-wt/v26-plan/runs", name));

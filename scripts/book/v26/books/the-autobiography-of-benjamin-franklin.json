@@ -58,7 +58,7 @@
   },
   "solver": {
     "bin": "~/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude",
-    "model": "claude-sonnet-5",
+    "model": "claude-sonnet-5-5",
     "effort": "medium"
   },
   "concurrency": 3,
