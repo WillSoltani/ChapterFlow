@@ -29,6 +29,7 @@ import { renderVariantsPage } from "./src/variantsRender";
 import { assembleChapter, parsePicks } from "./src/assemble";
 import { duplicateNames, fixLanded, loadExemplar, renderPack, runBookChapters } from "./src/book";
 import { draftKeys } from "./src/keys";
+import { keysFor } from "./src/keysText";
 
 const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys"] as const;
 type Verb = (typeof VERBS)[number];
@@ -336,7 +337,7 @@ function cmdRender(ctx: PipelineCtx, chapters: number[], io: Io): number {
     if (!chapter) continue;
     const status = readJson<ChapterStatus>(path.join(chDir(ctx, n), "status.json"));
     const label = status && status.stage !== "clean" ? `${status.stage}: ${status.open.length} open` : "";
-    const body = renderChapter({ ...chapter, number: n }, { label, bookLine: `${title} by ${author}`, uid: `v${n}` });
+    const body = renderChapter({ ...chapter, number: n }, { label, bookLine: `${title} by ${author}`, uid: `v${n}`, authorAdvice: keysFor(ctx, n) });
     fs.mkdirSync(outDir, { recursive: true });
     const file = path.join(outDir, `${chName(n)}.html`);
     fs.writeFileSync(file, page(`${title}: chapter ${n}`, body));
