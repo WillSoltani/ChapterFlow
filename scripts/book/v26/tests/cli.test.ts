@@ -1028,7 +1028,8 @@ test("the committed book configs load, use canonical categories, point at the ru
     assert.ok(cfg.writer.bin.endsWith("native-binary/claude"));
     assert.equal(cfg.budgetUsd, 60);
     assert.equal(cfg.runDir, path.join(os.homedir(), "cf-wt/v26-plan/runs", name));
-    assert.equal(cfg.ledgerPath, path.join(os.homedir(), "cf-wt/v26-plan/runs/ledger.jsonl"));
+    // Each book keeps its own ledger (run-book skill, 2026-11-05): a shared one carries other books' spend into the cap.
+    assert.equal(cfg.ledgerPath, undefined);
     assert.equal(cfg.briefPath, path.resolve(BOOKS, "../briefs", `${name}.md`));
   }
   const franklin = loadBookConfig(path.join(BOOKS, "the-autobiography-of-benjamin-franklin.json"));
