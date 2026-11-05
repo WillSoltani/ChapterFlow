@@ -1108,7 +1108,6 @@ test("score: a book whose mean is under the manual bar fails, and the gate thres
 
 import { publishBook, type Publisher } from "../src/publish";
 import { makeCtx } from "../src/pipeline";
-import { loadBookConfig } from "../src/config";
 
 const scoreFile = (h: ReturnType<typeof harness>, over: Record<string, unknown> = {}) => {
   const chapters = [1, 2, 3].map((n) => ({ chapter: n, score: 100, passCount: 10, total: 10, failed: [], stage: "clean", blocking: 0, guessable: false }));
