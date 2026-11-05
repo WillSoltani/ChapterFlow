@@ -1041,3 +1041,65 @@ test("the committed book configs load, use canonical categories, point at the ru
   assert.deepEqual(bennett.categories, ["Productivity", "Self Improvement"]);
   assert.equal(bennett.knownTrapsPath, undefined);
 });
+
+// ---------------------------------------------------------------- score (the publish gate)
+
+const landedStatus = (n: number, open: Array<{ source: string; blocking: boolean; field: string; text: string }> = []) => ({
+  chapter: n, stage: open.some((i) => i.blocking) ? "open-issues" : "clean", round: 0, rerun: false, lessonRating: "UNKNOWN", open, spend: 1, lesson: KEY,
+});
+
+test("score: every landed chapter is judged once, the book gets a 0-100 score and the auto band, score.json lands", async () => {
+  const h = harness();
+  h.script({ "pipe-review": [{ result: judge() }, { result: judge() }], "pipe-nochapter": [{ result: GUESS_WRONG }] });
+  h.put(1, "final.json", CH);
+  h.put(1, "status.json", landedStatus(1));
+  h.put(2, "final.json", CH);
+  h.put(2, "status.json", landedStatus(2));
+  const r = await h.cli("score", "--book", h.configPath);
+  assert.equal(r.code, 0, r.err + r.out);
+  assert.match(r.out, /book demo-book: score 100 \(mean 100, lowest 100\); band AUTO/);
+  assert.match(r.out, /not landed, skipped: ch03/);
+  const saved = JSON.parse(fs.readFileSync(path.join(h.runDir, "score.json"), "utf8"));
+  assert.deepEqual(saved.chapters.map((c: { chapter: number }) => c.chapter), [1, 2]);
+  assert.deepEqual(saved.thresholds, { auto: 80, manual: 70 });
+  assert.equal(h.calls("pipe-review").length, 2);
+  // A second run reuses the saved evals: no new judge call.
+  const again = await h.cli("score", "--book", h.configPath);
+  assert.equal(again.code, 0);
+  assert.equal(h.calls("pipe-review").length, 2);
+});
+
+test("score: an open blocking flag keeps a perfect book in the manual band and names the chapter to redo", async () => {
+  const h = harness();
+  h.script({ "pipe-review": [{ result: judge() }, { result: judge() }], "pipe-nochapter": [{ result: GUESS_WRONG }] });
+  h.put(1, "final.json", CH);
+  h.put(1, "status.json", landedStatus(1));
+  h.put(2, "final.json", CH);
+  h.put(2, "status.json", landedStatus(2, [{ source: "fact", blocking: true, field: "breakdown.deepRead", text: "WHY (UNSUPPORTED): x" }]));
+  const r = await h.cli("score", "--book", h.configPath, "--chapters", "1,2");
+  assert.equal(r.code, 1, r.err + r.out);
+  assert.match(r.out, /band MANUAL: open blocking flags in ch02/);
+  assert.match(r.out, /redo before the next try: ch02/);
+});
+
+test("score: a book whose mean is under the manual bar fails, and the gate thresholds come from the config", async () => {
+  const h = harness();
+  const failing = JUDGE_IDS.slice(0, Math.ceil(JUDGE_IDS.length * 0.4));
+  h.script({ "pipe-review": [{ result: judge(failing) }], "pipe-nochapter": [{ result: GUESS_WRONG }] });
+  h.put(1, "final.json", CH);
+  h.put(1, "status.json", landedStatus(1));
+  const r = await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(r.code, 2, r.err + r.out);
+  assert.match(r.out, /band FAIL: mean \d+(\.\d)? is under 70/);
+  // Lower thresholds in the config move the same book into the manual band.
+  const cfg = JSON.parse(fs.readFileSync(h.configPath, "utf8"));
+  cfg.gate = { auto: 95, manual: 50 };
+  fs.writeFileSync(h.configPath, JSON.stringify(cfg));
+  const r2 = await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(r2.code, 1, r2.err + r2.out);
+  assert.match(r2.out, /band MANUAL: mean \d+(\.\d)? is under 95/);
+  cfg.gate = { auto: 50, manual: 80 };
+  fs.writeFileSync(h.configPath, JSON.stringify(cfg));
+  const r3 = await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.match(r3.err + r3.out, /CONFIG_INVALID.*gate.*manual must not be above auto/);
+});

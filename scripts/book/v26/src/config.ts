@@ -34,6 +34,9 @@ export interface BookConfig {
   solver: RoleConfig;
   /** Optional: the model for fix rounds and the keys draft; default the checker, so a cheap writer never fixes its own work. */
   fixer?: RoleConfig;
+  /** Optional publish gate, 0 to 100 on the book score: `auto` and up publishes unread, `manual` and up waits for the
+   *  owner, under `manual` fails. Default 80 and 70. */
+  gate?: { auto: number; manual: number };
   concurrency: number;
   budgetUsd: number;
   runDir: string;
@@ -232,5 +235,15 @@ export function loadBookConfig(configPath: string): BookConfig {
   // Optional, so the key is left off entirely when the config does not name one.
   if (raw.knownTrapsPath !== undefined) cfg.knownTrapsPath = p(raw.knownTrapsPath, "knownTrapsPath");
   if (raw.ledgerPath !== undefined) cfg.ledgerPath = p(raw.ledgerPath, "ledgerPath");
+  if (raw.gate !== undefined) {
+    const g = raw.gate as { auto?: unknown; manual?: unknown };
+    const num = (v: unknown, k: string): number => {
+      if (typeof v !== "number" || !Number.isFinite(v) || v < 0 || v > 100) invalid(`gate.${k}`, "must be a number from 0 to 100");
+      return v as number;
+    };
+    const gate = { auto: num(g?.auto, "auto"), manual: num(g?.manual, "manual") };
+    if (gate.manual > gate.auto) invalid("gate", "manual must not be above auto");
+    cfg.gate = gate;
+  }
   return cfg;
 }

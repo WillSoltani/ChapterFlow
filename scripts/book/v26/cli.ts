@@ -29,9 +29,10 @@ import { renderVariantsPage } from "./src/variantsRender";
 import { assembleChapter, parsePicks } from "./src/assemble";
 import { duplicateNames, fixLanded, loadExemplar, renderPack, runBookChapters } from "./src/book";
 import { draftKeys } from "./src/keys";
+import { scoreBook } from "./src/score";
 import { keysFor } from "./src/keysText";
 
-const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys"] as const;
+const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys", "score"] as const;
 type Verb = (typeof VERBS)[number];
 
 const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --book <config.json> [options]
@@ -50,7 +51,9 @@ const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --boo
   --picks <f>       assemble: the owner's picks, the "Copy my picks" text (or JSON {picks, notes}); one chapter (--chapters N)
   --exemplar <k>    book: the approved chapter to write against (default: the newest under <runDir>/exemplars)
   --out <f>         pack: where the one-page reading pack goes (default <runDir>/reading/pack.html)
-Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget.
+  score             the publish gate: every landed chapter through eval (reused unless --force), the book's 0-100 score and band
+                    (auto / manual / fail; thresholds from the config's gate, default 80 and 70) into <runDir>/score.json
+Exit codes: 0 ok (score: the auto band), 1 open issues or a usage error (score: manual), 2 score: fail, 3 usage limit, 4 budget.
 `;
 
 export interface Io {
@@ -219,6 +222,19 @@ async function cmdFix(ctx: PipelineCtx, chapters: number[], findings: Finding[] 
     if (next.blocking.length > 0) code = 1;
   }
   return code;
+}
+
+async function cmdScore(ctx: PipelineCtx, chapters: number[], force: boolean, io: Io): Promise<number> {
+  const s = await scoreBook(ctx, chapters, { force });
+  for (const c of s.chapters) {
+    const extra = [c.blocking > 0 ? `${c.blocking} open` : "", c.guessable ? "quiz guessable" : "", c.failed.length > 0 ? `fails ${c.failed.join(" ")}` : ""].filter(Boolean).join("; ");
+    io.out(`${chName(c.chapter)}  ${String(c.score).padStart(5)}  ${c.passCount}/${c.total}${extra ? `  (${extra})` : ""}\n`);
+  }
+  if (s.skipped.length > 0) io.out(`not landed, skipped: ${s.skipped.map(chName).join(", ")}\n`);
+  io.out(`book ${s.bookId}: score ${s.score} (mean ${s.mean}, lowest ${s.min}); band ${s.band.toUpperCase()}${s.reasons.length > 0 ? `: ${s.reasons.join("; ")}` : ""}\n`);
+  if (s.redo.length > 0) io.out(`redo before the next try: ${s.redo.map(chName).join(", ")}\n`);
+  io.out(`${path.join(ctx.config.runDir, "score.json")}\n`);
+  return s.band === "auto" ? 0 : s.band === "manual" ? 1 : 2;
 }
 
 /** The finish round: once per chapter, after its reader round. It sends only the blocking issues the reader round's check left
@@ -509,6 +525,8 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
         return await guarded(ctx, () => cmdAssemble(ctx, chapters, values.picks, io));
       case "book":
         return await guarded(ctx, () => cmdBook(ctx, chapters, { exemplar: values.exemplar, force }, io));
+      case "score":
+        return await guarded(ctx, () => cmdScore(ctx, chapters, force, io));
       case "pack":
         return cmdPack(ctx, chapters, values.out, io);
       case "keys":
