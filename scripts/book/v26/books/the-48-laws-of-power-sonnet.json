@@ -4,13 +4,14 @@
   "author": "Robert Greene",
   "bookType": "argument",
   "categories": [
-    "Productivity",
-    "Self Improvement"
+    "Strategy",
+    "Psychology"
   ],
   "tags": [
-    "attention",
-    "focus",
-    "habits"
+    "power",
+    "strategy",
+    "influence",
+    "persuasion"
   ],
   "chapters": [
     {
@@ -291,7 +292,7 @@
     "effort": "medium"
   },
   "concurrency": 3,
-  "budgetUsd": 30,
+  "budgetUsd": 120,
   "runDir": "~/cf-wt/v26-plan/runs/the-48-laws-of-power-sonnet",
   "fixer": {
     "bin": "~/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude",
