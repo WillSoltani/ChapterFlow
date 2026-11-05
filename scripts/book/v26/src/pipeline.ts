@@ -770,7 +770,8 @@ function detMetrics(c: Chapter): Record<string, unknown> {
 }
 
 export async function evalChapter(ctx: PipelineCtx, chapterPath: string, n: number, tag: string, outDir: string): Promise<EvalResult> {
-  requireText(ctx, "eval");
+  // No source text is read here: the judge sees the reader-visible chapter and the no-chapter solver sees the quiz, so a
+  // knowledge-mode book is evaluated the same way (its facts were checked against the checker's knowledge when it landed).
   const { _lesson, ...c } = obj(readJson(chapterPath));
   void _lesson;
   const chapter = c as unknown as Chapter;
