@@ -34,7 +34,7 @@ export interface Publisher {
   names(): Promise<AwsNames>;
   putPackage(names: AwsNames, key: string, body: string): Promise<void>;
   register(names: AwsNames, bookId: string): Promise<string>;
-  verifyLive(bookId: string, packageId: string): Promise<{ ok: boolean; detail: string }>;
+  verifyLive(bookId: string, packageId: string, expect: { chapters: number; firstTitle: string }): Promise<{ ok: boolean; detail: string }>;
 }
 
 export interface PublishOptions {
@@ -158,13 +158,19 @@ export function awsPublisher(): Publisher {
       if (r.status !== 0) throw new Error(`register:api failed (exit ${r.status}): ${(r.stdout + r.stderr).slice(-1500)}`);
       return r.stdout.trim().split("\n").slice(-5).join("\n");
     },
-    async verifyLive(bookId, packageId) {
-      const origin = process.env.CHAPTERFLOW_LIVE_ORIGIN ?? "https://chapterflow.ca";
+    async verifyLive(bookId, packageId, expect) {
+      // The detail endpoint does not expose the packageId; the published version's chapter list does show the content.
+      const origin = process.env.CHAPTERFLOW_LIVE_ORIGIN ?? "https://app.chapterflow.ca";
       try {
         const res = await fetch(`${origin}/app/api/book/books/${bookId}`, { headers: { "cache-control": "no-cache" } });
-        const text = await res.text();
         if (!res.ok) return { ok: false, detail: `GET ${origin}/app/api/book/books/${bookId} -> ${res.status}` };
-        return text.includes(packageId) ? { ok: true, detail: `live: ${bookId} serves ${packageId}` } : { ok: false, detail: `live response does not carry ${packageId} yet (the CDN caches the list for up to an hour)` };
+        const body = (await res.json()) as { book?: { publishedVersion?: unknown; chapters?: Array<{ title?: string }> } };
+        const chapters = body.book?.chapters ?? [];
+        const first = chapters[0]?.title ?? "";
+        if (chapters.length === expect.chapters && first === expect.firstTitle) {
+          return { ok: true, detail: `live: ${bookId} serves ${chapters.length} chapters of ${packageId} (published version ${String(body.book?.publishedVersion ?? "?")})` };
+        }
+        return { ok: false, detail: `live detail shows ${chapters.length} chapters, first "${first}"; expected ${expect.chapters} and "${expect.firstTitle}" (the CDN caches responses for up to an hour)` };
       } catch (err) {
         return { ok: false, detail: `live check failed: ${(err as Error).message}` };
       }
@@ -230,7 +236,7 @@ export async function publishBook(ctx: PipelineCtx, opts: PublishOptions = {}): 
   steps.push(`s3: put s3://${names.contentBucket}/${key}`);
   const reg = await publisher.register(names, bookId);
   steps.push(`catalog: registered ${bookId} (${reg.split("\n").slice(-1)[0]})`);
-  const live = await publisher.verifyLive(bookId, pkg.packageId);
+  const live = await publisher.verifyLive(bookId, pkg.packageId, { chapters: pkg.chapters.length, firstTitle: pkg.chapters[0]?.title ?? "" });
   steps.push(live.ok ? `verified ${live.detail}` : `not verified: ${live.detail}`);
   const record = { bookId, packageId: pkg.packageId, at: new Date().toISOString(), score: score.score, band: score.band, approved: opts.approve === true, steps, remaining, live };
   fs.writeFileSync(path.join(ctx.config.runDir, "publish.json"), JSON.stringify(record, null, 2) + "\n");

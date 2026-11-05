@@ -1180,12 +1180,12 @@ test("publishBook: the auto band runs S3, the catalog registration and the live 
     async names() { return { table: "T", contentBucket: "content-bucket", ingestBucket: "ingest-bucket", region: "us-east-1", profile: "chapterflow" }; },
     async putPackage(names, key, body) { calls.push(`put ${names.contentBucket}/${key} ${body.length > 100 ? "body" : "empty"}`); },
     async register(_names, bookId) { calls.push(`register ${bookId}`); return "demo-book: PUBLISHED v000001"; },
-    async verifyLive(bookId, packageId) { calls.push(`verify ${bookId} ${packageId}`); return { ok: true, detail: `live: ${bookId} serves ${packageId}` }; },
+    async verifyLive(bookId, packageId, expect) { calls.push(`verify ${bookId} ${packageId} ${expect.chapters}`); return { ok: true, detail: `live: ${bookId} serves ${packageId}` }; },
   };
   const ctx = makeCtx(loadBookConfig(h.configPath));
   const r = await publishBook(ctx, { packagesDir: path.join(h.dir, "pkgs"), noGit: true, publisher: fake });
   assert.equal(r.outcome, "published", JSON.stringify(r));
-  assert.deepEqual(calls, [`put content-bucket/book-content/packages/demo-book.v21.json body`, "register demo-book", `verify demo-book ${r.packageId}`]);
+  assert.deepEqual(calls, [`put content-bucket/book-content/packages/demo-book.v21.json body`, "register demo-book", `verify demo-book ${r.packageId} 3`]);
   assert.ok(r.steps.some((s) => s.startsWith("verified live:")), r.steps.join("|"));
   const rec = JSON.parse(fs.readFileSync(path.join(h.runDir, "publish.json"), "utf8"));
   assert.equal(rec.packageId, r.packageId);
