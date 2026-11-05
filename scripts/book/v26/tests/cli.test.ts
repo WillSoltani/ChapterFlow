@@ -1020,8 +1020,10 @@ test("the committed book configs load, use canonical categories, point at the ru
       examples: 3, quizQuestions: 7, choices: 3, reviewCards: 5, memorableLines: 3, ifThenPlans: 2,
       fastRead: [150, 220], deepRead: [350, 500], fullRead: [800, 1100],
     });
-    assert.deepEqual([cfg.writer.model, cfg.writer.effort], ["claude-opus-5-5", "high"]);
+    // From the next book on (owner, 2026-11-05): Sonnet writes, Opus checks and fixes.
+    assert.deepEqual([cfg.writer.model, cfg.writer.effort], ["claude-sonnet-5-5", "high"]);
     assert.deepEqual([cfg.checker.model, cfg.checker.effort], ["claude-opus-5-5", "high"]);
+    assert.deepEqual([cfg.fixer?.model, cfg.fixer?.effort], ["claude-opus-5-5", "high"]);
     assert.deepEqual([cfg.solver.model, cfg.solver.effort], ["claude-sonnet-5", "medium"]);
     assert.ok(cfg.writer.bin.endsWith("native-binary/claude"));
     assert.equal(cfg.budgetUsd, 60);

@@ -1,4 +1,4 @@
-You know this book well. For each chapter listed below, write what the author advises in that chapter, as he gives it: blunt, plain words, no softening, 2 to 4 short sentences, then one sentence beginning "Reversal:" for when the author says the advice does not apply. Use only what you are confident the book says in that chapter. Where you are not sure, write less rather than guess, and never borrow another chapter's point. No quotations.
+You know this book well. For each chapter listed below, write what the author advises in that chapter, as he gives it: blunt, plain words, no softening, 2 to 4 short sentences, then one sentence beginning "Reversal:" for when the author says the advice does not apply, then one or two sentences beginning "Story the author tells:" naming the story or stories that chapter uses as evidence (who, what they did, how it ended, as the book tells it), or "Story the author tells: none recalled with confidence". Use only what you are confident the book says in that chapter. Where you are not sure, write less rather than guess, and never borrow another chapter's point. No quotations.
 
 @@BOOK_SECTION@@
 
