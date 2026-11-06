@@ -34,7 +34,9 @@ export interface Publisher {
   names(): Promise<AwsNames>;
   putPackage(names: AwsNames, key: string, body: string): Promise<void>;
   register(names: AwsNames, bookId: string): Promise<string>;
-  verifyLive(bookId: string, packageId: string, expect: { chapters: number; firstTitle: string }): Promise<{ ok: boolean; detail: string }>;
+  /** The published version the live API reports for the book right now, or null when it is not listed. */
+  liveVersion(bookId: string): Promise<number | null>;
+  verifyLive(bookId: string, packageId: string, expect: { chapters: number; firstTitle: string; versionAbove: number | null }): Promise<{ ok: boolean; detail: string }>;
 }
 
 export interface PublishOptions {
@@ -158,24 +160,37 @@ export function awsPublisher(): Publisher {
       if (r.status !== 0) throw new Error(`register:api failed (exit ${r.status}): ${(r.stdout + r.stderr).slice(-1500)}`);
       return r.stdout.trim().split("\n").slice(-5).join("\n");
     },
+    async liveVersion(bookId) {
+      const d = await liveDetail(bookId);
+      return d?.version ?? null;
+    },
     async verifyLive(bookId, packageId, expect) {
-      // The detail endpoint does not expose the packageId; the published version's chapter list does show the content.
-      const origin = process.env.CHAPTERFLOW_LIVE_ORIGIN ?? "https://app.chapterflow.ca";
+      // The detail endpoint does not expose the packageId: the published version must have moved past the one seen before
+      // registration (a republish that changes only sentences keeps the chapter count and titles), and the content must match.
       try {
-        const res = await fetch(`${origin}/app/api/book/books/${bookId}`, { headers: { "cache-control": "no-cache" } });
-        if (!res.ok) return { ok: false, detail: `GET ${origin}/app/api/book/books/${bookId} -> ${res.status}` };
-        const body = (await res.json()) as { book?: { publishedVersion?: unknown; chapters?: Array<{ title?: string }> } };
-        const chapters = body.book?.chapters ?? [];
-        const first = chapters[0]?.title ?? "";
-        if (chapters.length === expect.chapters && first === expect.firstTitle) {
-          return { ok: true, detail: `live: ${bookId} serves ${chapters.length} chapters of ${packageId} (published version ${String(body.book?.publishedVersion ?? "?")})` };
+        const d = await liveDetail(bookId);
+        if (!d) return { ok: false, detail: `live detail for ${bookId} not readable` };
+        const moved = expect.versionAbove === null ? d.version !== null : d.version !== null && d.version > expect.versionAbove;
+        if (moved && d.chapters === expect.chapters && d.firstTitle === expect.firstTitle) {
+          return { ok: true, detail: `live: ${bookId} serves published version ${String(d.version)} (${d.chapters} chapters of ${packageId})` };
         }
-        return { ok: false, detail: `live detail shows ${chapters.length} chapters, first "${first}"; expected ${expect.chapters} and "${expect.firstTitle}" (the CDN caches responses for up to an hour)` };
+        return { ok: false, detail: `live detail shows version ${String(d.version)} with ${d.chapters} chapters, first "${d.firstTitle}"; expected a version above ${String(expect.versionAbove)}, ${expect.chapters} chapters and "${expect.firstTitle}" (the CDN caches responses for up to an hour)` };
       } catch (err) {
         return { ok: false, detail: `live check failed: ${(err as Error).message}` };
       }
     },
   };
+}
+
+/** The live book detail: published version, chapter count and first title; null when the book is not listed. */
+async function liveDetail(bookId: string): Promise<{ version: number | null; chapters: number; firstTitle: string } | null> {
+  const origin = process.env.CHAPTERFLOW_LIVE_ORIGIN ?? "https://app.chapterflow.ca";
+  const res = await fetch(`${origin}/app/api/book/books/${bookId}?t=${Date.now()}`, { headers: { "cache-control": "no-cache", pragma: "no-cache" } });
+  if (!res.ok) return null;
+  const body = (await res.json()) as { book?: { publishedVersion?: unknown; chapters?: Array<{ title?: string }> } };
+  const v = Number(body.book?.publishedVersion);
+  const chapters = body.book?.chapters ?? [];
+  return { version: Number.isFinite(v) ? v : null, chapters: chapters.length, firstTitle: chapters[0]?.title ?? "" };
 }
 
 function gitCommitPackage(file: string, message: string, steps: string[]): void {
@@ -231,12 +246,14 @@ export async function publishBook(ctx: PipelineCtx, opts: PublishOptions = {}): 
   if (!opts.noGit) gitCommitPackage(file, `chore(books): publish ${bookId} from the v26 run (score ${score.score}, band ${score.band})\n\nCo-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>`, steps);
   const publisher = opts.publisher ?? awsPublisher();
   const names = await publisher.names();
+  const before = await publisher.liveVersion(bookId).catch(() => null);
+  steps.push(before === null ? "live: not listed before this publish" : `live: published version ${before} before this publish`);
   const key = `book-content/packages/${bookId}.v21.json`;
   await publisher.putPackage(names, key, body);
   steps.push(`s3: put s3://${names.contentBucket}/${key}`);
   const reg = await publisher.register(names, bookId);
   steps.push(`catalog: registered ${bookId} (${reg.split("\n").slice(-1)[0]})`);
-  const live = await publisher.verifyLive(bookId, pkg.packageId, { chapters: pkg.chapters.length, firstTitle: pkg.chapters[0]?.title ?? "" });
+  const live = await publisher.verifyLive(bookId, pkg.packageId, { chapters: pkg.chapters.length, firstTitle: pkg.chapters[0]?.title ?? "", versionAbove: before });
   steps.push(live.ok ? `verified ${live.detail}` : `not verified: ${live.detail}`);
   const record = { bookId, packageId: pkg.packageId, at: new Date().toISOString(), score: score.score, band: score.band, approved: opts.approve === true, steps, remaining, live };
   fs.writeFileSync(path.join(ctx.config.runDir, "publish.json"), JSON.stringify(record, null, 2) + "\n");
