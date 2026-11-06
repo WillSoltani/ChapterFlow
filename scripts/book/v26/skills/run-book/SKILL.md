@@ -10,9 +10,10 @@ description: Use when the owner wants a book written with the ChapterFlow v26 ch
 The v26 tool (`scripts/book/v26` in the worktree `~/cf-wt/v26-lesson-first`, branch `v26/variants`) writes one
 book in the form of a chapter the owner approved, scores it, and publishes it through a gate the owner set. Code
 gates are facts, quiz keys and render; the owner's reading decides the calibration chapter and any band that asks.
-The run has two owner waits always (picks on one chapter's pick page; approval of the chapter assembled from those
-picks) and a third only when the score lands in the manual band or fails. Everything else runs unattended and
-resumes from files.
+With the house exemplar (`exemplarFrom` in the config, the default for new books: the owner's approved 48 Laws
+chapter 1) the run has no owner wait at all unless the score lands in the manual band or fails. Only a book that is
+to set a new form goes through the pick page (two waits: picks, then approval of the assembled chapter). Everything
+else runs unattended and resumes from files.
 
 **REQUIRED READING:** `reference.md` in this skill's folder holds every step with its command, the config and
 brief templates, what each check prints, the hand-off and the failure table. Follow it in order; the README is
@@ -28,10 +29,10 @@ background, not the procedure.
 | 0 Preflight | `git log -1`; `<binary> auth status`; the test suite once | login only if auth fails |
 | 1 Config + brief | copy `books/the-48-laws-of-power-sonnet.json` (knowledge) or `books/the-autobiography-of-benjamin-franklin.json` (text); `CLI status --book <cfg>` loads it | |
 | 2 Keys (knowledge mode) | `CLI keys --book <cfg>` (drafted by the fixer, Opus) | skim or edit |
-| 3 Variants | `CLI variants --book <cfg> --chapters 1` | **pick** one per part, notes, Copy my picks |
-| 4 Assemble | `CLI assemble --book <cfg> --chapters 1 --picks <runDir>/ch01/variants/picks.txt`, then `CLI fix --book <cfg> --chapters 1` (at most twice) | **approve** the exemplar, name the openers |
-| 5 Tune exemplar | `<runDir>/exemplars/ch01.json`: `approved.summary`, `bookNames` | |
-| 6 Book | `CLI book --book <cfg> --chapters 2,3,...` in the background, log wrapped with `date` and `EXIT $?` | |
+| 3 Variants (only without `exemplarFrom`) | `CLI variants --book <cfg> --chapters 1` | **pick** one per part, notes, Copy my picks |
+| 4 Assemble (only without `exemplarFrom`) | `CLI assemble --book <cfg> --chapters 1 --picks <runDir>/ch01/variants/picks.txt`, then `CLI fix --book <cfg> --chapters 1` (at most twice) | **approve** the exemplar, name the openers |
+| 5 Tune exemplar (only without `exemplarFrom`) | `<runDir>/exemplars/ch01.json`: `approved.summary`, `bookNames` | |
+| 6 Book | `CLI book --book <cfg> --chapters 1,2,...` (from 2 when chapter 1 is this book's own exemplar) in the background, log wrapped with `date` and `EXIT $?` | |
 | 7 Fix passes | `CLI fix --book <cfg> --chapters 2,3,...` (at most two passes) | |
 | 8 Pack | `CLI pack --book <cfg> --chapters 1,...,N --out <runDir>/reading/all.html`; `open` it and, in the Claude app, attach it with SendUserFile | reads a sample |
 | 9 Score | `CLI score --book <cfg>` (0 to 100; exit 0 auto, 1 manual, 2 fail) | |

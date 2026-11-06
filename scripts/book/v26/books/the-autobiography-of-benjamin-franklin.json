@@ -63,5 +63,9 @@
   },
   "concurrency": 3,
   "budgetUsd": 60,
-  "runDir": "~/cf-wt/v26-plan/runs/the-autobiography-of-benjamin-franklin"
+  "runDir": "~/cf-wt/v26-plan/runs/the-autobiography-of-benjamin-franklin",
+  "exemplarFrom": {
+    "runDir": "~/cf-wt/v26-plan/runs/the-48-laws-of-power",
+    "chapter": 1
+  }
 }

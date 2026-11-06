@@ -372,3 +372,14 @@ test("an optional fixer role parses like the others and is absent when not given
   assert.equal(cfg.fixer?.model, "claude-opus-5-5");
   assert.equal(cfg.fixer?.role, "fixer");
 });
+
+test("exemplarFrom names another book's run dir and chapter, resolved like other paths, and is validated", () => {
+  const dir = tmp();
+  const raw = validConfig();
+  raw.exemplarFrom = { runDir: "~/cf-wt/v26-plan/runs/the-48-laws-of-power", chapter: 1 };
+  const cfg = loadBookConfig(writeConfig(dir, raw));
+  assert.equal(cfg.exemplarFrom?.chapter, 1);
+  assert.ok(cfg.exemplarFrom?.runDir.endsWith("cf-wt/v26-plan/runs/the-48-laws-of-power"));
+  raw.exemplarFrom = { runDir: "x", chapter: 0 };
+  assert.throws(() => loadBookConfig(writeConfig(dir, raw, "bad.json")), /exemplarFrom\.chapter/);
+});

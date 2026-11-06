@@ -51,9 +51,12 @@ Learning, Mental Toughness, Negotiation, Memoir, Classics, Personal Finance, Inv
 ledger at `<runDir>/ledger.jsonl` (a shared ledger carries other books' spend and would stop the first call).
 Keep `shape` and `concurrency: 3` as the template; `knownTrapsPath` (text mode, optional) is a top-level field.
 Roles: writer `claude-sonnet-5-5` high, checker `claude-opus-5-5` high, fixer `claude-opus-5-5` high (may be
-omitted; it then defaults to the checker), solver `claude-sonnet-5-5` medium; `bin` the glob above. While writing
-the config, ask the owner which chapter they know best; that is the calibration chapter (default 1). `mkdir -p` the
-run dir so the logs below have a home (the tool creates it too).
+omitted; it then defaults to the checker), solver `claude-sonnet-5-5` medium; `bin` the glob above.
+`exemplarFrom: {"runDir": "~/cf-wt/v26-plan/runs/the-48-laws-of-power", "chapter": 1}`: the house exemplar, the
+owner's approved chapter, whose form every chapter of the new book takes (owner decision 2026-11-06: no pick page
+per book; the Carnegie picks matched the 48 Laws picks in four parts of five). Leave it out only when the owner
+wants to set a new form on this book; then ask which chapter they know best as the calibration chapter and run steps
+3 to 5. `mkdir -p` the run dir so the logs below have a home (the tool creates it too).
 
 The brief: 4 to 6 lines in the shape of `briefs/the-48-laws-of-power.md`, following the type table in
 `briefs/README.md`: what the book is; where the lesson comes from; what the evidence is and what must not be invented
@@ -74,7 +77,10 @@ the chapter's own limit and delete a forced one. Edit by hand where wrong. Show 
 wait); their edits must land before step 6, since variants, assemble and the book all read the keys. A rerun drafts
 only chapters still without keys; `--force` redoes all.
 
-## 3. Variants on the calibration chapter (7 calls, $2 to $3, about 10 min)
+## 3. Variants on the calibration chapter (7 calls, $2 to $3, about 10 min; skip with `exemplarFrom`)
+
+Steps 3, 4 and 5 are only for a book that sets its own form. With `exemplarFrom` in the config, go to step 6 and
+include chapter 1 in `--chapters`.
 
 The calibration chapter is the one the owner knows best and that shows the book's typical shape; chapter 1 unless
 the owner names another. `CLI variants --book <cfg> --chapters 1` (optional `--reference <chapter.json>` folds an
@@ -132,8 +138,9 @@ every later chapter that mentions it as "exemplar copy"), and it must not hold t
 
 ## 6. The book (4 to 6 calls per chapter, $0.7 to $1.1 each, about 2 min per chapter at concurrency 3)
 
-Background: `(date; CLI book --book <cfg> --chapters $(seq 2 N | paste -sd, -); echo "EXIT $?"; date) >
-<runDir>/book-run-<date>.log 2>&1`. One early `head -2` of the log: the first tool line is `exemplar: ch01 (...);
+Background: `(date; CLI book --book <cfg> --chapters $(seq 1 N | paste -sd, -); echo "EXIT $?"; date) >
+<runDir>/book-run-<date>.log 2>&1` (from 2 when chapter 1 is this book's own exemplar; a house exemplar is never a
+chapter of this book, so chapter 1 is written like the rest). One early `head -2` of the log: the first tool line is `exemplar: ch01 (...);
 openers rotate A/B/D; names off limits: <names>`; the names must be the invented people of ch01 only. If a book
 term is there, stop the run (safe; chapters resume from files), fix `bookNames`, relaunch the identical command.
 

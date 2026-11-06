@@ -21,6 +21,9 @@ import { COMPONENTS, callShaped, lessonText, lessonsPrompt, lessonsShapeErrors, 
 
 export interface Exemplar {
   chapter: number;
+  /** True when the exemplar is a chapter of this book (then that chapter is never rewritten); false for a house exemplar
+   *  from another book, where every chapter of this book is written. */
+  own: boolean;
   chapterJson: Chapter;
   picks: Record<Component, { label: string; approach: string }>;
   notes: Record<string, string>;
@@ -132,8 +135,11 @@ export function extractNames(c: Chapter, storyNames: string[] = [], fields: "inv
 
 /** The exemplar: exemplars/chNN.json (picks, notes) plus the chapter as it stands now in chNN/final.json. */
 export function loadExemplar(ctx: PipelineCtx, n?: number): Exemplar {
-  const dir = path.join(ctx.config.runDir, "exemplars");
-  let pick = n;
+  const from = ctx.config.exemplarFrom;
+  const base = from?.runDir ?? ctx.config.runDir;
+  const own = base === ctx.config.runDir;
+  const dir = path.join(base, "exemplars");
+  let pick = n ?? from?.chapter;
   if (pick === undefined) {
     const found = fs.existsSync(dir) ? fs.readdirSync(dir).flatMap((f) => (/^ch(\d+)\.json$/.test(f) ? [Number(/^ch(\d+)\.json$/.exec(f)![1])] : [])) : [];
     if (found.length === 0) throw new Error(`NO_EXEMPLAR: no exemplar under ${dir}; assemble an approved chapter first`);
@@ -143,10 +149,10 @@ export function loadExemplar(ctx: PipelineCtx, n?: number): Exemplar {
     path.join(dir, `${chapterName(pick)}.json`),
   );
   if (!rec) throw new Error(`NO_EXEMPLAR: ${path.join(dir, `${chapterName(pick)}.json`)} does not exist`);
-  const chapterJson = readJson<Chapter>(path.join(ctx.config.runDir, chapterName(pick), "final.json"));
-  if (!chapterJson) throw new Error(`NO_EXEMPLAR: ${chapterName(pick)} has no final.json`);
+  const chapterJson = readJson<Chapter>(path.join(base, chapterName(pick), "final.json"));
+  if (!chapterJson) throw new Error(`NO_EXEMPLAR: ${chapterName(pick)} has no final.json under ${base}`);
   // The book's own people: the record's list, else every candidate lesson's storyNames from the variants page, else the lesson card.
-  const candidates = readJson<{ lessons: Array<{ storyNames?: string[] }> }>(path.join(ctx.config.runDir, chapterName(pick), "variants", "lessons.json"));
+  const candidates = readJson<{ lessons: Array<{ storyNames?: string[] }> }>(path.join(base, chapterName(pick), "variants", "lessons.json"));
   const known = rec.bookNames ?? candidates?.lessons.flatMap((l) => l.storyNames ?? []) ?? null;
   const bookNames = [...new Set([...(known ?? []), ...(rec.lesson?.storyNames ?? [])])].sort();
   const invented = extractNames(chapterJson, bookNames, "invented");
@@ -158,6 +164,7 @@ export function loadExemplar(ctx: PipelineCtx, n?: number): Exemplar {
   const approvedSummary = (rec.approved?.summary ?? []).filter((l) => /^[A-E]$/.test(l));
   return {
     chapter: pick,
+    own,
     chapterJson,
     picks: rec.picks,
     notes: rec.notes ?? {},
@@ -437,7 +444,7 @@ function earlierTiers(ctx: PipelineCtx, n: number, ex: Exemplar): Record<string,
   const out: Record<string, string> = {};
   if (!fs.existsSync(ctx.config.runDir)) return out;
   for (const f of fs.readdirSync(ctx.config.runDir)) {
-    if (!/^ch\d+$/.test(f) || f === chapterName(n) || f === chapterName(ex.chapter)) continue;
+    if (!/^ch\d+$/.test(f) || f === chapterName(n) || (ex.own && f === chapterName(ex.chapter))) continue;
     const c = readJson<Chapter>(path.join(ctx.config.runDir, f, "final.json"));
     if (c?.breakdown) out[f] = TIERS.map((t) => c.breakdown[t] ?? "").join("\n");
   }
@@ -507,7 +514,7 @@ async function checkRound(
 
 /** Writes chapter n in the exemplar's form, checks it, fixes once, and lands it. Returns the status; a resumed chapter returns its saved one. */
 export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar, opts: { force?: boolean } = {}): Promise<BookChapterStatus> {
-  if (n === ex.chapter) throw new Error(`EXEMPLAR_CHAPTER: ${chapterName(n)} is the exemplar; it is not rewritten`);
+  if (ex.own && n === ex.chapter) throw new Error(`EXEMPLAR_CHAPTER: ${chapterName(n)} is the exemplar; it is not rewritten`);
   const dir = path.join(ctx.config.runDir, chapterName(n));
   const bdir = path.join(dir, "book");
   const statusFile = path.join(dir, "status.json");
@@ -678,7 +685,7 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
   if (!style && issues.length === 0) return status;
   // Checks need an exemplar for the copy check; a chapter that is itself the exemplar is checked against nothing.
   const exemplarFile = path.join(ctx.config.runDir, "exemplars", `${chapterName(n)}.json`);
-  const ex: Exemplar = fs.existsSync(exemplarFile) ? { ...loadExemplar(ctx, n), chapterJson: emptyChapter(), names: [], sceneNames: [] } : loadExemplar(ctx);
+  const ex: Exemplar = fs.existsSync(exemplarFile) && ctx.config.exemplarFrom === undefined ? { ...loadExemplar(ctx, n), chapterJson: emptyChapter(), names: [], sceneNames: [] } : loadExemplar(ctx);
   const renameOnly = !style && issues.every((i) => VARIETY.test(i.text));
   const used = new Set<string>([...ex.names, ...Object.values(ledger.chapters).flatMap((v) => v.names)]);
   const styleNames = style ? [...new Set([...(ledger.chapters[chapterName(n)]?.names ?? []), ...extractNames(chapter, lesson.storyNames, "invented")])].sort() : [];
@@ -774,7 +781,7 @@ const isStop = (e: unknown): boolean => typeof e === "object" && e !== null && "
  *  config problem stops the run; any other failure is recorded per chapter and the run goes on. */
 export async function runBookChapters(ctx: PipelineCtx, chapters: number[], opts: { exemplar?: number; force?: boolean } = {}): Promise<BookChapterStatus[]> {
   const ex = loadExemplar(ctx, opts.exemplar);
-  const todo = chapters.filter((n) => n !== ex.chapter);
+  const todo = chapters.filter((n) => !(ex.own && n === ex.chapter));
   const out: BookChapterStatus[] = new Array(todo.length);
   let next = 0;
   let fatal: unknown = null;

@@ -498,3 +498,40 @@ test("fixLanded style pass: an open fact flag the skipped checker never looked a
   assert.ok(st.open.some((i) => i.source === "fact" && i.blocking), JSON.stringify(st.open));
   assert.equal(h.calls("pipe-vfactcheck").length, 0);
 });
+
+test("a house exemplar: exemplarFrom writes every chapter of this book against another book's approved chapter, its names blocked", async () => {
+  const h = harness({ candidates: true });
+  // A second book whose config points at the first book's exemplar.
+  const dir2 = fs.mkdtempSync(path.join(os.tmpdir(), "v26-house-"));
+  roots.push(dir2);
+  const cfg = JSON.parse(fs.readFileSync(h.configPath, "utf8"));
+  cfg.bookId = "other-book";
+  cfg.title = "Other Book";
+  cfg.runDir = path.join(dir2, "run");
+  cfg.ledgerPath = path.join(dir2, "ledger.jsonl");
+  cfg.briefPath = path.resolve(path.dirname(h.configPath), cfg.briefPath);
+  cfg.exemplarFrom = { runDir: h.runDir, chapter: 1 };
+  const configPath = path.join(dir2, "other.json");
+  fs.writeFileSync(configPath, JSON.stringify(cfg));
+  const ctx = makeCtx(loadBookConfig(configPath));
+  const ex = loadExemplar(ctx);
+  assert.equal(ex.own, false);
+  assert.equal(ex.chapter, 1);
+  assert.deepEqual(ex.names, ["Marcus", "Maya", "Priya"]);
+  assert.equal(ex.picks.quiz.label, "E");
+  // Chapter 1 of this book is written like any other, against the foreign exemplar.
+  h.script({ "pipe-bwrite": [{ result: written(), cost: 0.6 }] });
+  const statuses = await runBookChapters(ctx, [1]);
+  assert.equal(statuses.length, 1);
+  assert.equal(statuses[0]!.chapter, 1);
+  assert.equal(statuses[0]!.stage, "clean", JSON.stringify(statuses[0]!.open));
+  assert.ok(fs.existsSync(path.join(cfg.runDir, "ch01", "final.json")));
+  const prompt = h.calls("pipe-bwrite")[0]!.prompt;
+  assert.match(prompt, /<exemplar>/);
+  assert.match(prompt, /These people belong to another chapter's story/);
+  // A chapter that reuses the house exemplar's invented name is blocked as an exemplar copy.
+  const h2copy = { ...written(), hook: "Maya has just landed the B biggest client. What does Maya tell the meeting?" };
+  h.script({ "pipe-bwrite": [{ result: h2copy, cost: 0.6 }] });
+  const st2 = await writeBookChapter(ctx, 2, ex);
+  assert.ok(st2.open.some((i) => /exemplar copy: "Maya"/.test(i.text)), JSON.stringify(st2.open));
+});

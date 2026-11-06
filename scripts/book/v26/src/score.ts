@@ -87,7 +87,8 @@ export async function scoreBook(ctx: PipelineCtx, chapters: number[], opts: { fo
   const scored = await pool(ctx.config.concurrency, landed.map((n) => async (): Promise<ChapterScore> => {
     const dir = path.join(ctx.config.runDir, chapterName(n));
     const evalFile = path.join(evalDir, `${chapterName(n)}.eval.json`);
-    const existing = opts.force ? null : readJson<EvalResult>(evalFile);
+    const fresh = fs.existsSync(evalFile) && fs.statSync(evalFile).mtimeMs >= fs.statSync(path.join(dir, "final.json")).mtimeMs;
+    const existing = opts.force || !fresh ? null : readJson<EvalResult>(evalFile);
     const r = existing ?? (await evalChapter(ctx, path.join(dir, "final.json"), n, chapterName(n), evalDir));
     const status = readJson<ChapterStatus>(path.join(dir, "status.json"));
     const blocking = status ? status.open.filter((i) => i.blocking).length : 0;

@@ -34,6 +34,9 @@ export interface BookConfig {
   solver: RoleConfig;
   /** Optional: the model for fix rounds and the keys draft; default the checker, so a cheap writer never fixes its own work. */
   fixer?: RoleConfig;
+  /** Optional: write every chapter of this book against an approved chapter of ANOTHER book (the house exemplar), so no
+   *  pick page is needed for this one. Its run dir and chapter number; the record and final.json are read from there. */
+  exemplarFrom?: { runDir: string; chapter: number };
   /** Optional publish gate, 0 to 100 on the book score: `auto` and up publishes unread, `manual` and up waits for the
    *  owner, under `manual` fails. Default 80 and 70. */
   gate?: { auto: number; manual: number };
@@ -235,6 +238,12 @@ export function loadBookConfig(configPath: string): BookConfig {
   // Optional, so the key is left off entirely when the config does not name one.
   if (raw.knownTrapsPath !== undefined) cfg.knownTrapsPath = p(raw.knownTrapsPath, "knownTrapsPath");
   if (raw.ledgerPath !== undefined) cfg.ledgerPath = p(raw.ledgerPath, "ledgerPath");
+  if (raw.exemplarFrom !== undefined) {
+    const e = obj(raw.exemplarFrom, "exemplarFrom") as { runDir?: unknown; chapter?: unknown };
+    const chapter = e.chapter;
+    if (!Number.isInteger(chapter) || (chapter as number) < 1) invalid("exemplarFrom.chapter", "must be a positive integer");
+    cfg.exemplarFrom = { runDir: p(e.runDir, "exemplarFrom.runDir"), chapter: chapter as number };
+  }
   if (raw.gate !== undefined) {
     const g = raw.gate as { auto?: unknown; manual?: unknown };
     const num = (v: unknown, k: string): number => {
