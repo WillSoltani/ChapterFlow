@@ -1,0 +1,5 @@
+THE BOOK: How to Win Friends and Influence People by Dale Carnegie (1936), a how-to book. Each chapter teaches one principle for dealing with people, built on short true anecdotes (businessmen, clerks, presidents, ordinary families) and plain advice in Carnegie's voice.
+- The lesson is the chapter's principle, put the way a fair reader would use it today, with Carnegie's reason for it. State it as one concrete move in a conversation at work or at home, not a slogan, and not a trick to get something from someone.
+- The chapter's anecdotes are the evidence. Tell the ones Carnegie tells, in plain words, naming only who the lesson needs, and never add a person, number, date or outcome the chapter does not give; if no story is recalled with confidence, reason from the principle instead.
+- There is no source text here, so no quotations: tell the stories and the advice in your own words.
+- Tell Carnegie's advice as he gives it, then say straight to the reader in one sentence where you go softer (for example where honest interest turns into flattery or manipulation).

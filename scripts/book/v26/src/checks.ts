@@ -230,6 +230,9 @@ const isQuizCardWording = (id: string): boolean => /^quiz\..+\.(prompt|choices\.
 
 const CHATTER =
   /as an ai\b|language model|here is the json|here's the json|the author writes|```|in this chapter we will|\bthe source text\b|\bthe source span\b|\bmy draft\b/i;
+/** Words from the prompts and the lesson card that must not reach reader text. */
+// Prompt vocabulary, and the chapter talking about its own lesson ("The lesson is softer in only one way: ...").
+const LEAK = /\b(wrong belief|near-miss|acts? out|tempting choice|the story shows)\b|\b(the|this|your) lesson( for you)? (is|goes|stays) (gentler|softer|milder)\b|\b(here )?I (go softer|part ways|am gentler|would not|stop short)\b|\bwhere I go softer\b/i;
 const OUTSIDE_FACT =
   /\d+(\.\d+)?\s?%|\b(1[5-9]|20)\d{2}\b|\b(stud(y|ies)|survey|research(ers)? (shows?|found|suggests)|according to|scientists|statistics?)\b/gi;
 
@@ -296,6 +299,8 @@ export async function runChecks(c: Chapter, lesson: LessonCard | null, ctx: Chec
   for (const id of fieldIds) {
     const m = CHATTER.exec(f[id]);
     if (m) blocking.push(det(true, id, `meta chatter in reader-visible text: "${m[0]}"`));
+    const leak = LEAK.exec(f[id]);
+    if (leak) reported.push(det(false, id, `prompt vocabulary in reader text: "${leak[0]}"; say it in the reader's words`));
   }
 
   // 5. The lesson card and keyTakeaway.
