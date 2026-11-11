@@ -233,12 +233,15 @@ export function FilmBackdrop({ reel, children, className }: Props) {
 
   useEffect(() => {
     const map = caches.current;
+    budget.revive();
     return () => {
       for (const c of map.values()) c.dispose();
       map.clear();
       packs?.dispose();
+      // Stops the budget's probe timers (frame-cache.ts dispose).
+      budget.dispose();
     };
-  }, [packs]);
+  }, [packs, budget]);
 
   const api = useMemo<ReelApi>(
     () => ({

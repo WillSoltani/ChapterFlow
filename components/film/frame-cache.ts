@@ -481,6 +481,8 @@ export class FrameBudget {
   private probeGen = 0;
   private probeDue = false;
   private probing = false;
+  /** dispose() was called: nothing is scheduled or loaded again. */
+  private disposedFlag = false;
   /** When the pending retry wake-up fires (Infinity = none pending). */
   private wakeAt = Infinity;
   private readonly listeners = new Set<(cache: FrameCache, index: number) => void>();
@@ -612,6 +614,35 @@ export class FrameBudget {
     };
   }
 
+  /**
+   * The page let go of the budget (FilmBackdrop unmounted): probing stops and
+   * no timer is armed again (a pending one fires once and does nothing).
+   * Without this, a probe that came due while the document was hidden kept
+   * re-arming its 60 s timer after the unmount, for good.
+   */
+  dispose() {
+    if (this.disposedFlag) return;
+    this.disposedFlag = true;
+    this.probeOn = false;
+    this.probeDue = false;
+    this.probeGen++;
+  }
+
+  /**
+   * Undo dispose() (React StrictMode runs an effect's cleanup and then the
+   * effect again on the same budget): timers may be armed again, and a budget
+   * halted for unreachability probes again on its schedule.
+   */
+  revive() {
+    if (!this.disposedFlag) return;
+    this.disposedFlag = false;
+    if (this.haltKind !== "unreachable" || !this.hasTransient()) return;
+    this.probeOn = true;
+    this.probeStep = 0;
+    this.probeStalled = false;
+    this.scheduleProbe();
+  }
+
   /** The browser's `online` event: a recovery signal. */
   noteOnline() {
     this.signal();
@@ -677,7 +708,7 @@ export class FrameBudget {
    * transient failures. Halted for unreachability: ask for a probe.
    */
   private signal() {
-    if (this.haltKind === "page") return;
+    if (this.disposedFlag || this.haltKind === "page") return;
     if (this.haltedFlag ? !this.probeOn : !this.hasTransient()) return;
     const now = this.clock.now();
     const at = this.signalAt + SIGNAL_GAP_MS;
@@ -698,7 +729,7 @@ export class FrameBudget {
 
   /** The next scheduled probe (PROBE_AFTER_MS, then PROBE_EVERY_MS). */
   private scheduleProbe() {
-    if (this.stats.probes >= PROBE_MAX) return;
+    if (this.disposedFlag || this.stats.probes >= PROBE_MAX) return;
     const gen = ++this.probeGen;
     const ms = PROBE_AFTER_MS[this.probeStep] ?? PROBE_EVERY_MS;
     this.clock.later(() => {
@@ -1020,7 +1051,7 @@ export class FrameBudget {
     if (!f) return true;
     const now = this.clock.now();
     if (now >= f.retryAt) return true;
-    if (f.retryAt < this.wakeAt) {
+    if (f.retryAt < this.wakeAt && !this.disposedFlag) {
       this.wakeAt = f.retryAt;
       this.clock.later(() => {
         this.wakeAt = Infinity;
