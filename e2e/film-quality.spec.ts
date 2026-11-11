@@ -9,7 +9,8 @@ import { promises as fs } from "node:fs";
  * Phone viewport stability (components/film/use-scrub-loop.ts): on 390 × 844
  * the canvas backing store is allocated once, the loop does (almost) no work
  * at rest, stops once the reel is over, and a jump back into the reel draws
- * the frame the scroll position demands at once.
+ * the frame the scroll position demands at once, and every frame and poster
+ * it requests is the phone band tier (<film>-b900).
  *
  * The other film specs read the requested frame from the HUD, so they pass
  * even with a dead loader; this one reads the network and window.__filmStats.
@@ -103,6 +104,13 @@ test.describe("film quality", () => {
 
   test("phone viewport: canvas sized once, idle at rest, stopped after the reel, a jump lands", async ({ page }) => {
     test.setTimeout(120_000);
+    // Every frame and poster a phone asks for is the 900 band tier: a
+    // 390 px wide window (backing width ≤ 900 px) never touches landscape,
+    // the legacy -p frames or the 1080 tier, not even before the first paint.
+    const filmRequests: string[] = [];
+    page.on("request", (req) => {
+      if (/\/films\/[^/?#]+\/(f_\d+|poster)\.\w+/.test(req.url())) filmRequests.push(req.url());
+    });
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/?hud=1");
     await page.waitForFunction(() => !!(window as unknown as { __filmStats?: Stats }).__filmStats);
@@ -193,5 +201,10 @@ test.describe("film quality", () => {
     console.log(`resize: box ${box.bw}×${box.bh} css, canvas ${box.cw}×${box.ch} at the first frame`);
     expect(Math.abs(box.cw / box.ch - box.bw / box.bh), "first frame after a resize paints into the new box").toBeLessThan(0.01);
     expect((await readStats(page)).canvasResizes, "one reallocation for the one box change").toBe(2);
+
+    const otherTier = filmRequests.filter((u) => !/\/films\/palace-\d\d-b900\/(f_\d+|poster)\.webp(\?|$)/.test(u));
+    console.log(`phone tier: ${filmRequests.length} frame + poster requests, ${otherTier.length} outside palace-*-b900`);
+    expect(filmRequests.length, "the phone loaded frames").toBeGreaterThan(0);
+    expect(otherTier, "every frame and poster request is for the b900 tier").toEqual([]);
   });
 });
