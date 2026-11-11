@@ -17,12 +17,16 @@
  *     synchronously what is decodable; asks the worker to decode and gets the
  *     ImageBitmap back (transferred).
  *   • Fallback: a variant whose pack fails (404, unusable, retries spent)
- *     goes to the per-frame path for the rest of the page view (a reel sent
- *     again keeps it in its place, marked failed, so the worker never reads
- *     it again and the films around it keep their neighbours); if the worker
- *     cannot start, lacks createImageBitmap or a streaming fetch body, or
- *     crashes, every variant does. Pending decodes reject (handled by the
- *     scheduler), frames already decoded stay.
+ *     goes to the per-frame path (a reel sent again keeps it in its place,
+ *     marked failed, so the worker never reads it again and the films
+ *     around it keep their neighbours); if the worker cannot start, lacks
+ *     createImageBitmap or a streaming fetch body, or crashes, every variant
+ *     does, for the page view. Pending decodes reject (handled by the
+ *     scheduler), frames already decoded stay. A pack failure is permanent
+ *     (the server answered that the file does not exist or cannot be used)
+ *     or transient (network errors); `resume()`, called by the scheduler on
+ *     a recovery signal, makes transiently failed packs, and every pack
+ *     `stop()` marked, readable again (the worker gets `recover`).
  * Copies the worker's counters into window.__filmStats (FilmStats).
  */
 
@@ -95,9 +99,10 @@ export class PackClient implements PackSource {
   private worker: WorkerLike | null = null;
   /** Set when pack mode is over for every variant (worker missing, failed or crashed). */
   private dead: string | null = null;
-  /** stop(): static mode, nothing is read again. */
+  /** stop(): static mode, nothing is read until resume(). */
   private stopped = false;
-  private readonly failed = new Set<string>();
+  /** Failed packs: permanent (for the page view), transient, or marked by stop() (both end with resume()). */
+  private readonly failed = new Map<string, "permanent" | "transient" | "stopped">();
   private readonly held = new Map<string, Set<number>>();
   private readonly variants = new Map<string, FilmVariant>();
   private readonly pending = new Map<number, { resolve: (r: { bitmap: ImageBitmap; ms: number }) => void; reject: (e: Error) => void }>();
@@ -175,11 +180,11 @@ export class PackClient implements PackSource {
   }
 
   /**
-   * Stop for good (static mode, the budget halted): every pack is marked
-   * failed in the worker, so it never reads one again (its streams stop), and
-   * no variant is served from a pack on this page view. The worker itself
-   * stays, idle: static mode is not a crash. Nobody is told to fall back: a
-   * halted budget loads nothing.
+   * Stop (static mode, the budget halted): every pack is marked failed in
+   * the worker, so it reads none (its streams stop), and no variant is
+   * served from a pack until resume(). The worker itself stays, idle: static
+   * mode is not a crash. Nobody is told to fall back: a halted budget loads
+   * nothing.
    */
   stop() {
     if (this.stopped) return;
@@ -187,13 +192,36 @@ export class PackClient implements PackSource {
     this.unlisten?.();
     this.unlisten = null;
     this.rejectPending("pack: stopped");
-    for (const v of this.reel?.() ?? []) if (v.pack) this.failed.add(variantKey(v));
-    for (const k of this.variants.keys()) this.failed.add(k);
+    for (const v of this.reel?.() ?? []) if (v.pack && !this.failed.has(variantKey(v))) this.failed.set(variantKey(v), "stopped");
+    for (const [k, v] of this.variants) if (v.pack && !this.failed.has(k)) this.failed.set(k, "stopped");
     this.held.clear();
     if (this.worker) {
       this.reelKey = "";
       this.sendReel();
     }
+  }
+
+  /**
+   * A recovery signal (frame-cache.ts): packs that failed transiently, and
+   * after stop() every pack it marked, are served and read again (the worker
+   * gets `recover`; one that failed permanently there is reported again).
+   * Packs that failed permanently stay failed. The next scroll decision
+   * tells the worker where the visitor is.
+   */
+  resume() {
+    const keys = [...this.failed].filter(([, kind]) => kind !== "permanent").map(([key]) => key);
+    const wasStopped = this.stopped;
+    this.stopped = false;
+    for (const k of keys) this.failed.delete(k);
+    if (!this.worker || this.dead) return;
+    if (keys.length) this.worker.postMessage({ t: "recover", keys });
+    if (wasStopped && !this.unlisten) this.listenEnv();
+  }
+
+  /** Some pack failed transiently (a recovery signal would make it readable again). */
+  hasTransient(): boolean {
+    for (const kind of this.failed.values()) if (kind === "transient") return true;
+    return false;
   }
 
   /** Stop the worker (unmount). A later `where` starts a fresh one. */
@@ -223,6 +251,11 @@ export class PackClient implements PackSource {
       this.die("worker failed to start");
       return false;
     }
+    this.listenEnv();
+    return true;
+  }
+
+  private listenEnv() {
     this.unlisten = this.env.listen(
       () => {
         if (this.scrolled) return;
@@ -231,7 +264,6 @@ export class PackClient implements PackSource {
       },
       () => this.sendWhere(),
     );
-    return true;
   }
 
   private sendReel() {
@@ -274,8 +306,14 @@ export class PackClient implements PackSource {
         return;
       }
       case "failed": {
-        if (this.failed.has(m.key)) return;
-        this.failed.add(m.key);
+        // Absent (an older worker): permanent.
+        const kind = m.permanent === false ? "transient" : "permanent";
+        const was = this.failed.get(m.key);
+        // Marked by stop() meanwhile: keep the real kind (resume() needs it);
+        // nobody falls back while stopped.
+        if (was === "stopped") this.failed.set(m.key, kind);
+        if (was) return;
+        this.failed.set(m.key, kind);
         this.held.delete(m.key);
         s.packFallbacks++;
         const v = this.variants.get(m.key);

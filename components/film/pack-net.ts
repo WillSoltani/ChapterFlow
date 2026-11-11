@@ -17,8 +17,14 @@
  * makes the pack unusable at once. Any other failure (network error, 403,
  * 429, 5xx, a body that ends early) is retried after 400 ms, 800 ms, 1.6 s;
  * a fourth failure in a row makes the pack unusable. Unusable = `failed`
- * event: the page loads that variant frame by frame for the rest of the
- * page view.
+ * event: the page loads that variant frame by frame. The event says whether
+ * the failure is permanent (the server answered that the file does not
+ * exist or cannot be used: 404/410/416, a length or header that disagrees,
+ * bytes that will not decode) or transient (retries spent on network
+ * errors, 403/429/5xx, bodies that ended early). A permanent failure lasts
+ * the page view; a transient one ends when the page sends `recover` after a
+ * recovery signal (frame-cache.ts): the pack is read again from its first
+ * missing byte.
  *
  * Frames whose bytes are held but will not decode (`decodeFailed`, from the
  * worker's createImageBitmap) count against their pack: the third failure
@@ -93,7 +99,7 @@ export type NetStats = {
 
 export type NetEvent =
   | { t: "frames"; key: string; added: number[]; removed: number[] }
-  | { t: "failed"; key: string; reason: string }
+  | { t: "failed"; key: string; reason: string; permanent: boolean }
   | { t: "stats"; stats: NetStats };
 
 /** No playhead change for this long = settled (constrained window, re-aim on stop). */
@@ -112,6 +118,8 @@ type Entry = {
   store: PackBytes;
   rangeless: boolean;
   failed: string | null;
+  /** The failure is permanent (see the file header): `recover` never reads the pack again. */
+  permanent: boolean;
   attempts: number;
   retryAt: number;
   decodeFailures: number;
@@ -162,10 +170,12 @@ export class PackNet {
       this.reel[p.film] = p.key;
       let e = this.entries.get(p.key);
       if (!e) {
-        e = { pack: p, store: new PackBytes(p.key, p.layout, p.count), rangeless: false, failed: null, attempts: 0, retryAt: 0, decodeFailures: 0 };
+        e = { pack: p, store: new PackBytes(p.key, p.layout, p.count), rangeless: false, failed: null, permanent: false, attempts: 0, retryAt: 0, decodeFailures: 0 };
         this.entries.set(p.key, e);
       }
-      if (p.failed && !e.failed) this.markUnusable(e, "failed earlier in this page view", false);
+      // The page's own mark (static mode, or a failure it was told of): it
+      // decides when it ends (recover).
+      if (p.failed && !e.failed) this.markUnusable(e, "failed earlier in this page view", false, false);
     }
     this.plan();
   }
@@ -178,7 +188,31 @@ export class PackNet {
     const e = this.entries.get(key);
     if (!e || e.failed) return;
     e.decodeFailures++;
-    if (e.decodeFailures >= DECODE_FAILURES_MAX) this.markUnusable(e, `${e.decodeFailures} frames would not decode`, true);
+    if (e.decodeFailures >= DECODE_FAILURES_MAX) this.markUnusable(e, `${e.decodeFailures} frames would not decode`, true, true);
+  }
+
+  /**
+   * After a recovery signal (the page decides): the packs of `keys` that
+   * failed transiently, or that the page marked failed, are read again (a
+   * fresh set of retries, from the first byte not held). A permanent
+   * failure stays and is reported again, so a page that thought otherwise
+   * falls back.
+   */
+  recover(keys: readonly string[]) {
+    let changed = false;
+    for (const key of keys) {
+      const e = this.entries.get(key);
+      if (!e || !e.failed) continue;
+      if (e.permanent) {
+        this.io.emit({ t: "failed", key, reason: e.failed, permanent: true });
+        continue;
+      }
+      e.failed = null;
+      e.attempts = 0;
+      e.retryAt = 0;
+      changed = true;
+    }
+    if (changed) this.plan();
   }
 
   setWhere(w: NetWhere) {
@@ -390,14 +424,14 @@ export class PackNet {
       return;
     }
     if (s.stopped) return void res.body?.cancel().catch(() => {});
-    if (res.status === 404 || res.status === 410 || res.status === 416) return this.fail(s, e, `pack answered ${res.status}`);
+    if (res.status === 404 || res.status === 410 || res.status === 416) return this.fail(s, e, `pack answered ${res.status}`, true);
     if (res.status === 206) {
       const m = /^bytes (\d+)-(\d+)\/(\d+|\*)$/.exec(res.headers.get("content-range") ?? "");
-      if (!m || Number(m[1]) !== s.pos) return this.fail(s, e, `206 for ${range} came back as "${res.headers.get("content-range")}"`);
-      if (m[3] !== "*" && Number(m[3]) !== total) return this.fail(s, e, `pack is ${m[3]} bytes, the timeline says ${total}`);
+      if (!m || Number(m[1]) !== s.pos) return this.fail(s, e, `206 for ${range} came back as "${res.headers.get("content-range")}"`, true);
+      if (m[3] !== "*" && Number(m[3]) !== total) return this.fail(s, e, `pack is ${m[3]} bytes, the timeline says ${total}`, true);
     } else if (res.status === 200) {
       const len = res.headers.get("content-length");
-      if (len !== null && Number(len) !== total) return this.fail(s, e, `pack is ${len} bytes, the timeline says ${total}`);
+      if (len !== null && Number(len) !== total) return this.fail(s, e, `pack is ${len} bytes, the timeline says ${total}`, true);
       // The body starts at byte 0. Asked for a later byte, the server
       // ignored Range: from now on this pack is read whole, from 0.
       if (s.pos > 0) e.rangeless = true;
@@ -406,7 +440,7 @@ export class PackNet {
     } else {
       return this.retry(s, e, `pack answered ${res.status}`);
     }
-    if (!res.body) return this.fail(s, e, "no response body");
+    if (!res.body) return this.fail(s, e, "no response body", true);
     const reader = res.body.getReader();
     try {
       for (;;) {
@@ -447,7 +481,7 @@ export class PackNet {
     this.stats.packBytesRepeated += st.repeatedBytes - repeatedBefore;
     this.stats.packBytesHeld += st.heldBytes - heldBefore;
     if (r.error) {
-      this.fail(s, e, r.error);
+      this.fail(s, e, r.error, true);
       return false;
     }
     e.attempts = 0;
@@ -463,22 +497,23 @@ export class PackNet {
     this.stopStream(s);
     e.attempts++;
     if (e.attempts > RETRY_MS.length) {
-      this.fail(s, e, `${why}, ${e.attempts} times`);
+      this.fail(s, e, `${why}, ${e.attempts} times`, false);
       return;
     }
     e.retryAt = this.io.clock.now() + RETRY_MS[e.attempts - 1]!;
     this.plan();
   }
 
-  private fail(s: Stream, e: Entry, reason: string) {
+  private fail(s: Stream, e: Entry, reason: string, permanent: boolean) {
     this.stopStream(s);
-    this.markUnusable(e, reason, true);
+    this.markUnusable(e, reason, true, permanent);
   }
 
-  /** The pack is unusable for the rest of the page view: streams stopped, bytes dropped. */
-  private markUnusable(e: Entry, reason: string, announce: boolean) {
+  /** The pack is unusable (for the page view, or until `recover` when not permanent): streams stopped, bytes dropped. */
+  private markUnusable(e: Entry, reason: string, announce: boolean, permanent: boolean) {
     if (e.failed) return;
     e.failed = reason;
+    e.permanent = permanent;
     for (const t of [...this.streams.values()]) if (t.key === e.pack.key) this.stopStream(t);
     // The page loads this variant frame by frame now: its bytes are useless.
     const dropped = e.store.heldFrames();
@@ -488,7 +523,7 @@ export class PackNet {
     this.stats.packBytesHeld -= before - e.store.heldBytes;
     if (announce) {
       if (dropped.length) this.io.emit({ t: "frames", key: e.pack.key, added: [], removed: dropped });
-      this.io.emit({ t: "failed", key: e.pack.key, reason });
+      this.io.emit({ t: "failed", key: e.pack.key, reason, permanent });
     }
     this.emitStats(true);
     this.plan();

@@ -10,6 +10,9 @@
  *   decode    createImageBitmap(Blob of the frame's bytes); the bitmap is
  *             transferred to the page with the time the decode took
  *
+ * `recover` (after a recovery signal on the page) reads packs that failed
+ * transiently, or that static mode marked failed, again (PackNet.recover).
+ *
  * A frame whose held bytes will not decode is answered `ok: false` and
  * counted against its pack (PackNet.decodeFailed): the third makes the pack
  * unusable, so the page loads that variant frame by frame.
@@ -89,5 +92,7 @@ scope.addEventListener("message", (ev) => {
       return net?.setWhere(m.where);
     case "decode":
       return void decode(m.id, m.key, m.index);
+    case "recover":
+      return net?.recover(m.keys);
   }
 });
