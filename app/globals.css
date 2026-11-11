@@ -3685,49 +3685,53 @@ html[data-motion="reduced"] .rl-faq-chevron {
   position: relative;
   isolation: isolate;
 }
+/* The box's backing covers the box and its feathered margin only (no mask,
+   no 100vw overdraw): it reaches the stage edge on the copy side (the stage
+   grid's padding) and 7rem past the box on the film side, and the feathers
+   are built into the gradients. Layers: the middle band carries the
+   horizontal fade; two strips feather its top and bottom edges; two corner
+   ellipses close the strips over the fading end, matching the band along
+   their shared edge. */
 .film-box::before {
+  --box-edge: calc(-1 * clamp(1.25rem, 5vw, 4rem));
+  --box-92: color-mix(in srgb, var(--cf-recall-bg) 92%, transparent);
+  --box-90: color-mix(in srgb, var(--cf-recall-bg) 90%, transparent);
+  --box-70: color-mix(in srgb, var(--cf-recall-bg) 70%, transparent);
+  --box-feather: linear-gradient(to bottom, transparent 0, var(--box-70) 53%, var(--box-90) 100%);
   content: "";
   position: absolute;
   z-index: -1;
-  inset: -2.5rem -7rem -2.5rem -100vw;
+  inset: -2.5rem -7rem -2.5rem var(--box-edge);
   pointer-events: none;
-  background: linear-gradient(
-    to right,
-    color-mix(in srgb, var(--cf-recall-bg) 92%, transparent) 0%,
-    color-mix(in srgb, var(--cf-recall-bg) 90%, transparent) calc(100% - 15rem),
-    color-mix(in srgb, var(--cf-recall-bg) 70%, transparent) calc(100% - 8rem),
-    transparent 100%
-  );
-  mask-image: linear-gradient(to bottom, transparent 0, #000 2.5rem, #000 calc(100% - 2.5rem), transparent 100%);
+  background:
+    linear-gradient(to right, var(--box-92) 0%, var(--box-90) calc(100% - 15rem), var(--box-70) calc(100% - 8rem), transparent 100%)
+      0 2.5rem / 100% calc(100% - 5rem) no-repeat,
+    var(--box-feather) 0 0 / calc(100% - 15rem) 2.5rem no-repeat,
+    linear-gradient(to top, transparent 0, var(--box-70) 53%, var(--box-90) 100%) 0 100% / calc(100% - 15rem) 2.5rem no-repeat,
+    radial-gradient(100% 100% at 0 100%, var(--box-90) 0, var(--box-70) 47%, transparent 100%) 100% 0 / 15rem 2.5rem no-repeat,
+    radial-gradient(100% 100% at 0 0, var(--box-90) 0, var(--box-70) 47%, transparent 100%) 100% 100% / 15rem 2.5rem no-repeat;
 }
 .film-stage-grid[data-split="right"] .film-box::before {
-  inset: -2.5rem -100vw -2.5rem -7rem;
-  background: linear-gradient(
-    to left,
-    color-mix(in srgb, var(--cf-recall-bg) 92%, transparent) 0%,
-    color-mix(in srgb, var(--cf-recall-bg) 90%, transparent) calc(100% - 15rem),
-    color-mix(in srgb, var(--cf-recall-bg) 70%, transparent) calc(100% - 8rem),
-    transparent 100%
-  );
+  inset: -2.5rem var(--box-edge) -2.5rem -7rem;
+  background:
+    linear-gradient(to left, var(--box-92) 0%, var(--box-90) calc(100% - 15rem), var(--box-70) calc(100% - 8rem), transparent 100%)
+      0 2.5rem / 100% calc(100% - 5rem) no-repeat,
+    var(--box-feather) 100% 0 / calc(100% - 15rem) 2.5rem no-repeat,
+    linear-gradient(to top, transparent 0, var(--box-70) 53%, var(--box-90) 100%) 100% 100% / calc(100% - 15rem) 2.5rem no-repeat,
+    radial-gradient(100% 100% at 100% 100%, var(--box-90) 0, var(--box-70) 47%, transparent 100%) 0 0 / 15rem 2.5rem no-repeat,
+    radial-gradient(100% 100% at 100% 0, var(--box-90) 0, var(--box-70) 47%, transparent 100%) 0 100% / 15rem 2.5rem no-repeat;
 }
 
+/* The film fades into the body over its first 10svh; from 30svh it is
+   opaque (the same colour as the page under it), so the canvas can stop
+   compositing below the reel (use-scrub-loop.ts, BODY_OPAQUE_STAGES). */
 [data-film-body] {
   background: linear-gradient(
     to bottom,
     transparent 0,
     color-mix(in srgb, var(--cf-recall-bg) 85%, transparent) 10svh,
-    color-mix(in srgb, var(--cf-recall-bg) 92%, transparent) 100%
+    var(--cf-recall-bg) 30svh
   );
-}
-
-/* Soft focus: while a segment with `softFocus` is active, the footage drops
-   out of focus so its own printed pseudo-text reads as texture under the real
-   prose overlay. Filter lives on the fixed wrapper (own compositor layer). */
-.film-canvas {
-  transition: filter 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-html[data-reel-soft] .film-canvas {
-  filter: blur(2.5px) saturate(0.92);
 }
 
 /* ── Hall of Summary: real prose on the corridor walls (components/film/HallText) ──
@@ -3770,7 +3774,6 @@ html[data-reel-soft] .film-canvas {
   letter-spacing: 0.005em;
   color: var(--cf-recall-ink);
   opacity: 0.55;
-  will-change: opacity, transform;
   text-shadow: 0 1px 2px color-mix(in srgb, var(--cf-recall-bg) 70%, transparent);
   transition: color 240ms ease-out;
 }
@@ -3779,8 +3782,7 @@ html[data-reel-soft] .film-canvas {
 @container (max-width: 63.99rem) {
   .film-box::before,
   .film-stage-grid[data-split="right"] .film-box::before {
-    inset: -3rem -100vw;
-    mask-image: none;
+    inset: -3rem var(--box-edge);
     background: linear-gradient(
       to bottom,
       transparent 0,
@@ -3884,6 +3886,61 @@ html[data-reel-chrome] .rl-public-footer {
 html[data-reel-chrome="body"] .rl-nav-scrim {
   opacity: 1;
   transition: opacity 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Nav over the film on touch screens: no backdrop-filter (re-blurring the
+   canvas under the pill on every scroll frame is what a phone pays for most),
+   a tinted fill instead. Desktop (fine pointer) and the nav over the body
+   keep the glass. Five looks for the owner to pick from, ?nav=1…5 (read once
+   by RecallNav onto data-nav-look; look 1 is the default). Each keeps the
+   nav text at ≥ 4.5:1 over a white and a black frame
+   (scripts/film/nav-looks.mjs measures it). */
+@media (hover: none) and (pointer: coarse) {
+  /* 1 · Tinted pill: a denser panel fill, today's hairline and shadow. */
+  html[data-reel-chrome="film"] .rl-nav {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    filter: none;
+    background: color-mix(in srgb, var(--cf-recall-panel) 86%, transparent);
+  }
+  /* 2 · Solid pill: near-opaque page colour, no hairline, no shadow. */
+  html[data-reel-chrome="film"] .rl-nav[data-nav-look="2"] {
+    background: color-mix(in srgb, var(--cf-recall-bg) 96%, transparent);
+    border-color: transparent;
+    box-shadow: none;
+  }
+  /* 3 · Top scrim only: no pill at all; the scrim behind the nav darkens. */
+  html[data-reel-chrome="film"] .rl-nav[data-nav-look="3"] {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+  html[data-reel-chrome="film"] .rl-nav-scrim[data-nav-look="3"] {
+    opacity: 1;
+    height: 128px;
+    background: linear-gradient(
+      to bottom,
+      var(--cf-recall-bg) 0%,
+      color-mix(in srgb, var(--cf-recall-bg) 88%, transparent) 55%,
+      transparent 100%
+    );
+  }
+  /* 4 · Light pill on the scrim: a lighter pill, no hairline, over today's
+     scrim at full strength. */
+  html[data-reel-chrome="film"] .rl-nav[data-nav-look="4"] {
+    background: color-mix(in srgb, var(--cf-recall-panel) 72%, transparent);
+    border-color: transparent;
+    box-shadow: none;
+  }
+  html[data-reel-chrome="film"] .rl-nav-scrim[data-nav-look="4"] {
+    opacity: 1;
+  }
+  /* 5 · Lifted pill: a slightly lighter grey than the page, hairline, no
+     shadow: reads as a surface without the blur. */
+  html[data-reel-chrome="film"] .rl-nav[data-nav-look="5"] {
+    background: color-mix(in srgb, color-mix(in srgb, var(--cf-recall-panel) 92%, var(--cf-recall-ink)) 90%, transparent);
+    box-shadow: none;
+  }
 }
 
 /* CTA pair used over the film (same shape as the RECALL hero buttons). */
