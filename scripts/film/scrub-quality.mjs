@@ -185,7 +185,8 @@ for (const prof of PROFILES) {
           const s = window.__filmStats;
           if (!bytes.length || t - bytes[bytes.length - 1][0] >= 250) bytes.push([t, s.packBytes ?? 0]);
           if (stopStart >= 0) {
-            samples.push([t - stopStart, s.drawWant, s.drawAt]);
+            const hud = s.drawWant === undefined ? /· f(\d{4})/.exec(document.querySelector(".film-hud")?.textContent ?? "")?.[1] : undefined;
+            samples.push([t - stopStart, s.drawWant, s.drawAt, s.exactDraws, s.fallbackDraws, hud === undefined ? undefined : Number(hud) - 1]);
             if (t - stopStart >= stopMs) {
               // Exact = from the first sample after which drawWant = drawAt =
               // the final wanted frame, through the end of the stop.
@@ -196,9 +197,34 @@ for (const prof of PROFILES) {
                 if (want === final && drawn === final) at = ms;
                 else break;
               }
-              // A build without the draw gauges (before Phase 4) cannot be probed.
-              if (final === undefined) stopResults.push({ y: Math.round(y), frame: -1, exactMs: null, na: true });
-              else stopResults.push({ y: Math.round(y), frame: final, exactMs: at === null ? null : Math.round(at) });
+              if (final === undefined) {
+                // A build without the draw gauges (before Phase 4): the HUD
+                // names the frame painted (the glide ends when it stops
+                // changing) and the paint counters say whether each paint was
+                // exact. Exact from the later of the glide's end and the first
+                // exact paint after the last fallback paint; a miss when the
+                // last paint of the stop was a fallback.
+                const hudFinal = samples[samples.length - 1][5];
+                let glideEnd = samples.length - 1;
+                while (glideEnd > 0 && samples[glideEnd - 1][5] === hudFinal) glideEnd--;
+                let lastFallback = -1;
+                let lastPaintExact = true;
+                for (let i = 1; i < samples.length; i++) {
+                  const dExact = samples[i][3] !== samples[i - 1][3];
+                  const dFallback = samples[i][4] !== samples[i - 1][4];
+                  if (dFallback) lastFallback = i;
+                  if (dExact || dFallback) lastPaintExact = dExact && !dFallback;
+                }
+                let firstExact = lastFallback < 0 ? 0 : -1;
+                for (let i = Math.max(1, lastFallback + 1); i < samples.length && firstExact < 0; i++) if (samples[i][3] !== samples[i - 1][3]) firstExact = i;
+                const exact = lastPaintExact && firstExact >= 0 && hudFinal !== undefined;
+                stopResults.push({
+                  y: Math.round(y),
+                  frame: hudFinal ?? -1,
+                  exactMs: exact ? Math.round(samples[Math.max(glideEnd, firstExact)][0]) : null,
+                  counters: true,
+                });
+              } else stopResults.push({ y: Math.round(y), frame: final, exactMs: at === null ? null : Math.round(at) });
               stopStart = -1;
               samples = [];
               stopIdx++;
@@ -312,7 +338,9 @@ for (const prof of PROFILES) {
   );
   console.log(`   decodes:  ${decodeWhere || "none"}`);
   console.log(`   draws:    ${draws} · exact ${exactShare.toFixed(1)}% · mean fallback distance ${meanAll.toFixed(2)} frames over all draws`);
-  console.log(`   stops:    ${run.stops.map((s) => (s.na ? "n/a (no draw gauges in this build)" : `f${s.frame + 1} ${s.exactMs === null ? "miss" : `${s.exactMs} ms`}`)).join(" · ")}`);
+  console.log(
+    `   stops:    ${run.stops.map((s) => `f${s.frame + 1}${s.counters ? " (HUD + paint counters)" : ""} ${s.exactMs === null ? "miss" : `${s.exactMs} ms`}`).join(" · ")}`,
+  );
   if (prof.slow) console.log(`   network:  peak pack throughput ${(peak / 1e6).toFixed(2)} MB/s over 2 s (Fast 4G ${(FAST_4G.downloadThroughput / 1e6).toFixed(2)} MB/s)`);
   console.log(
     `   loop:     canvasResizes ${stats.canvasResizes} · geometryMeasures ${stats.geometryMeasures} · ticksWorked ${stats.ticksWorked} · ticksSkipped ${stats.ticksSkipped} · ` +
