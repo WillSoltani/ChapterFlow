@@ -275,6 +275,13 @@ for n in 01 02 03 04 05 06; do
 done
 node scripts/film/encode.mjs ~/renders/p00v4_blend palace-00 --bands --portrait-ramp 150,200 --portrait-zoom 1.6 --portrait-bars '#06070A' --quality 78 --effort 6
 npm run film:parity     # dev server on :3000; needs the legacy -p folders as the reference
+# EVERY new render of a film (landscape or -p encode above) must be followed
+# by the --bands line for that film: phones and tablets draw only the tiers,
+# and a tier cut from the old render keeps its URL and version, so it would
+# go on showing the old render. The encoder warns when it encodes a film that
+# has tier folders without --bands, and the timeline sync (any encode, or
+# `node scripts/film/encode.mjs --sync-timeline`) prints STALE BAND TIER and
+# exits 1 when a tier's frame count differs from the film's.
 
 # dev: serve from public/films (gitignored)
 npm run dev → http://localhost:3000/?hud=1
@@ -426,14 +433,22 @@ toward a barred frame.
   over all seven films (the hero before, inside and after its ramp; no
   dissolve frames), it compares the canvas with a reference drawn in the page
   from the LEGACY `<name>-p` file of the same frame with the legacy math. It
-  prints the mean |Δ| per channel and the band's top and bottom edge row in
-  both images (half-height point of the first step in from the canvas edge),
-  and fails on an edge more than 1 px apart, a mean above 4 (phone) / 2
-  (tablet), or any cache of another variant. Edges fainter than 10 (a dark
-  picture at the band edge, the hero's soft picture bottom) are printed with
-  `*` and not gated: the legacy q78 WebP smears them over 3–5 rows. Exits 0
-  with a message when the -p folders are absent. 2026-11-11: every gated edge
-  equal or 1 px apart; means 0.64–1.40.
+  prints the mean |Δ| per channel, the band's top and bottom edge row in
+  both images and the content shift of each half of the band. Reference
+  edges: the rows the legacy band (rows 474–1445 of the -p frame) covers
+  under the legacy placement (row centre inside, as Chrome draws). Live
+  edges: measured in the canvas, as the span of rows holding any pixel off
+  the exact clear colour (outside the band the canvas is the clear fill), so
+  they are the drawn band rectangle whatever the picture shows at its edge,
+  dark films and the hero's ramp bars included. Shift: the vertical offset
+  (−3…3 rows) that best matches live to reference in each half of the band.
+  It fails on an edge more than 1 px apart, a shift of more than 1 row, a
+  mean above 4 (phone) / 2 (tablet), or any cache of another variant. Every
+  edge and shift is gated; none is exempt, and an edge row that decoded to
+  the exact clear colour would read inward and fail (fails closed). Exits 0
+  with a message when the -p folders are absent. 2026-11-11: all 144 edges
+  equal (phone 417/1270, tablet 442/1917), all shifts 0, means 0.64–1.40; a
+  band drawn 2 px low (injected) failed all 36 phone positions.
 - `npm run test:film:safari` — same on WebKit (`npx playwright install webkit`
   first). Headless WebKit rasterises in software and caps ~25 fps on any
   full-viewport image swap; the fps gate is 20 there.

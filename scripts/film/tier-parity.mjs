@@ -15,15 +15,26 @@
  * Positions avoid the dissolve (frame 0 of films 1–6) and cover the hero
  * before, inside and after its portrait ramp (frames 150–200).
  *
- * Per position: film, frame, mean absolute difference per channel (0–255) and
- * the band's top and bottom edge row (backing px) in both images (the
- * half-height point of the first step in from the canvas edge; on the hero's
- * early frames that is the picture's edge inside the band, whose ramp bars
- * are part of the band). An edge whose step is fainter than EDGE_MIN_STEP in
- * either image is printed with a * and not gated: the legacy WebP smears a
- * faint edge over several rows. Exit 1 if an
- * edge differs by more than 1 px, or the mean is above MEAN_MAX for the
- * viewport, or a variant other than the expected tier was drawn or cached.
+ * Per position: film, frame, mean absolute difference per channel (0–255),
+ * the band's top and bottom edge row (backing px) in both images, and the
+ * content shift of the top and bottom half of the band.
+ *   - Reference edges: the rows the band (rows 474–1445 of the legacy frame)
+ *     covers under the legacy placement (a row is covered when its centre is
+ *     inside, as Chrome's drawImage does). The legacy file's bars are baked
+ *     WebP, so its band is located by the reference math, not by pixels.
+ *   - Live edges: measured in the canvas pixels. Outside the band the live
+ *     canvas is the exact clear colour, so the band is the span of rows that
+ *     hold any pixel off it; that is the drawn rectangle whatever the picture
+ *     shows at its edge (dark films, the hero's ramp bars inside the band).
+ *     A band edge row that decoded to the exact clear colour across the whole
+ *     row would read inward and fail the position: the check fails closed.
+ *   - Shift: the vertical offset (−3…3 rows) that best matches live to the
+ *     reference in each half of the band, so the right rectangle holding the
+ *     wrong picture rows also fails. "contrast" (how much worse ±3 rows
+ *     match) is printed; a low value means a dark, textureless half.
+ * Every edge and shift is gated, none is exempt. Exit 1 if an edge differs by
+ * more than 1 px, a shift is more than 1 row, the mean is above the bound for
+ * the viewport, or a variant other than the expected tier was drawn or cached.
  * Exit 0 with a message when the legacy -p directories are absent.
  *
  *   npm run film:parity                 (dev server or `next start` on :3000)
@@ -69,9 +80,13 @@ const VIEWPORTS = [
   { name: "phone", viewport: { width: 390, height: 844 }, dpr: 2, tier: "b900", meanMax: 4 },
   { name: "tablet", viewport: { width: 820, height: 1180 }, dpr: 2, tier: "b1080", meanMax: 2 },
 ];
+/** The band's rows in the legacy 1080×1920 -p frame (zoom 1.6): rows 474–1445. */
+const LEGACY_BAND = { y: 474, h: 972 };
 const STEPS = 5; // FilmSegment reducedSteps default
-/** Smallest edge step (row-profile units, 0–255) whose row is gated to ±1 px. */
-const EDGE_MIN_STEP = 10;
+/** Largest |live − clear colour| (0–255, any channel) still counted as the clear colour outside the band. */
+const OFF_TOL = 0;
+/** Content alignment searches shifts −SHIFT…SHIFT rows. */
+const SHIFT = 3;
 const only = process.env.ONLY ? process.env.ONLY.split(",") : null;
 
 /** Positions: [film index, quantised step k]. The hero: all six steps (0, 48, 96, 144 before the ramp, 192 inside, 240 after); later films skip k = 0 (the dissolve). */
@@ -93,17 +108,15 @@ for (const vp of VIEWPORTS) {
   await page.waitForTimeout(1000);
 
   console.log(`\n[${vp.name}] ${vp.viewport.width}×${vp.viewport.height} DPR ${vp.dpr} → ${vp.tier} · mean bound ${vp.meanMax}`);
-  console.log("  film       frame  tier            mean   top live/ref  bottom live/ref");
+  console.log("  film       frame  tier            mean   top live/ref  bottom live/ref  shift t/b  contrast t/b");
   const rows = [];
-  let gated = 0;
-  let edgesSeen = 0;
   for (const [i, k] of POSITIONS) {
     const film = FILMS[i];
     const count = timeline[film].count;
     const p = k === STEPS ? 0.97 : k / STEPS; // quantises to k/STEPS; 0.97 stays inside the segment
     const frame = Math.round((Math.round(p * STEPS) / STEPS) * (count - 1));
     const res = await page.evaluate(
-      async ({ i, p, film, frame, tier }) => {
+      async ({ i, p, film, frame, tier, legacyBand, offTol, SHIFT }) => {
         const segs = [...document.querySelectorAll("[data-film-segment]")];
         const seg = segs[i];
         const stage = segs[0].querySelector("[data-film-stage]").getBoundingClientRect().height;
@@ -154,22 +167,11 @@ for (const vp of VIEWPORTS) {
         const y0 = (ch - h0) * 0.5;
         const w = w0 * (1 + zoom);
         const h = h0 * (1 + zoom);
-        rctx.drawImage(img, x0 - (w - w0) * 0.5, shiftY + y0 - (h - h0) * 0.45, w, h);
+        const dx = x0 - (w - w0) * 0.5;
+        const dy = shiftY + y0 - (h - h0) * 0.45;
+        rctx.drawImage(img, dx, dy, w, h);
         const refPx = rctx.getImageData(0, 0, cw, ch).data;
 
-        // Mean |Δ| per channel (RGB), and the band edges. Row profile = mean
-        // over the row of the largest channel deviation from the clear colour.
-        // An edge is the half-height point of the first step in from the
-        // canvas edge: bar level = median of the outer 5 % of rows (always
-        // outside the band on a portrait canvas); the step starts at the first
-        // row more than 3 above it; its plateau is the median of the 8 rows
-        // from 3 rows past that; the edge is the first row at or above half
-        // way from bar level to plateau. (A fixed threshold measured the
-        // legacy frames' WebP ringing in the bars, 2–6 rows past the band; a
-        // threshold relative to the whole picture measured soft contours
-        // inside it instead of the band edge.) Where the picture is dark at
-        // the band edge, or on the hero's early frames (ramp bars inside the
-        // band), the first step is the picture's own edge, in both images.
         const bgRgb = (() => {
           const c = document.createElement("canvas").getContext("2d");
           c.fillStyle = bg;
@@ -179,66 +181,106 @@ for (const vp of VIEWPORTS) {
         let sum = 0;
         for (let o = 0; o < live.length; o += 4) sum += Math.abs(live[o] - refPx[o]) + Math.abs(live[o + 1] - refPx[o + 1]) + Math.abs(live[o + 2] - refPx[o + 2]);
         const mean = sum / ((live.length / 4) * 3);
-        const edges = (px) => {
-          const prof = new Float64Array(ch);
-          for (let yy = 0; yy < ch; yy++) {
-            let dev = 0;
-            for (let xx = 0; xx < cw; xx++) {
-              const o = (yy * cw + xx) * 4;
-              dev += Math.max(Math.abs(px[o] - bgRgb[0]), Math.abs(px[o + 1] - bgRgb[1]), Math.abs(px[o + 2] - bgRgb[2]));
-            }
-            prof[yy] = dev / cw;
+
+        // REFERENCE band edges: where the legacy placement puts the band's
+        // rows (LEGACY_BAND of the 1080×1920 -p frame), in backing px. The
+        // legacy file's own bars are baked WebP (ringing, not the clear
+        // colour), so its band rectangle is located by the legacy math, which
+        // is the reference, not by the code under test.
+        const sy = h / img.height;
+        const refTopY = dy + legacyBand.y * sy;
+        const refBottomY = dy + (legacyBand.y + legacyBand.h) * sy;
+        // LIVE band edges, measured in the canvas pixels: outside the band the
+        // live canvas is the exact clear colour (fillRect), so the band
+        // rectangle is the span of rows holding any pixel off the clear
+        // colour. That is the drawn rectangle, whatever the picture shows at
+        // its edge (the tier's own WebP noise and bars are never bit-exact
+        // clear colour).
+        const rowOff = new Uint8Array(ch);
+        for (let yy = 0; yy < ch; yy++) {
+          let m = 0;
+          for (let xx = 0; xx < cw && m <= offTol; xx++) {
+            const o = (yy * cw + xx) * 4;
+            m = Math.max(m, Math.abs(live[o] - bgRgb[0]), Math.abs(live[o + 1] - bgRgb[1]), Math.abs(live[o + 2] - bgRgb[2]));
           }
-          const median = (a) => {
-            const v = Array.from(a).sort((u, w) => u - w);
-            return v[Math.floor(v.length / 2)] ?? 0;
-          };
-          const outer = Math.max(4, Math.floor(ch * 0.05));
-          /** Half-height row of the first step met walking from `from` in direction `dir`. */
-          const step = (from, dir) => {
-            const bar = median(dir > 0 ? prof.subarray(0, outer) : prof.subarray(ch - outer));
-            let y0 = from;
-            while (y0 >= 0 && y0 < ch && prof[y0] <= bar + 3) y0 += dir;
-            if (y0 < 0 || y0 >= ch) return { row: -1, height: 0 };
-            const plateau = [];
-            for (let k = 3; k < 11; k++) {
-              const yy = y0 + dir * k;
-              if (yy >= 0 && yy < ch) plateau.push(prof[yy]);
+          rowOff[yy] = m > offTol ? 1 : 0;
+        }
+        const liveTop = rowOff.indexOf(1);
+        const liveBottom = rowOff.lastIndexOf(1);
+        // Content alignment: the vertical shift (−SHIFT…SHIFT rows) that best
+        // matches live to reference, separately in the top and bottom half of
+        // the band, so a band drawn at the right rectangle with the wrong
+        // picture rows in it also fails. `contrast` = how much worse the
+        // next-best shift two rows away matches (0 = textureless window).
+        const align = (y0r, y1r) => {
+          const a = Math.max(SHIFT, Math.ceil(y0r));
+          const b = Math.min(ch - SHIFT, Math.floor(y1r));
+          const sad = [];
+          for (let s = -SHIFT; s <= SHIFT; s++) {
+            let t = 0;
+            let n = 0;
+            for (let yy = a; yy < b; yy += 2) {
+              for (let xx = 0; xx < cw; xx += 2) {
+                const o = (yy * cw + xx) * 4;
+                const r = ((yy + s) * cw + xx) * 4;
+                t += Math.abs(live[o] - refPx[r]) + Math.abs(live[o + 1] - refPx[r + 1]) + Math.abs(live[o + 2] - refPx[r + 2]);
+                n += 3;
+              }
             }
-            const height = Math.max(prof[y0], median(plateau)) - bar;
-            const half = bar + 0.5 * height;
-            for (let yy = y0 - dir * 3; yy >= 0 && yy < ch; yy += dir) if (prof[yy] >= half) return { row: yy, height };
-            return { row: y0, height };
-          };
-          const t = step(0, 1);
-          const b = step(ch - 1, -1);
-          return { top: t.row, bottom: b.row, topStep: t.height, bottomStep: b.height };
+            sad.push(n ? t / n : 0);
+          }
+          let best = 0;
+          for (let k = 1; k < sad.length; k++) if (sad[k] < sad[best]) best = k;
+          const atZero = sad[SHIFT];
+          const far = Math.min(sad[0], sad[sad.length - 1]);
+          return { shift: best - SHIFT, contrast: far - atZero, sad: sad.map((v) => +v.toFixed(2)) };
         };
-        return { mean, live: edges(live), ref: edges(refPx), variant: cache.variant.name, cw, ch, others };
+        const mid = (refTopY + refBottomY) / 2;
+        const alignTop = align(refTopY + 2, mid);
+        const alignBottom = align(mid, refBottomY - 2);
+        return {
+          mean,
+          refTop: refTopY,
+          refBottom: refBottomY,
+          liveTop,
+          liveBottom,
+          alignTop,
+          alignBottom,
+          variant: cache.variant.name,
+          cw,
+          ch,
+          others,
+        };
       },
-      { i, p, film, frame, tier: vp.tier },
+      { i, p, film, frame, tier: vp.tier, legacyBand: LEGACY_BAND, offTol: OFF_TOL, SHIFT },
     );
     if (res.error) {
       failed = true;
       console.log(`  ${film}  f${String(frame + 1).padStart(4, "0")}  ERROR ${res.error}`);
       continue;
     }
-    const dTop = Math.abs(res.live.top - res.ref.top);
-    const dBottom = Math.abs(res.live.bottom - res.ref.bottom);
-    // An edge whose step is below EDGE_MIN_STEP in either image is printed but
-    // not gated: the legacy q78 WebP smears such a faint edge over 3–5 rows
-    // (a dark picture at the band edge, or the hero's soft picture bottom), so
-    // its row there is not a position. Every bright band edge is gated.
-    const gateTop = Math.min(res.live.topStep, res.ref.topStep) >= EDGE_MIN_STEP;
-    const gateBottom = Math.min(res.live.bottomStep, res.ref.bottomStep) >= EDGE_MIN_STEP;
-    gated += (gateTop ? 1 : 0) + (gateBottom ? 1 : 0);
-    edgesSeen += 2;
-    const bad = (gateTop && dTop > 1) || (gateBottom && dBottom > 1) || res.mean > vp.meanMax || res.variant !== `${film}-${vp.tier}`;
-    if (bad) failed = true;
+    // Reference rows: the first and last row whose CENTRE lies inside the
+    // legacy band (Chrome's drawImage covers a row when its centre is inside
+    // the destination rect; it does not antialias the rect's edges).
+    const refTop = Math.ceil(res.refTop - 0.5);
+    const refBottom = Math.ceil(res.refBottom - 0.5) - 1;
+    const dTop = res.liveTop < 0 ? Infinity : Math.abs(res.liveTop - refTop);
+    const dBottom = res.liveBottom < 0 ? Infinity : Math.abs(res.liveBottom - refBottom);
+    // Every edge and every shift is gated; nothing is exempt.
+    const reasons = [];
+    if (dTop > 1) reasons.push("top edge");
+    if (dBottom > 1) reasons.push("bottom edge");
+    if (Math.abs(res.alignTop.shift) > 1) reasons.push("top shift");
+    if (Math.abs(res.alignBottom.shift) > 1) reasons.push("bottom shift");
+    if (res.mean > vp.meanMax) reasons.push("mean");
+    if (res.variant !== `${film}-${vp.tier}`) reasons.push("variant");
+    if (reasons.length) failed = true;
     rows.push(res.mean);
+    const sh = (a) => `${a.shift >= 0 ? "+" : ""}${a.shift}`.padStart(3);
     console.log(
-      `  ${film}  f${String(frame + 1).padStart(4, "0")}  ${res.variant.padEnd(15)} ${res.mean.toFixed(2).padStart(5)}   ${String(res.live.top).padStart(4)}/${String(res.ref.top).padEnd(4)}${gateTop ? " " : "*"}    ${String(res.live.bottom).padStart(4)}/${String(res.ref.bottom).padEnd(4)}${gateBottom ? " " : "*"}${bad ? "   << FAIL" : ""}`,
+      `  ${film}  f${String(frame + 1).padStart(4, "0")}  ${res.variant.padEnd(15)} ${res.mean.toFixed(2).padStart(5)}   ${String(res.liveTop).padStart(4)}/${String(refTop).padEnd(4)}    ${String(res.liveBottom).padStart(4)}/${String(refBottom).padEnd(4)}    ${sh(res.alignTop)} ${sh(res.alignBottom)}  ${res.alignTop.contrast.toFixed(1).padStart(5)} ${res.alignBottom.contrast.toFixed(1).padStart(5)}${reasons.length ? `   << FAIL (${reasons.join(", ")})` : ""}`,
     );
+    if (process.env.DEBUG) console.log(`      ref ${res.refTop.toFixed(2)}..${res.refBottom.toFixed(2)} sad top ${res.alignTop.sad.join(" ")} | bottom ${res.alignBottom.sad.join(" ")}`);
   }
   const caches = await page.evaluate(() => [...window.__filmCaches.keys()]);
   const strays = caches.filter((key) => !key.includes(`-${vp.tier}@`));
@@ -246,7 +288,6 @@ for (const vp of VIEWPORTS) {
     failed = true;
     console.log(`  caches of another variant were created: ${strays.join(", ")}   << FAIL`);
   }
-  console.log(`  * = edge step below ${EDGE_MIN_STEP} in one image: printed, not gated (${edgesSeen - gated} of ${edgesSeen} edges)`);
   if (rows.length) console.log(`  ${rows.length} positions · mean of means ${(rows.reduce((a, b) => a + b, 0) / rows.length).toFixed(2)} · worst ${Math.max(...rows).toFixed(2)}`);
   await ctx.close();
 }
