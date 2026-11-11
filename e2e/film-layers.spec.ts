@@ -19,9 +19,9 @@ import timeline from "../components/film/book.timeline.json";
  *      with the right frame (scroll up, reload at Pricing, anchor jump).
  *   7. Smoothing by input: wheel 90 ms, touch 35 ms, ?smooth=0 draws the
  *      target frame on the next animation frame.
- *   8. No /books prefetch on the logged-out landing, no CSP error. (The dev
- *      server never prefetches, so this bites on a production build:
- *      E2E_BASE_URL pointing at `next start`.)
+ *   8. No /books prefetch on the logged-out landing, no CSP error. Tagged
+ *      @prod: it runs in the E2E_MODE=prod job (`next start`), the only build
+ *      that prefetches; it is not part of the RUN_AUDIT dev run.
  *
  * Opt-in: RUN_AUDIT=1 npx playwright test e2e/film-layers.spec.ts --project=chromium
  */
@@ -33,11 +33,12 @@ const PHONE: BrowserContextOptions = { viewport: { width: 390, height: 844 }, de
 const DESKTOP: BrowserContextOptions = { viewport: { width: 1440, height: 900 } };
 /**
  * Hall style-attribute mutations in a 2 s steady scroll, desktop: 443 before
- * Phase 5, 429 after (2026-11-11, dev server, Chromium); bound = after + 25 %.
+ * Phase 5, 429 after, 333 once the dead --hall-dolly write was dropped
+ * (2026-11-11, dev server, Chromium); bound = after + 25 %.
  * Most are real changes: through the compress window every wall line's
  * opacity moves by more than its 0.01 step each frame.
  */
-const HALL_STYLE_WRITES_MAX = 537;
+const HALL_STYLE_WRITES_MAX = 417;
 const GBCR_MAX = 64;
 
 const COUNT_02 = timeline.films["palace-02"].count;
@@ -133,17 +134,21 @@ test.describe("film layers", () => {
     for (let look = 1; look <= 5; look++) {
       const page = await open(browser, PHONE, `/?nav=${look}`);
       const coarse = await page.evaluate((q) => window.matchMedia(q).matches, TOUCH_QUERY);
-      if (!coarse) {
-        // Chromium reports a coarse, hover-less pointer for hasTouch+isMobile;
-        // if an engine does not, the touch rule cannot be checked there.
-        expect(browserName, `${TOUCH_QUERY} must match in the Chromium phone profile`).not.toBe("chromium");
-        test.info().annotations.push({ type: "skipped", description: `${browserName}: ${TOUCH_QUERY} does not match` });
-        await page.context().close();
-        return;
-      }
       const film = await navBackdrop(page);
-      expect(film.backdrop, `look ${look} over the film`).toBe("none");
-      expect(film.filter, `look ${look} over the film`).toBe("none");
+      if (coarse) {
+        expect(film.backdrop, `look ${look} over the film`).toBe("none");
+        expect(film.filter, `look ${look} over the film`).toBe("none");
+      } else {
+        // Chromium reports a coarse, hover-less pointer for hasTouch+isMobile;
+        // an engine that does not cannot exercise the touch rule, so there the
+        // nav must keep today's blur (the rule must not leak to fine pointers).
+        // The Pricing and desktop checks below still run.
+        expect(browserName, `${TOUCH_QUERY} must match in the Chromium phone profile`).not.toBe("chromium");
+        if (look === 1) {
+          test.info().annotations.push({ type: "skipped", description: `${browserName}: ${TOUCH_QUERY} does not match; touch assertion skipped` });
+        }
+        expect(film.backdrop, `look ${look} over the film, fine pointer`).toMatch(NAV_BLUR);
+      }
       // Over Pricing: the body chrome keeps today's glass.
       await page.locator("#pricing").evaluate((el) => el.scrollIntoView({ block: "start", behavior: "instant" }));
       await expect(page.locator("html")).toHaveAttribute("data-reel-chrome", "body");
@@ -381,27 +386,43 @@ test.describe("film layers", () => {
     expect(compared, "frames sampled under touch input").toBeGreaterThan(5);
     await zero.context().close();
   });
+});
 
-  test("no /books prefetch and no CSP error on the logged-out landing", async ({ browser }) => {
+// Next only prefetches <Link>s in a production build, and only a production
+// build redirects /books to sign-in, so this gate runs in the @prod job
+// (E2E_MODE=prod: `next build` + `next start`), not under RUN_AUDIT on the dev
+// server, where it could never fail.
+test.describe("film layers: prefetch (@prod)", () => {
+  test("no /books prefetch and no CSP error on the logged-out landing @prod", async ({ browser }) => {
     const ctx = await browser.newContext(DESKTOP);
     const page = await ctx.newPage();
+    // The redirect target is the live site: never let a request reach it.
+    await page.route(/^https:\/\/app\.chapterflow\.ca\//, (route) => route.abort());
     const books: string[] = [];
+    const prefetches: string[] = [];
     const csp: string[] = [];
     page.on("request", (r) => {
       const u = new URL(r.url());
       if (u.pathname === "/books" || u.pathname.startsWith("/books/")) books.push(r.url());
+      if (u.searchParams.has("_rsc") || r.headers()["next-router-prefetch"]) prefetches.push(r.url());
     });
     page.on("console", (m) => {
-      if (/Content[ -]Security[ -]Policy/i.test(m.text())) csp.push(m.text());
+      if (/Content[ -]Security[ -]Policy|Refused to connect/i.test(m.text())) csp.push(m.text());
     });
     await page.goto("/");
     await page.waitForTimeout(1000);
-    // The city chapter's link, then the footer, come into view.
-    const city = await segBox(page, "library");
-    await scrollToY(page, Math.ceil(city.top) + 2 + (city.h - 900) * 0.95);
-    await page.waitForTimeout(1200);
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    await page.waitForTimeout(1500);
+    // Step through the whole page so every link (the City chapter's, the
+    // footer's) enters the viewport and Next's viewport prefetch can fire.
+    const height = await page.evaluate(() => document.documentElement.scrollHeight);
+    for (let y = 0; y <= height; y += 600) {
+      await page.evaluate((top) => window.scrollTo(0, top), y);
+      await page.waitForTimeout(60);
+    }
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await page.waitForTimeout(2000);
+    // Sanity: prefetching is live in this build (public links are prefetched),
+    // so an empty /books list means the gated link really was skipped.
+    expect(prefetches.length, "Next prefetches public links in this build").toBeGreaterThan(0);
     expect(books, books.join("\n")).toEqual([]);
     expect(csp, csp.join("\n")).toEqual([]);
     await ctx.close();

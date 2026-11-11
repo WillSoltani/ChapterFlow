@@ -271,6 +271,12 @@ export function useScrubLoop({
     const onPointer = (e: PointerEvent) => {
       if (e.pointerType === "mouse" && e.clientX >= document.documentElement.clientWidth) onOther(e);
     };
+    // A click or tap on a link starts a programmatic scroll (a Next <Link
+    // href="#…"> jumps with history.pushState, which fires no hashchange), so
+    // the jump is "other", not the tap's "touch".
+    const onClick = (e: MouseEvent) => {
+      if (e.target instanceof Element && e.target.closest("a[href]")) onOther(e);
+    };
     const passive = { passive: true } as const;
     window.addEventListener("wheel", onWheel, passive);
     window.addEventListener("touchstart", onTouch, passive);
@@ -278,6 +284,7 @@ export function useScrubLoop({
     window.addEventListener("keydown", onKey, passive);
     window.addEventListener("pointerdown", onPointer, passive);
     window.addEventListener("hashchange", onOther, passive);
+    window.addEventListener("click", onClick, { passive: true, capture: true });
 
     const onScroll = (e: Event) => {
       input = scrollInputAt(input, inputAt, e.timeStamp);
@@ -395,8 +402,10 @@ export function useScrubLoop({
       // a cut. The time constant follows the input (smoothingMs: a finger
       // gets a short one so the film stays under it). Segment change, reduced
       // motion or a restart (anchor jump, back/forward, tab shown) = snap.
-      const smoothing = smoothingMs(input, touchMs);
-      if (smoothSeg !== seg.index || reduced || snap) {
+      const snapped = smoothSeg !== seg.index || reduced || snap;
+      // The smoothing in effect: 0 on a snap (the HUD reports what was applied).
+      const smoothing = snapped ? 0 : smoothingMs(input, touchMs);
+      if (snapped) {
         smoothFrame = target;
         smoothSeg = seg.index;
       } else {
@@ -488,6 +497,7 @@ export function useScrubLoop({
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("pointerdown", onPointer);
       window.removeEventListener("hashchange", onOther);
+      window.removeEventListener("click", onClick, { capture: true });
       box.style.visibility = "";
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("pageshow", onVisibility);

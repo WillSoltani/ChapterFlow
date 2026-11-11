@@ -48,13 +48,19 @@ export function publicNavPrefetchProps(
 }
 
 /**
- * `{ prefetch: false }` for a link to an auth-gated route from a component
- * that cannot know the login state (CityChapters, the server-rendered
- * footer): the anonymous first paint would otherwise prefetch into the
- * login redirect and trip CSP. Spreadable, like publicNavPrefetchProps.
+ * `{ prefetch: false }` for a link to an auth-gated route unless the visitor
+ * is known to be logged in. A component that cannot know the login state
+ * (the server-rendered footer) omits `loggedIn`: the anonymous first paint
+ * would otherwise prefetch into the login redirect and trip CSP. A client
+ * component that has it (CityChapters, via useAuthStatus) passes it, so a
+ * logged-in visitor keeps Next's default prefetch. Spreadable, like
+ * publicNavPrefetchProps.
  */
-export function gatedRoutePrefetchProps(href: string): { prefetch: false } | Record<string, never> {
-  return AUTH_GATED_NAV_ROUTES.has(href) ? { prefetch: false } : {};
+export function gatedRoutePrefetchProps(
+  href: string,
+  loggedIn = false,
+): { prefetch: false } | Record<string, never> {
+  return !loggedIn && AUTH_GATED_NAV_ROUTES.has(href) ? { prefetch: false } : {};
 }
 
 /**

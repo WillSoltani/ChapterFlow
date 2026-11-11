@@ -13,6 +13,7 @@ import { ArrowRight } from "lucide-react";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
 import { gatedRoutePrefetchProps } from "@/components/landing/recall/RecallNavModel";
+import { useAuthStatus } from "@/components/auth/useAuthStatus";
 import { FilmSegment } from "../FilmSegment";
 import { FramePin } from "../FramePin";
 import { filmCount, key } from "../timeline";
@@ -59,6 +60,20 @@ export function LightsChapter({ film, index }: P) {
   );
 }
 
+/**
+ * /books is auth-gated: no prefetch into the login redirect (CSP) unless the
+ * visitor is known to be logged in (the session lookup is the nav's cached
+ * one, so this adds no request).
+ */
+function BrowseBooksLink() {
+  const { loggedIn } = useAuthStatus();
+  return (
+    <Link href="/books" {...gatedRoutePrefetchProps("/books", loggedIn === true)} className="film-btn film-btn-ghost">
+      Browse all {CATALOG_BOOK_COUNT} books <ArrowRight size={16} aria-hidden />
+    </Link>
+  );
+}
+
 export function CityChapter({ film, index }: P) {
   const F = "palace-05";
   const last = filmCount(F) - 1;
@@ -73,10 +88,7 @@ export function CityChapter({ film, index }: P) {
             {CATALOG_BOOK_COUNT} books. Every one a building.
           </FramePin>
           <FramePin from={orbit} to={last} hold interactive>
-            {/* /books is auth-gated: no prefetch into the login redirect (CSP). */}
-            <Link href="/books" {...gatedRoutePrefetchProps("/books")} className="film-btn film-btn-ghost">
-              Browse all {CATALOG_BOOK_COUNT} books <ArrowRight size={16} aria-hidden />
-            </Link>
+            <BrowseBooksLink />
           </FramePin>
         </FramePin>
       </div>

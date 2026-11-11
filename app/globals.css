@@ -3691,10 +3691,11 @@ html[data-motion="reduced"] .rl-faq-chevron {
    are built into the gradients. Layers: the middle band carries the
    horizontal fade; two strips feather its top and bottom edges; two corner
    ellipses close the strips over the fading end, matching the band along
-   their shared edge. */
+   their shared edge. The band holds a flat 90% up to its fade so it meets
+   the strips' 90% edge without a step (the old 92% end sat 100vw off-screen,
+   so the visible copy side was already about 90%). */
 .film-box::before {
   --box-edge: calc(-1 * clamp(1.25rem, 5vw, 4rem));
-  --box-92: color-mix(in srgb, var(--cf-recall-bg) 92%, transparent);
   --box-90: color-mix(in srgb, var(--cf-recall-bg) 90%, transparent);
   --box-70: color-mix(in srgb, var(--cf-recall-bg) 70%, transparent);
   --box-feather: linear-gradient(to bottom, transparent 0, var(--box-70) 53%, var(--box-90) 100%);
@@ -3704,7 +3705,7 @@ html[data-motion="reduced"] .rl-faq-chevron {
   inset: -2.5rem -7rem -2.5rem var(--box-edge);
   pointer-events: none;
   background:
-    linear-gradient(to right, var(--box-92) 0%, var(--box-90) calc(100% - 15rem), var(--box-70) calc(100% - 8rem), transparent 100%)
+    linear-gradient(to right, var(--box-90) 0%, var(--box-90) calc(100% - 15rem), var(--box-70) calc(100% - 8rem), transparent 100%)
       0 2.5rem / 100% calc(100% - 5rem) no-repeat,
     var(--box-feather) 0 0 / calc(100% - 15rem) 2.5rem no-repeat,
     linear-gradient(to top, transparent 0, var(--box-70) 53%, var(--box-90) 100%) 0 100% / calc(100% - 15rem) 2.5rem no-repeat,
@@ -3714,7 +3715,7 @@ html[data-motion="reduced"] .rl-faq-chevron {
 .film-stage-grid[data-split="right"] .film-box::before {
   inset: -2.5rem var(--box-edge) -2.5rem -7rem;
   background:
-    linear-gradient(to left, var(--box-92) 0%, var(--box-90) calc(100% - 15rem), var(--box-70) calc(100% - 8rem), transparent 100%)
+    linear-gradient(to left, var(--box-90) 0%, var(--box-90) calc(100% - 15rem), var(--box-70) calc(100% - 8rem), transparent 100%)
       0 2.5rem / 100% calc(100% - 5rem) no-repeat,
     var(--box-feather) 100% 0 / calc(100% - 15rem) 2.5rem no-repeat,
     linear-gradient(to top, transparent 0, var(--box-70) 53%, var(--box-90) 100%) 100% 100% / calc(100% - 15rem) 2.5rem no-repeat,
@@ -3753,18 +3754,16 @@ html[data-motion="reduced"] .rl-faq-chevron {
   flex-direction: column;
   gap: 1.1rem;
   transform-style: preserve-3d;
-  /* walls slide toward the camera as the dolly advances */
-  --hall-dolly: 0;
 }
 .hall-wall-left {
   left: 2%;
   transform-origin: left center;
-  transform: rotateY(42deg) translate3d(calc(var(--hall-dolly) * 6%), 0, 0);
+  transform: rotateY(42deg);
 }
 .hall-wall-right {
   right: 2%;
   transform-origin: right center;
-  transform: rotateY(-42deg) translate3d(calc(var(--hall-dolly) * -6%), 0, 0);
+  transform: rotateY(-42deg);
   text-align: right;
 }
 .hall-line {
@@ -3809,8 +3808,8 @@ html[data-motion="reduced"] .rl-faq-chevron {
 }
 @media (max-width: 63.99rem) {
   .hall-wall { top: 13%; width: 44%; gap: 0.8rem; }
-  .hall-wall-left { transform: rotateY(32deg) translate3d(calc(var(--hall-dolly) * 4%), 0, 0); }
-  .hall-wall-right { transform: rotateY(-32deg) translate3d(calc(var(--hall-dolly) * -4%), 0, 0); }
+  .hall-wall-left { transform: rotateY(32deg); }
+  .hall-wall-right { transform: rotateY(-32deg); }
   .hall-line { font-size: 0.85rem; }
 }
 

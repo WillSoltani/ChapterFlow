@@ -127,6 +127,8 @@ const eslintConfig = defineConfig([
     ".next/**",
     ".next-chapterflow/**",
     ".next-chapterflow-bookcheck/**",
+    // The E2E_MODE=prod build (playwright.config.ts NEXT_DIST_DIR).
+    ".next-prod-e2e/**",
     "out/**",
     "build/**",
     "next-env.d.ts",

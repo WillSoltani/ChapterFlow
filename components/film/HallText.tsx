@@ -12,7 +12,7 @@
  * Driven by the segment's frame store (no React re-render per frame):
  *   enter … compress    all lines visible, dim ink
  *   compress … lines_lit non-kept lines fade; kept lines brighten + lift 6px
- *   lines_lit … end      kept lines hold, dolly parallax continues
+ *   lines_lit … end      kept lines hold
  *
  * Transform + opacity only, each written only when it changed (quantised,
  * layers.ts); colour only when a line's highlight flips. The two walls are
@@ -41,7 +41,7 @@ const WALL_LINES: Line[] = [
 const LEFT = WALL_LINES.slice(0, 4);
 const RIGHT = WALL_LINES.slice(4);
 
-export function HallText({ compress, litAt, end }: { compress: number; litAt: number; end: number }) {
+export function HallText({ compress, litAt }: { compress: number; litAt: number; end?: number }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const store = useSegmentStore();
   const reduced = usePrefersReducedMotion();
@@ -58,7 +58,6 @@ export function HallText({ compress, litAt, end }: { compress: number; litAt: nu
       lit: null as boolean | null,
     }));
     let last = -1;
-    let dollyW = "";
     let rootO = "";
     const apply = () => {
       const f = store.getFrame();
@@ -66,13 +65,6 @@ export function HallText({ compress, litAt, end }: { compress: number; litAt: nu
       last = f;
       // 0 → 1 across the compress window
       const k = Math.min(1, Math.max(0, (f - compress) / Math.max(1, litAt - compress)));
-      // slow dolly parallax across the whole film (walls slide toward camera);
-      // 0.01 steps = about 0.3 px of wall travel on a desktop, less on a phone
-      const dolly = (reduced ? 1 : f / Math.max(1, end)).toFixed(2);
-      if (dolly !== dollyW) {
-        dollyW = dolly;
-        root.style.setProperty("--hall-dolly", dolly);
-      }
       // The first ~14 frames are the dissolve from the previous film's doorway
       // close-up; hold the prose back until the corridor is on screen, then
       // ease it in. (Per-line opacity below is untouched, so the compress
@@ -103,7 +95,7 @@ export function HallText({ compress, litAt, end }: { compress: number; litAt: nu
     };
     apply();
     return store.subscribe(apply);
-  }, [store, compress, litAt, end, reduced]);
+  }, [store, compress, litAt, reduced]);
 
   // The two walls hold a compositor layer only while the Hall's segment is
   // on screen (its frames play from the moment its top enters the viewport).

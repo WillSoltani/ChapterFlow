@@ -127,6 +127,9 @@ test("gatedRoutePrefetchProps: no prefetch for an auth-gated route, Next's defau
   assert.deepEqual(gatedRoutePrefetchProps("/books"), { prefetch: false });
   assert.deepEqual(gatedRoutePrefetchProps("/pricing"), {});
   assert.deepEqual(gatedRoutePrefetchProps("/legal/terms"), {});
+  // Logged in: Next's default prefetch for the gated route too.
+  assert.deepEqual(gatedRoutePrefetchProps("/books", true), {});
+  assert.deepEqual(gatedRoutePrefetchProps("/books", false), { prefetch: false });
 });
 
 test("parseNavLook: ?nav=1…5 picks the touch nav look over the film, default 1", () => {

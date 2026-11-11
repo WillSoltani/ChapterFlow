@@ -155,15 +155,36 @@ export function RecallNav() {
     );
     const header = headerRef.current;
     if (!header || typeof window.IntersectionObserver === "undefined") {
-      setShowPersistentCta(
-        shouldShowPersistentCta({
-          hasSentinel: sentinel != null,
-          sentinelTop: null,
-          headerBottom: 0,
-          suppressionVisible: false,
-        }),
-      );
-      return;
+      // Fallback for engines without IntersectionObserver (and jsdom): a
+      // rAF-throttled scroll/resize read. Every engine the landing targets
+      // has observers, so this path never runs under the film.
+      let frame = 0;
+      const update = () => {
+        window.cancelAnimationFrame(frame);
+        frame = window.requestAnimationFrame(() => {
+          const headerBottom = headerRef.current?.getBoundingClientRect().bottom ?? 0;
+          const suppressionVisible = suppressionZones.some((zone) => {
+            const bounds = zone.getBoundingClientRect();
+            return bounds.bottom > headerBottom && bounds.top < window.innerHeight;
+          });
+          setShowPersistentCta(
+            shouldShowPersistentCta({
+              hasSentinel: sentinel != null,
+              sentinelTop: sentinel?.getBoundingClientRect().top ?? null,
+              headerBottom,
+              suppressionVisible,
+            }),
+          );
+        });
+      };
+      update();
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      return () => {
+        window.cancelAnimationFrame(frame);
+        window.removeEventListener("scroll", update);
+        window.removeEventListener("resize", update);
+      };
     }
 
     let headerBottom = 0;
@@ -218,9 +239,20 @@ export function RecallNav() {
       }
     };
 
+    // Without ResizeObserver (Safari 12.2-13.0): build once and rebuild on
+    // window resize (not a scroll-path read).
+    if (typeof window.ResizeObserver === "undefined") {
+      build();
+      window.addEventListener("resize", build);
+      return () => {
+        window.removeEventListener("resize", build);
+        for (const o of observers) o.disconnect();
+      };
+    }
+
     // Delivers once on observe (the first build), then on header size changes.
     let lastSize = "";
-    const sized = new ResizeObserver((entries) => {
+    const sized = new window.ResizeObserver((entries) => {
       const box = entries[entries.length - 1]?.borderBoxSize?.[0];
       const size = box ? `${box.inlineSize}x${box.blockSize}` : "";
       if (size && size === lastSize) return;

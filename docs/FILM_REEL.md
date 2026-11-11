@@ -364,13 +364,16 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   - **Hall**: `.hall-line` has no `will-change`; the two wall containers get
     `will-change: transform` only while the Hall segment is on screen (an
     IntersectionObserver). HallText caches each written value, quantises
-    opacity (0.01), lift (0.5 px) and the dolly (0.01), and writes a line's
-    colour only when its highlight flips (the 240 ms colour transition then
-    runs for those lines only).
+    opacity (0.01) and lift (0.5 px), and writes a line's colour only when
+    its highlight flips (the 240 ms colour transition then runs for those
+    lines only). The walls are static: the old `--hall-dolly` parallax never
+    reached them (`.hall-wall` redeclared it as 0), so its per-frame write
+    is gone and the walls look as before.
   - **`.film-box::before`**: no `mask-image`, no 100vw overdraw. It covers the
     box, the stage padding on the copy side and 7rem on the film side; the
     top/bottom feather is built into the gradients (a band, two edge strips,
-    two corner ellipses).
+    two corner ellipses). The band is a flat 90 % up to its fade, the value
+    the strips end on, so there is no step where they meet.
   - **Canvas under the body**: `[data-film-body]` fades from the film over
     10svh and is opaque from 30svh. Past `canvasHiddenFrom` (the last
     segment's bottom + 30 % of a stage height) the canvas wrapper is
@@ -384,18 +387,28 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   CTA state comes from IntersectionObservers (suppression zones below the
   header line; the hero-end sentinel against a root that reaches far below
   the viewport, so a jump across the line still flips it), rebuilt only when
-  the header's own size changes. `usePrefersReducedMotion` shares one
+  the header's own size changes (on window resize where ResizeObserver is
+  missing; a rAF-throttled scroll read only where IntersectionObserver is
+  missing). `usePrefersReducedMotion` shares one
   `matchMedia` listener and one MutationObserver for the whole page.
 - Prefetch: the city chapter's `/books` link and the footer's links to
   auth-gated routes (`AUTH_GATED_NAV_ROUTES`, `gatedRoutePrefetchProps`) do
-  not prefetch: an anonymous prefetch follows the login redirect and trips
-  CSP.
+  not prefetch for a visitor not known to be logged in: an anonymous
+  prefetch follows the login redirect and trips CSP. The city link reads the
+  login state (`useAuthStatus`), so a logged-in visitor keeps the prefetch;
+  the footer cannot, so it never prefetches those routes.
+- Input kind: a click or tap on a link marks the input `other` (a Next hash
+  link jumps with `history.pushState`, which fires no `hashchange`). The HUD
+  shows the smoothing actually applied: 0 on a snap (reduced motion, a
+  segment change, a restart).
 - Gate: `e2e/film-layers.spec.ts` (`RUN_AUDIT=1`, in both `test:film`
   scripts) checks the touch nav, the absence of resting layers, at most 64
   `getBoundingClientRect` calls in a 3 s scroll through two chapters, the
   Hall's style writes, the reduced-motion listener count, the canvas under
-  the body, the smoothing per input, and the `/books` prefetch (the dev
-  server never prefetches: that check bites on a production build only).
+  the body and the smoothing per input. The `/books` prefetch check is tagged
+  `@prod` and runs in the E2E_MODE=prod job (`next build` + `next start`, the
+  only build that prefetches); it also asserts that public links are being
+  prefetched, so an empty `/books` list means something.
 - Variants and tiers (`reel-context.tsx`, `timeline.ts`, `types.ts`). A film
   has its landscape variant (`<name>`, 1920×1080, the film's `v`) and a list
   of **band tiers** for portrait screens:
