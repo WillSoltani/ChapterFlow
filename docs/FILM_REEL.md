@@ -57,7 +57,10 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     LAST frame while the window can reach the dissolve (`frame < dissolveIn`
     draws it); the next film's opening (at most 12 frames) once progress
     passes 0.6, and from the hero onward for the second film (the mount
-    warm-up, a "weak" plan the loop's first decision replaces). Its decoded
+    warm-up, a "weak" plan the loop's first decision replaces); and, when the
+    network is behind the playhead, the frame the canvas would fall back to
+    (nearest HELD bytes at or below the playhead, decode only, last in line),
+    so a late frame is drawn instead of the poster. Its decoded
     size is ≤ 80 % of the budget: capacity = budget ÷ (width × height × 4),
     known before any decode (phones: 20 frames → 16 wanted; desktop 384 MB:
     48 → 38).

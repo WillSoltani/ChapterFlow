@@ -241,6 +241,32 @@ test("the previous film's last frame survives while it is pinned", async () => {
   assert.ok(!budget.isWanted(prev, 240));
 });
 
+test("when the network falls behind the playhead, late frames still reach the canvas", async () => {
+  // Each fetch lands only after the playhead has moved on ~20 frames, so it
+  // is no longer in the window. Its bytes are held; the wanted set takes the
+  // nearest held frame at or below the playhead as the fallback to decode.
+  const { io, fetches, decodes } = manualIO();
+  const budget = new FrameBudget(19 * FRAME, io);
+  const a = new FrameCache(variant("a"), budget);
+  guardEvictions(budget, a);
+  let resolved = 0;
+  for (let c = 0; c <= 200; c++) {
+    budget.want({ active: { cache: a, center: c, direction: 1 } });
+    if (c % 5 === 0 && resolved < fetches.length) {
+      const f = fetches[resolved++];
+      f?.resolve(fakeBlob(f.url));
+    }
+    for (const d of decodes) d.resolve(fakeBitmap());
+    await tick();
+    assertWithinBudget(budget);
+  }
+  for (const d of decodes) d.resolve(fakeBitmap());
+  await settle(4);
+  a.nearest(200);
+  assert.ok(a.lastServed >= 150, `canvas fell back to #${a.lastServed} at #200`);
+  assert.equal(budget.stats.refetches, 0);
+});
+
 test("mount warm-up: a weak plan never overrides the scroll loop's plan", () => {
   const { io } = manualIO();
   const budget = new FrameBudget(19 * FRAME, io);

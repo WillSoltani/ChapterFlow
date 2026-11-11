@@ -286,10 +286,16 @@ export class FrameBudget {
     let nextN = next ? Math.min(NEXT_HEAD_MAX, Math.floor(usable * NEXT_HEAD_SHARE), next.variant.count) : 0;
     // The pin costs one frame, and only while the window can reach the dissolve.
     const pinOn = !!pin && center < pin.until + usable;
-    let windowN = usable - (pinOn ? 1 : 0) - nextN;
+    // When the network is behind the playhead, frames land after the window
+    // has passed them. The frame the canvas would fall back to (nearest held
+    // bytes at or below the playhead, as `nearest` searches) is wanted too,
+    // so a late frame is decoded and drawn instead of the poster.
+    const fallback = usable >= 3 ? this.heldFallback(active, center) : -1;
+    const fixed = (pinOn ? 1 : 0) + (fallback >= 0 ? 1 : 0);
+    let windowN = usable - fixed - nextN;
     if (windowN < 1) {
       nextN = Math.max(0, nextN - (1 - windowN));
-      windowN = usable - (pinOn ? 1 : 0) - nextN;
+      windowN = usable - fixed - nextN;
     }
     windowN = Math.max(1, Math.min(windowN, count));
 
@@ -320,7 +326,29 @@ export class FrameBudget {
     if (pin && pinOn) order.push(at(pin.cache, pin.index));
     for (const s of steps) order.push(at(active, s.index));
     if (next) for (let i = 0; i < nextN; i++) order.push(at(next, i));
+    // Last: it needs no fetch, only a decode slot the window is not using.
+    if (fallback >= 0 && !steps.some((s) => s.index === fallback)) order.push(at(active, fallback));
     return order;
+  }
+
+  /**
+   * The frame `nearest(center)` would draw if its bytes were decoded: the
+   * closest frame at or below `center` (else above) whose compressed bytes are
+   * held. -1 when the playhead frame itself is held or decoded, or when a
+   * decoded frame is already at least as close.
+   */
+  private heldFallback(cache: FrameCache, center: number): number {
+    const held = (i: number) => this.blobs.has(frameUrl(cache.variant, i));
+    if (cache.has(center) || held(center)) return -1;
+    for (let i = center - 1; i >= 0; i--) {
+      if (cache.has(i)) return -1;
+      if (held(i)) return i;
+    }
+    for (let i = center + 1; i < cache.variant.count; i++) {
+      if (cache.has(i)) return -1;
+      if (held(i)) return i;
+    }
+    return -1;
   }
 
   /** Start whatever the limits allow, in wanted order. */
