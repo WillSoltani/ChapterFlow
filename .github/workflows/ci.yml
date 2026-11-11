@@ -413,6 +413,165 @@ jobs:
           path: playwright-report/
           retention-days: 7
 
+  # ── Film gate: the landing's film specs on placeholder frames ─────────────
+  # The real frames are not in the repository (public/films is gitignored and
+  # lives in the bucket), so without this job a pull request that breaks the
+  # film is guarded only by unit tests. Here scripts/film/placeholder.mjs
+  # synthesises every frame, band tier and pack the timeline names, the
+  # timeline's pack fields are synced to them, and the film specs run on
+  # Chromium against the dev server, then the scrub-quality budgets
+  # (requests, refetches, repeated bytes, exact draws) on desktop Chromium.
+  # Specs that judge the REAL footage (copy and focus-indicator contrast over
+  # the picture, the audit's luminance behind the copy) skip themselves on
+  # placeholder frames (e2e/film-frames.ts reads the manifests'
+  # `placeholder: true`); the parity proof against the legacy -p frames
+  # (npm run film:parity) needs those frames and stays a local gate.
+  # Real work only when the change touches the film or what it depends on
+  # (decided with git below); otherwise the job ends green within a minute.
+  film:
+    name: Film specs (placeholder frames)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      # Same as the dev smoke job: no data-plane env, the landing degrades gracefully.
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Does this change touch the film?
+        id: scope
+        # Only commit SHAs from the event reach the shell (through env), never
+        # pull-request text. A push to main runs when its range touches the
+        # paths; an unknown range (a new branch, a force push) runs.
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          if [ "$EVENT_NAME" = "pull_request" ]; then base="$PR_BASE_SHA"; else base="$PUSH_BEFORE_SHA"; fi
+          if ! printf '%s' "$base" | grep -Eq '^[0-9a-f]{40}$' || ! git cat-file -e "${base}^{commit}" 2>/dev/null; then
+            echo "No comparable base commit; running the film specs."
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          changed="$(git diff --name-only "$base" HEAD -- \
+            components/film components/landing 'e2e/film-*' scripts/film \
+            app/page.tsx app/layout.tsx app/globals.css app/_fonts lib/csp.ts \
+            playwright.config.ts package.json package-lock.json .github/workflows/ci.yml)"
+          if [ -n "$changed" ]; then
+            printf 'Film-relevant changes:\n%s\n' "$changed"
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No film-relevant change; nothing to run."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Node.js
+        if: steps.scope.outputs.run == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".nvmrc"
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.scope.outputs.run == 'true'
+        run: npm ci --include=optional
+
+      - name: Get Playwright version
+        if: steps.scope.outputs.run == 'true'
+        id: playwright-version
+        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        if: steps.scope.outputs.run == 'true'
+        id: playwright-cache
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
+
+      - name: Install Playwright browser
+        if: steps.scope.outputs.run == 'true' && steps.playwright-cache.outputs.cache-hit != 'true'
+        # The OS packages come from the Ubuntu mirrors (see the next step). If
+        # they cannot be reached, install the browser alone and run the tests.
+        run: |
+          if ! timeout --kill-after=15 300 npx playwright install --with-deps chromium; then
+            echo "::warning::playwright install --with-deps failed or timed out (apt mirrors unreachable?); installing the browser alone"
+            sudo pkill -x apt-get || true
+            npx playwright install chromium
+          fi
+
+      - name: Install Playwright OS deps (cache hit)
+        if: steps.scope.outputs.run == 'true' && steps.playwright-cache.outputs.cache-hit == 'true'
+        # Optional font packages only (see the e2e job): two bounded tries,
+        # then run the tests anyway.
+        run: |
+          for attempt in 1 2; do
+            if timeout --kill-after=15 150 npx playwright install-deps chromium; then
+              exit 0
+            fi
+            echo "::warning::playwright install-deps attempt ${attempt} failed or timed out (apt mirrors unreachable?)"
+            sudo pkill -x apt-get || true
+            sleep 10
+          done
+          echo "::warning::Continuing without the optional OS font packages."
+
+      - name: Generate placeholder frames, band tiers and packs
+        if: steps.scope.outputs.run == 'true'
+        # Frame counts and tier sizes come from components/film/book.timeline.json
+        # (placeholder.mjs), so the page requests exactly what is generated.
+        # The packs differ from the real ones in size and version, so the
+        # timeline's pack fields are synced to them HERE, before the dev
+        # server compiles the page. That rewrite stays in this runner (CI never
+        # commits); the check below proves it changed nothing but pack fields.
+        run: |
+          node scripts/film/placeholder.mjs
+          node scripts/film/encode.mjs --sync-timeline
+          npm run film:pack -- --verify
+          node scripts/film/ci-timeline-check.mjs
+          git diff --stat
+
+      - name: Film specs (Chromium)
+        if: steps.scope.outputs.run == 'true'
+        # Two workers on the 2-core runner (the config's CI default is one).
+        # FILM_AUDIT_VIEWPORTS: the film audit's CI subset (e2e/film-audit.spec.ts);
+        # the reduced-motion, a11y, layout and truth specs keep their own viewports.
+        env:
+          FILM_AUDIT_VIEWPORTS: "desktop,phone,smallest phone,landscape phone"
+        run: npm run test:film -- --workers=2
+
+      - name: Scrub-quality budgets (desktop Chromium)
+        if: steps.scope.outputs.run == 'true'
+        # scripts/film/scrub-quality.mjs fails on: any per-frame request in
+        # pack mode, more than 30 film requests for the pass, a pack byte read
+        # twice, any refetch, exact draws below 97 %, more than 4 frame fetches
+        # in flight (?pack=0). Against the dev server, on 127.0.0.1 only.
+        run: |
+          npm run dev > film-dev-server.log 2>&1 &
+          echo $! > film-dev-server.pid
+          timeout 240 bash -c 'until curl -sf -o /dev/null http://127.0.0.1:3000/; do sleep 2; done'
+          ONLY=desktop-chromium,desktop-chromium-frames npm run film:quality
+
+      - name: Stop the dev server
+        if: ${{ always() && steps.scope.outputs.run == 'true' }}
+        run: |
+          if [ -f film-dev-server.pid ]; then kill "$(cat film-dev-server.pid)" 2>/dev/null || true; fi
+          pkill -f "next dev" || true
+
+      - name: Upload Playwright report
+        if: ${{ !cancelled() && steps.scope.outputs.run == 'true' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report-film
+          path: |
+            playwright-report/
+            test-results/
+            film-dev-server.log
+          retention-days: 7
+
   # ── Advisory: lint (known in-scope debt — reports, never blocks) ─────────
   # NOTE: keep this OUT of the required status checks in branch protection
   # (canonical list: .github/rulesets/main-branch.json).
