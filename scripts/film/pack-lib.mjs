@@ -125,6 +125,18 @@ export async function listFrames(dir) {
   return names;
 }
 
+/**
+ * Frame files in a directory that do not belong to a variant of `count`
+ * frames named f_<1-based index, padded to `pad`>.<ext>: frames past the
+ * count, another padding or another format (left over from an earlier,
+ * longer or differently named render). In the order given.
+ * @param {string[]} names  directory entries
+ */
+export function staleFrameFiles(names, count, pad, ext) {
+  const want = new Set(Array.from({ length: count }, (_, i) => `f_${String(i + 1).padStart(pad, "0")}.${ext}`));
+  return names.filter((n) => /^f_\d+\.(webp|avif|jpg)$/.test(n) && !want.has(n));
+}
+
 /** The manifest's `pack` field for a built pack. */
 export function packField(p) {
   return { bytes: p.bytes, header: p.header, skeletonEnd: p.skeletonEnd, openingEnd: p.openingEnd, v: p.v };
@@ -170,7 +182,14 @@ export async function verifyPack(dir) {
   } catch (e) {
     return [`${dir}: ${e.message}`];
   }
-  const names = await listFrames(dir);
+  let names;
+  try {
+    names = await listFrames(dir);
+  } catch (e) {
+    // Frames missing from the middle, or a stray file: report it like any
+    // other problem (the caller goes on with the next directory).
+    return [e instanceof Error ? e.message : `${dir}: ${String(e)}`];
+  }
   if (h.count !== names.length) problems.push(`${dir}: pack holds ${h.count} frames, directory ${names.length}`);
   if (h.bytes !== buf.length) problems.push(`${dir}: header says ${h.bytes} bytes, file is ${buf.length}`);
   const seen = new Set();

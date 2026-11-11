@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { promises as fs } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { buildPack, packOrder, parsePack, verifyPack, writePack } from "../../scripts/film/pack-lib.mjs";
+import { buildPack, packOrder, parsePack, staleFrameFiles, verifyPack, writePack } from "../../scripts/film/pack-lib.mjs";
 import { packTimelineEntry } from "../../scripts/film/band-sync.mjs";
 
 /** Fake frames: distinct sizes and contents. */
@@ -133,4 +133,29 @@ test("packTimelineEntry: a pack that no longer matches its directory is stale an
   const g = packTimelineEntry({ ...LAYOUT }, LAYOUT, { header: null, fileBytes: 0, sizes: [10, 20, 30] }, 3, "palace-00");
   assert.equal(g.entry, null);
   assert.match(g.stale ?? "", /no pack.bin/);
+});
+
+// ---- Regressions (review of Phase 4) ----
+
+test("packTimelineEntry: no pack.bin here but one in the timeline keeps the entry and says so (never a silent delete)", () => {
+  const { entry, stale } = packTimelineEntry({ ...LAYOUT }, undefined, { header: null, fileBytes: 0, sizes: [10, 20, 30] }, 3, "palace-00");
+  assert.deepEqual(entry, LAYOUT, "the timeline's pack is kept");
+  assert.match(stale ?? "", /palace-00/);
+  assert.match(stale ?? "", /no pack.bin/);
+  assert.match(stale ?? "", /film:pack/);
+});
+
+test("verifyPack: a frame missing from the middle of the directory is reported, not thrown", async () => {
+  const dir = await tmpVariant(9);
+  await writePack(dir);
+  await fs.rm(path.join(dir, "f_0004.webp"));
+  const problems: string[] = await verifyPack(dir);
+  assert.ok(problems.some((p) => /contiguous/.test(p)), problems.join("; "));
+  await fs.rm(dir, { recursive: true });
+});
+
+test("staleFrameFiles: frames past the count, or with another padding, are stale", () => {
+  const names = ["f_0001.webp", "f_0002.webp", "f_0003.webp", "f_0004.webp", "f_00002.webp", "poster.webp", "f_0003.avif"];
+  assert.deepEqual(staleFrameFiles(names, 3, 4, "webp"), ["f_0004.webp", "f_00002.webp", "f_0003.avif"]);
+  assert.deepEqual(staleFrameFiles(["f_0001.webp", "f_0002.webp"], 2, 4, "webp"), []);
 });

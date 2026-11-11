@@ -53,6 +53,11 @@ export function bandTierEntry(prev, manifest, filmCount, dirName) {
  *   the manifest and the file disagree, or pack.bin is gone). A stale pack
  *   is NOT recorded (entry null): the runtime then loads that variant frame
  *   by frame instead of drawing an old render, and the sync exits 1.
+ * - No pack.bin and no `pack` in the manifest, but the timeline records a
+ *   pack (a checkout whose folders were copied without pack.bin, or written
+ *   before packs): the timeline's entry is KEPT, unverified, and reported
+ *   (`stale`, exit 1), never silently deleted. With nothing in the timeline
+ *   either, there is nothing to record and nothing to report.
  * Frame sizes are compared, not bytes (cheap); `npm run film:pack -- --verify`
  * compares every byte.
  *
@@ -67,7 +72,13 @@ export function packTimelineEntry(prev, manifestPack, onDisk, filmCount, dirName
   const fix = "rebuild it with `npm run film:pack` (docs/FILM_REEL.md)";
   const h = onDisk.header;
   if (!h) {
-    if (!manifestPack) return { entry: null, stale: null };
+    if (!manifestPack) {
+      if (!prev) return { entry: null, stale: null };
+      return {
+        entry: prev,
+        stale: `${dirName}: no pack.bin here, but the timeline records a pack: its entry is kept unverified (folders copied without pack.bin?); ${fix}, or upload it per docs/FILM_REEL.md`,
+      };
+    }
     return { entry: null, stale: `${dirName}: manifest.json records a pack but there is no pack.bin: ${fix}` };
   }
   const fail = (why) => ({ entry: null, stale: `${dirName}: STALE PACK, ${why}: ${fix}` });

@@ -15,6 +15,9 @@
  * counter so you can SEE the scrub tracking. Landscape variant + the band-only
  * portrait tiers (<name>-b1080, <name>-b900; the timeline's films.<name>.bands
  * entries describe them).
+ * Frame files left over from an earlier, longer run (or another padding) are
+ * removed from the directories it writes, so the directory holds exactly the
+ * timeline's count and the pack can be built.
  * Every variant also gets its pack (pack.bin + the manifest's `pack` field,
  * scripts/film/pack-lib.mjs). Run `node scripts/film/encode.mjs
  * --sync-timeline` afterwards if the runtime should read these packs: until
@@ -26,7 +29,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
-import { writePack } from "./pack-lib.mjs";
+import { staleFrameFiles, writePack } from "./pack-lib.mjs";
 
 const ROOT = process.cwd();
 const args = process.argv.slice(2);
@@ -135,6 +138,7 @@ for (const name of films) {
   const pad = Math.max(4, String(n).length);
   const frameFile = (i) => `f_${String(i + 1).padStart(pad, "0")}.webp`;
   const finish = async (dir, variant, w, h, extra = {}) => {
+    for (const f of staleFrameFiles(await fs.readdir(dir), n, pad, "webp")) await fs.rm(path.join(dir, f));
     await fs.copyFile(path.join(dir, frameFile(0)), path.join(dir, "poster.webp"));
     await fs.writeFile(path.join(dir, "manifest.json"), JSON.stringify({ name: variant, count: n, pad, ext: "webp", width: w, height: h, ...extra }, null, 2) + "\n");
     const pack = await writePack(dir);

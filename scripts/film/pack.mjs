@@ -42,7 +42,13 @@ for (const name of dirs) {
     continue;
   }
   if (verify) {
-    const p = await verifyPack(dir);
+    let p;
+    try {
+      p = await verifyPack(dir);
+    } catch (e) {
+      // Never stop at one directory: report it and verify the others.
+      p = [`${name}: ${e instanceof Error ? e.message : String(e)}`];
+    }
     problems += p.length;
     for (const line of p) console.log(`  ${line}`);
     const size = (await fs.stat(path.join(dir, "pack.bin")).catch(() => ({ size: 0 }))).size;
