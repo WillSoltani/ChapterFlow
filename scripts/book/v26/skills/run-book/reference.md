@@ -281,6 +281,10 @@ to `~/cf-wt/v26-plan/status/V1-variants.md` and one to the `v26-campaign` memory
 ## Cost (from the 48 Laws ledgers, 2026-11-04)
 
 Sonnet writing with Opus checks and fixes: $0.70 to $0.89 per chapter (Opus writing: $1.07). Keys: under $1.
+Writer test under the reader bar (2026-11-11, three Tiny Habits chapters, two blind readers each on the default
+reader path): Opus as writer was preferred 6 of 6 times, overall 8.0 against 6.8, at $1.05 to $1.42 a chapter
+against $0.63 to $0.91 for Sonnet. The default writer stays the owner's choice (Sonnet, 2026-11-05) until the owner
+says otherwise; to write with Opus, set the config's `writer` to the checker's model.
 Calibration (variants, assemble, fixes): about $5. Fix passes: about $0.3 per open chapter per pass. Style pass:
 $0.18 per chapter. Estimate = $5 + chapters x $0.9 + (chapters / 3) x $0.6, rounded up: 13 chapters about $20,
 48 chapters about $60. `budgetUsd` = twice that.
