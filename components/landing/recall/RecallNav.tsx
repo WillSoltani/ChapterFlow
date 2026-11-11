@@ -10,6 +10,7 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
+import { flushSync } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -230,11 +231,15 @@ export function RecallNav({ skipLinks }: { skipLinks?: ReactNode } = {}) {
           : false,
       );
     };
-    // A zone's start link fading in or out (data-cta-off) re-decides.
+    // A zone's start link fading in or out (data-cta-off) re-decides, and
+    // commits at once: the attribute flips in the film's scrub tick, and this
+    // observer runs in that tick's microtasks, before the browser paints. A
+    // render left to React's scheduler lands a frame later, and that frame
+    // showed both start buttons (or none).
     const offWatch =
       typeof window.MutationObserver === "undefined"
         ? null
-        : new window.MutationObserver(publish);
+        : new window.MutationObserver(() => flushSync(publish));
     for (const zone of suppressionZones)
       offWatch?.observe(zone, { attributes: true, attributeFilter: [CTA_OFF_ATTR] });
 

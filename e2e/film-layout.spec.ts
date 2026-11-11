@@ -19,8 +19,11 @@ import timeline from "../components/film/book.timeline.json";
  *   3. Start button always in reach: stepping through the reel in small
  *      scroll steps on 390 × 844 and 1440 × 900, at every step at least one
  *      primary start call-to-action is visible (the hero's, the nav's, the
- *      Home chapter's) and never two at once. Reports the longest stretch
- *      without one.
+ *      Home chapter's; visible = effective opacity at least one half, in the
+ *      viewport) and never two at once, in ANY frame painted during the
+ *      140 ms after each step (the reel glides on, so a button crosses one
+ *      half between steps; the nav's hand-over must land in that same frame).
+ *      Reports the longest stretch without one.
  *
  * Opt-in: RUN_AUDIT=1 (part of `npm run test:film`).
  */
@@ -279,27 +282,48 @@ test.describe("film layout (Phase 7)", () => {
       });
       const step = Math.round(vh * 0.08);
       const rows: Array<{ y: number; n: number; which: string[] }> = [];
+      const doubled: string[] = [];
       for (let y = 0; y <= end + step; y += step) {
         const yy = Math.min(y, end);
         await page.evaluate((y) => window.scrollTo({ top: y, behavior: "instant" as ScrollBehavior }), yy);
-        await page.waitForTimeout(140);
-        const which = await page.evaluate(() => {
-          const H = window.innerHeight;
-          const W = window.innerWidth;
-          const shown = (el: Element) => {
-            const cs = getComputedStyle(el);
-            if (cs.visibility !== "visible" || cs.display === "none") return false;
-            let o = 1;
-            for (let e: Element | null = el; e; e = e.parentElement) o *= Number(getComputedStyle(e).opacity);
-            if (o < 0.5) return false;
-            const r = el.getBoundingClientRect();
-            return r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < H && r.right > 0 && r.left < W;
-          };
-          const out: string[] = [];
-          for (const el of document.querySelectorAll("[data-film-reel] a.film-btn-primary")) if (shown(el)) out.push(`film:${el.closest("[data-film-segment]")?.id}`);
-          for (const el of document.querySelectorAll("header.rl-nav a[data-nav-primary]")) if (shown(el)) out.push("nav");
-          return out;
-        });
+        // Every frame for 140 ms after the jump (the reel glides on, the
+        // chapter's button may cross one half meanwhile): read at the start
+        // of each animation frame, i.e. what the previous frame painted.
+        // Two at once in ANY of those frames fails (the hand-over must be in
+        // the same frame, RecallNav); "at least one" is judged on the last.
+        const frames = await page.evaluate(
+          () =>
+            new Promise<string[][]>((resolve) => {
+              const H = window.innerHeight;
+              const W = window.innerWidth;
+              const shown = (el: Element) => {
+                const cs = getComputedStyle(el);
+                if (cs.visibility !== "visible" || cs.display === "none") return false;
+                let o = 1;
+                for (let e: Element | null = el; e; e = e.parentElement) o *= Number(getComputedStyle(e).opacity);
+                if (o < 0.5) return false;
+                const r = el.getBoundingClientRect();
+                return r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < H && r.right > 0 && r.left < W;
+              };
+              const read = () => {
+                const out: string[] = [];
+                for (const el of document.querySelectorAll("[data-film-reel] a.film-btn-primary")) if (shown(el)) out.push(`film:${el.closest("[data-film-segment]")?.id}`);
+                for (const el of document.querySelectorAll("header.rl-nav a[data-nav-primary]")) if (shown(el)) out.push("nav");
+                return out;
+              };
+              const seen: string[][] = [];
+              const t0 = performance.now();
+              const tick = () => {
+                seen.push(read());
+                if (performance.now() - t0 < 140) requestAnimationFrame(tick);
+                else resolve(seen);
+              };
+              requestAnimationFrame(tick);
+            }),
+        );
+        const which = frames[frames.length - 1] ?? [];
+        const most = frames.reduce((a, f) => (f.length > a.length ? f : a), which);
+        if (most.length > 1) doubled.push(`${Math.round(yy)} (${most.join("+")})`);
         rows.push({ y: yy, n: which.length, which });
         if (yy >= end) break;
       }
@@ -315,7 +339,7 @@ test.describe("film layout (Phase 7)", () => {
       }
       if (runStart >= 0) longest = Math.max(longest, end - runStart);
       const none = rows.filter((r) => r.n === 0).map((r) => Math.round(r.y));
-      const two = rows.filter((r) => r.n > 1).map((r) => `${Math.round(r.y)} (${r.which.join("+")})`);
+      const two = doubled;
       console.log(
         `start CTA ${name}: ${rows.length} steps of ${step}px over ${Math.round(end)}px; longest stretch without one ${Math.round(longest)}px (${(longest / vh).toFixed(2)} screens); ` +
           `steps without: ${none.length}, with two: ${two.length}`,
