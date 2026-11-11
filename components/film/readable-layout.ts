@@ -53,10 +53,26 @@ const GRID_FLOW: ReadonlyArray<readonly [string, string]> = [
   ["padding-bottom", "3rem"],
 ];
 
+/**
+ * A pin shown in full. The film code may have run (scripts loaded, the reel
+ * never armed): the pins' effects then wrote inline opacity, transform and
+ * pointer-events, which these declarations override (an animation's value
+ * wins over a normal inline style; the <noscript> rules are !important).
+ */
+const PIN_SHOWN: ReadonlyArray<readonly [string, string]> = [
+  ["visibility", "visible"],
+  ["opacity", "1"],
+  ["transform", "none"],
+  ["pointer-events", "auto"],
+];
+
 export const READABLE_RULES: readonly ReadableRule[] = [
   // Copy of later frames. The Hall wall prose is decoration laid over the
   // stage (aria-hidden): it stays hidden.
-  { name: "film-ro-later", sel: "[data-frame-later]:not(.hall-text)", decl: [["visibility", "visible"]] },
+  { name: "film-ro-later", sel: "[data-frame-later]:not(.hall-text)", decl: PIN_SHOWN },
+  // Copy of the first frame (and its scrims): shown in full too, whatever
+  // the scroll had faded.
+  { name: "film-ro-pin", sel: ":is([data-frame-pin], [data-frame-scrim]):not([data-frame-later])", decl: PIN_SHOWN },
   { name: "film-ro-segment", sel: "[data-film-segment]", decl: [["height", "auto"]] },
   {
     name: "film-ro-stage",
