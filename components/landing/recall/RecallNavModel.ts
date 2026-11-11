@@ -120,3 +120,26 @@ export function shouldShowPersistentCta({
   if (hasHeroCta || !hasSentinel) return true;
   return sentinelTop != null && sentinelTop <= headerBottom;
 }
+
+/**
+ * Whether the header renders its persistent start button now. It waits for
+ * the session (it shows "Dashboard" to a signed-in visitor) except on a page
+ * whose hero carries its own start button (the film landing): there the nav's
+ * button is what keeps a start button in reach once the hero's fades, so
+ * while the session is unresolved (slow, or failing and left unresolved by
+ * useAuthStatus) it shows the signed-out "Start free", the same link the
+ * film's own buttons always show. Never while the mobile menu is open.
+ */
+export function shouldRenderPersistentCta({
+  show,
+  authResolved,
+  hasHeroCta,
+  mobileOpen,
+}: {
+  show: boolean;
+  authResolved: boolean;
+  hasHeroCta: boolean;
+  mobileOpen: boolean;
+}): boolean {
+  return show && !mobileOpen && (authResolved || hasHeroCta);
+}

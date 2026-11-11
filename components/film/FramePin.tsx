@@ -47,6 +47,7 @@ type Props = {
    * [data-public-hero-cta], so the nav's shows as soon as this one goes) and
    * is marked data-cta-off while its button is not shown: its effective
    * opacity below one half. The nav watches that attribute (no layout read).
+   * Only the mounted pin sets it (never the server HTML).
    */
   startCta?: "hero" | "chapter";
   /**
@@ -186,6 +187,10 @@ export function FramePin({
     };
   }, [store, from, to, ease, hold, y, reduced, scrim, startCta, ctaOnAt]);
 
+  // data-cta-off is never server-rendered: only the effect above, which
+  // drives the pin's opacity, may claim its button is not shown. If it never
+  // runs, the readable layout (readable-layout.ts) shows every pin, and the
+  // nav must then count this button as shown (Phase 7 review).
   const Tag = as as "div";
   return (
     <Tag
@@ -195,7 +200,6 @@ export function FramePin({
       data-frame-later={pinHiddenAtStart(from, to, ease, hold) ? "" : undefined}
       data-public-sticky-cta-suppress={startCta ? "" : undefined}
       data-public-hero-cta={startCta === "hero" ? "" : undefined}
-      data-cta-off={startCta && pinOpacity(0, from, to, Math.max(1, ease), hold) < ctaOnAt ? "" : undefined}
       className={`${interactive ? "pointer-events-auto" : ""} ${className ?? ""}`}
       style={style}
     >

@@ -125,3 +125,14 @@ test("the hero poster is marked as a band poster only when the first film has ti
   assert.ok(p2);
   assert.equal(p2.hasAttribute("data-film-band"), false);
 });
+
+test("no start-button zone is server-rendered as off: the readable page shows every pin, so the nav must count them", () => {
+  // Phase 7 review: the Home chapter's start pin was server-rendered with
+  // data-cta-off. When the film code never runs, the failsafe shows that
+  // button while the nav still read it as off and showed its own: two
+  // primary start buttons. Only the mounted FramePin may mark a zone off.
+  const zones = [...doc.querySelectorAll("[data-public-sticky-cta-suppress]")];
+  assert.ok(zones.length >= 2, "the hero's and the Home chapter's start pins are zones");
+  assert.ok(zones.some((z) => z.hasAttribute("data-frame-later")), "a later zone the failsafe reveals");
+  for (const z of zones) assert.equal(z.hasAttribute("data-cta-off"), false, z.outerHTML.slice(0, 120));
+});

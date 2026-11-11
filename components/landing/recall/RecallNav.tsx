@@ -27,6 +27,7 @@ import {
   isPublicNavCurrent,
   parseNavLook,
   publicNavHref,
+  shouldRenderPersistentCta,
   shouldShowPersistentCta,
 } from "./RecallNavModel";
 
@@ -108,7 +109,9 @@ export function RecallNav() {
   const pathname = usePathname() || "/";
   const { loggedIn, loading } = useAuthStatus();
   const [mobileMenuPath, setMobileMenuPath] = useState<string | null>(null);
-  const [showPersistentCta, setShowPersistentCta] = useState(false);
+  // The persistent start button: hidden, or shown on a page whose hero has
+  // its own start button ([data-public-hero-cta], "hero") or not ("page").
+  const [persistentCta, setPersistentCta] = useState<false | "page" | "hero">(false);
   const loadMotionFeatures = useLoadMotionFeatures();
   const headerRef = useRef<HTMLElement>(null);
   const brandLinkRef = useRef<HTMLAnchorElement>(null);
@@ -162,6 +165,7 @@ export function RecallNav() {
       document.querySelectorAll<HTMLElement>("[data-public-sticky-cta-suppress]"),
     );
     const hasHeroCta = document.querySelector("[data-public-hero-cta]") != null;
+    const shownAs = hasHeroCta ? "hero" : "page";
     const zoneOff = (zone: Element) => zone.hasAttribute(CTA_OFF_ATTR);
     const header = headerRef.current;
     if (!header || typeof window.IntersectionObserver === "undefined") {
@@ -178,14 +182,16 @@ export function RecallNav() {
             const bounds = zone.getBoundingClientRect();
             return bounds.bottom > headerBottom && bounds.top < window.innerHeight;
           });
-          setShowPersistentCta(
+          setPersistentCta(
             shouldShowPersistentCta({
               hasSentinel: sentinel != null,
               sentinelTop: sentinel?.getBoundingClientRect().top ?? null,
               headerBottom,
               suppressionVisible,
               hasHeroCta,
-            }),
+            })
+              ? shownAs
+              : false,
           );
         });
       };
@@ -206,14 +212,16 @@ export function RecallNav() {
     const publish = () => {
       let suppressionVisible = false;
       for (const [zone, v] of zoneVisible) suppressionVisible ||= v && !zoneOff(zone);
-      setShowPersistentCta(
+      setPersistentCta(
         shouldShowPersistentCta({
           hasSentinel: sentinel != null,
           sentinelTop,
           headerBottom,
           suppressionVisible,
           hasHeroCta,
-        }),
+        })
+          ? shownAs
+          : false,
       );
     };
     // A zone's start link fading in or out (data-cta-off) re-decides.
@@ -388,7 +396,12 @@ export function RecallNav() {
             )
           ) : null}
 
-          {showPersistentCta && authResolved && !mobileOpen ? (
+          {shouldRenderPersistentCta({
+            show: persistentCta !== false,
+            authResolved,
+            hasHeroCta: persistentCta === "hero",
+            mobileOpen,
+          }) ? (
             <PrimaryAction loggedIn={isLoggedIn} location="header" />
           ) : null}
 
