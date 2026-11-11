@@ -61,12 +61,6 @@ type Props = {
   breath?: number;
   /** Reported on <html data-reel-section>; defaults to id. */
   section?: string;
-  /**
-   * Soft-focus the film while this segment is active (html[data-reel-soft]).
-   * Used when a legible overlay (real prose) sits on top of footage whose own
-   * printed text is model pseudo-text.
-   */
-  softFocus?: boolean;
   ariaLabel?: string;
   children?: ReactNode;
   body?: ReactNode;
@@ -82,7 +76,6 @@ export function FilmSegment({
   reducedSteps = 5,
   breath = 0.01,
   section,
-  softFocus = false,
   ariaLabel,
   children,
   body,
@@ -145,7 +138,6 @@ export function FilmSegment({
         data-index={index}
         className={`relative ${className ?? ""}`}
         style={{ height: `${pace * 100}svh` }}
-        data-soft-focus={softFocus ? "" : undefined}
         onFocusCapture={onFocusCapture}
       >
         <div

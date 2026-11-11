@@ -13,7 +13,9 @@
  *   • registration of FilmSegments (they report their DOM element + film)
  *   • the scrub loop (./use-scrub-loop.ts) that paints frames, dissolves
  *     between films, breathes while idle, quantises under reduced motion, and
- *     publishes <html data-reel-chrome="film|body" data-reel-section="…">
+ *     publishes <html data-reel-chrome="film|body" data-reel-section="…">,
+ *     and hides the canvas wrapper below the reel (not composited under the
+ *     body sections)
  *
  * Math lives in ./scrub.ts (pure, tested). Nothing here re-renders per frame.
  */
@@ -23,7 +25,7 @@ import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion
 import { FrameBudget, FrameCache, pickFrameBudgetBytes, type FilmStats } from "./frame-cache";
 import { PACK_CAP_LARGE, PACK_CAP_SMALL, PackClient, packModeAllowed } from "./pack-client";
 import { ReelContext, PORTRAIT_QUERY, pickVariant, readView, viewKey, type ReelApi, type ReelView } from "./reel-context";
-import { useScrubLoop } from "./use-scrub-loop";
+import { useScrubLoop, type ScrubFeel } from "./use-scrub-loop";
 import type { FilmManifest, Orientation, SegmentRegistration } from "./types";
 
 export { REEL_CHROME_EVENT } from "./use-scrub-loop";
@@ -52,6 +54,7 @@ export function FilmBackdrop({ reel, children, className }: Props) {
   });
   const drawnListeners = useRef(new Set<() => void>());
   const drawn = useRef({ segment: -1, frame: -1 });
+  const feel = useRef<ScrubFeel>({ input: "other", smoothing: 90, target: -1 });
   const reduced = usePrefersReducedMotion();
   const reducedRef = useRef(false);
   // The RENDERED view starts as landscape on both server and client so
@@ -189,12 +192,13 @@ export function FilmBackdrop({ reel, children, className }: Props) {
       },
       drawnSegment: () => drawn.current.segment,
       drawnFrame: () => drawn.current.frame,
+      feel: () => feel.current,
       stats: budget.stats,
     }),
     [reel, orientation, cacheFor, budget, packs],
   );
 
-  useScrubLoop({ canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget });
+  useScrubLoop({ canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget, feel });
 
   return (
     <ReelContext.Provider value={api}>

@@ -8,6 +8,7 @@
 import { useSyncExternalStore } from "react";
 import type { FilmStats } from "./frame-cache";
 import { useReel } from "./reel-context";
+import type { ScrubFeel } from "./use-scrub-loop";
 
 const noop = () => () => {};
 const readHudFlag = () => new URLSearchParams(window.location.search).get("hud") === "1";
@@ -39,14 +40,19 @@ function loadLine(s: FilmStats): string {
   return `frames · decode ${s.mainThreadDecodeMeanMs.toFixed(1)} ms on page${s.packFallbacks ? ` · pack fallbacks ${s.packFallbacks}` : ""}`;
 }
 
+/** Fourth HUD line: the last scroll input, the smoothing in effect, the frame the scroll wants. */
+function feelLine(f: ScrubFeel): string {
+  return `input ${f.input} · smooth ${f.smoothing} ms · want f${String(f.target + 1).padStart(4, "0")}`;
+}
+
 function FilmHudInner() {
   const reel = useReel();
   const snap = useSyncExternalStore(
     reel.subscribeDrawn,
-    () => `${reel.drawnSegment()}:${reel.drawnFrame()}|${statsLine(reel.stats)}|${loadLine(reel.stats)}`,
-    () => "-1:-1||",
+    () => `${reel.drawnSegment()}:${reel.drawnFrame()}|${statsLine(reel.stats)}|${loadLine(reel.stats)}|${feelLine(reel.feel())}`,
+    () => "-1:-1|||",
   );
-  const [pos = "", stats = "", load = ""] = snap.split("|");
+  const [pos = "", stats = "", load = "", feel = ""] = snap.split("|");
   const [seg = -1, frame = -1] = pos.split(":").map(Number);
   const film = reel.reel[seg];
   return (
@@ -54,6 +60,7 @@ function FilmHudInner() {
       {film ? `${film.name} · f${String(frame + 1).padStart(4, "0")}` : "reel idle"} · {reel.orientation}
       {stats ? <span className="film-hud-stats">{stats}</span> : null}
       {load ? <span className="film-hud-stats">{load}</span> : null}
+      {feel ? <span className="film-hud-stats">{feel}</span> : null}
     </div>
   );
 }
