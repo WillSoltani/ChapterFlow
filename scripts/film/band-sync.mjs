@@ -37,3 +37,49 @@ export function bandTierEntry(prev, manifest, filmCount, dirName) {
       : null;
   return { entry, stale };
 }
+
+/**
+ * The timeline entry for a variant's pack (films.<name>.pack, or
+ * films.<name>.bands.<tier>.pack), from its manifest and what is on disk.
+ *
+ * - The version: the manifest's `pack.v`, or, when it has none, the one the
+ *   timeline already holds (as for band tiers above).
+ * - `stale`: a message when pack.bin no longer matches its directory (a
+ *   frame re-encoded, added or removed after the pack was built, the
+ *   manifest rewritten without its `pack` field, the film's count changed,
+ *   the manifest and the file disagree, or pack.bin is gone). A stale pack
+ *   is NOT recorded (entry null): the runtime then loads that variant frame
+ *   by frame instead of drawing an old render, and the sync exits 1.
+ * Frame sizes are compared, not bytes (cheap); `npm run film:pack -- --verify`
+ * compares every byte.
+ *
+ * @param {{ bytes: number, header: number, skeletonEnd: number, v?: string } | undefined} prev
+ * @param {{ bytes: number, header: number, skeletonEnd: number, v?: string } | undefined} manifestPack
+ * @param {{ header: null | { error?: string, count?: number, bytes?: number, header?: number, skeletonEnd?: number, entries?: Array<{ index: number, length: number }> }, fileBytes: number, sizes: number[] }} onDisk
+ * @param {number} filmCount
+ * @param {string} dirName
+ * @returns {{ entry: { bytes: number, header: number, skeletonEnd: number, v?: string } | null, stale: string | null }}
+ */
+export function packTimelineEntry(prev, manifestPack, onDisk, filmCount, dirName) {
+  const fix = "rebuild it with `npm run film:pack` (docs/FILM_REEL.md)";
+  const h = onDisk.header;
+  if (!h) {
+    if (!manifestPack) return { entry: null, stale: null };
+    return { entry: null, stale: `${dirName}: manifest.json records a pack but there is no pack.bin: ${fix}` };
+  }
+  const fail = (why) => ({ entry: null, stale: `${dirName}: STALE PACK, ${why}: ${fix}` });
+  if (h.error) return fail(h.error);
+  if (!manifestPack) return fail("pack.bin is not recorded in its manifest.json (the directory was re-encoded?)");
+  if (h.count !== onDisk.sizes.length) return fail(`pack.bin holds ${h.count} frames but the directory has ${onDisk.sizes.length}`);
+  if (h.count !== filmCount) return fail(`pack.bin holds ${h.count} frames but the film has ${filmCount}`);
+  if (onDisk.fileBytes !== manifestPack.bytes) return fail(`manifest says ${manifestPack.bytes} bytes, pack.bin is ${onDisk.fileBytes}`);
+  if (h.bytes !== onDisk.fileBytes) return fail(`pack.bin's header says ${h.bytes} bytes, the file is ${onDisk.fileBytes}`);
+  if (h.header !== manifestPack.header) return fail(`manifest says a ${manifestPack.header}-byte header, pack.bin has ${h.header}`);
+  if (h.skeletonEnd !== manifestPack.skeletonEnd) return fail(`manifest says the skeleton ends at ${manifestPack.skeletonEnd}, pack.bin at ${h.skeletonEnd}`);
+  for (const e of h.entries ?? []) {
+    const size = onDisk.sizes[e.index];
+    if (size !== e.length) return fail(`frame ${e.index} is ${size ?? "missing"} bytes on disk, ${e.length} in the pack`);
+  }
+  const v = manifestPack.v || prev?.v;
+  return { entry: { bytes: manifestPack.bytes, header: manifestPack.header, skeletonEnd: manifestPack.skeletonEnd, ...(v ? { v } : {}) }, stale: null };
+}

@@ -15,12 +15,18 @@
  * counter so you can SEE the scrub tracking. Landscape variant + the band-only
  * portrait tiers (<name>-b1080, <name>-b900; the timeline's films.<name>.bands
  * entries describe them).
+ * Every variant also gets its pack (pack.bin + the manifest's `pack` field,
+ * scripts/film/pack-lib.mjs). Run `node scripts/film/encode.mjs
+ * --sync-timeline` afterwards if the runtime should read these packs: until
+ * the timeline records them, a pack whose size disagrees with the timeline is
+ * unusable and the reel loads the placeholder frame by frame.
  * Output is gitignored (public/films/); real renders replace it 1:1.
  */
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
+import { writePack } from "./pack-lib.mjs";
 
 const ROOT = process.cwd();
 const args = process.argv.slice(2);
@@ -131,7 +137,8 @@ for (const name of films) {
   const finish = async (dir, variant, w, h, extra = {}) => {
     await fs.copyFile(path.join(dir, frameFile(0)), path.join(dir, "poster.webp"));
     await fs.writeFile(path.join(dir, "manifest.json"), JSON.stringify({ name: variant, count: n, pad, ext: "webp", width: w, height: h, ...extra }, null, 2) + "\n");
-    console.log(`${variant}: ${n} frames`);
+    const pack = await writePack(dir);
+    console.log(`${variant}: ${n} frames, pack ${pack.bytes} bytes`);
   };
   const each = async (fn) => {
     const jobs = Array.from({ length: n }, (_, i) => i);
