@@ -62,14 +62,21 @@ keys, prompts, render log).
   them (`tests/recall-motion-restraint.contract.test.ts`,
   `RecallBookRequestForm.accessibility.test.ts`, `e2e/visual.spec.ts`) go
   with them.
-- The CI film job is new: watch its first runs (time per shard, the fps gate
-  of `film-perf` on a 2-core runner without a GPU).
+- The CI film job is new: watch its first runs (time per part, the
+  production build of part `prod` inside 15 minutes, the fps gate of
+  `film-perf` on a 2-core runner without a GPU).
+- The start-button hand-over keeps one painted frame with both buttons when
+  the Home chapter's start pin scrolls into view already fully on (scrolling
+  back up from the body): its IntersectionObserver reports after that frame.
+  Closing it needs the nav to learn of the pin before the browser paints.
 
 ## Working rules
 
 - Worktree: `~/cf-wt/memory-palace` (never `/tmp`: macOS reaps it).
   `public/films` there is a symlink to the real frames; never write into it
-  from a script or a test. For placeholder runs use a separate worktree.
+  from a script or a test (`placeholder.mjs` refuses to overwrite real
+  frames). For placeholder runs use a separate worktree, and never commit the
+  timeline that `encode.mjs --sync-timeline` rewrites there.
 - The dev server, the build and a local hook rewrite `tsconfig.json` and
   `AGENTS.md`: `git checkout -- tsconfig.json AGENTS.md` before committing.
 - Stale CSS or odd behaviour from the dev server: `rm -rf .next-chapterflow`

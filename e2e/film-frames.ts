@@ -12,7 +12,9 @@ import { readFileSync } from "node:fs";
  * loosened threshold. Everything else (loading, layout, structure, keyboard,
  * reduced motion, first paint, the request and draw budgets, and the pixel
  * truth, which compares the canvas with whatever frame files are there) runs
- * on them unchanged.
+ * on them. The desktop pixel truth compares its decoys at every stop on
+ * placeholders (film-truth.spec.ts): their flat background is within its
+ * near-match floor of a blank canvas.
  */
 export const PLACEHOLDER_FRAMES: boolean = (() => {
   try {

@@ -318,7 +318,7 @@ the loop `canvasResizes`, `geometryMeasures`, `ticksWorked`, `ticksSkipped`.
   checks every look's ink contrast. Desktop keeps the glass.
 - **Start button always in reach.** From the top to the end of the reel at
   least one primary start button is visible (effective opacity at least one
-  half), never two, in any painted frame. The hero's and the Home chapter's
+  half), and never two once a hand-over has committed. The hero's and the Home chapter's
   buttons are FramePins with `startCta`: suppression zones for the nav's
   persistent button, marked `data-cta-off` while their button is under one
   half (the hero's switches at √½ of its own opacity, its halo fading on the
@@ -326,7 +326,11 @@ the loop `canvasResizes`, `geometryMeasures`, `ticksWorked`, `ticksSkipped`.
   and commits with `flushSync`: the attribute flips in the scrub tick and the
   observer runs in that tick's microtasks, so the nav's button leaves (or
   comes back) in the same painted frame. Visibility of the zones comes from
-  IntersectionObservers; no layout read in the scroll path. On this page the
+  IntersectionObservers, also committed with `flushSync`; no layout read in
+  the scroll path. One case keeps one frame of overlap: a start pin that
+  scrolls into view already fully on (the Home chapter's, met scrolling back
+  up from the body) is reported by its observer only after the frame in
+  which it crossed the header line, so that one frame shows both buttons. On this page the
   nav's button also shows while the session is unresolved (the signed-out
   "Start free"). `data-cta-off` is never in the server HTML.
 - **Prefetch.** The City chapter's `/books` link and the footer's links to
@@ -482,11 +486,11 @@ Browser specs (`e2e/film-*.spec.ts`; `RUN_AUDIT=1`, dev server):
 | `film-a11y` | reduced motion (OS and in-app) stop by stop; around the film; keyboard Tab and Shift+Tab; pointer focus; refocus with the window, also after a touch scroll; paging; forced colors; structure; contrast of the copy and of the focus indicators |
 | `film-first-paint` | one poster per viewport; all 404 (static, no probe); recovery (aborted 6 s, offline, aborted 70 s); no 2D context; the failsafe over inline styles. `@prod` part (E2E_MODE=prod): the response's picture and preloads, no JavaScript, hydration held back 2 s, scripts blocked, fonts, motion chunk |
 | `film-layers` | touch nav without backdrop-filter, no resting layers, ≤ 64 layout reads in a 3 s scroll, Hall style writes, one reduced-motion listener, canvas under the body, smoothing per input |
-| `film-layout` | a phone held sideways requests only landscape variants; safe areas; the start button in reach in every painted frame |
+| `film-layout` | a phone held sideways requests only landscape variants; safe areas; scrolling down, the start button in reach, one at a time, in every painted frame |
 | `film-perf` | a fast wheel scrub: monotonic frames, handoffs in the dissolve, ≥ 45 fps (20 on WebKit), anchors land |
 | `film-quality` | pack mode: no per-frame request, ≤ 30 film requests, no pack byte twice, 0 refetches; `?pack=0`: each frame once, ≤ 4 in flight; before the first scroll one pack bounded at its opening; phone: one canvas allocation, idle at rest, stopped below the reel, a jump lands, only b900 requests |
 | `film-reel` | scrub, dissolve, chrome, Hall prose, reduced-motion stops (also in the smoke job, skipped there without frames) |
-| `film-truth` | canvas pixels against the frame files: desktop by signature, phone (b900 in its band) and a phone held sideways exactly (mean \|Δ\| ≤ 0.5) |
+| `film-truth` | canvas pixels against the frame files: desktop by signature against decoys (blank canvas, poster, a far frame, another film; on placeholder frames at every stop), phone (b900 in its band) and a phone held sideways exactly (mean \|Δ\| ≤ 0.5) |
 
 ```bash
 npm run test:film            # every film spec, Chromium (needs frames in public/films)
@@ -494,18 +498,38 @@ npm run test:film:safari     # the same on WebKit (npx playwright install webkit
 npm run film:quality         # scrub-quality: whole-reel loading budgets per device profile
 npm run film:parity          # band tiers vs the legacy -p frames (needs the -p folders)
 npm run film:pack -- --verify
-node scripts/film/placeholder.mjs && node scripts/film/encode.mjs --sync-timeline   # synthetic frames
+node scripts/film/placeholder.mjs --out <dir>   # synthetic frames (see below)
 ```
 
+`placeholder.mjs` writes to `public/films` unless given `--out`, and it
+refuses to overwrite a directory whose manifest is a real encode's (`--force`
+overrides). In a checkout whose `public/films` links to the real frames,
+generate placeholders elsewhere. `encode.mjs --sync-timeline` after it
+rewrites the tracked `components/film/book.timeline.json` with the
+placeholder packs' sizes and versions: never commit that (production would
+then treat every real pack as unusable and load frame by frame). CI does both
+in the runner only.
+
 - **CI** (`.github/workflows/ci.yml`, job "film"): when a change touches the
-  film or what it depends on, it generates placeholder frames, tiers and
-  packs (cached on the timeline and the generator), syncs the timeline's
-  pack fields to them in the runner (never committed;
-  `ci-timeline-check.mjs` proves nothing else changed), runs
-  `npm run test:film` on Chromium with two workers and then `film:quality`
-  for `desktop-chromium` and `desktop-chromium-frames`. The film audit runs
-  four of its seven viewports there (`FILM_AUDIT_VIEWPORTS`: desktop, phone,
-  smallest phone, landscape phone). Placeholder manifests carry
+  film or anything it imports (the path list in the job;
+  `lib/film-ci-paths.test.ts` walks the import graph and fails when the list
+  misses a file), it generates placeholder frames, tiers and packs (cached
+  on the timeline and the generator; the tiers follow the timeline's band
+  entries), syncs the timeline's pack fields to them in the runner (never
+  committed; `ci-timeline-check.mjs` proves nothing else changed), and runs
+  in three parallel parts. Parts `1/2` and `2/2` are the two shards of
+  `npm run test:film` (dev server, Chromium, two workers each, without
+  `@prod`, `@visual` and `film-perf`); part 1 then runs `film-perf` alone on
+  one worker, part 2 runs `film:quality` for `desktop-chromium` and
+  `desktop-chromium-frames`. Part `prod` builds the app (`next build` +
+  `next start`, `E2E_MODE=prod`) and runs the `@prod` tests of
+  `film-first-paint` and `film-layers` on the placeholders: the server
+  picture and preloads, no JavaScript, the poster-to-canvas hand-over at four
+  viewports, scripts blocked, fonts, prefetch. The film audit runs three of
+  its seven viewports in CI (`FILM_AUDIT_VIEWPORTS`: desktop, smallest
+  phone, landscape phone); the 390 × 844 phone is not in the CI audit (its
+  clip, overlap, nav, size and target checks run per reduced-motion stop in
+  `film-a11y`), only locally. Placeholder manifests carry
   `placeholder: true`; `e2e/film-frames.ts` reads it, and the checks that
   judge the real footage skip on it: the copy contrast and the focus
   indicators over the film (`film-a11y`), the luminance behind the copy

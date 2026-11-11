@@ -684,11 +684,16 @@ test.describe("film a11y", () => {
       for (const path of ["/pricing", "/contact", "/legal", "/books"]) {
         await page.goto(path);
         await page.waitForTimeout(1500);
-        await navIndicators(page, webkit, judge(`${path} top`));
+        // Every page must really render the shared nav and be measured
+        // (a redirect, or a page without header.rl-nav, measures nothing).
+        expect(new URL(page.url()).pathname, `${path}: not redirected`).toBe(path);
+        const top = await navIndicators(page, webkit, judge(`${path} top`));
+        expect(top.length, `${path} top: the nav's controls were reached`).toBeGreaterThan(1);
         // Scrolled on: the persistent start button shows.
         await page.evaluate(() => window.scrollTo({ top: Math.min(900, document.documentElement.scrollHeight - window.innerHeight), behavior: "instant" as ScrollBehavior }));
         await page.waitForTimeout(600);
-        await navIndicators(page, webkit, judge(`${path} scrolled`));
+        const scrolled = await navIndicators(page, webkit, judge(`${path} scrolled`));
+        expect(scrolled.length, `${path} scrolled: the nav's controls were reached`).toBeGreaterThan(1);
       }
       console.log(`[focus indicators, body ${vp.name}] film buttons ${ringRatio.toFixed(2)}:1\n${rows.join("\n")}`);
       await ctx.close();

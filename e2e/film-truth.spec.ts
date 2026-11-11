@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import sharp from "sharp";
 import { promises as fs } from "node:fs";
+import { PLACEHOLDER_FRAMES } from "./film-frames";
 
 /**
  * Ground-truth check: wheel-scroll like a human and, at every stop, compare
@@ -15,6 +16,10 @@ import { promises as fs } from "node:fs";
  * phone run (844 × 390, DPR 3, touch: a phone held sideways, Phase 7) draws
  * the LANDSCAPE variant: there the canvas must equal the landscape frame
  * cover-fitted by the same math.
+ *
+ * The desktop run also compares a blank canvas (the clear colour) as a
+ * decoy, and on placeholder frames (e2e/film-frames.ts) it compares the
+ * decoys at every stop.
  *
  * Opt-in: RUN_AUDIT=1 (part of `npm run test:film`).
  */
@@ -43,6 +48,9 @@ test.describe("film truth", () => {
           .toBuffer(),
       );
 
+    // The canvas with nothing drawn: the clear colour (use-scrub-loop.ts).
+    const blank = await sig(await sharp({ create: { width: 1440, height: 900, channels: 3, background: "#06070A" } }).png().toBuffer());
+    const NEAR_MATCH = PLACEHOLDER_FRAMES ? 0 : 30;
     const problems: string[] = [];
     let ok = 0;
     const last = segs[segs.length - 1];
@@ -85,6 +93,7 @@ test.describe("film truth", () => {
       const canvas = await sig(Buffer.from(st.png.split(",")[1] ?? "", "base64"));
       const dExp = dist(canvas, await fsig(expFilm, expF));
       const decoys = [
+        ["blank", blank],
         ["poster", await fsig(expFilm, 1)],
         ["far", await fsig(expFilm, Math.max(1, Math.min(expEntry.count, expF + (expF > 120 ? -60 : 60))))],
         ["otherfilm", await fsig(other, Math.min(expF, otherEntry.count))],
@@ -93,7 +102,11 @@ test.describe("film truth", () => {
       if (m[1] !== expFilm || Math.abs(Number(m[2]) - expF) > 8) here.push(`HUD≠SCROLL (exp ${expFilm} f${expF})`);
       // If the canvas is already a near-match for the expected frame (within
       // the cover-crop / breath / WebP noise floor), nothing else can "win".
-      if (dExp > 30) {
+      // Not on placeholder frames: they are mostly flat background, so a blank
+      // canvas, the poster or another film is itself within that floor of
+      // the expected frame and the floor would pass any of them. There the
+      // decoys are always compared (their frame counter tells frames apart).
+      if (dExp > NEAR_MATCH) {
         for (const [label, d] of decoys) {
           const dd = dist(canvas, d);
           if (dd < dExp * 0.9) here.push(`CANVAS closer to ${label} (${dd.toFixed(0)}) than expected (${dExp.toFixed(0)})`);

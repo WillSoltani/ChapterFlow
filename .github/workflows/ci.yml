@@ -428,17 +428,24 @@ jobs:
   # (npm run film:parity) needs those frames and stays a local gate.
   # Real work only when the change touches the film or what it depends on
   # (decided with git below); otherwise the job ends green within a minute.
-  # Two shards keep each run inside 15 minutes on a 2-core runner (measured
-  # locally: the film specs take about 13 worker-minutes on an M-series Mac,
-  # the placeholders about 1 minute of 4 cores, scrub-quality about 1 minute).
+  # Two shards of the dev-server specs keep each run inside 15 minutes on a
+  # 2-core runner (measured locally: the film specs take about 13
+  # worker-minutes on an M-series Mac, the placeholders about 1 minute of 4
+  # cores, scrub-quality about 1 minute). A third part, "prod", builds the
+  # app (next build + next start, as the e2e-prod job does) on the same
+  # placeholder frames and runs the film's @prod specs: the server <picture>
+  # and preloads, JavaScript disabled, the poster-to-canvas hand-over at four
+  # viewports, the scripts-blocked failsafe, the fonts and the prefetch. The
+  # e2e-prod job runs them without frames, where the poster-dependent ones
+  # skip themselves (requirePosters); here they run.
   film:
-    name: Film specs (placeholder frames, ${{ matrix.shard }}/2)
+    name: Film specs (placeholder frames, ${{ matrix.part }})
     runs-on: ubuntu-latest
     timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
-        shard: [1, 2]
+        part: ["1/2", "2/2", "prod"]
     env:
       NEXT_TELEMETRY_DISABLED: "1"
       # Same as the dev smoke job: no data-plane env, the landing degrades gracefully.
@@ -464,10 +471,25 @@ jobs:
             echo "run=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+          # Every file the film imports, transitively from the landing page,
+          # the root layout, the middleware (its CSP), the Next config and the
+          # film's specs and scripts: lib/film-ci-paths.test.ts walks that
+          # import graph and fails when a file it reaches is missing here.
           changed="$(git diff --name-only "$base" HEAD -- \
             components/film components/landing 'e2e/film-*' scripts/film \
-            app/page.tsx app/layout.tsx app/globals.css app/_fonts lib/csp.ts \
-            playwright.config.ts package.json package-lock.json .github/workflows/ci.yml)"
+            app/page.tsx app/layout.tsx app/globals.css app/_fonts app/_lib \
+            app/app/_lib/dev-auth-bypass.ts app/app/api/_lib/boot-env-core.ts \
+            components/MotionFeatureProvider.tsx components/MotionProvider.tsx components/motion-feature-load.ts \
+            components/auth/AuthCacheBoundary.tsx components/auth/AuthErrorBanner.tsx components/auth/useAuthStatus.ts \
+            components/marketing/PublicSiteShell.tsx components/sections/CurrentYear.tsx components/sections/Footer.tsx \
+            components/ui/Dialog.tsx components/ui/SegmentedControl.tsx components/ui/use-body-scroll-lock.ts \
+            components/ui/usePrefersReducedMotion.ts \
+            lib/analytics.ts lib/auth-cache-generation.ts lib/book-covers.ts lib/book-slug-aliases.ts \
+            lib/books-catalog.metadata.json lib/books-catalog.ts lib/catalog-stats.ts lib/category-taxonomy.ts \
+            lib/client lib/csp.ts lib/logout.ts lib/middleware-origin-core.ts lib/motion.ts \
+            lib/origin-verify-core.ts lib/pricing.ts lib/utils.ts \
+            middleware.ts next.config.ts playwright.config.ts .nvmrc \
+            package.json package-lock.json .github/workflows/ci.yml)"
           if [ -n "$changed" ]; then
             printf 'Film-relevant changes:\n%s\n' "$changed"
             echo "run=true" >> "$GITHUB_OUTPUT"
@@ -554,7 +576,7 @@ jobs:
           git diff --stat
 
       - name: Film specs (Chromium, this shard)
-        if: steps.scope.outputs.run == 'true'
+        if: steps.scope.outputs.run == 'true' && matrix.part != 'prod'
         # Two workers on the 2-core runner (the config's CI default is one).
         # film-perf (an fps gate) runs on its own below, never next to another
         # test. --grep-invert replaces the config's, so @prod and @visual stay
@@ -566,17 +588,26 @@ jobs:
         # keyboard, layout and truth specs. Locally every viewport runs.
         env:
           FILM_AUDIT_VIEWPORTS: "desktop,smallest phone,landscape phone"
-          SHARD: ${{ matrix.shard }}
-        run: npm run test:film -- --workers=2 --shard="${SHARD}/2" --grep-invert "@prod|@visual|film perf"
+          SHARD: ${{ matrix.part }}
+        run: npm run test:film -- --workers=2 --shard="${SHARD}" --grep-invert "@prod|@visual|film perf"
+
+      - name: Film first paint on the production build (@prod)
+        if: steps.scope.outputs.run == 'true' && matrix.part == 'prod'
+        # playwright.config.ts (E2E_MODE=prod) builds and starts the app and
+        # selects the @prod tests; public/films holds the placeholders, so
+        # the poster-dependent ones run instead of skipping.
+        env:
+          E2E_MODE: "prod"
+        run: npx playwright test e2e/film-first-paint.spec.ts e2e/film-layers.spec.ts --project=chromium --workers=2
 
       - name: Film perf (one worker)
-        if: steps.scope.outputs.run == 'true' && matrix.shard == 1
+        if: steps.scope.outputs.run == 'true' && matrix.part == '1/2'
         env:
           RUN_AUDIT: "1"
         run: npx playwright test e2e/film-perf.spec.ts --project=chromium --workers=1
 
       - name: Scrub-quality budgets (desktop Chromium)
-        if: steps.scope.outputs.run == 'true' && matrix.shard == 2
+        if: steps.scope.outputs.run == 'true' && matrix.part == '2/2'
         # scripts/film/scrub-quality.mjs fails on: any per-frame request in
         # pack mode, more than 30 film requests for the pass, a pack byte read
         # twice, any refetch, exact draws below 97 %, more than 4 frame fetches
@@ -597,7 +628,7 @@ jobs:
         if: ${{ !cancelled() && steps.scope.outputs.run == 'true' }}
         uses: actions/upload-artifact@v7
         with:
-          name: playwright-report-film-${{ matrix.shard }}
+          name: playwright-report-film-${{ matrix.part == 'prod' && 'prod' || matrix.part == '1/2' && '1' || '2' }}
           path: |
             playwright-report/
             test-results/

@@ -6,6 +6,7 @@
  *   node scripts/film/placeholder.mjs            # all films in book.timeline.json
  *   node scripts/film/placeholder.mjs book-00    # one film
  *   --out public/films
+ *   --force                                      # overwrite real frames (never in a checkout whose public/films is the real set)
  *
  * Frame counts come from book.timeline.json (the runtime source of truth), so
  * the placeholder always matches what FilmBackdrop will request.
@@ -47,10 +48,43 @@ const names = args.filter((a) => !a.startsWith("--") && timeline.films[a]);
 const films = names.length ? names : Object.keys(timeline.films);
 
 const ACCENT = "#8AA2FF";
-/** Band tiers: the band of the virtual 1080×1920 portrait frame (encode.mjs --bands at zoom 1.6). */
+/**
+ * Band tiers: each film's tiers come from its timeline entry
+ * (films.<name>.bands.<tier>: width, height, the virtual frame and the band
+ * rect inside it), so a re-encoded band geometry is mirrored here. These are
+ * the fallbacks for a timeline without band entries (encode.mjs --bands at
+ * zoom 1.6).
+ */
 const VFRAME = { w: 1080, h: 1920 };
 const BAND = { x: 0, y: 474, w: 1080, h: 972 };
 const TIER_WIDTHS = [1080, 900];
+/** The tiers to write for one film: its timeline's band entries, or the fallbacks. */
+function bandTiers(name) {
+  const bands = timeline.films[name].bands;
+  if (bands && Object.keys(bands).length)
+    return Object.entries(bands).map(([tier, b]) => ({ w: b.width, h: b.height, frame: { ...b.frame }, band: { ...b.band }, name: `${name}-${tier}` }));
+  return TIER_WIDTHS.map((w) => ({ w, h: Math.round((BAND.h * w) / BAND.w), frame: { ...VFRAME }, band: { ...BAND }, name: `${name}-b${w}` }));
+}
+
+// Never overwrite real frames. A directory whose manifest is not a
+// placeholder's holds an encode (in a checkout where public/films links to
+// the real frames, writing here would replace them): stop unless --force.
+if (!args.includes("--force")) {
+  const real = [];
+  for (const name of films)
+    for (const dir of [name, ...bandTiers(name).map((t) => t.name)]) {
+      try {
+        const m = JSON.parse(await fs.readFile(path.join(OUT, dir, "manifest.json"), "utf8"));
+        if (m.placeholder !== true) real.push(dir);
+      } catch {
+        // no manifest: nothing to protect
+      }
+    }
+  if (real.length) {
+    console.error(`placeholder.mjs: ${OUT} holds real frames (${real.join(", ")}); refusing to overwrite them. Pass --out <dir> for another directory, or --force.`);
+    process.exit(1);
+  }
+}
 const BG = "#0B0E14";
 /** Fastest WebP settings: placeholders are throwaway, and CI generates them on every film run. */
 const WEBP = { quality: 70, effort: 0 };
@@ -178,13 +212,13 @@ for (const name of films) {
 
   // Band tiers (what portrait screens draw, see encode.mjs --bands): a
   // 1080×1920 portrait scene cut to the band, scaled per tier.
-  const tiers = TIER_WIDTHS.map((w) => ({ w, h: Math.round((BAND.h * w) / BAND.w), name: `${name}-b${w}` }));
+  const tiers = bandTiers(name);
   for (const t of tiers) await fs.mkdir(path.join(OUT, t.name), { recursive: true });
   await each(async (i) => {
     for (const t of tiers) {
-      const svg = Buffer.from(frameSvg(VFRAME.w, VFRAME.h, i, n, fi, `${name} band  placeholder`, { w: t.w, h: t.h, crop: BAND }));
+      const svg = Buffer.from(frameSvg(t.frame.w, t.frame.h, i, n, fi, `${name} band  placeholder`, { w: t.w, h: t.h, crop: t.band }));
       await sharp(svg).flatten().webp(WEBP).toFile(path.join(OUT, t.name, frameFile(i)));
     }
   });
-  for (const t of tiers) await finish(path.join(OUT, t.name), t.name, t.w, t.h, { frame: { ...VFRAME }, band: { ...BAND } });
+  for (const t of tiers) await finish(path.join(OUT, t.name), t.name, t.w, t.h, { frame: t.frame, band: t.band });
 }

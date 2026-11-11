@@ -248,11 +248,16 @@ export function RecallNav({ skipLinks }: { skipLinks?: ReactNode } = {}) {
       for (const o of observers) o.disconnect();
       headerBottom = Math.ceil(header.getBoundingClientRect().bottom);
       // A zone counts while it is in view between the header line and the
-      // viewport bottom.
+      // viewport bottom. Committed at once too (flushSync): the observer
+      // reports in a task after the frame in which the zone crossed the
+      // line, so a start pin that scrolls into view already fully on (the
+      // Home chapter's, met scrolling back up) shares at most that one
+      // frame with the nav's button, not the further frame React's scheduler
+      // would add.
       const zones = new window.IntersectionObserver(
         (entries) => {
           for (const e of entries) zoneVisible.set(e.target, e.isIntersecting);
-          publish();
+          flushSync(publish);
         },
         { threshold: 0, rootMargin: `-${headerBottom}px 0px 0px 0px` },
       );
