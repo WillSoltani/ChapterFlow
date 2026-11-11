@@ -64,6 +64,7 @@ const JUDGE_IDS = [
   ...["fastRead", "deepRead", "fullRead"].flatMap((t) => [`OPENER-${t}`, `ARC-${t}`, `END-${t}`]),
   "EX-ex1", "EX-ex2", "EXFIT-ex1", "EXFIT-ex2",
   "QUIZ-q1", "QUIZ-q2", "QUIZ-q3",
+  "TEMPT-q1", "TEMPT-q2", "TEMPT-q3",
   "CARD-rc1", "CARD-rc2",
 ];
 const judge = (failing: string[] = []) => ({
@@ -1161,6 +1162,10 @@ test("publish --dry-run: the auto band builds the app-validated package with the
   assert.deepEqual(pkg.chapters.map((c: { chapterId: string; number: number }) => [c.chapterId, c.number]), [["demo-book-ch01", 1], ["demo-book-ch02", 2], ["demo-book-ch03", 3]]);
   assert.ok(pkg.chapters.every((c: { readingTimeMinutes: number }) => Number.isInteger(c.readingTimeMinutes) && c.readingTimeMinutes >= 1));
   assert.ok(!("_lesson" in pkg.chapters[0]));
+  // The practice plan goes out in the app's form: a tag in the chip, the cue and the action as one sentence.
+  const plans = pkg.chapters.flatMap((c: { implementationPlan: { ifThenPlans: Array<{ context: string; plan: string }> } }) => c.implementationPlan.ifThenPlans);
+  assert.ok(plans.length > 0 && plans.every((p: { context: string }) => ["work", "school", "personal"].includes(p.context)), JSON.stringify(plans));
+  assert.ok(plans.every((p: { plan: string }) => !/^then\b/i.test(p.plan)), JSON.stringify(plans));
   assert.ok(!fs.existsSync(path.join(h.runDir, "publish.json")), "a dry run leaves no publish record");
   // A chapter that has not landed refuses the package.
   fs.rmSync(h.file(3, "final.json"));

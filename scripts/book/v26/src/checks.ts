@@ -29,7 +29,8 @@ const isStrList = (v: unknown): v is string[] => Array.isArray(v) && v.every(isS
 const arr = <T>(v: T[] | undefined): T[] => (Array.isArray(v) ? v : []);
 
 const TIERS = ["fastRead", "deepRead", "fullRead"] as const;
-const FK_BAND: [number, number] = [5.0, 8.5];
+const FK_BAND: [number, number] = [4.0, 8.5];
+const HOOK_WORDS = 30;
 const round2 = (x: number): number => Math.round(x * 100) / 100;
 
 function mk(source: IssueSource, blocking: boolean, field: string | undefined, text: string): Issue {
@@ -232,7 +233,7 @@ const CHATTER =
   /as an ai\b|language model|here is the json|here's the json|the author writes|```|in this chapter we will|\bthe source text\b|\bthe source span\b|\bmy draft\b/i;
 /** Words from the prompts and the lesson card that must not reach reader text. */
 // Prompt vocabulary, and the chapter talking about its own lesson ("The lesson is softer in only one way: ...").
-const LEAK = /\b(wrong belief|near-miss|acts? out|tempting choice|the story shows)\b|\b(the|this|your) lesson( for you)? (is|goes|stays) (gentler|softer|milder)\b|\b(here )?I (go softer|part ways|am gentler|would not|stop short)\b|\bwhere I go softer\b/i;
+const LEAK = /\b(wrong belief|near-miss|acts? out|tempting choice|the story shows|the plain case|the hard case|the tempting (wrong )?fix)\b|\b(does not|doesn't) say this\b|\bis not \w+'s advice\b|\bsofter note\b|\b(the|this|your) lesson( for you)? (is|goes|stays) (gentler|softer|milder)\b|\b(here )?I (go softer|part ways|am gentler|would not|stop short)\b|\bwhere I go softer\b/i;
 const OUTSIDE_FACT =
   /\d+(\.\d+)?\s?%|\b(1[5-9]|20)\d{2}\b|\b(stud(y|ies)|survey|research(ers)? (shows?|found|suggests)|according to|scientists|statistics?)\b/gi;
 
@@ -302,6 +303,9 @@ export async function runChecks(c: Chapter, lesson: LessonCard | null, ctx: Chec
     const leak = LEAK.exec(f[id]);
     if (leak) reported.push(det(false, id, `prompt vocabulary in reader text: "${leak[0]}"; say it in the reader's words`));
   }
+
+  // 4b. The hook is the first thing on the screen, in large type: one or two sentences.
+  if (wordsIn(c.hook) > HOOK_WORDS) reported.push(det(false, "hook", `hook is ${wordsIn(c.hook)} words; keep it to one or two sentences, 25 words at most`));
 
   // 5. The lesson card and keyTakeaway.
   if (!lesson) {
@@ -412,19 +416,23 @@ function advisoryAndInfo(c: Chapter, ctx: CheckContext, advisory: string[], info
   const positions = Math.max(shape.choices, ...qs.map((q) => q.choices.length));
   const keyPositions = Array.from({ length: positions }, () => 0);
   let uniquelyLongest = 0;
+  let uniquelyShortest = 0;
   qs.forEach((q) => {
     if (Number.isInteger(q.correctIndex) && q.correctIndex >= 0 && q.correctIndex < positions) keyPositions[q.correctIndex]++;
     const key = q.choices[q.correctIndex]?.trim().length ?? 0;
     if (q.choices.every((x, i) => i === q.correctIndex || x.trim().length < key)) uniquelyLongest++;
+    if (q.choices.every((x, i) => i === q.correctIndex || x.trim().length > key)) uniquelyShortest++;
   });
   info.keyPositions = keyPositions;
   info.keyUniquelyLongest = uniquelyLongest;
+  info.keyUniquelyShortest = uniquelyShortest;
   if (qs.length >= 2 * positions) {
     keyPositions.forEach((n, i) => {
       if (n < 2) advisory.push(`key position ${i} is the key in only ${n} of ${qs.length} questions (want at least 2)`);
     });
   }
   if (uniquelyLongest * 2 > qs.length) advisory.push(`the key is the uniquely longest choice in ${uniquelyLongest} of ${qs.length} questions`);
+  if (uniquelyShortest * 2 > qs.length) advisory.push(`the key is the uniquely shortest choice in ${uniquelyShortest} of ${qs.length} questions`);
 
   const ids = idsOf(qs, "questionId");
   qs.forEach((q, i) => {

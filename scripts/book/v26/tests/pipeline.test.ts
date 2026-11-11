@@ -1332,6 +1332,7 @@ function idsFor(c: Chapter): string[] {
   for (const t of ["fastRead", "deepRead", "fullRead"]) ids.push(`OPENER-${t}`, `ARC-${t}`, `END-${t}`);
   for (const e of c.examples) ids.push(`EX-${e.exampleId}`, `EXFIT-${e.exampleId}`);
   for (const q of c.quiz.questions) ids.push(`QUIZ-${q.questionId}`);
+  for (const q of c.quiz.questions) ids.push(`TEMPT-${q.questionId}`);
   for (const r of c.reviewCards) ids.push(`CARD-${r.cardId}`);
   return ids;
 }
@@ -1340,7 +1341,7 @@ const judgeItems = (ids: string[], failing: string[]) => ids.map((id) => ({ id, 
 test("evalChapter: judge items, aggregates, no-chapter scores and code metrics; a judge answer with ids missing is retried once", async () => {
   const h = harness();
   const ids = idsFor(chapter());
-  assert.equal(ids.length, 8 + 9 + 4 + 3 + 3);
+  assert.equal(ids.length, 8 + 9 + 4 + 3 + 3 + 3);
   const chapterPath = path.join(h.dir, "chapter.json");
   fs.writeFileSync(chapterPath, JSON.stringify({ ...chapter(), _lesson: lessonCard() }));
   const out = path.join(h.dir, "evalout");

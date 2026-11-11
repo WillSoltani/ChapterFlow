@@ -67,14 +67,33 @@ function readJson<T>(file: string): T | null {
   return fs.existsSync(file) ? (JSON.parse(fs.readFileSync(file, "utf8")) as T) : null;
 }
 
-/** Every landed chapter, in order, with the three fields the package adds. */
+const PLAN_TAGS = ["work", "school", "personal"] as const;
+const SCHOOL_CUE = /\b(class|classes|classroom|course|lecture|exam|homework|teacher|professor|classmate|student|campus|school|college|university)\b/i;
+const WORK_CUE = /\b(boss|manager|coworker|co-worker|colleague|client|customer|meeting|office|shift|workplace|at work|my team|my job|standup|stand-up)\b/i;
+
+/** One if-then plan in the form the app shows. The reader app prints `context` in a small chip that knows only work,
+ *  school and personal, and its "Apply this week" and "Commit to your steps" lists print `plan` alone; a chapter keeps
+ *  the cue in `context` ("When I ...") and the action in `plan` ("then I ..."). So the package gets the cue and the
+ *  action as one sentence in `plan`, and a tag in `context`. A plan already in the app's form is returned unchanged. */
+export function appPlan(p: { context: string; plan: string }): { context: string; plan: string } {
+  const tag = p.context.trim().toLowerCase();
+  if ((PLAN_TAGS as readonly string[]).includes(tag)) return { context: tag, plan: p.plan };
+  const cue = p.context.trim().replace(/[\s,.;:]+$/, "");
+  const action = p.plan.trim().replace(/^then,?\s+/i, "");
+  const sentence = `${cue}, ${action}`;
+  const context = SCHOOL_CUE.test(cue) ? "school" : WORK_CUE.test(cue) ? "work" : "personal";
+  return { context, plan: /[.!?]["'”’)]*$/.test(sentence) ? sentence : `${sentence}.` };
+}
+
+/** Every landed chapter, in order, with the three fields the package adds and the practice plan in the app's form. */
 export function buildPackage(ctx: PipelineCtx, now: Date = new Date()): BookPackage {
   const { bookId, title, author, categories, tags, runDir } = ctx.config;
   const numbers = ctx.source.spans.map((s) => s.chapterNumber).sort((a, b) => a - b);
   const chapters = numbers.flatMap((n) => {
     const c = readJson<Chapter>(path.join(runDir, chapterName(n), "final.json"));
     if (!c) return [];
-    return [{ chapterId: `${bookId}-${chapterName(n)}`, number: n, readingTimeMinutes: Math.max(1, Math.round(wordsIn(c.breakdown.fullRead) / 230)), ...c }];
+    const implementationPlan = { ...c.implementationPlan, ifThenPlans: c.implementationPlan.ifThenPlans.map(appPlan) };
+    return [{ chapterId: `${bookId}-${chapterName(n)}`, number: n, readingTimeMinutes: Math.max(1, Math.round(wordsIn(c.breakdown.fullRead) / 230)), ...c, implementationPlan }];
   });
   return {
     schemaVersion: "chapterflow-v21-authored",

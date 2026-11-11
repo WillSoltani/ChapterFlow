@@ -16,6 +16,8 @@ export interface ChapterScore {
   blocking: number;
   /** Every no-chapter solver run got more than 3 of the first 5 keys right without reading: the quiz is guessable. */
   guessable: boolean;
+  /** The kinds of judge item (TRY, ARC-fastRead, QUIZ, TEMPT, ...) that failed in at least half their items here. */
+  weak?: string[];
 }
 
 export type Band = "auto" | "manual" | "fail";
@@ -56,6 +58,27 @@ async function pool<T>(limit: number, thunks: Array<() => Promise<T>>): Promise<
   return out;
 }
 
+/** The kind of a judge item: the per-part families share one kind (EX, EXFIT, QUIZ, TEMPT, CARD); every other id is its own. */
+export function kindOf(id: string): string {
+  const m = /^(EXFIT|EX|QUIZ|TEMPT|CARD)-/.exec(id);
+  return m ? m[1]! : id;
+}
+
+/** The kinds that failed in at least half their items in one chapter. */
+export function weakKinds(items: Array<{ id: string; pass: boolean }>): string[] {
+  const seen = new Map<string, { fail: number; total: number }>();
+  for (const i of items) {
+    const k = seen.get(kindOf(i.id)) ?? { fail: 0, total: 0 };
+    k.total++;
+    if (!i.pass) k.fail++;
+    seen.set(kindOf(i.id), k);
+  }
+  return [...seen].filter(([, v]) => v.fail * 2 >= v.total).map(([k]) => k).sort();
+}
+
+/** A repeat needs a population: the rule applies from this many chapters up. */
+const REPEAT_MIN_CHAPTERS = 4;
+
 export function thresholdsOf(ctx: PipelineCtx): { auto: number; manual: number } {
   return ctx.config.gate ?? { auto: 80, manual: 70 };
 }
@@ -71,6 +94,15 @@ export function bandOf(chapters: ChapterScore[], thresholds: { auto: number; man
   const low = chapters.filter((c) => c.score < thresholds.manual).map((c) => c.chapter);
   if (flagged.length > 0) reasons.push(`open blocking flags in ${flagged.map(chapterName).join(", ")}`);
   if (low.length > 0) reasons.push(`under ${thresholds.manual} in ${low.map(chapterName).join(", ")}`);
+  // A flaw repeated across the book costs one item in forty per chapter, so the mean hides it; a reader meets it in
+  // every chapter. A kind that is weak in at least half the chapters holds the book for the owner, by name.
+  if (chapters.length >= REPEAT_MIN_CHAPTERS) {
+    const counts = new Map<string, number>();
+    for (const c of chapters) for (const k of c.weak ?? []) counts.set(k, (counts.get(k) ?? 0) + 1);
+    for (const [k, n] of [...counts].sort(([a], [b]) => a.localeCompare(b))) {
+      if (n * 2 >= chapters.length) reasons.push(`${k} fails in ${n} of ${chapters.length} chapters`);
+    }
+  }
   const redo = [...new Set([...flagged, ...low])].sort((a, b) => a - b);
   if (mean < thresholds.manual) return { score: mean, mean, min, band: "fail", reasons: [`mean ${mean} is under ${thresholds.manual}`, ...reasons], redo };
   if (mean >= thresholds.auto && reasons.length === 0) return { score: mean, mean, min, band: "auto", reasons: [], redo: [] };
@@ -101,6 +133,7 @@ export async function scoreBook(ctx: PipelineCtx, chapters: number[], opts: { fo
       stage: status?.stage ?? "unknown",
       blocking,
       guessable: r.noChapterScores.length > 0 && r.noChapterScores.every((s) => s > 3),
+      weak: weakKinds(r.items),
     };
   }));
   const thresholds = thresholdsOf(ctx);

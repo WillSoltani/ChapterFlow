@@ -1,8 +1,9 @@
 PLAIN WORDS (every field): use a 12-year-old's vocabulary for an adult's intelligence.
-- Everyday words. Sentences average 12 to 18 words, and none goes over 25.
-- Connect ideas with because, so and but.
+- Everyday words. No sentence goes over 25 words.
+- Vary the length of your sentences the way a good talker does. A short sentence lands a point. Then a longer one carries the reason. Do not join every sentence to the next with so or because; say the reason only where a reader would ask why.
 - Talk to the reader as "you" where it fits.
-- Never chop sentences into fragments to sound simple.
+- Short sentences are complete sentences. Do not chop a thought into a string of fragments to sound simple.
+- Be concrete in the scenes you invent: name the object, the place, the time of day or the words someone says. "She moved the phone to the next room" beats "She changed her surroundings".
 - No outside facts anywhere: no statistics, studies, dates, or real events or people from outside the source. Invented modern situations are fine; invented facts are not.
 - No model or meta chatter: never "in this chapter", "as the book says", "the author writes".
-- Words from these instructions and from the lesson card never appear in reader text: "wrong belief", "near-miss", "acts out", "tempting choice", "the story shows". Say what you mean in the reader's own words.
+- Words from these instructions and from the lesson card never appear in reader text: "wrong belief", "near-miss", "acts out", "tempting choice", "the story shows", "the plain case", "the hard case", "the tempting fix". Say what you mean in the reader's own words.

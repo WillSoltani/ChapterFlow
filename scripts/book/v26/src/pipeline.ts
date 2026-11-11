@@ -333,6 +333,7 @@ function reviewField(id: string): string | undefined {
     case "EXFIT":
       return `examples.${tail}`;
     case "QUIZ":
+    case "TEMPT":
       return `quiz.${tail}`;
     case "CARD":
       return `reviewCards.${tail}`;
@@ -736,6 +737,7 @@ function expectedIds(c: Chapter): string[] {
   for (const e of c.examples ?? []) ids.push(`EX-${e.exampleId}`);
   for (const e of c.examples ?? []) ids.push(`EXFIT-${e.exampleId}`);
   for (const q of c.quiz?.questions ?? []) ids.push(`QUIZ-${q.questionId}`);
+  for (const q of c.quiz?.questions ?? []) ids.push(`TEMPT-${q.questionId}`);
   for (const r of c.reviewCards ?? []) ids.push(`CARD-${r.cardId}`);
   return ids;
 }

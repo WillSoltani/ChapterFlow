@@ -148,7 +148,8 @@ test("loadExemplar reads the picks, notes, chapter and names; formText carries t
   assert.equal(ex.picks.quiz.label, "E");
   const form = formText(ex);
   assert.match(form, /summary .*: A, "problem scene": open on a modern everyday moment/);
-  assert.match(form, /fastRead 140 words in 2 paragraphs; deepRead 280 words in 4 paragraphs; fullRead 560 words in 8 paragraphs/);
+  assert.match(form, /Path: the scene; why the obvious move fails here; .* the lesson in one line\./);
+  assert.match(form, /Ceilings \(a chapter with less to say is shorter\): hook 25 words; counterintuition 45 words; fastRead up to 140 words in at most 2 paragraphs; deepRead up to 280 words in at most 4 paragraphs; fullRead up to 560 words in at most 8 paragraphs; tryThisNow 25 words\./);
   assert.match(form, /quiz: 7 questions with 3 choices each; E, "one of each"/);
   assert.match(form, /practice plan: 2 if-then plans; B, "specific cues"/);
   assert.throws(() => loadExemplar(h.ctx, 7), /NO_EXEMPLAR/);

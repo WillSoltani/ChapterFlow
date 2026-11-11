@@ -107,7 +107,7 @@ function chapter(): Chapter {
         q(
           1,
           "Sam keeps missing deadlines and feels ashamed of it. What helps most as a first step?",
-          ["Promise to try harder next week", "Note which deadlines slipped", "Stop thinking about it completely"],
+          ["Promise to try harder next week", "Note which deadlines have slipped", "Stop thinking about it completely"],
           1,
           "Writing the fault down is the first move.",
         ),

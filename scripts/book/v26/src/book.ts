@@ -7,6 +7,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { approach } from "./approaches";
 import { chapterShapeErrors } from "./assemble";
+import type { BookConfig } from "./config";
 import { runChecks, type CheckContext } from "./checks";
 import { applyFix, type FixOutput } from "./fix";
 import { readLedger } from "./ledger";
@@ -185,23 +186,72 @@ function paragraphs(t: string): number {
   return t.split(/\n\s*\n/).filter((p) => p.trim()).length;
 }
 
-/** The form sheet the writer gets: the picked approach rule per part plus the exemplar's measurements. */
-export function formText(ex: Exemplar, summaryLabel: string = ex.picks.summary.label): string {
+const EVIDENCE_NOTE = `"The book's evidence" is the chapter's story told plainly or, when the chapter has no story of its own, the author's method worked through one everyday case.`;
+const COUNTER_FRAMES = [
+  `"Many people think [the belief]. Actually [the correction], because [the reason]."`,
+  `"It feels natural to [the belief]. But [the correction], because [the reason]."`,
+  `"You have probably been told [the belief]. The trouble is [the reason], so [the correction]."`,
+];
+/** Example 1 is the one a reader sees first, so it is never the school one. */
+const TAG_ORDERS = [
+  ["work", "school", "personal"],
+  ["personal", "work", "school"],
+  ["work", "personal", "school"],
+  ["personal", "school", "work"],
+];
+/** Balanced key rows for seven three-choice questions: every position is the key at least twice, the first five use all three, and question 1's key moves from chapter to chapter. */
+const KEY_ROWS = [
+  [0, 2, 1, 1, 0, 2, 0],
+  [1, 0, 2, 0, 1, 2, 1],
+  [2, 1, 0, 2, 2, 0, 1],
+  [0, 1, 2, 0, 2, 1, 2],
+  [1, 2, 0, 1, 0, 2, 0],
+  [2, 0, 1, 2, 1, 0, 1],
+];
+const QUIZ_FORMS = ["what do you do", "spot the trap", "predict what happens", "best reply", "why does this work"];
+const CARD_FORMS = ["situation to move", "why question", "finish the sentence", "what went wrong", "the lesson in the reader's own words"];
+const turn = (n: number, k: number): number => (((n - 1) % k) + k) % k;
+
+/** Where the right choice sits in each question of chapter n. */
+export function keyPositions(n: number, questions: number, choices: number): number[] {
+  if (questions === 7 && choices === 3) return KEY_ROWS[turn(n, KEY_ROWS.length)]!;
+  return Array.from({ length: questions }, (_, i) => (i + turn(n, choices)) % choices);
+}
+
+/** The plan the writer gets for chapter n: the opener and its path, the length ceilings, and the orders that change from
+ *  chapter to chapter (counterintuition frame, example tags, quiz and card forms, key positions). Everything is a
+ *  function of the chapter number, so chapters written in parallel cannot land on the same shape. */
+export function formText(ex: Exemplar, summaryLabel: string = ex.picks.summary.label, n: number = ex.chapter, shape?: BookConfig["shape"]): string {
   const c = ex.chapterJson;
   const rule = (comp: Component, label: string = ex.picks[comp].label): string => {
     const a = approach(comp, label);
     return `${a.label}, "${a.name}": ${a.rule}`;
   };
+  const opener = approach("summary", summaryLabel);
   const openerNote =
     summaryLabel === ex.picks.summary.label
       ? ""
-      : ` (The exemplar opens as ${ex.picks.summary.label}, "${approach("summary", ex.picks.summary.label).name}"; THIS chapter opens as ${summaryLabel} instead. Keep the exemplar's path, lengths and ending; change only the kind of opener.)`;
+      : ` (The exemplar opens as ${ex.picks.summary.label}, "${approach("summary", ex.picks.summary.label).name}"; THIS chapter opens as ${summaryLabel} instead. Follow the path given here, not the exemplar's.)`;
   const avg = (xs: number[]): number => Math.round(xs.reduce((s, x) => s + x, 0) / Math.max(1, xs.length));
+  const tier = (t: "fastRead" | "deepRead" | "fullRead"): string =>
+    shape
+      ? `${t} ${t === "fastRead" ? `${shape[t][0]} to ${shape[t][1]}` : `up to ${shape[t][1]}`} words in at most ${paragraphs(c.breakdown[t])} paragraphs`
+      : `${t} up to ${wordsIn(c.breakdown[t])} words in at most ${paragraphs(c.breakdown[t])} paragraphs`;
+  const inOrder = (forms: string[], count: number, id: string): string => {
+    const start = turn(n, forms.length);
+    return Array.from({ length: count }, (_, i) => `${id}${i + 1} ${forms[(start + i) % forms.length]}`).join("; ");
+  };
+  const questions = c.quiz.questions.length;
+  const choices = c.quiz.questions[0]?.choices.length ?? 3;
+  const quiz = ex.picks.quiz.label === "E" ? `E, "one of each": the forms in this order: ${inOrder(QUIZ_FORMS, questions, "q")}.` : rule("quiz");
+  const cards = ex.picks.cards.label === "E" ? `E, "mixed": the forms in this order: ${inOrder(CARD_FORMS, c.reviewCards.length, "rc")}.` : rule("cards");
+  const tags = TAG_ORDERS[turn(n, TAG_ORDERS.length)]!.slice(0, c.examples.length);
   return [
-    `- summary (hook, counterintuition, the three lengths, tryThisNow, memorable line): ${rule("summary", summaryLabel)}${openerNote} Measurements: hook ${wordsIn(c.hook)} words; counterintuition ${wordsIn(c.counterintuition)} words; fastRead ${wordsIn(c.breakdown.fastRead)} words in ${paragraphs(c.breakdown.fastRead)} paragraphs; deepRead ${wordsIn(c.breakdown.deepRead)} words in ${paragraphs(c.breakdown.deepRead)} paragraphs; fullRead ${wordsIn(c.breakdown.fullRead)} words in ${paragraphs(c.breakdown.fullRead)} paragraphs; tryThisNow ${wordsIn(c.tryThisNow)} words.`,
-    `- examples: ${c.examples.length} examples; ${rule("examples")} Measurements: scenario about ${avg(c.examples.map((e) => wordsIn(e.scenario)))} words, whatToDo about ${avg(c.examples.map((e) => wordsIn(e.whatToDo)))}, whyItMatters about ${avg(c.examples.map((e) => wordsIn(e.whyItMatters)))}.`,
-    `- quiz: ${c.quiz.questions.length} questions with ${c.quiz.questions[0]?.choices.length ?? 3} choices each; ${rule("quiz")}`,
-    `- review cards: ${c.reviewCards.length} cards; ${rule("cards")}`,
+    `- summary (hook, counterintuition, the three lengths, tryThisNow, memorable line): ${opener.label}, "${opener.name}": ${opener.rule}${opener.path ? ` Path: ${opener.path} ${EVIDENCE_NOTE}` : ""}${openerNote} Ceilings (a chapter with less to say is shorter): hook 25 words; counterintuition 45 words; ${tier("fastRead")}; ${tier("deepRead")}; ${tier("fullRead")}; tryThisNow 25 words.`,
+    `- counterintuition frame: ${COUNTER_FRAMES[turn(n, COUNTER_FRAMES.length)]}`,
+    `- examples: ${c.examples.length} examples; ${rule("examples")} Measurements: scenario about ${avg(c.examples.map((e) => wordsIn(e.scenario)))} words, whatToDo about ${avg(c.examples.map((e) => wordsIn(e.whatToDo)))}, whyItMatters about ${avg(c.examples.map((e) => wordsIn(e.whyItMatters)))}. Tags for examples 1 to ${tags.length}, in this order: ${tags.join(", ")}.`,
+    `- quiz: ${questions} questions with ${choices} choices each; ${quiz} Key positions (the 0-based index of the right choice) for q1 to q${questions}: ${keyPositions(n, questions, choices).join(", ")}.`,
+    `- review cards: ${c.reviewCards.length} cards; ${cards}`,
     `- practice plan: ${c.implementationPlan.ifThenPlans.length} if-then plans; ${rule("practice")}`,
   ].join("\n");
 }
@@ -562,7 +612,7 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
       QUOTE_RULE,
       SOURCE_BLOCK,
       NOTES: notes,
-      FORM: formText(ex, expectedApproach),
+      FORM: formText(ex, expectedApproach, n, ctx.config.shape),
       USED: usedText(readVariety(ctx), ex, n),
       KEYS: keysBlock(ctx, n),
       MEMORABLE_RULE: knowledge ? "" : ", up to 2 more {\"text\"} objects with the author's exact words from the source that carry the same lesson (most chapters need none)",
