@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import type * as wafv2 from "aws-cdk-lib/aws-wafv2";
 import {
   COMMON_RULE_SET_COUNT_OVERRIDES,
+  FILM_FRAMES_PATH_PREFIX,
+  FILM_FRAMES_RATE_LIMIT,
   buildCommonRuleSetActionOverrides,
   buildWebAclRules,
 } from "./waf-rules";
@@ -96,6 +98,52 @@ test("the per-IP rate limit rule stays in Block mode (not weakened)", () => {
     stmt.rateBasedStatement as wafv2.CfnWebACL.RateBasedStatementProperty;
   assert.equal(rate.limit, 2000);
   assert.equal(rate.aggregateKeyType, "IP");
+});
+
+// Regression for the landing lockout (2026-11-09): the film reel is one static
+// request per frame (~1,700 per pass), which alone spent the 2,000 allowance
+// and got visitors 403'd on the page itself. Frames are carved out of the
+// general rule and counted by a rule of their own.
+function assertFilmFramesMatch(stmt: wafv2.CfnWebACL.StatementProperty | unknown) {
+  const byteMatch = (stmt as wafv2.CfnWebACL.StatementProperty)
+    .byteMatchStatement as wafv2.CfnWebACL.ByteMatchStatementProperty;
+  assert.ok(byteMatch, "expected a byteMatchStatement on the URI path");
+  assert.equal(byteMatch.searchString, FILM_FRAMES_PATH_PREFIX);
+  assert.equal(FILM_FRAMES_PATH_PREFIX, "/films/");
+  assert.equal(byteMatch.positionalConstraint, "STARTS_WITH");
+  assert.deepEqual(byteMatch.fieldToMatch, { uriPath: {} });
+  assert.deepEqual(byteMatch.textTransformations, [{ priority: 0, type: "NONE" }]);
+}
+
+test("the general per-IP rate limit does not count film frames", () => {
+  const rules = buildWebAclRules();
+  const rateLimit = rules.find((r) => r.name === "RateLimitPerIp");
+  const rate = (rateLimit!.statement as wafv2.CfnWebACL.StatementProperty)
+    .rateBasedStatement as wafv2.CfnWebACL.RateBasedStatementProperty;
+  const scope = rate.scopeDownStatement as wafv2.CfnWebACL.StatementProperty;
+  assert.ok(scope, "RateLimitPerIp must carry a scope-down statement");
+  const not = scope.notStatement as wafv2.CfnWebACL.NotStatementProperty;
+  assert.ok(not, "the scope-down must be NOT(film frames)");
+  assertFilmFramesMatch(not.statement);
+});
+
+test("film frames have their own per-IP rate limit, in Block mode", () => {
+  const rules = buildWebAclRules();
+  const films = rules.find((r) => r.name === "RateLimitFilmsPerIp");
+  assert.ok(films, "RateLimitFilmsPerIp rule must exist");
+  assert.deepEqual(films!.action, { block: {} });
+  const rate = (films!.statement as wafv2.CfnWebACL.StatementProperty)
+    .rateBasedStatement as wafv2.CfnWebACL.RateBasedStatementProperty;
+  assert.equal(rate.limit, FILM_FRAMES_RATE_LIMIT);
+  assert.equal(rate.aggregateKeyType, "IP");
+  // Room for several visitors behind one NAT (a pass is ~1,700 frames), and
+  // never looser than the general rule by accident of a typo.
+  assert.ok(FILM_FRAMES_RATE_LIMIT >= 10000 && FILM_FRAMES_RATE_LIMIT <= 50000);
+  assertFilmFramesMatch(rate.scopeDownStatement);
+  assert.equal(
+    (films!.visibilityConfig as wafv2.CfnWebACL.VisibilityConfigProperty).metricName,
+    "RateLimitFilmsPerIp",
+  );
 });
 
 test("rules are ordered by ascending priority", () => {
