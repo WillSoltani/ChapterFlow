@@ -453,7 +453,10 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     fits the virtual frame to ~949 px): accepted. Landscape drawing is
     unchanged (`variantPlacement` = `framePlacement` without a band).
   - **Pick rule** (`pickVariant`, pure, `reel-context.test.ts`). Orientation
-    as before (`PORTRAIT_QUERY`: `< 64rem` or portrait orientation → portrait).
+    from `PORTRAIT_QUERY`: portrait orientation, or `< 64rem` and NOT short
+    landscape → portrait (band tiers); since Phase 7 a short landscape window
+    (`SHORT_LANDSCAPE_QUERY`, landscape and at most 500 px tall: a phone held
+    sideways) draws the landscape frames. See Phone and tablet layout.
     Within portrait, by canvas backing width
     `min(innerWidth × quantDpr(devicePixelRatio), 1920)` (`quantDpr`: the DPR
     rounded UP to the next quarter, 0.5 … 2, so that the server-rendered
@@ -690,6 +693,80 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   then whenever the browser reports `online`) and never rejects
   (`motion-feature-load.ts`). Every other route has no gate and loads the
   features at mount, as before.
+
+### Phone and tablet layout (Phase 7)
+
+- **Short landscape** (`view.ts`): `SHORT_LANDSCAPE_QUERY` =
+  `(orientation: landscape) and (max-height: 500px)`, the ONE definition. A
+  phone held sideways (844 × 390, 667 × 375) used to get the band tiers: the
+  band fitted to the width showed about the middle half of its height, and
+  the narrow copy layout, made for a tall stage, was squeezed into 390 px.
+  Now `PORTRAIT_QUERY` = `(max-width: 63.99rem) and (min-height: 500.0001px),
+  (orientation: portrait)` (narrow and not short landscape, written without
+  `not`), so those windows draw the LANDSCAPE frames (no new encodes). Everything
+  that derives from the pick follows: `readView` / `viewKey` / the caches and
+  packs (FilmBackdrop re-reads the view on resize and on the media query's
+  change, so rotating switches variant like any orientation flip), the HTML
+  poster's `<picture>` media and preloads (`first-paint.ts`: the landscape
+  preload is `wide landscape, SHORT_LANDSCAPE_QUERY`), and the poster's band
+  CSS (`@media` with the new `PORTRAIT_QUERY`). `viewOrientation(w, h)`
+  states the rule in code; `first-paint.test.ts` checks the query against it
+  and the poster against the pick on the grid, extended with short landscape
+  heights (320 to 501 px).
+- **Compact stage** (`globals.css`, `@media` with the exact
+  `SHORT_LANDSCAPE_QUERY` string; `first-paint.test.ts` checks it): the
+  landscape frames are composed for a wide stage, so the copy goes where it
+  sits on desktop over them (split columns, the box backing fading toward the
+  picture, the Hall centred on the vanishing point, the Hall wall prose at
+  desktop geometry), with type sized from the stage height (headline about
+  9.5svh, lede about 4.2svh, never under 15 px) and the top just under the
+  nav; a one-line bottom beat under a split chapter sits under the picture
+  column, so on the shortest stage (568 × 320) it never meets the copy
+  column. On short narrow stages (small phones) and the compact stage, a copy
+  column with several ledes (Rooms of Example) keeps them in one grid cell so
+  the visible one never drops onto the bottom beat.
+- **Safe areas** (`viewport-fit=cover`): the stage grid's padding on each
+  side is `max(today's spacing, env(safe-area-inset-*))` (the top: the inset
+  plus the nav); the nav moves below the top inset and keeps its side margin
+  at least the larger side inset; the nav scrim grows with the top inset;
+  bottom beats stay clear of the bottom inset while they rise; the footer
+  (`.rl-public-footer-inner`) and the mobile menu (`.rl-public-menu-body`)
+  pad their sides (and the footer its bottom) the same way. Where the inset
+  is 0 nothing moves. The canvas and the HTML poster still cover the whole
+  screen. `film-layout.spec.ts` emulates insets (top 47 / bottom 34 portrait,
+  left and right 47 / bottom 21 landscape) with Chromium's
+  `Emulation.setSafeAreaInsetsOverride`.
+- **Framing on tall phones (owner pick, temporary until chosen):** a framing
+  amount for band tiers, `?frame=0|25|50|75|100` (`parseFrameParam`;
+  anything else = 100). 100 is today's cover fit (bigger picture, up to about
+  20 % of the band's width cut on tall phones); 0 fits the band to the width
+  (the whole band shows, about 18 % smaller on 390 × 844); between, the scale is linear
+  (`bandFitScale`, `variantPlacement(…, amount)` in `scrub.ts`; 100 returns
+  the cover rectangle itself, bit for bit). Landscape frames and windows
+  wider than the frame's aspect (tablets) are unaffected. `app/page.tsx`
+  reads the parameter once on the server and passes it down, so the HTML
+  poster (`data-film-fit`, `--film-fit` in `globals.css`) and the canvas
+  place the picture alike; the stage shift (centre on the stage) applies at
+  every amount. `scripts/film/framing-sheet.mjs` writes the five amounts on
+  390 × 844 and 430 × 932 at three moments into
+  `~/cf-wt/p7-sheets/framing.png`. When the owner picks, set
+  `DEFAULT_FRAME_AMOUNT` and drop the parameter.
+- **Start button always in reach:** from the top to the end of the reel at
+  least one primary start button is on screen, never two. The hero's and
+  the Home chapter's buttons are FramePins with `startCta`: suppression zones
+  for the nav's persistent button, marked `data-cta-off` while their button
+  shows at under one half (the hero's switches at its own opacity √½, since
+  its halo fades on the same curve). The nav observes the attribute
+  (MutationObserver) next to its IntersectionObservers: no layout read in the
+  scroll path. A page with a hero start button (`[data-public-hero-cta]`)
+  shows the nav's as soon as that one goes instead of after the hero-end
+  sentinel; the other public pages (pricing, contact, legal, books) have none
+  and keep the sentinel rule. Before: about 1.8 screens with no start button
+  after the hero buttons faded (1,564 px on 390 × 844, 1,584 px on
+  1440 × 900) and 7 scroll steps with two near Home; after: none of either.
+- **Owner sheets:** `node scripts/film/layout-sheets.mjs` (local dev server)
+  writes `~/cf-wt/p7-sheets/landscape-phone.png` (844 × 390, 667 × 375) and
+  `small-phone.png` (360 × 740, 320 × 568): every chapter's main moments.
 
 ## Render spec
 
@@ -1036,10 +1113,19 @@ toward a barred frame.
 - `e2e/film-reel.spec.ts` — scrubs, dissolve, chrome flip, canvas paints,
   reduced-motion quantisation. Skips if `public/films` is empty. Runs in CI.
 - `npm run test:film` — **the QA audit** (opt-in, slow, needs frames):
-  - `film-audit.spec.ts` scrubs 4 viewports × 17 steps × every segment and
+  - `film-audit.spec.ts` scrubs 7 viewports × 17 steps × every segment
+    (1440 × 900, 1280 × 720, 834 × 1194, 390 × 844, and since Phase 7 with
+    touch and a mobile viewport 360 × 740, 320 × 568 and 844 × 390) and
     asserts numerically: no pin clipped, no pin overlap, no pin under the nav,
     composited background under every pin (text hidden, screenshot sampled)
-    has mean lum ≤ 110 / p90 ≤ 150, canvas always painting, every pin seen.
+    has mean lum ≤ 110 / p90 ≤ 150, canvas always painting, every pin seen,
+    no pin text under 11 px and every link or button in a pin at least
+    44 × 44 px.
+  - `film-layout.spec.ts` (Phase 7): a phone held sideways requests only
+    landscape variants (one poster of the first film) and switches to the
+    band tier on rotating; safe-area insets emulated over CDP keep copy,
+    buttons, nav and footer clear; a start button is in reach at every scroll
+    step of the reel, never two.
   - `film-perf.spec.ts` wheel-scrubs the whole reel: frames monotonic, every
     handoff lands in the dissolve window, rAF ≥ 45 fps (chromium), chrome →
     body at the end, anchor links land exactly on their segment.
