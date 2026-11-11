@@ -57,12 +57,15 @@ list, once per score). After `auto`: read the sample (step 8), tell the owner wh
 | 9 Score | `CLI score --book <cfg>` (0 to 100; exit 0 auto, 1 manual, 2 fail) | |
 | 10 Publish | auto: `CLI publish --book <cfg>` at once. Manual: one `fix --issues` pass if the reason is a repeated kind a small edit fixes, then score again; else hand over the pack and the reasons, publish with `--approve` on a yes. Fail: hand over the redo list, and only with a yes `book --force` those chapters, then steps 7 to 10 again | **yes** on manual; **permission** to redo on fail |
 
-## Models and cost (owner decision 2026-11-05)
+## Models and cost (owner decisions 2026-11-05 and 2026-11-11)
 
-Writer Sonnet 5.5 high; checker and fixer Opus 5.5 high (the fixer defaults to the checker when the field is
-absent); solver Sonnet 5.5 medium. Keys are drafted by the fixer and checked by two checker calls with web search
-(about $0.35 a chapter, knowledge mode only). Estimate $5 + chapters x $1.25 + a third of the chapters x $0.6: a
-13-chapter book about $24, a 48-chapter book about $75. Each book gets its own ledger (no
+Writer Opus 5.5 high for every new book (owner decision 2026-11-11: under the reader bar blind readers preferred
+Opus chapters 6 of 6, overall 8.0 against 6.8; Sonnet was the writer before that). The template configs still name
+Sonnet, the writer of the books they describe: set `writer` to the checker's model in the new config. Checker and
+fixer Opus 5.5 high (the fixer defaults to the checker when the field is absent); solver Sonnet 5.5 medium. Keys
+are drafted by the fixer and checked by two checker calls with web search (about $0.35 a chapter, knowledge mode
+only). Estimate $5 + chapters x $1.75 + a third of the chapters x $0.6: a 13-chapter book about $30, a 48-chapter
+book about $100. Each book gets its own ledger (no
 `ledgerPath`) and a `budgetUsd` of twice the estimate.
 
 ## The gate (owner decision 2026-11-05)

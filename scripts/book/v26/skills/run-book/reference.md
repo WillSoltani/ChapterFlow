@@ -29,7 +29,7 @@ the project memory folder gets one dated line per session.
 Copy the template and change the fields. Two modes:
 
 - **Knowledge mode** (copyrighted or unavailable text; written from the model's knowledge). Template:
-  `books/the-48-laws-of-power-sonnet.json` (the one whose roles match this skill). `chapters: [{number, title}]`
+  `books/the-48-laws-of-power-sonnet.json`. `chapters: [{number, title}]`
   with the chapter titles readers know; no `source`.
 - **Text mode** (a frozen public-domain text). Template: `books/the-autobiography-of-benjamin-franklin.json`.
   If the book is public domain and the owner asked for knowledge mode, say once that text mode would give a real
@@ -50,8 +50,11 @@ Learning, Mental Toughness, Negotiation, Memoir, Classics, Personal Finance, Inv
 ~/cf-wt/v26-plan/runs/<bookId>`; `budgetUsd` (twice the estimate below). No `ledgerPath`: the book gets its own
 ledger at `<runDir>/ledger.jsonl` (a shared ledger carries other books' spend and would stop the first call).
 Keep `shape` and `concurrency: 3` as the template; `knownTrapsPath` (text mode, optional) is a top-level field.
-Roles: writer `claude-sonnet-5-5` high, checker `claude-opus-5-5` high, fixer `claude-opus-5-5` high (may be
-omitted; it then defaults to the checker), solver `claude-sonnet-5-5` medium; `bin` the glob above.
+Roles: writer `claude-opus-5-5` high (owner decision 2026-11-11; the templates name `claude-sonnet-5-5`, the
+writer of the books they describe, so change the field), checker `claude-opus-5-5` high, fixer `claude-opus-5-5`
+high (may be omitted; it then defaults to the checker), solver `claude-sonnet-5-5` medium; `bin` the glob above.
+With Opus writing, the fact checker and the judge are the writer's own model: the code checks, the Sonnet solver
+and the web keys check are the readings that stay independent of it.
 `exemplarFrom: {"runDir": "../house", "chapter": 1}` (relative to `books/`, so `scripts/book/v26/house`): the house
 exemplar, the owner's approved 48 Laws chapter 1 revised to the reader bar on 2026-11-10. It sets the bar and the
 JSON shape for every chapter of the new book; the per-chapter plan sets the order (owner decision 2026-11-06: no
@@ -353,16 +356,17 @@ to `~/cf-wt/v26-plan/status/V1-variants.md` and one to the `v26-campaign` memory
 | `auto`: `RUN_DIR_MISMATCH` | two configs name one `runDir` | give each book its own run dir |
 | `auto`: `AUTO_STATE_UNREADABLE` | `auto.json` is cut off | restore it; deleting it gives the book its one-off rounds again, so say so to the owner |
 
-## Cost (from the 48 Laws ledgers, 2026-11-04)
+## Cost (from the 48 Laws ledgers, 2026-11-04, and the writer test of 2026-11-11)
 
-Sonnet writing with Opus checks and fixes: $0.70 to $0.89 per chapter (Opus writing: $1.07). Keys: under $1.
+Opus writing with Opus checks and fixes: $1.05 to $1.42 per chapter (Sonnet writing, the default until
+2026-11-11: $0.63 to $0.91). Keys: under $1.
 The web keys check in `auto`: about $0.35 a chapter (Tiny Habits, 2026-11-11: eight chapters, $2.82, eight minutes;
 six of the eight notes got a story from the book, none of them wrong, against eight of eight when checked by hand).
 Writer test under the reader bar (2026-11-11, three Tiny Habits chapters, two blind readers each on the default
 reader path): Opus as writer was preferred 6 of 6 times, overall 8.0 against 6.8, at $1.05 to $1.42 a chapter
-against $0.63 to $0.91 for Sonnet. The default writer stays the owner's choice (Sonnet, 2026-11-05) until the owner
-says otherwise; to write with Opus, set the config's `writer` to the checker's model.
+against $0.63 to $0.91 for Sonnet. On that result the owner made Opus the writer for new books (2026-11-11); books
+already written keep their chapters unless the owner asks for a rewrite.
 Calibration (variants, assemble, fixes): about $5. Fix passes: about $0.3 per open chapter per pass. Style pass:
-$0.18 per chapter. Estimate = $5 + chapters x $0.9 + (chapters / 3) x $0.6, rounded up: 13 chapters about $20,
-48 chapters about $60; add chapters x $0.35 for the keys check when `auto` runs a knowledge-mode book. `budgetUsd` =
-twice that.
+$0.18 per chapter. Estimate = $5 + chapters x $1.4 + (chapters / 3) x $0.6, plus chapters x $0.35 for the keys
+check when `auto` runs a knowledge-mode book, rounded up: 13 chapters about $30, 48 chapters about $100.
+`budgetUsd` = twice that.
