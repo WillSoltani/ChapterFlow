@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { DPR_STEPS, heroPoster, quantDpr } from "./first-paint";
+import { readFileSync } from "node:fs";
+import { DPR_STEPS, heroPoster, htmlPosterStands, quantDpr } from "./first-paint";
 import { PORTRAIT_QUERY, pickVariant, viewBackingWidth } from "./view";
 import { manifest } from "./timeline";
 import type { BandTier, FilmManifest, FilmVariant } from "./types";
@@ -133,4 +134,21 @@ test("a film without band tiers: no sources, only the landscape poster", () => {
   assert.deepEqual(p.sources, []);
   assert.equal(p.band, null);
   assert.deepEqual(p.preloads, [{ href: "/f/x/poster.webp", media: "all" }]);
+});
+
+test("the HTML poster stands only over the first chapter, until the canvas draws there", () => {
+  assert.equal(htmlPosterStands(0, false), true);
+  assert.equal(htmlPosterStands(0, true), false);
+  // A page restored into a later chapter: the first film's frame 0 is the wrong picture.
+  for (const seg of [1, 2, 3, 6]) assert.equal(htmlPosterStands(seg, false), false, `segment ${seg}`);
+});
+
+test("globals.css: the band placement of the poster applies only to a band poster (data-film-band)", () => {
+  const css = readFileSync(new URL("../../app/globals.css", import.meta.url), "utf8");
+  const start = css.indexOf("@media (max-width: 63.99rem), (orientation: portrait) {\n  .film-poster");
+  assert.ok(start > 0, "the portrait poster block");
+  const block = css.slice(start, css.indexOf("\n}\n", start));
+  const selectors = [...block.matchAll(/^\s*([^{}\n]+)\{/gm)].map((m) => m[1]!.trim()).filter((s) => s.startsWith(".film-poster"));
+  assert.ok(selectors.length >= 2);
+  for (const s of selectors) assert.ok(s.startsWith(".film-poster[data-film-band]"), s);
 });

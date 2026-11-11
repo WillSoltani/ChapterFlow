@@ -905,6 +905,8 @@ export class FrameCache {
   private readonly bitmaps = new Map<number, { img: Drawable; bytes: number }>();
   private poster: HTMLImageElement | null = null;
   private posterTried = false;
+  /** The poster load finished (loaded or failed). */
+  private posterSettled = false;
   private readonly listeners = new Set<(index: number) => void>();
 
   constructor(
@@ -946,8 +948,15 @@ export class FrameCache {
   /**
    * Closest decoded frame ≤ index, else closest ≥ index, else the poster.
    * `record` counts the lookup as a canvas paint in the budget's stats.
+   *
+   * `handover`: this paint replaces the HTML poster (Phase 6), which shows
+   * frame 0. Without the exact frame, the poster (frame 0) wins over any
+   * decoded frame that is not closer to `index`, and while the poster is
+   * still loading such a frame is not drawn at all (null: the HTML poster
+   * stays up until the poster or the exact frame lands). Otherwise the
+   * takeover could paint a frame a few steps away and then jump back.
    */
-  nearest(index: number, record = false): Drawable | null {
+  nearest(index: number, record = false, handover = false): Drawable | null {
     let at = -1;
     let img: Drawable | null = this.bitmaps.get(index)?.img ?? null;
     if (img) at = index;
@@ -958,6 +967,10 @@ export class FrameCache {
     for (let i = index + 1; i < this.variant.count && !img; i++) {
       const b = this.bitmaps.get(i);
       if (b) [at, img] = [i, b.img];
+    }
+    if (handover && at !== index && img && Math.abs(index) <= Math.abs(at - index)) {
+      if (this.poster) [at, img] = [-1, this.poster];
+      else if (this.posterPending) [at, img] = [-1, null];
     }
     if (!img) img = this.poster;
     this.lastServed = at;
@@ -975,6 +988,11 @@ export class FrameCache {
       }
     }
     return img;
+  }
+
+  /** The poster load has started and not finished yet. */
+  get posterPending(): boolean {
+    return this.posterTried && !this.posterSettled;
   }
 
   /** Drop one decoded frame (budget eviction). Its bytes stay held for a re-decode. */
@@ -1012,6 +1030,7 @@ export class FrameCache {
       () => img.naturalWidth > 0,
       () => false,
     );
+    this.posterSettled = true;
     this.budget.notePoster(this, ok);
     if (!ok) return null;
     this.poster = img;

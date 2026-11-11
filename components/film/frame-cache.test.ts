@@ -998,3 +998,96 @@ test("pack mode: the dissolve pin is asked of the worker while wanted and not de
   budget.want({ active: { cache: a, center: 200, direction: 1 }, pin: { cache: prev, index: 240, until: 14 } });
   assert.equal(packs.wheres.at(-1)?.pin, null);
 });
+
+/** A stand-in for the DOM Image (node has none): decode() settles when the test says. */
+function fakeImages() {
+  const pending: Array<{ ok: (v: boolean) => void }> = [];
+  class FakeImage {
+    decoding = "";
+    src = "";
+    width = W;
+    height = H;
+    naturalWidth = 0;
+    decode() {
+      return new Promise<void>((resolve, reject) => {
+        pending.push({
+          ok: (v) => {
+            if (v) {
+              this.naturalWidth = W;
+              resolve();
+            } else reject(new Error("poster failed"));
+          },
+        });
+      });
+    }
+  }
+  const g = globalThis as unknown as { Image?: unknown };
+  const prev = g.Image;
+  g.Image = FakeImage;
+  return { pending, restore: () => (g.Image = prev) };
+}
+
+test("handover (the paint that replaces the HTML poster): the poster beats a farther frame; nothing while it loads", async () => {
+  const imgs = fakeImages();
+  try {
+    const { io } = manualIO();
+    const budget = new FrameBudget(19 * FRAME, io);
+    const a = new FrameCache(variant("a"), budget);
+    const poster = a.loadPoster();
+    assert.equal(a.posterPending, true);
+    // Frame 4 (a skeleton frame, or a parallel decode that won) is decoded; frame 0 is not.
+    const four = fakeBitmap();
+    a.put(4, four, FRAME);
+    assert.equal(a.nearest(0, true, true), null, "poster still loading: keep the HTML poster, draw nothing");
+    assert.equal(a.lastServed, -1);
+    assert.equal(a.nearest(0), four, "an ordinary paint still takes the neighbour");
+    imgs.pending[0]!.ok(true);
+    const p = await poster;
+    assert.ok(p);
+    assert.equal(a.posterPending, false);
+    assert.equal(a.nearest(0, true, true), p, "frame 0 wanted: the poster IS frame 0");
+    assert.equal(a.lastServed, -1);
+    // Wanted frame 6: frame 4 (2 away) is closer than the poster (6 away).
+    assert.equal(a.nearest(6, true, true), four);
+    // Wanted frame 2: the poster (2 away) ties frame 4 (2 away): the poster.
+    assert.equal(a.nearest(2, true, true), p);
+    // The exact frame always wins.
+    const zero = fakeBitmap();
+    a.put(0, zero, FRAME);
+    assert.equal(a.nearest(0, true, true), zero);
+    assert.equal(a.lastServed, 0);
+    a.dispose();
+  } finally {
+    imgs.restore();
+  }
+});
+
+test("handover with a failed poster draws the neighbour (the canvas still takes over)", async () => {
+  const imgs = fakeImages();
+  try {
+    const { io } = manualIO();
+    const budget = new FrameBudget(19 * FRAME, io);
+    const a = new FrameCache(variant("a"), budget);
+    const poster = a.loadPoster();
+    const four = fakeBitmap();
+    a.put(4, four, FRAME);
+    imgs.pending[0]!.ok(false);
+    assert.equal(await poster, null);
+    assert.equal(a.posterPending, false);
+    assert.equal(a.nearest(0, true, true), four);
+    a.dispose();
+  } finally {
+    imgs.restore();
+  }
+});
+
+test("handover before any poster load started (static budget) is an ordinary nearest", () => {
+  const { io } = manualIO();
+  const budget = new FrameBudget(19 * FRAME, io);
+  const a = new FrameCache(variant("a"), budget);
+  const four = fakeBitmap();
+  a.put(4, four, FRAME);
+  assert.equal(a.posterPending, false);
+  assert.equal(a.nearest(0, true, true), four);
+  a.dispose();
+});

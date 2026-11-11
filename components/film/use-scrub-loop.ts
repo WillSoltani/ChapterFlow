@@ -34,9 +34,13 @@
  *     scroll is above canvasHiddenFrom (cached geometry, no layout read).
  *   • First paint (Phase 6): until the canvas draws its first picture, the
  *     server-rendered hero poster covers it; on that first real paint the
- *     loop hides the poster (onFirstPaint) in the same frame. The breath is
- *     held at rest until then and starts from rest (breathRestOffset), so the
- *     canvas lands exactly where the poster was.
+ *     loop hides the poster (onFirstPaint) in the same frame. That paint is
+ *     the exact frame or the film's own poster, never a frame further away
+ *     (FrameCache.nearest handover), so the picture does not jump. Over a
+ *     later chapter the HTML poster (the first film's frame 0) is the wrong
+ *     picture: it goes at once (htmlPosterStands). The breath is held at
+ *     rest until the first paint and starts from rest (breathRestOffset), so
+ *     the canvas lands exactly where the poster was.
  *   • Static mode: with no 2D context (ctx null) nothing is painted, but
  *     everything else runs: progress, pins, chrome. The poster stays.
  * Counters: window.__filmStats canvasResizes, geometryMeasures, ticksWorked,
@@ -45,6 +49,7 @@
 
 import { useEffect, type MutableRefObject } from "react";
 import type { FrameBudget, FrameCache } from "./frame-cache";
+import { htmlPosterStands } from "./first-paint";
 import {
   backingSize,
   breathAt,
@@ -112,7 +117,10 @@ type Args = {
    * mode: no painting, progress and pins still run.
    */
   getCtx: () => CanvasRenderingContext2D | null;
-  /** Called once, in the frame the canvas first draws a picture (hide the HTML poster). */
+  /**
+   * Called once, when the HTML poster goes: in the frame the canvas first
+   * draws a picture over the first chapter, or at once over a later one.
+   */
   onFirstPaint: () => void;
 };
 
@@ -139,6 +147,8 @@ export function useScrubLoop({
     const stats = budget.stats;
     // The canvas has drawn a picture (not only its clear colour).
     let painted = false;
+    // The HTML poster is still up (static mode keeps it: no ctx, no paint).
+    let posterUp = true;
 
     let raf = 0;
     let alive = true;
@@ -468,7 +478,11 @@ export function useScrubLoop({
         for (const fn of drawnListeners.current) fn();
       } else if (key !== lastKey && ctx) {
         lastKey = key;
-        const img = cache.nearest(frame, true);
+        if (posterUp && !htmlPosterStands(seg.index, false)) {
+          posterUp = false;
+          onFirstPaint();
+        }
+        const img = cache.nearest(frame, true, posterUp);
         shown = { cache, want: frame, dist: cache.lastServed < 0 ? Infinity : Math.abs(cache.lastServed - frame), under: null };
         ctx.fillStyle = canvasBg;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -486,10 +500,13 @@ export function useScrubLoop({
             draw(img, variant, 1, breath);
           }
           if (!painted) {
-            // First real paint: the breath starts from rest now, and the HTML
-            // poster goes in this same frame (no flash, no double image).
+            // First real paint: the breath starts from rest now.
             painted = true;
             breathOffset = breathRestOffset(t);
+          }
+          if (posterUp) {
+            // The HTML poster goes in this same frame (no flash, no double image).
+            posterUp = false;
             onFirstPaint();
           }
         }

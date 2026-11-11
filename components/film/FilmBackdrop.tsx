@@ -32,6 +32,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, 
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { FrameBudget, FrameCache, pickFrameBudgetBytes, type FilmStats } from "./frame-cache";
 import { heroPoster } from "./first-paint";
+import { failsafeCss, noscriptCss } from "./readable-layout";
 import { PACK_CAP_LARGE, PACK_CAP_SMALL, PackClient, packModeAllowed } from "./pack-client";
 import { ReelContext, PORTRAIT_QUERY, pickVariant, readView, viewKey, type ReelApi, type ReelView } from "./reel-context";
 import { useScrubLoop, type ScrubFeel } from "./use-scrub-loop";
@@ -45,23 +46,13 @@ type Props = { reel: FilmManifest[]; children: ReactNode; className?: string };
 const SERVER_VIEW: ReelView = { orientation: "landscape", backingWidth: 1920 };
 
 /**
- * Scripting off: the chapters lay out as a plain readable page. Every pin is
- * shown in reading order (no failsafe wait), each chapter is as tall as its
- * copy (no multi-screen empty stages), the hero keeps one screen with its
- * poster (the poster layer scrolls away with it instead of staying fixed),
- * and the decorative Hall wall prose is left out. Inline <style> is allowed
- * by the CSP (style-src 'unsafe-inline', lib/csp.ts), so no nonce is needed.
+ * The readable-page rules (readable-layout.ts), rendered once per page: the
+ * failsafe sheet before the reel (parsed before any pin, so later pins never
+ * flash), the <noscript> sheet after it. Inline <style> is allowed by the CSP
+ * (style-src 'unsafe-inline', lib/csp.ts), so neither needs the nonce.
  */
-const NOSCRIPT_CSS = [
-  "[data-film-reel] [data-frame-later]{animation:none!important;visibility:visible!important}",
-  "[data-film-reel] [data-film-segment]{height:auto!important}",
-  "[data-film-reel] [data-film-stage]{position:relative!important;top:auto!important;height:auto!important;overflow:visible!important}",
-  "[data-film-reel] .film-stage-grid{position:relative!important;inset:auto!important;padding-top:3rem!important;padding-bottom:3rem!important}",
-  "[data-film-reel] [data-film-segment]:first-of-type .film-stage-grid[data-stack=hero]{min-height:100svh;padding-top:clamp(6rem,12svh,8rem)!important}",
-  "[data-film-reel] .hall-text{display:none!important}",
-  ".film-canvas{position:absolute!important;visibility:visible!important}",
-  ".film-canvas canvas{display:none!important}",
-].join("");
+const FAILSAFE_CSS = failsafeCss();
+const NOSCRIPT_CSS = noscriptCss();
 
 export function FilmBackdrop({ reel, children, className }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -274,6 +265,7 @@ export function FilmBackdrop({ reel, children, className }: Props) {
 
   return (
     <ReelContext.Provider value={api}>
+      <style dangerouslySetInnerHTML={{ __html: FAILSAFE_CSS }} />
       {/* The canvas is a fixed layer at z-0 INSIDE the page's stacking
           context; chapters/body sit above at z-10. (A -z-10 layer would fall
           behind the .landing-dark background and never show.)
@@ -300,6 +292,9 @@ export function FilmBackdrop({ reel, children, className }: Props) {
           <div
             ref={posterRef}
             data-film-poster=""
+            // Band placement (globals.css) only for a band tier: a first film
+            // without tiers draws its landscape poster cover-fitted everywhere.
+            data-film-band={poster.band ? "" : undefined}
             className="film-poster"
             style={
               poster.band

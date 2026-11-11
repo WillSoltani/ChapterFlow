@@ -118,3 +118,16 @@ export function heroPoster(film: FilmManifest): HeroPoster {
     },
   };
 }
+
+/**
+ * Whether the HTML poster (the first film's frame 0) still stands in for the
+ * canvas: only over the first chapter, and only until the canvas has drawn
+ * its own picture there. Over any later chapter (a reload restored further
+ * down, a link to #quiz) it would show the wrong picture behind that
+ * chapter's copy, so it goes at once and the page colour shows until that
+ * chapter's own poster or frame lands. Static mode never asks: no canvas, the
+ * poster stays.
+ */
+export function htmlPosterStands(activeSegment: number, canvasDrew: boolean): boolean {
+  return activeSegment === 0 && !canvasDrew;
+}
