@@ -87,3 +87,69 @@ export function breathAt(t: number, amp: number, period = 2600): number {
   if (amp <= 0) return 0;
   return amp * (0.5 + 0.5 * Math.sin(t / period));
 }
+
+/**
+ * Canvas backing store for a box of boxW × boxH CSS px: device pixels, DPR
+ * capped at 2, and never wider than the 1920 px source frames (a Retina
+ * 2880 px canvas only upsamples them and costs 2.25× fill).
+ */
+export function backingSize(boxW: number, boxH: number, dpr: number, maxW = 1920): { w: number; h: number } {
+  if (!(boxW > 0) || !(boxH > 0)) return { w: 0, h: 0 };
+  const scale = Math.min(Math.min(dpr || 1, 2), maxW / boxW);
+  return { w: Math.round(boxW * scale), h: Math.round(boxH * scale) };
+}
+
+/**
+ * Vertical shift (backing px) that moves the centre of a box-centred picture
+ * from the box centre to the STAGE centre. The canvas box is the large
+ * viewport (100lvh), the sticky stage the small one (100svh): on a phone the
+ * picture stays centred on the stage whether the address bar shows or not.
+ * 0 when the stage fills the box (desktop), so nothing moves there.
+ */
+export function stageShift(stageCss: number, boxCss: number, backingH: number): number {
+  if (!(boxCss > 0)) return 0;
+  return ((stageCss - boxCss) / 2) * (backingH / boxCss);
+}
+
+/**
+ * Where a frame (iw × ih) is drawn on a canvas of cw × ch backing px: cover-
+ * fit to the canvas, grown by the breath `zoom` around (0.5, 0.45), then moved
+ * down by `shiftY` (see stageShift). The scale depends on the canvas box only.
+ */
+export function framePlacement(cw: number, ch: number, iw: number, ih: number, zoom: number, shiftY = 0) {
+  const r = coverRect(cw, ch, iw, ih);
+  const w = r.w * (1 + zoom);
+  const h = r.h * (1 + zoom);
+  return { x: r.x - (w - r.w) * 0.5, y: shiftY + r.y - (h - r.h) * 0.45, w, h };
+}
+
+/**
+ * Segment rects relative to the viewport from cached document tops: top =
+ * docTop − scrollY. Writes into `out` (reused objects, no allocation per tick).
+ */
+export function viewportRects(
+  tops: readonly number[],
+  heights: readonly number[],
+  scrollY: number,
+  out: Array<{ top: number; height: number }>,
+): Array<{ top: number; height: number }> {
+  out.length = Math.min(out.length, tops.length);
+  for (let i = 0; i < tops.length; i++) {
+    const top = (tops[i] ?? 0) - scrollY;
+    const height = heights[i] ?? 0;
+    const r = out[i];
+    if (r) {
+      r.top = top;
+      r.height = height;
+    } else out.push({ top, height });
+  }
+  return out;
+}
+
+/**
+ * The scroll position from which the LAST segment (document top `top`,
+ * height `height`) sits at progress 1 for good (pickActive with vh = `stage`).
+ */
+export function reelEndScrollY(top: number, height: number, stage: number): number {
+  return top + height - stage;
+}

@@ -4,12 +4,17 @@ import assert from "node:assert/strict";
 // only globs app/ + lib/, so the test lives here (same pattern as
 // lib/recall-book-filter.test.ts).
 import {
+  backingSize,
   breathAt,
   clamp01,
   coverRect,
   frameAt,
+  framePlacement,
   pickActive,
   quantise,
+  reelEndScrollY,
+  stageShift,
+  viewportRects,
 } from "./scrub";
 import { pinOpacity } from "./FramePin";
 import { filmCount, key, range } from "./timeline";
@@ -100,6 +105,85 @@ test("coverRect fills canvas on the larger axis and centres", () => {
   const tall = coverRect(500, 1000, 1920, 1080);
   assert.ok(near(tall.h, 1000));
   assert.ok(tall.x < 0);
+});
+
+test("backingSize: DPR capped at 2, width capped at 1920, rounded", () => {
+  assert.deepEqual(backingSize(1440, 900, 2), { w: 1920, h: 1200 });
+  assert.deepEqual(backingSize(390, 844, 3), { w: 780, h: 1688 });
+  assert.deepEqual(backingSize(390, 844, 1), { w: 390, h: 844 });
+  assert.deepEqual(backingSize(1280, 720, 1), { w: 1280, h: 720 });
+  // The old formula: scale = min(dpr, 1920 / innerWidth) on innerWidth × innerHeight.
+  const old = (w: number, h: number, dpr: number) => {
+    const s = Math.min(Math.min(dpr || 1, 2), 1920 / w);
+    return { w: Math.round(w * s), h: Math.round(h * s) };
+  };
+  for (const [w, h, d] of [[1440, 900, 1], [1440, 900, 2], [2560, 1440, 2], [390, 844, 3], [1309.09, 818.18, 1.1]] as const) {
+    assert.deepEqual(backingSize(w, h, d), old(w, h, d));
+  }
+  assert.deepEqual(backingSize(0, 844, 2), { w: 0, h: 0 });
+  assert.deepEqual(backingSize(390, 844, 0), { w: 390, h: 844 });
+});
+
+test("stageShift: 0 when the stage fills the box, half the gap (in backing px) otherwise", () => {
+  assert.equal(stageShift(900, 900, 1800), 0);
+  assert.equal(stageShift(800, 900, 1800), -100); // (800 − 900) / 2 css px × 2
+  assert.equal(stageShift(700, 0, 1800), 0);
+});
+
+test("framePlacement with no shift is exactly the rectangle drawn before (breath origin 0.5 / 0.45)", () => {
+  const before = (cw: number, ch: number, iw: number, ih: number, zoom: number) => {
+    const r = coverRect(cw, ch, iw, ih);
+    const w = r.w * (1 + zoom);
+    const h = r.h * (1 + zoom);
+    return { x: r.x - (w - r.w) * 0.5, y: r.y - (h - r.h) * 0.45, w, h };
+  };
+  for (const [cw, ch, iw, ih] of [[1440, 900, 1920, 1080], [1920, 1200, 1920, 1080], [780, 1688, 1080, 1920], [1366, 768, 1920, 1080]] as const) {
+    for (const zoom of [0, 0.004, 0.0117, 0.012]) {
+      assert.deepEqual(framePlacement(cw, ch, iw, ih, zoom), before(cw, ch, iw, ih, zoom));
+      assert.deepEqual(framePlacement(cw, ch, iw, ih, zoom, stageShift(ch, ch, ch)), before(cw, ch, iw, ih, zoom));
+    }
+  }
+});
+
+test("framePlacement: scale is fixed by the box, centre follows the stage", () => {
+  // Phone: box 390 × 844 css (lvh) at DPR 2; the stage (svh) is 100 px shorter.
+  const { w: cw, h: ch } = backingSize(390, 844, 2);
+  const full = framePlacement(cw, ch, 1080, 1920, 0);
+  const shifted = framePlacement(cw, ch, 1080, 1920, 0, stageShift(744, 844, ch));
+  assert.equal(shifted.w, full.w);
+  assert.equal(shifted.h, full.h);
+  assert.equal(shifted.x, full.x);
+  // Centred on the stage centre: 372 css px = 744 backing px from the top.
+  assert.ok(Math.abs(shifted.y + shifted.h / 2 - 744) < 1e-9);
+  // Cover of the box: the picture spans the box's full width or height.
+  assert.ok(full.w >= cw - 1e-9 && full.h >= ch - 1e-9);
+});
+
+test("viewportRects: cached document tops minus scrollY, in place", () => {
+  const out: Array<{ top: number; height: number }> = [];
+  const r = viewportRects([0, 3200, 6000], [3200, 2800, 2400], 1000, out);
+  assert.equal(r, out);
+  assert.deepEqual(out, [
+    { top: -1000, height: 3200 },
+    { top: 2200, height: 2800 },
+    { top: 5000, height: 2400 },
+  ]);
+  const first = out[0];
+  viewportRects([0], [3200], 10, out);
+  assert.equal(out.length, 1);
+  assert.equal(out[0], first);
+  assert.deepEqual(out[0], { top: -10, height: 3200 });
+});
+
+test("reelEndScrollY: the scroll position where the last segment reaches progress 1", () => {
+  const tops = [0, 3200];
+  const heights = [3200, 2400];
+  const end = reelEndScrollY(tops[1]!, heights[1]!, VH);
+  const at = (y: number) => pickActive([seg(0), seg(1)], viewportRects(tops, heights, y, []), VH);
+  assert.equal(at(end)?.seg.index, 1);
+  assert.equal(at(end)?.progress, 1);
+  assert.equal(at(end + 500)?.progress, 1);
+  assert.ok((at(end - 1)?.progress ?? 1) < 1);
 });
 
 test("breathAt stays within [0, amp] and is 0 when amp is 0", () => {
