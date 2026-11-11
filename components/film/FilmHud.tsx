@@ -27,20 +27,33 @@ function statsLine(s: FilmStats): string {
   return `exact ${exact}% · refetch ${s.refetches} · dist ${dist.toFixed(1)} · fetch ${s.fetchInFlight}/${s.fetchLimit}`;
 }
 
+/**
+ * Third HUD line: how the active film loads. Pack mode: share of its pack
+ * held, its skeleton complete or not, mean decode time in the worker.
+ * Frames mode: mean decode time on the page.
+ */
+function loadLine(s: FilmStats): string {
+  if (s.mode === "pack") {
+    return `pack ${Math.round(100 * s.packHeldShare)}% · skeleton ${s.packSkeleton ? "done" : "loading"} · decode ${s.workerDecodeMeanMs.toFixed(1)} ms in worker`;
+  }
+  return `frames · decode ${s.mainThreadDecodeMeanMs.toFixed(1)} ms on page${s.packFallbacks ? ` · pack fallbacks ${s.packFallbacks}` : ""}`;
+}
+
 function FilmHudInner() {
   const reel = useReel();
   const snap = useSyncExternalStore(
     reel.subscribeDrawn,
-    () => `${reel.drawnSegment()}:${reel.drawnFrame()}|${statsLine(reel.stats)}`,
-    () => "-1:-1|",
+    () => `${reel.drawnSegment()}:${reel.drawnFrame()}|${statsLine(reel.stats)}|${loadLine(reel.stats)}`,
+    () => "-1:-1||",
   );
-  const [pos = "", stats = ""] = snap.split("|");
+  const [pos = "", stats = "", load = ""] = snap.split("|");
   const [seg = -1, frame = -1] = pos.split(":").map(Number);
   const film = reel.reel[seg];
   return (
     <div className="film-hud" aria-hidden>
       {film ? `${film.name} · f${String(frame + 1).padStart(4, "0")}` : "reel idle"} · {reel.orientation}
       {stats ? <span className="film-hud-stats">{stats}</span> : null}
+      {load ? <span className="film-hud-stats">{load}</span> : null}
     </div>
   );
 }
