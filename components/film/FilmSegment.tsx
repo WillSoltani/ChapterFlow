@@ -140,7 +140,7 @@ export function FilmSegment({
 
   // Tests only (pins.test.tsx): report the stops this chapter steps through.
   const collect = useContext(PinCollectContext);
-  if (collect) collect.segment(id, film.name, stops);
+  if (collect) collect.segment(id, film.name, stops, dissolveIn);
 
   useEffect(() => {
     const el = ref.current;

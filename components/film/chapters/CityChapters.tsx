@@ -47,13 +47,14 @@ const LIGHTS = (() => {
     day36: pin(l36, last, { ease: 4, hold: true }),
   };
   const tree = [{ scrim: p.box, pins: [p.label, p.h2, p.lede] }, p.alone, p.day1, p.day4, p.day12, p.day36];
-  return { p, stops: reducedStops(filmCount(F), filmKeys(F), tree) };
+  const dissolve = 14;
+  return { p, dissolve, stops: reducedStops(filmCount(F), filmKeys(F), tree, { start: dissolve }) };
 })();
 
 export function LightsChapter({ film, index }: P) {
   const { p } = LIGHTS;
   return (
-    <FilmSegment id="why-it-works" film={film} index={index} pace={4} dissolveIn={14} stops={LIGHTS.stops} ariaLabel="Spaced review">
+    <FilmSegment id="why-it-works" film={film} index={index} pace={4} dissolveIn={LIGHTS.dissolve} stops={LIGHTS.stops} ariaLabel="Spaced review">
       {/* The tower render is centred; its LEFT side is the darker face. */}
       <div className="film-stage-grid" data-split="left">
         <FramePin scrim {...p.box} className="film-box flex flex-col gap-4">
@@ -108,13 +109,14 @@ const CITY = (() => {
     h2: pin(skyline + 8, last, { hold: true }),
     browse: pin(orbit, last, { hold: true }),
   };
-  return { p, stops: reducedStops(filmCount(F), filmKeys(F), [{ scrim: p.halo, pins: [p.label, p.h2, p.browse] }]) };
+  const dissolve = 14;
+  return { p, dissolve, stops: reducedStops(filmCount(F), filmKeys(F), [{ scrim: p.halo, pins: [p.label, p.h2, p.browse] }], { start: dissolve }) };
 })();
 
 export function CityChapter({ film, index }: P) {
   const { p } = CITY;
   return (
-    <FilmSegment id="library" film={film} index={index} pace={3} dissolveIn={14} stops={CITY.stops} ariaLabel="Library">
+    <FilmSegment id="library" film={film} index={index} pace={3} dissolveIn={CITY.dissolve} stops={CITY.stops} ariaLabel="Library">
       {/* Dense halo (globals.css): a bright frame behind the copy (contrast gate). */}
       <div className="film-stage-grid" data-split="center" data-halo="dense">
         <FramePin scrim {...p.halo} className="film-halo flex flex-col items-center gap-4">
@@ -141,13 +143,14 @@ const HOME = (() => {
     h2: pin(window_, last, { hold: true }),
     start: pin(warm, last, { hold: true }),
   };
-  return { p, stops: reducedStops(filmCount(F), filmKeys(F), [{ scrim: p.halo, pins: [p.h2, p.start] }]) };
+  const dissolve = 12;
+  return { p, dissolve, stops: reducedStops(filmCount(F), filmKeys(F), [{ scrim: p.halo, pins: [p.h2, p.start] }], { start: dissolve }) };
 })();
 
 export function HomeChapter({ film, index }: P) {
   const { p } = HOME;
   return (
-    <FilmSegment id="home" film={film} index={index} pace={2.2} dissolveIn={12} stops={HOME.stops} ariaLabel="Start free">
+    <FilmSegment id="home" film={film} index={index} pace={2.2} dissolveIn={HOME.dissolve} stops={HOME.stops} ariaLabel="Start free">
       {/* Dense halo (globals.css): a bright frame behind the copy (contrast gate). */}
       <div className="film-stage-grid" data-split="center" data-halo="dense">
         <FramePin scrim {...p.halo} className="film-halo flex flex-col items-center gap-6">

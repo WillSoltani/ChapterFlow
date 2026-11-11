@@ -12,7 +12,7 @@ import { createContext } from "react";
 import type { PinRange } from "./pins";
 
 export type PinCollector = {
-  segment: (id: string, film: string, stops: readonly number[]) => void;
+  segment: (id: string, film: string, stops: readonly number[], dissolveIn: number) => void;
   pin: (segment: string, chain: readonly PinRange[], text: string) => void;
 };
 

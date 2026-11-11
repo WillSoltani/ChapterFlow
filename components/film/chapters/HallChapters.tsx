@@ -36,13 +36,14 @@ const HALL = (() => {
     h2: pin(compress, last, { hold: true }),
     lede: pin(lit, last, { hold: true }),
   };
-  return { last, compress, lit, p, stops: reducedStops(filmCount(F), filmKeys(F), [{ scrim: p.halo, pins: [p.label, p.h2, p.lede] }]) };
+  const dissolve = 14;
+  return { last, compress, lit, p, dissolve, stops: reducedStops(filmCount(F), filmKeys(F), [{ scrim: p.halo, pins: [p.label, p.h2, p.lede] }], { start: dissolve }) };
 })();
 
 export function HallChapter({ film, index }: P) {
   const { last, compress, lit, p } = HALL;
   return (
-    <FilmSegment id="how-it-works" film={film} index={index} pace={3.5} dissolveIn={14} stops={HALL.stops} ariaLabel="Summary">
+    <FilmSegment id="how-it-works" film={film} index={index} pace={3.5} dissolveIn={HALL.dissolve} stops={HALL.stops} ariaLabel="Summary">
       {/* The corridor walls are blank cotton-rag in the footage; the real
           English prose on them (Atomic Habits, chapter 1, from the live
           package) is this CSS layer. */}
@@ -88,13 +89,14 @@ const ROOMS = (() => {
     door: pin(door - 20, last, { ease: 12, hold: true }),
   };
   const tree = [{ scrim: p.box, pins: [p.label, p.h2, p.ledeA, p.ledeB, p.ledeC] }, p.door];
-  return { p, stops: reducedStops(filmCount(F), filmKeys(F), tree) };
+  const dissolve = 14;
+  return { p, dissolve, stops: reducedStops(filmCount(F), filmKeys(F), tree, { start: dissolve }) };
 })();
 
 export function RoomsChapter({ film, index }: P) {
   const { p } = ROOMS;
   return (
-    <FilmSegment id="examples" film={film} index={index} pace={3.5} dissolveIn={14} stops={ROOMS.stops} ariaLabel="Examples">
+    <FilmSegment id="examples" film={film} index={index} pace={3.5} dissolveIn={ROOMS.dissolve} stops={ROOMS.stops} ariaLabel="Examples">
       <div className="film-stage-grid" data-split="left">
         <FramePin scrim {...p.box} className="film-box flex flex-col gap-4">
           <FramePin {...p.label} as="p" className="film-label">
@@ -141,13 +143,14 @@ const VAULT = (() => {
     kept: pin(fold + 6, last, { ease: 14, hold: true }),
   };
   const tree = [{ scrim: p.box, pins: [p.label, p.h2, p.lede] }, p.locked, p.kept];
-  return { p, stops: reducedStops(filmCount(F), filmKeys(F), tree) };
+  const dissolve = 14;
+  return { p, dissolve, stops: reducedStops(filmCount(F), filmKeys(F), tree, { start: dissolve }) };
 })();
 
 export function VaultChapter({ film, index }: P) {
   const { p } = VAULT;
   return (
-    <FilmSegment id="quiz" film={film} index={index} pace={3} dissolveIn={14} stops={VAULT.stops} ariaLabel="Quiz">
+    <FilmSegment id="quiz" film={film} index={index} pace={3} dissolveIn={VAULT.dissolve} stops={VAULT.stops} ariaLabel="Quiz">
       <div className="film-stage-grid" data-split="left">
         <FramePin scrim {...p.box} className="film-box flex flex-col gap-4">
           <FramePin {...p.label} as="p" className="film-label">03 · Quiz</FramePin>

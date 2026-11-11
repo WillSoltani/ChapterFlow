@@ -94,11 +94,15 @@ export function fullyOnRange(chain: readonly PinRange[], count: number): [number
 
 /**
  * The named beats of a film as inclusive frame spans: from each key to the
- * frame before the next one; the last runs to the film's last frame.
+ * frame before the next one; the last runs to the film's last frame. Frames
+ * before `start` (a chapter's dissolve) are cut off; a beat that lies wholly
+ * before it is dropped.
  */
-export function beatSpans(count: number, keys: readonly number[]): Array<[number, number]> {
+export function beatSpans(count: number, keys: readonly number[], start = 0): Array<[number, number]> {
   const beats = [...new Set(keys.map((k) => Math.min(count - 1, Math.max(0, Math.round(k)))))].sort((x, y) => x - y);
-  return beats.map((k, i) => [k, (beats[i + 1] ?? count) - 1]);
+  return beats
+    .map((k, i): [number, number] => [Math.max(k, start), (beats[i + 1] ?? count) - 1])
+    .filter(([a, b]) => a <= b);
 }
 
 /**
@@ -111,17 +115,20 @@ export function beatSpans(count: number, keys: readonly number[]): Array<[number
  * beat's stop can show get the fewest extra stops that do (the classic
  * interval stabbing: each at the end of the earliest-ending pin left). The
  * choice across beats is searched, so no other placement needs fewer extras.
- * Throws if a pin is never fully on (an authoring error).
+ * `start`: no stop before this frame (a later chapter's dissolve, where the
+ * canvas still shows the previous film's last frame). Throws if a pin is
+ * never fully on from `start` on (an authoring error).
  */
-export function reducedStops(count: number, keys: readonly number[], tree: readonly PinTree[]): number[] {
+export function reducedStops(count: number, keys: readonly number[], tree: readonly PinTree[], opts: { start?: number } = {}): number[] {
+  const start = Math.max(0, opts.start ?? 0);
   const chains = pinChains(tree);
-  const ranges = chains.map((c) => {
+  const ranges = chains.map((c): [number, number] => {
     const r = fullyOnRange(c, count);
-    if (!r) {
+    if (!r || r[1] < start) {
       const p = c[c.length - 1]!;
-      throw new Error(`pin ${p.from}–${p.to} is never fully on`);
+      throw new Error(`pin ${p.from}–${p.to} is never fully on${start ? ` from frame ${start}` : ""}`);
     }
-    return r;
+    return [Math.max(r[0], start), r[1]];
   });
   const n = chains.length;
   // Per frame: which chains are fully on (as a key), and how many are mid-fade.
@@ -138,7 +145,7 @@ export function reducedStops(count: number, keys: readonly number[], tree: reado
     onAt.push(on);
     partialAt.push(partial);
   }
-  const spans = beatSpans(count, keys);
+  const spans = beatSpans(count, keys, start);
   // Candidates per beat: one frame per distinct maximal set of fully-on pins
   // (a set inside another set of the same beat is never the better pick), the
   // frame with the fewest mid-fades, then the nearest to the key.

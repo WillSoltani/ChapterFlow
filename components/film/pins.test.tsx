@@ -27,11 +27,11 @@ import { filmCount, filmKeys } from "./timeline";
  * renders, with the scrims it sits in, collected at render time).
  */
 
-type Seg = { id: string; film: string; stops: readonly number[] };
+type Seg = { id: string; film: string; stops: readonly number[]; dissolveIn: number };
 const segs = new Map<string, Seg>();
 const collected: Array<{ seg: string; chain: readonly PinRange[]; text: string }> = [];
 const collector: PinCollector = {
-  segment: (id, film, stops) => segs.set(id, { id, film, stops }),
+  segment: (id, film, stops, dissolveIn) => segs.set(id, { id, film, stops, dissolveIn }),
   pin: (seg, chain, text) => collected.push({ seg, chain, text }),
 };
 renderToStaticMarkup(
@@ -63,7 +63,7 @@ test("REAL reel: stops end on the chapter's last frame, ascend, show each named 
     const count = filmCount(s.film);
     assert.equal(s.stops.at(-1), count - 1, `${s.id} ends on its last frame`);
     for (let i = 1; i < s.stops.length; i++) assert.ok(s.stops[i]! > s.stops[i - 1]!, `${s.id} stops ascend`);
-    const spans = beatSpans(count, filmKeys(s.film));
+    const spans = beatSpans(count, filmKeys(s.film), s.dissolveIn);
     const chains = collected.filter((p) => p.seg === s.id).map((p) => p.chain);
     const covered = (stops: readonly number[]) => chains.every((c) => stops.some((f) => chainOpacity(f, c) === 1));
     for (const [a, b] of spans) {
@@ -78,6 +78,20 @@ test("REAL reel: stops end on the chapter's last frame, ascend, show each named 
       assert.ok(beatAlone || !covered(rest), `${s.id}: stop ${f} is spare`);
     }
   }
+});
+
+test("REAL reel: no stop falls inside a chapter's dissolve (there the canvas shows the previous film)", () => {
+  for (const s of segs.values()) {
+    if (s.id !== "hero") assert.ok(s.dissolveIn > 0, `${s.id} dissolves in`);
+    for (const f of s.stops) assert.ok(f >= s.dissolveIn, `${s.id}: stop ${f} inside its ${s.dissolveIn}-frame dissolve`);
+  }
+});
+
+test("reducedStops: `start` keeps the stops at or after it (a chapter's dissolve)", () => {
+  const p = pin(0, 90, { ease: 4 });
+  const stops = reducedStops(101, [0, 50, 100], [p], { start: 14 });
+  assert.equal(stops[0], 14);
+  assert.ok(stops.every((f) => f >= 14));
 });
 
 test("REAL reel: the reduced reel is shorter than the normal one", () => {
