@@ -26,9 +26,10 @@ test.describe("film reel", () => {
     await expect(hud).toContainText("palace-00 · f0001", { timeout: 10_000 });
     await expect(page.locator("html")).toHaveAttribute("data-reel-chrome", "film");
 
-    // Hero copy pinned from frame 0 is visible; later pins are hidden.
+    // Hero copy pinned from frame 0 is visible; later pins are off (opacity
+    // 0 only: they stay in the accessibility tree and the tab order, Phase 8).
     await expect(page.locator("#hero h1")).toBeVisible();
-    await expect(page.locator("#hero [data-frame-pin]").last()).toBeHidden();
+    await expect(page.locator("#hero [data-frame-pin]").last()).toHaveCSS("opacity", "0");
 
     // Scroll halfway through the hero segment (4 × 100svh tall → travel 3vh).
     const vh = await page.evaluate(() => window.innerHeight);
@@ -51,7 +52,7 @@ test.describe("film reel", () => {
     // Near the end of the hero every pin (incl. the last, from push_in + 20) is up.
     await page.evaluate((y) => window.scrollTo(0, y), travel * 0.9);
     await page.waitForTimeout(400);
-    await expect(page.locator("#hero [data-frame-pin]").last()).toBeVisible();
+    await expect(page.locator("#hero [data-frame-pin]").last()).toHaveCSS("opacity", "1");
 
     // Scroll into the second segment: film name changes, dissolve runs.
     await page.evaluate((y) => window.scrollTo(0, y), heroH + vh * 0.3);
@@ -124,7 +125,7 @@ test.describe("film reel", () => {
     expect(kept[0]?.c).not.toBe(dropped[0]?.c);
   });
 
-  test("reduced motion quantises to discrete steps", async ({ page }) => {
+  test("reduced motion draws only the chapter's stops", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/?hud=1");
     const hud = page.locator(".film-hud");
@@ -132,10 +133,11 @@ test.describe("film reel", () => {
     const vh = await page.evaluate(() => window.innerHeight);
     await page.evaluate((y) => window.scrollTo(0, y), vh * 0.5);
     await page.waitForTimeout(300);
-    // 5 steps → only frames at k/5 of the film are ever drawn.
-    const allowed = new Set(
-      Array.from({ length: 6 }, (_, k) => f(Math.round((k / 5) * (COUNT_00 - 1)) + 1)),
-    );
+    // Only the hero's stops (pins.ts reducedStops, data-film-stops) are ever drawn.
+    const stops = ((await page.locator("#hero").getAttribute("data-film-stops")) ?? "").split(",").map(Number);
+    expect(stops.length).toBeGreaterThan(2);
+    expect(Math.max(...stops)).toBe(COUNT_00 - 1);
+    const allowed = new Set(stops.map((s) => f(s + 1)));
     const t = (await hud.textContent()) ?? "";
     const drawn = /f\d{4}/.exec(t)?.[0] ?? "";
     expect(allowed.has(drawn), `${drawn} not in ${[...allowed].join(",")}`).toBe(true);

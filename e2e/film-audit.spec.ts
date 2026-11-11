@@ -36,7 +36,14 @@ const VIEWPORTS: Viewport[] = [
   { name: "smallest phone", width: 320, height: 568, mobile: true },
   { name: "landscape phone", width: 844, height: 390, mobile: true },
 ];
-/** The smallest copy the reel sets (.film-label, 11 px) and the smallest tap target. */
+/**
+ * The smallest copy the reel sets (.film-label, 11 px) and the smallest tap
+ * target. EXEMPT from the size check: the Hall's wall prose (HallText). It is
+ * decoration hidden from assistive technology (aria-hidden on .hall-text, the
+ * same words are not part of the page's text), and its 3D projection draws
+ * its far end below 11 px on short portrait phones (Phase 8 review). The
+ * exemption holds only while it stays hidden: each run checks the attribute.
+ */
 const MIN_FONT_PX = 11;
 const MIN_TAP_PX = 44;
 const STEPS = Array.from({ length: 17 }, (_, i) => Math.min(0.985, i / 16));
@@ -55,6 +62,8 @@ test.describe("film audit", () => {
       const page = await ctx.newPage();
       await page.goto("/?hud=1");
       await page.waitForTimeout(1200);
+      // The wall prose's size exemption (MIN_FONT_PX) requires it to be hidden from assistive technology.
+      expect(await page.locator(".hall-text").getAttribute("aria-hidden"), "the Hall wall prose is decoration (aria-hidden)").toBe("true");
 
       const segs = await page.$$eval("[data-film-segment]", (els) =>
         els.map((e) => {

@@ -111,8 +111,9 @@ test.describe("film truth", () => {
     { name: "landscape phone", viewport: { width: 844, height: 390 }, dpr: 3, mobile: true, band: false },
   ] as const)
   test.describe(run.name, () => {
-    // Reduced motion: no breath (deterministic pixels) and progress quantised
-    // to the film's 5 steps, so a scroll position names one exact frame.
+    // Reduced motion: no breath (deterministic pixels) and only the
+    // chapter's stops are drawn (Phase 8, data-film-stops), so a scroll
+    // position names one exact frame.
     test.use({ viewport: run.viewport, deviceScaleFactor: run.dpr, ...(run.mobile ? { isMobile: true, hasTouch: true } : {}) });
 
     test(run.band ? "canvas pixels equal the band tier's own frame placed in its virtual frame" : "canvas pixels equal the landscape frame placed by the canvas math", async ({ page }) => {
@@ -123,19 +124,22 @@ test.describe("film truth", () => {
       await page.waitForTimeout(1000);
       const tl = JSON.parse(await fs.readFile("components/film/book.timeline.json", "utf8")).films as Record<string, { count: number }>;
       const names = Object.keys(tl);
-      const STEPS = 5;
-      // Hero: before, inside and after its portrait ramp (frames 48, 192, 240);
-      // later films: two steps each, away from the dissolve at frame 0.
+      const stops = await page.$$eval("[data-film-segment]", (els) => els.map((e) => ((e as HTMLElement).dataset.filmStops ?? "").split(",").map(Number)));
+      // Hero: before, inside and after its portrait ramp (its stops at frames
+      // 28, 204, 240); later films: their second and second-to-last stops,
+      // away from the dissolve at frame 0.
       const positions: Array<[number, number]> = [[0, 1], [0, 4], [0, 5]];
-      for (let i = 1; i < names.length; i++) positions.push([i, 2], [i, 4]);
+      for (let i = 1; i < names.length; i++) positions.push([i, 1], [i, (stops[i]?.length ?? 2) - 2]);
 
       const problems: string[] = [];
-      for (const [i, k] of positions) {
+      for (const [i, j] of positions) {
         const film = names[i];
         const entry = film ? tl[film] : undefined;
-        if (!film || !entry) throw new Error(`timeline has no film ${i}`);
-        const p = k === STEPS ? 0.97 : k / STEPS;
-        const frame = Math.round((Math.round(p * STEPS) / STEPS) * (entry.count - 1));
+        const st = stops[i];
+        if (!film || !entry || !st || st[j] === undefined) throw new Error(`timeline has no film ${i} / stop ${j}`);
+        const frame = st[j]!;
+        // Share of the chapter's pinned travel at which stop j is centred (pins.ts reducedStopScroll).
+        const p = j / (st.length - 1);
         const decoy = frame >= 60 ? frame - 60 : frame + 60;
         const r = await page.evaluate(
           async ({ i, p, film, frame, decoy, band }) => {
@@ -149,7 +153,8 @@ test.describe("film truth", () => {
             const stage = stageEl.getBoundingClientRect().height;
             const rect = seg.getBoundingClientRect();
             const top = rect.top + window.scrollY;
-            window.scrollTo(0, Math.round(i === 0 ? top + p * (rect.height - stage) : top - stage + p * rect.height));
+            const travel = rect.height - stage;
+            window.scrollTo(0, Math.round(Math.min(top + travel - 2, Math.max(Math.ceil(top) + 2, top + p * travel))));
             const raf = () => new Promise((res) => requestAnimationFrame(res));
             const t0 = performance.now();
             let cache: Cache | undefined;
