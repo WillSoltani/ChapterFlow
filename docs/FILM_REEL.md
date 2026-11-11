@@ -833,8 +833,35 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   `@media (prefers-reduced-motion: reduce)` and `html[data-motion="reduced"]`
   rules; `first-paint.test.ts` checks the formula), so it holds from the
   first paint for the OS setting and switches at once with the in-app
-  toggle; the content ResizeObserver re-measures. The readable page's
-  `height: auto` still wins over both. Reel length: 23.2 screens normal,
+  toggle (the segment has `transition-property: none`: the reduced-motion
+  rules' 0.01ms transition of "all" would otherwise hold the old height for
+  a frame). The readable page's `height: auto` still wins over both.
+- **Switching the mode keeps the visitor's place:** every chapter's height
+  changes with the mode, so the same scroll position would fall in another
+  chapter. The loop subscribes to the motion gate (`subscribeReducedMotion`:
+  the media query's change event and the attribute's MutationObserver both
+  run before the frame's rAF callbacks and layout). It takes the place from
+  the geometry cached under the old mode (`reelAnchor` in `scrub.ts`: above
+  the reel, below its end, or a chapter and the frame it shows), measures the
+  new geometry and scrolls there (`anchorScroll`): the stop nearest that
+  frame under reduced motion, that frame under normal motion, the same
+  offset in a slide-in, the same distance below the reel's end (the body
+  stays put on screen).
+- **Keyboard paging steps stop by stop:** under reduced motion Space and
+  PageDown (Shift+Space and PageUp back) go to the adjacent stop
+  (`pageStop` over `reelStopYs`, from the stop on screen, `shownStop`)
+  instead of the browser's page, which is longer than a 40svh step and
+  would pass a stop and the copy shown only there. From a slide-in the key
+  first pins the stop on screen. Past the reel's ends, or more than 1.5
+  stages from a stop (reading the body), the browser pages as usual. Not
+  while typing in a field, and Space on a button or other control still
+  presses it. Arrows (40 px) and the wheel step through every stop anyway.
+- **Scroll targets stay inside the travel:** keyboard focus and paging
+  scroll to `reducedStopTarget`, which keeps a chapter's last stop 2 px
+  (`STOP_EDGE_PX`) inside the end of its pinned travel: exactly at the end
+  the next chapter's box touches the viewport, and a browser rounding the
+  fractional scroll up would make that chapter active and draw its first
+  stop behind this chapter's copy. Reel length: 23.2 screens normal,
   19.8 under reduced motion (was 23.2 in both). 39 stops in all.
 - **Skip the film** (`SkipFilmLink.tsx`): `#main` holds the film, so "Skip
   to main content" does not skip it. The landing passes a "Skip the film"
@@ -859,7 +886,16 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   (a capture `focusin` listener) and snaps (`smoothingMs("focus")` = 0), so
   the element is fully on in the next frame. The browser's own focus scroll
   then finds it in view. Focus from a click or tap is not `:focus-visible`
-  and never moves the page. Tab order is document order; nothing traps focus.
+  and never moves the page. Nor does focus coming back to the element that
+  held it when the window or tab regains focus (the reader may have scrolled
+  on with focus left on a link): only focus that arrived moves the film
+  (`focusArrived`: it came from another element, or lands on a different
+  element than the one that last moved the film; a pointer press clears
+  that). Tab order is document order; nothing traps focus.
+- **Forced colors:** `.film-btn:focus-visible` draws its ring as a
+  box-shadow (dropped in forced-colors mode) and sets `outline: none`, which
+  outranks the blanket forced-colors `:focus-visible` outline; a
+  forced-colors rule right after it restores `outline: 2px solid Highlight`.
 - **Structure:** one `h1` (the hero), the six chapter headings `h2` in order,
   no skipped level; the canvas layer (canvas and HTML poster), the HUD and
   the Hall wall prose are `aria-hidden`; landmarks unchanged.
@@ -891,7 +927,11 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   invisible. The readable rules now set `visibility`, `opacity: 1`,
   `transform: none` and `pointer-events: auto` on every pin and scrim (an
   animation's value wins over a normal inline style); `film-first-paint`
-  reproduces it with arming prevented.
+  reproduces it with arming prevented. Side effect, by design: on the
+  no-script page and on the failsafe page the labels (`.film-label`,
+  opacity 0.72 in CSS) and ledes (`.film-lede`, 0.88) now show at full
+  opacity, as they already do on the armed page, where each pin's inline
+  opacity replaces the class value (the contrast gate measures them so).
 - **Gates:** `e2e/film-a11y.spec.ts` (RUN_AUDIT=1, in both `test:film`
   scripts): reduced motion through the OS setting and the in-app attribute
   on both viewports (every pin seen fully on at a stop, only stop frames
@@ -903,17 +943,28 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   ≥ 0.99, in the viewport, clear of the nav, with a focus ring; document
   order; "Skip the film" within the first three stops lands after the reel);
   pointer focus (a click on a visible button, one mid-fade included, never
-  scrolls); structure from the accessibility tree; contrast as above.
+  scrolls); focus restored with the window never scrolls; keyboard paging
+  under reduced motion (PageDown / Space down and PageUp / Shift+Space up
+  visit every stop of the reel in order, both viewports); forced colors (a
+  focused film button keeps an outline); the in-app toggle at runtime keeps
+  the visitor in the same chapter at the nearest stop and back, and the body
+  in place below the reel; structure from the accessibility tree; contrast
+  as above. On WebKit the keyboard tests press Option+Tab (Alt+Tab): Safari's
+  plain Tab moves between form fields only unless "Press Tab to highlight
+  each item" is on.
   `film-truth`, `film-reel` and `tier-parity.mjs` read reduced-motion
-  positions from `data-film-stops`.
+  positions from `data-film-stops`; `film-truth` picks the hero's stops
+  before, inside (frames 150 to 200) and after its portrait ramp by frame,
+  so it fails loudly if no stop falls inside the ramp.
 - **Owner sheets:** `node scripts/film/a11y-sheets.mjs` (local dev server)
   writes `~/cf-wt/p8-sheets/reduced-motion.png` (every stop of every chapter
   under reduced motion, 390 × 844 and 1440 × 900, labelled with the stop
   frame) and `contrast-changes.png` (each element restyled for contrast,
   before and after, with both ratios).
-- **Known limit:** a reduced-motion step is 40svh, shorter than a PageDown
-  (about 87 % of the viewport), so paging by keyboard can pass a stop
-  without showing it; arrows, wheel and touch step through every stop.
+- **Known limit:** a fast touch fling or a scrollbar drag can still pass a
+  stop without coming to rest on it (the browser drives that scroll); the
+  stop is shown on the way and every stop is one short swipe or a paging
+  key away.
 
 ## Render spec
 
