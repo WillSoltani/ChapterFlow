@@ -14,12 +14,16 @@
  *   compress … lines_lit non-kept lines fade; kept lines brighten + lift 6px
  *   lines_lit … end      kept lines hold, dolly parallax continues
  *
- * Transform + opacity only. Reduced motion: static final state.
+ * Transform + opacity only, each written only when it changed (quantised,
+ * layers.ts); colour only when a line's highlight flips. The two walls are
+ * promoted only while the Hall's segment is on screen. Reduced motion:
+ * static final state.
  */
 
 import { useEffect, useRef } from "react";
 import { useSegmentStore } from "./FilmSegment";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
+import { hallLineStyle, quantOpacity } from "./layers";
 
 type Line = { text: string; keep?: boolean };
 
@@ -45,34 +49,82 @@ export function HallText({ compress, litAt, end }: { compress: number; litAt: nu
   useEffect(() => {
     const root = ref.current;
     if (!root) return;
-    const lines = Array.from(root.querySelectorAll<HTMLElement>("[data-line]"));
+    // Last written string per element: identical values are never written.
+    const lines = Array.from(root.querySelectorAll<HTMLElement>("[data-line]")).map((el) => ({
+      el,
+      keep: el.dataset.keep === "1",
+      o: "",
+      t: "",
+      lit: null as boolean | null,
+    }));
     let last = -1;
+    let dollyW = "";
+    let rootO = "";
     const apply = () => {
       const f = store.getFrame();
       if (f === last) return;
       last = f;
       // 0 → 1 across the compress window
       const k = Math.min(1, Math.max(0, (f - compress) / Math.max(1, litAt - compress)));
-      // slow dolly parallax across the whole film (walls slide toward camera)
-      const dolly = reduced ? 1 : f / Math.max(1, end);
-      root.style.setProperty("--hall-dolly", dolly.toFixed(4));
+      // slow dolly parallax across the whole film (walls slide toward camera);
+      // 0.01 steps = about 0.3 px of wall travel on a desktop, less on a phone
+      const dolly = (reduced ? 1 : f / Math.max(1, end)).toFixed(2);
+      if (dolly !== dollyW) {
+        dollyW = dolly;
+        root.style.setProperty("--hall-dolly", dolly);
+      }
       // The first ~14 frames are the dissolve from the previous film's doorway
       // close-up; hold the prose back until the corridor is on screen, then
       // ease it in. (Per-line opacity below is untouched, so the compress
       // choreography and its test read the same values.)
       const fadeIn = reduced ? 1 : Math.min(1, Math.max(0, (f - 10) / 20));
-      root.style.opacity = (fadeIn * fadeIn * (3 - 2 * fadeIn)).toFixed(3);
-      for (const el of lines) {
-        const keep = el.dataset.keep === "1";
-        const o = keep ? 0.55 + 0.45 * k : 0.55 * (1 - k);
-        el.style.opacity = o.toFixed(3);
-        el.style.transform = reduced ? "none" : `translate3d(0, 0, ${(keep ? 14 * k : 0).toFixed(1)}px)`;
-        el.style.color = keep && k > 0.5 ? "var(--cf-recall-accent)" : "var(--cf-recall-ink)";
+      const o = String(quantOpacity(fadeIn * fadeIn * (3 - 2 * fadeIn)));
+      if (o !== rootO) {
+        rootO = o;
+        root.style.opacity = o;
+      }
+      for (const l of lines) {
+        const s = hallLineStyle(l.keep, k, reduced);
+        if (s.opacity !== l.o) {
+          l.o = s.opacity;
+          l.el.style.opacity = s.opacity;
+        }
+        if (s.transform !== l.t) {
+          l.t = s.transform;
+          l.el.style.transform = s.transform;
+        }
+        // Colour only when the highlight flips (its 240 ms transition then
+        // runs for the lines that change, not a repaint every frame).
+        if (s.lit !== l.lit) {
+          l.lit = s.lit;
+          l.el.style.color = s.lit ? "var(--cf-recall-accent)" : "var(--cf-recall-ink)";
+        }
       }
     };
     apply();
     return store.subscribe(apply);
   }, [store, compress, litAt, end, reduced]);
+
+  // The two walls hold a compositor layer only while the Hall's segment is
+  // on screen (its frames play from the moment its top enters the viewport).
+  useEffect(() => {
+    const root = ref.current;
+    const seg = root?.closest<HTMLElement>("[data-film-segment]");
+    if (!root || !seg || typeof IntersectionObserver === "undefined") return;
+    const walls = Array.from(root.querySelectorAll<HTMLElement>(".hall-wall"));
+    let on: boolean | null = null;
+    const io = new IntersectionObserver((entries) => {
+      const visible = entries[entries.length - 1]?.isIntersecting ?? false;
+      if (visible === on) return;
+      on = visible;
+      for (const w of walls) w.style.willChange = visible ? "transform" : "";
+    });
+    io.observe(seg);
+    return () => {
+      io.disconnect();
+      for (const w of walls) w.style.willChange = "";
+    };
+  }, []);
 
   return (
     <div ref={ref} className="hall-text" aria-hidden>
