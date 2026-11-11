@@ -6,6 +6,7 @@ import {
   useId,
   useRef,
   useState,
+  useSyncExternalStore,
   type CSSProperties,
 } from "react";
 import Link from "next/link";
@@ -22,6 +23,7 @@ import {
   publicNavPrefetchProps,
   PUBLIC_NAV_MENU_ID,
   isPublicNavCurrent,
+  parseNavLook,
   publicNavHref,
   shouldShowPersistentCta,
 } from "./RecallNavModel";
@@ -95,6 +97,10 @@ function PrimaryAction({
   );
 }
 
+const noopSubscribe = () => () => {};
+const readNavLook = () => parseNavLook(window.location.search);
+const serverNavLook = () => 1 as const;
+
 export function RecallNav() {
   const pathname = usePathname() || "/";
   const { loggedIn, loading } = useAuthStatus();
@@ -110,6 +116,9 @@ export function RecallNav() {
   const mobileOpenRef = useRef(mobileOpen);
 
   const closeMobile = useCallback(() => setMobileMenuPath(null), []);
+  // Touch nav look over the film (?nav=1…5, read once; globals.css). Server
+  // snapshot 1, so SSR and hydration agree.
+  const navLook = useSyncExternalStore(noopSubscribe, readNavLook, serverNavLook);
 
   useEffect(() => {
     mobileOpenRef.current = mobileOpen;
@@ -134,61 +143,95 @@ export function RecallNav() {
     };
   }, []);
 
+  // Persistent CTA: shown once the hero-end sentinel has crossed the header
+  // line, hidden while a suppression zone (an equivalent signup link) is in
+  // view below the header. Observers only: nothing in the scroll path reads
+  // layout. The header line is re-read only when the header's own size
+  // changes (a ResizeObserver; the 1024px breakpoint), which rebuilds them.
   useEffect(() => {
     const sentinel = document.querySelector<HTMLElement>("[data-public-hero-end]");
     const suppressionZones = Array.from(
       document.querySelectorAll<HTMLElement>("[data-public-sticky-cta-suppress]"),
     );
+    const header = headerRef.current;
+    if (!header || typeof window.IntersectionObserver === "undefined") {
+      setShowPersistentCta(
+        shouldShowPersistentCta({
+          hasSentinel: sentinel != null,
+          sentinelTop: null,
+          headerBottom: 0,
+          suppressionVisible: false,
+        }),
+      );
+      return;
+    }
 
-    let frame = 0;
-    const update = () => {
-      window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(() => {
-        const headerBottom = headerRef.current?.getBoundingClientRect().bottom ?? 0;
-        const suppressionVisible = suppressionZones.some((zone) => {
-          const bounds = zone.getBoundingClientRect();
-          return bounds.bottom > headerBottom && bounds.top < window.innerHeight;
-        });
-        setShowPersistentCta(
-          shouldShowPersistentCta({
-            hasSentinel: sentinel != null,
-            sentinelTop: sentinel?.getBoundingClientRect().top ?? null,
-            headerBottom,
-            suppressionVisible,
-          }),
-        );
-      });
+    let headerBottom = 0;
+    // null while the sentinel is below the header line (or not yet observed).
+    let sentinelTop: number | null = null;
+    const zoneVisible = new Map<Element, boolean>();
+    const publish = () => {
+      let suppressionVisible = false;
+      for (const v of zoneVisible.values()) suppressionVisible ||= v;
+      setShowPersistentCta(
+        shouldShowPersistentCta({
+          hasSentinel: sentinel != null,
+          sentinelTop,
+          headerBottom,
+          suppressionVisible,
+        }),
+      );
     };
 
-    update();
-    const headerBottom = Math.ceil(
-      headerRef.current?.getBoundingClientRect().bottom ?? 0,
-    );
-    let observer: IntersectionObserver | null = null;
-    const supportsObserver = typeof window.IntersectionObserver !== "undefined";
+    let observers: IntersectionObserver[] = [];
+    const build = () => {
+      for (const o of observers) o.disconnect();
+      headerBottom = Math.ceil(header.getBoundingClientRect().bottom);
+      // A zone counts while it is in view between the header line and the
+      // viewport bottom.
+      const zones = new window.IntersectionObserver(
+        (entries) => {
+          for (const e of entries) zoneVisible.set(e.target, e.isIntersecting);
+          publish();
+        },
+        { threshold: 0, rootMargin: `-${headerBottom}px 0px 0px 0px` },
+      );
+      for (const zone of suppressionZones) zones.observe(zone);
+      observers = [zones];
+      if (sentinel) {
+        // The sentinel's root is everything from the header line DOWN (the
+        // bottom margin reaches far below the viewport), so it intersects
+        // exactly while it is below the line. A jump across the line in one
+        // step (an anchor into a later section, a restored scroll position,
+        // the film reel's tall hero) still flips that state and reports.
+        const line = new window.IntersectionObserver(
+          (entries) => {
+            const e = entries[entries.length - 1];
+            if (!e) return;
+            sentinelTop = e.isIntersecting ? null : e.boundingClientRect.top;
+            publish();
+          },
+          { threshold: 0, rootMargin: `-${headerBottom}px 0px 1000000px 0px` },
+        );
+        line.observe(sentinel);
+        observers.push(line);
+      }
+    };
 
-    if (supportsObserver) {
-      observer = new window.IntersectionObserver(update, {
-        threshold: 0,
-        rootMargin: `-${headerBottom}px 0px 0px 0px`,
-      });
-      if (sentinel) observer.observe(sentinel);
-      suppressionZones.forEach((zone) => observer?.observe(zone));
-    }
-    // The observer only reports CHANGES in intersection. A jump that carries
-    // the sentinel from below the viewport to above it in one step (an anchor
-    // link into a later section, a restored scroll position, a tall hero such
-    // as the film reel's) never intersects, so nothing fires. The rAF-throttled
-    // scroll listener covers that; the observer still catches the common case
-    // without a scroll handler doing the work.
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update, { passive: true });
+    // Delivers once on observe (the first build), then on header size changes.
+    let lastSize = "";
+    const sized = new ResizeObserver((entries) => {
+      const box = entries[entries.length - 1]?.borderBoxSize?.[0];
+      const size = box ? `${box.inlineSize}x${box.blockSize}` : "";
+      if (size && size === lastSize) return;
+      lastSize = size;
+      build();
+    });
+    sized.observe(header);
 
     return () => {
-      window.cancelAnimationFrame(frame);
-      observer?.disconnect();
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
+      sized.disconnect();
+      for (const o of observers) o.disconnect();
     };
   }, [pathname]);
 
@@ -212,8 +255,8 @@ export function RecallNav() {
         Skip to main content
       </a>
 
-      <div className="rl-nav-scrim" aria-hidden="true" />
-      <header ref={headerRef} className="rl-nav">
+      <div className="rl-nav-scrim" data-nav-look={navLook} aria-hidden="true" />
+      <header ref={headerRef} className="rl-nav" data-nav-look={navLook}>
         <Link
           ref={brandLinkRef}
           href="/"

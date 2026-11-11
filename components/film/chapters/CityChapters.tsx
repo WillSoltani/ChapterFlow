@@ -12,6 +12,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
+import { gatedRoutePrefetchProps } from "@/components/landing/recall/RecallNavModel";
 import { FilmSegment } from "../FilmSegment";
 import { FramePin } from "../FramePin";
 import { filmCount, key } from "../timeline";
@@ -72,7 +73,8 @@ export function CityChapter({ film, index }: P) {
             {CATALOG_BOOK_COUNT} books. Every one a building.
           </FramePin>
           <FramePin from={orbit} to={last} hold interactive>
-            <Link href="/books" className="film-btn film-btn-ghost">
+            {/* /books is auth-gated: no prefetch into the login redirect (CSP). */}
+            <Link href="/books" {...gatedRoutePrefetchProps("/books")} className="film-btn film-btn-ghost">
               Browse all {CATALOG_BOOK_COUNT} books <ArrowRight size={16} aria-hidden />
             </Link>
           </FramePin>
