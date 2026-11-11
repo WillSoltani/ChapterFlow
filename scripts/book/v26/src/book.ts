@@ -236,7 +236,7 @@ const HARD_CASES = [
 const HOOK_KINDS = [
   "a moment in progress, in the present tense (what the reader is doing or about to do)",
   "a blunt claim with a turn in it",
-  "a line someone says, and what it gets wrong",
+  "something people tell themselves, reported without quotation marks, and what it gets wrong",
   "an object or a place that shows the problem",
   "two outcomes set side by side",
 ];
@@ -938,6 +938,38 @@ export function duplicateNames(ctx: PipelineCtx, ex: Exemplar): Array<{ name: st
     .filter(([, s]) => s.size > 1)
     .map(([name, s]) => ({ name, chapters: [...s].sort() }))
     .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+const HOOK_STOP = new Set(
+  "the a an and or but of to in on at for with from by as is are was were be been it its this that these those you your yours he she they his her their our we i me my not no so if then than when while what which who how why do does did have has had will would can could may might just still even also only very more most much many some any all one two three again".split(" "),
+);
+
+/** The first screens of a book side by side: pairs of landed chapters whose hooks share a pair of neighbouring content
+ *  words ("yoga mat", "front door"). Chapters written in parallel cannot see each other's hooks, so two neighbours can
+ *  open on the same object; the run report names them and a findings round gives one of them a new hook. */
+export function hookCollisions(ctx: PipelineCtx, chapters: number[]): Array<{ words: string; chapters: string[] }> {
+  const stem = (w: string): string => w.replace(/s$/, "");
+  const terms = new Set(bookTerms(ctx).map((t) => stem(t.toLowerCase())));
+  const where = new Map<string, Set<string>>();
+  for (const n of chapters) {
+    const c = readJson<Chapter>(path.join(ctx.config.runDir, chapterName(n), "final.json"));
+    if (!c) continue;
+    const words = c.hook.toLowerCase().replace(/’/g, "'").match(/[a-z']+/g) ?? [];
+    const seen = new Set<string>();
+    for (let i = 0; i + 1 < words.length; i++) {
+      const [a, b] = [words[i]!, words[i + 1]!];
+      if (a.length < 3 || b.length < 3 || HOOK_STOP.has(a) || HOOK_STOP.has(b) || (terms.has(stem(a)) && terms.has(stem(b)))) continue;
+      seen.add(`${a} ${b}`);
+    }
+    for (const k of seen) {
+      if (!where.has(k)) where.set(k, new Set());
+      where.get(k)!.add(chapterName(n));
+    }
+  }
+  return [...where.entries()]
+    .filter(([, s]) => s.size > 1)
+    .map(([words, s]) => ({ words, chapters: [...s].sort() }))
+    .sort((x, y) => x.words.localeCompare(y.words));
 }
 
 /** One reading page holding several chapters, in order, with a nav. */

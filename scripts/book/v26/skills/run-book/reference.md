@@ -62,9 +62,10 @@ wants to set a new form on this book; then ask which chapter they know best as t
 The brief: 4 to 6 lines in the shape of `briefs/the-48-laws-of-power.md`, following the type table in
 `briefs/README.md`: what the book is; where the lesson comes from; what the evidence is and what must not be invented
 (for a book that tells no stories, say so: the chapter's reasoning and cases are the evidence); the quoting rule
-(knowledge mode: no quotations at all); and the limit rule: "tell the author's advice as he gives it; where he
-himself names a limit, give it once as his; add no limit of your own". Only a book whose advice is harsher than the
-lesson a fair reader would use (the 48 Laws) says instead "then say in one sentence where the lesson goes softer".
+(knowledge mode: no quotations at all); and the limit rule: "tell the author's advice as he gives it; add no limit
+of your own". Only a book whose advice is harsher than the lesson a fair reader would use (the 48 Laws) says
+instead "then say in one sentence where the lesson goes softer". The author's own exceptions stay out of the
+chapter either way: the judge reads an exception at the end as a second, opposite lesson.
 A brief that tells the writer to go softer on a how-to book puts an aside in every chapter. Never edit a brief to
 fix one chapter; that is a `--issues` fix round.
 
@@ -75,7 +76,7 @@ Check: `CLI status --book <cfg>` prints `<bookId>: N chapters`, every chapter wi
 
 `CLI keys --book <cfg>` writes `chapters[].keys` into the config: the author's advice, his own names for the tools
 and steps in his order, his reasons where he gives them, a `Reversal:` sentence (`Reversal: none` when the author
-gives no limit; the writer then writes none either),
+gives no limit; it is there for the fact checker, the writer keeps it out of the chapter),
 and `Story the author tells:` (or `none recalled with confidence`; for a book without stories expect that and keep
 it). Drafted by the fixer, since the keys are the fact backbone every later call reads. Read all of them: each
 belongs to its chapter, no quotation marks, no borrowed story or invented battle; keep a `Reversal:` only when it is
@@ -162,7 +163,9 @@ counterintuition frame, the tag and the setting of each example, what makes the 
 quiz and card forms, the key positions and the kinds of practice cue all come from the chapter number, so chapters
 written side by side cannot land on one shape), 0-call checks (shape, exemplar copy, variety), Opus fact check and Sonnet key solver, one fix
 round, land. At the end the log lists chapters clean or open, then `names used in more than one chapter` (chapters
-written side by side never see each other's names; step 7 renames), then `k of N chapters clean; ledger $x of $y`.
+written side by side never see each other's names; step 7 renames), `hooks that share words` (two first screens on
+the same object, such as a yoga mat in chapters 2 and 3: give the later chapter a new hook with one `fix
+--chapters N --issues` round; a hook may not hold quotation marks), then `k of N chapters clean; ledger $x of $y`.
 A stop (exit 3 usage limit, exit 4 budget, a crash) is rerun with the identical command; finished chapters are
 skipped. Budget mechanics: each call reserves $2 (write, fix) or $1 (other) against the ledger before it starts, so
 a stop can come a dollar or two under the cap.
@@ -263,6 +266,7 @@ to `~/cf-wt/v26-plan/status/V1-variants.md` and one to the `v26-campaign` memory
 | a chapter open after two passes | fact-check treadmill on inference sentences | stop; hand the flags over |
 | `names off limits:` lists a book term | `bookNames` incomplete | add it, rerun |
 | every chapter opens the same way | one letter in `approved.summary` | ask the owner for more letters; never `--force` the book |
+| the author or a person from the book's stories is called "they" | the writer guessed a pronoun | one `--issues` round naming the person and the pronoun the keys use; check the keys say "he" or "she" somewhere |
 | `score`: `<KIND> fails in k of N chapters` | a flaw repeated across the book (the repeat rule) | read the evidence in `eval/chNN.eval.json`; one `fix --issues` pass if a small edit fixes it, score again; else hand it to the owner |
 | an aside about the author or a "softer" note in several chapters | the brief tells the writer to go softer | fix the brief's limit line (step 1), `fix --style` on those chapters |
 | `rename landed on "X"` | the rename picked a used name | `fix` once more on that chapter |

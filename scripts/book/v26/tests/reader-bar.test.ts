@@ -6,7 +6,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { bookTerms, extractNames, formText, keyPositions, loadExemplar } from "../src/book";
+import os from "node:os";
+import { bookTerms, extractNames, formText, hookCollisions, keyPositions, loadExemplar } from "../src/book";
 import { runChecks } from "../src/checks";
 import type { PipelineCtx } from "../src/pipeline";
 import { appPlan } from "../src/publish";
@@ -164,4 +165,21 @@ test("the book's capitalized terms and a language are never taken for an invente
   const c = house().chapterJson;
   const withTerms: Chapter = { ...c, breakdown: { ...c.breakdown, fastRead: "Kasia ties the new habit to an Anchor, and Kasia's evening Spanish class hears about the Ability Chain." } };
   assert.deepEqual(extractNames(withTerms, ["Galileo", ...terms], "all").filter((x) => !house().bookNames.join(" ").includes(x)).filter((x) => !["Leah", "Marcus", "Maya", "Priya", "Fouquet", "Louis", "Cosimo", "Medici"].includes(x)), ["Kasia"]);
+});
+
+// ---------------------------------------------------------------- first screens side by side
+
+test("hookCollisions names two chapters whose hooks open on the same object, and leaves the book's own terms alone", () => {
+  const runDir = fs.mkdtempSync(path.join(os.tmpdir(), "v26-hooks-"));
+  const base = house().chapterJson;
+  const land = (n: number, hook: string): void => {
+    fs.mkdirSync(path.join(runDir, `ch0${n}`), { recursive: true });
+    fs.writeFileSync(path.join(runDir, `ch0${n}`, "final.json"), JSON.stringify({ ...base, hook }));
+  };
+  land(1, "It is 10 p.m., and your running shoes sit at the back of the closet.");
+  land(2, "The yoga mat you could not wait to unroll now gathers dust. A tiny habit would have survived.");
+  land(3, "You promise to try harder, eyeing the dusty yoga mat again. A tiny habit asks less.");
+  const ctx = { config: { runDir, title: "Tiny Habits", author: "BJ Fogg", chapters: [] } } as unknown as PipelineCtx;
+  assert.deepEqual(hookCollisions(ctx, [1, 2, 3, 4]), [{ words: "yoga mat", chapters: ["ch02", "ch03"] }]);
+  fs.rmSync(runDir, { recursive: true, force: true });
 });

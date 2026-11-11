@@ -27,7 +27,7 @@ import type { Chapter, Issue, LessonCard } from "./src/types";
 import { COMPONENTS, generateVariants, variantsDir, type Component } from "./src/variants";
 import { renderVariantsPage } from "./src/variantsRender";
 import { assembleChapter, parsePicks } from "./src/assemble";
-import { duplicateNames, fixLanded, loadExemplar, renderPack, runBookChapters } from "./src/book";
+import { duplicateNames, fixLanded, hookCollisions, loadExemplar, renderPack, runBookChapters } from "./src/book";
 import { draftKeys } from "./src/keys";
 import { scoreBook } from "./src/score";
 import { publishBook } from "./src/publish";
@@ -448,6 +448,8 @@ async function cmdBook(ctx: PipelineCtx, chapters: number[], opts: { exemplar?: 
   }
   const dups = duplicateNames(ctx, ex);
   if (dups.length > 0) io.out(`names used in more than one chapter: ${dups.map((d) => `${d.name} (${d.chapters.join(", ")})`).join("; ")}\n`);
+  const hooks = hookCollisions(ctx, ctx.source.spans.map((s) => s.chapterNumber));
+  if (hooks.length > 0) io.out(`hooks that share words: ${hooks.map((h) => `"${h.words}" (${h.chapters.join(", ")})`).join("; ")}\n`);
   const clean = statuses.filter((s) => s.stage === "clean").length;
   io.out(`${clean} of ${statuses.length} chapters clean; ledger ${money(ledgerTotal(ctx.ledgerPath))} of ${money(ctx.config.budgetUsd)}; reading pages under ${path.join(ctx.config.runDir, "reading")}\n`);
   return clean === statuses.length ? 0 : 1;
