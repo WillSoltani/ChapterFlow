@@ -2,7 +2,7 @@
  * Pure scrub math for FilmBackdrop. No DOM writes, no React — unit-testable.
  */
 
-import type { SegmentRegistration } from "./types";
+import type { FilmVariant, SegmentRegistration } from "./types";
 
 export type ActivePick = {
   seg: SegmentRegistration;
@@ -132,6 +132,31 @@ export function framePlacement(cw: number, ch: number, iw: number, ih: number, z
   const w = r.w * (1 + zoom);
   const h = r.h * (1 + zoom);
   return { x: r.x - (w - r.w) * 0.5, y: shiftY + r.y - (h - r.h) * 0.45, w, h };
+}
+
+/**
+ * Where a variant's frame image (iw × ih) is drawn. A plain variant: its own
+ * framePlacement. A band tier (`frame` + `band`): the VIRTUAL frame
+ * (1080×1920) is placed by framePlacement exactly as the full portrait frame
+ * was, and the image fills the band's rectangle inside it, so every picture
+ * pixel lands where the full frame put it (to within resampling). The image's
+ * own size does not enter: a 900×810 and a 1080×972 tier land on the same rect.
+ */
+export function variantPlacement(
+  cw: number,
+  ch: number,
+  v: Pick<FilmVariant, "width" | "height" | "frame" | "band">,
+  iw: number,
+  ih: number,
+  zoom: number,
+  shiftY = 0,
+) {
+  const { frame, band } = v;
+  if (!frame || !band) return framePlacement(cw, ch, iw, ih, zoom, shiftY);
+  const r = framePlacement(cw, ch, frame.w, frame.h, zoom, shiftY);
+  const sx = r.w / frame.w;
+  const sy = r.h / frame.h;
+  return { x: r.x + band.x * sx, y: r.y + band.y * sy, w: band.w * sx, h: band.h * sy };
 }
 
 /**

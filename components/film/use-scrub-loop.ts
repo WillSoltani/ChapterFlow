@@ -30,20 +30,19 @@
 
 import { useEffect, type MutableRefObject } from "react";
 import type { FrameBudget, FrameCache } from "./frame-cache";
-import { pickVariant } from "./reel-context";
 import {
   backingSize,
   breathAt,
   frameAt,
-  framePlacement,
   holdBreathClock,
   pickActive,
   quantise,
   reelEndScrollY,
   stageShift,
+  variantPlacement,
   viewportRects,
 } from "./scrub";
-import type { FilmManifest, Orientation, ReelChrome, SegmentRegistration } from "./types";
+import type { FilmManifest, FilmVariant, ReelChrome, SegmentRegistration } from "./types";
 
 export const REEL_CHROME_EVENT = "cf-reel-chrome";
 
@@ -51,8 +50,9 @@ export const REEL_CHROME_EVENT = "cf-reel-chrome";
 const GEOMETRY_SAFETY_MS = 500;
 
 /**
- * Canvas clear colour = the landing colour the portrait frames' baked bars
- * are encoded in, so canvas area the picture does not cover shows no seam.
+ * Canvas clear colour = the landing colour (#06070A). It is everything outside
+ * a band tier's band, and the colour the hero's ramp bars inside the band are
+ * encoded in, so canvas area the picture does not cover shows no seam.
  */
 function readCanvasBg(canvas: HTMLCanvasElement): string {
   const v = getComputedStyle(canvas).getPropertyValue("--cf-recall-bg").trim();
@@ -71,7 +71,11 @@ type Args = {
   drawn: MutableRefObject<{ segment: number; frame: number }>;
   drawnListeners: MutableRefObject<Set<() => void>>;
   reducedRef: MutableRefObject<boolean>;
-  orientation: Orientation;
+  /**
+   * The film's cache for the current view (variant picked by pickVariant).
+   * Its identity changes when the pick does (rotation, a resize across a tier
+   * threshold), which restarts this loop on the new caches.
+   */
   cacheFor: (film: FilmManifest) => FrameCache;
   budget: FrameBudget;
 };
@@ -84,7 +88,6 @@ export function useScrubLoop({
   drawn,
   drawnListeners,
   reducedRef,
-  orientation,
   cacheFor,
   budget,
 }: Args) {
@@ -254,11 +257,13 @@ export function useScrubLoop({
 
     // Shift (backing px) that centres the picture on the stage; set per paint.
     let shiftY = 0;
-    const draw = (img: Drawable, alpha: number, zoom: number) => {
+    // A band tier is placed through its virtual 1080×1920 frame (frames,
+    // posters and the dissolve underlay alike), a landscape frame by itself.
+    const draw = (img: Drawable, variant: FilmVariant, alpha: number, zoom: number) => {
       const iw = img.width;
       const ih = img.height;
       if (!iw || !ih) return;
-      const r = framePlacement(canvas.width, canvas.height, iw, ih, zoom, shiftY);
+      const r = variantPlacement(canvas.width, canvas.height, variant, iw, ih, zoom, shiftY);
       ctx.globalAlpha = alpha;
       ctx.drawImage(img, r.x, r.y, r.w, r.h);
       ctx.globalAlpha = 1;
@@ -316,8 +321,8 @@ export function useScrubLoop({
       if (!pick) return true;
       const { seg } = pick;
 
-      const variant = pickVariant(seg.film, orientation);
       const cache = cacheFor(seg.film);
+      const variant = cache.variant;
       const p = reduced ? quantise(pick.progress, seg.reducedSteps) : pick.progress;
       target = frameAt(p, variant.count);
 
@@ -347,9 +352,10 @@ export function useScrubLoop({
         lastFetchKey = fetchKey;
         const before = segments.current.get(seg.index - 1);
         const next = warmNext ? segments.current.get(seg.index + 1) : undefined;
+        const beforeCache = before && seg.dissolveIn > 0 ? cacheFor(before.film) : undefined;
         budget.want({
           active: { cache, center: target, direction },
-          pin: before && seg.dissolveIn > 0 ? { cache: cacheFor(before.film), index: pickVariant(before.film, orientation).count - 1, until: seg.dissolveIn } : undefined,
+          pin: beforeCache ? { cache: beforeCache, index: beforeCache.variant.count - 1, until: seg.dissolveIn } : undefined,
           next: next ? cacheFor(next.film) : undefined,
         });
       }
@@ -366,15 +372,15 @@ export function useScrubLoop({
         if (img) {
           const prev = segments.current.get(seg.index - 1);
           if (seg.dissolveIn > 0 && frame < seg.dissolveIn && prev) {
-            const prevVar = pickVariant(prev.film, orientation);
             const prevCache = cacheFor(prev.film);
+            const prevVar = prevCache.variant;
             const prevImg = prevCache.nearest(prevVar.count - 1);
             if (prevCache.lastServed !== prevVar.count - 1) shown.under = prevCache;
-            if (prevImg) draw(prevImg, 1, breath);
+            if (prevImg) draw(prevImg, prevVar, 1, breath);
             const u = frame / seg.dissolveIn;
-            draw(img, u * u * (3 - 2 * u), breath); // smoothstep cross-fade
+            draw(img, variant, u * u * (3 - 2 * u), breath); // smoothstep cross-fade
           } else {
-            draw(img, 1, breath);
+            draw(img, variant, 1, breath);
           }
         }
         drawn.current = { segment: seg.index, frame };
@@ -416,5 +422,5 @@ export function useScrubLoop({
       if (invalidateRef.current === onResize) invalidateRef.current = () => {};
       offLoad();
     };
-  }, [canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, orientation, cacheFor, budget]);
+  }, [canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget]);
 }
