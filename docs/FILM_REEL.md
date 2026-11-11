@@ -17,7 +17,15 @@ components/film/
   scrub.ts            pure math: pickActive, frameAt, quantise, coverRect, breathAt,
                       backingSize, stageShift, framePlacement, variantPlacement,
                       viewportRects, reelEndScrollY
-  frame-cache.ts      FrameBudget (one wanted set, byte budget, load limits) + FrameCache, nearest()
+  frame-cache.ts      FrameBudget (one wanted set, byte budget, load limits) + FrameCache, nearest();
+                      pack mode via a PackSource (decode in the worker, coarse first)
+  pack-format.ts      pack layout v1: header parse, layout check against the timeline
+  pack-store.ts       PackBytes: held bytes per frame slot, the incremental frame cutter
+  pack-plan.ts        the network plan (pure): which ranges of which packs to read now
+  pack-net.ts         PackNet: Range streams, retries, byte cap, stats (the worker's core)
+  film-worker.ts      the film worker: PackNet + createImageBitmap, bitmaps transferred
+  film-worker-protocol.ts  page ↔ worker messages
+  pack-client.ts      page side of the worker (PackSource): lazy start, held-frame mirror, fallback
   reel-context.tsx    ReelContext + orientation media query + variant pick (readView, pickVariant)
   use-scrub-loop.ts   the ONE rAF loop: cached geometry → active segment → frame → canvas
   FilmBackdrop.tsx    fixed 100lvh <canvas>, registers segments, owns caches
@@ -31,7 +39,9 @@ components/film/
 scripts/film/
   encode.mjs          Blender frames → public/films/<name>/f_0001.webp + poster + manifest;
                       --bands writes the portrait band tiers <name>-b1080, <name>-b900
-  placeholder.mjs     synthetic frames from timeline (dev only): landscape + band tiers
+  placeholder.mjs     synthetic frames from timeline (dev only): landscape + band tiers, with packs
+  pack.mjs            one pack.bin per variant from its frame files (npm run film:pack; --verify)
+  pack-lib.mjs        pack builder / verifier shared by pack.mjs, encode.mjs, placeholder.mjs
   tier-parity.mjs     proof that the band tiers draw like the legacy -p frames (npm run film:parity)
 ```
 
@@ -146,8 +156,9 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   - A frame that lands nearer to the wanted one than what the canvas shows
     triggers a repaint (`budget.subscribe`), with or without scrolling,
     breath or reduced motion.
-  - Counters, always on (production too): `window.__filmStats` — `fetches`,
-    `refetches` (a network fetch for bytes this page already fetched),
+  - Counters, always on (production too): `window.__filmStats` — `fetches`
+    (per-frame requests only; packs are counted separately, below),
+    `refetches` (a per-frame request for bytes this page already fetched),
     `decodes`, `redecodes`, `exactDraws`, `fallbackDraws`,
     `fallbackDistanceSum` (|drawn − wanted| summed over fallback draws; the
     poster counts as frame 0), `evictions`, `maxFetchInFlight`,
@@ -156,7 +167,115 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     per visit unless the window's width, orientation, zoom or DPR changes),
     `geometryMeasures`, `ticksWorked` and `ticksSkipped` (not in the HUD).
     `?hud=1` shows a second line: `exact 97% · refetch 0 · dist 0.4 · fetch
-    3/4` (dist = mean distance over ALL draws).
+    3/4` (dist = mean distance over ALL draws), and a third (see Packs).
+- Packs (Phase 4): one streamed file per film variant, decoded off the
+  main thread. This is how every variant with a pack loads; the per-frame
+  path above stays complete as the fallback.
+  - **Layout** (`pack.bin` next to the frames; `scripts/film/pack-lib.mjs`
+    writes it, `pack-format.ts` reads it). Little-endian u32: magic `CFPK`,
+    layout version 1, frame count N, header length H = 24 + 12·N, the byte
+    offset where the skeleton layer ends, the total length, then N entries
+    in FILE order (frame index, byte offset, byte length), then the frame
+    bytes, byte for byte the frame files, no re-encode. File order: the
+    skeleton layer (every 4th frame: 0, 4, 8, … in frame order), then every
+    other frame in frame order. The reader takes the order from the table
+    and assumes nothing. Deterministic (same frames, same bytes); the
+    version is the first 12 hex characters of the pack's SHA-256.
+    `manifest.json` gets `pack: {bytes, header, skeletonEnd, openingEnd, v}`
+    and the timeline the same under `films.<name>.pack` and
+    `films.<name>.bands.<tier>.pack` (`openingEnd`: the byte where frames
+    0–47 are all complete, so the request before the first scroll is bounded
+    exactly). The URL is `<variant>/pack.bin?v=<pack v>`.
+  - **Worker** (`film-worker.ts`, created lazily by `pack-client.ts` with
+    `new Worker(new URL("./film-worker.ts", import.meta.url), { type:
+    "module" })`, on the first scroll decision; never at import or during
+    server render; dev and the production build both emit it as its own
+    chunk). It owns the pack bytes: Range requests read through the
+    response body's ReadableStream, frames cut as bytes arrive across any
+    chunk boundary (`PackBytes`), compressed bytes capped at 48 MB on phones
+    and 160 MB otherwise (the budget's own small/large signal, i.e.
+    `pickFrameBudgetBytes` < 256 MB; over the cap the variant farthest from
+    the active film loses frames first, from the end of its file, never the
+    active film, the neighbour being prepared or a pack with a stream open),
+    and decodes a held frame on request with `createImageBitmap`,
+    transferring the ImageBitmap with its decode time.
+  - **Protocol** (`film-worker-protocol.ts`). Page → worker: `init` (the
+    cap), `packs` (the reel's packs for the current view, in film order),
+    `where` (active pack, playhead frame, direction, wanted window lo/hi,
+    scrolled yet, document hidden, connection constrained), `decode`.
+    Worker → page: `ready` (false without createImageBitmap, fetch or a
+    streaming body), `frames` (frames arrived / dropped), `failed` (the pack
+    is unusable), `stats`, `decoded` (the bitmap, or missing / error).
+  - **Scheduler** (`frame-cache.ts`, `attachPacks`). For a variant served
+    from its pack the page holds no compressed bytes. A wanted frame the
+    worker holds is decoded there (same decode limit, bytes reserved when
+    it starts); one whose bytes have not arrived is not loadable yet (no
+    slot, blocks nothing) and is decoded when they arrive if still wanted.
+    Within the window: the playhead frame, then every 4th frame nearest
+    first, then the in-between frames nearest first (coarse first). The
+    Phase 1 guarantees hold in both modes (frame-cache.test.ts). A bitmap
+    landing for a disposed cache is closed at once; one landing for a frame
+    no longer wanted is kept while it fits and closed on eviction or
+    dispose.
+  - **Network plan** (`pack-plan.ts`, pure, re-run after every chunk, stream
+    end, scroll decision and backoff). Once the visitor has scrolled, in
+    order: (1) the active film's skeleton, (2) the skeleton of the film the
+    visitor travels towards (next scrolling down, previous scrolling up),
+    (3) the active film's remaining frames, (4) the neighbour's remaining
+    frames; nothing else (a stream on any other pack is stopped, its bytes
+    stay). One stream per pack, at most 2 at once, none opened while the
+    document is hidden. A stream starts at the first byte not held and ends
+    before the next held byte; it is open-ended (`bytes=N-`) when that is
+    the end of the file, so a skeleton followed by the frames about to be
+    needed is ONE request, and no range is read twice while its bytes are
+    held (`packBytesRepeated`). Before the first scroll (scroll position 0
+    at load, no #anchor) only the first film's pack is requested, bounded at
+    `openingEnd` (skeleton plus frames through 47), and it continues from
+    the first missing byte on the first scroll; there is no two-film
+    warm-up in pack mode. Posters load as before. Re-aim: when the playhead
+    is where the stream is not, the stream is stopped and reopened at the
+    first missing frame at the playhead (forward), or at a run ending at the
+    highest missing frame at or below it, starting 64 frames lower
+    (backward), and what was skipped is filled afterwards with a range that
+    ends before the held bytes. Only on a jump (≥ 24 frames in one
+    decision, or a film entered out of order), a stop (300 ms without a
+    playhead change), or while scrolling up; a stream ≤ 16 frames short of
+    the target is left to reach it; while the visitor moves forward steadily
+    faster than the network the stream keeps reading in order (a re-aim
+    there would cost a request a second for frames passed at once; the
+    skeleton covers the motion). The neighbour flips with the direction only
+    after 8 frames of travel. Constrained connections (`saveData`, or
+    `effectiveType` slow-2g / 2g / 3g): skeletons only (1, 2) while moving;
+    after 300 ms still, the missing frames of the wanted window in one
+    bounded request.
+  - **Responses** (`pack-net.ts`). 206 must start where asked and carry the
+    timeline's total. 200 to a request past byte 0 (a server that ignores
+    Range): the body is read from 0, bytes already held are discarded (and
+    counted as repeated) and that pack is read whole from then on. A total,
+    `Content-Length` or header that disagrees with the timeline, 404, 410 or
+    416: the pack is unusable at once. Network errors, 403, 429, 5xx or a
+    body that ends early: retried after 400 ms, 800 ms, 1.6 s (what arrived
+    is kept; the retry starts at the first missing byte); a fourth failure
+    in a row makes the pack unusable.
+  - **Fallback** (`pack-client.ts`). Per variant: the timeline has no pack
+    for it, or its pack is unusable (above) → per-frame path for the rest of
+    the page view. Every variant: `?pack=0`, no `Worker`, the worker cannot
+    start, lacks createImageBitmap / fetch / a streaming body, or errors
+    (crash). Frames already decoded stay, pending decodes reject quietly,
+    the order and the mode switch at once, no error loop (the per-frame
+    path keeps its own backoff).
+  - **Counters** added to `__filmStats`: `mode` of the ACTIVE variant
+    (`pack` or `frames`), `packRequests`, `packBytes` (received),
+    `packBytesRepeated` (received for a range already held; must stay 0),
+    `packBytesHeld`, `packReaims`, `packFallbacks`, `packHeldShare` and
+    `packSkeleton` (active film's pack), `workerDecodes` with
+    `workerDecodeMeanMs` / `workerDecodeMaxMs`, `mainThreadDecodes` with
+    `mainThreadDecodeMeanMs` / `mainThreadDecodeMaxMs` (decodes started from
+    the page on the per-frame path; WebKit runs those on the main thread),
+    and the draw gauges `drawWant` / `drawAt` (the last paint's wanted and
+    drawn frame). `fetches` and `refetches` count per-frame requests only.
+    `?hud=1` third line: `pack 42% · skeleton done · decode 14.4 ms in
+    worker`, or `frames · decode 9.0 ms on page`.
 - Breath: `±amp` slow sinusoidal zoom while held (off under reduced motion).
 - Reduced motion (OS or in-app toggle): progress quantised to `reducedSteps` (5).
 - `<html data-reel-chrome="film|body" data-reel-section="…">` + `cf-reel-chrome`
@@ -316,8 +435,32 @@ aws s3 sync public/films "$B" --exclude '*' --include 'palace-0?-b900/*.json' --
 # (pages already open in a browser still ask for them); delete them only in
 # the release after this one.
 
+# PACKS (Phase 4): one pack.bin per landscape and band-tier folder, built
+# from the frame files byte for byte; the manifests and book.timeline.json
+# record them (encode.mjs and placeholder.mjs build packs for what they write).
+npm run film:pack                      # all 21 folders, then syncs the timeline
+npm run film:pack -- palace-03-b900    # one folder
+npm run film:pack -- --verify          # every slice equals its file; exit 1 otherwise
+node scripts/film/encode.mjs --sync-timeline   # STALE PACK + exit 1 when a pack no longer matches its folder
+# Upload the packs BEFORE deploying the code that reads them (until then a
+# deployed page would get 404 and load frame by frame). Only the pack files
+# and the manifest.json files that changed; the frames stay as they are and
+# remain the fallback for one release:
+aws s3 sync public/films "$B" --exclude '*' --include 'palace-0?/pack.bin' --include 'palace-0?-b900/pack.bin' --include 'palace-0?-b1080/pack.bin' \
+    --content-type application/octet-stream --cache-control 'public,max-age=31536000,immutable'
+aws s3 sync public/films "$B" --exclude '*' --include 'palace-0?/manifest.json' --include 'palace-0?-b900/manifest.json' --include 'palace-0?-b1080/manifest.json' \
+    --content-type application/json --cache-control 'public,max-age=300'
+# The pack URL carries ?v=<pack hash>, so no CloudFront invalidation is
+# needed. The object key itself is not versioned: a page still open on an
+# older version that misses the cache gets the new bytes, sees that their
+# length or header disagrees with its timeline and loads frame by frame.
+# The production CDN answers Range on /films/* with 206 (checked before Phase 4).
+# Remove the per-frame objects only in a later release, after the owner
+# confirms (and lower the /films/ WAF limit then, see the plan).
+
 # optional: an external CDN instead — then set the origin at BUILD time and
-# lib/csp.ts adds it to img-src + connect-src
+# lib/csp.ts adds it to img-src + connect-src (the worker fetches packs with
+# fetch(), connect-src; lib/csp.ts already allows worker-src 'self' blob:)
 NEXT_PUBLIC_FILM_BASE=https://<cdn>/films
 ```
 
@@ -326,6 +469,22 @@ landscape 108.5 MB, b1080 50.6 MB, b900 38.3 MB (the legacy -p folders were
 53.7 MB). A visitor scrubbing the whole reel pulls the variant they are on,
 each frame once (see the wanted set under Runtime): desktop ~108 MB, a phone
 ~38 MB. First paint needs only the poster.
+
+Packs (2026-11-11; a pack = its frames + a 2–3.4 KB header; skeleton ≈ 25 %):
+
+| Film | landscape | b1080 | b900 |
+|---|---|---|---|
+| palace-00 | 17.11 MB | 8.60 MB | 6.36 MB |
+| palace-01 | 11.19 MB | 5.78 MB | 4.49 MB |
+| palace-02 | 12.81 MB | 5.73 MB | 4.32 MB |
+| palace-03 | 29.06 MB | 11.56 MB | 8.26 MB |
+| palace-04 | 10.12 MB | 5.49 MB | 4.34 MB |
+| palace-05 | 18.49 MB | 8.56 MB | 6.65 MB |
+| palace-06 | 9.73 MB | 4.91 MB | 3.84 MB |
+| all seven | 108.5 MB | 50.6 MB | 38.3 MB |
+
+Before the first scroll a desktop reads 7.12 MB of palace-00 (skeleton plus
+the opening frames, one request) and a phone 2.45 MB of palace-00-b900.
 
 ## Production status
 
@@ -369,19 +528,47 @@ toward a barred frame.
   headless Chromium has no GPU and its software raster of a full-viewport
   canvas shows stalls real Chrome never does. Reference (prod bundle, M-series):
   58–60 fps, 0 long tasks, 0 holds, worst stall ≤ 70 ms.
-- `npm run film:quality` (`scripts/film/scrub-quality.mjs`; dev server or
-  `next start` on :3000) — the loading gate: one time-based scroll down the
-  whole reel per profile (`phone-webkit` = iPhone 14 at 600 px/s,
+- `npm run film:quality` (`scripts/film/scrub-quality.mjs`; `next start` on
+  :3000 for real numbers, or the dev server) — the loading gate: one
+  time-based scroll down the whole reel per profile, with three 1.5 s stops
+  (at 30 %, 55 %, 80 %): `phone-webkit` = iPhone 14 at 600 px/s,
   `phone-chromium-slow` = Pixel 7, CPU 4×, Fast 4G, no `deviceMemory`, at
-  600 px/s, `desktop-chromium` = 1440×900 at 900 px/s; `ONLY=`, `SPEED=`
-  override). Prints frame requests on the network vs distinct frames, the
-  frame requests per variant folder (which tier the profile drew), the
-  `__filmStats` counters, the exact-draw share and the mean fallback
-  distance, and the scrub loop's counters plus its worked / skipped ticks
-  over the next 2 s at rest; exits non-zero on any refetch or more than 4
-  fetches in flight. (The pass stops at the last segment's bottom; WebKit
-  rounds scrollY down, so there the reel can sit 1 px short of its end and
-  the loop keeps breathing instead of stopping.)
+  600 px/s, `desktop-chromium` = 1440×900 at 900 px/s, all in pack mode,
+  and `desktop-chromium-frames` = the same with `?pack=0`; `ONLY=`,
+  `SPEED=`, `STRICT=1`, `OUT=<json>`. Prints every film request (packs,
+  frames, posters; the worker's requests included: Playwright reports them
+  in Chromium and WebKit, and where the network count is below
+  `packRequests` the counter is used and the line says so) and their bytes,
+  requests per variant folder, the counters, where decodes ran and their
+  mean, the exact-draw share, the mean fallback distance over all draws,
+  the time to the exact frame after each stop (`drawWant` = `drawAt` and no
+  longer changing; on an older build the HUD frame and the paint counters),
+  rAF fps and the longest frame, and for the slow profile the peak pack
+  throughput over 2 s. Chromium applies CDP network emulation per target
+  and a dedicated worker is its own target: measured 2026-11-11, the page's
+  Fast 4G emulation does reach the worker's pack requests (1.01 MB/s); the
+  script fails the run if the peak is above 1.5× Fast 4G. Hard failures in
+  pack mode: any per-frame request, more than 30 film requests, any
+  repeated pack byte, any refetch, fewer than 97 % exact draws on
+  phone-webkit and desktop; with `?pack=0`: any refetch or more than 4
+  fetches in flight. Soft targets (`TARGET MET` / `TARGET MISSED`, failing
+  only with `STRICT=1`): slow phone mean fallback distance ≤ 4 frames and
+  the exact frame ≤ 1 s after each stop; phone-webkit longest frame
+  ≤ 100 ms. (The pass stops at the last segment's bottom; WebKit rounds
+  scrollY down, so there the reel can sit 1 px short of its end and the
+  loop keeps breathing instead of stopping.) Measured 2026-11-11 on a local
+  production build (M-series Mac):
+
+  | Profile | Film requests | Bytes | Exact draws | Mean distance | Exact after each stop | fps / longest | Decodes |
+  |---|---|---|---|---|---|---|---|
+  | phone-webkit (pack) | 15 (8 pack, 7 poster) | 38.4 MB | 99.9 % | 0.00 | 222 / 250 / 252 ms | 60 / 44 ms | worker, 8.4 ms |
+  | phone-chromium-slow (pack) | 17 (10 pack, 7 poster) | 34.7 MB | 87.3 % | 0.25 | 216 / 567 / 232 ms | 60 / 34 ms | worker, 3.4 ms |
+  | desktop-chromium (pack) | 15 (8 pack, 7 poster) | 109.0 MB | 99.9 % | 0.00 | 233 / 251 / 250 ms | 60 / 19 ms | worker, 11.5 ms |
+  | desktop-chromium `?pack=0` | 1,700 (1,693 frame) | 109.0 MB | 99.9 % | 0.00 | 233 / 250 / 267 ms | 60 / 19 ms | page, 12.5 ms |
+  | phone-chromium-slow, Phase 3 build | 707 (700 frame) | 15.3 MB | 9.0 % | 10.34 | 317 / 333 / 265 ms | 60 / 35 ms | page |
+
+  About 230–250 ms of every "exact after stop" is the scroll glide itself
+  (the 90 ms smoothing), not loading.
   It refuses a non-local `BASE` unless `ALLOW_REMOTE=1` AND `MAX_REQUESTS=n`
   are set (the live site rate-limits per IP).
 - `node scripts/film/seam-geometry.mjs` (dev server on :3000, `BASE=` to
@@ -398,7 +585,36 @@ toward a barred frame.
   fetch/decode: wanted set within budget on forward, backward and jumping
   scrubs; 0 refetches; held bytes re-decoded; wanted frames never evicted;
   the dissolve pin; fetch/decode limits; queued vs started; accounting back
-  to zero after `dispose()`.
+  to zero after `dispose()`. Pack mode with a fake PackSource: frames not
+  held take no slot and decode on arrival; coarse-first order; the same
+  guarantees on forward, backward and jumping scrubs; every bitmap closed
+  once (late, unwanted, disposed); fallback keeps decoded frames and loads
+  the rest per frame; draw gauges.
+- `components/film/pack-build.test.ts` — the pack tool: skeleton-first
+  order, header and slices, determinism, `--verify` catching a changed or
+  added frame, the timeline sync keeping a version and dropping a stale pack.
+- `components/film/pack-format.test.ts` — the TS reader against the mjs
+  writer; the cutter fed the same pack one byte at a time, at every slot
+  edge, inside the header, at the skeleton boundary and at 40 random chunk
+  sets; stop-and-resume at the first byte not held; repeated bytes counted;
+  a header that disagrees with the timeline.
+- `components/film/pack-plan.test.ts` — the planner driving a simulated
+  network: a steady forward pass over two films, a network slower than the
+  playhead (no re-aim while moving, a stop re-aims, the skipped frames are
+  filled), entering a film backwards, a jump into the middle, the pre-scroll
+  stop and its continuation, constrained mode, eviction followed by a
+  return, a 200 answer to a Range request, a hidden document.
+- `components/film/pack-net.test.ts` — the controller against a fake server
+  (real Response / ReadableStream): chunked reads, 404, retries then
+  failure, a dropped connection resumed, length and header mismatches, 200
+  to a Range request, the pre-scroll stop, the byte cap, hidden, re-aim on
+  a jump and on a stop, the direction hysteresis.
+- `components/film/pack-client.test.ts` — the page side with a fake worker:
+  lazy start, the scrolled flag, the held-frame mirror, per-variant and
+  whole fallback, a late bitmap closed.
+- `e2e/smoke.spec.ts` (CI, dev and `@prod`): on the landing page the film
+  worker starts, a missing pack (404) falls back to frames, the worker stays
+  up, and the console shows no CSP violation and no uncaught exception.
 - `e2e/film-reel.spec.ts` — scrubs, dissolve, chrome flip, canvas paints,
   reduced-motion quantisation. Skips if `public/films` is empty. Runs in CI.
 - `npm run test:film` — **the QA audit** (opt-in, slow, needs frames):
@@ -415,9 +631,13 @@ toward a barred frame.
     virtual frame (mean |Δ| ≤ 0.5), be closer to it than to a frame 60 away,
     and be exactly the clear colour outside the band. It does not need the
     legacy -p frames.
-  - `film-quality.spec.ts` scrolls steadily over the first two films and
-    asserts from the network and `__filmStats` (not the HUD): 0 refetches,
-    ≤ 4 fetches in flight, no frame requested twice. On a 390 × 844 phone
+  - `film-quality.spec.ts` scrolls steadily over the first two films in pack
+    mode and asserts from the network and `__filmStats` (not the HUD): no
+    per-frame request, ≤ 30 film requests, no pack byte read twice; and again
+    with `?pack=0`: 0 refetches, ≤ 4 fetches in flight, no frame requested
+    twice. Before the first scroll: after load and 3 s still, exactly one
+    pack request (palace-00) and film bytes ≤ its skeleton + 48 opening
+    frames + the posters + 300 KB. On a 390 × 844 phone
     viewport: `canvasResizes` is 1 after a pass over the first film; 2 s at
     rest add ≤ 24 worked ticks (breath repaints only: the hero's 0.012
     breath changes ≤ ~9 times a second; measured 16–18); at the pricing
@@ -426,7 +646,7 @@ toward a barred frame.
     animation frames later; widening the window to 430 px, the first
     animation frame after the `resize` already has a backing store of the
     new box, and that is the second (and only other) allocation; and every
-    frame and poster request of that phone is for a `palace-*-b900` folder.
+    film request of that phone is a `palace-*-b900` pack or poster.
 - `npm run film:parity` (`scripts/film/tier-parity.mjs`; dev server on :3000,
   local only like `film:quality`) — the tier proof: on a 390 × 844 phone (b900)
   and an 820 × 1180 tablet (b1080), both DPR 2, reduced motion, 36 positions
