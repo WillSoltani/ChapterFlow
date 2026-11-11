@@ -64,6 +64,28 @@ export function buildCommonRuleSetActionOverrides(): wafv2.CfnWebACL.RuleActionO
 }
 
 /**
+ * URI prefix of the landing's film-reel frames. Must stay identical to the
+ * `films/*` CloudFront behavior in chapterflow-frontend-stack.ts, so the
+ * rate-limit carve-out below can only ever reach the static S3 origin.
+ */
+export const FILM_FRAMES_PATH_PREFIX = "/films/";
+
+/** Per-IP requests per rolling 5 minutes allowed under FILM_FRAMES_PATH_PREFIX. */
+export const FILM_FRAMES_RATE_LIMIT = 20000;
+
+/** "URI path starts with /films/" — raw match, no transformation. */
+function filmFramesPathStatement(): wafv2.CfnWebACL.StatementProperty {
+  return {
+    byteMatchStatement: {
+      searchString: FILM_FRAMES_PATH_PREFIX,
+      fieldToMatch: { uriPath: {} },
+      positionalConstraint: "STARTS_WITH",
+      textTransformations: [{ priority: 0, type: "NONE" }],
+    },
+  };
+}
+
+/**
  * Build the full ordered WebACL rule list for the CloudFront distribution.
  *
  * @param webAclMetricName CloudWatch metric name for the ACL (caller-namespaced).
@@ -92,6 +114,16 @@ export function buildWebAclRules(): wafv2.CfnWebACL.RuleProperty[] {
     {
       // Per-IP rate limit: block a source IP sending >2000 requests in any
       // rolling 5-minute window (baseline volumetric/bot mitigation).
+      //
+      // Film-reel frames are scoped OUT of this rule and counted by their own
+      // rule below. The landing paints its scroll-scrubbed film from one
+      // static image per frame (~1,700 per pass through the reel), all served
+      // from the S3 static-assets origin. Counted here, one visitor scrolling
+      // the landing spent the whole 2,000 allowance, and two visitors behind
+      // one carrier/home NAT exceeded it: WAF then 403'd the PAGE and the API
+      // for that IP, not just the frames (12,581 requests blocked in one hour
+      // on 2026-11-09). WAF evaluates before the CloudFront cache, so edge
+      // cache hits count too.
       name: "RateLimitPerIp",
       priority: 2,
       action: { block: {} },
@@ -99,11 +131,35 @@ export function buildWebAclRules(): wafv2.CfnWebACL.RuleProperty[] {
         rateBasedStatement: {
           limit: 2000,
           aggregateKeyType: "IP",
+          scopeDownStatement: {
+            notStatement: { statement: filmFramesPathStatement() },
+          },
         },
       },
       visibilityConfig: {
         cloudWatchMetricsEnabled: true,
         metricName: "RateLimitPerIp",
+        sampledRequestsEnabled: true,
+      },
+    },
+    {
+      // Film frames keep a volumetric ceiling of their own, sized for several
+      // visitors behind one IP scrolling the reel at once. Exceeding it blocks
+      // only further frame requests (the reel holds its nearest frame); the
+      // page, the app and the API stay reachable.
+      name: "RateLimitFilmsPerIp",
+      priority: 3,
+      action: { block: {} },
+      statement: {
+        rateBasedStatement: {
+          limit: FILM_FRAMES_RATE_LIMIT,
+          aggregateKeyType: "IP",
+          scopeDownStatement: filmFramesPathStatement(),
+        },
+      },
+      visibilityConfig: {
+        cloudWatchMetricsEnabled: true,
+        metricName: "RateLimitFilmsPerIp",
         sampledRequestsEnabled: true,
       },
     },
