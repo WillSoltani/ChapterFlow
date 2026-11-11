@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildPack } from "../../scripts/film/pack-lib.mjs";
+import { parsePackHeader } from "./pack-format";
 import { PackNet, type NetClock, type NetEvent, type NetPack } from "./pack-net";
 
 // The worker's network controller with a fake server: real Response and
@@ -268,4 +269,72 @@ test("hidden document: no stream opens until it is shown", async () => {
   where({ hidden: false });
   await settle();
   assert.equal(srv.log.length, 1);
+});
+
+test("re-aim: steady forward motion keeps the stream; a jump reopens it at the playhead", async () => {
+  const a = film(241);
+  const b = film(241, 2);
+  const h = parsePackHeader(a.buf.subarray(0, a.layout.header));
+  assert.ok(h && !("error" in h));
+  const slotStart = (f: number) => h.slots[h.slotOf[f]!]!.offset;
+  // A slow network: 12 bytes per chunk, one chunk per macrotask per stream.
+  const t = setup([a, b], { chunk: 12 });
+  t.where({ frame: 0 });
+  await settle(1200);
+  const f0 = () => t.srv.log.filter((l) => l.url.includes("/f0/"));
+  assert.ok(t.net.frame("f0", 240), "skeleton complete");
+  assert.ok(!t.net.frame("f0", 201), "frame 201 not there yet");
+  // Steady forward motion faster than the stream: no new request.
+  for (let f = 1; f <= 60; f++) {
+    t.where({ frame: f });
+    await settle(3);
+  }
+  assert.equal(f0().length, 1, "no re-aim while moving forward");
+  // A jump (anchor, flick) to frame 200: reopened at the first missing frame
+  // at the playhead (200 is a skeleton frame, held; 201 is the first missing).
+  t.where({ frame: 200 });
+  await settle(5);
+  assert.equal(f0().length, 2, "one new request after the jump");
+  assert.equal(f0()[1]!.range, `bytes=${slotStart(201)}-`);
+  assert.equal(t.net.stats.packReaims, 1);
+  await settle(400);
+  assert.ok(t.net.frame("f0", 201), "the frames at the playhead arrive");
+  assert.equal(t.net.stats.packBytesRepeated, 0);
+});
+
+test("re-aim on a stop: once the visitor has been still for 300 ms", async () => {
+  const a = film(241);
+  const h = parsePackHeader(a.buf.subarray(0, a.layout.header));
+  assert.ok(h && !("error" in h));
+  const t = setup([a], { chunk: 12 });
+  t.where({ frame: 0 });
+  await settle(1200);
+  // Moving forward in small steps up to 150, then still.
+  for (let f = 1; f <= 150; f += 5) {
+    t.where({ frame: f });
+    await settle(2);
+  }
+  const before = t.srv.log.length;
+  await t.fc.advance(299);
+  assert.equal(t.srv.log.length, before, "not before 300 ms");
+  await t.fc.advance(1);
+  assert.equal(t.srv.log.length, before + 1, "re-aimed once settled");
+  assert.equal(t.srv.log.at(-1)!.range, `bytes=${h.slots[h.slotOf[146]!]!.offset}-`);
+});
+
+test("a small bounce does not swap the neighbour; a real reversal does", async () => {
+  const films = [film(120), film(120, 1), film(120, 2)];
+  const t = setup(films, { chunk: 30 });
+  t.where({ key: "f1", frame: 60 });
+  await settle(50);
+  const requested = () => new Set(t.srv.log.map((l) => l.url.slice(7, 9)));
+  assert.ok(requested().has("f2") && !requested().has("f0"), "scrolling down: the next film");
+  // Bounce up 3 frames: still the next film.
+  t.where({ key: "f1", frame: 57, direction: -1 });
+  await settle(50);
+  assert.ok(!requested().has("f0"));
+  // Keep going up past the hysteresis: the previous film becomes the neighbour.
+  t.where({ key: "f1", frame: 45, direction: -1 });
+  await settle(50);
+  assert.ok(requested().has("f0"), "scrolling up: the previous film");
 });
