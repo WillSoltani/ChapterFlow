@@ -37,7 +37,11 @@ import {
  *      trap. "Skip the film" is one of the first three tab stops and
  *      activating it puts focus after the reel, scrolled past its end.
  *      Normal motion and reduced motion, both viewports.
- *   3. Pointer focus: clicking a visible film button does not move the page.
+ *   3. Pointer focus: clicking a visible film button does not move the page;
+ *      focus coming back to an element with the window does not either.
+ *      Reduced motion, keyboard paging: PageDown / Space and PageUp /
+ *      Shift+Space visit every stop of the reel in order, none passed.
+ *      Forced colors: a focused film button keeps an outline.
  *   4. Structure (accessibility tree at the top of the page): one h1, no
  *      skipped heading level, every chapter heading and film button present
  *      with a name (pins that are off included), and no canvas, poster
@@ -156,8 +160,11 @@ test.describe("film a11y", () => {
     const rooms = normal.find((s) => s.id === "examples")!;
     await scrollToY(page, rooms.top + 0.45 * (rooms.h - stage));
     await page.waitForTimeout(500);
+    const before = (await drawn(page))!;
+    expect(before.film, "normal motion: Rooms drawn").toBe(rooms.film);
     const setMotion = (m: string) => page.evaluate((m) => (document.documentElement.dataset.motion = m), m);
-    // Toggle on: every chapter takes its reduced height; the frame drawn is a stop.
+    // Toggle on: every chapter takes its reduced height; the frame drawn is a
+    // stop; the visitor stays in Rooms, at the stop nearest the frame shown.
     await setMotion("reduced");
     await page.waitForTimeout(600);
     const reduced = await segments(page);
@@ -165,11 +172,18 @@ test.describe("film a11y", () => {
     let d = await drawn(page);
     const active = reduced.find((s) => s.film === d?.film)!;
     expect(active.stops, `drawn ${d?.film} f${d?.frame} is a stop`).toContain(d!.frame);
-    // Toggle off: the normal heights come back, and the film follows the scroll again.
+    expect(d?.film, "still in Rooms after the switch").toBe(rooms.film);
+    const nearest = rooms.stops.reduce((b, f) => (Math.abs(f - before.frame) < Math.abs(b - before.frame) ? f : b), rooms.stops[0]!);
+    expect(d?.frame, `the stop nearest f${before.frame}`).toBe(nearest);
+    // Toggle off: the normal heights come back, the visitor is still in Rooms
+    // at that frame, and the film follows the scroll again.
     await setMotion("normal");
     await page.waitForTimeout(600);
     const back = await segments(page);
     back.forEach((s, i) => expect(Math.abs(s.h - normal[i]!.h), `${s.id} normal height again`).toBeLessThan(2));
+    d = await drawn(page);
+    expect(d?.film, "still in Rooms after switching back").toBe(rooms.film);
+    expect(Math.abs(d!.frame - nearest), `back at f${nearest} (drew f${d?.frame})`).toBeLessThanOrEqual(2);
     await scrollToY(page, back[1]!.top + 0.37 * (back[1]!.h - stage));
     await page.waitForTimeout(600);
     d = await drawn(page);
@@ -218,6 +232,15 @@ test.describe("film a11y", () => {
     await scrollToY(page, pricing);
     await page.waitForTimeout(400);
     expect(await page.locator(".film-canvas").evaluate((el) => getComputedStyle(el).visibility)).toBe("hidden");
+    // Below the reel a switch of mode leaves the body where it is on screen.
+    const pricingTop = () => page.locator("#pricing").evaluate((el) => el.getBoundingClientRect().top);
+    const atPricing = await pricingTop();
+    await setMotion("normal");
+    await page.waitForTimeout(600);
+    expect(Math.abs((await pricingTop()) - atPricing), "pricing stays put (to normal)").toBeLessThan(2);
+    await setMotion("reduced");
+    await page.waitForTimeout(600);
+    expect(Math.abs((await pricingTop()) - atPricing), "pricing stays put (to reduced)").toBeLessThan(2);
     const home = segsR[segsR.length - 1]!;
     await scrollToY(page, stopY(home, stage, home.stops.length - 1));
     await page.waitForTimeout(400);
@@ -230,6 +253,12 @@ test.describe("film a11y", () => {
     for (const motion of ["normal", "os"] as const)
       test(`keyboard (${motion === "os" ? "reduced motion" : "normal motion"}) ${vp.name}: Tab to the footer and back; focused film elements visible, in view, ringed; skip the film`, async ({ browser }) => {
         test.setTimeout(240_000);
+        // WebKit's plain Tab moves between form fields only (Safari's default,
+        // "Press Tab to highlight each item" off); Option+Tab is its key to
+        // every link and button. The page's order is the same.
+        const webkit = browser.browserType().name() === "webkit";
+        const TAB = webkit ? "Alt+Tab" : "Tab";
+        const BACK = webkit ? "Alt+Shift+Tab" : "Shift+Tab";
         const ctx = await motionContext(browser, vp, motion);
         const page = await ctx.newPage();
         await openReel(page);
@@ -240,7 +269,7 @@ test.describe("film a11y", () => {
         const firstStops: string[] = [];
         let skipAt = -1;
         for (let i = 0; i < 3; i++) {
-          await page.keyboard.press("Tab");
+          await page.keyboard.press(TAB);
           const name = await page.evaluate(() => (document.activeElement?.textContent ?? "").trim());
           firstStops.push(name);
           if (name === "Skip the film") {
@@ -319,7 +348,7 @@ test.describe("film a11y", () => {
         const forward: string[] = [];
         let reachedFooter = false;
         for (let i = 0; i < 250 && !reachedFooter; i++) {
-          await page.keyboard.press("Tab");
+          await page.keyboard.press(TAB);
           await settle();
           const s = await check("Tab");
           if (s?.inReel) forward.push(s.name);
@@ -330,7 +359,7 @@ test.describe("film a11y", () => {
         const backward: string[] = [];
         let reachedTop = false;
         for (let i = 0; i < 250 && !reachedTop; i++) {
-          await page.keyboard.press("Shift+Tab");
+          await page.keyboard.press(BACK);
           await settle();
           const s = await check("Shift+Tab");
           if (s?.inReel) backward.push(s.name);
@@ -342,6 +371,98 @@ test.describe("film a11y", () => {
         console.log(`[keyboard ${motion} ${vp.name}] reel tab stops: ${forward.join(" → ")}; ${problems.length} problem(s)`);
         expect(problems, problems.join("\n")).toEqual([]);
       });
+
+  for (const vp of A11Y_VIEWPORTS)
+    test(`reduced motion, keyboard paging ${vp.name}: PageDown and Space visit every stop in order, PageUp and Shift+Space every one back`, async ({ browser }) => {
+      test.setTimeout(240_000);
+      const ctx = await motionContext(browser, vp, "os");
+      const page = await ctx.newPage();
+      await openReel(page);
+      const segs = await segments(page);
+      const want = segs.flatMap((s) => s.stops.map((f) => `${s.film}:f${f}`));
+      const reelEnd = segs.at(-1)!.top + segs.at(-1)!.h;
+      await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+      const settle = () => page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(r, 120)))));
+      const seen = async (out: string[]) => {
+        const d = await drawn(page);
+        const k = d ? `${d.film}:f${d.frame}` : "none";
+        if (out.at(-1) !== k) out.push(k);
+      };
+      // Down: PageDown and Space alternately, until the reel is behind.
+      const down: string[] = [];
+      await seen(down);
+      for (let i = 0; i < 120; i++) {
+        await page.keyboard.press(i % 2 ? "Space" : "PageDown");
+        await settle();
+        if ((await page.evaluate(() => window.scrollY)) > reelEnd) break;
+        await seen(down);
+      }
+      expect(down, "every stop, in order, going down").toEqual(want);
+      // Up: back from the body to the top.
+      const up: string[] = [];
+      for (let i = 0; i < 120; i++) {
+        await page.keyboard.press(i % 2 ? "Shift+Space" : "PageUp");
+        await settle();
+        await seen(up);
+        if ((await page.evaluate(() => window.scrollY)) <= 0) break;
+      }
+      expect(up, "every stop, in order, going up").toEqual([...want].reverse());
+      await ctx.close();
+    });
+
+  test("focus coming back with the window does not move the page", async ({ browser }) => {
+    const vp = A11Y_VIEWPORTS[1]!;
+    const webkit = browser.browserType().name() === "webkit";
+    const ctx = await motionContext(browser, vp, "normal");
+    const page = await ctx.newPage();
+    await openReel(page);
+    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+    // Keyboard focus on the first film link.
+    let inReel = false;
+    for (let i = 0; i < 30 && !inReel; i++) {
+      await page.keyboard.press(webkit ? "Alt+Tab" : "Tab");
+      inReel = await page.evaluate(() => !!document.activeElement?.closest("[data-film-segment]"));
+    }
+    expect(inReel, "a film link has keyboard focus").toBe(true);
+    // Read on (focus stays on the link), then the window regains focus: the
+    // browser fires focus and focusin on the same element, no relatedTarget.
+    const segs = await segments(page);
+    await scrollToY(page, segs[3]!.top + 100);
+    await page.waitForTimeout(400);
+    const y0 = await page.evaluate(() => window.scrollY);
+    await page.evaluate(() => {
+      const a = document.activeElement!;
+      a.dispatchEvent(new FocusEvent("focus", { relatedTarget: null }));
+      a.dispatchEvent(new FocusEvent("focusin", { bubbles: true, relatedTarget: null }));
+    });
+    await page.waitForTimeout(400);
+    expect(await page.evaluate(() => window.scrollY), "scroll unchanged").toBe(y0);
+    await ctx.close();
+  });
+
+  test("forced colors: a focused film button keeps a visible outline", async ({ browser }) => {
+    const ctx = await motionContext(browser, A11Y_VIEWPORTS[1]!, "normal");
+    const page = await ctx.newPage();
+    await page.emulateMedia({ forcedColors: "active" });
+    await openReel(page);
+    test.skip(!(await page.evaluate(() => matchMedia("(forced-colors: active)").matches)), "this browser does not emulate forced colors");
+    const webkit = browser.browserType().name() === "webkit";
+    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+    let ring: { name: string; style: string; width: number } | null = null;
+    for (let i = 0; i < 30 && !ring; i++) {
+      await page.keyboard.press(webkit ? "Alt+Tab" : "Tab");
+      ring = await page.evaluate(() => {
+        const a = document.activeElement as HTMLElement | null;
+        if (!a?.matches(".film-btn")) return null;
+        const cs = getComputedStyle(a);
+        return { name: (a.textContent ?? "").trim(), style: cs.outlineStyle, width: parseFloat(cs.outlineWidth) };
+      });
+    }
+    expect(ring, "Tab reaches a film button").not.toBeNull();
+    expect(ring!.style, `${ring!.name}: outline style`).not.toBe("none");
+    expect(ring!.width, `${ring!.name}: outline width`).toBeGreaterThan(0);
+    await ctx.close();
+  });
 
   test("pointer focus: clicking a visible film button does not move the page", async ({ browser }) => {
     const vp = A11Y_VIEWPORTS[1]!;

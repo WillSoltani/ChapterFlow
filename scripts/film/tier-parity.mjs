@@ -91,8 +91,8 @@ const only = process.env.ONLY ? process.env.ONLY.split(",") : null;
 
 /**
  * Positions: [film index, stop j], from each chapter's reduced-motion stops
- * (read from the page). The hero: every stop (0, 28, 136, 156 before the
- * ramp, 204 inside, 240 after); later films skip stops inside the dissolve
+ * (read from the page). The hero: every stop (0, 28, 136 before the ramp
+ * 150-200, 156 inside, 204 and 240 after); later films skip stops inside the dissolve
  * (frames below 14).
  */
 const DISSOLVE = 14;

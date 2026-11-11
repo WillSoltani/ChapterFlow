@@ -125,10 +125,23 @@ test.describe("film truth", () => {
       const tl = JSON.parse(await fs.readFile("components/film/book.timeline.json", "utf8")).films as Record<string, { count: number }>;
       const names = Object.keys(tl);
       const stops = await page.$$eval("[data-film-segment]", (els) => els.map((e) => ((e as HTMLElement).dataset.filmStops ?? "").split(",").map(Number)));
-      // Hero: before, inside and after its portrait ramp (its stops at frames
-      // 28, 204, 240); later films: their second and second-to-last stops,
-      // away from the dissolve at frame 0.
-      const positions: Array<[number, number]> = [[0, 1], [0, 4], [0, 5]];
+      // Hero: one stop before, one INSIDE and one after its portrait ramp
+      // (encode.mjs --portrait-ramp 150,200: a band tier's frames up to 200
+      // carry bars inside the band box), picked by frame, not by index: the
+      // stops follow the pins (Phase 8). Later films: their second and
+      // second-to-last stops, away from the dissolve at frame 0.
+      const RAMP: [number, number] = [150, 200];
+      const hero = stops[0] ?? [];
+      const heroAt = (ok: (f: number) => boolean, what: string) => {
+        const j = hero.findIndex((f) => f > 0 && ok(f));
+        if (j < 0) throw new Error(`the hero has no stop ${what} its ramp (stops ${hero.join(",")})`);
+        return j;
+      };
+      const positions: Array<[number, number]> = [
+        [0, heroAt((f) => f < RAMP[0], "before")],
+        [0, heroAt((f) => f > RAMP[0] && f < RAMP[1], "inside")],
+        [0, hero.length - 1],
+      ];
       for (let i = 1; i < names.length; i++) positions.push([i, 1], [i, (stops[i]?.length ?? 2) - 2]);
 
       const problems: string[] = [];
