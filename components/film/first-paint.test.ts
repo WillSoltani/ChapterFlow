@@ -147,7 +147,7 @@ test("poster URLs are the variants' own posters (with ?v=), the URL the film cod
 
 test("band placement: the rectangle of the band inside the virtual frame, in percent", () => {
   const p = heroPoster(HERO);
-  assert.deepEqual(p.band, { left: 0, top: (474 / 1920) * 100, width: 100, height: (972 / 1920) * 100, aspect: "1080 / 1920", ratio: 1080 / 1920, framePerBand: 1 });
+  assert.deepEqual(p.band, { left: 0, top: (474 / 1920) * 100, width: 100, height: (972 / 1920) * 100, aspect: "1080 / 1920", ratio: 1080 / 1920 });
 });
 
 test("a film without band tiers: no sources, only the landscape poster", () => {

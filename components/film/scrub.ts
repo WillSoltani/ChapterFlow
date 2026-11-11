@@ -2,7 +2,7 @@
  * Pure scrub math for FilmBackdrop. No DOM writes, no React — unit-testable.
  */
 
-import type { BandRect, FilmVariant, FrameSize, SegmentRegistration } from "./types";
+import type { FilmVariant, SegmentRegistration } from "./types";
 import { frameScroll, REDUCED_STEP_SVH, reducedStopIndex, reducedStopTarget, STOP_EDGE_PX } from "./pins";
 
 export type ActivePick = {
@@ -148,42 +148,6 @@ function breathe(r: { x: number; y: number; w: number; h: number }, zoom: number
 }
 
 /**
- * Framing amount for band tiers on tall screens: 100 = cover-fit the virtual
- * frame to the canvas (today: on a tall phone the band is wider than the
- * screen and its sides are cut, up to about 20% of it), 0 = fit the band to
- * the canvas width (the whole band shows, the picture is smaller). An OWNER
- * PICK, temporary: ?frame=0|25|50|75|100 (parseFrameParam, read once by the
- * page on the server and passed down, so the HTML poster and the canvas use
- * the same amount). Landscape frames never use it.
- */
-export const FRAME_AMOUNTS = [0, 25, 50, 75, 100] as const;
-export type FrameAmount = (typeof FRAME_AMOUNTS)[number];
-export const DEFAULT_FRAME_AMOUNT: FrameAmount = 100;
-
-/** ?frame=<amount> from a query string or Next searchParams; anything but the five amounts is the default. */
-export function parseFrameParam(search: string | Record<string, string | string[] | undefined>): FrameAmount {
-  const raw = typeof search === "string" ? new URLSearchParams(search).get("frame") : search.frame;
-  const v = Array.isArray(raw) ? raw[0] : raw;
-  const hit = FRAME_AMOUNTS.find((a) => String(a) === v);
-  return hit ?? DEFAULT_FRAME_AMOUNT;
-}
-
-/**
- * Scale of a band tier's virtual frame (`frame`, band `band` inside it) on a
- * canvas of cw × ch at framing `amount` (0..100): linear between fitting the
- * band to the width (never more than cover) and cover. 100 returns the cover
- * scale itself (not a lerp), so the default is today's placement bit for bit.
- * Where the canvas is wider than the frame's aspect (tablets) both ends are
- * the cover scale and the amount changes nothing.
- */
-export function bandFitScale(cw: number, ch: number, frame: FrameSize, band: BandRect, amount: number): number {
-  const cover = Math.max(cw / frame.w, ch / frame.h);
-  if (!(amount < 100)) return cover;
-  const width = Math.min(cw / band.w, cover);
-  return width + (cover - width) * (Math.max(0, amount) / 100);
-}
-
-/**
  * Where a variant's frame image (iw × ih) is drawn. A plain variant: its own
  * framePlacement. A band tier (`frame` + `band`): the VIRTUAL frame
  * (1080×1920) is placed by framePlacement exactly as the full portrait frame
@@ -199,19 +163,10 @@ export function variantPlacement(
   ih: number,
   zoom: number,
   shiftY = 0,
-  amount: number = DEFAULT_FRAME_AMOUNT,
 ) {
   const { frame, band } = v;
   if (!frame || !band) return framePlacement(cw, ch, iw, ih, zoom, shiftY);
-  let r: { x: number; y: number; w: number; h: number };
-  if (amount < 100) {
-    // Framing amount (bandFitScale): the virtual frame at that scale, centred
-    // on the canvas like coverRect, then the same breath and stage shift.
-    const k = bandFitScale(cw, ch, frame, band, amount);
-    const w = frame.w * k;
-    const h = frame.h * k;
-    r = breathe({ x: (cw - w) * 0.5, y: (ch - h) * 0.5, w, h }, zoom, shiftY);
-  } else r = framePlacement(cw, ch, frame.w, frame.h, zoom, shiftY);
+  const r = framePlacement(cw, ch, frame.w, frame.h, zoom, shiftY);
   const sx = r.w / frame.w;
   const sy = r.h / frame.h;
   return { x: r.x + band.x * sx, y: r.y + band.y * sy, w: band.w * sx, h: band.h * sy };
@@ -336,7 +291,8 @@ export function canvasHiddenFrom(top: number, height: number, stage: number): nu
 /**
  * Keyboard focus that ARRIVED at `target`: it came from another element
  * (`related`, the event's relatedTarget), or `target` is not the element whose
- * keyboard focus last moved the film (`last`, cleared by a pointer press).
+ * keyboard focus last moved the film (`last`, cleared once focus has really
+ * left it: focus-guard.ts).
  * False when the window or tab gets focus back: the browser fires focus again
  * on the element that held it, with no relatedTarget, and the reader may have
  * scrolled far from it since (FilmSegment must not jump back).

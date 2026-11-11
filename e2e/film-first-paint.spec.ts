@@ -18,8 +18,8 @@ import { PROD_E2E_HEADERS } from "../playwright.config";
  *   3. Hydration held back 2 s: before it, the poster and only the hero's
  *      first-frame pins show; after the canvas takes over, its picture
  *      matches the poster (band region mean abs difference ≤ 3, edges ±1 px)
- *      on a phone, a tablet and a desktop, a phone held sideways (844 × 390,
- *      landscape poster) and a phone at framing amount ?frame=50.
+ *      on a phone, a tablet and a desktop, and a phone held sideways
+ *      (844 × 390, landscape poster).
  *   4. Scripts blocked: after the 8 s failsafe (readable-layout.ts) every pin
  *      is visible, no two overlap, no chapter keeps an empty multi-screen
  *      stage, and the footer is on top and clickable.
@@ -340,10 +340,8 @@ test.describe("film first paint (@prod)", () => {
     ["390x844 DPR 3", PHONE, "/"],
     ["820x1180 DPR 2", TABLET, "/"],
     ["1440x900 DPR 1", DESKTOP, "/"],
-    // Phase 7: a phone held sideways (landscape poster), and a framing
-    // amount other than the default (?frame=, band poster and canvas alike).
+    // A phone held sideways: the landscape poster.
     ["844x390 DPR 3", SIDEWAYS, "/"],
-    ["390x844 DPR 3 ?frame=50", PHONE, "/?frame=50"],
   ] as const) {
     test(`hydration held back 2 s (${name}): poster and opening copy first, then the canvas takes over in place @prod`, async ({ browser, request }) => {
       test.setTimeout(120_000);

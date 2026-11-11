@@ -3772,16 +3772,6 @@ html[data-motion="reduced"] [data-film-segment] {
     aspect-ratio: var(--film-frame-aspect, 1080 / 1920);
     transform: translate(-50%, -50%) translateY(calc((100svh - 100cqh) / 2));
   }
-  /* Framing amount below 100 (?frame=, scrub.ts bandFitScale): the frame
-     width runs linearly from "band fitted to the width" (--film-fit 0) to the
-     cover width above (1). Only rendered when the amount is not 100, so the
-     default placement is the rule above, untouched. */
-  .film-poster[data-film-band][data-film-fit] picture {
-    width: calc(
-      min(100cqw * var(--film-frame-per-band, 1), max(100cqw, 100cqh * var(--film-frame-ratio, 0.5625))) * (1 - var(--film-fit, 1)) +
-        max(100cqw, 100cqh * var(--film-frame-ratio, 0.5625)) * var(--film-fit, 1)
-    );
-  }
   .film-poster[data-film-band] img {
     inset: auto;
     left: var(--film-band-left, 0%);
