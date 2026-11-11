@@ -196,13 +196,22 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     and 160 MB otherwise (the budget's own small/large signal, i.e.
     `pickFrameBudgetBytes` < 256 MB; over the cap the variant farthest from
     the active film loses frames first, from the end of its file, never the
-    active film, the neighbour being prepared or a pack with a stream open),
-    and decodes a held frame on request with `createImageBitmap`,
-    transferring the ImageBitmap with its decode time.
+    active film, the neighbour being prepared, a pack with a stream open or
+    the dissolve pin's frame), and decodes a held frame on request with
+    `createImageBitmap`, transferring the ImageBitmap with its decode time.
+    Held bytes that will not decode count against their pack: the third
+    such failure makes the pack unusable (fallback below) instead of
+    retrying the same bytes.
   - **Protocol** (`film-worker-protocol.ts`). Page → worker: `init` (the
-    cap), `packs` (the reel's packs for the current view, in film order),
-    `where` (active pack, playhead frame, direction, wanted window lo/hi,
-    scrolled yet, document hidden, connection constrained), `decode`.
+    cap), `packs` (the reel's packs for the current view, in film order; a
+    pack that failed earlier keeps its place marked `failed` and is never
+    read, so the films around it keep their neighbours), `where` (active
+    pack, playhead frame, direction, wanted window lo/hi, the dissolve pin
+    while wanted and not decoded, scrolled yet, document hidden, connection
+    constrained), `decode`. "Scrolled" is read on each scroll decision
+    until it holds, never during render (a client-side link from a scrolled
+    page still reports the old scrollY there): a scroll position above 0, a
+    #anchor, or an active film past the first.
     Worker → page: `ready` (false without createImageBitmap, fetch or a
     streaming body), `frames` (frames arrived / dropped), `failed` (the pack
     is unusable), `stats`, `decoded` (the bitmap, or missing / error).
@@ -220,34 +229,46 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   - **Network plan** (`pack-plan.ts`, pure, re-run after every chunk, stream
     end, scroll decision and backoff). Once the visitor has scrolled, in
     order: (1) the active film's skeleton, (2) the skeleton of the film the
-    visitor travels towards (next scrolling down, previous scrolling up),
-    (3) the active film's remaining frames, (4) the neighbour's remaining
-    frames; nothing else (a stream on any other pack is stopped, its bytes
-    stay). One stream per pack, at most 2 at once, none opened while the
-    document is hidden. A stream starts at the first byte not held and ends
-    before the next held byte; it is open-ended (`bytes=N-`) when that is
-    the end of the file, so a skeleton followed by the frames about to be
-    needed is ONE request, and no range is read twice while its bytes are
-    held (`packBytesRepeated`). Before the first scroll (scroll position 0
-    at load, no #anchor) only the first film's pack is requested, bounded at
-    `openingEnd` (skeleton plus frames through 47), and it continues from
-    the first missing byte on the first scroll; there is no two-film
-    warm-up in pack mode. Posters load as before. Re-aim: when the playhead
-    is where the stream is not, the stream is stopped and reopened at the
-    first missing frame at the playhead (forward), or at a run ending at the
-    highest missing frame at or below it, starting 64 frames lower
+    visitor travels towards (next scrolling down, previous scrolling up), (3)
+    the active film's remaining frames, (4) the neighbour's remaining frames;
+    nothing else (a stream on any other pack is stopped, its bytes stay),
+    except the dissolve pin: while the active film's opening dissolves from
+    the previous film's last frame and that frame is not held, it is read
+    right after step 1 (its header first when that film was never read, e.g.
+    after an anchor jump; a stream a few frames short of it is left to reach
+    it; scrolling up that film is the neighbour and its own plan reaches it).
+    One stream per pack, at most 2 at once, none opened while the document is
+    hidden. A stream starts at the first byte not held and ends before the
+    next held byte; it is open-ended (`bytes=N-`) when that is the end of the
+    file, so a skeleton followed by the frames about to be needed is ONE
+    request, and no range is read twice while its bytes are held
+    (`packBytesRepeated`). Before the first scroll (scroll position 0, no
+    #anchor, the first film active) only the first film's pack is requested,
+    bounded at `openingEnd` (skeleton plus frames through 47), and it
+    continues from the first missing byte on the first scroll; there is no
+    two-film warm-up in pack mode. Posters load as before. Re-aim: when the
+    playhead is where the stream is not, the stream is stopped and reopened at
+    the first missing frame at the playhead (forward), or at a run ending at
+    the highest missing frame at or below it, starting 64 frames lower
     (backward), and what was skipped is filled afterwards with a range that
-    ends before the held bytes. Only on a jump (≥ 24 frames in one
-    decision, or a film entered out of order), a stop (300 ms without a
-    playhead change), or while scrolling up; a stream ≤ 16 frames short of
-    the target is left to reach it; while the visitor moves forward steadily
-    faster than the network the stream keeps reading in order (a re-aim
-    there would cost a request a second for frames passed at once; the
-    skeleton covers the motion). The neighbour flips with the direction only
-    after 8 frames of travel. Constrained connections (`saveData`, or
-    `effectiveType` slow-2g / 2g / 3g): skeletons only (1, 2) while moving;
-    after 300 ms still, the missing frames of the wanted window in one
-    bounded request.
+    ends before the held bytes. Only on a jump (≥ 24 frames in one decision,
+    or a film entered out of order), a stop (300 ms without a playhead
+    change), or while scrolling up; a stream ≤ 16 frames short of the target
+    is left to reach it; while the visitor moves forward steadily faster than
+    the network the stream keeps reading in order (a re-aim there would cost a
+    request a second for frames passed at once; the skeleton covers the
+    motion). Scrolling up, a stream reading towards the playhead from below
+    (at most 64 + 16 frames below it) goes on until the playhead passes it, so
+    an upward pass costs about one request per 64 frames, not one per frame.
+    The neighbour flips with the direction only after 8 frames of travel,
+    counted across film cuts too, and the film the plan works from follows the
+    playhead into the next film only 8 frames past the cut (at once on a jump
+    or a stop): a playhead wobbling across a cut keeps the same two films and
+    streams. Constrained connections (`saveData`, or `effectiveType` slow-2g /
+    2g / 3g): skeletons only (1, 2) while moving; after 300 ms still, the
+    missing frames of the wanted window in one bounded request (from the first
+    missing remaining frame to the end of the last one; the skeleton frames
+    are already held).
   - **Responses** (`pack-net.ts`). 206 must start where asked and carry the
     timeline's total. 200 to a request past byte 0 (a server that ignores
     Range): the body is read from 0, bytes already held are discarded (and
@@ -258,8 +279,9 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     is kept; the retry starts at the first missing byte); a fourth failure
     in a row makes the pack unusable.
   - **Fallback** (`pack-client.ts`). Per variant: the timeline has no pack
-    for it, or its pack is unusable (above) → per-frame path for the rest of
-    the page view. Every variant: `?pack=0`, no `Worker`, the worker cannot
+    for it, or its pack is unusable (above, including three frames whose
+    held bytes would not decode) → per-frame path for the rest of the page
+    view. Every variant: `?pack=0`, no `Worker`, the worker cannot
     start, lacks createImageBitmap / fetch / a streaming body, or errors
     (crash). Frames already decoded stay, pending decodes reject quietly,
     the order and the mode switch at once, no error loop (the per-frame
@@ -409,11 +431,20 @@ npm run dev → http://localhost:3000/?hud=1
 # `_assets/films/` and CloudFront serves them SAME-ORIGIN at /films/* (the
 # `films/*` behavior in infra/lib/chapterflow-frontend-stack.ts, cache key
 # includes ?v). Nothing to configure in the app: NEXT_PUBLIC_FILM_BASE stays at
-# its default (/films). Upload after every encode (the bucket name is the
-# StaticAssets resource of the ChapterFlowFrontend stack):
+# its default (/films). Upload after every encode, BEFORE deploying the
+# book.timeline.json the encode synced (the bucket name is the StaticAssets
+# resource of the ChapterFlowFrontend stack). Every encode rewrites pack.bin
+# for each landscape and band-tier folder it writes and the timeline records
+# the new pack's size and version: upload pack.bin with the frames, or the
+# deployed page fetches the OLD pack under the new ?v=, finds it disagrees
+# with the timeline and loads that film frame by frame (one request per
+# frame, nothing alerts anyone):
+npm run film:pack -- --verify   # first: every pack matches its folder (exit 1 otherwise)
 B=s3://$(aws cloudformation describe-stack-resources --stack-name ChapterFlowFrontend \
     --query 'StackResources[?LogicalResourceId==`StaticAssetsDDEE9873`].PhysicalResourceId' --output text)/_assets/films
 aws s3 sync public/films "$B" --exclude '*' --include '*.webp' --content-type image/webp \
+    --cache-control 'public,max-age=31536000,immutable'
+aws s3 sync public/films "$B" --exclude '*' --include '*/pack.bin' --content-type application/octet-stream \
     --cache-control 'public,max-age=31536000,immutable'
 aws s3 sync public/films "$B" --exclude '*' --include '*.json' --content-type application/json \
     --cache-control 'public,max-age=300'
@@ -428,8 +459,12 @@ aws s3 sync public/films "$B" --exclude '*' --include '*.json' --content-type ap
 # landscape or -p objects):
 aws s3 sync public/films "$B" --exclude '*' --include 'palace-0?-b900/*.webp' --include 'palace-0?-b1080/*.webp' \
     --content-type image/webp --cache-control 'public,max-age=31536000,immutable'
+aws s3 sync public/films "$B" --exclude '*' --include 'palace-0?-b900/pack.bin' --include 'palace-0?-b1080/pack.bin' \
+    --content-type application/octet-stream --cache-control 'public,max-age=31536000,immutable'
 aws s3 sync public/films "$B" --exclude '*' --include 'palace-0?-b900/*.json' --include 'palace-0?-b1080/*.json' \
     --content-type application/json --cache-control 'public,max-age=300'
+# (since Phase 4 a --bands encode rewrites the tiers' pack.bin too: the
+# pack.bin line is part of every tier upload.)
 # Tier URLs are new paths with their own ?v=, so no CloudFront invalidation is
 # needed for them. The old <name>-p objects stay in the bucket for one release
 # (pages already open in a browser still ask for them); delete them only in
@@ -442,10 +477,14 @@ npm run film:pack                      # all 21 folders, then syncs the timeline
 npm run film:pack -- palace-03-b900    # one folder
 npm run film:pack -- --verify          # every slice equals its file; exit 1 otherwise
 node scripts/film/encode.mjs --sync-timeline   # STALE PACK + exit 1 when a pack no longer matches its folder
-# Upload the packs BEFORE deploying the code that reads them (until then a
-# deployed page would get 404 and load frame by frame). Only the pack files
-# and the manifest.json files that changed; the frames stay as they are and
-# remain the fallback for one release:
+#   (a folder with no pack.bin whose film the timeline records a pack for:
+#   the entry is kept unverified and reported, exit 1, never silently dropped)
+# The first time (this release): upload the packs BEFORE deploying the code
+# that reads them (until then a deployed page would get 404 and load frame
+# by frame). Only the pack files and the manifest.json files that changed;
+# the frames stay as they are and remain the fallback for one release. After
+# that, every encode uploads its pack.bin with its frames (the "Upload after
+# every encode" commands above include it):
 aws s3 sync public/films "$B" --exclude '*' --include 'palace-0?/pack.bin' --include 'palace-0?-b900/pack.bin' --include 'palace-0?-b1080/pack.bin' \
     --content-type application/octet-stream --cache-control 'public,max-age=31536000,immutable'
 aws s3 sync public/films "$B" --exclude '*' --include 'palace-0?/manifest.json' --include 'palace-0?-b900/manifest.json' --include 'palace-0?-b1080/manifest.json' \
