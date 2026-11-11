@@ -6,7 +6,7 @@
  */
 
 import { useEffect, type MutableRefObject } from "react";
-import type { FrameCache } from "./frame-cache";
+import type { FrameBudget, FrameCache } from "./frame-cache";
 import { pickVariant } from "./reel-context";
 import { breathAt, coverRect, frameAt, pickActive, quantise } from "./scrub";
 import type { FilmManifest, Orientation, ReelChrome, SegmentRegistration } from "./types";
@@ -29,6 +29,7 @@ type Args = {
   reducedRef: MutableRefObject<boolean>;
   orientation: Orientation;
   cacheFor: (film: FilmManifest) => FrameCache;
+  budget: FrameBudget;
 };
 
 export function useScrubLoop({
@@ -39,6 +40,7 @@ export function useScrubLoop({
   reducedRef,
   orientation,
   cacheFor,
+  budget,
 }: Args) {
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -55,6 +57,13 @@ export function useScrubLoop({
     let lastT = performance.now();
     let lastScroll = window.scrollY;
     const canvasBg = readCanvasBg(canvas);
+    // Late-frame repaint: what the canvas shows, and how far it is from the
+    // wanted frame. A frame landing nearer (or the dissolve's underlay) clears
+    // the paint key so the next tick redraws, even with no scroll or breath.
+    let shown: { cache: FrameCache | null; want: number; dist: number; under: FrameCache | null } = { cache: null, want: 0, dist: Infinity, under: null };
+    const offLoad = budget.subscribe((c, i) => {
+      if ((c === shown.cache && Math.abs(i - shown.want) < shown.dist) || c === shown.under) lastKey = "";
+    });
 
     const resize = () => {
       // Backing store: never larger than the source frames (1920 wide) — a
@@ -131,18 +140,21 @@ export function useScrubLoop({
       lastT = t;
       const frame = Math.round(smoothFrame);
 
-      // Prefetch only when the target frame moved (not 60×/s while idle).
-      const fetchKey = `${seg.index}:${target}:${direction}`;
+      // One wanted set per decision, only when the target frame moved (not
+      // 60×/s while idle): the window around the playhead, the previous film's
+      // last frame for the dissolve, and the next film's opening once past 60 %
+      // (its box enters the viewport at p = 1, see pickActive) or from the hero.
+      const warmNext = p > 0.6 || seg.index === 0;
+      const fetchKey = `${seg.index}:${target}:${direction}:${warmNext}`;
       if (fetchKey !== lastFetchKey) {
         lastFetchKey = fetchKey;
-        cache.prefetch(target, 24, direction);
-        // Warm the next film's opening well before its box enters the
-        // viewport (which is at p = 1 of this one, see pickActive): 60 % gives
-        // ~1.4 viewports of scroll for 16 frames to arrive on a slow network.
-        if (p > 0.6) {
-          const next = segments.current.get(seg.index + 1);
-          if (next) cacheFor(next.film).prefetch(0, 16, 1);
-        }
+        const before = segments.current.get(seg.index - 1);
+        const next = warmNext ? segments.current.get(seg.index + 1) : undefined;
+        budget.want({
+          active: { cache, center: target, direction },
+          pin: before && seg.dissolveIn > 0 ? { cache: cacheFor(before.film), index: pickVariant(before.film, orientation).count - 1, until: seg.dissolveIn } : undefined,
+          next: next ? cacheFor(next.film) : undefined,
+        });
       }
 
       // Breath is quantised to 1/4000 so an idle hold repaints a few times a
@@ -151,14 +163,17 @@ export function useScrubLoop({
       const key = `${seg.index}:${frame}:${breath}:${canvas.width}`;
       if (key !== lastKey) {
         lastKey = key;
-        const img = cache.nearest(frame);
+        const img = cache.nearest(frame, true);
+        shown = { cache, want: frame, dist: cache.lastServed < 0 ? Infinity : Math.abs(cache.lastServed - frame), under: null };
         ctx.fillStyle = canvasBg;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         if (img) {
           const prev = segments.current.get(seg.index - 1);
           if (seg.dissolveIn > 0 && frame < seg.dissolveIn && prev) {
             const prevVar = pickVariant(prev.film, orientation);
-            const prevImg = cacheFor(prev.film).nearest(prevVar.count - 1);
+            const prevCache = cacheFor(prev.film);
+            const prevImg = prevCache.nearest(prevVar.count - 1);
+            if (prevCache.lastServed !== prevVar.count - 1) shown.under = prevCache;
             if (prevImg) draw(prevImg, 1, breath);
             const u = frame / seg.dissolveIn;
             draw(img, u * u * (3 - 2 * u), breath); // smoothstep cross-fade
@@ -185,6 +200,7 @@ export function useScrubLoop({
       alive = false;
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      offLoad();
     };
-  }, [canvasRef, segments, drawn, drawnListeners, reducedRef, orientation, cacheFor]);
+  }, [canvasRef, segments, drawn, drawnListeners, reducedRef, orientation, cacheFor, budget]);
 }

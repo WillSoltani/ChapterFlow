@@ -15,7 +15,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
-import { FrameBudget, FrameCache, pickFrameBudgetBytes } from "./frame-cache";
+import { FrameBudget, FrameCache, pickFrameBudgetBytes, type FilmStats } from "./frame-cache";
 import { ReelContext, PORTRAIT_QUERY, pickVariant, readOrientation, type ReelApi } from "./reel-context";
 import { useScrubLoop } from "./use-scrub-loop";
 import type { FilmManifest, Orientation, SegmentRegistration } from "./types";
@@ -28,9 +28,9 @@ export function FilmBackdrop({ reel, children, className }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const segments = useRef(new Map<number, SegmentRegistration>());
   const caches = useRef(new Map<string, FrameCache>());
-  // One decoded-pixel budget for every cache on the page (see FrameBudget).
-  const budget = useRef<FrameBudget | null>(null);
-  if (budget.current === null) budget.current = new FrameBudget(pickFrameBudgetBytes());
+  // One decoded-pixel budget and load scheduler for every cache on the page
+  // (see FrameBudget).
+  const [budget] = useState(() => new FrameBudget(pickFrameBudgetBytes()));
   const drawnListeners = useRef(new Set<() => void>());
   const drawn = useRef({ segment: -1, frame: -1 });
   const reduced = usePrefersReducedMotion();
@@ -51,18 +51,30 @@ export function FilmBackdrop({ reel, children, className }: Props) {
     reducedRef.current = reduced;
   }, [reduced]);
 
-  // Dev-only introspection for probes (scrub-smoothness, manual checks):
-  // window.__filmCaches (name@v → FrameCache) and window.__filmBudget.
+  // Load counters, always on (production too) so a real phone can be read:
+  // window.__filmStats (fetches, refetches, draw accuracy; see FilmStats).
+  // Dev-only introspection for probes: window.__filmCaches (name@v →
+  // FrameCache) and window.__filmBudget.
   useEffect(() => {
-    if (process.env.NODE_ENV === "production") return;
-    const w = window as unknown as { __filmCaches?: Map<string, FrameCache>; __filmBudget?: FrameBudget | null };
-    w.__filmCaches = caches.current;
-    w.__filmBudget = budget.current;
-    return () => {
-      delete w.__filmCaches;
-      delete w.__filmBudget;
+    const w = window as unknown as {
+      __filmStats?: FilmStats;
+      __filmCaches?: Map<string, FrameCache>;
+      __filmBudget?: FrameBudget;
     };
-  }, []);
+    w.__filmStats = budget.stats;
+    const dev = process.env.NODE_ENV !== "production";
+    if (dev) {
+      w.__filmCaches = caches.current;
+      w.__filmBudget = budget;
+    }
+    return () => {
+      if (w.__filmStats === budget.stats) delete w.__filmStats;
+      if (dev) {
+        delete w.__filmCaches;
+        delete w.__filmBudget;
+      }
+    };
+  }, [budget]);
 
   useEffect(() => {
     const mq = window.matchMedia(PORTRAIT_QUERY);
@@ -82,7 +94,7 @@ export function FilmBackdrop({ reel, children, className }: Props) {
       const key = `${v.name}@${v.v ?? "0"}`;
       let c = caches.current.get(key);
       if (!c) {
-        c = new FrameCache(v, 160, budget.current);
+        c = new FrameCache(v, budget);
         caches.current.set(key, c);
         void c.loadPoster();
       }
@@ -90,7 +102,7 @@ export function FilmBackdrop({ reel, children, className }: Props) {
     },
     // `orientation` is in the deps so the callback (and everything keyed on it,
     // e.g. the scrub loop's effect) refreshes when the media query flips.
-    [orientation],
+    [orientation, budget],
   );
 
   useEffect(() => {
@@ -109,12 +121,19 @@ export function FilmBackdrop({ reel, children, className }: Props) {
         segments.current.set(reg.index, reg);
         // Every film gets its cache (and so its poster, one small image) at
         // mount, so a chapter reached on a slow network draws its poster
-        // instead of nothing. Only the first two films warm real frames here:
-        // warming all seven cost ~84 frame requests before the visitor had
-        // scrolled a pixel. The scrub loop warms each next film as the
-        // previous one passes 60 %.
-        const cache = cacheFor(reg.film);
-        if (reg.index < 2) cache.prefetch(0, 12, 1);
+        // instead of nothing. Only the first two films warm real frames here
+        // (the first film's opening, the second's head): warming all seven
+        // cost ~84 frame requests before the visitor had scrolled a pixel.
+        // The plan is weak: once the scrub loop has decided, it is ignored.
+        cacheFor(reg.film);
+        const first = segments.current.get(0);
+        if (reg.index < 2 && first) {
+          const second = segments.current.get(1);
+          budget.want(
+            { active: { cache: cacheFor(first.film), center: 0, direction: 1 }, next: second ? cacheFor(second.film) : undefined },
+            { weak: true },
+          );
+        }
         return () => {
           if (segments.current.get(reg.index) === reg) segments.current.delete(reg.index);
         };
@@ -127,11 +146,12 @@ export function FilmBackdrop({ reel, children, className }: Props) {
       },
       drawnSegment: () => drawn.current.segment,
       drawnFrame: () => drawn.current.frame,
+      stats: budget.stats,
     }),
-    [reel, orientation, cacheFor],
+    [reel, orientation, cacheFor, budget],
   );
 
-  useScrubLoop({ canvasRef, segments, drawn, drawnListeners, reducedRef, orientation, cacheFor });
+  useScrubLoop({ canvasRef, segments, drawn, drawnListeners, reducedRef, orientation, cacheFor, budget });
 
   return (
     <ReelContext.Provider value={api}>
