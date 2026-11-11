@@ -108,9 +108,12 @@ node scripts/film/encode.mjs ~/renders/P00 palace-00 --portrait --quality 78
 # scene width visible, band ≈ 51 % of the screen). One zoom for ALL films so
 # the seams keep one scale. --portrait-only re-frames from the film's own
 # landscape frames and bumps the film's version (both variants refetch).
-node scripts/film/encode.mjs public/films/palace-01 palace-01 --portrait --portrait-only --portrait-zoom 1.6
+# Bars are the page background (--portrait-bars '#06070A'), not the frame's
+# darkest corner: the Hall's corners are warm paper and gave brown bars that
+# shifted frame to frame. Same flag on every film.
+node scripts/film/encode.mjs public/films/palace-01 palace-01 --portrait --portrait-only --portrait-zoom 1.6 --portrait-bars '#06070A'
 # hero: contain (z = 1) until f150, ramping to the same zoom 1.6 by f200
-node scripts/film/encode.mjs ~/renders/p00v4_blend palace-00 --portrait --portrait-only --portrait-ramp 150,200 --portrait-zoom 1.6
+node scripts/film/encode.mjs ~/renders/p00v4_blend palace-00 --portrait --portrait-only --portrait-ramp 150,200 --portrait-zoom 1.6 --portrait-bars '#06070A'
 # from a Higgsfield mp4 (needs ffmpeg: brew install ffmpeg)
 node scripts/film/encode.mjs ~/renders/P03.mp4 palace-03 --from-video --fps 24 --portrait
 # counts are synced into book.timeline.json automatically; then edit the keys.
