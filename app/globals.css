@@ -4067,6 +4067,15 @@ html[data-motion="reduced"] .rl-faq-chevron {
   .film-stage-grid[data-anchor="bottom"] > * {
     padding: 0.45rem 1rem;
   }
+  /* Under a split chapter the beat goes under the picture (the other
+     column), so on the shortest stages (568 × 320) it never meets the copy
+     column's last lines. */
+  .film-stage-grid[data-split="left"] ~ .film-stage-grid[data-anchor="bottom"] > * {
+    grid-column: 2;
+  }
+  .film-stage-grid[data-split="right"] ~ .film-stage-grid[data-anchor="bottom"] > * {
+    grid-column: 1;
+  }
   /* Hall walls: the landscape frame's corridor (desktop geometry), clear of
      the side insets, small enough to stay above the copy. */
   .hall-wall { top: 22%; width: 30%; gap: 0.6rem; }
