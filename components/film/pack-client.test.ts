@@ -334,3 +334,15 @@ test("recovery: stop() before the worker started, then resume(): the worker star
   const packs = w.sent.filter((m): m is Extract<ToWorker, { t: "packs" }> => m.t === "packs").at(-1)!;
   assert.ok(packs.packs.every((p) => !p.failed), "no pack is sent failed");
 });
+
+test("recovery: transient(variant) names the one pack that failed transiently", () => {
+  const { client, reel, w } = setup();
+  client.where(at(reel[0]!));
+  w.reply({ t: "failed", key: "a@pk1", reason: "network error, 4 times", permanent: false });
+  w.reply({ t: "failed", key: "b@pk1", reason: "pack answered 404", permanent: true });
+  assert.equal(client.transient(reel[0]!), true);
+  assert.equal(client.transient(reel[1]!), false, "a 404 is not transient");
+  assert.equal(client.transient(reel[2]!), false, "no pack at all");
+  client.resume();
+  assert.equal(client.transient(reel[0]!), false, "forgiven");
+});

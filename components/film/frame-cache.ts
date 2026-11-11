@@ -50,13 +50,17 @@
  * Permanent failures last the page view. Transient ones are forgiven on a
  * RECOVERY SIGNAL: the browser's `online` event (noteOnline), the document
  * shown again after at least HIDDEN_RECOVERY_MS hidden (noteVisibility), a
- * film response that succeeds after a drop (GAP_FAILURES distinct frames,
- * or a pack, failed transiently since the last success), and, while halted
- * for unreachability, a probe that succeeds. Signals other than probes are
- * honoured at most once per SIGNAL_GAP_MS (one arriving sooner waits for
- * the end of that gap; several waiting are one). Honoured, a signal makes
- * every transiently failed frame, poster and pack loadable again, each frame
- * with a fresh FRAME_TRIES; with nothing transient failed it does nothing.
+ * film response that succeeds after a drop (GAP_FAILURES distinct frames or
+ * packs failed transiently since the last success; a frame or pack a success
+ * already forgave counts again only after it has loaded once, so one file
+ * that keeps failing while others load is forgiven that way at most once),
+ * and, while halted for unreachability, a probe that succeeds. Signals other
+ * than probes are honoured at most once per SIGNAL_GAP_MS (one arriving
+ * sooner waits for the end of that gap; several waiting are one). Honoured,
+ * a signal makes every transiently failed frame and pack loadable again,
+ * each frame with a fresh FRAME_TRIES, and asks for failed posters again
+ * through the IO (a poster that answers 404 there is never asked for again);
+ * with nothing transient failed it does nothing.
  * While halted for unreachability no signal loads anything itself: it asks
  * for a probe, and only a probe that succeeds un-halts (onResume) and
  * forgives. Probes: one small request (the active film's poster, past every
@@ -64,8 +68,10 @@
  * PROBE_EVERY_MS, at most PROBE_MAX per page view, none while the document
  * is hidden (a probe that comes due then runs when it is shown); a probe
  * that fails transiently only moves on, one that fails permanently ends
- * probing. A halt where every failure was permanent (no film files at all)
- * never probes, and the page's own halt (no 2D context) never resumes. So
+ * probing; one that comes due with no film to probe (every cache disposed)
+ * arms no timer until a cache registers. A halt where every failure was
+ * permanent (no film files at all) never probes, and the page's own halt
+ * (no 2D context) never resumes. So
  * with the network down for good a page view makes the requests it made
  * before this rule plus at most PROBE_MAX probes, and nothing between them.
  */
@@ -333,6 +339,8 @@ export type PackSource = {
   resume?(): void;
   /** Some pack failed transiently. Optional for fakes. */
   hasTransient?(): boolean;
+  /** `variant`'s pack failed transiently (not forgiven yet). Optional for fakes (then: hasTransient). */
+  transient?(variant: FilmVariant): boolean;
 };
 
 /** One scroll decision. */
@@ -439,17 +447,36 @@ export class FrameBudget {
   private haltKind: "page" | "unreachable" | null = null;
   private readonly haltListeners = new Set<() => void>();
   private readonly resumeListeners = new Set<() => void>();
-  /** Frames failed transiently since the last film response that succeeded (distinct URLs), and whether a pack did. */
+  /**
+   * What failed transiently since the last film response that succeeded:
+   * frame URLs and `pack:<variant key>` (distinct). GAP_FAILURES of them make
+   * the next success a recovery signal.
+   */
   private readonly gap = new Set<string>();
-  private gapPack = false;
+  /**
+   * Gap entries forgiven by a success-after-gap signal that have not loaded
+   * since. The network was working when they were forgiven, so failing again
+   * is that file's problem (a 403/429 on one pack or frame), not a drop: they
+   * do not count toward the next gap until they load once. This is what bounds
+   * success-after-gap signals: each needs GAP_FAILURES entries never forgiven
+   * that way before, so a file that keeps failing is forgiven by a success
+   * at most once per page view (other signals still forgive it).
+   */
+  private readonly gapForgiven = new Set<string>();
   /** When the last recovery signal was honoured, and whether one waits for the gap to pass. */
   private signalAt = -Infinity;
   private signalQueued = false;
   /** The document is hidden (noteVisibility), since when. */
   private hidden = false;
   private hiddenAt = 0;
-  /** Probing (this halt): on, the schedule step, the timer generation, one due while hidden, one in flight. */
+  /**
+   * Probing (this halt): on, the schedule step, the timer generation, one due
+   * while hidden, one in flight, and stalled (a probe came due with no film
+   * to probe: every cache disposed, the page unmounted; no timer is armed
+   * until a cache registers).
+   */
   private probeOn = false;
+  private probeStalled = false;
   private probeStep = 0;
   private probeGen = 0;
   private probeDue = false;
@@ -500,8 +527,9 @@ export class FrameBudget {
     source.subscribe((variant, added) => {
       const key = variantKey(variant);
       if (added === null) {
-        // A pack that failed transiently: the drop shows in the gap too.
-        if (this.packs?.hasTransient?.()) this.gapPack = true;
+        // A pack that failed transiently: one entry of the gap (see gapForgiven).
+        const src = this.packs;
+        if (src && (src.transient ? src.transient(variant) : src.hasTransient?.())) this.noteGap(`pack:${key}`);
         for (const url of [...this.failed.keys()]) if (url.startsWith(`${variant.base}/`)) this.failed.delete(url);
         // The order and the mode follow the variant's new path at once.
         const plan = this.plan;
@@ -515,7 +543,7 @@ export class FrameBudget {
       }
       if (added.length) {
         this.everLoaded = true;
-        this.noteSuccess();
+        this.noteSuccess(`pack:${key}`);
       }
       for (const c of this.caches) {
         if (c.disposed || variantKey(c.variant) !== key) continue;
@@ -564,6 +592,7 @@ export class FrameBudget {
     this.probeOn = this.hasTransient();
     this.probeStep = 0;
     this.probeDue = false;
+    this.probeStalled = false;
     if (this.probeOn) this.scheduleProbe();
   }
 
@@ -624,11 +653,21 @@ export class FrameBudget {
     return this.packs?.hasTransient?.() ?? false;
   }
 
-  /** A film response succeeded: after a drop (see GAP_FAILURES) that is a recovery signal. */
-  private noteSuccess() {
-    const drop = this.gapPack || this.gap.size >= GAP_FAILURES;
+  /** Something failed transiently: into the gap unless a success forgave it before and it has not loaded since. */
+  private noteGap(key: string) {
+    if (!this.gapForgiven.has(key)) this.gap.add(key);
+  }
+
+  /**
+   * A film response succeeded (`key`: the frame URL or `pack:<key>` that
+   * loaded, if any): after a drop (GAP_FAILURES entries in the gap) that is a
+   * recovery signal, and what was in the gap is marked forgiven-by-success.
+   */
+  private noteSuccess(key?: string) {
+    if (key !== undefined) this.gapForgiven.delete(key);
+    const drop = this.gap.size >= GAP_FAILURES;
+    if (drop) for (const k of this.gap) this.gapForgiven.add(k);
     this.gap.clear();
-    this.gapPack = false;
     if (drop) this.signal();
   }
 
@@ -666,7 +705,8 @@ export class FrameBudget {
       if (gen !== this.probeGen || !this.probeOn) return;
       this.probeStep++;
       this.probe();
-      this.scheduleProbe();
+      // Stalled (no film to probe): no timer until a cache registers.
+      if (!this.probeStalled) this.scheduleProbe();
     }, ms);
   }
 
@@ -678,7 +718,11 @@ export class FrameBudget {
       return;
     }
     const url = this.probeUrl();
-    if (!url) return;
+    if (!url) {
+      this.probeStalled = true;
+      return;
+    }
+    this.probeStalled = false;
     this.probeDue = false;
     this.probing = true;
     this.stats.probes++;
@@ -718,16 +762,18 @@ export class FrameBudget {
     for (const url of this.dead) if (!this.deadPermanent.has(url)) this.dead.delete(url);
     this.stats.framesFailed = this.dead.size;
     this.gap.clear();
-    this.gapPack = false;
     const resumed = this.haltedFlag;
     if (resumed) {
       this.haltedFlag = false;
       this.haltKind = null;
       this.probeOn = false;
       this.probeDue = false;
+      this.probeStalled = false;
       this.probeGen++;
     }
+    // A poster that is gone for good stays failed; the others are asked for again.
     this.postersFailed = 0;
+    for (const c of this.caches) if (!c.disposed && c.posterGone) this.postersFailed++;
     this.packs?.resume?.();
     for (const c of this.caches) if (!c.disposed) c.retryPoster();
     if (resumed) for (const fn of this.resumeListeners) fn();
@@ -778,6 +824,26 @@ export class FrameBudget {
   /** @internal FrameCache → budget. */
   register(cache: FrameCache) {
     this.caches.add(cache);
+    // A probe came due with no film to probe: it runs now, the schedule goes on.
+    if (this.probeStalled && this.probeOn && this.haltedFlag) {
+      this.probe();
+      if (!this.probeStalled) this.scheduleProbe();
+    }
+  }
+
+  /**
+   * @internal A poster asked for again after a recovery signal (FrameCache.
+   * retryPoster): through the IO, so the answer says whether a failure is
+   * permanent (the <img> of the first load cannot tell). Rejects like
+   * fetchBlob; bytes that will not decode are a permanent failure.
+   */
+  async fetchPoster(url: string): Promise<Drawable> {
+    const blob = await this.io.fetchBlob(url);
+    try {
+      return await this.io.decode(blob);
+    } catch {
+      throw filmError(`poster ${url} would not decode`, true);
+    }
   }
 
   /** @internal FrameCache → listeners. */
@@ -969,7 +1035,7 @@ export class FrameBudget {
     const prev = this.failed.get(url);
     const attempts = (prev?.attempts ?? 0) + 1;
     const perm = permanent || !!prev?.permanent;
-    if (!permanent) this.gap.add(url);
+    if (!permanent) this.noteGap(url);
     if (attempts >= FRAME_TRIES) {
       this.failed.delete(url);
       this.dead.add(url);
@@ -997,7 +1063,7 @@ export class FrameBudget {
           this.fetchedEver.add(url);
           this.everLoaded = true;
           this.putBlob(url, blob);
-          this.noteSuccess();
+          this.noteSuccess(url);
         },
         (e: unknown) => {
           this.markFailed(url, isPermanentFailure(e));
@@ -1192,8 +1258,10 @@ export class FrameCache {
   readonly decoding = new Set<number>();
 
   private readonly bitmaps = new Map<number, { img: Drawable; bytes: number }>();
-  private poster: HTMLImageElement | null = null;
+  private poster: Drawable | null = null;
   private posterTried = false;
+  /** @internal A retry was answered permanently (404, bytes that will not decode): never asked for again. */
+  posterGone = false;
   /** The poster load finished (loaded or failed). */
   private posterSettled = false;
   private readonly listeners = new Set<(index: number) => void>();
@@ -1284,12 +1352,29 @@ export class FrameCache {
     return this.posterTried && !this.posterSettled;
   }
 
-  /** @internal A recovery signal (the budget): a poster that failed loads again, one try. */
+  /**
+   * @internal A recovery signal (the budget): a poster that failed loads
+   * again, one try, through the budget's IO (fetchPoster) so the answer is
+   * classified: one that is permanently gone is never asked for again.
+   */
   retryPoster() {
-    if (this.poster || !this.posterTried || !this.posterSettled) return;
-    this.posterTried = false;
+    if (this.poster || this.posterGone || !this.posterTried || !this.posterSettled || this.disposed) return;
     this.posterSettled = false;
-    void this.loadPoster();
+    void this.budget.fetchPoster(this.variant.poster).then(
+      (img) => this.posterDone(img),
+      (e: unknown) => {
+        if (isPermanentFailure(e)) this.posterGone = true;
+        this.posterDone(null);
+      },
+    );
+  }
+
+  private posterDone(img: Drawable | null) {
+    this.posterSettled = true;
+    this.budget.notePoster(this, !!img);
+    if (!img) return;
+    this.poster = img;
+    if (!this.disposed) this.notify(-1);
   }
 
   /** Drop one decoded frame (budget eviction). Its bytes stay held for a re-decode. */
@@ -1318,7 +1403,7 @@ export class FrameCache {
    * retryPoster). A failed poster is reported to the budget (unreachable
    * check) and never drawn.
    */
-  async loadPoster(): Promise<HTMLImageElement | null> {
+  async loadPoster(): Promise<Drawable | null> {
     if (this.poster || this.posterTried) return this.poster;
     this.posterTried = true;
     const img = new Image();

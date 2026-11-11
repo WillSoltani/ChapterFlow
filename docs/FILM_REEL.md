@@ -569,10 +569,13 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     canvas with no 2D context. TRANSIENT: everything else (a network error,
     an aborted body, 403/429, 5xx; a probe that does not answer in 10 s).
     Frames carry the kind in their error (`filmError`, `permanentStatus`);
-    a frame that failed permanently once stays permanent. Posters load
-    through `<img>`, which hides the status: a failed poster is retried with
-    the transient failures, but only when something else failed
-    transiently, so with no film files at all it is never retried.
+    a frame that failed permanently once stays permanent. A poster's first
+    load goes through `<img>`, which hides the status, so a failed poster
+    counts as transient until it is asked for again: that retry (only after
+    an honoured recovery signal, so only when something else failed
+    transiently; with no film files at all it never happens) goes through
+    `fetch`, and a poster that answers 404 there (or will not decode) is
+    never asked for again.
     Permanent failures stay failed for the page view; nothing below applies
     to them.
   - *Retries.* A frame gets 3 tries (400 ms, 800 ms backoff), a pack 4
@@ -596,9 +599,15 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   - *Recovery signals*: the browser's `online` event; the document shown
     again after 10 s or more hidden (`HIDDEN_RECOVERY_MS`); a film response
     (frame, poster, pack bytes) that succeeds after a drop, i.e. after at
-    least 2 distinct frames, or a pack, failed transiently since the last
-    success (`GAP_FAILURES`; one frame failing alone among successes is
-    that file's problem, not a drop); and, while halted for unreachability,
+    least 2 distinct frames or packs failed transiently since the last
+    success (`GAP_FAILURES`; one frame or one pack failing alone among
+    successes is that file's problem, not a drop). What such a success
+    forgave counts toward a later drop again only after it has loaded once:
+    the network worked when it was forgiven, so failing again (a pack or a
+    frame that keeps answering 403/429 while the rest loads) is that file's
+    problem. So a file that keeps failing is forgiven by a success at most
+    once per page view, and a page view has at most one such signal per two
+    distinct files that failed; and, while halted for unreachability,
     a probe that succeeds. FilmBackdrop passes `online` and
     `visibilitychange` to the budget (`noteOnline`, `noteVisibility`).
     Signals other than probes are honoured at most once per 5 s
@@ -606,7 +615,8 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     and any number waiting count as one. With nothing transient failed, a
     signal does nothing.
   - *Recovery*. An honoured signal makes every transiently failed frame
-    loadable with a fresh set of 3 tries, reloads failed posters (one try),
+    loadable with a fresh set of 3 tries, asks for failed posters again
+    (one try each, through `fetch`; not a poster that answered 404),
     and has the worker read transiently failed packs again (`recover`; the
     variant goes back to pack mode). While halted for unreachability a
     signal loads nothing itself: it asks for a probe, and only a probe that
@@ -625,10 +635,13 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     (`PROBE_MAX`), none while the document is hidden (one that comes due
     then runs when it is shown). A probe that fails transiently only moves
     the schedule on; one that fails permanently (the poster answers 404)
-    ends probing for that halt.
+    ends probing for that halt. A probe that comes due with no film to probe
+    (every cache disposed: the page navigated away) arms no further timer;
+    the schedule goes on when a film registers again.
   - *Bounds* (no retry loop). Per honoured signal a frame gets at most 3
-    tries; signals other than probes are honoured at most once per 5 s;
-    with the network down for good a page view makes the requests it made
+    tries; signals other than probes are honoured at most once per 5 s,
+    and success-after-drop signals need two files never forgiven that way
+    before (above); with the network down for good a page view makes the requests it made
     before the halt plus at most 10 probes, and nothing between them. With
     no film files at all (every film request 404, as in CI) every failure is
     permanent: static mode as before, no probe, nothing retried on any
@@ -966,7 +979,10 @@ toward a barred frame.
   cap 10, none while hidden); a successful probe un-halts and the plan kept
   while halted loads; the page's own halt never resumes; signals within
   5 s coalesced; an hour with the network down: the halt's requests plus at
-  most 10 probes.
+  most 10 probes; one pack (or two, or two frames) that keeps failing
+  transiently while the rest loads is not forgiven over and over; a 404
+  poster is asked for at most once more; probing arms no timer once every
+  cache is disposed and resumes with a new one.
 - `components/film/pack-build.test.ts` — the pack tool: skeleton-first
   order, header and slices, determinism, `--verify` catching a changed or
   added frame, the timeline sync keeping a version and dropping a stale pack.

@@ -224,6 +224,11 @@ export class PackClient implements PackSource {
     return false;
   }
 
+  /** `variant`'s pack failed transiently (frame-cache.ts counts it once in a gap). */
+  transient(variant: FilmVariant): boolean {
+    return this.failed.get(variantKey(variant)) === "transient";
+  }
+
   /** Stop the worker (unmount). A later `where` starts a fresh one. */
   dispose() {
     this.unlisten?.();

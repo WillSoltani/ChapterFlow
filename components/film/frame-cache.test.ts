@@ -401,6 +401,8 @@ function fakeClock() {
       },
     } satisfies FrameClock,
     now: () => t,
+    /** Timers armed and not fired yet. */
+    pending: () => timers.length,
     async advance(ms: number) {
       const end = t + ms;
       for (;;) {
@@ -1382,4 +1384,189 @@ test("recovery: with the network down for good, requests are bounded: the halt's
   assert.equal(after.length, budget.stats.probes, "every request after the halt is a probe");
   assert.ok(after.every((l) => l.url.endsWith("/poster.webp")));
   assert.equal(budget.halted, true);
+});
+
+// ── Review fixes: bounded forgiveness, poster classification, probe timers ──
+
+/** A pack source whose one pack (or several) fails transiently `failAfter` ms after it is served again; frames are never held. */
+function flakyPacks(fc: ReturnType<typeof fakeClock>, failAfter: number) {
+  const failed = new Set<string>();
+  const known = new Map<string, FilmVariant>();
+  const listeners = new Set<(v: FilmVariant, added: readonly number[] | null) => void>();
+  let resumes = 0;
+  const fail = (v: FilmVariant) => {
+    if (failed.has(v.name)) return;
+    failed.add(v.name);
+    for (const fn of listeners) fn(v, null);
+  };
+  const source: PackSource = {
+    serves: (v) => {
+      if (v.pack) known.set(v.name, v);
+      return !!v.pack && !failed.has(v.name);
+    },
+    holds: () => false,
+    decode: () => Promise.reject(new Error("pack: decode missing")),
+    where: () => {},
+    subscribe: (fn) => {
+      listeners.add(fn);
+      return () => listeners.delete(fn);
+    },
+    stop: () => {},
+    resume: () => {
+      for (const name of [...failed]) {
+        failed.delete(name);
+        resumes++;
+        const v = known.get(name)!;
+        fc.clock.later(() => fail(v), failAfter);
+      }
+    },
+    hasTransient: () => failed.size > 0,
+    transient: (v) => failed.has(v.name),
+  };
+  return { source, fail, resumes: () => resumes };
+}
+
+test("recovery: one pack that keeps failing transiently while its frames load is not forgiven over and over", async () => {
+  const fc = fakeClock();
+  const n = netIO(fc);
+  n.state.down = () => false;
+  const packs = flakyPacks(fc, 3_000);
+  const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+  budget.attachPacks(packs.source);
+  const a = new FrameCache(packVariant("a"), budget);
+  budget.notePoster(a, true);
+  budget.want({ active: { cache: a, center: 0, direction: 1 } });
+  packs.fail(a.variant);
+  // Two minutes of a visitor moving 2 frames a second: per-frame loads succeed.
+  for (let s = 0; s < 120; s++) {
+    budget.want({ active: { cache: a, center: s * 2, direction: 1 } });
+    await go(fc, 1_000);
+  }
+  assert.equal(budget.stats.recoveries, 0, "one pack alone is that file's problem, not a drop");
+  assert.equal(packs.resumes(), 0);
+});
+
+test("recovery: packs forgiven by a success fail again: not forgiven again by the next success", async () => {
+  const fc = fakeClock();
+  const n = netIO(fc);
+  n.state.down = () => false;
+  const packs = flakyPacks(fc, 3_000);
+  const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+  budget.attachPacks(packs.source);
+  const a = new FrameCache(packVariant("a"), budget);
+  const b = new FrameCache(packVariant("b"), budget);
+  budget.notePoster(a, true);
+  budget.want({ active: { cache: a, center: 0, direction: 1 }, next: b });
+  packs.fail(a.variant);
+  packs.fail(b.variant);
+  for (let s = 0; s < 120; s++) {
+    budget.want({ active: { cache: a, center: s * 2, direction: 1 }, next: b });
+    await go(fc, 1_000);
+  }
+  assert.ok(budget.stats.recoveries <= 1, `${budget.stats.recoveries} recoveries`);
+  assert.ok(packs.resumes() <= 2, `${packs.resumes()} pack resumes`);
+});
+
+test("recovery: frames that keep failing transiently while others load get a fresh set of tries once, not every 5 s", async () => {
+  const fc = fakeClock();
+  const n = netIO(fc);
+  const b = variant("b");
+  const x = frameUrl(b, 1);
+  const y = frameUrl(b, 2);
+  n.state.down = (u) => u === x || u === y;
+  const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  const bc = new FrameCache(b, budget);
+  budget.notePoster(a, true);
+  // The next film's opening (x, y) stays wanted while the visitor walks the active film.
+  for (let s = 0; s < 120; s++) {
+    budget.want({ active: { cache: a, center: s * 2, direction: 1 }, next: bc });
+    await go(fc, 1_000);
+  }
+  assert.ok(budget.stats.recoveries <= 1, `${budget.stats.recoveries} recoveries`);
+  assert.ok(n.tries(x) <= 2 * FRAME_TRIES, `${n.tries(x)} tries of one failing frame`);
+  assert.ok(n.tries(y) <= 2 * FRAME_TRIES, `${n.tries(y)} tries of one failing frame`);
+});
+
+test("recovery: a poster that is missing (404) is asked for at most once more, whatever the signals", async () => {
+  const imgs = fakeImages();
+  try {
+    const fc = fakeClock();
+    const n = netIO(fc);
+    const v = variant("a");
+    n.state.gone = (u) => u === v.poster;
+    const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+    const a = new FrameCache(v, budget);
+    const b = new FrameCache(variant("b"), budget);
+    void b.loadPoster();
+    imgs.pending[0]!.ok(true);
+    void a.loadPoster();
+    imgs.pending[1]!.ok(false);
+    await settle();
+    let settled = imgs.pending.length;
+    // Frames fail transiently (the network is down), so each 'online' is honoured.
+    budget.want({ active: { cache: a, center: 0, direction: 1 } });
+    await go(fc, 10_000);
+    for (let i = 0; i < 5; i++) {
+      budget.noteOnline();
+      await go(fc, 10_000);
+      // A poster asked for again through an <img> gets the same 404.
+      for (const p of imgs.pending.slice(settled)) p.ok(false);
+      settled = imgs.pending.length;
+      await go(fc, 1_000);
+    }
+    assert.equal(budget.stats.recoveries, 5);
+    const asked = imgs.pending.length - 1 + n.tries(v.poster);
+    assert.ok(asked <= 2, `the missing poster was asked for ${asked} times`);
+  } finally {
+    imgs.restore();
+  }
+});
+
+test("recovery: a poster that failed in a drop loads on the next recovery signal", async () => {
+  const imgs = fakeImages();
+  try {
+    const fc = fakeClock();
+    const n = netIO(fc);
+    const v = variant("a");
+    const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+    const a = new FrameCache(v, budget);
+    const b = new FrameCache(variant("b"), budget);
+    void b.loadPoster();
+    imgs.pending[0]!.ok(true);
+    void a.loadPoster();
+    imgs.pending[1]!.ok(false);
+    await settle();
+    const landed: number[] = [];
+    a.subscribe((i) => landed.push(i));
+    budget.want({ active: { cache: a, center: 0, direction: 1 } });
+    await go(fc, 10_000);
+    n.state.down = () => false;
+    budget.noteOnline();
+    await go(fc, 1_000);
+    // A poster asked for again through an <img> loads now.
+    for (const p of imgs.pending.slice(2)) p.ok(true);
+    await go(fc, 4_000);
+    assert.ok(landed.includes(-1), "the poster landed");
+    assert.equal(a.posterPending, false);
+    a.dispose();
+    assert.ok(a.nearest(0) !== null);
+  } finally {
+    imgs.restore();
+  }
+});
+
+test("recovery: probing stops arming timers when every cache is disposed, and starts again with a new one", async () => {
+  const { fc, n, budget, a, haltAt } = await haltedBudget();
+  a.dispose();
+  await go(fc, 6 * 3600_000);
+  assert.equal(fc.pending(), 0, "no timer chain left behind");
+  assert.equal(budget.stats.probes, 0);
+  const c = new FrameCache(variant("a"), budget);
+  await go(fc, 1_000);
+  const probes = n.log.filter((l) => l.t > haltAt);
+  assert.equal(probes.length, 1, "the probe that came due runs when a film is back");
+  assert.equal(probes[0]!.url, c.variant.poster);
+  await go(fc, 10_000);
+  assert.equal(budget.stats.probes, 2, "and the schedule goes on");
 });
