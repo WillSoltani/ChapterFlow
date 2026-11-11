@@ -11,7 +11,10 @@ import { promises as fs } from "node:fs";
  * The phone run (390 × 844, DPR 2) draws the band tier b900: there the
  * canvas must equal the tier's OWN frame file placed by the virtual-frame math
  * (the band rect inside the cover-fit 1080×1920 frame), with the clear colour
- * everywhere else. It does not need the legacy -p frames.
+ * everywhere else. It does not need the legacy -p frames. The landscape
+ * phone run (844 × 390, DPR 3, touch: a phone held sideways, Phase 7) draws
+ * the LANDSCAPE variant: there the canvas must equal the landscape frame
+ * cover-fitted by the same math.
  *
  * Opt-in: RUN_AUDIT=1 (part of `npm run test:film`).
  */
@@ -102,12 +105,17 @@ test.describe("film truth", () => {
     expect(problems, problems.join("\n")).toEqual([]);
   });
 
-  test.describe("phone", () => {
+  for (const run of [
+    { name: "phone", viewport: { width: 390, height: 844 }, dpr: 2, mobile: false, band: true },
+    // Phase 7: a phone held sideways draws the LANDSCAPE frames (short landscape).
+    { name: "landscape phone", viewport: { width: 844, height: 390 }, dpr: 3, mobile: true, band: false },
+  ] as const)
+  test.describe(run.name, () => {
     // Reduced motion: no breath (deterministic pixels) and progress quantised
     // to the film's 5 steps, so a scroll position names one exact frame.
-    test.use({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
+    test.use({ viewport: run.viewport, deviceScaleFactor: run.dpr, ...(run.mobile ? { isMobile: true, hasTouch: true } : {}) });
 
-    test("canvas pixels equal the band tier's own frame placed in its virtual frame", async ({ page }) => {
+    test(run.band ? "canvas pixels equal the band tier's own frame placed in its virtual frame" : "canvas pixels equal the landscape frame placed by the canvas math", async ({ page }) => {
       test.setTimeout(180_000);
       await page.emulateMedia({ reducedMotion: "reduce" });
       await page.goto("/?hud=1");
@@ -130,7 +138,7 @@ test.describe("film truth", () => {
         const frame = Math.round((Math.round(p * STEPS) / STEPS) * (entry.count - 1));
         const decoy = frame >= 60 ? frame - 60 : frame + 60;
         const r = await page.evaluate(
-          async ({ i, p, film, frame, decoy }) => {
+          async ({ i, p, film, frame, decoy, band }) => {
             type Variant = { name: string; base: string; v?: string; frame?: { w: number; h: number }; band?: { x: number; y: number; w: number; h: number } };
             type Cache = { variant: Variant; has: (i: number) => boolean; lastServed: number };
             const caches = (window as unknown as { __filmCaches: Map<string, Cache> }).__filmCaches;
@@ -147,7 +155,7 @@ test.describe("film truth", () => {
             let cache: Cache | undefined;
             for (;;) {
               await raf();
-              cache = [...caches.entries()].find(([key]) => key.startsWith(`${film}-`))?.[1];
+              cache = [...caches.entries()].find(([key]) => key.startsWith(band ? `${film}-` : `${film}@`))?.[1];
               const m = /(palace-\d\d) · f(\d{4})/.exec(document.querySelector(".film-hud")?.textContent ?? "");
               if (cache && m && m[1] === film && Number(m[2]) === frame + 1 && cache.has(frame) && cache.lastServed === frame) break;
               if (performance.now() - t0 > 20_000) return { error: `timed out waiting for ${film} f${frame + 1} (cache ${cache?.variant.name ?? "none"})` };
@@ -155,7 +163,7 @@ test.describe("film truth", () => {
             await raf();
             await raf();
             const variant = cache.variant;
-            if (!variant.frame || !variant.band) return { error: `${variant.name} is not a band tier` };
+            if (band && (!variant.frame || !variant.band)) return { error: `${variant.name} is not a band tier` };
             const canvas = document.querySelector<HTMLCanvasElement>(".film-canvas canvas");
             if (!canvas?.parentElement) throw new Error("no film canvas");
             const cw = canvas.width;
@@ -164,13 +172,14 @@ test.describe("film truth", () => {
             const bg = getComputedStyle(canvas).getPropertyValue("--cf-recall-bg").trim() || "#06070A";
             const boxH = canvas.parentElement.getBoundingClientRect().height;
             const shiftY = boxH > 0 ? ((stage - boxH) / 2) * (ch / boxH) : 0;
-            // The virtual frame cover-fitted to the canvas (breath 0), then the band inside it.
-            const vf = variant.frame;
-            const band = variant.band;
+            // The virtual frame cover-fitted to the canvas (breath 0), then the
+            // band inside it; a landscape variant: its own frame cover-fitted.
+            const vf = variant.frame ?? { w: 1920, h: 1080 };
+            const pic = variant.band ?? { x: 0, y: 0, w: vf.w, h: vf.h };
             const scale = Math.max(cw / vf.w, ch / vf.h);
             const fx = (cw - vf.w * scale) * 0.5;
             const fy = shiftY + (ch - vf.h * scale) * 0.5;
-            const dest = { x: fx + band.x * scale, y: fy + band.y * scale, w: band.w * scale, h: band.h * scale };
+            const dest = { x: fx + pic.x * scale, y: fy + pic.y * scale, w: pic.w * scale, h: pic.h * scale };
             const meanDiff = async (index: number) => {
               const url = `${variant.base}/f_${String(index + 1).padStart(4, "0")}.webp${variant.v ? `?v=${variant.v}` : ""}`;
               const img = await createImageBitmap(await (await fetch(url)).blob());
@@ -201,17 +210,18 @@ test.describe("film truth", () => {
             }
             return { variant: variant.name, exact: await meanDiff(frame), decoy: await meanDiff(decoy), outside };
           },
-          { i, p, film, frame, decoy },
+          { i, p, film, frame, decoy, band: run.band },
         );
         if ("error" in r) {
           problems.push(String(r.error));
           continue;
         }
-        console.log(`phone truth: ${r.variant} f${frame + 1}: mean |Δ| ${r.exact.toFixed(3)} vs decoy f${decoy + 1} ${r.decoy.toFixed(2)}, off-band pixels ${r.outside}`);
-        if (r.variant !== `${film}-b900`) problems.push(`${film} f${frame + 1}: drew ${r.variant}, expected ${film}-b900`);
+        console.log(`${run.name} truth: ${r.variant} f${frame + 1}: mean |Δ| ${r.exact.toFixed(3)} vs decoy f${decoy + 1} ${r.decoy.toFixed(2)}${run.band ? `, off-band pixels ${r.outside}` : ""}`);
+        const expected = run.band ? `${film}-b900` : film;
+        if (r.variant !== expected) problems.push(`${film} f${frame + 1}: drew ${r.variant}, expected ${expected}`);
         if (r.exact > 0.5) problems.push(`${film} f${frame + 1}: canvas differs from the tier frame by ${r.exact.toFixed(2)}`);
         if (!(r.decoy > r.exact)) problems.push(`${film} f${frame + 1}: canvas is no closer to its frame (${r.exact.toFixed(2)}) than to f${decoy + 1} (${r.decoy.toFixed(2)})`);
-        if (r.outside > 0) problems.push(`${film} f${frame + 1}: ${r.outside} pixels outside the band are not the clear colour`);
+        if (run.band && r.outside > 0) problems.push(`${film} f${frame + 1}: ${r.outside} pixels outside the band are not the clear colour`);
       }
       expect(problems, problems.join("\n")).toEqual([]);
     });

@@ -3,7 +3,19 @@ import sharp from "sharp";
 
 /** Helpers for e2e/film-audit.spec.ts — numeric stand-ins for eyeballing. */
 
-export type Pin = { text: string; x: number; y: number; w: number; h: number; seg: string; interactive: boolean };
+export type Pin = {
+  text: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  seg: string;
+  interactive: boolean;
+  /** Smallest computed font size of the pin and the text inside it (px). */
+  fontPx: number;
+  /** Links and buttons inside the pin: their boxes. */
+  targets: Array<{ text: string; w: number; h: number }>;
+};
 export type Snap = { pins: Pin[]; hud: string; navBottom: number; scrollY: number; active: string };
 
 export const LUM_MEAN_MAX = 110;
@@ -26,7 +38,18 @@ export function activePins(page: Page): Promise<Snap> {
         if (Number(getComputedStyle(el).opacity) < 0.6) continue;
         const r = el.getBoundingClientRect();
         if (r.width === 0 || r.height === 0) continue;
+        let fontPx = parseFloat(getComputedStyle(el).fontSize);
+        for (const t of el.querySelectorAll<HTMLElement>("*")) {
+          if (!(t.textContent ?? "").trim() || t instanceof SVGElement) continue;
+          fontPx = Math.min(fontPx, parseFloat(getComputedStyle(t).fontSize));
+        }
+        const targets = [...el.querySelectorAll<HTMLElement>("a[href], button")].map((t) => {
+          const b = t.getBoundingClientRect();
+          return { text: (t.textContent ?? "").trim().slice(0, 30), w: b.width, h: b.height };
+        });
         pins.push({
+          fontPx,
+          targets,
           text: (el.textContent ?? "").trim().slice(0, 40),
           x: r.left,
           y: r.top,

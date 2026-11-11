@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { activePins, backgroundLum, overlap, LUM_MEAN_MAX, LUM_P90_MAX } from "./film-audit-lib";
 
 /**
- * Film-reel QA audit. Scrubs /film at many scroll positions across four
+ * Film-reel QA audit. Scrubs the landing at many scroll positions across seven
  * viewports and asserts, numerically, what a designer would otherwise eyeball.
  * Only pins inside the ACTIVE sticky stage are judged.
  *
@@ -13,16 +13,30 @@ import { activePins, backgroundLum, overlap, LUM_MEAN_MAX, LUM_P90_MAX } from ".
  *      hidden) has mean luminance ≤ 110 and p90 ≤ 150 for near-white ink.
  *   5. The canvas paints a palace film at every step.
  *   6. Every pin becomes visible at least once across the scrub.
+ *   7. No pin's text is set below 11 px (.film-label), and every link or
+ *      button inside a pin is a tap target of at least 44 × 44 px.
+ *
+ * Viewports: desktop, laptop, tablet and phone as before, plus (Phase 7) a
+ * small phone (360 × 740), the smallest (320 × 568) and a phone held sideways
+ * (844 × 390, the compact stage), those three with touch and a mobile viewport.
  *
  * Opt-in (slow, needs public/films): RUN_AUDIT=1 npx playwright test e2e/film-audit.spec.ts --project=chromium
  */
 
-const VIEWPORTS = [
+type Viewport = { name: string; width: number; height: number; mobile?: boolean };
+const VIEWPORTS: Viewport[] = [
   { name: "desktop", width: 1440, height: 900 },
   { name: "laptop", width: 1280, height: 720 },
   { name: "tablet", width: 834, height: 1194 },
   { name: "phone", width: 390, height: 844 },
+  // Phase 7: small phones and a phone held sideways (touch, mobile viewport).
+  { name: "small phone", width: 360, height: 740, mobile: true },
+  { name: "smallest phone", width: 320, height: 568, mobile: true },
+  { name: "landscape phone", width: 844, height: 390, mobile: true },
 ];
+/** The smallest copy the reel sets (.film-label, 11 px) and the smallest tap target. */
+const MIN_FONT_PX = 11;
+const MIN_TAP_PX = 44;
 const STEPS = Array.from({ length: 17 }, (_, i) => Math.min(0.985, i / 16));
 
 test.describe("film audit", () => {
@@ -32,7 +46,10 @@ test.describe("film audit", () => {
     test(`${vp.name} ${vp.width}×${vp.height}`, async ({ browser, browserName }) => {
       // ~120 screenshots per viewport; headless WebKit rasterises in software.
       test.setTimeout(browserName === "webkit" ? 600_000 : 300_000);
-      const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height } });
+      const ctx = await browser.newContext({
+        viewport: { width: vp.width, height: vp.height },
+        ...(vp.mobile ? { isMobile: true, hasTouch: true, deviceScaleFactor: 2 } : {}),
+      });
       const page = await ctx.newPage();
       await page.goto("/?hud=1");
       await page.waitForTimeout(1200);
@@ -67,6 +84,9 @@ test.describe("film audit", () => {
               problems.push(`${where}: CLIPPED "${pin.text}" box=${[pin.x, pin.y, pin.w, pin.h].map(Math.round)}`);
             if (pin.y < s.navBottom + 8)
               problems.push(`${where}: UNDER NAV "${pin.text}" top=${Math.round(pin.y)} nav=${Math.round(s.navBottom)}`);
+            if (pin.fontPx < MIN_FONT_PX) problems.push(`${where}: SMALL TEXT "${pin.text}" ${pin.fontPx}px`);
+            for (const t of pin.targets)
+              if (t.w < MIN_TAP_PX || t.h < MIN_TAP_PX) problems.push(`${where}: SMALL TAP TARGET "${t.text}" ${Math.round(t.w)}×${Math.round(t.h)}`);
             // CTA pins carry solid buttons (dark ink on accent) — contrast is the button's, not the frame's.
             const l = lum[i];
             if (!pin.interactive && l && (l.mean > LUM_MEAN_MAX || l.p90 > LUM_P90_MAX))

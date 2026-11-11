@@ -18,7 +18,8 @@ import { PROD_E2E_HEADERS } from "../playwright.config";
  *   3. Hydration held back 2 s: before it, the poster and only the hero's
  *      first-frame pins show; after the canvas takes over, its picture
  *      matches the poster (band region mean abs difference ≤ 3, edges ±1 px)
- *      on a phone, a tablet and a desktop.
+ *      on a phone, a tablet and a desktop, a phone held sideways (844 × 390,
+ *      landscape poster) and a phone at framing amount ?frame=50.
  *   4. Scripts blocked: after the 8 s failsafe (readable-layout.ts) every pin
  *      is visible, no two overlap, no chapter keeps an empty multi-screen
  *      stage, and the footer is on top and clickable.
@@ -30,7 +31,8 @@ import { PROD_E2E_HEADERS } from "../playwright.config";
  *   Tests that need the poster to load skip without local film files (the CI
  *   prod job has none: public/films is gitignored).
  * RUN_AUDIT=1 (dev server, part of `npm run test:film`):
- *   7. One poster only, the film code's own variant, on five viewports.
+ *   7. One poster only, the film code's own variant, on six viewports
+ *      (including a phone held sideways).
  *   8. Every film request answered 404 (no film files): static mode (copy
  *      follows scroll, nothing hidden at the end), film requests stop, no
  *      probe, no page error.
@@ -53,6 +55,8 @@ const HEADERS = PROD ? { ...PROD_E2E_HEADERS } : undefined;
 const PHONE: BrowserContextOptions = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true };
 const TABLET: BrowserContextOptions = { viewport: { width: 820, height: 1180 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true };
 const DESKTOP: BrowserContextOptions = { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 };
+/** A phone held sideways (Phase 7): short landscape, the landscape frames. */
+const SIDEWAYS: BrowserContextOptions = { viewport: { width: 844, height: 390 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true };
 
 const HERO_FILM = BOOK_REEL[0]!;
 const POSTER = heroPoster(HERO_FILM);
@@ -329,10 +333,14 @@ test.describe("film first paint (@prod)", () => {
     });
   }
 
-  for (const [name, vp] of [
-    ["390x844 DPR 3", PHONE],
-    ["820x1180 DPR 2", TABLET],
-    ["1440x900 DPR 1", DESKTOP],
+  for (const [name, vp, url] of [
+    ["390x844 DPR 3", PHONE, "/"],
+    ["820x1180 DPR 2", TABLET, "/"],
+    ["1440x900 DPR 1", DESKTOP, "/"],
+    // Phase 7: a phone held sideways (landscape poster), and a framing
+    // amount other than the default (?frame=, band poster and canvas alike).
+    ["844x390 DPR 3", SIDEWAYS, "/"],
+    ["390x844 DPR 3 ?frame=50", PHONE, "/?frame=50"],
   ] as const) {
     test(`hydration held back 2 s (${name}): poster and opening copy first, then the canvas takes over in place @prod`, async ({ browser, request }) => {
       test.setTimeout(120_000);
@@ -345,7 +353,7 @@ test.describe("film first paint (@prod)", () => {
       const page = await ctx.newPage();
       const errors: string[] = [];
       page.on("pageerror", (e) => errors.push(e.message));
-      await page.goto("/", { waitUntil: "domcontentloaded" });
+      await page.goto(url, { waitUntil: "domcontentloaded" });
       await page.waitForFunction(
         () => {
           const img = document.querySelector<HTMLImageElement>("[data-film-poster] img");
@@ -637,6 +645,7 @@ test.describe("film first paint (audit)", () => {
     [820, 1180, 2],
     [1440, 900, 1],
     [1280, 720, 2],
+    [844, 390, 3],
   ] as const) {
     test(`one poster only at ${w}x${h} DPR ${dpr}: the film code's own variant`, async ({ browser }) => {
       const ctx = await newContext(browser, { viewport: { width: w, height: h }, deviceScaleFactor: dpr, ...(w < 1024 ? { isMobile: true, hasTouch: true } : {}) });
