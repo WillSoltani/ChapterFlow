@@ -63,6 +63,7 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import sharp from "sharp";
+import { BAND_TIER_WIDTHS, bandTierEntry } from "./band-sync.mjs";
 
 const args = process.argv.slice(2);
 const opt = (name, def) => {
@@ -76,14 +77,12 @@ const opt = (name, def) => {
 const ROOT = process.cwd();
 const OUT_ROOT = path.resolve(ROOT, String(opt("out", "public/films")));
 const TIMELINE = path.resolve(ROOT, "components/film/book.timeline.json");
-/** Band tiers written by --bands: output width (the height keeps the band's aspect). */
-const BAND_TIER_WIDTHS = [1080, 900];
 /** The virtual frame a band tier sits in: the -p composition. */
 const VFRAME = { w: 1080, h: 1920 };
 
 if (opt("sync-timeline", false)) {
   await syncTimeline();
-  process.exit(0);
+  process.exit(process.exitCode ?? 0); // 1 when a band tier is stale
 }
 
 const [inputArg, filmName] = args.filter((a) => !a.startsWith("--") && !/^\d|,/.test(a)).slice(0, 2);
@@ -316,6 +315,17 @@ if (portraitOnly && !bandsMode) {
   }
 }
 await syncTimeline();
+if (!bandsMode) {
+  // A landscape or -p encode is a new render; band tiers cut from the old one
+  // keep their URLs and versions and would go on showing it on portrait
+  // screens. Say so (syncTimeline also fails when the frame counts differ).
+  for (const w of BAND_TIER_WIDTHS) {
+    const dir = path.join(OUT_ROOT, `${filmName}-b${w}`);
+    if (await fs.stat(dir).then(() => true, () => false)) {
+      console.warn(`band tier ${path.relative(ROOT, dir)} was cut from the previous render: re-encode it with --bands (docs/FILM_REEL.md)`);
+    }
+  }
+}
 const wrote = [...(portraitOnly ? [] : [landDir]), ...(writePortraitDir ? [portDir] : []), ...tiers.map((t) => t.dir)];
 console.log(`done → ${wrote.map((d) => path.relative(ROOT, d)).join(", ")}`);
 
@@ -349,8 +359,12 @@ async function syncTimeline() {
         } catch {
           continue;
         }
-        const entry = { width: bm.width, height: bm.height, frame: bm.frame, band: bm.band, ...(bm.v ? { v: bm.v } : {}) };
         film.bands ??= {};
+        const { entry, stale } = bandTierEntry(film.bands[tier], bm, m.count, `${name}-${tier}`);
+        if (stale) {
+          console.warn(`STALE BAND TIER: ${stale}`);
+          process.exitCode = 1;
+        }
         if (JSON.stringify(film.bands[tier]) !== JSON.stringify(entry)) {
           film.bands[tier] = entry;
           changed = true;
