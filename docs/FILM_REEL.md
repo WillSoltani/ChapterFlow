@@ -46,13 +46,48 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   and its copy rides in with its stage (`pickActive` in `scrub.ts`).
 - Dissolve: first `dissolveIn` frames cross-fade over previous film's last
   frame (so it happens during the slide-in, not at the pin).
-- Prefetch is directional (24 ahead / 10 behind) and CANCELLABLE: moving the
-  window aborts speculative fetches outside it, so a fast scrub never piles
-  up a reel's worth of requests in front of the app's own navigations.
-- Decoded frames live under ONE byte budget shared by every film's cache
-  (`FrameBudget`, LRU across caches): 160 MB on phones/tablets, 384 MB on
-  desktop, `deviceMemory`×48 MB where Chrome reports it. Without it a single
-  portrait film could hold 1.3 GB of bitmaps and mobile Safari killed the tab.
+- Frame loading (`frame-cache.ts`). Decoded frames live under ONE byte budget
+  shared by every film (`FrameBudget`): 160 MB on phones/tablets, 384 MB on
+  desktop, `deviceMemory`×48 MB where Chrome reports it (a single portrait
+  film once held 1.3 GB of bitmaps and mobile Safari killed the tab). The
+  budget is also the load scheduler:
+  - **One wanted set per scroll decision** (`budget.want`, called by the scrub
+    loop when the target frame moves): a window around the playhead in the
+    active film, ~70 % ahead in the scroll direction; the previous film's
+    LAST frame while the window can reach the dissolve (`frame < dissolveIn`
+    draws it); the next film's opening (at most 12 frames) once progress
+    passes 0.6, and from the hero onward for the second film (the mount
+    warm-up, a "weak" plan the loop's first decision replaces). Its decoded
+    size is ≤ 80 % of the budget: capacity = budget ÷ (width × height × 4),
+    known before any decode (phones: 20 frames → 16 wanted; desktop 384 MB:
+    48 → 38).
+  - Loads start only for wanted frames, nearest-first in the scroll
+    direction, re-ordered on every decision. At most **4 fetches** in flight
+    (the dev server is HTTP/1.1, 6 connections per host: more would starve
+    the app's own navigations) and **2 decodes** on budgets under 256 MB,
+    4 otherwise. A decode reserves its decoded bytes when it STARTS, so
+    decoded + decoding never exceeds the budget by more than one frame.
+  - A fetch that has started is **never aborted**: its compressed bytes are
+    kept in a byte-capped store (24 MB on small budgets, 96 MB otherwise,
+    least recently used out), keyed by frame URL, so a frame is fetched once
+    per page and re-decoded from those bytes when the visitor scrolls back
+    (or a cache is re-created by a remount). Only requests still QUEUED are
+    dropped when they leave the wanted set.
+  - Eviction removes only frames OUTSIDE the wanted set: other films' frames
+    first, then the active film's, farthest from the playhead first. A new
+    far frame can no longer push out a near one (the oldest-first LRU did,
+    and refetched in a loop: 522 to 10,662 refetches per pass on 2026-11-10).
+  - A frame that lands nearer to the wanted one than what the canvas shows
+    triggers a repaint (`budget.subscribe`), with or without scrolling,
+    breath or reduced motion.
+  - Counters, always on (production too): `window.__filmStats` — `fetches`,
+    `refetches` (a network fetch for bytes this page already fetched),
+    `decodes`, `redecodes`, `exactDraws`, `fallbackDraws`,
+    `fallbackDistanceSum` (|drawn − wanted| summed over fallback draws; the
+    poster counts as frame 0), `evictions`, `maxFetchInFlight`,
+    `maxDecodeInFlight`, plus the live `fetchInFlight` / `decodeInFlight`.
+    `?hud=1` shows a second line: `exact 97% · refetch 0 · dist 0.4 · fetch
+    3/4` (dist = mean distance over ALL draws).
 - Breath: `±amp` slow sinusoidal zoom while held (off under reduced motion).
 - Reduced motion (OS or in-app toggle): progress quantised to `reducedSteps` (5).
 - `<html data-reel-chrome="film|body" data-reel-section="…">` + `cf-reel-chrome`
@@ -185,6 +220,16 @@ toward a barred frame.
   headless Chromium has no GPU and its software raster of a full-viewport
   canvas shows stalls real Chrome never does. Reference (prod bundle, M-series):
   58–60 fps, 0 long tasks, 0 holds, worst stall ≤ 70 ms.
+- `npm run film:quality` (`scripts/film/scrub-quality.mjs`; dev server or
+  `next start` on :3000) — the loading gate: one time-based scroll down the
+  whole reel per profile (`phone-webkit` = iPhone 14 at 600 px/s,
+  `phone-chromium-slow` = Pixel 7, CPU 4×, Fast 4G, no `deviceMemory`, at
+  600 px/s, `desktop-chromium` = 1440×900 at 900 px/s; `ONLY=`, `SPEED=`
+  override). Prints frame requests on the network vs distinct frames, the
+  `__filmStats` counters, the exact-draw share and the mean fallback
+  distance; exits non-zero on any refetch or more than 4 fetches in flight.
+  It refuses a non-local `BASE` unless `ALLOW_REMOTE=1` AND `MAX_REQUESTS=n`
+  are set (the live site rate-limits per IP).
 - `node scripts/film/seam-geometry.mjs` (dev server on :3000, `BASE=` to
   override): steps the scroll across the hero→hall and tower→city boundaries
   and prints the HUD frame per 15 px, so a freeze (same frame for hundreds of
@@ -195,6 +240,11 @@ toward a barred frame.
 ## Tests
 
 - `components/film/scrub.test.ts` — pure math + pin opacity + timeline invariants.
+- `components/film/frame-cache.test.ts` — the scheduler under node with fake
+  fetch/decode: wanted set within budget on forward, backward and jumping
+  scrubs; 0 refetches; held bytes re-decoded; wanted frames never evicted;
+  the dissolve pin; fetch/decode limits; queued vs started; accounting back
+  to zero after `dispose()`.
 - `e2e/film-reel.spec.ts` — scrubs, dissolve, chrome flip, canvas paints,
   reduced-motion quantisation. Skips if `public/films` is empty. Runs in CI.
 - `npm run test:film` — **the QA audit** (opt-in, slow, needs frames):
@@ -205,6 +255,9 @@ toward a barred frame.
   - `film-perf.spec.ts` wheel-scrubs the whole reel: frames monotonic, every
     handoff lands in the dissolve window, rAF ≥ 45 fps (chromium), chrome →
     body at the end, anchor links land exactly on their segment.
+  - `film-quality.spec.ts` scrolls steadily over the first two films and
+    asserts from the network and `__filmStats` (not the HUD): 0 refetches,
+    ≤ 4 fetches in flight, no frame requested twice.
 - `npm run test:film:safari` — same on WebKit (`npx playwright install webkit`
   first). Headless WebKit rasterises in software and caps ~25 fps on any
   full-viewport image swap; the fps gate is 20 there.
