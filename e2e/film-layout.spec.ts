@@ -12,7 +12,10 @@ import timeline from "../components/film/book.timeline.json";
  *      Emulation.setSafeAreaInsetsOverride over CDP; top 47 / bottom 34 in
  *      portrait, left and right 47 / bottom 21 in landscape) no line of copy,
  *      button, nav item or footer link intersects an inset band at any
- *      chapter's main moment.
+ *      chapter's main moment. A build without that CDP method (or
+ *      SAFE_AREA_FALLBACK=1) re-applies the page's style sheets with every
+ *      env(safe-area-inset-*) replaced by the inset in px and runs the same
+ *      checks on the computed layout.
  *   3. Start button always in reach: stepping through the reel in small
  *      scroll steps on 390 × 844 and 1440 × 900, at every step at least one
  *      primary start call-to-action is visible (the hero's, the nav's, the
@@ -121,28 +124,75 @@ test.describe("film layout (Phase 7)", () => {
       const ctx = await newContext(browser, opts);
       const page = await ctx.newPage();
       const cdp: CDPSession = await ctx.newCDPSession(page);
-      let emulated = true;
-      try {
-        await cdp.send("Emulation.setSafeAreaInsetsOverride" as never, { insets } as never);
-      } catch (e) {
-        emulated = false;
-        console.log(`safe areas: Emulation.setSafeAreaInsetsOverride unavailable (${String(e).slice(0, 120)})`);
+      let emulated = process.env.SAFE_AREA_FALLBACK !== "1";
+      if (emulated) {
+        try {
+          await cdp.send("Emulation.setSafeAreaInsetsOverride" as never, { insets } as never);
+        } catch (e) {
+          emulated = false;
+          console.log(`safe areas: Emulation.setSafeAreaInsetsOverride unavailable (${String(e).slice(0, 120)})`);
+        }
       }
-      test.skip(!emulated, "this Chromium build has no Emulation.setSafeAreaInsetsOverride");
       await page.goto("/?hud=1");
       await expect(page.locator("[data-film-reel]")).toHaveAttribute("data-film-armed", "");
       await page.waitForTimeout(800);
-      // The override is live: env() reads the insets.
-      const env = await page.evaluate(() => {
-        const d = document.createElement("div");
-        d.style.cssText = "position:fixed;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)";
-        document.body.append(d);
-        const cs = getComputedStyle(d);
-        const out = { top: parseFloat(cs.paddingTop), right: parseFloat(cs.paddingRight), bottom: parseFloat(cs.paddingBottom), left: parseFloat(cs.paddingLeft) };
-        d.remove();
-        return out;
-      });
-      expect(env).toEqual(insets);
+      if (emulated) {
+        // The override is live: env() reads the insets.
+        const env = await page.evaluate(() => {
+          const d = document.createElement("div");
+          d.style.cssText = "position:fixed;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)";
+          document.body.append(d);
+          const cs = getComputedStyle(d);
+          const out = { top: parseFloat(cs.paddingTop), right: parseFloat(cs.paddingRight), bottom: parseFloat(cs.paddingBottom), left: parseFloat(cs.paddingLeft) };
+          d.remove();
+          return out;
+        });
+        expect(env).toEqual(insets);
+      } else {
+        // No emulation in this build (or SAFE_AREA_FALLBACK=1): the page's own
+        // style sheets are re-applied with every env(safe-area-inset-*) set
+        // to the inset in px, so the computed paddings and offsets are those
+        // a phone with these insets gets, and the same geometry checks run.
+        console.log(`safe areas ${name}: no CDP inset emulation; env(safe-area-inset-*) substituted in the style sheets`);
+        const replaced = await page.evaluate((ins) => {
+          let n = 0;
+          const text: string[] = [];
+          for (const sheet of [...document.styleSheets]) {
+            let rules: CSSRuleList;
+            try {
+              rules = sheet.cssRules;
+            } catch {
+              continue;
+            }
+            const css = [...rules].map((r) => r.cssText).join("\n");
+            const out = css.replace(/env\(\s*safe-area-inset-(top|right|bottom|left)\s*(?:,[^)]*)?\)/g, (_, side: "top" | "right" | "bottom" | "left") => {
+              n++;
+              return `${ins[side]}px`;
+            });
+            text.push(out);
+            sheet.disabled = true;
+          }
+          const style = document.createElement("style");
+          style.dataset.safeAreaFallback = "";
+          style.textContent = text.join("\n");
+          document.head.append(style);
+          return n;
+        }, insets);
+        expect(replaced, "env(safe-area-inset-*) uses substituted").toBeGreaterThan(10);
+        await page.waitForTimeout(500);
+        // The substitution is live: the nav sits below the top inset (or
+        // at its usual offset where the inset is 0) and the footer's inner
+        // padding clears the side insets.
+        const nav = await page.evaluate(() => {
+          const n = document.querySelector("header.rl-nav")!;
+          const f = document.querySelector(".rl-public-footer-inner");
+          const cs = f ? getComputedStyle(f) : null;
+          return { top: parseFloat(getComputedStyle(n).top), footLeft: cs ? parseFloat(cs.paddingLeft) : -1, footRight: cs ? parseFloat(cs.paddingRight) : -1 };
+        });
+        if (insets.top) expect(nav.top, "nav top = the top inset").toBe(insets.top);
+        if (insets.left) expect(nav.footLeft, "footer left padding ≥ the left inset").toBeGreaterThanOrEqual(insets.left);
+        if (insets.right) expect(nav.footRight, "footer right padding ≥ the right inset").toBeGreaterThanOrEqual(insets.right);
+      }
 
       const problems: string[] = [];
       // Copy that scrolls with the page (the footer) passes under the top

@@ -717,14 +717,25 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   `SHORT_LANDSCAPE_QUERY` string; `first-paint.test.ts` checks it): the
   landscape frames are composed for a wide stage, so the copy goes where it
   sits on desktop over them (split columns, the box backing fading toward the
-  picture, the Hall centred on the vanishing point, the Hall wall prose at
-  desktop geometry), with type sized from the stage height (headline about
+  picture, the Hall centred on the vanishing point), with type sized from the stage height (headline about
   9.5svh, lede about 4.2svh, never under 15 px) and the top just under the
   nav; a one-line bottom beat under a split chapter sits under the picture
   column, so on the shortest stage (568 × 320) it never meets the copy
   column. On short narrow stages (small phones) and the compact stage, a copy
   column with several ledes (Rooms of Example) keeps them in one grid cell so
-  the visible one never drops onto the bottom beat.
+  the visible one never drops onto the bottom beat. The compact padding of
+  `.film-btn` sits after the base rule (same specificity), and the stage
+  grid sets `row-gap` (not the `gap` shorthand, which reset the column gap).
+- **Hall wall prose on short stages:** the walls and the centred copy share
+  the stage height there, so they share its width. On the compact stage the
+  Hall copy keeps to the middle 40vw and each wall's box ends at 29vw from
+  its side (whatever the side inset), its lines sized from the stage height
+  (12 to 13 px) so they end above the bottom inset at 568 × 320. On short
+  portrait phones (narrow, at most 760 px tall) the walls are wider and their
+  lines 12 px, so they end higher, and the copy block sits lower (at the
+  bottom of the stage at most 600 px tall). `film-audit` checks it: a shown
+  wall line (effective opacity at least 0.2) under a visible pin is a
+  `WALL OVERLAP` problem.
 - **Safe areas** (`viewport-fit=cover`): the stage grid's padding on each
   side is `max(today's spacing, env(safe-area-inset-*))` (the top: the inset
   plus the nav); the nav moves below the top inset and keeps its side margin
@@ -735,7 +746,10 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   is 0 nothing moves. The canvas and the HTML poster still cover the whole
   screen. `film-layout.spec.ts` emulates insets (top 47 / bottom 34 portrait,
   left and right 47 / bottom 21 landscape) with Chromium's
-  `Emulation.setSafeAreaInsetsOverride`.
+  `Emulation.setSafeAreaInsetsOverride`. A build without that method (or
+  `SAFE_AREA_FALLBACK=1`) re-applies the page's style sheets with every
+  `env(safe-area-inset-*)` replaced by the inset in px, asserts the computed
+  nav offset and footer paddings, and runs the same geometry checks.
 - **Framing on tall phones (owner pick, temporary until chosen):** a framing
   amount for band tiers, `?frame=0|25|50|75|100` (`parseFrameParam`;
   anything else = 100). 100 is today's cover fit (bigger picture, up to about
@@ -761,7 +775,14 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   scroll path. A page with a hero start button (`[data-public-hero-cta]`)
   shows the nav's as soon as that one goes instead of after the hero-end
   sentinel; the other public pages (pricing, contact, legal, books) have none
-  and keep the sentinel rule. Before: about 1.8 screens with no start button
+  and keep the sentinel rule. On the page with a hero start button the nav's
+  shows even while the session is unresolved (slow, or left unresolved by
+  `useAuthStatus` after repeated 5xx): the signed-out "Start free", the
+  link the film's own buttons always carry (`shouldRenderPersistentCta`);
+  elsewhere it waits for the session as before. `data-cta-off` is never in
+  the server HTML: only the mounted FramePin, which drives the pin, sets it,
+  so if the film code never runs the readable page's shown Home button
+  still counts as shown. Before: about 1.8 screens with no start button
   after the hero buttons faded (1,564 px on 390 × 844, 1,584 px on
   1440 × 900) and 7 scroll steps with two near Home; after: none of either.
 - **Owner sheets:** `node scripts/film/layout-sheets.mjs` (local dev server)
