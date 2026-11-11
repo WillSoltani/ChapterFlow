@@ -7,12 +7,45 @@
 
 import type { FilmManifest, FilmVariant, Orientation } from "./types";
 
-export const PORTRAIT_QUERY = "(max-width: 63.99rem), (orientation: portrait)";
+/**
+ * A short landscape window: a phone held sideways (844×390, 667×375), or any
+ * landscape window at most 500 CSS px tall. The ONE definition: the pick
+ * (below), the HTML poster's media (first-paint.ts) and the compact stage
+ * (globals.css, `@media` with this exact string; first-paint.test.ts checks
+ * it) all derive from it. Phone heights sideways are 320 to 430 px with or
+ * without the address bar, far from the line, so the bar never flips it.
+ */
+export const SHORT_LANDSCAPE_MAX_HEIGHT = 500;
+export const SHORT_LANDSCAPE_QUERY = `(orientation: landscape) and (max-height: ${SHORT_LANDSCAPE_MAX_HEIGHT}px)`;
+
+/** Narrow windows (below 64rem) draw band tiers unless they are short landscape. */
+const NARROW_MAX_REM = 63.99;
 
 /**
- * What the variant pick depends on: the orientation (PORTRAIT_QUERY) and,
- * within portrait, the canvas backing width (viewBackingWidth). Width only, so
- * a phone address bar showing or hiding never changes it.
+ * Windows that draw the band tiers ("portrait" views): portrait, or narrower
+ * than 64rem and NOT short landscape. Written without `not` (a media query
+ * list cannot negate one clause): narrow AND taller than 500 px covers
+ * "narrow and not short landscape" because a portrait window is matched by
+ * the second clause anyway.
+ */
+export const PORTRAIT_QUERY = `(max-width: ${NARROW_MAX_REM}rem) and (min-height: ${SHORT_LANDSCAPE_MAX_HEIGHT + 0.0001}px), (orientation: portrait)`;
+
+/**
+ * The pick rule on a window of `width` × `height` CSS px, as PORTRAIT_QUERY
+ * evaluates it (CSS orientation: portrait when height ≥ width). Pure, for
+ * tests and scripts; the browser reads the media query (readOrientation).
+ */
+export function viewOrientation(width: number, height: number): Orientation {
+  if (height >= width) return "portrait";
+  if (width <= NARROW_MAX_REM * 16 && height > SHORT_LANDSCAPE_MAX_HEIGHT) return "portrait";
+  return "landscape";
+}
+
+/**
+ * What the variant pick depends on: the orientation (PORTRAIT_QUERY; short
+ * landscape windows are "landscape") and, within portrait, the canvas backing
+ * width (viewBackingWidth). Width only within an orientation, so a phone
+ * address bar showing or hiding never changes it.
  */
 export type ReelView = { orientation: Orientation; backingWidth: number };
 

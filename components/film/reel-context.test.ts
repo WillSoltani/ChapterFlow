@@ -99,3 +99,40 @@ test("no runtime variant points at a legacy '-p' folder", () => {
     assert.equal(m.bands.length, 2, `${n} has both band tiers`);
   }
 });
+
+test("the pick rule: band tiers for portrait and narrow windows, landscape frames for wide AND short landscape windows", async () => {
+  const { viewOrientation, SHORT_LANDSCAPE_MAX_HEIGHT } = await import("./view");
+  assert.equal(SHORT_LANDSCAPE_MAX_HEIGHT, 500);
+  const cases: Array<[number, number, "portrait" | "landscape"]> = [
+    [390, 844, "portrait"], // phone upright
+    [320, 568, "portrait"],
+    [834, 1194, "portrait"], // tablet upright
+    [900, 900, "portrait"], // square = portrait (CSS orientation)
+    [1440, 900, "landscape"], // desktop
+    [1280, 720, "landscape"],
+    [1024, 768, "landscape"], // 64rem: the first wide width
+    [1023, 768, "portrait"], // narrow and tall enough: band, as before
+    [900, 600, "portrait"],
+    [900, 501, "portrait"],
+    // Short landscape (orientation landscape, height ≤ 500): landscape frames.
+    [900, 500, "landscape"],
+    [844, 390, "landscape"], // phone held sideways
+    [667, 375, "landscape"],
+    [932, 430, "landscape"],
+    [568, 320, "landscape"],
+    [740, 360, "landscape"],
+    [1023, 480, "landscape"],
+    // A short portrait window is still portrait.
+    [400, 450, "portrait"],
+  ];
+  for (const [w, h, want] of cases) assert.equal(viewOrientation(w, h), want, `${w}x${h}`);
+});
+
+test("rotating a phone flips the pick like an orientation flip: band tier upright, landscape sideways", async () => {
+  const { viewOrientation } = await import("./view");
+  const reel = [film("a"), film("b")];
+  const upright: ReelView = { orientation: viewOrientation(390, 844), backingWidth: viewBackingWidth(390, 3) };
+  const sideways: ReelView = { orientation: viewOrientation(844, 390), backingWidth: viewBackingWidth(844, 3) };
+  assert.equal(viewKey(reel, upright), "a-b900|b-b900");
+  assert.equal(viewKey(reel, sideways), "a|b");
+});

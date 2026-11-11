@@ -65,7 +65,7 @@ export function Footer() {
         borderTop: "1px solid var(--cf-recall-frame)",
       }}
     >
-      <div className="mx-auto max-w-[72rem] px-6 py-12 sm:px-10 sm:py-14 lg:px-16">
+      <div className="rl-public-footer-inner mx-auto max-w-[72rem] px-6 py-12 sm:px-10 sm:py-14 lg:px-16">
         <div className="grid gap-10 md:grid-cols-[minmax(0,1.25fr)_minmax(0,2fr)] md:gap-16">
           <div className="max-w-md">
             <Link

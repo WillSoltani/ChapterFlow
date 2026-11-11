@@ -3,8 +3,9 @@
  *
  * The server does not know the viewport, so the poster the browser loads is
  * chosen by <picture> media queries that reproduce the film code's own pick
- * (reel-context.ts pickVariant on readView): landscape views draw the
- * landscape variant; portrait views (PORTRAIT_QUERY) draw the narrowest band
+ * (reel-context.ts pickVariant on readView): landscape views (wide, or
+ * short landscape: SHORT_LANDSCAPE_QUERY) draw the landscape variant;
+ * portrait views (PORTRAIT_QUERY) draw the narrowest band
  * tier at least as wide as the canvas backing store, backing = innerWidth ×
  * quantDpr(devicePixelRatio). A media query cannot multiply width by DPR, so
  * the DPR is read in steps (DPR_STEPS, rounded UP, capped at 2) on BOTH sides:
@@ -18,7 +19,7 @@
  * them.
  */
 
-import { DPR_STEPS, PORTRAIT_QUERY } from "./view";
+import { DPR_STEPS, PORTRAIT_QUERY, SHORT_LANDSCAPE_QUERY } from "./view";
 import type { BandTier, FilmManifest, FilmVariant } from "./types";
 
 export { DPR_STEPS, quantDpr } from "./view";
@@ -42,8 +43,11 @@ function resolutionRanges(): Array<{ step: number; media: string }> {
 }
 
 const PORTRAIT_PARTS = PORTRAIT_QUERY.split(",").map((s) => s.trim());
-/** Not PORTRAIT_QUERY: wider than 63.99rem AND landscape. */
-const LANDSCAPE_MEDIA = "(min-width: 63.9901rem) and (orientation: landscape)";
+/**
+ * Not PORTRAIT_QUERY: landscape AND (wider than 63.99rem OR short:
+ * SHORT_LANDSCAPE_QUERY, a phone held sideways).
+ */
+const LANDSCAPE_MEDIA = `(min-width: 63.9901rem) and (orientation: landscape), ${SHORT_LANDSCAPE_QUERY}`;
 
 /**
  * Portrait AND canvas backing width in (lo, hi] (lo/hi in backing px; null =
@@ -74,7 +78,7 @@ export type HeroPoster = {
    * Where a band tier's poster sits inside the virtual frame (percent of its
    * width / height), and that frame's aspect ratio; null without tiers.
    */
-  band: { left: number; top: number; width: number; height: number; aspect: string; ratio: number } | null;
+  band: { left: number; top: number; width: number; height: number; aspect: string; ratio: number; framePerBand: number } | null;
 };
 
 /** The hero poster of `film`: sources, preloads and band placement. */
@@ -115,6 +119,9 @@ export function heroPoster(film: FilmManifest): HeroPoster {
       height: (band.h / frame.h) * 100,
       aspect: `${frame.w} / ${frame.h}`,
       ratio: frame.w / frame.h,
+      // Virtual frame width per band width: the framing amount's "fit the
+      // band to the width" end (scrub.ts bandFitScale) in CSS.
+      framePerBand: frame.w / band.w,
     },
   };
 }

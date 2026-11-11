@@ -3228,7 +3228,8 @@ html[data-motion="reduced"] .rl-plate-scan { display: none; }
   top: 0;
   left: 0;
   right: 0;
-  height: 104px;
+  /* Grows with the top safe-area inset, under which the nav moves down. */
+  height: calc(104px + env(safe-area-inset-top, 0px));
   z-index: 49;
   pointer-events: none;
   background: linear-gradient(
@@ -3242,7 +3243,9 @@ html[data-motion="reduced"] .rl-plate-scan { display: none; }
 /* --- Floating pill nav --- */
 .rl-nav {
   position: fixed;
-  top: 1.1rem;
+  /* Safe areas (viewport-fit=cover): below the top inset, and the side
+     margin at least the larger side inset (the pill is centred). */
+  top: max(1.1rem, env(safe-area-inset-top, 0px));
   left: 50%;
   transform: translateX(-50%);
   z-index: 50;
@@ -3250,7 +3253,7 @@ html[data-motion="reduced"] .rl-plate-scan { display: none; }
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  width: min(72rem, calc(100% - 2rem));
+  width: min(72rem, calc(100% - 2 * max(1rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px))));
   padding: 0.6rem 0.6rem 0.6rem 1.2rem;
   border-radius: 9999px;
   border: 1px solid var(--cf-recall-border-strong);
@@ -3296,11 +3299,42 @@ html[data-motion="reduced"] .rl-plate-scan { display: none; }
   box-shadow: none !important;
 }
 
+/* Safe areas on the mobile menu's sides and the shared footer (Phase 7):
+   the max of the Tailwind spacing each breakpoint sets (px-6 / sm:px-10 /
+   lg:px-16, py-12 / sm:py-14) and the inset, so nothing moves where the
+   inset is 0. The menu's top and bottom already do this in its classes. */
+.rl-public-menu-body {
+  padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
+}
+.rl-public-footer-inner {
+  padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
+  padding-bottom: max(3rem, env(safe-area-inset-bottom, 0px));
+}
+@media (min-width: 640px) {
+  .rl-public-menu-body {
+    padding-left: max(2.5rem, env(safe-area-inset-left, 0px));
+    padding-right: max(2.5rem, env(safe-area-inset-right, 0px));
+  }
+  .rl-public-footer-inner {
+    padding-left: max(2.5rem, env(safe-area-inset-left, 0px));
+    padding-right: max(2.5rem, env(safe-area-inset-right, 0px));
+    padding-bottom: max(3.5rem, env(safe-area-inset-bottom, 0px));
+  }
+}
+@media (min-width: 1024px) {
+  .rl-public-footer-inner {
+    padding-left: max(4rem, env(safe-area-inset-left, 0px));
+    padding-right: max(4rem, env(safe-area-inset-right, 0px));
+  }
+}
+
 /* One named 1024px navigation breakpoint, shared with RecallNavModel.ts. */
 @media (max-width: 1023.98px) {
   .rl-nav {
-    top: 0.75rem;
-    width: min(44rem, calc(100% - 1rem));
+    top: max(0.75rem, env(safe-area-inset-top, 0px));
+    width: min(44rem, calc(100% - 2 * max(0.5rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px))));
     gap: 0.5rem;
     padding: 0.4rem 0.4rem 0.4rem 0.75rem;
     border-radius: 1.25rem;
@@ -3587,8 +3621,16 @@ html[data-motion="reduced"] .rl-faq-chevron {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto 1fr;
   /* Top: clear the fixed nav (bottom ≈ 83px at 1280×720 on main) by ≥ 8px on
-     short viewports; 12svh takes over from ~800px tall. */
-  padding: clamp(6rem, 12svh, 8rem) clamp(1.25rem, 5vw, 4rem) clamp(2rem, 8svh, 5rem);
+     short viewports; 12svh takes over from ~800px tall.
+     Safe areas (Phase 7; viewport-fit=cover): each side keeps clear of its
+     inset: the max of today's spacing and the inset, so nothing changes
+     where the inset is 0. The top clears the nav, which itself moves below
+     the top inset (.rl-nav). */
+  padding:
+    max(clamp(6rem, 12svh, 8rem), calc(env(safe-area-inset-top, 0px) + 4.5rem))
+    max(clamp(1.25rem, 5vw, 4rem), env(safe-area-inset-right, 0px))
+    max(clamp(2rem, 8svh, 5rem), env(safe-area-inset-bottom, 0px))
+    max(clamp(1.25rem, 5vw, 4rem), env(safe-area-inset-left, 0px));
   gap: 1rem;
 }
 .film-stage-grid > * {
@@ -3641,6 +3683,9 @@ html[data-motion="reduced"] .rl-faq-chevron {
 .film-stage-grid[data-anchor="bottom"] {
   grid-template-rows: 1fr auto;
   align-items: end;
+  /* A beat rises 18px into place (FramePin): it stays clear of the bottom
+     safe-area inset while it rises too. Unchanged where the inset is 0. */
+  padding-bottom: max(clamp(2rem, 8svh, 5rem), calc(env(safe-area-inset-bottom, 0px) + 1.25rem));
 }
 .film-stage-grid[data-anchor="bottom"] > * {
   grid-row: 2;
@@ -3690,7 +3735,7 @@ html[data-motion="reduced"] .rl-faq-chevron {
   object-fit: cover;
   object-position: 50% 50%;
 }
-@media (max-width: 63.99rem), (orientation: portrait) {
+@media (max-width: 63.99rem) and (min-height: 500.0001px), (orientation: portrait) {
   .film-poster[data-film-band] picture {
     inset: auto;
     left: 50%;
@@ -3698,6 +3743,16 @@ html[data-motion="reduced"] .rl-faq-chevron {
     width: max(100cqw, 100cqh * var(--film-frame-ratio, 0.5625));
     aspect-ratio: var(--film-frame-aspect, 1080 / 1920);
     transform: translate(-50%, -50%) translateY(calc((100svh - 100cqh) / 2));
+  }
+  /* Framing amount below 100 (?frame=, scrub.ts bandFitScale): the frame
+     width runs linearly from "band fitted to the width" (--film-fit 0) to the
+     cover width above (1). Only rendered when the amount is not 100, so the
+     default placement is the rule above, untouched. */
+  .film-poster[data-film-band][data-film-fit] picture {
+    width: calc(
+      min(100cqw * var(--film-frame-per-band, 1), max(100cqw, 100cqh * var(--film-frame-ratio, 0.5625))) * (1 - var(--film-fit, 1)) +
+        max(100cqw, 100cqh * var(--film-frame-ratio, 0.5625)) * var(--film-fit, 1)
+    );
   }
   .film-poster[data-film-band] img {
     inset: auto;
@@ -3904,6 +3959,120 @@ html[data-motion="reduced"] .rl-faq-chevron {
   max-width: 34rem;
   color: var(--cf-recall-ink);
   opacity: 0.88;
+}
+
+/* ── Short stages (Phase 7) ──────────────────────────────────────────────────
+   A copy column that changes its lede line by line (Rooms of Example: three
+   ledes, one on at a time) keeps every lede in ONE grid cell under the
+   headline: on a short stage the stacked hidden ledes pushed the visible one
+   down into the bottom beat ("A door. No handle."). Columns with one lede
+   lay out exactly as before (label, headline, lede). Narrow short stages
+   (small phones) and the compact stage below; desktop windows keep theirs. */
+@media (max-width: 63.99rem) and (max-height: 640px), (orientation: landscape) and (max-height: 500px) {
+  .film-box {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+  }
+  .film-box > * {
+    grid-column: 1;
+  }
+  .film-box > .film-lede {
+    grid-row: 3;
+  }
+}
+
+/* ── Compact stage: phones held sideways (Phase 7) ──────────────────────────
+   The exact query of components/film/view.ts SHORT_LANDSCAPE_QUERY (the film
+   draws the LANDSCAPE frames there, composed for a wide stage), checked by
+   first-paint.test.ts. The copy goes where it sits on desktop over the same
+   frames (the split columns, the box backing fading toward the picture),
+   sized for a stage about 320 to 430 px tall: every chapter's copy fits
+   between the nav and the bottom safe area with the picture readable beside
+   it. Safe areas: the stage grid's own padding (max of spacing and inset). */
+@media (orientation: landscape) and (max-height: 500px) {
+  .film-stage-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: 1fr auto 1fr;
+    column-gap: clamp(1.25rem, 4vw, 3rem);
+    align-items: center;
+    gap: 0.5rem;
+    /* Top: the nav's bottom (its top + about 3.6rem) plus 0.6rem. */
+    padding-top: calc(max(0.75rem, env(safe-area-inset-top, 0px)) + 4.25rem);
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+    padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+  }
+  .film-stage-grid[data-split="left"] { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); }
+  .film-stage-grid[data-split="right"] { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); }
+  .film-stage-grid[data-split="left"] > * { grid-column: 1; }
+  .film-stage-grid[data-split="right"] > * { grid-column: 2; }
+  .film-stage-grid[data-split="center"] > * { grid-column: 1 / -1; justify-self: center; text-align: center; }
+  /* The Hall's copy sits on the corridor's vanishing point, as on desktop. */
+  .film-stage-grid[data-hall] {
+    grid-template-rows: 1fr auto 1fr;
+  }
+  .film-stage-grid[data-stack="hero"] {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+  .film-stage-grid[data-stack="hero"] .film-h1,
+  .film-h1 {
+    font-size: clamp(1.75rem, 9.5svh, 2.5rem);
+  }
+  .film-h2 {
+    font-size: clamp(1.25rem, 6.5svh, 1.75rem);
+  }
+  .film-lede {
+    font-size: clamp(0.9375rem, 4.2svh, 1.0625rem);
+    line-height: 1.4;
+    max-width: 30rem;
+  }
+  .film-btn {
+    padding: 0.6rem 1.5rem;
+  }
+  /* Halos and boxes reach less far above and below the copy. */
+  .film-halo::before {
+    inset: -1.5rem -3rem;
+  }
+  .film-stage-grid[data-stack="hero"] .film-halo::before {
+    inset: -1.75rem -5rem;
+  }
+  /* The box backing as on desktop (a band fading toward the picture), not the
+     narrow stages' edge-to-edge slab. */
+  .film-box::before {
+    inset: -1.5rem -7rem -1.5rem var(--box-edge);
+    background:
+      linear-gradient(to right, var(--box-90) 0%, var(--box-90) calc(100% - 15rem), var(--box-70) calc(100% - 8rem), transparent 100%)
+        0 1.5rem / 100% calc(100% - 3rem) no-repeat,
+      var(--box-feather) 0 0 / calc(100% - 15rem) 1.5rem no-repeat,
+      linear-gradient(to top, transparent 0, var(--box-70) 53%, var(--box-90) 100%) 0 100% / calc(100% - 15rem) 1.5rem no-repeat,
+      radial-gradient(100% 100% at 0 100%, var(--box-90) 0, var(--box-70) 47%, transparent 100%) 100% 0 / 15rem 1.5rem no-repeat,
+      radial-gradient(100% 100% at 0 0, var(--box-90) 0, var(--box-70) 47%, transparent 100%) 100% 100% / 15rem 1.5rem no-repeat;
+  }
+  .film-stage-grid[data-split="right"] .film-box::before {
+    inset: -1.5rem var(--box-edge) -1.5rem -7rem;
+    background:
+      linear-gradient(to left, var(--box-90) 0%, var(--box-90) calc(100% - 15rem), var(--box-70) calc(100% - 8rem), transparent 100%)
+        0 1.5rem / 100% calc(100% - 3rem) no-repeat,
+      var(--box-feather) 100% 0 / calc(100% - 15rem) 1.5rem no-repeat,
+      linear-gradient(to top, transparent 0, var(--box-70) 53%, var(--box-90) 100%) 100% 100% / calc(100% - 15rem) 1.5rem no-repeat,
+      radial-gradient(100% 100% at 100% 100%, var(--box-90) 0, var(--box-70) 47%, transparent 100%) 0 0 / 15rem 1.5rem no-repeat,
+      radial-gradient(100% 100% at 100% 0, var(--box-90) 0, var(--box-70) 47%, transparent 100%) 0 100% / 15rem 1.5rem no-repeat;
+  }
+  /* Bottom beats: a slimmer pill, clear of the inset while it rises. */
+  .film-stage-grid[data-anchor="bottom"] {
+    padding-bottom: max(0.75rem, calc(env(safe-area-inset-bottom, 0px) + 1.25rem));
+  }
+  .film-stage-grid[data-anchor="bottom"] > * {
+    padding: 0.45rem 1rem;
+  }
+  /* Hall walls: the landscape frame's corridor (desktop geometry), clear of
+     the side insets, small enough to stay above the copy. */
+  .hall-wall { top: 22%; width: 30%; gap: 0.6rem; }
+  .hall-wall-left { left: max(2%, env(safe-area-inset-left, 0px)); transform: rotateY(42deg); }
+  .hall-wall-right { right: max(2%, env(safe-area-inset-right, 0px)); transform: rotateY(-42deg); }
+  .hall-line { font-size: 0.75rem; }
 }
 
 /* While a reel is mounted, paint the root dark too so programmatic scrolls /

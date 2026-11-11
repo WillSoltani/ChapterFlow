@@ -15,6 +15,7 @@ import { RecallClose } from "@/components/landing/recall/RecallClose";
 import { LandingMotionProvider } from "@/components/landing/LandingMotionProvider";
 import { PublicSiteShell } from "@/components/marketing/PublicSiteShell";
 import { BookReelLanding } from "@/components/film/BookReelLanding";
+import { parseFrameParam } from "@/components/film/scrub";
 import { landingFontVariables } from "./_fonts/landing";
 
 export const metadata: Metadata = {
@@ -55,7 +56,15 @@ export const metadata: Metadata = {
  * are superseded; RecallAmbient is gone too — the film is the backdrop.
  * Server Component.
  */
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  // Framing amount for the film's band tiers on tall phones (?frame=0…100,
+  // an owner pick, temporary): read once here so the server HTML poster and
+  // the canvas place the picture alike (components/film/scrub.ts).
+  const frameAmount = parseFrameParam(await searchParams);
   // Per-request nonce from middleware.ts (WS8-001). The JSON-LD below is a
   // non-executable data block that browsers do NOT gate under script-src, so
   // this is belt-and-suspenders — but the nonce keeps it consistent with the
@@ -116,6 +125,7 @@ export default async function Home() {
             (RecallReveal is fine there — nothing below is sticky-pinned). */}
         <main id="main" tabIndex={-1} className={`relative z-10 focus:outline-none ${landingFontVariables}`}>
           <BookReelLanding
+            frameAmount={frameAmount}
             afterHero={
               <div
                 data-public-hero-end
