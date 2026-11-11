@@ -429,6 +429,9 @@ test.describe("film first paint (@prod)", () => {
   for (const [name, vp] of [
     ["desktop", DESKTOP],
     ["phone", PHONE],
+    // The CI case: headless Linux reports a 1280x720 screen behind the
+    // emulated phone viewport (on macOS the emulated screen is the viewport).
+    ["phone window on a larger screen", { ...PHONE, screen: { width: 1280, height: 720 } }],
   ] as const) {
     test(`fonts (${name}): every preloaded font is used by the first screen, every font it uses is preloaded @prod`, async ({ browser }) => {
       const ctx = await newContext(browser, vp);
@@ -438,8 +441,15 @@ test.describe("film first paint (@prod)", () => {
       page.on("request", (r) => {
         if (r.resourceType() === "font") fonts.push(new URL(r.url()).pathname);
       });
+      // Unused FONT preloads only. Chromium's preload scanner resolves the
+      // viewport meta against the screen size, not the window: where the two
+      // differ it also starts the poster preload for the screen's size and
+      // reports that one unused. That is the poster's business (the
+      // one-poster test, and "Known limits" in docs/FILM_REEL.md), not a
+      // font fault.
       page.on("console", (m) => {
-        if (/preloaded using link preload but not used/i.test(m.text())) warnings.push(m.text());
+        const text = m.text();
+        if (/preloaded using link preload but not used/i.test(text) && /\.woff2?\b/i.test(text)) warnings.push(text);
       });
       const res = await page.goto("/");
       const link = (await res?.allHeaders())?.["link"] ?? "";
