@@ -445,3 +445,20 @@ test("scrolling up through a film faster than the network: a few requests, not o
   assert.ok(f1.length <= 4, `${f1.length} requests for 140 frames: ${f1.map((l) => l.range).join(", ")}`);
   assert.equal(t.net.stats.packBytesRepeated, 0);
 });
+
+// ---- Regressions (re-check of Phase 4) ----
+
+test("constrained connection, an anchor jump to a film's start: the dissolve pin is read and held", async () => {
+  const a = film(279);
+  const b = film(241, 1);
+  const c = film(241, 2);
+  const t = setup([a, b, c], { chunk: 400 });
+  t.where({ key: "f1", frame: 0, constrained: true, pin: { key: "f0", frame: 278 } });
+  await settle(600);
+  assert.ok(t.net.frame("f0", 278), "the pin arrived");
+  const f0 = t.srv.log.filter((l) => l.url.includes("/f0/"));
+  assert.equal(f0.length, 2, "its header, then its slot");
+  assert.equal(f0[0]!.range, `bytes=0-${a.layout.header - 1}`);
+  assert.ok(!t.net.frame("f0", 276), "nothing else of film 0");
+  assert.equal(t.net.stats.packBytesRepeated, 0);
+});

@@ -268,7 +268,12 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     2g / 3g): skeletons only (1, 2) while moving; after 300 ms still, the
     missing frames of the wanted window in one bounded request (from the first
     missing remaining frame to the end of the last one; the skeleton frames
-    are already held).
+    are already held). The dissolve pin is read there too, moving or settled,
+    by the same rules, except that its film being the neighbour (or the
+    active film) does not exempt it, since those are read only to their
+    skeletons: it follows that film's own skeleton. A pin that is a skeleton
+    frame (the last frame of a film whose count is 1 + a multiple of 4) costs
+    no request; any other costs one request for its slot.
   - **Responses** (`pack-net.ts`). 206 must start where asked and carry the
     timeline's total. 200 to a request past byte 0 (a server that ignores
     Range): the body is read from 0, bytes already held are discarded (and

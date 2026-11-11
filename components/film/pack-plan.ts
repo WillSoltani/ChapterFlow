@@ -47,7 +47,10 @@
  *
  * Constrained connections (Save-Data, 2g, 3g): skeletons only (1, 2) while
  * the visitor moves; once settled, the missing frames of the wanted window
- * around the playhead in one bounded request.
+ * around the playhead in one bounded request. The dissolve pin is read here
+ * too, moving or settled, by the same rules, except that its film being the
+ * active film or the neighbour does not exempt it (their plans stop at the
+ * skeleton): it is read right after that film's own skeleton.
  */
 
 import { OPENING_FRAMES, openingEnd, type PackHeader, type PackLayout } from "./pack-format";
@@ -266,8 +269,14 @@ export function planPacks(input: PlanInput): PlanOutput {
     const later: PlanItem[] = [];
     // The dissolve pin, unless its film is the one being read anyway (the
     // neighbour when scrolling up: its plan reaches its last frames first).
+    // On a constrained connection the active film and the neighbour are read
+    // only as far as their skeletons while the visitor moves, so the pin is
+    // planned whatever its film; it goes right after that film's own
+    // skeleton (one stream per pack) or, for any other film, right after
+    // the active film's.
     const pin = input.pin ? usable(input.pin.pack) : null;
-    const pinIt = pin && pin !== A && pin !== N && !pin.rangeless ? pinItem(pin, input.pin!.frame, streamOf(pin.key)) : null;
+    const pinIt = pin && !pin.rangeless && (input.constrained || (pin !== A && pin !== N)) ? pinItem(pin, input.pin!.frame, streamOf(pin.key)) : null;
+    const pinAfter = pin === N ? N : A;
     for (const [p, role] of [
       [A, "active"],
       [N, "neighbour"],
@@ -295,6 +304,7 @@ export function planPacks(input: PlanInput): PlanOutput {
           const w = last >= 0 ? item(p, firstMissingRest(p, h, lo, hi), frameEnd(p, h, last), "window") : null;
           if (w) first.push(w);
         }
+        if (pinIt && p === pinAfter) first.push(pinIt);
         continue;
       }
       // Where the visitor needs the remaining frames first: from the playhead
@@ -307,10 +317,10 @@ export function planPacks(input: PlanInput): PlanOutput {
       const sk = skeletonItem(p, skelStep, rest, !h && dir > 0 && entry <= REACH_FRAMES);
       if (sk) first.push(sk);
       else if (rest) later.push(rest);
-      // The pin right after the active film's skeleton.
-      if (active && pinIt) first.push(pinIt);
+      // The pin right after the active film's skeleton (its own film's, see above).
+      if (pinIt && p === pinAfter) first.push(pinIt);
     }
-    if (!A && pinIt) first.unshift(pinIt);
+    if (!pinAfter && pinIt) first.unshift(pinIt);
     items.push(...first, ...later);
   }
 

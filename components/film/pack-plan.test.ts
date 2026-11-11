@@ -413,3 +413,81 @@ test("no active film (its key is not in the reel): nothing is read", () => {
   assert.deepEqual(out.open, []);
   assert.deepEqual(out.items, []);
 });
+
+// ---- Regressions (re-check of Phase 4) ----
+
+test("constrained, after an anchor jump: the dissolve pin is read (header first), moving or settled", () => {
+  for (const settled of [false, true]) {
+    const sim = new Sim([279, 241, 241]);
+    sim.where = { ...sim.where, constrained: true, settled, active: 1, frame: 0, jumped: true, lo: 0, hi: 30, pin: { pack: 0, frame: 278 } };
+    sim.plan();
+    assert.deepEqual(
+      sim.requests.map((r) => `${r.key}:${r.step}`),
+      ["f1:skeleton", "f0:pin"],
+      `settled=${settled}: the active skeleton, then the pin's header`,
+    );
+    sim.where = { ...sim.where, jumped: false };
+    for (let i = 0; i < 400 && (sim.streams.length || !sim.pack(0).store.held(278)); i++) sim.step(200);
+    assert.ok(sim.pack(0).store.held(278), `settled=${settled}: the pin is held`);
+    const f0 = sim.requestsFor("f0");
+    assert.equal(f0.length, 2, `settled=${settled}: the header, then the pin's slot`);
+    assert.equal(f0[0]?.end, sim.pack(0).store.layout.header);
+    assert.equal(f0[1]?.start, sim.slot(0, 278).offset);
+    assert.equal(f0[1]?.end, sim.slot(0, 278).offset + sim.slot(0, 278).length, "bounded at the pin's slot");
+    assert.ok(!sim.pack(0).store.held(277), "nothing else of film 0");
+    sim.assertNoRepeats();
+  }
+});
+
+test("constrained, scrolling up into a film's dissolve: the pin is read although its film is the neighbour (whose plan reads only its skeleton)", () => {
+  const sim = new Sim([279, 241, 241]);
+  holdSkeleton(sim.pack(0));
+  holdSkeleton(sim.pack(1));
+  sim.where = { ...sim.where, constrained: true, active: 1, frame: 6, direction: -1, lo: 0, hi: 30, pin: { pack: 0, frame: 278 } };
+  sim.plan();
+  for (let i = 0; i < 400 && sim.streams.length; i++) sim.step(200);
+  assert.ok(sim.pack(0).store.held(278), "the pin is held");
+  assert.deepEqual(
+    sim.requests.map((r) => `${r.key}:${r.step}:${r.start}:${r.end}`),
+    [`f0:pin:${sim.slot(0, 278).offset}:${sim.slot(0, 278).offset + sim.slot(0, 278).length}`],
+    "one request, the pin's slot only",
+  );
+  sim.assertNoRepeats();
+});
+
+test("constrained forward pass: the pin costs no request of its own when its frame is in the skeleton; otherwise one bounded request", () => {
+  for (const count of [241, 279]) {
+    const run = (pin: boolean) => {
+      const sim = new Sim([count, 241, 241]);
+      sim.where = { ...sim.where, constrained: true };
+      sim.plan();
+      for (let f = 0; f < count; f += 2) {
+        sim.where = { ...sim.where, active: 0, frame: f, lo: f, hi: Math.min(count - 1, f + 30) };
+        sim.step(150);
+      }
+      for (let f = 0; f < 40; f += 2) {
+        sim.where = { ...sim.where, active: 1, frame: f, lo: f, hi: f + 30, pin: pin && f < 24 ? { pack: 0, frame: count - 1 } : null };
+        sim.step(150);
+      }
+      for (let i = 0; i < 400 && sim.streams.length; i++) sim.step(150);
+      sim.assertNoRepeats();
+      return sim;
+    };
+    const without = run(false);
+    const withPin = run(true);
+    const extra = withPin.requests.length - without.requests.length;
+    const pins = withPin.requests.filter((r) => r.step === "pin");
+    if ((count - 1) % 4 === 0) {
+      assert.equal(extra, 0, `${count} frames: the last frame is a skeleton frame, held by the skeleton read`);
+      assert.equal(pins.length, 0);
+    } else {
+      assert.equal(extra, 1, `${count} frames: one request for the pin`);
+      assert.deepEqual(
+        pins.map((r) => `${r.start}:${r.end}`),
+        [`${withPin.slot(0, count - 1).offset}:${withPin.slot(0, count - 1).offset + withPin.slot(0, count - 1).length}`],
+        "exactly the pin's slot",
+      );
+    }
+    assert.ok(withPin.pack(0).store.held(count - 1), `${count} frames: the pin is held`);
+  }
+});
