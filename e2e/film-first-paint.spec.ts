@@ -31,9 +31,19 @@ import { PROD_E2E_HEADERS } from "../playwright.config";
  *   prod job has none: public/films is gitignored).
  * RUN_AUDIT=1 (dev server, part of `npm run test:film`):
  *   7. One poster only, the film code's own variant, on five viewports.
- *   8. Every film request aborted: static mode (copy follows scroll, nothing
- *      hidden at the end), film requests stop, no page error.
+ *   8. Every film request answered 404 (no film files): static mode (copy
+ *      follows scroll, nothing hidden at the end), film requests stop, no
+ *      probe, no page error.
  *   9. No 2D context: the same static-mode assertions.
+ *  10. Recovery (Phase 6b), no reload in any of them, no page error:
+ *      (a) every film request aborted for the first 6 s, then let through:
+ *          the film appears (real frames drawn, data-film-static gone, the
+ *          HUD on a frame) within 20 s of load;
+ *      (b) the same with the context's offline switch: the film appears
+ *          within 5 s of going online;
+ *      (c) every film request aborted for 70 s: static mode, the request
+ *          count within the bound, and after the halt nothing but probes,
+ *          5 s, 15 s and 45 s after it.
  */
 
 const PROD = process.env.E2E_MODE === "prod";
@@ -550,6 +560,74 @@ test.describe("film first paint (@prod)", () => {
 
 // ──────────────────────────── RUN_AUDIT ────────────────────────────
 
+/** Static mode's request bound (Phase 6): 7 posters, the first pack's 4 tries, 3 tries for each of under 49 frames. */
+const STATIC_BOUND = 7 + 4 + 3 * 49;
+
+type Counters = { exactDraws: number; fallbackDraws: number; drawAt: number; probes: number; recoveries: number; framesFailed: number };
+const filmStats = (page: Page) =>
+  page.evaluate(() => {
+    const s = (window as unknown as { __filmStats?: Counters }).__filmStats;
+    return { exactDraws: s?.exactDraws ?? 0, fallbackDraws: s?.fallbackDraws ?? 0, drawAt: s?.drawAt ?? -1, probes: s?.probes ?? 0, recoveries: s?.recoveries ?? 0, framesFailed: s?.framesFailed ?? 0 };
+  });
+
+/**
+ * Init script: record when the reel goes static (window.__staticAt, wall
+ * clock) and the page's request counters at that moment (__staticStarted:
+ * frame fetches + pack requests started).
+ */
+function markStatic() {
+  new MutationObserver(() => {
+    const w = window as unknown as { __staticAt?: number; __staticStarted?: number; __filmStats?: { fetches: number; packRequests: number } };
+    if (w.__staticAt === undefined && document.querySelector("[data-film-reel][data-film-static]")) {
+      w.__staticAt = Date.now();
+      w.__staticStarted = (w.__filmStats?.fetches ?? 0) + (w.__filmStats?.packRequests ?? 0);
+    }
+  }).observe(document, { subtree: true, attributes: true, attributeFilter: ["data-film-static"] });
+}
+
+/** Uncaught page errors and unhandled rejections reported on the console. */
+function watchProblems(page: Page): string[] {
+  const problems: string[] = [];
+  page.on("pageerror", (e) => problems.push(`uncaught: ${e.message}`));
+  page.on("console", (m) => {
+    if (/Uncaught|Unhandled/i.test(m.text())) problems.push(`${m.type()}: ${m.text()}`);
+  });
+  return problems;
+}
+
+/** Main-frame document loads (a reload would make it 2). */
+function countLoads(page: Page): () => number {
+  let n = 0;
+  page.on("load", () => n++);
+  return () => n;
+}
+
+/**
+ * Wait (until `deadline`, wall clock) for the film: the canvas has drawn a
+ * real frame (drawAt ≥ 0), the HTML poster is gone, the reel is not static
+ * and the HUD names a film frame. Returns when that first held.
+ */
+async function waitForFilm(page: Page, deadline: number): Promise<number> {
+  for (;;) {
+    const state = await page.evaluate(() => {
+      const s = (window as unknown as { __filmStats?: { exactDraws: number; drawAt: number } }).__filmStats;
+      const reel = document.querySelector("[data-film-reel]");
+      const poster = document.querySelector("[data-film-poster]");
+      const hud = document.querySelector(".film-hud")?.textContent ?? "";
+      return {
+        drew: !!s && s.exactDraws > 0 && s.drawAt >= 0,
+        staticMode: !!reel?.hasAttribute("data-film-static"),
+        posterGone: !poster || getComputedStyle(poster).display === "none",
+        hud,
+      };
+    });
+    const ok = state.drew && !state.staticMode && state.posterGone && /palace-0\d[^ ]* · f\d{4}/.test(state.hud);
+    if (ok) return Date.now();
+    if (Date.now() > deadline) throw new Error(`the film did not appear in time: ${JSON.stringify(state)}`);
+    await page.waitForTimeout(100);
+  }
+}
+
 test.describe("film first paint (audit)", () => {
   test.skip(!AUDIT, "opt-in: RUN_AUDIT=1");
 
@@ -586,37 +664,152 @@ test.describe("film first paint (audit)", () => {
     });
   }
 
-  test("every film request aborted: static mode, copy follows scroll, requests stop, no error", async ({ browser }) => {
+  test("every film request answered 404 (no film files): static mode, copy follows scroll, requests stop, no probe, no error", async ({ browser }) => {
     test.setTimeout(120_000);
     const ctx = await newContext(browser, DESKTOP);
     const film: number[] = [];
     await ctx.route(/\/films\//, (route) => {
       film.push(Date.now());
-      return route.abort();
+      return route.fulfill({ status: 404, contentType: "text/plain", body: "missing" });
     });
     const page = await ctx.newPage();
-    const problems: string[] = [];
-    page.on("pageerror", (e) => problems.push(`uncaught: ${e.message}`));
-    page.on("console", (m) => {
-      if (/Uncaught|Unhandled/i.test(m.text())) problems.push(`${m.type()}: ${m.text()}`);
-    });
+    const problems = watchProblems(page);
     const t0 = Date.now();
     await page.goto("/");
     await expect(page.locator("[data-film-reel]")).toHaveAttribute("data-film-static", "", { timeout: 20_000 });
     await page.waitForTimeout(Math.max(0, 20_000 - (Date.now() - t0)));
     const total = film.length;
     const late = film.filter((t) => t - t0 > 12_000).length;
-    console.log(`film requests in 20 s: ${total}; after 12 s: ${late}`);
+    console.log(`404: film requests in 20 s: ${total}; after 12 s: ${late}`);
     // The retry rule's bound: 7 posters (one try each), the first film's pack
     // (1 try + 3 retries), and at most 3 tries for each frame the scheduler
     // wanted before the film was declared unreachable (a desktop window plus
     // the next film's opening: under 49 frames).
-    expect(total).toBeLessThanOrEqual(7 + 4 + 3 * 49);
+    expect(total).toBeLessThanOrEqual(STATIC_BOUND);
     expect(late, "requests stopped").toBe(0);
+    expect(await filmStats(page), "every failure was permanent: nothing to probe for").toMatchObject({ probes: 0, recoveries: 0 });
     // The HTML poster failed too: the page colour shows, nothing is stuck hidden.
     await expect(page.locator("[data-film-poster]")).not.toHaveCSS("display", "none");
     await expectCopyFollowsScroll(page);
+    // Back online, shown again: nothing transient failed, so nothing is retried.
+    await page.evaluate(() => window.dispatchEvent(new Event("online")));
+    await page.waitForTimeout(6000);
     expect(film.length, "scrolling the whole reel in static mode requests nothing").toBe(total);
+    expect(problems).toEqual([]);
+    await ctx.close();
+  });
+
+  test("recovery (a): film requests aborted for the first 6 s after load, then let through: the film appears within 20 s, no reload", async ({ browser }) => {
+    test.setTimeout(90_000);
+    const ctx = await newContext(browser, DESKTOP);
+    let open = false;
+    const film: Array<{ t: number; ok: boolean }> = [];
+    await ctx.route(/\/films\//, (route) => {
+      film.push({ t: Date.now(), ok: open });
+      return open ? route.continue() : route.abort();
+    });
+    await ctx.addInitScript(markStatic);
+    const page = await ctx.newPage();
+    const problems = watchProblems(page);
+    const loads = countLoads(page);
+    const t0 = Date.now();
+    const opener = setTimeout(() => (open = true), 6000);
+    await page.goto("/?hud=1");
+    const appeared = await waitForFilm(page, t0 + 20_000);
+    clearTimeout(opener);
+    const s = await filmStats(page);
+    const staticAt = await page.evaluate(() => (window as unknown as { __staticAt?: number }).__staticAt ?? null);
+    console.log(
+      `recovery (a): film after ${((appeared - t0) / 1000).toFixed(1)} s; static ${staticAt ? `at ${((staticAt - t0) / 1000).toFixed(1)} s` : "never"}; ` +
+        `${film.filter((f) => !f.ok).length} failed + ${film.filter((f) => f.ok).length} passed film requests; recoveries ${s.recoveries}, probes ${s.probes}`,
+    );
+    expect(appeared - t0, "the film appears within 20 s of load").toBeLessThanOrEqual(20_000);
+    expect(film.some((f) => !f.ok), "film requests did fail in the first 6 s").toBe(true);
+    expect(s.recoveries, "a recovery signal forgave the drop").toBeGreaterThan(0);
+    expect(loads(), "no reload").toBe(1);
+    expect(problems).toEqual([]);
+    await ctx.close();
+  });
+
+  test("recovery (b): offline then online with the context's offline switch: the film appears within 5 s of going online, no reload", async ({ browser }) => {
+    test.setTimeout(90_000);
+    const ctx = await newContext(browser, DESKTOP);
+    // Film requests fail from the start; the offline switch takes over once
+    // the page's own code has loaded (the dev server serves it over the
+    // same network).
+    let open = false;
+    await ctx.route(/\/films\//, (route) => (open ? route.continue() : route.abort("internetdisconnected")));
+    await ctx.addInitScript(markStatic);
+    const page = await ctx.newPage();
+    const problems = watchProblems(page);
+    const loads = countLoads(page);
+    const t0 = Date.now();
+    await page.goto("/?hud=1");
+    await expect(page.locator("[data-film-reel]")).toHaveAttribute("data-film-armed", "");
+    await ctx.setOffline(true);
+    await page.waitForTimeout(Math.max(0, 6000 - (Date.now() - t0)));
+    const before = await filmStats(page);
+    expect(before.exactDraws + before.fallbackDraws, "nothing drawn while offline").toBe(0);
+    open = true;
+    await ctx.setOffline(false);
+    const tOnline = Date.now();
+    const appeared = await waitForFilm(page, tOnline + 5_000);
+    const s = await filmStats(page);
+    const staticAt = await page.evaluate(() => (window as unknown as { __staticAt?: number }).__staticAt ?? null);
+    console.log(
+      `recovery (b): offline ${((tOnline - t0) / 1000).toFixed(1)} s after load; film ${((appeared - tOnline) / 1000).toFixed(1)} s after online; ` +
+        `static ${staticAt ? `at ${((staticAt - t0) / 1000).toFixed(1)} s` : "never"}; recoveries ${s.recoveries}, probes ${s.probes}`,
+    );
+    expect(appeared - tOnline, "the film appears within 5 s of going online").toBeLessThanOrEqual(5_000);
+    expect(loads(), "no reload").toBe(1);
+    expect(problems).toEqual([]);
+    await ctx.close();
+  });
+
+  test("recovery (c): every film request aborted for 70 s: static mode, bounded requests, nothing but probes after the halt", async ({ browser }) => {
+    test.setTimeout(180_000);
+    const ctx = await newContext(browser, DESKTOP);
+    const film: Array<{ t: number; path: string }> = [];
+    await ctx.route(/\/films\//, (route) => {
+      film.push({ t: Date.now(), path: new URL(route.request().url()).pathname });
+      return route.abort();
+    });
+    await ctx.addInitScript(markStatic);
+    const page = await ctx.newPage();
+    const problems = watchProblems(page);
+    const loads = countLoads(page);
+    const t0 = Date.now();
+    await page.goto("/");
+    await expect(page.locator("[data-film-reel]")).toHaveAttribute("data-film-static", "", { timeout: 20_000 });
+    await page.waitForTimeout(Math.max(0, 70_000 - (Date.now() - t0)));
+    const staticAt = (await page.evaluate(() => (window as unknown as { __staticAt?: number }).__staticAt ?? null))!;
+    expect(staticAt).not.toBeNull();
+    const s = await filmStats(page);
+    const started = await page.evaluate(() => {
+      const w = window as unknown as { __staticStarted?: number; __filmStats?: { fetches: number; packRequests: number } };
+      return { atHalt: w.__staticStarted ?? -1, now: (w.__filmStats?.fetches ?? 0) + (w.__filmStats?.packRequests ?? 0) };
+    });
+    // A fetch the page started just before the halt reaches the route a
+    // moment after the marker: requests within 500 ms of it are in flight
+    // from before (the counters above prove nothing started after).
+    const after = film.filter((f) => f.t > staticAt + 500);
+    console.log(
+      `recovery (c): ${film.length} film requests in 70 s; static at ${((staticAt - t0) / 1000).toFixed(1)} s; ` +
+        `intercepted after it: ${film.filter((f) => f.t > staticAt).map((f) => `${((f.t - staticAt) / 1000).toFixed(1)} s ${f.path}`).join(", ")}; ` +
+        `probes ${s.probes}; frame fetches + pack requests started: ${started.atHalt} at the halt, ${started.now} now`,
+    );
+    expect(film.length, "today's bound plus at most 10 probes").toBeLessThanOrEqual(STATIC_BOUND + 10);
+    expect(started.now, "no frame fetch or pack request started after the halt").toBe(started.atHalt);
+    // After the halt: the probes and nothing else (no request between them).
+    expect(after.length).toBe(s.probes);
+    expect(after.every((f) => f.path === `/films/${HERO_FILM.landscape.name}/poster.webp`), "only the active film's poster").toBe(true);
+    const offsets = after.map((f) => (f.t - staticAt) / 1000);
+    expect(offsets.length, "probes 5 s, 15 s and 45 s after the halt").toBe(3);
+    for (const [i, want] of [5, 15, 45].entries()) expect(Math.abs(offsets[i]! - want), `probe ${i + 1} at ${want} s`).toBeLessThanOrEqual(1.5);
+    await expect(page.locator("[data-film-reel]")).toHaveAttribute("data-film-static", "");
+    await expect(page.locator("[data-film-poster]")).not.toHaveCSS("display", "none");
+    await expectCopyFollowsScroll(page);
+    expect(loads(), "no reload").toBe(1);
     expect(problems).toEqual([]);
     await ctx.close();
   });
