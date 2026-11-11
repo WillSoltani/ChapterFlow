@@ -495,6 +495,13 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   clauses. `first-paint.test.ts` evaluates the media on a grid of 2,361
   widths × 20 DPRs × both orientations: the source the browser picks is
   always `pickVariant`'s, and exactly one preload matches, the same file.
+  Known limit: Chromium's preload scanner resolves `width=device-width`
+  against the SCREEN size, not the window. Where a touch browser's window is
+  narrower than its screen (Android split screen; headless Linux in CI, which
+  reports a 1280x720 screen behind an emulated phone) the scanner also starts
+  the poster of the screen's size, so two posters are fetched and Chromium
+  logs the extra preload as unused. Phones in normal use have screen =
+  window, and desktop browsers ignore the viewport meta, so both fetch one.
 - **Placement rule.** The poster sits exactly where the canvas draws that
   variant's first picture (`variantPlacement` with no breath): cover-fitted
   to the canvas box (the 100lvh wrapper; the layer is a size container, so

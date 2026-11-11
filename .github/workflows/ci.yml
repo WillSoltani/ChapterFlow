@@ -289,11 +289,33 @@ jobs:
 
       - name: Install Playwright browser
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chromium
+        # The OS packages come from the Ubuntu mirrors (see the next step). If
+        # they cannot be reached, install the browser alone and run the tests.
+        run: |
+          if ! timeout --kill-after=15 300 npx playwright install --with-deps chromium; then
+            echo "::warning::playwright install --with-deps failed or timed out (apt mirrors unreachable?); installing the browser alone"
+            sudo pkill -x apt-get || true
+            npx playwright install chromium
+          fi
 
       - name: Install Playwright OS deps (cache hit)
         if: steps.playwright-cache.outputs.cache-hit == 'true'
-        run: npx playwright install-deps chromium
+        # The runner image already has Chromium's shared libraries; this step
+        # only adds optional font packages from the Ubuntu mirrors. On
+        # 2026-11-11 those mirrors could not be resolved for hours and every
+        # smoke job died here, ten minutes in, before a single test ran. So:
+        # two bounded tries, then run the tests anyway. If a required library
+        # were ever missing, the browser launch in the test step fails loudly.
+        run: |
+          for attempt in 1 2; do
+            if timeout --kill-after=15 150 npx playwright install-deps chromium; then
+              exit 0
+            fi
+            echo "::warning::playwright install-deps attempt ${attempt} failed or timed out (apt mirrors unreachable?)"
+            sudo pkill -x apt-get || true
+            sleep 10
+          done
+          echo "::warning::Continuing without the optional OS font packages."
 
       - name: Run E2E smoke tests (dev bypass)
         run: npm run test:e2e
@@ -350,11 +372,33 @@ jobs:
 
       - name: Install Playwright browser
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chromium
+        # The OS packages come from the Ubuntu mirrors (see the next step). If
+        # they cannot be reached, install the browser alone and run the tests.
+        run: |
+          if ! timeout --kill-after=15 300 npx playwright install --with-deps chromium; then
+            echo "::warning::playwright install --with-deps failed or timed out (apt mirrors unreachable?); installing the browser alone"
+            sudo pkill -x apt-get || true
+            npx playwright install chromium
+          fi
 
       - name: Install Playwright OS deps (cache hit)
         if: steps.playwright-cache.outputs.cache-hit == 'true'
-        run: npx playwright install-deps chromium
+        # The runner image already has Chromium's shared libraries; this step
+        # only adds optional font packages from the Ubuntu mirrors. On
+        # 2026-11-11 those mirrors could not be resolved for hours and every
+        # smoke job died here, ten minutes in, before a single test ran. So:
+        # two bounded tries, then run the tests anyway. If a required library
+        # were ever missing, the browser launch in the test step fails loudly.
+        run: |
+          for attempt in 1 2; do
+            if timeout --kill-after=15 150 npx playwright install-deps chromium; then
+              exit 0
+            fi
+            echo "::warning::playwright install-deps attempt ${attempt} failed or timed out (apt mirrors unreachable?)"
+            sudo pkill -x apt-get || true
+            sleep 10
+          done
+          echo "::warning::Continuing without the optional OS font packages."
 
       - name: Run E2E smoke tests (prod bundle)
         # playwright.config.ts (E2E_MODE=prod) runs `next build` + `next start`
