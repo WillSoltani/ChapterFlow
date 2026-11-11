@@ -39,7 +39,11 @@ export function FoldChapter({ film, index }: { film: FilmManifest; index: number
             Every chapter becomes a {CATALOG_MEDIAN_CHAPTER_MINUTES}-minute read, a quick quiz, and a
             review that comes back right before you would forget.
           </FramePin>
-          <FramePin from={book} to={pushIn} ease={10} interactive className="flex flex-wrap items-center justify-center gap-4">
+          {/* The hero's start button: while it shows, the nav's persistent
+              one stays hidden; once it fades the nav's takes over
+              (startCta). Its halo fades on the same curve, so it shows at
+              o²: the switch is at o = √½, where the button is at one half. */}
+          <FramePin from={book} to={pushIn} ease={10} interactive startCta="hero" ctaOnAt={Math.SQRT1_2} className="flex flex-wrap items-center justify-center gap-4">
             {/* External (Cognito) URL: a plain <a>, like every other auth CTA on
                 the public site — a Next <Link> would try to prefetch it and
                 trip CSP connect-src 'self' in the console. */}

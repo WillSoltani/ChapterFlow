@@ -112,7 +112,9 @@ export function HomeChapter({ film, index }: P) {
             <br />
             Keep the ideas.
           </FramePin>
-          <FramePin from={warm} to={last} hold interactive>
+          {/* The Home chapter's own start button: the nav's is suppressed
+              while it shows (startCta). */}
+          <FramePin from={warm} to={last} hold interactive startCta="chapter">
             {/* External (Cognito) URL: plain <a>, see FoldChapter. */}
             <a href={AUTH_LOGIN_BOOK_URL} className="film-btn film-btn-primary">
               Start your first book <ArrowRight size={17} strokeWidth={2.25} aria-hidden />

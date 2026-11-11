@@ -40,6 +40,21 @@ type Props = {
    * pins inside it rather than the wrapper's box.
    */
   scrim?: boolean;
+  /**
+   * The pin holds a primary start button (Phase 7, start button always in
+   * reach). It becomes a suppression zone for the nav's persistent start
+   * button ([data-public-sticky-cta-suppress]; "hero" also marks it
+   * [data-public-hero-cta], so the nav's shows as soon as this one goes) and
+   * is marked data-cta-off while its button is not shown: its effective
+   * opacity below one half. The nav watches that attribute (no layout read).
+   */
+  startCta?: "hero" | "chapter";
+  /**
+   * Own opacity below which the button counts as not shown (default 0.5).
+   * A pin inside a scrim that fades on the same curve shows at o², so it
+   * passes Math.SQRT1_2: the switch lands where the button is at one half.
+   */
+  ctaOnAt?: number;
 };
 
 /** smoothstep: zero velocity at both ends so entrances/exits never "pop". */
@@ -79,6 +94,8 @@ export function FramePin({
   children,
   interactive = false,
   scrim = false,
+  startCta,
+  ctaOnAt = 0.5,
 }: Props) {
   const y = yProp ?? (scrim ? 0 : 18);
   const ref = useRef<HTMLElement | null>(null);
@@ -101,6 +118,7 @@ export function FramePin({
     let lastO = "";
     let lastT: string | null = "";
     let lastHidden: boolean | null = null;
+    let lastCtaOff: boolean | null = null;
     let promoted = false;
     let changedAt = 0;
     let timer = 0;
@@ -118,7 +136,16 @@ export function FramePin({
     };
     let first = true;
     const apply = () => {
-      const s = pinStyle(pinOpacity(store.getFrame(), from, to, Math.max(1, ease), hold), y, scrim, reduced);
+      const o = pinOpacity(store.getFrame(), from, to, Math.max(1, ease), hold);
+      if (startCta) {
+        const off = o < ctaOnAt;
+        if (off !== lastCtaOff) {
+          lastCtaOff = off;
+          if (off) el.setAttribute("data-cta-off", "");
+          else el.removeAttribute("data-cta-off");
+        }
+      }
+      const s = pinStyle(o, y, scrim, reduced);
       const moved = s.opacity !== lastO || (s.transform !== null && s.transform !== lastT);
       if (!moved) return;
       if (s.opacity !== lastO) {
@@ -157,7 +184,7 @@ export function FramePin({
       off();
       demote();
     };
-  }, [store, from, to, ease, hold, y, reduced, scrim]);
+  }, [store, from, to, ease, hold, y, reduced, scrim, startCta, ctaOnAt]);
 
   const Tag = as as "div";
   return (
@@ -166,6 +193,9 @@ export function FramePin({
       data-frame-pin={scrim ? undefined : ""}
       data-frame-scrim={scrim ? "" : undefined}
       data-frame-later={pinHiddenAtStart(from, to, ease, hold) ? "" : undefined}
+      data-public-sticky-cta-suppress={startCta ? "" : undefined}
+      data-public-hero-cta={startCta === "hero" ? "" : undefined}
+      data-cta-off={startCta && pinOpacity(0, from, to, Math.max(1, ease), hold) < ctaOnAt ? "" : undefined}
       className={`${interactive ? "pointer-events-auto" : ""} ${className ?? ""}`}
       style={style}
     >
