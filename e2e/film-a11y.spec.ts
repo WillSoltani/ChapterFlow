@@ -16,9 +16,12 @@ import {
   waitExact,
   luminance,
   ratio,
+  indicatorContrast,
+  navIndicators,
   type Motion,
   type Seg,
 } from "./film-a11y-lib";
+import { PLACEHOLDER_FRAMES, PLACEHOLDER_SKIP } from "./film-frames";
 
 /**
  * Film reel accessibility and reduced motion (plan Phase 8).
@@ -440,6 +443,59 @@ test.describe("film a11y", () => {
     await ctx.close();
   });
 
+  test("a touch scroll, then focus coming back with the window, does not move the page (keyboard and touch)", async ({ browser, browserName }) => {
+    test.skip(browserName !== "chromium", "touch scroll is driven through CDP (Chromium only)");
+    // A device with a keyboard and a touch screen: keyboard focus on a film
+    // link, then the reader scrolls by touch (pointerdown, focus stays on the
+    // link), then the tab regains focus. The page must stay where the touch
+    // left it.
+    const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, hasTouch: true });
+    await ctx.route((url) => !/^https?:\/\/(127\.0\.0\.1|localhost)(:\d+)?\//.test(url.toString()), (route) => route.abort());
+    const page = await ctx.newPage();
+    await openReel(page);
+    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+    let inReel = false;
+    for (let i = 0; i < 30 && !inReel; i++) {
+      await page.keyboard.press("Tab");
+      inReel = await page.evaluate(() => !!document.activeElement?.closest("[data-film-segment]"));
+    }
+    expect(inReel, "a film link has keyboard focus").toBe(true);
+    const focused = await page.evaluate(() => (document.activeElement?.textContent ?? "").trim());
+    const cdp = await ctx.newCDPSession(page);
+    const pt = (y: number) => [{ x: 720, y }];
+    const yStart = await page.evaluate(() => window.scrollY);
+    // Touch-scroll on until the focused link's pin is off (where a refocus
+    // that counted as new would scroll the page back to bring it on).
+    const focusedOpacity = () =>
+      page.evaluate(() => {
+        let o = 1;
+        for (let e: Element | null = document.activeElement; e; e = e.parentElement) o *= Number(getComputedStyle(e).opacity);
+        return o;
+      });
+    for (let g = 0; g < 8 && (await focusedOpacity()) > 0.01; g++) {
+      await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: pt(800) });
+      for (let y = 780; y >= 100; y -= 20) {
+        await cdp.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: pt(y) });
+        await page.waitForTimeout(16);
+      }
+      await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+      await page.waitForTimeout(600);
+    }
+    const after = await page.evaluate(() => ({ y: window.scrollY, focus: (document.activeElement?.textContent ?? "").trim() }));
+    expect(after.y, "the touch gestures scrolled").toBeGreaterThan(yStart + 100);
+    expect(await focusedOpacity(), "the focused link's pin is off").toBeLessThan(0.01);
+    expect(after.focus, "focus stayed on the film link").toBe(focused);
+    // The window regains focus: focus and focusin again on the same element, no relatedTarget.
+    await page.evaluate(() => {
+      const a = document.activeElement!;
+      a.dispatchEvent(new FocusEvent("focus", { relatedTarget: null }));
+      a.dispatchEvent(new FocusEvent("focusin", { bubbles: true, relatedTarget: null }));
+    });
+    await page.waitForTimeout(400);
+    expect(await page.evaluate(() => window.scrollY), "scroll unchanged").toBe(after.y);
+    await ctx.close();
+  });
+
   test("forced colors: a focused film button keeps a visible outline", async ({ browser }) => {
     const ctx = await motionContext(browser, A11Y_VIEWPORTS[1]!, "normal");
     const page = await ctx.newPage();
@@ -544,6 +600,8 @@ test.describe("film a11y", () => {
   for (const vp of A11Y_VIEWPORTS)
     for (const motion of ["normal", "os"] as const)
       test(`contrast (${motion === "os" ? "reduced motion" : "normal motion"}) ${vp.name}: every run of copy ≥ 4.5:1 (large 3:1) on the real picture`, async ({ browser }) => {
+        // Judges the copy against the real picture: meaningless on placeholder frames.
+        test.skip(PLACEHOLDER_FRAMES, PLACEHOLDER_SKIP);
         test.setTimeout(600_000);
         const ctx = await motionContext(browser, vp, motion);
         const page = await ctx.newPage();
@@ -580,24 +638,96 @@ test.describe("film a11y", () => {
             }
           }
         }
-        // Focus rings: accent outer ring over a page-colour inner ring (.film-btn:focus-visible).
-        const ring = await page.evaluate(() => {
-          const s = getComputedStyle(document.querySelector(".landing-dark") ?? document.documentElement);
-          return { accent: s.getPropertyValue("--cf-recall-accent").trim(), bg: s.getPropertyValue("--cf-recall-bg").trim() };
-        });
-        const hex = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)) as [number, number, number];
-        const ringRatio = ratio(luminance(...hex(ring.accent)), luminance(...hex(ring.bg)));
         const all = await page.$$eval("[data-frame-pin]", (els) => els.length);
         const rows = [...worst.entries()].sort((a, b) => a[1].ratio - b[1].ratio);
         console.log(
-          `[contrast ${motion} ${vp.name}] ${rows.length} runs of copy measured (${all} pins); focus ring ${ringRatio.toFixed(2)}:1\n` +
+          `[contrast ${motion} ${vp.name}] ${rows.length} runs of copy measured (${all} pins)\n` +
             rows.map(([k, v]) => `  ${v.ratio.toFixed(2)}:1 (need ${v.need}) ${v.kind} ${k} @ ${v.where}`).join("\n"),
         );
         const fails = rows.filter(([, v]) => v.ratio < v.need).map(([k, v]) => `${k}: ${v.ratio.toFixed(2)} < ${v.need} @ ${v.where}`);
         // Every run of copy in the reel was measured at least once.
         for (const t of await textItems(page)) if (!worst.has(t.key)) fails.push(`${t.key}: never measured fully on`);
         await ctx.close();
-        expect(ringRatio, "focus ring accent against the page colour").toBeGreaterThanOrEqual(3);
         expect(fails, fails.join("\n")).toEqual([]);
       });
+
+  // Focus indicators (WCAG 1.4.11, 3:1), measured as the copy is: the
+  // indicator's colour against the pixels behind its band (indicator hidden,
+  // screenshot, worst 10 %). The nav is shared by every public page, so it is
+  // judged over the body here and on pricing, contact, legal and books.
+  for (const vp of A11Y_VIEWPORTS)
+    test(`contrast, focus indicators over the body ${vp.name}: the film buttons' ring and every nav control on the landing and the other public pages ≥ 3:1`, async ({ browser }) => {
+      test.setTimeout(240_000);
+      const webkit = browser.browserType().name() === "webkit";
+      const ctx = await motionContext(browser, vp, "normal");
+      const page = await ctx.newPage();
+      await openReel(page);
+      // Film buttons: accent outer ring over a page-colour inner ring (.film-btn:focus-visible).
+      const ring = await page.evaluate(() => {
+        const s = getComputedStyle(document.querySelector(".landing-dark") ?? document.documentElement);
+        return { accent: s.getPropertyValue("--cf-recall-accent").trim(), bg: s.getPropertyValue("--cf-recall-bg").trim() };
+      });
+      const hex = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)) as [number, number, number];
+      const ringRatio = ratio(luminance(...hex(ring.accent)), luminance(...hex(ring.bg)));
+      const rows: string[] = [];
+      const fails: string[] = [];
+      const judge = (where: string) => async (ind: Parameters<Parameters<typeof navIndicators>[2]>[0]) => {
+        const r = ind.kind === "none" ? 0 : await indicatorContrast(page, ind);
+        rows.push(`  ${r.toFixed(2)}:1 ${ind.kind} ${ind.name} @ ${where}`);
+        if (r < 3) fails.push(`${ind.name} @ ${where}: ${ind.kind} ${r.toFixed(2)} < 3`);
+      };
+      // The landing below the reel (the nav over the body).
+      await page.evaluate(() => document.getElementById("pricing")?.scrollIntoView({ block: "start", behavior: "instant" }));
+      await page.waitForTimeout(600);
+      const seen = await navIndicators(page, webkit, judge("landing, pricing"));
+      expect(seen.length, "the nav's controls were reached").toBeGreaterThan(1);
+      for (const path of ["/pricing", "/contact", "/legal", "/books"]) {
+        await page.goto(path);
+        await page.waitForTimeout(1500);
+        await navIndicators(page, webkit, judge(`${path} top`));
+        // Scrolled on: the persistent start button shows.
+        await page.evaluate(() => window.scrollTo({ top: Math.min(900, document.documentElement.scrollHeight - window.innerHeight), behavior: "instant" as ScrollBehavior }));
+        await page.waitForTimeout(600);
+        await navIndicators(page, webkit, judge(`${path} scrolled`));
+      }
+      console.log(`[focus indicators, body ${vp.name}] film buttons ${ringRatio.toFixed(2)}:1\n${rows.join("\n")}`);
+      await ctx.close();
+      expect(ringRatio, "film buttons: focus ring accent against the page colour").toBeGreaterThanOrEqual(3);
+      expect(fails, fails.join("\n")).toEqual([]);
+    });
+
+  for (const vp of A11Y_VIEWPORTS)
+    test(`contrast, focus indicators over the film ${vp.name}: every nav control ≥ 3:1 on the real picture`, async ({ browser }) => {
+      // Judges the indicator against the real picture: meaningless on placeholder frames.
+      test.skip(PLACEHOLDER_FRAMES, PLACEHOLDER_SKIP);
+      test.setTimeout(240_000);
+      const webkit = browser.browserType().name() === "webkit";
+      const ctx = await motionContext(browser, vp, "normal");
+      const page = await ctx.newPage();
+      await openReel(page);
+      const segs = await segments(page);
+      const stage = await stageHeight(page);
+      const rows: string[] = [];
+      const fails: string[] = [];
+      // Each chapter at its start, middle and end of the pinned travel: the
+      // nav over the brightest and darkest parts of each film.
+      for (const s of segs)
+        for (const p of [0, 0.5, 0.98]) {
+          const y = Math.ceil(s.top) + 2 + (s.h - stage) * p;
+          await scrollToY(page, y);
+          await page.waitForTimeout(450);
+          const d = await drawn(page);
+          if (d) await waitExact(page, d.film, d.frame);
+          const where = `${s.id}@${p}${d ? ` f${d.frame}` : ""}`;
+          await navIndicators(page, webkit, async (ind) => {
+            const r = ind.kind === "none" ? 0 : await indicatorContrast(page, ind);
+            rows.push(`  ${r.toFixed(2)}:1 ${ind.kind} ${ind.name} @ ${where}`);
+            if (r < 3) fails.push(`${ind.name} @ ${where}: ${ind.kind} ${r.toFixed(2)} < 3`);
+          });
+        }
+      console.log(`[focus indicators, film ${vp.name}]\n${rows.join("\n")}`);
+      await ctx.close();
+      expect(rows.length, "nav controls measured").toBeGreaterThan(0);
+      expect(fails, fails.join("\n")).toEqual([]);
+    });
 });

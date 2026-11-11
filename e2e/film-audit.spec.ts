@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { activePins, backgroundLum, overlap, LUM_MEAN_MAX, LUM_P90_MAX } from "./film-audit-lib";
+import { PLACEHOLDER_FRAMES, PLACEHOLDER_SKIP } from "./film-frames";
 
 /**
  * Film-reel QA audit. Scrubs the landing at many scroll positions across seven
@@ -26,7 +27,7 @@ import { activePins, backgroundLum, overlap, LUM_MEAN_MAX, LUM_P90_MAX } from ".
  */
 
 type Viewport = { name: string; width: number; height: number; mobile?: boolean };
-const VIEWPORTS: Viewport[] = [
+const ALL_VIEWPORTS: Viewport[] = [
   { name: "desktop", width: 1440, height: 900 },
   { name: "laptop", width: 1280, height: 720 },
   { name: "tablet", width: 834, height: 1194 },
@@ -36,6 +37,14 @@ const VIEWPORTS: Viewport[] = [
   { name: "smallest phone", width: 320, height: 568, mobile: true },
   { name: "landscape phone", width: 844, height: 390, mobile: true },
 ];
+/**
+ * FILM_AUDIT_VIEWPORTS (comma-separated names): a subset, for CI only (the
+ * "film" job's time budget, .github/workflows/ci.yml). Locally every viewport
+ * runs. Every check runs unchanged on the viewports that run.
+ */
+const pick = (process.env.FILM_AUDIT_VIEWPORTS ?? "").split(",").map((n) => n.trim()).filter(Boolean);
+for (const n of pick) if (!ALL_VIEWPORTS.some((v) => v.name === n)) throw new Error(`FILM_AUDIT_VIEWPORTS: no viewport named "${n}"`);
+const VIEWPORTS = pick.length ? ALL_VIEWPORTS.filter((v) => pick.includes(v.name)) : ALL_VIEWPORTS;
 /**
  * The smallest copy the reel sets (.film-label, 11 px) and the smallest tap
  * target. EXEMPT from the size check: the Hall's wall prose (HallText). It is
@@ -59,6 +68,9 @@ test.describe("film audit", () => {
         viewport: { width: vp.width, height: vp.height },
         ...(vp.mobile ? { isMobile: true, hasTouch: true, deviceScaleFactor: 2 } : {}),
       });
+      // Check 4 (the luminance behind the copy) judges the real footage; on
+      // placeholder frames it is skipped, every other check runs.
+      if (PLACEHOLDER_FRAMES) test.info().annotations.push({ type: "skip", description: `check 4 (luminance): ${PLACEHOLDER_SKIP}` });
       const page = await ctx.newPage();
       await page.goto("/?hud=1");
       await page.waitForTimeout(1200);
@@ -88,7 +100,7 @@ test.describe("film audit", () => {
           if (s.active !== seg.id) problems.push(`${where}: expected active ${seg.id}, got ${s.active}`);
           if (!s.hud.includes("palace-")) problems.push(`${where}: canvas not painting (${s.hud})`);
 
-          const lum = await backgroundLum(page, s.pins, vp);
+          const lum = PLACEHOLDER_FRAMES ? [] : await backgroundLum(page, s.pins, vp);
           s.pins.forEach((pin, i) => {
             seen.add(`${pin.seg}:${pin.text}`);
             if (pin.x < 8 || pin.y < 0 || pin.x + pin.w > vp.width - 8 || pin.y + pin.h > vp.height)
@@ -99,7 +111,8 @@ test.describe("film audit", () => {
             for (const t of pin.targets)
               if (t.w < MIN_TAP_PX || t.h < MIN_TAP_PX) problems.push(`${where}: SMALL TAP TARGET "${t.text}" ${Math.round(t.w)}×${Math.round(t.h)}`);
             // CTA pins carry solid buttons (dark ink on accent) — contrast is the button's, not the frame's.
-            const l = lum[i];
+            // The luminance behind the copy judges the real footage: not on placeholder frames.
+            const l = PLACEHOLDER_FRAMES ? undefined : lum[i];
             if (!pin.interactive && l && (l.mean > LUM_MEAN_MAX || l.p90 > LUM_P90_MAX))
               problems.push(`${where}: LOW CONTRAST "${pin.text}" mean=${Math.round(l.mean)} p90=${Math.round(l.p90)}`);
           });

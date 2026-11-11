@@ -233,3 +233,142 @@ function mix(fg: [number, number, number], bg: [number, number, number], a: numb
 export function inViewport(item: TextItem, vp: { width: number; height: number }): boolean {
   return item.rects.some((r) => r.x + r.w > 0 && r.y + r.h > 0 && r.x < vp.width && r.y < vp.height);
 }
+
+/** A keyboard focus indicator: its colour (RGBA, alpha 0..1) and the band it paints, in CSS px. */
+export type FocusIndicator = { name: string; color: [number, number, number, number]; bands: Array<{ x: number; y: number; w: number; h: number }>; kind: "outline" | "ring" | "none" };
+
+/**
+ * The focus indicator of the focused element: its outline (the band from
+ * outline-offset to offset + width around the border box), else its
+ * box-shadow ring (the outermost opaque-ish spread band of a 0 0 0 Npx
+ * shadow). Colours are resolved by the browser (a 1 × 1 canvas), so any
+ * colour syntax works.
+ */
+export function focusIndicator(page: Page): Promise<FocusIndicator | null> {
+  return page.evaluate(() => {
+    const a = document.activeElement as HTMLElement | null;
+    if (!a || a === document.body) return null;
+    const cs = getComputedStyle(a);
+    const c = document.createElement("canvas").getContext("2d", { willReadFrequently: true })!;
+    const rgba = (s: string): [number, number, number, number] => {
+      c.clearRect(0, 0, 1, 1);
+      c.fillStyle = "rgba(0,0,0,0)";
+      c.fillStyle = s;
+      c.fillRect(0, 0, 1, 1);
+      const d = c.getImageData(0, 0, 1, 1).data;
+      return d[3] ? [Math.round((d[0]! * 255) / d[3]), Math.round((d[1]! * 255) / d[3]), Math.round((d[2]! * 255) / d[3]), d[3] / 255] : [0, 0, 0, 0];
+    };
+    const r = a.getBoundingClientRect();
+    const name = (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 32);
+    const ringBands = (inner: number, outer: number) => {
+      const o = { x: r.left - outer, y: r.top - outer, w: r.width + 2 * outer, h: r.height + 2 * outer };
+      const t = outer - inner;
+      return [
+        { x: o.x, y: o.y, w: o.w, h: t },
+        { x: o.x, y: o.y + o.h - t, w: o.w, h: t },
+        { x: o.x, y: o.y + t, w: t, h: o.h - 2 * t },
+        { x: o.x + o.w - t, y: o.y + t, w: t, h: o.h - 2 * t },
+      ];
+    };
+    const ow = parseFloat(cs.outlineWidth);
+    if (cs.outlineStyle !== "none" && ow > 0) {
+      const color = rgba(cs.outlineColor);
+      if (color[3] > 0) {
+        const off = parseFloat(cs.outlineOffset) || 0;
+        return { name, color, bands: ringBands(off, off + ow), kind: "outline" as const };
+      }
+    }
+    // Box-shadow rings: "color 0px 0px 0px Npx", in paint order (first on top).
+    const rings: Array<{ color: [number, number, number, number]; spread: number }> = [];
+    for (const m of cs.boxShadow.matchAll(/((?:rgba?|oklab|oklch|color|hsla?)\([^)]*\)|#[0-9a-f]+|[a-z]+)\s+0px\s+0px\s+0px\s+(-?[\d.]+)px(?!\s*inset)/gi)) {
+      const color = rgba(m[1]!);
+      rings.push({ color, spread: parseFloat(m[2]!) });
+    }
+    const visible = rings.filter((x) => x.color[3] > 0 && x.spread > 0).sort((p, q) => q.spread - p.spread)[0];
+    if (!visible) return { name, color: [0, 0, 0, 0] as [number, number, number, number], bands: [], kind: "none" as const };
+    // The band between the next smaller spread (painted on top of it) and this one.
+    const inner = Math.max(0, ...rings.filter((x) => x.spread < visible.spread).map((x) => x.spread));
+    return { name, color: visible.color, bands: ringBands(inner, visible.spread), kind: "ring" as const };
+  });
+}
+
+/**
+ * Hide every focus indicator (outline and box-shadow) at once: what the
+ * indicator sits on. Transitions off too: the nav links transition their
+ * outline colour, and a fading outline would be in the screenshot.
+ */
+export const HIDE_FOCUS = ":focus-visible,:focus{outline-style:none!important;box-shadow:none!important;transition:none!important}";
+
+/**
+ * Contrast of a focus indicator against what is behind it, measured as the
+ * copy is (contrastOf): per background pixel of its band, the ratio between
+ * the indicator's colour composited over that pixel and the pixel; the worst
+ * 10 % (10th percentile). Needs ≥ 3 (WCAG 1.4.11).
+ */
+export async function indicatorContrast(page: Page, ind: FocusIndicator): Promise<number> {
+  const handle = await page.addStyleTag({ content: HIDE_FOCUS });
+  await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
+  const png = await page.screenshot({ type: "png", scale: "css" });
+  await handle.evaluate((el) => (el as Element).remove());
+  const { data, info } = await sharp(png).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+  const ratios: number[] = [];
+  const fg: [number, number, number] = [ind.color[0], ind.color[1], ind.color[2]];
+  for (const b of ind.bands) {
+    const x0 = Math.max(0, Math.floor(b.x));
+    const y0 = Math.max(0, Math.floor(b.y));
+    const x1 = Math.min(info.width, Math.ceil(b.x + b.w));
+    const y1 = Math.min(info.height, Math.ceil(b.y + b.h));
+    for (let y = y0; y < y1; y++)
+      for (let x = x0; x < x1; x++) {
+        const i = (y * info.width + x) * 3;
+        const px: [number, number, number] = [data[i] ?? 0, data[i + 1] ?? 0, data[i + 2] ?? 0];
+        const t = mix(fg, px, ind.color[3]);
+        ratios.push(ratio(luminance(...t), luminance(...px)));
+      }
+  }
+  if (!ratios.length) return 0;
+  ratios.sort((p, q) => p - q);
+  return ratios[Math.floor(ratios.length * 0.1)] ?? ratios[0]!;
+}
+
+/**
+ * Tab (WebKit: Alt+Tab, which reaches links) from the start of the page
+ * through the nav, measuring the indicator of every focused nav control that
+ * is rendered. Settles 300 ms per stop (the nav links transition their colours).
+ */
+export async function navIndicators(page: Page, webkit: boolean, measure: (ind: FocusIndicator) => Promise<void>): Promise<string[]> {
+  // Start Tab from the top of the document whatever had focus before: a
+  // fixed, script-only focusable first in <body> (fixed, so focusing it
+  // scrolls nothing), removed when done.
+  await page.evaluate(() => {
+    const start = document.createElement("span");
+    start.id = "__tab-start";
+    start.tabIndex = -1;
+    start.style.cssText = "position:fixed;top:0;left:0;width:1px;height:1px;";
+    document.body.prepend(start);
+    start.focus({ preventScroll: true });
+  });
+  const names: string[] = [];
+  for (let i = 0; i < 16; i++) {
+    await page.keyboard.press(webkit ? "Alt+Tab" : "Tab");
+    const inNav = await page.evaluate(() => {
+      const a = document.activeElement;
+      return !!a?.closest("header.rl-nav") && a.getClientRects().length > 0;
+    });
+    // The skip links come first; once focus has left the nav, done.
+    if (!inNav) {
+      if (names.length) break;
+      continue;
+    }
+    await page.waitForTimeout(300);
+    const ind = await focusIndicator(page);
+    if (!ind) continue;
+    names.push(ind.name);
+    await measure(ind);
+  }
+  await page.evaluate(() => {
+    (document.activeElement as HTMLElement | null)?.blur();
+    document.getElementById("__tab-start")?.remove();
+  });
+  return names;
+}

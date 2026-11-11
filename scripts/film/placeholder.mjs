@@ -23,6 +23,10 @@
  * --sync-timeline` afterwards if the runtime should read these packs: until
  * the timeline records them, a pack whose size disagrees with the timeline is
  * unusable and the reel loads the placeholder frame by frame.
+ * Every manifest it writes carries `placeholder: true`: the film specs read
+ * that (e2e/film-frames.ts) and skip the checks that judge the real footage
+ * (contrast, the luminance behind the copy). CI runs the film specs on these
+ * frames (.github/workflows/ci.yml, job "film").
  * Output is gitignored (public/films/); real renders replace it 1:1.
  */
 
@@ -140,7 +144,9 @@ for (const name of films) {
   const finish = async (dir, variant, w, h, extra = {}) => {
     for (const f of staleFrameFiles(await fs.readdir(dir), n, pad, "webp")) await fs.rm(path.join(dir, f));
     await fs.copyFile(path.join(dir, frameFile(0)), path.join(dir, "poster.webp"));
-    await fs.writeFile(path.join(dir, "manifest.json"), JSON.stringify({ name: variant, count: n, pad, ext: "webp", width: w, height: h, ...extra }, null, 2) + "\n");
+    // `placeholder: true` is the signal the film specs read (e2e/film-frames.ts):
+    // tests that judge the real footage skip themselves on these frames.
+    await fs.writeFile(path.join(dir, "manifest.json"), JSON.stringify({ name: variant, count: n, pad, ext: "webp", width: w, height: h, placeholder: true, ...extra }, null, 2) + "\n");
     const pack = await writePack(dir);
     console.log(`${variant}: ${n} frames, pack ${pack.bytes} bytes`);
   };
