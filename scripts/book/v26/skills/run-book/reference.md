@@ -73,12 +73,19 @@ Check: `CLI status --book <cfg>` prints `<bookId>: N chapters`, every chapter wi
 
 ## 2. Keys, knowledge mode only (1 call, under $1)
 
-`CLI keys --book <cfg>` writes `chapters[].keys` into the config: the author's blunt advice, a `Reversal:` sentence
-(`Reversal: none` when the author gives no limit; the writer then writes none either),
+`CLI keys --book <cfg>` writes `chapters[].keys` into the config: the author's advice, his own names for the tools
+and steps in his order, his reasons where he gives them, a `Reversal:` sentence (`Reversal: none` when the author
+gives no limit; the writer then writes none either),
 and `Story the author tells:` (or `none recalled with confidence`; for a book without stories expect that and keep
 it). Drafted by the fixer, since the keys are the fact backbone every later call reads. Read all of them: each
 belongs to its chapter, no quotation marks, no borrowed story or invented battle; keep a `Reversal:` only when it is
-the chapter's own limit and delete a forced one. Edit by hand where wrong. Show the owner and carry on (not a
+the chapter's own limit and delete a forced one. Edit by hand where wrong. For a knowledge-mode book, have the keys checked before the book is written: two or
+three independent subagents with web search, each asked to mark every sentence that is wrong, belongs to another
+chapter or gives a reason the book does not give, and to name one story or case the chapter itself tells (who, what
+they did, how it ended) with where they confirmed it. Merge what at least two agree on, and take the reasons out of
+the stories. On Tiny Habits this caught an idea in the wrong chapter, three loose definitions and an invented
+reason, and replaced "none recalled" with a real story in all eight chapters; every chapter is built on its key, so
+this is the cheapest fidelity check there is. Show the owner and carry on (not a
 wait); their edits must land before step 6, since variants, assemble and the book all read the keys. A rerun drafts
 only chapters still without keys; `--force` redoes all.
 
@@ -151,8 +158,9 @@ term is there, stop the run (safe; chapters resume from files), fix `bookNames`,
 
 Per chapter: lessons call (lessons already taught, and the exemplar's own people, are off limits), one writer call
 with the house exemplar as the bar and the chapter's plan as the order (the opener and its path, the
-counterintuition frame, the example tags, the order of quiz and card forms and the key positions all come from the
-chapter number, so chapters written side by side cannot land on one shape), 0-call checks (shape, exemplar copy, variety), Opus fact check and Sonnet key solver, one fix
+counterintuition frame, the tag and the setting of each example, what makes the third example harder, the order of
+quiz and card forms, the key positions and the kinds of practice cue all come from the chapter number, so chapters
+written side by side cannot land on one shape), 0-call checks (shape, exemplar copy, variety), Opus fact check and Sonnet key solver, one fix
 round, land. At the end the log lists chapters clean or open, then `names used in more than one chapter` (chapters
 written side by side never see each other's names; step 7 renames), then `k of N chapters clean; ledger $x of $y`.
 A stop (exit 3 usage limit, exit 4 budget, a crash) is rerun with the identical command; finished chapters are

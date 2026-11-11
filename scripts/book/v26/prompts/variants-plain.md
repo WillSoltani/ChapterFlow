@@ -3,7 +3,7 @@ PLAIN WORDS (every field): use a 12-year-old's vocabulary for an adult's intelli
 - Vary the length of your sentences the way a good talker does. A short sentence lands a point. Then a longer one carries the reason. Do not join every sentence to the next with so or because; say the reason only where a reader would ask why.
 - Talk to the reader as "you" where it fits.
 - Short sentences are complete sentences. Do not chop a thought into a string of fragments to sound simple.
-- Every sentence reads right the first time: no word in an odd role ("his want", "the habit asks"), and no sentence a reader could take two ways before the end.
+- Every sentence reads right the first time: no word in an odd role ("his want", "her wanting", "the habit asks"), and no sentence a reader could take two ways before the end.
 - Be concrete in the scenes you invent: name the object, the place, the time of day or the words someone says. "She moved the phone to the next room" beats "She changed her surroundings".
 - No outside facts anywhere: no statistics, studies, dates, or real events or people from outside the source. Invented modern situations are fine; invented facts are not.
 - No model or meta chatter: never "in this chapter", "as the book says", "the author writes".

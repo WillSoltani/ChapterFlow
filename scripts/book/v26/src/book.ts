@@ -232,6 +232,21 @@ const HARD_CASES = [
   "the right move was tried once, did not work, and needs one adjustment",
   "there is almost no time",
 ];
+/** What the hook is built on, so a book does not open eight chapters on an object that has sat unused for weeks. */
+const HOOK_KINDS = [
+  "a moment in progress, in the present tense (what the reader is doing or about to do)",
+  "a blunt claim with a turn in it",
+  "a line someone says, and what it gets wrong",
+  "an object or a place that shows the problem",
+  "two outcomes set side by side",
+];
+/** What the try-this line asks for, so it is not always something to write down tonight. */
+const TRY_KINDS = [
+  "do the smallest version of the move once, now or at a named moment today",
+  "move, set out or put away one object",
+  "say or ask one thing to one person today",
+  "write one line and put it where it will be seen",
+];
 /** The kinds of moment an if-then cue names. */
 const CUE_KINDS = [
   "a routine moment of the day or the week (right after something the reader always does)",
@@ -301,7 +316,7 @@ export function formText(ex: Exemplar, summaryLabel: string = ex.picks.summary.l
   };
   const cueKinds = (count: number): string[] => Array.from({ length: count }, (_, i) => CUE_KINDS[(turn(n, CUE_KINDS.length) + i * 2 + (i > 1 ? 1 : 0)) % CUE_KINDS.length]!);
   return [
-    `- summary (hook, counterintuition, the three lengths, tryThisNow, memorable line): ${opener.label}, "${opener.name}": ${opener.rule}${opener.path ? ` Path: ${opener.path} ${EVIDENCE_NOTE}` : ""}${openerNote} Ceilings (a chapter with less to say is shorter): hook 25 words; counterintuition 45 words; ${tier("fastRead")}; ${tier("deepRead")}; ${tier("fullRead")}; tryThisNow 25 words.`,
+    `- summary (hook, counterintuition, the three lengths, tryThisNow, memorable line): ${opener.label}, "${opener.name}": ${opener.rule}${opener.path ? ` Path: ${opener.path} ${EVIDENCE_NOTE}` : ""}${openerNote} Ceilings (a chapter with less to say is shorter): hook 25 words; counterintuition 45 words; ${tier("fastRead")}; ${tier("deepRead")}; ${tier("fullRead")}; tryThisNow 25 words. The hook is built on ${HOOK_KINDS[turn(n, HOOK_KINDS.length)]}. The try-this line asks the reader to ${TRY_KINDS[turn(n, TRY_KINDS.length)]}.`,
     `- counterintuition frame: ${COUNTER_FRAMES[turn(n, COUNTER_FRAMES.length)]}`,
     `- examples: ${c.examples.length} examples, doing the three jobs the field rules give (the ordinary situation, the fix already tried, the harder situation). Scenario about ${avg(c.examples.map((e) => wordsIn(e.scenario)))} words (70 at most), whatToDo about ${avg(c.examples.map((e) => wordsIn(e.whatToDo)))} (30 at most), whyItMatters about ${avg(c.examples.map((e) => wordsIn(e.whyItMatters)))} (25 at most). Tags and settings for examples 1 to ${tags.length}, in this order: ${tags.map((t) => `${t} (${setting(t)})`).join("; ")}. What makes example ${tags.length} the harder one: ${HARD_CASES[turn(n, HARD_CASES.length)]}.`,
     `- quiz: ${questions} questions with ${choices} choices each; ${quiz} Key positions (the 0-based index of the right choice) for q1 to q${questions}: ${keyPositions(n, questions, choices).join(", ")}.`,

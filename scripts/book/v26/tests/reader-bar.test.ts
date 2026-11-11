@@ -42,6 +42,8 @@ test("the plan is a function of the chapter number: neighbours differ, the same 
   assert.match(plan(1), /The kinds of cue for this chapter: a routine moment of the day or the week .*; the moment the reader notices the very slip this lesson is about\./);
   assert.notEqual(line(1, "- practice plan"), line(2, "- practice plan"));
   assert.match(plan(4), /counterintuition frame: "\[The belief, the way people say it\]\./);
+  assert.match(plan(1), /The hook is built on a moment in progress, .* The try-this line asks the reader to do the smallest version of the move once/);
+  assert.match(plan(2), /The hook is built on a blunt claim with a turn in it\. The try-this line asks the reader to move, set out or put away one object\./);
   assert.match(formText(ex, "D", 3, SHAPE), /Path: the claim; the book's evidence that proves it; .*THIS chapter opens as D instead\. Follow the path given here/);
 });
 
