@@ -53,6 +53,20 @@ async function decodeWithImage(blob: Blob): Promise<HTMLImageElement> {
   }
 }
 
+/** Time source for retry backoff, injectable so tests drive it by hand. */
+export type FrameClock = {
+  now: () => number;
+  /** Run `fn` once after `ms` milliseconds. */
+  later: (fn: () => void, ms: number) => void;
+};
+
+const systemClock: FrameClock = {
+  now: () => Date.now(),
+  later: (fn, ms) => {
+    setTimeout(fn, ms);
+  },
+};
+
 export const browserFrameIO: FrameIO = {
   async fetchBlob(url) {
     // Frame URLs carry ?v=<version>, so the default cache policy is safe: a
@@ -135,6 +149,14 @@ const HEADROOM = 0.8;
 const AHEAD_SHARE = 0.7;
 const NEXT_HEAD_MAX = 12;
 const NEXT_HEAD_SHARE = 0.3;
+/**
+ * A failed fetch or decode (rate limiter 403/429, 5xx, a dropped connection)
+ * is retried while the frame stays wanted, after 400 ms, 800 ms, ... capped
+ * at 4 s, so a parked visitor recovers once the network does without the
+ * reel hammering a server that is refusing it.
+ */
+const RETRY_BASE_MS = 400;
+const RETRY_MAX_MS = 4000;
 /** Budgets below this are "small" (phones): fewer decodes, smaller blob store. */
 const SMALL_BUDGET = 256 * MB;
 
@@ -176,13 +198,20 @@ export class FrameBudget {
   /** URLs whose bytes this page has fetched / has decoded. */
   private readonly fetchedEver = new Set<string>();
   private readonly decodedEver = new Set<string>();
-  /** Frames whose fetch or decode failed; retried once they leave and re-enter the set. */
-  private readonly failed = new Set<string>();
+  /**
+   * Frames whose last fetch or decode failed, with the time a retry is due
+   * (backoff, see RETRY_BASE_MS). Retried while still wanted once due; the
+   * entry is forgotten when the frame decodes or leaves the wanted set.
+   */
+  private readonly failed = new Map<string, { attempts: number; retryAt: number }>();
+  /** When the pending retry wake-up fires (Infinity = none pending). */
+  private wakeAt = Infinity;
   private readonly listeners = new Set<(cache: FrameCache, index: number) => void>();
 
   constructor(
     public readonly limitBytes: number,
     private readonly io: FrameIO = browserFrameIO,
+    private readonly clock: FrameClock = systemClock,
   ) {
     const small = limitBytes < SMALL_BUDGET;
     this.maxFetches = FETCH_LIMIT;
@@ -260,7 +289,7 @@ export class FrameBudget {
     this.planWeak = weak;
     this.order = this.buildOrder(plan);
     this.indexWanted();
-    for (const url of this.failed) if (!this.wantedUrls.has(url)) this.failed.delete(url);
+    for (const url of [...this.failed.keys()]) if (!this.wantedUrls.has(url)) this.failed.delete(url);
     this.pump();
   }
 
@@ -356,7 +385,7 @@ export class FrameBudget {
     const s = this.stats;
     for (const { cache, index, url } of this.order) {
       if (s.fetchInFlight >= this.maxFetches && s.decodeInFlight >= this.maxDecodes) return;
-      if (cache.disposed || cache.has(index) || cache.decoding.has(index) || this.failed.has(url)) continue;
+      if (cache.disposed || cache.has(index) || cache.decoding.has(index) || !this.retryDue(url)) continue;
       const held = this.blobs.get(url);
       if (held) {
         if (s.decodeInFlight >= this.maxDecodes) continue;
@@ -371,6 +400,28 @@ export class FrameBudget {
       if (this.fetchingUrls.has(url) || s.fetchInFlight >= this.maxFetches) continue;
       this.startFetch(url);
     }
+  }
+
+  /** True unless `url` failed and its retry is not due yet (then a wake-up is set). */
+  private retryDue(url: string): boolean {
+    const f = this.failed.get(url);
+    if (!f) return true;
+    const now = this.clock.now();
+    if (now >= f.retryAt) return true;
+    if (f.retryAt < this.wakeAt) {
+      this.wakeAt = f.retryAt;
+      this.clock.later(() => {
+        this.wakeAt = Infinity;
+        this.pump();
+      }, f.retryAt - now);
+    }
+    return false;
+  }
+
+  private markFailed(url: string) {
+    const attempts = (this.failed.get(url)?.attempts ?? 0) + 1;
+    const delay = Math.min(RETRY_MAX_MS, RETRY_BASE_MS * 2 ** (attempts - 1));
+    this.failed.set(url, { attempts, retryAt: this.clock.now() + delay });
   }
 
   private startFetch(url: string) {
@@ -390,7 +441,7 @@ export class FrameBudget {
           this.putBlob(url, blob);
         },
         () => {
-          this.failed.add(url);
+          this.markFailed(url);
         },
       )
       .finally(() => {
@@ -418,6 +469,7 @@ export class FrameBudget {
             return;
           }
           this.decodedEver.add(url);
+          this.failed.delete(url);
           const actual = drawableBytes(img) || bytes;
           this.used += actual;
           cache.put(index, img, actual);
@@ -427,7 +479,7 @@ export class FrameBudget {
           if (cache.disposed) return;
           // Bad bytes: drop them so a later attempt fetches fresh ones.
           this.dropBlob(url);
-          this.failed.add(url);
+          this.markFailed(url);
         },
       )
       .finally(() => {

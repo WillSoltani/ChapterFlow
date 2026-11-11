@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { FrameBudget, FrameCache, frameUrl, type FrameIO } from "./frame-cache";
+import { FrameBudget, FrameCache, frameUrl, type FrameClock, type FrameIO } from "./frame-cache";
 import type { FilmVariant } from "./types";
 
 // The cache's scheduling logic runs under node with injected fetch + decode
@@ -383,7 +383,101 @@ test("draw counters: exact draws, fallback draws and their distance", async () =
   assert.equal(budget.stats.fallbackDraws, 1);
 });
 
-test("a failed fetch leaves a hole and is not retried while it stays wanted", async () => {
+/** A clock the test advances by hand; `later` callbacks run when their time comes. */
+function fakeClock() {
+  let t = 0;
+  const timers: Array<{ at: number; fn: () => void }> = [];
+  return {
+    clock: {
+      now: () => t,
+      later: (fn: () => void, ms: number) => {
+        timers.push({ at: t + ms, fn });
+      },
+    } satisfies FrameClock,
+    async advance(ms: number) {
+      const end = t + ms;
+      for (;;) {
+        timers.sort((a, b) => a.at - b.at);
+        const next = timers[0];
+        if (!next || next.at > end) break;
+        timers.shift();
+        t = next.at;
+        next.fn();
+        await settle();
+      }
+      t = end;
+      await settle();
+    },
+  };
+}
+
+test("a failed fetch leaves a hole that nearest() covers, and is retried after a backoff while still wanted", async () => {
+  const network: string[] = [];
+  let failNext = true;
+  const io: FrameIO = {
+    fetchBlob: async (url) => {
+      network.push(url);
+      if (url.includes("f_0001") && failNext) {
+        failNext = false;
+        throw new Error("403");
+      }
+      return fakeBlob(url);
+    },
+    decode: async () => fakeBitmap(),
+  };
+  const fc = fakeClock();
+  const budget = new FrameBudget(19 * FRAME, io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  // The visitor parks near frame 0; frame 0 stays wanted the whole time.
+  for (const center of [0, 1, 2, 3, 0, 1]) {
+    budget.want({ active: { cache: a, center, direction: 1 } });
+    await settle();
+  }
+  assert.ok(!a.has(0), "the hole is there before the backoff runs out");
+  assert.ok(a.nearest(0), "nearest covers the hole with a neighbour");
+  assert.equal(network.filter((u) => u.includes("f_0001")).length, 1, "no retry before the backoff");
+  // No further scroll: the retry fires on its own once due.
+  await fc.advance(400);
+  assert.equal(network.filter((u) => u.includes("f_0001")).length, 2);
+  assert.ok(a.has(0), "the parked visitor gets the exact frame back");
+  assert.equal(budget.stats.refetches, 0, "a retry of a failed fetch is not a refetch");
+});
+
+test("after a network blip, every frame still wanted loads once the network is back", async () => {
+  let offline = true;
+  const network: string[] = [];
+  const io: FrameIO = {
+    fetchBlob: async (url) => {
+      network.push(url);
+      await tick();
+      if (offline) throw new Error("offline");
+      return fakeBlob(url);
+    },
+    decode: async () => {
+      await tick();
+      return fakeBitmap();
+    },
+  };
+  const fc = fakeClock();
+  const budget = new FrameBudget(19 * FRAME, io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  budget.want({ active: { cache: a, center: 50, direction: 1 } });
+  await settle();
+  const wantedAt50 = budget.wanted().map((w) => w.index);
+  assert.equal(network.length, wantedAt50.length, "every wanted frame failed once");
+  assert.ok(wantedAt50.every((i) => !a.has(i)));
+  offline = false;
+  // The visitor creeps forward; 50..60 stay inside the window at center 53.
+  for (let c = 51; c <= 53; c++) {
+    budget.want({ active: { cache: a, center: c, direction: 1 } });
+    await settle();
+  }
+  await fc.advance(4000);
+  for (const w of budget.wanted()) assert.ok(a.has(w.index), `frame ${w.index} loaded after the blip`);
+  for (let i = 50; i <= 60; i++) assert.ok(a.has(i), `frame ${i} loaded after the blip`);
+});
+
+test("a frame that keeps failing is retried with a growing backoff, not hammered", async () => {
   const network: string[] = [];
   const io: FrameIO = {
     fetchBlob: async (url) => {
@@ -393,17 +487,21 @@ test("a failed fetch leaves a hole and is not retried while it stays wanted", as
     },
     decode: async () => fakeBitmap(),
   };
-  const budget = new FrameBudget(19 * FRAME, io);
+  const fc = fakeClock();
+  const budget = new FrameBudget(19 * FRAME, io, fc.clock);
   const a = new FrameCache(variant("a"), budget);
   budget.want({ active: { cache: a, center: 4, direction: 1 } });
   await settle();
-  budget.want({ active: { cache: a, center: 5, direction: 1 } });
-  await settle();
-  assert.equal(network.filter((u) => u.includes("f_0006")).length, 1);
-  assert.ok(!a.has(5));
+  // 10 s parked on the failing frame's window, with scroll decisions too.
+  for (let i = 0; i < 20; i++) {
+    budget.want({ active: { cache: a, center: 5, direction: 1 } });
+    await fc.advance(500);
+  }
+  const tries = network.filter((u) => u.includes("f_0006")).length;
+  // 0, 0.4, 1.2, 2.8, 6.0 (cap 4 s) → 5 attempts in 10 s; never once per decision.
+  assert.ok(tries >= 3 && tries <= 6, `tries ${tries}`);
   assert.ok(a.has(6));
-  // nearest covers the hole with a neighbour.
-  assert.ok(a.nearest(5));
+  assert.equal(budget.stats.fetchInFlight, 0);
 });
 
 test("reserve and release accounting returns to zero after dispose()", async () => {

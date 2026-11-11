@@ -15,7 +15,7 @@ Live at `/` (append `?hud=1` for the frame counter).
 components/film/
   types.ts            FilmManifest / FilmVariant / SegmentRegistration
   scrub.ts            pure math: pickActive, frameAt, quantise, coverRect, breathAt
-  frame-cache.ts      ImageBitmap LRU (160 frames), directional prefetch, nearest()
+  frame-cache.ts      FrameBudget (one wanted set, byte budget, load limits) + FrameCache, nearest()
   reel-context.tsx    ReelContext + orientation media query
   use-scrub-loop.ts   the ONE rAF loop: rects → active segment → frame → canvas
   FilmBackdrop.tsx    fixed <canvas>, registers segments, owns caches
@@ -76,6 +76,10 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     per page and re-decoded from those bytes when the visitor scrolls back
     (or a cache is re-created by a remount). Only requests still QUEUED are
     dropped when they leave the wanted set.
+  - A fetch or decode that fails (rate limiter 403/429, 5xx, dropped
+    connection) leaves a hole `nearest()` covers, and is retried while the
+    frame stays wanted after a backoff of 400 ms, doubling to at most 4 s, so
+    a parked visitor recovers once the network does.
   - Eviction removes only frames OUTSIDE the wanted set: other films' frames
     first, then the active film's, farthest from the playhead first. A new
     far frame can no longer push out a near one (the oldest-first LRU did,
@@ -178,8 +182,8 @@ NEXT_PUBLIC_FILM_BASE=https://<cdn>/films
 ```
 
 Budget: ~1360 frames × 2 variants × ~45 KB ≈ 120 MB total on CDN; a visitor
-scrubbing the whole page pulls ~30–60 MB of the variant they're on. Prefetch is
-directional (24 ahead / 10 behind) so first paint needs only the poster.
+scrubbing the whole page pulls ~30–60 MB of the variant they're on, each frame
+once (see the wanted set under Runtime). First paint needs only the poster.
 
 ## Production status
 
