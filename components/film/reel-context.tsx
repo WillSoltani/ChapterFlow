@@ -11,6 +11,7 @@
  */
 
 import { createContext, useContext } from "react";
+import type { FilmStats } from "./frame-cache";
 import type { FilmManifest, Orientation, SegmentRegistration } from "./types";
 
 export type ReelApi = {
@@ -22,6 +23,8 @@ export type ReelApi = {
   /** Index of the segment currently drawn, -1 before first paint. */
   drawnSegment: () => number;
   drawnFrame: () => number;
+  /** Live load + draw counters (also window.__filmStats). */
+  stats: FilmStats;
 };
 
 export const ReelContext = createContext<ReelApi | null>(null);

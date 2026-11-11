@@ -3926,7 +3926,13 @@ html[data-reel-chrome="body"] .rl-nav-scrim {
   color: var(--cf-recall-accent);
   background: color-mix(in srgb, var(--cf-recall-bg) 70%, transparent);
   border: 1px solid color-mix(in srgb, var(--cf-recall-accent) 30%, transparent);
-  border-radius: 999px;
+  border-radius: 0.9rem;
   padding: 0.4rem 0.7rem;
   pointer-events: none;
+}
+.film-hud-stats {
+  display: block;
+  margin-top: 0.15rem;
+  letter-spacing: 0.04em;
+  opacity: 0.8;
 }
