@@ -364,6 +364,13 @@ export class FrameBudget {
       const key = variantKey(variant);
       if (added === null) {
         for (const url of [...this.failed.keys()]) if (url.startsWith(`${variant.base}/`)) this.failed.delete(url);
+        // The order and the mode follow the variant's new path at once.
+        const plan = this.plan;
+        if (plan && !plan.active.cache.disposed) {
+          this.order = this.buildOrder(plan);
+          this.indexWanted();
+          this.stats.mode = this.packMode(plan.active.cache) ? "pack" : "frames";
+        }
         this.pump();
         return;
       }

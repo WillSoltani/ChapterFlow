@@ -2,15 +2,18 @@ import { test, expect, type Page } from "@playwright/test";
 import { promises as fs } from "node:fs";
 
 /**
- * Film-reel LOADING quality (components/film/frame-cache.ts): a steady,
- * time-based scroll over the first two films must fetch every frame at most
- * once and never run more than 4 frame fetches at once.
+ * Film-reel LOADING quality (components/film/frame-cache.ts, the film worker):
+ * a steady, time-based scroll over the first two films in pack mode makes no
+ * per-frame request, stays under the request bound and reads no pack byte
+ * twice; with ?pack=0 (the per-frame path) it fetches every frame at most
+ * once and never runs more than 4 frame fetches at once. Before the first
+ * scroll only the first film's pack is requested, and only its opening.
  *
  * Phone viewport stability (components/film/use-scrub-loop.ts): on 390 × 844
  * the canvas backing store is allocated once, the loop does (almost) no work
  * at rest, stops once the reel is over, and a jump back into the reel draws
  * the frame the scroll position demands at once, and every frame and poster
- * it requests is the phone band tier (<film>-b900).
+ * it requests is the phone band tier (<film>-b900): packs and posters only.
  *
  * The other film specs read the requested frame from the HUD, so they pass
  * even with a dead loader; this one reads the network and window.__filmStats.
@@ -20,8 +23,16 @@ import { promises as fs } from "node:fs";
  */
 
 const FRAME_RE = /\/films\/[^/?#]+\/f_\d+\.\w+/;
+const PACK_RE = /\/films\/[^/?#]+\/pack\.bin/;
+const POSTER_RE = /\/films\/[^/?#]+\/poster\.\w+/;
+/** Film requests (packs, frames, posters) allowed for a pass: the scrub-quality gate's bound. */
+const FILM_REQUESTS_MAX = 30;
 
 type Stats = {
+  mode: "pack" | "frames";
+  packRequests: number;
+  packBytes: number;
+  packBytesRepeated: number;
   refetches: number;
   maxFetchInFlight: number;
   fetches: number;
@@ -75,14 +86,42 @@ test.describe("film quality", () => {
     test.skip(r.status() !== 200, "no film frames encoded (run scripts/film/placeholder.mjs)");
   });
 
-  test("a steady pass over the first two films fetches each frame once", async ({ page }) => {
+  test("a steady pass over the first two films in pack mode: no per-frame request, few requests, no byte twice", async ({ page }) => {
+    test.setTimeout(120_000);
+    const film: string[] = [];
+    page.on("request", (req) => {
+      if (/\/films\//.test(req.url())) film.push(req.url());
+    });
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/?hud=1");
+    await page.waitForFunction(() => !!(window as unknown as { __filmStats?: Stats }).__filmStats);
+    await page.waitForTimeout(1500);
+    await steadyScroll(page, 1, 900);
+    await page.waitForTimeout(1500);
+
+    const stats = await readStats(page);
+    const frames = film.filter((u) => FRAME_RE.test(u));
+    const packs = film.filter((u) => PACK_RE.test(u));
+    console.log(
+      `quality (pack): ${film.length} film requests (${packs.length} pack, ${frames.length} frame, ${film.filter((u) => POSTER_RE.test(u)).length} poster), ` +
+        `packRequests ${stats.packRequests}, packBytes ${stats.packBytes}, repeated ${stats.packBytesRepeated}, exact ${stats.exactDraws}/${stats.exactDraws + stats.fallbackDraws}`,
+    );
+    expect(stats.mode).toBe("pack");
+    expect(packs.length, "packs were read").toBeGreaterThan(0);
+    expect(frames, "no per-frame request in pack mode").toEqual([]);
+    expect(film.length, "film requests for the pass").toBeLessThanOrEqual(FILM_REQUESTS_MAX);
+    expect(stats.packBytesRepeated, "no pack byte read twice").toBe(0);
+    expect(stats.refetches).toBe(0);
+  });
+
+  test("a steady pass over the first two films with ?pack=0 fetches each frame once", async ({ page }) => {
     test.setTimeout(120_000);
     const frames: string[] = [];
     page.on("request", (req) => {
       if (FRAME_RE.test(req.url())) frames.push(req.url());
     });
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/?hud=1");
+    await page.goto("/?hud=1&pack=0");
     await page.waitForFunction(() => !!(window as unknown as { __filmStats?: Stats }).__filmStats);
     await page.waitForTimeout(1500);
 
@@ -104,12 +143,13 @@ test.describe("film quality", () => {
 
   test("phone viewport: canvas sized once, idle at rest, stopped after the reel, a jump lands", async ({ page }) => {
     test.setTimeout(120_000);
-    // Every frame and poster a phone asks for is the 900 band tier: a
-    // 390 px wide window (backing width ≤ 900 px) never touches landscape,
-    // the legacy -p frames or the 1080 tier, not even before the first paint.
+    // Every pack and poster a phone asks for is the 900 band tier: a 390 px
+    // wide window (backing width ≤ 900 px) never touches landscape, the
+    // legacy -p frames or the 1080 tier, not even before the first paint;
+    // and in pack mode it makes no per-frame request at all.
     const filmRequests: string[] = [];
     page.on("request", (req) => {
-      if (/\/films\/[^/?#]+\/(f_\d+|poster)\.\w+/.test(req.url())) filmRequests.push(req.url());
+      if (/\/films\//.test(req.url())) filmRequests.push(req.url());
     });
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/?hud=1");
@@ -202,9 +242,46 @@ test.describe("film quality", () => {
     expect(Math.abs(box.cw / box.ch - box.bw / box.bh), "first frame after a resize paints into the new box").toBeLessThan(0.01);
     expect((await readStats(page)).canvasResizes, "one reallocation for the one box change").toBe(2);
 
-    const otherTier = filmRequests.filter((u) => !/\/films\/palace-\d\d-b900\/(f_\d+|poster)\.webp(\?|$)/.test(u));
-    console.log(`phone tier: ${filmRequests.length} frame + poster requests, ${otherTier.length} outside palace-*-b900`);
-    expect(filmRequests.length, "the phone loaded frames").toBeGreaterThan(0);
-    expect(otherTier, "every frame and poster request is for the b900 tier").toEqual([]);
+    const otherTier = filmRequests.filter((u) => !/\/films\/palace-\d\d-b900\/(pack\.bin|poster\.webp)(\?|$)/.test(u));
+    console.log(`phone tier: ${filmRequests.length} pack + poster requests, ${otherTier.length} other`);
+    expect(filmRequests.filter((u) => PACK_RE.test(u)).length, "the phone read packs").toBeGreaterThan(0);
+    expect(otherTier, "every film request is a palace-*-b900 pack or poster").toEqual([]);
+  });
+
+  test("before the first scroll: one pack request, the first film's skeleton and opening only", async ({ page }) => {
+    test.setTimeout(60_000);
+    const film: Array<{ url: string; bytes: Promise<number> }> = [];
+    page.on("request", (req) => {
+      if (!/\/films\//.test(req.url())) return;
+      film.push({
+        url: req.url(),
+        // Posters: their whole body. Packs are counted by the worker (bytes it received).
+        bytes: POSTER_RE.test(req.url()) ? req.response().then(async (r) => (r ? (await r.body()).length : 0)).catch(() => 0) : Promise.resolve(0),
+      });
+    });
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/?hud=1");
+    await page.waitForFunction(() => !!(window as unknown as { __filmStats?: Stats }).__filmStats);
+    await page.waitForTimeout(3000);
+    expect(await page.evaluate(() => window.scrollY), "nothing scrolled").toBe(0);
+
+    const stats = await readStats(page);
+    const tl = JSON.parse(await fs.readFile("components/film/book.timeline.json", "utf8")).films as Record<string, { pack?: { openingEnd?: number; skeletonEnd: number } }>;
+    const opening = tl["palace-00"]?.pack?.openingEnd ?? 0;
+    const packs = film.filter((r) => PACK_RE.test(r.url));
+    const posters = film.filter((r) => POSTER_RE.test(r.url));
+    const posterBytes = (await Promise.all(posters.map((r) => r.bytes))).reduce((a, b) => a + b, 0);
+    const received = stats.packBytes + posterBytes;
+    const bound = opening + posterBytes + 300 * 1024;
+    console.log(
+      `pre-scroll: ${packs.length} pack request(s) ${packs.map((r) => r.url.replace(/^.*\/films\//, "")).join(", ")}, packBytes ${stats.packBytes} ` +
+        `(skeleton + 48 opening frames = ${opening}), ${posters.length} posters ${posterBytes} B, received ${received} ≤ ${bound}`,
+    );
+    expect(opening, "the timeline records the opening window").toBeGreaterThan(0);
+    expect(packs.length, "exactly one pack request").toBe(1);
+    expect(packs[0]?.url).toMatch(/\/films\/palace-00\/pack\.bin/);
+    expect(stats.packRequests).toBe(1);
+    expect(film.filter((r) => FRAME_RE.test(r.url)), "no per-frame request").toEqual([]);
+    expect(received, "film bytes received before the first scroll").toBeLessThanOrEqual(bound);
   });
 });

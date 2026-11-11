@@ -802,7 +802,7 @@ test("pack fallback: decoded frames stay, the rest load per frame, pending decod
   for (const d of packs.decodes.slice(1)) d.reject(new Error("pack: decode missing"));
   await settle();
   assert.ok(a.has(100), "a decoded frame stays");
-  assert.equal(budget.stats.mode, "pack", "mode is updated on the next decision");
+  assert.equal(budget.stats.mode, "frames", "the mode follows at once");
   budget.want({ active: { cache: a, center: 100, direction: 1 } });
   await settle();
   assert.equal(budget.stats.mode, "frames");
