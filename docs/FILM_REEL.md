@@ -490,10 +490,22 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   `PORTRAIT_QUERY` in CSS): the `<picture>` is the virtual 1080×1920 frame,
   `max(100cqw, 100cqh × 1080/1920)` wide, centred, and the band tier's image
   fills only the band rectangle (y 474, height 972; CSS variables written
-  from the manifest); the rest is `--cf-recall-bg`.
+  from the manifest); the rest is `--cf-recall-bg`. The portrait rules are
+  scoped to `[data-film-band]`, set only when the first film has band
+  tiers: a first film without tiers is cover-fitted on every view, as the
+  canvas draws its landscape variant there too.
 - **Takeover.** The scrub loop hides the poster layer (`display: none`) in
   the animation frame the canvas first draws a picture (poster or frame),
-  so it is not composited after that. The breath is held at rest until that
+  so it is not composited after that. That first paint is the exact frame
+  or the film's own poster (frame 0), never a decoded frame further from
+  the wanted one than the poster is; while the poster is still loading such
+  a frame is not drawn and the HTML poster stays (`FrameCache.nearest` with
+  `handover`), so the takeover never jumps a few frames ahead and back.
+  Over a later chapter (a reload restored further down, a link to `#quiz`)
+  the HTML poster is the wrong picture: the loop hides it at its first tick
+  there (`htmlPosterStands`) and the page colour shows until that chapter's
+  own poster or frame lands. Before hydration it cannot know the scroll
+  position, so the hero poster shows there until the scripts run. The breath is held at rest until that
   paint and starts from rest (`breathRestOffset`: the bottom of the sine,
   zero speed), so the canvas lands on the poster's pixels. Measured by
   `film-first-paint.spec.ts` (@prod, hydration held back 2 s): band mean
@@ -505,22 +517,39 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   `[data-film-reel]` has no `data-film-armed`; FilmBackdrop sets that marker
   in its mount effect, after every pin has written its own state (child
   effects run first). So the hero shows only its opening copy, never the
-  pile of later lines. **Failsafe:** the hidden state comes only from a CSS
-  animation's fill (`film-prearm`, `visibility` hidden for 8 s, then
-  visible), so with scripts blocked, failed or broken everything becomes
-  visible by itself after 8 s, with no JavaScript, and a browser that drops
-  the animation shows it all at once. Why 8 s: the reel arms at about 1.3 s
-  on the phone lab profile (Fast 4G, 4× CPU, local production build, 5 runs
-  1.24–1.36 s; 6× CPU 1.32–1.36 s); 8 s leaves a slow real phone about 6×
-  that before the pile could flash, and the lines it holds back are not the
-  first screen's opening copy, so a failed page loses little by waiting.
-- **Scripting off.** A `<noscript><style>` (no nonce needed: `style-src`
-  allows inline styles, `lib/csp.ts`) lays the chapters out as a plain page:
-  every pin visible at once in reading order, each chapter as tall as its
-  copy (no multi-screen empty stages), the hero one screen with its poster
-  (the poster layer scrolls away with the hero instead of staying fixed),
-  the decorative Hall wall prose left out. All copy stays in the HTML for
+  pile of later lines.
+- **The readable page** (`readable-layout.ts`, one rule set used twice,
+  unit-tested against the landing's real server HTML in
+  `readable-layout.test.tsx`): every later pin visible, each chapter as tall
+  as its copy (no multi-screen empty stages), every stage grid but the
+  hero's a flex column (a stage grid puts all its children in ONE cell, so
+  the Day labels, the hero's caption and "Locked." / "One book. Kept." would
+  pile up), the hero one screen with its poster (the canvas layer scrolls
+  away with the hero instead of staying fixed over the page), the
+  decorative Hall wall prose left out. All copy stays in the HTML for
   crawlers.
+  - **Scripting off:** a `<noscript><style>` applies it at once (`!important`
+    rules; no nonce needed: `style-src` allows inline styles, `lib/csp.ts`).
+  - **Failsafe** (scripting on, the reel never arms: chunks blocked, failed
+    or broken): an inline `<style>` rendered before the reel applies the
+    same rules after 8 s through zero-length CSS animations with fill
+    `both`, with no JavaScript; the later pins' backwards fill is what
+    keeps them hidden before that (so a browser that drops animations shows
+    them at once). One animation per element (`animation` is one property):
+    the rule selectors are disjoint, which the unit test checks element by
+    element. Layout properties (`position`, `display`, `height`) animate
+    discretely in current Chromium and WebKit (checked); an older browser
+    that does not would show the copy on the film layout. Once the reel
+    arms the selectors stop matching and the film layout is back. Why 8 s:
+    the reel arms at about 1.3 s on the phone lab profile (Fast 4G, 4× CPU,
+    local production build, 5 runs 1.24–1.36 s; 6× CPU 1.32–1.36 s); 8 s
+    leaves a slow real phone about 6× that before the switch could show,
+    and the lines it holds back are not the first screen's opening copy, so
+    a failed page loses little by waiting.
+  - **The footer** is lifted above the reel's stacking context from the
+    server HTML on (`body:has([data-film-reel]) .rl-public-footer`), so the
+    fixed, opaque poster layer never covers it before the scripts run or if
+    they never do.
 - **Static mode** (`data-film-static` on `[data-film-reel]`): the page stays
   fully usable without the film. Exact condition: the canvas has no 2D
   context (`getContext("2d")` returns null or throws), OR the film is
@@ -533,7 +562,10 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   nav all follow the scroll exactly as with the film, nothing stays hidden.
   The HTML poster stays if it loaded, otherwise the page colour shows. With
   every film request aborted: 96 film requests in 20 s on a desktop, none
-  after 12 s; with no 2D context: one (the HTML poster).
+  after 12 s; with no 2D context: one (the HTML poster). The halt is for
+  the page view: a connection that drops for a couple of seconds right at
+  load can trigger it, and nothing un-halts it when the network returns
+  (open item; the per-frame "failed for good" rule is the brief's).
 - **Fonts.** The landing preloads exactly the font files its first screen
   uses (Satoshi 700, Plus Jakarta Sans, JetBrains Mono, Newsreader normal;
   latin files) and nothing else. Satoshi is one family from two `localFont`
@@ -556,8 +588,14 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   on the first screens animates with it. It loads when a section marked
   `data-motion-approach` (Pricing's billing toggle) comes within 1.5
   viewports of the screen, when an overlay (nav menu, book request dialog)
-  opens, or when the menu button is hovered, focused or touched. Every other
-  route has no gate and loads the features at mount, as before.
+  opens, or when the menu button is hovered, focused or touched. "Within
+  1.5 viewports" counts both ways (`MOTION_APPROACH_MARGIN`): a page
+  restored below Pricing loads them before Pricing enters from the top. The
+  gated import runs late in the visit, when a phone may be offline, and
+  LazyMotion calls its loader once, so it is retried (0.5 s, 1.5 s, 4 s,
+  then whenever the browser reports `online`) and never rejects
+  (`motion-feature-load.ts`). Every other route has no gate and loads the
+  features at mount, as before.
 
 ## Render spec
 

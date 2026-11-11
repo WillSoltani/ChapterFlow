@@ -1,7 +1,8 @@
-import { test, expect, type Browser, type BrowserContext, type BrowserContextOptions, type Page } from "@playwright/test";
+import { test, expect, type APIRequestContext, type Browser, type BrowserContext, type BrowserContextOptions, type Page } from "@playwright/test";
 import sharp from "sharp";
 import { BOOK_REEL } from "../components/film/book-reel";
 import { heroPoster } from "../components/film/first-paint";
+import { FAILSAFE_MS } from "../components/film/readable-layout";
 import { PORTRAIT_QUERY, pickVariant, viewBackingWidth } from "../components/film/view";
 import { PROD_E2E_HEADERS } from "../playwright.config";
 
@@ -12,16 +13,22 @@ import { PROD_E2E_HEADERS } from "../playwright.config";
  * server response, production chunks and hydration timing):
  *   1. The response holds the hero <picture> (fetchpriority high) and one
  *      image preload per poster with the generated media (first-paint.ts).
- *   2. JavaScript disabled: the poster shows, the hero copy does not overlap,
+ *   2. JavaScript disabled: the poster shows, no two lines of copy overlap,
  *      every chapter's copy reads in document order with no multi-screen gap.
  *   3. Hydration held back 2 s: before it, the poster and only the hero's
  *      first-frame pins show; after the canvas takes over, its picture
  *      matches the poster (band region mean abs difference ≤ 3, edges ±1 px)
  *      on a phone, a tablet and a desktop.
- *   4. Scripts blocked: after the 8 s failsafe every pin is visible.
+ *   4. Scripts blocked: after the 8 s failsafe (readable-layout.ts) every pin
+ *      is visible, no two overlap, no chapter keeps an empty multi-screen
+ *      stage, and the footer is on top and clickable.
  *   5. Fonts: the landing preloads exactly the font files its first screen
  *      uses.
- *   6. The motion feature chunk loads when Pricing approaches, not at mount.
+ *   6. The motion feature chunk loads when Pricing approaches, not at mount;
+ *      a feature chunk that fails twice when the menu opens is retried and
+ *      the menu still shows.
+ *   Tests that need the poster to load skip without local film files (the CI
+ *   prod job has none: public/films is gitignored).
  * RUN_AUDIT=1 (dev server, part of `npm run test:film`):
  *   7. One poster only, the film code's own variant, on five viewports.
  *   8. Every film request aborted: static mode (copy follows scroll, nothing
@@ -37,9 +44,6 @@ const PHONE: BrowserContextOptions = { viewport: { width: 390, height: 844 }, de
 const TABLET: BrowserContextOptions = { viewport: { width: 820, height: 1180 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true };
 const DESKTOP: BrowserContextOptions = { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 };
 
-/** The scripts-blocked failsafe in globals.css ("film-prearm ... 8s"). */
-const FAILSAFE_MS = 8000;
-
 const HERO_FILM = BOOK_REEL[0]!;
 const POSTER = heroPoster(HERO_FILM);
 
@@ -51,6 +55,72 @@ async function newContext(browser: Browser, opts: BrowserContextOptions): Promis
 }
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Tests that need the poster to load skip when there are no film files on
+ * this server (public/films is gitignored: the CI prod job has none) or the
+ * film base is not local (newContext blocks every other host).
+ */
+async function requirePosters(request: APIRequestContext) {
+  const url = POSTER.img.poster;
+  if (!url.startsWith("/")) {
+    test.skip(true, `film base is not local (${url}); run with frames in public/films`);
+    return;
+  }
+  const r = await request.get(url, HEADERS ? { headers: HEADERS } : {});
+  test.skip(r.status() !== 200, "no film frames encoded (run scripts/film/placeholder.mjs)");
+}
+
+/**
+ * Pairs of visible lines of copy (visibility visible, opacity ≥ 0.6, not one
+ * inside the other) whose boxes overlap by more than 1 px, within `segs`.
+ */
+const overlappingPins = (page: Page, segs: string[] | null) =>
+  page.evaluate((segs) => {
+    const pins = [...document.querySelectorAll<HTMLElement>("[data-film-reel] [data-frame-pin]")].filter((el) => {
+      if (segs && !segs.includes(el.closest("[data-film-segment]")?.id ?? "")) return false;
+      let o = 1;
+      for (let e: HTMLElement | null = el; e; e = e.parentElement) o *= Number(getComputedStyle(e).opacity);
+      const r = el.getBoundingClientRect();
+      return getComputedStyle(el).visibility === "visible" && o >= 0.6 && r.width > 0 && r.height > 0;
+    });
+    const out: string[] = [];
+    for (let i = 0; i < pins.length; i++)
+      for (let j = i + 1; j < pins.length; j++) {
+        const [a, b] = [pins[i]!, pins[j]!];
+        if (a.contains(b) || b.contains(a)) continue;
+        const [ra, rb] = [a.getBoundingClientRect(), b.getBoundingClientRect()];
+        if (ra.left < rb.right - 1 && rb.left < ra.right - 1 && ra.top < rb.bottom - 1 && rb.top < ra.bottom - 1)
+          out.push(`"${(a.textContent ?? "").trim().slice(0, 30)}" / "${(b.textContent ?? "").trim().slice(0, 30)}"`);
+      }
+    return out;
+  }, segs);
+
+/** Scroll the footer's first link to mid-screen; "ok" when it is the topmost element there. */
+async function footerHit(page: Page): Promise<string> {
+  await page.evaluate(() =>
+    document.querySelector(".rl-public-footer a[href]")?.scrollIntoView({ block: "center", behavior: "instant" as ScrollBehavior }),
+  );
+  await page.waitForTimeout(200);
+  return page.evaluate(() => {
+    const link = document.querySelector<HTMLAnchorElement>(".rl-public-footer a[href]");
+    if (!link) return "no footer link";
+    const r = link.getBoundingClientRect();
+    const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+    return top && link.contains(top) ? "ok" : `covered by ${top?.tagName}.${String(top?.className)}`;
+  });
+}
+
+/** No chapter is taller than a screen and a half plus its copy (no empty multi-screen stage). */
+async function expectNoEmptyStages(page: Page, vh: number) {
+  const pins = await reelPins(page);
+  const segs = await page.evaluate(() => [...document.querySelectorAll("[data-film-segment]")].map((s) => ({ id: s.id, h: s.getBoundingClientRect().height })));
+  for (const s of segs) {
+    const copy = pins.filter((p) => p.seg === s.id);
+    const span = copy.length ? Math.max(...copy.map((p) => p.bottom)) - Math.min(...copy.map((p) => p.top)) : 0;
+    expect(s.h, `${s.id} height`).toBeLessThan(span + 1.5 * vh);
+  }
+}
 const CHUNK_JS = /\/_next\/static\/chunks\/[^?#]*\.js(\?|#|$)/;
 
 /** Copy of every chapter, in document order: text, box, visibility, opacity. */
@@ -208,7 +278,8 @@ test.describe("film first paint (@prod)", () => {
     ["phone", PHONE],
     ["desktop", DESKTOP],
   ] as const) {
-    test(`JavaScript disabled (${name}): poster visible, hero copy apart, every chapter readable in order @prod`, async ({ browser }) => {
+    test(`JavaScript disabled (${name}): poster visible, hero copy apart, every chapter readable in order @prod`, async ({ browser, request }) => {
+      await requirePosters(request);
       const ctx = await newContext(browser, { ...vp, javaScriptEnabled: false });
       const page = await ctx.newPage();
       await page.goto("/");
@@ -230,15 +301,11 @@ test.describe("film first paint (@prod)", () => {
       // Opacity ≥ 0.6: the design's own label (0.72) and lede (0.88) opacities pass.
       const hidden = pins.filter((p) => p.visibility !== "visible" || p.opacity < 0.6 || p.w === 0 || p.h === 0);
       expect(hidden.map((p) => p.text), "every pin readable").toEqual([]);
-      // Hero: no two visible text blocks overlap.
-      const hero = pins.filter((p) => p.seg === "hero");
-      for (let i = 0; i < hero.length; i++)
-        for (let j = i + 1; j < hero.length; j++) {
-          const a = hero[i]!;
-          const b = hero[j]!;
-          const over = a.x < b.x + b.w - 1 && b.x < a.x + a.w - 1 && a.top < b.bottom - 1 && b.top < a.bottom - 1;
-          expect(over, `hero overlap: "${a.text}" / "${b.text}"`).toBe(false);
-        }
+      // No two visible text blocks overlap: the hero's, nor any chapter's
+      // (a stage grid puts all its children in one cell unless the readable
+      // layout turns it into a column).
+      expect(await overlappingPins(page, ["hero"]), "hero overlap").toEqual([]);
+      expect(await overlappingPins(page, null), "overlap anywhere in the reel").toEqual([]);
       // Reading order, and no empty multi-screen stretch between lines.
       for (let i = 1; i < pins.length; i++) {
         const a = pins[i - 1]!;
@@ -247,12 +314,7 @@ test.describe("film first paint (@prod)", () => {
         expect(b.top - a.bottom, `gap before "${b.text}"`).toBeLessThan(vh);
       }
       // No chapter is taller than a screen and its copy.
-      const segs = await page.evaluate(() => [...document.querySelectorAll("[data-film-segment]")].map((s) => ({ id: s.id, h: s.getBoundingClientRect().height })));
-      for (const s of segs) {
-        const copy = pins.filter((p) => p.seg === s.id);
-        const span = copy.length ? Math.max(...copy.map((p) => p.bottom)) - Math.min(...copy.map((p) => p.top)) : 0;
-        expect(s.h, `${s.id} height`).toBeLessThan(span + 1.5 * vh);
-      }
+      await expectNoEmptyStages(page, vh);
       await ctx.close();
     });
   }
@@ -262,8 +324,9 @@ test.describe("film first paint (@prod)", () => {
     ["820x1180 DPR 2", TABLET],
     ["1440x900 DPR 1", DESKTOP],
   ] as const) {
-    test(`hydration held back 2 s (${name}): poster and opening copy first, then the canvas takes over in place @prod`, async ({ browser }) => {
+    test(`hydration held back 2 s (${name}): poster and opening copy first, then the canvas takes over in place @prod`, async ({ browser, request }) => {
       test.setTimeout(120_000);
+      await requirePosters(request);
       const ctx = await newContext(browser, vp);
       await ctx.route(CHUNK_JS, async (route) => {
         await sleep(2000);
@@ -273,10 +336,14 @@ test.describe("film first paint (@prod)", () => {
       const errors: string[] = [];
       page.on("pageerror", (e) => errors.push(e.message));
       await page.goto("/", { waitUntil: "domcontentloaded" });
-      await page.waitForFunction(() => {
-        const img = document.querySelector<HTMLImageElement>("[data-film-poster] img");
-        return !!img && img.complete && img.naturalWidth > 0;
-      });
+      await page.waitForFunction(
+        () => {
+          const img = document.querySelector<HTMLImageElement>("[data-film-poster] img");
+          return !!img && img.complete && img.naturalWidth > 0;
+        },
+        null,
+        { timeout: 30_000 },
+      );
       await page.waitForTimeout(150);
       // Still before hydration: nothing has armed the reel.
       expect(await page.locator("[data-film-reel]").getAttribute("data-film-armed")).toBeNull();
@@ -318,8 +385,8 @@ test.describe("film first paint (@prod)", () => {
     });
   }
 
-  test("scripts blocked entirely: after the failsafe every line of copy is visible @prod", async ({ browser }) => {
-    test.setTimeout(60_000);
+  test("scripts blocked entirely: after the failsafe the page is readable, with its footer on top @prod", async ({ browser }) => {
+    test.setTimeout(90_000);
     const ctx = await newContext(browser, PHONE);
     await ctx.route(CHUNK_JS, (route) => route.abort());
     const page = await ctx.newPage();
@@ -328,10 +395,24 @@ test.describe("film first paint (@prod)", () => {
     await page.waitForTimeout(500);
     const early = await reelPins(page);
     expect(early.filter((p) => p.later).every((p) => p.visibility === "hidden"), "later copy hidden before the failsafe").toBe(true);
+    // Before the failsafe too (a slow phone scrolled to the end): the fixed
+    // poster layer never covers the footer.
+    expect(await footerHit(page), "footer before the failsafe").toBe("ok");
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior }));
+    expect(Date.now() - t0, "still before the failsafe").toBeLessThan(FAILSAFE_MS - 1000);
     await page.waitForTimeout(Math.max(0, FAILSAFE_MS + 600 - (Date.now() - t0)));
     const pins = await reelPins(page);
     expect(pins.filter((p) => p.visibility !== "visible").map((p) => p.text)).toEqual([]);
-    expect(await page.locator(".hall-text").evaluate((el) => getComputedStyle(el).visibility)).toBe("visible");
+    // Readable, not the film's stacked stages with every line on at once:
+    // copy in reading order, no overlap, no empty multi-screen stage.
+    expect(await overlappingPins(page, null), "overlap after the failsafe").toEqual([]);
+    for (let i = 1; i < pins.length; i++) expect(pins[i]!.top, `"${pins[i]!.text}" after "${pins[i - 1]!.text}"`).toBeGreaterThanOrEqual(pins[i - 1]!.top - 1);
+    await expectNoEmptyStages(page, PHONE.viewport!.height);
+    // The Hall's wall prose is decoration laid over its stage (aria-hidden):
+    // it stays out of the readable page, as with no script.
+    expect(await page.locator(".hall-text").evaluate((el) => getComputedStyle(el).visibility)).toBe("hidden");
+    // The footer at the end is on top of the poster layer and clickable.
+    expect(await footerHit(page), "footer after the failsafe").toBe("ok");
     await ctx.close();
   });
 
@@ -420,6 +501,49 @@ test.describe("film first paint (@prod)", () => {
     await page.locator("#pricing").scrollIntoViewIfNeeded();
     const pill = page.locator('#pricing [role="radiogroup"] [aria-checked="true"] > div').first();
     await expect.poll(() => pill.evaluate((el) => Number(getComputedStyle(el).opacity)), { timeout: 5000 }).toBeGreaterThan(0.99);
+    await ctx.close();
+  });
+
+  test("a motion feature chunk that fails when the menu opens is retried: the menu still shows @prod", async ({ browser }) => {
+    test.setTimeout(90_000);
+    const ctx = await newContext(browser, PHONE);
+    // Every script chunk the page did not load at mount fails twice (the
+    // bundler's own retry included), as on a phone that lost its signal.
+    let armed = false;
+    const tries = new Map<string, number>();
+    await ctx.route(CHUNK_JS, async (route) => {
+      const url = route.request().url();
+      const n = (tries.get(url) ?? 0) + 1;
+      tries.set(url, n);
+      if (armed && n <= 2) return route.abort("internetdisconnected");
+      return route.continue();
+    });
+    const page = await ctx.newPage();
+    const problems: string[] = [];
+    page.on("pageerror", (e) => problems.push(e.message));
+    await page.goto("/");
+    await expect(page.locator("[data-film-reel]")).toHaveAttribute("data-film-armed", "");
+    await page.waitForTimeout(3000);
+    const atMount = new Set(tries.keys());
+    armed = true;
+    for (const u of atMount) tries.set(u, 3);
+    await page.getByRole("button", { name: "Open navigation menu" }).tap();
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toHaveCount(1);
+    await expect
+      .poll(
+        () =>
+          dialog.evaluate((el) => {
+            let o = 1;
+            for (let e: Element | null = el; e; e = e.parentElement) o *= Number(getComputedStyle(e).opacity);
+            return o;
+          }),
+        { timeout: 20_000 },
+      )
+      .toBeGreaterThan(0.99);
+    const failedTwice = [...tries].filter(([u, n]) => !atMount.has(u) && n >= 3).map(([u]) => u);
+    expect(failedTwice.length, "a new chunk failed twice and then loaded").toBeGreaterThan(0);
+    expect(problems).toEqual([]);
     await ctx.close();
   });
 });
