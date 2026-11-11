@@ -3923,6 +3923,17 @@ html[data-motion="reduced"] .rl-faq-chevron {
   .hall-wall-right { transform: rotateY(-32deg); }
   .hall-line { font-size: 0.85rem; }
 }
+/* Short portrait phones (360 x 740, 320 x 568): the wall prose is wider and
+   smaller so it ends higher, and the copy block sits lower, so the two never
+   meet (film-audit's WALL OVERLAP check). */
+@media (max-width: 63.99rem) and (orientation: portrait) and (max-height: 760px) {
+  .hall-wall { width: 52%; gap: 0.4rem; }
+  .hall-line { font-size: 0.75rem; line-height: 1.25; }
+  .film-stage-grid[data-hall] { grid-template-rows: 1fr auto 0.1fr; }
+}
+@media (max-width: 63.99rem) and (orientation: portrait) and (max-height: 600px) {
+  .film-stage-grid[data-hall] { grid-template-rows: 1fr auto 0fr; }
+}
 
 /* Editorial mono rail label: "01 · SUMMARY" */
 .film-label {
@@ -3994,9 +4005,10 @@ html[data-motion="reduced"] .rl-faq-chevron {
   .film-stage-grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: 1fr auto 1fr;
+    /* row-gap, not the gap shorthand: that would reset the column gap. */
+    row-gap: 0.5rem;
     column-gap: clamp(1.25rem, 4vw, 3rem);
     align-items: center;
-    gap: 0.5rem;
     /* Top: the nav's bottom (its top + about 3.6rem) plus 0.6rem. */
     padding-top: calc(max(0.75rem, env(safe-area-inset-top, 0px)) + 4.25rem);
     padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
@@ -4028,9 +4040,8 @@ html[data-motion="reduced"] .rl-faq-chevron {
     line-height: 1.4;
     max-width: 30rem;
   }
-  .film-btn {
-    padding: 0.6rem 1.5rem;
-  }
+  /* Buttons: the slimmer compact padding is set after the base .film-btn
+     rule further down (same specificity, so it must come later). */
   /* Halos and boxes reach less far above and below the copy. */
   .film-halo::before {
     inset: -1.5rem -3rem;
@@ -4076,12 +4087,27 @@ html[data-motion="reduced"] .rl-faq-chevron {
   .film-stage-grid[data-split="right"] ~ .film-stage-grid[data-anchor="bottom"] > * {
     grid-column: 1;
   }
-  /* Hall walls: the landscape frame's corridor (desktop geometry), clear of
-     the side insets, small enough to stay above the copy. */
-  .hall-wall { top: 22%; width: 30%; gap: 0.6rem; }
-  .hall-wall-left { left: max(2%, env(safe-area-inset-left, 0px)); transform: rotateY(42deg); }
-  .hall-wall-right { right: max(2%, env(safe-area-inset-right, 0px)); transform: rotateY(-42deg); }
-  .hall-line { font-size: 0.75rem; }
+  /* Hall: the walls and the centred copy share the stage height, so they
+     share its width instead. The copy keeps to the middle 40vw (31vw to
+     69vw, its halo reaching 1rem past it); each wall's box ends at 29vw
+     from its side whatever the side inset (its rotation only pulls the
+     projected text further out), and its prose is sized to end above the
+     bottom inset on the shortest stage (568 x 320). */
+  .film-stage-grid[data-hall] > * { max-width: 40vw; }
+  .film-stage-grid[data-hall] .film-lede { max-width: none; }
+  .film-stage-grid[data-hall] .film-halo::before { inset: -1.5rem -1rem; }
+  .hall-wall { top: 22%; gap: 0.5rem; }
+  .hall-wall-left {
+    left: max(2vw, env(safe-area-inset-left, 0px));
+    width: calc(29vw - max(2vw, env(safe-area-inset-left, 0px)));
+    transform: rotateY(42deg);
+  }
+  .hall-wall-right {
+    right: max(2vw, env(safe-area-inset-right, 0px));
+    width: calc(29vw - max(2vw, env(safe-area-inset-right, 0px)));
+    transform: rotateY(-42deg);
+  }
+  .hall-line { font-size: clamp(0.75rem, 3.5svh, 0.8125rem); line-height: 1.25; }
 }
 
 /* While a reel is mounted, paint the root dark too so programmatic scrolls /
@@ -4193,6 +4219,13 @@ html[data-reel-chrome="body"] .rl-nav-scrim {
   transition: transform 150ms ease-out, filter 150ms ease-out;
 }
 .film-btn:active { transform: scale(0.98); }
+/* Compact stage (Phase 7): slimmer buttons. After the base rule above, which
+   has the same specificity; the query is view.ts SHORT_LANDSCAPE_QUERY. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .film-btn {
+    padding: 0.6rem 1.5rem;
+  }
+}
 .film-btn:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--cf-recall-bg), 0 0 0 4px var(--cf-recall-accent); }
 .film-btn-primary {
   background: var(--cf-recall-accent);

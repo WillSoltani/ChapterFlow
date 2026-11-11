@@ -7,7 +7,9 @@ import { activePins, backgroundLum, overlap, LUM_MEAN_MAX, LUM_P90_MAX } from ".
  * Only pins inside the ACTIVE sticky stage are judged.
  *
  *   1. Visible pins are fully inside the viewport (no clipping).
- *   2. Visible pins never overlap each other.
+ *   2. Visible pins never overlap each other, nor a shown line of the
+ *      Hall's wall prose (Phase 7 review: the compact stage put a lit wall
+ *      line under the Hall headline).
  *   3. Pins stay clear of the nav pill.
  *   4. Contrast: composited background under each pin (canvas + scrim, text
  *      hidden) has mean luminance ≤ 110 and p90 ≤ 150 for near-white ink.
@@ -98,6 +100,9 @@ test.describe("film audit", () => {
               const b = s.pins[j];
               if (a && b && overlap(a, b)) problems.push(`${where}: OVERLAP "${a.text}" × "${b.text}"`);
             }
+          for (const pin of s.pins)
+            for (const line of s.walls)
+              if (overlap(pin, line)) problems.push(`${where}: WALL OVERLAP "${pin.text}" × wall "${line.text}"`);
         }
       }
 
