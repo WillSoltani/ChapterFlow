@@ -53,9 +53,7 @@ export const metadata: Metadata = {
  * MEMORY PALACE landing — one continuous scroll-scrubbed film (components/film)
  * carries hero → summary → examples → quiz → spaced review → library → close;
  * request / FAQ / pricing follow as ordinary flowing content, then the shared
- * footer. The earlier RECALL sections (RecallHeroSplit, RecallHowItWorks, …)
- * are superseded; RecallAmbient is gone too — the film is the backdrop.
- * Server Component.
+ * footer. The film is the backdrop. Server Component.
  */
 export default async function Home() {
   // Per-request nonce from middleware.ts (WS8-001). The JSON-LD below is a
