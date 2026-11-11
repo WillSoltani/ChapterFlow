@@ -10,6 +10,7 @@ import {
   coverRect,
   frameAt,
   framePlacement,
+  holdBreathClock,
   pickActive,
   quantise,
   reelEndScrollY,
@@ -192,6 +193,26 @@ test("breathAt stays within [0, amp] and is 0 when amp is 0", () => {
     const b = breathAt(t, 0.01);
     assert.ok(b >= 0 && b <= 0.01);
   }
+});
+
+test("holdBreathClock: breath resumes where it froze after a loop stop (no zoom pop)", () => {
+  // The loop ran until t = 41_300 (last ticked frame), stopped at the end of
+  // the reel, and restarts at t = 47_900. The first tick after the restart
+  // must draw the same breath the canvas froze on, quantised as the loop does.
+  const q = (b: number) => Math.round(b * 4000) / 4000;
+  for (const amp of [0.01, 0.012]) {
+    for (const [off, lastTick, now] of [[0, 41_300, 47_900], [1234.5, 41_300, 41_316.7], [9_000, 100_000, 103_850]] as const) {
+      const frozen = breathAt(lastTick - off, amp);
+      const off2 = holdBreathClock(off, lastTick, now);
+      assert.ok(Math.abs(breathAt(now - off2, amp) - frozen) < 1e-12);
+      assert.equal(q(breathAt(now - off2, amp)), q(frozen));
+      // Without the hold the breath would jump (this case is not a no-op).
+      if (now - lastTick > 1000) assert.notEqual(q(breathAt(now - off, amp)), q(frozen));
+    }
+  }
+  // No time passed (or a clock that went backwards): offset unchanged.
+  assert.equal(holdBreathClock(5, 100, 100), 5);
+  assert.equal(holdBreathClock(5, 100, 90), 5);
 });
 
 test("pinOpacity ramps in, holds, ramps out", () => {

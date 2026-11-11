@@ -55,9 +55,13 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     the film jump ~9 frames at the start of almost every scroll gesture.
   - **lvh canvas.** The canvas wrapper (`FilmBackdrop.tsx`) is `fixed top-0
     h-lvh`. Its backing store is sized from the wrapper's own box (DPR capped
-    at 2, width capped at 1920 px, `backingSize`) and reallocated only when a
-    ResizeObserver on the wrapper sees that box change (width, orientation,
-    browser zoom) or the DPR changes, never on an address-bar `resize`.
+    at 2, width capped at 1920 px, `backingSize`) and reallocated only when
+    that box changes (width, orientation, browser zoom) or the DPR changes,
+    never on an address-bar `resize`. A ResizeObserver on the wrapper watches
+    the box, and every geometry measure re-reads it as well: the observer is
+    delivered after the animation-frame callbacks of the frame a resize lands
+    in, so the tick that handles a `resize` must refit the canvas itself
+    before it computes the stage shift, or it paints one stretched frame.
   - **Constant placement.** The frame is cover-fitted to the box (width ×
     large-viewport height) and centred on the stage centre (half the stage
     height from the top, `stageShift` + `framePlacement`), so its scale and
@@ -83,8 +87,11 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     resize, a ResizeObserver, a late frame or a segment registering. The
     first tick after a restart snaps to the scroll position (no glide), so
     an anchor jump or a back/forward restore into the middle of the reel
-    shows the right frame on that tick. `onProgress` and the chrome flip are
-    unchanged (both already ignored repeats).
+    shows the right frame on that tick. Breath runs on its own clock that
+    holds still while the loop is stopped (`holdBreathClock`), so a restart
+    continues the zoom from the value it froze on instead of popping by up
+    to the breath amplitude. `onProgress` and the chrome flip are unchanged
+    (both already ignored repeats).
   - **Verified only on a real phone.** Lab browsers (Playwright, DevTools
     device mode) have no collapsing address bar: there `svh = lvh =
     innerHeight` and the code above draws exactly what it did before. That
@@ -323,7 +330,9 @@ toward a barred frame.
     breath changes ≤ ~9 times a second; measured 16–18); at the pricing
     section the loop stops (no worked or skipped ticks); a `scrollTo` back
     into the fourth film shows the frame the scroll position demands three
-    animation frames later.
+    animation frames later; widening the window to 430 px, the first
+    animation frame after the `resize` already has a backing store of the
+    new box, and that is the second (and only other) allocation.
 - `npm run test:film:safari` — same on WebKit (`npx playwright install webkit`
   first). Headless WebKit rasterises in software and caps ~25 fps on any
   full-viewport image swap; the fps gate is 20 there.

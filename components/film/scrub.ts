@@ -89,6 +89,17 @@ export function breathAt(t: number, amp: number, period = 2600): number {
 }
 
 /**
+ * Breath clock offset across a loop stop. The loop stops (reel ended, tab
+ * hidden) with the breath frozen at its last value; on the restart, the time
+ * since the last ticked frame (`lastTick`) is added to the offset, so
+ * breathAt(now − offset) resumes exactly where it froze instead of jumping by
+ * up to the breath amplitude in one frame.
+ */
+export function holdBreathClock(offset: number, lastTick: number, now: number): number {
+  return now > lastTick ? offset + (now - lastTick) : offset;
+}
+
+/**
  * Canvas backing store for a box of boxW × boxH CSS px: device pixels, DPR
  * capped at 2, and never wider than the 1920 px source frames (a Retina
  * 2880 px canvas only upsamples them and costs 2.25× fill).

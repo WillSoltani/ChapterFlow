@@ -165,5 +165,33 @@ test.describe("film quality", () => {
     expect(m?.[1], "HUD names the film the jump landed in").toBe(jump.film);
     expect(Math.abs(Number(m?.[2]) - expF), "HUD frame matches the scroll position").toBeLessThanOrEqual(1);
     expect(end.canvasResizes, "still one allocation after the whole visit").toBe(1);
+
+    // A real box change (wider window, still portrait): the first animation
+    // frame after the resize event must already paint into a backing store of
+    // the NEW box. The loop's tick runs before this rAF callback (it was
+    // requested earlier) and before the wrapper's ResizeObserver is delivered,
+    // so a loop that refits only from the observer paints one stretched frame.
+    const resized = page.evaluate(
+      () =>
+        new Promise<{ cw: number; ch: number; bw: number; bh: number }>((resolve) => {
+          const canvas = document.querySelector<HTMLCanvasElement>(".film-canvas canvas");
+          if (!canvas?.parentElement) throw new Error("no film canvas");
+          window.addEventListener(
+            "resize",
+            () =>
+              requestAnimationFrame(() => {
+                const b = canvas.parentElement!.getBoundingClientRect();
+                resolve({ cw: canvas.width, ch: canvas.height, bw: b.width, bh: b.height });
+              }),
+            { once: true },
+          );
+        }),
+    );
+    await page.waitForTimeout(100);
+    await page.setViewportSize({ width: 430, height: 844 });
+    const box = await resized;
+    console.log(`resize: box ${box.bw}×${box.bh} css, canvas ${box.cw}×${box.ch} at the first frame`);
+    expect(Math.abs(box.cw / box.ch - box.bw / box.bh), "first frame after a resize paints into the new box").toBeLessThan(0.01);
+    expect((await readStats(page)).canvasResizes, "one reallocation for the one box change").toBe(2);
   });
 });

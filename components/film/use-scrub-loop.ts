@@ -10,9 +10,9 @@
  *     the segments are sized in, never window.innerHeight (which grows and
  *     shrinks with the iOS address bar).
  *   • The canvas box is the large viewport (100lvh, see FilmBackdrop). Its
- *     backing store is reallocated only when that box changes (ResizeObserver
- *     on the wrapper: width, orientation, zoom) or the DPR does, never on an
- *     address-bar resize. The picture is cover-fitted to the box and centred
+ *     backing store is reallocated only when that box changes (width,
+ *     orientation, zoom: a ResizeObserver on the wrapper, and every geometry
+ *     measure re-reads it) or the DPR does, never on an address-bar resize. The picture is cover-fitted to the box and centred
  *     on the stage centre, so neither its scale nor its place moves.
  *   • Segment geometry (document tops, heights, stage height) is cached and
  *     re-measured on register, window resize, a ResizeObserver on the reel
@@ -23,7 +23,7 @@
  *     The loop stops while the tab is hidden and once the reel has ended; a
  *     scroll back above the end, a resize, a late frame or the tab coming
  *     back restarts it, and the first tick after a restart snaps to the
- *     scroll position.
+ *     scroll position. Breath holds still while the loop is stopped.
  * Counters: window.__filmStats canvasResizes, geometryMeasures, ticksWorked,
  * ticksSkipped.
  */
@@ -36,6 +36,7 @@ import {
   breathAt,
   frameAt,
   framePlacement,
+  holdBreathClock,
   pickActive,
   quantise,
   reelEndScrollY,
@@ -109,6 +110,9 @@ export function useScrubLoop({
     // Inputs of the last worked tick, compared by the idle check.
     let lastSeg: SegmentRegistration | null = null;
     let lastBreath = Number.NaN;
+    // Breath runs on its own clock (t − breathOffset) that holds still while
+    // the loop is stopped, so a restart does not pop the zoom.
+    let breathOffset = 0;
     let lastReduced = reducedRef.current;
     // While stopped at the end of the reel: a scroll above this restarts it.
     let endY = Number.POSITIVE_INFINITY;
@@ -117,6 +121,35 @@ export function useScrubLoop({
     // wanted frame. A frame landing nearer (or the dissolve's underlay) clears
     // the paint key so the next tick redraws, even with no scroll or breath.
     let shown: { cache: FrameCache | null; want: number; dist: number; under: FrameCache | null } = { cache: null, want: 0, dist: Infinity, under: null };
+
+    // Canvas box (CSS px of the 100lvh wrapper) and the DPR it was sized for.
+    // Read on every geometry measure as well as by the wrapper's
+    // ResizeObserver: the observer is delivered AFTER the rAF callbacks of
+    // the frame a resize lands in, so the tick that handles the resize must
+    // see the new box itself, or it paints a frame into the old backing store
+    // with a shift computed from the new stage.
+    let boxW = 0;
+    let boxH = 0;
+    let dpr = window.devicePixelRatio || 1;
+    let boxDirty = true;
+    const readBox = () => {
+      const r = box.getBoundingClientRect();
+      if (r.width === boxW && r.height === boxH) return false;
+      boxW = r.width;
+      boxH = r.height;
+      boxDirty = true;
+      return true;
+    };
+    readBox();
+    const fitCanvas = () => {
+      boxDirty = false;
+      const { w, h } = backingSize(boxW, boxH, dpr);
+      if (!w || !h || (w === canvas.width && h === canvas.height)) return;
+      canvas.width = w;
+      canvas.height = h;
+      stats.canvasResizes++;
+      lastKey = "";
+    };
 
     // Cached geometry: segments in index order, document tops and heights,
     // and the sticky stage height (CSS px).
@@ -142,22 +175,7 @@ export function useScrubLoop({
       const stage = segs[0]?.el.querySelector<HTMLElement>("[data-film-stage]");
       const h = stage?.getBoundingClientRect().height ?? 0;
       stageH = h > 0 ? h : window.innerHeight;
-    };
-
-    // Canvas box (CSS px of the 100lvh wrapper) and the DPR it was sized for.
-    const boxRect = box.getBoundingClientRect();
-    let boxW = boxRect.width;
-    let boxH = boxRect.height;
-    let dpr = window.devicePixelRatio || 1;
-    let boxDirty = true;
-    const fitCanvas = () => {
-      boxDirty = false;
-      const { w, h } = backingSize(boxW, boxH, dpr);
-      if (!w || !h || (w === canvas.width && h === canvas.height)) return;
-      canvas.width = w;
-      canvas.height = h;
-      stats.canvasResizes++;
-      lastKey = "";
+      readBox();
     };
 
     const offLoad = budget.subscribe((c, i) => {
@@ -208,12 +226,8 @@ export function useScrubLoop({
     };
     document.addEventListener("visibilitychange", onVisibility);
     window.addEventListener("pageshow", onVisibility);
-    const boxObserver = new ResizeObserver((entries) => {
-      const r = entries[entries.length - 1]?.contentRect;
-      if (!r || (r.width === boxW && r.height === boxH)) return;
-      boxW = r.width;
-      boxH = r.height;
-      boxDirty = true;
+    const boxObserver = new ResizeObserver(() => {
+      if (!readBox()) return;
       geomDirty = true;
       wake();
     });
@@ -259,10 +273,13 @@ export function useScrubLoop({
         boxDirty = true;
       }
       const reduced = reducedRef.current;
+      // Restart after a stop: hold the breath clock over the stopped time.
+      if (resumed) breathOffset = holdBreathClock(breathOffset, lastT, t);
+      const bt = t - breathOffset;
 
       // Idle check: a few comparisons, no layout reads. Breath is quantised to
       // 1/4000 so a hold repaints a few times a second, not 60×.
-      const breathNow = lastSeg && !reduced ? Math.round(breathAt(t, lastSeg.breath) * 4000) / 4000 : 0;
+      const breathNow = lastSeg && !reduced ? Math.round(breathAt(bt, lastSeg.breath) * 4000) / 4000 : 0;
       if (
         !resumed &&
         !geomDirty &&
@@ -281,8 +298,10 @@ export function useScrubLoop({
       const snap = resumed;
       resumed = false;
 
-      if (boxDirty) fitCanvas();
+      // Measure first: it re-reads the box too, so a resize handled by this
+      // tick refits the canvas before the stage shift is computed from it.
       if (geomDirty || t - lastMeasure >= GEOMETRY_SAFETY_MS) measure(t);
+      if (boxDirty) fitCanvas();
 
       const direction: 1 | -1 = scrollY >= lastScroll ? 1 : -1;
       lastScroll = scrollY;
@@ -335,7 +354,7 @@ export function useScrubLoop({
         });
       }
 
-      const breath = reduced ? 0 : Math.round(breathAt(t, seg.breath) * 4000) / 4000;
+      const breath = reduced ? 0 : Math.round(breathAt(bt, seg.breath) * 4000) / 4000;
       shiftY = stageShift(stageH, boxH, canvas.height);
       const key = `${seg.index}:${frame}:${breath}:${canvas.width}:${canvas.height}:${shiftY}`;
       if (key !== lastKey) {
