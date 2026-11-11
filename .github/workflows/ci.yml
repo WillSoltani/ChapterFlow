@@ -419,7 +419,8 @@ jobs:
   # film is guarded only by unit tests. Here scripts/film/placeholder.mjs
   # synthesises every frame, band tier and pack the timeline names, the
   # timeline's pack fields are synced to them, and the film specs run on
-  # Chromium against the dev server, then the scrub-quality budgets
+  # Chromium against the dev server (their @prod part against a production
+  # build), then the scrub-quality budgets
   # (requests, refetches, repeated bytes, exact draws) on desktop Chromium.
   # Specs that judge the REAL footage (copy and focus-indicator contrast over
   # the picture, the audit's luminance behind the copy) skip themselves on
