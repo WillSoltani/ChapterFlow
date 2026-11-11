@@ -95,6 +95,8 @@ export class PackClient implements PackSource {
   private worker: WorkerLike | null = null;
   /** Set when pack mode is over for every variant (worker missing, failed or crashed). */
   private dead: string | null = null;
+  /** stop(): static mode, nothing is read again. */
+  private stopped = false;
   private readonly failed = new Set<string>();
   private readonly held = new Map<string, Set<number>>();
   private readonly variants = new Map<string, FilmVariant>();
@@ -130,7 +132,7 @@ export class PackClient implements PackSource {
   }
 
   serves(v: FilmVariant): boolean {
-    return !!v.pack && !this.dead && !this.failed.has(variantKey(v));
+    return !!v.pack && !this.dead && !this.stopped && !this.failed.has(variantKey(v));
   }
 
   holds(v: FilmVariant, index: number): boolean {
@@ -155,7 +157,7 @@ export class PackClient implements PackSource {
   }
 
   where(at: { variant: FilmVariant; frame: number; direction: 1 | -1; lo: number; hi: number; pin?: { variant: FilmVariant; frame: number } | null }) {
-    if (this.dead) return;
+    if (this.dead || this.stopped) return;
     const key = at.variant.pack ? variantKey(at.variant) : null;
     const pin = at.pin?.variant.pack ? { key: variantKey(at.pin.variant), frame: at.pin.frame } : null;
     this.last = { key, frame: at.frame, direction: at.direction, lo: at.lo, hi: at.hi, pin };
@@ -170,6 +172,28 @@ export class PackClient implements PackSource {
     if (!this.ensureWorker()) return;
     this.sendReel();
     this.sendWhere();
+  }
+
+  /**
+   * Stop for good (static mode, the budget halted): every pack is marked
+   * failed in the worker, so it never reads one again (its streams stop), and
+   * no variant is served from a pack on this page view. The worker itself
+   * stays, idle: static mode is not a crash. Nobody is told to fall back: a
+   * halted budget loads nothing.
+   */
+  stop() {
+    if (this.stopped) return;
+    this.stopped = true;
+    this.unlisten?.();
+    this.unlisten = null;
+    this.rejectPending("pack: stopped");
+    for (const v of this.reel?.() ?? []) if (v.pack) this.failed.add(variantKey(v));
+    for (const k of this.variants.keys()) this.failed.add(k);
+    this.held.clear();
+    if (this.worker) {
+      this.reelKey = "";
+      this.sendReel();
+    }
   }
 
   /** Stop the worker (unmount). A later `where` starts a fresh one. */

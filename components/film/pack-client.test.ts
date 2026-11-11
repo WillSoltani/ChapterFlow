@@ -236,3 +236,32 @@ test("the dissolve pin goes to the worker with the position", () => {
   client.where(at(reel[1]!, 3));
   assert.equal((w.sent.at(-1) as Extract<ToWorker, { t: "where" }>).where.pin, null);
 });
+
+test("stop(): every pack is marked failed in the worker, nothing is read again; the worker stays (idle, not crashed)", () => {
+  const { client, reel, w, starts } = setup();
+  client.where(at(reel[0]!));
+  assert.equal(starts(), 1);
+  const sent = w.sent.length;
+  client.stop();
+  assert.equal(w.terminated, false);
+  const last = w.sent.at(-1);
+  assert.equal(last?.t, "packs");
+  if (last?.t === "packs") {
+    assert.ok(last.packs.length > 0);
+    assert.ok(last.packs.every((p) => p.failed === true), "every pack failed: the worker never reads one again");
+  }
+  assert.equal(client.serves(reel[0]!), false, "a stopped client serves no variant");
+  const afterStop = w.sent.length;
+  assert.ok(afterStop > sent);
+  client.where(at(reel[0]!, 3));
+  client.where(at(reel[1]!, 0));
+  assert.equal(w.sent.length, afterStop, "no message after stop");
+  assert.equal(starts(), 1, "no new worker after stop");
+});
+
+test("stop() before the worker started: it never starts", () => {
+  const { client, reel, starts } = setup();
+  client.stop();
+  client.where(at(reel[0]!));
+  assert.equal(starts(), 0);
+});

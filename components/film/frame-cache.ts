@@ -33,6 +33,15 @@
  * index (else above, else the poster), so the canvas always has something to
  * draw while the exact frame is in flight. `window.__filmStats` (FilmStats)
  * counts fetches, refetches, decodes and draw accuracy.
+ *
+ * Failures (Phase 6). A frame is tried at most FRAME_TRIES times (the first
+ * try and two retries with backoff, counted across the page view, also when
+ * it leaves the wanted set and comes back); then it is failed for good: never
+ * requested again, `nearest` serves a neighbour. The film is UNREACHABLE when
+ * nothing of it has loaded on this page view (no poster, no frame, no pack
+ * bytes), a poster has failed and UNREACHABLE_FAILED_FRAMES frames have failed
+ * for good: the budget then halts (no fetch, decode or pack read ever again)
+ * and tells its listeners (onHalt), and the page runs in static mode.
  */
 
 import { SKELETON_STRIDE } from "./pack-format";
@@ -121,6 +130,8 @@ export type FilmStats = {
   decodeInFlight: number;
   fetchLimit: number;
   decodeLimit: number;
+  /** Frames failed for good (FRAME_TRIES tries spent): never requested again. */
+  framesFailed: number;
   /** Scrub loop (use-scrub-loop.ts): canvas backing-store reallocations. */
   canvasResizes: number;
   /** Scrub loop: segment geometry reads (one getBoundingClientRect per segment). */
@@ -172,6 +183,7 @@ export function newFilmStats(fetchLimit = 0, decodeLimit = 0): FilmStats {
     fallbackDraws: 0,
     fallbackDistanceSum: 0,
     evictions: 0,
+    framesFailed: 0,
     maxFetchInFlight: 0,
     maxDecodeInFlight: 0,
     fetchInFlight: 0,
@@ -241,6 +253,8 @@ export type PackSource = {
   where(at: { variant: FilmVariant; frame: number; direction: 1 | -1; lo: number; hi: number; pin?: { variant: FilmVariant; frame: number } | null }): void;
   /** Frames of `variant` arrived (`added`), or its mode changed (null: it fell back to frames). */
   subscribe(fn: (variant: FilmVariant, added: readonly number[] | null) => void): () => void;
+  /** Stop for good (the budget halted: static mode). Optional for fakes. */
+  stop?(): void;
 };
 
 /** One scroll decision. */
@@ -266,12 +280,13 @@ const NEXT_HEAD_MAX = 12;
 const NEXT_HEAD_SHARE = 0.3;
 /**
  * A failed fetch or decode (rate limiter 403/429, 5xx, a dropped connection)
- * is retried while the frame stays wanted, after 400 ms, 800 ms, ... capped
- * at 4 s, so a parked visitor recovers once the network does without the
- * reel hammering a server that is refusing it.
+ * is retried while the frame stays wanted, after 400 ms, then 800 ms; after
+ * FRAME_TRIES tries in all it is failed for the rest of the page view.
  */
 const RETRY_BASE_MS = 400;
-const RETRY_MAX_MS = 4000;
+export const FRAME_TRIES = 3;
+/** Frames failed for good (with nothing ever loaded and a poster failed) that make the film unreachable. */
+export const UNREACHABLE_FAILED_FRAMES = 3;
 /** Budgets below this are "small" (phones): fewer decodes, smaller blob store. */
 const SMALL_BUDGET = 256 * MB;
 
@@ -316,11 +331,19 @@ export class FrameBudget {
   private readonly fetchedEver = new Set<string>();
   private readonly decodedEver = new Set<string>();
   /**
-   * Frames whose last fetch or decode failed, with the time a retry is due
-   * (backoff, see RETRY_BASE_MS). Retried while still wanted once due; the
-   * entry is forgotten when the frame decodes or leaves the wanted set.
+   * Frames whose last fetch or decode failed, with the tries so far and the
+   * time a retry is due (backoff, see RETRY_BASE_MS). Retried while wanted
+   * once due; the entry is forgotten when the frame decodes, kept when it
+   * leaves the wanted set (the tries count for the whole page view).
    */
   private readonly failed = new Map<string, { attempts: number; retryAt: number }>();
+  /** Frames failed for good (FRAME_TRIES spent): never requested again. */
+  private readonly dead = new Set<string>();
+  /** Anything of the film loaded on this page view: a poster, a frame, pack bytes. */
+  private everLoaded = false;
+  private postersFailed = 0;
+  private haltedFlag = false;
+  private readonly haltListeners = new Set<() => void>();
   /** When the pending retry wake-up fires (Infinity = none pending). */
   private wakeAt = Infinity;
   private readonly listeners = new Set<(cache: FrameCache, index: number) => void>();
@@ -378,6 +401,7 @@ export class FrameBudget {
         this.pump();
         return;
       }
+      if (added.length) this.everLoaded = true;
       for (const c of this.caches) {
         if (c.disposed || variantKey(c.variant) !== key) continue;
         const want = this.wantedKeys.get(c);
@@ -387,6 +411,46 @@ export class FrameBudget {
         }
       }
     });
+  }
+
+  /** Static mode: the budget loads nothing ever again (see halt). */
+  get halted(): boolean {
+    return this.haltedFlag;
+  }
+
+  /**
+   * Stop loading for good: no fetch, decode or pack read starts again on this
+   * page view (frames already decoded stay drawable). Called when the film is
+   * unreachable, or by the page when it has no canvas to draw on.
+   */
+  halt() {
+    if (this.haltedFlag) return;
+    this.haltedFlag = true;
+    this.order = [];
+    this.indexWanted();
+    this.packs?.stop?.();
+    for (const fn of this.haltListeners) fn();
+  }
+
+  /** Listen for halt() (static mode). */
+  onHalt(fn: () => void): () => void {
+    this.haltListeners.add(fn);
+    return () => {
+      this.haltListeners.delete(fn);
+    };
+  }
+
+  /** @internal A cache's poster loaded (`ok`) or failed. */
+  notePoster(_cache: FrameCache, ok: boolean) {
+    if (ok) this.everLoaded = true;
+    else this.postersFailed++;
+    this.checkReachable();
+  }
+
+  /** Nothing ever loaded, a poster failed, enough frames failed for good: halt. */
+  private checkReachable() {
+    if (this.haltedFlag || this.everLoaded) return;
+    if (this.postersFailed > 0 && this.dead.size >= UNREACHABLE_FAILED_FRAMES) this.halt();
   }
 
   /** True while `cache` loads from its pack. */
@@ -443,6 +507,7 @@ export class FrameBudget {
    * the scroll loop has made its first decision; it never overrides one.
    */
   want(plan: FramePlan, opts: { weak?: boolean } = {}) {
+    if (this.haltedFlag) return;
     const weak = opts.weak === true;
     if (weak && this.plan && !this.planWeak) return;
     if (plan.active.cache.disposed) return;
@@ -450,7 +515,6 @@ export class FrameBudget {
     this.planWeak = weak;
     this.order = this.buildOrder(plan);
     this.indexWanted();
-    for (const url of [...this.failed.keys()]) if (!this.wantedUrls.has(url)) this.failed.delete(url);
     const active = plan.active.cache;
     if (this.packs && !weak && active.variant.pack) {
       let lo = Infinity;
@@ -569,6 +633,7 @@ export class FrameBudget {
 
   /** Start whatever the limits allow, in wanted order. */
   private pump() {
+    if (this.haltedFlag) return;
     const s = this.stats;
     for (const { cache, index, url } of this.order) {
       if (s.fetchInFlight >= this.maxFetches && s.decodeInFlight >= this.maxDecodes) return;
@@ -598,8 +663,9 @@ export class FrameBudget {
     }
   }
 
-  /** True unless `url` failed and its retry is not due yet (then a wake-up is set). */
+  /** True unless `url` failed for good, or failed and its retry is not due yet (then a wake-up is set). */
   private retryDue(url: string): boolean {
+    if (this.dead.has(url)) return false;
     const f = this.failed.get(url);
     if (!f) return true;
     const now = this.clock.now();
@@ -616,8 +682,16 @@ export class FrameBudget {
 
   private markFailed(url: string) {
     const attempts = (this.failed.get(url)?.attempts ?? 0) + 1;
-    const delay = Math.min(RETRY_MAX_MS, RETRY_BASE_MS * 2 ** (attempts - 1));
-    this.failed.set(url, { attempts, retryAt: this.clock.now() + delay });
+    if (attempts >= FRAME_TRIES) {
+      this.failed.delete(url);
+      if (!this.dead.has(url)) {
+        this.dead.add(url);
+        this.stats.framesFailed++;
+      }
+      this.checkReachable();
+      return;
+    }
+    this.failed.set(url, { attempts, retryAt: this.clock.now() + RETRY_BASE_MS * 2 ** (attempts - 1) });
   }
 
   private startFetch(url: string) {
@@ -634,6 +708,7 @@ export class FrameBudget {
       .then(
         (blob) => {
           this.fetchedEver.add(url);
+          this.everLoaded = true;
           this.putBlob(url, blob);
         },
         () => {
@@ -667,6 +742,7 @@ export class FrameBudget {
     }
     this.decodedEver.add(url);
     this.failed.delete(url);
+    this.everLoaded = true;
     const actual = drawableBytes(img) || bytes;
     this.used += actual;
     cache.put(index, img, actual);
@@ -710,6 +786,7 @@ export class FrameBudget {
           }
           this.decodedEver.add(url);
           this.failed.delete(url);
+          this.everLoaded = true;
           const actual = drawableBytes(img) || bytes;
           this.used += actual;
           cache.put(index, img, actual);
@@ -827,6 +904,7 @@ export class FrameCache {
 
   private readonly bitmaps = new Map<number, { img: Drawable; bytes: number }>();
   private poster: HTMLImageElement | null = null;
+  private posterTried = false;
   private readonly listeners = new Set<(index: number) => void>();
 
   constructor(
@@ -919,12 +997,23 @@ export class FrameCache {
     this.notify(index);
   }
 
-  async loadPoster(): Promise<HTMLImageElement> {
-    if (this.poster) return this.poster;
+  /**
+   * Load the poster once (never retried: the HTML poster, Phase 6, is the
+   * same URL, so this is normally a memory-cache hit). A failed poster is
+   * reported to the budget (unreachable check) and never drawn.
+   */
+  async loadPoster(): Promise<HTMLImageElement | null> {
+    if (this.poster || this.posterTried) return this.poster;
+    this.posterTried = true;
     const img = new Image();
     img.decoding = "async";
     img.src = this.variant.poster;
-    await img.decode().catch(() => undefined);
+    const ok = await img.decode().then(
+      () => img.naturalWidth > 0,
+      () => false,
+    );
+    this.budget.notePoster(this, ok);
+    if (!ok) return null;
     this.poster = img;
     if (!this.disposed) this.notify(-1);
     return img;

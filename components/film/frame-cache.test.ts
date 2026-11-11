@@ -483,7 +483,7 @@ test("after a network blip, every frame still wanted loads once the network is b
   for (let i = 50; i <= 60; i++) assert.ok(a.has(i), `frame ${i} loaded after the blip`);
 });
 
-test("a frame that keeps failing is retried with a growing backoff, not hammered", async () => {
+test("a frame that keeps failing is tried 3 times (two retries with backoff), then never again", async () => {
   const network: string[] = [];
   const io: FrameIO = {
     fetchBlob: async (url) => {
@@ -503,11 +503,134 @@ test("a frame that keeps failing is retried with a growing backoff, not hammered
     budget.want({ active: { cache: a, center: 5, direction: 1 } });
     await fc.advance(500);
   }
-  const tries = network.filter((u) => u.includes("f_0006")).length;
-  // 0, 0.4, 1.2, 2.8, 6.0 (cap 4 s) → 5 attempts in 10 s; never once per decision.
-  assert.ok(tries >= 3 && tries <= 6, `tries ${tries}`);
-  assert.ok(a.has(6));
+  const tries = () => network.filter((u) => u.includes("f_0006")).length;
+  assert.equal(tries(), 3, "the first try and two retries");
+  assert.equal(budget.stats.framesFailed, 1);
+  assert.ok(!a.has(5));
+  assert.ok(a.has(4) && a.has(6), "its neighbours load");
+  assert.equal(a.nearest(5), a.get(4), "a neighbour serves the failed frame");
+  // Leaving the wanted set and coming back does not earn new tries.
+  budget.want({ active: { cache: a, center: 200, direction: 1 } });
+  await fc.advance(5000);
+  budget.want({ active: { cache: a, center: 5, direction: -1 } });
+  await fc.advance(10_000);
+  assert.equal(tries(), 3, "failed for the rest of the page view");
   assert.equal(budget.stats.fetchInFlight, 0);
+});
+
+test("tries are counted across leaving the wanted set: two failures, away, back = one more try", async () => {
+  const network: string[] = [];
+  const io: FrameIO = {
+    fetchBlob: async (url) => {
+      network.push(url);
+      if (url.includes("f_0101")) throw new Error("503");
+      return fakeBlob(url);
+    },
+    decode: async () => fakeBitmap(),
+  };
+  const fc = fakeClock();
+  const budget = new FrameBudget(19 * FRAME, io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  budget.want({ active: { cache: a, center: 100, direction: 1 } });
+  await settle();
+  await fc.advance(500);
+  const tries = () => network.filter((u) => u.includes("f_0101")).length;
+  assert.equal(tries(), 2);
+  budget.want({ active: { cache: a, center: 10, direction: -1 } });
+  await fc.advance(3000);
+  budget.want({ active: { cache: a, center: 100, direction: 1 } });
+  await fc.advance(10_000);
+  assert.equal(tries(), 3);
+  assert.equal(budget.stats.framesFailed, 1);
+});
+
+test("a decode that fails counts as a try too", async () => {
+  let decodes = 0;
+  const io: FrameIO = {
+    fetchBlob: async (url) => fakeBlob(url),
+    decode: async (blob) => {
+      if ((blob as unknown as { url: string }).url.includes("f_0001")) {
+        decodes++;
+        throw new Error("bad bytes");
+      }
+      return fakeBitmap();
+    },
+  };
+  const fc = fakeClock();
+  const budget = new FrameBudget(19 * FRAME, io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  for (let i = 0; i < 10; i++) {
+    budget.want({ active: { cache: a, center: 0, direction: 1 } });
+    await fc.advance(1000);
+  }
+  assert.equal(decodes, 3);
+  assert.equal(budget.stats.framesFailed, 1);
+});
+
+test("the film is unreachable when nothing ever loaded, a poster failed and 3 frames failed for good; then it halts", async () => {
+  const network: string[] = [];
+  const io: FrameIO = {
+    fetchBlob: async (url) => {
+      network.push(url);
+      throw new Error("blocked");
+    },
+    decode: async () => fakeBitmap(),
+  };
+  const fc = fakeClock();
+  const budget = new FrameBudget(19 * FRAME, io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  const halts: number[] = [];
+  budget.onHalt(() => halts.push(1));
+  budget.want({ active: { cache: a, center: 0, direction: 1 } });
+  await settle();
+  await fc.advance(5000);
+  assert.ok(budget.stats.framesFailed >= 3);
+  assert.equal(budget.halted, false, "frames alone do not decide it: the poster may still come");
+  budget.notePoster(a, false);
+  assert.equal(budget.halted, true);
+  assert.deepEqual(halts, [1]);
+  const before = network.length;
+  budget.want({ active: { cache: a, center: 120, direction: 1 } });
+  await fc.advance(20_000);
+  assert.equal(network.length, before, "a halted budget requests nothing");
+  assert.equal(budget.stats.fetchInFlight, 0);
+});
+
+test("not unreachable once anything loaded: a poster, or a single frame", async () => {
+  for (const what of ["poster", "frame"] as const) {
+    const io: FrameIO = {
+      fetchBlob: async (url) => {
+        if (what === "frame" && url.includes("f_0001")) return fakeBlob(url);
+        throw new Error("blocked");
+      },
+      decode: async () => fakeBitmap(),
+    };
+    const fc = fakeClock();
+    const budget = new FrameBudget(19 * FRAME, io, fc.clock);
+    const a = new FrameCache(variant("a"), budget);
+    const b = new FrameCache(variant("b"), budget);
+    if (what === "poster") budget.notePoster(b, true);
+    budget.want({ active: { cache: a, center: 0, direction: 1 } });
+    await settle();
+    await fc.advance(10_000);
+    budget.notePoster(a, false);
+    assert.ok(budget.stats.framesFailed >= 3, what);
+    assert.equal(budget.halted, false, `${what}: something loaded, so the film is reachable`);
+  }
+});
+
+test("halt() stops loading and tells the pack source to stop", async () => {
+  const { io, fetches } = manualIO();
+  const packs = fakePacks();
+  let stopped = 0;
+  const budget = new FrameBudget(19 * FRAME, io);
+  budget.attachPacks({ ...packs.source, stop: () => void stopped++ });
+  const a = new FrameCache(variant("a"), budget);
+  budget.halt();
+  budget.want({ active: { cache: a, center: 0, direction: 1 } });
+  assert.equal(fetches.length, 0);
+  assert.equal(stopped, 1);
+  assert.equal(packs.wheres.length, 0);
 });
 
 test("reserve and release accounting returns to zero after dispose()", async () => {
