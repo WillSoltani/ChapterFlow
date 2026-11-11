@@ -447,14 +447,10 @@ CSP accepts the `NEXT_PUBLIC_FILM_BASE` origin.
 ## 5. Deliverables
 
 - [ ] 7 PNG sequences (or mp4) at 2560×1440, 24 fps, counts per §2
-- [ ] optional 9:16 camera per shot (else `encode.mjs --portrait` centre-crops; pass `--portrait-crop` where the object is off-centre: P00, P01, P03)
+- [ ] portrait screens draw band tiers cut from the landscape render (`encode.mjs --bands --portrait-zoom 1.6`), so no separate 9:16 camera is needed
 - [ ] frame-0 and frame-last stills per shot (continuity check + Higgsfield start/end)
 - [ ] continuity pairs verified: P00→P01 … P05→P06
 
-Encode:
-```bash
-node scripts/film/encode.mjs ~/renders/P00 palace-00 --portrait --portrait-crop 1100,0,810,1440
-node scripts/film/encode.mjs ~/renders/P03.mp4 palace-03 --from-video --portrait
-# counts sync into book.timeline.json automatically; then set key frames from your render
-```
+Encode, band tiers, packs and the timeline sync: `docs/FILM_REEL.md`
+("Content: render, encode, ship"); then set the key frames from the render.
 

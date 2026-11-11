@@ -12,10 +12,10 @@
  *     keeps every variant on the per-frame path
  *   • registration of FilmSegments (they report their DOM element + film)
  *   • the scrub loop (./use-scrub-loop.ts) that paints frames, dissolves
- *     between films, breathes while idle, quantises under reduced motion, and
- *     publishes <html data-reel-chrome="film|body" data-reel-section="…">,
- *     and hides the canvas wrapper below the reel (not composited under the
- *     body sections)
+ *     between films, breathes while idle, draws only the chapters' stops
+ *     under reduced motion, publishes <html data-reel-chrome="film|body"
+ *     data-reel-section="…">, and hides the canvas wrapper below the reel
+ *     (not composited under the body sections)
  *   • first paint (Phase 6): the first film's poster as a server-rendered
  *     <picture> over the canvas (sources from first-paint.ts, placed by CSS
  *     exactly where the canvas draws it), removed in the frame the canvas
