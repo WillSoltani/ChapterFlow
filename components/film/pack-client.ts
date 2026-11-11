@@ -6,15 +6,20 @@
  *     import, never during server render), with the bundler's standard form
  *     `new Worker(new URL("./film-worker.ts", import.meta.url), { type: "module" })`.
  *   • Tells the worker where the visitor is: the active film's pack, the
- *     playhead, the direction, the wanted window, whether the visitor has
- *     scrolled yet (a scroll position above 0 at load, or a #anchor, counts),
- *     whether the document is hidden and whether the connection is
- *     constrained (Save-Data, slow-2g/2g/3g).
+ *     playhead, the direction, the wanted window, the dissolve pin (the
+ *     previous film's last frame) while it is wanted, whether the visitor has
+ *     scrolled yet (a scroll position above 0, a #anchor, or an active film
+ *     past the first, read on every decision until one holds; never during
+ *     render, where scrollY can still be the previous page's), whether the
+ *     document is hidden and whether the connection is constrained
+ *     (Save-Data, slow-2g/2g/3g).
  *   • Mirrors which frames the worker holds, so the scheduler knows
  *     synchronously what is decodable; asks the worker to decode and gets the
  *     ImageBitmap back (transferred).
  *   • Fallback: a variant whose pack fails (404, unusable, retries spent)
- *     goes to the per-frame path for the rest of the page view; if the worker
+ *     goes to the per-frame path for the rest of the page view (a reel sent
+ *     again keeps it in its place, marked failed, so the worker never reads
+ *     it again and the films around it keep their neighbours); if the worker
  *     cannot start, lacks createImageBitmap or a streaming fetch body, or
  *     crashes, every variant does. Pending decodes reject (handled by the
  *     scheduler), frames already decoded stay.
@@ -97,7 +102,7 @@ export class PackClient implements PackSource {
   private readonly listeners = new Set<(v: FilmVariant, added: readonly number[] | null) => void>();
   private nextId = 1;
   private reelKey = "";
-  private scrolled: boolean;
+  private scrolled = false;
   private last: Omit<NetWhere, "scrolled" | "hidden" | "constrained"> | null = null;
   private progress: NetStats["progress"] = {};
   private unlisten: (() => void) | null = null;
@@ -114,7 +119,6 @@ export class PackClient implements PackSource {
   ) {
     this.env = opts.env ?? browserEnv();
     this.reel = opts.reel ?? null;
-    this.scrolled = this.env.scrollY() > 0 || this.env.hash().length > 1;
   }
 
   private readonly env: Env;
@@ -150,9 +154,19 @@ export class PackClient implements PackSource {
     };
   }
 
-  where(at: { variant: FilmVariant; frame: number; direction: 1 | -1; lo: number; hi: number }) {
+  where(at: { variant: FilmVariant; frame: number; direction: 1 | -1; lo: number; hi: number; pin?: { variant: FilmVariant; frame: number } | null }) {
     if (this.dead) return;
-    this.last = { key: at.variant.pack ? variantKey(at.variant) : null, frame: at.frame, direction: at.direction, lo: at.lo, hi: at.hi };
+    const key = at.variant.pack ? variantKey(at.variant) : null;
+    const pin = at.pin?.variant.pack ? { key: variantKey(at.pin.variant), frame: at.pin.frame } : null;
+    this.last = { key, frame: at.frame, direction: at.direction, lo: at.lo, hi: at.hi, pin };
+    if (!this.scrolled) {
+      // Read here, on a scroll decision (after mount and the router's scroll
+      // reset), never during render; again on every decision until it holds,
+      // so a scroll restored before the listener existed is not missed.
+      const reel = this.reel?.() ?? [];
+      const film = key ? reel.findIndex((v) => v.pack && variantKey(v) === key) : -1;
+      this.scrolled = this.env.scrollY() > 0 || this.env.hash().length > 1 || film > 0;
+    }
     if (!this.ensureWorker()) return;
     this.sendReel();
     this.sendWhere();
@@ -205,8 +219,11 @@ export class PackClient implements PackSource {
     reel.forEach((v, film) => {
       const k = variantKey(v);
       this.variants.set(k, v);
-      if (!v.pack || this.failed.has(k)) return;
-      packs.push({ key: k, url: packUrl(v), layout: v.pack, count: v.count, film, type: v.ext === "jpg" ? "image/jpeg" : `image/${v.ext}` });
+      if (!v.pack) return;
+      // A failed pack keeps its place, marked failed: the worker never reads
+      // it, and a visitor on that film still has a neighbour.
+      const failed = this.failed.has(k);
+      packs.push({ key: k, url: packUrl(v), layout: v.pack, count: v.count, film, type: v.ext === "jpg" ? "image/jpeg" : `image/${v.ext}`, ...(failed ? { failed } : {}) });
     });
     this.worker?.postMessage({ t: "packs", packs });
   }

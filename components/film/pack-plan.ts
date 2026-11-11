@@ -13,7 +13,11 @@
  *      scrolling down, previous when scrolling up),
  *   3. the active film's remaining frames, from the playhead,
  *   4. that neighbour's remaining frames, from where the visitor will enter it.
- * Nothing else: a stream on any other pack is stopped (its bytes stay).
+ * Nothing else: a stream on any other pack is stopped (its bytes stay),
+ * except for the dissolve pin: while the active film's opening dissolves
+ * from the previous film's last frame, that frame is read when it is not
+ * held (after step 1; its header first when that film was never read). A
+ * stream on that film a few frames short of the pin is left to reach it.
  * One stream per pack, at most `maxStreams` (2) at once, none opened while the
  * document is hidden. A skeleton range directly followed by the remaining
  * frames it is about to need is read by ONE stream (one request), so a
@@ -32,7 +36,11 @@
  * the stream is not, the stream is stopped and reopened at the first missing
  * frame at the playhead (a little behind it when scrolling up), only when:
  * the visitor scrolls up, has just jumped (anchor, flick), or has stopped. A
- * stream a few frames short of the playhead is left to reach it. While the
+ * stream a few frames short of the playhead is left to reach it. Scrolling
+ * up, a stream reading towards the playhead from below (at most
+ * BEHIND_FRAMES + REACH_FRAMES below it) goes on until the playhead passes
+ * it: re-aimed only then, so an upward pass costs about one request per
+ * BEHIND_FRAMES frames, not one per frame. While the
  * visitor moves forward steadily faster than the network, the stream keeps
  * reading in order (re-aiming would cost a request every second and win
  * frames the visitor passes at once; the skeleton covers the motion).
@@ -89,9 +97,14 @@ export type PlanInput = {
   hidden: boolean;
   streams: PlanStream[];
   maxStreams: number;
+  /**
+   * The dissolve pin: the previous film's last frame, while the active film's
+   * opening dissolves from it (`pack` = its index in `packs`). Null = none.
+   */
+  pin?: { pack: number; frame: number } | null;
 };
 
-export type PlanStep = "opening" | "skeleton" | "neighbour-skeleton" | "rest" | "neighbour-rest" | "window";
+export type PlanStep = "opening" | "skeleton" | "neighbour-skeleton" | "pin" | "rest" | "neighbour-rest" | "window";
 
 /** A range to read: [start, end). `end === layout.bytes` is an open-ended request. */
 export type PlanItem = { key: string; start: number; end: number; step: PlanStep };
@@ -192,9 +205,34 @@ function restItem(p: PlanPack, h: PackHeader, at: number, dir: 1 | -1, step: Pla
     // A stream short of `start` by a few frames, with nothing held in
     // between, reaches it anyway.
     const short = stream.pos <= start && slotAt(h, start) - slotAt(h, stream.pos) <= REACH_FRAMES && p.bytes.nextHeld(stream.pos, start) === start;
-    if (short || !mayReaim) return item(p, stream.pos, p.layout.bytes, step);
+    // Scrolling up, a stream reading towards the playhead from below serves
+    // the frames the visitor is about to reach: it goes on until the
+    // playhead passes it. Re-aiming it whenever the playhead moves (the
+    // run below the playhead moves with it) would cost a request per frame.
+    const streamFrame = h.slots[slotAt(h, stream.pos)]!.index;
+    const below = dir < 0 && streamFrame <= at && streamFrame >= at - BEHIND_FRAMES - REACH_FRAMES;
+    if (short || below || !mayReaim) return item(p, stream.pos, p.layout.bytes, step);
   }
   return item(p, start, p.layout.bytes, step);
+}
+
+/**
+ * The dissolve pin's bytes: the header first when it is not held (the pin's
+ * slot is unknown until then), else the pin's slot. A stream on the pack a
+ * few frames short of the slot, with nothing held in between, reaches it.
+ */
+function pinItem(p: PlanPack, frame: number, stream: PlanStream | undefined): PlanItem | null {
+  const h = p.bytes.header;
+  if (!h) return item(p, p.bytes.firstMissing(0, p.layout.header), p.layout.header, "pin");
+  const si = h.slotOf[Math.min(p.count - 1, Math.max(0, frame))] ?? -1;
+  if (si < 0) return null;
+  const s = h.slots[si]!;
+  const start = p.bytes.firstMissing(s.offset, s.offset + s.length);
+  if (start < 0) return null;
+  if (stream && stream.pos < stream.end && stream.pos <= start && si - slotAt(h, stream.pos) <= REACH_FRAMES && p.bytes.nextHeld(stream.pos, start) === start) {
+    return item(p, stream.pos, s.offset + s.length, "pin");
+  }
+  return item(p, start, s.offset + s.length, "pin");
 }
 
 /** A skeleton range, merged with the remaining-frames range when that directly follows it. */
@@ -221,11 +259,15 @@ export function planPacks(input: PlanInput): PlanOutput {
     const p = usable(0);
     const it = p ? (p.rangeless ? wholeItem(p, "opening") : openingItem(p)) : null;
     if (it) items.push(it);
-  } else {
+  } else if (input.active >= 0) {
     const A = usable(input.active);
     const N = usable(input.active + dir);
     const first: PlanItem[] = [];
     const later: PlanItem[] = [];
+    // The dissolve pin, unless its film is the one being read anyway (the
+    // neighbour when scrolling up: its plan reaches its last frames first).
+    const pin = input.pin ? usable(input.pin.pack) : null;
+    const pinIt = pin && pin !== A && pin !== N && !pin.rangeless ? pinItem(pin, input.pin!.frame, streamOf(pin.key)) : null;
     for (const [p, role] of [
       [A, "active"],
       [N, "neighbour"],
@@ -243,10 +285,14 @@ export function planPacks(input: PlanInput): PlanOutput {
         const sk = item(p, p.bytes.firstMissing(0, p.layout.skeletonEnd), p.layout.skeletonEnd, skelStep);
         if (sk) first.push(sk);
         else if (active && input.settled && h) {
-          // One bounded request for the missing frames of the wanted window.
+          // One bounded request for the missing frames of the wanted window:
+          // from the first missing remaining frame to the end of the last
+          // one (the skeleton frames are held; the window's last frame may
+          // be one of them, its slot then lies before the remaining frames).
           const lo = Math.max(0, Math.min(input.lo, frame));
           const hi = Math.min(p.count - 1, Math.max(input.hi, frame));
-          const w = item(p, firstMissingRest(p, h, lo, hi), frameEnd(p, h, hi), "window");
+          const last = lastMissingRestFrame(p, h, lo, hi);
+          const w = last >= 0 ? item(p, firstMissingRest(p, h, lo, hi), frameEnd(p, h, last), "window") : null;
           if (w) first.push(w);
         }
         continue;
@@ -261,7 +307,10 @@ export function planPacks(input: PlanInput): PlanOutput {
       const sk = skeletonItem(p, skelStep, rest, !h && dir > 0 && entry <= REACH_FRAMES);
       if (sk) first.push(sk);
       else if (rest) later.push(rest);
+      // The pin right after the active film's skeleton.
+      if (active && pinIt) first.push(pinIt);
     }
+    if (!A && pinIt) first.unshift(pinIt);
     items.push(...first, ...later);
   }
 

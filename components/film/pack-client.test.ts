@@ -38,7 +38,7 @@ function fakeWorker() {
   return w;
 }
 
-function setup(o: { scrollY?: number; hash?: string; start?: () => WorkerLike } = {}) {
+function setup(o: { scrollY?: number | (() => number); hash?: string; start?: () => WorkerLike } = {}) {
   const reel = [variant("a"), variant("b"), variant("c", false)];
   const stats = newFilmStats();
   const w = fakeWorker();
@@ -55,7 +55,7 @@ function setup(o: { scrollY?: number; hash?: string; start?: () => WorkerLike } 
         return w;
       }),
     env: {
-      scrollY: () => o.scrollY ?? 0,
+      scrollY: () => (typeof o.scrollY === "function" ? o.scrollY() : (o.scrollY ?? 0)),
       hash: () => o.hash ?? "",
       hidden: () => false,
       constrained: () => false,
@@ -189,4 +189,50 @@ test("a decode that lands after the client was reset is closed, not leaked", () 
   let closed = 0;
   onmessage?.({ data: { t: "decoded", id: req.id, ok: true, bitmap: { close: () => closed++ } as unknown as ImageBitmap, ms: 1 } } as MessageEvent<FromWorker>);
   assert.equal(closed, 1);
+});
+
+// ---- Regressions (review of Phase 4) ----
+
+test("whether the visitor has scrolled is read when the reel starts, not during render; a film past the first counts", () => {
+  // A client-side link from a scrolled page: scrollY still holds the old
+  // page's offset while the new route renders, then the router resets it.
+  let y = 1800;
+  const a = setup({ scrollY: () => y });
+  y = 0;
+  a.client.where(at(a.reel[0]!));
+  assert.equal((a.w.sent[2] as Extract<ToWorker, { t: "where" }>).where.scrolled, false, "scrollY at render time is not a scroll");
+  // Scroll restoration after the worker started, with no scroll event yet: the next decision sees it.
+  y = 2400;
+  a.client.where(at(a.reel[0]!, 2));
+  assert.equal((a.w.sent.at(-1) as Extract<ToWorker, { t: "where" }>).where.scrolled, true);
+  // The active film is not the first: the visitor has scrolled.
+  const b = setup();
+  b.client.where(at(b.reel[1]!));
+  assert.equal((b.w.sent[2] as Extract<ToWorker, { t: "where" }>).where.scrolled, true);
+});
+
+test("a re-sent reel keeps a failed pack in its place, marked failed", () => {
+  const { client, reel, w } = setup();
+  client.where(at(reel[0]!));
+  w.reply({ t: "failed", key: "b@pk1", reason: "pack answered 404" });
+  client.dispose();
+  client.where(at(reel[1]!));
+  const packs = w.sent.filter((m): m is Extract<ToWorker, { t: "packs" }> => m.t === "packs").at(-1)!;
+  assert.deepEqual(
+    packs.packs.map((p) => [p.key, p.film, !!p.failed]),
+    [
+      ["a@pk1", 0, false],
+      ["b@pk1", 1, true],
+    ],
+  );
+  const where = w.sent.at(-1) as Extract<ToWorker, { t: "where" }>;
+  assert.equal(where.where.key, "b@pk1", "the worker finds the visitor's film in the reel");
+});
+
+test("the dissolve pin goes to the worker with the position", () => {
+  const { client, reel, w } = setup();
+  client.where({ ...at(reel[1]!), pin: { variant: reel[0]!, frame: 7 } });
+  assert.deepEqual((w.sent.at(-1) as Extract<ToWorker, { t: "where" }>).where.pin, { key: "a@pk1", frame: 7 });
+  client.where(at(reel[1]!, 3));
+  assert.equal((w.sent.at(-1) as Extract<ToWorker, { t: "where" }>).where.pin, null);
 });

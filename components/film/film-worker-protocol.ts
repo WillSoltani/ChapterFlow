@@ -9,7 +9,11 @@ import type { NetPack, NetStats, NetWhere } from "./pack-net";
 export type ToWorker =
   /** First message: the compressed-byte cap (48 MB phones, 160 MB otherwise). */
   | { t: "init"; cap: number }
-  /** The reel's packs for the current view, in film order (re-sent when the view changes). */
+  /**
+   * The reel's packs for the current view, in film order (re-sent when the
+   * view changes or after a new worker started). A pack that failed earlier
+   * in the page view keeps its place with `failed: true` and is never read.
+   */
   | { t: "packs"; packs: Array<NetPack & { type: string }> }
   /** Where the visitor is (one per scroll decision, and on scroll/visibility/connection changes). */
   | { t: "where"; where: NetWhere }

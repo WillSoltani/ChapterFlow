@@ -338,3 +338,110 @@ test("a small bounce does not swap the neighbour; a real reversal does", async (
   await settle(50);
   assert.ok(requested().has("f0"), "scrolling up: the previous film");
 });
+
+// ---- Regressions (review of Phase 4) ----
+
+test("a playhead bouncing across a film cut does not swap the films being read", async () => {
+  const films = [film(241), film(241, 1), film(241, 2), film(241, 3)];
+  const t = setup(films, { chunk: 30 });
+  for (let f = 200; f <= 240; f += 4) {
+    t.where({ key: "f1", frame: f });
+    await settle(3);
+  }
+  t.where({ key: "f2", frame: 0 });
+  await settle(3);
+  const before = t.srv.log.length;
+  for (let i = 0; i < 20; i++) {
+    t.where({ key: "f1", frame: 240, direction: -1 });
+    await settle(3);
+    t.where({ key: "f2", frame: 0, direction: 1 });
+    await settle(3);
+  }
+  const during = t.srv.log.slice(before);
+  assert.ok(during.length <= 2, `${during.length} requests while bouncing: ${during.map((l) => `${l.url.slice(7, 9)} ${l.range}`).join(", ")}`);
+  assert.ok(!during.some((l) => l.url.includes("/f0/")), "the film behind is not read");
+  // Travelling on into film 2 makes it the active film: film 3 is read.
+  for (let f = 1; f <= 20; f++) {
+    t.where({ key: "f2", frame: f });
+    await settle(3);
+  }
+  assert.ok(t.srv.log.some((l) => l.url.includes("/f3/")), "the next film once the visitor is in film 2");
+  assert.equal(t.net.stats.packBytesRepeated, 0);
+});
+
+test("a failed pack stays in the reel: the visitor on that film prepares the next film, not the first", async () => {
+  const films = [film(40), film(40, 1), film(40, 2), film(40, 3), film(40, 4)];
+  const t = setup(films, { chunk: 50 });
+  // The page re-sends the reel (another view, a new worker) with film 3's pack failed.
+  t.net.setPacks(t.packs.map((p, i) => (i === 3 ? { ...p, failed: true } : p)));
+  t.where({ key: "f3", frame: 5, direction: 1 });
+  await settle(400);
+  const read = new Set(t.srv.log.map((l) => l.url.slice(7, 9)));
+  assert.ok(!read.has("f0"), `film 0 was read: ${[...read].join(",")}`);
+  assert.ok(!read.has("f3"), "the failed pack is not read again");
+  assert.ok(read.has("f4"), "the next film is prepared");
+});
+
+test("frames that will not decode from held bytes make the pack unusable (fall back), not a retry loop", async () => {
+  const t = setup([film(20)]);
+  t.where();
+  await settle(400);
+  assert.ok(t.net.frame("f0", 3));
+  t.net.decodeFailed("f0");
+  t.net.decodeFailed("f0");
+  assert.equal(t.failed().length, 0, "two failures: still served");
+  t.net.decodeFailed("f0");
+  assert.equal(t.failed().length, 1, "the third failure: the pack is unusable");
+  assert.match(t.failed()[0]!.reason, /decode/);
+  assert.equal(t.net.frame("f0", 3), null, "its bytes are dropped");
+  const n = t.srv.log.length;
+  t.net.decodeFailed("f0");
+  await t.fc.advance(10_000);
+  assert.equal(t.failed().length, 1);
+  assert.equal(t.srv.log.length, n, "nothing read again");
+});
+
+test("the dissolve pin: the previous film's last frame is read, and kept under the byte cap", async () => {
+  const a = film(279);
+  const b = film(241, 1);
+  const c = film(241, 2);
+  const t = setup([a, b, c], { chunk: 400 });
+  // An anchor at the start of film 1: film 0 was never read.
+  t.where({ key: "f1", frame: 0, pin: { key: "f0", frame: 278 } });
+  await settle(600);
+  assert.ok(t.net.frame("f0", 278), "the pin arrived");
+  const f0 = t.srv.log.filter((l) => l.url.includes("/f0/"));
+  assert.equal(f0.length, 2, "its header, then its slot");
+  assert.equal(f0[0]!.range, `bytes=0-${a.layout.header - 1}`);
+  assert.ok(!t.net.frame("f0", 100), "nothing else of film 0");
+
+  // Under the byte cap the pin's frame is the last of its film to go.
+  const films = [film(40), film(40, 1), film(40, 2), film(40, 3)];
+  const size = films[0]!.layout.bytes;
+  const u = setup(films, {}, Math.floor(size * 2.5));
+  u.where({ key: "f0" });
+  await settle(2000);
+  u.where({ key: "f1", frame: 5 });
+  await settle(2000);
+  u.where({ key: "f2", frame: 5, pin: { key: "f1", frame: 39 } });
+  await settle(2000);
+  assert.ok(u.net.stats.packBytesHeld <= Math.floor(size * 2.5) + 200);
+  assert.ok(u.net.frame("f1", 39), "the pin survived");
+});
+
+test("scrolling up through a film faster than the network: a few requests, not one per frame", async () => {
+  const films = [film(241), film(241, 1), film(241, 2)];
+  const t = setup(films, { chunk: 24 });
+  // Coming up from film 2 into film 1's last frame; the skeletons arrive first.
+  t.where({ key: "f1", frame: 240, direction: -1 });
+  for (let i = 0; i < 400 && !(t.net.frame("f1", 0) && t.net.frame("f1", 236)); i++) await settle(5);
+  assert.ok(t.net.frame("f1", 0) && t.net.frame("f1", 236), "film 1's skeleton");
+  const before = t.srv.log.filter((l) => l.url.includes("/f1/")).length;
+  for (let f = 239; f >= 100; f--) {
+    t.where({ key: "f1", frame: f, direction: -1 });
+    await settle(2);
+  }
+  const f1 = t.srv.log.filter((l) => l.url.includes("/f1/")).slice(before);
+  assert.ok(f1.length <= 4, `${f1.length} requests for 140 frames: ${f1.map((l) => l.range).join(", ")}`);
+  assert.equal(t.net.stats.packBytesRepeated, 0);
+});

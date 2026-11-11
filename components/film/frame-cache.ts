@@ -233,8 +233,12 @@ export type PackSource = {
   holds(variant: FilmVariant, index: number): boolean;
   /** Decode a held frame in the worker. Rejects when its bytes are gone or the pack failed. */
   decode(variant: FilmVariant, index: number): Promise<{ bitmap: ImageBitmap; ms: number }>;
-  /** Where the visitor is: once per scroll decision (the strong plan). */
-  where(at: { variant: FilmVariant; frame: number; direction: 1 | -1; lo: number; hi: number }): void;
+  /**
+   * Where the visitor is: once per scroll decision (the strong plan). `pin`:
+   * the dissolve frame while it is wanted and not decoded, so the worker
+   * reads it even though its film is neither the active one nor the next.
+   */
+  where(at: { variant: FilmVariant; frame: number; direction: 1 | -1; lo: number; hi: number; pin?: { variant: FilmVariant; frame: number } | null }): void;
   /** Frames of `variant` arrived (`added`), or its mode changed (null: it fell back to frames). */
   subscribe(fn: (variant: FilmVariant, added: readonly number[] | null) => void): () => void;
 };
@@ -457,7 +461,10 @@ export class FrameBudget {
         hi = Math.max(hi, w.index);
       }
       const frame = Math.min(active.variant.count - 1, Math.max(0, Math.round(plan.active.center)));
-      this.packs.where({ variant: active.variant, frame, direction: plan.active.direction, lo, hi });
+      // The dissolve pin, while it is in the wanted set and not decoded.
+      const pinW = plan.pin && this.isWanted(plan.pin.cache, plan.pin.index) ? plan.pin : undefined;
+      const pin = pinW && pinW.cache.variant.pack && !pinW.cache.has(pinW.index) ? { variant: pinW.cache.variant, frame: pinW.index } : null;
+      this.packs.where({ variant: active.variant, frame, direction: plan.active.direction, lo, hi, pin });
     }
     this.stats.mode = this.packMode(active) ? "pack" : "frames";
     this.pump();

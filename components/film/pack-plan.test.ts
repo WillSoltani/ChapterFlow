@@ -310,3 +310,106 @@ test("hidden document: streams already open go on, no new one opens", () => {
   for (let i = 0; i < 2000 && sim.streams.length; i++) sim.step(500);
   assert.equal(sim.requests.length, 2, "the open streams finished; nothing new while hidden");
 });
+
+// ---- Regressions (review of Phase 4) ----
+
+/** Hold a pack's header and skeleton, as if its skeleton stream had finished. */
+function holdSkeleton(p: SimPack) {
+  const end = p.store.layout.skeletonEnd;
+  assert.equal(p.store.write(0, p.buf.subarray(0, end)).error, undefined);
+}
+
+test("constrained, settled: the window's missing frames are read even when the window ends on a skeleton frame", () => {
+  for (const hi of [128, 130, 132, 240]) {
+    const sim = new Sim([241, 241]);
+    holdSkeleton(sim.pack(0));
+    holdSkeleton(sim.pack(1));
+    const lo = hi - 40;
+    sim.where = { ...sim.where, constrained: true, settled: true, frame: hi - 10, lo, hi };
+    sim.plan();
+    const w = sim.requestsFor("f0");
+    assert.equal(w.length, 1, `hi=${hi}: one window request`);
+    assert.equal(w[0]?.step, "window", `hi=${hi}`);
+    const lastRest = hi % 4 === 0 ? hi - 1 : hi;
+    assert.equal(w[0]?.end, sim.slot(0, lastRest).offset + sim.slot(0, lastRest).length, `hi=${hi}: bounded after the window's last remaining frame`);
+    for (let i = 0; i < 400 && sim.streams.length; i++) sim.step(300);
+    for (let f = lo; f <= hi; f++) assert.ok(sim.pack(0).store.held(f), `hi=${hi}: frame ${f}`);
+    assert.equal(sim.requestsFor("f0").length, 1, `hi=${hi}: nothing after the window`);
+    sim.assertNoRepeats();
+  }
+});
+
+test("scrolling up through frames that have not arrived: no request per frame", () => {
+  const sim = new Sim([241, 241]);
+  holdSkeleton(sim.pack(0));
+  holdSkeleton(sim.pack(1));
+  // The network is ~4x slower than the playhead (24 bytes a step, frames ~100 bytes).
+  for (let f = 240; f >= 100; f--) {
+    sim.where = { ...sim.where, active: 1, frame: f, direction: -1, lo: Math.max(0, f - 30), hi: f };
+    sim.step(24);
+  }
+  const reqs = sim.requestsFor("f1");
+  assert.ok(reqs.length <= Math.ceil(140 / BEHIND_FRAMES) + 2, `${reqs.length} requests for 140 frames scrolled up`);
+  // Every request reads a useful run, not a frame or two.
+  for (const r of reqs.slice(0, -1)) assert.ok(r.end - r.start > 1000, `a ${r.end - r.start}-byte request`);
+  sim.assertNoRepeats();
+});
+
+test("the dissolve pin: the previous film's last frame is read when it is not held", () => {
+  // An anchor lands at the start of film 1: film 0 was never read.
+  const sim = new Sim([279, 241, 241]);
+  sim.where = { ...sim.where, active: 1, frame: 0, jumped: true, lo: 0, hi: 30, pin: { pack: 0, frame: 278 } };
+  sim.plan();
+  assert.deepEqual(
+    sim.requests.map((r) => `${r.key}:${r.step}`),
+    ["f1:skeleton", "f0:pin"],
+    "the active skeleton, then the pin (its header first: film 0 was never read)",
+  );
+  for (let i = 0; i < 400 && !sim.pack(0).store.held(278); i++) sim.step(200);
+  assert.ok(sim.pack(0).store.held(278), "the pin arrived");
+  const f0 = sim.requestsFor("f0");
+  assert.equal(f0.length, 2, "the header, then the pin's slot");
+  assert.equal(f0[0]?.end, sim.pack(0).store.layout.header);
+  assert.equal(f0[1]?.start, sim.slot(0, 278).offset);
+  assert.equal(f0[1]?.end, sim.slot(0, 278).offset + sim.slot(0, 278).length);
+  assert.ok(sim.requestsFor("f2").length >= 1, "the neighbour follows");
+  // Held: nothing more for film 0.
+  for (let i = 0; i < 50; i++) sim.step(200);
+  assert.equal(sim.requestsFor("f0").length, 2);
+  sim.assertNoRepeats();
+
+  // A forward pass: film 0's stream is a few frames short of its last frame
+  // when the visitor enters film 1; it is left to reach the pin.
+  const b = new Sim([279, 241, 241]);
+  holdSkeleton(b.pack(0));
+  const st = b.pack(0).store;
+  assert.equal(st.write(st.layout.skeletonEnd, b.pack(0).buf.subarray(st.layout.skeletonEnd, b.slot(0, 270).offset)).error, undefined);
+  b.where = { ...b.where, active: 0, frame: 270 };
+  b.plan();
+  assert.equal(b.requestsFor("f0").at(-1)?.start, b.slot(0, 270).offset);
+  b.where = { ...b.where, frame: 276 };
+  b.plan();
+  b.where = { ...b.where, active: 1, frame: 0, pin: { pack: 0, frame: 278 } };
+  b.plan();
+  assert.equal(b.requestsFor("f0").length, 1, "the stream reaching the pin goes on");
+  for (let i = 0; i < 400 && !st.held(278); i++) b.step(100);
+  assert.ok(st.held(278));
+  b.assertNoRepeats();
+
+  // Scrolling up, the pin's film is the neighbour: its plan reaches the pin, no extra request.
+  const c = new Sim([279, 241, 241]);
+  holdSkeleton(c.pack(0));
+  holdSkeleton(c.pack(1));
+  c.where = { ...c.where, active: 1, frame: 200, direction: -1, pin: { pack: 0, frame: 278 } };
+  c.plan();
+  assert.ok(!c.requests.some((r) => r.step === "pin"));
+  assert.ok(c.requestsFor("f0").some((r) => r.start <= c.slot(0, 278).offset && r.end >= c.slot(0, 278).offset + c.slot(0, 278).length));
+});
+
+test("no active film (its key is not in the reel): nothing is read", () => {
+  const sim = new Sim([241, 241, 241]);
+  sim.where = { ...sim.where, active: -1 };
+  const out = sim.plan();
+  assert.deepEqual(out.open, []);
+  assert.deepEqual(out.items, []);
+});

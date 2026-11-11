@@ -10,6 +10,10 @@
  *   decode    createImageBitmap(Blob of the frame's bytes); the bitmap is
  *             transferred to the page with the time the decode took
  *
+ * A frame whose held bytes will not decode is answered `ok: false` and
+ * counted against its pack (PackNet.decodeFailed): the third makes the pack
+ * unusable, so the page loads that variant frame by frame.
+ *
  * Protocol: film-worker-protocol.ts. On init the worker checks it has
  * createImageBitmap, fetch and a streaming response body; without them it
  * answers `ready: false` and the page loads frames itself.
@@ -55,6 +59,9 @@ async function decode(id: number, key: string, index: number) {
     post({ t: "decoded", id, ok: true, bitmap, ms: performance.now() - t0 }, [bitmap]);
   } catch {
     post({ t: "decoded", id, ok: false, reason: "error" });
+    // Held bytes that will not decode: a few of these make the pack unusable
+    // (the page falls back to frames) instead of retrying the same bytes.
+    net?.decodeFailed(key);
   }
 }
 

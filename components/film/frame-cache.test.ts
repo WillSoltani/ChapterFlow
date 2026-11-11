@@ -598,7 +598,7 @@ function fakePacks(opts: { auto?: boolean } = {}) {
   const failed = new Set<string>();
   const listeners = new Set<(v: FilmVariant, added: readonly number[] | null) => void>();
   const decodes: Array<{ name: string; index: number } & Deferred<{ bitmap: ImageBitmap; ms: number }>> = [];
-  const wheres: Array<{ name: string; frame: number; lo: number; hi: number }> = [];
+  const wheres: Array<{ name: string; frame: number; lo: number; hi: number; pin: string | null }> = [];
   const bitmaps: Array<{ closed: number }> = [];
   let inFlight = 0;
   let maxInFlight = 0;
@@ -628,7 +628,7 @@ function fakePacks(opts: { auto?: boolean } = {}) {
       if (opts.auto) void tick().then(() => d.resolve({ bitmap: bitmap(), ms: 3 }));
       return done;
     },
-    where: (at) => wheres.push({ name: at.variant.name, frame: at.frame, lo: at.lo, hi: at.hi }),
+    where: (at) => wheres.push({ name: at.variant.name, frame: at.frame, lo: at.lo, hi: at.hi, pin: at.pin ? `${at.pin.variant.name}#${at.pin.frame}` : null }),
     subscribe: (fn) => {
       listeners.add(fn);
       return () => listeners.delete(fn);
@@ -852,4 +852,26 @@ test("draw gauges: the last paint's wanted and drawn frames", async () => {
   assert.equal(budget.stats.drawWant, 200);
   assert.ok(budget.stats.drawAt < 200);
   assert.ok(budget.stats.mainThreadDecodes > 0, "per-frame decodes run on the page");
+});
+
+test("pack mode: the dissolve pin is asked of the worker while wanted and not decoded; it decodes when it arrives", async () => {
+  const packs = fakePacks({ auto: true });
+  const budget = new FrameBudget(19 * FRAME, manualIO().io);
+  budget.attachPacks(packs.source);
+  const prev = new FrameCache(packVariant("prev"), budget);
+  const a = new FrameCache(packVariant("a"), budget);
+  // An anchor at the start of film a: nothing of the previous film is held.
+  budget.want({ active: { cache: a, center: 0, direction: 1 }, pin: { cache: prev, index: 240, until: 14 } });
+  assert.equal(packs.wheres.at(-1)?.pin, "prev#240", "the worker is asked for the pin");
+  await settle(4);
+  assert.ok(!prev.has(240));
+  packs.arrive(prev.variant, [240]);
+  await settle(4);
+  assert.ok(prev.has(240), "decoded when its bytes arrive");
+  budget.want({ active: { cache: a, center: 1, direction: 1 }, pin: { cache: prev, index: 240, until: 14 } });
+  assert.equal(packs.wheres.at(-1)?.pin, null, "decoded: no longer asked");
+  // Far past the dissolve the pin is not wanted, so not asked.
+  prev.evict(240);
+  budget.want({ active: { cache: a, center: 200, direction: 1 }, pin: { cache: prev, index: 240, until: 14 } });
+  assert.equal(packs.wheres.at(-1)?.pin, null);
 });

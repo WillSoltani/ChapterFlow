@@ -20,10 +20,22 @@
  * event: the page loads that variant frame by frame for the rest of the
  * page view.
  *
+ * Frames whose bytes are held but will not decode (`decodeFailed`, from the
+ * worker's createImageBitmap) count against their pack: the third failure
+ * makes it unusable the same way, instead of retrying the same bytes.
+ *
  * Bytes are capped (`capBytes`: 48 MB on phones, 160 MB otherwise). Over the
  * cap, the variant farthest from the active film loses frames first (from
- * the end of its file); the active film, the neighbour being prepared and
- * any pack with an open stream never do.
+ * the end of its file); the active film, the neighbour being prepared, any
+ * pack with an open stream and the dissolve pin's frame never do.
+ *
+ * Position. The playhead's film and frame come with every `where`. The
+ * direction flips only after DIRECTION_FRAMES of travel against it, counted
+ * across film cuts too (a cut is one frame of travel), and the film the plan
+ * works from (`active`) follows the playhead into the film it travels
+ * towards only DIRECTION_FRAMES frames past the cut (at once on a jump or a
+ * stop). So a playhead wobbling across a cut keeps the same two films and
+ * the same streams instead of swapping them on every crossing.
  */
 
 import type { PackLayout } from "./pack-format";
@@ -38,7 +50,15 @@ export type NetClock = {
 
 export type NetFetch = (url: string, init: { headers: Record<string, string>; signal: AbortSignal }) => Promise<Response>;
 
-export type NetPack = { key: string; url: string; layout: PackLayout; count: number; film: number };
+export type NetPack = {
+  key: string;
+  url: string;
+  layout: PackLayout;
+  count: number;
+  film: number;
+  /** The pack failed earlier in this page view (the page loads it frame by frame): never read. */
+  failed?: boolean;
+};
 
 export type NetWhere = {
   /** Key of the active film's pack in the current view (null: not a pack variant). */
@@ -50,6 +70,8 @@ export type NetWhere = {
   scrolled: boolean;
   hidden: boolean;
   constrained: boolean;
+  /** The dissolve pin (the previous film's last frame) while its bytes are wanted; null = none. */
+  pin?: { key: string; frame: number } | null;
 };
 
 export type PackProgress = { held: number; total: number; skeleton: boolean };
@@ -75,6 +97,8 @@ export const JUMP_FRAMES = 24;
 /** The neighbour flips with the scroll direction only after this many frames of travel. */
 export const DIRECTION_FRAMES = 8;
 const RETRY_MS = [400, 800, 1600];
+/** Frames of a pack that would not decode from held bytes before the pack is unusable. */
+export const DECODE_FAILURES_MAX = 3;
 const STATS_EVERY_MS = 250;
 
 type Entry = {
@@ -84,6 +108,7 @@ type Entry = {
   failed: string | null;
   attempts: number;
   retryAt: number;
+  decodeFailures: number;
 };
 
 type Stream = PlanStream & { ctrl: AbortController; stopped: boolean };
@@ -95,8 +120,13 @@ export class PackNet {
   private readonly streams = new Map<number, Stream>();
   private nextId = 1;
   private where: NetWhere | null = null;
+  /** The playhead's film (reel index; -1 = not a pack film of this reel). */
+  private film = -1;
+  /** The film the plan works from: the playhead's, or the one it just left (see the file header). */
   private active = -1;
   private dir: 1 | -1 = 1;
+  /** Travel (frames), continuous across adjacent films; `anchor` = where the direction was last confirmed. */
+  private pos = 0;
   private anchor = 0;
   private lastMove = 0;
   private jumped = false;
@@ -119,37 +149,58 @@ export class PackNet {
   setPacks(list: NetPack[]) {
     this.reel = [];
     for (const p of list) {
+      // A failed pack keeps its place in the reel (the visitor on that film
+      // still has a neighbour) but is never read.
       this.reel[p.film] = p.key;
-      if (!this.entries.has(p.key)) {
-        this.entries.set(p.key, { pack: p, store: new PackBytes(p.key, p.layout, p.count), rangeless: false, failed: null, attempts: 0, retryAt: 0 });
+      let e = this.entries.get(p.key);
+      if (!e) {
+        e = { pack: p, store: new PackBytes(p.key, p.layout, p.count), rangeless: false, failed: null, attempts: 0, retryAt: 0, decodeFailures: 0 };
+        this.entries.set(p.key, e);
       }
+      if (p.failed && !e.failed) this.markUnusable(e, "failed earlier in this page view", false);
     }
     this.plan();
+  }
+
+  /**
+   * A held frame of `key` would not decode. The DECODE_FAILURES_MAX-th makes
+   * the pack unusable (the page loads that variant frame by frame).
+   */
+  decodeFailed(key: string) {
+    const e = this.entries.get(key);
+    if (!e || e.failed) return;
+    e.decodeFailures++;
+    if (e.decodeFailures >= DECODE_FAILURES_MAX) this.markUnusable(e, `${e.decodeFailures} frames would not decode`, true);
   }
 
   setWhere(w: NetWhere) {
     const now = this.io.clock.now();
     const idx = w.key ? this.reel.indexOf(w.key) : -1;
     const prev = this.where;
-    if (idx !== this.active) {
-      const step = idx - this.active;
-      if (this.active >= 0 && idx >= 0 && Math.abs(step) === 1) this.dir = step > 0 ? 1 : -1;
-      else this.dir = w.direction;
-      if (this.active >= 0 && Math.abs(step) > 1) this.jumped = true;
+    const delta = prev && idx >= 0 && this.film >= 0 ? this.travel(this.film, prev.frame, idx, w.frame) : null;
+    if (delta === null) {
+      // The first position, a film without a pack, or more than one film
+      // away: start over from the visitor's own direction.
+      if (!prev || idx !== this.film || prev.frame !== w.frame) this.lastMove = now;
+      if (prev && this.film >= 0 && idx >= 0) this.jumped = true;
+      this.pos = 0;
+      this.anchor = 0;
+      this.dir = w.direction;
       this.active = idx;
-      this.anchor = w.frame;
-      this.lastMove = now;
-    } else if (!prev || prev.frame !== w.frame) {
-      // Direction with hysteresis: a small bounce does not swap the neighbour.
-      const d = w.frame - this.anchor;
-      if (d === 0 || Math.sign(d) === this.dir) this.anchor = w.frame;
+    } else if (delta !== 0) {
+      // Direction with hysteresis: a small bounce (within a film or across
+      // a cut) does not swap the neighbour.
+      this.pos += delta;
+      const d = this.pos - this.anchor;
+      if (Math.sign(d) === this.dir) this.anchor = this.pos;
       else if (Math.abs(d) >= DIRECTION_FRAMES) {
         this.dir = d > 0 ? 1 : -1;
-        this.anchor = w.frame;
+        this.anchor = this.pos;
       }
-      if (prev && Math.abs(w.frame - prev.frame) >= JUMP_FRAMES) this.jumped = true;
+      if (Math.abs(delta) >= JUMP_FRAMES) this.jumped = true;
       this.lastMove = now;
     }
+    this.film = idx;
     this.where = w;
     this.cancelSettle?.();
     this.cancelSettle = this.io.clock.later(() => {
@@ -191,21 +242,59 @@ export class PackNet {
     }
   }
 
+  /** Frames of travel from (film fa, frame a) to (film fb, frame b); null when not the same or adjacent films. */
+  private travel(fa: number, a: number, fb: number, b: number): number | null {
+    if (fa === fb) return b - a;
+    if (Math.abs(fb - fa) !== 1) return null;
+    const ca = this.countOf(fa);
+    const cb = this.countOf(fb);
+    if (!ca || !cb) return null;
+    // Crossing a cut is one frame of travel: last frame → first frame.
+    return fb > fa ? ca - a + b : -(a + (cb - b));
+  }
+
+  private countOf(film: number): number {
+    const key = this.reel[film];
+    return key ? (this.entries.get(key)?.pack.count ?? 0) : 0;
+  }
+
+  /**
+   * The film the plan works from follows the playhead, except while the
+   * playhead is fewer than DIRECTION_FRAMES frames into the film it travels
+   * towards (a wobble across the cut keeps the two films and their streams).
+   */
+  private followFilm(now: number) {
+    const f = this.film;
+    const a = this.active;
+    if (f === a) return;
+    const w = this.where!;
+    const depth = this.dir > 0 ? w.frame : this.countOf(f) - 1 - w.frame;
+    const settled = now - this.lastMove >= SETTLE_MS;
+    if (f >= 0 && a >= 0 && f === a + this.dir && !this.jumped && !settled && depth < DIRECTION_FRAMES) return;
+    this.active = f;
+  }
+
   private planOnce() {
     const w = this.where!;
     const now = this.io.clock.now();
+    this.followFilm(now);
     const packs: Array<PlanPack | null> = this.reel.map((key) => {
       const e = key ? this.entries.get(key) : undefined;
       if (!e) return null;
       return { key, count: e.pack.count, layout: e.pack.layout, bytes: e.store, rangeless: e.rangeless, blocked: !!e.failed || e.retryAt > now };
     });
+    // The playhead in the film the plan works from, or (just past a cut) that
+    // film's edge towards it.
+    const inActive = this.film === this.active;
+    const frame = inActive ? w.frame : this.film > this.active ? Math.max(0, this.countOf(this.active) - 1) : 0;
+    const pinFilm = w.pin ? this.reel.indexOf(w.pin.key) : -1;
     const out = planPacks({
       packs,
       active: this.active,
-      frame: w.frame,
+      frame,
       direction: this.dir,
-      lo: w.lo,
-      hi: w.hi,
+      lo: inActive ? w.lo : frame,
+      hi: inActive ? w.hi : frame,
       scrolled: w.scrolled,
       constrained: w.constrained,
       settled: now - this.lastMove >= SETTLE_MS,
@@ -213,6 +302,7 @@ export class PackNet {
       hidden: w.hidden,
       streams: [...this.streams.values()].map(({ id, key, pos, end }) => ({ id, key, pos, end })),
       maxStreams: this.maxStreams,
+      pin: w.pin && pinFilm >= 0 ? { pack: pinFilm, frame: w.pin.frame } : null,
     });
     for (const id of out.stop) {
       const s = this.streams.get(id);
@@ -358,6 +448,11 @@ export class PackNet {
 
   private fail(s: Stream, e: Entry, reason: string) {
     this.stopStream(s);
+    this.markUnusable(e, reason, true);
+  }
+
+  /** The pack is unusable for the rest of the page view: streams stopped, bytes dropped. */
+  private markUnusable(e: Entry, reason: string, announce: boolean) {
     if (e.failed) return;
     e.failed = reason;
     for (const t of [...this.streams.values()]) if (t.key === e.pack.key) this.stopStream(t);
@@ -367,8 +462,10 @@ export class PackNet {
     const h = e.store.header;
     if (h) for (let si = 0; si < h.slots.length; si++) e.store.dropSlot(si);
     this.stats.packBytesHeld -= before - e.store.heldBytes;
-    if (dropped.length) this.io.emit({ t: "frames", key: e.pack.key, added: [], removed: dropped });
-    this.io.emit({ t: "failed", key: e.pack.key, reason });
+    if (announce) {
+      if (dropped.length) this.io.emit({ t: "frames", key: e.pack.key, added: [], removed: dropped });
+      this.io.emit({ t: "failed", key: e.pack.key, reason });
+    }
     this.emitStats(true);
     this.plan();
   }
@@ -378,11 +475,16 @@ export class PackNet {
     const out: Array<[string, number[]]> = [];
     if (this.stats.packBytesHeld <= this.capBytes) return out;
     const keep = new Set<string>();
-    const a = this.reel[this.active];
-    const n = this.reel[this.active + this.dir];
-    if (a) keep.add(a);
-    if (n) keep.add(n);
+    if (this.active >= 0) {
+      const a = this.reel[this.active];
+      const n = this.reel[this.active + this.dir];
+      if (a) keep.add(a);
+      if (n) keep.add(n);
+    }
+    const f = this.film >= 0 ? this.reel[this.film] : undefined;
+    if (f) keep.add(f);
     for (const s of this.streams.values()) keep.add(s.key);
+    const pin = this.where?.pin;
     const victims = [...this.entries.values()]
       .filter((e) => !keep.has(e.pack.key) && e.store.heldBytes > 0)
       .map((e) => {
@@ -395,6 +497,8 @@ export class PackNet {
       const dropped: number[] = [];
       if (h) {
         for (let si = h.slots.length - 1; si >= 0 && this.stats.packBytesHeld > this.capBytes; si--) {
+          // The dissolve pin's frame stays.
+          if (pin && pin.key === e.pack.key && h.slots[si]!.index === pin.frame) continue;
           const complete = e.store.held(h.slots[si]!.index);
           const freed = e.store.dropSlot(si);
           this.stats.packBytesHeld -= freed;
