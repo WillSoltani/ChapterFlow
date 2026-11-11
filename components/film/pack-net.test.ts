@@ -462,3 +462,119 @@ test("constrained connection, an anchor jump to a film's start: the dissolve pin
   assert.ok(!t.net.frame("f0", 276), "nothing else of film 0");
   assert.equal(t.net.stats.packBytesRepeated, 0);
 });
+
+/** Requests per wobble cycle across the cut between films 1 and 2 (f1:238 <-> f2:2), with `pause` ms after every move. */
+async function wobble(t: ReturnType<typeof setup>, pause: number, cycles = 20, opts: Partial<Parameters<PackNet["setWhere"]>[0]> = {}) {
+  const per: number[] = [];
+  const stay = async () => {
+    if (pause > 0) await t.fc.advance(pause);
+    else await settle(3);
+  };
+  for (let i = 0; i < cycles; i++) {
+    const before = t.srv.log.length;
+    t.where({ key: "f2", frame: 2, direction: 1, ...opts });
+    await stay();
+    t.where({ key: "f1", frame: 238, direction: -1, ...opts });
+    await stay();
+    per.push(t.srv.log.length - before);
+  }
+  return per;
+}
+
+const filmsOf = (l: Array<{ url: string }>) => [...new Set(l.map((x) => x.url.slice(7, 9)))].sort().join(",");
+
+test("wobbling across a film cut with pauses (0, 300, 1,000 ms), streams still reading: nothing after the first cycle, no stream given up", async () => {
+  for (const pause of [0, 300, 1000]) {
+    const films = [film(241), film(241, 1), film(241, 2), film(241, 3)];
+    const t = setup(films, { chunk: 30 });
+    // A forward pass through film 1, faster than the network, up to the cut.
+    for (let f = 0; f <= 240; f += 4) {
+      t.where({ key: "f1", frame: f });
+      await settle(3);
+    }
+    assert.equal(filmsOf(t.srv.log), "f1,f2", `pause ${pause}: the two films at the cut`);
+    const before = t.srv.log.length;
+    const per = await wobble(t, pause);
+    const during = t.srv.log.slice(before);
+    assert.deepEqual(per.slice(1), per.slice(1).map(() => 0), `pause ${pause}: requests per cycle ${per.join(",")}: ${during.map((l) => `${l.url.slice(7, 9)} ${l.range}`).join(", ")}`);
+    assert.ok(per[0]! <= 2, `pause ${pause}: ${per[0]} requests in the first cycle`);
+    assert.ok(!during.some((l) => l.url.includes("/f0/") || l.url.includes("/f3/")), `pause ${pause}: only the films at the cut (${filmsOf(during)})`);
+    assert.equal(t.net.stats.packBytesRepeated, 0, `pause ${pause}: no byte twice`);
+    if (pause > 0) {
+      // The streams on both films ran to the end of their files: every frame held, two requests in all.
+      await t.fc.advance(5000);
+      for (const k of ["f1", "f2"]) for (let i = 0; i < 241; i++) assert.ok(t.net.frame(k, i), `pause ${pause}: ${k} frame ${i}`);
+    }
+    // One request per film at the cut. A stop may re-aim a film's stream at
+    // the playhead once (the frames there are not held yet) and resume it
+    // where it was; no stream is given up because its film left the pair.
+    const all = t.srv.log.map((l) => `${l.url.slice(7, 9)} ${l.range}`);
+    assert.ok(t.srv.log.length <= (pause > 0 ? 4 : 2), `pause ${pause}: ${all.join(", ")}`);
+  }
+});
+
+test("wobbling across a cut reached scrolling up, with pauses: the films at the cut only, nothing after the first cycle", async () => {
+  for (const pause of [0, 300, 1000]) {
+    const films = [film(241), film(241, 1), film(241, 2), film(241, 3)];
+    const t = setup(films, { chunk: 400 });
+    for (let f = 120; f >= 0; f -= 4) {
+      t.where({ key: "f2", frame: f, direction: -1 });
+      await settle(5);
+    }
+    for (let i = 0; i < 2000 && !["f1", "f2"].every((k) => Array.from({ length: 241 }, (_, j) => t.net.frame(k, j)).every(Boolean)); i++) await settle(5);
+    const before = t.srv.log.length;
+    const per: number[] = [];
+    for (let i = 0; i < 20; i++) {
+      const n = t.srv.log.length;
+      t.where({ key: "f1", frame: 238, direction: -1 });
+      if (pause) await t.fc.advance(pause);
+      else await settle(3);
+      t.where({ key: "f2", frame: 2, direction: 1 });
+      if (pause) await t.fc.advance(pause);
+      else await settle(3);
+      per.push(t.srv.log.length - n);
+    }
+    const during = t.srv.log.slice(before);
+    assert.deepEqual(per.slice(1), per.slice(1).map(() => 0), `pause ${pause}: requests per cycle ${per.join(",")}: ${during.map((l) => `${l.url.slice(7, 9)} ${l.range}`).join(", ")}`);
+    assert.ok(!during.some((l) => l.url.includes("/f0/") || l.url.includes("/f3/")), `pause ${pause}: only the films at the cut (${filmsOf(during)})`);
+    assert.equal(t.net.stats.packBytesRepeated, 0);
+  }
+});
+
+test("a stop just past a cut: the frame at the playhead arrives (and, constrained, its window is read)", async () => {
+  for (const constrained of [false, true]) {
+    const films = [film(241), film(241, 1), film(241, 2), film(241, 3)];
+    const t = setup(films, { chunk: 60 });
+    for (let f = 0; f <= 240; f += 4) {
+      t.where({ key: "f1", frame: f, constrained });
+      await settle(3);
+    }
+    t.where({ key: "f2", frame: 5, lo: 0, hi: 30, constrained });
+    for (let ms = 0; ms < 3000 && !t.net.frame("f2", 5); ms += 100) await t.fc.advance(100);
+    assert.ok(t.net.frame("f2", 5), `constrained=${constrained}: the frame at the playhead arrived`);
+    if (constrained) {
+      const w = t.srv.log.filter((l) => l.url.includes("/f2/")).at(-1)!;
+      assert.match(w.range, /^bytes=\d+-\d+$/, "a bounded window request");
+    }
+    assert.equal(t.net.stats.packBytesRepeated, 0);
+  }
+});
+
+test("a steady forward pass over two films: one request per film, the next film once the visitor is in the second", async () => {
+  const films = [film(241), film(241, 1), film(241, 2), film(241, 3)];
+  const t = setup(films, { chunk: 60 });
+  for (const key of ["f0", "f1"]) {
+    for (let f = 0; f <= 240; f += 2) {
+      t.where({ key, frame: f });
+      await settle(3);
+      if (key === "f0") assert.ok(!t.srv.log.some((l) => l.url.includes("/f2/")), "nothing for a film two away");
+    }
+  }
+  await t.fc.advance(10_000);
+  const per = (k: string) => t.srv.log.filter((l) => l.url.includes(`/${k}/`)).length;
+  assert.equal(per("f0"), 1);
+  assert.equal(per("f1"), 1);
+  assert.ok(per("f2") >= 1, "film 2 once film 1 is active");
+  assert.equal(per("f3"), 0);
+  assert.equal(t.net.stats.packBytesRepeated, 0);
+});

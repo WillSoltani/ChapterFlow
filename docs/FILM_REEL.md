@@ -261,10 +261,18 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     (at most 64 + 16 frames below it) goes on until the playhead passes it, so
     an upward pass costs about one request per 64 frames, not one per frame.
     The neighbour flips with the direction only after 8 frames of travel,
-    counted across film cuts too, and the film the plan works from follows the
-    playhead into the next film only 8 frames past the cut (at once on a jump
-    or a stop): a playhead wobbling across a cut keeps the same two films and
-    streams. Constrained connections (`saveData`, or `effectiveType` slow-2g /
+    counted across film cuts too. Crossing a cut (not a jump) holds the two
+    films at that cut while the playhead stays within 8 frames of it on
+    either side, whichever way it moves and however long it pauses: the film
+    the plan works from stays the one the playhead came from and the
+    neighbour is the other film at the cut; past those 8 frames, or on a
+    jump, the playhead's own film and the direction decide again. So a
+    playhead wobbling across a cut, with pauses or not, keeps the same two
+    films and their streams: it costs no requests beyond what a stop costs
+    anywhere (at most one re-aim at the playhead, once, while the frames
+    there are missing). On a constrained connection a stop in the other film
+    of the pair makes it the active one (still paired with the film across
+    the cut), so its window is read. Constrained connections (`saveData`, or `effectiveType` slow-2g /
     2g / 3g): skeletons only (1, 2) while moving; after 300 ms still, the
     missing frames of the wanted window in one bounded request (from the first
     missing remaining frame to the end of the last one; the skeleton frames
@@ -647,12 +655,18 @@ toward a barred frame.
   playhead (no re-aim while moving, a stop re-aims, the skipped frames are
   filled), entering a film backwards, a jump into the middle, the pre-scroll
   stop and its continuation, constrained mode, eviction followed by a
-  return, a 200 answer to a Range request, a hidden document.
+  return, a 200 answer to a Range request, a hidden document, the dissolve
+  pin on a constrained connection (after an anchor jump, moving or settled;
+  scrolling up; a forward pass).
 - `components/film/pack-net.test.ts` — the controller against a fake server
   (real Response / ReadableStream): chunked reads, 404, retries then
   failure, a dropped connection resumed, length and header mismatches, 200
   to a Range request, the pre-scroll stop, the byte cap, hidden, re-aim on
-  a jump and on a stop, the direction hysteresis.
+  a jump and on a stop, the direction hysteresis, a steady forward pass, a
+  wobble across a cut with pauses of 0, 300 and 1,000 ms (coming down and
+  coming up: no request after the first cycle, only the two films at the
+  cut), a stop just past a cut, and the dissolve pin after an anchor jump on
+  a constrained connection.
 - `components/film/pack-client.test.ts` — the page side with a fake worker:
   lazy start, the scrolled flag, the held-frame mirror, per-variant and
   whole fallback, a late bitmap closed.

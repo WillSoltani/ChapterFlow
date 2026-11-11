@@ -31,11 +31,17 @@
  *
  * Position. The playhead's film and frame come with every `where`. The
  * direction flips only after DIRECTION_FRAMES of travel against it, counted
- * across film cuts too (a cut is one frame of travel), and the film the plan
- * works from (`active`) follows the playhead into the film it travels
- * towards only DIRECTION_FRAMES frames past the cut (at once on a jump or a
- * stop). So a playhead wobbling across a cut keeps the same two films and
- * the same streams instead of swapping them on every crossing.
+ * across film cuts too (a cut is one frame of travel). Crossing a cut (not a
+ * jump) holds the two films at that cut while the playhead stays fewer than
+ * DIRECTION_FRAMES frames from it on either side, however long it pauses and
+ * whichever way it goes: the film the plan works from (`active`) stays the
+ * one the playhead came from and the neighbour is the other film at the cut.
+ * So a playhead wobbling across a cut, with pauses or not, keeps the same two
+ * films and the same streams instead of swapping them on every crossing or
+ * stop. Past that zone, or on a jump, `active` is the playhead's film again.
+ * One exception on constrained connections: a stop in the other film makes
+ * it `active` (still paired with the film across the cut), since only the
+ * active film's wanted window is read there.
  */
 
 import type { PackLayout } from "./pack-format";
@@ -125,6 +131,8 @@ export class PackNet {
   /** The film the plan works from: the playhead's, or the one it just left (see the file header). */
   private active = -1;
   private dir: 1 | -1 = 1;
+  /** The cut held after a crossing (between films `cut` and `cut + 1`); -1 = none (see the file header). */
+  private cut = -1;
   /** Travel (frames), continuous across adjacent films; `anchor` = where the direction was last confirmed. */
   private pos = 0;
   private anchor = 0;
@@ -187,6 +195,7 @@ export class PackNet {
       this.anchor = 0;
       this.dir = w.direction;
       this.active = idx;
+      this.cut = -1;
     } else if (delta !== 0) {
       // Direction with hysteresis: a small bounce (within a film or across
       // a cut) does not swap the neighbour.
@@ -198,6 +207,8 @@ export class PackNet {
         this.anchor = this.pos;
       }
       if (Math.abs(delta) >= JUMP_FRAMES) this.jumped = true;
+      // A crossing (not a jump) from the film the plan works from holds that cut.
+      else if (idx !== this.film && (this.active === idx || this.active === this.film)) this.cut = Math.min(idx, this.film);
       this.lastMove = now;
     }
     this.film = idx;
@@ -259,19 +270,32 @@ export class PackNet {
   }
 
   /**
-   * The film the plan works from follows the playhead, except while the
-   * playhead is fewer than DIRECTION_FRAMES frames into the film it travels
-   * towards (a wobble across the cut keeps the two films and their streams).
+   * The film the plan works from: the playhead's, except while a crossed cut
+   * is held (the playhead fewer than DIRECTION_FRAMES frames from it on
+   * either side, no jump since): then the film it came from, whatever the
+   * direction and however long it pauses (see the file header).
    */
   private followFilm(now: number) {
     const f = this.film;
-    const a = this.active;
-    if (f === a) return;
-    const w = this.where!;
-    const depth = this.dir > 0 ? w.frame : this.countOf(f) - 1 - w.frame;
-    const settled = now - this.lastMove >= SETTLE_MS;
-    if (f >= 0 && a >= 0 && f === a + this.dir && !this.jumped && !settled && depth < DIRECTION_FRAMES) return;
+    const c = this.cut;
+    if (c >= 0) {
+      const w = this.where!;
+      const depth = f === c ? this.countOf(c) - 1 - w.frame : f === c + 1 ? w.frame : Infinity;
+      if (this.jumped || depth >= DIRECTION_FRAMES || (this.active !== c && this.active !== c + 1)) this.cut = -1;
+      else {
+        // Constrained: only the active film's window is read on a stop, so
+        // a stop in the other film of the pair makes it the active one.
+        if (w.constrained && now - this.lastMove >= SETTLE_MS) this.active = f;
+        return;
+      }
+    }
     this.active = f;
+  }
+
+  /** The plan's direction: towards the other film of a held cut, else the visitor's (with hysteresis). */
+  private planDir(): 1 | -1 {
+    if (this.cut >= 0 && (this.active === this.cut || this.active === this.cut + 1)) return this.active === this.cut ? 1 : -1;
+    return this.dir;
   }
 
   private planOnce() {
@@ -292,7 +316,7 @@ export class PackNet {
       packs,
       active: this.active,
       frame,
-      direction: this.dir,
+      direction: this.planDir(),
       lo: inActive ? w.lo : frame,
       hi: inActive ? w.hi : frame,
       scrolled: w.scrolled,
@@ -477,7 +501,7 @@ export class PackNet {
     const keep = new Set<string>();
     if (this.active >= 0) {
       const a = this.reel[this.active];
-      const n = this.reel[this.active + this.dir];
+      const n = this.reel[this.active + this.planDir()];
       if (a) keep.add(a);
       if (n) keep.add(n);
     }
