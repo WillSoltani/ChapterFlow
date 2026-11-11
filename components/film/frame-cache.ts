@@ -83,12 +83,12 @@ export const browserFrameIO: FrameIO = {
 
 /**
  * Hot-path counters, published as `window.__filmStats` (production too) and
- * shown by the `?hud=1` overlay. Plain numbers only.
+ * shown by the `?hud=1` overlay. Plain numbers, and the mode string.
  */
 export type FilmStats = {
-  /** Network fetches started. */
+  /** Per-frame network fetches started (the per-frame path only; packs are counted below). */
   fetches: number;
-  /** Network fetches for a frame whose bytes this page had already fetched. */
+  /** Per-frame network fetches for a frame whose bytes this page had already fetched. */
   refetches: number;
   decodes: number;
   /** Decodes of a frame decoded before (from held bytes, after an eviction). */
@@ -114,6 +114,38 @@ export type FilmStats = {
   /** Scrub loop: animation frames that did work, and frames that found nothing changed. */
   ticksWorked: number;
   ticksSkipped: number;
+  /** How the ACTIVE variant loads: "pack" (worker, one stream per film) or "frames" (one request per frame). */
+  mode: "pack" | "frames";
+  /** Pack range requests the worker opened. */
+  packRequests: number;
+  /** Pack bytes received. */
+  packBytes: number;
+  /** Pack bytes received for a range already held (must stay 0). */
+  packBytesRepeated: number;
+  /** Pack bytes the worker holds now (all variants). */
+  packBytesHeld: number;
+  /** Pack streams stopped and reopened at the playhead. */
+  packReaims: number;
+  /** Variants that fell back from their pack to frames (404, unusable, worker failure). */
+  packFallbacks: number;
+  /** The active film's pack: share of its bytes held (0–1) and whether its skeleton is complete (0/1). */
+  packHeldShare: number;
+  packSkeleton: number;
+  /** Decodes in the worker, and their time there (ms). */
+  workerDecodes: number;
+  workerDecodeMeanMs: number;
+  workerDecodeMaxMs: number;
+  /**
+   * Decodes started from the page (the per-frame path: createImageBitmap or
+   * <img>; WebKit decodes these on the main thread), and the time until the
+   * picture was ready (ms).
+   */
+  mainThreadDecodes: number;
+  mainThreadDecodeMeanMs: number;
+  mainThreadDecodeMaxMs: number;
+  /** Last canvas paint: the frame wanted and the frame drawn (-1 = the poster or nothing). */
+  drawWant: number;
+  drawAt: number;
 };
 
 export function newFilmStats(fetchLimit = 0, decodeLimit = 0): FilmStats {
@@ -136,8 +168,62 @@ export function newFilmStats(fetchLimit = 0, decodeLimit = 0): FilmStats {
     geometryMeasures: 0,
     ticksWorked: 0,
     ticksSkipped: 0,
+    mode: "frames",
+    packRequests: 0,
+    packBytes: 0,
+    packBytesRepeated: 0,
+    packBytesHeld: 0,
+    packReaims: 0,
+    packFallbacks: 0,
+    packHeldShare: 0,
+    packSkeleton: 0,
+    workerDecodes: 0,
+    workerDecodeMeanMs: 0,
+    workerDecodeMaxMs: 0,
+    mainThreadDecodes: 0,
+    mainThreadDecodeMeanMs: 0,
+    mainThreadDecodeMaxMs: 0,
+    drawWant: -1,
+    drawAt: -1,
   };
 }
+
+/** Fold one decode time into a mean / max pair of counters. */
+export function recordDecode(s: FilmStats, where: "worker" | "main", ms: number) {
+  if (where === "worker") {
+    s.workerDecodes++;
+    s.workerDecodeMeanMs += (ms - s.workerDecodeMeanMs) / s.workerDecodes;
+    if (ms > s.workerDecodeMaxMs) s.workerDecodeMaxMs = ms;
+  } else {
+    s.mainThreadDecodes++;
+    s.mainThreadDecodeMeanMs += (ms - s.mainThreadDecodeMeanMs) / s.mainThreadDecodes;
+    if (ms > s.mainThreadDecodeMaxMs) s.mainThreadDecodeMaxMs = ms;
+  }
+}
+
+/** Identity of a variant's bytes: folder name plus pack (else frame) version. */
+export function variantKey(v: FilmVariant): string {
+  return `${v.name}@${v.pack?.v ?? v.v ?? "0"}`;
+}
+
+/**
+ * Pack mode (pack-client.ts, the film worker). A variant served from its
+ * pack has its compressed bytes in the worker: a frame is either held there
+ * (decodable now, in the worker) or not yet (not loadable: it takes no slot).
+ * Injectable so the scheduler runs under node with a fake.
+ */
+export type PackSource = {
+  /** True while `variant` is loaded from its pack; false = the per-frame path. */
+  serves(variant: FilmVariant): boolean;
+  /** The frame's compressed bytes are held by the worker. */
+  holds(variant: FilmVariant, index: number): boolean;
+  /** Decode a held frame in the worker. Rejects when its bytes are gone or the pack failed. */
+  decode(variant: FilmVariant, index: number): Promise<{ bitmap: ImageBitmap; ms: number }>;
+  /** Where the visitor is: once per scroll decision (the strong plan). */
+  where(at: { variant: FilmVariant; frame: number; direction: 1 | -1; lo: number; hi: number }): void;
+  /** Frames of `variant` arrived (`added`), or its mode changed (null: it fell back to frames). */
+  subscribe(fn: (variant: FilmVariant, added: readonly number[] | null) => void): () => void;
+};
 
 /** One scroll decision. */
 export type FramePlan = {

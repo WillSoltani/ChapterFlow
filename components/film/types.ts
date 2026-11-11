@@ -1,3 +1,5 @@
+import type { PackLayout } from "./pack-format";
+
 /**
  * Film reel types — the scroll-scrubbed image-sequence engine.
  *
@@ -34,6 +36,12 @@ export type FilmVariant = {
    */
   frame?: FrameSize;
   band?: BandRect;
+  /**
+   * The variant's pack (pack.bin in its folder: every frame in one file,
+   * skeleton layer first; pack-format.ts), when one was built and synced
+   * into book.timeline.json. Read by the film worker; none = frame by frame.
+   */
+  pack?: PackLayout;
 };
 
 export type FrameSize = { w: number; h: number };
@@ -64,11 +72,13 @@ export type FilmTimeline = {
       /** Content version, bumped by encode.mjs on every encode; busts frame caches. */
       v?: string;
       keys: Record<string, number>;
+      /** The landscape variant's pack (scripts/film/pack.mjs). */
+      pack?: PackLayout;
       /**
        * Band tiers by tier name ("b1080", "b900"), synced from their
        * manifests by encode.mjs (--bands). Each has its own version.
        */
-      bands?: Record<string, { width: number; height: number; frame: FrameSize; band: BandRect; v?: string }>;
+      bands?: Record<string, { width: number; height: number; frame: FrameSize; band: BandRect; v?: string; pack?: PackLayout }>;
     }
   >;
 };
