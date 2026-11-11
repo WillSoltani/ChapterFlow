@@ -12,6 +12,7 @@ import {
   frameAt,
   framePlacement,
   holdBreathClock,
+  breathRestOffset,
   isScrollKey,
   parseSmoothParam,
   pickActive,
@@ -24,7 +25,7 @@ import {
   variantPlacement,
   viewportRects,
 } from "./scrub";
-import { pinOpacity } from "./FramePin";
+import { pinHiddenAtStart, pinOpacity } from "./FramePin";
 import { filmCount, key, range } from "./timeline";
 import type { SegmentRegistration } from "./types";
 
@@ -202,6 +203,19 @@ test("breathAt stays within [0, amp] and is 0 when amp is 0", () => {
   }
 });
 
+test("breathRestOffset: the breath is at rest (0) at the first real paint and leaves it with zero speed", () => {
+  // The HTML hero poster (Phase 6) is placed with no breath zoom; the canvas
+  // takes over at its first real paint, so the breath must be 0 then and stay
+  // within a tiny zoom for the next half second (no visible shift at takeover).
+  const q = (b: number) => Math.round(b * 4000) / 4000;
+  for (const t0 of [0, 812.5, 16_000, 123_456.7]) {
+    const off = breathRestOffset(t0);
+    assert.equal(q(breathAt(t0 - off, 0.012)), 0);
+    assert.ok(breathAt(t0 + 500 - off, 0.012) < 0.012 * 0.01, "barely moved after 500 ms");
+    assert.ok(breathAt(t0 + 8000 - off, 0.012) > 0.006, "and it does breathe");
+  }
+});
+
 test("holdBreathClock: breath resumes where it froze after a loop stop (no zoom pop)", () => {
   // The loop ran until t = 41_300 (last ticked frame), stopped at the end of
   // the reel, and restarts at t = 47_900. The first tick after the restart
@@ -220,6 +234,21 @@ test("holdBreathClock: breath resumes where it froze after a loop stop (no zoom 
   // No time passed (or a clock that went backwards): offset unchanged.
   assert.equal(holdBreathClock(5, 100, 100), 5);
   assert.equal(holdBreathClock(5, 100, 90), 5);
+});
+
+test("pinHiddenAtStart: a pin is 'later' (hidden before hydration) unless it shows at its chapter's first frame", () => {
+  // The hero: the headline, lede and CTAs are on at frame 0 (key "book" = 0);
+  // "No card ·" (doorway − 30) and the doorway line (push_in + 20) come later.
+  const book = key("palace-00", "book");
+  const doorway = key("palace-00", "doorway");
+  const pushIn = key("palace-00", "push_in");
+  const last = filmCount("palace-00") - 1;
+  assert.equal(pinHiddenAtStart(book, pushIn, 10, false), false);
+  assert.equal(pinHiddenAtStart(doorway - 30, pushIn, 10, false), true);
+  assert.equal(pinHiddenAtStart(pushIn + 20, last, 12, true), true);
+  // Any pin starting after frame 0 is later; one starting at 0 is not.
+  assert.equal(pinHiddenAtStart(1, 50, 6, false), true);
+  assert.equal(pinHiddenAtStart(0, 50, 6, true), false);
 });
 
 test("pinOpacity ramps in, holds, ramps out", () => {

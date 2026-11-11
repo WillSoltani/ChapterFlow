@@ -3657,6 +3657,74 @@ html[data-motion="reduced"] .rl-faq-chevron {
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--cf-recall-ink) 8%, transparent);
 }
 
+/* ── First paint (Phase 6) ──────────────────────────────────────────────────
+   The hero poster in the server HTML (components/film/FilmBackdrop.tsx),
+   placed EXACTLY where the canvas draws the first film's first picture
+   (scrub.ts variantPlacement with no breath): cover-fitted to the canvas box
+   (the 100lvh wrapper; cq units = that box) and centred on the stage centre,
+   i.e. moved by (100svh − box) / 2 like stageShift. svh and the box height do
+   not change with a phone address bar, so neither does the picture. A band
+   tier (portrait: the <picture> chose a band <source>, same PORTRAIT_QUERY)
+   fills only the band rectangle of its virtual 1080×1920 frame; everything
+   else is the page colour. Removed by the scrub loop in the frame the canvas
+   first paints a picture. */
+.film-poster {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  container-type: size;
+  background: var(--cf-recall-bg, #06070A);
+}
+.film-poster picture {
+  position: absolute;
+  inset: 0;
+  transform: translateY(calc((100svh - 100cqh) / 2));
+}
+.film-poster img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+@media (max-width: 63.99rem), (orientation: portrait) {
+  .film-poster picture {
+    inset: auto;
+    left: 50%;
+    top: 50%;
+    width: max(100cqw, 100cqh * var(--film-frame-ratio, 0.5625));
+    aspect-ratio: var(--film-frame-aspect, 1080 / 1920);
+    transform: translate(-50%, -50%) translateY(calc((100svh - 100cqh) / 2));
+  }
+  .film-poster img {
+    inset: auto;
+    left: var(--film-band-left, 0%);
+    top: var(--film-band-top, 0%);
+    width: var(--film-band-width, 100%);
+    height: var(--film-band-height, 100%);
+    object-fit: fill;
+  }
+}
+
+/* Before the film code arms the reel (FilmBackdrop sets data-film-armed on
+   [data-film-reel] after every pin has written its state), pins that are off
+   at their chapter's first frame (data-frame-later, FramePin) stay hidden:
+   the hero shows only its opening copy, never the pile of later lines. The
+   hidden state comes ONLY from this animation's fill, so it fails open:
+   after 8 s, with no JavaScript, everything becomes visible (scripts blocked,
+   failed or broken); and a browser that drops the animation shows it all at
+   once. 8 s: a healthy slow phone (Fast 4G, 4× CPU) arms in well under that
+   (docs/FILM_REEL.md, First paint); the lines it hides are below the first
+   screen's opening copy, so a failed page loses nothing important by waiting. */
+[data-film-reel]:not([data-film-armed]) [data-frame-later] {
+  animation: film-prearm 0s linear 8s both;
+}
+@keyframes film-prearm {
+  from { visibility: hidden; }
+  to { visibility: visible; }
+}
+
 /* Safety net under every pinned line: a soft ink-coloured shadow so a bright
    frame flicker (fog, paper highlight) never washes the text out. */
 [data-frame-pin] {
