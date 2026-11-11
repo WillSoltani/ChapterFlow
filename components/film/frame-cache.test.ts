@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { FrameBudget, FrameCache, frameUrl, type FrameClock, type FrameIO, type PackSource } from "./frame-cache";
+import { FRAME_TRIES, FrameBudget, FrameCache, filmError, frameUrl, type FrameClock, type FrameIO, type PackSource } from "./frame-cache";
 import type { FilmVariant } from "./types";
 
 // The cache's scheduling logic runs under node with injected fetch + decode
@@ -400,6 +400,7 @@ function fakeClock() {
         timers.push({ at: t + ms, fn });
       },
     } satisfies FrameClock,
+    now: () => t,
     async advance(ms: number) {
       const end = t + ms;
       for (;;) {
@@ -570,9 +571,11 @@ test("a decode that fails counts as a try too", async () => {
 test("the film is unreachable when nothing ever loaded, a poster failed and 3 frames failed for good; then it halts", async () => {
   const network: string[] = [];
   const io: FrameIO = {
+    // Every file answers 404 (permanent: no probe follows the halt; the
+    // transient case is in the recovery tests below).
     fetchBlob: async (url) => {
       network.push(url);
-      throw new Error("blocked");
+      throw filmError(`${url} 404`, true);
     },
     decode: async () => fakeBitmap(),
   };
@@ -1090,4 +1093,293 @@ test("handover before any poster load started (static budget) is an ordinary nea
   assert.equal(a.posterPending, false);
   assert.equal(a.nearest(0, true, true), four);
   a.dispose();
+});
+
+// ── Recovery after a network drop (Phase 6b) ───────────────────────────────
+
+/**
+ * IO for the recovery tests, timed by the fake clock. `down(url)`: the
+ * request fails with a network error (transient); `gone(url)`: the server
+ * answers 404 (permanent). Probes have no IO of their own here, so they go
+ * through fetchBlob (the poster's URL).
+ */
+/** Let what is in flight now settle at the current time, then advance the clock. */
+async function go(fc: ReturnType<typeof fakeClock>, ms: number) {
+  await settle();
+  await fc.advance(ms);
+}
+
+function netIO(fc: ReturnType<typeof fakeClock>) {
+  const log: Array<{ url: string; t: number }> = [];
+  const state = { down: (_url: string) => true, gone: (_url: string) => false };
+  const io: FrameIO = {
+    fetchBlob: async (url) => {
+      log.push({ url, t: fc.now() });
+      await tick();
+      if (state.gone(url)) throw filmError(`${url} 404`, true);
+      if (state.down(url)) throw new TypeError("Failed to fetch");
+      return fakeBlob(url);
+    },
+    decode: async () => fakeBitmap(),
+  };
+  const tries = (url: string) => log.filter((l) => l.url === url).length;
+  return { io, log, state, tries };
+}
+
+test("recovery: frames failed in a network drop load again on 'online', each with a fresh set of tries", async () => {
+  const fc = fakeClock();
+  const n = netIO(fc);
+  const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  // The poster came before the drop: the film is reachable, nothing halts.
+  budget.notePoster(a, true);
+  budget.want({ active: { cache: a, center: 0, direction: 1 } });
+  await go(fc, 10_000);
+  const wanted = budget.wanted().map((w) => frameUrl(a.variant, w.index));
+  for (const u of wanted) assert.equal(n.tries(u), FRAME_TRIES, `${u}: ${FRAME_TRIES} tries in the drop`);
+  assert.equal(budget.stats.framesFailed, wanted.length);
+  const quiet = n.log.length;
+  await go(fc, 60_000);
+  assert.equal(n.log.length, quiet, "no request without a recovery signal");
+  // The browser reports online while the network is still down: one fresh
+  // set of tries each, then quiet again.
+  budget.noteOnline();
+  await go(fc, 10_000);
+  for (const u of wanted) assert.equal(n.tries(u), 2 * FRAME_TRIES, `${u}: a fresh set of tries`);
+  const after = n.log.length;
+  await go(fc, 60_000);
+  assert.equal(n.log.length, after, "spent again: no retry loop");
+  // Back for real.
+  n.state.down = () => false;
+  budget.noteOnline();
+  await go(fc, 5_000);
+  for (const w of budget.wanted()) assert.ok(a.has(w.index), `frame ${w.index} loaded`);
+  assert.equal(budget.stats.framesFailed, 0);
+  assert.equal(budget.stats.recoveries, 2);
+  assert.equal(budget.halted, false);
+});
+
+test("recovery: a film response that succeeds after a drop forgives what failed in it", async () => {
+  const fc = fakeClock();
+  const n = netIO(fc);
+  const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  budget.notePoster(a, true);
+  budget.want({ active: { cache: a, center: 0, direction: 1 } });
+  await go(fc, 10_000);
+  assert.ok(budget.stats.framesFailed >= 10);
+  n.state.down = () => false;
+  // No 'online' event (a flaky cell, a tunnel): the visitor moves on, new
+  // frames load, and that success forgives the drop.
+  budget.want({ active: { cache: a, center: 30, direction: -1 } });
+  await go(fc, 1_000);
+  assert.equal(budget.stats.recoveries, 1);
+  budget.want({ active: { cache: a, center: 0, direction: 1 } });
+  await go(fc, 2_000);
+  for (const w of budget.wanted()) assert.ok(a.has(w.index), `frame ${w.index} loaded`);
+  assert.equal(budget.stats.framesFailed, 0);
+});
+
+test("recovery: a permanent failure (404) is never retried on any signal", async () => {
+  const fc = fakeClock();
+  const n = netIO(fc);
+  const gone = frameUrl(variant("a"), 5);
+  const flaky = frameUrl(variant("a"), 2);
+  n.state.gone = (u) => u === gone;
+  n.state.down = (u) => u === flaky;
+  const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  budget.want({ active: { cache: a, center: 4, direction: 1 } });
+  await go(fc, 10_000);
+  assert.equal(n.tries(gone), FRAME_TRIES);
+  assert.equal(n.tries(flaky), FRAME_TRIES);
+  n.state.down = () => false;
+  // Every kind of signal, each honoured (more than 5 s apart).
+  budget.noteOnline();
+  await go(fc, 10_000);
+  assert.ok(a.has(2), "the transiently failed frame loads on the first signal");
+  budget.noteVisibility(true);
+  await go(fc, 12_000);
+  budget.noteVisibility(false);
+  await go(fc, 10_000);
+  budget.noteOnline();
+  await go(fc, 60_000);
+  assert.equal(n.tries(gone), FRAME_TRIES, "the 404 frame: never requested again");
+  assert.equal(n.tries(flaky), FRAME_TRIES + 1);
+  assert.ok(!a.has(5));
+  assert.equal(budget.stats.framesFailed, 1);
+});
+
+test("recovery: with every film file missing (404) nothing is retried or probed, on any signal", async () => {
+  const fc = fakeClock();
+  const n = netIO(fc);
+  n.state.down = () => false;
+  n.state.gone = () => true;
+  const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  budget.notePoster(a, false);
+  budget.want({ active: { cache: a, center: 0, direction: 1 } });
+  await go(fc, 10_000);
+  assert.equal(budget.halted, true, "static mode, as before");
+  const total = n.log.length;
+  budget.noteOnline();
+  budget.noteVisibility(true);
+  await go(fc, 30_000);
+  budget.noteVisibility(false);
+  budget.want({ active: { cache: a, center: 100, direction: 1 } });
+  await go(fc, 30 * 60_000);
+  assert.equal(n.log.length, total, "not one more request");
+  assert.equal(budget.stats.probes, 0);
+  assert.equal(budget.stats.recoveries, 0);
+  assert.equal(budget.halted, true);
+});
+
+/** Halt a budget the way an unreachable film does: a poster failed, frames failing transiently. */
+async function haltedBudget() {
+  const fc = fakeClock();
+  const n = netIO(fc);
+  const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  let haltAt = -1;
+  budget.onHalt(() => (haltAt = fc.now()));
+  budget.notePoster(a, false);
+  budget.want({ active: { cache: a, center: 0, direction: 1 } });
+  await go(fc, 3_000);
+  assert.equal(budget.halted, true);
+  return { fc, n, budget, a, haltAt, probes: () => n.log.filter((l) => l.t > haltAt) };
+}
+
+test("recovery: halted for unreachability, the page probes 5 s, 15 s and 45 s after the halt, then every 60 s, 10 at most", async () => {
+  const { fc, budget, a, haltAt, probes } = await haltedBudget();
+  await go(fc, 30 * 60_000);
+  assert.ok(probes().every((p) => p.url === a.variant.poster), "nothing but probes after the halt");
+  assert.deepEqual(
+    probes().map((p) => (p.t - haltAt) / 1000),
+    [5, 15, 45, 105, 165, 225, 285, 345, 405, 465],
+  );
+  assert.equal(budget.stats.probes, 10);
+  assert.equal(budget.halted, true);
+});
+
+test("recovery: no probe while the document is hidden; one that came due runs when it is shown", async () => {
+  const { fc, budget, haltAt, probes } = await haltedBudget();
+  await go(fc, haltAt + 4_000 - fc.now());
+  budget.noteVisibility(true);
+  await go(fc, 8_000);
+  assert.equal(probes().length, 0, "the 5 s probe waits while hidden");
+  // Hidden 8 s: not a recovery signal, but the due probe runs now.
+  budget.noteVisibility(false);
+  await go(fc, 4_000);
+  assert.deepEqual(
+    probes().map((p) => (p.t - haltAt) / 1000),
+    [12, 15],
+  );
+});
+
+test("recovery: a probe that succeeds un-halts; the plan made while halted loads, packs resume", async () => {
+  const fc = fakeClock();
+  const n = netIO(fc);
+  const packs = fakePacks();
+  let resumed = 0;
+  const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+  budget.attachPacks({ ...packs.source, resume: () => void resumed++ });
+  const a = new FrameCache(variant("a"), budget);
+  const events: string[] = [];
+  budget.onHalt(() => events.push("halt"));
+  budget.onResume(() => events.push("resume"));
+  budget.notePoster(a, false);
+  budget.want({ active: { cache: a, center: 0, direction: 1 } });
+  await go(fc, 3_000);
+  assert.equal(budget.halted, true);
+  // The visitor scrolls while halted: nothing is requested, the plan is kept.
+  const before = n.log.length;
+  budget.want({ active: { cache: a, center: 120, direction: 1 } });
+  await settle();
+  assert.equal(n.log.length, before);
+  n.state.down = () => false;
+  await go(fc, 5_000);
+  assert.deepEqual(events, ["halt", "resume"]);
+  assert.equal(budget.halted, false);
+  assert.equal(resumed, 1, "the pack source is told to read again");
+  assert.equal(budget.stats.probes, 1);
+  assert.equal(budget.stats.recoveries, 1);
+  await go(fc, 2_000);
+  assert.equal(budget.wanted()[0]?.index, 120, "the plan made while halted");
+  for (const w of budget.wanted()) assert.ok(a.has(w.index), `frame ${w.index} loaded`);
+  await go(fc, 10 * 60_000);
+  assert.equal(budget.stats.probes, 1, "no probe once running again");
+});
+
+test("recovery: a halt by the page (no 2D context) never probes or resumes", async () => {
+  const fc = fakeClock();
+  const n = netIO(fc);
+  const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  budget.halt();
+  budget.want({ active: { cache: a, center: 0, direction: 1 } });
+  budget.noteOnline();
+  budget.noteVisibility(true);
+  await go(fc, 20_000);
+  budget.noteVisibility(false);
+  await go(fc, 30 * 60_000);
+  assert.equal(n.log.length, 0);
+  assert.equal(budget.halted, true);
+});
+
+test("recovery: signals closer together than 5 s are coalesced into one at the 5 s mark", async () => {
+  const fc = fakeClock();
+  const n = netIO(fc);
+  const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  budget.notePoster(a, true);
+  budget.want({ active: { cache: a, center: 0, direction: 1 } });
+  await go(fc, 10_000);
+  const first = frameUrl(a.variant, 0);
+  assert.equal(n.tries(first), FRAME_TRIES);
+  budget.noteOnline();
+  await go(fc, 1_000);
+  assert.equal(budget.stats.recoveries, 1, "the first signal is honoured at once");
+  budget.noteOnline();
+  await go(fc, 1_000);
+  budget.noteOnline();
+  budget.noteVisibility(true);
+  budget.noteVisibility(false);
+  await go(fc, 2_000);
+  assert.equal(budget.stats.recoveries, 1, "signals within 5 s wait");
+  await go(fc, 1_000);
+  assert.equal(budget.stats.recoveries, 2, "and are honoured once, 5 s after the last");
+  await go(fc, 60_000);
+  assert.equal(budget.stats.recoveries, 2);
+  assert.equal(n.tries(first), 3 * FRAME_TRIES, "a fresh set of tries per honoured signal, no more");
+});
+
+test("recovery: with the network down for good, requests are bounded: the halt's count, then at most 10 probes", async () => {
+  const fc = fakeClock();
+  const n = netIO(fc);
+  const budget = new FrameBudget(19 * FRAME, n.io, fc.clock);
+  const a = new FrameCache(variant("a"), budget);
+  const b = new FrameCache(variant("b"), budget);
+  let haltAt = -1;
+  budget.onHalt(() => (haltAt = fc.now()));
+  budget.notePoster(a, false);
+  budget.notePoster(b, false);
+  budget.want({ active: { cache: a, center: 0, direction: 1 }, next: b });
+  await go(fc, 5_000);
+  assert.equal(budget.halted, true);
+  const atHalt = n.log.filter((l) => l.t <= haltAt).length;
+  // An hour: the visitor scrolls every second, the browser says 'online'
+  // every 3 s, the tab is hidden for 30 s of every minute.
+  for (let s = 0; s < 3600; s++) {
+    budget.want({ active: { cache: s % 2 ? a : b, center: (s * 7) % 240, direction: 1 } });
+    if (s % 3 === 0) budget.noteOnline();
+    if (s % 60 === 10) budget.noteVisibility(true);
+    if (s % 60 === 40) budget.noteVisibility(false);
+    await go(fc, 1_000);
+  }
+  const after = n.log.filter((l) => l.t > haltAt);
+  assert.equal(n.log.length, atHalt + after.length);
+  assert.ok(after.length <= 10, `${after.length} requests after the halt`);
+  assert.equal(after.length, budget.stats.probes, "every request after the halt is a probe");
+  assert.ok(after.every((l) => l.url.endsWith("/poster.webp")));
+  assert.equal(budget.halted, true);
 });

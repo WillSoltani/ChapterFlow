@@ -24,6 +24,10 @@
  *     (data-film-static: no 2D context, or the film is unreachable and the
  *     budget halted) where the poster stays and the loop runs without
  *     painting
+ *   • recovery (Phase 6b): the browser's `online` event and the document's
+ *     visibility go to the budget (recovery signals, frame-cache.ts); when a
+ *     probe un-halts it, data-film-static goes, the posters the halt skipped
+ *     load, and the canvas draws again as frames land
  *
  * Math lives in ./scrub.ts (pure, tested). Nothing here re-renders per frame.
  */
@@ -190,7 +194,30 @@ export function FilmBackdrop({ reel, children, className }: Props) {
       el.dataset.filmStatic = "";
     };
     if (budget.halted) markStatic();
-    return budget.onHalt(markStatic);
+    const offHalt = budget.onHalt(markStatic);
+    const offResume = budget.onResume(() => {
+      delete el.dataset.filmStatic;
+      // Posters of films whose cache was made while halted were skipped.
+      if (getCtx()) for (const c of caches.current.values()) void c.loadPoster();
+    });
+    return () => {
+      offHalt();
+      offResume();
+    };
+  }, [budget, getCtx]);
+
+  // Recovery signals (frame-cache.ts): back online, or shown again after a
+  // while hidden.
+  useEffect(() => {
+    const onOnline = () => budget.noteOnline();
+    const onVisibility = () => budget.noteVisibility(document.visibilityState === "hidden");
+    onVisibility();
+    window.addEventListener("online", onOnline);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      window.removeEventListener("online", onOnline);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
   }, [budget]);
 
   const onFirstPaint = useCallback(() => {
