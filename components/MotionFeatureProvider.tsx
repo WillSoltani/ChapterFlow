@@ -2,9 +2,25 @@
 
 import { LazyMotion } from "framer-motion";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { loadWithRetry } from "@/components/motion-feature-load";
 
 const importMotionFeatures = () =>
   import("framer-motion").then(({ domAnimation }) => domAnimation);
+
+/**
+ * The gated import runs late (a menu tap, Pricing approaching), when a phone
+ * may be offline: retried with backoff, then again when the network is back,
+ * and never rejected (motion-feature-load.ts). Ungated routes keep the plain
+ * import at mount.
+ */
+const importMotionFeaturesWithRetry = () => loadWithRetry(importMotionFeatures);
+
+/**
+ * How far ahead of the viewport counts as approaching, both ways: a page
+ * restored below Pricing (browser Back, a jump to the footer) reaches it
+ * scrolling up, and must load before it enters too.
+ */
+export const MOTION_APPROACH_MARGIN = "150% 0px 150% 0px";
 
 /**
  * A gate in front of the feature import: features load only once the gate
@@ -34,7 +50,7 @@ function newGate(): MotionFeatureGateValue {
 export function MotionFeatureGate({
   children,
   approach,
-  margin = "0px 0px 150% 0px",
+  margin = MOTION_APPROACH_MARGIN,
 }: {
   children: React.ReactNode;
   /** Selector of the sections that animate with the features. */
@@ -91,7 +107,7 @@ export function MotionFeatureProvider({
   // Inside a MotionFeatureGate the import waits for the gate. Stable per
   // gate: LazyMotion reads `features` once, at mount.
   const loadMotionFeatures = useCallback(
-    () => (gate ? gate.ready.then(importMotionFeatures) : importMotionFeatures()),
+    () => (gate ? gate.ready.then(importMotionFeaturesWithRetry) : importMotionFeatures()),
     [gate],
   );
   return (
