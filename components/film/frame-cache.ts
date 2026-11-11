@@ -107,6 +107,13 @@ export type FilmStats = {
   decodeInFlight: number;
   fetchLimit: number;
   decodeLimit: number;
+  /** Scrub loop (use-scrub-loop.ts): canvas backing-store reallocations. */
+  canvasResizes: number;
+  /** Scrub loop: segment geometry reads (one getBoundingClientRect per segment). */
+  geometryMeasures: number;
+  /** Scrub loop: animation frames that did work, and frames that found nothing changed. */
+  ticksWorked: number;
+  ticksSkipped: number;
 };
 
 export function newFilmStats(fetchLimit = 0, decodeLimit = 0): FilmStats {
@@ -125,6 +132,10 @@ export function newFilmStats(fetchLimit = 0, decodeLimit = 0): FilmStats {
     decodeInFlight: 0,
     fetchLimit,
     decodeLimit,
+    canvasResizes: 0,
+    geometryMeasures: 0,
+    ticksWorked: 0,
+    ticksSkipped: 0,
   };
 }
 
