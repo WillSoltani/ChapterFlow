@@ -48,8 +48,8 @@
     "test:e2e": "playwright test",
     "test:visual": "RUN_VISUAL=1 playwright test",
     "test:visual:update": "RUN_VISUAL=1 playwright test --update-snapshots",
-    "test:film": "RUN_AUDIT=1 playwright test e2e/film-audit.spec.ts e2e/film-perf.spec.ts e2e/film-quality.spec.ts e2e/film-reel.spec.ts e2e/film-truth.spec.ts --project=chromium",
-    "test:film:safari": "RUN_AUDIT=1 PW_WEBKIT=1 playwright test e2e/film-audit.spec.ts e2e/film-perf.spec.ts e2e/film-quality.spec.ts e2e/film-reel.spec.ts e2e/film-truth.spec.ts --project=webkit",
+    "test:film": "RUN_AUDIT=1 playwright test e2e/film-audit.spec.ts e2e/film-layers.spec.ts e2e/film-perf.spec.ts e2e/film-quality.spec.ts e2e/film-reel.spec.ts e2e/film-truth.spec.ts --project=chromium",
+    "test:film:safari": "RUN_AUDIT=1 PW_WEBKIT=1 playwright test e2e/film-audit.spec.ts e2e/film-layers.spec.ts e2e/film-perf.spec.ts e2e/film-quality.spec.ts e2e/film-reel.spec.ts e2e/film-truth.spec.ts --project=webkit",
     "film:quality": "node scripts/film/scrub-quality.mjs",
     "film:parity": "node scripts/film/tier-parity.mjs",
     "film:pack": "node scripts/film/pack.mjs"
