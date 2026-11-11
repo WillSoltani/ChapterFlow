@@ -135,7 +135,7 @@ export async function guarded<T>(ctx: PipelineCtx, fn: () => Promise<T>): Promis
 
 export async function call(
   ctx: PipelineCtx,
-  o: { role: RoleConfig; prompt: string; step: string; n: number | string; kind: "write" | "fix" | "other"; outPrefix: string },
+  o: { role: RoleConfig; prompt: string; step: string; n: number | string; kind: "write" | "fix" | "other"; outPrefix: string; web?: boolean; timeoutMs?: number },
 ): Promise<CallResult> {
   const run = runs.get(ctx);
   if (run?.stop) throw run.stop;
@@ -149,8 +149,9 @@ export async function call(
       ledgerPath: ctx.ledgerPath,
       budgetUsd: ctx.config.budgetUsd,
       cwd: ctx.cwd,
-      timeoutMs: TIMEOUT_MS,
+      timeoutMs: o.timeoutMs ?? TIMEOUT_MS,
       outPrefix: o.outPrefix,
+      web: o.web,
     });
   } catch (e) {
     if (run && isLimit(e)) run.stop ??= e;
@@ -173,7 +174,7 @@ function required<T>(v: T | null, what: string): T {
 }
 
 /** Waits for every promise so no call is left running behind a failure, then throws: a usage or budget stop first, else the first error. */
-async function settle(ps: Promise<unknown>[]): Promise<unknown[]> {
+export async function settle(ps: Promise<unknown>[]): Promise<unknown[]> {
   const rs = await Promise.allSettled(ps);
   const bad = rs.flatMap((r) => (r.status === "rejected" ? [r.reason as unknown] : []));
   const fatal = bad.find(isLimit) ?? bad[0];
@@ -314,7 +315,7 @@ async function noChapterRuns(
 const RATINGS: readonly string[] = ["SUPPORTED", "STRETCHED", "UNSUPPORTED"];
 
 /** Which chapter field a failed review item points at (none for the whole-chapter items). */
-function reviewField(id: string): string | undefined {
+export function reviewField(id: string): string | undefined {
   const [head, ...rest] = id.split("-");
   const tail = rest.join("-");
   switch (head) {

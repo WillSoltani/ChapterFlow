@@ -21,9 +21,26 @@ else runs unattended and resumes from files.
 brief templates, what each check prints, the hand-off and the failure table. Follow it in order; the README is
 background, not the procedure.
 
-## Quick reference
+## The one command (a book with `exemplarFrom`, the default)
 
 `CLI` = `env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npx tsx scripts/book/v26/cli.ts`, run from the worktree.
+
+After the preflight and the config and brief (steps 0 and 1), `CLI auto --book <cfg>` runs the rest in one
+resumable run: keys drafted and checked against the book on the web, chapters, two fix passes, repairs, the pack,
+the score, one round on what the judge failed in the manual band, and the publish the band allows. Run it in the
+background with a log; after any stop (usage limit, budget, crash) run the identical command again. It ends
+`PUBLISHED`, `READY` (`--no-publish`), `DRY-RUN`, `NEEDS-OWNER` (exit 1) or `FAILED` (exit 2), with the reasons on
+the last line and in `<runDir>/auto.json`. Many books: `CLI auto --queue <file>` (one config path per line), one
+line per book in `<file>.report.jsonl`.
+
+Three flags are the owner's rulings and are passed only when the owner gave them, for one book, never with
+`--queue`: `--approve` (yes to the pack they read; taken only while the book waits and the chapters are unchanged),
+`--keys-ok` (they read the notes and vouch for them; skips the web check), `--redo` (rewrite a failed book's redo
+list, once per score). After `auto`: read the sample (step 8), tell the owner what a new book still needs (step
+10), do the housekeeping. reference.md section 1A has the details.
+
+## The steps by hand (what `auto` runs; for a book that sets a new form, or to repair one stage)
+
 `--chapters` takes comma-separated numbers only: `$(seq 2 48 | paste -sd, -)`.
 
 | Step | Command | Owner |
@@ -43,8 +60,9 @@ background, not the procedure.
 ## Models and cost (owner decision 2026-11-05)
 
 Writer Sonnet 5.5 high; checker and fixer Opus 5.5 high (the fixer defaults to the checker when the field is
-absent); solver Sonnet 5.5 medium. Keys are drafted by the fixer. Estimate $5 + chapters x $0.9 + a third of the
-chapters x $0.6: a 13-chapter book about $20, a 48-chapter book about $60. Each book gets its own ledger (no
+absent); solver Sonnet 5.5 medium. Keys are drafted by the fixer and checked by two checker calls with web search
+(about $0.35 a chapter, knowledge mode only). Estimate $5 + chapters x $1.25 + a third of the chapters x $0.6: a
+13-chapter book about $24, a 48-chapter book about $75. Each book gets its own ledger (no
 `ledgerPath`) and a `budgetUsd` of twice the estimate.
 
 ## The gate (owner decision 2026-11-05)
@@ -67,7 +85,9 @@ first two chapters.
 - A high score with a reason such as `TEMPT fails in 5 of 8 chapters`: the book is not ready; read the evidence.
 - Wanting to regenerate a chapter the owner disliked: it goes through `variants` and `assemble` on that chapter
   and becomes an added exemplar.
-- Publishing without a fresh score, or with `--approve` the owner did not give.
+- Publishing without a fresh score, or passing `--approve`, `--keys-ok` or `--redo` the owner did not give.
+- `auto` ending `NEEDS-OWNER` or `FAILED` and wanting to get past it by deleting `auto.json` or editing a chapter:
+  hand the owner the pack and the reasons instead.
 - A new book after `publish`: the public grid still needs the static catalog wiring and a prod deploy the owner
   approves (reference.md step 10 says what); the logged-in library and iOS are live at once.
 

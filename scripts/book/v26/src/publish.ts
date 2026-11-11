@@ -136,6 +136,10 @@ export function gateFor(ctx: PipelineCtx): { ok: true; score: BookScore } | { ok
     const f = path.join(ctx.config.runDir, chapterName(c.chapter), "final.json");
     if (fs.existsSync(f) && fs.statSync(f).mtimeMs > at) return { ok: false, reason: `${chapterName(c.chapter)} changed after the score; run \`score\` again` };
   }
+  // The band speaks for the chapters that were scored; the package holds every chapter.
+  const scored = new Set(score.chapters.map((c) => c.chapter));
+  const unscored = ctx.source.spans.map((s) => s.chapterNumber).filter((n) => !scored.has(n));
+  if (unscored.length > 0) return { ok: false, reason: `the score covers only some chapters (not ${unscored.map(chapterName).join(", ")}); run \`score\` on the whole book` };
   return { ok: true, score };
 }
 
@@ -212,19 +216,20 @@ async function liveDetail(bookId: string): Promise<{ version: number | null; cha
   return { version: Number.isFinite(v) ? v : null, chapters: chapters.length, firstTitle: chapters[0]?.title ?? "" };
 }
 
-function gitCommitPackage(file: string, message: string, steps: string[]): void {
-  const rel = path.relative(REPO_ROOT, file);
-  const status = execFileSync("git", ["status", "--porcelain", "--", rel], { cwd: REPO_ROOT, encoding: "utf8" }).trim();
+export function gitCommitPackage(file: string, message: string, steps: string[], root: string = REPO_ROOT): void {
+  const rel = path.relative(root, file);
+  const status = execFileSync("git", ["status", "--porcelain", "--", rel], { cwd: root, encoding: "utf8" }).trim();
   if (status === "") {
     steps.push(`git: ${rel} unchanged, nothing to commit`);
     return;
   }
-  execFileSync("git", ["add", "--", rel], { cwd: REPO_ROOT });
-  execFileSync("git", ["commit", "-q", "-m", message], { cwd: REPO_ROOT });
-  const sha = execFileSync("git", ["rev-parse", "--short", "HEAD"], { cwd: REPO_ROOT, encoding: "utf8" }).trim();
+  execFileSync("git", ["add", "--", rel], { cwd: root });
+  // The package alone: whatever else sits in the index (another book's failed publish, the operator's own work) stays out.
+  execFileSync("git", ["commit", "-q", "-m", message, "--", rel], { cwd: root });
+  const sha = execFileSync("git", ["rev-parse", "--short", "HEAD"], { cwd: root, encoding: "utf8" }).trim();
   steps.push(`git: committed ${rel} as ${sha}`);
   try {
-    execFileSync("git", ["push", "-q"], { cwd: REPO_ROOT, stdio: "pipe" });
+    execFileSync("git", ["push", "-q"], { cwd: root, stdio: "pipe" });
     steps.push("git: pushed");
   } catch (err) {
     steps.push(`git: push failed (${(err as Error).message.split("\n")[0]}); push by hand`);
@@ -240,6 +245,9 @@ export async function publishBook(ctx: PipelineCtx, opts: PublishOptions = {}): 
   const base = { bookId, band: score.band, score: score.score, steps };
   if (score.band === "fail") return { ...base, outcome: "refused", reasons: [`band fail: ${score.reasons.join("; ")}`, `redo ${score.redo.map(chapterName).join(", ")} with the owner's permission, then score again`], remaining: [] };
   if (score.band === "manual" && !opts.approve) return { ...base, outcome: "needs-approval", reasons: [`band manual: ${score.reasons.join("; ")}`, "the owner reads the pack and says yes; then publish --approve"], remaining: [] };
+  // A book the auto command holds because its chapters were written from keys nobody checked waits for the same yes here.
+  const held = readJson<{ keys?: string }>(path.join(ctx.config.runDir, "auto.json"))?.keys === "unchecked";
+  if (held && !opts.approve) return { ...base, outcome: "needs-approval", reasons: ["the chapters were written from keys that were never checked against the book", "the owner reads the pack and the notes and says yes; then publish --approve"], remaining: [] };
 
   const pkg = buildPackage(ctx, opts.now?.() ?? new Date());
   const problems = await validatePackage(pkg, ctx.source.spans.length);
@@ -262,9 +270,10 @@ export async function publishBook(ctx: PipelineCtx, opts: PublishOptions = {}): 
     steps.push("dry run: no git, no S3, no catalog registration");
     return { ...base, outcome: "dry-run", reasons, packageFile: file, packageId: pkg.packageId, remaining };
   }
-  if (!opts.noGit) gitCommitPackage(file, `chore(books): publish ${bookId} from the v26 run (score ${score.score}, band ${score.band})\n\nCo-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>`, steps);
+  // The AWS names first: expired credentials stop the book before anything is committed or pushed.
   const publisher = opts.publisher ?? awsPublisher();
   const names = await publisher.names();
+  if (!opts.noGit) gitCommitPackage(file, `chore(books): publish ${bookId} from the v26 run (score ${score.score}, band ${score.band})\n\nCo-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>`, steps);
   const before = await publisher.liveVersion(bookId).catch(() => null);
   steps.push(before === null ? "live: not listed before this publish" : `live: published version ${before} before this publish`);
   const key = `book-content/packages/${bookId}.v21.json`;

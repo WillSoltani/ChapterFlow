@@ -120,20 +120,23 @@ export async function scoreBook(ctx: PipelineCtx, chapters: number[], opts: { fo
     const dir = path.join(ctx.config.runDir, chapterName(n));
     const evalFile = path.join(evalDir, `${chapterName(n)}.eval.json`);
     const fresh = fs.existsSync(evalFile) && fs.statSync(evalFile).mtimeMs >= fs.statSync(path.join(dir, "final.json")).mtimeMs;
-    const existing = opts.force || !fresh ? null : readJson<EvalResult>(evalFile);
+    const saved = opts.force || !fresh ? null : readJson<EvalResult>(evalFile);
+    // A saved eval the judge left incomplete (ids missing, or nothing at all) is asked again, not trusted.
+    const existing = saved && saved.total > 0 && saved.missingIds.length === 0 ? saved : null;
     const r = existing ?? (await evalChapter(ctx, path.join(dir, "final.json"), n, chapterName(n), evalDir));
     const status = readJson<ChapterStatus>(path.join(dir, "status.json"));
     const blocking = status ? status.open.filter((i) => i.blocking).length : 0;
     return {
       chapter: n,
-      score: r.total > 0 ? round1((r.passCount / r.total) * 100) : 0,
+      // An item the judge never answered counts as failed: an incomplete answer must not lift a chapter into the auto band.
+      score: r.total + r.missingIds.length > 0 ? round1((r.passCount / (r.total + r.missingIds.length)) * 100) : 0,
       passCount: r.passCount,
-      total: r.total,
-      failed: r.items.filter((i) => !i.pass).map((i) => i.id),
+      total: r.total + r.missingIds.length,
+      failed: [...r.items.filter((i) => !i.pass).map((i) => i.id), ...r.missingIds],
       stage: status?.stage ?? "unknown",
       blocking,
       guessable: r.noChapterScores.length > 0 && r.noChapterScores.every((s) => s > 3),
-      weak: weakKinds(r.items),
+      weak: weakKinds([...r.items, ...r.missingIds.map((id) => ({ id, pass: false }))]),
     };
   }));
   const thresholds = thresholdsOf(ctx);

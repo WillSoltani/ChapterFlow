@@ -1,5 +1,6 @@
 /** The v26 chapter tool's command line. See README.md.
- *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render|variants|assemble|book|pack|keys> --book <config.json>
+ *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render|variants|assemble|book|pack|keys|score|publish|auto> --book <config.json>
+ *    npx tsx scripts/book/v26/cli.ts auto --queue <books.txt>     (every book of a list, one after another)
  *      [--chapters 1,13] [--force] [--review] [--issues <findings.json>] [--finish] [--file <chapter.json> --tag <t> --out <dir>]
  *  Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget. */
 import * as fs from "node:fs";
@@ -31,14 +32,16 @@ import { duplicateNames, fixLanded, hookCollisions, loadExemplar, renderPack, ru
 import { draftKeys } from "./src/keys";
 import { scoreBook } from "./src/score";
 import { publishBook } from "./src/publish";
+import { autoBook, autoQueue, type AutoOptions, type AutoOutcome } from "./src/auto";
 import { keysFor } from "./src/keysText";
 
-const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys", "score", "publish"] as const;
+const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys", "score", "publish", "auto"] as const;
 type Verb = (typeof VERBS)[number];
 
 const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --book <config.json> [options]
   --chapters 1,13   chapter numbers (default: every chapter; eval takes exactly one)
   --force           write/run: start the chapter again (the old run is kept as chNN.prev-<time>)
+                    auto: run again a book this command already published (it is published again)
   --review          check/fix/run: also run the editor review and send its failed items to the fix call
   --issues <f>      fix: reader findings, a JSON array of {"field","text"}; one extra "reader" fix round on one chapter (--chapters N), which then becomes its final.json
   --finish          fix: one finish round (--chapters N), once, after the reader round: sends only the blocking issues the reader round left (plus the --issues findings, if given), and the result becomes final.json
@@ -51,15 +54,27 @@ const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --boo
   --reference <f>   variants: a chapter JSON to fold at the bottom of the pick page for comparison
   --picks <f>       assemble: the owner's picks, the "Copy my picks" text (or JSON {picks, notes}); one chapter (--chapters N)
   --exemplar <k>    book: the approved chapter to write against (default: the newest under <runDir>/exemplars)
-  --out <f>         pack: where the one-page reading pack goes (default <runDir>/reading/pack.html)
+  --out <f>         pack: where the one-page reading pack goes (default <runDir>/reading/pack.html); publish, auto: a folder for the
+                    package in place of the repo's book-packages (then no git)
   score             the publish gate: every landed chapter through eval (reused unless --force), the book's 0-100 score and band
                     (auto / manual / fail; thresholds from the config's gate, default 80 and 70) into <runDir>/score.json
   publish           after score: the landed chapters become book-packages/<bookId>.v21.json (app-validated), committed and pushed,
                     uploaded to the content bucket and registered in the API catalog; auto band publishes, manual needs --approve,
                     fail refuses. --dry-run builds and validates only; --out <dir> puts the package elsewhere (then no git).
-  --approve         publish: the owner has read the pack and said yes (the manual band)
-  --dry-run         publish: everything but git, S3 and the catalog
-Exit codes: 0 ok (score: the auto band; publish: published or dry run), 1 open issues or a usage error (score: manual; publish: needs the owner), 2 score/publish: fail, 3 usage limit, 4 budget.
+  --approve         publish: the owner has read the pack and said yes (the manual band). auto: the same yes, taken only for a book
+                    that was waiting for the owner and whose chapters have not changed since that pack; such a run edits nothing
+  --keys-ok         auto: the owner has read the keys in the config and vouches for them; no web check
+  --dry-run         publish, auto: everything but git, S3 and the catalog
+  auto              one book from its config to a published book, resumable: keys drafted and checked against the book (two checkers
+                    with web search and an editor), every chapter, two fix passes, one round of repairs (hooks that share an object,
+                    a key that stands out by length), the pack, the score, one round on what the judge failed in the manual band,
+                    and the publish the band allows. <runDir>/auto.json holds the outcome: published, dry-run, ready, needs-owner, failed.
+  --queue <file>    auto: a list of book configs (a JSON array, or one path per line) run one after another, in place of --book;
+                    one line per book in <file>.report.jsonl; a usage limit stops the queue, the same command carries on later
+  --no-publish      auto: stop after the score; nothing is published
+  --redo            auto: the owner allows the chapters on a failed book's redo list to be written again (once per score)
+                    --approve, --keys-ok, --redo and --force are one book's rulings: they do not go with --queue
+Exit codes: 0 ok (score: the auto band; publish, auto: published, dry run or ready), 1 open issues or a usage error (score: manual; publish, auto: needs the owner), 2 score/publish/auto: fail, 3 usage limit, 4 budget.
 `;
 
 export interface Io {
@@ -472,6 +487,26 @@ async function cmdKeys(ctx: PipelineCtx, configPath: string, force: boolean, io:
   return 0;
 }
 
+/** 0 for a book that is published, built in a dry run or ready; 1 when it waits for the owner; 2 when it failed; 4 when its budget stopped it. */
+const autoCode = (outcome: AutoOutcome | "budget" | "error" | undefined): number =>
+  outcome === "published" || outcome === "dry-run" || outcome === "ready" ? 0 : outcome === "needs-owner" ? 1 : outcome === "budget" ? 4 : 2;
+
+/** One book from its config to the publish its band allows. */
+async function cmdAuto(ctx: PipelineCtx, configPath: string, opts: AutoOptions, io: Io): Promise<number> {
+  const st = await autoBook(ctx, configPath, opts, (line) => io.out(`${line}\n`));
+  io.out(`${path.join(ctx.config.runDir, "auto.json")}\n`);
+  return autoCode(st.outcome);
+}
+
+/** Every book of a queue file in turn. A usage limit stops the queue with exit 3; otherwise the worst outcome decides (4 when a book's budget stopped it). */
+async function cmdAutoQueue(queueFile: string, opts: AutoOptions, io: Io): Promise<number> {
+  if (!fs.existsSync(queueFile)) throw new UsageError(`--queue ${queueFile}: no such file`);
+  const { rows, stopped } = await autoQueue(queueFile, opts, (line) => io.out(`${line}\n`));
+  io.out(`${queueFile}.report.jsonl\n`);
+  if (stopped) return 3;
+  return rows.reduce((worst, r) => Math.max(worst, autoCode(r.outcome)), 0);
+}
+
 // ---------------------------------------------------------------- main
 
 export async function main(argv: string[], io: Io = { out: (s) => void process.stdout.write(s), err: (s) => void process.stderr.write(s) }): Promise<number> {
@@ -499,6 +534,10 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
           reference: { type: "string" },
           picks: { type: "string" },
           exemplar: { type: "string" },
+          queue: { type: "string" },
+          "no-publish": { type: "boolean" },
+          redo: { type: "boolean" },
+          "keys-ok": { type: "boolean" },
         },
       });
     } catch (e) {
@@ -509,7 +548,12 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
     if (positionals.length !== 1 || !(VERBS as readonly string[]).includes(verb ?? "")) {
       throw new UsageError(verb === undefined ? "no command given" : `unknown command or extra argument: ${positionals.join(" ")}`);
     }
-    if (!values.book) throw new UsageError("--book <config.json> is required");
+    for (const k of ["queue", "no-publish", "redo", "keys-ok"] as const) {
+      if (values[k] !== undefined && verb !== "auto") throw new UsageError(`--${k} only goes with the auto command`);
+    }
+    if (values.approve === true && verb !== "publish" && verb !== "auto") throw new UsageError("--approve only goes with the publish and auto commands");
+    const autoOpts: AutoOptions = { dryRun: values["dry-run"] === true, noPublish: values["no-publish"] === true, approve: values.approve === true, keysOk: values["keys-ok"] === true, redo: values.redo === true, force: values.force === true, ...(values.out !== undefined ? { packagesDir: values.out, noGit: true } : {}) };
+    if (verb === "auto" && values.chapters !== undefined) throw new UsageError("auto runs the whole book: --chapters does not go with it");
     if (values.issues !== undefined && verb !== "fix") throw new UsageError("--issues only goes with the fix command");
     if (values.finish === true && verb !== "fix") throw new UsageError("--finish only goes with the fix command");
     if (values.style === true && verb !== "fix") throw new UsageError("--style only goes with the fix command");
@@ -518,6 +562,14 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
     }
     if (values.picks !== undefined && verb !== "assemble") throw new UsageError("--picks only goes with the assemble command");
     if (values.exemplar !== undefined && verb !== "book") throw new UsageError("--exemplar only goes with the book command");
+    if (verb === "auto" && values.queue !== undefined) {
+      if (values.book) throw new UsageError("auto takes --book or --queue, not both");
+      for (const k of ["approve", "keys-ok", "redo", "force"] as const) {
+        if (values[k] === true) throw new UsageError(`--${k} is one book's ruling: give it with auto --book <config.json>, not with --queue`);
+      }
+      return await cmdAutoQueue(values.queue, autoOpts, io);
+    }
+    if (!values.book) throw new UsageError("--book <config.json> is required");
     const findings = values.issues === undefined ? undefined : readFindings(values.issues);
 
     const ctx = makeCtx(loadBookConfig(values.book), { review: values.review === true });
@@ -553,6 +605,8 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
         return cmdPack(ctx, chapters, values.out, io);
       case "keys":
         return await guarded(ctx, () => cmdKeys(ctx, values.book!, force, io));
+      case "auto":
+        return await guarded(ctx, () => cmdAuto(ctx, values.book!, autoOpts, io));
     }
   } catch (e) {
     if (e instanceof UsageLimitError || e instanceof BudgetError) {

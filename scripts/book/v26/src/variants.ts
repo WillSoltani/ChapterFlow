@@ -232,14 +232,14 @@ export function summaryDetIssues(variants: SummaryVariant[], authorText: string 
 export async function callShaped(
   ctx: PipelineCtx,
   n: number,
-  o: { role: RoleConfig; prompt: string; step: string; kind: "write" | "fix" | "other"; errors: (raw: unknown) => string[]; outPrefix?: string; ledgerStep?: string },
+  o: { role: RoleConfig; prompt: string; step: string; kind: "write" | "fix" | "other"; errors: (raw: unknown) => string[]; outPrefix?: string; ledgerStep?: string; web?: boolean; timeoutMs?: number },
 ): Promise<unknown> {
   const base = o.outPrefix ?? path.join(variantsDir(ctx, n), "calls", o.step);
   const ledger = o.ledgerStep ?? `variants-${o.step}`;
   let prompt = o.prompt;
   for (let attempt = 0; ; attempt++) {
     const outPrefix = attempt === 0 ? base : `${base}.reshape`;
-    const r = await call(ctx, { role: o.role, prompt, step: attempt === 0 ? ledger : `${ledger}:reshape`, n, kind: o.kind, outPrefix });
+    const r = await call(ctx, { role: o.role, prompt, step: attempt === 0 ? ledger : `${ledger}:reshape`, n, kind: o.kind, outPrefix, web: o.web, timeoutMs: o.timeoutMs });
     const errors = r.json === null ? ["the answer is not JSON"] : o.errors(r.json);
     if (errors.length === 0) return r.json;
     if (attempt >= 1) throw new CallFailedError(`VARIANTS_OUTPUT_INVALID: ${chapterName(n)} ${o.step}: ${errors.join("; ")} (raw answer: ${outPrefix}.result.txt)`);

@@ -28,9 +28,19 @@ export const READ_ONLY_PROFILE: ExecutionProfile = {
   maxStderrBytes: 1048576,
 };
 
-export function buildArgv(model: string, effort: string): string[] {
+/** The two tools a web call may use. Nothing that runs code, reads files or writes anything. */
+export const WEB_TOOLS = "WebSearch,WebFetch";
+
+/** `web` is for the keys check only: the model may search and fetch the open web to compare a note with the book. The
+ *  no-tools lockdown is swapped for exactly the two web tools; restricted mode and the MCP lockdown stay. */
+export function buildArgv(model: string, effort: string, web = false): string[] {
   // --restricted alone still loads the operator's claude.ai MCP connectors; --strict-mcp-config stops that.
-  return [...createClaudeRoute(model, effort).build(READ_ONLY_PROFILE).args, "--strict-mcp-config"];
+  const args = [...createClaudeRoute(model, effort).build(READ_ONLY_PROFILE).args, "--strict-mcp-config"];
+  if (!web) return args;
+  const lock = args.indexOf("--disallowedTools");
+  if (lock < 0) throw new Error("ARGV_LOCKDOWN_MISSING: the route no longer carries --disallowedTools; a web call cannot be built safely");
+  args.splice(lock, 2, "--tools", WEB_TOOLS, "--allowedTools", WEB_TOOLS);
+  return args;
 }
 
 export function childEnv(base: NodeJS.ProcessEnv = process.env): Record<string, string> {
@@ -55,6 +65,8 @@ export interface CallOptions {
   cwd: string;
   timeoutMs: number;
   outPrefix?: string;
+  /** The model may use web search and web fetch (the keys check). Default: no tools at all. */
+  web?: boolean;
 }
 
 export interface CallResult {
@@ -95,7 +107,7 @@ function runClaude(o: CallOptions, effort: string, bin: string): Promise<Attempt
       resolve({ stdout, stderr, code, seconds: (Date.now() - started) / 1000, timedOut, envelope: parseEnvelope(stdout) });
     };
 
-    const child = spawn(bin, buildArgv(o.role.model, effort), {
+    const child = spawn(bin, buildArgv(o.role.model, effort, o.web === true), {
       cwd: o.cwd,
       env: childEnv(),
       stdio: ["pipe", "pipe", "pipe"],

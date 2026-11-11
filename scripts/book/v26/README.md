@@ -74,6 +74,21 @@ npx tsx scripts/book/v26/cli.ts render --book scripts/book/v26/books/the-autobio
 
 After `write`, `check` or `fix`, `run` carries on from the files and writes `final.json` and `status.json`.
 
+### One command for a whole book: `auto`
+
+```
+npx tsx scripts/book/v26/cli.ts auto --book scripts/book/v26/books/<bookId>.json [--no-publish | --dry-run] [--out <dir>]
+npx tsx scripts/book/v26/cli.ts auto --queue books.txt
+```
+
+`auto` (`src/auto.ts`) takes a book whose config has `exemplarFrom` from its config to the publish its band allows: keys drafted and then checked against the book (`src/keysCheck.ts`: two checker calls with web search and fetch, the only calls that get any tool, and an editor call), the missing chapters, two fix passes, one round of repairs code can see, the reading pack, the score, one round on the judge's failed items in the manual band, then `publish`. Every stage reads what is on disk, and the one-off rounds are recorded per chapter in `<runDir>/auto.json`, so the same command carries on after a stop and never gives a chapter a round twice.
+
+What stays the owner's: `--approve` (yes to the pack that was read: taken only while the book waits and its chapters are unchanged since that pack, and such a run edits nothing), `--keys-ok` (the owner vouches for the notes; no web check), `--redo` (rewrite a failed book's redo list, once per score), `--force` (run a published book again). None of the four goes with `--queue`. Keys that could not be checked stop the book before a chapter is written.
+
+`--queue <file>` runs a list of configs (one path per line, or a JSON array) one after another and appends one line per book to `<file>.report.jsonl`. Exit codes for `auto`: 0 published, dry run or ready; 1 waiting for the owner; 2 failed; 3 usage limit; 4 budget.
+
+The procedure for running a book is the `run-book` skill (`skills/run-book/`), not this file.
+
 ### Exit codes
 
 | Code | Meaning | What to do |

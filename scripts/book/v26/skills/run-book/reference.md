@@ -72,6 +72,69 @@ fix one chapter; that is a `--issues` fix round.
 Check: `CLI status --book <cfg>` prints `<bookId>: N chapters`, every chapter with stage `not-started`, and
 `ledger $0.00 of $<budget>`. `CONFIG_INVALID: <field>` names what to fix.
 
+## 1A. The one command: `auto` (steps 2 and 6 to 10 in one resumable run)
+
+For a book whose config has `exemplarFrom` (or whose chapter 1 is already its own approved exemplar):
+
+`(date; CLI auto --book <cfg>; echo "EXIT $?"; date) > <log> 2>&1` in a background Bash. It does, in order, each
+stage reading what is on disk so that the identical command carries on after any stop:
+
+1. **Keys** (knowledge mode): drafts the missing ones, then checks all of them against the book before a chapter
+   is written (a chapter that has even begun, a `chNN/book/` folder, counts as written: then no check can vouch for
+   it and the book waits for the owner at the end): two checker calls per six chapters, the only calls of this tool with tools at all (web search and
+   fetch, nothing else), working apart; an editor call rewrites each note with what they leave standing. New
+   words (a correction, a story) go in only when both checkers give them; one checker alone can only take words out.
+   Each checker lists up to three stories per chapter (the people the author names and follows first), and a story
+   enters the note only when it is on both lists; a lone doubt marked unsure changes nothing. The log line says how
+   many notes were edited and how many now carry a story from the book; a note still at `none recalled` gets a
+   chapter whose evidence is the author's method in one everyday case, which is allowed. The edited notes are written into the config. If a checker or the editor
+   does not answer, the book stops `NEEDS-OWNER` and **no chapter is written**; finished groups are kept
+   (`<runDir>/keys/check-progress.json`) and the next run starts at the group that failed.
+2. **Chapters** that are not there yet (step 6), then **two fix passes** (step 7), then one round of **repairs**
+   code can see: two hooks built on the same object, a quiz whose right choice is the longest or shortest in most
+   questions.
+3. **Pack** at `<runDir>/reading/all.html` and the **score** (step 9).
+4. In the **manual** band with nothing open: one round per chapter on the judge's failed items that a small edit
+   can answer (hook, counterintuition, try-this, the line, practice, quiz, cards, examples), then the score again.
+   Once per book, never a loop.
+5. **By band**: auto publishes (step 10's `publish`); manual ends `NEEDS-OWNER` with the pack; fail ends `FAILED`
+   with the redo list.
+
+Each one-off round, and the chapters it has handled, is recorded in `<runDir>/auto.json`, so a rerun never gives a
+chapter a second round. Do not delete that file to get a book moving: it is what keeps the rounds honest.
+
+Outcomes (last line of the log, and `auto.json`): `PUBLISHED`, `DRY-RUN`, `READY` exit 0; `NEEDS-OWNER` exit 1;
+`FAILED` exit 2; a usage limit exit 3 and the budget exit 4, both resumed by the identical command.
+
+Flags:
+- `--no-publish` stops after the score (`READY`); `--dry-run` builds and validates the package only; `--out <dir>`
+  puts the package there with no git.
+- `--approve`: the owner read the pack and said yes. Taken only when the book ended `NEEDS-OWNER` with its pack
+  written and no chapter has changed since; then the run edits nothing and publishes. If a chapter changed, the run
+  says so, goes on as usual and waits again: the owner reads the new pack. A `--dry-run` first does not use the yes up.
+- `--keys-ok`: the owner read the notes in the config and vouches for them; no web check. Also lifts the hold on a
+  book whose chapters were written before any check (keys state `unchecked`), but only while the notes are as they
+  were when that hold began: once a note was edited, the written chapters no longer follow the notes, so the owner
+  reads the pack and gives `--approve`, or the folders of the chapters whose notes changed are removed and written
+  again. It covers the notes as they stand: not notes drafted in the same run (those are checked on the web as
+  usual), and not notes that change afterwards.
+- `--redo`: the owner allows a **failed** book's redo list to be written again. Once per score; a redo that stopped
+  carries on without the flag; the book's own exemplar chapter is never rewritten (the owner mends it). The rounds
+  that follow touch only the rewritten chapters.
+- `--force`: run again a book `auto` already published.
+- `--chapters` does not go with `auto`.
+
+**A queue.** `CLI auto --queue <file>`: the file is one config path per line (`#` comments; relative paths are
+taken from the file's folder) or a JSON array. Books run one after another; a book that fails or waits does not stop
+the next; a usage limit stops the queue (exit 3) and the identical command carries on, skipping published books.
+Each book adds one line to `<file>.report.jsonl` (outcome, score, band, spend, reasons, pack). `--approve`,
+`--keys-ok`, `--redo` and `--force` are refused with `--queue`: each is one book's ruling. Exit: the worst book
+(0, 1, 2, or 4 for a budget).
+
+After `auto` you still owe: the sample read of step 8 (three chapters as the default reader) with the pack sent
+to the owner; what a new book needs before the public grid shows it (step 10); the housekeeping commit and the
+status line (step 10). On `NEEDS-OWNER`, hand over the pack, the score and the reasons, and wait.
+
 ## 2. Keys, knowledge mode only (1 call, under $1)
 
 `CLI keys --book <cfg>` writes `chapters[].keys` into the config: the author's advice, his own names for the tools
@@ -80,7 +143,8 @@ gives no limit; it is there for the fact checker, the writer keeps it out of the
 and `Story the author tells:` (or `none recalled with confidence`; for a book without stories expect that and keep
 it). Drafted by the fixer, since the keys are the fact backbone every later call reads. Read all of them: each
 belongs to its chapter, no quotation marks, no borrowed story or invented battle; keep a `Reversal:` only when it is
-the chapter's own limit and delete a forced one. Edit by hand where wrong. For a knowledge-mode book, have the keys checked before the book is written: two or
+the chapter's own limit and delete a forced one. Edit by hand where wrong. For a knowledge-mode book, have the keys checked before the book is written (`auto`
+does this itself, section 1A; by hand): two or
 three independent subagents with web search, each asked to mark every sentence that is wrong, belongs to another
 chapter or gives a reason the book does not give, and to name one story or case the chapter itself tells (who, what
 they did, how it ended) with where they confirmed it. Merge what at least two agree on, and take the reasons out of
@@ -273,18 +337,32 @@ to `~/cf-wt/v26-plan/status/V1-variants.md` and one to the `v26-campaign` memory
 | lesson over 20 words refused twice | the lessons cap | rerun; the retry carries the error |
 | `NO_FINAL_CHAPTER` from `fix` | a chapter never landed | drop it, rerun `book` for it |
 | `publish`: `no score yet` / `changed after the score` | score missing or stale | run `score`, then `publish` |
+| `publish`: `the score covers only some chapters` | `score` was run with `--chapters` | run `score` on the whole book, then `publish` |
+| `publish`: `written from keys that were never checked` | `auto` holds this book for unchecked keys (`auto.json`) | the owner reads the pack and the notes; `--approve` only on their yes |
 | `publish`: `app validator:` or `category ... is not canonical` | the package would be rejected at ingest | fix the config's categories or the chapter it names; score and publish again |
 | `publish`: `register:api failed` | AWS names or credentials | check `AWS_PROFILE=chapterflow` works (`aws sts get-caller-identity --profile chapterflow`) and the SSM names; rerun `publish` (idempotent by packageId) |
 | `publish`: `not verified ... CDN caches` | the list is cached up to an hour | fine; check again later |
 | trailing comma in `--chapters` | `seq -s,` | `seq a b \| paste -sd, -` |
+| `auto`: `NEEDS-OWNER ... keys could not be checked` | a checker or the editor did not answer (web down, a refusal) | run the identical command later; or the owner reads the notes in the config and you pass `--keys-ok` |
+| `auto`: `chapters were written before the keys were checked` | chapters exist and nothing records a check | the book waits on every run: the owner reads the pack and the notes, then `--approve` or `--keys-ok` |
+| `auto`: `--keys-ok is not taken: the notes changed after the chapters were written` | a note was edited while the book was held as `unchecked` | the owner reads the pack, then `--approve`; or remove `chNN/` for the chapters whose notes changed and rerun |
+| `auto`: `--keys-ok is not taken: keys were drafted in this run` | the config had no notes yet | nothing to do: the web check runs; pass `--keys-ok` only after the owner read the notes |
+| `auto`: `--approve is not taken: the chapters changed` | a chapter was edited after the pack the owner read | the owner reads the new pack; then `--approve` again |
+| `auto`: `--approve is not taken: this book was not waiting` | no pack was waiting for a yes (first run, or a keys hold) | run without it; pass it only after a `NEEDS-OWNER` with a pack |
+| `auto`: `FAILED: stopped by an error: ...` | something outside the model calls broke | read the reason, mend it, run the identical command |
+| `auto`: `RUN_DIR_MISMATCH` | two configs name one `runDir` | give each book its own run dir |
+| `auto`: `AUTO_STATE_UNREADABLE` | `auto.json` is cut off | restore it; deleting it gives the book its one-off rounds again, so say so to the owner |
 
 ## Cost (from the 48 Laws ledgers, 2026-11-04)
 
 Sonnet writing with Opus checks and fixes: $0.70 to $0.89 per chapter (Opus writing: $1.07). Keys: under $1.
+The web keys check in `auto`: about $0.35 a chapter (Tiny Habits, 2026-11-11: eight chapters, $2.82, eight minutes;
+six of the eight notes got a story from the book, none of them wrong, against eight of eight when checked by hand).
 Writer test under the reader bar (2026-11-11, three Tiny Habits chapters, two blind readers each on the default
 reader path): Opus as writer was preferred 6 of 6 times, overall 8.0 against 6.8, at $1.05 to $1.42 a chapter
 against $0.63 to $0.91 for Sonnet. The default writer stays the owner's choice (Sonnet, 2026-11-05) until the owner
 says otherwise; to write with Opus, set the config's `writer` to the checker's model.
 Calibration (variants, assemble, fixes): about $5. Fix passes: about $0.3 per open chapter per pass. Style pass:
 $0.18 per chapter. Estimate = $5 + chapters x $0.9 + (chapters / 3) x $0.6, rounded up: 13 chapters about $20,
-48 chapters about $60. `budgetUsd` = twice that.
+48 chapters about $60; add chapters x $0.35 for the keys check when `auto` runs a knowledge-mode book. `budgetUsd` =
+twice that.

@@ -1105,9 +1105,31 @@ test("score: a book whose mean is under the manual bar fails, and the gate thres
   assert.match(r3.err + r3.out, /CONFIG_INVALID.*gate.*manual must not be above auto/);
 });
 
+test("score: items the judge left out count as failed, and such an eval is judged again on the next run", async () => {
+  const h = harness();
+  const full = judge();
+  const partial = { ...full, items: full.items.slice(0, Math.floor(full.items.length / 2)) };
+  // The judge is asked once more when items are missing; here it leaves them out both times, then answers in full.
+  h.script({ "pipe-review": [{ result: partial }, { result: partial }, { result: full }], "pipe-nochapter": [{ result: GUESS_WRONG }] });
+  h.put(1, "final.json", CH);
+  h.put(1, "status.json", landedStatus(1));
+  // Half the items answered, all of them passing: without the rule this chapter would score 100.
+  const r = await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(r.code, 2, r.err + r.out);
+  assert.match(r.out, /band FAIL/);
+  const saved = JSON.parse(fs.readFileSync(path.join(h.runDir, "score.json"), "utf8"));
+  assert.equal(saved.chapters[0].total, JUDGE_IDS.length);
+  assert.ok(saved.chapters[0].score < 60, String(saved.chapters[0].score));
+  // The incomplete eval is not trusted on the next run: the judge is asked again and the full answer stands.
+  const r2 = await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(r2.code, 0, r2.err + r2.out);
+  assert.equal(h.calls("pipe-review").length, 3);
+});
+
 // ---------------------------------------------------------------- publish (behind the gate)
 
-import { publishBook, type Publisher } from "../src/publish";
+import { execFileSync } from "node:child_process";
+import { gitCommitPackage, publishBook, type Publisher } from "../src/publish";
 import { makeCtx } from "../src/pipeline";
 
 const scoreFile = (h: ReturnType<typeof harness>, over: Record<string, unknown> = {}) => {
@@ -1200,4 +1222,68 @@ test("publishBook: the auto band runs S3, the catalog registration and the live 
   const r2 = await publishBook(ctx, { packagesDir: path.join(h.dir, "pkgs"), noGit: true, publisher: fake, approve: true });
   assert.equal(r2.outcome, "published");
   assert.match(r2.reasons[0]!, /approved by the owner/);
+});
+
+test("publishBook: the AWS names are resolved before anything is committed, so a publish that cannot reach AWS leaves no commit behind", async () => {
+  const h = harness();
+  landAll(h);
+  scoreFile(h);
+  const calls: string[] = [];
+  const fake: Publisher = {
+    async names() { calls.push("names"); throw new Error("AWS_UNREACHABLE: no credentials"); },
+    async putPackage() { calls.push("put"); },
+    async register() { calls.push("register"); return ""; },
+    async liveVersion() { calls.push("version"); return null; },
+    async verifyLive() { calls.push("verify"); return { ok: true, detail: "" }; },
+  };
+  const ctx = makeCtx(loadBookConfig(h.configPath));
+  // Git is on here, and the package sits outside the repo: a commit attempted first would fail with a git error instead.
+  await assert.rejects(publishBook(ctx, { packagesDir: path.join(h.dir, "pkgs"), publisher: fake }), /AWS_UNREACHABLE/);
+  assert.deepEqual(calls, ["names"]);
+  assert.ok(!fs.existsSync(path.join(h.runDir, "publish.json")));
+});
+
+test("publishBook: a score that covers only some chapters is refused, however good it is", async () => {
+  const h = harness();
+  landAll(h);
+  scoreFile(h, { chapters: [{ chapter: 1, score: 100, passCount: 10, total: 10, failed: [], stage: "clean", blocking: 0, guessable: false }] });
+  const calls: string[] = [];
+  const fake: Publisher = {
+    async names() { calls.push("names"); return { table: "T", contentBucket: "c", ingestBucket: "i", region: "us-east-1", profile: "chapterflow" }; },
+    async putPackage() { calls.push("put"); },
+    async register() { calls.push("register"); return ""; },
+    async liveVersion() { return null; },
+    async verifyLive() { return { ok: true, detail: "" }; },
+  };
+  const r = await publishBook(makeCtx(loadBookConfig(h.configPath)), { packagesDir: path.join(h.dir, "pkgs"), noGit: true, publisher: fake });
+  assert.equal(r.outcome, "refused");
+  assert.match(r.reasons.join(" "), /the score covers only some chapters \(not ch02, ch03\)/);
+  assert.deepEqual(calls, []);
+});
+
+test("publish's commit takes the package alone: whatever else is staged stays staged and uncommitted", () => {
+  const repo = fs.mkdtempSync(path.join(os.tmpdir(), "v26-git-"));
+  try {
+    const git = (...a: string[]): string => execFileSync("git", a, { cwd: repo, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    git("init", "-q");
+    git("config", "user.email", "test@example.test");
+    git("config", "user.name", "Test");
+    git("config", "commit.gpgsign", "false");
+    fs.writeFileSync(path.join(repo, "seed.txt"), "seed\n");
+    git("add", "seed.txt");
+    git("commit", "-q", "-m", "seed");
+    // Someone's own work sits in the index when the publish runs.
+    fs.writeFileSync(path.join(repo, "other.txt"), "the operator's own work\n");
+    git("add", "other.txt");
+    fs.mkdirSync(path.join(repo, "book-packages"));
+    const file = path.join(repo, "book-packages", "demo.v21.json");
+    fs.writeFileSync(file, "{}\n");
+    const steps: string[] = [];
+    gitCommitPackage(file, "chore(books): publish demo", steps, repo);
+    assert.equal(git("show", "--name-only", "--format=", "HEAD").trim(), "book-packages/demo.v21.json");
+    assert.match(git("status", "--porcelain"), /^A  other\.txt$/m);
+    assert.match(steps.join("|"), /git: committed book-packages\/demo\.v21\.json as [0-9a-f]+\|git: push failed/);
+  } finally {
+    fs.rmSync(repo, { recursive: true, force: true });
+  }
 });

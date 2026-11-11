@@ -28,8 +28,8 @@ export async function draftKeys(ctx: PipelineCtx, configPath: string, opts: { fo
       if (!list) return ["answer must be an object with a chapters array"];
       const hasKeys = (x: unknown, n: number): boolean =>
         typeof x === "object" && x !== null && (x as { number?: unknown }).number === n && typeof (x as { keys?: unknown }).keys === "string" && (x as { keys: string }).keys.trim() !== "";
-      const bad = todo.filter((c) => !list.some((x) => hasKeys(x, c.number)));
-      return bad.length ? [`missing or empty keys for chapters ${bad.map((c) => c.number).join(", ")}`] : [];
+      const bad = todo.filter((c) => list.filter((x) => (x as { number?: unknown } | null)?.number === c.number).length !== 1 || !list.some((x) => hasKeys(x, c.number)));
+      return bad.length ? [`missing, repeated or empty keys for chapters ${bad.map((c) => c.number).join(", ")}`] : [];
     },
     outPrefix: `${ctx.config.runDir}/keys/keys`,
     ledgerStep: "book-keys",
@@ -39,7 +39,11 @@ export async function draftKeys(ctx: PipelineCtx, configPath: string, opts: { fo
     const entry = file.chapters.find((x) => x.number === c.number);
     if (entry && todo.some((t) => t.number === c.number)) entry.keys = c.keys.trim();
   }
-  fs.writeFileSync(configPath, JSON.stringify(file, null, 2) + "\n");
+  // Notes drafted now were never checked: an earlier check's record no longer speaks for this book's keys. The record
+  // goes first and the config is swapped in whole, so a stop between the two never leaves new notes under an old record.
+  for (const stale of ["checked.json", "check-progress.json"]) fs.rmSync(`${ctx.config.runDir}/keys/${stale}`, { force: true });
+  fs.writeFileSync(`${configPath}.tmp`, JSON.stringify(file, null, 2) + "\n");
+  fs.renameSync(`${configPath}.tmp`, configPath);
   for (const c of todo) {
     const got = raw.chapters.find((x) => x.number === c.number);
     if (got) c.keys = got.keys.trim();

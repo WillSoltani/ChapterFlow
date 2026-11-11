@@ -27,6 +27,8 @@ const REAL_TEMPLATES = [
   [/^You are assembling one ChapterFlow chapter/, "pipe-vassemble"],
   [/^You are writing one chapter of a ChapterFlow book to the standard of a chapter the owner approved/, "pipe-bwrite"],
   [/^You know this book well\. For each chapter listed below/, "pipe-keys"],
+  [/^You are checking notes \("keys"\) on chapters of a published book/, "pipe-keyscheck"],
+  [/^You are the editor of notes \("keys"\)/, "pipe-keysmerge"],
   [/writing one chapter/, "pipe-write"],
   [/fact checker/, "pipe-factcheck"],
   [/taking the quiz/, "pipe-keysolve"],
