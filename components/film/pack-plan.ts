@@ -42,10 +42,10 @@
  * around the playhead in one bounded request.
  */
 
-import type { PackHeader, PackLayout } from "./pack-format";
+import { OPENING_FRAMES, openingEnd, type PackHeader, type PackLayout } from "./pack-format";
 
 /** The last frame of the opening window read before the first scroll. */
-export const OPENING_LAST_FRAME = 47;
+export const OPENING_LAST_FRAME = OPENING_FRAMES - 1;
 /** A stream at most this many frames short of where it should be is left to reach it. */
 export const REACH_FRAMES = 16;
 /** Scrolling up, a re-aimed stream starts this many frames below the playhead. */
@@ -142,12 +142,15 @@ function item(p: PlanPack, start: number, limit: number, step: PlanStep): PlanIt
   return { key: p.key, start, end: p.bytes.nextHeld(start, limit), step };
 }
 
-/** The opening window: header, skeleton and remaining frames through OPENING_LAST_FRAME. */
+/**
+ * The opening window: header, skeleton and remaining frames through
+ * OPENING_LAST_FRAME. Its end is in the timeline (layout.openingEnd), so the
+ * request is bounded exactly; without it the stream reads on and is stopped
+ * as soon as the header shows the window is complete.
+ */
 function openingItem(p: PlanPack): PlanItem | null {
   const h = p.bytes.header;
-  // Before the header arrives the window's end is unknown: read on (the
-  // stream is stopped as soon as the header shows the window is complete).
-  const limit = h ? Math.max(h.skeletonEnd, frameEnd(p, h, OPENING_LAST_FRAME)) : p.layout.bytes;
+  const limit = Math.max(p.layout.skeletonEnd, h ? openingEnd(h) : (p.layout.openingEnd ?? p.layout.bytes));
   const start = p.bytes.firstMissing(0, limit);
   return item(p, start, limit, "opening");
 }

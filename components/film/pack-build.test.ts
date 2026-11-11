@@ -14,6 +14,15 @@ test("packOrder: the skeleton layer (every 4th frame) first, then the rest in fr
   assert.deepEqual(packOrder(1), [0]);
 });
 
+test("buildPack: the opening window ends after frame 47's slot", () => {
+  const p = buildPack(frames(100));
+  const h = parsePack(p.buf);
+  const slot47 = h.entries.find((e: { index: number }) => e.index === 47)!;
+  assert.equal(p.openingEnd, slot47.offset + slot47.length);
+  assert.ok(p.openingEnd > p.skeletonEnd);
+  assert.equal(buildPack(frames(10)).openingEnd, buildPack(frames(10)).bytes, "a short film: the whole file");
+});
+
 test("buildPack: header, table and slices; output is deterministic", () => {
   const f = frames(13);
   const a = buildPack(f);
@@ -67,7 +76,7 @@ test("writePack + verifyPack: verified, frames untouched; a changed frame or cou
   await fs.rm(dir, { recursive: true });
 });
 
-const LAYOUT = { bytes: 1000, header: 132, skeletonEnd: 400, v: "abc" };
+const LAYOUT = { bytes: 1000, header: 132, skeletonEnd: 400, openingEnd: 1000, v: "abc" };
 const inspected = (over: Partial<{ count: number; bytes: number; header: number; skeletonEnd: number; lengths: number[]; sizes: number[] }> = {}) => {
   const lengths = over.lengths ?? [10, 20, 30];
   return {
@@ -76,12 +85,14 @@ const inspected = (over: Partial<{ count: number; bytes: number; header: number;
       bytes: over.bytes ?? 1000,
       header: over.header ?? 132,
       skeletonEnd: over.skeletonEnd ?? 400,
-      entries: lengths.map((length, i) => ({ index: i, offset: 0, length })),
+      entries: lengths.map((length, i) => ({ index: i, offset: 132 + lengths.slice(0, i).reduce((a, b) => a + b, 0), length })),
     },
     fileBytes: over.bytes ?? 1000,
     sizes: over.sizes ?? [10, 20, 30],
   };
 };
+// The fake pack's three frames end at 132 + 60 (all inside the opening window).
+LAYOUT.openingEnd = 192;
 
 test("packTimelineEntry: a matching pack is recorded with the manifest's version", () => {
   const { entry, stale } = packTimelineEntry(undefined, LAYOUT, inspected(), 3, "palace-00");

@@ -28,8 +28,23 @@ export const PACK_FILE = "pack.bin";
  */
 export const SKELETON_STRIDE = 4;
 
-/** What book.timeline.json records about a variant's pack. */
-export type PackLayout = { bytes: number; header: number; skeletonEnd: number; v?: string };
+/**
+ * What book.timeline.json records about a variant's pack, known before its
+ * first byte arrives: total bytes, header length, where the skeleton layer
+ * ends, where the opening window (frames 0–47, read before the first scroll)
+ * ends, and the version (?v= on the pack URL).
+ */
+export type PackLayout = { bytes: number; header: number; skeletonEnd: number; openingEnd?: number; v?: string };
+
+/** Frames 0 … OPENING_FRAMES − 1 are the opening window (scripts/film/pack-lib.mjs). */
+export const OPENING_FRAMES = 48;
+
+/** The byte where frames 0 … OPENING_FRAMES − 1 are all complete. */
+export function openingEnd(h: PackHeader): number {
+  let end = h.header;
+  for (const s of h.slots) if (s.index < OPENING_FRAMES) end = Math.max(end, s.offset + s.length);
+  return end;
+}
 
 export type PackSlot = { index: number; offset: number; length: number };
 
@@ -88,5 +103,8 @@ export function packLayoutProblem(h: PackHeader, layout: PackLayout, count: numb
   if (h.bytes !== layout.bytes) return `pack is ${h.bytes} bytes, the timeline says ${layout.bytes}`;
   if (h.header !== layout.header) return `pack header is ${h.header} bytes, the timeline says ${layout.header}`;
   if (h.skeletonEnd !== layout.skeletonEnd) return `pack skeleton ends at ${h.skeletonEnd}, the timeline says ${layout.skeletonEnd}`;
+  if (layout.openingEnd !== undefined && openingEnd(h) !== layout.openingEnd) {
+    return `pack opening window ends at ${openingEnd(h)}, the timeline says ${layout.openingEnd}`;
+  }
   return null;
 }

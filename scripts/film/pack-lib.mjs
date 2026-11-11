@@ -32,6 +32,12 @@ export const PACK_FIXED_BYTES = 24;
 export const PACK_ENTRY_BYTES = 12;
 /** Every SKELETON_STRIDE-th frame (0, 4, 8, …) is in the skeleton layer. */
 export const SKELETON_STRIDE = 4;
+/**
+ * The opening window the page reads before the visitor's first scroll:
+ * frames 0 … OPENING_FRAMES − 1 (components/film/pack-plan.ts
+ * OPENING_LAST_FRAME). `openingEnd` = the byte where they are all complete.
+ */
+export const OPENING_FRAMES = 48;
 
 /** Frame indices in file order for `count` frames: skeleton (stride) first, then the rest. */
 export function packOrder(count, stride = SKELETON_STRIDE) {
@@ -44,7 +50,7 @@ export function packOrder(count, stride = SKELETON_STRIDE) {
 /**
  * Build a pack from frame bytes (`frames[i]` = frame i's file bytes).
  * @param {Uint8Array[]} frames
- * @returns {{ buf: Buffer, header: number, skeletonEnd: number, bytes: number, v: string }}
+ * @returns {{ buf: Buffer, header: number, skeletonEnd: number, openingEnd: number, bytes: number, v: string }}
  */
 export function buildPack(frames, stride = SKELETON_STRIDE) {
   const n = frames.length;
@@ -62,6 +68,7 @@ export function buildPack(frames, stride = SKELETON_STRIDE) {
   buf.writeUInt32LE(total, 20);
   let at = header;
   let skeletonEnd = header;
+  let openingEnd = header;
   order.forEach((index, slot) => {
     const f = frames[index];
     const e = PACK_FIXED_BYTES + PACK_ENTRY_BYTES * slot;
@@ -71,10 +78,18 @@ export function buildPack(frames, stride = SKELETON_STRIDE) {
     buf.set(f, at);
     at += f.length;
     if (index % stride === 0) skeletonEnd = at;
+    if (index < OPENING_FRAMES) openingEnd = Math.max(openingEnd, at);
   });
   buf.writeUInt32LE(skeletonEnd, 16);
   const v = createHash("sha256").update(buf).digest("hex").slice(0, 12);
-  return { buf, header, skeletonEnd, bytes: total, v };
+  return { buf, header, skeletonEnd, openingEnd, bytes: total, v };
+}
+
+/** The byte where frames 0 … OPENING_FRAMES − 1 are complete, from a parsed table. */
+export function openingEndOf(entries, header) {
+  let end = header;
+  for (const e of entries) if (e.index < OPENING_FRAMES) end = Math.max(end, e.offset + e.length);
+  return end;
 }
 
 /**
@@ -112,7 +127,7 @@ export async function listFrames(dir) {
 
 /** The manifest's `pack` field for a built pack. */
 export function packField(p) {
-  return { bytes: p.bytes, header: p.header, skeletonEnd: p.skeletonEnd, v: p.v };
+  return { bytes: p.bytes, header: p.header, skeletonEnd: p.skeletonEnd, openingEnd: p.openingEnd, v: p.v };
 }
 
 /**
@@ -182,7 +197,7 @@ export async function verifyPack(dir) {
   if (h.entries.some((e, i) => e.index !== order[i])) problems.push(`${dir}: file order is not skeleton-first`);
   try {
     const m = JSON.parse(await fs.readFile(path.join(dir, "manifest.json"), "utf8"));
-    const want = { bytes: buf.length, header: h.header, skeletonEnd: h.skeletonEnd };
+    const want = { bytes: buf.length, header: h.header, skeletonEnd: h.skeletonEnd, openingEnd: openingEndOf(h.entries, h.header) };
     if (!m.pack) problems.push(`${dir}: manifest.json has no pack field`);
     else for (const k of Object.keys(want)) if (m.pack[k] !== want[k]) problems.push(`${dir}: manifest pack.${k} ${m.pack[k]}, pack says ${want[k]}`);
     if (m.pack && m.pack.v !== createHash("sha256").update(buf).digest("hex").slice(0, 12)) problems.push(`${dir}: manifest pack.v does not match the pack's hash`);

@@ -102,6 +102,7 @@ export class PackNet {
   private jumped = false;
   private cancelSettle: (() => void) | null = null;
   private cancelRetry: (() => void) | null = null;
+  private cancelStats: (() => void) | null = null;
   private retryAt = Infinity;
   private statsAt = -Infinity;
   private planning = false;
@@ -168,6 +169,7 @@ export class PackNet {
     for (const s of this.streams.values()) this.stopStream(s);
     this.cancelSettle?.();
     this.cancelRetry?.();
+    this.cancelStats?.();
   }
 
   private plan() {
@@ -247,6 +249,7 @@ export class PackNet {
     s.stopped = true;
     this.streams.delete(s.id);
     s.ctrl.abort();
+    this.emitStats(false);
   }
 
   private openStream(key: string, start: number, end: number) {
@@ -406,7 +409,16 @@ export class PackNet {
 
   private emitStats(force: boolean) {
     const now = this.io.clock.now();
-    if (!force && now - this.statsAt < STATS_EVERY_MS) return;
+    if (!force && now - this.statsAt < STATS_EVERY_MS) {
+      // Throttled: one trailing report, so the page never keeps stale numbers.
+      this.cancelStats ??= this.io.clock.later(() => {
+        this.cancelStats = null;
+        this.emitStats(true);
+      }, STATS_EVERY_MS - (now - this.statsAt));
+      return;
+    }
+    this.cancelStats?.();
+    this.cancelStats = null;
     this.statsAt = now;
     const progress: Record<string, PackProgress> = {};
     for (const e of this.entries.values()) {

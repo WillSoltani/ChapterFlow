@@ -5,6 +5,9 @@
  * the encoder.
  */
 
+/** Frames 0 … OPENING_FRAMES − 1 are the opening window (pack-lib.mjs, pack-plan.ts). */
+const OPENING_FRAMES = 48;
+
 /** Band tiers written by encode.mjs --bands: output width (the height keeps the band's aspect). */
 export const BAND_TIER_WIDTHS = [1080, 900];
 
@@ -53,12 +56,12 @@ export function bandTierEntry(prev, manifest, filmCount, dirName) {
  * Frame sizes are compared, not bytes (cheap); `npm run film:pack -- --verify`
  * compares every byte.
  *
- * @param {{ bytes: number, header: number, skeletonEnd: number, v?: string } | undefined} prev
- * @param {{ bytes: number, header: number, skeletonEnd: number, v?: string } | undefined} manifestPack
- * @param {{ header: null | { error?: string, count?: number, bytes?: number, header?: number, skeletonEnd?: number, entries?: Array<{ index: number, length: number }> }, fileBytes: number, sizes: number[] }} onDisk
+ * @param {{ bytes: number, header: number, skeletonEnd: number, openingEnd?: number, v?: string } | undefined} prev
+ * @param {{ bytes: number, header: number, skeletonEnd: number, openingEnd?: number, v?: string } | undefined} manifestPack
+ * @param {{ header: null | { error?: string, count?: number, bytes?: number, header?: number, skeletonEnd?: number, entries?: Array<{ index: number, offset: number, length: number }> }, fileBytes: number, sizes: number[] }} onDisk
  * @param {number} filmCount
  * @param {string} dirName
- * @returns {{ entry: { bytes: number, header: number, skeletonEnd: number, v?: string } | null, stale: string | null }}
+ * @returns {{ entry: { bytes: number, header: number, skeletonEnd: number, openingEnd?: number, v?: string } | null, stale: string | null }}
  */
 export function packTimelineEntry(prev, manifestPack, onDisk, filmCount, dirName) {
   const fix = "rebuild it with `npm run film:pack` (docs/FILM_REEL.md)";
@@ -76,10 +79,18 @@ export function packTimelineEntry(prev, manifestPack, onDisk, filmCount, dirName
   if (h.bytes !== onDisk.fileBytes) return fail(`pack.bin's header says ${h.bytes} bytes, the file is ${onDisk.fileBytes}`);
   if (h.header !== manifestPack.header) return fail(`manifest says a ${manifestPack.header}-byte header, pack.bin has ${h.header}`);
   if (h.skeletonEnd !== manifestPack.skeletonEnd) return fail(`manifest says the skeleton ends at ${manifestPack.skeletonEnd}, pack.bin at ${h.skeletonEnd}`);
+  let openingEnd = h.header ?? 0;
   for (const e of h.entries ?? []) {
     const size = onDisk.sizes[e.index];
     if (size !== e.length) return fail(`frame ${e.index} is ${size ?? "missing"} bytes on disk, ${e.length} in the pack`);
+    if (e.index < OPENING_FRAMES) openingEnd = Math.max(openingEnd, e.offset + e.length);
+  }
+  if (manifestPack.openingEnd !== undefined && manifestPack.openingEnd !== openingEnd) {
+    return fail(`manifest says the opening window ends at ${manifestPack.openingEnd}, pack.bin at ${openingEnd}`);
   }
   const v = manifestPack.v || prev?.v;
-  return { entry: { bytes: manifestPack.bytes, header: manifestPack.header, skeletonEnd: manifestPack.skeletonEnd, ...(v ? { v } : {}) }, stale: null };
+  return {
+    entry: { bytes: manifestPack.bytes, header: manifestPack.header, skeletonEnd: manifestPack.skeletonEnd, openingEnd, ...(v ? { v } : {}) },
+    stale: null,
+  };
 }

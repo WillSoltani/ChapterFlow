@@ -16,12 +16,26 @@
  * can never push out a near one (the churn behind 10,000+ requests per pass
  * before this rewrite).
  *
+ * Pack mode (attachPacks: the film worker, pack-client.ts). For a variant
+ * served from its pack the compressed bytes live in the worker, not here: a
+ * wanted frame whose bytes the worker holds is decoded THERE (same decode
+ * limit, same reservation); one whose bytes have not arrived is simply not
+ * loadable yet (no slot taken, nothing blocked) and is decoded when they
+ * arrive if it is still wanted. Within the window the order is coarse
+ * first: the playhead frame, then every 4th frame nearest the playhead, then
+ * the in-between frames nearest first, so a cold window or a fast scroll
+ * shows every 4th frame across the whole window before detail fills in. A
+ * variant whose pack fails goes back to the per-frame path (frames already
+ * decoded stay). The scheduler tells the worker where the visitor is on
+ * every strong plan (`where`).
+ *
  * `nearest` returns the closest decoded frame at or below the requested
  * index (else above, else the poster), so the canvas always has something to
  * draw while the exact frame is in flight. `window.__filmStats` (FilmStats)
  * counts fetches, refetches, decodes and draw accuracy.
  */
 
+import { SKELETON_STRIDE } from "./pack-format";
 import type { FilmVariant } from "./types";
 
 export type Drawable = ImageBitmap | HTMLImageElement;
@@ -257,6 +271,8 @@ const RETRY_MAX_MS = 4000;
 /** Budgets below this are "small" (phones): fewer decodes, smaller blob store. */
 const SMALL_BUDGET = 256 * MB;
 
+const nowMs = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
+
 function drawableBytes(d: Drawable): number {
   const w = "naturalWidth" in d ? d.naturalWidth || d.width : d.width;
   const h = "naturalHeight" in d ? d.naturalHeight || d.height : d.height;
@@ -304,6 +320,8 @@ export class FrameBudget {
   /** When the pending retry wake-up fires (Infinity = none pending). */
   private wakeAt = Infinity;
   private readonly listeners = new Set<(cache: FrameCache, index: number) => void>();
+  /** Pack mode: the film worker's bytes (null = every variant loads frame by frame). */
+  private packs: PackSource | null = null;
 
   constructor(
     public readonly limitBytes: number,
@@ -328,6 +346,41 @@ export class FrameBudget {
 
   get blobBytes(): number {
     return this.blobUsed;
+  }
+
+  /** A phone-sized budget (the same signal decides the worker's byte cap). */
+  get small(): boolean {
+    return this.limitBytes < SMALL_BUDGET;
+  }
+
+  /**
+   * Serve variants that have a pack through the film worker. Frames arriving
+   * there start decodes for wanted frames; a variant falling back to frames
+   * (null) clears its retry state and loads per frame from the next pump.
+   */
+  attachPacks(source: PackSource) {
+    this.packs = source;
+    source.subscribe((variant, added) => {
+      const key = variantKey(variant);
+      if (added === null) {
+        for (const url of [...this.failed.keys()]) if (url.startsWith(`${variant.base}/`)) this.failed.delete(url);
+        this.pump();
+        return;
+      }
+      for (const c of this.caches) {
+        if (c.disposed || variantKey(c.variant) !== key) continue;
+        const want = this.wantedKeys.get(c);
+        if (want && added.some((i) => want.has(i) && !c.has(i) && !c.decoding.has(i))) {
+          this.pump();
+          return;
+        }
+      }
+    });
+  }
+
+  /** True while `cache` loads from its pack. */
+  packMode(cache: FrameCache): boolean {
+    return !!this.packs && this.packs.serves(cache.variant);
   }
 
   /** Decoded frames held, across all caches. */
@@ -387,6 +440,19 @@ export class FrameBudget {
     this.order = this.buildOrder(plan);
     this.indexWanted();
     for (const url of [...this.failed.keys()]) if (!this.wantedUrls.has(url)) this.failed.delete(url);
+    const active = plan.active.cache;
+    if (this.packs && !weak && active.variant.pack) {
+      let lo = Infinity;
+      let hi = -Infinity;
+      for (const w of this.order) {
+        if (w.cache !== active) continue;
+        lo = Math.min(lo, w.index);
+        hi = Math.max(hi, w.index);
+      }
+      const frame = Math.min(active.variant.count - 1, Math.max(0, Math.round(plan.active.center)));
+      this.packs.where({ variant: active.variant, frame, direction: plan.active.direction, lo, hi });
+    }
+    this.stats.mode = this.packMode(active) ? "pack" : "frames";
     this.pump();
   }
 
@@ -442,16 +508,25 @@ export class FrameBudget {
     }
 
     // Nearest-first, with distance weighted by the bias (behind costs more).
-    const steps: Array<{ index: number; cost: number }> = [];
+    let steps: Array<{ index: number; cost: number }> = [];
     for (let d = 1; d <= ahead; d++) steps.push({ index: center + d * direction, cost: d / AHEAD_SHARE });
     for (let d = 1; d <= behind; d++) steps.push({ index: center - d * direction, cost: d / (1 - AHEAD_SHARE) });
     steps.sort((a, b) => a.cost - b.cost);
+    // Pack mode: coarse first (every 4th frame nearest first, then the rest).
+    const coarse = this.packMode(active);
+    if (coarse) steps = [...steps.filter((x) => x.index % SKELETON_STRIDE === 0), ...steps.filter((x) => x.index % SKELETON_STRIDE !== 0)];
 
     const at = (cache: FrameCache, index: number): Wanted => ({ cache, index, url: frameUrl(cache.variant, index) });
     const order: Wanted[] = [at(active, center)];
     if (pin && pinOn) order.push(at(pin.cache, pin.index));
     for (const s of steps) order.push(at(active, s.index));
-    if (next) for (let i = 0; i < nextN; i++) order.push(at(next, i));
+    if (next) {
+      const head = Array.from({ length: nextN }, (_, i) => i);
+      const nextCoarse = this.packMode(next);
+      for (const i of nextCoarse ? [...head.filter((x) => x % SKELETON_STRIDE === 0), ...head.filter((x) => x % SKELETON_STRIDE !== 0)] : head) {
+        order.push(at(next, i));
+      }
+    }
     // Last: it needs no fetch, only a decode slot the window is not using.
     if (fallback >= 0 && !steps.some((s) => s.index === fallback)) order.push(at(active, fallback));
     return order;
@@ -464,7 +539,8 @@ export class FrameBudget {
    * decoded frame is already at least as close.
    */
   private heldFallback(cache: FrameCache, center: number): number {
-    const held = (i: number) => this.blobs.has(frameUrl(cache.variant, i));
+    const packs = this.packMode(cache) ? this.packs : null;
+    const held = packs ? (i: number) => packs.holds(cache.variant, i) : (i: number) => this.blobs.has(frameUrl(cache.variant, i));
     if (cache.has(center) || held(center)) return -1;
     for (let i = center - 1; i >= 0; i--) {
       if (cache.has(i)) return -1;
@@ -483,6 +559,15 @@ export class FrameBudget {
     for (const { cache, index, url } of this.order) {
       if (s.fetchInFlight >= this.maxFetches && s.decodeInFlight >= this.maxDecodes) return;
       if (cache.disposed || cache.has(index) || cache.decoding.has(index) || !this.retryDue(url)) continue;
+      if (this.packs && this.packs.serves(cache.variant)) {
+        // Pack mode: decodable only once the worker holds the bytes; until
+        // then the frame takes no slot and blocks nothing.
+        if (s.decodeInFlight >= this.maxDecodes || !this.packs.holds(cache.variant, index)) continue;
+        const bytes = frameBytes(cache.variant);
+        if (!this.reserve(bytes)) continue;
+        this.startPackDecode(this.packs, cache, index, url, bytes);
+        continue;
+      }
       const held = this.blobs.get(url);
       if (held) {
         if (s.decodeInFlight >= this.maxDecodes) continue;
@@ -548,7 +633,8 @@ export class FrameBudget {
       });
   }
 
-  private startDecode(cache: FrameCache, index: number, url: string, blob: Blob, bytes: number) {
+  /** Book a decode: counters, the in-flight gauge, the reservation. */
+  private beginDecode(cache: FrameCache, index: number, url: string, bytes: number) {
     const s = this.stats;
     s.decodes++;
     if (this.decodedEver.has(url)) s.redecodes++;
@@ -556,10 +642,53 @@ export class FrameBudget {
     if (s.decodeInFlight > s.maxDecodeInFlight) s.maxDecodeInFlight = s.decodeInFlight;
     this.reserved += bytes;
     cache.decoding.add(index);
+  }
+
+  /** A decoded frame landed: into its cache, or closed when the cache is gone. */
+  private landDecode(cache: FrameCache, index: number, url: string, img: Drawable, bytes: number) {
+    this.reserved -= bytes;
+    if (cache.disposed) {
+      if ("close" in img) img.close();
+      return;
+    }
+    this.decodedEver.add(url);
+    this.failed.delete(url);
+    const actual = drawableBytes(img) || bytes;
+    this.used += actual;
+    cache.put(index, img, actual);
+  }
+
+  /** Pack mode: decode in the worker from the bytes it holds. */
+  private startPackDecode(packs: PackSource, cache: FrameCache, index: number, url: string, bytes: number) {
+    this.beginDecode(cache, index, url, bytes);
+    packs
+      .decode(cache.variant, index)
+      .then(
+        ({ bitmap }) => this.landDecode(cache, index, url, bitmap, bytes),
+        () => {
+          this.reserved -= bytes;
+          // Bytes dropped in the worker or the pack failed: nothing to back
+          // off from (the frame decodes again when its bytes return, or loads
+          // per frame). Held bytes that would not decode: back off.
+          if (!cache.disposed && packs.serves(cache.variant) && packs.holds(cache.variant, index)) this.markFailed(url);
+        },
+      )
+      .finally(() => {
+        this.stats.decodeInFlight--;
+        cache.decoding.delete(index);
+        this.pump();
+      });
+  }
+
+  private startDecode(cache: FrameCache, index: number, url: string, blob: Blob, bytes: number) {
+    const s = this.stats;
+    this.beginDecode(cache, index, url, bytes);
+    const t0 = nowMs();
     this.io
       .decode(blob)
       .then(
         (img) => {
+          recordDecode(s, "main", nowMs() - t0);
           this.reserved -= bytes;
           if (cache.disposed) {
             if ("close" in img) img.close();
@@ -740,6 +869,10 @@ export class FrameCache {
     }
     if (!img) img = this.poster;
     this.lastServed = at;
+    if (record) {
+      this.budget.stats.drawWant = index;
+      this.budget.stats.drawAt = img ? at : -1;
+    }
     if (record && img) {
       const s = this.budget.stats;
       if (at === index) s.exactDraws++;

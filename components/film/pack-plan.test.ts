@@ -15,7 +15,7 @@ type SimStream = { id: number; key: string; pos: number; end: number };
 function makePack(key: string, count: number): SimPack {
   const frames = Array.from({ length: count }, (_, k) => Uint8Array.from({ length: 60 + ((k * 37) % 80) }, (_, i) => (k + i) & 255));
   const p = buildPack(frames);
-  const layout = { bytes: p.bytes, header: p.header, skeletonEnd: p.skeletonEnd, v: p.v };
+  const layout = { bytes: p.bytes, header: p.header, skeletonEnd: p.skeletonEnd, openingEnd: p.openingEnd, v: p.v };
   return { key, count, buf: new Uint8Array(p.buf), store: new PackBytes(key, layout, count), rangeless: false, serverIgnoresRange: false, order: [] };
 }
 
@@ -214,17 +214,19 @@ test("before the first scroll: only the first film, stopped after the opening wi
   const sim = new Sim([241, 241]);
   sim.where = { ...sim.where, scrolled: false };
   sim.plan();
+  const openingEnd = sim.pack(0).store.layout.openingEnd!;
   assert.deepEqual(
     sim.requests.map((r) => `${r.key}:${r.step}:${r.start}:${r.end}`),
-    [`f0:opening:0:${sim.pack(0).store.layout.bytes}`],
-    "one open-ended request",
+    [`f0:opening:0:${openingEnd}`],
+    "one request, bounded at the window's end (known from the timeline)",
   );
   for (let i = 0; i < 1000 && sim.streams.length; i++) sim.step(97);
   assert.equal(sim.streams.length, 0, "stopped");
   const st = sim.pack(0).store;
   for (let f = 0; f <= OPENING_LAST_FRAME; f++) assert.ok(st.held(f), `frame ${f} held`);
   const windowEnd = sim.slot(0, OPENING_LAST_FRAME).offset + sim.slot(0, OPENING_LAST_FRAME).length;
-  assert.ok(st.heldBytes <= windowEnd + 97, `read ${st.heldBytes} bytes, window ends at ${windowEnd}`);
+  assert.equal(windowEnd, openingEnd);
+  assert.equal(st.heldBytes, windowEnd, "not a byte past the window");
   assert.equal(sim.requests.length, 1, "nothing else");
   // First scroll.
   sim.where = { ...sim.where, scrolled: true, frame: 1 };

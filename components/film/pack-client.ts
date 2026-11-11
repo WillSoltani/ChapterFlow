@@ -106,17 +106,24 @@ export class PackClient implements PackSource {
     private readonly opts: {
       stats: FilmStats;
       capBytes: number;
-      /** The reel's variants for the current view, in film order. */
-      reel: () => FilmVariant[];
+      /** The reel's variants for the current view, in film order (or setReel). */
+      reel?: () => FilmVariant[];
       start?: () => WorkerLike;
       env?: Env;
     },
   ) {
     this.env = opts.env ?? browserEnv();
+    this.reel = opts.reel ?? null;
     this.scrolled = this.env.scrollY() > 0 || this.env.hash().length > 1;
   }
 
   private readonly env: Env;
+  private reel: (() => FilmVariant[]) | null = null;
+
+  /** Where the reel's variants for the current view come from. */
+  setReel(fn: () => FilmVariant[]) {
+    this.reel = fn;
+  }
 
   serves(v: FilmVariant): boolean {
     return !!v.pack && !this.dead && !this.failed.has(variantKey(v));
@@ -190,7 +197,7 @@ export class PackClient implements PackSource {
   }
 
   private sendReel() {
-    const reel = this.opts.reel();
+    const reel = this.reel?.() ?? [];
     const key = reel.map((v) => (v.pack ? variantKey(v) : "-")).join("|");
     if (key === this.reelKey) return;
     this.reelKey = key;
