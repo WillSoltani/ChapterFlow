@@ -16,12 +16,18 @@ import { gatedRoutePrefetchProps } from "@/components/landing/recall/RecallNavMo
 import { useAuthStatus } from "@/components/auth/useAuthStatus";
 import { FilmSegment } from "../FilmSegment";
 import { FramePin } from "../FramePin";
-import { filmCount, key } from "../timeline";
+import { pin, reducedStops } from "../pins";
+import { filmCount, filmKeys, key } from "../timeline";
 import type { FilmManifest } from "../types";
 
 type P = { film: FilmManifest; index: number };
 
-export function LightsChapter({ film, index }: P) {
+/*
+ * Each chapter's pin timings live in one object: the JSX and the
+ * reduced-motion stops (pins.ts reducedStops) read the same values.
+ */
+
+const LIGHTS = (() => {
   const F = "palace-04";
   const last = filmCount(F) - 1;
   const floors = key(F, "floors");
@@ -29,16 +35,33 @@ export function LightsChapter({ film, index }: P) {
   const l4 = key(F, "light_4");
   const l12 = key(F, "light_12");
   const l36 = key(F, "light_36");
+  const p = {
+    box: pin(floors, last, { hold: true }),
+    label: pin(floors, last, { hold: true }),
+    h2: pin(l1 - 10, last, { hold: true }),
+    lede: pin(l4, last, { hold: true }),
+    alone: pin(key(F, "lift"), l1 - 6, { ease: 8 }),
+    day1: pin(l1, l4 - 4, { ease: 4 }),
+    day4: pin(l4, l12 - 4, { ease: 4 }),
+    day12: pin(l12, l36 - 4, { ease: 4 }),
+    day36: pin(l36, last, { ease: 4, hold: true }),
+  };
+  const tree = [{ scrim: p.box, pins: [p.label, p.h2, p.lede] }, p.alone, p.day1, p.day4, p.day12, p.day36];
+  return { p, stops: reducedStops(filmCount(F), filmKeys(F), tree) };
+})();
+
+export function LightsChapter({ film, index }: P) {
+  const { p } = LIGHTS;
   return (
-    <FilmSegment id="why-it-works" film={film} index={index} pace={4} dissolveIn={14} ariaLabel="Spaced review">
+    <FilmSegment id="why-it-works" film={film} index={index} pace={4} dissolveIn={14} stops={LIGHTS.stops} ariaLabel="Spaced review">
       {/* The tower render is centred; its LEFT side is the darker face. */}
       <div className="film-stage-grid" data-split="left">
-        <FramePin scrim from={floors} to={last} hold className="film-box flex flex-col gap-4">
-          <FramePin from={floors} to={last} hold as="p" className="film-label">04 · Spaced review</FramePin>
-          <FramePin from={l1 - 10} to={last} hold as="h2" className="film-h2">
+        <FramePin scrim {...p.box} className="film-box flex flex-col gap-4">
+          <FramePin {...p.label} as="p" className="film-label">04 · Spaced review</FramePin>
+          <FramePin {...p.h2} as="h2" className="film-h2">
             It finds you again, right before you would forget.
           </FramePin>
-          <FramePin from={l4} to={last} hold as="p" className="film-lede">
+          <FramePin {...p.lede} as="p" className="film-lede">
             FSRS-5 predicts the moment an idea is about to go dark and brings it back right then.
             Never more review than you need.
           </FramePin>
@@ -48,13 +71,13 @@ export function LightsChapter({ film, index }: P) {
           kept book sits alone in a dark room: that is the problem spaced review
           solves, so say it there and let the tower answer it. */}
       <div className="film-stage-grid" data-anchor="bottom">
-        <FramePin from={key(F, "lift")} to={l1 - 6} ease={8} as="p" className="film-label">
+        <FramePin {...p.alone} as="p" className="film-label">
           Left alone, even a kept book fades.
         </FramePin>
-        <FramePin from={l1} to={l4 - 4} ease={4} as="p" className="film-label">Day 1 · one room lit</FramePin>
-        <FramePin from={l4} to={l12 - 4} ease={4} as="p" className="film-label">Day 4 · four rooms lit</FramePin>
-        <FramePin from={l12} to={l36 - 4} ease={4} as="p" className="film-label">Day 12 · twelve rooms lit</FramePin>
-        <FramePin from={l36} to={last} hold ease={4} as="p" className="film-label">Day 36 · the tower stays lit</FramePin>
+        <FramePin {...p.day1} as="p" className="film-label">Day 1 · one room lit</FramePin>
+        <FramePin {...p.day4} as="p" className="film-label">Day 4 · four rooms lit</FramePin>
+        <FramePin {...p.day12} as="p" className="film-label">Day 12 · twelve rooms lit</FramePin>
+        <FramePin {...p.day36} as="p" className="film-label">Day 36 · the tower stays lit</FramePin>
       </div>
     </FilmSegment>
   );
@@ -74,20 +97,32 @@ function BrowseBooksLink() {
   );
 }
 
-export function CityChapter({ film, index }: P) {
+const CITY = (() => {
   const F = "palace-05";
   const last = filmCount(F) - 1;
   const skyline = key(F, "skyline");
   const orbit = key(F, "orbit");
+  const p = {
+    halo: pin(skyline, last, { hold: true }),
+    label: pin(skyline, last, { hold: true }),
+    h2: pin(skyline + 8, last, { hold: true }),
+    browse: pin(orbit, last, { hold: true }),
+  };
+  return { p, stops: reducedStops(filmCount(F), filmKeys(F), [{ scrim: p.halo, pins: [p.label, p.h2, p.browse] }]) };
+})();
+
+export function CityChapter({ film, index }: P) {
+  const { p } = CITY;
   return (
-    <FilmSegment id="library" film={film} index={index} pace={3} dissolveIn={14} ariaLabel="Library">
-      <div className="film-stage-grid" data-split="center">
-        <FramePin scrim from={skyline} to={last} hold className="film-halo flex flex-col items-center gap-4">
-          <FramePin from={skyline} to={last} hold as="p" className="film-label">The library</FramePin>
-          <FramePin from={skyline + 8} to={last} hold as="h2" className="film-h2">
+    <FilmSegment id="library" film={film} index={index} pace={3} dissolveIn={14} stops={CITY.stops} ariaLabel="Library">
+      {/* Dense halo (globals.css): a bright frame behind the copy (contrast gate). */}
+      <div className="film-stage-grid" data-split="center" data-halo="dense">
+        <FramePin scrim {...p.halo} className="film-halo flex flex-col items-center gap-4">
+          <FramePin {...p.label} as="p" className="film-label">The library</FramePin>
+          <FramePin {...p.h2} as="h2" className="film-h2">
             {CATALOG_BOOK_COUNT} books. Every one a building.
           </FramePin>
-          <FramePin from={orbit} to={last} hold interactive>
+          <FramePin {...p.browse} interactive>
             <BrowseBooksLink />
           </FramePin>
         </FramePin>
@@ -96,25 +131,36 @@ export function CityChapter({ film, index }: P) {
   );
 }
 
-export function HomeChapter({ film, index }: P) {
+const HOME = (() => {
   const F = "palace-06";
   const last = filmCount(F) - 1;
   const window_ = key(F, "window");
   const warm = key(F, "lamp_warm");
+  const p = {
+    halo: pin(window_, last, { hold: true }),
+    h2: pin(window_, last, { hold: true }),
+    start: pin(warm, last, { hold: true }),
+  };
+  return { p, stops: reducedStops(filmCount(F), filmKeys(F), [{ scrim: p.halo, pins: [p.h2, p.start] }]) };
+})();
+
+export function HomeChapter({ film, index }: P) {
+  const { p } = HOME;
   return (
-    <FilmSegment id="home" film={film} index={index} pace={2.2} dissolveIn={12} ariaLabel="Start free">
-      <div className="film-stage-grid" data-split="center">
-        <FramePin scrim from={window_} to={last} hold className="film-halo flex flex-col items-center gap-6">
+    <FilmSegment id="home" film={film} index={index} pace={2.2} dissolveIn={12} stops={HOME.stops} ariaLabel="Start free">
+      {/* Dense halo (globals.css): a bright frame behind the copy (contrast gate). */}
+      <div className="film-stage-grid" data-split="center" data-halo="dense">
+        <FramePin scrim {...p.halo} className="film-halo flex flex-col items-center gap-6">
           {/* The body's RecallClose says "Read it once. Keep it for good." —
               this beat gets its own line so the two never repeat back to back. */}
-          <FramePin from={window_} to={last} hold as="h2" className="film-h1">
+          <FramePin {...p.h2} as="h2" className="film-h1">
             Finish the book.
             <br />
             Keep the ideas.
           </FramePin>
           {/* The Home chapter's own start button: the nav's is suppressed
               while it shows (startCta). */}
-          <FramePin from={warm} to={last} hold interactive startCta="chapter">
+          <FramePin {...p.start} interactive startCta="chapter">
             {/* External (Cognito) URL: plain <a>, see FoldChapter. */}
             <a href={AUTH_LOGIN_BOOK_URL} className="film-btn film-btn-primary">
               Start your first book <ArrowRight size={17} strokeWidth={2.25} aria-hidden />

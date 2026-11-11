@@ -25,9 +25,14 @@
  *     back restarts it, and the first tick after a restart snaps to the
  *     scroll position. Breath holds still while the loop is stopped.
  *   • Smoothing follows the input (smoothingMs in scrub.ts): passive wheel,
- *     touch, key, pointer and hashchange listeners record the kind of the last
- *     scroll input; the tick reads it. ?smooth=<ms> (read once) replaces the
- *     touch value.
+ *     touch, key, pointer, focusin and hashchange listeners record the kind
+ *     of the last scroll input; the tick reads it. ?smooth=<ms> (read once)
+ *     replaces the touch value. A keyboard focus jump (FilmSegment) snaps.
+ *   • Reduced motion (Phase 8): the chapter's progress picks one of its
+ *     stops (pins.ts reducedStopIndex: equal steps of its pinned travel, from
+ *     the cached geometry) and that stop's frame is drawn, with no glide and
+ *     no breath. The chapter heights change with the mode (CSS); the content
+ *     ResizeObserver re-measures them.
  *   • Below the reel the canvas wrapper is hidden (visibility, so it is not
  *     composited under the body; the backing store keeps its picture). The
  *     scroll handler shows it again, before the frame paints, as soon as the
@@ -50,6 +55,7 @@
 import { useEffect, type MutableRefObject } from "react";
 import type { FrameBudget, FrameCache } from "./frame-cache";
 import { htmlPosterStands } from "./first-paint";
+import { reducedStopIndex } from "./pins";
 import {
   backingSize,
   breathAt,
@@ -60,7 +66,6 @@ import {
   isScrollKey,
   parseSmoothParam,
   pickActive,
-  quantise,
   reelEndScrollY,
   scrollInputAt,
   smoothFrameStep,
@@ -301,6 +306,9 @@ export function useScrubLoop({
     const onKey = (e: KeyboardEvent) => {
       if (isScrollKey(e.key)) mark("key")(e);
     };
+    // Keyboard focus may scroll the page to the focused pin's frame
+    // (FilmSegment's focus handler runs after this capture listener).
+    const onFocusIn = mark("focus");
     // A press on the scrollbar (outside the document's client box) drags it.
     const onPointer = (e: PointerEvent) => {
       if (e.pointerType === "mouse" && e.clientX >= document.documentElement.clientWidth) onOther(e);
@@ -319,6 +327,7 @@ export function useScrubLoop({
     window.addEventListener("pointerdown", onPointer, passive);
     window.addEventListener("hashchange", onOther, passive);
     window.addEventListener("click", onClick, { passive: true, capture: true });
+    window.addEventListener("focusin", onFocusIn, { passive: true, capture: true });
 
     const onScroll = (e: Event) => {
       input = scrollInputAt(input, inputAt, e.timeStamp);
@@ -430,8 +439,12 @@ export function useScrubLoop({
 
       const cache = cacheFor(seg.film);
       const variant = cache.variant;
-      const p = reduced ? quantise(pick.progress, seg.reducedSteps) : pick.progress;
-      target = frameAt(p, variant.count);
+      const p = pick.progress;
+      if (reduced && seg.stops.length) {
+        // Reduced motion: only a stop's frame is ever drawn.
+        const j = reducedStopIndex(p, heights[pick.slot] ?? 0, stageH, pick.slot === 0, seg.stops.length);
+        target = Math.min(variant.count - 1, seg.stops[j] ?? 0);
+      } else target = frameAt(p, variant.count);
 
       // Smooth the scrub: a wheel tick jumps the target 10–30 frames; chasing
       // it with an exponential lerp turns that into a short glide instead of
@@ -553,6 +566,7 @@ export function useScrubLoop({
       window.removeEventListener("pointerdown", onPointer);
       window.removeEventListener("hashchange", onOther);
       window.removeEventListener("click", onClick, { capture: true });
+      window.removeEventListener("focusin", onFocusIn, { capture: true });
       box.style.visibility = "";
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("pageshow", onVisibility);

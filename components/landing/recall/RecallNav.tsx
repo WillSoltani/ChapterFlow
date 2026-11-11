@@ -8,6 +8,7 @@ import {
   useState,
   useSyncExternalStore,
   type CSSProperties,
+  type ReactNode,
 } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -30,6 +31,7 @@ import {
   shouldRenderPersistentCta,
   shouldShowPersistentCta,
 } from "./RecallNavModel";
+import { SKIP_LINK_CLASS, SKIP_LINK_STYLE } from "./skip-link";
 
 const accentRingStyle = {
   "--tw-ring-color": "var(--cf-recall-accent)",
@@ -105,7 +107,11 @@ const noopSubscribe = () => () => {};
 const readNavLook = () => parseNavLook(window.location.search);
 const serverNavLook = () => 1 as const;
 
-export function RecallNav() {
+/**
+ * `skipLinks`: a page's own skip links, right after "Skip to main content"
+ * (the landing's "Skip the film"), so they are among the first tab stops.
+ */
+export function RecallNav({ skipLinks }: { skipLinks?: ReactNode } = {}) {
   const pathname = usePathname() || "/";
   const { loggedIn, loading } = useAuthStatus();
   const [mobileMenuPath, setMobileMenuPath] = useState<string | null>(null);
@@ -305,17 +311,10 @@ export function RecallNav() {
 
   return (
     <>
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[120] focus:inline-flex focus:min-h-11 focus:items-center focus:rounded-lg focus:px-4 focus:font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-        style={{
-          background: "var(--cf-recall-accent)",
-          color: "var(--cf-recall-bg)",
-          ...accentRingStyle,
-        }}
-      >
+      <a href="#main" className={SKIP_LINK_CLASS} style={SKIP_LINK_STYLE}>
         Skip to main content
       </a>
+      {skipLinks}
 
       <div className="rl-nav-scrim" data-nav-look={navLook} aria-hidden="true" />
       <header ref={headerRef} className="rl-nav" data-nav-look={navLook}>

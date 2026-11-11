@@ -89,8 +89,8 @@ export type SegmentRegistration = {
   film: FilmManifest;
   /** Frames to cross-fade from the previous film's last frame. */
   dissolveIn: number;
-  /** Discrete frame steps under reduced motion. */
-  reducedSteps: number;
+  /** Reduced motion: the frames the chapter steps through, ascending (pins.ts reducedStops). */
+  stops: readonly number[];
   /** Micro-zoom amplitude while idle (0 = off). */
   breath: number;
   /** Section id reported on <html data-reel-section>. */

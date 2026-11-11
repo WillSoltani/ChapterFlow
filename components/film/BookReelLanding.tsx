@@ -8,7 +8,8 @@
  * editing the JSON. `afterHero` is mounted between the hero chapter and the
  * next (the public-chrome post-hero sentinel lives there); `body` is ordinary
  * flowing content (FAQ, request form, pricing table) mounted after the last
- * scrub.
+ * scrub. Its wrapper is "Skip the film"'s target (#after-film, focusable by
+ * script only).
  */
 
 import type { ReactNode } from "react";
@@ -19,6 +20,7 @@ import { BOOK_REEL } from "./book-reel";
 import { FoldChapter } from "./chapters/FoldChapter";
 import { HallChapter, RoomsChapter, VaultChapter } from "./chapters/HallChapters";
 import { CityChapter, HomeChapter, LightsChapter } from "./chapters/CityChapters";
+import { AFTER_FILM_ID } from "./SkipFilmLink";
 
 export function BookReelLanding({ afterHero, body, frameAmount }: { afterHero?: ReactNode; body?: ReactNode; frameAmount?: FrameAmount }) {
   // noUncheckedIndexedAccess: BOOK_REEL is a plain array; a missing manifest is
@@ -41,7 +43,7 @@ export function BookReelLanding({ afterHero, body, frameAmount }: { afterHero?: 
       <CityChapter film={f5} index={5} />
       <HomeChapter film={f6} index={6} />
       {body ? (
-        <div data-film-body="" className="relative z-10">
+        <div data-film-body="" id={AFTER_FILM_ID} tabIndex={-1} className="relative z-10 focus:outline-none">
           {body}
         </div>
       ) : null}

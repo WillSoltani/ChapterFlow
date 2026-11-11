@@ -8,6 +8,8 @@ export type ActivePick = {
   seg: SegmentRegistration;
   /** 0..1 scroll progress through the segment's sticky travel. */
   progress: number;
+  /** The segment's position in `segs` (its rect's index). */
+  slot: number;
 };
 
 /**
@@ -39,27 +41,21 @@ export function pickActive(
     if (!seg || !rect) break;
     const { top, height } = rect;
     const travel = height - vh;
-    if (i === 0 && top > 0) return { seg, progress: 0 };
+    if (i === 0 && top > 0) return { seg, progress: 0, slot: 0 };
     if (top >= vh) break;
     if (top + height <= 0) {
-      pick = { seg, progress: 1 };
+      pick = { seg, progress: 1, slot: i };
       continue;
     }
     const lead = i === 0 ? 0 : vh;
     const span = travel + lead;
-    pick = { seg, progress: span > 0 ? clamp01((lead - top) / span) || 0 : 1 };
+    pick = { seg, progress: span > 0 ? clamp01((lead - top) / span) || 0 : 1, slot: i };
   }
   return pick;
 }
 
 export function clamp01(n: number): number {
   return n < 0 ? 0 : n > 1 ? 1 : n;
-}
-
-/** Quantise progress to N discrete steps (reduced motion). */
-export function quantise(p: number, steps: number): number {
-  if (steps <= 0) return p;
-  return Math.round(p * steps) / steps;
 }
 
 export function frameAt(p: number, count: number): number {
@@ -251,8 +247,12 @@ export function reelEndScrollY(top: number, height: number, stage: number): numb
   return top + height - stage;
 }
 
-/** The kind of the last scroll input (use-scrub-loop tracks it with passive listeners). */
-export type ScrollInput = "wheel" | "touch" | "key" | "other";
+/**
+ * The kind of the last scroll input (use-scrub-loop tracks it with passive
+ * listeners). "focus": keyboard focus moved into the reel, which may scroll
+ * the page to bring the focused pin on (FilmSegment).
+ */
+export type ScrollInput = "wheel" | "touch" | "key" | "focus" | "other";
 
 /** Default touch smoothing (ms); ?smooth=<ms> replaces it (parseSmoothParam). */
 export const TOUCH_SMOOTHING_MS = 35;
@@ -267,6 +267,9 @@ export const TOUCH_SMOOTHING_MS = 35;
  */
 export function smoothingMs(input: ScrollInput, touchMs: number = TOUCH_SMOOTHING_MS): number {
   if (input === "touch") return touchMs;
+  // A focus jump lands on the focused pin's frame at once (Phase 8: the
+  // focused element is on screen, fully on, in the next frame).
+  if (input === "focus") return 0;
   return 90;
 }
 
@@ -302,13 +305,13 @@ const INPUT_STALE_MS = 400;
 
 /**
  * The input a scroll at `now` is attributed to, given the last input kind and
- * when it arrived. A wheel or key input older than 400 ms does not explain a
+ * when it arrived. A wheel, key or focus input older than 400 ms does not explain a
  * scroll (a programmatic scroll, an anchor jump, a scrollbar drag): "other".
  * Touch holds until another input: a fling scrolls for seconds after the
  * finger lifts.
  */
 export function scrollInputAt(kind: ScrollInput, inputAt: number, now: number): ScrollInput {
-  if ((kind === "wheel" || kind === "key") && now - inputAt > INPUT_STALE_MS) return "other";
+  if ((kind === "wheel" || kind === "key" || kind === "focus") && now - inputAt > INPUT_STALE_MS) return "other";
   return kind;
 }
 
