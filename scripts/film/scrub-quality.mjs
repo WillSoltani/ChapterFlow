@@ -183,7 +183,7 @@ for (const prof of PROFILES) {
           prev = t;
           ticks++;
           const s = window.__filmStats;
-          if (!bytes.length || t - bytes[bytes.length - 1][0] >= 250) bytes.push([t, s.packBytes]);
+          if (!bytes.length || t - bytes[bytes.length - 1][0] >= 250) bytes.push([t, s.packBytes ?? 0]);
           if (stopStart >= 0) {
             samples.push([t - stopStart, s.drawWant, s.drawAt]);
             if (t - stopStart >= stopMs) {
@@ -196,7 +196,9 @@ for (const prof of PROFILES) {
                 if (want === final && drawn === final) at = ms;
                 else break;
               }
-              stopResults.push({ y: Math.round(y), frame: final, exactMs: at === null ? null : Math.round(at) });
+              // A build without the draw gauges (before Phase 4) cannot be probed.
+              if (final === undefined) stopResults.push({ y: Math.round(y), frame: -1, exactMs: null, na: true });
+              else stopResults.push({ y: Math.round(y), frame: final, exactMs: at === null ? null : Math.round(at) });
               stopStart = -1;
               samples = [];
               stopIdx++;
@@ -218,7 +220,14 @@ for (const prof of PROFILES) {
     { pxPerSec: speed, stops: STOPS, stopMs: STOP_MS },
   );
   await page.waitForTimeout(1500);
-  const stats = await page.evaluate(() => ({ ...window.__filmStats }));
+  // Counters a build before Phase 4 does not have read as 0.
+  const PACK_FIELDS = ["packRequests", "packBytes", "packBytesRepeated", "packBytesHeld", "packReaims", "packFallbacks", "workerDecodes", "workerDecodeMeanMs", "workerDecodeMaxMs", "mainThreadDecodes", "mainThreadDecodeMeanMs", "mainThreadDecodeMaxMs"];
+  const stats = await page.evaluate((fields) => {
+    const s = { ...window.__filmStats };
+    for (const f of fields) s[f] ??= 0;
+    s.mode ??= "frames (no mode counter: build before Phase 4)";
+    return s;
+  }, PACK_FIELDS);
   // The scrub loop at rest (the visitor stopped at the end of the reel).
   await page.waitForTimeout(2000);
   const rest = await page.evaluate(() => ({ ...window.__filmStats }));
@@ -303,7 +312,7 @@ for (const prof of PROFILES) {
   );
   console.log(`   decodes:  ${decodeWhere || "none"}`);
   console.log(`   draws:    ${draws} · exact ${exactShare.toFixed(1)}% · mean fallback distance ${meanAll.toFixed(2)} frames over all draws`);
-  console.log(`   stops:    ${run.stops.map((s) => `f${s.frame + 1} ${s.exactMs === null ? "miss" : `${s.exactMs} ms`}`).join(" · ")}`);
+  console.log(`   stops:    ${run.stops.map((s) => (s.na ? "n/a (no draw gauges in this build)" : `f${s.frame + 1} ${s.exactMs === null ? "miss" : `${s.exactMs} ms`}`)).join(" · ")}`);
   if (prof.slow) console.log(`   network:  peak pack throughput ${(peak / 1e6).toFixed(2)} MB/s over 2 s (Fast 4G ${(FAST_4G.downloadThroughput / 1e6).toFixed(2)} MB/s)`);
   console.log(
     `   loop:     canvasResizes ${stats.canvasResizes} · geometryMeasures ${stats.geometryMeasures} · ticksWorked ${stats.ticksWorked} · ticksSkipped ${stats.ticksSkipped} · ` +
