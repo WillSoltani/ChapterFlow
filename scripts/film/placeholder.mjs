@@ -52,6 +52,8 @@ const VFRAME = { w: 1080, h: 1920 };
 const BAND = { x: 0, y: 474, w: 1080, h: 972 };
 const TIER_WIDTHS = [1080, 900];
 const BG = "#0B0E14";
+/** Fastest WebP settings: placeholders are throwaway, and CI generates them on every film run. */
+const WEBP = { quality: 70, effort: 0 };
 
 // Crude stand-ins for each Memory Palace shot so copy can be timed before the
 // real renders land. Object placement matches the shot list's copy/object side.
@@ -126,12 +128,20 @@ function scene(w, h, i, n, filmIdx) {
   }
 }
 
-function frameSvg(w, h, i, n, filmIdx, label) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+/**
+ * One frame as SVG: the scene on a w × h canvas. `out` renders only the
+ * rectangle `out.crop` of it, at out.w × out.h (a band tier straight from the
+ * portrait scene, no full-size raster in between), with the frame counter
+ * inside that rectangle: every frame of every variant differs from the
+ * others, so the pixel-truth specs can tell a frame from its decoys.
+ */
+function frameSvg(w, h, i, n, filmIdx, label, out) {
+  const size = out ? `width="${out.w}" height="${out.h}" viewBox="${out.crop.x} ${out.crop.y} ${out.crop.w} ${out.crop.h}" preserveAspectRatio="none"` : `width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" ${size}>
   <rect width="100%" height="100%" fill="${BG}"/>
   ${scene(w, h, i, n, filmIdx)}
   <text x="${w * 0.04}" y="${h * 0.08}" font-family="ui-monospace, Menlo, monospace" font-size="${h * 0.028}" fill="${ACCENT}" opacity="0.9">${label}</text>
-  <text x="${w * 0.04}" y="${h * 0.95}" font-family="ui-monospace, Menlo, monospace" font-size="${h * 0.06}" fill="#F4F8FB" opacity="0.85">${String(i + 1).padStart(4, "0")} / ${n}</text>
+  <text x="${w * 0.04}" y="${out ? out.crop.y + out.crop.h * 0.92 : h * 0.95}" font-family="ui-monospace, Menlo, monospace" font-size="${out ? out.crop.h * 0.11 : h * 0.06}" fill="#F4F8FB" opacity="0.85">${String(i + 1).padStart(4, "0")} / ${n}</text>
 </svg>`;
 }
 
@@ -162,7 +172,7 @@ for (const name of films) {
   await fs.mkdir(landDir, { recursive: true });
   await each(async (i) => {
     const svg = Buffer.from(frameSvg(1920, 1080, i, n, fi, `${name}  placeholder`));
-    await sharp(svg).webp({ quality: 70, effort: 2 }).toFile(path.join(landDir, frameFile(i)));
+    await sharp(svg).webp(WEBP).toFile(path.join(landDir, frameFile(i)));
   });
   await finish(landDir, name, 1920, 1080);
 
@@ -171,14 +181,9 @@ for (const name of films) {
   const tiers = TIER_WIDTHS.map((w) => ({ w, h: Math.round((BAND.h * w) / BAND.w), name: `${name}-b${w}` }));
   for (const t of tiers) await fs.mkdir(path.join(OUT, t.name), { recursive: true });
   await each(async (i) => {
-    const svg = Buffer.from(frameSvg(VFRAME.w, VFRAME.h, i, n, fi, `${name} band  placeholder`));
-    const { data, info } = await sharp(svg).flatten().raw().toBuffer({ resolveWithObject: true });
     for (const t of tiers) {
-      await sharp(data, { raw: { width: info.width, height: info.height, channels: info.channels } })
-        .extract({ left: BAND.x, top: BAND.y, width: BAND.w, height: BAND.h })
-        .resize({ width: t.w, height: t.h, fit: "fill" })
-        .webp({ quality: 70, effort: 2 })
-        .toFile(path.join(OUT, t.name, frameFile(i)));
+      const svg = Buffer.from(frameSvg(VFRAME.w, VFRAME.h, i, n, fi, `${name} band  placeholder`, { w: t.w, h: t.h, crop: BAND }));
+      await sharp(svg).flatten().webp(WEBP).toFile(path.join(OUT, t.name, frameFile(i)));
     }
   });
   for (const t of tiers) await finish(path.join(OUT, t.name), t.name, t.w, t.h, { frame: { ...VFRAME }, band: { ...BAND } });

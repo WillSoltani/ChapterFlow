@@ -428,10 +428,17 @@ jobs:
   # (npm run film:parity) needs those frames and stays a local gate.
   # Real work only when the change touches the film or what it depends on
   # (decided with git below); otherwise the job ends green within a minute.
+  # Two shards keep each run inside 15 minutes on a 2-core runner (measured
+  # locally: the film specs take about 13 worker-minutes on an M-series Mac,
+  # the placeholders about 1 minute of 4 cores, scrub-quality about 1 minute).
   film:
-    name: Film specs (placeholder frames)
+    name: Film specs (placeholder frames, ${{ matrix.shard }}/2)
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2]
     env:
       NEXT_TELEMETRY_DISABLED: "1"
       # Same as the dev smoke job: no data-plane env, the landing degrades gracefully.
@@ -519,6 +526,16 @@ jobs:
           done
           echo "::warning::Continuing without the optional OS font packages."
 
+      - name: Cache placeholder frames
+        if: steps.scope.outputs.run == 'true'
+        id: film-placeholders
+        uses: actions/cache@v6
+        with:
+          path: public/films
+          # Keyed on the committed timeline and the generator: a hit holds
+          # exactly what placeholder.mjs would write.
+          key: ${{ runner.os }}-film-placeholders-${{ hashFiles('components/film/book.timeline.json', 'scripts/film/placeholder.mjs', 'scripts/film/pack-lib.mjs', 'scripts/film/band-sync.mjs') }}
+
       - name: Generate placeholder frames, band tiers and packs
         if: steps.scope.outputs.run == 'true'
         # Frame counts and tier sizes come from components/film/book.timeline.json
@@ -527,24 +544,39 @@ jobs:
         # timeline's pack fields are synced to them HERE, before the dev
         # server compiles the page. That rewrite stays in this runner (CI never
         # commits); the check below proves it changed nothing but pack fields.
+        env:
+          PLACEHOLDERS_CACHED: ${{ steps.film-placeholders.outputs.cache-hit }}
         run: |
-          node scripts/film/placeholder.mjs
+          if [ "$PLACEHOLDERS_CACHED" != "true" ]; then node scripts/film/placeholder.mjs; fi
           node scripts/film/encode.mjs --sync-timeline
           npm run film:pack -- --verify
           node scripts/film/ci-timeline-check.mjs
           git diff --stat
 
-      - name: Film specs (Chromium)
+      - name: Film specs (Chromium, this shard)
         if: steps.scope.outputs.run == 'true'
         # Two workers on the 2-core runner (the config's CI default is one).
-        # FILM_AUDIT_VIEWPORTS: the film audit's CI subset (e2e/film-audit.spec.ts);
-        # the reduced-motion, a11y, layout and truth specs keep their own viewports.
+        # film-perf (an fps gate) runs on its own below, never next to another
+        # test. --grep-invert replaces the config's, so @prod and @visual stay
+        # excluded here explicitly.
+        # FILM_AUDIT_VIEWPORTS: the film audit's CI subset, the tightest
+        # layouts (320 x 568 and the compact 844 x 390 stage) and desktop; the
+        # 390 x 844 phone gets the same clip / overlap / nav / size / target
+        # checks at every reduced-motion stop in film-a11y, and its contrast,
+        # keyboard, layout and truth specs. Locally every viewport runs.
         env:
-          FILM_AUDIT_VIEWPORTS: "desktop,phone,smallest phone,landscape phone"
-        run: npm run test:film -- --workers=2
+          FILM_AUDIT_VIEWPORTS: "desktop,smallest phone,landscape phone"
+          SHARD: ${{ matrix.shard }}
+        run: npm run test:film -- --workers=2 --shard="${SHARD}/2" --grep-invert "@prod|@visual|film perf"
+
+      - name: Film perf (one worker)
+        if: steps.scope.outputs.run == 'true' && matrix.shard == 1
+        env:
+          RUN_AUDIT: "1"
+        run: npx playwright test e2e/film-perf.spec.ts --project=chromium --workers=1
 
       - name: Scrub-quality budgets (desktop Chromium)
-        if: steps.scope.outputs.run == 'true'
+        if: steps.scope.outputs.run == 'true' && matrix.shard == 2
         # scripts/film/scrub-quality.mjs fails on: any per-frame request in
         # pack mode, more than 30 film requests for the pass, a pack byte read
         # twice, any refetch, exact draws below 97 %, more than 4 frame fetches
@@ -565,7 +597,7 @@ jobs:
         if: ${{ !cancelled() && steps.scope.outputs.run == 'true' }}
         uses: actions/upload-artifact@v7
         with:
-          name: playwright-report-film
+          name: playwright-report-film-${{ matrix.shard }}
           path: |
             playwright-report/
             test-results/
