@@ -29,6 +29,11 @@
  *                        Default (no flag): the cover crop, as before.
  *   --portrait-ramp a,b  animate the portrait zoom: contain (z = 1) up to frame
  *                        a, smoothstep to --portrait-zoom (or cover) by frame b.
+ *   --portrait-bars #rrggbb  letterbox bar colour. Default: the frame's darkest
+ *                        corner patch (hides the edge on velvet frames, but on
+ *                        a warm paper scene the bars come out brown and shift
+ *                        frame to frame). The reel passes the page background
+ *                        (#06070A) so the band sits on the page like a strip.
  *   --portrait-only      write only the portrait variant (landscape dir and
  *                        its manifest/version untouched); input may be the
  *                        film's own public/films/<name> landscape frames.
@@ -97,6 +102,15 @@ const ramp = portraitRamp ? String(portraitRamp).split(",").map(Number) : null;
 const portraitZoom = opt("portrait-zoom", null);
 const zoom = portraitZoom ? Number(portraitZoom) : null;
 const portraitOnly = Boolean(opt("portrait-only", false));
+const portraitBars = opt("portrait-bars", null);
+const barsRgb = portraitBars
+  ? (() => {
+      const m = /^#?([0-9a-f]{6})$/i.exec(String(portraitBars));
+      if (!m) throw new Error(`--portrait-bars expects #rrggbb, got ${portraitBars}`);
+      const n = parseInt(m[1], 16);
+      return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+    })()
+  : null;
 const dry = Boolean(opt("dry", false));
 
 const naturalSort = (a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" });
@@ -152,13 +166,15 @@ async function portraitAt(base, sc, outFile) {
   if (top < 0) {
     // Letterboxed: bars take the colour of the frame's darkest corner patch
     // (the velvet), so the void runs through and no edge shows.
-    let bg = { r: 0, g: 0, b: 0 };
-    let darkest = Infinity;
-    const P = 48;
-    for (const [cx, cy] of [[0, 0], [w - P, 0], [0, h - P], [w - P, h - P]]) {
-      const { data } = await sharp(scaled).extract({ left: cx, top: cy, width: P, height: P }).resize(1, 1, { fit: "fill" }).removeAlpha().raw().toBuffer({ resolveWithObject: true });
-      const lum = data[0] * 0.3 + data[1] * 0.59 + data[2] * 0.11;
-      if (lum < darkest) { darkest = lum; bg = { r: data[0], g: data[1], b: data[2] }; }
+    let bg = barsRgb ?? { r: 0, g: 0, b: 0 };
+    if (!barsRgb) {
+      let darkest = Infinity;
+      const P = 48;
+      for (const [cx, cy] of [[0, 0], [w - P, 0], [0, h - P], [w - P, h - P]]) {
+        const { data } = await sharp(scaled).extract({ left: cx, top: cy, width: P, height: P }).resize(1, 1, { fit: "fill" }).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+        const lum = data[0] * 0.3 + data[1] * 0.59 + data[2] * 0.11;
+        if (lum < darkest) { darkest = lum; bg = { r: data[0], g: data[1], b: data[2] }; }
+      }
     }
     await sharp({ create: { width: 1080, height: 1920, channels: 3, background: bg } })
       .composite([{ input: await sharp(scaled).extract({ left, top: 0, width: 1080, height: h }).toBuffer(), left: 0, top: -top }])
