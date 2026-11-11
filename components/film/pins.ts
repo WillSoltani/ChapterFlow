@@ -246,6 +246,27 @@ export function reducedStopScroll(j: number, height: number, stage: number, n: n
 }
 
 /**
+ * Pixels a scroll target keeps inside a chapter's pinned travel. At the very
+ * end of the travel (the last stop, offset height − stage) the next chapter's
+ * box touches the viewport's bottom edge: chapter heights are fractional (40svh
+ * steps), and a browser that rounds the scroll position up by a sub-pixel
+ * would make the NEXT chapter the active one (pickActive: top < vh) and draw
+ * its first stop behind this chapter's copy.
+ */
+export const STOP_EDGE_PX = 2;
+
+/**
+ * Scroll offset from the chapter's top to scroll TO for stop `j` of `n`
+ * (keyboard focus, keyboard paging): reducedStopScroll, kept STOP_EDGE_PX
+ * inside the end of the pinned travel. reducedStopIndex still names stop `j`
+ * there (a step is 40svh).
+ */
+export function reducedStopTarget(j: number, height: number, stage: number, n: number): number {
+  const end = Math.max(0, height - stage);
+  return Math.max(0, Math.min(reducedStopScroll(j, height, stage, n), end - STOP_EDGE_PX));
+}
+
+/**
  * Normal motion: scroll offset from the chapter's top at which frame `f`
  * shows (the inverse of pickActive + frameAt). The first chapter scrubs over
  * its pinned travel; a later one from the moment its box enters the viewport

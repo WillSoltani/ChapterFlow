@@ -13,7 +13,9 @@ import {
   framePlacement,
   holdBreathClock,
   breathRestOffset,
+  focusArrived,
   isScrollKey,
+  pageKeyDirection,
   parseSmoothParam,
   pickActive,
   reelEndScrollY,
@@ -503,4 +505,23 @@ test("variantPlacement with a framing amount: 100 gives today's rectangle exactl
 test("variantPlacement: the framing amount never touches a variant without a band (landscape frames)", () => {
   const landscape = { width: 1920, height: 1080 };
   for (const a of [0, 25, 50, 75]) assert.deepEqual(variantPlacement(1688, 780, landscape, 1920, 1080, 0.01, 4, a), framePlacement(1688, 780, 1920, 1080, 0.01, 4));
+});
+
+test("focusArrived: focus moved from another element or onto a new one; not the window regaining focus", () => {
+  const a = {};
+  const b = {};
+  assert.equal(focusArrived(a, null, null), true, "first keyboard focus");
+  assert.equal(focusArrived(a, b, b), true, "Tab from b");
+  assert.equal(focusArrived(a, b, a), true, "back to a from b");
+  assert.equal(focusArrived(a, null, a), false, "window or tab focus restored on a");
+  assert.equal(focusArrived(a, null, b), true, "after a pointer press cleared nothing else");
+});
+
+test("pageKeyDirection: Space and PageDown down, Shift+Space and PageUp up", () => {
+  assert.equal(pageKeyDirection("PageDown", false), 1);
+  assert.equal(pageKeyDirection("PageUp", false), -1);
+  assert.equal(pageKeyDirection(" ", false), 1);
+  assert.equal(pageKeyDirection(" ", true), -1);
+  assert.equal(pageKeyDirection("Spacebar", false), 1);
+  for (const k of ["ArrowDown", "End", "Home", "Tab", "a"]) assert.equal(pageKeyDirection(k, false), null, k);
 });

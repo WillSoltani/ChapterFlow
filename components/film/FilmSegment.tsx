@@ -23,7 +23,9 @@
  * fully on (or a stage that is not pinned) scrolls the window, instantly, to
  * the nearest frame where the pin and its scrims are fully on with the stage
  * pinned: a reduced-motion stop under reduced motion. Focus from a pointer
- * (not :focus-visible) never moves the page.
+ * (not :focus-visible) never moves the page, nor does focus coming back to
+ * the same element when the window or tab regains focus (scrub.ts
+ * focusArrived).
  */
 
 import {
@@ -45,10 +47,11 @@ import {
   frameScroll,
   fullyOnRange,
   minPinnedFrame,
-  reducedStopScroll,
+  reducedStopTarget,
   type PinRange,
 } from "./pins";
 import { useReel } from "./reel-context";
+import { focusArrived } from "./scrub";
 import type { FilmManifest } from "./types";
 
 type ProgressStore = {
@@ -172,6 +175,11 @@ export function FilmSegment({
     if (!keyboardFocus(target)) return;
     // The readable page (the reel never armed): plain flow, the browser's scroll.
     if (!el.closest("[data-film-armed]")) return;
+    // The window or tab getting focus back fires focus again on the element
+    // that held it: the reader may have scrolled on since. Only focus that
+    // arrived moves the film.
+    if (!focusArrived(target, e.relatedTarget, lastFocus)) return;
+    rememberFocus(target);
     const chain: PinRange[] = [];
     for (let n: Element | null = target; n && n !== el; n = n.parentElement) {
       const r = pins.current.get(n);
@@ -222,6 +230,26 @@ export function FilmSegment({
 }
 
 /**
+ * The element whose keyboard focus last moved the film (any chapter), cleared
+ * by a pointer press: after a click the next keyboard focus is new even on
+ * the same element.
+ */
+let lastFocus: Element | null = null;
+let pointerHooked = false;
+function rememberFocus(el: Element) {
+  lastFocus = el;
+  if (pointerHooked) return;
+  pointerHooked = true;
+  window.addEventListener(
+    "pointerdown",
+    () => {
+      lastFocus = null;
+    },
+    { capture: true, passive: true },
+  );
+}
+
+/**
  * Focus that should drive the film: keyboard focus (:focus-visible), never a
  * click or tap (a pointer focuses the element it pressed, already in view).
  */
@@ -261,7 +289,9 @@ function focusScroll(a: {
       if (f < range[0] || f > range[1]) return;
       if (best < 0 || Math.abs(j - now) < Math.abs(best - now)) best = j;
     });
-    return best < 0 ? 0 : reducedStopScroll(best, a.height, a.stage, n);
+    // reducedStopTarget: the last stop is kept inside the travel's end, so
+    // the next chapter's box never touches the viewport (pickActive).
+    return best < 0 ? 0 : reducedStopTarget(best, a.height, a.stage, n);
   }
   const f = focusFrame(range, a.frame, minPinnedFrame(a.count, a.height, a.stage, a.first), a.count - 1);
   return f === null ? 0 : frameScroll(f, a.count, a.height, a.stage, a.first);

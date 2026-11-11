@@ -31,8 +31,11 @@
  *   • Reduced motion (Phase 8): the chapter's progress picks one of its
  *     stops (pins.ts reducedStopIndex: equal steps of its pinned travel, from
  *     the cached geometry) and that stop's frame is drawn, with no glide and
- *     no breath. The chapter heights change with the mode (CSS); the content
- *     ResizeObserver re-measures them.
+ *     no breath. A paging key (Space, PageDown, PageUp) goes to the adjacent
+ *     stop (scrub.ts pageStop). The chapter heights change with the mode
+ *     (CSS): when the mode switches with the page open, the visitor's place
+ *     (chapter and frame, or the distance below the reel) is taken from the
+ *     old geometry and restored in the new one (reelAnchor, anchorScroll).
  *   • Below the reel the canvas wrapper is hidden (visibility, so it is not
  *     composited under the body; the backing store keeps its picture). The
  *     scroll handler shows it again, before the frame paints, as soon as the
@@ -53,10 +56,12 @@
  */
 
 import { useEffect, type MutableRefObject } from "react";
+import { readReducedMotion, subscribeReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import type { FrameBudget, FrameCache } from "./frame-cache";
 import { htmlPosterStands } from "./first-paint";
 import { reducedStopIndex } from "./pins";
 import {
+  anchorScroll,
   backingSize,
   breathAt,
   breathRestOffset,
@@ -64,9 +69,14 @@ import {
   frameAt,
   holdBreathClock,
   isScrollKey,
+  pageKeyDirection,
+  pageStop,
   parseSmoothParam,
   pickActive,
+  reelAnchor,
   reelEndScrollY,
+  reelStopYs,
+  shownStop,
   scrollInputAt,
   smoothFrameStep,
   smoothingMs,
@@ -79,6 +89,11 @@ import {
 import type { FilmManifest, FilmVariant, ReelChrome, SegmentRegistration } from "./types";
 
 export const REEL_CHROME_EVENT = "cf-reel-chrome";
+
+/** A paging key here belongs to the field or widget: typing, a list, a dialog. */
+const TYPING = 'input, textarea, select, [contenteditable]:not([contenteditable="false"]), [role="textbox"], [role="listbox"], [role="menu"], [role="dialog"], dialog';
+/** Space here presses the control (a button, a checkbox...) instead of paging. */
+const PRESSING = `${TYPING}, button, summary, [role="button"], [role="checkbox"], [role="switch"], [role="radio"], [role="tab"], [role="menuitem"], [role="option"]`;
 
 /** Re-measure segment geometry at most this often while the loop works. */
 const GEOMETRY_SAFETY_MS = 500;
@@ -224,9 +239,14 @@ export function useScrubLoop({
     const heights: number[] = [];
     const rects: Array<{ top: number; height: number }> = [];
     let stageH = window.innerHeight;
+    // The motion mode the cached geometry was measured in (the chapter
+    // heights follow it), and the last scroll position seen.
+    let geomReduced = readReducedMotion();
+    let knownY = window.scrollY;
     const measure = (t: number) => {
       geomDirty = false;
       lastMeasure = t;
+      geomReduced = readReducedMotion();
       stats.geometryMeasures++;
       segs = [...segments.current.values()].sort((a, b) => a.index - b.index);
       const sy = window.scrollY;
@@ -329,9 +349,61 @@ export function useScrubLoop({
     window.addEventListener("click", onClick, { passive: true, capture: true });
     window.addEventListener("focusin", onFocusIn, { passive: true, capture: true });
 
+    // The reel is armed (not the readable page of Phase 6, where chapters
+    // are plain flow and the browser's own scrolling is right).
+    const armed = () => !!segs[0]?.el.closest("[data-film-armed]");
+    // Reduced motion: a paging key goes to the adjacent stop (scrub.ts
+    // pageStop) instead of the browser's page, which is longer than a step
+    // and would pass a stop. Not while typing, nor a Space that presses a
+    // control. Reads layout only when the cached geometry is stale (a key
+    // handler, not the scroll path).
+    const onPageKey = (e: KeyboardEvent) => {
+      if (!reducedRef.current || e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
+      const dir = pageKeyDirection(e.key, e.shiftKey);
+      if (!dir || !armed()) return;
+      if (e.target instanceof Element && e.target.closest(e.key === "PageDown" || e.key === "PageUp" ? TYPING : PRESSING)) return;
+      if (geomDirty) measure(performance.now());
+      const sy = window.scrollY;
+      const ys = reelStopYs(tops, heights, stageH, segs.map((s) => s.stops.length));
+      const y = pageStop(ys, shownStop(segs, tops, heights, stageH, sy), sy, dir, stageH);
+      if (y === null) return;
+      e.preventDefault();
+      mark("key")(e);
+      window.scrollTo({ top: y, behavior: "instant" as ScrollBehavior });
+    };
+    window.addEventListener("keydown", onPageKey);
+
+    // The motion mode switched with the page open (the OS setting or the
+    // in-app toggle): every chapter's height changes (CSS), and the same
+    // scroll position would fall in another chapter. Before anything
+    // re-measures, take the visitor's place from the cached geometry of the
+    // old mode (scrub.ts reelAnchor), measure the new one and scroll there.
+    // The media query's change event and the attribute's MutationObserver
+    // both run before the frame's rAF callbacks and layout.
+    const onMotion = () => {
+      const now = readReducedMotion();
+      if (now === geomReduced || !armed()) return;
+      const counts = segs.map((s) => s.film.landscape.count);
+      const anchor = reelAnchor(knownY, segs, tops, heights, stageH, counts, geomReduced);
+      measure(performance.now());
+      reducedRef.current = now;
+      smoothSeg = -1;
+      lastKey = "";
+      if (anchor) {
+        const y = anchorScroll(anchor, segs, tops, heights, stageH, counts, now);
+        if (Math.abs(y - window.scrollY) >= 1) {
+          input = "other";
+          window.scrollTo({ top: y, behavior: "instant" as ScrollBehavior });
+        }
+      }
+      wake();
+    };
+    const offMotion = subscribeReducedMotion(onMotion);
+
     const onScroll = (e: Event) => {
       input = scrollInputAt(input, inputAt, e.timeStamp);
       const y = window.scrollY;
+      knownY = y;
       applyVisibility(y);
       if (!raf && y < endY) wake();
     };
@@ -386,6 +458,7 @@ export function useScrubLoop({
     /** One animation frame. Returns false to stop the loop (reel ended). */
     const step = (t: number): boolean => {
       const scrollY = window.scrollY;
+      knownY = scrollY;
       const ratio = window.devicePixelRatio || 1;
       if (ratio !== dpr) {
         dpr = ratio;
@@ -563,6 +636,8 @@ export function useScrubLoop({
       window.removeEventListener("touchstart", onTouch);
       window.removeEventListener("touchmove", onTouch);
       window.removeEventListener("keydown", onKey);
+      window.removeEventListener("keydown", onPageKey);
+      offMotion();
       window.removeEventListener("pointerdown", onPointer);
       window.removeEventListener("hashchange", onOther);
       window.removeEventListener("click", onClick, { capture: true });

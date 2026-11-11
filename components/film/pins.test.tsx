@@ -16,10 +16,14 @@ import {
   reducedStopIndex,
   reducedStopScroll,
   reducedStops,
+  reducedStopTarget,
   REDUCED_STEP_SVH,
+  STOP_EDGE_PX,
   type PinRange,
 } from "./pins";
+import { anchorScroll, frameAt, pageStop, pickActive, reelAnchor, reelStopYs, shownStop, viewportRects } from "./scrub";
 import { filmCount, filmKeys } from "./timeline";
+import type { FilmManifest, SegmentRegistration } from "./types";
 
 /**
  * Reduced-motion stops (Phase 8): derived from a chapter's pins and named
@@ -186,4 +190,134 @@ test("focus: the frame a focused pin is brought to, and its scroll offset", () =
   assert.equal(minPinnedFrame(count, height, stage, true), 0);
   assert.equal(frameScroll(240, count, height, stage, true), height - stage);
   assert.equal(frameScroll(240, count, height, stage, false), height - stage);
+});
+
+// ── The real reel laid out in px (reduced or normal heights), for the
+// paging and mode-switch checks below. ─────────────────────────────────────
+
+/** Chapter registrations of the REAL reel (only what the scrub math reads). */
+function realRegs(): SegmentRegistration[] {
+  return [...segs.values()].map(
+    (s, index) =>
+      ({
+        index,
+        stops: s.stops,
+        dissolveIn: s.dissolveIn,
+        film: { name: s.film, landscape: { count: filmCount(s.film) } } as unknown as FilmManifest,
+      }) as SegmentRegistration,
+  );
+}
+function layout(heightsPx: number[]) {
+  const tops: number[] = [];
+  let y = 0;
+  for (const h of heightsPx) {
+    tops.push(y);
+    y += h;
+  }
+  return { tops, heights: heightsPx };
+}
+/** The stop drawn at scroll `y` (use-scrub-loop's reduced path). */
+function stopAt(regs: SegmentRegistration[], g: { tops: number[]; heights: number[] }, stage: number, y: number) {
+  const pick = pickActive(regs, viewportRects(g.tops, g.heights, y, []), stage)!;
+  const n = pick.seg.stops.length;
+  return `${pick.slot}:${pick.seg.stops[reducedStopIndex(pick.progress, g.heights[pick.slot]!, stage, pick.slot === 0, n)]}`;
+}
+
+for (const stage of [844, 900, 390])
+  test(`REAL reel, reduced motion, keyboard paging (stage ${stage}px): every stop shown, in order, both ways`, () => {
+    const regs = realRegs();
+    const g = layout(regs.map((r) => (reducedHeightSvh(r.stops.length) * stage) / 100));
+    const want = regs.flatMap((r, i) => r.stops.map((f) => `${i}:${f}`));
+    const end = g.tops.at(-1)! + g.heights.at(-1)!;
+    const ys = reelStopYs(g.tops, g.heights, stage, regs.map((r) => r.stops.length));
+    const PAGE = 0.875 * stage; // Chromium's page step
+    const walk = (dir: 1 | -1, from: number, stop: (y: number) => boolean, snap: boolean) => {
+      const out: string[] = [stopAt(regs, g, stage, from)];
+      let y = from;
+      for (let i = 0; i < 400 && !stop(y); i++) {
+        y = (snap ? pageStop(ys, shownStop(regs, g.tops, g.heights, stage, y), y, dir, stage) : null) ?? Math.max(0, y + dir * PAGE);
+        if (y > end) break;
+        const k = stopAt(regs, g, stage, y);
+        if (out.at(-1) !== k) out.push(k);
+      }
+      return out;
+    };
+    assert.deepEqual(walk(1, 0, (y) => y > end, true), want, "PageDown / Space");
+    assert.deepEqual(walk(-1, end + stage * 0.3, (y) => y <= 0, true), [...want].reverse(), "PageUp / Shift+Space");
+    // The defect fixed: the browser's own page passes stops.
+    const native = walk(1, 0, (y) => y > end, false);
+    assert.ok(native.length < want.length, `native paging shows ${native.length} of ${want.length} stops`);
+    // Wherever the visitor stands (a wheel scroll between stops), PageDown
+    // shows the next stop, never one past it. In a chapter's slide-in (its
+    // first stop already drawn, the stage still coming up) it pins that stop.
+    for (let y = 0; y < ys.at(-1)! - stage * 0.2; y += stage / 7) {
+      const cur = shownStop(regs, g.tops, g.heights, stage, y);
+      assert.equal(want[cur], stopAt(regs, g, stage, y), "shownStop names the stop drawn");
+      const next = pageStop(ys, cur, y, 1, stage);
+      assert.ok(next !== null, `a next stop from ${y}`);
+      const b = want.indexOf(stopAt(regs, g, stage, next!));
+      const slideIn = g.tops.some((t) => t > y && t < y + stage && Math.abs(t - next!) < 1);
+      assert.equal(b, slideIn ? cur : cur + 1, `from ${y.toFixed(0)}: ${want[cur]} → ${want[b]}`);
+      // And back up: the stop before (or the one on screen, pinned, from a slide-in).
+      if (cur > 0) {
+        const prev = pageStop(ys, cur, y, -1, stage)!;
+        const c = want.indexOf(stopAt(regs, g, stage, prev));
+        assert.ok(c === cur - 1 || c === cur, `up from ${y.toFixed(0)}: ${want[cur]} → ${want[c]}`);
+      }
+    }
+  });
+
+test("REAL reel, reduced motion: a stop's scroll target (focus, paging) keeps its own chapter active, even rounded up a pixel", () => {
+  const regs = realRegs();
+  const stage = 844; // 40svh = 337.6px: fractional tops
+  const g = layout(regs.map((r) => (reducedHeightSvh(r.stops.length) * stage) / 100));
+  regs.forEach((r, i) => {
+    const n = r.stops.length;
+    for (let j = 0; j < n; j++) {
+      const y = g.tops[i]! + reducedStopTarget(j, g.heights[i]!, stage, n);
+      for (const dy of [0, 0.5, 1, -1])
+        assert.equal(stopAt(regs, g, stage, Math.round(y + dy)), `${i}:${r.stops[j]}`, `${i}#${j} at ${y}+${dy}`);
+    }
+    // The last stop sits STOP_EDGE_PX inside the travel's end.
+    assert.equal(reducedStopTarget(n - 1, g.heights[i]!, stage, n), g.heights[i]! - stage - STOP_EDGE_PX);
+  });
+});
+
+test("REAL reel: switching the motion mode keeps the visitor's chapter and frame, and the body's place", () => {
+  const regs = realRegs();
+  const counts = regs.map((r) => filmCount(r.film.name));
+  const stage = 900;
+  const paces = [4, 3.5, 3.5, 3, 3, 3, 3];
+  const normal = layout(regs.map((_, i) => (paces[i] ?? 3) * stage));
+  const reduced = layout(regs.map((r) => (reducedHeightSvh(r.stops.length) * stage) / 100));
+  const frameAtY = (g: typeof normal, y: number) => {
+    const p = pickActive(regs, viewportRects(g.tops, g.heights, y, []), stage)!;
+    return { slot: p.slot, frame: frameAt(p.progress, counts[p.slot]!) };
+  };
+  for (let i = 0; i < regs.length; i++)
+    for (const share of [0.05, 0.45, 0.9]) {
+      // Normal → reduced: same chapter, the stop nearest the frame shown.
+      const y = normal.tops[i]! + share * (normal.heights[i]! - stage);
+      const was = frameAtY(normal, y);
+      const a = reelAnchor(y, regs, normal.tops, normal.heights, stage, counts, false)!;
+      const y2 = anchorScroll(a, regs, reduced.tops, reduced.heights, stage, counts, true);
+      const stops = regs[was.slot]!.stops;
+      const nearest = stops.reduce((b, f) => (Math.abs(f - was.frame) < Math.abs(b - was.frame) ? f : b), stops[0]!);
+      assert.equal(stopAt(regs, reduced, stage, y2), `${was.slot}:${nearest}`, `chapter ${i} at ${share}: f${was.frame} → stop ${nearest}`);
+      // And back: the same chapter at that stop's frame (one frame either side).
+      const b = reelAnchor(y2, regs, reduced.tops, reduced.heights, stage, counts, true)!;
+      const y3 = anchorScroll(b, regs, normal.tops, normal.heights, stage, counts, false);
+      const back = frameAtY(normal, y3);
+      assert.equal(back.slot, was.slot, `chapter ${i} at ${share}: back in its chapter`);
+      assert.ok(Math.abs(back.frame - nearest) <= 1, `chapter ${i} at ${share}: back at f${back.frame}, want f${nearest}`);
+    }
+  // Below the reel: the same distance past its end.
+  const endN = normal.tops.at(-1)! + normal.heights.at(-1)!;
+  const endR = reduced.tops.at(-1)! + reduced.heights.at(-1)!;
+  const a = reelAnchor(endN + 1234, regs, normal.tops, normal.heights, stage, counts, false)!;
+  assert.equal(anchorScroll(a, regs, reduced.tops, reduced.heights, stage, counts, true), endR + 1234);
+  // Above the reel: unchanged.
+  const shifted = { tops: normal.tops.map((t) => t + 500), heights: normal.heights };
+  const up = reelAnchor(200, regs, shifted.tops, shifted.heights, stage, counts, false)!;
+  assert.equal(anchorScroll(up, regs, reduced.tops, reduced.heights, stage, counts, true), 200);
 });

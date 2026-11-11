@@ -3622,6 +3622,11 @@ html[data-motion="reduced"] .rl-faq-chevron {
    auto over both. */
 [data-film-segment] {
   height: calc(var(--film-pace, 3) * 100svh);
+  /* The height switches with the motion mode at once: the reduced-motion
+     rules give every element a 0.01ms transition of "all", which would leave
+     the old height in place when the scrub loop re-measures to keep the
+     visitor's place (use-scrub-loop onMotion). */
+  transition-property: none;
 }
 @media (prefers-reduced-motion: reduce) {
   [data-film-segment] {
@@ -4250,6 +4255,15 @@ html[data-reel-chrome="body"] .rl-nav-scrim {
   }
 }
 .film-btn:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--cf-recall-bg), 0 0 0 4px var(--cf-recall-accent); }
+/* Forced colors drop the box-shadow ring above, and this rule's outline: none
+   outranks the blanket forced-colors :focus-visible outline (FORCED COLORS
+   section): restore a system-coloured outline here, after the rule. */
+@media (forced-colors: active) {
+  .film-btn:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+}
 .film-btn-primary {
   background: var(--cf-recall-accent);
   color: var(--cf-recall-bg);
