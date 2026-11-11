@@ -52,24 +52,29 @@ ledger at `<runDir>/ledger.jsonl` (a shared ledger carries other books' spend an
 Keep `shape` and `concurrency: 3` as the template; `knownTrapsPath` (text mode, optional) is a top-level field.
 Roles: writer `claude-sonnet-5-5` high, checker `claude-opus-5-5` high, fixer `claude-opus-5-5` high (may be
 omitted; it then defaults to the checker), solver `claude-sonnet-5-5` medium; `bin` the glob above.
-`exemplarFrom: {"runDir": "~/cf-wt/v26-plan/runs/the-48-laws-of-power", "chapter": 1}`: the house exemplar, the
-owner's approved chapter, whose form every chapter of the new book takes (owner decision 2026-11-06: no pick page
-per book; the Carnegie picks matched the 48 Laws picks in four parts of five). Leave it out only when the owner
+`exemplarFrom: {"runDir": "../house", "chapter": 1}` (relative to `books/`, so `scripts/book/v26/house`): the house
+exemplar, the owner's approved 48 Laws chapter 1 revised to the reader bar on 2026-11-10. It sets the bar and the
+JSON shape for every chapter of the new book; the per-chapter plan sets the order (owner decision 2026-11-06: no
+pick page per book; the Carnegie picks matched the 48 Laws picks in four parts of five). Leave it out only when the owner
 wants to set a new form on this book; then ask which chapter they know best as the calibration chapter and run steps
 3 to 5. `mkdir -p` the run dir so the logs below have a home (the tool creates it too).
 
 The brief: 4 to 6 lines in the shape of `briefs/the-48-laws-of-power.md`, following the type table in
 `briefs/README.md`: what the book is; where the lesson comes from; what the evidence is and what must not be invented
 (for a book that tells no stories, say so: the chapter's reasoning and cases are the evidence); the quoting rule
-(knowledge mode: no quotations at all); "tell the author's advice as given, then say straight to the reader where
-you go softer". Never edit a brief to fix one chapter; that is a `--issues` fix round.
+(knowledge mode: no quotations at all); and the limit rule: "tell the author's advice as he gives it; where he
+himself names a limit, give it once as his; add no limit of your own". Only a book whose advice is harsher than the
+lesson a fair reader would use (the 48 Laws) says instead "then say in one sentence where the lesson goes softer".
+A brief that tells the writer to go softer on a how-to book puts an aside in every chapter. Never edit a brief to
+fix one chapter; that is a `--issues` fix round.
 
 Check: `CLI status --book <cfg>` prints `<bookId>: N chapters`, every chapter with stage `not-started`, and
 `ledger $0.00 of $<budget>`. `CONFIG_INVALID: <field>` names what to fix.
 
 ## 2. Keys, knowledge mode only (1 call, under $1)
 
-`CLI keys --book <cfg>` writes `chapters[].keys` into the config: the author's blunt advice, a `Reversal:` sentence,
+`CLI keys --book <cfg>` writes `chapters[].keys` into the config: the author's blunt advice, a `Reversal:` sentence
+(`Reversal: none` when the author gives no limit; the writer then writes none either),
 and `Story the author tells:` (or `none recalled with confidence`; for a book without stories expect that and keep
 it). Drafted by the fixer, since the keys are the fact backbone every later call reads. Read all of them: each
 belongs to its chapter, no quotation marks, no borrowed story or invented battle; keep a `Reversal:` only when it is
@@ -145,7 +150,9 @@ openers rotate A/B/D; names off limits: <names>`; the names must be the invented
 term is there, stop the run (safe; chapters resume from files), fix `bookNames`, relaunch the identical command.
 
 Per chapter: lessons call (lessons already taught, and the exemplar's own people, are off limits), one writer call
-against the exemplar, 0-call checks (shape, exemplar copy, variety), Opus fact check and Sonnet key solver, one fix
+with the house exemplar as the bar and the chapter's plan as the order (the opener and its path, the
+counterintuition frame, the example tags, the order of quiz and card forms and the key positions all come from the
+chapter number, so chapters written side by side cannot land on one shape), 0-call checks (shape, exemplar copy, variety), Opus fact check and Sonnet key solver, one fix
 round, land. At the end the log lists chapters clean or open, then `names used in more than one chapter` (chapters
 written side by side never see each other's names; step 7 renames), then `k of N chapters clean; ledger $x of $y`.
 A stop (exit 3 usage limit, exit 4 budget, a crash) is rerun with the identical command; finished chapters are
@@ -162,9 +169,13 @@ after two passes are nearly always `WHY (UNSUPPORTED)` on an inference sentence:
 Quote them in the hand-off; do not loop. `rename landed on a used name` in the log: run `fix` once more on that
 chapter only. `NO_FINAL_CHAPTER`: that chapter never landed; drop it from the list and rerun `book` for it.
 
-Then read every chapter's reading page yourself (or a wide sample for a long book). Optional, only if the pronoun
-or gentler-lesson tic shows in two or more chapters (both are writer rules now): `CLI fix --style --book <cfg>
---chapters 1,...,N` (no checker re-roll, about $0.18 a chapter). Optional defect sweep for a long book: one reader
+Then read as the default reader does (or a wide sample for a long book): the hook and the counterintuition, the
+short summary (fastRead), the first example, questions 1 to 5 and the practice plan. That is what most readers
+meet, in that order. The bar, in the owner's words: does the first screen pull you in; is it easy to read; is it
+interesting enough to keep going; is it complete enough to learn the lesson; are the examples and the other parts
+relatable. A chapter that misses gets its findings as one `fix --chapters N --issues` round. Optional, only if
+the pronoun tic or an aside about the author shows in two or more chapters (both are writer rules now): `CLI fix
+--style --book <cfg> --chapters 1,...,N` (no checker re-roll, about $0.18 a chapter). Optional defect sweep for a long book: one reader
 agent per chapter looking for FACT, KEY, LESSON_FIT, SOFTENED, LEAK and CLARITY defects with the quoted text and
 field id, two skeptics per finding (is it real; is it a defect rather than taste), confirmed findings applied with
 `fix --chapters N --issues`; plus a sameness read over all chapters (settings, cast, sentence moulds) that is a
@@ -187,6 +198,12 @@ becomes an added exemplar (`book --exemplar N` for later rewrites).
 the judge's items passed, 0 to 100; the book: the mean. Prints a row per chapter (open flags, "quiz guessable" when
 the no-chapter solver answers 4 or 5 of the first five keys without reading, the failed item ids), then
 `band AUTO|MANUAL|FAIL` with the reasons and the chapters to redo; writes `<runDir>/score.json`. Exit 0, 1, 2.
+The judge's items include one `TEMPT-<q>` per quiz question: at least one wrong choice is something a sensible
+person who has not read the chapter might really pick. The repeat rule (books of four chapters and up): a kind of
+item that is weak in at least half the chapters (a single item that fails, or a family such as QUIZ or TEMPT with
+half its items failing) puts the book in the manual band with the reason named, for example `TRY fails in 6 of 8
+chapters`, however high the mean: a reader meets that flaw in every chapter. The evidence for each failed item is
+in `<runDir>/eval/chNN.eval.json`.
 Thresholds are the config's `gate` (`{"auto": 80, "manual": 70}` by default). A chapter edited after the score
 makes the score stale; run `score` again.
 
@@ -194,15 +211,20 @@ makes the score stale; run `score` again.
 
 - **auto** (mean at or above `auto`, every chapter at or above `manual`, no open fact or key flag): run
   `CLI publish --book <cfg>` at once, no question asked.
-- **manual** (otherwise, mean at or above `manual`): hand the owner the pack, the score and the reasons; on a yes,
-  `CLI publish --book <cfg> --approve`. On a no, treat their notes as findings (step 7) and score again.
+- **manual** (otherwise, mean at or above `manual`): when the only reasons are repeated kinds that a small edit
+  fixes (a hook, a `tryThisNow`, a quiz choice), one pass is allowed first: per chapter, the judge's evidence for
+  those items as `--issues` findings, `CLI fix --book <cfg> --chapters N --issues <file>`, then `score` again. Once,
+  never a loop. Otherwise, or if the reason is still there: hand the owner the pack, the score and the reasons; on a
+  yes, `CLI publish --book <cfg> --approve`. On a no, treat their notes as findings (step 7) and score again.
 - **fail** (mean under `manual`): hand over the score and the `redo` list and ask permission to redo those chapters;
   only on a yes run `CLI book --book <cfg> --chapters <redo> --force`, then steps 7, 8 and 9 again. Two redo loops at
   most; after that it is the owner's call.
 
 What `publish` does, in order, and stops at the first failure: builds `book-packages/<bookId>.v21.json` from the
 landed chapters (chapterId `<bookId>-chNN`, number, readingTimeMinutes from the full read at 230 words a minute,
-packageId `<bookId>-v26-<time>`, book metadata from the config) and runs the app's own validator and category
+packageId `<bookId>-v26-<time>`, book metadata from the config, and the practice plan in the app's form: each
+if-then plan's cue and action joined into one sentence in `plan`, and `context` set to work, school or personal,
+because the reader app prints `context` in a small chip and prints `plan` alone in two places) and runs the app's own validator and category
 check on it; commits it on the current branch and pushes; uploads it to `book-content/packages/<bookId>.v21.json`
 in the content bucket (the server reads it there at runtime); registers it in the API catalog with the repo's
 `register-api-books` script (DynamoDB plus versioned artifacts; live at once for the logged-in library and iOS);
@@ -233,6 +255,8 @@ to `~/cf-wt/v26-plan/status/V1-variants.md` and one to the `v26-campaign` memory
 | a chapter open after two passes | fact-check treadmill on inference sentences | stop; hand the flags over |
 | `names off limits:` lists a book term | `bookNames` incomplete | add it, rerun |
 | every chapter opens the same way | one letter in `approved.summary` | ask the owner for more letters; never `--force` the book |
+| `score`: `<KIND> fails in k of N chapters` | a flaw repeated across the book (the repeat rule) | read the evidence in `eval/chNN.eval.json`; one `fix --issues` pass if a small edit fixes it, score again; else hand it to the owner |
+| an aside about the author or a "softer" note in several chapters | the brief tells the writer to go softer | fix the brief's limit line (step 1), `fix --style` on those chapters |
 | `rename landed on "X"` | the rename picked a used name | `fix` once more on that chapter |
 | lesson over 20 words refused twice | the lessons cap | rerun; the retry carries the error |
 | `NO_FINAL_CHAPTER` from `fix` | a chapter never landed | drop it, rerun `book` for it |

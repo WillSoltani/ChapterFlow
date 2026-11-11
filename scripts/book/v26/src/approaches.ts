@@ -13,7 +13,7 @@ export interface Approach {
 export const APPROACHES: Record<Component, Approach[]> = {
   summary: [
     { label: "A", name: "problem scene", rule: "open on a modern everyday moment where the obvious move (the wrong belief) is about to backfire. The reader feels the problem before knowing the answer.", path: "the scene; why the obvious move fails here; the author's idea; the book's evidence; how to use the idea; back to the scene with the move made; the lesson in one line." },
-    { label: "B", name: "question or puzzle", rule: "open with a sharp question or a small puzzle the reader cannot yet answer. The summary answers it at the end.", path: "the question; what most people would answer and why that fails; the author's answer and its reason; the book's evidence; the question answered in one line." },
+    { label: "B", name: "question or puzzle", rule: "open with a sharp question or a small puzzle the reader cannot yet answer. The summary answers it at the end.", path: "the question; the author's answer and its reason; the book's evidence; why the usual answer misleads; the question answered in one line." },
     { label: "C", name: "two people, two choices", rule: "open with two people facing the same situation and choosing differently. The difference is the lesson.", path: "two people, two choices; what happens to each; the idea that explains the difference; the book's evidence; how to do what the second person did; the lesson in one line." },
     { label: "D", name: "surprising claim first", rule: "open by stating the counterintuitive claim bluntly in the first sentence, then earn it.", path: "the claim; the book's evidence that proves it; why the opposite belief is so common; how to use it, step by step; the lesson in one line." },
     { label: "E", name: "concrete analogy", rule: "open with a physical, everyday analogy (a leaky tap, a scoreboard, a cold room) that carries the lesson, and come back to it at the end.", path: "the analogy; where it shows up in the reader's life; the author's idea; the book's evidence; back to the analogy; the lesson in one line." },
@@ -41,7 +41,7 @@ export const APPROACHES: Record<Component, Approach[]> = {
   ],
   practice: [
     { label: "A", name: "two-minute actions", rule: "every action takes under two minutes and needs nothing new." },
-    { label: "B", name: "specific cues", rule: "the if-then cues are clear moments from an ordinary week (a routine moment, a thought the reader catches, a remark people often hear), and the actions follow from those cues." },
+    { label: "B", name: "specific cues", rule: "the if-then cues are clear moments from an ordinary week, of the kinds the plan names, and the actions follow from those cues." },
     { label: "C", name: "with another person", rule: "every action involves telling, asking or showing someone else." },
     { label: "D", name: "track and count", rule: "the actions make the reader count, log or mark something, so they can see the lesson working." },
     { label: "E", name: "the shortest possible", rule: "the fewest words that still give one clear action per field." },

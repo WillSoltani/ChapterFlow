@@ -83,9 +83,32 @@ const NOT_NAMES = new Set(
     "people someone nobody everyone anyone actually really maybe perhaps first second third next last before after again back scold ignore naming " +
     "review read reading learn learning work works school home personal money health relationships team boss manager friend coworker " +
     "pass fail yes no okay fine nice great right wrong true false one two three four five six seven eight nine ten half part whole " +
-    "king queen prince duke lord sir mr mrs ms dr france england britain europe america italy spain germany china japan russia rome paris london florence venice"
+    "king queen prince duke lord sir mr mrs ms dr france england britain europe america italy spain germany china japan russia rome paris london florence venice " +
+    "spanish french english german italian portuguese chinese japanese korean arabic hindi russian greek latin dutch swedish turkish polish irish " +
+    "american british canadian european african asian mexican indian study"
   ).split(" "),
 );
+
+/** The book's own capitalized terms (Anchor, Ability Chain, Focus Mapping): every capitalized word inside a sentence of any
+ *  chapter's keys, plus the words of the chapter titles, the book's title and the author's name. None of them is an
+ *  invented person, so none is renamed or put off limits for later chapters. */
+export function bookTerms(ctx: PipelineCtx): string[] {
+  const out = new Set<string>();
+  const add = (t: string, all: boolean): void => {
+    for (const sentence of t.split(/(?<=[.!?:])\s+/)) {
+      sentence.split(/\s+/).forEach((w, i) => {
+        const word = w.replace(/^[^A-Za-z]+|[^A-Za-z]+$/g, "").replace(/['’]s$/, "");
+        if (/^[A-Z][a-z]{2,}$/.test(word) && (all || i > 0)) out.add(word);
+      });
+    }
+  };
+  add(`${ctx.config.title} ${ctx.config.author}`, true);
+  for (const c of ctx.config.chapters ?? []) {
+    add(c.title, true);
+    add(c.keys ?? "", false);
+  }
+  return [...out].sort();
+}
 
 /** Capitalized words that look like the invented first names of a chapter, in every reader-visible field. A word counts when
  *  it appears inside a sentence (not as its first word) at least once, or as a possessive ("Kenji's shift"); a word that
@@ -191,6 +214,30 @@ const COUNTER_FRAMES = [
   `"Many people think [the belief]. Actually [the correction], because [the reason]."`,
   `"It feels natural to [the belief]. But [the correction], because [the reason]."`,
   `"You have probably been told [the belief]. The trouble is [the reason], so [the correction]."`,
+  `"[The belief, the way people say it]. It sounds right, and it fails for one reason: [the reason]. [The correction]."`,
+  `"The usual advice is [the belief]. [The correction] works better, because [the reason]."`,
+  `"We tend to [the belief]. What works is [the correction], since [the reason]."`,
+];
+/** Where each kind of example is set, so a book does not hold eight evening classes and eight offices. The first entry of
+ *  each list is the house exemplar's own setting (chapter 1 of a book lands there). */
+const SETTINGS: Record<string, string[]> = {
+  work: ["an office or a sales team", "a shop, a cafe or a restaurant", "a trade or a workshop (a plumber, a mechanic, a builder)", "a hospital, a clinic or a care home", "freelance work or working from home", "a warehouse, a depot or a job on the road", "a small business from the owner's side", "a school or a nursery from the staff's side"],
+  school: ["a teenager at school", "a university or college student", "an adult in an evening or online course", "a parent helping a child with schoolwork", "a learner with a teacher (music, a sport, driving, a language)", "a trainee or an apprentice"],
+  personal: ["family (a parent, a child, a sibling, an aunt)", "money", "health or fitness", "friends", "home and chores", "a hobby", "neighbours or a local group", "a partner"],
+};
+/** What makes the third example harder than the first. */
+const HARD_CASES = [
+  "a strong feeling is in the way (pride, embarrassment, anger or fear)",
+  "another person disagrees or pushes back",
+  "the right move was tried once, did not work, and needs one adjustment",
+  "there is almost no time",
+];
+/** The kinds of moment an if-then cue names. */
+const CUE_KINDS = [
+  "a routine moment of the day or the week (right after something the reader always does)",
+  "a thought the reader catches themselves having",
+  "the moment the reader notices the very slip this lesson is about",
+  "arriving somewhere, or sitting down to something",
 ];
 /** Example 1 is the one a reader sees first, so it is never the school one. */
 const TAG_ORDERS = [
@@ -246,13 +293,20 @@ export function formText(ex: Exemplar, summaryLabel: string = ex.picks.summary.l
   const quiz = ex.picks.quiz.label === "E" ? `E, "one of each": the forms in this order: ${inOrder(QUIZ_FORMS, questions, "q")}.` : rule("quiz");
   const cards = ex.picks.cards.label === "E" ? `E, "mixed": the forms in this order: ${inOrder(CARD_FORMS, c.reviewCards.length, "rc")}.` : rule("cards");
   const tags = TAG_ORDERS[turn(n, TAG_ORDERS.length)]!.slice(0, c.examples.length);
+  // Strides that share no factor with the list lengths, so the three settings of a chapter move independently.
+  const setting = (tag: string): string => {
+    const list = SETTINGS[tag] ?? SETTINGS.personal!;
+    const stride = tag === "school" ? 5 : tag === "personal" ? 3 : 1;
+    return list[(((n - 1) * stride) % list.length + list.length) % list.length]!;
+  };
+  const cueKinds = (count: number): string[] => Array.from({ length: count }, (_, i) => CUE_KINDS[(turn(n, CUE_KINDS.length) + i * 2 + (i > 1 ? 1 : 0)) % CUE_KINDS.length]!);
   return [
     `- summary (hook, counterintuition, the three lengths, tryThisNow, memorable line): ${opener.label}, "${opener.name}": ${opener.rule}${opener.path ? ` Path: ${opener.path} ${EVIDENCE_NOTE}` : ""}${openerNote} Ceilings (a chapter with less to say is shorter): hook 25 words; counterintuition 45 words; ${tier("fastRead")}; ${tier("deepRead")}; ${tier("fullRead")}; tryThisNow 25 words.`,
     `- counterintuition frame: ${COUNTER_FRAMES[turn(n, COUNTER_FRAMES.length)]}`,
-    `- examples: ${c.examples.length} examples; ${rule("examples")} Measurements: scenario about ${avg(c.examples.map((e) => wordsIn(e.scenario)))} words, whatToDo about ${avg(c.examples.map((e) => wordsIn(e.whatToDo)))}, whyItMatters about ${avg(c.examples.map((e) => wordsIn(e.whyItMatters)))}. Tags for examples 1 to ${tags.length}, in this order: ${tags.join(", ")}.`,
+    `- examples: ${c.examples.length} examples, doing the three jobs the field rules give (the ordinary situation, the fix already tried, the harder situation). Scenario about ${avg(c.examples.map((e) => wordsIn(e.scenario)))} words (70 at most), whatToDo about ${avg(c.examples.map((e) => wordsIn(e.whatToDo)))} (30 at most), whyItMatters about ${avg(c.examples.map((e) => wordsIn(e.whyItMatters)))} (25 at most). Tags and settings for examples 1 to ${tags.length}, in this order: ${tags.map((t) => `${t} (${setting(t)})`).join("; ")}. What makes example ${tags.length} the harder one: ${HARD_CASES[turn(n, HARD_CASES.length)]}.`,
     `- quiz: ${questions} questions with ${choices} choices each; ${quiz} Key positions (the 0-based index of the right choice) for q1 to q${questions}: ${keyPositions(n, questions, choices).join(", ")}.`,
     `- review cards: ${c.reviewCards.length} cards; ${cards}`,
-    `- practice plan: ${c.implementationPlan.ifThenPlans.length} if-then plans; ${rule("practice")}`,
+    `- practice plan: ${c.implementationPlan.ifThenPlans.length} if-then plans; ${rule("practice")} The kinds of cue for this chapter: ${cueKinds(c.implementationPlan.ifThenPlans.length).join("; ")}.`,
   ].join("\n");
 }
 
@@ -666,7 +720,7 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
   writeJson(statusFile, status);
   writeVariety(ctx, n, {
     ...used,
-    names: [...new Set([...used.names, ...extractNames(chapter, lesson.storyNames, "invented")])].sort(),
+    names: [...new Set([...used.names, ...extractNames(chapter, [...lesson.storyNames, ...bookTerms(ctx)], "invented")])].sort(),
     approach: used.approach ?? expectedApproach,
     openers: openerSentences(chapter, lesson.storyNames),
   });
@@ -738,7 +792,7 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
   const ex: Exemplar = fs.existsSync(exemplarFile) && ctx.config.exemplarFrom === undefined ? { ...loadExemplar(ctx, n), chapterJson: emptyChapter(), names: [], sceneNames: [] } : loadExemplar(ctx);
   const renameOnly = !style && issues.every((i) => VARIETY.test(i.text));
   const used = new Set<string>([...ex.names, ...Object.values(ledger.chapters).flatMap((v) => v.names)]);
-  const styleNames = style ? [...new Set([...(ledger.chapters[chapterName(n)]?.names ?? []), ...extractNames(chapter, lesson.storyNames, "invented")])].sort() : [];
+  const styleNames = style ? [...new Set([...(ledger.chapters[chapterName(n)]?.names ?? []), ...extractNames(chapter, [...lesson.storyNames, ...bookTerms(ctx)], "invented")])].sort() : [];
   if (!style && issues.some((i) => VARIETY.test(i.text))) {
     // The fix call cannot see the ledger, so a rename would land on a name another chapter uses; offered a dozen free
     // names (rotated by chapter so neighbours get different ones) it picks one of them.
@@ -767,8 +821,8 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
     for (const i of status.open.filter((x) => x.source === source)) (i.blocking ? r.blocking : r.reported).push(i);
   }
   // A rename that still landed on a used name is reported, so the next fix pass sees it.
-  const before = new Set(extractNames(chapter, lesson.storyNames, "invented"));
-  for (const name of extractNames(applied, lesson.storyNames, "invented")) {
+  const before = new Set(extractNames(chapter, [...lesson.storyNames, ...bookTerms(ctx)], "invented"));
+  for (const name of extractNames(applied, [...lesson.storyNames, ...bookTerms(ctx)], "invented")) {
     if (!before.has(name) && used.has(name)) r.reported.push({ source: "det", blocking: false, field: "(chapter)", text: `variety: the rename landed on "${name}", which another chapter of this book uses` });
   }
   const label = `${ctx.config.bookId}/${chapterName(n)}`;
@@ -790,7 +844,7 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
     const text = Object.values(readerLeaves(applied)).flat().join("\n");
     writeVariety(ctx, n, {
       ...mine,
-      names: [...new Set([...mine.names.filter((x) => wholeWord(x).test(text)), ...extractNames(applied, lesson.storyNames, "invented")])].sort(),
+      names: [...new Set([...mine.names.filter((x) => wholeWord(x).test(text)), ...extractNames(applied, [...lesson.storyNames, ...bookTerms(ctx)], "invented")])].sort(),
       openers: openerSentences(applied, lesson.storyNames),
     });
   }

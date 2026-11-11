@@ -1,0 +1,107 @@
+{
+  "bookId": "tiny-habits",
+  "title": "Tiny Habits",
+  "author": "BJ Fogg",
+  "bookType": "how-to",
+  "categories": [
+    "Self Improvement",
+    "Psychology",
+    "Productivity"
+  ],
+  "tags": [
+    "habits",
+    "behavior design",
+    "motivation",
+    "change"
+  ],
+  "chapters": [
+    {
+      "number": 1,
+      "title": "The Elements of Behavior",
+      "keys": "Stop blaming yourself and look at behavior as a design problem with three parts. His Behavior Model says a behavior happens when Motivation (the desire to do it), Ability (the capacity to do it) and a Prompt (the cue that says do it now) come together at the same moment; he shortens this to B=MAP. The Action Line is the curve on his model's chart: when motivation and ability put a behavior above it, a prompt makes it happen, and below it, a prompt only frustrates you. Motivation and ability trade off, so the harder a behavior is, the more motivation it needs, and the easier it is, the less it needs. Without a prompt, no behavior happens, however motivated or able you are. When a behavior is not happening, check in his order: first the prompt, then ability, and only then motivation. Reversal: none. Story the author tells: none recalled with confidence."
+    },
+    {
+      "number": 2,
+      "title": "Motivation: Focus on Matching",
+      "keys": "Do not build change on motivation, because it rises and falls and cannot be counted on. His Motivation Wave is that rise and fall: use a high moment to do a hard one-time thing that makes later behavior easier, and do not use it to start a habit you must keep up. Separate an Aspiration (an abstract want) and an Outcome (a measurable result) from a Behavior (a specific thing you can do now). His Behavior Design steps run in order: clarify the aspiration, explore behavior options, then match yourself with specific behaviors. A Swarm of Behaviors is a brainstorm of many specific behaviors that could reach the aspiration. Focus Mapping sorts that swarm by how much each behavior would help and whether you can get yourself to do it. You keep the Golden Behaviors, the ones that are effective, that you want to do, and that you can do. Reversal: none. Story the author tells: none recalled with confidence."
+    },
+    {
+      "number": 3,
+      "title": "Ability: Easy Does It",
+      "keys": "Make the behavior easy, because simplicity changes behavior. Ask his Discovery Question, what is making this behavior hard to do, and check it against the Ability Chain, his five links of time, money, physical effort, mental effort and routine, where the weakest link decides how hard the behavior is. He gives three ways to make a behavior easier: raise your skill, get tools and resources, or make the behavior tiny. To make it tiny, use a Starter Step, the first small move toward the full behavior, or Scaling Back, shrinking the behavior to a tiny version of itself. Keep the tiny version small enough that you can do it even on a bad day. Reversal: none. Story the author tells: none recalled with confidence."
+    },
+    {
+      "number": 4,
+      "title": "Prompts: The Power of After",
+      "keys": "Give every new habit a clear prompt. He names three kinds: a Person Prompt, a signal from inside your body; a Context Prompt, a cue placed around you such as a note or an alarm; and an Action Prompt, a routine you already do. His best prompt is an Action Prompt used as an Anchor, the existing routine your new habit follows. Write it as a Tiny Habits recipe, After I do my anchor, I will do my new tiny behavior, and follow the ABC order: Anchor, Behavior, Celebration. Pick an anchor that fits the new habit in place, in how often it happens, and in theme, and tie the habit to the trailing edge of the anchor, the very last action of that routine. Pearl Habits use an annoyance as the anchor, and Meanwhile Habits fit a tiny habit into time you are already spending doing something else. Reversal: none. Story the author tells: none recalled with confidence."
+    },
+    {
+      "number": 5,
+      "title": "Emotions Create Habits",
+      "keys": "Feel good right after you do the behavior, because he says emotions create habits, not repetition. His Celebration is anything you do to make yourself feel positive at once, such as a fist pump or a word of praise to yourself. Shine is his name for the feeling of success a celebration creates. Celebrate immediately after the behavior, because timing matters; he also says you can celebrate when you remember to do the habit and while you are doing it. Find celebrations that feel real to you and practice them until they come naturally. His Maui Habit is a starter habit: when your feet hit the floor in the morning, say it is going to be a great day. Reversal: none. Story the author tells: none recalled with confidence."
+    },
+    {
+      "number": 6,
+      "title": "Growing Your Habits from Tiny to Transformative",
+      "keys": "Start tiny and let the habit grow on its own; do not force it bigger. He says habits grow in two ways: a habit grows larger, and habits multiply into more habits. Once the tiny version is rooted, do more when you feel like it, but keep the tiny version as the minimum that still counts on hard days. Each success builds your skill and your confidence, and he says feeling successful is what lets change spread. Keep celebrating as habits grow, so the feeling of success keeps wiring them in. Reversal: none. Story the author tells: none recalled with confidence."
+    },
+    {
+      "number": 7,
+      "title": "Untangling Bad Habits: A Systematic Solution",
+      "keys": "Treat a bad habit like a knot: loosen the easiest strands first, not the hardest. His Behavior Change Masterplan runs in three phases: first create good new habits, then stop the old habit, then swap it for a new one. Name the bad habit as specific behaviors, and work on one small, specific behavior at a time. To stop one, redesign the prompt first by removing it, avoiding it or ignoring it, then make the behavior harder to do, and only then reduce the motivation. If stopping fails, swap: keep the prompt and put a new behavior in place of the old one. Reversal: he says serious addictions call for professional help and are outside this method. Story the author tells: none recalled with confidence."
+    },
+    {
+      "number": 8,
+      "title": "How We Change Together",
+      "keys": "Use the same method to help family, coworkers and teams change, not pressure or guilt. Help people do what they already want to do, and help them feel successful. When someone is not doing a behavior, troubleshoot with the Behavior Model in his order: prompt, then ability, then motivation. Ask what is making the behavior hard for them, and make it easier rather than pushing their motivation. Keep the changes tiny and celebrate them with the other person. Reversal: none. Story the author tells: none recalled with confidence."
+    }
+  ],
+  "briefPath": "../briefs/tiny-habits.md",
+  "shape": {
+    "examples": 3,
+    "quizQuestions": 7,
+    "choices": 3,
+    "reviewCards": 5,
+    "memorableLines": 3,
+    "ifThenPlans": 2,
+    "fastRead": [
+      150,
+      220
+    ],
+    "deepRead": [
+      350,
+      500
+    ],
+    "fullRead": [
+      800,
+      1100
+    ]
+  },
+  "writer": {
+    "bin": "~/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude",
+    "model": "claude-sonnet-5-5",
+    "effort": "high"
+  },
+  "checker": {
+    "bin": "~/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude",
+    "model": "claude-opus-5-5",
+    "effort": "high"
+  },
+  "solver": {
+    "bin": "~/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude",
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+  },
+  "concurrency": 3,
+  "budgetUsd": 30,
+  "runDir": "~/cf-wt/v26-plan/runs/tiny-habits-r3",
+  "fixer": {
+    "bin": "~/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude",
+    "model": "claude-opus-5-5",
+    "effort": "high"
+  },
+  "exemplarFrom": {
+    "runDir": "../house",
+    "chapter": 1
+  }
+}

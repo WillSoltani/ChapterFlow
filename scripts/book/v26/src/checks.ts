@@ -235,7 +235,7 @@ const CHATTER =
 // Prompt vocabulary, and the chapter talking about its own lesson ("The lesson is softer in only one way: ...").
 const LEAK = /\b(wrong belief|near-miss|acts? out|tempting choice|the story shows|the plain case|the hard case|the tempting (wrong )?fix)\b|\b(does not|doesn't) say this\b|\bis not \w+'s advice\b|\bsofter note\b|\b(the|this|your) lesson( for you)? (is|goes|stays) (gentler|softer|milder)\b|\b(here )?I (go softer|part ways|am gentler|would not|stop short)\b|\bwhere I go softer\b/i;
 const OUTSIDE_FACT =
-  /\d+(\.\d+)?\s?%|\b(1[5-9]|20)\d{2}\b|\b(stud(y|ies)|survey|research(ers)? (shows?|found|suggests)|according to|scientists|statistics?)\b/gi;
+  /\d+(\.\d+)?\s?%|\b(1[5-9]|20)\d{2}\b|\b(?:a|one|new|recent|another) stud(?:y|ies)\b(?! (?:group|plan|session|room|hall|guide|habit|break|buddy|partner|desk|schedule|skills?|hour|time)\b)|\bstud(?:y|ies) (?:shows?|showed|found|finds?|suggests?|says?|proved?)\b|\b(survey|research(ers)? (shows?|found|suggests)|according to|scientists|statistics?)\b/gi;
 
 // ---------------------------------------------------------------- runChecks
 

@@ -593,6 +593,7 @@ test("outside facts: breakdown text and ordinary numbers are not reported", asyn
   const c = edit((x) => {
     x.breakdown.fastRead += " In 1730 he began; 80% of nights he wrote.";
     x.examples[0].whatToDo = "Write for 10 minutes on day 3.";
+    x.examples[1].scenario = "Dev joins a study group to study for the exam, and they study every night."; // the verb and a study group are not research claims
     x.hook = "He was born in 1706."; // 1706 is a year => reported (control)
   });
   const r = await runChecks(c, lessonCard(), ctx());

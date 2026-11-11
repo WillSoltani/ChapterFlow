@@ -17,7 +17,7 @@
   "examples": [
     {
       "exampleId": "ex01",
-      "title": "The sales deal you closed alone",
+      "title": "A sales deal closed alone",
       "tags": [
         "work"
       ],
@@ -37,11 +37,11 @@
     },
     {
       "exampleId": "ex03",
-      "title": "The family reunion you rescued",
+      "title": "Who saved the reunion?",
       "tags": [
         "personal"
       ],
-      "scenario": "Leah's aunt has hosted the family reunion for ten years, and this year the rented hall fell through. Leah found a park pavilion and sorted out the food in two days. Now a cousin has posted in the group chat, \"Finally, someone competent is in charge.\" Her aunt has gone quiet. Leah's thumbs are over a reply that starts with \"I fixed it.\"",
+      "scenario": "Leah's aunt has hosted the family reunion for ten years, and this year the rented hall fell through. Leah found a park pavilion and sorted out the food in two days. Now a cousin has posted in the group chat, \"Finally, someone competent is in charge.\" Leah feels a rush of pride. Her aunt, who always answers within a minute, has said nothing.",
       "whatToDo": "Post that you only followed your aunt's playbook, and ask her to give the welcome toast like every year.",
       "whyItMatters": "The aunt still feels like the host, so Leah gains an ally at the picnic instead of a hurt relative."
     }
@@ -65,7 +65,7 @@
         "questionId": "q2",
         "prompt": "A baker's assistant invents a pastry that sells out daily and puts their own name on the menu card. The owner cuts their hours. What belief led them wrong?",
         "choices": [
-          "Believing the owner was too busy to notice a small change to the menu card.",
+          "Believing the owner was too busy in the shop to notice a small change to the menu card.",
           "Believing the pastry needed a name on the card to help it sell even better.",
           "Believing a hit pastry would please the owner with only the assistant's name on it."
         ],
@@ -79,7 +79,7 @@
         "choices": [
           "The manager feels flattered for a day, and nothing about the worker's shifts changes.",
           "The manager starts giving the worker better shifts, since the reviews now reflect on both.",
-          "The other staff resent the flattery, and the manager keeps the worker at a distance."
+          "The other staff come to resent the flattery, and the manager keeps the worker at a distance."
         ],
         "correctIndex": 1,
         "explanation": "Tying the reviews to the training gives the manager a share in them, so backing the worker now pays off for both. It would only read as flattery if the win behind it were not real.",
@@ -111,7 +111,7 @@
       },
       {
         "questionId": "q6",
-        "prompt": "Your idea for a new staff schedule saved your clinic a lot of money. The clinic director will report the results to the board next week. What do you do?",
+        "prompt": "Your idea for a new staff schedule saved your clinic money. Next week the clinic director reports the results to the board. What is your move before that meeting?",
         "choices": [
           "Ask the director for five minutes at the board meeting to explain the schedule yourself.",
           "Email the board a short note about the savings, and copy the director on it.",
@@ -126,8 +126,8 @@
         "prompt": "A junior lawyer wins a case and thanks her mentor over coffee. In the firm newsletter she calls the win her own. The mentor grows distant. What is the trap?",
         "choices": [
           "Thinking private thanks is enough when the public story leaves her mentor out.",
-          "Thinking the mentor's help was too small to deserve a place in the story.",
-          "Thinking the newsletter was the wrong place to write about a win at all."
+          "Thinking the mentor's help was too small to deserve a place in the public story.",
+          "Thinking the firm newsletter was the wrong place to write about her win."
         ],
         "correctIndex": 0,
         "explanation": "The glory that counts is the kind other people see. Thanks over coffee did nothing for how the mentor looked to the firm. Leaving the win out of the newsletter would have helped nobody.",
@@ -171,12 +171,12 @@
     "coreSkill": "Tie your wins to your boss's goals, so your good work makes them look good in front of others.",
     "ifThenPlans": [
       {
-        "context": "When I am about to share good news about my work in a meeting",
-        "plan": "then I start with what my boss set up or approved, and only then give my part."
+        "context": "When I write my weekly update for my boss",
+        "plan": "then I open with what they set up or approved, and only then give my part."
       },
       {
-        "context": "When I hear someone praise my work in front of my boss",
-        "plan": "then I thank them and name one thing my boss did that made it possible."
+        "context": "When I notice I have told a win as if I did it alone",
+        "plan": "then I tell the same people what my boss did to make it possible."
       }
     ],
     "twentyFourHourChallenge": "Before you leave work today, open your last project update. Add one sentence that links the result to a goal your boss cares about, so they can pass it up the line.",

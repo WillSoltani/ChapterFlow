@@ -78,7 +78,7 @@ const WORK_CUE = /\b(boss|manager|coworker|co-worker|colleague|client|customer|m
 export function appPlan(p: { context: string; plan: string }): { context: string; plan: string } {
   const tag = p.context.trim().toLowerCase();
   if ((PLAN_TAGS as readonly string[]).includes(tag)) return { context: tag, plan: p.plan };
-  const cue = p.context.trim().replace(/[\s,.;:]+$/, "");
+  const cue = p.context.trim().replace(/[\s,.;:]+$/, "").replace(/[.,;:]+(["'”’])$/, "$1");
   const action = p.plan.trim().replace(/^then,?\s+/i, "");
   const sentence = `${cue}, ${action}`;
   const context = SCHOOL_CUE.test(cue) ? "school" : WORK_CUE.test(cue) ? "work" : "personal";

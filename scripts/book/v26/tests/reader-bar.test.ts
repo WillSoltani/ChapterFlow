@@ -6,7 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { formText, keyPositions, loadExemplar } from "../src/book";
+import { bookTerms, extractNames, formText, keyPositions, loadExemplar } from "../src/book";
 import { runChecks } from "../src/checks";
 import type { PipelineCtx } from "../src/pipeline";
 import { appPlan } from "../src/publish";
@@ -25,15 +25,23 @@ test("the plan is a function of the chapter number: neighbours differ, the same 
   const plan = (n: number): string => formText(ex, "A", n, SHAPE);
   assert.equal(plan(2), plan(2));
   const line = (n: number, start: string): string => plan(n).split("\n").find((l) => l.startsWith(start)) ?? "";
-  for (const start of ["- counterintuition frame", "- examples", "- quiz", "- review cards"]) {
+  for (const start of ["- counterintuition frame", "- examples", "- quiz", "- review cards", "- practice plan"]) {
     assert.notEqual(line(2, start), line(3, start), `${start} differs between chapters 2 and 3`);
   }
   assert.match(plan(2), /fastRead 150 to 220 words in at most 3 paragraphs; deepRead up to 500 words/);
   assert.match(plan(1), /the forms in this order: q1 what do you do; q2 spot the trap; q3 predict what happens; q4 best reply; q5 why does this work; q6 what do you do; q7 spot the trap\./);
   assert.match(plan(2), /the forms in this order: q1 spot the trap; q2 predict what happens;/);
-  assert.match(plan(1), /Tags for examples 1 to 3, in this order: work, school, personal\./);
+  assert.match(plan(1), /Tags and settings for examples 1 to 3, in this order: work \(an office or a sales team\); school \(a teenager at school\); personal \(family/);
   // The first example is the one a reader sees: never the school one.
-  for (let n = 1; n <= 12; n++) assert.doesNotMatch(plan(n), /in this order: school,/);
+  for (let n = 1; n <= 12; n++) assert.doesNotMatch(plan(n), /in this order: school /);
+  // The settings, the harder situation and the cue kinds move from chapter to chapter; no two of the first six chapters share a work setting.
+  const workSetting = (n: number): string => /(?:work) \(([^;.]+?)\)[;.]/.exec(line(n, "- examples"))?.[1] ?? "";
+  assert.equal(new Set([1, 2, 3, 4, 5, 6].map(workSetting)).size, 6);
+  assert.match(plan(1), /What makes example 3 the harder one: a strong feeling is in the way/);
+  assert.match(plan(2), /What makes example 3 the harder one: another person disagrees or pushes back\./);
+  assert.match(plan(1), /The kinds of cue for this chapter: a routine moment of the day or the week .*; the moment the reader notices the very slip this lesson is about\./);
+  assert.notEqual(line(1, "- practice plan"), line(2, "- practice plan"));
+  assert.match(plan(4), /counterintuition frame: "\[The belief, the way people say it\]\./);
   assert.match(formText(ex, "D", 3, SHAPE), /Path: the claim; the book's evidence that proves it; .*THIS chapter opens as D instead\. Follow the path given here/);
 });
 
@@ -68,6 +76,11 @@ test("the committed house exemplar loads, keeps the owner's openers and the book
   assert.deepEqual(c.quiz.questions.map((q) => q.correctIndex), keyPositions(1, 7, 3));
   const len = (q: Chapter["quiz"]["questions"][number]): number[] => q.choices.map(words);
   for (const q of c.quiz.questions) assert.ok(Math.max(...len(q)) - Math.min(...len(q)) <= 3, `${q.questionId}: choices are one length`);
+  for (const q of c.quiz.questions) {
+    const chars = q.choices.map((x) => x.length);
+    const key = chars[q.correctIndex]!;
+    assert.ok(key < Math.max(...chars) && key > Math.min(...chars), `${q.questionId}: the right choice is neither the longest nor the shortest`);
+  }
   for (const p of c.implementationPlan.ifThenPlans) {
     assert.match(p.context, /^When I /);
     assert.ok(words(p.context) <= 14);
@@ -95,6 +108,7 @@ test("appPlan: the cue and the action become one sentence, the chip gets a tag, 
   const once = appPlan({ context: "When I catch myself working late again", plan: "then I close the laptop." });
   assert.equal(once.context, "personal", "\"working\" is not the word \"work\"");
   assert.deepEqual(appPlan(once), once, "idempotent");
+  assert.equal(appPlan({ context: 'When I catch myself thinking, "I just need to try harder."', plan: "then I list three other actions." }).plan, 'When I catch myself thinking, "I just need to try harder", I list three other actions.');
   assert.deepEqual(appPlan({ context: "Work", plan: "If a task slips, then name it." }), { context: "work", plan: "If a task slips, then name it." });
 });
 
@@ -128,4 +142,24 @@ test("bandOf: a kind that is weak in half the chapters holds a high-scoring book
   assert.equal(bandOf(once, t).band, "auto", "one weak chapter is not a repeat");
   assert.equal(bandOf([scored(1, 93, ["TRY"]), scored(2, 93, ["TRY"])], t).band, "auto", "the rule needs four chapters");
   assert.equal(bandOf(clean.map((c) => ({ ...c, weak: undefined })), t).band, "auto", "scores saved before the rule have no weak list");
+});
+
+// ---------------------------------------------------------------- the book's own terms are not names
+
+test("the book's capitalized terms and a language are never taken for an invented person", () => {
+  const ctx = {
+    config: {
+      title: "Tiny Habits",
+      author: "BJ Fogg",
+      chapters: [
+        { number: 1, title: "Prompts: The Power of After", keys: "Write a recipe. The old routine is the Anchor, and the weakest link of the Ability Chain decides. Story the author tells: none." },
+      ],
+    },
+  } as unknown as PipelineCtx;
+  const terms = bookTerms(ctx);
+  for (const t of ["Anchor", "Ability", "Chain", "Fogg", "Habits", "Prompts", "Power"]) assert.ok(terms.includes(t), t);
+  assert.ok(!terms.includes("Write") && !terms.includes("Story"), "a sentence opener in the keys is not a term");
+  const c = house().chapterJson;
+  const withTerms: Chapter = { ...c, breakdown: { ...c.breakdown, fastRead: "Kasia ties the new habit to an Anchor, and Kasia's evening Spanish class hears about the Ability Chain." } };
+  assert.deepEqual(extractNames(withTerms, ["Galileo", ...terms], "all").filter((x) => !house().bookNames.join(" ").includes(x)).filter((x) => !["Leah", "Marcus", "Maya", "Priya", "Fouquet", "Louis", "Cosimo", "Medici"].includes(x)), ["Kasia"]);
 });
