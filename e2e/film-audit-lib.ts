@@ -49,7 +49,8 @@ export function activePins(page: Page): Promise<Snap> {
           if (!(t.textContent ?? "").trim() || t instanceof SVGElement) continue;
           fontPx = Math.min(fontPx, parseFloat(getComputedStyle(t).fontSize));
         }
-        const targets = [...el.querySelectorAll<HTMLElement>("a[href], button")].map((t) => {
+        // Rendered links and buttons only ("Skip the film" in the hero is display:none outside reduced motion).
+        const targets = [...el.querySelectorAll<HTMLElement>("a[href], button")].filter((t) => t.getClientRects().length > 0).map((t) => {
           const b = t.getBoundingClientRect();
           return { text: (t.textContent ?? "").trim().slice(0, 30), w: b.width, h: b.height };
         });
