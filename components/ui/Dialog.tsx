@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, type ReactNode, type RefObject } from "rea
 import { createPortal } from "react-dom";
 import { DUR } from "@/lib/motion";
 import { useBodyScrollLock } from "@/components/ui/use-body-scroll-lock";
-import { MotionFeatureProvider } from "@/components/MotionFeatureProvider";
+import { MotionFeatureProvider, useMotionFeaturesWhen } from "@/components/MotionFeatureProvider";
 
 const FOCUSABLE =
   'a[href],area[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),button:not([disabled]),[tabindex]:not([tabindex="-1"]),iframe,object,embed,[contenteditable="true"],audio[controls],video[controls]';
@@ -74,6 +74,9 @@ function OverlayShell({
   const [mounted, setMounted] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
+  // Under a MotionFeatureGate (the landing) the feature bundle loads when an
+  // overlay first opens; elsewhere this is a no-op (features load at mount).
+  useMotionFeaturesWhen(open);
 
   // Stable per-instance id used to track this overlay's place in the stack.
   const overlayIdRef = useRef<string | null>(null);
