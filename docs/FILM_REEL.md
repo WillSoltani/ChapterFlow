@@ -349,6 +349,11 @@ the loop `canvasResizes`, `geometryMeasures`, `ticksWorked`, `ticksSkipped`.
   orientations and short landscape heights). Known limit: Chromium's preload
   scanner resolves `device-width` against the screen, so a window narrower
   than its screen (split screen, headless CI) may fetch a second poster.
+  The one-poster gate (`film-first-paint.spec.ts`) is strict where the
+  scanner sees the window and tolerates exactly one speculative poster, the
+  pick for the screen the scanner sees, where it sees a larger screen. A
+  canary page in the same browser context decides which (a preload whose
+  media match only a wider window, plus a copy of the poster preloads).
 - **Placement:** exactly where the canvas draws the variant's first picture
   with no breath (`.film-poster`, a size container: `cqw`/`cqh` are the
   canvas box; moved by `(100svh − 100cqh) / 2`). Portrait: the `<picture>`

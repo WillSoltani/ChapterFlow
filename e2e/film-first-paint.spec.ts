@@ -1,9 +1,9 @@
-import { test, expect, type APIRequestContext, type Browser, type BrowserContext, type BrowserContextOptions, type Page } from "@playwright/test";
+import { test, expect, type APIRequestContext, type Browser, type BrowserContext, type BrowserContextOptions, type Page, type Route } from "@playwright/test";
 import sharp from "sharp";
 import { BOOK_REEL } from "../components/film/book-reel";
 import { heroPoster } from "../components/film/first-paint";
 import { FAILSAFE_MS } from "../components/film/readable-layout";
-import { PORTRAIT_QUERY, pickVariant, viewBackingWidth } from "../components/film/view";
+import { PORTRAIT_QUERY, pickVariant, viewBackingWidth, viewOrientation } from "../components/film/view";
 import { PROD_E2E_HEADERS } from "../playwright.config";
 
 /**
@@ -32,7 +32,10 @@ import { PROD_E2E_HEADERS } from "../playwright.config";
  *   prod job has none: public/films is gitignored).
  * RUN_AUDIT=1 (dev server, part of `npm run test:film`):
  *   7. One poster only, the film code's own variant, on six viewports
- *      (including a phone held sideways).
+ *      (including a phone held sideways), and a phone window on a larger
+ *      screen (the CI runner's case): where a canary shows the preload
+ *      scanner sees a wider screen than the window, one speculative poster,
+ *      the pick for that screen, is tolerated (scannerView).
  *   8. Every film request answered 404 (no film files): static mode (copy
  *      follows scroll, nothing hidden at the end), film requests stop, no
  *      probe, no page error.
@@ -647,6 +650,69 @@ async function waitForFilm(page: Page, deadline: number): Promise<number> {
   }
 }
 
+/** The film's variant name in a poster URL (/films/<name>/poster.webp). */
+const posterName = (url: string) => /\/films\/(palace-0\d(?:-b\d+)?)\/poster\.webp/.exec(url)?.[1] ?? null;
+
+/**
+ * What Chromium's HTML preload scanner sees in this context, measured, not
+ * guessed: no platform sniffing, no screen object. The scanner resolves the
+ * viewport meta's width=device-width against the SCREEN, not the window, so
+ * where a phone window sits on a larger screen (headless Linux: 1280x720
+ * behind every emulated phone) it evaluates <link rel=preload media> for
+ * that screen and starts a speculative poster; the real document then loads
+ * the right one. Real phones have screen = window.
+ *
+ * A canary document, served by a route inside this context, carries the same
+ * viewport meta as the landing and three kinds of image preload, each to a
+ * routed canary URL:
+ *   - control (no media): must be requested, or the canary proves nothing;
+ *   - wider: media matching only viewports clearly wider than the window
+ *     (≥ 1.25 × its width). The document itself never matches it, so a
+ *     request can only come from the scanner seeing a wider screen;
+ *   - one per hero poster preload, with the landing's own media (first-
+ *     paint.ts): the document requests the window's pick, and the scanner
+ *     the pick for the screen it sees.
+ * Returns whether the scanner sees a wider screen, and every poster the
+ * replica picked (by variant name, in request order).
+ */
+async function scannerView(ctx: BrowserContext, windowWidth: number): Promise<{ widerScreen: boolean; picks: string[] }> {
+  const token = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`;
+  const base = `/__film-canary/${token}`;
+  const seen: string[] = [];
+  const pattern = new RegExp(`/__film-canary/${token}/`);
+  const handler = (route: Route) => {
+    const path = new URL(route.request().url()).pathname;
+    if (path === `${base}/`) {
+      const attr = (v: string) => v.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+      const links = [
+        `<link rel="preload" as="image" href="${base}/control.gif">`,
+        `<link rel="preload" as="image" href="${base}/wider.gif" media="(min-width: ${Math.ceil(windowWidth * 1.25)}px)">`,
+        ...POSTER.preloads.map((p) => `<link rel="preload" as="image" href="${base}/pick/${posterName(p.href)}.gif" media="${attr(p.media)}">`),
+      ];
+      return route.fulfill({
+        status: 200,
+        contentType: "text/html; charset=utf-8",
+        body: `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">${links.join("")}</head><body></body></html>`,
+      });
+    }
+    seen.push(path.slice(base.length + 1));
+    // A 1x1 transparent GIF.
+    return route.fulfill({ status: 200, contentType: "image/gif", body: Buffer.from("R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7", "base64") });
+  };
+  await ctx.route(pattern, handler);
+  const page = await ctx.newPage();
+  try {
+    await page.goto(`${base}/`, { waitUntil: "load" });
+    await expect.poll(() => seen.includes("control.gif"), { message: "the canary's control preload was requested", timeout: 5_000 }).toBe(true);
+    await page.waitForTimeout(300);
+  } finally {
+    await page.close();
+    await ctx.unroute(pattern, handler);
+  }
+  const picks = [...new Set(seen.filter((s) => s.startsWith("pick/")).map((s) => s.slice("pick/".length, -".gif".length)))];
+  return { widerScreen: seen.includes("wider.gif"), picks };
+}
+
 test.describe("film first paint (audit)", () => {
   test.skip(!AUDIT, "opt-in: RUN_AUDIT=1");
 
@@ -686,21 +752,33 @@ test.describe("film first paint (audit)", () => {
     await ctx.close();
   });
 
-  for (const [w, h, dpr] of [
+  for (const [w, h, dpr, screen] of [
     [390, 844, 3],
     [430, 932, 3],
     [820, 1180, 2],
     [1440, 900, 1],
     [1280, 720, 2],
     [844, 390, 3],
+    // The CI case on any OS: headless Linux reports a 1280x720 screen behind
+    // the emulated phone window (on macOS the emulated screen is the window).
+    [390, 844, 3, { width: 1280, height: 720 }],
   ] as const) {
-    test(`one poster only at ${w}x${h} DPR ${dpr}: the film code's own variant`, async ({ browser }) => {
-      const ctx = await newContext(browser, { viewport: { width: w, height: h }, deviceScaleFactor: dpr, ...(w < 1024 ? { isMobile: true, hasTouch: true } : {}) });
+    const on = screen ? ` (phone window on a larger ${screen.width}x${screen.height} screen)` : "";
+    test(`one poster only at ${w}x${h} DPR ${dpr}${on}: the film code's own variant`, async ({ browser }) => {
+      const ctx = await newContext(browser, {
+        viewport: { width: w, height: h },
+        deviceScaleFactor: dpr,
+        ...(w < 1024 ? { isMobile: true, hasTouch: true } : {}),
+        ...(screen ? { screen } : {}),
+      });
+      // Before the landing, in the same context: does the preload scanner
+      // see the window, or a wider screen?
+      const scanner = await scannerView(ctx, w);
       const page = await ctx.newPage();
       const posters: string[] = [];
       page.on("request", (r) => {
-        const m = /\/films\/(palace-0\d(?:-b\d+)?)\/poster\.webp/.exec(r.url());
-        if (m) posters.push(m[1]!);
+        const name = posterName(r.url());
+        if (name) posters.push(name);
       });
       await page.goto("/");
       await expect(page.locator("[data-film-reel]")).toHaveAttribute("data-film-armed", "");
@@ -710,7 +788,34 @@ test.describe("film first paint (audit)", () => {
       const env = await page.evaluate((q) => ({ portrait: matchMedia(q).matches, w: innerWidth, dpr: devicePixelRatio }), PORTRAIT_QUERY);
       const want = pickVariant(HERO_FILM, { orientation: env.portrait ? "portrait" : "landscape", backingWidth: viewBackingWidth(env.w, env.dpr) }).name;
       const first = posters.filter((p) => p.startsWith("palace-00"));
-      expect(first, "exactly one poster of the first film").toEqual([want]);
+      console.log(`${w}x${h} DPR ${dpr}${on}: scanner sees a wider screen: ${scanner.widerScreen}; canary picks ${JSON.stringify(scanner.picks)}; want ${want}; first film posters ${JSON.stringify(first)}`);
+      if (!scanner.widerScreen) {
+        // The scanner sees the window: the canary's poster replica picks the
+        // window's poster only, and the landing fetches exactly that one.
+        expect(scanner.picks, "the canary's poster preloads pick the window's poster only").toEqual([want]);
+        expect(first, "exactly one poster of the first film").toEqual([want]);
+      } else {
+        // The scanner sees a larger screen: it may start the poster the pick
+        // rule gives for that screen (measured by the canary's replica of the
+        // poster preloads) before the document loads the window's. One such
+        // speculative poster is tolerated; nothing else changes.
+        const speculative = scanner.picks.filter((p) => p !== want);
+        const note = `the preload scanner sees a screen wider than the window: one speculative poster tolerated (${speculative.join(", ") || "none: the screen's pick is the window's"})`;
+        test.info().annotations.push({ type: "preload scanner", description: note });
+        console.log(`${w}x${h} DPR ${dpr}${on}: ${note}`);
+        expect(scanner.picks, "the canary's poster preloads include the window's pick").toContain(want);
+        expect(speculative.length, "the scanner's screen gives one pick").toBeLessThanOrEqual(1);
+        if (screen) {
+          // A screen this test set: the canary's speculative pick is the pick
+          // rule's for that screen (or none when it is the window's).
+          const forScreen = pickVariant(HERO_FILM, { orientation: viewOrientation(screen.width, screen.height), backingWidth: viewBackingWidth(screen.width, dpr) }).name;
+          expect(speculative, `the canary's speculative pick is the pick rule's for ${screen.width}x${screen.height}`).toEqual(forScreen === want ? [] : [forScreen]);
+        }
+        expect(first.filter((p) => p === want), "the film's own variant poster of the first film, once").toEqual([want]);
+        const others = first.filter((p) => p !== want);
+        expect(others.length, "at most one other poster of the first film").toBeLessThanOrEqual(1);
+        expect(others, "the other poster is the scanner's pick for the screen").toEqual(others.length ? speculative : []);
+      }
       // The film code picked the same tier for the next film.
       const tier = want.slice("palace-00".length);
       expect(posters.filter((p) => p.startsWith("palace-01"))).toEqual([`palace-01${tier}`]);
