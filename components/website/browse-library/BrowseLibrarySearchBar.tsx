@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { gatedRoutePrefetchProps } from "@/components/landing/recall/RecallNavModel";
 import { BookCover } from "@/components/ui/BookCover";
 import { track } from "@/lib/analytics";
 import {
@@ -90,6 +91,7 @@ export function BrowseLibrarySearchBar({
               <Link
                 key={book.id}
                 href={bookHref(book.id)}
+                {...gatedRoutePrefetchProps(bookHref(book.id))}
                 className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-(--bg-glass)"
               >
                 <div className="w-8 h-12 shrink-0 rounded overflow-hidden">

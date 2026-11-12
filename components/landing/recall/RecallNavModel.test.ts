@@ -110,27 +110,33 @@ test("the public menu owns one stable id and the 1024px navigation breakpoint", 
   assert.equal(PUBLIC_NAV_DESKTOP_QUERY, "(min-width: 1024px)");
 });
 
-test("auth-gated routes are not prefetched for anonymous visitors", () => {
-  const books = PUBLIC_NAV_LINKS.find((l) => l.id === "books")!;
-  const pricing = PUBLIC_NAV_LINKS.find((l) => l.id === "pricing")!;
-  const how = PUBLIC_NAV_LINKS.find((l) => l.id === "how")!;
-  // /books 307s to /auth/login → Cognito for anonymous visitors; a prefetch
-  // would follow that to another origin and trip CSP connect-src 'self'.
-  assert.deepEqual(publicNavPrefetchProps(books, false), { prefetch: false });
-  // Logged in, the route renders, so Next's default prefetch is fine.
-  assert.deepEqual(publicNavPrefetchProps(books, true), {});
-  // Public routes and section anchors keep the default either way.
-  assert.deepEqual(publicNavPrefetchProps(pricing, false), {});
-  assert.deepEqual(publicNavPrefetchProps(how, false), {});
+test("public nav links prefetch: /books is public, so every nav route keeps Next's default", () => {
+  // /books is the public catalog (middleware gate by whole segment), so the
+  // nav prefetches it like /pricing, logged in or not.
+  for (const link of PUBLIC_NAV_LINKS) {
+    assert.deepEqual(publicNavPrefetchProps(link, false), {}, link.id);
+    assert.deepEqual(publicNavPrefetchProps(link, true), {}, link.id);
+  }
 });
 
-test("gatedRoutePrefetchProps: no prefetch for an auth-gated route, Next's default otherwise", () => {
-  assert.deepEqual(gatedRoutePrefetchProps("/books"), { prefetch: false });
-  assert.deepEqual(gatedRoutePrefetchProps("/pricing"), {});
-  assert.deepEqual(gatedRoutePrefetchProps("/legal/terms"), {});
-  // Logged in: Next's default prefetch for the gated route too.
-  assert.deepEqual(gatedRoutePrefetchProps("/books", true), {});
-  assert.deepEqual(gatedRoutePrefetchProps("/books", false), { prefetch: false });
+test("gatedRoutePrefetchProps: no prefetch into a sign-in redirect, Next's default otherwise", () => {
+  // Public routes: default prefetch.
+  for (const href of ["/books", "/books?q=habit", "/pricing", "/legal/terms", "/contact", "/#how-it-works"]) {
+    assert.deepEqual(gatedRoutePrefetchProps(href), {}, href);
+  }
+  // Protected surfaces redirect a logged-out visitor to /auth/login and on to
+  // Cognito (another origin): a prefetch trips CSP connect-src 'self'.
+  for (const href of ["/book", "/book/library/atomic-habits", "/book/settings?upgrade=1", "/dashboard", "/app"]) {
+    assert.deepEqual(gatedRoutePrefetchProps(href), { prefetch: false }, href);
+    assert.deepEqual(gatedRoutePrefetchProps(href, false), { prefetch: false }, href);
+    // Logged in, the route renders: Next's default prefetch.
+    assert.deepEqual(gatedRoutePrefetchProps(href, true), {}, href);
+  }
+  // The auth routes themselves redirect to Cognito for everyone: never prefetched.
+  for (const href of ["/auth/login?returnTo=%2Fbook", "/auth/logout"]) {
+    assert.deepEqual(gatedRoutePrefetchProps(href), { prefetch: false }, href);
+    assert.deepEqual(gatedRoutePrefetchProps(href, true), { prefetch: false }, href);
+  }
 });
 
 test("parseNavLook: ?nav=1…5 picks the touch nav look over the film, default 1", () => {
