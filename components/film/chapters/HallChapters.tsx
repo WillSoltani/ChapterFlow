@@ -9,7 +9,7 @@
  * of lingering as a dark shape over the footage.
  */
 
-import { CATALOG_MEDIAN_CHAPTER_MINUTES } from "@/lib/catalog-stats";
+import { bookChapterMinutes } from "@/lib/catalog-stats";
 import { FilmSegment } from "../FilmSegment";
 import { FramePin } from "../FramePin";
 import { HallText } from "../HallText";
@@ -18,6 +18,12 @@ import { filmCount, filmKeys, key } from "../timeline";
 import type { FilmManifest } from "../types";
 
 type P = { film: FilmManifest; index: number };
+
+/**
+ * The Hall names one book, so its reading time is that book's own per-chapter
+ * figure, not the catalog median; dropped if the book leaves the catalog.
+ */
+const HALL_MINUTES = bookChapterMinutes("atomic-habits");
 
 /*
  * Each chapter's pin timings live in one object: the JSX and the
@@ -62,7 +68,7 @@ export function HallChapter({ film, index }: P) {
             The whole book, down to the lines that matter.
           </FramePin>
           <FramePin {...p.lede} as="p" className="film-lede">
-            Atomic Habits, chapter one, in about {CATALOG_MEDIAN_CHAPTER_MINUTES} minutes. The walls go
+            Atomic Habits, chapter one{HALL_MINUTES === null ? "" : `, in about ${HALL_MINUTES} minutes`}. The walls go
             quiet, and what stays lit is the idea.
           </FramePin>
         </FramePin>

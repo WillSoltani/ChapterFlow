@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
 interface BookRequestSuccessProps {
@@ -71,8 +72,10 @@ export function BookRequestSuccess({ title, author, email }: BookRequestSuccessP
       </div>
 
       {/* CTA — start reading what's already available (matches the site's primary CTA) */}
-      <Link
-        href="/auth/login?returnTo=%2Fbook"
+      {/* External (Cognito) hand-off: a plain <a> (a <Link> would prefetch
+          into the sign-in redirect and trip CSP). */}
+      <a
+        href={AUTH_LOGIN_BOOK_URL}
         className="cta-shine mt-5 inline-flex min-h-11 items-center gap-1 rounded-full px-6 py-2.5 text-cf-body-sm font-semibold transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
         style={{
           backgroundColor: "var(--accent-cyan)",
@@ -80,8 +83,8 @@ export function BookRequestSuccess({ title, author, email }: BookRequestSuccessP
           fontFamily: "var(--font-body)",
         }}
       >
-        Start reading free &rarr;
-      </Link>
+        Start free <span aria-hidden="true">&rarr;</span>
+      </a>
 
       {/* Secondary — browse what's available now */}
       <Link

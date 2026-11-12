@@ -5,6 +5,8 @@ import {
   BILLING_CURRENCY,
   ANNUAL_TOTAL_AMOUNT,
   ANNUAL_SAVINGS_PCT,
+  ANNUAL_UPFRONT_MONTHLY_AMOUNT,
+  ANNUAL_UPFRONT_SAVINGS_PCT,
   formatAmount,
   formatAmountWithCurrency,
   TRIAL_CTA_LABEL,
@@ -34,6 +36,13 @@ test("base amounts, currency, and trial are the expected single-CAD values", () 
 test("derived annual total and savings percent are pinned", () => {
   assert.equal(ANNUAL_TOTAL_AMOUNT, 71.88); // 5.99 * 12
   assert.equal(ANNUAL_SAVINGS_PCT, 25); // round((1 - 5.99/7.99) * 100) — boundary value
+});
+
+test("annual-upfront plan: its own per-month figure and saving (the /pricing annual view)", () => {
+  // /pricing shows the upfront plan ($59.99/year): its per-month figure and
+  // its saving are its own, not the billed-annually plan's $5.99 and 25%.
+  assert.equal(ANNUAL_UPFRONT_MONTHLY_AMOUNT, 5); // 59.99 / 12, to the cent
+  assert.equal(ANNUAL_UPFRONT_SAVINGS_PCT, 37); // round((1 - 59.99 / (7.99 * 12)) * 100)
 });
 
 test("formatters produce the canonical strings", () => {

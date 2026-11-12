@@ -68,7 +68,8 @@ export default async function Home() {
       "@type": "Organization",
       name: CHAPTERFLOW_NAME,
       url: siteUrl,
-      logo: `${siteUrl}/og`,
+      // The brand mark this site serves (app/icon.svg), not the share image.
+      logo: `${siteUrl}/icon.svg`,
       description:
         "ChapterFlow turns every non-fiction book into a guided learning loop with summaries, examples, quizzes, and spaced-repetition review.",
     },

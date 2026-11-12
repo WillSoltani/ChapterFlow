@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SectionReveal } from "@/components/ui/SectionReveal";
@@ -36,15 +35,17 @@ export function BrowseLibraryBottomCta() {
           </p>
 
           <div className="mt-6">
-            <Link
+            {/* External (Cognito) hand-off: a plain <a>, like every other auth
+                CTA on the public site (a <Link> would prefetch into CSP). */}
+            <a
               data-public-sticky-cta-suppress
               href={AUTH_LOGIN_BOOK_URL}
               onClick={() => track("cta_click", { source: "browse_library_bottom_cta" })}
               className="cta-shine inline-flex items-center rounded-full px-7 py-3.5 font-semibold text-cf-body transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
               style={{ backgroundColor: "var(--accent-cyan)", color: "var(--primary-foreground)" }}
             >
-              Open my first book →
-            </Link>
+              Start free <span aria-hidden="true">→</span>
+            </a>
           </div>
 
           <p className="mt-3 text-cf-label-sm" style={{ color: "var(--text-muted)" }}>

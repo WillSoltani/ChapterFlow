@@ -11,6 +11,7 @@ import { getBookHref } from "./book-href";
 import { StepIndicator } from "./StepIndicator";
 import { ChapterProgressBar } from "./ChapterProgressBar";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
+import { PRICING } from "@/lib/pricing";
 
 interface ContinueLearningCardProps {
   primaryBook: ActiveBook;
@@ -281,7 +282,7 @@ export function NoActiveBooksCard() {
         className="mt-1.5 text-sm"
         style={{ color: "var(--text-secondary)" }}
       >
-        Start with any of our {CATALOG_BOOK_COUNT_DISPLAY} books {"\u2014"} 2 are completely free.
+        Start with any of our {CATALOG_BOOK_COUNT_DISPLAY} books {"\u2014"} your first {PRICING.freeBookLimit} are free.
       </p>
       <Link
         href="/book/library"
