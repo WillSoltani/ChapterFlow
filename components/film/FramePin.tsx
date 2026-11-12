@@ -57,6 +57,16 @@ export function pinOpacity(frame: number, from: number, to: number, ease: number
   return 1;
 }
 
+/**
+ * True when the pin is not on at its chapter's first frame (frame 0, where
+ * every chapter's store starts). Such pins are marked `data-frame-later` in
+ * the server HTML and kept hidden by CSS until the reel arms (globals.css,
+ * Phase 6), so the copy of later frames never piles up before hydration.
+ */
+export function pinHiddenAtStart(from: number, to: number, ease: number, hold: boolean): boolean {
+  return pinOpacity(0, from, to, Math.max(1, ease), hold) === 0;
+}
+
 export function FramePin({
   from,
   to,
@@ -75,9 +85,11 @@ export function FramePin({
   const store = useSegmentStore();
   const reduced = usePrefersReducedMotion();
 
-  // SSR / no-JS / crawlers see the copy fully visible (no inline opacity in the
-  // server HTML). Only a live browser arms the pin and scrubs it — same
-  // "visible by default, hide after mount" rule as RecallReveal.
+  // Server HTML carries no inline opacity: crawlers and no-JS readers get all
+  // the copy. A pin that is off at its chapter's first frame is marked
+  // data-frame-later, and CSS keeps it hidden until the reel arms (with a
+  // no-JS failsafe, globals.css "First paint"). Then a live browser arms the
+  // pin here and scrubs it.
   //
   // Layers: a pin holds no permanent will-change. It is promoted only while
   // its values are changing and demoted PIN_DEMOTE_MS after they settle, or
@@ -153,6 +165,7 @@ export function FramePin({
       ref={ref as never}
       data-frame-pin={scrim ? undefined : ""}
       data-frame-scrim={scrim ? "" : undefined}
+      data-frame-later={pinHiddenAtStart(from, to, ease, hold) ? "" : undefined}
       className={`${interactive ? "pointer-events-auto" : ""} ${className ?? ""}`}
       style={style}
     >

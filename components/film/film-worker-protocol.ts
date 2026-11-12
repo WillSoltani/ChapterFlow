@@ -18,15 +18,25 @@ export type ToWorker =
   /** Where the visitor is (one per scroll decision, and on scroll/visibility/connection changes). */
   | { t: "where"; where: NetWhere }
   /** Decode a held frame. */
-  | { t: "decode"; id: number; key: string; index: number };
+  | { t: "decode"; id: number; key: string; index: number }
+  /**
+   * A recovery signal (frame-cache.ts): read these packs again (they failed
+   * transiently, or the page marked them failed in static mode). A pack that
+   * failed permanently is reported `failed` again instead.
+   */
+  | { t: "recover"; keys: string[] };
 
 export type FromWorker =
   /** Reply to init: false when the worker lacks createImageBitmap or a streaming fetch body. */
   | { t: "ready"; ok: boolean; missing?: string }
   /** Frames whose bytes arrived (complete) or were dropped (byte cap, failure). */
   | { t: "frames"; key: string; added: number[]; removed: number[] }
-  /** The pack is unusable for the rest of the page view: load the variant frame by frame. */
-  | { t: "failed"; key: string; reason: string }
+  /**
+   * The pack is unusable: load the variant frame by frame. `permanent`: the
+   * server answered that the file does not exist or cannot be used (for the
+   * page view); otherwise transient, ended by `recover`. Absent = permanent.
+   */
+  | { t: "failed"; key: string; reason: string; permanent?: boolean }
   | { t: "stats"; stats: NetStats }
   /** A decode result: the bitmap (transferred) and the decode time in the worker. */
   | { t: "decoded"; id: number; ok: true; bitmap: ImageBitmap; ms: number }

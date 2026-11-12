@@ -3657,6 +3657,62 @@ html[data-motion="reduced"] .rl-faq-chevron {
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--cf-recall-ink) 8%, transparent);
 }
 
+/* ── First paint (Phase 6) ──────────────────────────────────────────────────
+   The hero poster in the server HTML (components/film/FilmBackdrop.tsx),
+   placed EXACTLY where the canvas draws the first film's first picture
+   (scrub.ts variantPlacement with no breath): cover-fitted to the canvas box
+   (the 100lvh wrapper; cq units = that box) and centred on the stage centre,
+   i.e. moved by (100svh − box) / 2 like stageShift. svh and the box height do
+   not change with a phone address bar, so neither does the picture. A band
+   tier (portrait: the <picture> chose a band <source>, same PORTRAIT_QUERY;
+   data-film-band marks a first film that has tiers) fills only the band
+   rectangle of its virtual 1080×1920 frame; everything else is the page
+   colour. A first film without tiers is cover-fitted on every view, as the
+   canvas draws its landscape variant there too. Removed by the scrub loop in the frame the canvas
+   first paints a picture. */
+.film-poster {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  container-type: size;
+  background: var(--cf-recall-bg, #06070A);
+}
+.film-poster picture {
+  position: absolute;
+  inset: 0;
+  transform: translateY(calc((100svh - 100cqh) / 2));
+}
+.film-poster img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+@media (max-width: 63.99rem), (orientation: portrait) {
+  .film-poster[data-film-band] picture {
+    inset: auto;
+    left: 50%;
+    top: 50%;
+    width: max(100cqw, 100cqh * var(--film-frame-ratio, 0.5625));
+    aspect-ratio: var(--film-frame-aspect, 1080 / 1920);
+    transform: translate(-50%, -50%) translateY(calc((100svh - 100cqh) / 2));
+  }
+  .film-poster[data-film-band] img {
+    inset: auto;
+    left: var(--film-band-left, 0%);
+    top: var(--film-band-top, 0%);
+    width: var(--film-band-width, 100%);
+    height: var(--film-band-height, 100%);
+    object-fit: fill;
+  }
+}
+
+/* Before the film code arms the reel, and the failsafe readable page if it
+   never does: components/film/readable-layout.ts (rendered by FilmBackdrop as
+   an inline sheet, the same rules as the <noscript> one). */
+
 /* Safety net under every pinned line: a soft ink-coloured shadow so a bright
    frame flicker (fog, paper highlight) never washes the text out. */
 [data-frame-pin] {
@@ -3878,8 +3934,11 @@ html[data-reel-chrome="film"] .rl-nav-scrim {
 /* PublicSiteShell renders the shared footer OUTSIDE main. main is z-10 and
    forms the stacking context that holds the fixed film canvas, so the footer
    (z auto) painted underneath it: the last frame covered the whole footer at
-   the end of the page. Lift it above that context under the reel. */
-html[data-reel-chrome] .rl-public-footer {
+   the end of the page. Lift it above that context under the reel, from the
+   server HTML on (:has): before the film code runs, or if it never does, the
+   fixed poster layer (opaque) would cover it the same way. */
+html[data-reel-chrome] .rl-public-footer,
+body:has([data-film-reel]) .rl-public-footer {
   z-index: 11;
 }
 html[data-reel-chrome="body"] .rl-nav-scrim {

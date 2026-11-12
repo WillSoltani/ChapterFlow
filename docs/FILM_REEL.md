@@ -26,7 +26,9 @@ components/film/
   film-worker.ts      the film worker: PackNet + createImageBitmap, bitmaps transferred
   film-worker-protocol.ts  page ↔ worker messages
   pack-client.ts      page side of the worker (PackSource): lazy start, held-frame mirror, fallback
-  reel-context.tsx    ReelContext + orientation media query + variant pick (readView, pickVariant)
+  reel-context.tsx    ReelContext (re-exports view.ts)
+  view.ts             pure variant pick: PORTRAIT_QUERY, quantDpr, viewBackingWidth, pickVariant, readView
+  first-paint.ts      the hero poster: <picture> sources, exclusive preload media, band rectangle
   use-scrub-loop.ts   the ONE rAF loop: cached geometry → active segment → frame → canvas
   FilmBackdrop.tsx    fixed 100lvh <canvas>, registers segments, owns caches
   FilmSegment.tsx     N×100svh section + sticky 100svh stage; progress store
@@ -146,9 +148,16 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     (or a cache is re-created by a remount). Only requests still QUEUED are
     dropped when they leave the wanted set.
   - A fetch or decode that fails (rate limiter 403/429, 5xx, dropped
-    connection) leaves a hole `nearest()` covers, and is retried while the
-    frame stays wanted after a backoff of 400 ms, doubling to at most 4 s, so
-    a parked visitor recovers once the network does.
+    connection, 404) leaves a hole `nearest()` covers, and is retried while
+    the frame is wanted after 400 ms, then 800 ms. A frame gets at most 3
+    tries (`FRAME_TRIES`; counted across leaving the wanted set and coming
+    back), then it is failed: not requested again, its neighbours serve
+    (`framesFailed` in `__filmStats`). A permanent failure (404/410/416,
+    bytes that will not decode) stays failed for the page view; a transient
+    one gets a fresh set of tries on a recovery signal. Packs keep their own
+    rule (3 retries, then that variant loads per frame until a recovery
+    signal, when the failure was transient). See "Failures, static mode and
+    recovery" under "First paint and failure states".
   - Eviction removes only frames OUTSIDE the wanted set: other films' frames
     first, then the active film's, farthest from the playhead first. A new
     far frame can no longer push out a near one (the oldest-first LRU did,
@@ -200,8 +209,8 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     the dissolve pin's frame), and decodes a held frame on request with
     `createImageBitmap`, transferring the ImageBitmap with its decode time.
     Held bytes that will not decode count against their pack: the third
-    such failure makes the pack unusable (fallback below) instead of
-    retrying the same bytes.
+    such failure makes the pack unusable (fallback below, permanently)
+    instead of retrying the same bytes.
   - **Protocol** (`film-worker-protocol.ts`). Page → worker: `init` (the
     cap), `packs` (the reel's packs for the current view, in film order; a
     pack that failed earlier keeps its place marked `failed` and is never
@@ -211,10 +220,14 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     constrained), `decode`. "Scrolled" is read on each scroll decision
     until it holds, never during render (a client-side link from a scrolled
     page still reports the old scrollY there): a scroll position above 0, a
-    #anchor, or an active film past the first.
+    #anchor, or an active film past the first. `recover` (Phase 6b, after a
+    recovery signal): read these packs again (they failed transiently, or
+    static mode marked them failed); one that failed permanently is answered
+    `failed` again.
     Worker → page: `ready` (false without createImageBitmap, fetch or a
     streaming body), `frames` (frames arrived / dropped), `failed` (the pack
-    is unusable), `stats`, `decoded` (the bitmap, or missing / error).
+    is unusable; `permanent` true or false, absent = permanent), `stats`,
+    `decoded` (the bitmap, or missing / error).
   - **Scheduler** (`frame-cache.ts`, `attachPacks`). For a variant served
     from its pack the page holds no compressed bytes. A wanted frame the
     worker holds is decoded there (same decode limit, bytes reserved when
@@ -287,18 +300,22 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     Range): the body is read from 0, bytes already held are discarded (and
     counted as repeated) and that pack is read whole from then on. A total,
     `Content-Length` or header that disagrees with the timeline, 404, 410 or
-    416: the pack is unusable at once. Network errors, 403, 429, 5xx or a
-    body that ends early: retried after 400 ms, 800 ms, 1.6 s (what arrived
-    is kept; the retry starts at the first missing byte); a fourth failure
-    in a row makes the pack unusable.
+    416: the pack is unusable at once, permanently. Network errors, 403,
+    429, 5xx or a body that ends early: retried after 400 ms, 800 ms, 1.6 s
+    (what arrived is kept; the retry starts at the first missing byte); a
+    fourth failure in a row makes the pack unusable, transiently: `recover`
+    reads it again from the first byte it does not hold (the failure
+    dropped its frames).
   - **Fallback** (`pack-client.ts`). Per variant: the timeline has no pack
     for it, or its pack is unusable (above, including three frames whose
-    held bytes would not decode) → per-frame path for the rest of the page
-    view. Every variant: `?pack=0`, no `Worker`, the worker cannot
-    start, lacks createImageBitmap / fetch / a streaming body, or errors
-    (crash). Frames already decoded stay, pending decodes reject quietly,
-    the order and the mode switch at once, no error loop (the per-frame
-    path keeps its own backoff).
+    held bytes would not decode) → per-frame path, for the rest of the page
+    view when the failure was permanent, until a recovery signal
+    (`PackClient.resume`) when it was transient. Every variant, for the page
+    view: `?pack=0`, no `Worker`, the worker cannot start, lacks
+    createImageBitmap / fetch / a streaming body, or errors (crash). Frames
+    already decoded stay, pending decodes reject quietly, the order and the
+    mode switch at once, no error loop (the per-frame path keeps its own
+    backoff).
   - **Counters** added to `__filmStats`: `mode` of the ACTIVE variant
     (`pack` or `frames`), `packRequests`, `packBytes` (received),
     `packBytesRepeated` (received for a range already held; must stay 0),
@@ -438,7 +455,10 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   - **Pick rule** (`pickVariant`, pure, `reel-context.test.ts`). Orientation
     as before (`PORTRAIT_QUERY`: `< 64rem` or portrait orientation → portrait).
     Within portrait, by canvas backing width
-    `min(innerWidth × min(devicePixelRatio, 2), 1920)`: the narrowest tier at
+    `min(innerWidth × quantDpr(devicePixelRatio), 1920)` (`quantDpr`: the DPR
+    rounded UP to the next quarter, 0.5 … 2, so that the server-rendered
+    poster's media queries can reproduce the pick exactly; see First paint):
+    the narrowest tier at
     least that wide (≤ 900 → b900, wider → b1080), else the widest. No band
     tiers → landscape. Width only, so an address bar showing or hiding never
     changes the pick. `FilmBackdrop` reads the view synchronously in the first
@@ -450,6 +470,233 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   - The legacy `<name>-p` folders (1080×1920 with baked bars) are no longer
     referenced at runtime; they stay on disk and in the bucket for one release
     and are the reference of `npm run film:parity`.
+
+### First paint and failure states (Phase 6)
+
+- **The hero poster is in the server HTML** (`FilmBackdrop.tsx`, pure parts
+  in `first-paint.ts`, unit-tested in `first-paint.test.ts`). The first
+  film's poster renders as a `<picture>` in the fixed canvas wrapper, ABOVE
+  the canvas, on a page-colour layer (`.film-poster`, `globals.css`):
+  `<source>` b900, `<source>` b1080, `<img>` landscape, `fetchpriority=high`,
+  plus one `<link rel=preload as=image fetchpriority=high>` per poster in
+  `<head>` (rendered from FilmBackdrop, which React hoists; a preload from a
+  server component also lands in the `Link` response header, where React
+  percent-encodes the commas of the media list and the browser cannot use
+  it). The browser downloads exactly one poster, the same URL (with `?v=`)
+  the film code then loads: the media queries reproduce `pickVariant`. The
+  orientation part is `PORTRAIT_QUERY` itself; the tier part ("backing ≤ 900
+  px") cannot multiply width by DPR in a media query, so the DPR is read in
+  quarter steps on both sides: one `(resolution range) and (max-width: 900 /
+  step)` clause per step, and `viewBackingWidth` rounds the DPR up to the
+  same step. The preload media are mutually exclusive ranges of the same
+  clauses. `first-paint.test.ts` evaluates the media on a grid of 2,361
+  widths × 20 DPRs × both orientations: the source the browser picks is
+  always `pickVariant`'s, and exactly one preload matches, the same file.
+  Known limit: Chromium's preload scanner resolves `width=device-width`
+  against the SCREEN size, not the window. Where a touch browser's window is
+  narrower than its screen (Android split screen; headless Linux in CI, which
+  reports a 1280x720 screen behind an emulated phone) the scanner also starts
+  the poster of the screen's size, so two posters are fetched and Chromium
+  logs the extra preload as unused. Phones in normal use have screen =
+  window, and desktop browsers ignore the viewport meta, so both fetch one.
+- **Placement rule.** The poster sits exactly where the canvas draws that
+  variant's first picture (`variantPlacement` with no breath): cover-fitted
+  to the canvas box (the 100lvh wrapper; the layer is a size container, so
+  `cqw`/`cqh` are that box) and moved by `(100svh − 100cqh) / 2` (the stage
+  shift), so it does not move when a phone's address bar shows or hides.
+  Landscape: `object-fit: cover` over the whole box. Portrait (the same
+  `PORTRAIT_QUERY` in CSS): the `<picture>` is the virtual 1080×1920 frame,
+  `max(100cqw, 100cqh × 1080/1920)` wide, centred, and the band tier's image
+  fills only the band rectangle (y 474, height 972; CSS variables written
+  from the manifest); the rest is `--cf-recall-bg`. The portrait rules are
+  scoped to `[data-film-band]`, set only when the first film has band
+  tiers: a first film without tiers is cover-fitted on every view, as the
+  canvas draws its landscape variant there too.
+- **Takeover.** The scrub loop hides the poster layer (`display: none`) in
+  the animation frame the canvas first draws a picture (poster or frame),
+  so it is not composited after that. That first paint is the exact frame
+  or the film's own poster (frame 0), never a decoded frame further from
+  the wanted one than the poster is; while the poster is still loading such
+  a frame is not drawn and the HTML poster stays (`FrameCache.nearest` with
+  `handover`), so the takeover never jumps a few frames ahead and back.
+  Over a later chapter (a reload restored further down, a link to `#quiz`)
+  the HTML poster is the wrong picture: the loop hides it at its first tick
+  there (`htmlPosterStands`) and the page colour shows until that chapter's
+  own poster or frame lands. Before hydration it cannot know the scroll
+  position, so the hero poster shows there until the scripts run. The breath is held at rest until that
+  paint and starts from rest (`breathRestOffset`: the bottom of the sine,
+  zero speed), so the canvas lands on the poster's pixels. Measured by
+  `film-first-paint.spec.ts` (@prod, hydration held back 2 s): band mean
+  |Δ| 0.70 / 0.34 / 0.00 and edges within 1 px on 390×844@3, 820×1180@2,
+  1440×900@1.
+- **Before hydration** (scripting on): pins that are off at their chapter's
+  first frame carry `data-frame-later` in the server HTML (FramePin's
+  `pinHiddenAtStart`; the Hall wall prose too). CSS keeps them hidden while
+  `[data-film-reel]` has no `data-film-armed`; FilmBackdrop sets that marker
+  in its mount effect, after every pin has written its own state (child
+  effects run first). So the hero shows only its opening copy, never the
+  pile of later lines.
+- **The readable page** (`readable-layout.ts`, one rule set used twice,
+  unit-tested against the landing's real server HTML in
+  `readable-layout.test.tsx`): every later pin visible, each chapter as tall
+  as its copy (no multi-screen empty stages), every stage grid but the
+  hero's a flex column (a stage grid puts all its children in ONE cell, so
+  the Day labels, the hero's caption and "Locked." / "One book. Kept." would
+  pile up), the hero one screen with its poster (the canvas layer scrolls
+  away with the hero instead of staying fixed over the page), the
+  decorative Hall wall prose left out. All copy stays in the HTML for
+  crawlers.
+  - **Scripting off:** a `<noscript><style>` applies it at once (`!important`
+    rules; no nonce needed: `style-src` allows inline styles, `lib/csp.ts`).
+  - **Failsafe** (scripting on, the reel never arms: chunks blocked, failed
+    or broken): an inline `<style>` rendered before the reel applies the
+    same rules after 8 s through zero-length CSS animations with fill
+    `both`, with no JavaScript; the later pins' backwards fill is what
+    keeps them hidden before that (so a browser that drops animations shows
+    them at once). One animation per element (`animation` is one property):
+    the rule selectors are disjoint, which the unit test checks element by
+    element. Layout properties (`position`, `display`, `height`) animate
+    discretely in current Chromium and WebKit (checked); an older browser
+    that does not would show the copy on the film layout. Once the reel
+    arms the selectors stop matching and the film layout is back. Why 8 s:
+    the reel arms at about 1.3 s on the phone lab profile (Fast 4G, 4× CPU,
+    local production build, 5 runs 1.24–1.36 s; 6× CPU 1.32–1.36 s); 8 s
+    leaves a slow real phone about 6× that before the switch could show,
+    and the lines it holds back are not the first screen's opening copy, so
+    a failed page loses little by waiting.
+  - **The footer** is lifted above the reel's stacking context from the
+    server HTML on (`body:has([data-film-reel]) .rl-public-footer`), so the
+    fixed, opaque poster layer never covers it before the scripts run or if
+    they never do.
+- **Failures, static mode and recovery** (Phase 6, recovery 6b;
+  `frame-cache.ts`, `pack-net.ts`, `pack-client.ts`).
+  - *Two kinds of failure.* PERMANENT: the server answered that the file
+    does not exist or cannot be used (404, 410, 416; a pack whose length or
+    header disagrees with the timeline; bytes that will not decode), and a
+    canvas with no 2D context. TRANSIENT: everything else (a network error,
+    an aborted body, 403/429, 5xx; a probe that does not answer in 10 s).
+    Frames carry the kind in their error (`filmError`, `permanentStatus`);
+    a frame that failed permanently once stays permanent. A poster's first
+    load goes through `<img>`, which hides the status, so a failed poster
+    counts as transient until it is asked for again: that retry (only after
+    an honoured recovery signal, so only when something else failed
+    transiently; with no film files at all it never happens) goes through
+    `fetch`, and a poster that answers 404 there (or will not decode) is
+    never asked for again.
+    Permanent failures stay failed for the page view; nothing below applies
+    to them.
+  - *Retries.* A frame gets 3 tries (400 ms, 800 ms backoff), a pack 4
+    (400 ms, 800 ms, 1.6 s), a poster 1. Spent, the frame or pack is failed
+    (the variant then loads per frame) and requested no more until a
+    recovery signal, if its failure was transient.
+  - *Static mode* (`data-film-static` on `[data-film-reel]`): the page
+    stays fully usable without the film. Exact condition: the canvas has no
+    2D context (`getContext("2d")` returns null or throws), OR the film is
+    unreachable: nothing of it has loaded on this page view (no poster, no
+    frame, no pack bytes), at least one poster has failed, and 3 frames have
+    failed (`UNREACHABLE_FAILED_FRAMES`). Then the FrameBudget halts (no
+    fetch, decode or pack read; the film worker gets every pack marked
+    failed and stays idle; the plan the scroll loop keeps sending is kept,
+    not loaded), no further posters are loaded, and the scrub loop keeps
+    running without painting a picture: progress, pins, chrome and the nav
+    all follow the scroll exactly as with the film, nothing stays hidden.
+    The HTML poster stays if it loaded, otherwise the page colour shows.
+    The no-2D-context halt is for the page view (one request: the HTML
+    poster).
+  - *Recovery signals*: the browser's `online` event; the document shown
+    again after 10 s or more hidden (`HIDDEN_RECOVERY_MS`); a film response
+    (frame, poster, pack bytes) that succeeds after a drop, i.e. after at
+    least 2 distinct frames or packs failed transiently since the last
+    success (`GAP_FAILURES`; one frame or one pack failing alone among
+    successes is that file's problem, not a drop). What such a success
+    forgave counts toward a later drop again only after it has loaded once:
+    the network worked when it was forgiven, so failing again (a pack or a
+    frame that keeps answering 403/429 while the rest loads) is that file's
+    problem. So a file that keeps failing is forgiven by a success at most
+    once per page view, and a page view has at most one such signal per two
+    distinct files that failed; and, while halted for unreachability,
+    a probe that succeeds. FilmBackdrop passes `online` and
+    `visibilitychange` to the budget (`noteOnline`, `noteVisibility`).
+    Signals other than probes are honoured at most once per 5 s
+    (`SIGNAL_GAP_MS`): one that comes sooner waits for the end of the 5 s,
+    and any number waiting count as one. With nothing transient failed, a
+    signal does nothing.
+  - *Recovery*. An honoured signal makes every transiently failed frame
+    loadable with a fresh set of 3 tries, asks for failed posters again
+    (one try each, through `fetch`; not a poster that answered 404),
+    and has the worker read transiently failed packs again (`recover`; the
+    variant goes back to pack mode). While halted for unreachability a
+    signal loads nothing itself: it asks for a probe, and only a probe that
+    succeeds un-halts the budget: packs are read again (also the ones static
+    mode marked), the worker is used again, data-film-static goes, the
+    posters the halt skipped load, the kept plan loads and the canvas draws
+    again as frames land, with the Phase 6 hand-over rules (the HTML poster
+    goes in the frame the canvas first draws the exact frame or the film's
+    own poster). `recoveries` and `probes` count them in `__filmStats`;
+    `framesFailed` is the number of frames failed now.
+  - *Probes* (only while halted for unreachability, and only when something
+    failed transiently): one request for the active film's poster with
+    `cache: "no-store"` (an HTTP-cache answer says nothing about the
+    network), 5 s, 15 s and 45 s after the halt, then every 60 s
+    (`PROBE_AFTER_MS`, `PROBE_EVERY_MS`), at most 10 per page view
+    (`PROBE_MAX`), none while the document is hidden (one that comes due
+    then runs when it is shown). A probe that fails transiently only moves
+    the schedule on; one that fails permanently (the poster answers 404)
+    ends probing for that halt. A probe that comes due with no film to probe
+    (every cache disposed: the page navigated away) arms no further timer;
+    the schedule goes on when a film registers again.
+  - *Bounds* (no retry loop). Per honoured signal a frame gets at most 3
+    tries; signals other than probes are honoured at most once per 5 s,
+    and success-after-drop signals need two files never forgiven that way
+    before (above); with the network down for good a page view makes the requests it made
+    before the halt plus at most 10 probes, and nothing between them. With
+    no film files at all (every film request 404, as in CI) every failure is
+    permanent: static mode as before, no probe, nothing retried on any
+    signal.
+  - *Measured* (dev server, desktop 1440×900, Chromium, 2026-11-11).
+    Every film request 404: 91–93 film requests in 20 s, none after 12 s,
+    0 probes. Every film request aborted for 70 s: 99 film requests, static
+    at 4.4–5.3 s, after it only the three probes at +5.0, +15.0 and
+    +45.0 s (and one or two frame fetches started just before the halt).
+    Aborted for the first 6 s after load, then let through: static at
+    about 5 s, the 5 s probe succeeds and the film is drawn 10.1–10.5 s
+    after load, no reload. Offline switch on until 6 s after load: the film
+    is drawn 0.1 s after going online (the `online` signal's probe).
+  - *Not covered.* A visitor parked on a window whose frames all failed in
+    a drop, with the film not halted (something had loaded earlier) and no
+    `online` event (the browser never noticed the drop), waits for the next
+    film request: the first one that succeeds after the drop forgives the
+    rest; until then the neighbours serve.
+- **Fonts.** The landing preloads exactly the font files its first screen
+  uses (Satoshi 700, Plus Jakarta Sans, JetBrains Mono, Newsreader normal;
+  latin files) and nothing else. Satoshi is one family from two `localFont`
+  declarations in `app/layout.tsx`: 700 preloaded (every first screen
+  checked draws Satoshi at 600 or 700, both from the 700 face), 500 and 900
+  load on use. JetBrains Mono and Newsreader stay unpreloaded in the root;
+  `app/_fonts/landing.ts` declares the same families with preload on,
+  imported only by `app/page.tsx`. First screens checked (computed styles
+  of every visible text node, desktop 1440×900 and phone 390×844): `/`,
+  `/pricing`, `/contact`, `/legal`, `/legal/privacy`, `/legal/terms`,
+  `/legal/cookies`, `/signup`, `/account-deleted`, `/review`, `/ref`,
+  `/gift/…`, `/pair/accept/…`, the 404 page, and (dev, auth bypass)
+  `/dashboard`, `/book`, `/book/library`, `/book/settings`, `/book/notebook`,
+  `/book/saved`, `/books`, `/rewards`, `/onboarding` and the routes that
+  redirect to those (`/book/home`, `/book/progress`, `/book/profile`,
+  `/book/badges`, `/book/journeys`, `/book/admin`). None draws Satoshi 500 or
+  900 on its first screen.
+- **Motion features.** The landing's `LandingMotionProvider` puts a
+  `MotionFeatureGate` in front of the framer-motion feature import: nothing
+  on the first screens animates with it. It loads when a section marked
+  `data-motion-approach` (Pricing's billing toggle) comes within 1.5
+  viewports of the screen, when an overlay (nav menu, book request dialog)
+  opens, or when the menu button is hovered, focused or touched. "Within
+  1.5 viewports" counts both ways (`MOTION_APPROACH_MARGIN`): a page
+  restored below Pricing loads them before Pricing enters from the top. The
+  gated import runs late in the visit, when a phone may be offline, and
+  LazyMotion calls its loader once, so it is retried (0.5 s, 1.5 s, 4 s,
+  then whenever the browser reports `online`) and never rejects
+  (`motion-feature-load.ts`). Every other route has no gate and loads the
+  features at mount, as before.
 
 ## Render spec
 
@@ -732,7 +979,17 @@ toward a barred frame.
   held take no slot and decode on arrival; coarse-first order; the same
   guarantees on forward, backward and jumping scrubs; every bitmap closed
   once (late, unwanted, disposed); fallback keeps decoded frames and loads
-  the rest per frame; draw gauges.
+  the rest per frame; draw gauges. Recovery (6b, fake clock and IO): a
+  drop followed by `online` reloads the frames with fresh tries; a success
+  after a drop forgives it; a 404 is never retried on any signal; no film
+  files at all: no probe; the probe schedule (5 s, 15 s, 45 s, then 60 s,
+  cap 10, none while hidden); a successful probe un-halts and the plan kept
+  while halted loads; the page's own halt never resumes; signals within
+  5 s coalesced; an hour with the network down: the halt's requests plus at
+  most 10 probes; one pack (or two, or two frames) that keeps failing
+  transiently while the rest loads is not forgiven over and over; a 404
+  poster is asked for at most once more; probing arms no timer once every
+  cache is disposed and resumes with a new one.
 - `components/film/pack-build.test.ts` — the pack tool: skeleton-first
   order, header and slices, determinism, `--verify` catching a changed or
   added frame, the timeline sync keeping a version and dropping a stale pack.
@@ -751,7 +1008,9 @@ toward a barred frame.
   scrolling up; a forward pass).
 - `components/film/pack-net.test.ts` — the controller against a fake server
   (real Response / ReadableStream): chunked reads, 404, retries then
-  failure, a dropped connection resumed, length and header mismatches, 200
+  failure (transient), recover after a drop, a 404 that recover does not
+  read, a pack static mode marked read again, a dropped connection
+  resumed, length and header mismatches, 200
   to a Range request, the pre-scroll stop, the byte cap, hidden, re-aim on
   a jump and on a stop, the direction hysteresis, a steady forward pass, a
   wobble across a cut with pauses of 0, 300 and 1,000 ms (coming down and
@@ -760,7 +1019,24 @@ toward a barred frame.
   a constrained connection.
 - `components/film/pack-client.test.ts` — the page side with a fake worker:
   lazy start, the scrolled flag, the held-frame mirror, per-variant and
-  whole fallback, a late bitmap closed.
+  whole fallback, a late bitmap closed, `stop()` (static mode), failure
+  kinds and `resume()` (transient and stopped packs readable again, 404
+  packs not).
+- `components/film/first-paint.test.ts` — the poster media against
+  `pickVariant` on a grid of widths × DPRs × orientations; exactly one
+  preload per window; the band rectangle.
+- `e2e/film-first-paint.spec.ts` — Phase 6. `@prod` (E2E_MODE=prod): the
+  hero `<picture>` and its preloads in the response; JavaScript disabled
+  (poster visible, hero copy apart, every chapter readable in order, no
+  multi-screen gap); hydration held back 2 s (only the opening copy before,
+  canvas takeover in place on three viewports); scripts blocked (all copy
+  visible after the 8 s failsafe); fonts (preloaded = fetched for the first
+  screen); the motion feature chunk loads only as Pricing approaches.
+  `RUN_AUDIT=1` (in `npm run test:film`): one poster only on five
+  viewports, every film request answered 404 (no probe), no 2D context,
+  and recovery: aborted for the first 6 s (film within 20 s), the offline
+  switch (film within 5 s of online), aborted for 70 s (bounded requests,
+  only probes after the halt).
 - `e2e/smoke.spec.ts` (CI, dev and `@prod`): on the landing page the film
   worker starts, a missing pack (404) falls back to frames, the worker stays
   up, and the console shows no CSP violation and no uncaught exception.

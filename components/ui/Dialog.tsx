@@ -1,11 +1,17 @@
 "use client";
 
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode, type RefObject } from "react";
 import { createPortal } from "react-dom";
 import { DUR } from "@/lib/motion";
 import { useBodyScrollLock } from "@/components/ui/use-body-scroll-lock";
-import { MotionFeatureProvider } from "@/components/MotionFeatureProvider";
+import { MotionFeatureProvider, useMotionFeaturesWhen } from "@/components/MotionFeatureProvider";
+
+// Client-only gate for the portal (document.body): false in the server render
+// and during hydration, true afterwards, without a setState in an effect.
+const noSubscribe = () => () => {};
+const onClient = () => true;
+const onServer = () => false;
 
 const FOCUSABLE =
   'a[href],area[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),button:not([disabled]),[tabindex]:not([tabindex="-1"]),iframe,object,embed,[contenteditable="true"],audio[controls],video[controls]';
@@ -71,9 +77,12 @@ function OverlayShell({
   fullBleed = false,
   children,
 }: OverlayShellProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(noSubscribe, onClient, onServer);
   const panelRef = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
+  // Under a MotionFeatureGate (the landing) the feature bundle loads when an
+  // overlay first opens; elsewhere this is a no-op (features load at mount).
+  useMotionFeaturesWhen(open);
 
   // Stable per-instance id used to track this overlay's place in the stack.
   const overlayIdRef = useRef<string | null>(null);
@@ -81,8 +90,6 @@ function OverlayShell({
   // Depth (and thus z-index) of this overlay among the currently-open ones; -1
   // until it has registered in the shared stack.
   const [stackIndex, setStackIndex] = useState(-1);
-
-  useEffect(() => setMounted(true), []);
 
   // Register this overlay in the shared stack while open, and remove it on close
   // /unmount. Only the topmost overlay handles Escape and runs the Tab focus

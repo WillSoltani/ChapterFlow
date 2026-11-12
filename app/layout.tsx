@@ -12,15 +12,32 @@ import { MotionProvider } from "@/components/MotionProvider";
 import { AuthCacheBoundary } from "@/components/auth/AuthCacheBoundary";
 import { buildDocumentThemeBootstrapScript } from "@/app/_lib/document-theme";
 
+// Satoshi is ONE family ("satoshi") from two declarations, so that only the
+// weight a first screen uses is preloaded: 700 (every public route's and the
+// signed-in app's first screen renders Satoshi at 600 or 700, both drawn from
+// the 700 face; checked route by route in Phase 6, see docs/FILM_REEL.md).
+// 500 and 900 load on use, never preloaded. `satoshi` keeps the fallback
+// metrics (computed from the 500 file, as before the split) and the
+// --font-satoshi variable; `satoshiBold` adds the 700 face to the same family
+// (font-family declared explicitly; next/font does not rename it) with no
+// fallback of its own.
 const satoshi = localFont({
   src: [
     { path: "../public/fonts/Satoshi-Medium.woff2", weight: "500", style: "normal" },
-    { path: "../public/fonts/Satoshi-Bold.woff2", weight: "700", style: "normal" },
     { path: "../public/fonts/Satoshi-Black.woff2", weight: "900", style: "normal" },
   ],
   variable: "--font-satoshi",
   display: "swap",
+  preload: false,
+});
+
+const satoshiBold = localFont({
+  src: [{ path: "../public/fonts/Satoshi-Bold.woff2", weight: "700", style: "normal" }],
+  declarations: [{ prop: "font-family", value: "satoshi" }],
+  variable: "--font-satoshi-bold",
+  display: "swap",
   preload: true,
+  adjustFontFallback: false,
 });
 
 const jakarta = Plus_Jakarta_Sans({
@@ -108,7 +125,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${satoshi.variable} ${jakarta.variable} ${jetbrainsMono.variable} ${newsreader.variable}`}
+      className={`${satoshi.variable} ${satoshiBold.variable} ${jakarta.variable} ${jetbrainsMono.variable} ${newsreader.variable}`}
       suppressHydrationWarning
     >
       <head>

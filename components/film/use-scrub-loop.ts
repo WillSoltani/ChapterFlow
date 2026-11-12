@@ -32,15 +32,28 @@
  *     composited under the body; the backing store keeps its picture). The
  *     scroll handler shows it again, before the frame paints, as soon as the
  *     scroll is above canvasHiddenFrom (cached geometry, no layout read).
+ *   • First paint (Phase 6): until the canvas draws its first picture, the
+ *     server-rendered hero poster covers it; on that first real paint the
+ *     loop hides the poster (onFirstPaint) in the same frame. That paint is
+ *     the exact frame or the film's own poster, never a frame further away
+ *     (FrameCache.nearest handover), so the picture does not jump. Over a
+ *     later chapter the HTML poster (the first film's frame 0) is the wrong
+ *     picture: it goes at once (htmlPosterStands). The breath is held at
+ *     rest until the first paint and starts from rest (breathRestOffset), so
+ *     the canvas lands exactly where the poster was.
+ *   • Static mode: with no 2D context (ctx null) nothing is painted, but
+ *     everything else runs: progress, pins, chrome. The poster stays.
  * Counters: window.__filmStats canvasResizes, geometryMeasures, ticksWorked,
  * ticksSkipped.
  */
 
 import { useEffect, type MutableRefObject } from "react";
 import type { FrameBudget, FrameCache } from "./frame-cache";
+import { htmlPosterStands } from "./first-paint";
 import {
   backingSize,
   breathAt,
+  breathRestOffset,
   canvasHiddenFrom,
   frameAt,
   holdBreathClock,
@@ -99,6 +112,16 @@ type Args = {
   budget: FrameBudget;
   /** Written by every worked tick: input kind, smoothing in effect, target frame. */
   feel: MutableRefObject<ScrubFeel>;
+  /**
+   * The canvas's 2D context (FilmBackdrop asks for it once); null = static
+   * mode: no painting, progress and pins still run.
+   */
+  getCtx: () => CanvasRenderingContext2D | null;
+  /**
+   * Called once, when the HTML poster goes: in the frame the canvas first
+   * draws a picture over the first chapter, or at once over a later one.
+   */
+  onFirstPaint: () => void;
 };
 
 export function useScrubLoop({
@@ -112,13 +135,20 @@ export function useScrubLoop({
   cacheFor,
   budget,
   feel,
+  getCtx,
+  onFirstPaint,
 }: Args) {
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d", { alpha: false });
     const box = canvas?.parentElement;
-    if (!canvas || !ctx || !box) return;
+    if (!canvas || !box) return;
+    // Static mode when null: the loop runs without painting.
+    const ctx = getCtx();
     const stats = budget.stats;
+    // The canvas has drawn a picture (not only its clear colour).
+    let painted = false;
+    // The HTML poster is still up (static mode keeps it: no ctx, no paint).
+    let posterUp = true;
 
     let raf = 0;
     let alive = true;
@@ -168,6 +198,7 @@ export function useScrubLoop({
     readBox();
     const fitCanvas = () => {
       boxDirty = false;
+      if (!ctx) return;
       const { w, h } = backingSize(boxW, boxH, dpr);
       if (!w || !h || (w === canvas.width && h === canvas.height)) return;
       canvas.width = w;
@@ -332,7 +363,7 @@ export function useScrubLoop({
     const draw = (img: Drawable, variant: FilmVariant, alpha: number, zoom: number) => {
       const iw = img.width;
       const ih = img.height;
-      if (!iw || !ih) return;
+      if (!ctx || !iw || !ih) return;
       const r = variantPlacement(canvas.width, canvas.height, variant, iw, ih, zoom, shiftY);
       ctx.globalAlpha = alpha;
       ctx.drawImage(img, r.x, r.y, r.w, r.h);
@@ -353,8 +384,9 @@ export function useScrubLoop({
       const bt = t - breathOffset;
 
       // Idle check: a few comparisons, no layout reads. Breath is quantised to
-      // 1/4000 so a hold repaints a few times a second, not 60×.
-      const breathNow = lastSeg && !reduced ? Math.round(breathAt(bt, lastSeg.breath) * 4000) / 4000 : 0;
+      // 1/4000 so a hold repaints a few times a second, not 60×. It is held at
+      // rest until the first real paint (the HTML poster has no zoom).
+      const breathNow = lastSeg && !reduced && painted ? Math.round(breathAt(bt, lastSeg.breath) * 4000) / 4000 : 0;
       if (
         !resumed &&
         !geomDirty &&
@@ -436,16 +468,25 @@ export function useScrubLoop({
         });
       }
 
-      const breath = reduced ? 0 : Math.round(breathAt(bt, seg.breath) * 4000) / 4000;
+      const breath = reduced || !painted ? 0 : Math.round(breathAt(bt, seg.breath) * 4000) / 4000;
       shiftY = stageShift(stageH, boxH, canvas.height);
       const key = `${seg.index}:${frame}:${breath}:${canvas.width}:${canvas.height}:${shiftY}`;
-      if (key !== lastKey) {
+      if (key !== lastKey && !ctx) {
+        // Static mode: what would be drawn, nothing painted.
         lastKey = key;
-        const img = cache.nearest(frame, true);
+        drawn.current = { segment: seg.index, frame };
+        for (const fn of drawnListeners.current) fn();
+      } else if (key !== lastKey && ctx) {
+        lastKey = key;
+        if (posterUp && !htmlPosterStands(seg.index, false)) {
+          posterUp = false;
+          onFirstPaint();
+        }
+        const img = cache.nearest(frame, true, posterUp);
         shown = { cache, want: frame, dist: cache.lastServed < 0 ? Infinity : Math.abs(cache.lastServed - frame), under: null };
         ctx.fillStyle = canvasBg;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        if (img) {
+        if (img && img.width && img.height) {
           const prev = segments.current.get(seg.index - 1);
           if (seg.dissolveIn > 0 && frame < seg.dissolveIn && prev) {
             const prevCache = cacheFor(prev.film);
@@ -457,6 +498,16 @@ export function useScrubLoop({
             draw(img, variant, u * u * (3 - 2 * u), breath); // smoothstep cross-fade
           } else {
             draw(img, variant, 1, breath);
+          }
+          if (!painted) {
+            // First real paint: the breath starts from rest now.
+            painted = true;
+            breathOffset = breathRestOffset(t);
+          }
+          if (posterUp) {
+            // The HTML poster goes in this same frame (no flash, no double image).
+            posterUp = false;
+            onFirstPaint();
           }
         }
         drawn.current = { segment: seg.index, frame };
@@ -506,5 +557,5 @@ export function useScrubLoop({
       if (invalidateRef.current === onResize) invalidateRef.current = () => {};
       offLoad();
     };
-  }, [canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget, feel]);
+  }, [canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget, feel, getCtx, onFirstPaint]);
 }

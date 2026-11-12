@@ -578,3 +578,53 @@ test("a steady forward pass over two films: one request per film, the next film 
   assert.equal(per("f3"), 0);
   assert.equal(t.net.stats.packBytesRepeated, 0);
 });
+
+// ── Recovery after a network drop (Phase 6b) ───────────────────────────────
+
+test("recovery: a pack failed by a network drop is reported transient; recover() reads it again", async () => {
+  const a = film(30);
+  // The first response ends early (the drop starts), the next three fail.
+  const t = setup([a], { truncate: (_, n) => (n === 1 ? 900 : 0), status: (_, n) => (n >= 2 && n <= 4 ? "throw" : undefined) });
+  t.where();
+  await settle(2000);
+  await t.fc.advance(400);
+  await t.fc.advance(800);
+  await t.fc.advance(1600);
+  assert.equal(t.failed().length, 1);
+  assert.equal(t.failed()[0]!.permanent, false, "a network error is transient");
+  const n = t.srv.log.length;
+  await t.fc.advance(60_000);
+  assert.equal(t.srv.log.length, n, "nothing read before a recovery");
+  t.net.recover(["f0"]);
+  await settle(2000);
+  assert.equal(t.srv.log.length, n + 1, "one request reads it again");
+  for (let i = 0; i < 30; i++) assert.deepEqual(Buffer.from(t.net.frame("f0", i)!), Buffer.from(a.frames[i]!), `frame ${i}`);
+  assert.equal(t.failed().length, 1);
+  assert.equal(t.net.stats.packBytesRepeated, 0);
+});
+
+test("recovery: a pack that answered 404 is permanent; recover() does not read it and reports it failed again", async () => {
+  const t = setup([film(20)], { status: () => 404 });
+  t.where();
+  await settle();
+  assert.equal(t.failed().length, 1);
+  assert.equal(t.failed()[0]!.permanent, true);
+  t.net.recover(["f0"]);
+  await t.fc.advance(10_000);
+  assert.equal(t.srv.log.length, 1, "never read again");
+  assert.equal(t.failed().length, 2);
+  assert.equal(t.failed()[1]!.permanent, true);
+});
+
+test("recovery: a pack the page marked failed (static mode) is read again after recover()", async () => {
+  const a = film(20);
+  const t = setup([a]);
+  t.net.setPacks(t.packs.map((p) => ({ ...p, failed: true })));
+  t.where();
+  await settle(400);
+  assert.equal(t.srv.log.length, 0);
+  t.net.recover(["f0"]);
+  await settle(2000);
+  assert.equal(t.srv.log.length, 1);
+  for (let i = 0; i < 20; i++) assert.ok(t.net.frame("f0", i), `frame ${i}`);
+});

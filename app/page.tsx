@@ -15,6 +15,7 @@ import { RecallClose } from "@/components/landing/recall/RecallClose";
 import { LandingMotionProvider } from "@/components/landing/LandingMotionProvider";
 import { PublicSiteShell } from "@/components/marketing/PublicSiteShell";
 import { BookReelLanding } from "@/components/film/BookReelLanding";
+import { landingFontVariables } from "./_fonts/landing";
 
 export const metadata: Metadata = {
   title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
@@ -113,7 +114,7 @@ export default async function Home() {
             once the hero has scrolled past — same contract as every other public
             route. Body content mounts after the last chapter as normal flow
             (RecallReveal is fine there — nothing below is sticky-pinned). */}
-        <main id="main" tabIndex={-1} className="relative z-10 focus:outline-none">
+        <main id="main" tabIndex={-1} className={`relative z-10 focus:outline-none ${landingFontVariables}`}>
           <BookReelLanding
             afterHero={
               <div

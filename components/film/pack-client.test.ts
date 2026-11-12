@@ -236,3 +236,113 @@ test("the dissolve pin goes to the worker with the position", () => {
   client.where(at(reel[1]!, 3));
   assert.equal((w.sent.at(-1) as Extract<ToWorker, { t: "where" }>).where.pin, null);
 });
+
+test("stop(): every pack is marked failed in the worker, nothing is read again; the worker stays (idle, not crashed)", () => {
+  const { client, reel, w, starts } = setup();
+  client.where(at(reel[0]!));
+  assert.equal(starts(), 1);
+  const sent = w.sent.length;
+  client.stop();
+  assert.equal(w.terminated, false);
+  const last = w.sent.at(-1);
+  assert.equal(last?.t, "packs");
+  if (last?.t === "packs") {
+    assert.ok(last.packs.length > 0);
+    assert.ok(last.packs.every((p) => p.failed === true), "every pack failed: the worker never reads one again");
+  }
+  assert.equal(client.serves(reel[0]!), false, "a stopped client serves no variant");
+  const afterStop = w.sent.length;
+  assert.ok(afterStop > sent);
+  client.where(at(reel[0]!, 3));
+  client.where(at(reel[1]!, 0));
+  assert.equal(w.sent.length, afterStop, "no message after stop");
+  assert.equal(starts(), 1, "no new worker after stop");
+});
+
+test("stop() before the worker started: it never starts", () => {
+  const { client, reel, starts } = setup();
+  client.stop();
+  client.where(at(reel[0]!));
+  assert.equal(starts(), 0);
+});
+
+// ── Recovery after a network drop (Phase 6b) ───────────────────────────────
+
+const recovers = (w: ReturnType<typeof fakeWorker>) =>
+  w.sent.filter((m): m is Extract<ToWorker, { t: "recover" }> => m.t === "recover").map((m) => m.keys);
+
+test("recovery: resume() makes a transiently failed pack readable again; a pack that answered 404 stays failed", () => {
+  const { client, reel, w } = setup();
+  client.where(at(reel[0]!));
+  assert.equal(client.hasTransient(), false);
+  w.reply({ t: "failed", key: "a@pk1", reason: "network error, 4 times", permanent: false });
+  w.reply({ t: "failed", key: "b@pk1", reason: "pack answered 404", permanent: true });
+  assert.equal(client.hasTransient(), true);
+  client.resume();
+  assert.ok(client.serves(reel[0]!));
+  assert.ok(!client.serves(reel[1]!));
+  assert.deepEqual(recovers(w), [["a@pk1"]]);
+  assert.equal(client.hasTransient(), false);
+  client.resume();
+  assert.deepEqual(recovers(w), [["a@pk1"]], "nothing left to recover: no message");
+});
+
+test("recovery: a failure without a kind (an older worker) counts as permanent", () => {
+  const { client, reel, w } = setup();
+  client.where(at(reel[0]!));
+  w.reply({ t: "failed", key: "a@pk1", reason: "pack answered 404" });
+  assert.equal(client.hasTransient(), false);
+  client.resume();
+  assert.ok(!client.serves(reel[0]!));
+  assert.deepEqual(recovers(w), []);
+});
+
+test("recovery: stop() then resume(): the packs are read again and the worker hears positions again", () => {
+  const { client, reel, w, starts } = setup();
+  client.where(at(reel[0]!));
+  w.reply({ t: "failed", key: "b@pk1", reason: "pack answered 404", permanent: true });
+  client.stop();
+  assert.ok(!client.serves(reel[0]!));
+  client.resume();
+  assert.ok(client.serves(reel[0]!), "the stopped pack is served again");
+  assert.ok(!client.serves(reel[1]!), "the 404 pack is not");
+  assert.deepEqual(recovers(w), [["a@pk1"]]);
+  const n = w.sent.length;
+  client.where(at(reel[0]!, 3));
+  assert.ok(w.sent.length > n);
+  assert.equal(w.sent.at(-1)?.t, "where");
+  assert.equal(starts(), 1, "the same worker");
+});
+
+test("recovery: a failure reported for a pack stop() had marked takes the reported kind", () => {
+  const { client, reel, w } = setup();
+  client.where(at(reel[0]!));
+  client.stop();
+  w.reply({ t: "failed", key: "a@pk1", reason: "pack answered 404", permanent: true });
+  client.resume();
+  assert.ok(!client.serves(reel[0]!));
+  assert.ok(client.serves(reel[1]!));
+  assert.deepEqual(recovers(w), [["b@pk1"]]);
+});
+
+test("recovery: stop() before the worker started, then resume(): the worker starts on the next decision", () => {
+  const { client, reel, w, starts } = setup();
+  client.stop();
+  client.resume();
+  client.where(at(reel[0]!));
+  assert.equal(starts(), 1);
+  const packs = w.sent.filter((m): m is Extract<ToWorker, { t: "packs" }> => m.t === "packs").at(-1)!;
+  assert.ok(packs.packs.every((p) => !p.failed), "no pack is sent failed");
+});
+
+test("recovery: transient(variant) names the one pack that failed transiently", () => {
+  const { client, reel, w } = setup();
+  client.where(at(reel[0]!));
+  w.reply({ t: "failed", key: "a@pk1", reason: "network error, 4 times", permanent: false });
+  w.reply({ t: "failed", key: "b@pk1", reason: "pack answered 404", permanent: true });
+  assert.equal(client.transient(reel[0]!), true);
+  assert.equal(client.transient(reel[1]!), false, "a 404 is not transient");
+  assert.equal(client.transient(reel[2]!), false, "no pack at all");
+  client.resume();
+  assert.equal(client.transient(reel[0]!), false, "forgiven");
+});

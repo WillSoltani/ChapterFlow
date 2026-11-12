@@ -119,7 +119,9 @@ export function HallText({ compress, litAt }: { compress: number; litAt: number;
   }, []);
 
   return (
-    <div ref={ref} className="hall-text" aria-hidden>
+    // data-frame-later: the prose fades in after the dissolve (frame 10+), so
+    // before hydration it stays hidden like a later pin (globals.css).
+    <div ref={ref} className="hall-text" aria-hidden data-frame-later="">
       <div className="hall-wall hall-wall-left">
         {LEFT.map((l, i) => (
           <p key={i} data-line="" data-keep={l.keep ? "1" : "0"} className="hall-line">

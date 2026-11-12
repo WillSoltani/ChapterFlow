@@ -16,13 +16,27 @@
  *     publishes <html data-reel-chrome="film|body" data-reel-section="…">,
  *     and hides the canvas wrapper below the reel (not composited under the
  *     body sections)
+ *   • first paint (Phase 6): the first film's poster as a server-rendered
+ *     <picture> over the canvas (sources from first-paint.ts, placed by CSS
+ *     exactly where the canvas draws it), removed in the frame the canvas
+ *     first draws a picture; the reel's armed marker (data-film-armed, after
+ *     every pin has written its state); the <noscript> layout; static mode
+ *     (data-film-static: no 2D context, or the film is unreachable and the
+ *     budget halted) where the poster stays and the loop runs without
+ *     painting
+ *   • recovery (Phase 6b): the browser's `online` event and the document's
+ *     visibility go to the budget (recovery signals, frame-cache.ts); when a
+ *     probe un-halts it, data-film-static goes, the posters the halt skipped
+ *     load, and the canvas draws again as frames land
  *
  * Math lives in ./scrub.ts (pure, tested). Nothing here re-renders per frame.
  */
 
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { FrameBudget, FrameCache, pickFrameBudgetBytes, type FilmStats } from "./frame-cache";
+import { heroPoster } from "./first-paint";
+import { failsafeCss, noscriptCss } from "./readable-layout";
 import { PACK_CAP_LARGE, PACK_CAP_SMALL, PackClient, packModeAllowed } from "./pack-client";
 import { ReelContext, PORTRAIT_QUERY, pickVariant, readView, viewKey, type ReelApi, type ReelView } from "./reel-context";
 import { useScrubLoop, type ScrubFeel } from "./use-scrub-loop";
@@ -35,9 +49,22 @@ type Props = { reel: FilmManifest[]; children: ReactNode; className?: string };
 /** The view the server renders (and the client hydrates) with. */
 const SERVER_VIEW: ReelView = { orientation: "landscape", backingWidth: 1920 };
 
+/**
+ * The readable-page rules (readable-layout.ts), rendered once per page: the
+ * failsafe sheet before the reel (parsed before any pin, so later pins never
+ * flash), the <noscript> sheet after it. Inline <style> is allowed by the CSP
+ * (style-src 'unsafe-inline', lib/csp.ts), so neither needs the nonce.
+ */
+const FAILSAFE_CSS = failsafeCss();
+const NOSCRIPT_CSS = noscriptCss();
+
 export function FilmBackdrop({ reel, children, className }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
+  const posterRef = useRef<HTMLDivElement | null>(null);
+  // The canvas's 2D context, asked for once (null = static mode). Read lazily:
+  // segments register (and create caches) in their effects, before ours.
+  const ctxRef = useRef<CanvasRenderingContext2D | null | undefined>(undefined);
   // Set by the scrub loop: re-measure segment geometry (and wake the loop).
   const invalidateRef = useRef<() => void>(() => {});
   const segments = useRef(new Map<number, SegmentRegistration>());
@@ -121,6 +148,23 @@ export function FilmBackdrop({ reel, children, className }: Props) {
     };
   }, [reel]);
 
+  const getCtx = useCallback((): CanvasRenderingContext2D | null => {
+    if (ctxRef.current === undefined) {
+      const canvas = canvasRef.current;
+      if (!canvas) return null;
+      let ctx: CanvasRenderingContext2D | null = null;
+      try {
+        ctx = canvas.getContext("2d", { alpha: false });
+      } catch {
+        ctx = null;
+      }
+      ctxRef.current = ctx;
+      // No canvas to draw on: static mode, nothing is ever loaded.
+      if (!ctx) budget.halt();
+    }
+    return ctxRef.current;
+  }, [budget]);
+
   const cacheFor = useCallback(
     (film: FilmManifest): FrameCache => {
       const v = pickVariant(film, viewRef.current ?? view);
@@ -129,14 +173,57 @@ export function FilmBackdrop({ reel, children, className }: Props) {
       if (!c) {
         c = new FrameCache(v, budget);
         caches.current.set(key, c);
-        void c.loadPoster();
+        // Static mode (no canvas, or the film is unreachable): no posters.
+        if (getCtx() && !budget.halted) void c.loadPoster();
       }
       return c;
     },
     // `view` is in the deps so the callback (and everything keyed on it, e.g.
     // the scrub loop's effect) refreshes when a film's variant changes.
-    [view, budget],
+    [view, budget, getCtx],
   );
+
+  // Armed: every pin below has written its own state (child effects run
+  // first), so the CSS that hides later pins before hydration can let go.
+  // Static mode is published on the same element when the budget halts.
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el) return;
+    el.dataset.filmArmed = "";
+    const markStatic = () => {
+      el.dataset.filmStatic = "";
+    };
+    if (budget.halted) markStatic();
+    const offHalt = budget.onHalt(markStatic);
+    const offResume = budget.onResume(() => {
+      delete el.dataset.filmStatic;
+      // Posters of films whose cache was made while halted were skipped.
+      if (getCtx()) for (const c of caches.current.values()) void c.loadPoster();
+    });
+    return () => {
+      offHalt();
+      offResume();
+    };
+  }, [budget, getCtx]);
+
+  // Recovery signals (frame-cache.ts): back online, or shown again after a
+  // while hidden.
+  useEffect(() => {
+    const onOnline = () => budget.noteOnline();
+    const onVisibility = () => budget.noteVisibility(document.visibilityState === "hidden");
+    onVisibility();
+    window.addEventListener("online", onOnline);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      window.removeEventListener("online", onOnline);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, [budget]);
+
+  const onFirstPaint = useCallback(() => {
+    const p = posterRef.current;
+    if (p) p.style.display = "none";
+  }, []);
 
   // The worker reads the reel's variants for the current view (the same pick
   // as cacheFor) when the scroll loop first tells it where the visitor is.
@@ -198,10 +285,14 @@ export function FilmBackdrop({ reel, children, className }: Props) {
     [reel, orientation, cacheFor, budget, packs],
   );
 
-  useScrubLoop({ canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget, feel });
+  useScrubLoop({ canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget, feel, getCtx, onFirstPaint });
+
+  const first = reel[0];
+  const poster = first ? heroPoster(first) : null;
 
   return (
     <ReelContext.Provider value={api}>
+      <style dangerouslySetInnerHTML={{ __html: FAILSAFE_CSS }} />
       {/* The canvas is a fixed layer at z-0 INSIDE the page's stacking
           context; chapters/body sit above at z-10. (A -z-10 layer would fall
           behind the .landing-dark background and never show.)
@@ -217,10 +308,64 @@ export function FilmBackdrop({ reel, children, className }: Props) {
         style={{ transform: "translateZ(0)", contain: "strict" }}
       >
         <canvas ref={canvasRef} className="h-full w-full" />
+        {/* The first film's poster, in the server HTML so it paints before
+            any script (preloaded by the <link>s below, same media). The
+            <picture> picks the variant the film code will draw (first-
+            paint.ts); globals.css (.film-poster) places it exactly where the
+            canvas draws that variant's first picture. Over the canvas, with
+            the page colour behind it, until the canvas's first real paint
+            (onFirstPaint); in static mode it stays. */}
+        {poster ? (
+          <div
+            ref={posterRef}
+            data-film-poster=""
+            // Band placement (globals.css) only for a band tier: a first film
+            // without tiers draws its landscape poster cover-fitted everywhere.
+            data-film-band={poster.band ? "" : undefined}
+            className="film-poster"
+            style={
+              poster.band
+                ? ({
+                    "--film-band-left": `${poster.band.left}%`,
+                    "--film-band-top": `${poster.band.top}%`,
+                    "--film-band-width": `${poster.band.width}%`,
+                    "--film-band-height": `${poster.band.height}%`,
+                    "--film-frame-aspect": poster.band.aspect,
+                    "--film-frame-ratio": String(poster.band.ratio),
+                  } as CSSProperties)
+                : undefined
+            }
+          >
+            <picture>
+              {poster.sources.map((s) => (
+                <source key={s.variant.name} media={s.media} srcSet={s.src} />
+              ))}
+              <img
+                src={poster.img.poster}
+                alt=""
+                fetchPriority="high"
+                loading="eager"
+                decoding="async"
+                {...({ elementtiming: "film-poster" } as Record<string, string>)}
+              />
+            </picture>
+          </div>
+        ) : null}
       </div>
-      <div ref={contentRef} className="relative z-10">
+      {/* The poster's preloads, one per variant, with mutually exclusive
+          media that select the same file as the <picture> (first-paint.ts):
+          the browser starts exactly one poster, at high priority, from
+          <head> (React hoists these <link>s there), before any script.
+          Rendered here, not from a server component: a <link rel=preload>
+          or preload() there also becomes a Link response header, where
+          React percent-encodes the commas of the media list. */}
+      {poster?.preloads.map((p) => (
+        <link key={p.href} rel="preload" as="image" href={p.href} media={p.media} fetchPriority="high" />
+      ))}
+      <div ref={contentRef} data-film-reel="" className="relative z-10">
         {children}
       </div>
+      <noscript dangerouslySetInnerHTML={{ __html: `<style>${NOSCRIPT_CSS}</style>` }} />
     </ReelContext.Provider>
   );
 }

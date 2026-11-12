@@ -82,10 +82,22 @@ export function coverRect(
   return { x: (cw - w) * originX, y: (ch - h) * originY, w, h };
 }
 
+export const BREATH_PERIOD_MS = 2600;
+
 /** Slow sinusoidal breath amplitude in [0, amp]. */
-export function breathAt(t: number, amp: number, period = 2600): number {
+export function breathAt(t: number, amp: number, period = BREATH_PERIOD_MS): number {
   if (amp <= 0) return 0;
   return amp * (0.5 + 0.5 * Math.sin(t / period));
+}
+
+/**
+ * Breath clock offset that puts the breath at rest at time `t`: breathAt(t −
+ * offset) = 0, the bottom of the sine, so it leaves rest with zero speed. The
+ * loop starts the clock at the canvas's first real paint, which then matches
+ * the HTML hero poster (placed with no zoom) exactly (Phase 6).
+ */
+export function breathRestOffset(t: number, period = BREATH_PERIOD_MS): number {
+  return t + (Math.PI / 2) * period;
 }
 
 /**

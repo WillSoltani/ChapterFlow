@@ -15,6 +15,7 @@ import { Menu, X } from "lucide-react";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { useAuthStatus } from "@/components/auth/useAuthStatus";
 import { Dialog } from "@/components/ui/Dialog";
+import { useLoadMotionFeatures } from "@/components/MotionFeatureProvider";
 import { track } from "@/lib/analytics";
 import { performLogout } from "@/lib/logout";
 import {
@@ -106,6 +107,7 @@ export function RecallNav() {
   const { loggedIn, loading } = useAuthStatus();
   const [mobileMenuPath, setMobileMenuPath] = useState<string | null>(null);
   const [showPersistentCta, setShowPersistentCta] = useState(false);
+  const loadMotionFeatures = useLoadMotionFeatures();
   const headerRef = useRef<HTMLElement>(null);
   const brandLinkRef = useRef<HTMLAnchorElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -373,6 +375,11 @@ export function RecallNav() {
           <button
             type="button"
             onClick={() => setMobileMenuPath(pathname)}
+            // Intent: start loading the menu's animation features before the
+            // tap lands (no-op outside the landing's MotionFeatureGate).
+            onPointerEnter={loadMotionFeatures}
+            onTouchStart={loadMotionFeatures}
+            onFocus={loadMotionFeatures}
             aria-label="Open navigation menu"
             aria-haspopup="dialog"
             aria-expanded={mobileOpen}

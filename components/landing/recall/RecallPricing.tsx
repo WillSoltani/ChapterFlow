@@ -59,6 +59,9 @@ export function RecallPricing() {
   return (
     <section
       id="pricing"
+      // The billing toggle animates with Framer: the landing loads its feature
+      // bundle as this section approaches (LandingMotionProvider).
+      data-motion-approach=""
       aria-labelledby="recall-pricing-headline"
       className="relative w-full overflow-hidden px-6 py-28 sm:px-10 sm:py-32 lg:px-16 lg:py-40"
       style={{ background: "transparent" }}
