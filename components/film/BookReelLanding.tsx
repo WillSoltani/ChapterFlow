@@ -13,7 +13,6 @@
  */
 
 import type { ReactNode } from "react";
-import type { FrameAmount } from "./scrub";
 import { FilmBackdrop } from "./FilmBackdrop";
 import { FilmHud } from "./FilmHud";
 import { BOOK_REEL } from "./book-reel";
@@ -22,7 +21,7 @@ import { HallChapter, RoomsChapter, VaultChapter } from "./chapters/HallChapters
 import { CityChapter, HomeChapter, LightsChapter } from "./chapters/CityChapters";
 import { AFTER_FILM_ID } from "./SkipFilmLink";
 
-export function BookReelLanding({ afterHero, body, frameAmount }: { afterHero?: ReactNode; body?: ReactNode; frameAmount?: FrameAmount }) {
+export function BookReelLanding({ afterHero, body }: { afterHero?: ReactNode; body?: ReactNode }) {
   // noUncheckedIndexedAccess: BOOK_REEL is a plain array; a missing manifest is
   // a build-time mistake (book-reel.ts), not a runtime state to render around.
   const film = (i: number) => {
@@ -32,7 +31,7 @@ export function BookReelLanding({ afterHero, body, frameAmount }: { afterHero?: 
   };
   const [f0, f1, f2, f3, f4, f5, f6] = [film(0), film(1), film(2), film(3), film(4), film(5), film(6)] as const;
   return (
-    <FilmBackdrop reel={BOOK_REEL} {...(frameAmount !== undefined ? { frameAmount } : {})}>
+    <FilmBackdrop reel={BOOK_REEL}>
       <FilmHud />
       <FoldChapter film={f0} index={0} />
       {afterHero}

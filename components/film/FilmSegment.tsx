@@ -24,8 +24,8 @@
  * the nearest frame where the pin and its scrims are fully on with the stage
  * pinned: a reduced-motion stop under reduced motion. Focus from a pointer
  * (not :focus-visible) never moves the page, nor does focus coming back to
- * the same element when the window or tab regains focus (scrub.ts
- * focusArrived).
+ * the same element when the window or tab regains focus (focus-guard.ts; a
+ * touch scroll in between does not count as focus leaving).
  */
 
 import {
@@ -51,7 +51,7 @@ import {
   type PinRange,
 } from "./pins";
 import { useReel } from "./reel-context";
-import { focusArrived } from "./scrub";
+import { focusGuard } from "./focus-guard";
 import type { FilmManifest } from "./types";
 
 type ProgressStore = {
@@ -177,9 +177,10 @@ export function FilmSegment({
     if (!el.closest("[data-film-armed]")) return;
     // The window or tab getting focus back fires focus again on the element
     // that held it: the reader may have scrolled on since. Only focus that
-    // arrived moves the film.
-    if (!focusArrived(target, e.relatedTarget, lastFocus)) return;
-    rememberFocus(target);
+    // arrived moves the film (focus-guard.ts).
+    const guard = focusGuard();
+    if (!guard.arrived(target, e.relatedTarget)) return;
+    guard.remember(target);
     const chain: PinRange[] = [];
     for (let n: Element | null = target; n && n !== el; n = n.parentElement) {
       const r = pins.current.get(n);
@@ -226,26 +227,6 @@ export function FilmSegment({
         </div>
       ) : null}
     </SegmentContext.Provider>
-  );
-}
-
-/**
- * The element whose keyboard focus last moved the film (any chapter), cleared
- * by a pointer press: after a click the next keyboard focus is new even on
- * the same element.
- */
-let lastFocus: Element | null = null;
-let pointerHooked = false;
-function rememberFocus(el: Element) {
-  lastFocus = el;
-  if (pointerHooked) return;
-  pointerHooked = true;
-  window.addEventListener(
-    "pointerdown",
-    () => {
-      lastFocus = null;
-    },
-    { capture: true, passive: true },
   );
 }
 

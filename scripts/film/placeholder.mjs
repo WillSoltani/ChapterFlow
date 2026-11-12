@@ -6,6 +6,7 @@
  *   node scripts/film/placeholder.mjs            # all films in book.timeline.json
  *   node scripts/film/placeholder.mjs book-00    # one film
  *   --out public/films
+ *   --force                                      # overwrite real frames (never in a checkout whose public/films is the real set)
  *
  * Frame counts come from book.timeline.json (the runtime source of truth), so
  * the placeholder always matches what FilmBackdrop will request.
@@ -23,6 +24,10 @@
  * --sync-timeline` afterwards if the runtime should read these packs: until
  * the timeline records them, a pack whose size disagrees with the timeline is
  * unusable and the reel loads the placeholder frame by frame.
+ * Every manifest it writes carries `placeholder: true`: the film specs read
+ * that (e2e/film-frames.ts) and skip the checks that judge the real footage
+ * (contrast, the luminance behind the copy). CI runs the film specs on these
+ * frames (.github/workflows/ci.yml, job "film").
  * Output is gitignored (public/films/); real renders replace it 1:1.
  */
 
@@ -43,11 +48,46 @@ const names = args.filter((a) => !a.startsWith("--") && timeline.films[a]);
 const films = names.length ? names : Object.keys(timeline.films);
 
 const ACCENT = "#8AA2FF";
-/** Band tiers: the band of the virtual 1080×1920 portrait frame (encode.mjs --bands at zoom 1.6). */
+/**
+ * Band tiers: each film's tiers come from its timeline entry
+ * (films.<name>.bands.<tier>: width, height, the virtual frame and the band
+ * rect inside it), so a re-encoded band geometry is mirrored here. These are
+ * the fallbacks for a timeline without band entries (encode.mjs --bands at
+ * zoom 1.6).
+ */
 const VFRAME = { w: 1080, h: 1920 };
 const BAND = { x: 0, y: 474, w: 1080, h: 972 };
 const TIER_WIDTHS = [1080, 900];
+/** The tiers to write for one film: its timeline's band entries, or the fallbacks. */
+function bandTiers(name) {
+  const bands = timeline.films[name].bands;
+  if (bands && Object.keys(bands).length)
+    return Object.entries(bands).map(([tier, b]) => ({ w: b.width, h: b.height, frame: { ...b.frame }, band: { ...b.band }, name: `${name}-${tier}` }));
+  return TIER_WIDTHS.map((w) => ({ w, h: Math.round((BAND.h * w) / BAND.w), frame: { ...VFRAME }, band: { ...BAND }, name: `${name}-b${w}` }));
+}
+
+// Never overwrite real frames. A directory whose manifest is not a
+// placeholder's holds an encode (in a checkout where public/films links to
+// the real frames, writing here would replace them): stop unless --force.
+if (!args.includes("--force")) {
+  const real = [];
+  for (const name of films)
+    for (const dir of [name, ...bandTiers(name).map((t) => t.name)]) {
+      try {
+        const m = JSON.parse(await fs.readFile(path.join(OUT, dir, "manifest.json"), "utf8"));
+        if (m.placeholder !== true) real.push(dir);
+      } catch {
+        // no manifest: nothing to protect
+      }
+    }
+  if (real.length) {
+    console.error(`placeholder.mjs: ${OUT} holds real frames (${real.join(", ")}); refusing to overwrite them. Pass --out <dir> for another directory, or --force.`);
+    process.exit(1);
+  }
+}
 const BG = "#0B0E14";
+/** Fastest WebP settings: placeholders are throwaway, and CI generates them on every film run. */
+const WEBP = { quality: 70, effort: 0 };
 
 // Crude stand-ins for each Memory Palace shot so copy can be timed before the
 // real renders land. Object placement matches the shot list's copy/object side.
@@ -122,12 +162,20 @@ function scene(w, h, i, n, filmIdx) {
   }
 }
 
-function frameSvg(w, h, i, n, filmIdx, label) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+/**
+ * One frame as SVG: the scene on a w × h canvas. `out` renders only the
+ * rectangle `out.crop` of it, at out.w × out.h (a band tier straight from the
+ * portrait scene, no full-size raster in between), with the frame counter
+ * inside that rectangle: every frame of every variant differs from the
+ * others, so the pixel-truth specs can tell a frame from its decoys.
+ */
+function frameSvg(w, h, i, n, filmIdx, label, out) {
+  const size = out ? `width="${out.w}" height="${out.h}" viewBox="${out.crop.x} ${out.crop.y} ${out.crop.w} ${out.crop.h}" preserveAspectRatio="none"` : `width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" ${size}>
   <rect width="100%" height="100%" fill="${BG}"/>
   ${scene(w, h, i, n, filmIdx)}
   <text x="${w * 0.04}" y="${h * 0.08}" font-family="ui-monospace, Menlo, monospace" font-size="${h * 0.028}" fill="${ACCENT}" opacity="0.9">${label}</text>
-  <text x="${w * 0.04}" y="${h * 0.95}" font-family="ui-monospace, Menlo, monospace" font-size="${h * 0.06}" fill="#F4F8FB" opacity="0.85">${String(i + 1).padStart(4, "0")} / ${n}</text>
+  <text x="${w * 0.04}" y="${out ? out.crop.y + out.crop.h * 0.92 : h * 0.95}" font-family="ui-monospace, Menlo, monospace" font-size="${out ? out.crop.h * 0.11 : h * 0.06}" fill="#F4F8FB" opacity="0.85">${String(i + 1).padStart(4, "0")} / ${n}</text>
 </svg>`;
 }
 
@@ -140,7 +188,9 @@ for (const name of films) {
   const finish = async (dir, variant, w, h, extra = {}) => {
     for (const f of staleFrameFiles(await fs.readdir(dir), n, pad, "webp")) await fs.rm(path.join(dir, f));
     await fs.copyFile(path.join(dir, frameFile(0)), path.join(dir, "poster.webp"));
-    await fs.writeFile(path.join(dir, "manifest.json"), JSON.stringify({ name: variant, count: n, pad, ext: "webp", width: w, height: h, ...extra }, null, 2) + "\n");
+    // `placeholder: true` is the signal the film specs read (e2e/film-frames.ts):
+    // tests that judge the real footage skip themselves on these frames.
+    await fs.writeFile(path.join(dir, "manifest.json"), JSON.stringify({ name: variant, count: n, pad, ext: "webp", width: w, height: h, placeholder: true, ...extra }, null, 2) + "\n");
     const pack = await writePack(dir);
     console.log(`${variant}: ${n} frames, pack ${pack.bytes} bytes`);
   };
@@ -156,24 +206,19 @@ for (const name of films) {
   await fs.mkdir(landDir, { recursive: true });
   await each(async (i) => {
     const svg = Buffer.from(frameSvg(1920, 1080, i, n, fi, `${name}  placeholder`));
-    await sharp(svg).webp({ quality: 70, effort: 2 }).toFile(path.join(landDir, frameFile(i)));
+    await sharp(svg).webp(WEBP).toFile(path.join(landDir, frameFile(i)));
   });
   await finish(landDir, name, 1920, 1080);
 
   // Band tiers (what portrait screens draw, see encode.mjs --bands): a
   // 1080×1920 portrait scene cut to the band, scaled per tier.
-  const tiers = TIER_WIDTHS.map((w) => ({ w, h: Math.round((BAND.h * w) / BAND.w), name: `${name}-b${w}` }));
+  const tiers = bandTiers(name);
   for (const t of tiers) await fs.mkdir(path.join(OUT, t.name), { recursive: true });
   await each(async (i) => {
-    const svg = Buffer.from(frameSvg(VFRAME.w, VFRAME.h, i, n, fi, `${name} band  placeholder`));
-    const { data, info } = await sharp(svg).flatten().raw().toBuffer({ resolveWithObject: true });
     for (const t of tiers) {
-      await sharp(data, { raw: { width: info.width, height: info.height, channels: info.channels } })
-        .extract({ left: BAND.x, top: BAND.y, width: BAND.w, height: BAND.h })
-        .resize({ width: t.w, height: t.h, fit: "fill" })
-        .webp({ quality: 70, effort: 2 })
-        .toFile(path.join(OUT, t.name, frameFile(i)));
+      const svg = Buffer.from(frameSvg(t.frame.w, t.frame.h, i, n, fi, `${name} band  placeholder`, { w: t.w, h: t.h, crop: t.band }));
+      await sharp(svg).flatten().webp(WEBP).toFile(path.join(OUT, t.name, frameFile(i)));
     }
   });
-  for (const t of tiers) await finish(path.join(OUT, t.name), t.name, t.w, t.h, { frame: { ...VFRAME }, band: { ...BAND } });
+  for (const t of tiers) await finish(path.join(OUT, t.name), t.name, t.w, t.h, { frame: t.frame, band: t.band });
 }

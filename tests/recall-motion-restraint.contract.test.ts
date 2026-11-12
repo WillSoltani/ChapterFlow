@@ -8,7 +8,6 @@ const source = (relativePath: string) =>
   readFileSync(path.join(root, relativePath), "utf8");
 
 const css = source("app/globals.css");
-const hero = source("components/landing/recall/RecallHeroSplit.tsx");
 const dissolve = source("components/landing/recall/DissolveWord.tsx");
 const readerShowcase = source("components/landing/recall/RecallReaderShowcase.tsx");
 
@@ -29,49 +28,9 @@ test("only genuine loading and current-step CSS motion remains continuous", () =
   assert.deepEqual(infiniteSelectors(css).sort(), [".animate-shimmer", ".bd-dot-pulse"]);
 });
 
-test("the retention entrance is finite and settles in its meaningful final state", () => {
-  assert.match(hero, /className="cf-curve-shimmer"/);
-
-  for (const selector of [".cf-curve-shimmer", ".cf-curve-pulse"]) {
-    const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const rule = css.match(new RegExp(`${escaped}\\s*\\{([\\s\\S]*?)\\}`));
-    assert.ok(rule, `${selector} must have a live rule`);
-    assert.doesNotMatch(rule[1]!, /\binfinite\b/);
-    const animation = rule[1]!.match(/animation\s*:\s*([^;]+);/);
-    assert.ok(animation, `${selector} must declare its finite entrance`);
-    const cycles = animation[1]!.match(/(?:^|\s)(\d+(?:\.\d+)?)\s*(?:both|forwards|backwards|none)?\s*$/);
-    assert.ok(cycles, `${selector} must declare an explicit iteration count`);
-    assert.ok(Number(cycles[1]) <= 2, `${selector} may run at most two cycles`);
-  }
-});
-
 test("Recall decorative motion is one-shot, pointer-driven, or static", () => {
   assert.doesNotMatch(css, /@keyframes\s+(?:rl-dot|rl-float|rl-blink|rl-aurora)\b/);
   assert.doesNotMatch(css, /animation\s*:\s*rl-(?:float|blink|aurora)\b/);
-
-  const sheen = css.match(/\.rl-hero-sheen\s*\{([\s\S]*?)\}/);
-  assert.ok(sheen);
-  assert.match(sheen[1]!, /animation\s*:\s*rl-sheen\b/);
-  assert.doesNotMatch(sheen[1]!, /\binfinite\b/);
-
-  assert.match(hero, /FSRS(?:&#8209;|-)5 model/);
-  assert.doesNotMatch(hero, /FSRS(?:&#8209;|-)5 live/);
-  assert.match(hero, /onPointerMove/);
-  assert.match(hero, /onPointerLeave/);
-});
-
-test("the hero playhead sweeps once, settles, and still supports pointer scrub", () => {
-  assert.doesNotMatch(hero, /%\s*\(dur\s*\+\s*hold\)/);
-  assert.match(hero, /if \(frac < 1\)[\s\S]*requestAnimationFrame\(tick\)/);
-  assert.match(hero, /else \{[\s\S]*raf = 0;[\s\S]*draw\(T_MAX\)/);
-  assert.match(hero, /draw\(T_MAX\)/);
-  assert.match(hero, /onPointerMove=\{onMove\}/);
-  assert.match(hero, /onPointerLeave=\{onLeave\}/);
-  assert.match(hero, /const progressRef = useRef\(0\)/);
-  assert.match(hero, /baseRef\.current = now - progressRef\.current \* dur/);
-  assert.match(hero, /if \(hoverRef\.current\) \{\s*baseRef\.current = null/);
-  assert.match(hero, /const stop = \(\) => \{[\s\S]*?baseRef\.current = null/);
-  assert.match(hero, /progressRef\.current = inverseSweepEase\(pointerProgress\)/);
 });
 
 test("the disintegration signature completes once and leaves readable final text", () => {

@@ -142,8 +142,6 @@ type Args = {
    * draws a picture over the first chapter, or at once over a later one.
    */
   onFirstPaint: () => void;
-  /** Framing amount for band tiers (bandFitScale; ?frame=, default 100). */
-  frameAmount: number;
 };
 
 export function useScrubLoop({
@@ -159,7 +157,6 @@ export function useScrubLoop({
   feel,
   getCtx,
   onFirstPaint,
-  frameAmount,
 }: Args) {
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -443,13 +440,12 @@ export function useScrubLoop({
     // Shift (backing px) that centres the picture on the stage; set per paint.
     let shiftY = 0;
     // A band tier is placed through its virtual 1080×1920 frame (frames,
-    // posters and the dissolve underlay alike) at the page's framing amount,
-    // a landscape frame by itself.
+    // posters and the dissolve underlay alike), a landscape frame by itself.
     const draw = (img: Drawable, variant: FilmVariant, alpha: number, zoom: number) => {
       const iw = img.width;
       const ih = img.height;
       if (!ctx || !iw || !ih) return;
-      const r = variantPlacement(canvas.width, canvas.height, variant, iw, ih, zoom, shiftY, frameAmount);
+      const r = variantPlacement(canvas.width, canvas.height, variant, iw, ih, zoom, shiftY);
       ctx.globalAlpha = alpha;
       ctx.drawImage(img, r.x, r.y, r.w, r.h);
       ctx.globalAlpha = 1;
@@ -650,5 +646,5 @@ export function useScrubLoop({
       if (invalidateRef.current === onResize) invalidateRef.current = () => {};
       offLoad();
     };
-  }, [canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget, feel, getCtx, onFirstPaint, frameAmount]);
+  }, [canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget, feel, getCtx, onFirstPaint]);
 }

@@ -78,7 +78,7 @@ export type HeroPoster = {
    * Where a band tier's poster sits inside the virtual frame (percent of its
    * width / height), and that frame's aspect ratio; null without tiers.
    */
-  band: { left: number; top: number; width: number; height: number; aspect: string; ratio: number; framePerBand: number } | null;
+  band: { left: number; top: number; width: number; height: number; aspect: string; ratio: number } | null;
 };
 
 /** The hero poster of `film`: sources, preloads and band placement. */
@@ -119,9 +119,6 @@ export function heroPoster(film: FilmManifest): HeroPoster {
       height: (band.h / frame.h) * 100,
       aspect: `${frame.w} / ${frame.h}`,
       ratio: frame.w / frame.h,
-      // Virtual frame width per band width: the framing amount's "fit the
-      // band to the width" end (scrub.ts bandFitScale) in CSS.
-      framePerBand: frame.w / band.w,
     },
   };
 }

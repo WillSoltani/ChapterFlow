@@ -12,10 +12,10 @@
  *     keeps every variant on the per-frame path
  *   • registration of FilmSegments (they report their DOM element + film)
  *   • the scrub loop (./use-scrub-loop.ts) that paints frames, dissolves
- *     between films, breathes while idle, quantises under reduced motion, and
- *     publishes <html data-reel-chrome="film|body" data-reel-section="…">,
- *     and hides the canvas wrapper below the reel (not composited under the
- *     body sections)
+ *     between films, breathes while idle, draws only the chapters' stops
+ *     under reduced motion, publishes <html data-reel-chrome="film|body"
+ *     data-reel-section="…">, and hides the canvas wrapper below the reel
+ *     (not composited under the body sections)
  *   • first paint (Phase 6): the first film's poster as a server-rendered
  *     <picture> over the canvas (sources from first-paint.ts, placed by CSS
  *     exactly where the canvas draws it), removed in the frame the canvas
@@ -39,7 +39,6 @@ import { heroPoster } from "./first-paint";
 import { failsafeCss, noscriptCss } from "./readable-layout";
 import { PACK_CAP_LARGE, PACK_CAP_SMALL, PackClient, packModeAllowed } from "./pack-client";
 import { ReelContext, PORTRAIT_QUERY, pickVariant, readView, viewKey, type ReelApi, type ReelView } from "./reel-context";
-import { DEFAULT_FRAME_AMOUNT, type FrameAmount } from "./scrub";
 import { useScrubLoop, type ScrubFeel } from "./use-scrub-loop";
 import type { FilmManifest, Orientation, SegmentRegistration } from "./types";
 
@@ -49,12 +48,6 @@ type Props = {
   reel: FilmManifest[];
   children: ReactNode;
   className?: string;
-  /**
-   * Framing amount for band tiers on tall screens (scrub.ts bandFitScale):
-   * the page reads ?frame= once on the server (parseFrameParam) so the HTML
-   * poster and the canvas use the same one. Default 100 = cover (today).
-   */
-  frameAmount?: FrameAmount;
 };
 
 /** The view the server renders (and the client hydrates) with. */
@@ -69,7 +62,7 @@ const SERVER_VIEW: ReelView = { orientation: "landscape", backingWidth: 1920 };
 const FAILSAFE_CSS = failsafeCss();
 const NOSCRIPT_CSS = noscriptCss();
 
-export function FilmBackdrop({ reel, children, className, frameAmount = DEFAULT_FRAME_AMOUNT }: Props) {
+export function FilmBackdrop({ reel, children, className }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const posterRef = useRef<HTMLDivElement | null>(null);
@@ -299,7 +292,7 @@ export function FilmBackdrop({ reel, children, className, frameAmount = DEFAULT_
     [reel, orientation, cacheFor, budget, packs],
   );
 
-  useScrubLoop({ canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget, feel, getCtx, onFirstPaint, frameAmount });
+  useScrubLoop({ canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget, feel, getCtx, onFirstPaint });
 
   const first = reel[0];
   const poster = first ? heroPoster(first) : null;
@@ -336,9 +329,6 @@ export function FilmBackdrop({ reel, children, className, frameAmount = DEFAULT_
             // Band placement (globals.css) only for a band tier: a first film
             // without tiers draws its landscape poster cover-fitted everywhere.
             data-film-band={poster.band ? "" : undefined}
-            // A framing amount below 100 (?frame=): the band poster is placed
-            // at that amount (globals.css), as the canvas draws it.
-            data-film-fit={poster.band && frameAmount < 100 ? "" : undefined}
             className="film-poster"
             style={
               poster.band
@@ -349,9 +339,6 @@ export function FilmBackdrop({ reel, children, className, frameAmount = DEFAULT_
                     "--film-band-height": `${poster.band.height}%`,
                     "--film-frame-aspect": poster.band.aspect,
                     "--film-frame-ratio": String(poster.band.ratio),
-                    ...(frameAmount < 100
-                      ? { "--film-fit": String(frameAmount / 100), "--film-frame-per-band": String(poster.band.framePerBand) }
-                      : {}),
                   } as CSSProperties)
                 : undefined
             }

@@ -1,6 +1,6 @@
 /**
- * sheet-lib.mjs — shared helpers for the Phase 7 owner sheets
- * (layout-sheets.mjs, framing-sheet.mjs): a local-only base URL, scrolling a
+ * sheet-lib.mjs — shared helpers for the owner sheets (layout-sheets.mjs,
+ * a11y-sheets.mjs): a local-only base URL, scrolling a
  * chapter to an exact frame of its film and waiting until the canvas shows
  * it, and joining labelled tiles into one PNG contact sheet.
  *
