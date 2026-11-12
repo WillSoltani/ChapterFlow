@@ -141,6 +141,47 @@ outcome line. Then, without reporting it, do the housekeeping commit and the sta
 the app did not list before, the status line adds that the public site needs the catalog entry and a deploy
 (step 10 says what).
 
+## 1B. The public site: `site` (after every publish, new title or replaced)
+
+Why every time: a production deploy re-uploads all of main's `book-packages/` to the live store whenever that
+folder changes. A title published at runtime leaves main holding an older copy (or none), and the next such deploy
+would put old quiz questions, answer keys and narration text back live. So main must hold the live bytes. A new
+title also needs its registry lines and catalog row before the public grid shows it.
+
+`site` makes the file edits in a checkout of main; the session commits them and opens the pull request. It never
+commits, pushes, merges or deploys.
+
+1. A fresh worktree of main on its own branch:
+   `git -C $WT fetch origin main && git -C $WT worktree add -b books/site-<bookId> ~/cf-wt/site-<bookId> origin/main`
+2. It needs `node_modules/.bin/tsx` for the two generators. Link the `node_modules` of an existing checkout of this
+   repo (`ln -s <that folder>/node_modules ~/cf-wt/site-<bookId>/node_modules`), or run `npm ci` in the new worktree.
+   Never `npm ci` through a link: it empties the shared folder.
+3. `CLI site --book <cfg> --repo ~/cf-wt/site-<bookId> --dry-run`, read what it would change, then the same
+   without `--dry-run`. For a NEW title add `--synopsis "<text>"`: one or two plain sentences on what the reader
+   learns, 130 to 240 characters, in the manner of the rows in `lib/books-catalog.metadata.json`; no competitor
+   names. Without it the catalog shows a generic line. What the step does:
+   - copies the live package in, byte for byte (its md5 must equal the store's);
+   - the revert guard: every other package on main that differs from the live store comes along, for the reason above;
+   - NEW title: the import and the auto-registered block in `app/book/data/bookPackages.ts`, the presentation entry
+     when a synopsis is given, the id in the fallback-cover set when there is no cover file, and the approval record
+     that CI requires for that shared file (`scripts/ci/ws7-shared-repair-approvals.json`, owners copied from the
+     record it supersedes);
+   - REPLACED title: no registry edit and no approval record;
+   - regenerates `lib/books-catalog.metadata.json` and `app/book/data/book-chapter-meta.json` (and fixes the
+     catalog generator's output path the first time). The regeneration can bring unrelated drift; the pull request
+     body lists it.
+4. Run the commands under `next:` in its output, in order: the `git add` and `git commit` with the explicit paths
+   (never `git add -A`), the shared-closure check (`shared TypeScript closure: PASS`), the listed tests (0 failed),
+   the cover check, `git push -u origin HEAD`, and `gh pr create` with `<runDir>/site-pr.md` as the body. Skip
+   `npm run verify` when `node_modules` is borrowed from another checkout (missing modules fail it for reasons that
+   are not this change); CI runs it on the pull request.
+5. The status line the owner sees gains: `Public site: pull request <url>. Merge it, then deploy.` Never merge it
+   and never start the deploy.
+
+A refusal (`SITE_...`, exit 2) leaves the checkout as it was; fix what it names and run the same command again.
+Two site pull requests open at once both supersede the same approval record: merge one, then rebase and rerun the
+step for the other.
+
 ## 2. Keys, knowledge mode only (1 call, under $1)
 
 `CLI keys --book <cfg>` writes `chapters[].keys` into the config: the author's advice, his own names for the tools
@@ -319,7 +360,9 @@ Still the owner's after a publish: a **new** book needs the static catalog wirin
 entry in `app/book/data/bookPackages.ts`, a row with an authored synopsis in `lib/books-catalog.metadata.json`,
 `npx tsx scripts/book/generate-chapter-meta.ts`, `npm run verify`) and a prod web deploy (`deploy.yml`, approved in
 GitHub) before the public grid shows it; a **replaced** book is live once the server's warm cache turns over (the
-next deploy or cold start). Say which applies in the hand-off.
+next deploy or cold start; until then warm server instances can hold the old package while cold ones hold the new
+one, so a quiz can be graded against the other version). Either way main must then be brought level with the live
+store: section 1B.
 
 Housekeeping: commit the config (with keys) and the brief on `v26/variants` with a `chore(v26): <book> config
 and brief` message (the package commit is made by `publish`); push only if the owner asks. Append one dated line
@@ -351,6 +394,11 @@ to `~/cf-wt/v26-plan/status/V1-variants.md` and one to the `v26-campaign` memory
 | `publish`: `register:api failed` | AWS names or credentials | check `AWS_PROFILE=chapterflow` works (`aws sts get-caller-identity --profile chapterflow`) and the SSM names; rerun `publish` (idempotent by packageId) |
 | `publish`: `not verified ... CDN caches` | the list is cached up to an hour | fine; check again later |
 | trailing comma in `--chapters` | `seq -s,` | `seq a b \| paste -sd, -` |
+| `site`: `SITE_REPO_DIRTY` | the checkout of main has changes to tracked files | use a fresh worktree of `origin/main` |
+| `site`: `SITE_REPO_INVALID ... node_modules/.bin/tsx` | the worktree has no `node_modules` | link one or `npm ci` there (section 1B, step 2) |
+| `site`: `SITE_STORE_FAILED` | the aws CLI, the profile or the SSM names | `aws sts get-caller-identity --profile chapterflow`; rerun |
+| `site`: `SITE_HALF_WIRED` | the title is in the registry or in the catalog rows, not both | stop; tell the owner which, do not patch it by hand |
+| `site`: `SITE_NOT_PUBLISHED` / `SITE_NOT_LIVE` | the book was not published by this tool, or is not in the live store | publish first |
 | `auto`: `NEEDS-OWNER ... keys could not be checked` | a checker or the editor did not answer (web down, a refusal) | run the identical command later; or the owner reads the notes in the config and you pass `--keys-ok` |
 | `auto`: `chapters were written before the keys were checked` | chapters exist and nothing records a check | the book waits on every run: the owner reads the pack and the notes, then `--approve` or `--keys-ok` |
 | `auto`: `--keys-ok is not taken: the notes changed after the chapters were written` | a note was edited while the book was held as `unchecked` | the owner reads the pack, then `--approve`; or remove `chNN/` for the chapters whose notes changed and rerun |

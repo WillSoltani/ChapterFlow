@@ -87,6 +87,14 @@ What stays the owner's: `--approve` (yes to the pack that was read: taken only w
 
 `--queue <file>` runs a list of configs (one path per line, or a JSON array) one after another and appends one line per book to `<file>.report.jsonl`. Exit codes for `auto`: 0 published, dry run or ready; 1 waiting for the owner; 2 failed; 3 usage limit; 4 budget.
 
+### After a publish: `site`
+
+```
+npx tsx scripts/book/v26/cli.ts site --book scripts/book/v26/books/<bookId>.json --repo <a clean checkout of main> [--synopsis "<text>"] [--dry-run]
+```
+
+`site` (`src/site.ts`) makes the file edits main needs after a runtime publish, for a session to commit and open as a pull request; it never commits, pushes or deploys. It copies the live package in byte for byte and brings along every other package on main that differs from the live store (a prod deploy re-uploads all of `book-packages/`, so an older copy on main would be put back live). For a new title it also adds the registry lines in `app/book/data/bookPackages.ts`, the presentation entry when a synopsis is given, the fallback cover id and the shared-file approval record CI requires; then it regenerates the catalog metadata and the chapter metadata. It writes `<runDir>/site.json` and the pull request body `<runDir>/site-pr.md`, and prints the commands still to run. A refusal (`SITE_...`, exit 2) leaves the checkout untouched. Reading the live store uses the aws CLI, list and get only.
+
 The procedure for running a book is the `run-book` skill (`skills/run-book/`), not this file.
 
 ### Exit codes

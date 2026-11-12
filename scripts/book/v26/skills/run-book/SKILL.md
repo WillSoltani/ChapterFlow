@@ -40,8 +40,10 @@ The numbers are the `chapter scores:` line `auto` prints just before its outcome
 - **PUBLISHED** (band auto, 80 and up): it published itself. The owner's standing instruction is "if good enough
   it automatically pushes and makes it live", so run `auto` without `--no-publish` and ask nothing. If the app's
   permission check stops the publish step, ask one yes-or-no question ("Publish <title>? Average 96.1.") and on a
-  yes run the identical command again. Status line: `LIVE in the app, version N.` For a title the app did not
-  list before, add: `Not on the public site yet: that needs the catalog entry and a deploy.`
+  yes run the identical command again. Status line: `LIVE in the app, version N.` Then do the public-site step
+  (reference.md section 1B: `site` in a fresh worktree of main, its checks, a pull request) and add to the status
+  line: `Public site: pull request <url>. Merge it, then deploy.` This holds for a replaced title too: main must
+  hold the live package, or the next deploy puts the old one back.
 - **NEEDS-OWNER, band manual**: show the table and the reason in one line (for example "ch06 is under 70" or
   "TRY fails in 5 of 8 chapters"), and ask: "Publish anyway?" Yes: `auto --approve`. No: leave it and stop.
 - **NEEDS-OWNER, keys could not be checked**: run the identical command once more. If it holds again, ask: "The
@@ -125,8 +127,9 @@ first two chapters.
 - Publishing without a fresh score, or passing `--approve`, `--keys-ok` or `--redo` the owner did not give.
 - `auto` ending `NEEDS-OWNER` or `FAILED` and wanting to get past it by deleting `auto.json` or editing a chapter:
   hand the owner the pack and the reasons instead.
-- A new book after `publish`: the public grid still needs the static catalog wiring and a prod deploy the owner
-  approves (reference.md step 10 says what); the logged-in library and iOS are live at once.
+- A publish with no public-site pull request after it (reference.md section 1B): main then holds an older package
+  than the live store, and the next deploy that touches `book-packages/` rolls the book back. The logged-in library
+  and iOS are live at once; the public grid needs the pull request merged and a deploy the owner approves.
 
 ## Done
 

@@ -1,7 +1,8 @@
 /** The v26 chapter tool's command line. See README.md.
- *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render|variants|assemble|book|pack|keys|score|publish|auto> --book <config.json>
+ *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render|variants|assemble|book|pack|keys|score|publish|auto|site> --book <config.json>
  *    npx tsx scripts/book/v26/cli.ts auto --queue <books.txt>     (every book of a list, one after another)
  *      [--chapters 1,13] [--force] [--review] [--issues <findings.json>] [--finish] [--file <chapter.json> --tag <t> --out <dir>]
+ *    npx tsx scripts/book/v26/cli.ts site --book <config.json> --repo <checkout of main> [--synopsis <text>] [--dry-run]
  *  Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget. */
 import * as fs from "node:fs";
 import * as path from "node:path";
@@ -34,8 +35,9 @@ import { scoreBook } from "./src/score";
 import { publishBook } from "./src/publish";
 import { autoBook, autoQueue, type AutoOptions, type AutoOutcome } from "./src/auto";
 import { keysFor } from "./src/keysText";
+import { siteBook, type PackageStore, type Runner } from "./src/site";
 
-const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys", "score", "publish", "auto"] as const;
+const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys", "score", "publish", "auto", "site"] as const;
 type Verb = (typeof VERBS)[number];
 
 const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --book <config.json> [options]
@@ -64,7 +66,7 @@ const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --boo
   --approve         publish: the owner has read the pack and said yes (the manual band). auto: the same yes, taken only for a book
                     that was waiting for the owner and whose chapters have not changed since that pack; such a run edits nothing
   --keys-ok         auto: the owner has read the keys in the config and vouches for them; no web check
-  --dry-run         publish, auto: everything but git, S3 and the catalog
+  --dry-run         publish, auto: everything but git, S3 and the catalog; site: reports what would change and writes nothing
   auto              one book from its config to a published book, resumable: keys drafted and checked against the book (two checkers
                     with web search and an editor), every chapter, two fix passes, one round of repairs (hooks that share an object,
                     a key that stands out by length), the pack, the score, one round on what the judge failed in the manual band,
@@ -74,7 +76,14 @@ const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --boo
   --no-publish      auto: stop after the score; nothing is published
   --redo            auto: the owner allows the chapters on a failed book's redo list to be written again (once per score)
                     --approve, --keys-ok, --redo and --force are one book's rulings: they do not go with --queue
-Exit codes: 0 ok (score: the auto band; publish, auto: published, dry run or ready), 1 open issues or a usage error (score: manual; publish, auto: needs the owner), 2 score/publish/auto: fail, 3 usage limit, 4 budget.
+  site              after publish: the file edits a checkout of main needs so the public site shows the book, for a session to
+                    commit and open as a pull request (the verb never commits or pushes). Every package in the checkout that
+                    differs from the live store is brought up to the live bytes (a deploy re-uploads them all); a new title is
+                    wired into app/book/data/bookPackages.ts with its approval record; the catalog and chapter metadata are
+                    regenerated. Writes <runDir>/site.json and <runDir>/site-pr.md (the pull request body).
+  --repo <dir>      site: a clean checkout of main to edit (required)
+  --synopsis <t>    site: the authored synopsis for a new title (default: the catalog's generic fallback)
+Exit codes: 0 ok (score: the auto band; publish, auto: published, dry run or ready), 1 open issues or a usage error (score: manual; publish, auto: needs the owner), 2 score/publish/auto: fail (site: a SITE_ refusal), 3 usage limit, 4 budget.
 `;
 
 export interface Io {
@@ -83,6 +92,12 @@ export interface Io {
 }
 
 class UsageError extends Error {}
+
+/** What the site verb reaches outside the process, replaceable so tests run without AWS or the repo's generators. */
+export interface Deps {
+  store?: PackageStore;
+  run?: Runner;
+}
 
 /** A step stops at 2 fix rounds, as in the pipeline's run. */
 const MAX_FIX_ROUNDS = 2;
@@ -507,9 +522,38 @@ async function cmdAutoQueue(queueFile: string, opts: AutoOptions, io: Io): Promi
   return rows.reduce((worst, r) => Math.max(worst, autoCode(r.outcome)), 0);
 }
 
+/** The public-site edits in a checkout of main. A SITE_ refusal is exit 2 with its message; the checkout is left as it was
+ *  unless the message says otherwise. */
+async function cmdSite(ctx: PipelineCtx, opts: { repo: string; synopsis?: string; dryRun: boolean }, deps: Deps, io: Io): Promise<number> {
+  let r;
+  try {
+    r = await siteBook(ctx, { repo: path.resolve(opts.repo), dryRun: opts.dryRun, ...(opts.synopsis !== undefined ? { synopsis: opts.synopsis } : {}), ...deps });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    if (!msg.startsWith("SITE_")) throw e;
+    io.err(`error: ${msg}\n`);
+    return 2;
+  }
+  io.out(`${r.bookId}: site ${r.kind.toUpperCase()}${r.dryRun ? ", dry run" : ""}\n`);
+  for (const s of r.synced) io.out(`  synced ${s.file}: md5 ${s.oldMd5 ?? "(missing)"} -> ${s.newMd5}${s.bookId === r.bookId ? "" : " (revert guard)"}\n`);
+  io.out(`  ${r.equal} package${r.equal === 1 ? "" : "s"} already equal the live store\n`);
+  if (r.repoOnly.length > 0) io.out(`  repo only, left alone: ${r.repoOnly.join(", ")}\n`);
+  io.out(`  synopsis: ${r.synopsis === "authored" ? "authored" : "generic fallback"}; cover: ${r.cover}\n`);
+  if (r.generatorPathFixed) io.out("  generator output path fixed to lib/books-catalog.metadata.json\n");
+  io.out(r.ledgerRecordId ? `  approval record ${r.ledgerRecordId} (supersedes ${r.supersedesRecordId})\n` : "  no approval record (bookPackages.ts unchanged)\n");
+  if (r.drift.metadata.length > 0) io.out(`  catalog rows that also changed: ${r.drift.metadata.join(", ")}\n`);
+  if (r.drift.chapterMeta.length > 0) io.out(`  chapter lists that also changed: ${r.drift.chapterMeta.length}\n`);
+  for (const n of r.notes) io.out(`  note: ${n}\n`);
+  io.out(`  files${r.dryRun ? " that would change" : " changed"}: ${r.filesChanged.length === 0 ? "none" : r.filesChanged.join(" ")}\n`);
+  io.out("  next:\n");
+  for (const c of r.next) io.out(`    ${c}\n`);
+  if (r.prBody) io.out(`${r.prBody}\n`);
+  return 0;
+}
+
 // ---------------------------------------------------------------- main
 
-export async function main(argv: string[], io: Io = { out: (s) => void process.stdout.write(s), err: (s) => void process.stderr.write(s) }): Promise<number> {
+export async function main(argv: string[], io: Io = { out: (s) => void process.stdout.write(s), err: (s) => void process.stderr.write(s) }, deps: Deps = {}): Promise<number> {
   try {
     let parsed;
     try {
@@ -538,6 +582,8 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
           "no-publish": { type: "boolean" },
           redo: { type: "boolean" },
           "keys-ok": { type: "boolean" },
+          repo: { type: "string" },
+          synopsis: { type: "string" },
         },
       });
     } catch (e) {
@@ -562,6 +608,10 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
     }
     if (values.picks !== undefined && verb !== "assemble") throw new UsageError("--picks only goes with the assemble command");
     if (values.exemplar !== undefined && verb !== "book") throw new UsageError("--exemplar only goes with the book command");
+    for (const k of ["repo", "synopsis"] as const) {
+      if (values[k] !== undefined && verb !== "site") throw new UsageError(`--${k} only goes with the site command`);
+    }
+    if (verb === "site" && values.repo === undefined) throw new UsageError("site needs --repo <checkout of main>");
     if (verb === "auto" && values.queue !== undefined) {
       if (values.book) throw new UsageError("auto takes --book or --queue, not both");
       for (const k of ["approve", "keys-ok", "redo", "force"] as const) {
@@ -607,6 +657,8 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
         return await guarded(ctx, () => cmdKeys(ctx, values.book!, force, io));
       case "auto":
         return await guarded(ctx, () => cmdAuto(ctx, values.book!, autoOpts, io));
+      case "site":
+        return await cmdSite(ctx, { repo: values.repo!, synopsis: values.synopsis, dryRun: values["dry-run"] === true }, deps, io);
     }
   } catch (e) {
     if (e instanceof UsageLimitError || e instanceof BudgetError) {
