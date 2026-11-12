@@ -226,9 +226,11 @@ term is there, stop the run (safe; chapters resume from files), fix `bookNames`,
 
 Per chapter: lessons call (lessons already taught, and the exemplar's own people, are off limits), one writer call
 with the house exemplar as the bar and the chapter's plan as the order (the opener and its path, the
-counterintuition frame, the tag and the setting of each example, what makes the third example harder, the order of
-quiz and card forms, the key positions and the kinds of practice cue all come from the chapter number, so chapters
-written side by side cannot land on one shape), 0-call checks (shape, exemplar copy, variety), Opus fact check and Sonnet key solver, one fix
+counterintuition frame, the form of the summary's last sentence, the tag and the setting of each example, where
+the first example stops, what makes the third example harder, the order of quiz and card forms, the key positions,
+the one piece of outside advice the quiz may use as a wrong choice and the kinds of practice cue all come from the
+chapter number, so chapters written side by side cannot land on one shape, and a reader of the whole book does not
+meet the same line under the hook, the same closing slogan or the same stock wrong answer chapter after chapter), 0-call checks (shape, exemplar copy, variety), Opus fact check and Sonnet key solver, one fix
 round, land. At the end the log lists chapters clean or open, then `names used in more than one chapter` (chapters
 written side by side never see each other's names; step 7 renames), `hooks that share words` (two first screens on
 the same object, such as a yoga mat in chapters 2 and 3: give the later chapter a new hook with one `fix
@@ -333,6 +335,7 @@ to `~/cf-wt/v26-plan/status/V1-variants.md` and one to the `v26-campaign` memory
 | a chapter open after two passes | fact-check treadmill on inference sentences | stop; hand the flags over |
 | `names off limits:` lists a book term | `bookNames` incomplete | add it, rerun |
 | every chapter opens the same way | one letter in `approved.summary` | ask the owner for more letters; never `--force` the book |
+| a reader says the chapters feel stamped from one mould | what repeats is usually in the plan's lists (`COUNTER_FRAMES`, `ENDINGS`, `EXAMPLE_STOPS`, `OUTSIDE_FIXES`, `QUIZ_FORMS` in `src/book.ts`) or a tic a prompt rule names | change the list, as a list to pick from; a rule that names the tic to avoid plants it. Two proofs on Tiny Habits (2026-11-12) moved freshness about one point of ten at equal quality; the rest is the app's fixed chapter format |
 | the author or a person from the book's stories is called "they" | the writer guessed a pronoun | one `--issues` round naming the person and the pronoun the keys use; check the keys say "he" or "she" somewhere |
 | `score`: `<KIND> fails in k of N chapters` | a flaw repeated across the book (the repeat rule) | read the evidence in `eval/chNN.eval.json`; one `fix --issues` pass if a small edit fixes it, score again; else hand it to the owner |
 | an aside about the author or a "softer" note in several chapters | the brief tells the writer to go softer | fix the brief's limit line (step 1), `fix --style` on those chapters |

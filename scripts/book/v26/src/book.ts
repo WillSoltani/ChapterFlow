@@ -210,18 +210,55 @@ function paragraphs(t: string): number {
 }
 
 const EVIDENCE_NOTE = `"The book's evidence" is the chapter's story told plainly or, when the chapter has no story of its own, the author's method worked through one everyday case.`;
+/** The line under the hook. Every frame names the belief, the correction and the reason; what moves is the order and the
+ *  build of the sentences, because six frames that all ran belief, then "actually", then reason read as one frame to a
+ *  reader of the whole book (Tiny Habits, 2026-11-11). The first is the house exemplar's own. Each is short and plain on
+ *  purpose: in two proofs the longer or flatter builds (two people compared, a clause in the middle, "is the common
+ *  answer") cost the first screen more with readers of one chapter than they won with readers of the whole book. */
 const COUNTER_FRAMES = [
   `"Many people think [the belief]. Actually [the correction], because [the reason]."`,
-  `"It feels natural to [the belief]. But [the correction], because [the reason]."`,
+  `"People say [the belief]. It sounds right, and it fails for one reason: [the reason]. [The correction]."`,
   `"You have probably been told [the belief]. The trouble is [the reason], so [the correction]."`,
-  `"[The belief, the way people say it]. It sounds right, and it fails for one reason: [the reason]. [The correction]."`,
+  `"Why does [the belief, as something people do] so often fail? [The reason]. [The correction]."`,
+  `"[The correction, said as a plain claim]. Most of us assume the opposite, that [the belief], and it lets us down because [the reason]."`,
+  `"Most of us [act on the belief], and it costs [what it costs]. [The correction] does not, because [the reason]."`,
   `"The usual advice is [the belief]. [The correction] works better, because [the reason]."`,
-  `"We tend to [the belief]. What works is [the correction], since [the reason]."`,
+  `"[The reason]. So [acting on the belief] backfires. [The correction] is what works."`,
+];
+/** The form of a summary's last sentence. It always states the lesson; the form moves, so a book does not close every
+ *  chapter on the same kind of slogan. The first is the house exemplar's own. */
+const ENDINGS = [
+  "a plain instruction, verb first, with what it brings",
+  "what changes once the reader does it, said as a fact about them, not as a command",
+  "a contrast in one sentence: what to stop doing, and what to do in its place",
+  "a plain truth about how people work, in the present tense, that carries the move, with no 'you' and no command",
+  "an if-then in the second person: when the situation comes up, the move, and what it brings",
+];
+/** Where the first example's scenario stops. It is the one example every reader sees, and with no plan for it a book
+ *  ends each of them on a hand that hovers. All four are the moment before the move, reached four ways; stops that
+ *  asked for something else (a number, what a bystander did, what the person hopes) put details in that did no work. */
+const EXAMPLE_STOPS = [
+  "just before the choice, with the person about to act",
+  "on a line someone says to the person",
+  "on someone waiting for the person's answer",
+  "on the question the person is asking themselves, reported without quotation marks",
+];
+/** The one piece of common advice from outside the chapter that a quiz may use as a wrong choice. With none named, every
+ *  quiz of a book reaches for the same two or three, and a reader strikes them out unread by chapter three. */
+const OUTSIDE_FIXES = [
+  "bringing someone else in (to check on you, back you up or decide for you)",
+  "putting it in writing (a note, a list, a reminder, an email)",
+  "asking for the payoff straight away (a reward, a treat, the credit, a raise)",
+  "explaining why it matters, to yourself or to the other person",
+  "more pressure (a stricter rule, a deadline, a firmer word)",
+  "doing more of it, or a bigger version",
+  "waiting for a better moment",
+  "finding out more about it first",
 ];
 /** Where each kind of example is set, so a book does not hold eight evening classes and eight offices. The first entry of
  *  each list is the house exemplar's own setting (chapter 1 of a book lands there). */
 const SETTINGS: Record<string, string[]> = {
-  work: ["an office or a sales team", "a shop, a cafe or a restaurant", "a trade or a workshop (a plumber, a mechanic, a builder)", "a hospital, a clinic or a care home", "freelance work or working from home", "a warehouse, a depot or a job on the road", "a small business from the owner's side", "a school or a nursery from the staff's side"],
+  work: ["an office or a sales team", "a shop, a cafe or a restaurant", "a trade or a workshop (a plumber, a mechanic, a builder)", "a hospital, a clinic or a care home", "freelance work or working from home", "a warehouse, a depot or a job on the road", "a one-person business (a market stall, a van, an online shop)", "a school or a nursery from the staff's side"],
   school: ["a teenager at school", "a university or college student", "an adult in an evening or online course", "a parent helping a child with schoolwork", "a learner with a teacher (music, a sport, driving, a language)", "a trainee or an apprentice"],
   personal: ["family (a parent, a child, a sibling, an aunt)", "money", "health or fitness", "friends", "home and chores", "a hobby", "neighbours or a local group", "a partner"],
 };
@@ -270,7 +307,11 @@ const KEY_ROWS = [
   [1, 2, 0, 1, 0, 2, 0],
   [2, 0, 1, 2, 1, 0, 1],
 ];
-const QUIZ_FORMS = ["what do you do", "spot the trap", "predict what happens", "best reply", "why does this work"];
+/** Six forms for seven questions. Four more were tried in two proofs and are gone: "which comes first" and "what is
+ *  missing" asked for an order or a piece most lessons do not teach (a checker marked two such questions wrong), "who got
+ *  it right" turned into one right-person-wrong-reason trick in chapter after chapter, and "where does it apply" left wrong
+ *  choices a reader could rule out on sight in every chapter that had it. */
+const QUIZ_FORMS = ["what do you do", "spot the trap", "predict what happens", "best reply", "why does this work", "what would you change"];
 const CARD_FORMS = ["situation to move", "why question", "finish the sentence", "what went wrong", "the lesson in the reader's own words"];
 const turn = (n: number, k: number): number => (((n - 1) % k) + k) % k;
 
@@ -281,7 +322,8 @@ export function keyPositions(n: number, questions: number, choices: number): num
 }
 
 /** The plan the writer gets for chapter n: the opener and its path, the length ceilings, and the orders that change from
- *  chapter to chapter (counterintuition frame, example tags, quiz and card forms, key positions). Everything is a
+ *  chapter to chapter (counterintuition frame, the form of the last sentence, where example 1 stops, example tags, quiz
+ *  and card forms, key positions and the one outside fix). Everything is a
  *  function of the chapter number, so chapters written in parallel cannot land on the same shape. */
 export function formText(ex: Exemplar, summaryLabel: string = ex.picks.summary.label, n: number = ex.chapter, shape?: BookConfig["shape"]): string {
   const c = ex.chapterJson;
@@ -314,12 +356,14 @@ export function formText(ex: Exemplar, summaryLabel: string = ex.picks.summary.l
     const stride = tag === "school" ? 5 : tag === "personal" ? 3 : 1;
     return list[(((n - 1) * stride) % list.length + list.length) % list.length]!;
   };
+  // Chapter 1 says who the author is; a reader of the book does not need telling again in every chapter after it.
+  const author = n === 1 ? "Where the author is first named, say who they are in a few words." : "Name the author by full name at first mention, with no job title or credentials (the reader met them in chapter 1); where the author is a person in this chapter's own story, say who they were at that point in it, as for anyone else in the story.";
   const cueKinds = (count: number): string[] => Array.from({ length: count }, (_, i) => CUE_KINDS[(turn(n, CUE_KINDS.length) + i * 2 + (i > 1 ? 1 : 0)) % CUE_KINDS.length]!);
   return [
-    `- summary (hook, counterintuition, the three lengths, tryThisNow, memorable line): ${opener.label}, "${opener.name}": ${opener.rule}${opener.path ? ` Path: ${opener.path} ${EVIDENCE_NOTE}` : ""}${openerNote} Ceilings (a chapter with less to say is shorter): hook 25 words; counterintuition 45 words; ${tier("fastRead")}; ${tier("deepRead")}; ${tier("fullRead")}; tryThisNow 25 words. The hook is built on ${HOOK_KINDS[turn(n, HOOK_KINDS.length)]}. The try-this line asks the reader to ${TRY_KINDS[turn(n, TRY_KINDS.length)]}.`,
+    `- summary (hook, counterintuition, the three lengths, tryThisNow, memorable line): ${opener.label}, "${opener.name}": ${opener.rule}${opener.path ? ` Path: ${opener.path} ${EVIDENCE_NOTE}` : ""}${openerNote} Ceilings (a chapter with less to say is shorter): hook 25 words; counterintuition 45 words; ${tier("fastRead")}; ${tier("deepRead")}; ${tier("fullRead")}; tryThisNow 25 words. The hook is built on ${HOOK_KINDS[turn(n, HOOK_KINDS.length)]}. The try-this line asks the reader to ${TRY_KINDS[turn(n, TRY_KINDS.length)]}. The last sentence of each length states the lesson as ${ENDINGS[turn(n, ENDINGS.length)]}; where the path ends on a question answered, this sentence is the answer, in this form. ${author}`,
     `- counterintuition frame: ${COUNTER_FRAMES[turn(n, COUNTER_FRAMES.length)]}`,
-    `- examples: ${c.examples.length} examples, doing the three jobs the field rules give (the ordinary situation, the fix already tried, the harder situation). Scenario about ${avg(c.examples.map((e) => wordsIn(e.scenario)))} words (70 at most), whatToDo about ${avg(c.examples.map((e) => wordsIn(e.whatToDo)))} (30 at most), whyItMatters about ${avg(c.examples.map((e) => wordsIn(e.whyItMatters)))} (25 at most). Tags and settings for examples 1 to ${tags.length}, in this order: ${tags.map((t) => `${t} (${setting(t)})`).join("; ")}. What makes example ${tags.length} the harder one: ${HARD_CASES[turn(n, HARD_CASES.length)]}.`,
-    `- quiz: ${questions} questions with ${choices} choices each; ${quiz} Key positions (the 0-based index of the right choice) for q1 to q${questions}: ${keyPositions(n, questions, choices).join(", ")}.`,
+    `- examples: ${c.examples.length} examples, doing the three jobs the field rules give (the ordinary situation, the fix already tried, the harder situation). Scenario about ${avg(c.examples.map((e) => wordsIn(e.scenario)))} words (70 at most), whatToDo about ${avg(c.examples.map((e) => wordsIn(e.whatToDo)))} (30 at most), whyItMatters about ${avg(c.examples.map((e) => wordsIn(e.whyItMatters)))} (25 at most). Tags and settings for examples 1 to ${tags.length}, in this order: ${tags.map((t) => `${t} (${setting(t)})`).join("; ")}. Example 1's scenario stops ${EXAMPLE_STOPS[turn(n, EXAMPLE_STOPS.length)]}. What makes example ${tags.length} the harder one: ${HARD_CASES[turn(n, HARD_CASES.length)]}.`,
+    `- quiz: ${questions} questions with ${choices} choices each; ${quiz} Key positions (the 0-based index of the right choice) for q1 to q${questions}: ${keyPositions(n, questions, choices).join(", ")}. Common advice from outside this chapter may be a wrong choice in one question only, and for this chapter it is: ${OUTSIDE_FIXES[turn(n, OUTSIDE_FIXES.length)]}. If that is part of this chapter's own lesson, or fits no question, use no outside advice.`,
     `- review cards: ${c.reviewCards.length} cards; ${cards}`,
     `- practice plan: ${c.implementationPlan.ifThenPlans.length} if-then plans; ${rule("practice")} The kinds of cue for this chapter: ${cueKinds(c.implementationPlan.ifThenPlans.length).join("; ")}.`,
   ].join("\n");

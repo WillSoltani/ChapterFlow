@@ -106,7 +106,7 @@ const SMALL_EDIT = /^(OPENER-hook|COUNTER|TRY|LINES-1|PRACTICE|TEMPT-|QUIZ-|CARD
 
 function judgeFinding(id: string, evidence: string): string {
   const how = id.startsWith("TEMPT-")
-    ? " Rewrite a wrong choice (or the stem, if the stem itself rules a choice out) so that at least one wrong choice is something a sensible person who has not read the chapter might really pick. Keep the right choice right, and keep the three choices one length."
+    ? " Rewrite a wrong choice (or the stem, if the stem itself rules a choice out) so that at least one wrong choice is something a sensible person who has not read the chapter might really pick: sound advice that fits a different case, or this chapter's own move at the wrong moment, in the wrong order or overdone. Keep the right choice right, and keep the three choices one length."
     : id === "TRY"
       ? " Leave one action a reader can do today, with when or where, and nothing else: no reason, no moral."
       : "";
