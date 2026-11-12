@@ -60,6 +60,8 @@ export interface AutoState {
   reasons: string[];
   score?: number;
   band?: BookScore["band"];
+  /** Each chapter's score (0 to 100) from the last scoring: with the average, the whole of what the owner asked to be shown. */
+  chapterScores?: Array<{ chapter: number; score: number }>;
   /** Set while the book waits for the owner's read: a digest of every chapter as the pack showed it. A run that goes
    *  on to edit clears it; a rehearsal (--dry-run) or a publish that fails leaves it, so the yes can be given again. */
   readDigest?: string;
@@ -165,6 +167,7 @@ export async function autoBook(ctx: PipelineCtx, configPath: string, opts: AutoO
     state.reasons = reasons;
     if (outcome === "published") delete state.readDigest;
     save();
+    if (state.chapterScores?.length) say(`${bookId}: chapter scores: ${state.chapterScores.map((c) => `${chapterName(c.chapter)} ${c.score}`).join(", ")}; average ${state.score}`);
     say(`${bookId}: ${outcome.toUpperCase()}${state.score !== undefined ? `, score ${state.score} band ${state.band}` : ""}, $${(state.spend ?? 0).toFixed(2)}${reasons.length > 0 ? `: ${reasons.join("; ")}` : ""}`);
     return state;
   };
@@ -389,6 +392,7 @@ export async function autoBook(ctx: PipelineCtx, configPath: string, opts: AutoO
     }
     state.score = score.score;
     state.band = score.band;
+    state.chapterScores = score.chapters.map((c) => ({ chapter: c.chapter, score: c.score }));
     save();
 
     // 7. What the band allows.

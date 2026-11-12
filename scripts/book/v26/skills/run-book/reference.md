@@ -134,9 +134,12 @@ Each book adds one line to `<file>.report.jsonl` (outcome, score, band, spend, r
 `--keys-ok`, `--redo` and `--force` are refused with `--queue`: each is one book's ruling. Exit: the worst book
 (0, 1, 2, or 4 for a budget).
 
-After `auto` you still owe: the sample read of step 8 (three chapters as the default reader) with the pack sent
-to the owner; what a new book needs before the public grid shows it (step 10); the housekeeping commit and the
-status line (step 10). On `NEEDS-OWNER`, hand over the pack, the score and the reasons, and wait.
+After `auto`: show the owner the score table and the one status line or question that SKILL.md's "What the owner
+sees" gives for the outcome, and nothing else (owner's instruction, 2026-11-12: no pack, no sample read, no flag
+list unless asked). `auto` prints `chapter scores: ch01 97.6, ch02 95.2, ...; average 96.1` just before its
+outcome line. Then, without reporting it, do the housekeeping commit and the status line (step 10). For a title
+the app did not list before, the status line adds that the public site needs the catalog entry and a deploy
+(step 10 says what).
 
 ## 2. Keys, knowledge mode only (1 call, under $1)
 

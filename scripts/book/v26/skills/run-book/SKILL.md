@@ -21,6 +21,40 @@ else runs unattended and resumes from files.
 brief templates, what each check prints, the hand-off and the failure table. Follow it in order; the README is
 background, not the procedure.
 
+## What the owner sees (owner's instruction, 2026-11-12)
+
+The session writes the book itself and shows the owner ONE thing: each chapter's score and the average, then one
+line saying where the book stands. No pack, no sample read, no list of flags, no cost, unless the owner asks.
+
+```
+| Chapter | Score |
+| 1 | 97.6 |
+| ... |
+| Average | 96.1 |
+LIVE in the app, version 7.
+```
+
+The numbers are the `chapter scores:` line `auto` prints just before its outcome (also `chapterScores` in
+`<runDir>/auto.json`). Then, by outcome:
+
+- **PUBLISHED** (band auto, 80 and up): it published itself. The owner's standing instruction is "if good enough
+  it automatically pushes and makes it live", so run `auto` without `--no-publish` and ask nothing. If the app's
+  permission check stops the publish step, ask one yes-or-no question ("Publish <title>? Average 96.1.") and on a
+  yes run the identical command again. Status line: `LIVE in the app, version N.` For a title the app did not
+  list before, add: `Not on the public site yet: that needs the catalog entry and a deploy.`
+- **NEEDS-OWNER, band manual**: show the table and the reason in one line (for example "ch06 is under 70" or
+  "TRY fails in 5 of 8 chapters"), and ask: "Publish anyway?" Yes: `auto --approve`. No: leave it and stop.
+- **NEEDS-OWNER, keys could not be checked**: run the identical command once more. If it holds again, ask: "The
+  chapter notes could not be checked on the web. Write the book from them as they are?" Yes: `auto --keys-ok`.
+- **FAILED, band fail**: show the table and ask: "Rewrite chapters X, Y?" Yes: `auto --redo`, then show the new
+  table. Once; a second fail is reported as it stands.
+- **FAILED on an error, usage limit, budget**: say which in one line and what happens next (the identical command
+  resumes it); no table until there is a score.
+
+Ask with the app's question buttons, one question, two answers. Everything else the steps below call for (the
+housekeeping commit, the status line in the kit, the memory line) is done without telling the owner. The sample
+read of step 8 is not done unless the owner asks for it.
+
 ## The one command (a book with `exemplarFrom`, the default)
 
 `CLI` = `env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npx tsx scripts/book/v26/cli.ts`, run from the worktree.
@@ -35,9 +69,9 @@ line per book in `<file>.report.jsonl`.
 
 Three flags are the owner's rulings and are passed only when the owner gave them, for one book, never with
 `--queue`: `--approve` (yes to the pack they read; taken only while the book waits and the chapters are unchanged),
-`--keys-ok` (they read the notes and vouch for them; skips the web check), `--redo` (rewrite a failed book's redo
-list, once per score). After `auto`: read the sample (step 8), tell the owner what a new book still needs (step
-10), do the housekeeping. reference.md section 1A has the details.
+`--keys-ok` (their word for the notes; skips the web check), `--redo` (rewrite a failed book's redo list, once per
+score). Each is passed only on the owner's yes to the matching question above. After `auto`: show the score
+table, do the housekeeping. reference.md section 1A has the details.
 
 ## The steps by hand (what `auto` runs; for a book that sets a new form, or to repair one stage)
 
@@ -96,6 +130,6 @@ first two chapters.
 
 ## Done
 
-The book is published (`<runDir>/publish.json` records the packageId, band and the live check) or the owner has
-the pack, the score and the reasons it stopped; one dated line is in `~/cf-wt/v26-plan/status/V1-variants.md` and
+The owner has the score table and one status line: the book is live (`<runDir>/publish.json` records the
+packageId, band and the live check), or the one question it is waiting on has been asked; one dated line is in `~/cf-wt/v26-plan/status/V1-variants.md` and
 in the `v26-campaign` memory file; the config (with keys), the brief and the package are committed on `v26/variants`.
