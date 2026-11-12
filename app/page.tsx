@@ -15,6 +15,8 @@ import { RecallClose } from "@/components/landing/recall/RecallClose";
 import { LandingMotionProvider } from "@/components/landing/LandingMotionProvider";
 import { PublicSiteShell } from "@/components/marketing/PublicSiteShell";
 import { BookReelLanding } from "@/components/film/BookReelLanding";
+import { SkipFilmLink } from "@/components/film/SkipFilmLink";
+import { SKIP_LINK_CLASS, SKIP_LINK_STYLE } from "@/components/landing/recall/skip-link";
 import { parseFrameParam } from "@/components/film/scrub";
 import { landingFontVariables } from "./_fonts/landing";
 
@@ -98,7 +100,9 @@ export default async function Home({
 
   return (
     <LandingMotionProvider>
-      <PublicSiteShell>
+      {/* "Skip the film": the second tab stop, after "Skip to main content"
+          (#main holds the film, so that one does not skip it). */}
+      <PublicSiteShell skipLinks={<SkipFilmLink className={SKIP_LINK_CLASS} style={SKIP_LINK_STYLE} />}>
         <script
           type="application/ld+json"
           nonce={nonce}

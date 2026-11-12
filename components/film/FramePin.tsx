@@ -14,10 +14,14 @@
  * last beat of a segment that hands off to body content.
  */
 
-import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
+import { Children, isValidElement, useContext, useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import { useSegmentStore } from "./FilmSegment";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { PIN_DEMOTE_MS, pinStyle } from "./layers";
+import { PinChainContext, PinCollectContext } from "./pin-registry";
+import { pin, pinHiddenAtStart, pinOpacity } from "./pins";
+
+export { pinHiddenAtStart, pinOpacity } from "./pins";
 
 type Props = {
   from: number;
@@ -58,31 +62,6 @@ type Props = {
   ctaOnAt?: number;
 };
 
-/** smoothstep: zero velocity at both ends so entrances/exits never "pop". */
-const smooth = (t: number) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t));
-
-export function pinOpacity(frame: number, from: number, to: number, ease: number, hold: boolean): number {
-  // A pin that starts at frame 0 is fully visible at rest (above-the-fold copy
-  // must paint on first frame for LCP / no-scroll users).
-  if (from <= 0 && frame <= 0) return 1;
-  if (frame < from) return 0;
-  if (from > 0 && frame < from + ease) return smooth((frame - from) / ease);
-  if (hold) return 1;
-  if (frame > to) return 0;
-  if (frame > to - ease) return smooth((to - frame) / ease);
-  return 1;
-}
-
-/**
- * True when the pin is not on at its chapter's first frame (frame 0, where
- * every chapter's store starts). Such pins are marked `data-frame-later` in
- * the server HTML and kept hidden by CSS until the reel arms (globals.css,
- * Phase 6), so the copy of later frames never piles up before hydration.
- */
-export function pinHiddenAtStart(from: number, to: number, ease: number, hold: boolean): boolean {
-  return pinOpacity(0, from, to, Math.max(1, ease), hold) === 0;
-}
-
 export function FramePin({
   from,
   to,
@@ -102,6 +81,11 @@ export function FramePin({
   const ref = useRef<HTMLElement | null>(null);
   const store = useSegmentStore();
   const reduced = usePrefersReducedMotion();
+  // Tests only (pins.test.tsx): report this pin with the scrims around it.
+  const collect = useContext(PinCollectContext);
+  const outer = useContext(PinChainContext);
+  const chain = collect ? [...outer, pin(from, to, { ease, hold })] : null;
+  if (collect && chain) collect.pin(store.id, chain, textOf(children));
 
   // Server HTML carries no inline opacity: crawlers and no-JS readers get all
   // the copy. A pin that is off at its chapter's first frame is marked
@@ -157,11 +141,13 @@ export function FramePin({
         lastT = s.transform;
         el.style.transform = s.transform;
       }
+      // A pin that is off is hidden by its opacity only: it stays in the
+      // accessibility tree and its links in the tab order (keyboard focus
+      // brings it on, FilmSegment). Its links stop taking pointer events.
       const hidden = s.opacity === "0";
       if (hidden !== lastHidden) {
         lastHidden = hidden;
-        el.style.visibility = hidden ? "hidden" : "visible";
-        el.setAttribute("aria-hidden", hidden ? "true" : "false");
+        if (interactive) el.style.pointerEvents = hidden ? "none" : "";
       }
       // The first write arms the pin at mount: nothing is moving yet.
       if (first) {
@@ -185,7 +171,14 @@ export function FramePin({
       off();
       demote();
     };
-  }, [store, from, to, ease, hold, y, reduced, scrim, startCta, ctaOnAt]);
+  }, [store, from, to, ease, hold, y, reduced, scrim, startCta, ctaOnAt, interactive]);
+
+  // The chapter reads a focused element's pins (FilmSegment, keyboard focus).
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    return store.registerPin(el, pin(from, to, { ease, hold }));
+  }, [store, from, to, ease, hold]);
 
   // data-cta-off is never server-rendered: only the effect above, which
   // drives the pin's opacity, may claim its button is not shown. If it never
@@ -203,7 +196,17 @@ export function FramePin({
       className={`${interactive ? "pointer-events-auto" : ""} ${className ?? ""}`}
       style={style}
     >
-      {children}
+      {chain && scrim ? <PinChainContext.Provider value={chain}>{children}</PinChainContext.Provider> : children}
     </Tag>
   );
+}
+
+/** The text of a pin's children (test reports only). */
+function textOf(node: ReactNode): string {
+  let out = "";
+  Children.forEach(node, (c) => {
+    if (typeof c === "string" || typeof c === "number") out += c;
+    else if (isValidElement<{ children?: ReactNode }>(c)) out += textOf(c.props.children);
+  });
+  return out.replace(/\s+/g, " ").trim().slice(0, 50);
 }

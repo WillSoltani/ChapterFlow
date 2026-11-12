@@ -64,6 +64,11 @@ function getSnapshot(): boolean {
   );
 }
 
+/** The motion gate read now, outside React (an event handler); false on the server. */
+export function readReducedMotion(): boolean {
+  return typeof window !== "undefined" && getSnapshot();
+}
+
 function getServerSnapshot(): boolean {
   return false;
 }

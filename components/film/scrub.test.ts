@@ -13,10 +13,11 @@ import {
   framePlacement,
   holdBreathClock,
   breathRestOffset,
+  focusArrived,
   isScrollKey,
+  pageKeyDirection,
   parseSmoothParam,
   pickActive,
-  quantise,
   reelEndScrollY,
   scrollInputAt,
   smoothFrameStep,
@@ -92,12 +93,9 @@ test("pickActive: empty → null", () => {
   assert.equal(pickActive([], [], VH), null);
 });
 
-test("clamp01 / quantise / frameAt", () => {
+test("clamp01 / frameAt", () => {
   assert.equal(clamp01(-1), 0);
   assert.equal(clamp01(2), 1);
-  assert.equal(quantise(0.49, 5), 0.4);
-  assert.equal(quantise(0.51, 5), 0.6);
-  assert.equal(quantise(0.3, 0), 0.3);
   assert.equal(frameAt(0, 240), 0);
   assert.equal(frameAt(1, 240), 239);
   assert.equal(frameAt(0.5, 240), 120);
@@ -378,6 +376,11 @@ test("smoothingMs: wheel, key and other glide over 90 ms; touch is short", () =>
   assert.equal(smoothingMs("touch"), 35);
 });
 
+test("smoothingMs: a keyboard focus jump snaps (Phase 8)", () => {
+  assert.equal(smoothingMs("focus"), 0);
+  assert.equal(smoothingMs("focus", 120), 0);
+});
+
 test("smoothingMs: the ?smooth= override replaces the touch value only", () => {
   assert.equal(smoothingMs("touch", 0), 0);
   assert.equal(smoothingMs("touch", 120), 120);
@@ -421,6 +424,9 @@ test("scrollInputAt: a wheel or key input older than 400 ms at a scroll is 'othe
   // a fling keeps scrolling long after the finger lifts
   assert.equal(scrollInputAt("touch", 1000, 4000), "touch");
   assert.equal(scrollInputAt("other", 1000, 1001), "other");
+  // a focus jump scrolls at once; a later scroll is not the focus's
+  assert.equal(scrollInputAt("focus", 1000, 1010), "focus");
+  assert.equal(scrollInputAt("focus", 1000, 1401), "other");
 });
 
 test("canvasHiddenFrom: the canvas may stop compositing once the body's translucent top has scrolled past", () => {
@@ -499,4 +505,23 @@ test("variantPlacement with a framing amount: 100 gives today's rectangle exactl
 test("variantPlacement: the framing amount never touches a variant without a band (landscape frames)", () => {
   const landscape = { width: 1920, height: 1080 };
   for (const a of [0, 25, 50, 75]) assert.deepEqual(variantPlacement(1688, 780, landscape, 1920, 1080, 0.01, 4, a), framePlacement(1688, 780, 1920, 1080, 0.01, 4));
+});
+
+test("focusArrived: focus moved from another element or onto a new one; not the window regaining focus", () => {
+  const a = {};
+  const b = {};
+  assert.equal(focusArrived(a, null, null), true, "first keyboard focus");
+  assert.equal(focusArrived(a, b, b), true, "Tab from b");
+  assert.equal(focusArrived(a, b, a), true, "back to a from b");
+  assert.equal(focusArrived(a, null, a), false, "window or tab focus restored on a");
+  assert.equal(focusArrived(a, null, b), true, "after a pointer press cleared nothing else");
+});
+
+test("pageKeyDirection: Space and PageDown down, Shift+Space and PageUp up", () => {
+  assert.equal(pageKeyDirection("PageDown", false), 1);
+  assert.equal(pageKeyDirection("PageUp", false), -1);
+  assert.equal(pageKeyDirection(" ", false), 1);
+  assert.equal(pageKeyDirection(" ", true), -1);
+  assert.equal(pageKeyDirection("Spacebar", false), 1);
+  for (const k of ["ArrowDown", "End", "Home", "Tab", "a"]) assert.equal(pageKeyDirection(k, false), null, k);
 });

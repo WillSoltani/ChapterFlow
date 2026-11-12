@@ -65,6 +65,27 @@ test("every later pin is shown by the readable page; the Hall wall prose is not"
   assert.equal(decl(later).get("visibility"), "visible");
 });
 
+test("every pin and scrim is shown in full by the readable page, over the inline styles the film code may have written", () => {
+  const later = READABLE_RULES.find((r) => r.name === "film-ro-later")!;
+  const first = READABLE_RULES.find((r) => r.name === "film-ro-pin")!;
+  const pins = doc.querySelectorAll("[data-frame-pin], [data-frame-scrim]");
+  assert.ok(pins.length > 40);
+  for (const el of pins) {
+    const r = el.hasAttribute("data-frame-later") ? later : first;
+    assert.equal(matchesRule(el, r), true, (el.textContent ?? "").slice(0, 40));
+  }
+  for (const r of [later, first]) {
+    const d = decl(r);
+    assert.equal(d.get("visibility"), "visible");
+    assert.equal(d.get("opacity"), "1");
+    assert.equal(d.get("transform"), "none");
+  }
+  // The pre-hydration hold (the backwards fill) hides only later pins.
+  const css = failsafeCss();
+  assert.match(css, /@keyframes film-ro-later\{from\{visibility:hidden\}/);
+  assert.doesNotMatch(css, /@keyframes film-ro-pin\{from/);
+});
+
 test("segments and stages lose their scroll length; the canvas layer scrolls away", () => {
   for (const seg of doc.querySelectorAll("[data-film-segment]")) {
     const r = READABLE_RULES.filter((x) => matchesRule(seg, x));
@@ -87,7 +108,7 @@ test("failsafe sheet: one zero-length animation per rule after FAILSAFE_MS, late
     assert.ok(css.includes(`animation:${r.name} 0s linear ${FAILSAFE_MS}ms both`), r.name);
     assert.ok(css.includes(`@keyframes ${r.name}{`), r.name);
   }
-  assert.ok(css.includes("@keyframes film-ro-later{from{visibility:hidden}to{visibility:visible}}"));
+  assert.ok(css.includes("@keyframes film-ro-later{from{visibility:hidden}to{visibility:visible;opacity:1;transform:none;pointer-events:auto}}"));
   // Scoped to an unarmed reel; the canvas layer through :has() on its sibling.
   assert.ok(css.includes("[data-film-reel]:not([data-film-armed]) [data-frame-later]:not(.hall-text){"));
   assert.ok(css.includes(".film-canvas:has(~ [data-film-reel]:not([data-film-armed])){"));

@@ -38,6 +38,13 @@ export function key(film: string, name: string): number {
   return k;
 }
 
+/** The film's named keyframes (frame indices), in timeline order. */
+export function filmKeys(film: string): number[] {
+  const f = timeline.films[film];
+  if (!f) throw new Error(`timeline: unknown film "${film}"`);
+  return Object.values(f.keys);
+}
+
 /** Frame range [from, to] relative to a key, clamped to the film. */
 export function range(film: string, name: string, before = 0, after = 24): [number, number] {
   const k = key(film, name);

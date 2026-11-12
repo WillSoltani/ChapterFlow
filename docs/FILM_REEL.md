@@ -329,12 +329,13 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     `?hud=1` third line: `pack 42% · skeleton done · decode 14.4 ms in
     worker`, or `frames · decode 9.0 ms on page`.
 - Breath: `±amp` slow sinusoidal zoom while held (off under reduced motion).
-- Reduced motion (OS or in-app toggle): progress quantised to `reducedSteps` (5).
+- Reduced motion (OS or in-app toggle): only the chapter's stops are drawn,
+  and the chapter is shorter (see "Accessibility and reduced motion (Phase 8)").
 - `<html data-reel-chrome="film|body" data-reel-section="…">` + `cf-reel-chrome`
   CustomEvent for nav/scrim restyling.
 - FramePin: SSR renders copy VISIBLE; JS arms + scrubs after mount (crawler-safe).
   A pin with `from=0` is fully visible at frame 0 (LCP).
-- Keyboard focus inside a stage snaps the segment to the top.
+- Keyboard focus inside a stage brings the focused pin on (Phase 8, below).
 - Smoothing by input (`smoothingMs` in `scrub.ts`, called by the loop). The
   scrub chases the target frame with an exponential glide whose time constant
   depends on the last scroll input: **wheel 90 ms, key 90 ms, other 90 ms,
@@ -795,6 +796,175 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
 - **Owner sheets:** `node scripts/film/layout-sheets.mjs` (local dev server)
   writes `~/cf-wt/p7-sheets/landscape-phone.png` (844 × 390, 667 × 375) and
   `small-phone.png` (360 × 740, 320 × 568): every chapter's main moments.
+
+### Accessibility and reduced motion (Phase 8)
+
+- **Reduced-motion stops** (`pins.ts`): under either signal (the OS setting
+  or `html[data-motion="reduced"]`, `usePrefersReducedMotion`) a chapter no
+  longer cuts its progress into 5 equal slices (two lines were never shown:
+  the Rooms ledes and the Day labels). `reducedStops(count, keys, pins)`
+  returns its stop frames: one stop inside each named beat's span (from a
+  key to the frame before the next), placed where the most pins not yet seen
+  are fully on, then where the fewest pins are caught mid-fade, then nearest
+  the key; pins no beat's stop shows get the fewest extra stops that do
+  (interval stabbing). A pin counts with its scrims (a pin inside a fading
+  scrim is fully on only when both are). The chapters keep every pin's
+  timing in one object that both the JSX and `reducedStops` read; a pin that
+  is never fully on throws. A later chapter's stops start after its dissolve
+  (`start`: during the first `dissolveIn` frames the canvas still shows the
+  previous film's last frame), so every stop draws the chapter's own film. `pins.test.tsx` renders the real landing with a
+  render-time collector (`pin-registry.ts`: FramePin and FilmSegment report
+  only when a collector is provided) and checks every pin of every chapter
+  is fully on at a stop, every beat has a stop, no stop is spare, the hero
+  starts on frame 0 (its HTML poster), no stop falls inside a dissolve and
+  every chapter ends on its last frame. Today: hero 0, 28, 136, 156, 204,
+  240; Summary 14, 62, 90, 142, 240; Examples 97, 107, 176, 270, 278; Quiz
+  14, 22, 110, 118, 195, 258, 280; Spaced review 14, 56, 104, 141, 169, 204,
+  240; Library 14, 54, 106, 240; Home 12, 76, 105, 136, 168 (0-based;
+  `data-film-stops` on each section).
+- **Only stop frames, no glide, no breath:** the loop maps the chapter's
+  progress to a stop with `reducedStopIndex` (equal steps of the pinned
+  travel, each centred on its own scroll position; a later chapter's
+  slide-in belongs to its first stop) from the cached geometry, and draws
+  that stop's frame with a snap.
+- **Shorter reel:** a chapter is one stage plus one 40svh step per stop after
+  the first (`REDUCED_STEP_SVH`, `reducedHeightSvh`), not `pace × 100svh`.
+  It is CSS (`[data-film-segment]` from `--film-pace` / `--film-stops`, with
+  `@media (prefers-reduced-motion: reduce)` and `html[data-motion="reduced"]`
+  rules; `first-paint.test.ts` checks the formula), so it holds from the
+  first paint for the OS setting and switches at once with the in-app
+  toggle (the segment has `transition-property: none`: the reduced-motion
+  rules' 0.01ms transition of "all" would otherwise hold the old height for
+  a frame). The readable page's `height: auto` still wins over both.
+- **Switching the mode keeps the visitor's place:** every chapter's height
+  changes with the mode, so the same scroll position would fall in another
+  chapter. The loop subscribes to the motion gate (`subscribeReducedMotion`:
+  the media query's change event and the attribute's MutationObserver both
+  run before the frame's rAF callbacks and layout). It takes the place from
+  the geometry cached under the old mode (`reelAnchor` in `scrub.ts`: above
+  the reel, below its end, or a chapter and the frame it shows), measures the
+  new geometry and scrolls there (`anchorScroll`): the stop nearest that
+  frame under reduced motion, that frame under normal motion, the same
+  offset in a slide-in, the same distance below the reel's end (the body
+  stays put on screen).
+- **Keyboard paging steps stop by stop:** under reduced motion Space and
+  PageDown (Shift+Space and PageUp back) go to the adjacent stop
+  (`pageStop` over `reelStopYs`, from the stop on screen, `shownStop`)
+  instead of the browser's page, which is longer than a 40svh step and
+  would pass a stop and the copy shown only there. From a slide-in the key
+  first pins the stop on screen. Past the reel's ends, or more than 1.5
+  stages from a stop (reading the body), the browser pages as usual. Not
+  while typing in a field, and Space on a button or other control still
+  presses it. Arrows (40 px) and the wheel step through every stop anyway.
+- **Scroll targets stay inside the travel:** keyboard focus and paging
+  scroll to `reducedStopTarget`, which keeps a chapter's last stop 2 px
+  (`STOP_EDGE_PX`) inside the end of its pinned travel: exactly at the end
+  the next chapter's box touches the viewport, and a browser rounding the
+  fractional scroll up would make that chapter active and draw its first
+  stop behind this chapter's copy. Reel length: 23.2 screens normal,
+  19.8 under reduced motion (was 23.2 in both). 39 stops in all.
+- **Skip the film** (`SkipFilmLink.tsx`): `#main` holds the film, so "Skip
+  to main content" does not skip it. The landing passes a "Skip the film"
+  link to the nav (`PublicSiteShell` / `RecallNav` `skipLinks`), right after
+  "Skip to main content" and styled like it (`skip-link.ts`): the second tab
+  stop, off screen until focused. Activating it scrolls to the first content
+  after the reel (the body wrapper, `#after-film`, `tabIndex=-1`) and moves
+  focus there; without script the anchor scrolls. Under reduced motion the
+  same link also shows as a ghost button among the hero's buttons
+  (`.film-skip-reduced`, CSS only).
+- **Pins stay in the tree:** a pin that is off is hidden by its opacity only
+  (no `visibility: hidden`, no `aria-hidden`), so chapter headings and film
+  links are in the accessibility tree and the tab order at any frame; an off
+  interactive pin gets `pointer-events: none` so an invisible button never
+  takes a tap.
+- **Keyboard focus drives the film** (`FilmSegment` focus handler, layout
+  read in the handler only): when keyboard focus (`:focus-visible`) lands on
+  an element whose pin chain is not fully on, or whose stage is not pinned,
+  the window scrolls at once to the nearest frame where the chain is fully
+  on with the stage pinned (`focusFrame` / `frameScroll`), or under reduced
+  motion to the nearest stop where it is. The loop marks the input `focus`
+  (a capture `focusin` listener) and snaps (`smoothingMs("focus")` = 0), so
+  the element is fully on in the next frame. The browser's own focus scroll
+  then finds it in view. Focus from a click or tap is not `:focus-visible`
+  and never moves the page. Nor does focus coming back to the element that
+  held it when the window or tab regains focus (the reader may have scrolled
+  on with focus left on a link): only focus that arrived moves the film
+  (`focusArrived`: it came from another element, or lands on a different
+  element than the one that last moved the film; a pointer press clears
+  that). Tab order is document order; nothing traps focus.
+- **Forced colors:** `.film-btn:focus-visible` draws its ring as a
+  box-shadow (dropped in forced-colors mode) and sets `outline: none`, which
+  outranks the blanket forced-colors `:focus-visible` outline; a
+  forced-colors rule right after it restores `outline: 2px solid Highlight`.
+- **Structure:** one `h1` (the hero), the six chapter headings `h2` in order,
+  no skipped level; the canvas layer (canvas and HTML poster), the HUD and
+  the Hall wall prose are `aria-hidden`; landmarks unchanged.
+- **Contrast gate** (`film-a11y.spec.ts`): every run of copy in every pin
+  (labels, ledes, headlines, ghost buttons) at the moments it is fully on
+  (normal motion: 17 positions per chapter plus each stop frame shown with
+  the stage pinned; reduced motion: every stop), on 390 × 844 and
+  1440 × 900: hide the ink (text, icons, shadows; scrims, boxes and pills
+  stay), screenshot, and over the text's own line boxes compute per pixel the
+  WCAG ratio between the text colour composited at its effective opacity and
+  that pixel; the result is the worst 10 %. Thresholds: 4.5:1, or 3:1 for
+  large text (24 px, or 18.66 px bold). Solid start buttons are judged by
+  their own colours (8.34:1). Focus rings (accent over a page-colour ring):
+  the accent against the page colour, 8.34:1 (3:1 required). Ghost buttons
+  draw no boundary (text only), so their text is what is judged.
+  Fixed in Phase 8, with the means the design has: the City and Home stages
+  use the hero's denser halo (`data-halo="dense"`). City "Browse all books"
+  ghost button 3.31 → 5.27 (1440 × 900), 3.35 → 5.31 (390 × 844); Home
+  headline 2.72 → 4.43 (1440 × 900, large text); worst values over all the
+  measured moments, normal motion. Everything else already passed.
+- **Exempt:** the Hall wall prose from the 11 px size check (`film-audit`):
+  decoration hidden from assistive technology whose 3D projection draws its
+  far end below 11 px on short portrait phones; each audit run checks it is
+  still `aria-hidden`. The contrast gate measures pins only (the wall prose
+  is decoration, the nav is outside the reel).
+- **Readable failsafe (carried over from Phase 6):** when the film code
+  loads and the pins' effects run but the reel never arms, the failsafe used
+  to force visibility only, so pins with an inline opacity of 0 stayed
+  invisible. The readable rules now set `visibility`, `opacity: 1`,
+  `transform: none` and `pointer-events: auto` on every pin and scrim (an
+  animation's value wins over a normal inline style); `film-first-paint`
+  reproduces it with arming prevented. Side effect, by design: on the
+  no-script page and on the failsafe page the labels (`.film-label`,
+  opacity 0.72 in CSS) and ledes (`.film-lede`, 0.88) now show at full
+  opacity, as they already do on the armed page, where each pin's inline
+  opacity replaces the class value (the contrast gate measures them so).
+- **Gates:** `e2e/film-a11y.spec.ts` (RUN_AUDIT=1, in both `test:film`
+  scripts): reduced motion through the OS setting and the in-app attribute
+  on both viewports (every pin seen fully on at a stop, only stop frames
+  drawn between stops and in the slide-ins, the film-audit checks at every
+  stop, the reel length); reduced motion around the film (the in-app toggle
+  at runtime, anchors land on a chapter's first stop, one start button per
+  stop, the canvas hidden under the body); keyboard Tab to the footer and
+  Shift+Tab back in both modes (focused film elements at effective opacity
+  ≥ 0.99, in the viewport, clear of the nav, with a focus ring; document
+  order; "Skip the film" within the first three stops lands after the reel);
+  pointer focus (a click on a visible button, one mid-fade included, never
+  scrolls); focus restored with the window never scrolls; keyboard paging
+  under reduced motion (PageDown / Space down and PageUp / Shift+Space up
+  visit every stop of the reel in order, both viewports); forced colors (a
+  focused film button keeps an outline); the in-app toggle at runtime keeps
+  the visitor in the same chapter at the nearest stop and back, and the body
+  in place below the reel; structure from the accessibility tree; contrast
+  as above. On WebKit the keyboard tests press Option+Tab (Alt+Tab): Safari's
+  plain Tab moves between form fields only unless "Press Tab to highlight
+  each item" is on.
+  `film-truth`, `film-reel` and `tier-parity.mjs` read reduced-motion
+  positions from `data-film-stops`; `film-truth` picks the hero's stops
+  before, inside (frames 150 to 200) and after its portrait ramp by frame,
+  so it fails loudly if no stop falls inside the ramp.
+- **Owner sheets:** `node scripts/film/a11y-sheets.mjs` (local dev server)
+  writes `~/cf-wt/p8-sheets/reduced-motion.png` (every stop of every chapter
+  under reduced motion, 390 × 844 and 1440 × 900, labelled with the stop
+  frame) and `contrast-changes.png` (each element restyled for contrast,
+  before and after, with both ratios).
+- **Known limit:** a fast touch fling or a scrollbar drag can still pass a
+  stop without coming to rest on it (the browser drives that scroll); the
+  stop is shown on the way and every stop is one short swipe or a paging
+  key away.
 
 ## Render spec
 

@@ -37,6 +37,9 @@ import { PROD_E2E_HEADERS } from "../playwright.config";
  *      follows scroll, nothing hidden at the end), film requests stop, no
  *      probe, no page error.
  *   9. No 2D context: the same static-mode assertions.
+ *   Phase 8: scripts load and the pins' effects run, but the reel never
+ *      arms: after the failsafe every pin is visible at full opacity (the
+ *      readable layout wins over the pins' inline styles).
  *  10. Recovery (Phase 6b), no reload in any of them, no page error:
  *      (a) every film request aborted for the first 6 s, then let through:
  *          the film appears (real frames drawn, data-film-static gone, the
@@ -648,6 +651,42 @@ async function waitForFilm(page: Page, deadline: number): Promise<number> {
 
 test.describe("film first paint (audit)", () => {
   test.skip(!AUDIT, "opt-in: RUN_AUDIT=1");
+
+  // Phase 8 (carried over from the Phase 6 review): the film code loads and
+  // the pins' effects run (inline opacity 0 on every pin that is off), but
+  // the reel never arms. The readable layout must win over those inline
+  // styles: every pin shows, fully, after the failsafe.
+  test("scripts load but the reel never arms: after the failsafe every pin is fully visible over its inline styles", async ({ browser }) => {
+    test.setTimeout(90_000);
+    const ctx = await newContext(browser, PHONE);
+    // Arming prevented: the attribute is taken off as soon as it is set
+    // (a MutationObserver callback runs before the next style recalc).
+    await ctx.addInitScript(() => {
+      new MutationObserver((records) => {
+        for (const r of records) if (r.target instanceof Element && r.target.hasAttribute("data-film-armed")) r.target.removeAttribute("data-film-armed");
+      }).observe(document, { subtree: true, attributes: true, attributeFilter: ["data-film-armed"] });
+    });
+    const page = await ctx.newPage();
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    const t0 = Date.now();
+    // The effects ran: later pins carry an inline opacity of 0.
+    await page.waitForFunction(() => [...document.querySelectorAll<HTMLElement>("[data-frame-later][data-frame-pin]")].some((el) => el.style.opacity === "0"));
+    expect(await page.locator("[data-film-reel][data-film-armed]").count(), "the reel is not armed").toBe(0);
+    expect(Date.now() - t0, "still before the failsafe").toBeLessThan(FAILSAFE_MS - 1000);
+    await page.waitForTimeout(Math.max(0, FAILSAFE_MS + 600 - (Date.now() - t0)));
+    // Scroll through the page: the loop keeps writing pins as it goes.
+    const end = await page.evaluate(() => document.documentElement.scrollHeight);
+    for (let y = 0; y < end; y += 600) {
+      await page.evaluate((y) => window.scrollTo({ top: y, behavior: "instant" as ScrollBehavior }), y);
+      await page.waitForTimeout(60);
+    }
+    const pins = await reelPins(page);
+    const inline = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>("[data-frame-pin]")].filter((el) => el.style.opacity === "0").length);
+    expect(inline, "pins with inline opacity 0 (the case is reproduced)").toBeGreaterThan(0);
+    expect(pins.filter((p) => p.visibility !== "visible" || p.opacity < 0.99).map((p) => `${p.seg}: "${p.text}" ${p.visibility} ${p.opacity.toFixed(2)}`)).toEqual([]);
+    expect(await overlappingPins(page, null), "overlap after the failsafe").toEqual([]);
+    await ctx.close();
+  });
 
   for (const [w, h, dpr] of [
     [390, 844, 3],

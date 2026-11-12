@@ -3,11 +3,14 @@
  */
 
 import type { BandRect, FilmVariant, FrameSize, SegmentRegistration } from "./types";
+import { frameScroll, REDUCED_STEP_SVH, reducedStopIndex, reducedStopTarget, STOP_EDGE_PX } from "./pins";
 
 export type ActivePick = {
   seg: SegmentRegistration;
   /** 0..1 scroll progress through the segment's sticky travel. */
   progress: number;
+  /** The segment's position in `segs` (its rect's index). */
+  slot: number;
 };
 
 /**
@@ -39,27 +42,21 @@ export function pickActive(
     if (!seg || !rect) break;
     const { top, height } = rect;
     const travel = height - vh;
-    if (i === 0 && top > 0) return { seg, progress: 0 };
+    if (i === 0 && top > 0) return { seg, progress: 0, slot: 0 };
     if (top >= vh) break;
     if (top + height <= 0) {
-      pick = { seg, progress: 1 };
+      pick = { seg, progress: 1, slot: i };
       continue;
     }
     const lead = i === 0 ? 0 : vh;
     const span = travel + lead;
-    pick = { seg, progress: span > 0 ? clamp01((lead - top) / span) || 0 : 1 };
+    pick = { seg, progress: span > 0 ? clamp01((lead - top) / span) || 0 : 1, slot: i };
   }
   return pick;
 }
 
 export function clamp01(n: number): number {
   return n < 0 ? 0 : n > 1 ? 1 : n;
-}
-
-/** Quantise progress to N discrete steps (reduced motion). */
-export function quantise(p: number, steps: number): number {
-  if (steps <= 0) return p;
-  return Math.round(p * steps) / steps;
 }
 
 export function frameAt(p: number, count: number): number {
@@ -251,8 +248,12 @@ export function reelEndScrollY(top: number, height: number, stage: number): numb
   return top + height - stage;
 }
 
-/** The kind of the last scroll input (use-scrub-loop tracks it with passive listeners). */
-export type ScrollInput = "wheel" | "touch" | "key" | "other";
+/**
+ * The kind of the last scroll input (use-scrub-loop tracks it with passive
+ * listeners). "focus": keyboard focus moved into the reel, which may scroll
+ * the page to bring the focused pin on (FilmSegment).
+ */
+export type ScrollInput = "wheel" | "touch" | "key" | "focus" | "other";
 
 /** Default touch smoothing (ms); ?smooth=<ms> replaces it (parseSmoothParam). */
 export const TOUCH_SMOOTHING_MS = 35;
@@ -267,6 +268,9 @@ export const TOUCH_SMOOTHING_MS = 35;
  */
 export function smoothingMs(input: ScrollInput, touchMs: number = TOUCH_SMOOTHING_MS): number {
   if (input === "touch") return touchMs;
+  // A focus jump lands on the focused pin's frame at once (Phase 8: the
+  // focused element is on screen, fully on, in the next frame).
+  if (input === "focus") return 0;
   return 90;
 }
 
@@ -302,13 +306,13 @@ const INPUT_STALE_MS = 400;
 
 /**
  * The input a scroll at `now` is attributed to, given the last input kind and
- * when it arrived. A wheel or key input older than 400 ms does not explain a
+ * when it arrived. A wheel, key or focus input older than 400 ms does not explain a
  * scroll (a programmatic scroll, an anchor jump, a scrollbar drag): "other".
  * Touch holds until another input: a fling scrolls for seconds after the
  * finger lifts.
  */
 export function scrollInputAt(kind: ScrollInput, inputAt: number, now: number): ScrollInput {
-  if ((kind === "wheel" || kind === "key") && now - inputAt > INPUT_STALE_MS) return "other";
+  if ((kind === "wheel" || kind === "key" || kind === "focus") && now - inputAt > INPUT_STALE_MS) return "other";
   return kind;
 }
 
@@ -327,4 +331,160 @@ export const BODY_OPAQUE_STAGES = 0.3;
  */
 export function canvasHiddenFrom(top: number, height: number, stage: number): number {
   return top + height + BODY_OPAQUE_STAGES * stage;
+}
+
+/**
+ * Keyboard focus that ARRIVED at `target`: it came from another element
+ * (`related`, the event's relatedTarget), or `target` is not the element whose
+ * keyboard focus last moved the film (`last`, cleared by a pointer press).
+ * False when the window or tab gets focus back: the browser fires focus again
+ * on the element that held it, with no relatedTarget, and the reader may have
+ * scrolled far from it since (FilmSegment must not jump back).
+ */
+export function focusArrived(target: unknown, related: unknown, last: unknown): boolean {
+  return target !== last || related != null;
+}
+
+/**
+ * Reduced motion, keyboard paging: the direction of a paging key (Space and
+ * PageDown down, Shift+Space and PageUp up), null for any other key.
+ */
+export function pageKeyDirection(key: string, shift: boolean): 1 | -1 | null {
+  if (key === "PageDown") return 1;
+  if (key === "PageUp") return -1;
+  if (key === " " || key === "Spacebar") return shift ? -1 : 1;
+  return null;
+}
+
+/**
+ * Document scroll positions of every reduced-motion stop of the reel, in reel
+ * order (ascending): each chapter's top (`tops`, `heights`: cached geometry)
+ * plus reducedStopTarget for each of its `stopCounts[i]` stops.
+ */
+export function reelStopYs(tops: readonly number[], heights: readonly number[], stage: number, stopCounts: readonly number[]): number[] {
+  const out: number[] = [];
+  for (let i = 0; i < tops.length; i++) {
+    const n = stopCounts[i] ?? 0;
+    for (let j = 0; j < n; j++) out.push((tops[i] ?? 0) + reducedStopTarget(j, heights[i] ?? 0, stage, n));
+  }
+  return out;
+}
+
+/**
+ * The stop drawn at `scrollY` under reduced motion (pickActive +
+ * reducedStopIndex, as the loop draws it), as an index into reelStopYs's
+ * list. −1 with no chapters.
+ */
+export function shownStop(segs: SegmentRegistration[], tops: readonly number[], heights: readonly number[], stage: number, scrollY: number): number {
+  const pick = pickActive(segs, viewportRects(tops, heights, scrollY, []), stage);
+  if (!pick) return -1;
+  let k = 0;
+  for (let i = 0; i < pick.slot; i++) k += segs[i]?.stops.length ?? 0;
+  const n = pick.seg.stops.length;
+  return n ? k + reducedStopIndex(pick.progress, heights[pick.slot] ?? 0, stage, pick.slot === 0, n) : -1;
+}
+
+/**
+ * How far (in stages) a paging key may move to reach a stop: a 40svh step
+ * inside a chapter, or the slide-in (one stage) from a chapter's last stop to
+ * the next chapter's first.
+ */
+export const PAGE_STOP_REACH = 1.5;
+
+/**
+ * Reduced motion, keyboard paging: the scroll position to go to instead of
+ * the browser's own page (about 87.5 % of the viewport, more than two 40svh
+ * steps, so it would pass a stop and the copy shown only there). `ys`:
+ * reelStopYs; `current`: the stop on screen (shownStop). The next stop in
+ * direction `dir`; or the one on screen itself when its place is more than
+ * half a step that way (its stage still sliding in or out: it comes to rest
+ * pinned). Null (the browser pages) past the reel's ends, or when that place
+ * is more than PAGE_STOP_REACH stages away (reading the body below the reel).
+ */
+export function pageStop(ys: readonly number[], current: number, scrollY: number, dir: 1 | -1, stage: number): number | null {
+  if (current < 0 || current >= ys.length) return null;
+  const half = (REDUCED_STEP_SVH / 200) * stage;
+  const k = (ys[current]! - scrollY) * dir > half ? current : current + dir;
+  const y = ys[k];
+  return y !== undefined && Math.abs(y - scrollY) <= PAGE_STOP_REACH * stage ? y : null;
+}
+
+/**
+ * Where the visitor is in the reel, in terms that survive a change of the
+ * chapters' heights (the motion mode switching while the page is open):
+ * above the reel (the same scroll), below its end (the same distance from the
+ * last chapter's bottom edge: the body stays put), or a chapter and the frame
+ * it shows (sliding in: the same offset from its top).
+ */
+export type ReelAnchor =
+  | { kind: "above"; y: number }
+  | { kind: "below"; fromEnd: number }
+  | { kind: "chapter"; slot: number; frame: number; slideIn: number | null };
+
+/**
+ * The anchor of scroll position `scrollY` over the geometry `tops`/`heights`
+ * (document px, in `segs` order) and the mode it was measured in
+ * (`reduced`: a stop's frame; normal: frameAt). `counts`: each film's frame
+ * count. Null with no chapters.
+ */
+export function reelAnchor(
+  scrollY: number,
+  segs: SegmentRegistration[],
+  tops: readonly number[],
+  heights: readonly number[],
+  stage: number,
+  counts: readonly number[],
+  reduced: boolean,
+): ReelAnchor | null {
+  const n = segs.length;
+  if (!n) return null;
+  if (scrollY < (tops[0] ?? 0)) return { kind: "above", y: scrollY };
+  const end = (tops[n - 1] ?? 0) + (heights[n - 1] ?? 0);
+  if (scrollY > end - stage) return { kind: "below", fromEnd: scrollY - end };
+  const pick = pickActive(segs, viewportRects(tops, heights, scrollY, []), stage);
+  if (!pick) return null;
+  const i = pick.slot;
+  const stops = segs[i]?.stops ?? [];
+  const h = heights[i] ?? 0;
+  const frame =
+    reduced && stops.length
+      ? stops[reducedStopIndex(pick.progress, h, stage, i === 0, stops.length)]!
+      : frameAt(pick.progress, counts[i] ?? 1);
+  const off = scrollY - (tops[i] ?? 0);
+  return { kind: "chapter", slot: i, frame, slideIn: i > 0 && off < 0 ? off : null };
+}
+
+/**
+ * The scroll position that keeps `a` over the NEW geometry and mode
+ * (`reduced`): the same distance above or below the reel; a chapter at its
+ * stop nearest the anchored frame (reduced) or at that frame (normal: frameScroll,
+ * at most STOP_EDGE_PX short of the travel's end); a slide-in at the same
+ * offset from the chapter's top.
+ */
+export function anchorScroll(
+  a: ReelAnchor,
+  segs: SegmentRegistration[],
+  tops: readonly number[],
+  heights: readonly number[],
+  stage: number,
+  counts: readonly number[],
+  reduced: boolean,
+): number {
+  if (a.kind === "above") return a.y;
+  const n = segs.length;
+  if (a.kind === "below") return (tops[n - 1] ?? 0) + (heights[n - 1] ?? 0) + a.fromEnd;
+  const i = a.slot;
+  const top = tops[i] ?? 0;
+  const h = heights[i] ?? 0;
+  if (a.slideIn !== null) return top + Math.max(-stage, a.slideIn);
+  const stops = segs[i]?.stops ?? [];
+  if (reduced && stops.length) {
+    let best = 0;
+    stops.forEach((f, j) => {
+      if (Math.abs(f - a.frame) < Math.abs(stops[best]! - a.frame)) best = j;
+    });
+    return top + reducedStopTarget(best, h, stage, stops.length);
+  }
+  const y = frameScroll(a.frame, counts[i] ?? 1, h, stage, i === 0);
+  return top + Math.min(Math.max(i === 0 ? 0 : -stage, y), Math.max(0, h - stage - STOP_EDGE_PX));
 }

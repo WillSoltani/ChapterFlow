@@ -6,8 +6,9 @@
  *
  * For a phone (390 × 844, DPR 2 → b900) and a tablet (820 × 1180, DPR 2 →
  * b1080) it scrolls to fixed positions in all seven films (prefers-reduced-
- * motion: no breath, progress quantised to the film's 5 steps, so every
- * position is one exact frame), waits until the canvas shows that exact frame
+ * motion: no breath, only the chapter's stops are drawn (Phase 8,
+ * data-film-stops), so every position is one exact frame), waits until the
+ * canvas shows that exact frame
  * of the expected tier, reads the canvas pixels, and builds a reference IN
  * THE PAGE from the LEGACY <film>-p file of the same frame with the legacy
  * math: fill with --cf-recall-bg, then draw the 1080×1920 image at
@@ -82,16 +83,19 @@ const VIEWPORTS = [
 ];
 /** The band's rows in the legacy 1080×1920 -p frame (zoom 1.6): rows 474–1445. */
 const LEGACY_BAND = { y: 474, h: 972 };
-const STEPS = 5; // FilmSegment reducedSteps default
 /** Largest |live − clear colour| (0–255, any channel) still counted as the clear colour outside the band. */
 const OFF_TOL = 0;
 /** Content alignment searches shifts −SHIFT…SHIFT rows. */
 const SHIFT = 3;
 const only = process.env.ONLY ? process.env.ONLY.split(",") : null;
 
-/** Positions: [film index, quantised step k]. The hero: all six steps (0, 48, 96, 144 before the ramp, 192 inside, 240 after); later films skip k = 0 (the dissolve). */
-const POSITIONS = [];
-for (let i = 0; i < FILMS.length; i++) for (let k = i === 0 ? 0 : 1; k <= STEPS; k++) POSITIONS.push([i, k]);
+/**
+ * Positions: [film index, stop j], from each chapter's reduced-motion stops
+ * (read from the page). The hero: every stop (0, 28, 136 before the ramp
+ * 150-200, 156 inside, 204 and 240 after); later films skip stops inside the dissolve
+ * (frames below 14).
+ */
+const DISSOLVE = 14;
 
 const browser = await chromium.launch({ headless: process.env.HEADED !== "1" });
 let failed = false;
@@ -107,14 +111,18 @@ for (const vp of VIEWPORTS) {
   await page.waitForFunction(() => !!window.__filmCaches && document.querySelectorAll("[data-film-segment]").length > 0, null, { timeout: 60_000 });
   await page.waitForTimeout(1000);
 
+  const stops = await page.$$eval("[data-film-segment]", (els) => els.map((e) => (e.dataset.filmStops ?? "").split(",").map(Number)));
+  const POSITIONS = [];
+  for (let i = 0; i < FILMS.length; i++) (stops[i] ?? []).forEach((f, j) => (i === 0 || f >= DISSOLVE) && POSITIONS.push([i, j]));
   console.log(`\n[${vp.name}] ${vp.viewport.width}×${vp.viewport.height} DPR ${vp.dpr} → ${vp.tier} · mean bound ${vp.meanMax}`);
   console.log("  film       frame  tier            mean   top live/ref  bottom live/ref  shift t/b  contrast t/b");
   const rows = [];
-  for (const [i, k] of POSITIONS) {
+  for (const [i, j] of POSITIONS) {
     const film = FILMS[i];
-    const count = timeline[film].count;
-    const p = k === STEPS ? 0.97 : k / STEPS; // quantises to k/STEPS; 0.97 stays inside the segment
-    const frame = Math.round((Math.round(p * STEPS) / STEPS) * (count - 1));
+    const st = stops[i];
+    const frame = st[j];
+    // Share of the pinned travel at which stop j is centred (pins.ts reducedStopScroll).
+    const p = st.length > 1 ? j / (st.length - 1) : 0;
     const res = await page.evaluate(
       async ({ i, p, film, frame, tier, legacyBand, offTol, SHIFT }) => {
         const segs = [...document.querySelectorAll("[data-film-segment]")];
@@ -122,9 +130,10 @@ for (const vp of VIEWPORTS) {
         const stage = segs[0].querySelector("[data-film-stage]").getBoundingClientRect().height;
         const r = seg.getBoundingClientRect();
         const top = r.top + window.scrollY;
-        // pickActive inverted: segment 0 scrubs over height − stage, later
-        // segments from top − stage over their whole height.
-        const y = i === 0 ? top + p * (r.height - stage) : top - stage + p * r.height;
+        // Reduced motion: stop j of n is centred at j / (n − 1) of the pinned
+        // travel (height − stage), kept 2 px inside it.
+        const travel = r.height - stage;
+        const y = Math.min(top + travel - 2, Math.max(Math.ceil(top) + 2, top + p * travel));
         window.scrollTo(0, Math.round(y));
         const raf = () => new Promise((res) => requestAnimationFrame(res));
         const want = `${tier}`;

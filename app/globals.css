@@ -3614,6 +3614,29 @@ html[data-motion="reduced"] .rl-faq-chevron {
    All colour token-only (--cf-recall-*). FramePin owns its own motion.
    ──────────────────────────────────────────────────────────────────────── */
 
+/* Chapter scroll length (FilmSegment sets --film-pace and --film-stops):
+   pace × 100svh. Under reduced motion (the OS setting or the in-app toggle,
+   from the first paint) one stage plus one 40svh step per stop after the
+   first: pins.ts reducedHeightSvh / REDUCED_STEP_SVH, checked by
+   first-paint.test.ts. The readable page (readable-layout.ts) sets height
+   auto over both. */
+[data-film-segment] {
+  height: calc(var(--film-pace, 3) * 100svh);
+  /* The height switches with the motion mode at once: the reduced-motion
+     rules give every element a 0.01ms transition of "all", which would leave
+     the old height in place when the scrub loop re-measures to keep the
+     visitor's place (use-scrub-loop onMotion). */
+  transition-property: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-film-segment] {
+    height: calc(100svh + (var(--film-stops, 5) - 1) * 40svh);
+  }
+}
+html[data-motion="reduced"] [data-film-segment] {
+  height: calc(100svh + (var(--film-stops, 5) - 1) * 40svh);
+}
+
 .film-stage-grid {
   position: absolute;
   inset: 0;
@@ -3667,9 +3690,14 @@ html[data-motion="reduced"] .rl-faq-chevron {
 .film-stage-grid[data-stack="hero"] .film-h1 {
   font-size: clamp(2.4rem, 5.6vw, 5.2rem);
 }
-/* Over bright paper the halo needs to be denser than over the void. */
+/* Over bright paper the halo needs to be denser than over the void: the
+   hero, and (Phase 8, the contrast gate: e2e/film-a11y.spec.ts) the City's
+   lit skyline and Home's lamp (data-halo="dense"), where the ghost button and
+   the headline fell below 4.5:1 and 3:1 with the plain halo. */
 .film-stage-grid[data-stack="hero"] .film-halo::before {
   inset: -3rem -5rem;
+}
+.film-stage-grid:is([data-stack="hero"], [data-halo="dense"]) .film-halo::before {
   background: radial-gradient(
     ellipse at center,
     color-mix(in srgb, var(--cf-recall-bg) 92%, transparent) 0%,
@@ -4227,6 +4255,15 @@ html[data-reel-chrome="body"] .rl-nav-scrim {
   }
 }
 .film-btn:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--cf-recall-bg), 0 0 0 4px var(--cf-recall-accent); }
+/* Forced colors drop the box-shadow ring above, and this rule's outline: none
+   outranks the blanket forced-colors :focus-visible outline (FORCED COLORS
+   section): restore a system-coloured outline here, after the rule. */
+@media (forced-colors: active) {
+  .film-btn:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+}
 .film-btn-primary {
   background: var(--cf-recall-accent);
   color: var(--cf-recall-bg);
@@ -4239,6 +4276,21 @@ html[data-reel-chrome="body"] .rl-nav-scrim {
   text-underline-offset: 4px;
 }
 .film-btn-ghost:hover { text-decoration: underline; }
+
+/* "Skip the film" among the hero's buttons: under reduced motion only (the
+   OS setting or the in-app toggle). Elsewhere it is not rendered, so not a
+   tab stop; the early skip link (SkipFilmLink in the nav) is always there. */
+.film-btn.film-skip-reduced {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .film-btn.film-skip-reduced {
+    display: inline-flex;
+  }
+}
+html[data-motion="reduced"] .film-btn.film-skip-reduced {
+  display: inline-flex;
+}
 
 /* Frame counter HUD (preview only) */
 .film-hud {

@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import { DPR_STEPS, heroPoster, htmlPosterStands, quantDpr } from "./first-paint";
 import { PORTRAIT_QUERY, SHORT_LANDSCAPE_QUERY, pickVariant, viewBackingWidth, viewOrientation } from "./view";
 import { manifest } from "./timeline";
+import { REDUCED_STEP_SVH } from "./pins";
 import type { BandTier, FilmManifest, FilmVariant } from "./types";
 
 /**
@@ -182,4 +183,12 @@ test("globals.css: the compact stage is keyed on SHORT_LANDSCAPE_QUERY, the same
   grid((env) => {
     if (matches(SHORT_LANDSCAPE_QUERY, env) && matches(PORTRAIT_QUERY, env)) assert.fail(`${env.width}x${env.height}: short landscape and band`);
   });
+});
+
+test("globals.css: a chapter's height is pace × 100svh, and under either reduced-motion signal one stage plus REDUCED_STEP_SVH per stop", () => {
+  const css = readFileSync(new URL("../../app/globals.css", import.meta.url), "utf8");
+  const reduced = `height: calc(100svh + (var(--film-stops, 5) - 1) * ${REDUCED_STEP_SVH}svh);`;
+  assert.ok(css.includes("[data-film-segment] {\n  height: calc(var(--film-pace, 3) * 100svh);"), "the normal height");
+  assert.ok(css.includes(`@media (prefers-reduced-motion: reduce) {\n  [data-film-segment] {\n    ${reduced}`), "the OS setting");
+  assert.ok(css.includes(`html[data-motion="reduced"] [data-film-segment] {\n  ${reduced}`), "the in-app toggle");
 });
