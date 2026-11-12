@@ -139,6 +139,9 @@ for (const prof of PROFILES) {
   );
   await page.waitForTimeout(1500);
   const stats = await page.evaluate(() => ({ ...window.__filmStats }));
+  // The scrub loop at rest (the visitor stopped at the end of the reel).
+  await page.waitForTimeout(2000);
+  const rest = await page.evaluate(() => ({ ...window.__filmStats }));
   await ctx.close();
 
   const distinct = new Set(frameRequests).size;
@@ -158,6 +161,10 @@ for (const prof of PROFILES) {
   );
   console.log(
     `   draws:   ${draws} · exact ${exactShare.toFixed(1)}% · mean fallback distance ${meanFallback.toFixed(2)} frames (${meanAll.toFixed(2)} over all draws)${bad ? "   << FAIL" : ""}`,
+  );
+  console.log(
+    `   loop:    canvasResizes ${stats.canvasResizes} · geometryMeasures ${stats.geometryMeasures} · ticksWorked ${stats.ticksWorked} · ticksSkipped ${stats.ticksSkipped} · ` +
+      `next 2 s at rest: worked +${rest.ticksWorked - stats.ticksWorked}, skipped +${rest.ticksSkipped - stats.ticksSkipped}`,
   );
 }
 for (const b of Object.values(launched)) await b.close();

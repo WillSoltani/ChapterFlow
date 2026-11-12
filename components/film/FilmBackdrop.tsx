@@ -26,6 +26,9 @@ type Props = { reel: FilmManifest[]; children: ReactNode; className?: string };
 
 export function FilmBackdrop({ reel, children, className }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  // Set by the scrub loop: re-measure segment geometry (and wake the loop).
+  const invalidateRef = useRef<() => void>(() => {});
   const segments = useRef(new Map<number, SegmentRegistration>());
   const caches = useRef(new Map<string, FrameCache>());
   // One decoded-pixel budget and load scheduler for every cache on the page
@@ -119,6 +122,7 @@ export function FilmBackdrop({ reel, children, className }: Props) {
       orientation,
       register: (reg) => {
         segments.current.set(reg.index, reg);
+        invalidateRef.current();
         // Every film gets its cache (and so its poster, one small image) at
         // mount, so a chapter reached on a slow network draws its poster
         // instead of nothing. Only the first two films warm real frames here
@@ -135,7 +139,10 @@ export function FilmBackdrop({ reel, children, className }: Props) {
           );
         }
         return () => {
-          if (segments.current.get(reg.index) === reg) segments.current.delete(reg.index);
+          if (segments.current.get(reg.index) === reg) {
+            segments.current.delete(reg.index);
+            invalidateRef.current();
+          }
         };
       },
       subscribeDrawn: (fn) => {
@@ -151,23 +158,29 @@ export function FilmBackdrop({ reel, children, className }: Props) {
     [reel, orientation, cacheFor, budget],
   );
 
-  useScrubLoop({ canvasRef, segments, drawn, drawnListeners, reducedRef, orientation, cacheFor, budget });
+  useScrubLoop({ canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, orientation, cacheFor, budget });
 
   return (
     <ReelContext.Provider value={api}>
       {/* The canvas is a fixed layer at z-0 INSIDE the page's stacking
           context; chapters/body sit above at z-10. (A -z-10 layer would fall
-          behind the .landing-dark background and never show.) */}
+          behind the .landing-dark background and never show.)
+          The box is the LARGE viewport (100lvh), pinned to the top: a phone's
+          address bar showing or hiding never resizes it, so the backing store
+          is not reallocated and the picture keeps its scale and place (the
+          loop centres it on the 100svh stage). */}
       <div
         aria-hidden
-        className={`film-canvas pointer-events-none fixed inset-0 z-0 h-dvh w-full ${className ?? ""}`}
+        className={`film-canvas pointer-events-none fixed inset-x-0 top-0 z-0 h-lvh w-full ${className ?? ""}`}
         // Own compositor layer: scrolling the page must not re-rasterise the
         // canvas, and the canvas repaint must not invalidate the page.
         style={{ transform: "translateZ(0)", contain: "strict" }}
       >
         <canvas ref={canvasRef} className="h-full w-full" />
       </div>
-      <div className="relative z-10">{children}</div>
+      <div ref={contentRef} className="relative z-10">
+        {children}
+      </div>
     </ReelContext.Provider>
   );
 }

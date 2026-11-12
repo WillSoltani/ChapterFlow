@@ -1,28 +1,72 @@
 "use client";
 
 /**
- * useScrubLoop — the single rAF loop that reads segment rects and paints the
- * backdrop canvas. All hot-path state is in refs; no React re-renders per frame.
+ * useScrubLoop — the single rAF loop that maps scroll to the active segment
+ * and paints the backdrop canvas. All hot-path state is in refs; no React
+ * re-renders per frame.
+ *
+ * Viewport rules (phones: the address bar must not move the film):
+ *   • Progress is measured against the sticky STAGE height (100svh), the unit
+ *     the segments are sized in, never window.innerHeight (which grows and
+ *     shrinks with the iOS address bar).
+ *   • The canvas box is the large viewport (100lvh, see FilmBackdrop). Its
+ *     backing store is reallocated only when that box changes (width,
+ *     orientation, zoom: a ResizeObserver on the wrapper, and every geometry
+ *     measure re-reads it) or the DPR does, never on an address-bar resize. The picture is cover-fitted to the box and centred
+ *     on the stage centre, so neither its scale nor its place moves.
+ *   • Segment geometry (document tops, heights, stage height) is cached and
+ *     re-measured on register, window resize, a ResizeObserver on the reel
+ *     content and on <body>, fonts ready, and at most every 500 ms while the
+ *     loop works. A tick does no layout reads.
+ *   • A tick works only when something changed (scroll, box, geometry,
+ *     smoothing, a late frame, breath, reduced motion); otherwise it returns.
+ *     The loop stops while the tab is hidden and once the reel has ended; a
+ *     scroll back above the end, a resize, a late frame or the tab coming
+ *     back restarts it, and the first tick after a restart snaps to the
+ *     scroll position. Breath holds still while the loop is stopped.
+ * Counters: window.__filmStats canvasResizes, geometryMeasures, ticksWorked,
+ * ticksSkipped.
  */
 
 import { useEffect, type MutableRefObject } from "react";
 import type { FrameBudget, FrameCache } from "./frame-cache";
 import { pickVariant } from "./reel-context";
-import { breathAt, coverRect, frameAt, pickActive, quantise } from "./scrub";
+import {
+  backingSize,
+  breathAt,
+  frameAt,
+  framePlacement,
+  holdBreathClock,
+  pickActive,
+  quantise,
+  reelEndScrollY,
+  stageShift,
+  viewportRects,
+} from "./scrub";
 import type { FilmManifest, Orientation, ReelChrome, SegmentRegistration } from "./types";
 
 export const REEL_CHROME_EVENT = "cf-reel-chrome";
 
-/** Canvas clear colour = the landing's page token, read once from the DOM. */
+/** Re-measure segment geometry at most this often while the loop works. */
+const GEOMETRY_SAFETY_MS = 500;
+
+/**
+ * Canvas clear colour = the landing colour the portrait frames' baked bars
+ * are encoded in, so canvas area the picture does not cover shows no seam.
+ */
 function readCanvasBg(canvas: HTMLCanvasElement): string {
-  const v = getComputedStyle(canvas).getPropertyValue("--cf-page-bg").trim();
-  return v || "black";
+  const v = getComputedStyle(canvas).getPropertyValue("--cf-recall-bg").trim();
+  return v || "#06070A";
 }
 
 type Drawable = ImageBitmap | HTMLImageElement;
 
 type Args = {
   canvasRef: MutableRefObject<HTMLCanvasElement | null>;
+  /** The reel's content wrapper (all segments + body); observed for size changes. */
+  contentRef: MutableRefObject<HTMLElement | null>;
+  /** Filled by the loop: call when segments register or unregister. */
+  invalidateRef: MutableRefObject<() => void>;
   segments: MutableRefObject<Map<number, SegmentRegistration>>;
   drawn: MutableRefObject<{ segment: number; frame: number }>;
   drawnListeners: MutableRefObject<Set<() => void>>;
@@ -34,6 +78,8 @@ type Args = {
 
 export function useScrubLoop({
   canvasRef,
+  contentRef,
+  invalidateRef,
   segments,
   drawn,
   drawnListeners,
@@ -45,7 +91,9 @@ export function useScrubLoop({
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d", { alpha: false });
-    if (!canvas || !ctx) return;
+    const box = canvas?.parentElement;
+    if (!canvas || !ctx || !box) return;
+    const stats = budget.stats;
 
     let raf = 0;
     let alive = true;
@@ -54,29 +102,143 @@ export function useScrubLoop({
     let lastChrome = "";
     let smoothFrame = 0;
     let smoothSeg = -1;
+    let target = 0;
     let lastT = performance.now();
     let lastScroll = window.scrollY;
+    // Set by wake(): the loop had stopped, so the next tick works and snaps.
+    let resumed = false;
+    // Inputs of the last worked tick, compared by the idle check.
+    let lastSeg: SegmentRegistration | null = null;
+    let lastBreath = Number.NaN;
+    // Breath runs on its own clock (t − breathOffset) that holds still while
+    // the loop is stopped, so a restart does not pop the zoom.
+    let breathOffset = 0;
+    let lastReduced = reducedRef.current;
+    // While stopped at the end of the reel: a scroll above this restarts it.
+    let endY = Number.POSITIVE_INFINITY;
     const canvasBg = readCanvasBg(canvas);
     // Late-frame repaint: what the canvas shows, and how far it is from the
     // wanted frame. A frame landing nearer (or the dissolve's underlay) clears
     // the paint key so the next tick redraws, even with no scroll or breath.
     let shown: { cache: FrameCache | null; want: number; dist: number; under: FrameCache | null } = { cache: null, want: 0, dist: Infinity, under: null };
-    const offLoad = budget.subscribe((c, i) => {
-      if ((c === shown.cache && Math.abs(i - shown.want) < shown.dist) || c === shown.under) lastKey = "";
-    });
 
-    const resize = () => {
-      // Backing store: never larger than the source frames (1920 wide) — a
-      // Retina 2880px canvas just upsamples 1920px WebP and costs 2.25× fill.
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const maxW = 1920;
-      const scale = Math.min(dpr, maxW / window.innerWidth);
-      canvas.width = Math.round(window.innerWidth * scale);
-      canvas.height = Math.round(window.innerHeight * scale);
+    // Canvas box (CSS px of the 100lvh wrapper) and the DPR it was sized for.
+    // Read on every geometry measure as well as by the wrapper's
+    // ResizeObserver: the observer is delivered AFTER the rAF callbacks of
+    // the frame a resize lands in, so the tick that handles the resize must
+    // see the new box itself, or it paints a frame into the old backing store
+    // with a shift computed from the new stage.
+    let boxW = 0;
+    let boxH = 0;
+    let dpr = window.devicePixelRatio || 1;
+    let boxDirty = true;
+    const readBox = () => {
+      const r = box.getBoundingClientRect();
+      if (r.width === boxW && r.height === boxH) return false;
+      boxW = r.width;
+      boxH = r.height;
+      boxDirty = true;
+      return true;
+    };
+    readBox();
+    const fitCanvas = () => {
+      boxDirty = false;
+      const { w, h } = backingSize(boxW, boxH, dpr);
+      if (!w || !h || (w === canvas.width && h === canvas.height)) return;
+      canvas.width = w;
+      canvas.height = h;
+      stats.canvasResizes++;
       lastKey = "";
     };
-    resize();
-    window.addEventListener("resize", resize);
+
+    // Cached geometry: segments in index order, document tops and heights,
+    // and the sticky stage height (CSS px).
+    let geomDirty = true;
+    let lastMeasure = Number.NEGATIVE_INFINITY;
+    let segs: SegmentRegistration[] = [];
+    const tops: number[] = [];
+    const heights: number[] = [];
+    const rects: Array<{ top: number; height: number }> = [];
+    let stageH = window.innerHeight;
+    const measure = (t: number) => {
+      geomDirty = false;
+      lastMeasure = t;
+      stats.geometryMeasures++;
+      segs = [...segments.current.values()].sort((a, b) => a.index - b.index);
+      const sy = window.scrollY;
+      tops.length = heights.length = segs.length;
+      segs.forEach((s, i) => {
+        const r = s.el.getBoundingClientRect();
+        tops[i] = r.top + sy;
+        heights[i] = r.height;
+      });
+      const stage = segs[0]?.el.querySelector<HTMLElement>("[data-film-stage]");
+      const h = stage?.getBoundingClientRect().height ?? 0;
+      stageH = h > 0 ? h : window.innerHeight;
+      readBox();
+    };
+
+    const offLoad = budget.subscribe((c, i) => {
+      if ((c === shown.cache && Math.abs(i - shown.want) < shown.dist) || c === shown.under) {
+        lastKey = "";
+        wake();
+      }
+    });
+
+    // A wake() from inside a tick (a load landing synchronously) only asks
+    // that tick to keep the loop running; it is not a restart.
+    let stepping = false;
+    let poked = false;
+    const tick = (t: number) => {
+      raf = 0;
+      if (!alive || document.hidden) return;
+      stepping = true;
+      poked = false;
+      const keep = step(t);
+      stepping = false;
+      if ((keep || poked) && alive && !raf) raf = requestAnimationFrame(tick);
+    };
+    /** Restart a stopped loop (no-op while it runs or the tab is hidden). */
+    const wake = () => {
+      if (stepping) {
+        poked = true;
+        return;
+      }
+      if (!alive || raf || document.hidden) return;
+      resumed = true;
+      raf = requestAnimationFrame(tick);
+    };
+
+    const onResize = () => {
+      geomDirty = true;
+      wake();
+    };
+    window.addEventListener("resize", onResize);
+    const onScroll = () => {
+      if (!raf && window.scrollY < endY) wake();
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    const onVisibility = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      } else wake();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("pageshow", onVisibility);
+    const boxObserver = new ResizeObserver(() => {
+      if (!readBox()) return;
+      geomDirty = true;
+      wake();
+    });
+    boxObserver.observe(box);
+    const contentObserver = new ResizeObserver(onResize);
+    if (contentRef.current) contentObserver.observe(contentRef.current);
+    contentObserver.observe(document.body);
+    void document.fonts?.ready.then(() => {
+      if (alive) onResize();
+    });
+    invalidateRef.current = onResize;
 
     const setChrome = (chrome: ReelChrome, section: string, soft: boolean) => {
       const key = `${chrome}|${section}|${soft ? 1 : 0}`;
@@ -90,45 +252,80 @@ export function useScrubLoop({
       window.dispatchEvent(new CustomEvent(REEL_CHROME_EVENT, { detail: { chrome, section } }));
     };
 
+    // Shift (backing px) that centres the picture on the stage; set per paint.
+    let shiftY = 0;
     const draw = (img: Drawable, alpha: number, zoom: number) => {
       const iw = img.width;
       const ih = img.height;
       if (!iw || !ih) return;
-      const r = coverRect(canvas.width, canvas.height, iw, ih);
-      const w = r.w * (1 + zoom);
-      const h = r.h * (1 + zoom);
+      const r = framePlacement(canvas.width, canvas.height, iw, ih, zoom, shiftY);
       ctx.globalAlpha = alpha;
-      ctx.drawImage(img, r.x - (w - r.w) * 0.5, r.y - (h - r.h) * 0.45, w, h);
+      ctx.drawImage(img, r.x, r.y, r.w, r.h);
       ctx.globalAlpha = 1;
     };
 
-    const tick = (t: number) => {
-      if (!alive) return;
-      raf = requestAnimationFrame(tick);
-
+    /** One animation frame. Returns false to stop the loop (reel ended). */
+    const step = (t: number): boolean => {
       const scrollY = window.scrollY;
+      const ratio = window.devicePixelRatio || 1;
+      if (ratio !== dpr) {
+        dpr = ratio;
+        boxDirty = true;
+      }
+      const reduced = reducedRef.current;
+      // Restart after a stop: hold the breath clock over the stopped time.
+      if (resumed) breathOffset = holdBreathClock(breathOffset, lastT, t);
+      const bt = t - breathOffset;
+
+      // Idle check: a few comparisons, no layout reads. Breath is quantised to
+      // 1/4000 so a hold repaints a few times a second, not 60×.
+      const breathNow = lastSeg && !reduced ? Math.round(breathAt(bt, lastSeg.breath) * 4000) / 4000 : 0;
+      if (
+        !resumed &&
+        !geomDirty &&
+        !boxDirty &&
+        lastKey !== "" &&
+        scrollY === lastScroll &&
+        smoothFrame === target &&
+        reduced === lastReduced &&
+        breathNow === lastBreath
+      ) {
+        lastT = t;
+        stats.ticksSkipped++;
+        return true;
+      }
+      stats.ticksWorked++;
+      const snap = resumed;
+      resumed = false;
+
+      // Measure first: it re-reads the box too, so a resize handled by this
+      // tick refits the canvas before the stage shift is computed from it.
+      if (geomDirty || t - lastMeasure >= GEOMETRY_SAFETY_MS) measure(t);
+      if (boxDirty) fitCanvas();
+
       const direction: 1 | -1 = scrollY >= lastScroll ? 1 : -1;
       lastScroll = scrollY;
 
-      const segs = [...segments.current.values()].sort((a, b) => a.index - b.index);
-      if (segs.length === 0) return;
-      const rects = segs.map((s) => {
-        const r = s.el.getBoundingClientRect();
-        return { top: r.top, height: r.height };
-      });
-      const pick = pickActive(segs, rects, window.innerHeight);
-      if (!pick) return;
+      const lastIdx = segs.length - 1;
+      if (lastIdx < 0) {
+        // Nothing registered: stop; register or any scroll restarts the loop.
+        endY = Number.POSITIVE_INFINITY;
+        return false;
+      }
+      const pick = pickActive(segs, viewportRects(tops, heights, scrollY, rects), stageH);
+      if (!pick) return true;
       const { seg } = pick;
 
       const variant = pickVariant(seg.film, orientation);
       const cache = cacheFor(seg.film);
-      const p = reducedRef.current ? quantise(pick.progress, seg.reducedSteps) : pick.progress;
-      const target = frameAt(p, variant.count);
+      const p = reduced ? quantise(pick.progress, seg.reducedSteps) : pick.progress;
+      target = frameAt(p, variant.count);
 
       // Smooth the scrub: a wheel tick jumps the target 10–30 frames; chasing
       // it with an exponential lerp (~90 ms time constant) turns that into a
-      // short glide instead of a cut. Segment change or reduced motion = snap.
-      if (smoothSeg !== seg.index || reducedRef.current) {
+      // short glide instead of a cut. Segment change, reduced motion or a
+      // restart (anchor jump, back/forward, tab shown) = snap.
+      if (smoothSeg !== seg.index || reduced || snap) {
         smoothFrame = target;
         smoothSeg = seg.index;
       } else {
@@ -157,10 +354,9 @@ export function useScrubLoop({
         });
       }
 
-      // Breath is quantised to 1/4000 so an idle hold repaints a few times a
-      // second, not 60× (each repaint is a full-canvas drawImage).
-      const breath = reducedRef.current ? 0 : Math.round(breathAt(t, seg.breath) * 4000) / 4000;
-      const key = `${seg.index}:${frame}:${breath}:${canvas.width}`;
+      const breath = reduced ? 0 : Math.round(breathAt(bt, seg.breath) * 4000) / 4000;
+      shiftY = stageShift(stageH, boxH, canvas.height);
+      const key = `${seg.index}:${frame}:${breath}:${canvas.width}:${canvas.height}:${shiftY}`;
       if (key !== lastKey) {
         lastKey = key;
         const img = cache.nearest(frame, true);
@@ -184,6 +380,9 @@ export function useScrubLoop({
         drawn.current = { segment: seg.index, frame };
         for (const fn of drawnListeners.current) fn();
       }
+      lastSeg = seg;
+      lastBreath = breath;
+      lastReduced = reduced;
 
       seg.onProgress(p, frame);
       // "body" chrome means the reel is over. Gate the flip on the LAST
@@ -191,16 +390,31 @@ export function useScrubLoop({
       // slides out): otherwise the <html> attribute toggles at every boundary,
       // the nav scrim pulses, and the document-wide style recalc costs a
       // ~120–250 ms hitch mid-scrub.
-      const isLast = seg.index === segs[segs.length - 1]?.index;
-      setChrome(isLast && p >= 1 ? "body" : "film", seg.section ?? "", seg.el.hasAttribute("data-soft-focus") && p < 1);
+      const ended = seg.index === segs[lastIdx]?.index && p >= 1;
+      setChrome(ended ? "body" : "film", seg.section ?? "", seg.el.hasAttribute("data-soft-focus") && p < 1);
+
+      // Reel over and its last frame settled: stop until the visitor scrolls
+      // back above the end (or a resize / late frame / tab switch wakes it).
+      if (ended && smoothFrame === target) {
+        endY = reelEndScrollY(tops[lastIdx] ?? 0, heights[lastIdx] ?? 0, stageH);
+        return false;
+      }
+      return true;
     };
 
     raf = requestAnimationFrame(tick);
     return () => {
       alive = false;
       cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
+      raf = 0;
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("pageshow", onVisibility);
+      boxObserver.disconnect();
+      contentObserver.disconnect();
+      if (invalidateRef.current === onResize) invalidateRef.current = () => {};
       offLoad();
     };
-  }, [canvasRef, segments, drawn, drawnListeners, reducedRef, orientation, cacheFor, budget]);
+  }, [canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, orientation, cacheFor, budget]);
 }

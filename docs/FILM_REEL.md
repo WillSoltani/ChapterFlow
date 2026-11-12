@@ -14,11 +14,12 @@ Live at `/` (append `?hud=1` for the frame counter).
 ```
 components/film/
   types.ts            FilmManifest / FilmVariant / SegmentRegistration
-  scrub.ts            pure math: pickActive, frameAt, quantise, coverRect, breathAt
+  scrub.ts            pure math: pickActive, frameAt, quantise, coverRect, breathAt,
+                      backingSize, stageShift, framePlacement, viewportRects, reelEndScrollY
   frame-cache.ts      FrameBudget (one wanted set, byte budget, load limits) + FrameCache, nearest()
   reel-context.tsx    ReelContext + orientation media query
-  use-scrub-loop.ts   the ONE rAF loop: rects → active segment → frame → canvas
-  FilmBackdrop.tsx    fixed <canvas>, registers segments, owns caches
+  use-scrub-loop.ts   the ONE rAF loop: cached geometry → active segment → frame → canvas
+  FilmBackdrop.tsx    fixed 100lvh <canvas>, registers segments, owns caches
   FilmSegment.tsx     N×100svh section + sticky 100svh stage; progress store
   FramePin.tsx        copy pinned to [from,to] frames (opacity/transform only)
   timeline.ts         key("book-01","sheet_split") → frame; manifest(name)
@@ -43,7 +44,59 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
   previous stage slides out — and scrubs over `travel + vh`:
   progress = `(vh - top) / (height - vh + vh)`. The reel never freezes on a
   chapter's last frame during the slide-out; the next film is already moving
-  and its copy rides in with its stage (`pickActive` in `scrub.ts`).
+  and its copy rides in with its stage (`pickActive` in `scrub.ts`). `vh` is
+  the sticky STAGE height (100svh, measured from `[data-film-stage]`), never
+  `window.innerHeight`: see Viewport below.
+- Viewport (phones; `use-scrub-loop.ts`). On iOS Safari `innerHeight` grows by
+  ~80–110 px when the address bar collapses and shrinks when it returns,
+  while `svh` and `lvh` do not change. So:
+  - **Stage-height progress.** Progress is computed against the stage height
+    (the unit the segments are sized in). Measuring with `innerHeight` made
+    the film jump ~9 frames at the start of almost every scroll gesture.
+  - **lvh canvas.** The canvas wrapper (`FilmBackdrop.tsx`) is `fixed top-0
+    h-lvh`. Its backing store is sized from the wrapper's own box (DPR capped
+    at 2, width capped at 1920 px, `backingSize`) and reallocated only when
+    that box changes (width, orientation, browser zoom) or the DPR changes,
+    never on an address-bar `resize`. A ResizeObserver on the wrapper watches
+    the box, and every geometry measure re-reads it as well: the observer is
+    delivered after the animation-frame callbacks of the frame a resize lands
+    in, so the tick that handles a `resize` must refit the canvas itself
+    before it computes the stage shift, or it paints one stretched frame.
+  - **Constant placement.** The frame is cover-fitted to the box (width ×
+    large-viewport height) and centred on the stage centre (half the stage
+    height from the top, `stageShift` + `framePlacement`), so its scale and
+    position never change with the address bar. Where stage = box (desktop,
+    Playwright) this is exactly the old rectangle, breath zoom and its
+    0.5 / 0.45 origin included. Canvas area the picture does not cover (the
+    strip below it on a phone) is cleared with `--cf-recall-bg` (#06070A),
+    the colour of the portrait frames' baked bars, not `--cf-page-bg`.
+  - **Cached geometry.** Segment document tops and heights and the stage
+    height are measured when segments register, on window `resize`, when a
+    ResizeObserver on the reel's content wrapper or on `<body>` fires, after
+    `document.fonts.ready`, and at most every 500 ms while the loop works. A
+    tick computes each viewport top as `cachedTop − scrollY`: no
+    `getBoundingClientRect`, no sort.
+  - **Idle and pause.** A tick works only when something changed: `scrollY`,
+    the canvas box or DPR, the geometry, the smoothed frame not yet on the
+    target, a late frame landed, the breath value (quantised to 1/4000) or
+    reduced motion. Otherwise it returns after a few comparisons. The loop
+    stops requesting animation frames while `document.hidden` and resumes on
+    `visibilitychange` / `pageshow`. Once the reel has ended (chrome `body`,
+    last frame settled) it stops too; a passive scroll listener restarts it
+    when the visitor scrolls back above the end (`reelEndScrollY`), as do a
+    resize, a ResizeObserver, a late frame or a segment registering. The
+    first tick after a restart snaps to the scroll position (no glide), so
+    an anchor jump or a back/forward restore into the middle of the reel
+    shows the right frame on that tick. Breath runs on its own clock that
+    holds still while the loop is stopped (`holdBreathClock`), so a restart
+    continues the zoom from the value it froze on instead of popping by up
+    to the breath amplitude. `onProgress` and the chrome flip are unchanged
+    (both already ignored repeats).
+  - **Verified only on a real phone.** Lab browsers (Playwright, DevTools
+    device mode) have no collapsing address bar: there `svh = lvh =
+    innerHeight` and the code above draws exactly what it did before. That
+    the film does not move or flash when the bar hides and shows has to be
+    checked on an iPhone.
 - Dissolve: first `dissolveIn` frames cross-fade over previous film's last
   frame (so it happens during the slide-in, not at the pin).
 - Frame loading (`frame-cache.ts`). Decoded frames live under ONE byte budget
@@ -92,7 +145,10 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     `decodes`, `redecodes`, `exactDraws`, `fallbackDraws`,
     `fallbackDistanceSum` (|drawn − wanted| summed over fallback draws; the
     poster counts as frame 0), `evictions`, `maxFetchInFlight`,
-    `maxDecodeInFlight`, plus the live `fetchInFlight` / `decodeInFlight`.
+    `maxDecodeInFlight`, plus the live `fetchInFlight` / `decodeInFlight`;
+    and from the scrub loop `canvasResizes` (backing-store reallocations: 1
+    per visit unless the window's width, orientation, zoom or DPR changes),
+    `geometryMeasures`, `ticksWorked` and `ticksSkipped` (not in the HUD).
     `?hud=1` shows a second line: `exact 97% · refetch 0 · dist 0.4 · fetch
     3/4` (dist = mean distance over ALL draws).
 - Breath: `±amp` slow sinusoidal zoom while held (off under reduced motion).
@@ -237,7 +293,11 @@ toward a barred frame.
   600 px/s, `desktop-chromium` = 1440×900 at 900 px/s; `ONLY=`, `SPEED=`
   override). Prints frame requests on the network vs distinct frames, the
   `__filmStats` counters, the exact-draw share and the mean fallback
-  distance; exits non-zero on any refetch or more than 4 fetches in flight.
+  distance, and the scrub loop's counters plus its worked / skipped ticks
+  over the next 2 s at rest; exits non-zero on any refetch or more than 4
+  fetches in flight. (The pass stops at the last segment's bottom; WebKit
+  rounds scrollY down, so there the reel can sit 1 px short of its end and
+  the loop keeps breathing instead of stopping.)
   It refuses a non-local `BASE` unless `ALLOW_REMOTE=1` AND `MAX_REQUESTS=n`
   are set (the live site rate-limits per IP).
 - `node scripts/film/seam-geometry.mjs` (dev server on :3000, `BASE=` to
@@ -267,7 +327,15 @@ toward a barred frame.
     body at the end, anchor links land exactly on their segment.
   - `film-quality.spec.ts` scrolls steadily over the first two films and
     asserts from the network and `__filmStats` (not the HUD): 0 refetches,
-    ≤ 4 fetches in flight, no frame requested twice.
+    ≤ 4 fetches in flight, no frame requested twice. On a 390 × 844 phone
+    viewport: `canvasResizes` is 1 after a pass over the first film; 2 s at
+    rest add ≤ 24 worked ticks (breath repaints only: the hero's 0.012
+    breath changes ≤ ~9 times a second; measured 16–18); at the pricing
+    section the loop stops (no worked or skipped ticks); a `scrollTo` back
+    into the fourth film shows the frame the scroll position demands three
+    animation frames later; widening the window to 430 px, the first
+    animation frame after the `resize` already has a backing store of the
+    new box, and that is the second (and only other) allocation.
 - `npm run test:film:safari` — same on WebKit (`npx playwright install webkit`
   first). Headless WebKit rasterises in software and caps ~25 fps on any
   full-viewport image swap; the fps gate is 20 there.
