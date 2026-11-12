@@ -52,7 +52,8 @@ test.describe("public truth (@prod)", () => {
     const res = await page.goto("/books");
     expect(res?.status()).toBe(200);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(catalog(page).getByRole("link", { name: /^Atomic Habits by /i })).toBeVisible();
+    // The all view shelves a book in more than one row: any copy will do.
+    await expect(catalog(page).getByRole("link", { name: /^Atomic Habits by /i }).first()).toBeVisible();
     // Step through the page so every card enters the viewport (and any
     // prefetch it would make fires), then let the session probe settle.
     const height = await page.evaluate(() => document.documentElement.scrollHeight);
