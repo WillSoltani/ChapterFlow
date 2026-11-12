@@ -478,18 +478,22 @@ the loop `canvasResizes`, `geometryMeasures`, `ticksWorked`, `ticksSkipped`.
 ## Claims and where they come from
 
 Every number or promise the landing makes, and the code it comes from.
-`app/public-claims.test.ts` fails on an exact book count or a hard-coded
-free-book number on a public surface, on export sold as Pro while the export
-route has no plan check, and on robots, the sitemap or the SearchAction
+`app/public-claims.test.ts` fails on an exact book count (by name or as the
+catalog's `.length`) or a hard-coded free-book number on a public surface, on
+export sold as Pro while the export route has no plan check, on a yearly price
+shown without its plan's name, on the Summary minutes not being that
+chapter's own figure, and on robots, the sitemap or the SearchAction
 disagreeing with the sign-in gate.
 
 | Claim on the landing | Where | Source in code |
 |---|---|---|
 | "&lt;floor&gt; titles", "&lt;floor&gt; books. Every one a building.", "Browse all &lt;floor&gt; books", where the floor reads "130+" today | hero label, City chapter | `CATALOG_BOOK_COUNT_DISPLAY` (`lib/catalog-stats.ts`: catalog size floored to 10). JSON-LD `numberOfItems` on `/books` stays exact (`CATALOG_BOOK_COUNT`) |
 | "Every chapter becomes a 12-minute read" | hero lede | `CATALOG_MEDIAN_CHAPTER_MINUTES` (median of each book's minutes per chapter) |
-| "Atomic Habits, chapter one, in about 13 minutes" | Summary chapter | `bookChapterMinutes("atomic-habits")` (that book's minutes per chapter; the number is dropped if the book leaves the catalog) |
+| "Atomic Habits, chapter one, in about 14 minutes" | Summary chapter | `chapterMinutes("atomic-habits", 1)` (`app/_lib/chapter-minutes.ts`: chapter one's own minutes from `app/book/data/book-chapter-meta.json`, as the reader lists them; read on the server in `app/page.tsx` and passed down, so the metadata stays out of the client bundle; the number is dropped if the book leaves the catalog) |
 | "2 free books", "Finish 2 complete books", "on 2 complete books", "after my 2 free books" | hero label, pricing, FAQ, close, footer | `FREE_OFFER_LABEL` / `PRICING.freeBookLimit` (`lib/pricing.ts`; display value, the enforced limit is `BOOK_FREE_SLOTS_DEFAULT`) |
 | "$7.99 / month", "$5.99 /mo billed annually", "Save 25%" | pricing | `PRICING.monthlyAmount`, `PRICING.annualMonthlyAmount`, `ANNUAL_SAVINGS_PCT` |
+| "Annual upfront −37%", "$59.99 CAD / year", "$5.00/mo · billed once a year" (on `/pricing`, not the landing) | `/pricing` | `PRICING.annualUpfrontAmount`, `ANNUAL_UPFRONT_SAVINGS_PCT`, `ANNUAL_UPFRONT_MONTHLY_AMOUNT`. The landing's "Annual" is the billed-annually plan, `/pricing`'s yearly view the upfront plan; each is labelled with its in-app name (`SubscriptionCard`: "Annual", "Annual upfront") |
+| "Showing all titles" / "Showing N titles" (on `/books`, not the landing) | `/books` filter bar | `resultCountLabel` (`browse-library-core.ts`): a filtered view gives its exact match count; the unfiltered view never prints the exact catalog size beside the hero's floor |
 | "Start 14-day free trial", "charged when the 14-day trial ends", trial in the FAQ | pricing, FAQ | `TRIAL_CTA_LABEL`, `PRICING.trialDays` |
 | Pro: text-to-speech audio | pricing | the chapter audio route answers Pro only (`entitlement.plan !== "PRO"`) |
 | Pro: reading analytics | pricing | Progress shows the insights to Pro only (`isPro`, `ProInsightsPreview`) |

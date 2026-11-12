@@ -16,6 +16,7 @@ import { LandingMotionProvider } from "@/components/landing/LandingMotionProvide
 import { PublicSiteShell } from "@/components/marketing/PublicSiteShell";
 import { BookReelLanding } from "@/components/film/BookReelLanding";
 import { SkipFilmLink } from "@/components/film/SkipFilmLink";
+import { chapterMinutes } from "@/app/_lib/chapter-minutes";
 import { SKIP_LINK_CLASS, SKIP_LINK_STYLE } from "@/components/landing/recall/skip-link";
 import { landingFontVariables } from "./_fonts/landing";
 
@@ -119,6 +120,10 @@ export default async function Home() {
             (RecallReveal is fine there — nothing below is sticky-pinned). */}
         <main id="main" tabIndex={-1} className={`relative z-10 focus:outline-none ${landingFontVariables}`}>
           <BookReelLanding
+            // The Summary chapter names Atomic Habits, chapter one: its own
+            // reading time, read here on the server (the metadata stays out of
+            // the client bundle).
+            hallMinutes={chapterMinutes("atomic-habits", 1)}
             afterHero={
               <div
                 data-public-hero-end

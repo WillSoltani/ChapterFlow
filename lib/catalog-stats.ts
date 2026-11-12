@@ -62,18 +62,6 @@ export const CATALOG_MEDIAN_CHAPTER_MINUTES = median(
 );
 
 /**
- * One book's own minutes per chapter, the same formula as the median above
- * (round(estimatedMinutes / chapterCount)), or null when the book is not in
- * the catalog (or has no chapters). For copy about one named book, where the
- * catalog median would be a different number from the book's own.
- */
-export function bookChapterMinutes(bookId: string): number | null {
-  const book = BOOKS_CATALOG_METADATA.find((entry) => entry.id === bookId);
-  if (!book || book.chapterCount <= 0) return null;
-  return Math.round(book.estimatedMinutes / book.chapterCount);
-}
-
-/**
  * Conservative display floor for the book count, e.g. "60+".
  * Derived (floor-to-10) so it tracks the catalog and never overstates.
  */

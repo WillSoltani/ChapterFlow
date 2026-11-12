@@ -180,7 +180,9 @@ export function Pricing() {
       ? UPGRADE_RETURN_PATH
       : UPGRADE_LOGIN_URL;
   const proCtaLabel = isPro ? "Manage subscription" : TRIAL_CTA_LABEL;
-  const perMonthAmount = isAnnual ? PRICING.annualMonthlyAmount : PRICING.monthlyAmount;
+  // Only the monthly view reads this; the annual view prices the annual-upfront
+  // plan from its own figures (never the billed-annually plan's).
+  const perMonthAmount = PRICING.monthlyAmount;
 
   const toggleFaq = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
@@ -252,11 +254,13 @@ export function Pricing() {
                 Choose your billing cadence
               </span>
 
-              <div className="flex items-center gap-3">
+              {/* Narrow screens: tighter gaps and the saving under its label, so
+                  the group fits a 320 px row instead of being clipped. */}
+              <div className="flex items-center gap-1.5 sm:gap-3">
                 <button
                   type="button"
                   onClick={() => setIsAnnual(false)}
-                  className="cf-folio min-h-11 px-2 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+                  className="cf-folio min-h-11 px-1 sm:px-2 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                   style={{ color: isAnnual ? "var(--text-muted)" : "var(--text-heading)" }}
                 >
                   MONTHLY
@@ -265,7 +269,7 @@ export function Pricing() {
                   onClick={() => setIsAnnual((v) => !v)}
                   role="switch"
                   aria-checked={isAnnual}
-                  aria-label="Toggle annual pricing"
+                  aria-label="Toggle annual upfront pricing"
                   className="relative flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-full border border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                 >
                   <span
@@ -282,11 +286,12 @@ export function Pricing() {
                 <button
                   type="button"
                   onClick={() => setIsAnnual(true)}
-                  className="cf-folio flex min-h-11 items-center gap-1.5 px-2 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+                  className="cf-folio flex min-h-11 flex-col items-center justify-center px-1 text-center sm:flex-row sm:gap-1.5 sm:px-2 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                   style={{ color: isAnnual ? "var(--text-heading)" : "var(--text-muted)" }}
                 >
-                  ANNUAL
-                  {/* The annual view prices the upfront plan, so its saving. */}
+                  {/* This view prices the annual-upfront plan (its in-app name),
+                      not the billed-annually plan the landing shows. */}
+                  ANNUAL UPFRONT
                   <span style={{ color: "var(--accent-cyan)" }}>
                     −{ANNUAL_UPFRONT_SAVINGS_PCT}%
                   </span>

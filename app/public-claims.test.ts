@@ -2,11 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
-import {
-  CATALOG_BOOK_COUNT,
-  CATALOG_BOOK_COUNT_DISPLAY,
-  bookChapterMinutes,
-} from "@/lib/catalog-stats";
+import { CATALOG_BOOK_COUNT, CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
+import { chapterMinutes } from "@/app/_lib/chapter-minutes";
+import bookChapterMeta from "@/app/book/data/book-chapter-meta.json";
 import { BOOKS_CATALOG_METADATA } from "@/lib/books-catalog";
 import { FREE_OFFER_LABEL, PRICING, PRO_FEATURES } from "@/lib/pricing";
 import { RECALL_FAQ } from "@/components/landing/recall/recall-faq-data";
@@ -99,6 +97,7 @@ test("the walk reaches the public surfaces it must judge", () => {
 test("a public surface shows the catalog floor, never the exact count (machine-readable counts excepted)", () => {
   assert.match(CATALOG_BOOK_COUNT_DISPLAY, /^\d+\+$/);
   const exact = new RegExp(`\\b${CATALOG_BOOK_COUNT}\\s+(books|titles|non-fiction)\\b`, "i");
+  const catalogLength = /\b(?:ALL_BOOKS|BOOKS_CATALOG|BOOKS_CATALOG_METADATA|LIBRARY_BOOKS)\.length\b/;
   const offenders: string[] = [];
   for (const file of FILES) {
     const src = code(file);
@@ -108,6 +107,11 @@ test("a public surface shows the catalog floor, never the exact count (machine-r
         offenders.push(`${file}: ${line.trim()}`);
       }
       if (exact.test(line)) offenders.push(`${file}: hard-coded count: ${line.trim()}`);
+      // The catalog's own length is the exact count by another name: it may
+      // decide (a comparison), but not be shown or handed on to be shown.
+      if (catalogLength.test(line) && !/\s(?:[<>]=?|[!=]==)\s/.test(line)) {
+        offenders.push(`${file}: catalog length: ${line.trim()}`);
+      }
     }
   }
   assert.deepEqual(offenders, []);
@@ -153,14 +157,58 @@ test("the Pro card, the pricing page and the FAQ agree with the export route's o
   assert.doesNotMatch(answer.a, /\bPro\b/);
 });
 
-test("the Summary chapter names its book's own reading time", () => {
-  const book = BOOKS_CATALOG_METADATA.find((b) => b.id === "atomic-habits");
-  assert.ok(book, "Atomic Habits is in the catalog");
-  assert.equal(bookChapterMinutes("atomic-habits"), Math.round(book.estimatedMinutes / book.chapterCount));
-  assert.equal(bookChapterMinutes("not-a-book"), null);
+test("the Summary chapter's minutes are its named chapter's own figure", () => {
+  // The line reads "Atomic Habits, chapter one, in about N minutes", so N is
+  // chapter one's reading time as the reader lists it, not a book or catalog
+  // average.
+  const meta = bookChapterMeta as Record<string, { chapters: { order: number; minutes: number }[] }>;
+  const chapterOne = meta["atomic-habits"]?.chapters.find((c) => c.order === 1);
+  assert.ok(chapterOne, "Atomic Habits chapter one has reading metadata");
+  assert.ok(BOOKS_CATALOG_METADATA.some((b) => b.id === "atomic-habits"), "Atomic Habits is in the catalog");
+  assert.equal(chapterMinutes("atomic-habits", 1), chapterOne.minutes);
+  assert.equal(chapterMinutes("not-a-book", 1), null, "a book outside the catalog drops the number");
+  assert.equal(chapterMinutes("atomic-habits", 999), null);
+
   const hall = code("components/film/chapters/HallChapters.tsx");
-  assert.match(hall, /bookChapterMinutes\("atomic-habits"\)/);
-  assert.doesNotMatch(hall, /CATALOG_MEDIAN_CHAPTER_MINUTES/, "the catalog median is about chapters in general");
+  assert.match(hall, /Atomic Habits, chapter one\{minutes === null \? "" : `, in about \$\{minutes\} minutes`\}/);
+  assert.doesNotMatch(hall, /CATALOG_MEDIAN_CHAPTER_MINUTES|estimatedMinutes/, "the Hall shows no average");
+  assert.doesNotMatch(
+    readFileSync(path.join(ROOT, "components/film/chapters/HallChapters.tsx"), "utf8"),
+    /from\s*["'][^"']*(?:chapter-meta|chapter-minutes)/,
+    "the metadata stays out of the client bundle",
+  );
+  // The landing reads chapter one's figure on the server and hands it down.
+  assert.match(code("app/page.tsx"), /hallMinutes=\{chapterMinutes\("atomic-habits", 1\)\}/);
+  assert.match(code("components/film/BookReelLanding.tsx"), /<HallChapter[^>]*minutes=\{hallMinutes\}/);
+});
+
+test("each annual price names its plan, and the names match the in-app ones", () => {
+  // lib/pricing has two yearly plans: billed annually (annualMonthlyAmount,
+  // ANNUAL_SAVINGS_PCT, ANNUAL_TOTAL_AMOUNT) and annual upfront
+  // (annualUpfrontAmount, ANNUAL_UPFRONT_*). A surface may show either, but
+  // only under that plan's own name, so two pages never give one "Annual"
+  // choice two prices and two savings.
+  const billedAnnually = /\b(?:annualMonthlyAmount|ANNUAL_SAVINGS_PCT|ANNUAL_TOTAL_AMOUNT|PRICING_TIER_DISPLAY\.annual\b)/;
+  const upfront = /\b(?:annualUpfrontAmount|ANNUAL_UPFRONT_[A-Z_]+|annual_upfront)\b/;
+  const inApp = code("app/book/settings/components/SubscriptionCard.tsx");
+  assert.match(inApp, /annual:\s*\{\s*name:\s*"Annual"/, "in-app name of the billed-annually plan");
+  assert.match(inApp, /annual_upfront:\s*\{\s*name:\s*"Annual upfront"/, "in-app name of the upfront plan");
+
+  const shown: string[] = [];
+  for (const file of FILES) {
+    const src = code(file);
+    const a = billedAnnually.test(src);
+    const u = upfront.test(src);
+    if (!a && !u) continue;
+    shown.push(file);
+    if (a) assert.match(src, /billed annually/i, `${file} shows the billed-annually plan without naming it`);
+    if (u) assert.match(src, /\bupfront\b/i, `${file} shows the upfront plan without naming it`);
+    // A surface that shows only the upfront plan must not call it plain "Annual".
+    if (u && !a) assert.doesNotMatch(src, />\s*ANNUAL\s*</i, `${file} labels the upfront plan plain "Annual"`);
+  }
+  for (const f of ["components/landing/recall/RecallPricing.tsx", "components/sections/Pricing.tsx"]) {
+    assert.ok(shown.includes(f), `${f} is judged`);
+  }
 });
 
 test("the Organization logo is the brand mark this site serves, not the share image", () => {

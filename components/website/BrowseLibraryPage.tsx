@@ -5,7 +5,6 @@ import { BrowseLibraryBottomCta } from "./browse-library/BrowseLibraryBottomCta"
 import { BrowseLibraryFilterBar } from "./browse-library/BrowseLibraryFilterBar";
 import { BrowseLibraryHero } from "./browse-library/BrowseLibraryHero";
 import { BrowseLibraryResults } from "./browse-library/BrowseLibraryResults";
-import { ALL_BOOKS } from "./browse-library/browse-library-core";
 import { useBrowseLibraryState } from "./browse-library/useBrowseLibraryState";
 
 export function BrowseLibraryPage() {
@@ -67,7 +66,6 @@ export function BrowseLibraryPage() {
           sortBy={sortBy}
           onSortChange={handleSortChange}
           resultCount={filteredBooks.length}
-          totalCount={ALL_BOOKS.length}
         />
 
         {/* Browse area */}

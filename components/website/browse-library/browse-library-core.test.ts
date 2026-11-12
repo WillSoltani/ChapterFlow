@@ -1,8 +1,11 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
 import {
+  ALL_BOOKS,
   filterAndSortBooks,
   getBookBadge,
+  resultCountLabel,
   sortBooks,
   type LibraryBook,
 } from "./browse-library-core";
@@ -48,5 +51,15 @@ test("public catalog badges share the single Recall accent", () => {
     { ...books[0]!, staffPick: true },
   ]) {
     assert.equal(getBookBadge(book)?.color, "var(--accent-cyan)");
+  }
+});
+
+test("the result count is exact for a filtered view and never prints the catalog size", () => {
+  assert.equal(ALL_BOOKS.length, CATALOG_BOOK_COUNT);
+  assert.equal(resultCountLabel(ALL_BOOKS.length), "Showing all titles");
+  assert.equal(resultCountLabel(1), "Showing 1 title");
+  assert.equal(resultCountLabel(12), "Showing 12 titles");
+  for (const n of [0, 1, 12, ALL_BOOKS.length - 1, ALL_BOOKS.length]) {
+    assert.doesNotMatch(resultCountLabel(n), new RegExp(`\\b${CATALOG_BOOK_COUNT}\\b`));
   }
 });

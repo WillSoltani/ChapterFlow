@@ -21,7 +21,16 @@ import { HallChapter, RoomsChapter, VaultChapter } from "./chapters/HallChapters
 import { CityChapter, HomeChapter, LightsChapter } from "./chapters/CityChapters";
 import { AFTER_FILM_ID } from "./SkipFilmLink";
 
-export function BookReelLanding({ afterHero, body }: { afterHero?: ReactNode; body?: ReactNode }) {
+export function BookReelLanding({
+  afterHero,
+  body,
+  hallMinutes = null,
+}: {
+  afterHero?: ReactNode;
+  body?: ReactNode;
+  /** The Summary chapter's reading time (its named chapter's own figure); null drops it. */
+  hallMinutes?: number | null;
+}) {
   // noUncheckedIndexedAccess: BOOK_REEL is a plain array; a missing manifest is
   // a build-time mistake (book-reel.ts), not a runtime state to render around.
   const film = (i: number) => {
@@ -35,7 +44,7 @@ export function BookReelLanding({ afterHero, body }: { afterHero?: ReactNode; bo
       <FilmHud />
       <FoldChapter film={f0} index={0} />
       {afterHero}
-      <HallChapter film={f1} index={1} />
+      <HallChapter film={f1} index={1} minutes={hallMinutes} />
       <RoomsChapter film={f2} index={2} />
       <VaultChapter film={f3} index={3} />
       <LightsChapter film={f4} index={4} />
