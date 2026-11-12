@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { DPR_STEPS, heroPoster, htmlPosterStands, quantDpr } from "./first-paint";
-import { PORTRAIT_QUERY, pickVariant, viewBackingWidth } from "./view";
+import { PORTRAIT_QUERY, SHORT_LANDSCAPE_QUERY, pickVariant, viewBackingWidth, viewOrientation } from "./view";
 import { manifest } from "./timeline";
 import type { BandTier, FilmManifest, FilmVariant } from "./types";
 
@@ -19,8 +19,8 @@ function feature(f: string, env: Env): boolean {
   if (name === "orientation") return (env.height >= env.width ? "portrait" : "landscape") === raw;
   let actual: number;
   let want: number;
-  if (name === "width") {
-    actual = env.width;
+  if (name === "width" || name === "height") {
+    actual = name === "width" ? env.width : env.height;
     const v = /^([\d.]+)(px|rem)$/.exec(raw);
     if (!v) throw new Error(`unparsed length: ${raw}`);
     want = Number(v[1]) * (v[2] === "rem" ? 16 : 1);
@@ -42,10 +42,18 @@ const WIDTHS: number[] = [];
 for (let w = 240; w <= 2600; w += 1) WIDTHS.push(w);
 const DPRS = [0.5, 0.67, 0.75, 0.8, 0.9, 1, 1.1, 1.25, 1.333, 1.5, 1.75, 1.8, 2, 2.25, 2.5, 2.625, 2.75, 3, 3.5, 4];
 
+/**
+ * Short landscape windows (a phone held sideways, a short browser window):
+ * heights around the 500 px line, used wherever the window is landscape.
+ */
+const SHORT_HEIGHTS = [320, 375, 390, 430, 499, 500, 500.5, 501];
+
 function grid(fn: (env: Env) => void) {
   for (const width of WIDTHS)
-    for (const dpr of DPRS)
+    for (const dpr of DPRS) {
       for (const height of [Math.round(width * 0.56), Math.round(width * 2.1)]) fn({ width, height, dpr });
+      for (const height of SHORT_HEIGHTS) if (width > height) fn({ width, height, dpr });
+    }
 }
 
 /** What the film code draws for this window (readView + pickVariant). */
@@ -53,6 +61,13 @@ function filmPick(film: FilmManifest, env: Env): FilmVariant {
   const orientation = matches(PORTRAIT_QUERY, env) ? "portrait" : "landscape";
   return pickVariant(film, { orientation, backingWidth: viewBackingWidth(env.width, env.dpr) });
 }
+
+test("PORTRAIT_QUERY is the pick rule (viewOrientation) on every window of the grid", () => {
+  grid((env) => {
+    const q = matches(PORTRAIT_QUERY, env) ? "portrait" : "landscape";
+    if (q !== viewOrientation(env.width, env.height)) assert.fail(`${env.width}x${env.height}: query ${q}, rule ${viewOrientation(env.width, env.height)}`);
+  });
+});
 
 /** What the browser shows: the first <source> whose media matches, else the <img>. */
 function pictureChoice(film: FilmManifest, env: Env): FilmVariant {
@@ -82,7 +97,7 @@ test("the <picture> source the browser picks is the variant pickVariant draws, o
     const got = pictureChoice(HERO, env).name;
     if (got !== want) assert.fail(`${env.width}x${env.height} @${env.dpr}: picture ${got}, film ${want}`);
   });
-  assert.ok(n > 90_000, `grid of ${n}`);
+  assert.ok(n > 400_000, `grid of ${n}`);
 });
 
 test("exactly one poster preload matches, the same file the <picture> shows", () => {
@@ -104,6 +119,13 @@ test("the known viewports: the browser's poster is the film's variant", () => {
     [900, 1600, 1, "palace-00-b900"],
     [901, 1600, 1, "palace-00-b1080"],
     [451, 900, 2, "palace-00-b1080"],
+    // Phones held sideways and short windows: the landscape frames.
+    [844, 390, 3, "palace-00"],
+    [667, 375, 2, "palace-00"],
+    [932, 430, 3, "palace-00"],
+    [568, 320, 2, "palace-00"],
+    [900, 500, 1, "palace-00"],
+    [900, 501, 1, "palace-00-b900"],
   ];
   for (const [width, height, dpr, name] of cases) {
     const env = { width, height, dpr };
@@ -124,7 +146,7 @@ test("poster URLs are the variants' own posters (with ?v=), the URL the film cod
 
 test("band placement: the rectangle of the band inside the virtual frame, in percent", () => {
   const p = heroPoster(HERO);
-  assert.deepEqual(p.band, { left: 0, top: (474 / 1920) * 100, width: 100, height: (972 / 1920) * 100, aspect: "1080 / 1920", ratio: 1080 / 1920 });
+  assert.deepEqual(p.band, { left: 0, top: (474 / 1920) * 100, width: 100, height: (972 / 1920) * 100, aspect: "1080 / 1920", ratio: 1080 / 1920, framePerBand: 1 });
 });
 
 test("a film without band tiers: no sources, only the landscape poster", () => {
@@ -145,10 +167,19 @@ test("the HTML poster stands only over the first chapter, until the canvas draws
 
 test("globals.css: the band placement of the poster applies only to a band poster (data-film-band)", () => {
   const css = readFileSync(new URL("../../app/globals.css", import.meta.url), "utf8");
-  const start = css.indexOf("@media (max-width: 63.99rem), (orientation: portrait) {\n  .film-poster");
+  const start = css.indexOf(`@media ${PORTRAIT_QUERY} {\n  .film-poster`);
   assert.ok(start > 0, "the portrait poster block");
   const block = css.slice(start, css.indexOf("\n}\n", start));
   const selectors = [...block.matchAll(/^\s*([^{}\n]+)\{/gm)].map((m) => m[1]!.trim()).filter((s) => s.startsWith(".film-poster"));
   assert.ok(selectors.length >= 2);
   for (const s of selectors) assert.ok(s.startsWith(".film-poster[data-film-band]"), s);
+});
+
+test("globals.css: the compact stage is keyed on SHORT_LANDSCAPE_QUERY, the same windows the pick sends to the landscape frames", () => {
+  const css = readFileSync(new URL("../../app/globals.css", import.meta.url), "utf8");
+  assert.ok(css.includes(`@media ${SHORT_LANDSCAPE_QUERY} {`), "a compact-stage block");
+  // Every short landscape window of the grid is NOT a band window.
+  grid((env) => {
+    if (matches(SHORT_LANDSCAPE_QUERY, env) && matches(PORTRAIT_QUERY, env)) assert.fail(`${env.width}x${env.height}: short landscape and band`);
+  });
 });

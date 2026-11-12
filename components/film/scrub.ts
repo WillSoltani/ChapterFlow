@@ -2,7 +2,7 @@
  * Pure scrub math for FilmBackdrop. No DOM writes, no React — unit-testable.
  */
 
-import type { FilmVariant, SegmentRegistration } from "./types";
+import type { BandRect, FilmVariant, FrameSize, SegmentRegistration } from "./types";
 
 export type ActivePick = {
   seg: SegmentRegistration;
@@ -140,10 +140,50 @@ export function stageShift(stageCss: number, boxCss: number, backingH: number): 
  * down by `shiftY` (see stageShift). The scale depends on the canvas box only.
  */
 export function framePlacement(cw: number, ch: number, iw: number, ih: number, zoom: number, shiftY = 0) {
-  const r = coverRect(cw, ch, iw, ih);
+  return breathe(coverRect(cw, ch, iw, ih), zoom, shiftY);
+}
+
+/** A placed rect grown by the breath `zoom` around (0.5, 0.45), then moved down by `shiftY`. */
+function breathe(r: { x: number; y: number; w: number; h: number }, zoom: number, shiftY: number) {
   const w = r.w * (1 + zoom);
   const h = r.h * (1 + zoom);
   return { x: r.x - (w - r.w) * 0.5, y: shiftY + r.y - (h - r.h) * 0.45, w, h };
+}
+
+/**
+ * Framing amount for band tiers on tall screens: 100 = cover-fit the virtual
+ * frame to the canvas (today: on a tall phone the band is wider than the
+ * screen and its sides are cut, up to about 20% of it), 0 = fit the band to
+ * the canvas width (the whole band shows, the picture is smaller). An OWNER
+ * PICK, temporary: ?frame=0|25|50|75|100 (parseFrameParam, read once by the
+ * page on the server and passed down, so the HTML poster and the canvas use
+ * the same amount). Landscape frames never use it.
+ */
+export const FRAME_AMOUNTS = [0, 25, 50, 75, 100] as const;
+export type FrameAmount = (typeof FRAME_AMOUNTS)[number];
+export const DEFAULT_FRAME_AMOUNT: FrameAmount = 100;
+
+/** ?frame=<amount> from a query string or Next searchParams; anything but the five amounts is the default. */
+export function parseFrameParam(search: string | Record<string, string | string[] | undefined>): FrameAmount {
+  const raw = typeof search === "string" ? new URLSearchParams(search).get("frame") : search.frame;
+  const v = Array.isArray(raw) ? raw[0] : raw;
+  const hit = FRAME_AMOUNTS.find((a) => String(a) === v);
+  return hit ?? DEFAULT_FRAME_AMOUNT;
+}
+
+/**
+ * Scale of a band tier's virtual frame (`frame`, band `band` inside it) on a
+ * canvas of cw × ch at framing `amount` (0..100): linear between fitting the
+ * band to the width (never more than cover) and cover. 100 returns the cover
+ * scale itself (not a lerp), so the default is today's placement bit for bit.
+ * Where the canvas is wider than the frame's aspect (tablets) both ends are
+ * the cover scale and the amount changes nothing.
+ */
+export function bandFitScale(cw: number, ch: number, frame: FrameSize, band: BandRect, amount: number): number {
+  const cover = Math.max(cw / frame.w, ch / frame.h);
+  if (!(amount < 100)) return cover;
+  const width = Math.min(cw / band.w, cover);
+  return width + (cover - width) * (Math.max(0, amount) / 100);
 }
 
 /**
@@ -162,10 +202,19 @@ export function variantPlacement(
   ih: number,
   zoom: number,
   shiftY = 0,
+  amount: number = DEFAULT_FRAME_AMOUNT,
 ) {
   const { frame, band } = v;
   if (!frame || !band) return framePlacement(cw, ch, iw, ih, zoom, shiftY);
-  const r = framePlacement(cw, ch, frame.w, frame.h, zoom, shiftY);
+  let r: { x: number; y: number; w: number; h: number };
+  if (amount < 100) {
+    // Framing amount (bandFitScale): the virtual frame at that scale, centred
+    // on the canvas like coverRect, then the same breath and stage shift.
+    const k = bandFitScale(cw, ch, frame, band, amount);
+    const w = frame.w * k;
+    const h = frame.h * k;
+    r = breathe({ x: (cw - w) * 0.5, y: (ch - h) * 0.5, w, h }, zoom, shiftY);
+  } else r = framePlacement(cw, ch, frame.w, frame.h, zoom, shiftY);
   const sx = r.w / frame.w;
   const sy = r.h / frame.h;
   return { x: r.x + band.x * sx, y: r.y + band.y * sy, w: band.w * sx, h: band.h * sy };

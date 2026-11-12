@@ -9,6 +9,7 @@ import {
   parseNavLook,
   publicNavHref,
   publicNavPrefetchProps,
+  shouldRenderPersistentCta,
   shouldShowPersistentCta,
 } from "./RecallNavModel";
 
@@ -139,4 +140,28 @@ test("parseNavLook: ?nav=1…5 picks the touch nav look over the film, default 1
   assert.equal(parseNavLook("?nav=0"), 1);
   assert.equal(parseNavLook("?nav=6"), 1);
   assert.equal(parseNavLook("?nav=2.5"), 1);
+});
+
+test("a page whose hero carries its own start button (the film landing) shows the nav's as soon as that button is not shown", () => {
+  const base = { hasSentinel: true, sentinelTop: 640, headerBottom: 88 };
+  // The hero's button is shown: it is the start button on screen (a suppression zone).
+  assert.equal(shouldShowPersistentCta({ ...base, suppressionVisible: true, hasHeroCta: true }), false);
+  // It has faded (or scrolled away): the nav's shows, long before the hero-end sentinel.
+  assert.equal(shouldShowPersistentCta({ ...base, suppressionVisible: false, hasHeroCta: true }), true);
+  // Pages without a hero start button keep the sentinel rule.
+  assert.equal(shouldShowPersistentCta({ ...base, suppressionVisible: false, hasHeroCta: false }), false);
+  assert.equal(shouldShowPersistentCta({ ...base, suppressionVisible: false }), false);
+});
+
+test("the persistent start button renders while the session is unresolved only where the hero has its own start button", () => {
+  // Phase 7 review: on the film landing the nav's button replaces the hero's
+  // once it fades; a session endpoint left unresolved (useAuthStatus keeps
+  // loading on repeated 5xx) must not leave the visitor with none.
+  assert.equal(shouldRenderPersistentCta({ show: true, authResolved: false, hasHeroCta: true, mobileOpen: false }), true);
+  // Other public pages (pricing, contact, legal, books) keep waiting for the session.
+  assert.equal(shouldRenderPersistentCta({ show: true, authResolved: false, hasHeroCta: false, mobileOpen: false }), false);
+  assert.equal(shouldRenderPersistentCta({ show: true, authResolved: true, hasHeroCta: false, mobileOpen: false }), true);
+  // Never when hidden by the model, nor under the open mobile menu.
+  assert.equal(shouldRenderPersistentCta({ show: false, authResolved: true, hasHeroCta: true, mobileOpen: false }), false);
+  assert.equal(shouldRenderPersistentCta({ show: true, authResolved: true, hasHeroCta: true, mobileOpen: true }), false);
 });

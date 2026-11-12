@@ -1570,3 +1570,28 @@ test("recovery: probing stops arming timers when every cache is disposed, and st
   await go(fc, 10_000);
   assert.equal(budget.stats.probes, 2, "and the schedule goes on");
 });
+
+test("dispose: a budget disposed while the document is hidden leaves no timer chain (FilmBackdrop unmount)", async () => {
+  const { fc, budget, a } = await haltedBudget();
+  budget.noteVisibility(true);
+  a.dispose();
+  budget.dispose();
+  await go(fc, 6 * 3600_000);
+  assert.equal(fc.pending(), 0, "no timer re-armed after dispose");
+  assert.equal(budget.stats.probes, 0);
+  // Signals after dispose do nothing either.
+  budget.noteVisibility(false);
+  budget.noteOnline();
+  await go(fc, 3600_000);
+  assert.equal(fc.pending(), 0);
+  assert.equal(budget.stats.probes, 0);
+});
+
+test("dispose then revive (StrictMode remount): a halted budget probes again on its schedule", async () => {
+  const { fc, budget, probes } = await haltedBudget();
+  budget.dispose();
+  budget.revive();
+  await go(fc, 6_000);
+  assert.equal(probes().length, 1, "the first probe 5 s after revive");
+  assert.equal(budget.stats.probes, 1);
+});

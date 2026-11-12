@@ -429,3 +429,74 @@ test("canvasHiddenFrom: the canvas may stop compositing once the body's transluc
   assert.equal(canvasHiddenFrom(9000, 2000, 900), 11000 + 270);
   assert.ok(canvasHiddenFrom(9000, 2000, 900) > reelEndScrollY(9000, 2000, 900));
 });
+
+// ── Framing amount on tall phones (Phase 7, owner pick via ?frame=) ──────────
+
+test("parseFrameParam: ?frame=0, 25, 50, 75 or 100; anything else is the default 100", async () => {
+  const { parseFrameParam, FRAME_AMOUNTS, DEFAULT_FRAME_AMOUNT } = await import("./scrub");
+  assert.deepEqual([...FRAME_AMOUNTS], [0, 25, 50, 75, 100]);
+  assert.equal(DEFAULT_FRAME_AMOUNT, 100);
+  for (const a of [0, 25, 50, 75, 100]) assert.equal(parseFrameParam(`?frame=${a}`), a);
+  for (const s of ["", "?frame=", "?frame=10", "?frame=-25", "?frame=050", "?frame=abc", "?frame=100.0", "?frame=1e2", "?x=50"])
+    assert.equal(parseFrameParam(s), 100, s);
+  assert.equal(parseFrameParam("?hud=1&frame=25"), 25);
+  // The server reads it from searchParams (string or string[]).
+  assert.equal(parseFrameParam({ frame: "50" }), 50);
+  assert.equal(parseFrameParam({ frame: ["75", "0"] }), 75);
+  assert.equal(parseFrameParam({}), 100);
+});
+
+test("bandFitScale: 100 is today's cover scale exactly; 0 fits the band to the width; between is linear", async () => {
+  const { bandFitScale } = await import("./scrub");
+  for (const [cw, ch] of [[780, 1688], [1290, 2796], [640, 1136], [720, 1480], [1640, 2360], [1920, 2560]] as const) {
+    const cover = Math.max(cw / VFRAME.w, ch / VFRAME.h);
+    assert.equal(bandFitScale(cw, ch, VFRAME, VBAND, 100), cover, `${cw}x${ch} @100`);
+    assert.equal(bandFitScale(cw, ch, VFRAME, VBAND, 0) * VBAND.w, Math.min(cw, cover * VBAND.w), `${cw}x${ch} @0: the band spans the width`);
+    const s0 = bandFitScale(cw, ch, VFRAME, VBAND, 0);
+    for (const a of [25, 50, 75]) {
+      const want = s0 + (cover - s0) * (a / 100);
+      assert.ok(Math.abs(bandFitScale(cw, ch, VFRAME, VBAND, a) - want) < 1e-12, `${cw}x${ch} @${a}`);
+    }
+  }
+  // A canvas wider than the frame's aspect (tablets): every amount is the cover scale.
+  const s = Math.max(1640 / 1080, 1600 / 1920);
+  for (const a of [0, 25, 50, 75, 100]) assert.ok(Math.abs(bandFitScale(1640, 1600, VFRAME, VBAND, a) - s) < 1e-12);
+});
+
+test("variantPlacement with a framing amount: 100 gives today's rectangle exactly; 0 shows the full band width", () => {
+  const phone = backingSize(390, 844, 2); // 780 × 1688: cover crops the band's sides
+  for (const t of TIERS) {
+    for (const [zoom, shift] of [[0, 0], [0.012, -37.5]] as const) {
+      assert.deepEqual(
+        variantPlacement(phone.w, phone.h, t, t.width, t.height, zoom, shift, 100),
+        variantPlacement(phone.w, phone.h, t, t.width, t.height, zoom, shift),
+        "100 = today",
+      );
+    }
+    // Amount 0, no breath: the band spans the canvas width, edge to edge, centred on the stage.
+    const r = variantPlacement(phone.w, phone.h, t, t.width, t.height, 0, -20, 0);
+    assert.ok(Math.abs(r.x) < 1e-9 && Math.abs(r.w - phone.w) < 1e-9, `band x ${r.x} w ${r.w}`);
+    const scale = phone.w / 1080;
+    const vfH = 1920 * scale;
+    assert.ok(Math.abs(r.y - (-20 + (phone.h - vfH) / 2 + VBAND.y * scale)) < 1e-9, "virtual frame centred, then the stage shift");
+    assert.ok(Math.abs(r.h - VBAND.h * scale) < 1e-9);
+    // Between: the band is wider than the canvas less and less as the amount drops.
+    const widths = [0, 25, 50, 75, 100].map((a) => variantPlacement(phone.w, phone.h, t, t.width, t.height, 0, 0, a).w);
+    for (let i = 1; i < widths.length; i++) assert.ok(widths[i]! > widths[i - 1]!, `amount order ${widths.join(",")}`);
+    // The centre of the picture is the same at every amount (only the scale changes), and the stage shift moves it alike.
+    for (const a of [0, 50, 100]) {
+      const q = variantPlacement(phone.w, phone.h, t, t.width, t.height, 0, 33, a);
+      const vf = 1920 * bandScaleOf(q.w);
+      assert.ok(Math.abs(q.x + q.w / 2 - phone.w / 2) < 1e-9, `x centre @${a}`);
+      assert.ok(Math.abs(q.y - VBAND.y * bandScaleOf(q.w) - (33 + (phone.h - vf) / 2)) < 1e-6, `y @${a}`);
+    }
+  }
+  function bandScaleOf(w: number) {
+    return w / VBAND.w;
+  }
+});
+
+test("variantPlacement: the framing amount never touches a variant without a band (landscape frames)", () => {
+  const landscape = { width: 1920, height: 1080 };
+  for (const a of [0, 25, 50, 75]) assert.deepEqual(variantPlacement(1688, 780, landscape, 1920, 1080, 0.01, 4, a), framePlacement(1688, 780, 1920, 1080, 0.01, 4));
+});

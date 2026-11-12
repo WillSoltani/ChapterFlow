@@ -1,6 +1,13 @@
 export const PUBLIC_NAV_DESKTOP_QUERY = "(min-width: 1024px)";
 export const PUBLIC_NAV_MENU_ID = "chapterflow-public-navigation";
 
+/**
+ * On a suppression zone ([data-public-sticky-cta-suppress]): the zone's start
+ * link is not shown right now although its box is in view (a film pin faded
+ * out; FramePin writes it). The nav treats such a zone as out of view.
+ */
+export const CTA_OFF_ATTR = "data-cta-off";
+
 export type PublicNavLink =
   | {
       id: string;
@@ -87,18 +94,52 @@ export function isPublicNavCurrent(pathname: string, route: string): boolean {
   );
 }
 
+/**
+ * The nav's persistent start button. Hidden while a suppression zone (an
+ * equivalent start link) is shown below the header. Otherwise shown once the
+ * hero-end sentinel has crossed the header line, or at once on a page whose
+ * hero carries its own start button (`hasHeroCta`, the film landing's
+ * [data-public-hero-cta]): that button is itself a suppression zone, so the
+ * nav's takes over the moment it fades or scrolls away instead of when the
+ * whole hero chapter has passed.
+ */
 export function shouldShowPersistentCta({
   hasSentinel,
   sentinelTop,
   headerBottom,
   suppressionVisible,
+  hasHeroCta = false,
 }: {
   hasSentinel: boolean;
   sentinelTop: number | null;
   headerBottom: number;
   suppressionVisible: boolean;
+  hasHeroCta?: boolean;
 }): boolean {
   if (suppressionVisible) return false;
-  if (!hasSentinel) return true;
+  if (hasHeroCta || !hasSentinel) return true;
   return sentinelTop != null && sentinelTop <= headerBottom;
+}
+
+/**
+ * Whether the header renders its persistent start button now. It waits for
+ * the session (it shows "Dashboard" to a signed-in visitor) except on a page
+ * whose hero carries its own start button (the film landing): there the nav's
+ * button is what keeps a start button in reach once the hero's fades, so
+ * while the session is unresolved (slow, or failing and left unresolved by
+ * useAuthStatus) it shows the signed-out "Start free", the same link the
+ * film's own buttons always show. Never while the mobile menu is open.
+ */
+export function shouldRenderPersistentCta({
+  show,
+  authResolved,
+  hasHeroCta,
+  mobileOpen,
+}: {
+  show: boolean;
+  authResolved: boolean;
+  hasHeroCta: boolean;
+  mobileOpen: boolean;
+}): boolean {
+  return show && !mobileOpen && (authResolved || hasHeroCta);
 }

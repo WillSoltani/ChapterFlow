@@ -19,6 +19,7 @@ import { useLoadMotionFeatures } from "@/components/MotionFeatureProvider";
 import { track } from "@/lib/analytics";
 import { performLogout } from "@/lib/logout";
 import {
+  CTA_OFF_ATTR,
   PUBLIC_NAV_DESKTOP_QUERY,
   PUBLIC_NAV_LINKS,
   publicNavPrefetchProps,
@@ -26,6 +27,7 @@ import {
   isPublicNavCurrent,
   parseNavLook,
   publicNavHref,
+  shouldRenderPersistentCta,
   shouldShowPersistentCta,
 } from "./RecallNavModel";
 
@@ -82,6 +84,7 @@ function PrimaryAction({
   return (
     <a
       href={href}
+      data-nav-primary={location === "header" ? "" : undefined}
       onClick={() => {
         track("cta_click", { source: `public_nav_${location}_primary` });
         onActivate?.();
@@ -106,7 +109,9 @@ export function RecallNav() {
   const pathname = usePathname() || "/";
   const { loggedIn, loading } = useAuthStatus();
   const [mobileMenuPath, setMobileMenuPath] = useState<string | null>(null);
-  const [showPersistentCta, setShowPersistentCta] = useState(false);
+  // The persistent start button: hidden, or shown on a page whose hero has
+  // its own start button ([data-public-hero-cta], "hero") or not ("page").
+  const [persistentCta, setPersistentCta] = useState<false | "page" | "hero">(false);
   const loadMotionFeatures = useLoadMotionFeatures();
   const headerRef = useRef<HTMLElement>(null);
   const brandLinkRef = useRef<HTMLAnchorElement>(null);
@@ -146,15 +151,22 @@ export function RecallNav() {
   }, []);
 
   // Persistent CTA: shown once the hero-end sentinel has crossed the header
-  // line, hidden while a suppression zone (an equivalent signup link) is in
-  // view below the header. Observers only: nothing in the scroll path reads
-  // layout. The header line is re-read only when the header's own size
-  // changes (a ResizeObserver; the 1024px breakpoint), which rebuilds them.
+  // line (or at once on a page whose hero has its own start button,
+  // [data-public-hero-cta]), hidden while a suppression zone (an equivalent
+  // signup link) is in view below the header and shown (a zone marked
+  // data-cta-off, a faded film pin, does not count). Observers only: nothing
+  // in the scroll path reads layout (IntersectionObserver for the boxes, a
+  // MutationObserver for data-cta-off). The header line is re-read only when
+  // the header's own size changes (a ResizeObserver; the 1024px
+  // breakpoint), which rebuilds them.
   useEffect(() => {
     const sentinel = document.querySelector<HTMLElement>("[data-public-hero-end]");
     const suppressionZones = Array.from(
       document.querySelectorAll<HTMLElement>("[data-public-sticky-cta-suppress]"),
     );
+    const hasHeroCta = document.querySelector("[data-public-hero-cta]") != null;
+    const shownAs = hasHeroCta ? "hero" : "page";
+    const zoneOff = (zone: Element) => zone.hasAttribute(CTA_OFF_ATTR);
     const header = headerRef.current;
     if (!header || typeof window.IntersectionObserver === "undefined") {
       // Fallback for engines without IntersectionObserver (and jsdom): a
@@ -166,16 +178,20 @@ export function RecallNav() {
         frame = window.requestAnimationFrame(() => {
           const headerBottom = headerRef.current?.getBoundingClientRect().bottom ?? 0;
           const suppressionVisible = suppressionZones.some((zone) => {
+            if (zoneOff(zone)) return false;
             const bounds = zone.getBoundingClientRect();
             return bounds.bottom > headerBottom && bounds.top < window.innerHeight;
           });
-          setShowPersistentCta(
+          setPersistentCta(
             shouldShowPersistentCta({
               hasSentinel: sentinel != null,
               sentinelTop: sentinel?.getBoundingClientRect().top ?? null,
               headerBottom,
               suppressionVisible,
-            }),
+              hasHeroCta,
+            })
+              ? shownAs
+              : false,
           );
         });
       };
@@ -195,16 +211,26 @@ export function RecallNav() {
     const zoneVisible = new Map<Element, boolean>();
     const publish = () => {
       let suppressionVisible = false;
-      for (const v of zoneVisible.values()) suppressionVisible ||= v;
-      setShowPersistentCta(
+      for (const [zone, v] of zoneVisible) suppressionVisible ||= v && !zoneOff(zone);
+      setPersistentCta(
         shouldShowPersistentCta({
           hasSentinel: sentinel != null,
           sentinelTop,
           headerBottom,
           suppressionVisible,
-        }),
+          hasHeroCta,
+        })
+          ? shownAs
+          : false,
       );
     };
+    // A zone's start link fading in or out (data-cta-off) re-decides.
+    const offWatch =
+      typeof window.MutationObserver === "undefined"
+        ? null
+        : new window.MutationObserver(publish);
+    for (const zone of suppressionZones)
+      offWatch?.observe(zone, { attributes: true, attributeFilter: [CTA_OFF_ATTR] });
 
     let observers: IntersectionObserver[] = [];
     const build = () => {
@@ -249,6 +275,7 @@ export function RecallNav() {
       return () => {
         window.removeEventListener("resize", build);
         for (const o of observers) o.disconnect();
+        offWatch?.disconnect();
       };
     }
 
@@ -266,6 +293,7 @@ export function RecallNav() {
     return () => {
       sized.disconnect();
       for (const o of observers) o.disconnect();
+      offWatch?.disconnect();
     };
   }, [pathname]);
 
@@ -368,7 +396,12 @@ export function RecallNav() {
             )
           ) : null}
 
-          {showPersistentCta && authResolved && !mobileOpen ? (
+          {shouldRenderPersistentCta({
+            show: persistentCta !== false,
+            authResolved,
+            hasHeroCta: persistentCta === "hero",
+            mobileOpen,
+          }) ? (
             <PrimaryAction loggedIn={isLoggedIn} location="header" />
           ) : null}
 
@@ -402,7 +435,7 @@ export function RecallNav() {
       >
         <div
           id={PUBLIC_NAV_MENU_ID}
-          className="flex min-h-[100dvh] flex-col px-6 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(1.25rem,env(safe-area-inset-top))] sm:px-10"
+          className="rl-public-menu-body flex min-h-[100dvh] flex-col px-6 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(1.25rem,env(safe-area-inset-top))] sm:px-10"
         >
           <div className="flex min-h-11 items-center justify-between gap-4">
             <h2

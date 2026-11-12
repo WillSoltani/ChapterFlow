@@ -3,13 +3,31 @@ import sharp from "sharp";
 
 /** Helpers for e2e/film-audit.spec.ts — numeric stand-ins for eyeballing. */
 
-export type Pin = { text: string; x: number; y: number; w: number; h: number; seg: string; interactive: boolean };
-export type Snap = { pins: Pin[]; hud: string; navBottom: number; scrollY: number; active: string };
+export type Pin = {
+  text: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  seg: string;
+  interactive: boolean;
+  /** Smallest computed font size of the pin and the text inside it (px). */
+  fontPx: number;
+  /** Links and buttons inside the pin: their boxes. */
+  targets: Array<{ text: string; w: number; h: number }>;
+};
+/** A line of the Hall's wall prose (HallText): decoration, but real words. */
+export type WallLine = { text: string; x: number; y: number; w: number; h: number };
+export type Snap = { pins: Pin[]; walls: WallLine[]; hud: string; navBottom: number; scrollY: number; active: string };
 
 export const LUM_MEAN_MAX = 110;
 export const LUM_P90_MAX = 150;
 
-/** Pins (opacity ≥ .6) inside the sticky stage currently pinned to the viewport top. */
+/**
+ * Pins (opacity ≥ .6) inside the sticky stage currently pinned to the viewport
+ * top, and the Hall's wall lines in that segment that show (effective opacity,
+ * line × wall layer, ≥ .2): copy must never sit on top of them.
+ */
 export function activePins(page: Page): Promise<Snap> {
   return page.evaluate(() => {
     // Active segment = the one whose box spans the viewport top (same rule as
@@ -26,7 +44,18 @@ export function activePins(page: Page): Promise<Snap> {
         if (Number(getComputedStyle(el).opacity) < 0.6) continue;
         const r = el.getBoundingClientRect();
         if (r.width === 0 || r.height === 0) continue;
+        let fontPx = parseFloat(getComputedStyle(el).fontSize);
+        for (const t of el.querySelectorAll<HTMLElement>("*")) {
+          if (!(t.textContent ?? "").trim() || t instanceof SVGElement) continue;
+          fontPx = Math.min(fontPx, parseFloat(getComputedStyle(t).fontSize));
+        }
+        const targets = [...el.querySelectorAll<HTMLElement>("a[href], button")].map((t) => {
+          const b = t.getBoundingClientRect();
+          return { text: (t.textContent ?? "").trim().slice(0, 30), w: b.width, h: b.height };
+        });
         pins.push({
+          fontPx,
+          targets,
           text: (el.textContent ?? "").trim().slice(0, 40),
           x: r.left,
           y: r.top,
@@ -37,8 +66,21 @@ export function activePins(page: Page): Promise<Snap> {
         });
       }
     }
+    const walls: Array<{ text: string; x: number; y: number; w: number; h: number }> = [];
+    const seg = active?.closest("[data-film-segment]");
+    if (seg) {
+      for (const el of seg.querySelectorAll<HTMLElement>(".hall-line")) {
+        let o = 1;
+        for (let e: Element | null = el; e && e !== seg; e = e.parentElement) o *= Number(getComputedStyle(e).opacity);
+        if (o < 0.2 || getComputedStyle(el).visibility !== "visible") continue;
+        const r = el.getBoundingClientRect();
+        if (r.width === 0 || r.height === 0) continue;
+        walls.push({ text: (el.textContent ?? "").trim().slice(0, 40), x: r.left, y: r.top, w: r.width, h: r.height });
+      }
+    }
     return {
       pins,
+      walls,
       hud: document.querySelector(".film-hud")?.textContent ?? "",
       navBottom: nav?.bottom ?? 0,
       scrollY: window.scrollY,
@@ -84,5 +126,5 @@ export async function backgroundLum(page: Page, pins: Pin[], vp: { width: number
   });
 }
 
-export const overlap = (a: Pin, b: Pin) =>
+export const overlap = (a: Pick<Pin, "x" | "y" | "w" | "h">, b: Pick<Pin, "x" | "y" | "w" | "h">) =>
   a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
