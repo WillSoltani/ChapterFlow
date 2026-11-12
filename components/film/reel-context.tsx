@@ -12,6 +12,7 @@
 
 import { createContext, useContext } from "react";
 import type { FilmStats } from "./frame-cache";
+import type { ScrubFeel } from "./use-scrub-loop";
 import type { FilmManifest, FilmVariant, Orientation, SegmentRegistration } from "./types";
 
 export type ReelApi = {
@@ -23,6 +24,8 @@ export type ReelApi = {
   /** Index of the segment currently drawn, -1 before first paint. */
   drawnSegment: () => number;
   drawnFrame: () => number;
+  /** Input kind, smoothing in effect and target frame of the last worked tick. */
+  feel: () => ScrubFeel;
   /** Live load + draw counters (also window.__filmStats). */
   stats: FilmStats;
 };

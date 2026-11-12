@@ -189,3 +189,81 @@ export function viewportRects(
 export function reelEndScrollY(top: number, height: number, stage: number): number {
   return top + height - stage;
 }
+
+/** The kind of the last scroll input (use-scrub-loop tracks it with passive listeners). */
+export type ScrollInput = "wheel" | "touch" | "key" | "other";
+
+/** Default touch smoothing (ms); ?smooth=<ms> replaces it (parseSmoothParam). */
+export const TOUCH_SMOOTHING_MS = 35;
+
+/**
+ * Smoothing time constant (ms) for the scrub, by input. A FEEL decision: edit
+ * freely. Higher = a smoother glide, but the film lags the input; lower =
+ * tighter, but a wheel's 10–30 frame steps show as cuts. A wheel needs the
+ * glide; a finger is already continuous, so it gets a short one and the film
+ * stays under the finger. 0 = no smoothing. Phone values to try with
+ * ?smooth=: 0, 20, 35, 50, 90.
+ */
+export function smoothingMs(input: ScrollInput, touchMs: number = TOUCH_SMOOTHING_MS): number {
+  if (input === "touch") return touchMs;
+  return 90;
+}
+
+/** ?smooth=<ms>: an integer 0..200 overrides the touch smoothing; anything else is null. */
+export function parseSmoothParam(search: string): number | null {
+  const raw = new URLSearchParams(search).get("smooth");
+  if (raw === null || !/^\d{1,3}$/.test(raw)) return null;
+  const ms = Number(raw);
+  return ms <= 200 ? ms : null;
+}
+
+/**
+ * One step of the exponential chase of the target frame over `dtMs` (capped
+ * at 50 ms) with time constant `tauMs`. 0 snaps. Within half a frame it
+ * settles ON the target, so the loop's idle check (smoothed = target) holds.
+ */
+export function smoothFrameStep(current: number, target: number, dtMs: number, tauMs: number): number {
+  if (!(tauMs > 0)) return target;
+  const k = 1 - Math.exp(-Math.min(50, dtMs) / tauMs);
+  const next = current + (target - current) * k;
+  return Math.abs(target - next) < 0.5 ? target : next;
+}
+
+const SCROLL_KEYS = new Set(["ArrowDown", "ArrowUp", "PageDown", "PageUp", " ", "Spacebar", "Home", "End"]);
+
+/** Keys that scroll the page (keyboard scrolling). */
+export function isScrollKey(key: string): boolean {
+  return SCROLL_KEYS.has(key);
+}
+
+/** A wheel or key input this old (ms) no longer explains a scroll. */
+const INPUT_STALE_MS = 400;
+
+/**
+ * The input a scroll at `now` is attributed to, given the last input kind and
+ * when it arrived. A wheel or key input older than 400 ms does not explain a
+ * scroll (a programmatic scroll, an anchor jump, a scrollbar drag): "other".
+ * Touch holds until another input: a fling scrolls for seconds after the
+ * finger lifts.
+ */
+export function scrollInputAt(kind: ScrollInput, inputAt: number, now: number): ScrollInput {
+  if ((kind === "wheel" || kind === "key") && now - inputAt > INPUT_STALE_MS) return "other";
+  return kind;
+}
+
+/**
+ * The body after the reel is opaque from this share of a stage height below
+ * its top ([data-film-body] in globals.css: the film fades into it over the
+ * first 10svh, solid by 30svh).
+ */
+export const BODY_OPAQUE_STAGES = 0.3;
+
+/**
+ * The scroll position from which nothing of the canvas can show: the LAST
+ * segment (document top `top`, height `height`) has left the viewport and so
+ * has the body's translucent top. Below it the canvas wrapper is hidden (not
+ * composited); above it, visible.
+ */
+export function canvasHiddenFrom(top: number, height: number, stage: number): number {
+  return top + height + BODY_OPAQUE_STAGES * stage;
+}

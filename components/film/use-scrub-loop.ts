@@ -24,6 +24,14 @@
  *     scroll back above the end, a resize, a late frame or the tab coming
  *     back restarts it, and the first tick after a restart snaps to the
  *     scroll position. Breath holds still while the loop is stopped.
+ *   • Smoothing follows the input (smoothingMs in scrub.ts): passive wheel,
+ *     touch, key, pointer and hashchange listeners record the kind of the last
+ *     scroll input; the tick reads it. ?smooth=<ms> (read once) replaces the
+ *     touch value.
+ *   • Below the reel the canvas wrapper is hidden (visibility, so it is not
+ *     composited under the body; the backing store keeps its picture). The
+ *     scroll handler shows it again, before the frame paints, as soon as the
+ *     scroll is above canvasHiddenFrom (cached geometry, no layout read).
  * Counters: window.__filmStats canvasResizes, geometryMeasures, ticksWorked,
  * ticksSkipped.
  */
@@ -33,12 +41,20 @@ import type { FrameBudget, FrameCache } from "./frame-cache";
 import {
   backingSize,
   breathAt,
+  canvasHiddenFrom,
   frameAt,
   holdBreathClock,
+  isScrollKey,
+  parseSmoothParam,
   pickActive,
   quantise,
   reelEndScrollY,
+  scrollInputAt,
+  smoothFrameStep,
+  smoothingMs,
   stageShift,
+  TOUCH_SMOOTHING_MS,
+  type ScrollInput,
   variantPlacement,
   viewportRects,
 } from "./scrub";
@@ -61,6 +77,9 @@ function readCanvasBg(canvas: HTMLCanvasElement): string {
 
 type Drawable = ImageBitmap | HTMLImageElement;
 
+/** What the scrub feels like right now (the ?hud=1 overlay reads it). */
+export type ScrubFeel = { input: ScrollInput; smoothing: number; target: number };
+
 type Args = {
   canvasRef: MutableRefObject<HTMLCanvasElement | null>;
   /** The reel's content wrapper (all segments + body); observed for size changes. */
@@ -78,6 +97,8 @@ type Args = {
    */
   cacheFor: (film: FilmManifest) => FrameCache;
   budget: FrameBudget;
+  /** Written by every worked tick: input kind, smoothing in effect, target frame. */
+  feel: MutableRefObject<ScrubFeel>;
 };
 
 export function useScrubLoop({
@@ -90,6 +111,7 @@ export function useScrubLoop({
   reducedRef,
   cacheFor,
   budget,
+  feel,
 }: Args) {
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -178,6 +200,8 @@ export function useScrubLoop({
       const stage = segs[0]?.el.querySelector<HTMLElement>("[data-film-stage]");
       const h = stage?.getBoundingClientRect().height ?? 0;
       stageH = h > 0 ? h : window.innerHeight;
+      const li = segs.length - 1;
+      hiddenFrom = li < 0 ? Number.POSITIVE_INFINITY : canvasHiddenFrom(tops[li] ?? 0, heights[li] ?? 0, stageH);
       readBox();
     };
 
@@ -217,10 +241,58 @@ export function useScrubLoop({
       wake();
     };
     window.addEventListener("resize", onResize);
-    const onScroll = () => {
-      if (!raf && window.scrollY < endY) wake();
+    // Below the reel the canvas wrapper is not composited. Shown again from
+    // the scroll handler (it runs before the frame's rAF callbacks and paint)
+    // as soon as the scroll is above hiddenFrom; written only on change.
+    let hiddenFrom = Number.POSITIVE_INFINITY;
+    let boxHidden = false;
+    const applyVisibility = (scrollY: number) => {
+      const hide = scrollY >= hiddenFrom;
+      if (hide === boxHidden) return;
+      boxHidden = hide;
+      box.style.visibility = hide ? "hidden" : "";
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Kind of the last scroll input (passive listeners, no per-frame cost).
+    const touchMs = parseSmoothParam(window.location.search) ?? TOUCH_SMOOTHING_MS;
+    let input: ScrollInput = "other";
+    let inputAt = Number.NEGATIVE_INFINITY;
+    const mark = (kind: ScrollInput) => (e: Event) => {
+      input = kind;
+      inputAt = e.timeStamp;
+    };
+    const onWheel = mark("wheel");
+    const onTouch = mark("touch");
+    const onOther = mark("other");
+    const onKey = (e: KeyboardEvent) => {
+      if (isScrollKey(e.key)) mark("key")(e);
+    };
+    // A press on the scrollbar (outside the document's client box) drags it.
+    const onPointer = (e: PointerEvent) => {
+      if (e.pointerType === "mouse" && e.clientX >= document.documentElement.clientWidth) onOther(e);
+    };
+    // A click or tap on a link starts a programmatic scroll (a Next <Link
+    // href="#…"> jumps with history.pushState, which fires no hashchange), so
+    // the jump is "other", not the tap's "touch".
+    const onClick = (e: MouseEvent) => {
+      if (e.target instanceof Element && e.target.closest("a[href]")) onOther(e);
+    };
+    const passive = { passive: true } as const;
+    window.addEventListener("wheel", onWheel, passive);
+    window.addEventListener("touchstart", onTouch, passive);
+    window.addEventListener("touchmove", onTouch, passive);
+    window.addEventListener("keydown", onKey, passive);
+    window.addEventListener("pointerdown", onPointer, passive);
+    window.addEventListener("hashchange", onOther, passive);
+    window.addEventListener("click", onClick, { passive: true, capture: true });
+
+    const onScroll = (e: Event) => {
+      input = scrollInputAt(input, inputAt, e.timeStamp);
+      const y = window.scrollY;
+      applyVisibility(y);
+      if (!raf && y < endY) wake();
+    };
+    window.addEventListener("scroll", onScroll, passive);
     const onVisibility = () => {
       if (document.hidden) {
         cancelAnimationFrame(raf);
@@ -243,15 +315,13 @@ export function useScrubLoop({
     });
     invalidateRef.current = onResize;
 
-    const setChrome = (chrome: ReelChrome, section: string, soft: boolean) => {
-      const key = `${chrome}|${section}|${soft ? 1 : 0}`;
+    const setChrome = (chrome: ReelChrome, section: string) => {
+      const key = `${chrome}|${section}`;
       if (key === lastChrome) return;
       lastChrome = key;
       const root = document.documentElement;
       root.dataset.reelChrome = chrome;
       root.dataset.reelSection = section;
-      if (soft) root.dataset.reelSoft = "";
-      else delete root.dataset.reelSoft;
       window.dispatchEvent(new CustomEvent(REEL_CHROME_EVENT, { detail: { chrome, section } }));
     };
 
@@ -307,6 +377,7 @@ export function useScrubLoop({
       // tick refits the canvas before the stage shift is computed from it.
       if (geomDirty || t - lastMeasure >= GEOMETRY_SAFETY_MS) measure(t);
       if (boxDirty) fitCanvas();
+      applyVisibility(scrollY);
 
       const direction: 1 | -1 = scrollY >= lastScroll ? 1 : -1;
       lastScroll = scrollY;
@@ -327,18 +398,23 @@ export function useScrubLoop({
       target = frameAt(p, variant.count);
 
       // Smooth the scrub: a wheel tick jumps the target 10–30 frames; chasing
-      // it with an exponential lerp (~90 ms time constant) turns that into a
-      // short glide instead of a cut. Segment change, reduced motion or a
-      // restart (anchor jump, back/forward, tab shown) = snap.
-      if (smoothSeg !== seg.index || reduced || snap) {
+      // it with an exponential lerp turns that into a short glide instead of
+      // a cut. The time constant follows the input (smoothingMs: a finger
+      // gets a short one so the film stays under it). Segment change, reduced
+      // motion or a restart (anchor jump, back/forward, tab shown) = snap.
+      const snapped = smoothSeg !== seg.index || reduced || snap;
+      // The smoothing in effect: 0 on a snap (the HUD reports what was applied).
+      const smoothing = snapped ? 0 : smoothingMs(input, touchMs);
+      if (snapped) {
         smoothFrame = target;
         smoothSeg = seg.index;
       } else {
-        const dt = Math.min(50, t - lastT);
-        const k = 1 - Math.exp(-dt / 90);
-        smoothFrame += (target - smoothFrame) * k;
-        if (Math.abs(target - smoothFrame) < 0.5) smoothFrame = target;
+        smoothFrame = smoothFrameStep(smoothFrame, target, t - lastT, smoothing);
       }
+      const f = feel.current;
+      f.input = input;
+      f.smoothing = smoothing;
+      f.target = target;
       lastT = t;
       const frame = Math.round(smoothFrame);
 
@@ -397,7 +473,7 @@ export function useScrubLoop({
       // the nav scrim pulses, and the document-wide style recalc costs a
       // ~120–250 ms hitch mid-scrub.
       const ended = seg.index === segs[lastIdx]?.index && p >= 1;
-      setChrome(ended ? "body" : "film", seg.section ?? "", seg.el.hasAttribute("data-soft-focus") && p < 1);
+      setChrome(ended ? "body" : "film", seg.section ?? "");
 
       // Reel over and its last frame settled: stop until the visitor scrolls
       // back above the end (or a resize / late frame / tab switch wakes it).
@@ -415,6 +491,14 @@ export function useScrubLoop({
       raf = 0;
       window.removeEventListener("resize", onResize);
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouch);
+      window.removeEventListener("touchmove", onTouch);
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("pointerdown", onPointer);
+      window.removeEventListener("hashchange", onOther);
+      window.removeEventListener("click", onClick, { capture: true });
+      box.style.visibility = "";
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("pageshow", onVisibility);
       boxObserver.disconnect();
@@ -422,5 +506,5 @@ export function useScrubLoop({
       if (invalidateRef.current === onResize) invalidateRef.current = () => {};
       offLoad();
     };
-  }, [canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget]);
+  }, [canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget, feel]);
 }

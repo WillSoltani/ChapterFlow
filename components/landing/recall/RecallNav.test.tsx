@@ -119,3 +119,54 @@ test("mobile public navigation traps and restores focus while deduplicating the 
     assert.equal(document.body.style.overflow, "");
   });
 });
+
+test("persistent CTA works with IntersectionObserver but no ResizeObserver", async () => {
+  globalThis.fetch = async () =>
+    new Response(JSON.stringify({ loggedIn: false }), {
+      status: 200,
+      headers: { "content-type": "application/json" },
+    });
+  const w = window as unknown as Record<string, unknown>;
+  const savedIO = w.IntersectionObserver;
+  const savedRO = w.ResizeObserver;
+  const observed: Array<{
+    cb: (entries: Array<Partial<IntersectionObserverEntry>>) => void;
+    targets: Element[];
+  }> = [];
+  class FakeIO {
+    targets: Element[] = [];
+    constructor(cb: (entries: Array<Partial<IntersectionObserverEntry>>) => void) {
+      observed.push({ cb, targets: this.targets });
+    }
+    observe(el: Element) {
+      this.targets.push(el);
+    }
+    disconnect() {}
+  }
+  w.IntersectionObserver = FakeIO;
+  Reflect.deleteProperty(w, "ResizeObserver");
+  try {
+    const sentinel = document.createElement("div");
+    sentinel.dataset.publicHeroEnd = "";
+    document.body.appendChild(sentinel);
+    const { RecallNav } = await import("./RecallNav");
+    const view = render(<RecallNav />);
+    assert.equal(view.queryByRole("link", { name: "Start free" }), null);
+    const line = observed.find((o) => o.targets.includes(sentinel));
+    assert.ok(line, "the sentinel is observed without ResizeObserver");
+    line.cb([
+      {
+        target: sentinel,
+        isIntersecting: false,
+        boundingClientRect: { top: -1 } as DOMRectReadOnly,
+      },
+    ]);
+    await waitFor(() =>
+      assert.equal(view.getAllByRole("link", { name: "Start free" }).length, 1),
+    );
+  } finally {
+    if (savedIO === undefined) Reflect.deleteProperty(w, "IntersectionObserver");
+    else w.IntersectionObserver = savedIO;
+    if (savedRO !== undefined) w.ResizeObserver = savedRO;
+  }
+});

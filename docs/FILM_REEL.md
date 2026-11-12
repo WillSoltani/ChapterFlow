@@ -318,6 +318,97 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
 - FramePin: SSR renders copy VISIBLE; JS arms + scrubs after mount (crawler-safe).
   A pin with `from=0` is fully visible at frame 0 (LCP).
 - Keyboard focus inside a stage snaps the segment to the top.
+- Smoothing by input (`smoothingMs` in `scrub.ts`, called by the loop). The
+  scrub chases the target frame with an exponential glide whose time constant
+  depends on the last scroll input: **wheel 90 ms, key 90 ms, other 90 ms,
+  touch 35 ms**. Higher = a smoother glide but the film lags the input; lower
+  = tighter but a wheel's 10–30 frame steps show. The input kind is tracked
+  with passive listeners (no per-frame cost): `wheel`; `touch` (touchstart /
+  touchmove, held through a fling until another input); `key` (arrow, page,
+  space, home/end keydown); `other` (a press on the scrollbar, a hashchange,
+  or any scroll more than 400 ms after the last wheel or key input:
+  programmatic scrolls, anchor jumps). `?smooth=<ms>` (0–200, read once; 0 =
+  no smoothing) replaces the **touch** value only. Values to try on a phone:
+  `?smooth=0`, `20`, `35` (default), `50`, `90`. The idle rule still holds: a
+  tick is skipped once the smoothed frame equals the target. `?hud=1` fourth
+  line: `input touch · smooth 35 ms · want f0123` (the frame the scroll wants;
+  the first line is the frame drawn).
+- Nav over the film on touch screens (`globals.css`, `@media (hover: none)
+  and (pointer: coarse)` with `html[data-reel-chrome="film"]`): no
+  `backdrop-filter` and no `filter` (re-blurring the moving canvas under the
+  pill was paid on every scroll frame); a tinted fill instead. Desktop (fine
+  pointer) and the nav over the body sections keep the glass. Five looks for
+  the owner to pick from, **temporary** until the pick: `?nav=1` … `?nav=5`
+  (read once by RecallNav onto `data-nav-look` on the pill and its scrim):
+  1. **Tinted pill** (default, recommended): panel colour at 86 %, today's
+     hairline and shadow.
+  2. **Solid pill**: page colour at 96 %, no hairline, no shadow.
+  3. **Top scrim only**: no pill; a darker, taller scrim behind the nav.
+  4. **Light pill on scrim**: panel at 72 %, no hairline, today's scrim at
+     full strength.
+  5. **Lifted pill**: a slightly lighter grey (panel + 8 % ink) at 90 %,
+     hairline, no shadow.
+  `node scripts/film/nav-looks.mjs` (dev server running) captures the top
+  140 px of each look over a bright hero, a dark Hall and a city frame into
+  one contact sheet (`~/cf-wt/p5-nav-looks/nav-looks.png`) and measures each
+  look's worst-case contrast of the nav ink and link ink over a white and a
+  black backdrop (all ≥ 4.5:1; it exits 1 otherwise).
+- Layers (what holds a compositor layer, and when):
+  - **FramePin**: no permanent `will-change`. A pin is promoted
+    (`will-change: opacity, transform`; a scrim pin `opacity`) only while its
+    scripted values change, and demoted 300 ms after they settle
+    (`PIN_DEMOTE_MS`, `layers.ts`) or at once when it rests at opacity 0.
+    Opacity is quantised to 0.01 and the rise to 0.5 px, and each style is
+    written only when its string changed. The rise is a 2D `translate`; a
+    resting visible pin has `transform: none`. Scrim pins write opacity only.
+  - **Hall**: `.hall-line` has no `will-change`; the two wall containers get
+    `will-change: transform` only while the Hall segment is on screen (an
+    IntersectionObserver). HallText caches each written value, quantises
+    opacity (0.01) and lift (0.5 px), and writes a line's colour only when
+    its highlight flips (the 240 ms colour transition then runs for those
+    lines only). The walls are static: the old `--hall-dolly` parallax never
+    reached them (`.hall-wall` redeclared it as 0), so its per-frame write
+    is gone and the walls look as before.
+  - **`.film-box::before`**: no `mask-image`, no 100vw overdraw. It covers the
+    box, the stage padding on the copy side and 7rem on the film side; the
+    top/bottom feather is built into the gradients (a band, two edge strips,
+    two corner ellipses). The band is a flat 90 % up to its fade, the value
+    the strips end on, so there is no step where they meet.
+  - **Canvas under the body**: `[data-film-body]` fades from the film over
+    10svh and is opaque from 30svh. Past `canvasHiddenFrom` (the last
+    segment's bottom + 30 % of a stage height) the canvas wrapper is
+    `visibility: hidden` (not composited; the canvas keeps its picture). The
+    loop's scroll handler, which runs before the frame's animation callbacks
+    and paint, makes it visible again as soon as the scroll is above that
+    line, from cached geometry (no layout read): scrolling back up, a reload
+    at Pricing, or an anchor jump back into the reel never shows a blank or
+    stale canvas.
+- Handlers: the nav (RecallNav) does no layout read on scroll: its persistent
+  CTA state comes from IntersectionObservers (suppression zones below the
+  header line; the hero-end sentinel against a root that reaches far below
+  the viewport, so a jump across the line still flips it), rebuilt only when
+  the header's own size changes (on window resize where ResizeObserver is
+  missing; a rAF-throttled scroll read only where IntersectionObserver is
+  missing). `usePrefersReducedMotion` shares one
+  `matchMedia` listener and one MutationObserver for the whole page.
+- Prefetch: the city chapter's `/books` link and the footer's links to
+  auth-gated routes (`AUTH_GATED_NAV_ROUTES`, `gatedRoutePrefetchProps`) do
+  not prefetch for a visitor not known to be logged in: an anonymous
+  prefetch follows the login redirect and trips CSP. The city link reads the
+  login state (`useAuthStatus`), so a logged-in visitor keeps the prefetch;
+  the footer cannot, so it never prefetches those routes.
+- Input kind: a click or tap on a link marks the input `other` (a Next hash
+  link jumps with `history.pushState`, which fires no `hashchange`). The HUD
+  shows the smoothing actually applied: 0 on a snap (reduced motion, a
+  segment change, a restart).
+- Gate: `e2e/film-layers.spec.ts` (`RUN_AUDIT=1`, in both `test:film`
+  scripts) checks the touch nav, the absence of resting layers, at most 64
+  `getBoundingClientRect` calls in a 3 s scroll through two chapters, the
+  Hall's style writes, the reduced-motion listener count, the canvas under
+  the body and the smoothing per input. The `/books` prefetch check is tagged
+  `@prod` and runs in the E2E_MODE=prod job (`next build` + `next start`, the
+  only build that prefetches); it also asserts that public links are being
+  prefetched, so an empty `/books` list means something.
 - Variants and tiers (`reel-context.tsx`, `timeline.ts`, `types.ts`). A film
   has its landscape variant (`<name>`, 1920×1080, the film's `v`) and a list
   of **band tiers** for portrait screens:

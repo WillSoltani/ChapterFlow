@@ -22,23 +22,44 @@ import { useSyncExternalStore } from "react";
  */
 const QUERY = "(prefers-reduced-motion: reduce)";
 
-function subscribe(onChange: () => void): () => void {
-  const mql = window.matchMedia(QUERY);
-  mql.addEventListener("change", onChange);
-  const observer = new MutationObserver(onChange);
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["data-motion"],
-  });
+/*
+ * One shared subscription for the whole page: a single matchMedia listener and
+ * a single MutationObserver on <html>, however many components use the hook
+ * (the landing mounts ~48). Set up with the first subscriber, torn down with
+ * the last (reference counted, so React strict mode's mount → unmount →
+ * mount just tears down and sets up again).
+ */
+const subscribers = new Set<() => void>();
+let mql: MediaQueryList | null = null;
+let observer: MutationObserver | null = null;
+
+const query = (): MediaQueryList => (mql ??= window.matchMedia(QUERY));
+
+function notify(): void {
+  for (const fn of [...subscribers]) fn();
+}
+
+export function subscribeReducedMotion(onChange: () => void): () => void {
+  subscribers.add(onChange);
+  if (subscribers.size === 1) {
+    query().addEventListener("change", notify);
+    observer = new MutationObserver(notify);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-motion"],
+    });
+  }
   return () => {
-    mql.removeEventListener("change", onChange);
-    observer.disconnect();
+    if (!subscribers.delete(onChange) || subscribers.size > 0) return;
+    query().removeEventListener("change", notify);
+    observer?.disconnect();
+    observer = null;
   };
 }
 
 function getSnapshot(): boolean {
   return (
-    window.matchMedia(QUERY).matches ||
+    query().matches ||
     document.documentElement.dataset.motion === "reduced"
   );
 }
@@ -48,5 +69,5 @@ function getServerSnapshot(): boolean {
 }
 
 export function usePrefersReducedMotion(): boolean {
-  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  return useSyncExternalStore(subscribeReducedMotion, getSnapshot, getServerSnapshot);
 }

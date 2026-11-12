@@ -6,8 +6,9 @@
  * `from`/`to` are frame indices of the enclosing FilmSegment. The element
  * fades/rises in over `ease` frames after `from` and fades out over `ease`
  * frames before `to`. Opacity + transform only (compositor-safe), computed in
- * the segment's progress store so there is no per-frame React render — we
- * write CSS custom properties directly on the node.
+ * the segment's progress store so there is no per-frame React render: the
+ * styles are written directly on the node, only when they changed, and the
+ * node is promoted to its own layer only while it moves (see the effect).
  *
  * `hold` = true keeps the element visible after `to` (no fade-out), for the
  * last beat of a segment that hands off to body content.
@@ -16,6 +17,7 @@
 import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import { useSegmentStore } from "./FilmSegment";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
+import { PIN_DEMOTE_MS, pinStyle } from "./layers";
 
 type Props = {
   from: number;
@@ -76,23 +78,74 @@ export function FramePin({
   // SSR / no-JS / crawlers see the copy fully visible (no inline opacity in the
   // server HTML). Only a live browser arms the pin and scrubs it — same
   // "visible by default, hide after mount" rule as RecallReveal.
+  //
+  // Layers: a pin holds no permanent will-change. It is promoted only while
+  // its values are changing and demoted PIN_DEMOTE_MS after they settle, or
+  // at once when it comes to rest at opacity 0. Values are quantised
+  // (layers.ts) and every style is written only when its string changed.
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    let last = -1;
+    let lastO = "";
+    let lastT: string | null = "";
+    let lastHidden: boolean | null = null;
+    let promoted = false;
+    let changedAt = 0;
+    let timer = 0;
+    const demote = () => {
+      window.clearTimeout(timer);
+      timer = 0;
+      if (!promoted) return;
+      promoted = false;
+      el.style.willChange = "";
+    };
+    const settle = () => {
+      const idle = performance.now() - changedAt;
+      if (idle >= PIN_DEMOTE_MS - 1) demote();
+      else timer = window.setTimeout(settle, PIN_DEMOTE_MS - idle);
+    };
+    let first = true;
     const apply = () => {
-      const f = store.getFrame();
-      const o = pinOpacity(f, from, to, Math.max(1, ease), hold);
-      if (o === last) return;
-      last = o;
-      el.style.opacity = String(o);
-      el.style.transform = reduced ? "none" : `translate3d(0, ${((1 - o) * y).toFixed(2)}px, 0)`;
-      el.style.visibility = o <= 0 ? "hidden" : "visible";
-      el.setAttribute("aria-hidden", o <= 0 ? "true" : "false");
+      const s = pinStyle(pinOpacity(store.getFrame(), from, to, Math.max(1, ease), hold), y, scrim, reduced);
+      const moved = s.opacity !== lastO || (s.transform !== null && s.transform !== lastT);
+      if (!moved) return;
+      if (s.opacity !== lastO) {
+        lastO = s.opacity;
+        el.style.opacity = s.opacity;
+      }
+      if (s.transform !== null && s.transform !== lastT) {
+        lastT = s.transform;
+        el.style.transform = s.transform;
+      }
+      const hidden = s.opacity === "0";
+      if (hidden !== lastHidden) {
+        lastHidden = hidden;
+        el.style.visibility = hidden ? "hidden" : "visible";
+        el.setAttribute("aria-hidden", hidden ? "true" : "false");
+      }
+      // The first write arms the pin at mount: nothing is moving yet.
+      if (first) {
+        first = false;
+        return;
+      }
+      if (hidden) {
+        demote();
+        return;
+      }
+      changedAt = performance.now();
+      if (!promoted) {
+        promoted = true;
+        el.style.willChange = scrim ? "opacity" : "opacity, transform";
+      }
+      if (!timer) timer = window.setTimeout(settle, PIN_DEMOTE_MS);
     };
     apply();
-    return store.subscribe(apply);
-  }, [store, from, to, ease, hold, y, reduced]);
+    const off = store.subscribe(apply);
+    return () => {
+      off();
+      demote();
+    };
+  }, [store, from, to, ease, hold, y, reduced, scrim]);
 
   const Tag = as as "div";
   return (
@@ -100,7 +153,7 @@ export function FramePin({
       ref={ref as never}
       data-frame-pin={scrim ? undefined : ""}
       data-frame-scrim={scrim ? "" : undefined}
-      className={`${interactive ? "pointer-events-auto" : ""} will-change-[opacity,transform] ${className ?? ""}`}
+      className={`${interactive ? "pointer-events-auto" : ""} ${className ?? ""}`}
       style={style}
     >
       {children}

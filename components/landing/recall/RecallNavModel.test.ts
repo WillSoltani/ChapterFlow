@@ -4,7 +4,9 @@ import {
   PUBLIC_NAV_DESKTOP_QUERY,
   PUBLIC_NAV_LINKS,
   PUBLIC_NAV_MENU_ID,
+  gatedRoutePrefetchProps,
   isPublicNavCurrent,
+  parseNavLook,
   publicNavHref,
   publicNavPrefetchProps,
   shouldShowPersistentCta,
@@ -119,4 +121,22 @@ test("auth-gated routes are not prefetched for anonymous visitors", () => {
   // Public routes and section anchors keep the default either way.
   assert.deepEqual(publicNavPrefetchProps(pricing, false), {});
   assert.deepEqual(publicNavPrefetchProps(how, false), {});
+});
+
+test("gatedRoutePrefetchProps: no prefetch for an auth-gated route, Next's default otherwise", () => {
+  assert.deepEqual(gatedRoutePrefetchProps("/books"), { prefetch: false });
+  assert.deepEqual(gatedRoutePrefetchProps("/pricing"), {});
+  assert.deepEqual(gatedRoutePrefetchProps("/legal/terms"), {});
+  // Logged in: Next's default prefetch for the gated route too.
+  assert.deepEqual(gatedRoutePrefetchProps("/books", true), {});
+  assert.deepEqual(gatedRoutePrefetchProps("/books", false), { prefetch: false });
+});
+
+test("parseNavLook: ?nav=1…5 picks the touch nav look over the film, default 1", () => {
+  assert.equal(parseNavLook(""), 1);
+  assert.equal(parseNavLook("?nav=3"), 3);
+  assert.equal(parseNavLook("?hud=1&nav=5"), 5);
+  assert.equal(parseNavLook("?nav=0"), 1);
+  assert.equal(parseNavLook("?nav=6"), 1);
+  assert.equal(parseNavLook("?nav=2.5"), 1);
 });

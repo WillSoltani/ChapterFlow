@@ -47,6 +47,31 @@ export function publicNavPrefetchProps(
   return !loggedIn && AUTH_GATED_NAV_ROUTES.has(link.target) ? { prefetch: false } : {};
 }
 
+/**
+ * `{ prefetch: false }` for a link to an auth-gated route unless the visitor
+ * is known to be logged in. A component that cannot know the login state
+ * (the server-rendered footer) omits `loggedIn`: the anonymous first paint
+ * would otherwise prefetch into the login redirect and trip CSP. A client
+ * component that has it (CityChapters, via useAuthStatus) passes it, so a
+ * logged-in visitor keeps Next's default prefetch. Spreadable, like
+ * publicNavPrefetchProps.
+ */
+export function gatedRoutePrefetchProps(
+  href: string,
+  loggedIn = false,
+): { prefetch: false } | Record<string, never> {
+  return !loggedIn && AUTH_GATED_NAV_ROUTES.has(href) ? { prefetch: false } : {};
+}
+
+/**
+ * Touch nav look over the film (globals.css, data-nav-look): ?nav=1…5, read
+ * once at mount. Temporary until the owner picks one; 1 is the default.
+ */
+export function parseNavLook(search: string): 1 | 2 | 3 | 4 | 5 {
+  const raw = new URLSearchParams(search).get("nav");
+  return raw === "2" ? 2 : raw === "3" ? 3 : raw === "4" ? 4 : raw === "5" ? 5 : 1;
+}
+
 export function publicNavHref(pathname: string, link: PublicNavLink): string {
   if (link.kind === "route") return link.target;
   return pathname === "/" ? `#${link.target}` : `/#${link.target}`;

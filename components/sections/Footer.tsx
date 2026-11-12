@@ -4,6 +4,7 @@ import {
   AUTH_LOGIN_BOOK_URL,
   CHAPTERFLOW_NAME,
 } from "@/app/_lib/chapterflow-brand";
+import { gatedRoutePrefetchProps } from "@/components/landing/recall/RecallNavModel";
 import { CurrentYear } from "./CurrentYear";
 
 const EXPLORE_LINKS = [
@@ -102,7 +103,15 @@ export function Footer() {
                         {link.label}
                       </a>
                     ) : (
-                      <Link href={link.href} className={linkClass} style={linkStyle}>
+                      // Auth-gated routes (/books) do not prefetch: the footer
+                      // cannot know the login state, and an anonymous prefetch
+                      // follows the login redirect into a CSP error.
+                      <Link
+                        href={link.href}
+                        {...gatedRoutePrefetchProps(link.href)}
+                        className={linkClass}
+                        style={linkStyle}
+                      >
                         {link.label}
                       </Link>
                     )}

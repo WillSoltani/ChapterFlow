@@ -6,14 +6,20 @@ import assert from "node:assert/strict";
 import {
   backingSize,
   breathAt,
+  canvasHiddenFrom,
   clamp01,
   coverRect,
   frameAt,
   framePlacement,
   holdBreathClock,
+  isScrollKey,
+  parseSmoothParam,
   pickActive,
   quantise,
   reelEndScrollY,
+  scrollInputAt,
+  smoothFrameStep,
+  smoothingMs,
   stageShift,
   variantPlacement,
   viewportRects,
@@ -334,4 +340,63 @@ test("variantPlacement: a variant without a band is framePlacement of the image 
       );
     }
   }
+});
+
+test("smoothingMs: wheel, key and other glide over 90 ms; touch is short", () => {
+  assert.equal(smoothingMs("wheel"), 90);
+  assert.equal(smoothingMs("key"), 90);
+  assert.equal(smoothingMs("other"), 90);
+  assert.equal(smoothingMs("touch"), 35);
+});
+
+test("smoothingMs: the ?smooth= override replaces the touch value only", () => {
+  assert.equal(smoothingMs("touch", 0), 0);
+  assert.equal(smoothingMs("touch", 120), 120);
+  assert.equal(smoothingMs("wheel", 0), 90);
+  assert.equal(smoothingMs("other", 120), 90);
+});
+
+test("parseSmoothParam: 0..200 ms, anything else is no override", () => {
+  assert.equal(parseSmoothParam("?smooth=0"), 0);
+  assert.equal(parseSmoothParam("?hud=1&smooth=50"), 50);
+  assert.equal(parseSmoothParam("?smooth=200"), 200);
+  assert.equal(parseSmoothParam("?smooth=201"), null);
+  assert.equal(parseSmoothParam("?smooth=-1"), null);
+  assert.equal(parseSmoothParam("?smooth=abc"), null);
+  assert.equal(parseSmoothParam("?smooth="), null);
+  assert.equal(parseSmoothParam(""), null);
+});
+
+test("smoothFrameStep: 0 ms snaps; otherwise an exponential approach that settles on the target", () => {
+  assert.equal(smoothFrameStep(10, 40, 16, 0), 40);
+  const a = smoothFrameStep(10, 40, 16, 90);
+  assert.ok(a > 10 && a < 40);
+  // a shorter time constant gets closer in the same time
+  assert.ok(smoothFrameStep(10, 40, 16, 35) > a);
+  // within half a frame of the target: settle on it (the idle rule needs equality)
+  assert.equal(smoothFrameStep(39.6, 40, 16, 90), 40);
+  // dt is capped at 50 ms (a stalled frame does not jump)
+  assert.equal(smoothFrameStep(0, 100, 500, 90), smoothFrameStep(0, 100, 50, 90));
+});
+
+test("isScrollKey: the keys that scroll the page", () => {
+  for (const k of ["ArrowDown", "ArrowUp", "PageDown", "PageUp", " ", "Home", "End"]) assert.equal(isScrollKey(k), true, k);
+  for (const k of ["a", "Tab", "Enter", "Shift"]) assert.equal(isScrollKey(k), false, k);
+});
+
+test("scrollInputAt: a wheel or key input older than 400 ms at a scroll is 'other'; touch holds", () => {
+  assert.equal(scrollInputAt("wheel", 1000, 1300), "wheel");
+  assert.equal(scrollInputAt("wheel", 1000, 1500), "other");
+  assert.equal(scrollInputAt("key", 1000, 1399), "key");
+  assert.equal(scrollInputAt("key", 1000, 1401), "other");
+  // a fling keeps scrolling long after the finger lifts
+  assert.equal(scrollInputAt("touch", 1000, 4000), "touch");
+  assert.equal(scrollInputAt("other", 1000, 1001), "other");
+});
+
+test("canvasHiddenFrom: the canvas may stop compositing once the body's translucent top has scrolled past", () => {
+  // last segment at 9000, 2000 tall, stage 900: its stage leaves at 11000; the
+  // body is opaque from 30 % of a stage height below its top.
+  assert.equal(canvasHiddenFrom(9000, 2000, 900), 11000 + 270);
+  assert.ok(canvasHiddenFrom(9000, 2000, 900) > reelEndScrollY(9000, 2000, 900));
 });
