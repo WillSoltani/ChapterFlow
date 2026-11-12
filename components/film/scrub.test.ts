@@ -15,6 +15,7 @@ import {
   quantise,
   reelEndScrollY,
   stageShift,
+  variantPlacement,
   viewportRects,
 } from "./scrub";
 import { pinOpacity } from "./FramePin";
@@ -255,6 +256,82 @@ test("timeline: every film's keys are within [0, count-1] and ascending", async 
       const prev = vals[i - 1];
       const cur = vals[i];
       assert.ok(prev !== undefined && cur !== undefined && cur > prev, `${name}: keys must ascend`);
+    }
+  }
+});
+
+// --- Band tiers: the band is drawn where the full 1080×1920 frame put it. ---
+
+const VFRAME = { w: 1080, h: 1920 };
+const VBAND = { x: 0, y: 474, w: 1080, h: 972 };
+const TIERS = [
+  { width: 1080, height: 972, frame: VFRAME, band: VBAND },
+  { width: 900, height: 810, frame: VFRAME, band: VBAND },
+];
+
+/**
+ * Independent reference: place the legacy 1080×1920 frame with
+ * framePlacement and read where its band rows / columns land (the rectangle
+ * covered by source pixels band.x … band.x + band.w, band.y … band.y + band.h).
+ */
+function legacyBandRect(cw: number, ch: number, zoom: number, shift: number) {
+  const r = framePlacement(cw, ch, 1080, 1920, zoom, shift);
+  const px = (sx: number) => r.x + (sx / 1080) * r.w;
+  const py = (sy: number) => r.y + (sy / 1920) * r.h;
+  return { x: px(VBAND.x), y: py(VBAND.y), w: px(VBAND.x + VBAND.w) - px(VBAND.x), h: py(VBAND.y + VBAND.h) - py(VBAND.y) };
+}
+
+const close = (a: { x: number; y: number; w: number; h: number }, b: typeof a, msg: string) => {
+  for (const k of ["x", "y", "w", "h"] as const) assert.ok(Math.abs(a[k] - b[k]) < 1e-6, `${msg}: ${k} ${a[k]} vs ${b[k]}`);
+};
+
+test("variantPlacement: a band tier lands on the rect the band has inside the placed 1080×1920 frame", () => {
+  const phone = backingSize(390, 844, 2); // 780 × 1688
+  const tablet = backingSize(820, 1180, 2); // 1640 × 2360 (under the 1920 cap)
+  const tabletWide = backingSize(1200, 1600, 2); // capped to 1920 wide
+  const landPhone = backingSize(844, 390, 2); // 1688 × 780
+  assert.deepEqual(phone, { w: 780, h: 1688 });
+  assert.deepEqual(tablet, { w: 1640, h: 2360 });
+  assert.equal(tabletWide.w, 1920);
+  assert.deepEqual(landPhone, { w: 1688, h: 780 });
+  for (const [label, box] of [["phone", phone], ["tablet", tablet], ["tablet capped", tabletWide], ["landscape phone", landPhone]] as const) {
+    for (const [zoom, shift] of [[0, 0], [0.012, -37.5], [0.01, 21]] as const) {
+      const want = legacyBandRect(box.w, box.h, zoom, shift);
+      for (const t of TIERS) {
+        // The image size must not matter: only the virtual frame and band do.
+        const got = variantPlacement(box.w, box.h, t, t.width, t.height, zoom, shift);
+        close(got, want, `${label} ${t.width} tier zoom ${zoom} shift ${shift}`);
+      }
+    }
+  }
+});
+
+test("variantPlacement: both tiers map a picture pixel to the same canvas point as the legacy frame", () => {
+  const { w: cw, h: ch } = backingSize(390, 844, 2);
+  const zoom = 0.012;
+  const shift = -12;
+  const legacy = framePlacement(cw, ch, 1080, 1920, zoom, shift);
+  for (const t of TIERS) {
+    const r = variantPlacement(cw, ch, t, t.width, t.height, zoom, shift);
+    const k = 1080 / t.width; // tier px → virtual px
+    for (const [tx, ty] of [[0, 0], [t.width / 2, t.height / 2], [t.width, t.height], [123, 456 * (t.height / 972)]] as const) {
+      const fromTier = { x: r.x + (tx / t.width) * r.w, y: r.y + (ty / t.height) * r.h };
+      const vx = VBAND.x + tx * k;
+      const vy = VBAND.y + ty * k;
+      const fromLegacy = { x: legacy.x + (vx / 1080) * legacy.w, y: legacy.y + (vy / 1920) * legacy.h };
+      assert.ok(Math.abs(fromTier.x - fromLegacy.x) < 1e-6 && Math.abs(fromTier.y - fromLegacy.y) < 1e-6, `${t.width} tier pixel ${tx},${ty}`);
+    }
+  }
+});
+
+test("variantPlacement: a variant without a band is framePlacement of the image itself", () => {
+  const landscape = { width: 1920, height: 1080 };
+  for (const [cw, ch] of [[1440, 900], [1920, 1200], [780, 1688]] as const) {
+    for (const [zoom, shift] of [[0, 0], [0.012, 9]] as const) {
+      assert.deepEqual(
+        variantPlacement(cw, ch, landscape, 1920, 1080, zoom, shift),
+        framePlacement(cw, ch, 1920, 1080, zoom, shift),
+      );
     }
   }
 });

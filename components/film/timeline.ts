@@ -6,11 +6,13 @@
  * magic frame number. Re-rendering the film only requires editing the JSON.
  *
  * `manifest(name, opts)` builds a FilmManifest for a film folder served from
- * NEXT_PUBLIC_FILM_BASE (CloudFront) or /films (public/) in dev.
+ * NEXT_PUBLIC_FILM_BASE (CloudFront) or /films (public/) in dev: the
+ * landscape variant ("<name>", the film's `v`) and the band-only portrait
+ * tiers ("<name>-b900", "<name>-b1080", each with its own `v`).
  */
 
 import timelineJson from "./book.timeline.json";
-import type { FilmManifest, FilmTimeline, FilmVariant } from "./types";
+import type { BandTier, FilmManifest, FilmTimeline, FilmVariant } from "./types";
 
 const timeline = timelineJson as unknown as FilmTimeline;
 
@@ -49,12 +51,11 @@ type VariantOpts = {
   count?: number;
 };
 
-function variant(name: string, o: VariantOpts): FilmVariant {
-  const base = `${FILM_BASE}/${name}`;
-  const film = name.replace(/-p$/, "");
-  const v = filmVersion(film);
+/** A variant of `film` served from the folder `dir`, versioned `v`. */
+function variant(film: string, dir: string, v: string | undefined, o: VariantOpts): FilmVariant {
+  const base = `${FILM_BASE}/${dir}`;
   return {
-    name,
+    name: dir,
     count: o.count ?? filmCount(film),
     pad: o.pad ?? 4,
     ext: o.ext ?? "webp",
@@ -66,14 +67,25 @@ function variant(name: string, o: VariantOpts): FilmVariant {
   };
 }
 
+/**
+ * Band tiers of `film` from book.timeline.json (films.<film>.bands, synced by
+ * encode.mjs --bands), narrowest first. Folder "<film>-<tier>", own version.
+ */
+export function bandTiers(film: string): BandTier[] {
+  const bands = timeline.films[film]?.bands ?? {};
+  return Object.entries(bands)
+    .map(([tier, b]) => ({
+      ...variant(film, `${film}-${tier}`, b.v, { width: b.width, height: b.height }),
+      frame: { w: b.frame.w, h: b.frame.h },
+      band: { x: b.band.x, y: b.band.y, w: b.band.w, h: b.band.h },
+    }))
+    .sort((a, b) => a.width - b.width);
+}
+
 export function manifest(
   name: string,
-  opts: { landscape?: Partial<VariantOpts>; portrait?: Partial<VariantOpts> | false } = {},
+  opts: { landscape?: Partial<VariantOpts>; bands?: false } = {},
 ): FilmManifest {
-  const land = variant(name, { width: 1920, height: 1080, ...opts.landscape });
-  const port =
-    opts.portrait === false
-      ? undefined
-      : variant(`${name}-p`, { width: 1080, height: 1920, ...opts.portrait });
-  return { name, landscape: land, ...(port ? { portrait: port } : {}) };
+  const land = variant(name, name, filmVersion(name), { width: 1920, height: 1080, ...opts.landscape });
+  return { name, landscape: land, bands: opts.bands === false ? [] : bandTiers(name) };
 }

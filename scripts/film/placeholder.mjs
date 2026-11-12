@@ -12,7 +12,9 @@
  *
  * Each frame is an SVG → WebP: a dark page, a "book" rectangle whose cover
  * angle, page fan and glow move with the frame index, plus a big frame
- * counter so you can SEE the scrub tracking. Landscape + portrait variants.
+ * counter so you can SEE the scrub tracking. Landscape variant + the band-only
+ * portrait tiers (<name>-b1080, <name>-b900; the timeline's films.<name>.bands
+ * entries describe them).
  * Output is gitignored (public/films/); real renders replace it 1:1.
  */
 
@@ -32,6 +34,10 @@ const names = args.filter((a) => !a.startsWith("--") && timeline.films[a]);
 const films = names.length ? names : Object.keys(timeline.films);
 
 const ACCENT = "#8AA2FF";
+/** Band tiers: the band of the virtual 1080×1920 portrait frame (encode.mjs --bands at zoom 1.6). */
+const VFRAME = { w: 1080, h: 1920 };
+const BAND = { x: 0, y: 474, w: 1080, h: 972 };
+const TIER_WIDTHS = [1080, 900];
 const BG = "#0B0E14";
 
 // Crude stand-ins for each Memory Palace shot so copy can be timed before the
@@ -121,19 +127,42 @@ for (const name of films) {
   const fi = ORDER.indexOf(name); // scene index = position in the timeline, not CLI order
   const n = timeline.films[name].count;
   const pad = Math.max(4, String(n).length);
-  for (const [variant, w, h] of [[name, 1920, 1080], [`${name}-p`, 1080, 1920]]) {
-    const dir = path.join(OUT, variant);
-    await fs.mkdir(dir, { recursive: true });
+  const frameFile = (i) => `f_${String(i + 1).padStart(pad, "0")}.webp`;
+  const finish = async (dir, variant, w, h, extra = {}) => {
+    await fs.copyFile(path.join(dir, frameFile(0)), path.join(dir, "poster.webp"));
+    await fs.writeFile(path.join(dir, "manifest.json"), JSON.stringify({ name: variant, count: n, pad, ext: "webp", width: w, height: h, ...extra }, null, 2) + "\n");
+    console.log(`${variant}: ${n} frames`);
+  };
+  const each = async (fn) => {
     const jobs = Array.from({ length: n }, (_, i) => i);
     await Promise.all(Array.from({ length: 8 }, async () => {
-      while (jobs.length) {
-        const i = jobs.shift();
-        const svg = Buffer.from(frameSvg(w, h, i, n, fi, `${variant}  placeholder`));
-        await sharp(svg).webp({ quality: 70, effort: 2 }).toFile(path.join(dir, `f_${String(i + 1).padStart(pad, "0")}.webp`));
-      }
+      while (jobs.length) await fn(jobs.shift());
     }));
-    await fs.copyFile(path.join(dir, `f_${"1".padStart(pad, "0")}.webp`), path.join(dir, "poster.webp"));
-    await fs.writeFile(path.join(dir, "manifest.json"), JSON.stringify({ name: variant, count: n, pad, ext: "webp", width: w, height: h }, null, 2) + "\n");
-    console.log(`${variant}: ${n} frames`);
-  }
+  };
+
+  // Landscape.
+  const landDir = path.join(OUT, name);
+  await fs.mkdir(landDir, { recursive: true });
+  await each(async (i) => {
+    const svg = Buffer.from(frameSvg(1920, 1080, i, n, fi, `${name}  placeholder`));
+    await sharp(svg).webp({ quality: 70, effort: 2 }).toFile(path.join(landDir, frameFile(i)));
+  });
+  await finish(landDir, name, 1920, 1080);
+
+  // Band tiers (what portrait screens draw, see encode.mjs --bands): a
+  // 1080×1920 portrait scene cut to the band, scaled per tier.
+  const tiers = TIER_WIDTHS.map((w) => ({ w, h: Math.round((BAND.h * w) / BAND.w), name: `${name}-b${w}` }));
+  for (const t of tiers) await fs.mkdir(path.join(OUT, t.name), { recursive: true });
+  await each(async (i) => {
+    const svg = Buffer.from(frameSvg(VFRAME.w, VFRAME.h, i, n, fi, `${name} band  placeholder`));
+    const { data, info } = await sharp(svg).flatten().raw().toBuffer({ resolveWithObject: true });
+    for (const t of tiers) {
+      await sharp(data, { raw: { width: info.width, height: info.height, channels: info.channels } })
+        .extract({ left: BAND.x, top: BAND.y, width: BAND.w, height: BAND.h })
+        .resize({ width: t.w, height: t.h, fit: "fill" })
+        .webp({ quality: 70, effort: 2 })
+        .toFile(path.join(OUT, t.name, frameFile(i)));
+    }
+  });
+  for (const t of tiers) await finish(path.join(OUT, t.name), t.name, t.w, t.h, { frame: { ...VFRAME }, band: { ...BAND } });
 }

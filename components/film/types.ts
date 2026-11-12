@@ -7,7 +7,7 @@
  */
 
 export type FilmVariant = {
-  /** Folder name under the film base, e.g. "book-01" or "book-01-p". */
+  /** Folder name under the film base, e.g. "palace-01" or "palace-01-b900". */
   name: string;
   /** Number of frames in the sequence (f_0001 … f_NNNN). */
   count: number;
@@ -15,7 +15,7 @@ export type FilmVariant = {
   pad: number;
   /** File extension without the dot. */
   ext: "webp" | "avif" | "jpg";
-  /** Intrinsic frame size (px). Used for cover-fit math. */
+  /** Real pixel size of the frame files (px): what one decoded frame costs. */
   width: number;
   height: number;
   /** URL of the poster image (first frame, served immediately). */
@@ -24,14 +24,33 @@ export type FilmVariant = {
   base: string;
   /** Content version (from manifest.json `v`), appended as ?v= to every frame URL. */
   v?: string;
+  /**
+   * Band tiers only: the virtual frame the file is a band of (1080×1920, the
+   * old full portrait frame) and where the band sits in it (virtual px). The
+   * file's pixels fill exactly `band`; the rest of the virtual frame is the
+   * canvas clear colour. Placement is computed on the virtual frame (see
+   * variantPlacement in scrub.ts), so the picture lands where the full frame
+   * put it.
+   */
+  frame?: FrameSize;
+  band?: BandRect;
 };
 
+export type FrameSize = { w: number; h: number };
+export type BandRect = { x: number; y: number; w: number; h: number };
+
+/** A band-only portrait tier ("<film>-b900", "<film>-b1080"). */
+export type BandTier = FilmVariant & { frame: FrameSize; band: BandRect };
+
 export type FilmManifest = {
-  /** Film name shared by both orientations. */
+  /** Film name shared by every variant. */
   name: string;
   landscape: FilmVariant;
-  /** Optional 9:16 variant for phones. Falls back to landscape when absent. */
-  portrait?: FilmVariant;
+  /**
+   * Band-only portrait tiers, narrowest first. Portrait views pick one by
+   * canvas backing width (pickVariant); none = portrait draws landscape.
+   */
+  bands: BandTier[];
 };
 
 export type Orientation = "landscape" | "portrait";
@@ -45,6 +64,11 @@ export type FilmTimeline = {
       /** Content version, bumped by encode.mjs on every encode; busts frame caches. */
       v?: string;
       keys: Record<string, number>;
+      /**
+       * Band tiers by tier name ("b1080", "b900"), synced from their
+       * manifests by encode.mjs (--bands). Each has its own version.
+       */
+      bands?: Record<string, { width: number; height: number; frame: FrameSize; band: BandRect; v?: string }>;
     }
   >;
 };

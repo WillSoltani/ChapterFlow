@@ -11,7 +11,39 @@
         "push_in": 172,
         "through": 240
       },
-      "v": "mvswty1w"
+      "v": "mvswty1w",
+      "bands": {
+        "b1080": {
+          "width": 1080,
+          "height": 972,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqtkt9"
+        },
+        "b900": {
+          "width": 900,
+          "height": 810,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqtkt9"
+        }
+      }
     },
     "palace-01": {
       "count": 241,
@@ -22,7 +54,39 @@
         "lines_lit": 136,
         "junction": 240
       },
-      "v": "mvswqx6t"
+      "v": "mvswqx6t",
+      "bands": {
+        "b1080": {
+          "width": 1080,
+          "height": 972,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqu3p7"
+        },
+        "b900": {
+          "width": 900,
+          "height": 810,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqu3p7"
+        }
+      }
     },
     "palace-02": {
       "count": 279,
@@ -33,7 +97,39 @@
         "room_c": 215,
         "door_ahead": 278
       },
-      "v": "mvswrsnv"
+      "v": "mvswrsnv",
+      "bands": {
+        "b1080": {
+          "width": 1080,
+          "height": 972,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqunlz"
+        },
+        "b900": {
+          "width": 900,
+          "height": 810,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqunlz"
+        }
+      }
     },
     "palace-03": {
       "count": 281,
@@ -46,7 +142,39 @@
         "fold_to_book": 238,
         "book_closed": 280
       },
-      "v": "mvswsif9"
+      "v": "mvswsif9",
+      "bands": {
+        "b1080": {
+          "width": 1080,
+          "height": 972,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqvblf"
+        },
+        "b900": {
+          "width": 900,
+          "height": 810,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqvblf"
+        }
+      }
     },
     "palace-04": {
       "count": 241,
@@ -59,7 +187,39 @@
         "light_36": 200,
         "tower_lit": 240
       },
-      "v": "mvswswyi"
+      "v": "mvswswyi",
+      "bands": {
+        "b1080": {
+          "width": 1080,
+          "height": 972,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqvwxd"
+        },
+        "b900": {
+          "width": 900,
+          "height": 810,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqvwxd"
+        }
+      }
     },
     "palace-05": {
       "count": 241,
@@ -69,7 +229,39 @@
         "orbit": 100,
         "one_bright": 240
       },
-      "v": "mvswtbzt"
+      "v": "mvswtbzt",
+      "bands": {
+        "b1080": {
+          "width": 1080,
+          "height": 972,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqwmo1"
+        },
+        "b900": {
+          "width": 900,
+          "height": 810,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqwmo1"
+        }
+      }
     },
     "palace-06": {
       "count": 169,
@@ -80,7 +272,39 @@
         "lamp_warm": 130,
         "hold": 168
       },
-      "v": "mvswtmi3"
+      "v": "mvswtmi3",
+      "bands": {
+        "b1080": {
+          "width": 1080,
+          "height": 972,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqx5n6"
+        },
+        "b900": {
+          "width": 900,
+          "height": 810,
+          "frame": {
+            "w": 1080,
+            "h": 1920
+          },
+          "band": {
+            "x": 0,
+            "y": 474,
+            "w": 1080,
+            "h": 972
+          },
+          "v": "mwbqx5n6"
+        }
+      }
     }
   }
 }

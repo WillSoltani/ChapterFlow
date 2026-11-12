@@ -13,23 +13,26 @@ Live at `/` (append `?hud=1` for the frame counter).
 
 ```
 components/film/
-  types.ts            FilmManifest / FilmVariant / SegmentRegistration
+  types.ts            FilmManifest / FilmVariant / BandTier / SegmentRegistration
   scrub.ts            pure math: pickActive, frameAt, quantise, coverRect, breathAt,
-                      backingSize, stageShift, framePlacement, viewportRects, reelEndScrollY
+                      backingSize, stageShift, framePlacement, variantPlacement,
+                      viewportRects, reelEndScrollY
   frame-cache.ts      FrameBudget (one wanted set, byte budget, load limits) + FrameCache, nearest()
-  reel-context.tsx    ReelContext + orientation media query
+  reel-context.tsx    ReelContext + orientation media query + variant pick (readView, pickVariant)
   use-scrub-loop.ts   the ONE rAF loop: cached geometry → active segment → frame → canvas
   FilmBackdrop.tsx    fixed 100lvh <canvas>, registers segments, owns caches
   FilmSegment.tsx     N×100svh section + sticky 100svh stage; progress store
   FramePin.tsx        copy pinned to [from,to] frames (opacity/transform only)
-  timeline.ts         key("book-01","sheet_split") → frame; manifest(name)
-  book.timeline.json  named keyframes + counts per film (SOURCE OF TRUTH)
+  timeline.ts         key("book-01","sheet_split") → frame; manifest(name), bandTiers(name)
+  book.timeline.json  named keyframes + counts + versions + band tiers per film (SOURCE OF TRUTH)
   book-reel.ts        ordered FilmManifest[] for the landing
   chapters/*.tsx      HeroChapter, SummaryExamples, Quiz, Review, Library, Close
   BookReelLanding.tsx composition
 scripts/film/
-  encode.mjs          Blender frames → public/films/<name>/f_0001.webp + poster + manifest
-  placeholder.mjs     synthetic frames from timeline (dev only)
+  encode.mjs          Blender frames → public/films/<name>/f_0001.webp + poster + manifest;
+                      --bands writes the portrait band tiers <name>-b1080, <name>-b900
+  placeholder.mjs     synthetic frames from timeline (dev only): landscape + band tiers
+  tier-parity.mjs     proof that the band tiers draw like the legacy -p frames (npm run film:parity)
 ```
 
 CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
@@ -68,8 +71,9 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     position never change with the address bar. Where stage = box (desktop,
     Playwright) this is exactly the old rectangle, breath zoom and its
     0.5 / 0.45 origin included. Canvas area the picture does not cover (the
-    strip below it on a phone) is cleared with `--cf-recall-bg` (#06070A),
-    the colour of the portrait frames' baked bars, not `--cf-page-bg`.
+    strip below it on a phone, everything outside a band tier's band) is
+    cleared with `--cf-recall-bg` (#06070A), the colour the hero's ramp bars
+    are encoded in, not `--cf-page-bg`.
   - **Cached geometry.** Segment document tops and heights and the stage
     height are measured when segments register, on window `resize`, when a
     ResizeObserver on the reel's content wrapper or on `<body>` fires, after
@@ -114,9 +118,11 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
     network is behind the playhead, the frame the canvas would fall back to
     (nearest HELD bytes at or below the playhead, decode only, last in line),
     so a late frame is drawn instead of the poster. Its decoded
-    size is ≤ 80 % of the budget: capacity = budget ÷ (width × height × 4),
-    known before any decode (phones: 20 frames → 16 wanted; desktop 384 MB:
-    48 → 38).
+    size is ≤ 80 % of the budget: capacity = budget ÷ (width × height × 4)
+    of the variant's REAL frame files, known before any decode (phones on the
+    900×810 band tier, 2.9 MB a frame: 57 frames → 45 wanted; tablets on the
+    1080×972 tier, 4.2 MB: 39 → 31 at 160 MB; desktop 384 MB on 1920×1080,
+    8.3 MB: 48 → 38. The full 1080×1920 portrait frames gave phones 20 → 16).
   - Loads start only for wanted frames, nearest-first in the scroll
     direction, re-ordered on every decision. At most **4 fetches** in flight
     (the dev server is HTTP/1.1, 6 connections per host: more would starve
@@ -158,7 +164,47 @@ CSS lives in `app/globals.css` under `/* FILM REEL */`: `.film-stage-grid`,
 - FramePin: SSR renders copy VISIBLE; JS arms + scrubs after mount (crawler-safe).
   A pin with `from=0` is fully visible at frame 0 (LCP).
 - Keyboard focus inside a stage snaps the segment to the top.
-- Portrait variant (`<name>-p`) picked at `<64rem` or portrait orientation.
+- Variants and tiers (`reel-context.tsx`, `timeline.ts`, `types.ts`). A film
+  has its landscape variant (`<name>`, 1920×1080, the film's `v`) and a list
+  of **band tiers** for portrait screens:
+
+  | Tier | Folder | File size | Decoded | Drawn on |
+  |---|---|---|---|---|
+  | b900 | `<name>-b900` | 900×810 | 2.9 MB | phones (canvas backing ≤ 900 px wide) |
+  | b1080 | `<name>-b1080` | 1080×972 | 4.2 MB | tablets, landscape phones (wider) |
+
+  A band tier holds only the picture band of the old full portrait frame (no
+  bars). Its manifest (and `films.<name>.bands.<tier>` in book.timeline.json)
+  records the **virtual frame** it sits in, `{w:1080,h:1920}`, and the
+  **band** rectangle in that frame, `{x:0,y:474,w:1080,h:972}` (the rows the
+  picture fills at `--portrait-zoom 1.6`). The hero's early frames (before its
+  ramp ends at frame 200) have bars INSIDE the band box, encoded in #06070A.
+  Each tier has its own content version `v`, separate from the landscape
+  `v`; landscape frame URLs did not change.
+  - **Drawing.** `variantPlacement` (scrub.ts) places the virtual 1080×1920
+    frame exactly as `framePlacement` placed the full portrait frame (cover-fit
+    to the canvas, breath zoom around 0.5 / 0.45, stage shift) and draws the
+    tier's image into the band's rectangle inside it, for frames, posters and
+    the dissolve underlay alike. Every picture pixel lands where the full frame
+    put it (to within resampling); the rest of the canvas is the clear colour.
+    A tall phone draws the 900 tier about 5 % upscaled (a 780 px canvas cover-
+    fits the virtual frame to ~949 px): accepted. Landscape drawing is
+    unchanged (`variantPlacement` = `framePlacement` without a band).
+  - **Pick rule** (`pickVariant`, pure, `reel-context.test.ts`). Orientation
+    as before (`PORTRAIT_QUERY`: `< 64rem` or portrait orientation → portrait).
+    Within portrait, by canvas backing width
+    `min(innerWidth × min(devicePixelRatio, 2), 1920)`: the narrowest tier at
+    least that wide (≤ 900 → b900, wider → b1080), else the widest. No band
+    tiers → landscape. Width only, so an address bar showing or hiding never
+    changes the pick. `FilmBackdrop` reads the view synchronously in the first
+    client render (a ref), so a phone never requests a frame or poster of
+    another variant; the rendered state starts as the server's landscape view
+    (no hydration mismatch) and is replaced only when a film's pick changes
+    (`viewKey`: rotation, a window resized across 900 backing px), which
+    refreshes the caches and the scrub loop exactly as an orientation flip did.
+  - The legacy `<name>-p` folders (1080×1920 with baked bars) are no longer
+    referenced at runtime; they stay on disk and in the bucket for one release
+    and are the reference of `npm run film:parity`.
 
 ## Render spec
 
@@ -216,6 +262,27 @@ node scripts/film/encode.mjs ~/renders/p00v4_blend palace-00 --portrait --portra
 node scripts/film/encode.mjs ~/renders/P03.mp4 palace-03 --from-video --fps 24 --portrait
 # counts are synced into book.timeline.json automatically; then edit the keys.
 
+# PORTRAIT BAND TIERS (what phones and tablets draw since Phase 3). --bands
+# builds the same 1080×1920 composition the -p path builds (same code, same
+# rounding), cuts the band (rows 474–1445 at zoom 1.6) into <name>-b1080 and
+# scales it by 5/6 into <name>-b900. It never writes the landscape or -p
+# folders and never changes the landscape manifest or its version; the tiers
+# get their own version, synced into book.timeline.json (films.<name>.bands).
+# Same sources and flags as the -p recipe above; effort 6 only costs encode
+# time (~17 s per 170 frames on an M-series Mac).
+for n in 01 02 03 04 05 06; do
+  node scripts/film/encode.mjs public/films/palace-$n palace-$n --bands --portrait-zoom 1.6 --portrait-bars '#06070A' --quality 78 --effort 6
+done
+node scripts/film/encode.mjs ~/renders/p00v4_blend palace-00 --bands --portrait-ramp 150,200 --portrait-zoom 1.6 --portrait-bars '#06070A' --quality 78 --effort 6
+npm run film:parity     # dev server on :3000; needs the legacy -p folders as the reference
+# EVERY new render of a film (landscape or -p encode above) must be followed
+# by the --bands line for that film: phones and tablets draw only the tiers,
+# and a tier cut from the old render keeps its URL and version, so it would
+# go on showing the old render. The encoder warns when it encodes a film that
+# has tier folders without --bands, and the timeline sync (any encode, or
+# `node scripts/film/encode.mjs --sync-timeline`) prints STALE BAND TIER and
+# exits 1 when a tier's frame count differs from the film's.
+
 # dev: serve from public/films (gitignored)
 npm run dev → http://localhost:3000/?hud=1
 
@@ -234,15 +301,31 @@ aws s3 sync public/films "$B" --exclude '*' --include '*.json' --content-type ap
 # (`--content-type` is explicit because the CLI's mime map is not guaranteed to
 # know .webp.) Last done 2026-10-28: 3,414 objects / 197 MB. The OpenNext
 # BucketDeployments are prune:false, so app deploys never remove them.
+#
+# Band tiers (Phase 3): upload the 14 tier folders BEFORE deploying the code
+# that draws them (the deployed page requests <name>-b900 / <name>-b1080 the
+# moment it ships; until then nothing asks for them). Same flags as above,
+# restricted to the tier folders (sync without --delete never touches the
+# landscape or -p objects):
+aws s3 sync public/films "$B" --exclude '*' --include 'palace-0?-b900/*.webp' --include 'palace-0?-b1080/*.webp' \
+    --content-type image/webp --cache-control 'public,max-age=31536000,immutable'
+aws s3 sync public/films "$B" --exclude '*' --include 'palace-0?-b900/*.json' --include 'palace-0?-b1080/*.json' \
+    --content-type application/json --cache-control 'public,max-age=300'
+# Tier URLs are new paths with their own ?v=, so no CloudFront invalidation is
+# needed for them. The old <name>-p objects stay in the bucket for one release
+# (pages already open in a browser still ask for them); delete them only in
+# the release after this one.
 
 # optional: an external CDN instead — then set the origin at BUILD time and
 # lib/csp.ts adds it to img-src + connect-src
 NEXT_PUBLIC_FILM_BASE=https://<cdn>/films
 ```
 
-Budget: ~1360 frames × 2 variants × ~45 KB ≈ 120 MB total on CDN; a visitor
-scrubbing the whole page pulls ~30–60 MB of the variant they're on, each frame
-once (see the wanted set under Runtime). First paint needs only the poster.
+Budget (measured 2026-11-11, frame files only, 1,693 frames per variant):
+landscape 108.5 MB, b1080 50.6 MB, b900 38.3 MB (the legacy -p folders were
+53.7 MB). A visitor scrubbing the whole reel pulls the variant they are on,
+each frame once (see the wanted set under Runtime): desktop ~108 MB, a phone
+~38 MB. First paint needs only the poster.
 
 ## Production status
 
@@ -292,6 +375,7 @@ toward a barred frame.
   `phone-chromium-slow` = Pixel 7, CPU 4×, Fast 4G, no `deviceMemory`, at
   600 px/s, `desktop-chromium` = 1440×900 at 900 px/s; `ONLY=`, `SPEED=`
   override). Prints frame requests on the network vs distinct frames, the
+  frame requests per variant folder (which tier the profile drew), the
   `__filmStats` counters, the exact-draw share and the mean fallback
   distance, and the scrub loop's counters plus its worked / skipped ticks
   over the next 2 s at rest; exits non-zero on any refetch or more than 4
@@ -325,6 +409,12 @@ toward a barred frame.
   - `film-perf.spec.ts` wheel-scrubs the whole reel: frames monotonic, every
     handoff lands in the dissolve window, rAF ≥ 45 fps (chromium), chrome →
     body at the end, anchor links land exactly on their segment.
+  - `film-truth.spec.ts` also runs on a 390 × 844 DPR 2 phone (reduced
+    motion: no breath, exact frames): at every stop the canvas must equal the
+    b900 tier's own frame file drawn into its band inside the cover-fit
+    virtual frame (mean |Δ| ≤ 0.5), be closer to it than to a frame 60 away,
+    and be exactly the clear colour outside the band. It does not need the
+    legacy -p frames.
   - `film-quality.spec.ts` scrolls steadily over the first two films and
     asserts from the network and `__filmStats` (not the HUD): 0 refetches,
     ≤ 4 fetches in flight, no frame requested twice. On a 390 × 844 phone
@@ -335,7 +425,30 @@ toward a barred frame.
     into the fourth film shows the frame the scroll position demands three
     animation frames later; widening the window to 430 px, the first
     animation frame after the `resize` already has a backing store of the
-    new box, and that is the second (and only other) allocation.
+    new box, and that is the second (and only other) allocation; and every
+    frame and poster request of that phone is for a `palace-*-b900` folder.
+- `npm run film:parity` (`scripts/film/tier-parity.mjs`; dev server on :3000,
+  local only like `film:quality`) — the tier proof: on a 390 × 844 phone (b900)
+  and an 820 × 1180 tablet (b1080), both DPR 2, reduced motion, 36 positions
+  over all seven films (the hero before, inside and after its ramp; no
+  dissolve frames), it compares the canvas with a reference drawn in the page
+  from the LEGACY `<name>-p` file of the same frame with the legacy math. It
+  prints the mean |Δ| per channel, the band's top and bottom edge row in
+  both images and the content shift of each half of the band. Reference
+  edges: the rows the legacy band (rows 474–1445 of the -p frame) covers
+  under the legacy placement (row centre inside, as Chrome draws). Live
+  edges: measured in the canvas, as the span of rows holding any pixel off
+  the exact clear colour (outside the band the canvas is the clear fill), so
+  they are the drawn band rectangle whatever the picture shows at its edge,
+  dark films and the hero's ramp bars included. Shift: the vertical offset
+  (−3…3 rows) that best matches live to reference in each half of the band.
+  It fails on an edge more than 1 px apart, a shift of more than 1 row, a
+  mean above 4 (phone) / 2 (tablet), or any cache of another variant. Every
+  edge and shift is gated; none is exempt, and an edge row that decoded to
+  the exact clear colour would read inward and fail (fails closed). Exits 0
+  with a message when the -p folders are absent. 2026-11-11: all 144 edges
+  equal (phone 417/1270, tablet 442/1917), all shifts 0, means 0.64–1.40; a
+  band drawn 2 px low (injected) failed all 36 phone positions.
 - `npm run test:film:safari` — same on WebKit (`npx playwright install webkit`
   first). Headless WebKit rasterises in software and caps ~25 fps on any
   full-viewport image swap; the fps gate is 20 there.

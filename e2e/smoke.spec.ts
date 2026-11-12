@@ -22,12 +22,44 @@ async function expectNotBlank(page: Page): Promise<void> {
   expect(text.length).toBeGreaterThan(20);
 }
 
+// Touch targets are a property of the RESTING layout. Entrance reveals
+// (SectionReveal's translateY settle) leave a fractional transform on an
+// ancestor for a few frames, and a transformed rect is computed in float
+// precision: a 44px button then reads 43.99997px. Wait until the element's
+// rect is unchanged across an animation frame before measuring it.
+async function settledBox(
+  target: Locator,
+): Promise<{ width: number; height: number } | null> {
+  return target.evaluate(async (element) => {
+    const frame = () =>
+      new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    let previous = element.getBoundingClientRect();
+    for (let i = 0; i < 180; i += 1) {
+      await frame();
+      const next = element.getBoundingClientRect();
+      if (
+        next.top === previous.top &&
+        next.left === previous.left &&
+        next.width === previous.width &&
+        next.height === previous.height
+      ) {
+        break;
+      }
+      previous = next;
+    }
+    const rect = element.getBoundingClientRect();
+    return rect.width > 0 || rect.height > 0
+      ? { width: rect.width, height: rect.height }
+      : null;
+  });
+}
+
 async function expectMinimumTouchTarget(
   target: Locator,
   label: string,
 ): Promise<void> {
   await expect(target, `${label} should be visible`).toBeVisible();
-  const box = await target.boundingBox();
+  const box = await settledBox(target);
   expect(box, `${label} should have a layout box`).toBeTruthy();
   expect(box!.height, `${label} height`).toBeGreaterThanOrEqual(44);
   expect(box!.width, `${label} width`).toBeGreaterThanOrEqual(44);
@@ -470,8 +502,26 @@ test.describe("shared Recall public chrome", () => {
       const actions = page.locator(
         'main a[href^="/auth/login"], main button[type="submit"], footer a[href^="/auth/login"]',
       );
-      const boxes = await actions.evaluateAll((elements) =>
-        elements.flatMap((element) => {
+      const boxes = await actions.evaluateAll(async (elements) => {
+        // Same resting-layout rule as settledBox(): let entrance reveals finish
+        // (every rect unchanged across a frame) before measuring.
+        const frame = () =>
+          new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+        const snapshot = () =>
+          elements
+            .map((element) => {
+              const r = element.getBoundingClientRect();
+              return `${r.top},${r.left},${r.width},${r.height}`;
+            })
+            .join("|");
+        let previous = snapshot();
+        for (let i = 0; i < 180; i += 1) {
+          await frame();
+          const next = snapshot();
+          if (next === previous) break;
+          previous = next;
+        }
+        return elements.flatMap((element) => {
           const rect = element.getBoundingClientRect();
           const style = window.getComputedStyle(element);
           return rect.width > 0 &&
@@ -480,8 +530,8 @@ test.describe("shared Recall public chrome", () => {
             style.visibility !== "hidden"
             ? [{ width: rect.width, height: rect.height }]
             : [];
-        }),
-      );
+        });
+      });
       expect(boxes.length, `${path} should expose at least one primary action`).toBeGreaterThan(0);
 
       for (const [index, box] of boxes.entries()) {

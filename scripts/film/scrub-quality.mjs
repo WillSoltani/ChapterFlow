@@ -6,7 +6,8 @@
  * to what the network actually saw.
  *
  * Per profile it prints: frame requests on the network, distinct frames,
- * duplicates, the counters, the exact-draw share and the mean fallback
+ * duplicates, frame requests per variant directory (palace-03, palace-03-b900,
+ * …: which tier the profile drew), the counters, the exact-draw share and the mean fallback
  * distance. Exits non-zero if any profile refetched a frame or ran more than
  * 4 frame fetches at once.
  *
@@ -156,6 +157,12 @@ for (const prof of PROFILES) {
     `[${prof.name}] ${speed}px/s · ${Math.round(run.end)}px in ${run.secs.toFixed(1)}s · rAF ${(run.ticks / run.secs).toFixed(0)}fps, longest frame ${Math.round(run.worst)}ms${capped ? " · CAPPED by MAX_REQUESTS" : ""}`,
   );
   console.log(`   network: ${frameRequests.length} frame requests for ${distinct} distinct frames (${frameRequests.length - distinct} duplicates)`);
+  const perDir = new Map();
+  for (const u of frameRequests) {
+    const dir = /\/films\/([^/?#]+)\//.exec(u)?.[1] ?? "?";
+    perDir.set(dir, (perDir.get(dir) ?? 0) + 1);
+  }
+  console.log(`   by variant: ${[...perDir].sort(([a], [b]) => a.localeCompare(b)).map(([d, n]) => `${d} ${n}`).join(" · ") || "none"}`);
   console.log(
     `   stats:   fetches ${stats.fetches} · refetches ${stats.refetches} · decodes ${stats.decodes} · redecodes ${stats.redecodes} · evictions ${stats.evictions} · maxFetchInFlight ${stats.maxFetchInFlight}/${stats.fetchLimit} · maxDecodeInFlight ${stats.maxDecodeInFlight}/${stats.decodeLimit}`,
   );

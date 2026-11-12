@@ -4,7 +4,8 @@
  * FilmBackdrop — the one fixed <canvas> behind the whole landing.
  *
  * Owns:
- *   • a FrameCache per film variant (landscape/portrait picked by media query)
+ *   • a FrameCache per film variant: landscape, or on portrait screens the
+ *     band tier that fits the canvas backing width (pickVariant)
  *   • registration of FilmSegments (they report their DOM element + film)
  *   • the scrub loop (./use-scrub-loop.ts) that paints frames, dissolves
  *     between films, breathes while idle, quantises under reduced motion, and
@@ -16,13 +17,16 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { FrameBudget, FrameCache, pickFrameBudgetBytes, type FilmStats } from "./frame-cache";
-import { ReelContext, PORTRAIT_QUERY, pickVariant, readOrientation, type ReelApi } from "./reel-context";
+import { ReelContext, PORTRAIT_QUERY, pickVariant, readView, viewKey, type ReelApi, type ReelView } from "./reel-context";
 import { useScrubLoop } from "./use-scrub-loop";
 import type { FilmManifest, Orientation, SegmentRegistration } from "./types";
 
 export { REEL_CHROME_EVENT } from "./use-scrub-loop";
 
 type Props = { reel: FilmManifest[]; children: ReactNode; className?: string };
+
+/** The view the server renders (and the client hydrates) with. */
+const SERVER_VIEW: ReelView = { orientation: "landscape", backingWidth: 1920 };
 
 export function FilmBackdrop({ reel, children, className }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -38,17 +42,23 @@ export function FilmBackdrop({ reel, children, className }: Props) {
   const drawn = useRef({ segment: -1, frame: -1 });
   const reduced = usePrefersReducedMotion();
   const reducedRef = useRef(false);
-  // The RENDERED orientation starts as "landscape" on both server and client so
-  // hydration matches; the media query is applied in the effect below. But the
-  // caches must pick the right variant from the very first tick: child
-  // segments register (and warm their caches) in their own effects, which run
-  // before this component's, and the scrub loop's first frame follows at once.
-  // So variant selection reads a ref that is filled synchronously during the
-  // first client render — otherwise every phone downloaded the first frames of
-  // all seven landscape variants (~5 MB) before switching to the portrait ones.
+  // The RENDERED view starts as landscape on both server and client so
+  // hydration matches; the media query and window width are applied in the
+  // effect below. But the caches must pick the right variant from the very
+  // first tick: child segments register (and warm their caches) in their own
+  // effects, which run before this component's, and the scrub loop's first
+  // frame follows at once. So variant selection reads a ref that is filled
+  // synchronously during the first client render — otherwise every phone
+  // downloaded the first frames (and posters) of another variant before
+  // switching. The view = orientation + canvas backing width (width only: a
+  // phone address bar never changes it). The `view` state is replaced only
+  // when a film's pick changes (rotation, a resize across a tier threshold,
+  // viewKey); that refreshes the caches and the scrub loop (cacheFor's
+  // identity), as an orientation flip always did.
   const [orientation, setOrientation] = useState<Orientation>("landscape");
-  const orientationRef = useRef<Orientation | null>(null);
-  if (orientationRef.current === null) orientationRef.current = readOrientation();
+  const [view, setView] = useState<ReelView>(SERVER_VIEW);
+  const viewRef = useRef<ReelView | null>(null);
+  if (viewRef.current === null) viewRef.current = readView();
 
   useEffect(() => {
     reducedRef.current = reduced;
@@ -82,18 +92,23 @@ export function FilmBackdrop({ reel, children, className }: Props) {
   useEffect(() => {
     const mq = window.matchMedia(PORTRAIT_QUERY);
     const sync = () => {
-      const o = readOrientation();
-      orientationRef.current = o;
-      setOrientation(o);
+      const v = readView();
+      viewRef.current = v;
+      setOrientation(v.orientation);
+      setView((prev) => (viewKey(reel, prev) === viewKey(reel, v) ? prev : v));
     };
     sync();
     mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
+    window.addEventListener("resize", sync);
+    return () => {
+      mq.removeEventListener("change", sync);
+      window.removeEventListener("resize", sync);
+    };
+  }, [reel]);
 
   const cacheFor = useCallback(
     (film: FilmManifest): FrameCache => {
-      const v = pickVariant(film, orientationRef.current ?? orientation);
+      const v = pickVariant(film, viewRef.current ?? view);
       const key = `${v.name}@${v.v ?? "0"}`;
       let c = caches.current.get(key);
       if (!c) {
@@ -103,9 +118,9 @@ export function FilmBackdrop({ reel, children, className }: Props) {
       }
       return c;
     },
-    // `orientation` is in the deps so the callback (and everything keyed on it,
-    // e.g. the scrub loop's effect) refreshes when the media query flips.
-    [orientation, budget],
+    // `view` is in the deps so the callback (and everything keyed on it, e.g.
+    // the scrub loop's effect) refreshes when a film's variant changes.
+    [view, budget],
   );
 
   useEffect(() => {
@@ -158,7 +173,7 @@ export function FilmBackdrop({ reel, children, className }: Props) {
     [reel, orientation, cacheFor, budget],
   );
 
-  useScrubLoop({ canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, orientation, cacheFor, budget });
+  useScrubLoop({ canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget });
 
   return (
     <ReelContext.Provider value={api}>

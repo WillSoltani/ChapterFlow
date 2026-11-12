@@ -37,6 +37,20 @@
  *   --portrait-only      write only the portrait variant (landscape dir and
  *                        its manifest/version untouched); input may be the
  *                        film's own public/films/<name> landscape frames.
+ *   --bands              write BAND-ONLY portrait tiers instead of <name>-p:
+ *                        <name>-b1080 (1080×972, tablets) and <name>-b900
+ *                        (900×810, phones). Each frame is the same 1080×1920
+ *                        composition the -p path builds (same code, same
+ *                        rounding), cut to the band (the rows the picture
+ *                        fills at --portrait-zoom; 474–1445 at 1.6) and, for
+ *                        b900, scaled by 5/6. Their manifests record the
+ *                        virtual frame {w:1080,h:1920} and the band rect in
+ *                        it. Needs --portrait-zoom. Never writes the
+ *                        landscape or -p directories and never changes the
+ *                        landscape manifest or its version; each tier gets
+ *                        its own version, synced into book.timeline.json
+ *                        under films.<name>.bands.
+ *   --effort 4           webp effort (0–6; higher = smaller files, slower)
  *   --out public/films   output root
  *   --dry                print plan, write nothing
  *
@@ -49,6 +63,7 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import sharp from "sharp";
+import { BAND_TIER_WIDTHS, bandTierEntry } from "./band-sync.mjs";
 
 const args = process.argv.slice(2);
 const opt = (name, def) => {
@@ -62,10 +77,12 @@ const opt = (name, def) => {
 const ROOT = process.cwd();
 const OUT_ROOT = path.resolve(ROOT, String(opt("out", "public/films")));
 const TIMELINE = path.resolve(ROOT, "components/film/book.timeline.json");
+/** The virtual frame a band tier sits in: the -p composition. */
+const VFRAME = { w: 1080, h: 1920 };
 
 if (opt("sync-timeline", false)) {
   await syncTimeline();
-  process.exit(0);
+  process.exit(process.exitCode ?? 0); // 1 when a band tier is stale
 }
 
 const [inputArg, filmName] = args.filter((a) => !a.startsWith("--") && !/^\d|,/.test(a)).slice(0, 2);
@@ -95,13 +112,15 @@ if (opt("from-video", false)) {
 const width = Number(opt("width", 1920));
 const quality = Number(opt("quality", 78));
 const every = Math.max(1, Number(opt("every", 1)));
-const portrait = Boolean(opt("portrait", false));
+const portrait = Boolean(opt("portrait", false)) || Boolean(opt("bands", false));
 const portraitCrop = opt("portrait-crop", null);
 const portraitRamp = opt("portrait-ramp", null);
 const ramp = portraitRamp ? String(portraitRamp).split(",").map(Number) : null;
 const portraitZoom = opt("portrait-zoom", null);
 const zoom = portraitZoom ? Number(portraitZoom) : null;
-const portraitOnly = Boolean(opt("portrait-only", false));
+const bandsMode = Boolean(opt("bands", false));
+const portraitOnly = Boolean(opt("portrait-only", false)) || bandsMode;
+const effort = Number(opt("effort", 4));
 const portraitBars = opt("portrait-bars", null);
 const barsRgb = portraitBars
   ? (() => {
@@ -143,21 +162,57 @@ if (portrait) {
   }
 }
 
-console.log(`film ${filmName}: ${srcFiles.length} frames  src ${srcW}×${srcH}  → ${portraitOnly ? "(landscape untouched)" : `${width}×${landH}`}${portrait ? `  + portrait 1080×1920${zoom ? ` zoom ${zoom}` : ""}${ramp ? ` ramp ${ramp.join("→")}` : ""}` : ""}`);
-if (dry) process.exit(0);
-
-const landDir = path.join(OUT_ROOT, filmName);
-const portDir = path.join(OUT_ROOT, `${filmName}-p`);
-if (!portraitOnly) await fs.mkdir(landDir, { recursive: true });
-if (portrait) await fs.mkdir(portDir, { recursive: true });
+if (bandsMode && !zoom) {
+  console.error("--bands needs --portrait-zoom (the band is the rows the picture fills at that zoom)");
+  process.exit(1);
+}
 
 // Portrait framing as a scale factor on the source: contain → cover.
 const sContain = 1080 / srcW;
 const sCover = 1920 / srcH;
 const sEnd = zoom ? sContain * zoom : sCover;
 
-/** Letterbox-or-crop one frame at scale `sc` into a 1080×1920 webp. */
-async function portraitAt(base, sc, outFile) {
+/**
+ * --bands: the band = the rows of the 1080×1920 composition the picture fills
+ * at the end zoom (the same rounding as portraitComposite). Every frame of the
+ * ramp sits inside it (a smaller scale fills fewer rows, centred).
+ */
+const BAND = (() => {
+  if (!bandsMode) return null;
+  const h = Math.round(srcH * sEnd);
+  const top = Math.round((h - VFRAME.h) / 2);
+  if (top >= 0) throw new Error(`--bands: at zoom ${zoom} the picture fills the whole 1080×1920 frame; no band to cut`);
+  return { x: 0, y: -top, w: VFRAME.w, h };
+})();
+const tiers = BAND
+  ? BAND_TIER_WIDTHS.map((w) => ({ w, h: Math.round((BAND.h * w) / BAND.w), dir: path.join(OUT_ROOT, `${filmName}-b${w}`) }))
+  : [];
+
+console.log(
+  `film ${filmName}: ${srcFiles.length} frames  src ${srcW}×${srcH}  → ${portraitOnly ? "(landscape untouched)" : `${width}×${landH}`}` +
+    (bandsMode
+      ? `  + band tiers ${tiers.map((t) => `${t.w}×${t.h}`).join(", ")} (band ${BAND.x},${BAND.y} ${BAND.w}×${BAND.h} in 1080×1920)${zoom ? ` zoom ${zoom}` : ""}${ramp ? ` ramp ${ramp.join("→")}` : ""}`
+      : portrait
+        ? `  + portrait 1080×1920${zoom ? ` zoom ${zoom}` : ""}${ramp ? ` ramp ${ramp.join("→")}` : ""}`
+        : "") +
+    `  q${quality} effort ${effort}`,
+);
+if (dry) process.exit(0);
+
+const landDir = path.join(OUT_ROOT, filmName);
+const portDir = path.join(OUT_ROOT, `${filmName}-p`);
+const writePortraitDir = portrait && !bandsMode;
+if (!portraitOnly) await fs.mkdir(landDir, { recursive: true });
+if (writePortraitDir) await fs.mkdir(portDir, { recursive: true });
+for (const t of tiers) await fs.mkdir(t.dir, { recursive: true });
+
+/**
+ * The 1080×1920 portrait composition of one frame at scale `sc`: letterboxed
+ * or cropped. Returns a sharp pipeline ready for an output format; both the
+ * -p variant and the band tiers are cut from it, so their framing is one code
+ * path with one rounding.
+ */
+async function portraitComposite(base, sc) {
   const w = Math.round(srcW * sc);
   const h = Math.round(srcH * sc);
   const left = Math.round((w - 1080) / 2);
@@ -176,11 +231,31 @@ async function portraitAt(base, sc, outFile) {
         if (lum < darkest) { darkest = lum; bg = { r: data[0], g: data[1], b: data[2] }; }
       }
     }
-    await sharp({ create: { width: 1080, height: 1920, channels: 3, background: bg } })
-      .composite([{ input: await sharp(scaled).extract({ left, top: 0, width: 1080, height: h }).toBuffer(), left: 0, top: -top }])
-      .webp({ quality, effort: 4 }).toFile(outFile);
-  } else {
-    await sharp(scaled).extract({ left, top, width: 1080, height: 1920 }).webp({ quality, effort: 4 }).toFile(outFile);
+    return sharp({ create: { width: 1080, height: 1920, channels: 3, background: bg } })
+      .composite([{ input: await sharp(scaled).extract({ left, top: 0, width: 1080, height: h }).toBuffer(), left: 0, top: -top }]);
+  }
+  return sharp(scaled).extract({ left, top, width: 1080, height: 1920 });
+}
+
+/** Letterbox-or-crop one frame at scale `sc` into a 1080×1920 webp. */
+async function portraitAt(base, sc, outFile) {
+  await (await portraitComposite(base, sc)).webp({ quality, effort }).toFile(outFile);
+}
+
+/** Band tiers of one frame at scale `sc`: the composition, cut to BAND, per tier width. */
+async function bandsAt(base, sc, name) {
+  // Materialise the composition first: sharp applies extract BEFORE composite
+  // inside one pipeline, so the cut needs a second pipeline on the raw pixels.
+  const { data, info } = await (await portraitComposite(base, sc)).raw().toBuffer({ resolveWithObject: true });
+  for (const t of tiers) {
+    let img = sharp(data, { raw: { width: info.width, height: info.height, channels: info.channels } }).extract({
+      left: BAND.x,
+      top: BAND.y,
+      width: BAND.w,
+      height: BAND.h,
+    });
+    if (t.w !== BAND.w || t.h !== BAND.h) img = img.resize({ width: t.w, height: t.h, fit: "fill" });
+    await img.webp({ quality, effort }).toFile(path.join(t.dir, name));
   }
 }
 
@@ -190,17 +265,18 @@ async function encodeOne(i) {
   const src = path.resolve(ROOT, inputDir, srcFiles[i]);
   const name = `f_${String(i + 1).padStart(pad, "0")}.webp`;
   const base = sharp(src);
-  if (!portraitOnly) await base.clone().resize({ width }).webp({ quality, effort: 4 }).toFile(path.join(landDir, name));
+  if (!portraitOnly) await base.clone().resize({ width }).webp({ quality, effort }).toFile(path.join(landDir, name));
+  const out = (sc) => (bandsMode ? bandsAt(base, sc, name) : portraitAt(base, sc, path.join(portDir, name)));
   if (portrait && crop && ramp) {
     // t = 0 → contain (scale so the frame is 1080 wide), t = 1 → the end zoom.
     const [a, b] = ramp;
     const u = i <= a ? 0 : i >= b ? 1 : (i - a) / (b - a);
     const t = u * u * (3 - 2 * u);
-    await portraitAt(base, sContain + (sEnd - sContain) * t, path.join(portDir, name));
+    await out(sContain + (sEnd - sContain) * t);
   } else if (portrait && crop && zoom) {
-    await portraitAt(base, sEnd, path.join(portDir, name));
+    await out(sEnd);
   } else if (portrait && crop) {
-    await base.clone().extract(crop).resize({ width: 1080, height: 1920 }).webp({ quality, effort: 4 }).toFile(path.join(portDir, name));
+    await base.clone().extract(crop).resize({ width: 1080, height: 1920 }).webp({ quality, effort }).toFile(path.join(portDir, name));
   }
   done++;
   if (done % 20 === 0 || done === srcFiles.length) process.stdout.write(`  ${done}/${srcFiles.length}\r`);
@@ -215,18 +291,20 @@ process.stdout.write("\n");
 // Content version: bumps on every encode so browsers never serve frames from
 // a previous render (the frame URLs are otherwise identical).
 const VERSION = Date.now().toString(36);
-async function writeVariant(dir, w, h) {
+async function writeVariant(dir, w, h, extra = {}) {
   await fs.copyFile(path.join(dir, `f_${"1".padStart(pad, "0")}.webp`), path.join(dir, "poster.webp"));
-  const manifest = { name: path.basename(dir), count: srcFiles.length, pad, ext: "webp", width: w, height: h, v: VERSION };
+  const manifest = { name: path.basename(dir), count: srcFiles.length, pad, ext: "webp", width: w, height: h, v: VERSION, ...extra };
   await fs.writeFile(path.join(dir, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
 }
 if (!portraitOnly) await writeVariant(landDir, width, landH);
-if (portrait) await writeVariant(portDir, 1080, 1920);
-if (portraitOnly) {
-  // One content version per film (timeline.ts stamps ?v= on both variants from
-  // the landscape manifest), so a portrait-only re-encode must bump the
-  // landscape manifest's v too — otherwise browsers keep the old portrait
-  // frames from cache under the unchanged URL. Landscape frames are untouched.
+if (writePortraitDir) await writeVariant(portDir, 1080, 1920);
+for (const t of tiers) await writeVariant(t.dir, t.w, t.h, { frame: { ...VFRAME }, band: { ...BAND } });
+if (portraitOnly && !bandsMode) {
+  // One content version per film for landscape and -p (timeline.ts stamps
+  // ?v= on both from the landscape manifest), so a portrait-only re-encode
+  // must bump the landscape manifest's v too — otherwise browsers keep the
+  // old portrait frames from cache under the unchanged URL. Landscape frames
+  // are untouched. Band tiers carry their own version (films.<name>.bands).
   const lm = path.join(landDir, "manifest.json");
   try {
     const m = JSON.parse(await fs.readFile(lm, "utf8"));
@@ -237,7 +315,19 @@ if (portraitOnly) {
   }
 }
 await syncTimeline();
-console.log(`done → ${portraitOnly ? "" : path.relative(ROOT, landDir)}${portrait ? `${portraitOnly ? "" : ", "}${path.relative(ROOT, portDir)}` : ""}`);
+if (!bandsMode) {
+  // A landscape or -p encode is a new render; band tiers cut from the old one
+  // keep their URLs and versions and would go on showing it on portrait
+  // screens. Say so (syncTimeline also fails when the frame counts differ).
+  for (const w of BAND_TIER_WIDTHS) {
+    const dir = path.join(OUT_ROOT, `${filmName}-b${w}`);
+    if (await fs.stat(dir).then(() => true, () => false)) {
+      console.warn(`band tier ${path.relative(ROOT, dir)} was cut from the previous render: re-encode it with --bands (docs/FILM_REEL.md)`);
+    }
+  }
+}
+const wrote = [...(portraitOnly ? [] : [landDir]), ...(writePortraitDir ? [portDir] : []), ...tiers.map((t) => t.dir)];
+console.log(`done → ${wrote.map((d) => path.relative(ROOT, d)).join(", ")}`);
 
 async function syncTimeline() {
   let tl;
@@ -258,6 +348,27 @@ async function syncTimeline() {
       if (m.v && film.v !== m.v) {
         film.v = m.v;
         changed = true;
+      }
+      // Band tiers (--bands): their own version, size, virtual frame and band
+      // rect, keyed by tier ("b1080", "b900"). Never touches the film's v.
+      for (const w of BAND_TIER_WIDTHS) {
+        const tier = `b${w}`;
+        let bm;
+        try {
+          bm = JSON.parse(await fs.readFile(path.join(OUT_ROOT, `${name}-${tier}`, "manifest.json"), "utf8"));
+        } catch {
+          continue;
+        }
+        film.bands ??= {};
+        const { entry, stale } = bandTierEntry(film.bands[tier], bm, m.count, `${name}-${tier}`);
+        if (stale) {
+          console.warn(`STALE BAND TIER: ${stale}`);
+          process.exitCode = 1;
+        }
+        if (JSON.stringify(film.bands[tier]) !== JSON.stringify(entry)) {
+          film.bands[tier] = entry;
+          changed = true;
+        }
       }
       // The final key always means "last frame"; keep it pinned to count-1 and
       // clamp any key that a shorter render left out of range.
