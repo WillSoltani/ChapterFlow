@@ -531,11 +531,11 @@ test.describe("film a11y", () => {
     // 166: its buttons are fading (visible, clickable, not fully on), where a
     // KEYBOARD focus would bring them on; a click must not.
     const cases: Array<{ name: RegExp; seg: string; at: number }> = [
-      { name: /start reading free/i, seg: "hero", at: 0.0 },
+      { name: /^start free/i, seg: "hero", at: 0.0 },
       { name: /step inside/i, seg: "hero", at: 0.1 },
       { name: /step inside/i, seg: "hero", at: 166 / 240 },
       { name: /browse all/i, seg: "library", at: 0.98 },
-      { name: /start your first book/i, seg: "home", at: 0.98 },
+      { name: /^start free/i, seg: "home", at: 0.98 },
     ];
     const segs = await segments(page);
     for (const c of cases) {

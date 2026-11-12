@@ -191,7 +191,7 @@ test.describe("landing redesign", () => {
 
     const h1 = page.locator("main h1").first();
     await expect(h1).toBeVisible();
-    const cta = page.getByRole("link", { name: /start reading free/i }).first();
+    const cta = page.locator("#hero").getByRole("link", { name: /^start free/i });
     await expect(cta).toBeVisible();
 
     const h1Box = await h1.boundingBox();
@@ -207,13 +207,11 @@ test.describe("landing redesign", () => {
     await expectFilmWorkerFallsBackCleanly(page, context);
   });
 
-  test("primary 'Start reading free' CTA is present and clickable", async ({
+  test("primary 'Start free' CTA is present and clickable", async ({
     page,
   }) => {
     await page.goto("/");
-    const cta = page
-      .getByRole("link", { name: /start reading free/i })
-      .first();
+    const cta = page.locator("#hero").getByRole("link", { name: /^start free/i });
     await expect(cta).toBeVisible();
     await expect(cta).toBeEnabled();
     expect(await cta.getAttribute("href")).toBeTruthy();
@@ -389,9 +387,7 @@ test.describe("shared Recall public chrome", () => {
     const headerAction = page.locator("header.rl-nav").getByRole("link", {
       name: /start free|dashboard/i,
     });
-    const heroAction = page
-      .getByRole("link", { name: "Start reading free" })
-      .first();
+    const heroAction = page.locator("#hero").getByRole("link", { name: /^start free/i });
     await expect(heroAction).toBeVisible();
     const heroActionBox = await heroAction.boundingBox();
     expect(heroActionBox?.height).toBeGreaterThanOrEqual(44);
