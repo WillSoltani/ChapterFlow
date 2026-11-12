@@ -6,6 +6,10 @@
  * Owns:
  *   • a FrameCache per film variant: landscape, or on portrait screens the
  *     band tier that fits the canvas backing width (pickVariant)
+ *   • the pack client (pack-client.ts): variants with a pack load through the
+ *     film worker, one stream per film, decoded off the main thread; the
+ *     worker starts with the first scroll decision; ?pack=0 (or no Worker)
+ *     keeps every variant on the per-frame path
  *   • registration of FilmSegments (they report their DOM element + film)
  *   • the scrub loop (./use-scrub-loop.ts) that paints frames, dissolves
  *     between films, breathes while idle, quantises under reduced motion, and
@@ -17,6 +21,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { FrameBudget, FrameCache, pickFrameBudgetBytes, type FilmStats } from "./frame-cache";
+import { PACK_CAP_LARGE, PACK_CAP_SMALL, PackClient, packModeAllowed } from "./pack-client";
 import { ReelContext, PORTRAIT_QUERY, pickVariant, readView, viewKey, type ReelApi, type ReelView } from "./reel-context";
 import { useScrubLoop } from "./use-scrub-loop";
 import type { FilmManifest, Orientation, SegmentRegistration } from "./types";
@@ -36,8 +41,15 @@ export function FilmBackdrop({ reel, children, className }: Props) {
   const segments = useRef(new Map<number, SegmentRegistration>());
   const caches = useRef(new Map<string, FrameCache>());
   // One decoded-pixel budget and load scheduler for every cache on the page
-  // (see FrameBudget).
-  const [budget] = useState(() => new FrameBudget(pickFrameBudgetBytes()));
+  // (see FrameBudget), and the film worker's client when packs may be used.
+  // Neither starts any work here: the worker starts with the first scroll
+  // decision (never during server render: packModeAllowed is false there).
+  const [{ budget, packs }] = useState(() => {
+    const b = new FrameBudget(pickFrameBudgetBytes());
+    const client = packModeAllowed() ? new PackClient({ stats: b.stats, capBytes: b.small ? PACK_CAP_SMALL : PACK_CAP_LARGE }) : null;
+    if (client) b.attachPacks(client);
+    return { budget: b, packs: client };
+  });
   const drawnListeners = useRef(new Set<() => void>());
   const drawn = useRef({ segment: -1, frame: -1 });
   const reduced = usePrefersReducedMotion();
@@ -123,13 +135,20 @@ export function FilmBackdrop({ reel, children, className }: Props) {
     [view, budget],
   );
 
+  // The worker reads the reel's variants for the current view (the same pick
+  // as cacheFor) when the scroll loop first tells it where the visitor is.
+  useEffect(() => {
+    packs?.setReel(() => reel.map((f) => pickVariant(f, viewRef.current ?? SERVER_VIEW)));
+  }, [packs, reel]);
+
   useEffect(() => {
     const map = caches.current;
     return () => {
       for (const c of map.values()) c.dispose();
       map.clear();
+      packs?.dispose();
     };
-  }, []);
+  }, [packs]);
 
   const api = useMemo<ReelApi>(
     () => ({
@@ -144,9 +163,11 @@ export function FilmBackdrop({ reel, children, className }: Props) {
         // (the first film's opening, the second's head): warming all seven
         // cost ~84 frame requests before the visitor had scrolled a pixel.
         // The plan is weak: once the scrub loop has decided, it is ignored.
+        // In pack mode there is no warm-up: before the first scroll the
+        // worker reads only the first film's opening (pack-plan.ts).
         cacheFor(reg.film);
         const first = segments.current.get(0);
-        if (reg.index < 2 && first) {
+        if (reg.index < 2 && first && !(packs && budget.packMode(cacheFor(first.film)))) {
           const second = segments.current.get(1);
           budget.want(
             { active: { cache: cacheFor(first.film), center: 0, direction: 1 }, next: second ? cacheFor(second.film) : undefined },
@@ -170,7 +191,7 @@ export function FilmBackdrop({ reel, children, className }: Props) {
       drawnFrame: () => drawn.current.frame,
       stats: budget.stats,
     }),
-    [reel, orientation, cacheFor, budget],
+    [reel, orientation, cacheFor, budget, packs],
   );
 
   useScrubLoop({ canvasRef, contentRef, invalidateRef, segments, drawn, drawnListeners, reducedRef, cacheFor, budget });

@@ -1,4 +1,4 @@
-import { test, expect, type Locator, type Page } from "@playwright/test";
+import { test, expect, type BrowserContext, type Locator, type Page } from "@playwright/test";
 import {
   ORPHAN_BOOK_SLUGS,
   CANONICAL_BOOK_SLUGS,
@@ -113,6 +113,48 @@ async function expectReducedMotionFinalState(page: Page): Promise<void> {
   expect(continuousAnimations).toEqual([]);
 }
 
+// The film reel loads each film from one pack through a worker
+// (components/film/film-worker.ts). On the landing page the worker must
+// start, a missing pack must fall back to the per-frame path without an
+// unhandled error, and nothing may trip the Content-Security-Policy or throw
+// from the film code. CI has no pack or frame files (every film request
+// 404s); locally the packs exist, so the pack is answered 404 here.
+async function expectFilmWorkerFallsBackCleanly(page: Page, context: BrowserContext): Promise<void> {
+  await context.route(/\/films\/[^/?#]+\/pack\.bin/, (route) =>
+    route.fulfill({ status: 404, contentType: "text/plain", body: "missing" }),
+  );
+  const problems: string[] = [];
+  page.on("pageerror", (error) => problems.push(`uncaught: ${error.message}`));
+  page.on("console", (message) => {
+    const text = message.text();
+    if (/Content[ -]Security[ -]Policy|Refused to (load|execute|create|connect|run)/i.test(text)) problems.push(`csp: ${text}`);
+    if (/Uncaught|Unhandled/i.test(text)) problems.push(`uncaught (${message.type()}): ${text}`);
+  });
+  const workerStarted = page.waitForEvent("worker", { timeout: 20_000 });
+  const res = await page.goto("/");
+  expect(res?.status()).toBeLessThan(400);
+  const worker = await workerStarted;
+  let workerClosed = false;
+  worker.on("close", () => {
+    workerClosed = true;
+  });
+  await page.waitForFunction(
+    () => ((window as unknown as { __filmStats?: { packFallbacks: number } }).__filmStats?.packFallbacks ?? 0) >= 1,
+    null,
+    { timeout: 20_000 },
+  );
+  // Let the per-frame path run for a moment (in CI its frames 404 too).
+  await page.waitForTimeout(1500);
+  const stats = await page.evaluate(() => {
+    const s = (window as unknown as { __filmStats: { mode: string; packRequests: number; packFallbacks: number } }).__filmStats;
+    return { mode: s.mode, packRequests: s.packRequests, packFallbacks: s.packFallbacks };
+  });
+  expect(stats.packRequests, "the worker asked for the first film's pack").toBeGreaterThan(0);
+  expect(stats.mode, "the film fell back to frames").toBe("frames");
+  expect(workerClosed, "the worker is still running (a missing pack is not a crash)").toBe(false);
+  expect(problems, problems.join("\n")).toEqual([]);
+}
+
 // Public marketing / funnel pages — server-rendered, no auth or DB needed.
 test.describe("public funnel", () => {
   test("landing page renders", async ({ page }) => {
@@ -159,6 +201,10 @@ test.describe("landing redesign", () => {
     // Headline precedes the CTA, both inside the first viewport (no scroll).
     expect(h1Box!.y).toBeLessThan(ctaBox!.y);
     expect(ctaBox!.y + ctaBox!.height).toBeLessThanOrEqual(844);
+  });
+
+  test("film worker starts and a missing pack falls back cleanly", async ({ page, context }) => {
+    await expectFilmWorkerFallsBackCleanly(page, context);
   });
 
   test("primary 'Start reading free' CTA is present and clickable", async ({
@@ -694,6 +740,10 @@ test.describe("prod-build smoke (@prod)", () => {
     await expect(page).toHaveTitle(/ChapterFlow/i);
     await expectNoErrorOverlay(page);
     await expectNotBlank(page);
+  });
+
+  test("film worker starts and a missing pack falls back cleanly on the prod bundle @prod", async ({ page, context }) => {
+    await expectFilmWorkerFallsBackCleanly(page, context);
   });
 
   for (const path of ["/dashboard", "/book", "/book/library"]) {

@@ -54,8 +54,14 @@
  *   --out public/films   output root
  *   --dry                print plan, write nothing
  *
+ * Every landscape and band-tier directory written also gets its pack
+ * (pack.bin, built from the new frames by scripts/film/pack-lib.mjs; the -p
+ * directories get none).
+ *
  * Then run `node scripts/film/encode.mjs --sync-timeline` to copy counts into
- * components/film/book.timeline.json.
+ * components/film/book.timeline.json. The sync also records each variant's
+ * pack (films.<name>.pack, films.<name>.bands.<tier>.pack) and exits 1 when a
+ * pack no longer matches its directory (STALE PACK: run npm run film:pack).
  */
 
 import { promises as fs } from "node:fs";
@@ -63,7 +69,8 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import sharp from "sharp";
-import { BAND_TIER_WIDTHS, bandTierEntry } from "./band-sync.mjs";
+import { BAND_TIER_WIDTHS, bandTierEntry, packTimelineEntry } from "./band-sync.mjs";
+import { inspectPackDir, writePack } from "./pack-lib.mjs";
 
 const args = process.argv.slice(2);
 const opt = (name, def) => {
@@ -299,6 +306,11 @@ async function writeVariant(dir, w, h, extra = {}) {
 if (!portraitOnly) await writeVariant(landDir, width, landH);
 if (writePortraitDir) await writeVariant(portDir, 1080, 1920);
 for (const t of tiers) await writeVariant(t.dir, t.w, t.h, { frame: { ...VFRAME }, band: { ...BAND } });
+// One pack per variant written (landscape, band tiers), from the new frames.
+for (const dir of [...(portraitOnly ? [] : [landDir]), ...tiers.map((t) => t.dir)]) {
+  const p = await writePack(dir);
+  console.log(`pack ${path.relative(ROOT, dir)}/pack.bin: ${p.bytes} bytes, skeleton ends at ${p.skeletonEnd}, v ${p.v}`);
+}
 if (portraitOnly && !bandsMode) {
   // One content version per film for landscape and -p (timeline.ts stamps
   // ?v= on both from the landscape manifest), so a portrait-only re-encode
@@ -349,6 +361,22 @@ async function syncTimeline() {
         film.v = m.v;
         changed = true;
       }
+      // The variant's pack (pack.bin): recorded when it matches its
+      // directory; a stale one is dropped (the runtime loads frames) and
+      // fails the sync.
+      const syncPack = async (holder, manifest, dir) => {
+        const { entry, stale } = packTimelineEntry(holder.pack, manifest.pack, await inspectPackDir(dir), m.count, path.basename(dir));
+        if (stale) {
+          console.warn(stale.includes("STALE PACK") ? stale : `STALE PACK: ${stale}`);
+          process.exitCode = 1;
+        }
+        if (JSON.stringify(holder.pack ?? null) !== JSON.stringify(entry)) {
+          if (entry) holder.pack = entry;
+          else delete holder.pack;
+          changed = true;
+        }
+      };
+      await syncPack(film, m, path.join(OUT_ROOT, name));
       // Band tiers (--bands): their own version, size, virtual frame and band
       // rect, keyed by tier ("b1080", "b900"). Never touches the film's v.
       for (const w of BAND_TIER_WIDTHS) {
@@ -365,6 +393,9 @@ async function syncTimeline() {
           console.warn(`STALE BAND TIER: ${stale}`);
           process.exitCode = 1;
         }
+        // bandTierEntry builds a fresh entry; carry the tier's pack over and sync it.
+        if (film.bands[tier]?.pack) entry.pack = film.bands[tier].pack;
+        await syncPack(entry, bm, path.join(OUT_ROOT, `${name}-${tier}`));
         if (JSON.stringify(film.bands[tier]) !== JSON.stringify(entry)) {
           film.bands[tier] = entry;
           changed = true;

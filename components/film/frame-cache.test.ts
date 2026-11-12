@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { FrameBudget, FrameCache, frameUrl, type FrameClock, type FrameIO } from "./frame-cache";
+import { FrameBudget, FrameCache, frameUrl, type FrameClock, type FrameIO, type PackSource } from "./frame-cache";
 import type { FilmVariant } from "./types";
 
 // The cache's scheduling logic runs under node with injected fetch + decode
@@ -81,13 +81,19 @@ function manualIO() {
 
 /** Fail the test the moment a frame inside the wanted set is evicted. */
 function guardEvictions(budget: FrameBudget, ...caches: FrameCache[]) {
+  const restore: Array<() => void> = [];
   for (const c of caches) {
     const orig = c.evict.bind(c);
     c.evict = (i: number) => {
       assert.ok(!budget.isWanted(c, i), `evicted wanted frame ${c.variant.name}#${i}`);
       orig(i);
     };
+    restore.push(() => {
+      c.evict = orig;
+    });
   }
+  /** Stop guarding (dispose() evicts everything, wanted or not). */
+  return () => restore.forEach((r) => r());
 }
 
 function assertWithinBudget(budget: FrameBudget) {
@@ -579,4 +585,293 @@ test("the blob store is byte-capped, least recently used out", async () => {
   assert.ok(budget.blobBytes <= 24 * MB, `blob bytes ${budget.blobBytes}`);
   assert.ok(budget.hasBlob(a, 240));
   assert.ok(!budget.hasBlob(a, 0));
+});
+
+// ── Pack mode (the film worker holds the bytes; pack-client.ts) ────────────
+
+const PACK = { bytes: 1, header: 1, skeletonEnd: 1, v: "pk" };
+const packVariant = (name: string, count = 241): FilmVariant => ({ ...variant(name, count), pack: { ...PACK } });
+
+/** A PackSource fake: the test says which frames are held; decodes settle when told (or at once). */
+function fakePacks(opts: { auto?: boolean } = {}) {
+  const held = new Map<string, Set<number>>();
+  const failed = new Set<string>();
+  const listeners = new Set<(v: FilmVariant, added: readonly number[] | null) => void>();
+  const decodes: Array<{ name: string; index: number } & Deferred<{ bitmap: ImageBitmap; ms: number }>> = [];
+  const wheres: Array<{ name: string; frame: number; lo: number; hi: number; pin: string | null }> = [];
+  const bitmaps: Array<{ closed: number }> = [];
+  let inFlight = 0;
+  let maxInFlight = 0;
+  const bitmap = () => {
+    const b = { closed: 0 };
+    bitmaps.push(b);
+    return { width: W, height: H, close: () => b.closed++ } as unknown as ImageBitmap;
+  };
+  const source: PackSource = {
+    serves: (v) => !!v.pack && !failed.has(v.name),
+    holds: (v, i) => held.get(v.name)?.has(i) ?? false,
+    decode: (v, i) => {
+      const d = deferred<{ bitmap: ImageBitmap; ms: number }>();
+      inFlight++;
+      maxInFlight = Math.max(maxInFlight, inFlight);
+      const done = d.promise.then(
+        (r) => {
+          inFlight--;
+          return r;
+        },
+        (e) => {
+          inFlight--;
+          throw e;
+        },
+      );
+      decodes.push({ name: v.name, index: i, ...d });
+      if (opts.auto) void tick().then(() => d.resolve({ bitmap: bitmap(), ms: 3 }));
+      return done;
+    },
+    where: (at) => wheres.push({ name: at.variant.name, frame: at.frame, lo: at.lo, hi: at.hi, pin: at.pin ? `${at.pin.variant.name}#${at.pin.frame}` : null }),
+    subscribe: (fn) => {
+      listeners.add(fn);
+      return () => listeners.delete(fn);
+    },
+  };
+  return {
+    source,
+    decodes,
+    wheres,
+    bitmaps,
+    peak: () => maxInFlight,
+    arrive(v: FilmVariant, indices: number[]) {
+      let s = held.get(v.name);
+      if (!s) held.set(v.name, (s = new Set()));
+      for (const i of indices) s.add(i);
+      for (const fn of listeners) fn(v, indices);
+    },
+    drop(v: FilmVariant, indices: number[]) {
+      for (const i of indices) held.get(v.name)?.delete(i);
+    },
+    fail(v: FilmVariant) {
+      failed.add(v.name);
+      held.delete(v.name);
+      for (const fn of listeners) fn(v, null);
+    },
+    bitmap,
+  };
+}
+
+const range = (a: number, b: number) => Array.from({ length: b - a + 1 }, (_, i) => a + i);
+
+test("pack mode: a frame whose bytes are not held takes no slot; it decodes when they arrive while it is wanted", async () => {
+  const { io, network } = autoIO();
+  const packs = fakePacks();
+  const budget = new FrameBudget(19 * FRAME, io);
+  budget.attachPacks(packs.source);
+  const a = new FrameCache(packVariant("a"), budget);
+  budget.want({ active: { cache: a, center: 100, direction: 1 } });
+  await settle(4);
+  assert.equal(network.length, 0, "no per-frame request in pack mode");
+  assert.equal(packs.decodes.length, 0, "nothing held, nothing decoded, no slot taken");
+  assert.equal(budget.stats.mode, "pack");
+  // A frame outside the wanted set arrives: not decoded.
+  packs.arrive(a.variant, [5]);
+  assert.equal(packs.decodes.length, 0);
+  // Two wanted frames arrive: decoded (small budget: 2 at once).
+  packs.arrive(a.variant, [104, 101]);
+  assert.deepEqual(
+    packs.decodes.map((d) => d.index).sort((x, y) => x - y),
+    [101, 104],
+  );
+  assert.equal(budget.reservedBytes, 2 * FRAME, "a decode reserves its bytes when it starts");
+  for (const d of packs.decodes) d.resolve({ bitmap: packs.bitmap(), ms: 4 });
+  await settle(4);
+  assert.ok(a.has(101) && a.has(104));
+  assert.equal(budget.reservedBytes, 0);
+  assert.equal(budget.stats.fetches, 0);
+});
+
+test("pack mode: decode order is coarse first, every 4th frame nearest the playhead, then the in-betweens", () => {
+  const packs = fakePacks();
+  const budget = new FrameBudget(19 * FRAME, manualIO().io);
+  budget.attachPacks(packs.source);
+  const a = new FrameCache(packVariant("a"), budget);
+  budget.want({ active: { cache: a, center: 101, direction: 1 } });
+  const idx = budget.wanted().map((w) => w.index);
+  assert.equal(idx[0], 101, "the playhead frame first");
+  const rest = idx.slice(1);
+  const firstFine = rest.findIndex((i) => i % 4 !== 0);
+  assert.ok(firstFine > 0, "stride frames come first");
+  assert.ok(rest.slice(0, firstFine).every((i) => i % 4 === 0));
+  assert.ok(rest.slice(firstFine).every((i) => i % 4 !== 0), "then only in-between frames");
+  // Cost = distance / 0.7 ahead, / 0.3 behind: 100 (3.3) before 104 (4.3) before 108 (10).
+  assert.deepEqual(rest.slice(0, 3), [100, 104, 108], "stride frames nearest first, by the biased cost");
+  // The same set as the per-frame path, only reordered.
+  const plain = new FrameBudget(19 * FRAME, manualIO().io);
+  const p = new FrameCache(variant("a"), plain);
+  plain.want({ active: { cache: p, center: 101, direction: 1 } });
+  assert.deepEqual(
+    [...idx].sort((x, y) => x - y),
+    plain.wanted().map((w) => w.index).sort((x, y) => x - y),
+  );
+  // The worker hears where the visitor is, with the window's bounds.
+  const w = packs.wheres.at(-1);
+  assert.equal(w?.frame, 101);
+  assert.equal(w?.lo, Math.min(...idx));
+  assert.equal(w?.hi, Math.max(...idx));
+});
+
+test("pack mode keeps the Phase 1 guarantees on forward, backward and jumping scrubs", async () => {
+  for (const limit of [19 * FRAME, 384 * MB]) {
+    const packs = fakePacks({ auto: true });
+    const budget = new FrameBudget(limit, manualIO().io);
+    budget.attachPacks(packs.source);
+    const prev = new FrameCache(packVariant("prev"), budget);
+    const a = new FrameCache(packVariant("a"), budget);
+    const b = new FrameCache(packVariant("b"), budget);
+    const unguard = guardEvictions(budget, prev, a, b);
+    for (const c of [prev, a, b]) packs.arrive(c.variant, range(0, 240));
+    budget.want({ active: { cache: prev, center: 240, direction: 1 } });
+    await settle();
+    const centers = [...range(0, 120).map((i) => i * 2), ...range(0, 120).map((i) => 240 - i * 2), 200, 3, 150, 77, 239, 0, 120];
+    let last = 0;
+    for (const [k, c] of centers.entries()) {
+      const direction = c >= last ? 1 : -1;
+      last = c;
+      budget.want({ active: { cache: a, center: c, direction }, pin: { cache: prev, index: 240, until: 14 }, next: c > 140 ? b : undefined });
+      // First (forward) sweep: the pinned frame, decoded before it, survives.
+      if (k <= 120 && budget.isWanted(prev, 240)) assert.ok(prev.has(240), `pinned dissolve frame present at a#${c}`);
+      assertWithinBudget(budget);
+      assert.ok(budget.stats.decodeInFlight <= budget.maxDecodes);
+      await tick();
+      assertWithinBudget(budget);
+    }
+    await settle();
+    assert.ok(packs.peak() <= budget.maxDecodes, `decodes in flight ${packs.peak()} ≤ ${budget.maxDecodes}`);
+    assert.equal(budget.stats.fetches, 0);
+    // No frame decoded twice while it was held: every redecode followed an eviction.
+    assert.ok(budget.stats.redecodes <= budget.stats.evictions, `redecodes ${budget.stats.redecodes} ≤ evictions ${budget.stats.evictions}`);
+    unguard();
+    for (const c of [prev, a, b]) c.dispose();
+    await settle();
+    assert.equal(budget.usedBytes, 0);
+    assert.equal(budget.reservedBytes, 0);
+    assert.ok(
+      packs.bitmaps.every((x) => x.closed === 1),
+      `every bitmap closed once (${packs.bitmaps.filter((x) => x.closed !== 1).length} not)`,
+    );
+  }
+});
+
+test("pack mode: a bitmap that lands for a frame no longer wanted or a disposed cache is closed", async () => {
+  const packs = fakePacks();
+  const budget = new FrameBudget(19 * FRAME, manualIO().io);
+  budget.attachPacks(packs.source);
+  const a = new FrameCache(packVariant("a"), budget);
+  packs.arrive(a.variant, range(0, 240));
+  budget.want({ active: { cache: a, center: 0, direction: 1 } });
+  const first = packs.decodes.slice();
+  assert.equal(first.length, 2);
+  // The visitor jumps away; the two decodes land late.
+  budget.want({ active: { cache: a, center: 200, direction: 1 } });
+  for (const d of first) d.resolve({ bitmap: packs.bitmap(), ms: 1 });
+  await settle(4);
+  // Kept while they fit (useful as fallbacks), closed when evicted or disposed.
+  const late = packs.decodes.slice(2);
+  a.dispose();
+  for (const d of late) d.resolve({ bitmap: packs.bitmap(), ms: 1 });
+  await settle(4);
+  assert.ok(packs.bitmaps.length >= 4);
+  assert.ok(packs.bitmaps.every((x) => x.closed === 1), "every bitmap closed exactly once");
+  assert.equal(budget.usedBytes, 0);
+  assert.equal(budget.reservedBytes, 0);
+});
+
+test("pack fallback: decoded frames stay, the rest load per frame, pending decodes reject quietly", async () => {
+  const { io, network } = autoIO();
+  const packs = fakePacks();
+  const budget = new FrameBudget(19 * FRAME, io);
+  budget.attachPacks(packs.source);
+  const a = new FrameCache(packVariant("a"), budget);
+  packs.arrive(a.variant, [100, 101, 102]);
+  budget.want({ active: { cache: a, center: 100, direction: 1 } });
+  const [d0] = packs.decodes;
+  d0!.resolve({ bitmap: packs.bitmap(), ms: 1 });
+  await settle(4);
+  assert.ok(a.has(100));
+  // The pack fails (404) with decodes still in flight: the worker has
+  // dropped its bytes, so they come back "missing".
+  packs.fail(a.variant);
+  for (const d of packs.decodes.slice(1)) d.reject(new Error("pack: decode missing"));
+  await settle();
+  assert.ok(a.has(100), "a decoded frame stays");
+  assert.equal(budget.stats.mode, "frames", "the mode follows at once");
+  budget.want({ active: { cache: a, center: 100, direction: 1 } });
+  await settle();
+  assert.equal(budget.stats.mode, "frames");
+  assert.ok(network.length > 0, "the rest load per frame");
+  assert.ok(!network.includes(frameUrl(a.variant, 100)), "not the frame already decoded");
+  for (const w of budget.wanted()) assert.ok(a.has(w.index), `#${w.index} loaded after the fallback`);
+});
+
+test("pack mode: bytes dropped in the worker before a decode: no backoff, decoded when they return", async () => {
+  const packs = fakePacks();
+  const budget = new FrameBudget(19 * FRAME, manualIO().io);
+  budget.attachPacks(packs.source);
+  const a = new FrameCache(packVariant("a"), budget);
+  packs.arrive(a.variant, [50]);
+  budget.want({ active: { cache: a, center: 50, direction: 1 } });
+  packs.drop(a.variant, [50]);
+  packs.decodes[0]!.reject(new Error("pack: decode missing"));
+  await settle(4);
+  assert.ok(!a.has(50));
+  packs.arrive(a.variant, [50]);
+  assert.equal(packs.decodes.length, 2, "decoded again at once when the bytes return");
+  packs.decodes[1]!.resolve({ bitmap: packs.bitmap(), ms: 1 });
+  await settle(4);
+  assert.ok(a.has(50));
+});
+
+test("pack mode: a weak plan (mount warm-up) does not tell the worker anything", () => {
+  const packs = fakePacks();
+  const budget = new FrameBudget(19 * FRAME, manualIO().io);
+  budget.attachPacks(packs.source);
+  const a = new FrameCache(packVariant("a"), budget);
+  budget.want({ active: { cache: a, center: 0, direction: 1 } }, { weak: true });
+  assert.equal(packs.wheres.length, 0);
+  budget.want({ active: { cache: a, center: 0, direction: 1 } });
+  assert.equal(packs.wheres.length, 1);
+});
+
+test("draw gauges: the last paint's wanted and drawn frames", async () => {
+  const { io } = autoIO();
+  const budget = new FrameBudget(19 * FRAME, io);
+  const a = new FrameCache(variant("a"), budget);
+  budget.want({ active: { cache: a, center: 10, direction: 1 } });
+  await settle();
+  a.nearest(10, true);
+  assert.deepEqual([budget.stats.drawWant, budget.stats.drawAt], [10, 10]);
+  a.nearest(200, true);
+  assert.equal(budget.stats.drawWant, 200);
+  assert.ok(budget.stats.drawAt < 200);
+  assert.ok(budget.stats.mainThreadDecodes > 0, "per-frame decodes run on the page");
+});
+
+test("pack mode: the dissolve pin is asked of the worker while wanted and not decoded; it decodes when it arrives", async () => {
+  const packs = fakePacks({ auto: true });
+  const budget = new FrameBudget(19 * FRAME, manualIO().io);
+  budget.attachPacks(packs.source);
+  const prev = new FrameCache(packVariant("prev"), budget);
+  const a = new FrameCache(packVariant("a"), budget);
+  // An anchor at the start of film a: nothing of the previous film is held.
+  budget.want({ active: { cache: a, center: 0, direction: 1 }, pin: { cache: prev, index: 240, until: 14 } });
+  assert.equal(packs.wheres.at(-1)?.pin, "prev#240", "the worker is asked for the pin");
+  await settle(4);
+  assert.ok(!prev.has(240));
+  packs.arrive(prev.variant, [240]);
+  await settle(4);
+  assert.ok(prev.has(240), "decoded when its bytes arrive");
+  budget.want({ active: { cache: a, center: 1, direction: 1 }, pin: { cache: prev, index: 240, until: 14 } });
+  assert.equal(packs.wheres.at(-1)?.pin, null, "decoded: no longer asked");
+  // Far past the dissolve the pin is not wanted, so not asked.
+  prev.evict(240);
+  budget.want({ active: { cache: a, center: 200, direction: 1 }, pin: { cache: prev, index: 240, until: 14 } });
+  assert.equal(packs.wheres.at(-1)?.pin, null);
 });
