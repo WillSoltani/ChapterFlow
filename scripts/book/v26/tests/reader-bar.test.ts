@@ -30,7 +30,7 @@ test("the plan is a function of the chapter number: neighbours differ, the same 
     assert.notEqual(line(2, start), line(3, start), `${start} differs between chapters 2 and 3`);
   }
   assert.match(plan(2), /fastRead 150 to 220 words in at most 3 paragraphs; deepRead up to 500 words/);
-  assert.match(plan(1), /the forms in this order: q1 what do you do; q2 spot the trap; q3 predict what happens; q4 best reply; q5 why does this work; q6 what would you change; q7 what do you do\./);
+  assert.match(plan(1), /the forms in this order: q1 what do you do; q2 spot the trap; q3 predict what happens; q4 best reply; q5 why does this work; q6 what do you do; q7 spot the trap\./);
   assert.match(plan(2), /the forms in this order: q1 spot the trap; q2 predict what happens;/);
   assert.match(plan(1), /Tags and settings for examples 1 to 3, in this order: work \(an office or a sales team\); school \(a teenager at school\); personal \(family/);
   // The first example is the one a reader sees: never the school one.
@@ -42,72 +42,44 @@ test("the plan is a function of the chapter number: neighbours differ, the same 
   assert.match(plan(2), /What makes example 3 the harder one: another person disagrees or pushes back\./);
   assert.match(plan(1), /The kinds of cue for this chapter: a routine moment of the day or the week .*; the moment the reader notices the very slip this lesson is about\./);
   assert.notEqual(line(1, "- practice plan"), line(2, "- practice plan"));
-  assert.match(plan(2), /counterintuition frame: "People say \[the belief\]\. It sounds right/);
+  assert.match(plan(4), /counterintuition frame: "\[The belief, the way people say it\]\./);
   assert.match(plan(1), /The hook is built on a moment in progress, .* The try-this line asks the reader to do the smallest version of the move once/);
   assert.match(plan(2), /The hook is built on a blunt claim with a turn in it\. The try-this line asks the reader to move, set out or put away one object\./);
   assert.match(formText(ex, "D", 3, SHAPE), /Path: the claim; the book's evidence that proves it; .*THIS chapter opens as D instead\. Follow the path given here/);
 });
 
-test("the plan against sameness: what a reader of the whole book would notice repeating moves from chapter to chapter", () => {
+test("the plan against sameness: what three proofs showed to help stays, what did not is gone", () => {
   const ex = house();
   const plan = (n: number): string => formText(ex, "A", n, SHAPE);
   const line = (n: number, start: string): string => plan(n).split("\n").find((l) => l.startsWith(start)) ?? "";
   const eight = [1, 2, 3, 4, 5, 6, 7, 8];
-  // The line under the hook: eight frames of eight different builds, so an eight-chapter book never shows one twice.
-  const frames = eight.map((n) => line(n, "- counterintuition frame"));
-  assert.equal(new Set(frames).size, 8);
-  assert.equal(new Set(frames.map((f) => f.replace("- counterintuition frame: ", "").slice(0, 12))).size, 8, "no two frames start alike");
-  for (const f of frames) for (const part of ["belief", "correction", "reason"]) assert.match(f, new RegExp(part, "i"), `${f} names the ${part}`);
-  assert.equal(line(9, "- counterintuition frame"), line(1, "- counterintuition frame"));
-  // The last sentence of the summary and the place where the first example stops: five forms each, neighbours differ.
-  const ending = (n: number): string => /The last sentence of each length states the lesson as ([^.]+)\./.exec(plan(n))?.[1] ?? "";
-  const stop = (n: number): string => /Example 1's scenario stops ([^.]+)\./.exec(plan(n))?.[1] ?? "";
+  // Kept: the form of the summary's last sentence moves (the judge's ending item failed 5 times in a book without it, 0 to 1 with it).
+  const ending = (n: number): string => /The last sentence of each length states the lesson as ([^;]+);/.exec(plan(n))?.[1] ?? "";
   assert.equal(new Set([1, 2, 3, 4, 5].map(ending)).size, 5);
-  assert.equal(new Set([1, 2, 3, 4].map(stop)).size, 4);
   assert.match(ending(1), /^a plain instruction, verb first/);
-  assert.match(stop(1), /^just before the choice/);
-  assert.equal(eight.filter((n) => /just before the choice/.test(stop(n))).length, 2, "the person about to act: two chapters in eight, not eight");
   assert.ok(eight.filter((n) => /^an if-then/.test(ending(n))).length <= 2, "the if-then ending is rare: the practice plan below is already one");
-  // Every stop is the moment before the move; none asks for a detail that does no work in the scene.
-  for (const n of [1, 2, 3, 4]) assert.match(stop(n), /about to act|someone says|waiting for the person's answer|asking themselves/);
-  // No two of the first eight chapters share all three of hook kind, ending and example stop.
-  const hook = (n: number): string => /The hook is built on ([^.]+)\./.exec(plan(n))?.[1] ?? "";
-  for (const a of eight) for (const b of eight) if (a < b) assert.ok(!(hook(a) === hook(b) && ending(a) === ending(b) && stop(a) === stop(b)), `chapters ${a} and ${b}`);
-  // A summary that answers its opening question answers it in the plan's form, not in a second closing line.
   assert.match(plan(2), /where the path ends on a question answered, this sentence is the answer, in this form/);
-  // The quiz: six forms in seven questions, so every form is there and only the first of the turn comes twice; the
-  // question a reader meets first moves from chapter to chapter.
-  const forms = (n: number): string[] => (/the forms in this order: ([^.]+)\./.exec(line(n, "- quiz"))?.[1] ?? "").split("; ").map((x) => x.replace(/^q\d+ /, ""));
-  for (const n of eight) assert.equal(new Set(forms(n)).size, 6, `chapter ${n}`);
-  assert.equal(new Set([1, 2, 3, 4, 5, 6].map((n) => forms(n)[0])).size, 6);
-  const all = new Set(eight.flatMap(forms));
-  for (const gone of ["which comes first", "who got it right", "what is missing", "where does it apply"]) assert.ok(!all.has(gone), `"${gone}" misfired in the proofs`);
-  // One named piece of outside advice a chapter, a different one in each of eight chapters.
+  // Kept: one named piece of outside advice a chapter for a wrong choice, a different one in each of eight chapters.
   const outside = (n: number): string => /for this chapter it is: ([^.]+)\./.exec(line(n, "- quiz"))?.[1] ?? "";
   assert.equal(new Set(eight.map(outside)).size, 8);
-  // The people of the quiz: seven a chapter, and nobody twice in the first six chapters.
   assert.match(line(3, "- quiz"), /If that is part of this chapter's own lesson, or fits no question, use no outside advice\./);
-  // No list of people for the quiz: a job on every question, and then on two, read as dropped in.
-  assert.doesNotMatch(line(1, "- quiz"), /people|walks of life/);
-  // The author is introduced once, in chapter 1.
+  // Kept: the author is introduced once, in chapter 1, and named in full after it.
   assert.match(plan(1), /Where the author is first named, say who they are in a few words\./);
   for (const n of [2, 5, 8]) assert.match(plan(n), /Name the author by full name at first mention, with no job title or credentials .*where the author is a person in this chapter's own story, say who they were/);
-  // Two work settings no longer both read as "someone who owns a small shop".
   assert.doesNotMatch(eight.map(plan).join("\n"), /a small business from the owner's side/);
+  // Gone after the proofs: frames of other builds, a plan for where example 1 stops, extra quiz forms, a quiz cast.
+  assert.equal(new Set(eight.map((n) => line(n, "- counterintuition frame"))).size, 6);
+  assert.doesNotMatch(eight.map(plan).join("\n"), /scenario stops|Two people face|walks of life|what would you change|which comes first|who got it right|what is missing|where does it apply/);
+  const forms = (n: number): string[] => (/the forms in this order: ([^.]+)\./.exec(line(n, "- quiz"))?.[1] ?? "").split("; ").map((x) => x.replace(/^q\d+ /, ""));
+  for (const n of eight) assert.equal(new Set(forms(n)).size, 5, `chapter ${n}`);
 });
 
-test("the writer prompt hands these choices to the plan and names no stock wrong answer or frozen hand itself", () => {
+test("the writer prompt: the ending and the outside advice come from the plan, and no stock wrong answer is listed", () => {
   const prompt = fs.readFileSync(fileURLToPath(new URL("../prompts/write-exemplar.md", import.meta.url)), "utf8");
   assert.match(prompt, /the last sentence takes the form THE PLAN names/);
-  assert.match(prompt, /its scenario stops where THE PLAN says/);
   assert.match(prompt, /only the kind THE PLAN names; if that kind is part of this chapter's own lesson or fits no question, use none/);
-  assert.match(prompt, /A question names a person's job only when the situation turns on it\./);
-  assert.match(prompt, /A form says what a question tests, not how to word it/);
-  // Every form the plan can name is glossed in the prompt.
-  for (const form of ["what do you do", "spot the trap", "predict what happens", "best reply", "why does this work", "what would you change"]) assert.ok(prompt.includes(form), form);
-  assert.doesNotMatch(prompt, /which comes first|who got it right|what is missing|where does it apply/);
-  // Naming a tic in a rule is how it gets into every chapter: these lists are gone from the prompt.
-  assert.doesNotMatch(prompt, /want it more, be stricter|hovering thumb|pen in the air|ending at the moment of choice|returning to the opening/);
+  // A list of stock fixes in a rule became every chapter's wrong answers; a rule that every summary returns to its opening closed each one on a slogan.
+  assert.doesNotMatch(prompt, /want it more, be stricter|returning to the opening/);
 });
 
 test("key positions: every position is the key at least twice, the first five use all three, and question 1 moves", () => {
