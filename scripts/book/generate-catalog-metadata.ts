@@ -24,7 +24,7 @@ const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, "../..");
 const OUTPUT_FILE = path.join(
   ROOT,
-  "app/book/data/booksCatalog.metadata.json",
+  "lib/books-catalog.metadata.json",
 );
 
 type CatalogMetadata = {
