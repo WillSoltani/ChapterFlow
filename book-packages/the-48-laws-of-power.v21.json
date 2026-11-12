@@ -1,7 +1,7 @@
 {
   "schemaVersion": "chapterflow-v21-authored",
-  "packageId": "the-48-laws-of-power-v26-1793919003212",
-  "createdAt": "2026-11-05T22:50:03.212Z",
+  "packageId": "the-48-laws-of-power-v26-1794460515699",
+  "createdAt": "2026-11-12T05:15:15.699Z",
   "contentOwner": "chapterflow",
   "book": {
     "bookId": "the-48-laws-of-power",
@@ -195,12 +195,12 @@
         "coreSkill": "Tie your wins to your boss's goals, so your good work makes them look good in front of others.",
         "ifThenPlans": [
           {
-            "context": "When a coworker stops by my desk and says, \"Nice job on that\"",
-            "plan": "then I thank them and tell them which part came from my boss's idea or support."
+            "context": "work",
+            "plan": "When a coworker stops by my desk and says, \"Nice job on that\", I thank them and tell them which part came from my boss's idea or support."
           },
           {
-            "context": "When my boss's own manager asks me how the project went",
-            "plan": "then I start my answer with what my boss set up, and only then share my part."
+            "context": "work",
+            "plan": "When my boss's own manager asks me how the project went, I start my answer with what my boss set up, and only then share my part."
           }
         ],
         "twentyFourHourChallenge": "Before you leave work today, open your last project update. Add one sentence that links the result to a goal your boss cares about, so they can pass it up the line.",
@@ -383,12 +383,12 @@
         "coreSkill": "Judge who should do an important job by the skill it takes, before liking or old ties choose for you.",
         "ifThenPlans": [
           {
-            "context": "When a friend says, \"I can do that for you, no problem\" about a job that really matters",
-            "plan": "then I ask what similar work they've done before I say yes."
+            "context": "personal",
+            "plan": "When a friend says, \"I can do that for you, no problem\" about a job that really matters, I ask what similar work they've done before I say yes."
           },
           {
-            "context": "When I catch myself typing a friend's name into a hiring form or group chat for a key role",
-            "plan": "then I stop, write down the skills the job needs, and check the name against them."
+            "context": "personal",
+            "plan": "When I catch myself typing a friend's name into a hiring form or group chat for a key role, I stop, write down the skills the job needs, and check the name against them."
           }
         ],
         "twentyFourHourChallenge": "Before bed tonight, pick one job a friend now does for you. Ask whether you would hire them for it if they were a stranger, and write down your honest answer.",
@@ -571,12 +571,12 @@
         "coreSkill": "Keep your real goal private until your plan is already moving, so nobody has time to block it.",
         "ifThenPlans": [
           {
-            "context": "When a coworker leans over at the coffee machine and asks, \"So what are your plans this year?\"",
-            "plan": "then I share one small, true thing I'm working on and keep my bigger goal to myself."
+            "context": "work",
+            "plan": "When a coworker leans over at the coffee machine and asks, \"So what are your plans this year?\", I share one small, true thing I'm working on and keep my bigger goal to myself."
           },
           {
-            "context": "When a salesperson on the phone asks, \"What's your budget?\"",
-            "plan": "then I ask what their best price is first and keep my top number off the table."
+            "context": "personal",
+            "plan": "When a salesperson on the phone asks, \"What's your budget?\", I ask what their best price is first and keep my top number off the table."
           }
         ],
         "twentyFourHourChallenge": "Before bed tonight, pick one goal you have been talking about too freely. Choose the next quiet step you can take on it this week, and take it without telling anyone.",
@@ -759,12 +759,12 @@
         "coreSkill": "Make your point in a few clear words, then stop talking and let it stand.",
         "ifThenPlans": [
           {
-            "context": "When my manager leans back at our one-on-one and says, \"Walk me through what happened\"",
-            "plan": "then I give the main cause and my fix in two sentences, and wait for their next question."
+            "context": "work",
+            "plan": "When my manager leans back at our one-on-one and says, \"Walk me through what happened\", I give the main cause and my fix in two sentences, and wait for their next question."
           },
           {
-            "context": "When a text I'm writing to my partner grows past the top of my phone screen",
-            "plan": "then I delete everything but the one thing I need them to know, and send that."
+            "context": "personal",
+            "plan": "When a text I'm writing to my partner grows past the top of my phone screen, I delete everything but the one thing I need them to know, and send that."
           }
         ],
         "twentyFourHourChallenge": "In your next meeting or phone call today, make one point in a single sentence. Then count to five in your head before saying anything else, and notice how the other person responds.",
@@ -947,12 +947,12 @@
         "coreSkill": "Choose one clear quality to be known for, show it again and again, and guard it most when it is tested.",
         "ifThenPlans": [
           {
-            "context": "When someone in a meeting says, \"Can anyone double-check this before it goes out?\"",
-            "plan": "then I take it if it fits the quality I chose, and hand it back checked before the day ends."
+            "context": "work",
+            "plan": "When someone in a meeting says, \"Can anyone double-check this before it goes out?\", I take it if it fits the quality I chose, and hand it back checked before the day ends."
           },
           {
-            "context": "When a friend in our group chat jokes, \"Classic you, running late again\"",
-            "plan": "then I laugh it off and show up five minutes early to our next plan, so the joke stops fitting."
+            "context": "personal",
+            "plan": "When a friend in our group chat jokes, \"Classic you, running late again\", I laugh it off and show up five minutes early to our next plan, so the joke stops fitting."
           }
         ],
         "twentyFourHourChallenge": "Before you go to bed tonight, ask one person you trust, \"What's the one word people would use for me?\" Compare it with the quality you want, and pick one action to close the gap.",
@@ -1135,12 +1135,12 @@
         "coreSkill": "Point the people who decide to your good work in plain, honest ways, so results they never saw finally count.",
         "ifThenPlans": [
           {
-            "context": "When my manager ends a one-on-one by asking, \"Anything else?\"",
-            "plan": "then I name one problem I solved since our last talk and what it changed."
+            "context": "work",
+            "plan": "When my manager ends a one-on-one by asking, \"Anything else?\", I name one problem I solved since our last talk and what it changed."
           },
           {
-            "context": "When my partner or roommate says, \"Wait, when did that get fixed?\"",
-            "plan": "then I tell them I fixed it and what it took, instead of shrugging and saying it was nothing."
+            "context": "personal",
+            "plan": "When my partner or roommate says, \"Wait, when did that get fixed?\", I tell them I fixed it and what it took, instead of shrugging and saying it was nothing."
           }
         ],
         "twentyFourHourChallenge": "Within the next day, write down three results from this month that only you know about. Pick the one that mattered most, and plan how you will show it to your boss or a key teammate this week.",
@@ -1323,12 +1323,12 @@
         "coreSkill": "Attach your name to your own work at the moment it is shared, so the credit lands where it belongs.",
         "ifThenPlans": [
           {
-            "context": "When my manager says \"Great work, everyone\" in a meeting about something I built",
-            "plan": "then I add, \"Thanks, I put that one together, so I'm happy to walk anyone through it.\""
+            "context": "work",
+            "plan": "When my manager says \"Great work, everyone\" in a meeting about something I built, I add, \"Thanks, I put that one together, so I'm happy to walk anyone through it.\""
           },
           {
-            "context": "When a coworker forwards my file to their boss with just \"see attached\"",
-            "plan": "then I reply with one line on what I built and what it changed, and sign my name."
+            "context": "work",
+            "plan": "When a coworker forwards my file to their boss with just \"see attached\", I reply with one line on what I built and what it changed, and sign my name."
           }
         ],
         "twentyFourHourChallenge": "Within the next 24 hours, tell one person who makes decisions at work or at home about one task you finished this month. Use two sentences: what you did, and what it changed.",
@@ -1511,12 +1511,12 @@
         "coreSkill": "In a hard talk, choose the room, the time and the first offer, and invite the other side to come to you.",
         "ifThenPlans": [
           {
-            "context": "When someone texts me, \"Can you come over right now so we can sort this out?\"",
-            "plan": "then I reply with a calm time at my place or desk, and write down my first offer before they arrive."
+            "context": "personal",
+            "plan": "When someone texts me, \"Can you come over right now so we can sort this out?\", I reply with a calm time at my place or desk, and write down my first offer before they arrive."
           },
           {
-            "context": "When a coworker stops me in the hallway outside the break room to argue about the project budget",
-            "plan": "then I say I want to get it right, and invite them to my desk at two o'clock with the numbers ready."
+            "context": "work",
+            "plan": "When a coworker stops me in the hallway outside the break room to argue about the project budget, I say I want to get it right, and invite them to my desk at two o'clock with the numbers ready."
           }
         ],
         "twentyFourHourChallenge": "Think of one person you've been meaning to confront. Before bed tonight, write down where you'd want that talk to happen, when, and the first offer you'd put on the table.",
@@ -1699,12 +1699,12 @@
         "coreSkill": "Turn an idea you want accepted into a small demonstration people can see, touch or try, instead of a case you argue.",
         "ifThenPlans": [
           {
-            "context": "When someone across the table at a meeting says, \"That will never work here\"",
-            "plan": "then I stop explaining and ask, \"Can I try it on one small job this week so you can see?\""
+            "context": "work",
+            "plan": "When someone across the table at a meeting says, \"That will never work here\", I stop explaining and ask, \"Can I try it on one small job this week so you can see?\""
           },
           {
-            "context": "When I'm at my desk replying to a pushback email and start typing \"The reason is\"",
-            "plan": "then I delete that sentence and offer a five-minute demo, a sample, or a one-day trial instead."
+            "context": "personal",
+            "plan": "When I'm at my desk replying to a pushback email and start typing \"The reason is\", I delete that sentence and offer a five-minute demo, a sample, or a one-day trial instead."
           }
         ],
         "twentyFourHourChallenge": "Within the next 24 hours, show one person a result instead of describing it, such as a photo of the finished job, a working fix, or a taste. Notice whether they ask fewer questions.",
@@ -1887,12 +1887,12 @@
         "coreSkill": "Check how someone's past partnerships ended before you tie your money, home or work to them.",
         "ifThenPlans": [
           {
-            "context": "When someone I'm about to team up with says, \"That last one wasn't my fault\"",
-            "plan": "then I ask how the two before it ended, and I wait to decide until I hear from someone else who was there."
+            "context": "personal",
+            "plan": "When someone I'm about to team up with says, \"That last one wasn't my fault\", I ask how the two before it ended, and I wait to decide until I hear from someone else who was there."
           },
           {
-            "context": "When a form in front of me asks me to co-sign, share a lease or put in money with someone",
-            "plan": "then I write down how their last three big ties ended before I sign anything."
+            "context": "personal",
+            "plan": "When a form in front of me asks me to co-sign, share a lease or put in money with someone, I write down how their last three big ties ended before I sign anything."
           }
         ],
         "twentyFourHourChallenge": "Before you sleep tonight, write the names of the three people you spend the most time with. Next to each, note whether time with them leaves you steadier or more shaken.",
@@ -2075,12 +2075,12 @@
         "coreSkill": "Grow a skill others value and can't easily find, and keep it growing instead of hiding it.",
         "ifThenPlans": [
           {
-            "context": "When my manager says \"Does anyone know how to fix this?\" in the weekly team meeting",
-            "plan": "then I raise my hand if it's in the skill I'm building, or ask to learn it if nobody knows."
+            "context": "work",
+            "plan": "When my manager says \"Does anyone know how to fix this?\" in the weekly team meeting, I raise my hand if it's in the skill I'm building, or ask to learn it if nobody knows."
           },
           {
-            "context": "When a coworker leans over my desk and asks, \"How did you do that?\"",
-            "plan": "then I show them the steps and write down one harder thing I'll learn next, so my skill keeps moving ahead."
+            "context": "work",
+            "plan": "When a coworker leans over my desk and asks, \"How did you do that?\", I show them the steps and write down one harder thing I'll learn next, so my skill keeps moving ahead."
           }
         ],
         "twentyFourHourChallenge": "Before the end of today, ask one coworker or family member which task they would miss most if you stopped doing it. Their answer shows which skill is worth growing.",
@@ -2263,12 +2263,12 @@
         "coreSkill": "Win a wary person's trust by making one honest move that costs you something, instead of adding more promises.",
         "ifThenPlans": [
           {
-            "context": "When a customer or client says, \"The last people we used burned us\"",
-            "plan": "then I point out one thing they don't need to buy from me, even if it loses me the sale."
+            "context": "work",
+            "plan": "When a customer or client says, \"The last people we used burned us\", I point out one thing they don't need to buy from me, even if it loses me the sale."
           },
           {
-            "context": "When I catch myself typing \"Trust me\" or \"I promise\" in a message to someone who doubts me",
-            "plan": "then I delete it and add one honest fact that costs me, like a mistake I made or a limit I have."
+            "context": "personal",
+            "plan": "When I catch myself typing \"Trust me\" or \"I promise\" in a message to someone who doubts me, I delete it and add one honest fact that costs me, like a mistake I made or a limit I have."
           }
         ],
         "twentyFourHourChallenge": "Within the next 24 hours, pick one person who seems wary of you and give up one small advantage in front of them, like correcting an error in your favor or naming a cheaper option.",
@@ -2451,12 +2451,12 @@
         "coreSkill": "Before you ask anyone for help, find what they gain from saying yes, and say that first, big and clear.",
         "ifThenPlans": [
           {
-            "context": "When I catch myself typing the words \"after everything I did\" in a message asking for help",
-            "plan": "then I delete that line and replace it with one sentence about what the other person gets."
+            "context": "personal",
+            "plan": "When I catch myself typing the words \"after everything I did\" in a message asking for help, I delete that line and replace it with one sentence about what the other person gets."
           },
           {
-            "context": "When a coworker answers my request with \"I'll see if I have time\"",
-            "plan": "then I stop explaining my deadline and name one thing the task gets them, like a new skill or their name on the result."
+            "context": "work",
+            "plan": "When a coworker answers my request with \"I'll see if I have time\", I stop explaining my deadline and name one thing the task gets them, like a new skill or their name on the result."
           }
         ],
         "twentyFourHourChallenge": "Before you go to bed tonight, list two people you will need help from this month. Next to each name, write one real thing they would gain from helping you.",
@@ -2639,12 +2639,12 @@
         "coreSkill": "Before an important first meeting, learn what the person cares about from fair sources, and plan one question about it.",
         "ifThenPlans": [
           {
-            "context": "When a calendar invite arrives that says \"intro call\" with someone I have never met",
-            "plan": "then I spend ten minutes on their public profile and write one question about their work in the invite notes."
+            "context": "personal",
+            "plan": "When a calendar invite arrives that says \"intro call\" with someone I have never met, I spend ten minutes on their public profile and write one question about their work in the invite notes."
           },
           {
-            "context": "When a friend at a party says, \"You have to meet my cousin, they're right over there\"",
-            "plan": "then I ask my friend, \"What are they into?\" before we walk over."
+            "context": "personal",
+            "plan": "When a friend at a party says, \"You have to meet my cousin, they're right over there\", I ask my friend, \"What are they into?\" before we walk over."
           }
         ],
         "twentyFourHourChallenge": "Before you go to bed tonight, ask someone who knows your manager or a key client what that person enjoys most, and save the answer in your phone for your next talk.",
@@ -2827,12 +2827,12 @@
         "coreSkill": "Before a conflict ends, name the last open detail and agree on it, so the fight is closed for good.",
         "ifThenPlans": [
           {
-            "context": "When someone I've been arguing with says, \"Okay, fine, let's just drop it\"",
-            "plan": "then I name the one detail still open and ask us to agree on it before we walk away."
+            "context": "personal",
+            "plan": "When someone I've been arguing with says, \"Okay, fine, let's just drop it\", I name the one detail still open and ask us to agree on it before we walk away."
           },
           {
-            "context": "When a meeting about a disagreement ends with someone saying, \"We'll sort out the details later\"",
-            "plan": "then I stop at the door and ask who will write the details down, and by what day."
+            "context": "work",
+            "plan": "When a meeting about a disagreement ends with someone saying, \"We'll sort out the details later\", I stop at the door and ask who will write the details down, and by what day."
           }
         ],
         "twentyFourHourChallenge": "Before bed tonight, send one message that closes an open dispute. State what you both agreed, add the date, and ask the other person to reply yes, so the ending is on record.",
@@ -3015,12 +3015,12 @@
         "coreSkill": "Spot the help people now take for granted, and plan a short, honest break from it so they feel its worth.",
         "ifThenPlans": [
           {
-            "context": "When my manager starts a request with, \"Can you just handle it again?\" about a task I've covered for months",
-            "plan": "then I agree to this one, name a week I'll step away from it, and suggest who covers."
+            "context": "work",
+            "plan": "When my manager starts a request with, \"Can you just handle it again?\" about a task I've covered for months, I agree to this one, name a week I'll step away from it, and suggest who covers."
           },
           {
-            "context": "When a relative calls and opens with, \"You're the only one who can fix this\"",
-            "plan": "then I say I'm taking this weekend off and offer a time next week instead."
+            "context": "personal",
+            "plan": "When a relative calls and opens with, \"You're the only one who can fix this\", I say I'm taking this weekend off and offer a time next week instead."
           }
         ],
         "twentyFourHourChallenge": "Before bed tonight, pick one week in the next month to pause one extra task people count on you for. Tell the people involved the date, so the break is planned and honest.",
@@ -3203,12 +3203,12 @@
         "coreSkill": "Spot the one habit a rival relies on to predict you, and change that one thing at the moment it matters.",
         "ifThenPlans": [
           {
-            "context": "When a rival in a meeting says, \"I know what you're going to say\"",
-            "plan": "then I skip my usual opening and start with the point I normally save for last."
+            "context": "work",
+            "plan": "When a rival in a meeting says, \"I know what you're going to say\", I skip my usual opening and start with the point I normally save for last."
           },
           {
-            "context": "When I sit down to write a bid or proposal that the same competitor will also answer",
-            "plan": "then I circle the one part I always do the same way and change it before I send it."
+            "context": "personal",
+            "plan": "When I sit down to write a bid or proposal that the same competitor will also answer, I circle the one part I always do the same way and change it before I send it."
           }
         ],
         "twentyFourHourChallenge": "By this time tomorrow, ask one coworker or friend what they always expect you to do in a deal, a debate or a game. Their answer shows you the habit a rival is most likely reading.",
@@ -3391,12 +3391,12 @@
         "coreSkill": "When you sense trouble, increase your contact with the people around you, so you hear news early and have allies ready.",
         "ifThenPlans": [
           {
-            "context": "When a coworker leans over my desk and says, \"Did you hear what's happening?\"",
-            "plan": "then I stop what I am doing, ask what they have heard, and suggest we grab lunch together that day."
+            "context": "work",
+            "plan": "When a coworker leans over my desk and says, \"Did you hear what's happening?\", I stop what I am doing, ask what they have heard, and suggest we grab lunch together that day."
           },
           {
-            "context": "When I catch myself typing \"I'll skip this one\" in a group chat after a tense week",
-            "plan": "then I delete it, say I am coming, and plan to talk with at least two people there."
+            "context": "personal",
+            "plan": "When I catch myself typing \"I'll skip this one\" in a group chat after a tense week, I delete it, say I am coming, and plan to talk with at least two people there."
           }
         ],
         "twentyFourHourChallenge": "Before bed tonight, list three people who would hear news about your job or home before you would. Pick one and set up a coffee or a call for this week.",
@@ -3579,12 +3579,12 @@
         "coreSkill": "Pause before any tease, push, or clever move, and match it to how this one person takes such things.",
         "ifThenPlans": [
           {
-            "context": "When someone in a group chat types something like \"let's roast the new guy\" about a new member",
-            "plan": "then I think about how that person has reacted to jokes so far before I add anything."
+            "context": "personal",
+            "plan": "When someone in a group chat types something like \"let's roast the new guy\" about a new member, I think about how that person has reacted to jokes so far before I add anything."
           },
           {
-            "context": "When someone in a meeting says \"Can we just push this through?\" over a colleague's objection",
-            "plan": "then I ask myself whether that colleague is proud or holds grudges before I agree."
+            "context": "work",
+            "plan": "When someone in a meeting says \"Can we just push this through?\" over a colleague's objection, I ask myself whether that colleague is proud or holds grudges before I agree."
           }
         ],
         "twentyFourHourChallenge": "Before you go to bed tonight, list three people you deal with often. Next to each, write how they take being teased or pushed: shrug, snap back, go quiet, or remember. Change one planned move to fit.",
@@ -3767,12 +3767,12 @@
         "coreSkill": "When two sides want your support, keep your answer open for a fair, set time, so both keep offering their best.",
         "ifThenPlans": [
           {
-            "context": "When someone leans over my desk before a vote and asks, \"So can I count on you?\"",
-            "plan": "then I say I'll decide at the meeting, and ask what their plan does for the people it affects."
+            "context": "personal",
+            "plan": "When someone leans over my desk before a vote and asks, \"So can I count on you?\", I say I'll decide at the meeting, and ask what their plan does for the people it affects."
           },
           {
-            "context": "When an email says \"we need your answer by end of day\" while another offer is still on the table",
-            "plan": "then I reply asking for time until a specific date, and use it to hear the other side's best offer."
+            "context": "personal",
+            "plan": "When an email says \"we need your answer by end of day\" while another offer is still on the table, I reply asking for time until a specific date, and use it to hear the other side's best offer."
           }
         ],
         "twentyFourHourChallenge": "Before bed tonight, write down what each side has offered you in one open choice, plus one question for each. Their answers will show which side is willing to give more.",
@@ -3955,12 +3955,12 @@
         "coreSkill": "Turn your best point into a question, so the person you need reaches it and feels smart for finding it.",
         "ifThenPlans": [
           {
-            "context": "When someone across the table says, \"I've been doing this for years\"",
-            "plan": "then I ask them what they have learned works best, before I show any part of my idea."
+            "context": "personal",
+            "plan": "When someone across the table says, \"I've been doing this for years\", I ask them what they have learned works best, before I show any part of my idea."
           },
           {
-            "context": "When I hear myself start a sentence with \"Actually,\" in a meeting",
-            "plan": "then I stop and turn the point into a question that lets them spot it themselves."
+            "context": "work",
+            "plan": "When I hear myself start a sentence with \"Actually,\" in a meeting, I stop and turn the point into a question that lets them spot it themselves."
           }
         ],
         "twentyFourHourChallenge": "Pick one idea you want someone to accept. Before the day ends, write two questions that could lead them to it, and ask at least one of them.",
@@ -4143,12 +4143,12 @@
         "coreSkill": "Spot when the other side is much stronger, then stop arguing fairness and protect what you still have.",
         "ifThenPlans": [
           {
-            "context": "When someone above my boss says, \"This decision is final,\" in a meeting",
-            "plan": "then I stop listing reasons, say \"Understood,\" and write down what I need to protect before I do anything else."
+            "context": "work",
+            "plan": "When someone above my boss says, \"This decision is final,\" in a meeting, I stop listing reasons, say \"Understood,\" and write down what I need to protect before I do anything else."
           },
           {
-            "context": "When a customer service agent at a big company says, \"There's nothing more I can do\"",
-            "plan": "then I stop repeating my case, ask what small option they can offer, and take it."
+            "context": "work",
+            "plan": "When a customer service agent at a big company says, \"There's nothing more I can do\", I stop repeating my case, ask what small option they can offer, and take it."
           }
         ],
         "twentyFourHourChallenge": "Within the next day, pick one small fight you're in with a stronger side and let one point go out loud: say, \"Okay, we'll do it your way for now.\" Notice what you keep.",
@@ -4331,12 +4331,12 @@
         "coreSkill": "Choose the project that already pays you back, and give it your best hours before anything new.",
         "ifThenPlans": [
           {
-            "context": "When a coworker leans into my doorway and says, \"Quick favor, could you also take on...\"",
-            "plan": "then I ask myself whether it feeds my main project, and if not, I say I'm focused there until it's done."
+            "context": "work",
+            "plan": "When a coworker leans into my doorway and says, \"Quick favor, could you also take on\", I ask myself whether it feeds my main project, and if not, I say I'm focused there until it's done."
           },
           {
-            "context": "When I catch myself typing \"maybe I should also start\" in my notes app or a message",
-            "plan": "then I close it and add one next step to my main project instead."
+            "context": "personal",
+            "plan": "When I catch myself typing \"maybe I should also start\" in my notes app or a message, I close it and add one next step to my main project instead."
           }
         ],
         "twentyFourHourChallenge": "Within the next day, spend one full hour on your richest project with your phone in another room. Write down one thing that moved forward because nothing else got in the way.",
@@ -4519,12 +4519,12 @@
         "coreSkill": "Raise a problem with someone above you by showing one fact and asking one question, so they can see it first.",
         "ifThenPlans": [
           {
-            "context": "When my boss ends a meeting by asking, \"Any concerns?\" and I have one",
-            "plan": "then I ask for two minutes afterward and bring one fact and one question to their desk."
+            "context": "work",
+            "plan": "When my boss ends a meeting by asking, \"Any concerns?\" and I have one, I ask for two minutes afterward and bring one fact and one question to their desk."
           },
           {
-            "context": "When I catch myself typing the words \"this won't work\" in a message to my boss",
-            "plan": "then I delete them and write, \"Here's what I found. How does it fit the plan?\""
+            "context": "work",
+            "plan": "When I catch myself typing the words \"this won't work\" in a message to my boss, I delete them and write, \"Here's what I found. How does it fit the plan?\""
           }
         ],
         "twentyFourHourChallenge": "At your next quiet moment with someone above you, ask one real question about something that worries you. Show one fact, then stop talking and let them answer.",
@@ -4707,12 +4707,12 @@
         "coreSkill": "Catch the moment an old label is being used on you, then show the role you chose through one clear, visible action.",
         "ifThenPlans": [
           {
-            "context": "When a coworker starts a request with \"Since you used to handle this anyway\"",
-            "plan": "then I tell them who handles it now and offer help with something from my new role instead."
+            "context": "work",
+            "plan": "When a coworker starts a request with \"Since you used to handle this anyway\", I tell them who handles it now and offer help with something from my new role instead."
           },
           {
-            "context": "When a relative at a cousin's birthday party starts the old story about me as the clumsy kid",
-            "plan": "then I laugh once and share one recent thing I've done that shows who I am now."
+            "context": "personal",
+            "plan": "When a relative at a cousin's birthday party starts the old story about me as the clumsy kid, I laugh once and share one recent thing I've done that shows who I am now."
           }
         ],
         "twentyFourHourChallenge": "Within the next day, introduce yourself to one person in one short sentence that names the role you chose, and watch how they respond to you.",
@@ -4895,12 +4895,12 @@
         "coreSkill": "Turn a harsh spoken order into a short written recap that the person who gave it confirms, before you carry it out.",
         "ifThenPlans": [
           {
-            "context": "When my manager ends a call with the words \"just handle it\" about something that will upset people",
-            "plan": "then I send a two-line recap of the order and ask them to reply yes before I act."
+            "context": "work",
+            "plan": "When my manager ends a call with the words \"just handle it\" about something that will upset people, I send a two-line recap of the order and ask them to reply yes before I act."
           },
           {
-            "context": "When a relative asks me to pass on bad news to someone in the family and adds \"don't say it came from me\"",
-            "plan": "then I ask them to send it themselves, or I say plainly that I will share it was their decision."
+            "context": "personal",
+            "plan": "When a relative asks me to pass on bad news to someone in the family and adds \"don't say it came from me\", I ask them to send it themselves, or I say plainly that I will share it was their decision."
           }
         ],
         "twentyFourHourChallenge": "Before the end of your next workday, write down one harsh order you might be asked to carry out soon. Draft the two-line confirming message now, so you can send it the moment that order comes.",
@@ -5083,12 +5083,12 @@
         "coreSkill": "Turn big, vague promises into plain questions about what you get, by when, and what it costs, before you give anything up.",
         "ifThenPlans": [
           {
-            "context": "When someone handing me a form or a payment link says, \"Spots are filling up, so you need to decide tonight\"",
-            "plan": "then I put the pen or phone down and ask what exactly I get, by when, and what happens if it fails."
+            "context": "personal",
+            "plan": "When someone handing me a form or a payment link says, \"Spots are filling up, so you need to decide tonight\", I put the pen or phone down and ask what exactly I get, by when, and what happens if it fails."
           },
           {
-            "context": "When a friend or coworker answers my question about a group with \"You just have to trust the process\"",
-            "plan": "then I ask them to name one result they have actually seen, and I wait for a real answer before I join."
+            "context": "work",
+            "plan": "When a friend or coworker answers my question about a group with \"You just have to trust the process\", I ask them to name one result they have actually seen, and I wait for a real answer before I join."
           }
         ],
         "twentyFourHourChallenge": "Within the next 24 hours, ask one person who wants your time or money, such as a boss, a group leader, or a seller, what exactly you will get and by when. Write their answer down.",
@@ -5271,12 +5271,12 @@
         "coreSkill": "Settle a plan's yes or no before you start, then carry it out with full effort and no hedging words.",
         "ifThenPlans": [
           {
-            "context": "When I catch myself typing \"just to see\" or \"maybe we could\" in a message about a plan I've already chosen",
-            "plan": "then I delete the phrase and write the plan as a plain decision before I hit send."
+            "context": "personal",
+            "plan": "When I catch myself typing \"just to see\" or \"maybe we could\" in a message about a plan I've already chosen, I delete the phrase and write the plan as a plain decision before I hit send."
           },
           {
-            "context": "When someone across the table asks, \"Are you sure about this?\" right after I propose something I've thought through",
-            "plan": "then I say yes in one sentence, give my main reason, and keep going instead of backing off."
+            "context": "personal",
+            "plan": "When someone across the table asks, \"Are you sure about this?\" right after I propose something I've thought through, I say yes in one sentence, give my main reason, and keep going instead of backing off."
           }
         ],
         "twentyFourHourChallenge": "Before the end of today, send one message about a plan you've chosen with every \"maybe,\" \"sort of\" and \"just to test\" taken out. Then watch how people answer a plain decision.",
@@ -5459,12 +5459,12 @@
         "coreSkill": "Before a big goal lands, map the weeks after it and the people who might want a share, so the win stays yours.",
         "ifThenPlans": [
           {
-            "context": "When my manager stops by and says, We're close to getting a yes on this",
-            "plan": "then I open a blank page and list who runs it after the yes, what changes, and who else will want in."
+            "context": "work",
+            "plan": "When my manager stops by and says, We're close to getting a yes on this, I open a blank page and list who runs it after the yes, what changes, and who else will want in."
           },
           {
-            "context": "When I click submit on a job application, a bid, or a big offer",
-            "plan": "then I write one line in my calendar: the first thing I do if the answer is yes, and who might compete for it."
+            "context": "personal",
+            "plan": "When I click submit on a job application, a bid, or a big offer, I write one line in my calendar: the first thing I do if the answer is yes, and who might compete for it."
           }
         ],
         "twentyFourHourChallenge": "Pick one goal you expect to reach this month. Before bed today, tell one person you trust what you plan to do in the first week after it, and ask what you missed.",
@@ -5647,12 +5647,12 @@
         "coreSkill": "Present finished work through the result alone, and keep the story of the late nights and struggle to yourself.",
         "ifThenPlans": [
           {
-            "context": "When I am about to send a finished file and see the words \"sorry this took so long\" in my message",
-            "plan": "then I delete that line and open with the one thing the result does best."
+            "context": "personal",
+            "plan": "When I am about to send a finished file and see the words \"sorry this took so long\" in my message, I delete that line and open with the one thing the result does best."
           },
           {
-            "context": "When a coworker passing me on the stairs says, \"You must have pulled all-nighters for that\"",
-            "plan": "then I smile, say it came together nicely, and mention one fun detail instead of the hours."
+            "context": "work",
+            "plan": "When a coworker passing me on the stairs says, \"You must have pulled all-nighters for that\", I smile, say it came together nicely, and mention one fun detail instead of the hours."
           }
         ],
         "twentyFourHourChallenge": "Before the end of today, pick one thing you finished recently and describe it to someone in two sentences that name only what it does. See how they react without the struggle story.",
@@ -5835,12 +5835,12 @@
         "coreSkill": "Turn a request into two or three options you can live with, so people say yes by choosing.",
         "ifThenPlans": [
           {
-            "context": "When I catch myself typing the words 'you need to' in a message to a coworker",
-            "plan": "then I delete them and rewrite the message as two options I can live with, each with a date."
+            "context": "work",
+            "plan": "When I catch myself typing the words 'you need to' in a message to a coworker, I delete them and rewrite the message as two options I can live with, each with a date."
           },
           {
-            "context": "When someone at home says 'Do I have to?' as I hand them a chore",
-            "plan": "then I offer two versions of the job I am happy with, like now or after dinner, and let them pick."
+            "context": "personal",
+            "plan": "When someone at home says 'Do I have to?' as I hand them a chore, I offer two versions of the job I am happy with, like now or after dinner, and let them pick."
           }
         ],
         "twentyFourHourChallenge": "Before bed tonight, think back to one order you gave today that got pushback. Write down two or three options you could have offered instead, and keep that version ready for next time.",
@@ -6023,12 +6023,12 @@
         "coreSkill": "When people feel stuck, open with an honest, hopeful picture of what could be, then use the facts to show the way.",
         "ifThenPlans": [
           {
-            "context": "When a coworker sighs in the break room and says, \"Nothing around here is ever going to change\"",
-            "plan": "then I describe one specific thing that could look better in a month, and the first step toward it."
+            "context": "work",
+            "plan": "When a coworker sighs in the break room and says, \"Nothing around here is ever going to change\", I describe one specific thing that could look better in a month, and the first step toward it."
           },
           {
-            "context": "When my partner opens the bills at the dining table and goes quiet",
-            "plan": "then I name one thing we are saving toward together before we go through the numbers."
+            "context": "personal",
+            "plan": "When my partner opens the bills at the dining table and goes quiet, I name one thing we are saving toward together before we go through the numbers."
           }
         ],
         "twentyFourHourChallenge": "Before bed tonight, pick one person you know who feels stuck. Send them a short message that pictures one good thing that could come, so they hear hope before any advice.",
@@ -6211,12 +6211,12 @@
         "coreSkill": "Spot the fear or need behind a repeated no, then shape your request so it meets that need instead of adding reasons.",
         "ifThenPlans": [
           {
-            "context": "When a coworker answers my idea with \"We've always done it this way\"",
-            "plan": "then I stop explaining and ask what has worked about the old way, so I can hear what they are protecting."
+            "context": "work",
+            "plan": "When a coworker answers my idea with \"We've always done it this way\", I stop explaining and ask what has worked about the old way, so I can hear what they are protecting."
           },
           {
-            "context": "When someone at my kitchen table says \"Fine, whatever\" and looks away during a family plan",
-            "plan": "then I pause the plan and ask which part bothers them most, before I give one more reason."
+            "context": "personal",
+            "plan": "When someone at my kitchen table says \"Fine, whatever\" and looks away during a family plan, I pause the plan and ask which part bothers them most, before I give one more reason."
           }
         ],
         "twentyFourHourChallenge": "By this time tomorrow, ask one person who has been resisting you a single question about what worries them, then listen for a full minute without arguing back.",
@@ -6399,12 +6399,12 @@
         "coreSkill": "Name a high, fair price for your time or work, and say it once in a calm, steady voice.",
         "ifThenPlans": [
           {
-            "context": "When a client or boss says, \"So, what number are you thinking?\"",
-            "plan": "then I say the figure I chose beforehand, give one reason, and stay quiet until they answer."
+            "context": "work",
+            "plan": "When a client or boss says, \"So, what number are you thinking?\", I say the figure I chose beforehand, give one reason, and stay quiet until they answer."
           },
           {
-            "context": "When I hear myself start a price with \"This is probably too much, but\"",
-            "plan": "then I stop, drop the apology, and say the number again as a plain fact."
+            "context": "personal",
+            "plan": "When I hear myself start a price with \"This is probably too much, but\", I stop, drop the apology, and say the number again as a plain fact."
           }
         ],
         "twentyFourHourChallenge": "Before this time tomorrow, say your high price out loud three times to a friend or a mirror, with no apology and no nervous laugh, until it sounds like a plain fact.",
@@ -6587,12 +6587,12 @@
         "coreSkill": "Spot the moment people start to feel the need for a change, and hold your push until then, ready to move fast.",
         "ifThenPlans": [
           {
-            "context": "When someone at a meeting sighs and says, \"This keeps happening\"",
-            "plan": "then I bring out the change I have been holding and offer a first step that same day."
+            "context": "work",
+            "plan": "When someone at a meeting sighs and says, \"This keeps happening\", I bring out the change I have been holding and offer a first step that same day."
           },
           {
-            "context": "When I catch myself writing a pitch email to my manager before anyone has mentioned the problem",
-            "plan": "then I save it as a draft and write down the one sign that will tell me people are ready."
+            "context": "work",
+            "plan": "When I catch myself writing a pitch email to my manager before anyone has mentioned the problem, I save it as a draft and write down the one sign that will tell me people are ready."
           }
         ],
         "twentyFourHourChallenge": "At your next lunch or coffee break, ask one person how they feel about the problem your change would fix. Just listen, so you learn how ready they are.",
@@ -6775,12 +6775,12 @@
         "coreSkill": "Let small public jabs pass without a reply, while still fixing any real problem they point to.",
         "ifThenPlans": [
           {
-            "context": "When I see a comment under my post that starts with \"Not to be rude, but\" from someone I don't know",
-            "plan": "then I close the app without replying and come back only after I have finished my next real task."
+            "context": "personal",
+            "plan": "When I see a comment under my post that starts with \"Not to be rude, but\" from someone I don't know, I close the app without replying and come back only after I have finished my next real task."
           },
           {
-            "context": "When a coworker at the far end of the meeting table says \"No offense, but\" about my work in front of the group",
-            "plan": "then I nod, say nothing back, and move on to the next item on my list as planned."
+            "context": "work",
+            "plan": "When a coworker at the far end of the meeting table says \"No offense, but\" about my work in front of the group, I nod, say nothing back, and move on to the next item on my list as planned."
           }
         ],
         "twentyFourHourChallenge": "Before bed tonight, scroll back through your messages and find the last time you answered a petty jab. Write one line on whether your answer calmed things down or kept the jab alive.",
@@ -6963,12 +6963,12 @@
         "coreSkill": "Choose one simple picture that carries the feeling you want people to have about you, and show it the same way everywhere.",
         "ifThenPlans": [
           {
-            "context": "When I open the blank first slide of my next team update",
-            "plan": "then I put my one picture there, shown the same way as last time."
+            "context": "personal",
+            "plan": "When I open the blank first slide of my next team update, I put my one picture there, shown the same way as last time."
           },
           {
-            "context": "When someone at a new group's first meeting says, \"Tell us a little about yourself\"",
-            "plan": "then I skip the list of jobs and lead with my one picture, in a sentence they can see."
+            "context": "work",
+            "plan": "When someone at a new group's first meeting says, \"Tell us a little about yourself\", I skip the list of jobs and lead with my one picture, in a sentence they can see."
           }
         ],
         "twentyFourHourChallenge": "Before you go to sleep tonight, write down the one feeling you want people at work or home to have about you. Next to it, list three places this week where your one picture could show up.",
@@ -7151,12 +7151,12 @@
         "coreSkill": "Follow the group's habits where everyone can see you, and take your unusual ideas to the few people who welcome them.",
         "ifThenPlans": [
           {
-            "context": "When someone in a team meeting says, \"We've always done it this way\" about a process I think is outdated",
-            "plan": "then I nod, follow the process for now, and jot my idea in a note to bring to the one coworker who loves new ideas."
+            "context": "work",
+            "plan": "When someone in a team meeting says, \"We've always done it this way\" about a process I think is outdated, I nod, follow the process for now, and jot my idea in a note to bring to the one coworker who loves new ideas."
           },
           {
-            "context": "When a relative at a family dinner asks what I think about a touchy topic and the whole table goes quiet",
-            "plan": "then I give a short, friendly answer and save my full view for a walk with the one cousin who enjoys a good debate."
+            "context": "personal",
+            "plan": "When a relative at a family dinner asks what I think about a touchy topic and the whole table goes quiet, I give a short, friendly answer and save my full view for a walk with the one cousin who enjoys a good debate."
           }
         ],
         "twentyFourHourChallenge": "By this time tomorrow, pick one group habit you privately find silly, like a shared coffee run or a meeting routine, and join it once without comment, so you see how little it costs you.",
@@ -7339,12 +7339,12 @@
         "coreSkill": "Slow down and stay steady when someone tries to make you angry, so they lose control first, not you.",
         "ifThenPlans": [
           {
-            "context": "When someone at work starts a sentence with \"With all due respect\" in front of others",
-            "plan": "then I take one slow breath, let them finish, and answer only the facts in a low voice."
+            "context": "work",
+            "plan": "When someone at work starts a sentence with \"With all due respect\" in front of others, I take one slow breath, let them finish, and answer only the facts in a low voice."
           },
           {
-            "context": "When a text lights up my phone and I feel my jaw tighten as I read it",
-            "plan": "then I put the phone face down, finish what I was doing, and reply in two calm sentences."
+            "context": "personal",
+            "plan": "When a text lights up my phone and I feel my jaw tighten as I read it, I put the phone face down, finish what I was doing, and reply in two calm sentences."
           }
         ],
         "twentyFourHourChallenge": "Today, when anything small annoys you, from a slow driver to a rude email, count to five before you react. Watch how often the urge to snap passes on its own.",
@@ -7527,12 +7527,12 @@
         "coreSkill": "Spot the hidden price in a free offer, and pay your own way when that price is a favor you would rather not owe.",
         "ifThenPlans": [
           {
-            "context": "When a sales rep or supplier writes \"no strings attached\" in an email to me",
-            "plan": "then I write down what they might hope to get next before I reply, and I offer to pay if the answer worries me."
+            "context": "personal",
+            "plan": "When a sales rep or supplier writes \"no strings attached\" in an email to me, I write down what they might hope to get next before I reply, and I offer to pay if the answer worries me."
           },
           {
-            "context": "When a relative at a family dinner reaches for the bill and says \"Let me get this\" for something I can afford",
-            "plan": "then I thank them, pay my share myself, and offer to treat them another time instead."
+            "context": "personal",
+            "plan": "When a relative at a family dinner reaches for the bill and says \"Let me get this\" for something I can afford, I thank them, pay my share myself, and offer to treat them another time instead."
           }
         ],
         "twentyFourHourChallenge": "Before you go to bed tonight, pick one favor you still owe someone, such as a ride or a small loan. Pay it back with money or time, so nothing is left hanging between you.",
@@ -7715,12 +7715,12 @@
         "coreSkill": "Respect the person before you, but put one clear mark of your own on the role early, so people judge your work.",
         "ifThenPlans": [
           {
-            "context": "When someone at my new desk says, \"That's not how Hollis used to do it\"",
-            "plan": "then I thank them for the history and explain the one change I'm making and why."
+            "context": "personal",
+            "plan": "When someone at my new desk says, \"That's not how Hollis used to do it\", I thank them for the history and explain the one change I'm making and why."
           },
           {
-            "context": "When I open the shared folder of my predecessor's old templates on my first Monday in the role",
-            "plan": "then I pick one template to rebuild in my own way before Friday."
+            "context": "personal",
+            "plan": "When I open the shared folder of my predecessor's old templates on my first Monday in the role, I pick one template to rebuild in my own way before Friday."
           }
         ],
         "twentyFourHourChallenge": "By this time tomorrow, change one small, visible thing in a role you took over, such as how a meeting opens or the order of a shared checklist, and notice who comments on it.",
@@ -7903,12 +7903,12 @@
         "coreSkill": "Trace a group's sour mood back to the one person others copy, and deal with that person directly and privately.",
         "ifThenPlans": [
           {
-            "context": "When someone says \"Here we go again\" as a meeting starts and the others laugh along",
-            "plan": "then I note who said it, and I ask that person for a short one-on-one before the week ends."
+            "context": "work",
+            "plan": "When someone says \"Here we go again\" as a meeting starts and the others laugh along, I note who said it, and I ask that person for a short one-on-one before the week ends."
           },
           {
-            "context": "When one person's name comes up in a second separate complaint about my team or my family",
-            "plan": "then I put off any group meeting and ask that person for a calm, private talk first."
+            "context": "work",
+            "plan": "When one person's name comes up in a second separate complaint about my team or my family, I put off any group meeting and ask that person for a calm, private talk first."
           }
         ],
         "twentyFourHourChallenge": "By this time tomorrow, have one short private conversation with the person whose mood most shapes a group you belong to, and simply ask how things are going for them.",
@@ -8091,12 +8091,12 @@
         "coreSkill": "Turn an order into a reason the other person cares about, so they choose to move your way.",
         "ifThenPlans": [
           {
-            "context": "When someone on my team asks, \"Who decided this?\" right after I announce a change",
-            "plan": "then I explain the reason in terms of their own work and ask what they would adjust."
+            "context": "work",
+            "plan": "When someone on my team asks, \"Who decided this?\" right after I announce a change, I explain the reason in terms of their own work and ask what they would adjust."
           },
           {
-            "context": "When I catch myself typing \"or else\" or \"you have to\" in a message",
-            "plan": "then I delete that line and write what the change gives the reader instead."
+            "context": "personal",
+            "plan": "When I catch myself typing \"or else\" or \"you have to\" in a message, I delete that line and write what the change gives the reader instead."
           }
         ],
         "twentyFourHourChallenge": "Before the end of today, think of one person you have been pushing with orders. Ask them one question about what they want from the task, and listen without arguing.",
@@ -8279,12 +8279,12 @@
         "coreSkill": "Spot a wary person's habits and values, then quietly match the ones you can honestly share before pushing your own ideas.",
         "ifThenPlans": [
           {
-            "context": "When a coworker who barely talks to me answers my message with a single line",
-            "plan": "then I cut my next message to one or two lines, so it matches the length of theirs."
+            "context": "work",
+            "plan": "When a coworker who barely talks to me answers my message with a single line, I cut my next message to one or two lines, so it matches the length of theirs."
           },
           {
-            "context": "When I walk into a relative's home and see their shoes lined up neatly by the door",
-            "plan": "then I take mine off and line them up too, and follow the house rhythm before sharing my news."
+            "context": "personal",
+            "plan": "When I walk into a relative's home and see their shoes lined up neatly by the door, I take mine off and line them up too, and follow the house rhythm before sharing my news."
           }
         ],
         "twentyFourHourChallenge": "Before you go to bed tonight, pick one guarded person you see often and write down three things they value or do. Mark the one you honestly share, and match it the next time you meet.",
@@ -8467,12 +8467,12 @@
         "coreSkill": "Present each change by naming what it keeps from the old way people love, then show how it makes that way better.",
         "ifThenPlans": [
           {
-            "context": "When someone at a meeting says, \"But we've always done it this way\"",
-            "plan": "then I name one part of the old way my plan keeps before I say what is new."
+            "context": "work",
+            "plan": "When someone at a meeting says, \"But we've always done it this way\", I name one part of the old way my plan keeps before I say what is new."
           },
           {
-            "context": "When I open a blank email to announce a change to my team or family",
-            "plan": "then I write the first line about what people love in the current way, and call the change an upgrade of it."
+            "context": "work",
+            "plan": "When I open a blank email to announce a change to my team or family, I write the first line about what people love in the current way, and call the change an upgrade of it."
           }
         ],
         "twentyFourHourChallenge": "By this time tomorrow, ask one person who likes the current way what they would hate to lose. Build that part into your plan, and tell them you kept it.",
@@ -8655,12 +8655,12 @@
         "coreSkill": "When you stand out among peers, let one small, real flaw show that sits far from the work they rely on.",
         "ifThenPlans": [
           {
-            "context": "When a coworker leans over after a win and says, \"How do you make it look so easy?\"",
-            "plan": "then I answer honestly, then name one harmless thing I'm bad at, like singing or cooking."
+            "context": "work",
+            "plan": "When a coworker leans over after a win and says, \"How do you make it look so easy?\", I answer honestly, then name one harmless thing I'm bad at, like singing or cooking."
           },
           {
-            "context": "When my name is praised in a team email that the people I started with can all see",
-            "plan": "then I reply with thanks and one light line about a harmless flaw of mine."
+            "context": "personal",
+            "plan": "When my name is praised in a team email that the people I started with can all see, I reply with thanks and one light line about a harmless flaw of mine."
           }
         ],
         "twentyFourHourChallenge": "Tonight, write down two harmless flaws you could share and one part of your work you will never joke about, so you are ready the next time praise comes.",
@@ -8843,12 +8843,12 @@
         "coreSkill": "Spot the moment you reach a goal you set, and switch from pushing for more to protecting what you won.",
         "ifThenPlans": [
           {
-            "context": "When someone at work says, \"You're on a roll, you should go for more\"",
-            "plan": "then I name the goal I just reached and say I'm making it solid before I take on anything new."
+            "context": "work",
+            "plan": "When someone at work says, \"You're on a roll, you should go for more\", I name the goal I just reached and say I'm making it solid before I take on anything new."
           },
           {
-            "context": "When I catch myself typing \"and while we're at it\" in a message right after getting a yes",
-            "plan": "then I delete everything after that phrase and send only my thanks."
+            "context": "personal",
+            "plan": "When I catch myself typing \"and while we're at it\" in a message right after getting a yes, I delete everything after that phrase and send only my thanks."
           }
         ],
         "twentyFourHourChallenge": "Before bed tonight, pick one recent win and do one small thing to secure it, such as a thank-you note, a backup copy, or a follow-up call.",
@@ -9031,12 +9031,12 @@
         "coreSkill": "Tell the spot from the strength, so you can leave what a stronger side wants and keep what lets you go on.",
         "ifThenPlans": [
           {
-            "context": "When someone above me says, \"We've decided to move this to another team\"",
-            "plan": "then I ask for a day before I answer, and I list the contacts and skills I must keep."
+            "context": "personal",
+            "plan": "When someone above me says, \"We've decided to move this to another team\", I ask for a day before I answer, and I list the contacts and skills I must keep."
           },
           {
-            "context": "When I hear myself say, \"It's the principle of the thing\" to someone with more power",
-            "plan": "then I stop and name what I would really lose by walking away, and I leave if it is only the spot."
+            "context": "personal",
+            "plan": "When I hear myself say, \"It's the principle of the thing\" to someone with more power, I stop and name what I would really lose by walking away, and I leave if it is only the spot."
           }
         ],
         "twentyFourHourChallenge": "Before you go to bed tonight, write down where you would go if you lost your current role. Send one message to someone who could help, so a way out is ready.",
