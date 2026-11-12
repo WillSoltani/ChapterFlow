@@ -7,6 +7,7 @@ import {
 import { evaluateOriginVerify } from "@/lib/origin-verify-core";
 import { resolveMiddlewareOrigin } from "@/lib/middleware-origin-core";
 import { buildContentSecurityPolicy } from "@/lib/csp";
+import { isProtectedSurfacePath } from "@/lib/protected-surface";
 
 let missingConfigWarned = false;
 let originVerifyWarned = false;
@@ -152,12 +153,12 @@ export function middleware(req: NextRequest) {
   const orphanRedirect = orphanSlugRedirect(req);
   if (orphanRedirect) return orphanRedirect;
 
-  const protectedSurface =
-    pathname.startsWith("/app") ||
-    pathname.startsWith("/book") ||
-    pathname.startsWith("/dashboard");
-
-  if (!protectedSurface) {
+  // Whole path segments, not raw string prefixes: /book, /app, /dashboard and
+  // everything under them are protected; the public catalog /books is not.
+  // Odd spellings (case, repeated slashes, encoded slashes, dot segments,
+  // trailing junk) are normalised so none of them turns a protected surface
+  // public (lib/protected-surface.ts, table in its test).
+  if (!isProtectedSurfacePath(pathname)) {
     return nextWithCsp(req, nonce, csp);
   }
 
@@ -229,8 +230,8 @@ export const config = {
   // exactly the CloudFront non-server behaviors + Next statics, which are served
   // from S3/the image origin and never reach this server Lambda. The auth logic
   // is unchanged: previously-unmatched paths now enter middleware but fall
-  // straight through the existing prefix guards (the /app/api early-return and
-  // the `!protectedSurface` guard) to NextResponse.next() exactly as if they had
+  // straight through the existing guards (the /app/api early-return and the
+  // `isProtectedSurfacePath` guard) to NextResponse.next() exactly as if they had
   // never matched — the widening only adds the origin-verify gate to them.
   matcher: [
     "/((?!_next/static|_next/image|favicon\\.ico|icon\\.svg|robots\\.txt|sitemap\\.xml|fonts/|book-covers/|BUILD_ID).*)",
