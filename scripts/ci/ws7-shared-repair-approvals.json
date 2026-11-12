@@ -752,6 +752,23 @@
         "fix/ws6-012-pr2-block-all",
         "docs/architecture/content-bucket-public-access-rollout.md"
       ]
+    },
+    {
+      "recordId": "81d74bb62326044cb8a8184ff199f691eda9133e0dedeec506f9299b3dec74cb",
+      "changeId": "p9-copy-truth-pricing-2026-11-12",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "lib/pricing.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "a9ce9deac40cacafd5db08cc013a21a7c0ba3cacb156dde9e6a00843fb873d91",
+      "evidenceRefs": [
+        "WillSoltani/ChapterFlow#618",
+        "film-p9-truth",
+        "docs/FILM_REEL.md: Claims and where they come from",
+        "app/public-claims.test.ts"
+      ]
     }
   ]
 }

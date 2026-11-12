@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { AuthScreen } from "@/components/auth/AuthScreen";
 import { BrandLockup } from "@/components/auth/BrandLockup";
+import { PRICING } from "@/lib/pricing";
 
 /* ── Google icon SVG (brand asset — fixed colors by design) ── */
 function GoogleIcon() {
@@ -195,7 +196,7 @@ function SignupInner() {
 
         {/* Trust line */}
         <p className="mt-2 text-center text-cf-label text-(--cf-text-3)">
-          No credit card required. Free forever for 2 books.
+          No credit card required. Free forever for {PRICING.freeBookLimit} books.
         </p>
       </motion.div>
     </AuthScreen>

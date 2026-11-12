@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SUPPORT_EMAIL, LEGAL_ENTITY_NAME, LEGAL_ENTITY_LOCATION } from "@/lib/legal-entity";
 import { PublicMasthead } from "@/components/marketing/PublicMasthead";
 import { PublicSiteShell } from "@/components/marketing/PublicSiteShell";
+import { gatedRoutePrefetchProps } from "@/components/landing/recall/RecallNavModel";
 
 export const metadata: Metadata = {
   title: "Contact & Support | ChapterFlow",
@@ -38,7 +39,7 @@ export default function ContactPage() {
             <div>
               <h2 className="text-cf-body-lg font-semibold mb-1" style={{ color: "var(--text-heading)" }}>Billing &amp; cancellation</h2>
               <p>You can manage or cancel your subscription anytime in{" "}
-                <Link href="/book/settings" className="underline" style={{ color: "var(--accent-cyan)" }}>Settings</Link>.
+                <Link href="/book/settings" {...gatedRoutePrefetchProps("/book/settings")} className="underline" style={{ color: "var(--accent-cyan)" }}>Settings</Link>.
                 For billing questions, see our{" "}
                 <Link href="/legal/refund" className="underline" style={{ color: "var(--accent-cyan)" }}>Refund &amp; Cancellation Policy</Link>{" "}
                 or email us.</p>

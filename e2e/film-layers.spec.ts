@@ -1,5 +1,7 @@
 import { test, expect, type Browser, type BrowserContextOptions, type Page } from "@playwright/test";
 import timeline from "../components/film/book.timeline.json";
+import { PROD_E2E_HEADERS } from "../playwright.config";
+import { isProtectedSurfacePath } from "../lib/protected-surface";
 
 /**
  * Film-reel layers, handlers and feel (plan Phase 5).
@@ -19,9 +21,11 @@ import timeline from "../components/film/book.timeline.json";
  *      with the right frame (scroll up, reload at Pricing, anchor jump).
  *   7. Smoothing by input: wheel 90 ms, touch 35 ms, ?smooth=0 draws the
  *      target frame on the next animation frame.
- *   8. No /books prefetch on the logged-out landing, no CSP error. Tagged
- *      @prod: it runs in the E2E_MODE=prod job (`next start`), the only build
- *      that prefetches; it is not part of the RUN_AUDIT dev run.
+ *   8. Logged out: /books (public) is prefetched and reachable (200, no
+ *      sign-in redirect), no prefetch goes into a sign-in redirect, no CSP
+ *      error, and /book/library still redirects. Tagged @prod: it runs in the
+ *      E2E_MODE=prod job (`next start`), the only build that prefetches; it
+ *      is not part of the RUN_AUDIT dev run.
  *
  * Opt-in: RUN_AUDIT=1 npx playwright test e2e/film-layers.spec.ts --project=chromium
  */
@@ -31,6 +35,8 @@ const NAV_BLUR = /^blur\(18px\) saturate\(1\.5\)$/;
 const TOUCH_QUERY = "(hover: none) and (pointer: coarse)";
 const PHONE: BrowserContextOptions = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, hasTouch: true, isMobile: true };
 const DESKTOP: BrowserContextOptions = { viewport: { width: 1440, height: 900 } };
+/** The edge header a production build expects (playwright.config), @prod only. */
+const PROD_HEADERS = process.env.E2E_MODE === "prod" ? { ...PROD_E2E_HEADERS } : undefined;
 /**
  * Hall style-attribute mutations in a 2 s steady scroll, desktop: 443 before
  * Phase 5, 429 after, 333 once the dead --hall-dolly write was dropped
@@ -389,12 +395,12 @@ test.describe("film layers", () => {
 });
 
 // Next only prefetches <Link>s in a production build, and only a production
-// build redirects /books to sign-in, so this gate runs in the @prod job
+// build runs the real sign-in redirect, so this gate runs in the @prod job
 // (E2E_MODE=prod: `next build` + `next start`), not under RUN_AUDIT on the dev
 // server, where it could never fail.
 test.describe("film layers: prefetch (@prod)", () => {
-  test("no /books prefetch and no CSP error on the logged-out landing @prod", async ({ browser }) => {
-    const ctx = await browser.newContext(DESKTOP);
+  test("logged out: /books is public and prefetched with no CSP error; /book/library still redirects @prod", async ({ browser, request }) => {
+    const ctx = await browser.newContext({ ...DESKTOP, ...(PROD_HEADERS ? { extraHTTPHeaders: PROD_HEADERS } : {}) });
     const page = await ctx.newPage();
     // The redirect target is the live site: never let a request reach it.
     await page.route(/^https:\/\/app\.chapterflow\.ca\//, (route) => route.abort());
@@ -403,16 +409,18 @@ test.describe("film layers: prefetch (@prod)", () => {
     const csp: string[] = [];
     page.on("request", (r) => {
       const u = new URL(r.url());
-      if (u.pathname === "/books" || u.pathname.startsWith("/books/")) books.push(r.url());
-      if (u.searchParams.has("_rsc") || r.headers()["next-router-prefetch"]) prefetches.push(r.url());
+      const prefetch = u.searchParams.has("_rsc") || Boolean(r.headers()["next-router-prefetch"]);
+      if (prefetch) prefetches.push(r.url());
+      if (prefetch && (u.pathname === "/books" || u.pathname.startsWith("/books/"))) books.push(r.url());
     });
     page.on("console", (m) => {
       if (/Content[ -]Security[ -]Policy|Refused to connect/i.test(m.text())) csp.push(m.text());
     });
     await page.goto("/");
     await page.waitForTimeout(1000);
-    // Step through the whole page so every link (the City chapter's, the
-    // footer's) enters the viewport and Next's viewport prefetch can fire.
+    // Step through the whole page so every link (the nav's, the City
+    // chapter's, the footer's) enters the viewport and Next's viewport
+    // prefetch can fire.
     const height = await page.evaluate(() => document.documentElement.scrollHeight);
     for (let y = 0; y <= height; y += 600) {
       await page.evaluate((top) => window.scrollTo(0, top), y);
@@ -420,11 +428,37 @@ test.describe("film layers: prefetch (@prod)", () => {
     }
     await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
     await page.waitForTimeout(2000);
-    // Sanity: prefetching is live in this build (public links are prefetched),
-    // so an empty /books list means the gated link really was skipped.
+    // Sanity: prefetching is live in this build.
     expect(prefetches.length, "Next prefetches public links in this build").toBeGreaterThan(0);
-    expect(books, books.join("\n")).toEqual([]);
+    // /books is the public catalog: the nav and the City chapter prefetch it,
+    // and that prefetch lands on the page, not in a sign-in redirect.
+    expect(books.length, "the public /books is prefetched").toBeGreaterThan(0);
+    // No prefetch goes into a sign-in redirect (a protected surface or an
+    // /auth/ route), and nothing trips the CSP.
+    const intoSignIn = prefetches.filter((u) => {
+      const path = new URL(u).pathname;
+      return path.startsWith("/auth/") || isProtectedSurfacePath(path);
+    });
+    expect(intoSignIn, intoSignIn.join("\n")).toEqual([]);
     expect(csp, csp.join("\n")).toEqual([]);
     await ctx.close();
+
+    // Reachability, logged out: /books answers 200 itself (no redirect to
+    // sign-in), with or without a query or a trailing slash; a protected
+    // surface still redirects to sign-in.
+    for (const path of ["/books", "/books?q=habit"]) {
+      const res = await request.get(path, { maxRedirects: 0 });
+      expect(res.status(), `${path} answers 200 logged out`).toBe(200);
+    }
+    const slash = await request.get("/books/", { maxRedirects: 0 });
+    if (slash.status() >= 300 && slash.status() < 400) {
+      expect(new URL(slash.headers()["location"]!, "http://127.0.0.1:3000").pathname, "/books/ normalises to /books").toBe("/books");
+    } else {
+      expect(slash.status()).toBe(200);
+    }
+    const gated = await request.get("/book/library", { maxRedirects: 0 });
+    expect(gated.status(), "/book/library redirects logged out").toBeGreaterThanOrEqual(300);
+    expect(gated.status()).toBeLessThan(400);
+    expect(new URL(gated.headers()["location"]!, "http://127.0.0.1:3000").pathname).toBe("/auth/login");
   });
 });

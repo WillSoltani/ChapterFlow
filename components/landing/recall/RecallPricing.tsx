@@ -35,9 +35,11 @@ import {
 
 type BillingInterval = "monthly" | "annual";
 
-/* The two tiers, stated plainly. Pro features come straight from the canonical
-   PRO_FEATURES list via PRICING; the Free list names what the free reader
-   actually grants today (the 2-book limit is the honest cap). */
+/* The two tiers, stated plainly. The Free list names what the free reader
+   actually grants today (the free-book limit is the honest cap). The Pro list
+   names what Pro adds; note export is NOT on it: every plan exports
+   (/app/api/book/me/export checks the session, not the plan, and the FAQ
+   says so). */
 const FREE_FEATURES = [
   "The full book library to browse",
   `Finish ${PRICING.freeBookLimit} complete books`,
@@ -51,7 +53,7 @@ const PRO_FEATURES_SHORT = [
   "Every book, no finish limit",
   "Deeper depth mode",
   "Text-to-speech audio",
-  "Reading analytics and note export",
+  "Reading analytics",
   "Priority on new title requests",
 ] as const;
 
@@ -187,7 +189,7 @@ function PricingPlans() {
               className="mt-4 text-[0.9375rem] leading-relaxed"
               style={{ color: "var(--cf-recall-ink-soft)" }}
             >
-              Try the full loop on two complete books. No card, no expiry.
+              Try the full loop on {PRICING.freeBookLimit} complete books. No card, no expiry.
             </p>
 
             <ul className="mt-8 flex flex-1 flex-col gap-3.5">
@@ -207,7 +209,7 @@ function PricingPlans() {
                 "--tw-ring-color": "var(--cf-recall-accent-line)",
               }}
             >
-              Start reading free
+              Start free
             </a>
           </div>
 

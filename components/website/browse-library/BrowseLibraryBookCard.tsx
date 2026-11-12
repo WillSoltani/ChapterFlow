@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { gatedRoutePrefetchProps } from "@/components/landing/recall/RecallNavModel";
 import { BookCover } from "@/components/ui/BookCover";
 import { track } from "@/lib/analytics";
 import {
@@ -18,6 +19,10 @@ export function BrowseLibraryBookCard({ book, showCategoryTag = false }: { book:
   return (
     <Link
       href={bookHref(book.id)}
+      // The reader is a protected surface: a logged-out prefetch would follow
+      // the sign-in redirect to Cognito and trip CSP. This card cannot know the
+      // login state, so it never prefetches.
+      {...gatedRoutePrefetchProps(bookHref(book.id))}
       className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 rounded-lg"
       aria-label={`${book.title} by ${book.author} — ${DIFFICULTY_LABEL[book.difficulty]}, ${book.chapters} chapters`}
       onClick={() => track("book_card_click", { source: "browse_library", bookId: book.id })}

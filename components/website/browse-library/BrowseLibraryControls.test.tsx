@@ -6,7 +6,7 @@ import { useState } from "react";
 import { act, cleanup, fireEvent, render, waitFor, within } from "@testing-library/react";
 import { BrowseLibraryFilterBar } from "./BrowseLibraryFilterBar";
 import { BrowseLibrarySearchBar } from "./BrowseLibrarySearchBar";
-import type { LibraryBook, SortOption } from "./browse-library-core";
+import { ALL_BOOKS, type LibraryBook, type SortOption } from "./browse-library-core";
 
 const originalIntersectionObserver = globalThis.IntersectionObserver;
 const originalSelf = Object.getOwnPropertyDescriptor(globalThis, "self");
@@ -112,7 +112,6 @@ test("category buttons expose pressed state and native sort retains selection", 
       sortBy={selectedSort}
       onSortChange={(sort) => { selectedSort = sort; }}
       resultCount={1}
-      totalCount={1}
     />,
   );
 
@@ -136,4 +135,38 @@ test("category buttons expose pressed state and native sort retains selection", 
   assert.equal(selectedSort, "alphabetical");
   assert.equal(document.activeElement, sort);
   assert.equal(view.queryByRole("listbox"), null);
+});
+
+test("the unfiltered result count never shows the exact catalog size", () => {
+  // /books is public: its hero shows the catalog floor (130+), so the filter
+  // bar must not print the exact total beside it ("Showing 135 of 135").
+  const exact = String(ALL_BOOKS.length);
+  const unfiltered = render(
+    <BrowseLibraryFilterBar
+      categories={[]}
+      activeCategory="All"
+      onCategoryChange={() => {}}
+      sortBy="popular"
+      onSortChange={() => {}}
+      resultCount={ALL_BOOKS.length}
+    />,
+  );
+  const text = unfiltered.container.textContent ?? "";
+  assert.match(text, /Showing all titles/);
+  assert.doesNotMatch(text, new RegExp(`\\b${exact}\\b`));
+  cleanup();
+
+  const filtered = render(
+    <BrowseLibraryFilterBar
+      categories={[]}
+      activeCategory="All"
+      onCategoryChange={() => {}}
+      sortBy="popular"
+      onSortChange={() => {}}
+      resultCount={3}
+    />,
+  );
+  const filteredText = filtered.container.textContent ?? "";
+  assert.match(filteredText, /Showing 3 titles/);
+  assert.doesNotMatch(filteredText, new RegExp(`\\b${exact}\\b`));
 });

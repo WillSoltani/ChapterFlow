@@ -478,7 +478,7 @@ jobs:
           # import graph and fails when a file it reaches is missing here.
           changed="$(git diff --name-only "$base" HEAD -- \
             components/film components/landing 'e2e/film-*' scripts/film \
-            app/page.tsx app/layout.tsx app/globals.css app/_fonts app/_lib \
+            app/page.tsx app/layout.tsx app/globals.css app/_fonts app/_lib app/book/data/book-chapter-meta.json \
             app/app/_lib/dev-auth-bypass.ts app/app/api/_lib/boot-env-core.ts \
             components/MotionFeatureProvider.tsx components/MotionProvider.tsx components/motion-feature-load.ts \
             components/auth/AuthCacheBoundary.tsx components/auth/AuthErrorBanner.tsx components/auth/useAuthStatus.ts \
@@ -488,7 +488,7 @@ jobs:
             lib/analytics.ts lib/auth-cache-generation.ts lib/book-covers.ts lib/book-slug-aliases.ts \
             lib/books-catalog.metadata.json lib/books-catalog.ts lib/catalog-stats.ts lib/category-taxonomy.ts \
             lib/client lib/csp.ts lib/logout.ts lib/middleware-origin-core.ts lib/motion.ts \
-            lib/origin-verify-core.ts lib/pricing.ts lib/utils.ts \
+            lib/origin-verify-core.ts lib/pricing.ts lib/protected-surface.ts lib/utils.ts \
             middleware.ts next.config.ts playwright.config.ts .nvmrc \
             package.json package-lock.json .github/workflows/ci.yml)"
           if [ -n "$changed" ]; then

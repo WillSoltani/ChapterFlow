@@ -1,3 +1,5 @@
+import { isProtectedSurfacePath } from "@/lib/protected-surface";
+
 export const PUBLIC_NAV_DESKTOP_QUERY = "(min-width: 1024px)";
 export const PUBLIC_NAV_MENU_ID = "chapterflow-public-navigation";
 
@@ -31,43 +33,50 @@ export const PUBLIC_NAV_LINKS = [
 ] as const satisfies readonly PublicNavLink[];
 
 /**
- * Routes that middleware auth-gates (307 → /auth/login → Cognito) for
- * anonymous visitors. A Next <Link> prefetches its route on viewport entry;
- * for these routes the prefetch follows that redirect chain to another origin
- * and the browser blocks it under CSP connect-src 'self' — a console error on
- * every public page view and a wasted request. Clicks are unaffected.
+ * Whether a same-origin href answers a logged-out visitor with a redirect to
+ * another origin: a protected surface (the middleware's own rule,
+ * lib/protected-surface: /book, /app, /dashboard and below; the public
+ * catalog /books is not one) sends them to /auth/login, and the /auth/ routes
+ * hand off to Cognito. A Next <Link> prefetches its route on viewport entry;
+ * for these the prefetch follows the redirect chain to Cognito and the
+ * browser blocks it under CSP connect-src 'self' — a console error and a
+ * wasted request. Clicks are unaffected.
  */
-export const AUTH_GATED_NAV_ROUTES: ReadonlySet<string> = new Set(["/books"]);
+function hrefPath(href: string): string {
+  return href.split(/[?#]/, 1)[0] ?? href;
+}
 
-/**
- * Extra <Link> props for a public nav link: `{ prefetch: false }` for an
- * auth-gated route while the visitor is not known to be logged in (loading
- * counts as not logged in — the first paint is anonymous), otherwise nothing,
- * so Next's default prefetch applies. Returned as a spreadable object because
- * exactOptionalPropertyTypes forbids passing `prefetch={undefined}`.
- */
-export function publicNavPrefetchProps(
-  link: PublicNavLink,
-  loggedIn: boolean,
-): { prefetch: false } | Record<string, never> {
-  if (link.kind !== "route") return {};
-  return !loggedIn && AUTH_GATED_NAV_ROUTES.has(link.target) ? { prefetch: false } : {};
+function isAuthRoute(path: string): boolean {
+  return path === "/auth" || path.startsWith("/auth/");
 }
 
 /**
- * `{ prefetch: false }` for a link to an auth-gated route unless the visitor
- * is known to be logged in. A component that cannot know the login state
- * (the server-rendered footer) omits `loggedIn`: the anonymous first paint
- * would otherwise prefetch into the login redirect and trip CSP. A client
- * component that has it (CityChapters, via useAuthStatus) passes it, so a
- * logged-in visitor keeps Next's default prefetch. Spreadable, like
- * publicNavPrefetchProps.
+ * `{ prefetch: false }` for a link whose prefetch would follow a sign-in
+ * redirect: an /auth/ route always, a protected surface unless the visitor is
+ * known to be logged in. A component that cannot know the login state (the
+ * server-rendered footer, the catalog's book cards) omits `loggedIn`: the
+ * anonymous first paint would otherwise prefetch into the login redirect. A
+ * client component that has it (CityChapters, via useAuthStatus) passes it,
+ * so a logged-in visitor keeps Next's default prefetch. Returned as a
+ * spreadable object because exactOptionalPropertyTypes forbids passing
+ * `prefetch={undefined}`.
  */
 export function gatedRoutePrefetchProps(
   href: string,
   loggedIn = false,
 ): { prefetch: false } | Record<string, never> {
-  return !loggedIn && AUTH_GATED_NAV_ROUTES.has(href) ? { prefetch: false } : {};
+  const path = hrefPath(href);
+  if (isAuthRoute(path)) return { prefetch: false };
+  return !loggedIn && isProtectedSurfacePath(path) ? { prefetch: false } : {};
+}
+
+/** {@link gatedRoutePrefetchProps} for a public nav link (sections never prefetch). */
+export function publicNavPrefetchProps(
+  link: PublicNavLink,
+  loggedIn: boolean,
+): { prefetch: false } | Record<string, never> {
+  if (link.kind !== "route") return {};
+  return gatedRoutePrefetchProps(link.target, loggedIn);
 }
 
 /**

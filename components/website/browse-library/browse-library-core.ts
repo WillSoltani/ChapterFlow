@@ -92,6 +92,17 @@ export function bookHref(id: string): string {
   return `/book/library/${id}`;
 }
 
+/**
+ * The filter bar's result count. A filtered view gives its exact number of
+ * matches; the unfiltered view says "all" rather than the exact catalog size,
+ * because public copy shows the catalog as a floor (CATALOG_BOOK_COUNT_DISPLAY
+ * in the hero above), never the exact count.
+ */
+export function resultCountLabel(resultCount: number): string {
+  if (resultCount >= ALL_BOOKS.length) return "Showing all titles";
+  return `Showing ${resultCount} ${resultCount === 1 ? "title" : "titles"}`;
+}
+
 export function getCategoriesWithCounts(books: LibraryBook[]) {
   const counts = new Map<string, number>();
   books.forEach((book) => counts.set(book.category, (counts.get(book.category) || 0) + 1));

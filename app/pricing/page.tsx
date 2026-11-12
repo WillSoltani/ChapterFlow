@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
+import { PRICING } from "@/lib/pricing";
 import { Pricing } from "@/components/sections/Pricing";
 import { PublicMasthead } from "@/components/marketing/PublicMasthead";
 import { PublicSiteShell } from "@/components/marketing/PublicSiteShell";
@@ -7,7 +8,7 @@ import { PublicSiteShell } from "@/components/marketing/PublicSiteShell";
 export const metadata: Metadata = {
   title: "Pricing | ChapterFlow",
   description:
-    `Start free with 2 books or upgrade to Pro for unlimited access to ${CATALOG_BOOK_COUNT_DISPLAY} guided non-fiction books and all reading depths.`,
+    `Start free with ${PRICING.freeBookLimit} books or upgrade to Pro for unlimited access to ${CATALOG_BOOK_COUNT_DISPLAY} guided non-fiction books and all reading depths.`,
 };
 
 export default function PricingPage() {

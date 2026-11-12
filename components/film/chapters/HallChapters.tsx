@@ -9,7 +9,6 @@
  * of lingering as a dark shape over the footage.
  */
 
-import { CATALOG_MEDIAN_CHAPTER_MINUTES } from "@/lib/catalog-stats";
 import { FilmSegment } from "../FilmSegment";
 import { FramePin } from "../FramePin";
 import { HallText } from "../HallText";
@@ -40,7 +39,12 @@ const HALL = (() => {
   return { last, compress, lit, p, dissolve, stops: reducedStops(filmCount(F), filmKeys(F), [{ scrim: p.halo, pins: [p.label, p.h2, p.lede] }], { start: dissolve }) };
 })();
 
-export function HallChapter({ film, index }: P) {
+/**
+ * The Hall names one chapter of one book, so `minutes` is that chapter's own
+ * reading time (app/_lib/chapter-minutes, read on the server by app/page.tsx), not
+ * the catalog median. Null drops the number (the book left the catalog).
+ */
+export function HallChapter({ film, index, minutes = null }: P & { minutes?: number | null }) {
   const { last, compress, lit, p } = HALL;
   return (
     <FilmSegment id="how-it-works" film={film} index={index} pace={3.5} dissolveIn={HALL.dissolve} stops={HALL.stops} ariaLabel="Summary">
@@ -62,7 +66,7 @@ export function HallChapter({ film, index }: P) {
             The whole book, down to the lines that matter.
           </FramePin>
           <FramePin {...p.lede} as="p" className="film-lede">
-            Atomic Habits, chapter one, in about {CATALOG_MEDIAN_CHAPTER_MINUTES} minutes. The walls go
+            Atomic Habits, chapter one{minutes === null ? "" : `, in about ${minutes} minutes`}. The walls go
             quiet, and what stays lit is the idea.
           </FramePin>
         </FramePin>

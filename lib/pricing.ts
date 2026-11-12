@@ -48,6 +48,18 @@ export const ANNUAL_SAVINGS_PCT = Math.round(
   (1 - PRICING.annualMonthlyAmount / PRICING.monthlyAmount) * 100,
 );
 
+/**
+ * Per-month equivalent of the annual-upfront plan, to the cent (59.99 / 12 →
+ * 5.00). Its own figure: the billed-annually plan's is annualMonthlyAmount.
+ */
+export const ANNUAL_UPFRONT_MONTHLY_AMOUNT =
+  Math.round((PRICING.annualUpfrontAmount / 12) * 100) / 100;
+
+/** Whole-percent saving of the annual-upfront plan vs paying monthly, e.g. 37. */
+export const ANNUAL_UPFRONT_SAVINGS_PCT = Math.round(
+  (1 - PRICING.annualUpfrontAmount / (PRICING.monthlyAmount * 12)) * 100,
+);
+
 /** "$7.99" — symbol + 2dp amount, no currency code. */
 export function formatAmount(amount: number): string {
   return `${PRICING.symbol}${amount.toFixed(2)}`;
@@ -128,9 +140,12 @@ export const FREE_OFFER_LABEL = `${PRICING.freeBookLimit} free books`;
  * Canonical Pro feature list — the single source of truth so the marketing
  * Pricing card (landing) and the in-app SubscriptionCard sell the SAME Pro.
  * Mirrors the in-app upsell's existing claims (Unlock all books, text-to-speech,
- * spaced repetition, reading analytics, export — see SubscriptionCard.tsx) so
+ * spaced repetition, reading analytics — see SubscriptionCard.tsx) so
  * cold visitors see the same value the settings card advertises; surfacing them
  * here reconciles existing claims, it does not invent new ones.
+ *
+ * Note export is not listed: every plan exports (/app/api/book/me/export
+ * checks the session, not the plan), so selling it as Pro would be untrue.
  *
  * Depth-mode names stay canonical (Lite / Standard / Deeper) so a buyer who
  * chose a depth by name on this card can find it by that same name in-app.
@@ -148,7 +163,6 @@ export const PRO_FEATURES = [
   "Text-to-speech audio",
   "Spaced-repetition review",
   "Reading analytics",
-  "Export your notes",
   "Priority new title requests",
 ] as const;
 

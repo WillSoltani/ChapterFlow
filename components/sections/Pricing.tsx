@@ -12,7 +12,6 @@ import { track } from "@/lib/analytics";
 import { useAuthStatus } from "@/components/auth/useAuthStatus";
 import {
   PRICING,
-  ANNUAL_SAVINGS_PCT,
   formatAmount,
   TRIAL_CTA_LABEL,
   FREE_OFFER_LABEL,
@@ -20,7 +19,10 @@ import {
   UPGRADE_LOGIN_URL,
   PRICING_TIER_DISPLAY,
   PRO_FEATURES,
+  ANNUAL_UPFRONT_MONTHLY_AMOUNT,
+  ANNUAL_UPFRONT_SAVINGS_PCT,
 } from "@/lib/pricing";
+import { gatedRoutePrefetchProps } from "@/components/landing/recall/RecallNavModel";
 
 /**
  * Public pricing and plan comparison.
@@ -56,7 +58,7 @@ const faqs = [
   {
     question: "Can I cancel anytime?",
     answer:
-      "Yes — cancel anytime from your account settings, with no penalties or lock-in. Cancel during your 14-day free trial and you won't be charged. Cancel after, and your Pro access continues until the end of the period you've already paid for; the remaining time isn't refunded.",
+      `Yes — cancel anytime from your account settings, with no penalties or lock-in. Cancel during your ${PRICING.trialDays}-day free trial and you won't be charged. Cancel after, and your Pro access continues until the end of the period you've already paid for; the remaining time isn't refunded.`,
   },
   {
     question: `What happens after my ${PRICING.freeBookLimit} free books?`,
@@ -66,7 +68,7 @@ const faqs = [
   {
     question: "Do you add new books?",
     answer:
-      "Yes. We add new titles regularly. Pro members can request specific books and get priority additions.",
+      "Yes. We add new titles regularly. Anyone can request a book; Pro requests get priority.",
   },
   {
     question: "Is there a mobile app?",
@@ -178,7 +180,9 @@ export function Pricing() {
       ? UPGRADE_RETURN_PATH
       : UPGRADE_LOGIN_URL;
   const proCtaLabel = isPro ? "Manage subscription" : TRIAL_CTA_LABEL;
-  const perMonthAmount = isAnnual ? PRICING.annualMonthlyAmount : PRICING.monthlyAmount;
+  // Only the monthly view reads this; the annual view prices the annual-upfront
+  // plan from its own figures (never the billed-annually plan's).
+  const perMonthAmount = PRICING.monthlyAmount;
 
   const toggleFaq = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
@@ -250,11 +254,13 @@ export function Pricing() {
                 Choose your billing cadence
               </span>
 
-              <div className="flex items-center gap-3">
+              {/* Narrow screens: tighter gaps and the saving under its label, so
+                  the group fits a 320 px row instead of being clipped. */}
+              <div className="flex items-center gap-1.5 sm:gap-3">
                 <button
                   type="button"
                   onClick={() => setIsAnnual(false)}
-                  className="cf-folio min-h-11 px-2 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+                  className="cf-folio min-h-11 px-1 sm:px-2 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                   style={{ color: isAnnual ? "var(--text-muted)" : "var(--text-heading)" }}
                 >
                   MONTHLY
@@ -263,7 +269,7 @@ export function Pricing() {
                   onClick={() => setIsAnnual((v) => !v)}
                   role="switch"
                   aria-checked={isAnnual}
-                  aria-label="Toggle annual pricing"
+                  aria-label="Toggle annual upfront pricing"
                   className="relative flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-full border border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                 >
                   <span
@@ -280,12 +286,14 @@ export function Pricing() {
                 <button
                   type="button"
                   onClick={() => setIsAnnual(true)}
-                  className="cf-folio flex min-h-11 items-center gap-1.5 px-2 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+                  className="cf-folio flex min-h-11 flex-col items-center justify-center px-1 text-center sm:flex-row sm:gap-1.5 sm:px-2 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                   style={{ color: isAnnual ? "var(--text-heading)" : "var(--text-muted)" }}
                 >
-                  ANNUAL
+                  {/* This view prices the annual-upfront plan (its in-app name),
+                      not the billed-annually plan the landing shows. */}
+                  ANNUAL UPFRONT
                   <span style={{ color: "var(--accent-cyan)" }}>
-                    −{ANNUAL_SAVINGS_PCT}%
+                    −{ANNUAL_UPFRONT_SAVINGS_PCT}%
                   </span>
                 </button>
               </div>
@@ -296,18 +304,19 @@ export function Pricing() {
               name="Free"
               price="$0"
               unit="forever"
-              blurb="Try ChapterFlow with two complete books — no card, no expiry."
+              blurb={`Try ChapterFlow with ${PRICING.freeBookLimit} complete books — no card, no expiry.`}
               features={freeFeatures}
               accent={false}
               cta={
                 <Link
                   data-public-sticky-cta-suppress
                   href={freeHref}
+                  {...gatedRoutePrefetchProps(freeHref, loggedIn === true)}
                   onClick={() => track("cta_click", { source: "pricing_free" })}
                   className="inline-flex w-full items-center justify-center rounded-xl border border-(--border-medium) px-5 py-3 text-cf-body font-semibold text-(--text-heading) transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
-                  Get {FREE_OFFER_LABEL}
+                  {loggedIn ? `Get ${FREE_OFFER_LABEL}` : "Start free"}
                 </Link>
               }
             />
@@ -323,7 +332,7 @@ export function Pricing() {
               subline={
                 isAnnual ? (
                   <>
-                    {formatAmount(PRICING.annualMonthlyAmount)}/mo
+                    {formatAmount(ANNUAL_UPFRONT_MONTHLY_AMOUNT)}/mo
                     <span className="text-(--text-muted)">
                       {" "}
                       · billed once a year
@@ -342,6 +351,7 @@ export function Pricing() {
                 <Link
                   data-public-sticky-cta-suppress
                   href={proHref}
+                  {...gatedRoutePrefetchProps(proHref, loggedIn === true)}
                   onClick={() =>
                     track("cta_click", {
                       source: isPro ? "pricing_manage" : "pricing_pro",

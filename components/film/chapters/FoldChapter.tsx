@@ -5,7 +5,7 @@
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { FREE_OFFER_LABEL } from "@/lib/pricing";
-import { CATALOG_BOOK_COUNT, CATALOG_MEDIAN_CHAPTER_MINUTES } from "@/lib/catalog-stats";
+import { CATALOG_BOOK_COUNT_DISPLAY, CATALOG_MEDIAN_CHAPTER_MINUTES } from "@/lib/catalog-stats";
 import { FilmSegment } from "../FilmSegment";
 import { SkipFilmLink } from "../SkipFilmLink";
 import { FramePin } from "../FramePin";
@@ -66,7 +66,7 @@ export function FoldChapter({ film, index }: { film: FilmManifest; index: number
                 the public site — a Next <Link> would try to prefetch it and
                 trip CSP connect-src 'self' in the console. */}
             <a href={AUTH_LOGIN_BOOK_URL} className="film-btn film-btn-primary">
-              Start reading free <ArrowRight size={17} strokeWidth={2.25} aria-hidden />
+              Start free <ArrowRight size={17} strokeWidth={2.25} aria-hidden />
             </a>
             <a href="#how-it-works" className="film-btn film-btn-ghost">
               Step inside <ChevronRight size={16} strokeWidth={2.25} aria-hidden />
@@ -75,7 +75,7 @@ export function FoldChapter({ film, index }: { film: FilmManifest; index: number
             <SkipFilmLink className="film-btn film-btn-ghost film-skip-reduced" />
           </FramePin>
           <FramePin {...P.noCard} as="p" className="film-label">
-            No card · {FREE_OFFER_LABEL} · {CATALOG_BOOK_COUNT} titles
+            No card · {FREE_OFFER_LABEL} · {CATALOG_BOOK_COUNT_DISPLAY} titles
           </FramePin>
         </FramePin>
       </div>

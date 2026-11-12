@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { gatedRoutePrefetchProps } from "@/components/landing/recall/RecallNavModel";
 import { BookCover } from "@/components/ui/BookCover";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SectionReveal } from "@/components/ui/SectionReveal";
@@ -54,6 +55,7 @@ function FeaturedBookSpotlight({ book, reason }: { book: LibraryBook; reason: st
         </p>
         <Link
           href={bookHref(book.id)}
+          {...gatedRoutePrefetchProps(bookHref(book.id))}
           onClick={() => track("book_card_click", { source: "browse_library_featured", bookId: book.id })}
           className="-mb-3 inline-flex min-h-11 w-fit items-center rounded text-cf-label font-semibold hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
           style={{ color: "var(--accent-cyan)" }}

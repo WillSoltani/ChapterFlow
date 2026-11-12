@@ -333,9 +333,12 @@ the loop `canvasResizes`, `geometryMeasures`, `ticksWorked`, `ticksSkipped`.
   which it crossed the header line, so that one frame shows both buttons. On this page the
   nav's button also shows while the session is unresolved (the signed-out
   "Start free"). `data-cta-off` is never in the server HTML.
-- **Prefetch.** The City chapter's `/books` link and the footer's links to
-  login-gated routes do not prefetch for a visitor not known to be logged in
-  (an anonymous prefetch follows the login redirect and trips the CSP).
+- **Prefetch.** `/books` is public (the middleware gate matches whole path
+  segments, `lib/protected-surface.ts`), so the nav, the City chapter and the
+  footer prefetch it. A link to a protected surface (`/book`, `/app`,
+  `/dashboard` and below) does not prefetch for a visitor not known to be
+  logged in, and an `/auth/` link never does (`gatedRoutePrefetchProps`): the
+  prefetch would follow the sign-in redirect to Cognito and trip the CSP.
 
 ## First paint
 
@@ -472,6 +475,36 @@ the loop `canvasResizes`, `geometryMeasures`, `ticksWorked`, `ticksSkipped`.
 - **Known limit:** a fast fling or a scrollbar drag can pass a stop without
   resting on it; the stop is shown on the way.
 
+## Claims and where they come from
+
+Every number or promise the landing makes, and the code it comes from.
+`app/public-claims.test.ts` fails on an exact book count (by name or as the
+catalog's `.length`) or a hard-coded free-book number on a public surface, on
+export sold as Pro while the export route has no plan check, on a yearly price
+shown without its plan's name, on the Summary minutes not being that
+chapter's own figure, and on robots, the sitemap or the SearchAction
+disagreeing with the sign-in gate.
+
+| Claim on the landing | Where | Source in code |
+|---|---|---|
+| "&lt;floor&gt; titles", "&lt;floor&gt; books. Every one a building.", "Browse all &lt;floor&gt; books", where the floor reads "130+" today | hero label, City chapter | `CATALOG_BOOK_COUNT_DISPLAY` (`lib/catalog-stats.ts`: catalog size floored to 10). JSON-LD `numberOfItems` on `/books` stays exact (`CATALOG_BOOK_COUNT`) |
+| "Every chapter becomes a 12-minute read" | hero lede | `CATALOG_MEDIAN_CHAPTER_MINUTES` (median of each book's minutes per chapter) |
+| "Atomic Habits, chapter one, in about 14 minutes" | Summary chapter | `chapterMinutes("atomic-habits", 1)` (`app/_lib/chapter-minutes.ts`: chapter one's own minutes from `app/book/data/book-chapter-meta.json`, as the reader lists them; read on the server in `app/page.tsx` and passed down, so the metadata stays out of the client bundle; the number is dropped if the book leaves the catalog) |
+| "2 free books", "Finish 2 complete books", "on 2 complete books", "after my 2 free books" | hero label, pricing, FAQ, close, footer | `FREE_OFFER_LABEL` / `PRICING.freeBookLimit` (`lib/pricing.ts`; display value, the enforced limit is `BOOK_FREE_SLOTS_DEFAULT`) |
+| "$7.99 / month", "$5.99 /mo billed annually", "Save 25%" | pricing | `PRICING.monthlyAmount`, `PRICING.annualMonthlyAmount`, `ANNUAL_SAVINGS_PCT` |
+| "Annual upfront −37%", "$59.99 CAD / year", "$5.00/mo · billed once a year" (on `/pricing`, not the landing) | `/pricing` | `PRICING.annualUpfrontAmount`, `ANNUAL_UPFRONT_SAVINGS_PCT`, `ANNUAL_UPFRONT_MONTHLY_AMOUNT`. The landing's "Annual" is the billed-annually plan, `/pricing`'s yearly view the upfront plan; each is labelled with its in-app name (`SubscriptionCard`: "Annual", "Annual upfront") |
+| "Showing all titles" / "Showing N titles" (on `/books`, not the landing) | `/books` filter bar | `resultCountLabel` (`browse-library-core.ts`): a filtered view gives its exact match count; the unfiltered view never prints the exact catalog size beside the hero's floor |
+| "Start 14-day free trial", "charged when the 14-day trial ends", trial in the FAQ | pricing, FAQ | `TRIAL_CTA_LABEL`, `PRICING.trialDays` |
+| Pro: text-to-speech audio | pricing | the chapter audio route answers Pro only (`entitlement.plan !== "PRO"`) |
+| Pro: reading analytics | pricing | Progress shows the insights to Pro only (`isPro`, `ProInsightsPreview`) |
+| Pro: deeper depth mode, priority on requests | pricing | plan features as sold; not traced to a plan check in this pass |
+| "Export everything … as JSON, CSV, or Markdown" (every plan; not on the Pro card) | FAQ | `/app/api/book/me/export`: a signed-in user with a recent sign-in, no plan check; formats `json`, `csv`, `markdown` |
+| "FSRS-5 predicts the moment an idea is about to go dark" | Spaced review chapter | `app/app/api/book/_lib/fsrs.ts` (FSRS-5); cited in the footer |
+| "That small effort is the testing effect" | Quiz chapter | cited in the footer (Karpicke & Roediger, Science 2008) |
+| Search box in results (`/books?q=`) | JSON-LD SearchAction | `/books` is public (`lib/protected-surface.ts`); `useBrowseLibraryState` seeds the search from `q` |
+| Organization logo | JSON-LD | `/icon.svg` (`app/icon.svg`, the brand mark) |
+| "Start free" / "Start your first book" | hero, Home chapter, pricing, nav, footer / closing section | one sign-up link (`AUTH_LOGIN_BOOK_URL`); "Start your first book" once, on the closing section (`RecallClose`) |
+
 ## Tests and commands
 
 Unit tests (`npm run test`, also in CI): `scrub.test.ts` (math, placement,
@@ -490,7 +523,7 @@ Browser specs (`e2e/film-*.spec.ts`; `RUN_AUDIT=1`, dev server):
 | `film-audit` | 7 viewports × 17 steps × every chapter: no pin clipped, overlapping, under the nav or over a lit wall line; luminance behind the copy (mean ≤ 110, p90 ≤ 150); canvas painting; every pin seen; ≥ 11 px text; 44 × 44 px targets |
 | `film-a11y` | reduced motion (OS and in-app) stop by stop; around the film; keyboard Tab and Shift+Tab; pointer focus; refocus with the window, also after a touch scroll; paging; forced colors; structure; contrast of the copy and of the focus indicators |
 | `film-first-paint` | one poster per viewport; all 404 (static, no probe); recovery (aborted 6 s, offline, aborted 70 s); no 2D context; the failsafe over inline styles. `@prod` part (E2E_MODE=prod): the response's picture and preloads, no JavaScript, hydration held back 2 s, scripts blocked, fonts, motion chunk |
-| `film-layers` | touch nav without backdrop-filter, no resting layers, ≤ 64 layout reads in a 3 s scroll, Hall style writes, one reduced-motion listener, canvas under the body, smoothing per input |
+| `film-layers` | touch nav without backdrop-filter, no resting layers, ≤ 64 layout reads in a 3 s scroll, Hall style writes, one reduced-motion listener, canvas under the body, smoothing per input. `@prod` part: logged out, `/books` is prefetched and answers 200, nothing is prefetched into the sign-in redirect, no CSP error, `/book/library` still redirects |
 | `film-layout` | a phone held sideways requests only landscape variants; safe areas; scrolling down, the start button in reach, one at a time, in every painted frame |
 | `film-perf` | a fast wheel scrub: monotonic frames, handoffs in the dissolve, ≥ 45 fps (20 on WebKit), anchors land |
 | `film-quality` | pack mode: no per-frame request, ≤ 30 film requests, no pack byte twice, 0 refetches; `?pack=0`: each frame once, ≤ 4 in flight; before the first scroll one pack bounded at its opening; phone: one canvas allocation, idle at rest, stopped below the reel, a jump lands, only b900 requests |

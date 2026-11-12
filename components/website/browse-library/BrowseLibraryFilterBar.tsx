@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { SORT_OPTIONS, type SortOption } from "./browse-library-core";
+import { SORT_OPTIONS, resultCountLabel, type SortOption } from "./browse-library-core";
 import { ChevronDown } from "./BrowseLibraryIcons";
 
 export function BrowseLibraryFilterBar({
@@ -11,7 +11,6 @@ export function BrowseLibraryFilterBar({
   sortBy,
   onSortChange,
   resultCount,
-  totalCount,
 }: {
   categories: { name: string; count: number }[];
   activeCategory: string;
@@ -19,7 +18,6 @@ export function BrowseLibraryFilterBar({
   sortBy: SortOption;
   onSortChange: (s: SortOption) => void;
   resultCount: number;
-  totalCount: number;
 }) {
   const sentinelRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
@@ -86,7 +84,7 @@ export function BrowseLibraryFilterBar({
 
           {/* Result count */}
           <span className="hidden md:block text-cf-label-sm shrink-0" style={{ color: "var(--text-muted)" }}>
-            Showing {resultCount} of {totalCount}
+            {resultCountLabel(resultCount)}
           </span>
 
           {/* Native sorting control retains platform arrow-key, Escape, and

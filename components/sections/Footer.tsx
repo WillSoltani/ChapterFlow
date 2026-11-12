@@ -5,6 +5,7 @@ import {
   CHAPTERFLOW_NAME,
 } from "@/app/_lib/chapterflow-brand";
 import { gatedRoutePrefetchProps } from "@/components/landing/recall/RecallNavModel";
+import { FREE_OFFER_LABEL } from "@/lib/pricing";
 import { CurrentYear } from "./CurrentYear";
 
 const EXPLORE_LINKS = [
@@ -103,9 +104,10 @@ export function Footer() {
                         {link.label}
                       </a>
                     ) : (
-                      // Auth-gated routes (/books) do not prefetch: the footer
-                      // cannot know the login state, and an anonymous prefetch
-                      // follows the login redirect into a CSP error.
+                      // Protected surfaces would not prefetch (the footer cannot
+                      // know the login state, and an anonymous prefetch follows
+                      // the login redirect into a CSP error); every link here is
+                      // public, the catalog /books included.
                       <Link
                         href={link.href}
                         {...gatedRoutePrefetchProps(link.href)}
@@ -172,7 +174,7 @@ export function Footer() {
           <span>
             &copy; <CurrentYear /> {CHAPTERFLOW_NAME}. All rights reserved.
           </span>
-          <span>Two free books · no card required · cancel anytime</span>
+          <span>{FREE_OFFER_LABEL} · no card required · cancel anytime</span>
         </div>
       </div>
     </footer>

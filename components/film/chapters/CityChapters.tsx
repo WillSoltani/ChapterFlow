@@ -11,9 +11,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
-import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
-import { gatedRoutePrefetchProps } from "@/components/landing/recall/RecallNavModel";
-import { useAuthStatus } from "@/components/auth/useAuthStatus";
+import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 import { FilmSegment } from "../FilmSegment";
 import { FramePin } from "../FramePin";
 import { pin, reducedStops } from "../pins";
@@ -84,16 +82,11 @@ export function LightsChapter({ film, index }: P) {
   );
 }
 
-/**
- * /books is auth-gated: no prefetch into the login redirect (CSP) unless the
- * visitor is known to be logged in (the session lookup is the nav's cached
- * one, so this adds no request).
- */
+/** The public catalog: Next's default prefetch, logged in or not. */
 function BrowseBooksLink() {
-  const { loggedIn } = useAuthStatus();
   return (
-    <Link href="/books" {...gatedRoutePrefetchProps("/books", loggedIn === true)} className="film-btn film-btn-ghost">
-      Browse all {CATALOG_BOOK_COUNT} books <ArrowRight size={16} aria-hidden />
+    <Link href="/books" className="film-btn film-btn-ghost">
+      Browse all {CATALOG_BOOK_COUNT_DISPLAY} books <ArrowRight size={16} aria-hidden />
     </Link>
   );
 }
@@ -122,7 +115,7 @@ export function CityChapter({ film, index }: P) {
         <FramePin scrim {...p.halo} className="film-halo flex flex-col items-center gap-4">
           <FramePin {...p.label} as="p" className="film-label">The library</FramePin>
           <FramePin {...p.h2} as="h2" className="film-h2">
-            {CATALOG_BOOK_COUNT} books. Every one a building.
+            {CATALOG_BOOK_COUNT_DISPLAY} books. Every one a building.
           </FramePin>
           <FramePin {...p.browse} interactive>
             <BrowseBooksLink />
@@ -162,11 +155,13 @@ export function HomeChapter({ film, index }: P) {
             Keep the ideas.
           </FramePin>
           {/* The Home chapter's own start button: the nav's is suppressed
-              while it shows (startCta). */}
+              while it shows (startCta). "Start free" like every start button
+              on the page but one: "Start your first book" is the closing
+              section's (RecallClose), once. */}
           <FramePin {...p.start} interactive startCta="chapter">
             {/* External (Cognito) URL: plain <a>, see FoldChapter. */}
             <a href={AUTH_LOGIN_BOOK_URL} className="film-btn film-btn-primary">
-              Start your first book <ArrowRight size={17} strokeWidth={2.25} aria-hidden />
+              Start free <ArrowRight size={17} strokeWidth={2.25} aria-hidden />
             </a>
           </FramePin>
         </FramePin>
