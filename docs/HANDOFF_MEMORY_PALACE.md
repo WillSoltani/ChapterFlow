@@ -29,16 +29,17 @@ keys, prompts, render log).
     frames, the framing switch removed, the start-button hand-over in one
     frame, the refocus guard on keyboard-and-touch devices, the nav's focus
     indicators in the contrast gate, five dead landing sections deleted).
-  - Phase 9 (copy and search-engine truth) waits on owner decisions.
+  - Phase 9 (copy and search-engine truth): `/books` public (segment-based
+    gate), "130+" everywhere, export off the Pro card, free-book counts from
+    `PRICING`, the Hall's own minutes, "Start free" with one "Start your
+    first book", the brand mark as the Organization logo. Claims table in
+    `docs/FILM_REEL.md`.
 - Whole-reel numbers (local production build): 15 film requests, 0
   refetches, 99.9 % exact draws on desktop and the iPhone profile
   (`docs/FILM_REEL.md`, scrub-quality).
 
 ## Open, needs the owner
 
-- Phase 9 decisions: book count wording ("135" vs "130+"), note export on the
-  Pro card, `/books` for logged-out visitors (middleware gate vs sitemap /
-  robots / search action), button labels, the Organization logo.
 - Picks still behind URL switches: the touch nav look (`?nav=1` … `5`,
   default 1) and touch smoothing (`?smooth=<ms>`, default 35). Check both on
   a real phone with `?hud=1`.
