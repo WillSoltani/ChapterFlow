@@ -8,6 +8,7 @@ import { ArrowRight, RefreshCw, Clock, Sparkles } from "lucide-react";
 import { BookCover } from "@/components/ui/BookCover";
 import { BookSaveButton } from "@/app/book/components/BookSaveButton";
 import { BookHeroProgressRing } from "./BookHeroProgressRing";
+import { bookCtaLabel } from "@/components/book/book-cta-core";
 import type { LibraryBookEntry } from "@/app/book/_lib/library-data";
 
 type BookHeroProps = {
@@ -65,7 +66,7 @@ export function BookHero({
   const ctaText = allCompleted
     ? "Review book"
     : hasProgress
-      ? `Continue Chapter ${currentChapterOrder}`
+      ? bookCtaLabel(currentChapterOrder)
       : `Start Chapter ${currentChapterOrder}`;
 
   const ctaIcon = allCompleted ? (

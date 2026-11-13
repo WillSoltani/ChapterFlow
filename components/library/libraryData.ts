@@ -1032,7 +1032,7 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
  */
 export function buildLibraryBookFromCatalog(
   book: LibraryCatalogBook,
-  entry?: LibraryBookEntry,
+  entry?: LibraryBookEntry & { resumeChapterNumber?: number },
 ): LibraryBook {
   const bookId = book.id;
   const category = inferLibraryCategory(book.categories);
@@ -1041,10 +1041,10 @@ export function buildLibraryBookFromCatalog(
   const userProgress: UserProgress | undefined =
     entry && entry.status !== "not_started"
       ? {
-          currentChapter: Math.min(
-            entry.chaptersCompleted + 1,
-            Math.max(1, entry.chaptersTotal),
-          ),
+          // D4: the chapter "Continue" opens (server current chapter when known).
+          currentChapter:
+            entry.resumeChapterNumber ??
+            Math.min(entry.chaptersCompleted + 1, Math.max(1, entry.chaptersTotal)),
           percentComplete: entry.progressPercent,
           lastReadAt: new Date(entry.lastActivityAt),
           // No per-book IP figure in the dashboard payload — leave undefined

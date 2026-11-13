@@ -20,7 +20,8 @@ import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-
 import { COMMITMENTS_KEY } from "@/lib/client/book-read-keys";
 import type { BookUserCommitmentItem, CommitmentOutcome } from "@/app/app/api/book/_lib/types";
 import { useBookAnalytics, type AnalyticsState } from "@/hooks/book/useBookAnalytics";
-import { DASHBOARD_KEY } from "@/hooks/book/useDashboardQuery";
+import { DASHBOARD_KEY, useDashboardQuery } from "@/hooks/book/useDashboardQuery";
+import { resumeChapterNumber } from "@/components/book/book-cta-core";
 import { useBookViewer } from "@/hooks/book/useBookViewer";
 import { useFreeBookAllowance, type FreeBookAllowance } from "@/hooks/book/useFreeBookAllowance";
 import { BOOKS_CATALOG, getBookMetadata } from "@/lib/books-catalog";
@@ -239,6 +240,7 @@ function isNewUserShelf(userBooks: WorkspaceData["userBooks"]): boolean {
 function mapAnalyticsToWorkspaceData(
   analytics: AnalyticsState,
   firstName: string,
+  currentChapterByBook: ReadonlyMap<string, number> = new Map(),
 ): WorkspaceData {
   const savedIds = new Set(analytics.savedBookIds);
   // Build the reader's taste profile from onboarding interests + the categories
@@ -265,7 +267,6 @@ function mapAnalyticsToWorkspaceData(
 
   let currentBook: WorkspaceData["currentBook"] = null;
   if (lead) {
-    const nextChapter = lead.completedChapters + 1;
     // estimatedMinutes comes from the server catalog entry (lead.book), not the
     // local static catalog.
     const estimatedMinutes = lead.book.estimatedMinutes;
@@ -278,7 +279,12 @@ function mapAnalyticsToWorkspaceData(
       title: lead.book.title,
       author: lead.book.author ?? "",
       coverUrl: getBookCoverPath(lead.book.id),
-      currentChapter: Math.min(nextChapter, lead.totalChapters),
+      // D4 / C13: the server's current chapter, else completed + 1, capped.
+      currentChapter: resumeChapterNumber({
+        currentChapterNumber: currentChapterByBook.get(lead.book.id),
+        chaptersCompleted: lead.completedChapters,
+        chapterCount: lead.totalChapters,
+      }),
       totalChapters: lead.totalChapters,
       progressPercent: lead.progressPercent,
       currentLoopStep: lead.currentLoopStep ?? "summary",
@@ -1045,13 +1051,26 @@ export function WorkspacePage() {
   const { analytics, error, partial, refetch } = useBookAnalytics(ALL_BOOK_IDS, 20);
   const { identity } = useBookViewer();
   const allowance = useFreeBookAllowance();
+  // Same cached dashboard read useBookAnalytics uses (no extra request); only
+  // the progress rows' current chapter is needed here (C13).
+  const { data: dashboard } = useDashboardQuery();
+  const currentChapterByBook = useMemo(
+    () =>
+      new Map(
+        (dashboard?.progress ?? []).map((row) => [row.bookId, row.currentChapterNumber]),
+      ),
+    [dashboard],
+  );
   const firstName = (identity.displayName || "").split(" ")[0] || "Reader";
   const isLoading = !analytics && !error;
   // Memoize so the heavy mapper (ranking + badge evaluation over the whole
   // catalog) doesn't re-run on every render — notably on each search keystroke.
   const data = useMemo(
-    () => (analytics ? mapAnalyticsToWorkspaceData(analytics, firstName) : null),
-    [analytics, firstName],
+    () =>
+      analytics
+        ? mapAnalyticsToWorkspaceData(analytics, firstName, currentChapterByBook)
+        : null,
+    [analytics, firstName, currentChapterByBook],
   );
 
   const searchRef = useRef<HTMLInputElement | null>(null);

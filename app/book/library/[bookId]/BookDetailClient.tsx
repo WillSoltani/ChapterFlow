@@ -20,6 +20,7 @@ import type {
 } from "@/app/book/_lib/library-data";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
 import { freeStartsLeft } from "@/components/library/LibraryContext";
+import { bookCtaLabel } from "@/components/book/book-cta-core";
 import { BookHero } from "./components/BookHero";
 import { ChapterCard, type ChapterCardStatus } from "./components/ChapterCard";
 import { BackgroundOrbs } from "./components/BackgroundOrbs";
@@ -565,7 +566,7 @@ export function BookDetailClient({
             className="cf-btn cf-btn-primary w-full rounded-2xl px-4 py-3 text-base"
           >
             {completedCount > 0
-              ? `Continue Chapter ${currentChapter.number}`
+              ? bookCtaLabel(currentChapter.number)
               : `Start Chapter ${currentChapter.number}`}
           </button>
         </div>

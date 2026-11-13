@@ -111,3 +111,34 @@ test("another book's chapter-state row does not start this book", () => {
     "not_started",
   );
 });
+
+test("Continue opens the server's current chapter and names it (C13)", () => {
+  const entry = buildEntries(
+    payload({
+      progress: [
+        {
+          bookId: "a",
+          currentChapterNumber: 4,
+          unlockedThroughChapterNumber: 4,
+          completedChapters: [1, 2],
+          bestScoreByChapter: {},
+        },
+      ],
+    }),
+  )[0];
+  assert.equal(entry?.resumeChapterNumber, 4);
+  assert.equal(entry?.continueHref, "/book/library/a/chapter/4");
+});
+
+test("without a progress row Continue falls back to completed + 1, capped", () => {
+  const entry = buildEntries(
+    payload({ bookStates: [bookState("a", ["a-ch01", "a-ch02", "a-ch03"])] }),
+  )[0];
+  assert.equal(entry?.resumeChapterNumber, 4);
+  const done = buildEntries(
+    payload({
+      bookStates: [bookState("a", Array.from({ length: 10 }, (_, i) => `a-ch${i + 1}`))],
+    }),
+  )[0];
+  assert.equal(done?.resumeChapterNumber, 10);
+});

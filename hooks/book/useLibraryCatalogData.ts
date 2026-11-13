@@ -11,6 +11,7 @@ import {
   type LibraryCatalogBook,
 } from "@/lib/library-data";
 import { canonicalizeCategory } from "@/lib/category-taxonomy";
+import { continueHref, resumeChapterNumber } from "@/components/book/book-cta-core";
 
 type DashboardCatalogPayload = {
   catalog: LibraryCatalogBook[];
@@ -42,9 +43,15 @@ type DashboardCatalogPayload = {
 
 const EPOCH_ISO = new Date(0).toISOString();
 
+/** A library entry plus where its "Continue" goes (D4 / C13). */
+export type LibraryUiEntry = LibraryBookEntry & {
+  resumeChapterNumber: number;
+  continueHref: string;
+};
+
 export type { DashboardCatalogPayload };
 
-export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry[] {
+export function buildEntries(payload: DashboardCatalogPayload): LibraryUiEntry[] {
   const progressByBook = new Map(payload.progress.map((item) => [item.bookId, item]));
   const stateByBook = new Map(payload.bookStates.map((item) => [item.bookId, item]));
   const booksWithChapterState = new Set(payload.chapterStates.map((item) => item.bookId));
@@ -80,6 +87,12 @@ export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry
       progress?.lastOpenedAt ||
       EPOCH_ISO;
 
+    const resumeChapter = resumeChapterNumber({
+      currentChapterNumber: progress?.currentChapterNumber,
+      chaptersCompleted,
+      chapterCount: book.chapterCount,
+    });
+
     return {
       ...book,
       // Canonicalize the runtime catalog's category at this entry-construction
@@ -95,6 +108,8 @@ export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry
       chaptersCompleted,
       isNew: status === "not_started",
       lastActivityAt,
+      resumeChapterNumber: resumeChapter,
+      continueHref: continueHref(book.id, resumeChapter),
     };
   });
 }

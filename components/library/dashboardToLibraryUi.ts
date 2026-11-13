@@ -20,7 +20,7 @@ export type { DashboardEntitlement } from "@/lib/dashboard-contracts";
 
 export function toLibraryBooks(
   catalog: LibraryCatalogBook[],
-  entries: LibraryBookEntry[],
+  entries: Array<LibraryBookEntry & { resumeChapterNumber?: number }>,
 ): LibraryBook[] {
   const entryByBook = new Map(entries.map((entry) => [entry.id, entry]));
   return catalog.map((book) =>

@@ -4,10 +4,11 @@
 
 import { useMemo } from "react";
 import { useDashboardQuery } from "@/hooks/book/useDashboardQuery";
-import type { LibraryCatalogBook, LibraryBookEntry } from "@/lib/library-data";
+import type { LibraryCatalogBook } from "@/lib/library-data";
 import {
   buildEntries,
   type DashboardCatalogPayload,
+  type LibraryUiEntry,
 } from "@/hooks/book/useLibraryCatalogData";
 import type { DashboardEntitlement } from "@/lib/dashboard-contracts";
 
@@ -68,7 +69,7 @@ export function useLibraryDashboard(enabled = true) {
   }, [data]);
 
   const catalog: LibraryCatalogBook[] = payload.catalog;
-  const entries: LibraryBookEntry[] = useMemo(() => buildEntries(payload), [payload]);
+  const entries: LibraryUiEntry[] = useMemo(() => buildEntries(payload), [payload]);
   const savedSet = useMemo(
     () => new Set((payload.saved ?? []).map((item) => item.bookId)),
     [payload.saved],

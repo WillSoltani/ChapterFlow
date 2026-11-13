@@ -14,6 +14,7 @@ import {
   freeWithPlanLabel,
 } from "./LibraryContext";
 import { formatReadingTime, type LibraryBook } from "./libraryData";
+import { bookCtaLabel, continueHref } from "@/components/book/book-cta-core";
 
 interface BookCardProps {
   book: LibraryBook;
@@ -252,11 +253,19 @@ export function BookCard({ book, index = 0, layout = "grid", showProLock = false
               </Link>
             ) : (
               <Link
-                href={detailHref}
+                href={
+                  book.userProgress && !book.userProgress.isCompleted
+                    ? continueHref(book.id, book.userProgress.currentChapter)
+                    : detailHref
+                }
                 className="inline-block cursor-pointer rounded-lg px-4 py-2 text-cf-label font-semibold transition-colors"
                 style={{ background: "var(--accent-cyan)", color: "var(--bg-base)" }}
               >
-                {book.userProgress ? "Continue reading" : "Start reading"}
+                {book.userProgress?.isCompleted
+                  ? "Review book"
+                  : book.userProgress
+                    ? bookCtaLabel(book.userProgress.currentChapter)
+                    : "Start reading"}
               </Link>
             )}
           </div>

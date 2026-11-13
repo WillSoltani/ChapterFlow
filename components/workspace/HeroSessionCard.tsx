@@ -11,6 +11,7 @@ import { DUR, EASE } from "@/lib/motion";
 import { LearningLoopIndicator } from "./LearningLoopIndicator";
 import { BOOKS_CATALOG } from "@/lib/books-catalog";
 import { getBookCoverPath } from "@/lib/book-covers";
+import { bookCtaLabel, continueHref } from "@/components/book/book-cta-core";
 
 type LoopStep = "summary" | "scenarios" | "quiz" | "unlock";
 
@@ -102,9 +103,7 @@ function getCTAHref(userState: UserState, book: CurrentBook | null): string {
     case "active_reader":
     case "quiz_pending":
     case "returning":
-      return book
-        ? `/book/library/${book.id}/chapter/${book.currentChapter}`
-        : "/book/library";
+      return book ? continueHref(book.id, book.currentChapter) : "/book/library";
     case "between_books":
       return "/book/library";
     case "free_limit_reached":
@@ -119,7 +118,7 @@ function getCTAText(userState: UserState, book: CurrentBook | null): string {
     case "new_user":
       return "Pick your first book";
     case "active_reader":
-      return `Continue chapter ${book?.currentChapter ?? 1}`;
+      return bookCtaLabel(book?.currentChapter ?? 1);
     case "quiz_pending":
       return "Take the quiz";
     case "between_books":

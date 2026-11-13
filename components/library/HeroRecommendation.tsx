@@ -7,6 +7,7 @@ import { BookCover } from "@/components/ui/BookCover";
 import { LibraryProgressRing } from "./LibraryProgressRing";
 import { BookSaveButton } from "@/components/book/BookSaveButton";
 import { useLibraryContext } from "./LibraryContext";
+import { bookCtaLabel, continueHref } from "@/components/book/book-cta-core";
 import {
   formatReadingTime,
   getProgressMicrocopy,
@@ -197,7 +198,7 @@ export function HeroRecommendation({
           {/* CTAs — larger primary button (Fitts' Law) with glow */}
           <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
-              href={detailHref}
+              href={isInProgress ? continueHref(heroBook.id, prog.currentChapter) : detailHref}
               className="cta-shine flex w-full cursor-pointer items-center justify-center rounded-xl px-8 text-cf-body-lg font-semibold transition-all sm:w-auto"
               style={{
                 height: 52,
@@ -206,7 +207,7 @@ export function HeroRecommendation({
                 boxShadow: "0 4px 20px color-mix(in srgb, var(--accent-cyan) 30%, transparent), 0 0 40px color-mix(in srgb, var(--accent-cyan) 10%, transparent)",
               }}
             >
-              {isInProgress ? "Continue Reading →" : "Start Reading →"}
+              {isInProgress ? `${bookCtaLabel(prog.currentChapter)} →` : "Start Reading →"}
             </Link>
             <Link
               href={detailHref}

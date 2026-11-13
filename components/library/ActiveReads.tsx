@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { BookCover } from "@/components/ui/BookCover";
 import { LibraryProgressRing } from "./LibraryProgressRing";
+import { bookCtaLabel, continueHref } from "@/components/book/book-cta-core";
 import {
   formatReadingTime,
   getProgressMicrocopy,
@@ -59,7 +60,7 @@ export function ActiveReads({ books }: ActiveReadsProps) {
               transition={{ duration: DUR.normal, delay: 0.5 + i * 0.12 }}
             >
               <Link
-                href={`/book/library/${encodeURIComponent(book.id)}`}
+                href={continueHref(book.id, prog.currentChapter)}
                 className="group flex gap-4 overflow-hidden rounded-2xl p-4 transition-all duration-200 cf-focus"
                 style={{
                   background: "var(--bg-glass)",
@@ -152,7 +153,7 @@ export function ActiveReads({ books }: ActiveReadsProps) {
                         className="text-cf-label font-semibold transition-colors"
                         style={{ color: "var(--accent-cyan)" }}
                       >
-                        Resume
+                        {bookCtaLabel(prog.currentChapter)}
                         <span className="ml-0.5 inline-block transition-transform duration-200 group-hover:translate-x-0.5">
                           →
                         </span>
