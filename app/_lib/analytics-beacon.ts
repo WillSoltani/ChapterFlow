@@ -165,12 +165,17 @@ export function useAnalyticsBeacon(enabled = true) {
     if (pathname === firstPathThisLoad) sendPerformanceMetrics();
   }, [enabled, pathname]);
 
-  // Track navigation (route changes)
+  // Track navigation (route changes). Pages outside the beacon's reach are not
+  // remembered, so they never show up as the page a reader came from.
   useEffect(() => {
+    if (!enabled) {
+      prevPathRef.current = null;
+      return;
+    }
     const now = Date.now();
     const prev = prevPathRef.current;
 
-    if (enabled && prev !== null && prev !== pathname && readAnalyticsConsent()) {
+    if (prev !== null && prev !== pathname && readAnalyticsConsent()) {
       sendBeacon("navigation", {
         path: pathname,
         referrerPath: prev,

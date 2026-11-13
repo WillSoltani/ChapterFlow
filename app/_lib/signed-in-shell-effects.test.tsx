@@ -97,6 +97,19 @@ test("public pages fetch no settings and send no beacon", async () => {
   assert.deepEqual(requests, []);
 });
 
+test("arriving from a public page reports no navigation from it", async () => {
+  const Shell = loadShell();
+  pathname = "/pricing";
+  const view = render(<Shell />);
+  await settle();
+
+  pathname = "/dashboard";
+  view.rerender(<Shell />);
+  await waitFor(() => assert.ok(beacons().some((b) => b.type === "session_context")));
+  await settle();
+  assert.equal(beacons().filter((b) => b.type === "navigation").length, 0);
+});
+
 test("Home applies newer server preferences once per page load and sends the beacon", async () => {
   const Shell = loadShell();
   pathname = "/dashboard";
