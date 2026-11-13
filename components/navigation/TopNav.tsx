@@ -427,7 +427,7 @@ export function TopNav({
               </button>
 
               {showProfileMenu ? (
-                <div className="cf-panel-strong absolute right-0 top-11 w-56 rounded-2xl p-2">
+                <div className="cf-panel-strong absolute right-0 top-11 z-50 w-56 rounded-2xl p-2">
                   <div className="border-b border-(--cf-divider) px-3 py-2.5">
                     <p className="text-sm font-semibold text-(--cf-text-1)">{name || "Reader"}</p>
                     <p className="text-xs text-(--cf-text-3)">ChapterFlow</p>
