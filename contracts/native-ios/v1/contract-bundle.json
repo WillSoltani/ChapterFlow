@@ -9,7 +9,7 @@
     "sourceRevisionPhase": "uncommitted_backend",
     "generatedAt": "2026-07-15T03:48:02-03:00",
     "generatorVersion": "chapterflow-native-contract-generator-v1",
-    "generatorTreeDigest": "549b04e66bbe7fa79b345f5491ec93121f8fd2c97118c5f8e99cf6d8856d0334",
+    "generatorTreeDigest": "7606f7531057eca1766a494d9345cb4f183bae5b1a115c38eb809e0a17d852e4",
     "committedInputTree": null,
     "syntheticDataOnly": true,
     "deployedRevision": null,
@@ -2804,7 +2804,7 @@
         "decoders": [
           "Decodable<ReadingSessionResponse|SessionEventResponse>"
         ],
-        "optionality": "Exact optionality is source-fenced; additive unknown fields are allowed.",
+        "optionality": "Optional request field localDay (YYYY-MM-DD, the reader's local calendar day) files the session under that day when it is within one day of the server's UTC date; when absent or out of range the server-clock day of occurredAt is used, as before. Additive unknown fields are allowed.",
         "pagination": "none",
         "versionSemantics": "No explicit API contract version is emitted.",
         "assetSemantics": "No external asset semantics."
@@ -2992,7 +2992,7 @@
           {
             "path": "app/app/api/book/me/reading-sessions/route.ts",
             "role": "route",
-            "sourceSha256": "e2421e34a353de69a3896993db319a0961494116e84cc1ea3eee4d57d904883f"
+            "sourceSha256": "20d57636df93bb87841bebe87bb47907f5a57d31b531178a3259220acdfba89f"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
