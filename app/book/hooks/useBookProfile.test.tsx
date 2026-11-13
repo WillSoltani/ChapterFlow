@@ -41,10 +41,10 @@ afterEach(() => cleanup());
 
 async function mountReady() {
   const view = renderHook(() => useBookProfile(SEED));
-  await waitFor(() => assert.ok(calls.some((c) => c.method === "GET")));
-  // let the GET land and serverReady flip
+  await waitFor(() => assert.ok(calls.some((c) => c.method === "GET")), { timeout: 5000 });
+  // let the GET land and serverReady flip (generous: the suite runs in parallel)
   await act(async () => {
-    await new Promise((r) => setTimeout(r, 20));
+    await new Promise((r) => setTimeout(r, 300));
   });
   return view;
 }

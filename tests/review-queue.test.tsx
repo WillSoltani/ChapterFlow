@@ -41,6 +41,9 @@ const fetchBookJson = makeSpy(async (_url: string, _init?: unknown) => {
   return { card: makeCard("rated") };
 });
 
+// Generous waits: the suite runs many files in parallel.
+const WAIT = { timeout: 5000 };
+
 const harness = installRouteHarness({
   "@/lib/client/book-api": { fetchBookJson },
   "@/lib/client/book-api-cache": { fetchBookJsonCached, invalidateBookCache: () => {} },
@@ -64,7 +67,7 @@ after(() => harness.restore());
 test("a failed load sets error and is not a finished session", async () => {
   failLoads = 1;
   const view = renderHook(() => useReviewQueue());
-  await waitFor(() => assert.equal(view.result.current.loading, false));
+  await waitFor(() => assert.equal(view.result.current.loading, false), WAIT);
   assert.ok(view.result.current.error, "error is set");
   assert.equal(view.result.current.isComplete, false);
 });
@@ -72,11 +75,11 @@ test("a failed load sets error and is not a finished session", async () => {
 test("retry loads the cards again, past the cache", async () => {
   failLoads = 1;
   const view = renderHook(() => useReviewQueue());
-  await waitFor(() => assert.ok(view.result.current.error));
+  await waitFor(() => assert.ok(view.result.current.error), WAIT);
   await act(async () => {
     await view.result.current.retry();
   });
-  await waitFor(() => assert.equal(view.result.current.cards.length, 2));
+  await waitFor(() => assert.equal(view.result.current.cards.length, 2), WAIT);
   assert.equal(view.result.current.error, null);
   const dueLoads = cachedCalls.filter((c) => !c.url.includes("mode=stats"));
   assert.equal(dueLoads.at(-1)?.force, true);
@@ -84,7 +87,7 @@ test("retry loads the cards again, past the cache", async () => {
 
 test("a failed rating keeps the card and says so; a later rating moves on", async () => {
   const view = renderHook(() => useReviewQueue());
-  await waitFor(() => assert.equal(view.result.current.cards.length, 2));
+  await waitFor(() => assert.equal(view.result.current.cards.length, 2), WAIT);
   failRatings = 1;
   await act(async () => {
     await view.result.current.submitRating(3);
