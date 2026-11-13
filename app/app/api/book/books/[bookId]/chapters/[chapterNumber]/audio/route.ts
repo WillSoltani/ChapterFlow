@@ -5,14 +5,16 @@ import { NextResponse } from "next/server";
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { resolveBookIdentity } from "@/app/app/api/book/_lib/identity";
 import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
-import { withBookApiErrors, bookErr } from "@/app/app/api/book/_lib/http";
+import { withBookApiErrors, bookErr, enforceDailyUserLimit } from "@/app/app/api/book/_lib/http";
+import { dailyLimitDateKey } from "@/app/app/api/book/_lib/http-guards-core";
+import { getUserAccessibleChapter } from "@/app/app/api/book/_lib/content-service";
+import { bookUserPk } from "@/app/app/api/book/_lib/keys";
 import { isBookApiError } from "@/app/app/api/book/_lib/errors";
 import { AuthError } from "@/app/app/api/_lib/auth";
 import { getBookTableName, getBookContentBucket } from "@/app/app/api/book/_lib/env";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
 import {
   getUserEntitlement,
-  getUserProgress,
   getUserQuizState,
   getUserProfileItem,
   getUserSettingsItem,
@@ -40,6 +42,11 @@ import {
   type NarrationContext,
 } from "@/app/app/api/book/_lib/audio-narration";
 import { logger } from "@/lib/logging/logger";
+import {
+  AUDIO_GENERATION_DAILY_LIMIT,
+  audioGenerationLimitSk,
+  createGenerationReservation,
+} from "./audio-generation-limit-core";
 
 export const runtime = "nodejs";
 
@@ -404,13 +411,35 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
     if (!pkg) return bookErr(req, 404, "book_not_found", "Book not found");
     const totalChapters = pkg.chapters.length;
 
+    // Same gate as the chapter text route: the book is started and this chapter
+    // is unlocked for this reader (403 book_not_started / chapter_locked).
+    await getUserAccessibleChapter({
+      tableName,
+      contentBucket: bucket,
+      userId: user.sub,
+      bookId,
+      chapterNumber,
+    });
+
+    // Paid speech generation is capped per user per day. Cached clips are free;
+    // a request that generates anything reserves one unit, once.
+    const reserveGeneration = createGenerationReservation(() =>
+      enforceDailyUserLimit({
+        tableName,
+        userPk: bookUserPk(user.sub),
+        counterSk: audioGenerationLimitSk(dailyLimitDateKey()),
+        limit: AUDIO_GENERATION_DAILY_LIMIT,
+        entity: "BOOK_AUDIO_TTS_COUNT",
+        resource: "new chapter audio",
+      }),
+    );
+
     // Gather user context in parallel
-    const [profile, streak, tier, _progress, userSettings, prevQuizState, prevPrevQuizState] =
+    const [profile, streak, tier, userSettings, prevQuizState, prevPrevQuizState] =
       await Promise.all([
         getUserProfileItem(tableName, user.sub),
         getOrCreateStreak(tableName, user.sub),
         getOrCreateTier(tableName, user.sub),
-        getUserProgress(tableName, user.sub, bookId),
         getUserSettingsItem(tableName, user.sub),
         chapterNumber > 1
           ? getUserQuizState(tableName, user.sub, bookId, chapterNumber - 1)
@@ -509,6 +538,7 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
           generate: async (d) => {
             if (d.type === "userGreeting") {
               if (!elevenLabsKey || !userName) return null;
+              await reserveGeneration();
               const buf = await generateAndCacheGreetingClip(
                 bucket,
                 d.key,
@@ -519,6 +549,7 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
             }
             if (d.type === "summary" || d.type === "takeaways" || d.type === "recap") {
               if (!elevenLabsKey) return null;
+              await reserveGeneration();
               const buf = await generateAndCacheBodySegment(
                 bucket,
                 d.key,
@@ -591,6 +622,7 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
     if (greetingKey && elevenLabsKey && userName) {
       const greetingResult = loadResults.find((r) => r.key === greetingKey);
       if (greetingResult && !greetingResult.buffer) {
+        await reserveGeneration();
         // Never log the user's display name (PII). The presence of a name is
         // implied by reaching this branch.
         audioDebug(`[audio] Generating greeting clip (${narrationCtx.timeOfDay})...`);
@@ -629,6 +661,7 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
       return bookErr(req, 503, "tts_unavailable", "Audio generation is not available — chapter audio has not been cached yet");
     }
     if (missingBody.length > 0 && elevenLabsKey) {
+      await reserveGeneration();
       audioDebug(`[audio] Generating ${missingBody.length} missing body segments in parallel...`);
       const generated = await Promise.allSettled(
         missingBody.map((r) =>

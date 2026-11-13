@@ -20,7 +20,7 @@ export default function ReviewFallbackPage() {
       eyebrow="Thanks for reading"
       title="Rate ChapterFlow"
       description="Reviews live in the ChapterFlow iOS app. Open the app to leave a rating, or head back to your library to keep learning."
-      primaryHref="/book"
+      primaryHref="/dashboard"
       primaryLabel="Back to my library"
     />
   );

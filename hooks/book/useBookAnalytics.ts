@@ -3,7 +3,6 @@
 // Canonical shared book-analytics hook (WS3-001).
 
 import { useCallback, useEffect, useState } from "react";
-import { fetchBookJson } from "@/lib/client/book-api";
 import { getBookErrorMessage } from "@/app/book/_lib/error-messages";
 import { useDashboardQuery, type DashboardQueryPayload } from "@/hooks/book/useDashboardQuery";
 import type { LibraryCatalogBook } from "@/lib/library-data";
@@ -63,15 +62,10 @@ export type HeatmapCell = {
   level: number;
 };
 
-export type UpcomingReviewItem = {
-  id: string;
-  prompt: string;
-  dueLabel: string;
-  bookId: string;
-};
-
 export type AnalyticsState = {
   streakDays: number;
+  /** Streak counted through yesterday and nothing read yet today. */
+  streakAtRisk: boolean;
   dailyGoalMinutes: number;
   minutesReadToday: number;
   totalMinutesRead: number;
@@ -87,7 +81,6 @@ export type AnalyticsState = {
   completedBookSnapshots: BookProgressSnapshot[];
   inProgressBookSnapshots: BookProgressSnapshot[];
   heatmapCells: HeatmapCell[];
-  upcomingReviews: UpcomingReviewItem[];
   hasAnyProgress: boolean;
   hasAnyEngagement: boolean;
   earnedBadgeIds: Set<string>;
@@ -188,12 +181,13 @@ function deriveLoopStep(
   return "summary";
 }
 
-function statusFromCounts(
+export function statusFromCounts(
   completed: number,
-  total: number
+  total: number,
+  chapterOpened = false
 ): "completed" | "in_progress" | "not_started" {
   if (total > 0 && completed >= total) return "completed";
-  if (completed > 0) return "in_progress";
+  if (completed > 0 || chapterOpened) return "in_progress";
   return "not_started";
 }
 
@@ -337,10 +331,15 @@ function buildHeatmap(
   return cells;
 }
 
-function calculateCurrentStreak(activityDays: Set<string>): number {
+export function calculateCurrentStreak(
+  activityDays: Set<string>,
+  today: string = toDayKey(new Date())
+): number {
   if (activityDays.size === 0) return 0;
 
-  let cursor = toDayKey(new Date());
+  // A streak stays alive until the day ends: with no reading yet today, count
+  // back from yesterday (streakAtRisk flags that state).
+  let cursor = activityDays.has(today) ? today : previousDayKey(today);
   let streak = 0;
 
   while (activityDays.has(cursor)) {
@@ -349,6 +348,13 @@ function calculateCurrentStreak(activityDays: Set<string>): number {
   }
 
   return streak;
+}
+
+export function streakAtRisk(
+  activityDays: Set<string>,
+  today: string = toDayKey(new Date())
+): boolean {
+  return !activityDays.has(today) && calculateCurrentStreak(activityDays, today) > 0;
 }
 
 function calculateLongestStreak(dayKeys: string[]): number {
@@ -416,7 +422,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
     let mounted = true;
     const payload = dashboardPayload;
 
-    const load = async () => {
+    const load = () => {
       try {
         // Surface the server's partial-load flag (#2). Critical data is present
         // (the route 503s otherwise), so we render normally + a non-blocking
@@ -513,7 +519,14 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
                     .map((chapterNumber) => chapters.find((chapter) => chapter.order === chapterNumber)?.id ?? "")
                     .filter(Boolean)
                 ).size;
-          const status = statusFromCounts(completedChapters, totalChapters);
+          // The reader persists a chapter-state row as soon as a chapter is
+          // opened, so any row means reading has started (a book-page view
+          // alone writes none).
+          const status = statusFromCounts(
+            completedChapters,
+            totalChapters,
+            (chapterStatesByBook.get(entry.id)?.length ?? 0) > 0
+          );
           const progressPercent = totalChapters
             ? Math.min(100, Math.round((completedChapters / totalChapters) * 100))
             : 0;
@@ -646,7 +659,8 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           (sum, item) => sum + item.completedChapters,
           0
         );
-        const currentStreak = calculateCurrentStreak(new Set(activityDays));
+        const activityDaySet = new Set(activityDays);
+        const currentStreak = calculateCurrentStreak(activityDaySet, todayKey);
         const longestStreak = calculateLongestStreak(activityDays);
         const heatmapCells = buildHeatmap(readingByDay);
         const completedBookSnapshots = engagedBookSnapshots.filter((item) => item.status === "completed");
@@ -735,36 +749,9 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           readingListCount: Array.isArray(payload.saved) ? payload.saved.length : 0,
         });
 
-        // Load real FSRS review cards (3s timeout). These are seeded server-side
-        // when a chapter quiz is passed; when none are due we show NOTHING rather
-        // than fabricating placeholder cards from in-progress books.
-        let upcomingReviews: UpcomingReviewItem[] = [];
-        try {
-          const fsrsController = new AbortController();
-          const fsrsTimeout = setTimeout(() => fsrsController.abort(), 3000);
-          const fsrsResponse = await fetchBookJson<{ cards: Array<{ cardId: string; front: string; dueAt: string; bookId: string }> }>(
-            "/app/api/book/me/reviews?limit=5",
-            { signal: fsrsController.signal }
-          );
-          clearTimeout(fsrsTimeout);
-          if (fsrsResponse.cards && fsrsResponse.cards.length > 0) {
-            upcomingReviews = fsrsResponse.cards.map((card) => ({
-              id: card.cardId,
-              prompt: card.front,
-              dueLabel: new Date(card.dueAt).toLocaleDateString(undefined, {
-                weekday: "short",
-                month: "short",
-                day: "numeric",
-              }),
-              bookId: card.bookId,
-            }));
-          }
-        } catch {
-          // FSRS unavailable or timed out — leave reviews empty.
-        }
-
         setAnalytics({
           streakDays: currentStreak,
+          streakAtRisk: streakAtRisk(activityDaySet, todayKey),
           dailyGoalMinutes: settingsDailyGoal,
           minutesReadToday: Math.floor(todayStats.activeMs / 60000),
           totalMinutesRead,
@@ -780,7 +767,6 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           completedBookSnapshots,
           inProgressBookSnapshots,
           heatmapCells,
-          upcomingReviews,
           hasAnyProgress: totalCompletedChapters > 0,
           hasAnyEngagement: engagedBookSnapshots.length > 0,
           earnedBadgeIds,

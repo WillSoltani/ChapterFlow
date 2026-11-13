@@ -19,6 +19,23 @@ export function normalizeAuthCacheGeneration(
   return UUID_PATTERN.test(normalized) ? normalized : null;
 }
 
+/**
+ * Which account the browser's stored personal data belongs to (DATA-01): an
+ * opaque one-way digest of the signed-in account, written by the sign-in
+ * callback and silent refresh. Unlike the generation it does not change when
+ * the same account signs in again. A local-storage scope only, never identity.
+ */
+export const LOCAL_DATA_OWNER_COOKIE = "cf_data_owner";
+
+const LOCAL_DATA_OWNER_PATTERN = /^[0-9a-f]{32}$/;
+
+export function normalizeLocalDataOwner(
+  value: string | null | undefined,
+): string | null {
+  const normalized = String(value ?? "").trim().toLowerCase();
+  return LOCAL_DATA_OWNER_PATTERN.test(normalized) ? normalized : null;
+}
+
 export function readCookieValue(cookieHeader: string, name: string): string | null {
   for (const part of cookieHeader.split(";")) {
     const separator = part.indexOf("=");

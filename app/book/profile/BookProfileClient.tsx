@@ -38,7 +38,7 @@ import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
 import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
 import { useBookEntitlements } from "@/app/book/hooks/useBookEntitlements";
 import { useBookProfile } from "@/app/book/hooks/useBookProfile";
-import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
+import { useOnboardingRedirect, useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useToast } from "@/app/book/hooks/useToast";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import {
@@ -298,12 +298,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
 
   // ─── Redirect if not onboarded ───
 
-  useEffect(() => {
-    if (!onboardingHydrated) return;
-    if (!onboarding.setupComplete) {
-      router.replace("/book");
-    }
-  }, [onboarding.setupComplete, onboardingHydrated, router]);
+  useOnboardingRedirect({ hydrated: onboardingHydrated, setupComplete: onboarding.setupComplete });
 
   // Gate: true once all data is loaded and sections are in the DOM
   const contentReady = onboardingHydrated && analyticsHydrated && badgeSystem.hydrated && profileHydrated && onboarding.setupComplete;

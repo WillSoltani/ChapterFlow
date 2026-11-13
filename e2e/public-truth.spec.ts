@@ -21,7 +21,7 @@ const PROD = process.env.E2E_MODE === "prod";
 const HEADERS = PROD ? { ...PROD_E2E_HEADERS } : undefined;
 const BASE = "http://127.0.0.1:3000";
 /** AUTH_LOGIN_BOOK_URL (app/_lib/chapterflow-brand; its "@/" imports do not load here). */
-const AUTH_LOGIN_BOOK_URL = "/auth/login?returnTo=%2Fbook";
+const AUTH_LOGIN_BOOK_URL = "/auth/login?returnTo=%2Fdashboard";
 
 async function loggedOutPage(browser: Browser): Promise<{ page: Page; errors: string[]; close: () => Promise<void> }> {
   const ctx = await browser.newContext({

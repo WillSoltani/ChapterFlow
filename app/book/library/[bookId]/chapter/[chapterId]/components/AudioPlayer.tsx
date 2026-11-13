@@ -39,6 +39,7 @@ export function AudioPlayer({
 }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
+  const minimizedBarRef = useRef<HTMLDivElement>(null);
   const autoPlayedRef = useRef(false);
   const loadedParamsRef = useRef("");
   const knownDurationRef = useRef(0);
@@ -64,6 +65,24 @@ export function AudioPlayer({
   const [error, setError] = useState<string | null>(null);
   const [audioReady, setAudioReady] = useState(false);
   const [loadedParams, setLoadedParams] = useState("");
+
+  // While the minimized bar is showing, publish its height so the floating
+  // "Ask" button can sit above it instead of covering its Expand/Close buttons.
+  const barShowing = open && minimized;
+  useEffect(() => {
+    if (!barShowing) return;
+    const root = document.documentElement;
+    const publish = () => {
+      const h = minimizedBarRef.current?.offsetHeight ?? 0;
+      root.style.setProperty("--reader-audio-bar-h", `${h}px`);
+    };
+    publish();
+    window.addEventListener("resize", publish);
+    return () => {
+      window.removeEventListener("resize", publish);
+      root.style.removeProperty("--reader-audio-bar-h");
+    };
+  }, [barShowing]);
 
   const paramsKey = `${bookId}:${chapterNumber}:${tone}:${variant}`;
   const audioMatchesCurrent = !audioReady || loadedParams === paramsKey;
@@ -319,7 +338,7 @@ export function AudioPlayer({
         onClick={handleOpen}
         title="Listen to this chapter"
         aria-label="Listen to this chapter"
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) shadow-lg transition hover:brightness-110"
+        className="pointer-events-auto ml-auto flex h-12 w-12 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) shadow-lg transition hover:brightness-110 [html[data-reader-fab-hidden]_&]:max-md:pointer-events-none [html[data-reader-fab-hidden]_&]:max-md:translate-y-6 [html[data-reader-fab-hidden]_&]:max-md:opacity-0"
       >
         <Headphones className="h-5 w-5" />
       </button>
@@ -331,7 +350,7 @@ export function AudioPlayer({
     return (
       <>
         <audio ref={audioRef} preload="auto" />
-        <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-(--cr-glass-border) bg-(--cr-bg-root)/95 backdrop-blur-lg pl-4 pr-[4.5rem] pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-4px_24px_rgba(0,0,0,0.12)] sm:pr-4">
+        <div ref={minimizedBarRef} className="pointer-events-auto fixed bottom-0 left-0 right-0 z-50 border-t border-(--cr-glass-border) bg-(--cr-bg-root)/95 backdrop-blur-lg px-4 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-4px_24px_rgba(0,0,0,0.12)]">
           <div className="mx-auto flex max-w-3xl items-center gap-3">
             <button type="button" onClick={togglePlay} className="cf-pressable flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) transition hover:brightness-110" aria-label={playing ? "Pause" : "Play"}>
               {playing ? <Pause className="h-4 w-4" /> : <Play className="ml-0.5 h-4 w-4" />}
@@ -363,7 +382,7 @@ export function AudioPlayer({
   return (
     <>
       <audio ref={audioRef} preload="auto" />
-      <div className="cr-glass-card overflow-hidden border-(--cr-accent)/25 shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
+      <div className="cr-glass-card pointer-events-auto overflow-hidden border-(--cr-accent)/25 shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
         <div className="flex items-center justify-between px-4 pt-3 pb-1">
           <div className="flex items-center gap-2">
             {playing ? <Volume2 className="h-3.5 w-3.5 text-(--cr-accent) animate-pulse" /> : <Headphones className="h-3.5 w-3.5 text-(--cr-accent)" />}

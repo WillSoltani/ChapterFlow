@@ -1,6 +1,7 @@
 import { requireDashboardAccess } from "@/app/_lib/require-dashboard-access";
 import { redirectIfOnboarded } from "@/app/_lib/redirect-if-onboarded";
 import { OnboardingFlow } from "./components/OnboardingFlow";
+import { TokenExpiryGuard } from "@/components/auth/TokenExpiryGuard";
 
 export default async function OnboardingPage() {
   // This route renders the onboarding flow, so it must opt out of the helper's
@@ -12,5 +13,10 @@ export default async function OnboardingPage() {
   // so both funnel entry points fail open identically on a non-auth backend hiccup.
   await redirectIfOnboarded();
 
-  return <OnboardingFlow />;
+  return (
+    <>
+      <OnboardingFlow />
+      <TokenExpiryGuard />
+    </>
+  );
 }

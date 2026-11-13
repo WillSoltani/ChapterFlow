@@ -2,10 +2,18 @@
 
 import { useCallback } from "react";
 import type { ExtendedSettings } from "../types/settings";
-import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
+import type { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
 
-export function useSettingsPage() {
-  const { hydrated, state: prefs, patchSection } = useBookPreferences();
+type BookPreferences = ReturnType<typeof useBookPreferences>;
+
+// ACCT-01: takes the page's single preferences instance. Mounting a second
+// useBookPreferences here gave the page two stores that each wrote their whole
+// copy, so one control's change was reverted by the other's next save.
+export function useSettingsPage({
+  hydrated,
+  state: prefs,
+  patchSection,
+}: Pick<BookPreferences, "hydrated" | "state" | "patchSection">) {
 
   const patch = useCallback(
     (updates: Partial<ExtendedSettings>) => {
