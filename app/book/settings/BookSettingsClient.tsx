@@ -19,6 +19,7 @@ import {
 
 // Existing hooks
 import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
+import type { PreferencesSaveStatus } from "@/app/book/hooks/useBookPreferences";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookEntitlements } from "@/app/book/hooks/useBookEntitlements";
 import type { BillingInterval } from "@/app/book/hooks/useBookEntitlements";
@@ -159,26 +160,53 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   const { billingState, launchBillingAction, redeemLicenseKey } =
     useBookEntitlements(true);
   const { toast, showToast } = useToast();
-  const saveToastDebounceRef = useRef<number | null>(null);
+
+  // ACCT-13: save feedback follows the writes themselves. Preference writes
+  // report through the hook's saveStatus; the reminder and profile writes that
+  // bypass it report through trackSideWrite.
+  const [sideSaveStatus, setSideSaveStatus] = useState<PreferencesSaveStatus>("idle");
+  const sideRetryRef = useRef<(() => void) | null>(null);
+  const trackSideWrite = useCallback((run: () => Promise<unknown>) => {
+    const attempt = () => {
+      setSideSaveStatus("saving");
+      run()
+        .then(() => setSideSaveStatus("saved"))
+        .catch(() => {
+          sideRetryRef.current = attempt;
+          setSideSaveStatus("error");
+        });
+    };
+    attempt();
+  }, []);
+  const prefsSaveStatus = bookPreferences.saveStatus;
+  const retryPrefsSave = bookPreferences.retrySave;
+  const saveStatus: PreferencesSaveStatus =
+    prefsSaveStatus === "error" || sideSaveStatus === "error"
+      ? "error"
+      : prefsSaveStatus === "saving" || sideSaveStatus === "saving"
+        ? "saving"
+        : prefsSaveStatus === "saved" || sideSaveStatus === "saved"
+          ? "saved"
+          : "idle";
+  // Set by a user change (every control calls showSavedToast); the "Saved"
+  // toast then appears once that change's write has succeeded.
+  const saveFeedbackArmedRef = useRef(false);
   const showSavedToast = useCallback(() => {
-    if (saveToastDebounceRef.current) {
-      window.clearTimeout(saveToastDebounceRef.current);
-    }
-    saveToastDebounceRef.current = window.setTimeout(() => {
-      showToast("Saved", "success", {
-        autoDismissMs: 1500,
-        presentation: "saved",
-      });
-    }, 400);
-  }, [showToast]);
-  useEffect(
-    () => () => {
-      if (saveToastDebounceRef.current) {
-        window.clearTimeout(saveToastDebounceRef.current);
-      }
-    },
-    [],
-  );
+    saveFeedbackArmedRef.current = true;
+  }, []);
+  useEffect(() => {
+    if (saveStatus !== "saved" || !saveFeedbackArmedRef.current) return;
+    saveFeedbackArmedRef.current = false;
+    showToast("Saved", "success", {
+      autoDismissMs: 1500,
+      presentation: "saved",
+    });
+  }, [saveStatus, showToast]);
+  const retryFailedSaves = useCallback(() => {
+    saveFeedbackArmedRef.current = true;
+    if (prefsSaveStatus === "error") retryPrefsSave();
+    if (sideSaveStatus === "error") sideRetryRef.current?.();
+  }, [prefsSaveStatus, retryPrefsSave, sideSaveStatus]);
 
   // Identity + nav search for the shared TopNav. Settings has its own in-page
   // search (useSettingsSearch); the global search panel stays disabled here.
@@ -307,14 +335,16 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     if (!changed) return;
     const timer = setTimeout(() => {
       onboardingProfileBaselineRef.current = snapshot;
-      fetch("/app/api/book/me/profile", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ profile: changed }),
-      }).catch(() => {});
+      trackSideWrite(() =>
+        fetchBookJson("/app/api/book/me/profile", {
+          method: "PATCH",
+          body: JSON.stringify({ profile: changed }),
+        }),
+      );
     }, 800);
     return () => clearTimeout(timer);
   }, [
+    trackSideWrite,
     onboardingHydrated,
     onboarding.learningStyle,
     onboarding.quizIntensity,
@@ -352,13 +382,15 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   // ride a dedicated PATCH rather than the preferences full-state sync — the
   // settings allow-list already accepts them and mergeSettings preserves them.
   const persistReminderSchedule = useCallback((timeLocal: string) => {
-    fetchBookJson("/app/api/book/me/settings", {
-      method: "PATCH",
-      body: JSON.stringify(
-        buildReminderSchedulePatch(timeLocal, detectReminderTimezone()),
-      ),
-    }).catch(() => {});
-  }, []);
+    trackSideWrite(() =>
+      fetchBookJson("/app/api/book/me/settings", {
+        method: "PATCH",
+        body: JSON.stringify(
+          buildReminderSchedulePatch(timeLocal, detectReminderTimezone()),
+        ),
+      }),
+    );
+  }, [trackSideWrite]);
 
   // F4: The reading-reminder cron only sends the reminder EMAIL when the user
   // has opted into the email channel (`settings.notifications.channels.email ===
@@ -377,11 +409,13 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
       reminderTime || undefined,
     );
     if (!patch) return;
-    fetchBookJson("/app/api/book/me/settings", {
-      method: "PATCH",
-      body: JSON.stringify(patch),
-    }).catch(() => {});
-  }, [reminderTime]);
+    trackSideWrite(() =>
+      fetchBookJson("/app/api/book/me/settings", {
+        method: "PATCH",
+        body: JSON.stringify(patch),
+      }),
+    );
+  }, [reminderTime, trackSideWrite]);
 
   // ACCT-08: there is deliberately no background write here. A former one-shot
   // backfill seeded the reminder schedule and `channels.email: true` on any
@@ -1741,6 +1775,22 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
         detail={toast.detail}
         presentation={toast.presentation}
       />
+
+      {saveStatus === "error" && (
+        <div
+          role="alert"
+          className="fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-3 rounded-full border border-(--cf-danger-border) bg-(--cf-danger-bg) px-4 py-2 text-sm text-(--cf-danger-text) shadow-shadow-elevated"
+        >
+          <span>Couldn&apos;t save your change.</span>
+          <button
+            type="button"
+            onClick={retryFailedSaves}
+            className="cf-pressable min-h-[44px] font-semibold underline underline-offset-2"
+          >
+            Retry
+          </button>
+        </div>
+      )}
 
       {/* Micro Celebrations */}
       <MicroCelebration event={celebration} reducedMotion={reducedMotion} />

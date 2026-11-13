@@ -199,3 +199,28 @@ test("ACCT-08: switching reading reminders on is what turns email on", async () 
   );
   assert.equal(optIns.length, 1);
 });
+
+test("ACCT-13: a failed save says so and offers a retry; Saved shows only after success", async () => {
+  failWrites = true;
+  const view = renderSettings();
+  await wait(100);
+  toggleSection(view, "Appearance");
+  await wait(20);
+  fireEvent.click(within(section(view, "Appearance")).getByRole("radio", { name: "Dark" }));
+  await wait(900);
+
+  assert.equal(view.queryByText("Saved"), null, "no Saved toast for a failed write");
+  const alert = view.getByRole("alert");
+  assert.match(alert.textContent ?? "", /Couldn.t save/);
+
+  failWrites = false;
+  fireEvent.click(within(alert).getByRole("button", { name: "Retry" }));
+  await wait(100);
+
+  assert.equal(view.queryByRole("alert"), null);
+  assert.ok(view.getByText("Saved"));
+  const appearanceWrites = writes("/me/settings").filter(
+    (c) => (c.body as { settings?: { appearance?: unknown } }).settings?.appearance,
+  );
+  assert.equal(appearanceWrites.length, 2, "the retry re-sends the change");
+});
