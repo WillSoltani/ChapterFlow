@@ -383,65 +383,11 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     }).catch(() => {});
   }, [reminderTime]);
 
-  // H26 backfill: users who chose a reminder time before this fix have
-  // profile.reminderTime but no settings.notifications.reminderTimeLocal/zone,
-  // so the cron defaults them to 20:00 UTC. On first load, if reminders are on
-  // and the canonical fields are absent, seed them from the onboarding time plus
-  // the device timezone. Deferred past the preferences hook's debounced
-  // full-state sync (≤500ms) so the read sees a settled row and the write lands
-  // last (those keys are never carried by the full-state sync, so it can only
-  // preserve them, never overwrite).
-  //
-  // F4 backfill: the same one-shot effect also seeds the email opt-in
-  // (`channels.email: true`) for users who already had reminders ON before the
-  // opt-in was ever written — including those H26 already gave a reminderTime, who
-  // would otherwise short-circuit the seed below. Without this their reminder
-  // email stays gated off forever (the cron requires channels.email === true).
-  const reminderBackfilledRef = useRef(false);
-  useEffect(() => {
-    if (!hydrated || reminderBackfilledRef.current) return;
-    if (!preferences.notifications.readingReminderEnabled) return;
-    reminderBackfilledRef.current = true;
-    let cancelled = false;
-    const timer = window.setTimeout(() => {
-      fetchBookJson<{
-        settings: {
-          notifications?: {
-            reminderTimeLocal?: unknown;
-            reminderTimezone?: unknown;
-            channels?: { email?: unknown };
-          };
-        } | null;
-      }>("/app/api/book/me/settings")
-        .then((payload) => {
-          if (cancelled) return;
-          const notif = payload.settings?.notifications;
-          const hasSchedule =
-            typeof notif?.reminderTimeLocal === "string" &&
-            typeof notif?.reminderTimezone === "string";
-          if (!hasSchedule) {
-            // Seeding the schedule already carries channels.email: true.
-            persistReminderSchedule(onboarding.reminderTime || "20:00");
-            return;
-          }
-          // Schedule already canonical (H26) — only the email opt-in may be missing.
-          if (notif?.channels?.email !== true) {
-            persistReminderEmailOptIn(true);
-          }
-        })
-        .catch(() => {});
-    }, 1200);
-    return () => {
-      cancelled = true;
-      window.clearTimeout(timer);
-    };
-  }, [
-    hydrated,
-    preferences.notifications.readingReminderEnabled,
-    onboarding.reminderTime,
-    persistReminderSchedule,
-    persistReminderEmailOptIn,
-  ]);
+  // ACCT-08: there is deliberately no background write here. A former one-shot
+  // backfill seeded the reminder schedule and `channels.email: true` on any
+  // visit with reminders on (the default), opting visitors in to email without
+  // an action. Email consent is now written only by the reminder toggle and the
+  // reminder-time picker below, and nothing is written on page load.
 
   // Derived state
   const isPro = billingState.payload?.entitlement.plan === "PRO";

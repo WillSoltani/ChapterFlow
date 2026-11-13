@@ -164,3 +164,38 @@ test("ACCT-04: the reminder time shown is the one the server sends at", async ()
   const input = within(section(view, "Notifications")).getByLabelText("Reminder time") as HTMLInputElement;
   assert.equal(input.value, "07:00");
 });
+
+test("ACCT-08 / LIVE-08: opening Settings writes nothing to settings or profile", async () => {
+  // readingReminderEnabled defaults to true, which used to trigger a background
+  // write that opted the visitor in to email.
+  renderSettings();
+  await wait(2000);
+  assert.deepEqual(writes("/me/settings"), []);
+  assert.deepEqual(writes("/me/profile"), []);
+});
+
+test("ACCT-08: switching reading reminders on is what turns email on", async () => {
+  const view = renderSettings();
+  await wait(100);
+  toggleSection(view, "Notifications");
+  await wait(50);
+  const reminders = within(section(view, "Notifications")).getByRole("switch", {
+    name: "Reading reminders",
+  });
+  fireEvent.click(reminders); // off
+  await wait(50);
+  assert.equal(
+    writes("/me/settings").some((c) => JSON.stringify(c.body).includes('"channels"')),
+    false,
+    "switching reminders off does not touch email consent",
+  );
+  fireEvent.click(reminders); // on
+  await wait(50);
+
+  const optIns = writes("/me/settings").filter(
+    (c) =>
+      (c.body as { settings?: { notifications?: { channels?: { email?: boolean } } } }).settings
+        ?.notifications?.channels?.email === true,
+  );
+  assert.equal(optIns.length, 1);
+});
