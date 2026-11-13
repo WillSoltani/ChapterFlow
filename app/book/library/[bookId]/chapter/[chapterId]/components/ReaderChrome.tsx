@@ -143,7 +143,9 @@ export function ReaderChrome({
             state.focusMode ? "hidden" : "",
           ].join(" ")}
         >
-          <div className="pointer-events-auto md:ml-auto">
+          {/* Phones: this row spans the screen, so only the player's own
+           *  controls take taps; the empty rest lets taps reach the page. */}
+          <div className="pointer-events-none md:pointer-events-auto md:ml-auto">
             <LazyAudioPlayer
               bookId={bookId}
               chapterNumber={chapter.order}
