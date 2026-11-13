@@ -8,9 +8,9 @@ import {
   countUnreadNotifications,
   markNotificationRead,
 } from "@/app/app/api/book/_lib/notifications-repo";
-import { notificationSk } from "@/app/app/api/book/_lib/keys";
+import { bookUserPk, notificationSk } from "@/app/app/api/book/_lib/keys";
 import {
-  decodeListCursor,
+  decodeKeyCursor,
   encodeListCursor,
   parseListPaginationParams,
 } from "@/app/app/api/book/_lib/list-pagination-core";
@@ -36,7 +36,7 @@ export async function GET(req: Request) {
       maxLimit: NOTIFICATION_MAX_PAGE_SIZE,
     });
     const exclusiveStartKey = params.cursor
-      ? decodeListCursor<Record<string, unknown>>(params.cursor)
+      ? decodeKeyCursor(params.cursor, { pk: bookUserPk(user.sub), skPrefix: "NOTIF#" })
       : undefined;
 
     const [page, unreadCount] = await Promise.all([

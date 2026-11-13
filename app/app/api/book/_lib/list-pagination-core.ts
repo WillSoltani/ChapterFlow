@@ -78,6 +78,33 @@ export function decodeListCursor<T = unknown>(raw: string): T {
   }
 }
 
+/**
+ * Decode a cursor that wraps a DynamoDB `LastEvaluatedKey` ({ PK, SK }) and
+ * check it belongs to the caller's partition and list before it is used as an
+ * `ExclusiveStartKey`. Anything else throws `BookApiError(400,
+ * "invalid_cursor")` instead of reaching DynamoDB (API-30). Extra attributes
+ * are dropped.
+ */
+export function decodeKeyCursor(
+  raw: string,
+  expect: { pk: string; skPrefix: string }
+): { PK: string; SK: string } {
+  const decoded = decodeListCursor<unknown>(raw);
+  const rec =
+    decoded && typeof decoded === "object" && !Array.isArray(decoded)
+      ? (decoded as Record<string, unknown>)
+      : null;
+  if (
+    !rec ||
+    rec.PK !== expect.pk ||
+    typeof rec.SK !== "string" ||
+    !rec.SK.startsWith(expect.skPrefix)
+  ) {
+    throw new BookApiError(400, "invalid_cursor", "We couldn't load more items. Refresh and try again.");
+  }
+  return { PK: rec.PK, SK: rec.SK };
+}
+
 interface ArrayCursorPayload {
   offset: number;
   id: string;
