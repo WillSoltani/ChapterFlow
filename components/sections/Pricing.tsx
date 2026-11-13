@@ -15,7 +15,7 @@ import {
   formatAmount,
   TRIAL_CTA_LABEL,
   FREE_OFFER_LABEL,
-  UPGRADE_LOGIN_URL,
+  upgradeLoginUrlForInterval,
   PRICING_TIER_DISPLAY,
   PRO_FEATURES,
   ANNUAL_UPFRONT_MONTHLY_AMOUNT,
@@ -183,7 +183,7 @@ export function Pricing() {
     ? "/book/settings"
     : loggedIn
       ? upgradeHrefForInterval(proInterval)
-      : UPGRADE_LOGIN_URL;
+      : upgradeLoginUrlForInterval(proInterval);
   const proCtaLabel = isPro ? "Manage subscription" : TRIAL_CTA_LABEL;
   // Only the monthly view reads this; the annual view prices the annual-upfront
   // plan from its own figures (never the billed-annually plan's).

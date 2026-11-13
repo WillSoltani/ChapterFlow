@@ -41,6 +41,17 @@ const TIER_DISPLAY: Record<BillingInterval, { name: string; badge?: string }> = 
   annual_upfront: { name: "Annual upfront", badge: "Best value" },
 };
 
+/** Honor a deep-link interval hint, but ONLY if it's actually offered (its
+ *  Stripe Price ID is configured), so an unpurchasable tier is never selected. */
+function defaultInterval(
+  pricingTiers: PricingTier[] | undefined,
+  initialInterval: BillingInterval | undefined,
+): BillingInterval {
+  const offered = (pricingTiers ?? []).some((t) => t.interval === initialInterval);
+  if (initialInterval && offered) return initialInterval;
+  return pricingTiers && pricingTiers.length > 1 ? "annual" : "monthly";
+}
+
 export function SubscriptionCard({
   plan,
   freeBookSlots,
@@ -61,14 +72,10 @@ export function SubscriptionCard({
   const [keyMessage, setKeyMessage] = useState("");
   const [actionLoading, setActionLoading] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
-  const [selectedInterval, setSelectedInterval] = useState<BillingInterval>(() => {
-    // Honor a deep-link interval hint, but ONLY if it's actually offered (its
-    // Stripe Price ID is configured) — otherwise fall back to the default so we
-    // never pre-select an unpurchasable tier.
-    const offered = (pricingTiers ?? []).some((t) => t.interval === initialInterval);
-    if (initialInterval && offered) return initialInterval;
-    return pricingTiers && pricingTiers.length > 1 ? "annual" : "monthly";
-  });
+  // ACCT-11: the selection follows the deep-link hint and the offered tiers
+  // (which may arrive after mount) until the reader picks one themselves.
+  const [pickedInterval, setPickedInterval] = useState<BillingInterval | null>(null);
+  const selectedInterval = pickedInterval ?? defaultInterval(pricingTiers, initialInterval);
 
   const formattedDate = currentPeriodEnd
     ? new Date(currentPeriodEnd).toLocaleDateString(undefined, {
@@ -247,7 +254,7 @@ export function SubscriptionCard({
                   type="button"
                   role="radio"
                   aria-checked={isSelected}
-                  onClick={() => setSelectedInterval(tier.interval)}
+                  onClick={() => setPickedInterval(tier.interval)}
                   className={`cf-pressable flex items-center justify-between rounded-lg border px-3 py-2.5 text-left transition-colors ${
                     isSelected
                       ? "border-(--cf-accent) bg-(--cf-accent-muted)"
