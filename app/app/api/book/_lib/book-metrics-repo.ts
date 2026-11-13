@@ -31,7 +31,6 @@ import {
   readNum,
   readStr,
 } from "./repo-shared";
-import { dailyReaderMarkerSk } from "./book-metrics-core";
 
 export async function getUserEngagement(
   tableName: string,
@@ -222,6 +221,14 @@ export async function putBadgeAward(
 
 /** The reader marker only has to outlive its own day; keep a week of slack. */
 const DAILY_READER_MARKER_RETENTION_DAYS = 8;
+
+/**
+ * Sort key of the once-per-day reader marker, written under bookMetricsPk.
+ * It sorts after every `DAY#` row, so the KPI range query never returns it.
+ */
+export function dailyReaderMarkerSk(dayKey: string, userId: string): string {
+  return `METRICSREADER#${dayKey}#${userId}`;
+}
 
 /**
  * Increment the per-book, per-day reader metrics (unique readers + loop

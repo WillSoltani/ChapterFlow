@@ -69,9 +69,10 @@ Module._load = function patchedLoad(request: string, parent: unknown, isMain: bo
 };
 
 let incrementDailyReaderMetrics: typeof import("./book-metrics-repo").incrementDailyReaderMetrics;
+let dailyReaderMarkerSk: typeof import("./book-metrics-repo").dailyReaderMarkerSk;
 
 before(async () => {
-  ({ incrementDailyReaderMetrics } = await import("./book-metrics-repo"));
+  ({ incrementDailyReaderMetrics, dailyReaderMarkerSk } = await import("./book-metrics-repo"));
 });
 
 beforeEach(() => {
@@ -133,4 +134,16 @@ test("a failed counter update still rejects so the caller's best-effort catch se
   await assert.rejects(
     incrementDailyReaderMetrics(TABLE, { bookId: "b1", userId: "u1", dayKey: DAY, ts }),
   );
+});
+
+test("dailyReaderMarkerSk is per day and per reader, outside the DAY# row range", () => {
+  assert.equal(dailyReaderMarkerSk("2026-11-13", "user-1"), "METRICSREADER#2026-11-13#user-1");
+  assert.notEqual(
+    dailyReaderMarkerSk("2026-11-13", "user-1"),
+    dailyReaderMarkerSk("2026-11-14", "user-1"),
+  );
+  // The KPI query reads SK BETWEEN DAY#<start> AND DAY#<end>; a marker must
+  // never fall inside that range.
+  const marker = dailyReaderMarkerSk("2026-11-13", "user-1");
+  assert.ok(!(marker >= "DAY#2026-11-06" && marker <= "DAY#2026-11-13"));
 });

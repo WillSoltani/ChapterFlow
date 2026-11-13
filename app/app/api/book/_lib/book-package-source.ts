@@ -5,7 +5,6 @@ import type { BookPackage, ToneKey } from "@/app/book/data/book-package-core";
 import { readJsonFromS3 } from "./storage";
 import { getBookContentBucket } from "./env";
 import { BookApiError } from "./errors";
-import { createExpiringPackageCache } from "./book-package-cache-core";
 
 /**
  * Server-side source for the authored book package (formerly the ~37 MB of
@@ -24,6 +23,52 @@ import { createExpiringPackageCache } from "./book-package-cache-core";
 
 function packageKey(bookId: string): string {
   return `book-content/packages/${bookId}.v21.json`;
+}
+
+// Expiring cache for the packages read from S3 (API-15). A republish overwrites
+// a package in place without a deploy, so a warm server must pick the new copy
+// up within a few minutes; a missing package is remembered only briefly. The
+// clock is injected so the cache can be unit tested.
+
+/** A package found in S3 is reused for 5 minutes. */
+export const BOOK_PACKAGE_TTL_MS = 5 * 60 * 1000;
+/** A package missing from S3 is remembered for 60 seconds. */
+export const BOOK_PACKAGE_MISSING_TTL_MS = 60 * 1000;
+
+export type CacheLookup<T> = { hit: true; value: T | null } | { hit: false };
+
+export interface ExpiringPackageCache<T> {
+  get(key: string): CacheLookup<T>;
+  set(key: string, value: T | null): void;
+}
+
+export function createExpiringPackageCache<T>(opts: {
+  ttlMs?: number;
+  missingTtlMs?: number;
+  now?: () => number;
+} = {}): ExpiringPackageCache<T> {
+  const ttlMs = opts.ttlMs ?? BOOK_PACKAGE_TTL_MS;
+  const missingTtlMs = opts.missingTtlMs ?? BOOK_PACKAGE_MISSING_TTL_MS;
+  const now = opts.now ?? (() => Date.now());
+  const entries = new Map<string, { value: T | null; expiresAt: number }>();
+
+  return {
+    get(key) {
+      const entry = entries.get(key);
+      if (!entry) return { hit: false };
+      if (now() >= entry.expiresAt) {
+        entries.delete(key);
+        return { hit: false };
+      }
+      return { hit: true, value: entry.value };
+    },
+    set(key, value) {
+      entries.set(key, {
+        value,
+        expiresAt: now() + (value === null ? missingTtlMs : ttlMs),
+      });
+    },
+  };
 }
 
 // Module-level caches survive across invocations on a warm Lambda. A runtime

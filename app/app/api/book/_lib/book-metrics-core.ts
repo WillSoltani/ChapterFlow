@@ -1,6 +1,6 @@
 /**
- * Pure helpers for the per-book daily reader KPIs (API-08). Shared by
- * books/[bookId]/metrics, books/reader-metrics and book-metrics-repo.
+ * Pure helpers for the per-book daily reader KPIs (API-08), used by the
+ * books/[bookId]/metrics and books/reader-metrics routes.
  */
 
 export type BookReaderMetrics = {
@@ -9,14 +9,6 @@ export type BookReaderMetrics = {
   loopsToday: number;
   loopsWeek: number;
 };
-
-/**
- * Sort key of the once-per-day reader marker, written under bookMetricsPk.
- * It sorts after every `DAY#` row, so the KPI range query never returns it.
- */
-export function dailyReaderMarkerSk(dayKey: string, userId: string): string {
-  return `METRICSREADER#${dayKey}#${userId}`;
-}
 
 /**
  * Aggregate the daily KPI rows into today/week totals. The weekly reader

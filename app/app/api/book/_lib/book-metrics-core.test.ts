@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { aggregateMetrics, dailyReaderMarkerSk } from "./book-metrics-core";
+import { aggregateMetrics } from "./book-metrics-core";
 
 // API-08: "readers today" counted loop completions. The daily rows now count a
 // reader once per day; these tests pin the today/week aggregation shared by
@@ -44,16 +44,4 @@ test("aggregateMetrics: non-numeric counters count as zero", () => {
     loopsToday: 0,
     loopsWeek: 0,
   });
-});
-
-test("dailyReaderMarkerSk is per day and per reader, outside the DAY# row range", () => {
-  assert.equal(dailyReaderMarkerSk("2026-11-13", "user-1"), "METRICSREADER#2026-11-13#user-1");
-  assert.notEqual(
-    dailyReaderMarkerSk("2026-11-13", "user-1"),
-    dailyReaderMarkerSk("2026-11-14", "user-1"),
-  );
-  // The KPI query reads SK BETWEEN DAY#<start> AND DAY#<end>; a marker must
-  // never fall inside that range.
-  const marker = dailyReaderMarkerSk("2026-11-13", "user-1");
-  assert.ok(!(marker >= "DAY#2026-11-06" && marker <= "DAY#2026-11-13"));
 });
