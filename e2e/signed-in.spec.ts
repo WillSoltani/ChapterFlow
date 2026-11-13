@@ -54,30 +54,39 @@ function collectProblems(page: Page, plane: () => MockDataPlane | null): () => s
   return () => problems;
 }
 
+// Measure against the viewport the test configured, never window.innerWidth or
+// innerHeight: with isMobile on, Chromium zooms the page out to fit content
+// wider than the screen, and innerWidth / innerHeight grow with it, so a check
+// against them can never fail.
+function configuredViewport(page: Page): { width: number; height: number } {
+  const size = page.viewportSize();
+  if (!size) throw new Error("the phone cases need a fixed viewport");
+  return size;
+}
+
 async function expectNoSidewaysScroll(page: Page): Promise<void> {
-  const widths = await page.evaluate(() => ({
-    scroll: document.documentElement.scrollWidth,
-    inner: window.innerWidth,
-  }));
-  expect(widths.scroll, "page is wider than the phone viewport").toBeLessThanOrEqual(widths.inner);
+  const { width } = configuredViewport(page);
+  const scroll = await page.evaluate(() => document.documentElement.scrollWidth);
+  expect(scroll, `page is wider than the ${width}px phone viewport`).toBeLessThanOrEqual(width);
 }
 
 /** The fixed tab bar at the bottom of the phone screen is inside the viewport. */
 async function expectTabBarOnScreen(page: Page): Promise<void> {
-  const bars = await page.evaluate(() => {
+  const viewport = configuredViewport(page);
+  const bars = await page.evaluate(({ width, height }) => {
     const out: { top: number; bottom: number; height: number }[] = [];
     for (const nav of Array.from(document.querySelectorAll("nav"))) {
       const style = getComputedStyle(nav);
       const rect = nav.getBoundingClientRect();
       if (style.position !== "fixed" || style.display === "none" || style.visibility === "hidden") continue;
-      if (rect.height === 0 || rect.width < window.innerWidth * 0.9 || rect.top < window.innerHeight / 2) continue;
+      if (rect.height === 0 || rect.width < width * 0.9 || rect.top < height / 2) continue;
       out.push({ top: rect.top, bottom: rect.bottom, height: rect.height });
     }
-    return { bars: out, innerHeight: window.innerHeight };
-  });
-  expect(bars.bars.length, "no fixed tab bar found at the bottom of the phone screen").toBeGreaterThan(0);
-  for (const bar of bars.bars) {
-    expect(bar.bottom, "tab bar runs past the bottom of the screen").toBeLessThanOrEqual(bars.innerHeight + 1);
+    return out;
+  }, viewport);
+  expect(bars.length, "no fixed tab bar found at the bottom of the phone screen").toBeGreaterThan(0);
+  for (const bar of bars) {
+    expect(bar.bottom, "tab bar runs past the bottom of the screen").toBeLessThanOrEqual(viewport.height + 1);
     expect(bar.top, "tab bar starts above the screen").toBeGreaterThanOrEqual(0);
   }
 }
