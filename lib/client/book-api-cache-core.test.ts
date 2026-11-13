@@ -100,6 +100,32 @@ test("invalidation: dropping a key forces the next read to refetch", async () =>
   assert.equal(calls, 2);
 });
 
+test("set stores a fresh value, serves it without a fetch and notifies subscribers", async () => {
+  const clock = fakeClock();
+  let calls = 0;
+  const cache = createBookCache({
+    ttlMs: 30_000,
+    now: clock.now,
+    defaultFetcher: () => {
+      calls += 1;
+      return Promise.resolve(`V${calls}`);
+    },
+  });
+  const events: BookCacheEvent[] = [];
+  cache.subscribe(KEY, (event) => events.push(event));
+
+  assert.equal(await cache.load(KEY), "V1");
+  clock.advance(20_000);
+  cache.set(KEY, "LOCAL");
+  assert.deepEqual(cache.peek(KEY), { value: "LOCAL", fresh: true });
+  assert.deepEqual(events.at(-1), { type: "success" });
+
+  // The write restarts the fresh window: no fetch until it runs out.
+  clock.advance(20_000);
+  assert.equal(await cache.load(KEY), "LOCAL");
+  assert.equal(calls, 1);
+});
+
 test("invalidation notifies subscribers under the prefix even with no cached entry", () => {
   const clock = fakeClock();
   const cache = createBookCache({

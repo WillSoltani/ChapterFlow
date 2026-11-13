@@ -17,7 +17,12 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { fetchBookJson } from "@/lib/client/book-api";
-import { fetchBookJsonCached, peekBookCache } from "@/lib/client/book-api-cache";
+import {
+  fetchBookJsonCached,
+  invalidateBookCache,
+  peekBookCache,
+  updateBookCache,
+} from "@/lib/client/book-api-cache";
 
 const NOTIFICATIONS_KEY = "/app/api/book/me/notifications";
 
@@ -208,6 +213,10 @@ export function NotificationBell({ open: openProp, onOpenChange }: NotificationB
     };
   }, [open, setOpen]);
 
+  // The bell on the next page starts from the shared cache, so a read is written
+  // there at once (a tap on a linked notification navigates straight away), and
+  // the cached copy is dropped once the server has answered so the next page
+  // reads the server's.
   const markRead = useCallback((n: Notification) => {
     if (n.readAt) return;
     // Optimistic: mark this one read and drop the unread count.
@@ -216,17 +225,39 @@ export function NotificationBell({ open: openProp, onOpenChange }: NotificationB
       prev.map((x) => (x.notificationId === n.notificationId ? { ...x, readAt } : x))
     );
     setUnreadCount((c) => Math.max(0, c - 1));
+    updateBookCache<NotificationsPayload>(NOTIFICATIONS_KEY, (cached) => {
+      const wasUnread = cached.notifications.some(
+        (x) => x.notificationId === n.notificationId && !x.readAt
+      );
+      if (!wasUnread) return cached;
+      return {
+        ...cached,
+        notifications: cached.notifications.map((x) =>
+          x.notificationId === n.notificationId ? { ...x, readAt } : x
+        ),
+        unreadCount: Math.max(0, cached.unreadCount - 1),
+      };
+    });
     fetchBookJson(NOTIFICATIONS_KEY, {
       method: "POST",
       body: JSON.stringify({ notificationId: n.notificationId, createdAt: n.createdAt }),
-    }).catch(() => {});
+    })
+      .catch(() => {})
+      .finally(() => invalidateBookCache(NOTIFICATIONS_KEY));
   }, []);
 
   const markAllRead = () => {
     const now = new Date().toISOString();
     setNotifications((prev) => prev.map((n) => ({ ...n, readAt: n.readAt ?? now })));
     setUnreadCount(0);
-    fetchBookJson("/app/api/book/me/notifications/read-all", { method: "POST" }).catch(() => {});
+    updateBookCache<NotificationsPayload>(NOTIFICATIONS_KEY, (cached) => ({
+      ...cached,
+      notifications: cached.notifications.map((n) => ({ ...n, readAt: n.readAt ?? now })),
+      unreadCount: 0,
+    }));
+    fetchBookJson("/app/api/book/me/notifications/read-all", { method: "POST" })
+      .catch(() => {})
+      .finally(() => invalidateBookCache(NOTIFICATIONS_KEY));
   };
 
   return (
