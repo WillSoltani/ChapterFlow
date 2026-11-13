@@ -15,6 +15,7 @@ import {
 import {
   BookApiError,
   isTransactionConditionFailedAt,
+  transactionCancellationReasons,
 } from "@/app/app/api/book/_lib/errors";
 import {
   bookUserPk,
@@ -1470,10 +1471,39 @@ export async function adjustEngagementPointsAdmin(
 
 // ── Shop / personalization purchases (§5.1) ──────────────────────────────────
 //
-// Moved verbatim from me/shop/route.ts (WS3-002): the inventory ownership
-// check and the two TransactWriteCommand purchase flows (Gift a Friend +
-// catalog item), including their TransactionCanceledException → 400 mapping,
-// are unchanged.
+// Moved from me/shop/route.ts (WS3-002): the inventory ownership check and the
+// two TransactWriteCommand purchase flows (Gift a Friend + catalog item).
+//
+// API-10: a cancelled purchase is mapped by the item that failed. The balance
+// guard (TransactItem 0) is 400 insufficient_points; the one-time item (the
+// inventory Put, or the gift-code Put) is 409 already_owned; any other
+// cancellation is retried once, then 503 throttled. Nothing is charged in any
+// of these cases: the transaction is all or nothing.
+
+const BALANCE_ITEM_INDEX = 0;
+const INVENTORY_ITEM_INDEX = 1;
+const GIFT_CODE_ITEM_INDEX = 2;
+
+async function sendShopPurchase(
+  command: TransactWriteCommand,
+  ownershipIndex: number
+): Promise<void> {
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      await ddbDoc.send(command);
+      return;
+    } catch (error: unknown) {
+      if (transactionCancellationReasons(error) === null) throw error;
+      if (isTransactionConditionFailedAt(error, ownershipIndex)) {
+        throw new BookApiError(409, "already_owned", "You already own this item.");
+      }
+      if (isTransactionConditionFailedAt(error, BALANCE_ITEM_INDEX)) {
+        throw new BookApiError(400, "insufficient_points", "You don't have enough Insight Points for this yet.");
+      }
+    }
+  }
+  throw new BookApiError(503, "throttled", "ChapterFlow is busy right now. Please try again in a moment.");
+}
 
 export async function hasInventoryItem(
   tableName: string,
@@ -1506,8 +1536,7 @@ export async function purchaseGiftAFriend(
     rewardName: string;
   }
 ): Promise<void> {
-  try {
-    await ddbDoc.send(
+  await sendShopPurchase(
       new TransactWriteCommand({
         TransactItems: [
           {
@@ -1563,14 +1592,9 @@ export async function purchaseGiftAFriend(
             },
           },
         ],
-      })
-    );
-  } catch (error: unknown) {
-    if (error && typeof error === "object" && (error as Record<string, unknown>).name === "TransactionCanceledException") {
-      throw new BookApiError(400, "insufficient_points", "You don't have enough Insight Points for this yet.");
-    }
-    throw error;
-  }
+      }),
+    GIFT_CODE_ITEM_INDEX
+  );
 }
 
 export async function purchasePersonalizationItem(
@@ -1585,8 +1609,7 @@ export async function purchasePersonalizationItem(
     transactionId: string;
   }
 ): Promise<void> {
-  try {
-    await ddbDoc.send(
+  await sendShopPurchase(
       new TransactWriteCommand({
         TransactItems: [
           {
@@ -1643,12 +1666,7 @@ export async function purchasePersonalizationItem(
             },
           },
         ],
-      })
-    );
-  } catch (error: unknown) {
-    if (error && typeof error === "object" && (error as Record<string, unknown>).name === "TransactionCanceledException") {
-      throw new BookApiError(400, "insufficient_points", "You don't have enough Insight Points for this yet.");
-    }
-    throw error;
-  }
+      }),
+    INVENTORY_ITEM_INDEX
+  );
 }

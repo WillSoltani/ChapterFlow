@@ -120,9 +120,8 @@ export async function POST(req: Request) {
       const giftCode = generateGiftCode();
 
       // Atomic: deduct IP + record ledger entry + persist the gift code.
-      // Extracted verbatim into flow-points-repo.ts (WS3-002) — the
-      // TransactWriteCommand shape and the TransactionCanceledException → 400
-      // mapping are unchanged.
+      // flow-points-repo.ts maps a cancelled transaction by the item that
+      // failed (API-10).
       await purchaseGiftAFriend(tableName, {
         userId: user.sub,
         cost,
@@ -185,9 +184,9 @@ export async function POST(req: Request) {
 
     const cost = item.ipCost;
 
-    // Atomic: deduct IP + create inventory record + ledger entry. Extracted
-    // verbatim into flow-points-repo.ts (WS3-002) — the TransactWriteCommand
-    // shape and the TransactionCanceledException → 400 mapping are unchanged.
+    // Atomic: deduct IP + create inventory record + ledger entry.
+    // flow-points-repo.ts maps a cancelled transaction by the item that
+    // failed (API-10).
     await purchasePersonalizationItem(tableName, {
       userId: user.sub,
       cost,
