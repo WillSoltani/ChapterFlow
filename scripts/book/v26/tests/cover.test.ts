@@ -131,7 +131,7 @@ test("coverBrief: prompt.txt, brief.json and the ledger entry (created, then rep
   assert.equal(r.style, "painted-still-life");
   const brief = JSON.parse(fs.readFileSync(r.briefFile, "utf8"));
   assert.deepEqual(brief, { bookId: "demo-book", title: 'Say "No"', author: "B. Writer", concept: "A single red door in a long grey wall.", style: "painted-still-life", generation: COVER_GENERATION, at: "2026-11-12T10:00:00.000Z" });
-  assert.deepEqual(brief.generation, { model: "gpt_image_2", aspectRatio: "2:3", resolution: "2k", quality: "high", fallbackModels: ["nano_banana_pro", "soul_2"] });
+  assert.deepEqual(brief.generation, { model: "gpt_image_2_6", aspectRatio: "2:3", resolution: "2k", quality: "low", retryQuality: "medium" });
   const text = fs.readFileSync(f.ledgerPath, "utf8");
   assert.equal(text, JSON.stringify({ "demo-book": { concept: "A single red door in a long grey wall.", style: "painted-still-life", at: "2026-11-12T10:00:00.000Z" } }, null, 2) + "\n");
 
@@ -311,7 +311,9 @@ test("cli cover: the status, the prompt and the install forms; flag misuse exits
   const brief = await cli("cover", "--style", "engraving", "--book", config, "--concept", "A paper boat on a dark sea.");
   assert.equal(brief.code, 0, brief.err);
   assert.match(brief.out, /^demo-book: style engraving\n/);
-  assert.ok(brief.out.includes("generation: model gpt_image_2, aspect ratio 2:3, resolution 2k, quality high; if the connector lacks that model: nano_banana_pro, then soul_2\n"), brief.out);
+  const promptPath = path.join(runDir, "cover", "prompt.txt");
+  assert.ok(brief.out.includes(`generate: higgsfield generate create gpt_image_2_6 --prompt "$(cat '${promptPath}')" --aspect_ratio 2:3 --resolution 2k --quality low --wait --json\n`), brief.out);
+  assert.ok(brief.out.includes("  after two tries with wrong lettering: --quality medium\n"), brief.out);
   const lines = brief.out.trimEnd().split("\n");
   assert.equal(lines.at(-1), path.join(runDir, "cover", "prompt.txt"), "prompt.txt is the last line");
   assert.match(fs.readFileSync(path.join(runDir, "cover", "prompt.txt"), "utf8"), /THE PICTURE: A paper boat on a dark sea\.\n\nART DIRECTION: A vintage engraving/);

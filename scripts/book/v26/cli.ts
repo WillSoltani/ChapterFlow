@@ -37,7 +37,7 @@ import { publishBook } from "./src/publish";
 import { autoBook, autoQueue, type AutoOptions, type AutoOutcome } from "./src/auto";
 import { keysFor } from "./src/keysText";
 import { siteBook, type PackageStore, type Runner } from "./src/site";
-import { COVER_GENERATION, coverBrief, coverStatus, installCover } from "./src/cover";
+import { COVER_GENERATION, coverBrief, coverCommand, coverStatus, installCover } from "./src/cover";
 
 const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys", "score", "publish", "auto", "site", "cover"] as const;
 type Verb = (typeof VERBS)[number];
@@ -590,9 +590,9 @@ async function cmdCover(ctx: PipelineCtx, opts: { concept?: string; style?: stri
     }
     if (opts.concept !== undefined) {
       const r = coverBrief(ctx, { concept: opts.concept, ...(opts.style !== undefined ? { style: opts.style } : {}), ...(deps.coverLedger !== undefined ? { ledgerPath: deps.coverLedger } : {}) });
-      const g = COVER_GENERATION;
       io.out(`${bookId}: style ${r.style}${opts.style === undefined ? " (the one the fewest other books use)" : ""}\n`);
-      io.out(`generation: model ${g.model}, aspect ratio ${g.aspectRatio}, resolution ${g.resolution}, quality ${g.quality}; if the connector lacks that model: ${g.fallbackModels.join(", then ")}\n`);
+      io.out(`generate: ${coverCommand(r.promptFile)}\n`);
+      io.out(`  after two tries with wrong lettering: --quality ${COVER_GENERATION.retryQuality}\n`);
       io.out(`${r.briefFile}\n`);
       io.out(`${r.promptFile}\n`);
       return 0;

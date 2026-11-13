@@ -1,5 +1,5 @@
-/** The cover step. The session that runs a book asks an image model for the cover through a connector this tool cannot
- *  call, so the tool does the two ends only: it writes the prompt (a fixed recipe plus the session's one-sentence picture
+/** The cover step. The session that runs a book asks an image model for the cover with the Higgsfield CLI, which this
+ *  tool does not call, so the tool does the two ends only: it writes the prompt (a fixed recipe plus the session's one-sentence picture
  *  and an art direction from a short list), and it turns the image that comes back into the 600x900 WebP and AVIF pair
  *  the web app ships. No model call and no network call happen here.
  *
@@ -26,14 +26,23 @@ export const COVER_STYLES: ReadonlyArray<readonly [string, string]> = [
   ["engraving", "A vintage engraving in two inks on cream paper: fine hatched lines, one accent colour, with the title in a classic book serif."],
 ];
 
-/** What the session passes to the image connector. The tool only records and prints it. */
+/** What the session passes to the Higgsfield CLI (`higgsfield generate create`). The tool only records and prints it.
+ *  Measured 2026-11-12 on the owner's plan, where every CLI generation spends credits (the plan's unlimited allowance
+ *  does not apply there): this model at 2k costs 0.5 credits a try at quality low and 1 at medium, and gave a clean,
+ *  correctly lettered cover at low; gpt_image_2 at 2k high costs 6.5 for a slightly finer texture. */
 export const COVER_GENERATION = {
-  model: "gpt_image_2",
+  model: "gpt_image_2_6",
   aspectRatio: "2:3",
   resolution: "2k",
-  quality: "high",
-  fallbackModels: ["nano_banana_pro", "soul_2"],
+  quality: "low",
+  retryQuality: "medium",
 } as const;
+
+/** The command a session runs for one image: it blocks until the job is done and prints JSON whose `result_url` is the image. */
+export function coverCommand(promptFile: string, quality: string = COVER_GENERATION.quality): string {
+  const g = COVER_GENERATION;
+  return `higgsfield generate create ${g.model} --prompt "$(cat '${promptFile}')" --aspect_ratio ${g.aspectRatio} --resolution ${g.resolution} --quality ${quality} --wait --json`;
+}
 
 /** scripts/book/v26/covers.json: one entry per book, shared by every run. */
 export const COVER_LEDGER: string = fileURLToPath(new URL("../covers.json", import.meta.url));
