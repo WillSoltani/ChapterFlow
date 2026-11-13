@@ -136,7 +136,8 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   const router = useRouter();
 
   // Existing state hooks
-  const { state: preferences, patchSection, hydrated: prefsHydrated } = useBookPreferences();
+  const bookPreferences = useBookPreferences();
+  const { state: preferences, patchSection, hydrated: prefsHydrated } = bookPreferences;
   const {
     state: onboarding,
     hydrated: onboardingHydrated,
@@ -186,7 +187,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     patch: patchExt,
     toggleSection,
     isSectionExpanded,
-  } = useSettingsPage();
+  } = useSettingsPage(bookPreferences);
   const { query, setQuery, results, isSearching } = useSettingsSearch();
   const reducedMotion = useReducedMotion(preferences.appearance.reducedMotion);
 
