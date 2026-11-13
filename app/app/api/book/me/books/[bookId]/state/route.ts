@@ -31,6 +31,7 @@ import {
 } from "@/app/app/api/book/_lib/commitment-application";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { buildBookStateGetResponse } from "@/app/app/api/book/_lib/book-state-status-core";
+import { overlayProgressOnBookState } from "@/app/app/api/book/_lib/book-state-reconcile-core";
 import type {
   BookManifest,
   BookUserBookStateItem,
@@ -124,8 +125,10 @@ export async function GET(
     };
 
     if (bookState) {
+      // Completed / unlocked chapters and scores come from the progress row, so
+      // a quiz passed on another device shows here without a reader PATCH.
       return bookOk(buildBookStateGetResponse({
-        state: bookState,
+        state: overlayProgressOnBookState(bookState, progress, chapters),
         applicationStates,
         ...statusPresence,
       }));
@@ -187,7 +190,9 @@ export async function PATCH(
     ]);
     const [existing, progress, published] = await Promise.all([
       getUserBookState(tableName, user.sub, bookId),
-      getUserProgress(tableName, user.sub, bookId),
+      // Strongly consistent: the projection stored below is rebuilt from this
+      // row, so a quiz pass committed just before must be visible.
+      getUserProgress(tableName, user.sub, bookId, { consistentRead: true }),
       getPublishedBookManifest({ tableName, contentBucket, bookId }),
     ]);
 
