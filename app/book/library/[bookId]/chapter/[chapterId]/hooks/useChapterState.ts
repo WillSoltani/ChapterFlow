@@ -28,6 +28,15 @@ const defaultState = defaultChapterState;
 
 const PREFS_KEY = "book-accelerator:reader-prefs:v1";
 
+// A read or save that has not answered by then counts as failed and is retried.
+const SYNC_REQUEST_TIMEOUT_MS = 15_000;
+
+function requestTimeoutSignal(): AbortSignal | undefined {
+  return typeof AbortSignal !== "undefined" && typeof AbortSignal.timeout === "function"
+    ? AbortSignal.timeout(SYNC_REQUEST_TIMEOUT_MS)
+    : undefined;
+}
+
 // Mirror the server cap (state/route.ts MAX_BOOKMARK_TEXT_LENGTH) so the client
 // never stores a takeaway text the PATCH validator would reject — a rejection
 // 400s the WHOLE state save (notes, quiz progress, everything), silently. The
@@ -208,6 +217,9 @@ export function useChapterState(
   );
   const [hydrated, setHydrated] = useState(false);
   const [state, setState] = useState<PersistedChapterState>(defaultState);
+  // The storage key `state` was hydrated for; differs from storageKey for one
+  // render after a chapter change.
+  const [stateKey, setStateKey] = useState<string | null>(null);
   const syncRef = useRef<ChapterStateSync | null>(null);
   const [hasPersistedState, setHasPersistedState] = useState(false);
   const [syncFailed, setSyncFailed] = useState(false);
@@ -228,6 +240,7 @@ export function useChapterState(
       fontScale: prefs?.fontScale ?? parsed?.fontScale ?? preferredFontScale,
     });
     setHasPersistedState(Boolean(parsed));
+    setStateKey(storageKey);
     setHydrated(true);
     // preferredFocusMode/preferredFontScale intentionally excluded: this
     // effect must hydrate exactly once per storageKey (mount / chapter
@@ -287,15 +300,16 @@ export function useChapterState(
     });
     const sync = createChapterStateSync({
       get: () =>
-        fetchBookJson<{ state: ServerChapterStateItem | null }>(url).then((payload) =>
-          toCopy(payload.state)
-        ),
+        fetchBookJson<{ state: ServerChapterStateItem | null }>(url, {
+          signal: requestTimeoutSignal(),
+        }).then((payload) => toCopy(payload.state)),
       patch: (next, { keepalive }) => {
         const body = JSON.stringify({ chapterId, state: next });
         return fetchBookJson<{ state: ServerChapterStateItem }>(url, {
           method: "PATCH",
           body,
           keepalive: keepalive && canSendWithKeepalive(body),
+          signal: requestTimeoutSignal(),
         }).then((payload) => {
           const copy = toCopy(payload.state);
           return copy.state ? copy : { state: next, updatedAt: copy.updatedAt };
@@ -329,10 +343,13 @@ export function useChapterState(
     const onPageHide = () => sync.flush();
     document.addEventListener("visibilitychange", onVisibilityChange);
     window.addEventListener("focus", onFocus);
+    // Back online: try now rather than after the retry backoff.
+    window.addEventListener("online", onFocus);
     window.addEventListener("pagehide", onPageHide);
     return () => {
       document.removeEventListener("visibilitychange", onVisibilityChange);
       window.removeEventListener("focus", onFocus);
+      window.removeEventListener("online", onFocus);
       window.removeEventListener("pagehide", onPageHide);
       sync.flush();
       sync.dispose();
@@ -347,12 +364,12 @@ export function useChapterState(
     emitBookStorageChanged(`chapter-reader:${bookId}:${chapterId}`);
   }, [bookId, chapterId, hydrated, state, storageKey]);
 
-  // The sync effect above is declared first, so on a chapter change the new
-  // sync exists before it is handed the state.
+  // The sync only ever sees state hydrated for its own chapter: on a chapter
+  // change it waits for the render that holds the new chapter's state.
   useEffect(() => {
-    if (!hydrated || !writesReady) return;
+    if (!hydrated || !writesReady || stateKey !== storageKey) return;
     syncRef.current?.setLocal(state);
-  }, [chapterNumber, hydrated, state, writesReady]);
+  }, [chapterNumber, hydrated, state, stateKey, storageKey, writesReady]);
 
   useEffect(() => {
     if (!hydrated) return;
