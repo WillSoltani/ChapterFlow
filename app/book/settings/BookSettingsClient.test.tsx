@@ -152,6 +152,68 @@ test("ACCT-04: changing the daily goal writes only that profile field", async ()
   assert.deepEqual((sent[0]!.body as { profile: unknown }).profile, { dailyGoalMinutes: 30 });
 });
 
+test("ACCT-13: a failed profile write is re-sent with the next profile change", async () => {
+  failWrites = true;
+  const view = renderSettings();
+  await wait(1000);
+  toggleSection(view, "Goals & Motivation");
+  await wait(20);
+  const goals = within(section(view, "Goals & Motivation"));
+  fireEvent.click(goals.getByRole("radio", { name: /Deep/ }));
+  await wait(1000);
+  assert.equal(writes("/me/profile").length, 1, "the first profile write was attempted");
+
+  // Back online; the user makes another change without pressing Retry.
+  failWrites = false;
+  fireEvent.click(goals.getByRole("radio", { name: "Off" }));
+  await wait(1000);
+
+  const sent = writes("/me/profile");
+  assert.equal(sent.length, 2);
+  assert.deepEqual((sent[1]!.body as { profile: unknown }).profile, {
+    streakMode: false,
+    dailyGoalMinutes: 30,
+  });
+});
+
+test("ACCT-13: one write succeeding does not hide another write that failed", async () => {
+  const view = renderSettings();
+  await wait(1000);
+  toggleSection(view, "Notifications");
+  await wait(50);
+  const reminders = within(section(view, "Notifications")).getByRole("switch", {
+    name: "Reading reminders",
+  });
+  fireEvent.click(reminders); // off: a preferences write only
+  await wait(900);
+
+  failWrites = true;
+  fireEvent.click(reminders); // on: the email opt-in write fails
+  await wait(900);
+  assert.match(view.getByRole("alert").textContent ?? "", /Couldn.t save/);
+
+  // Back online; an unrelated profile write succeeds.
+  failWrites = false;
+  toggleSection(view, "Goals & Motivation");
+  await wait(20);
+  fireEvent.click(within(section(view, "Goals & Motivation")).getByRole("radio", { name: /Deep/ }));
+  await wait(1000);
+  assert.equal(writes("/me/profile").length, 1, "the profile write went through");
+
+  const alert = view.getByRole("alert");
+  assert.match(alert.textContent ?? "", /Couldn.t save/, "the failed opt-in is still reported");
+
+  fireEvent.click(within(alert).getByRole("button", { name: "Retry" }));
+  await wait(100);
+  assert.equal(view.queryByRole("alert"), null);
+  const optIns = writes("/me/settings").filter(
+    (c) =>
+      (c.body as { settings?: { notifications?: { channels?: { email?: boolean } } } }).settings
+        ?.notifications?.channels?.email === true,
+  );
+  assert.equal(optIns.length, 2, "Retry re-sends the failed opt-in");
+});
+
 test("ACCT-04: the reminder time shown is the one the server sends at", async () => {
   serverSettings = {
     settings: { notifications: { reminderTimeLocal: "07:00", reminderTimezone: "America/Toronto" } },

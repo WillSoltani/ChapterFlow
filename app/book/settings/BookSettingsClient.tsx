@@ -163,16 +163,21 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
 
   // ACCT-13: save feedback follows the writes themselves. Preference writes
   // report through the hook's saveStatus; the reminder and profile writes that
-  // bypass it report through trackSideWrite.
+  // bypass it report through trackSideWrite. Each kind of write keeps its own
+  // failed attempt, so one write succeeding never hides another that failed.
   const [sideSaveStatus, setSideSaveStatus] = useState<PreferencesSaveStatus>("idle");
-  const sideRetryRef = useRef<(() => void) | null>(null);
-  const trackSideWrite = useCallback((run: () => Promise<unknown>) => {
+  const sideFailedRef = useRef(new Map<string, () => void>());
+  const trackSideWrite = useCallback((key: string, run: () => Promise<unknown>) => {
+    const failed = sideFailedRef.current;
     const attempt = () => {
       setSideSaveStatus("saving");
       run()
-        .then(() => setSideSaveStatus("saved"))
+        .then(() => {
+          failed.delete(key);
+          setSideSaveStatus(failed.size > 0 ? "error" : "saved");
+        })
         .catch(() => {
-          sideRetryRef.current = attempt;
+          failed.set(key, attempt);
           setSideSaveStatus("error");
         });
     };
@@ -205,7 +210,9 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   const retryFailedSaves = useCallback(() => {
     saveFeedbackArmedRef.current = true;
     if (prefsSaveStatus === "error") retryPrefsSave();
-    if (sideSaveStatus === "error") sideRetryRef.current?.();
+    if (sideSaveStatus === "error") {
+      for (const retry of [...sideFailedRef.current.values()]) retry();
+    }
   }, [prefsSaveStatus, retryPrefsSave, sideSaveStatus]);
 
   // Identity + nav search for the shared TopNav. Settings has its own in-page
@@ -314,7 +321,8 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   // Persist onboarding-derived prefs to backend. ACCT-04: the first hydrated
   // snapshot is this device's copy (defaults on a fresh browser), not a user
   // edit, so it only becomes the baseline; later edits send just the changed
-  // fields.
+  // fields. The baseline moves only when a write succeeds, so a field whose
+  // write failed is sent again with the next change.
   const onboardingProfileBaselineRef = useRef<OnboardingProfileSnapshot | null>(null);
   useEffect(() => {
     if (!onboardingHydrated) return;
@@ -334,11 +342,13 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     const changed = diffOnboardingProfile(baseline, snapshot);
     if (!changed) return;
     const timer = setTimeout(() => {
-      onboardingProfileBaselineRef.current = snapshot;
-      trackSideWrite(() =>
+      trackSideWrite("profile", () =>
         fetchBookJson("/app/api/book/me/profile", {
           method: "PATCH",
           body: JSON.stringify({ profile: changed }),
+        }).then(() => {
+          const current = onboardingProfileBaselineRef.current;
+          if (current) onboardingProfileBaselineRef.current = { ...current, ...changed };
         }),
       );
     }, 800);
@@ -382,7 +392,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   // ride a dedicated PATCH rather than the preferences full-state sync — the
   // settings allow-list already accepts them and mergeSettings preserves them.
   const persistReminderSchedule = useCallback((timeLocal: string) => {
-    trackSideWrite(() =>
+    trackSideWrite("reminderSchedule", () =>
       fetchBookJson("/app/api/book/me/settings", {
         method: "PATCH",
         body: JSON.stringify(
@@ -409,7 +419,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
       reminderTime || undefined,
     );
     if (!patch) return;
-    trackSideWrite(() =>
+    trackSideWrite("reminderEmail", () =>
       fetchBookJson("/app/api/book/me/settings", {
         method: "PATCH",
         body: JSON.stringify(patch),
