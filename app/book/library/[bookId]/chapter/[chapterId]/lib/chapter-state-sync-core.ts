@@ -214,25 +214,44 @@ const KEPT_WHEN_CHANGED = [
   "quizResult",
 ] as const;
 
+// Where the reader is and how the page looks. Only the first read may fill
+// these in from the account (so a chapter reopens at the saved step); a later
+// read or a save answer never changes them under the reader.
+const VIEW_FIELDS = [
+  "activeTab",
+  "readingDepth",
+  "exampleFilter",
+  "fontScale",
+  "showRecap",
+  "explanationOpen",
+] as const;
+
 /**
  * Merge a server copy read while the reader was already open. `previousBaseline`
  * is what the reader last synced (or the copy it opened with): anything the
  * reader changed since then, such as notes still being typed, an un-bookmark,
- * a step change or a quiz retake, stays as it is.
+ * a step change or a quiz retake, stays as it is. With `keepView` (every read
+ * after the first, and every save answer) the step, depth and other view
+ * choices also stay, so returning to the tab never moves the reader to a step
+ * another device saved; notes, bookmarks and quiz results still arrive.
  */
 export function mergeRefreshedChapterState(
   local: PersistedChapterState,
   server: PersistedChapterState,
-  previousBaseline: PersistedChapterState | null
+  previousBaseline: PersistedChapterState | null,
+  keepView = false
 ): PersistedChapterState {
   const merged = mergeServerChapterState(local, server);
+  const keep = <K extends keyof PersistedChapterState>(key: K) => {
+    merged[key] = local[key];
+  };
+  if (keepView) {
+    for (const key of VIEW_FIELDS) keep(key);
+  }
   if (!previousBaseline) return merged;
   const base = previousBaseline;
   const changed = (key: keyof PersistedChapterState) =>
     stableJson(local[key]) !== stableJson(base[key]);
-  const keep = <K extends keyof PersistedChapterState>(key: K) => {
-    merged[key] = local[key];
-  };
   for (const key of KEPT_WHEN_CHANGED) {
     if (changed(key)) keep(key);
   }
@@ -439,6 +458,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
           return;
         }
         getFailures = 0;
+        const firstRead = !loaded;
         loaded = true;
         refreshWanted = false;
         lastGetAt = deps.now();
@@ -451,7 +471,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
         if (accepted && copy.state) {
           const server = copy.state;
           const merge = (current: PersistedChapterState) =>
-            mergeRefreshedChapterState(current, server, previousBaseline);
+            mergeRefreshedChapterState(current, server, previousBaseline, !firstRead);
           // Write from the merged state now; the reader's own copy catches up
           // on its next render.
           if (local) local = merge(local);
@@ -501,7 +521,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
             // device): merge it in; changes made since this save stay.
             const server = copy.state;
             const merge = (current: PersistedChapterState) =>
-              mergeRefreshedChapterState(current, server, state);
+              mergeRefreshedChapterState(current, server, state, true);
             if (local) local = merge(local);
             deps.applyServer(server, merge);
           }

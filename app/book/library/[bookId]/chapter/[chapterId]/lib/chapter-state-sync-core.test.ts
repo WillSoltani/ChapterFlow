@@ -633,6 +633,72 @@ test("a late first read keeps notes typed since the chapter opened", async () =>
   assert.equal(h.patches[0]!.state.notes, "start, typed offline");
 });
 
+test("the first read opens the chapter at the step the account saved", async () => {
+  const h = harness();
+  h.open();
+  h.gets[0]!.resolve(server({ activeTab: "quiz", readingDepth: "deeper" }));
+  await h.flushPromises();
+  assert.equal(h.current.activeTab, "quiz");
+  assert.equal(h.current.readingDepth, "deeper");
+  await h.advance(5_000);
+  assert.equal(h.patches.length, 0);
+});
+
+test("a re-read never moves the reader to the step or depth another device saved", async () => {
+  const h = harness();
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.advance(5_000);
+  assert.equal(h.patches.length, 0);
+
+  h.sync.refresh();
+  h.gets[1]!.resolve(
+    server(
+      {
+        activeTab: "quiz",
+        readingDepth: "deeper",
+        exampleFilter: "work",
+        fontScale: "lg",
+        showRecap: true,
+        explanationOpen: { q1: true },
+        notes: "from the other device",
+        notesUpdatedAt: "2026-11-13T09:30:00.000Z",
+        bookmarkedTakeaways: [3],
+        bookmarkedTakeawayTexts: { "3": "Three" },
+      },
+      "2026-11-13T09:30:00.000Z"
+    )
+  );
+  await h.flushPromises();
+  assert.equal(h.current.activeTab, "summary", "the reader stays on their step");
+  assert.equal(h.current.readingDepth, "standard", "the text does not change depth");
+  assert.equal(h.current.exampleFilter, "all");
+  assert.equal(h.current.fontScale, "md");
+  assert.equal(h.current.showRecap, false);
+  assert.deepEqual(h.current.explanationOpen, {});
+  assert.equal(h.current.notes, "from the other device", "notes still arrive");
+  assert.deepEqual(h.current.bookmarkedTakeaways, [3], "bookmarks still arrive");
+});
+
+test("a save answered with a different step keeps the reader where they are", async () => {
+  const h = harness();
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.advance(5_000);
+  h.edit({ bookmarkedTakeaways: [1], bookmarkedTakeawayTexts: { "1": "One" } });
+  await h.advance(200);
+  assert.equal(h.patches.length, 1);
+  h.patches[0]!.resolve(
+    server(
+      { activeTab: "practice", bookmarkedTakeaways: [1], bookmarkedTakeawayTexts: { "1": "One" } },
+      "2026-11-13T10:00:00.000Z"
+    )
+  );
+  await h.flushPromises();
+  assert.equal(h.current.activeTab, "summary");
+  assert.deepEqual(h.current.bookmarkedTakeaways, [1]);
+});
+
 test("focus and visible together trigger one re-read", async () => {
   const h = harness();
   h.open();
