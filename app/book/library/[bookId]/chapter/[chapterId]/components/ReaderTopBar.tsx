@@ -107,6 +107,8 @@ type Props = {
   onToggleAudio: () => void;
   /** The audio player row, shown under the bar while listening. */
   audioSlot: ReactNode;
+  /** A free reader: Listen carries a Pro marker (the row offers Pro). */
+  audioProOnly?: boolean | undefined;
   askOpen: boolean;
   onOpenAsk: () => void;
   onOpenNotes: () => void;
@@ -141,6 +143,7 @@ export function ReaderTopBar({
   audioOpen,
   onToggleAudio,
   audioSlot,
+  audioProOnly = false,
   askOpen,
   onOpenAsk,
   onOpenNotes,
@@ -249,13 +252,24 @@ export function ReaderTopBar({
             <>
               <button
                 type="button"
-                onClick={onToggleAudio}
+                onClick={(event) => {
+                  event.currentTarget.focus();
+                  onToggleAudio();
+                }}
                 aria-pressed={audioOpen}
-                aria-label="Listen to this chapter"
-                title="Listen"
-                className={iconButton}
+                aria-label={audioProOnly ? "Listen to this chapter (Pro)" : "Listen to this chapter"}
+                title={audioProOnly ? "Listen (Pro)" : "Listen"}
+                className={`relative ${iconButton}`}
               >
                 <Headphones className="h-[18px] w-[18px]" aria-hidden="true" />
+                {audioProOnly ? (
+                  <span
+                    aria-hidden="true"
+                    className="absolute bottom-0.5 right-0.5 text-cf-caption font-semibold leading-none text-(--cr-accent)"
+                  >
+                    Pro
+                  </span>
+                ) : null}
               </button>
               <button
                 type="button"

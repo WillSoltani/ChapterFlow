@@ -33,7 +33,13 @@ afterEach(() => {
   window.history.replaceState(null, "", "/");
 });
 
-function Bar({ showProgress = true }: { showProgress?: boolean }) {
+function Bar({
+  showProgress = true,
+  audioProOnly,
+}: {
+  showProgress?: boolean;
+  audioProOnly?: boolean;
+}) {
   const [settingsOpen, setSettingsOpen] = useState(false);
   return (
     <ReaderTopBar
@@ -55,6 +61,7 @@ function Bar({ showProgress = true }: { showProgress?: boolean }) {
       audioOpen={false}
       onToggleAudio={() => {}}
       audioSlot={null}
+      audioProOnly={audioProOnly}
       askOpen={false}
       onOpenAsk={() => {}}
       onOpenNotes={() => {}}
@@ -76,6 +83,16 @@ test("the progress hairline follows the reader's progress-bar setting", () => {
   shown.unmount();
   const hidden = render(<Bar showProgress={false} />);
   assert.equal(hidden.queryByRole("progressbar"), null);
+});
+
+test("Listen carries a Pro marker only for a free reader", () => {
+  const free = render(<Bar audioProOnly />);
+  const listen = free.getByRole("button", { name: "Listen to this chapter (Pro)" });
+  assert.ok(listen.textContent?.includes("Pro"));
+  free.unmount();
+  const known = render(<Bar />);
+  const plain = known.getByRole("button", { name: "Listen to this chapter" });
+  assert.equal(plain.textContent?.includes("Pro"), false);
 });
 
 test("Listen has no single-key hint in its tooltip", () => {

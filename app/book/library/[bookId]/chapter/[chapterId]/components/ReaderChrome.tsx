@@ -9,6 +9,7 @@ import type { useReaderAccess } from "../hooks/useReaderAccess";
 import type { useReaderPhaseFlow } from "../hooks/useReaderPhaseFlow";
 import type { useReaderProgress } from "../hooks/useReaderProgress";
 import type { useReaderSettings } from "../hooks/useReaderSettings";
+import { useReaderPlan } from "../hooks/useReaderPlan";
 import { HookLead } from "./HookBanner";
 import { ChapterPager, type ChapterNeighbours } from "./ReaderChapterNav";
 import { ReaderSettingsMenu } from "./ReaderSettingsMenu";
@@ -93,6 +94,7 @@ export function ReaderChrome({
   const { state, setReadingDepth, toggleFocusMode, syncFailed } = chapterProgress;
   const { phaseCompletion, setActiveTab } = phaseFlow;
   const [audioOpen, setAudioOpen] = useState(false);
+  const plan = useReaderPlan();
 
   // The text column is measured in the reading font's size, so a line keeps
   // its length when the font size changes: Narrow (the default) sets about 68
@@ -140,10 +142,12 @@ export function ReaderChrome({
         onToggleFocus={toggleFocusMode}
         audioOpen={audioOpen}
         onToggleAudio={() => setAudioOpen((open) => !open)}
+        audioProOnly={plan === "FREE"}
         audioSlot={
           readerInteractionsReady && (
             <LazyAudioPlayer
               layout="inline"
+              plan={plan}
               open={audioOpen}
               onOpenChange={setAudioOpen}
               bookId={bookId}
