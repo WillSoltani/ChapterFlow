@@ -225,6 +225,12 @@ export function useBookQuery<T>(key: string | null): BookQueryResult<T> {
         setState((prev) => ({ ...prev, error: event.error, loading: false }));
         return;
       }
+      if (event.type === "invalidate") {
+        // The entry was dropped; reload it so this consumer shows the new value.
+        // Co-mounted consumers share the one in-flight request.
+        void cache.load(key, { force: true }).catch(() => {});
+        return;
+      }
       reconcileBookCacheAuthGeneration();
       const peeked = cache.peek(key);
       if (peeked !== undefined) {
