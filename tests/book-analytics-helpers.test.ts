@@ -5,6 +5,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   calculateCurrentStreak,
+  statusFromCounts,
   streakAtRisk,
 } from "@/hooks/book/useBookAnalytics";
 
@@ -49,4 +50,15 @@ test("no activity at all is a 0 streak, not at risk", () => {
 test("streak counting crosses month boundaries", () => {
   const days = daysEndingAt("2026-03-01", 3); // Feb 27, Feb 28, Mar 1
   assert.equal(calculateCurrentStreak(days, "2026-03-02"), 3);
+});
+
+test("HOME-03: a book with a chapter opened but none completed is in progress", () => {
+  assert.equal(statusFromCounts(0, 12, true), "in_progress");
+});
+
+test("statusFromCounts: completion counts still decide the other states", () => {
+  assert.equal(statusFromCounts(0, 12, false), "not_started");
+  assert.equal(statusFromCounts(0, 12), "not_started");
+  assert.equal(statusFromCounts(3, 12, false), "in_progress");
+  assert.equal(statusFromCounts(12, 12, true), "completed");
 });

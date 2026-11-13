@@ -190,12 +190,13 @@ function deriveLoopStep(
   return "summary";
 }
 
-function statusFromCounts(
+export function statusFromCounts(
   completed: number,
-  total: number
+  total: number,
+  chapterOpened = false
 ): "completed" | "in_progress" | "not_started" {
   if (total > 0 && completed >= total) return "completed";
-  if (completed > 0) return "in_progress";
+  if (completed > 0 || chapterOpened) return "in_progress";
   return "not_started";
 }
 
@@ -527,7 +528,14 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
                     .map((chapterNumber) => chapters.find((chapter) => chapter.order === chapterNumber)?.id ?? "")
                     .filter(Boolean)
                 ).size;
-          const status = statusFromCounts(completedChapters, totalChapters);
+          // The reader persists a chapter-state row as soon as a chapter is
+          // opened, so any row means reading has started (a book-page view
+          // alone writes none).
+          const status = statusFromCounts(
+            completedChapters,
+            totalChapters,
+            (chapterStatesByBook.get(entry.id)?.length ?? 0) > 0
+          );
           const progressPercent = totalChapters
             ? Math.min(100, Math.round((completedChapters / totalChapters) * 100))
             : 0;
