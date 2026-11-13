@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import type { BookChapter, ReadingDepth } from "@/app/book/data/bookChapters";
 import type { LibraryBookDetail } from "@/app/book/_lib/library-data";
 import type { LearningMode } from "@/app/book/settings/types/settings";
+import { DEPTH_LABELS } from "../lib/reader-flow-core";
 import type { useReaderAccess } from "../hooks/useReaderAccess";
 import type { useReaderPhaseFlow } from "../hooks/useReaderPhaseFlow";
 import type { useReaderProgress } from "../hooks/useReaderProgress";
@@ -25,12 +26,6 @@ const LazyAudioPlayer = dynamic(
     ),
   },
 );
-
-const MODE_LABELS: Record<LearningMode, string> = {
-  guided: "Guided",
-  standard: "Standard",
-  challenge: "Challenge",
-};
 
 type Props = {
   bookId: string;
@@ -88,8 +83,7 @@ export function ReaderChrome({
   overlays,
 }: Props) {
   const { entry, chapters } = access;
-  const { bookPrefs, patchBookPrefs, learningMode, contentTone, settingsOpen, setSettingsOpen } =
-    settings;
+  const { bookPrefs, patchBookPrefs, contentTone, settingsOpen, setSettingsOpen } = settings;
   const { chapterProgress } = progress;
   const { state, setReadingDepth, toggleFocusMode, syncFailed } = chapterProgress;
   const { phaseCompletion, setActiveTab } = phaseFlow;
@@ -108,7 +102,8 @@ export function ReaderChrome({
     bookTitle,
     author,
     bookPrefs.reading.showEstimatedReadingTime ? `${chapter.minutes} min read` : null,
-    learningMode !== "standard" ? `${MODE_LABELS[learningMode]} mode` : null,
+    // The depth the reader gets, in the Settings names.
+    DEPTH_LABELS[activeDepth],
   ].filter(Boolean);
 
   return (
@@ -171,7 +166,7 @@ export function ReaderChrome({
           <ReaderSettingsMenu
             open={settingsOpen}
             onClose={() => setSettingsOpen(false)}
-            learningMode={learningMode}
+            activeDepth={activeDepth}
             onChangeLearningMode={onChangeLearningMode}
             showDepthSelector={false}
             readingDepth={state.readingDepth}

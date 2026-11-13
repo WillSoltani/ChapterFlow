@@ -38,6 +38,25 @@ export function initialReaderDepth(
   return customized ? modeToDepth(resolveLearningMode(settings)) : "simple";
 }
 
+/** The depth names Settings uses (Reading profiles), shown wherever the
+ *  reader names a depth or learning mode. */
+export const DEPTH_LABELS: Readonly<Record<ReadingDepth, string>> = {
+  simple: "Lite",
+  standard: "Standard",
+  deeper: "Deeper",
+};
+
+/** True when a tap on `mode` in Reading settings changes nothing. On the fast
+ *  path (profile not customized) the reader gets Lite whatever the stored mode
+ *  says, so every tap, even on the stored mode, is a real choice to save. */
+export function learningModeTapIsNoop(
+  mode: LearningMode,
+  learningMode: LearningMode,
+  defaultToFastPath: boolean,
+): boolean {
+  return mode === learningMode && !defaultToFastPath;
+}
+
 export function computeProgressPercent(
   activeTab: ChapterTab,
   completedPhases: ReadonlySet<ChapterTab>,

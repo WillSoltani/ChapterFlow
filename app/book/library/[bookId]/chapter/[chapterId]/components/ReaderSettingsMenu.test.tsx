@@ -28,12 +28,15 @@ afterEach(() => {
   Object.defineProperty(window, "matchMedia", { configurable: true, value: realMatchMedia });
 });
 
-function menu(onClose: () => void) {
+function menu(
+  onClose: () => void,
+  overrides: Partial<React.ComponentProps<typeof ReaderSettingsMenu>> = {},
+) {
   return (
     <ReaderSettingsMenu
       open
       onClose={onClose}
-      learningMode="standard"
+      activeDepth="standard"
       onChangeLearningMode={() => {}}
       showDepthSelector={false}
       focusMode={false}
@@ -44,6 +47,7 @@ function menu(onClose: () => void) {
       onChangeLineSpacing={() => {}}
       contentWidth={800}
       onChangeContentWidth={() => {}}
+      {...overrides}
     />
   );
 }
@@ -93,4 +97,56 @@ test("settings menu leaves Escape to a modal dialog open above it", async () => 
   }
   fireEvent.keyDown(document, { key: "Escape" });
   assert.equal(closed, 1);
+});
+
+test("modes use the Settings names, with no 'recommended' badge", async () => {
+  setPhone(false);
+  const view = render(<header>{menu(() => {})}</header>);
+  await waitFor(() => view.getByRole("dialog", { name: "Reading settings" }));
+  for (const name of [/Lite/, /Standard/, /Deeper/]) assert.ok(view.getByRole("button", { name }));
+  assert.equal(view.queryByText("REC"), null);
+  assert.equal(view.queryByText(/Guided|Challenge|recommended/i), null);
+});
+
+test("the highlighted mode is the depth the reader actually gets", async () => {
+  setPhone(false);
+  const picked: string[] = [];
+  const view = render(
+    <header>
+      {menu(() => {}, {
+        activeDepth: "simple",
+        onChangeLearningMode: (mode) => picked.push(mode),
+      })}
+    </header>,
+  );
+  await waitFor(() => view.getByRole("dialog", { name: "Reading settings" }));
+  const lite = view.getByRole("button", { name: /Lite/ });
+  assert.equal(lite.getAttribute("aria-pressed"), "true");
+  assert.equal(view.getByRole("button", { name: /Standard/ }).getAttribute("aria-pressed"), "false");
+  // Tapping the highlighted option still reports it (it confirms the choice).
+  fireEvent.click(lite);
+  fireEvent.click(view.getByRole("button", { name: /Deeper/ }));
+  assert.deepEqual(picked, ["guided", "challenge"]);
+});
+
+test("spacing and typeface use the Settings names and offer OpenDyslexic", async () => {
+  setPhone(false);
+  const fonts: string[] = [];
+  const view = render(
+    <header>
+      {menu(() => {}, {
+        fontFamily: "opendyslexic",
+        onChangeFontFamily: (value) => fonts.push(value),
+      })}
+    </header>,
+  );
+  await waitFor(() => view.getByRole("dialog", { name: "Reading settings" }));
+  assert.equal(view.getByRole("button", { name: "Comfortable" }).getAttribute("aria-pressed"), "true");
+  assert.equal(view.queryByText("Cozy"), null);
+  assert.ok(view.getByRole("button", { name: "Sans-Serif" }));
+  const dyslexic = view.getByRole("button", { name: "OpenDyslexic" });
+  assert.equal(dyslexic.getAttribute("aria-pressed"), "true");
+  assert.equal(view.getByRole("button", { name: "Sans-Serif" }).getAttribute("aria-pressed"), "false");
+  fireEvent.click(view.getByRole("button", { name: "Serif" }));
+  assert.deepEqual(fonts, ["serif"]);
 });

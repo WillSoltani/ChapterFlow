@@ -8,6 +8,7 @@ import {
   computeProgressPercent,
   decidePhaseTransition,
   initialReaderDepth,
+  learningModeTapIsNoop,
   mapLearningStyleToDepth,
   modeToDepth,
   quizStepProgress,
@@ -232,4 +233,14 @@ test("initialReaderDepth: a customized reader gets the depth of their mode", () 
     }),
     "standard",
   );
+});
+
+test("learningModeTapIsNoop: on the fast path a tap on the shown mode still saves", () => {
+  // Not customized yet: the reader gets Lite whatever learningMode says, so a
+  // tap (even on the stored mode) must write profileCustomized.
+  assert.equal(learningModeTapIsNoop("standard", "standard", true), false);
+  assert.equal(learningModeTapIsNoop("guided", "standard", true), false);
+  // Customized: re-tapping the current mode changes nothing.
+  assert.equal(learningModeTapIsNoop("standard", "standard", false), true);
+  assert.equal(learningModeTapIsNoop("challenge", "standard", false), false);
 });

@@ -24,6 +24,8 @@ import type { InitialChapterReaderSeed } from "./lib/chapterFromApi";
 import {
   buildChapterNeighbours,
   buildNextChapterRoute,
+  DEPTH_LABELS,
+  learningModeTapIsNoop,
   mapLearningStyleToDepth,
   modeToDepth,
   quizStepProgress,
@@ -273,7 +275,7 @@ export function ChapterReaderClient({
   });
   const quizProgress = quizStepProgress(state.activeTab, quiz.session, quiz.answers);
   const handleLearningModeChange = (mode: LearningMode) => {
-    if (mode === learningMode) return;
+    if (learningModeTapIsNoop(mode, learningMode, defaultToFastPath)) return;
     const toneByMode: Record<LearningMode, ContentTone> = {
       guided: "gentle",
       standard: "gentle",
@@ -294,11 +296,11 @@ export function ChapterReaderClient({
     });
     setReadingDepth(nextDepth);
     const messages: Record<LearningMode, string> = {
-      guided: "Switched to Guided. Shorter summaries, more pacing support.",
-      standard: "Switched to Standard. Balanced depth and pacing.",
-      challenge: "Switched to Challenge. Deeper summaries, faster pace.",
+      guided: "Shorter summaries, more pacing support.",
+      standard: "Balanced depth and pacing.",
+      challenge: "Longer summaries, faster pace.",
     };
-    setToast(messages[mode]);
+    setToast(`Switched to ${DEPTH_LABELS[nextDepth]}. ${messages[mode]}`);
   };
   const handleSubmitQuiz = async () => {
     if (!readerInteractionsReady) return;
