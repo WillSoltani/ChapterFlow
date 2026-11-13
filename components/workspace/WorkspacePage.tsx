@@ -24,6 +24,12 @@ import { DASHBOARD_KEY, useDashboardQuery } from "@/hooks/book/useDashboardQuery
 import { resumeChapterNumber } from "@/components/book/book-cta-core";
 import { useBookViewer } from "@/hooks/book/useBookViewer";
 import { useFreeBookAllowance, type FreeBookAllowance } from "@/hooks/book/useFreeBookAllowance";
+import {
+  deriveUserState,
+  homeShelfBooks,
+  isNewUserShelf,
+  type UserState,
+} from "./workspace-state-core";
 import { BOOKS_CATALOG, getBookMetadata } from "@/lib/books-catalog";
 import { getBookRating } from "@/lib/book-ratings";
 import { getBookCoverPath } from "@/lib/book-covers";
@@ -41,14 +47,6 @@ const jetBrainsMono = JetBrains_Mono({
 /* ────────────────────────────────────────────
    Type Definitions
    ──────────────────────────────────────────── */
-
-type UserState =
-  | "new_user"
-  | "active_reader"
-  | "quiz_pending"
-  | "between_books"
-  | "returning"
-  | "free_limit_reached";
 
 interface WorkspaceData {
   user: {
@@ -222,21 +220,6 @@ function toRecommendationCard(
   };
 }
 
-/**
- * "New user" for shelf/hero purposes: the reader has no engaged books, or every
- * engaged book is still untouched. This is the exact predicate deriveUserState()
- * uses for its first "new_user" branch — and the only state in which
- * HeroSessionCard surfaces the onboarding starter shelf (its `hasPersonalizedShelf`
- * is `userState === "new_user"`). Kept as one helper so the dashboard's
- * "brand-new reader?" answer can't drift between the mapper and the state machine.
- */
-function isNewUserShelf(userBooks: WorkspaceData["userBooks"]): boolean {
-  return (
-    userBooks.length === 0 ||
-    userBooks.every((b) => b.progressPercent === 0 && b.status === "not_started")
-  );
-}
-
 function mapAnalyticsToWorkspaceData(
   analytics: AnalyticsState,
   firstName: string,
@@ -330,7 +313,8 @@ function mapAnalyticsToWorkspaceData(
   // count distinct books, so a single duplicated record can no longer push a free
   // reader past the free_limit_reached gate.)
   const seenUserBookIds = new Set<string>();
-  const userBooks = analytics.engagedBookSnapshots
+  // Books not started (a book page only viewed) leave Home's shelf (D3).
+  const userBooks = homeShelfBooks(analytics.engagedBookSnapshots)
     .filter((snap) => {
       if (seenUserBookIds.has(snap.book.id)) return false;
       seenUserBookIds.add(snap.book.id);
@@ -553,42 +537,6 @@ function DashboardSkeleton() {
 /* ────────────────────────────────────────────
    State Derivation
    ──────────────────────────────────────────── */
-
-function deriveUserState(
-  data: WorkspaceData,
-  allowance: FreeBookAllowance | null,
-): UserState {
-  const { currentBook, userBooks, user } = data;
-
-  if (isNewUserShelf(userBooks)) {
-    return "new_user";
-  }
-
-  if (
-    user.streakCount === 0 &&
-    userBooks.some((b) => b.progressPercent > 0)
-  ) {
-    return "returning";
-  }
-
-  if (
-    !user.isPro &&
-    allowance?.remainingFreeStarts === 0 &&
-    !currentBook
-  ) {
-    return "free_limit_reached";
-  }
-
-  if (!currentBook) {
-    return "between_books";
-  }
-
-  if (currentBook.currentLoopStep === "quiz") {
-    return "quiz_pending";
-  }
-
-  return "active_reader";
-}
 
 function getSubtitle(state: UserState, data: WorkspaceData): string {
   switch (state) {
