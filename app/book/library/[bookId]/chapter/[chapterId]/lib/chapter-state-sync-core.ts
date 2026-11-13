@@ -355,7 +355,9 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
   // The reader's state when the chapter opened: the base for a first read, so
   // changes made before it lands stay as they are.
   let openedWith: PersistedChapterState | null = null;
-  const owner = deps.account();
+  // Null means not known yet (sessions from before the owner cookie existed
+  // get it on their next refresh): the first known account is adopted.
+  let owner = deps.account();
 
   function stop() {
     disposed = true;
@@ -364,12 +366,18 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
     retryTimer = null;
   }
 
-  // False (and stopped for good) once the signed-in account is not the one
-  // this sync was created for.
+  // False (and stopped for good, with the warning shown) once a known
+  // account changes to another one or signs out.
   function sameAccount(): boolean {
     if (disposed) return false;
-    if (deps.account() === owner) return true;
+    const current = deps.account();
+    if (current === owner) return true;
+    if (owner === null) {
+      owner = current;
+      return true;
+    }
     stop();
+    setSyncFailed(true);
     return false;
   }
 

@@ -13,9 +13,9 @@ import {
 
 type Deferred<T> = { resolve: (value: T) => void; reject: (error: unknown) => void };
 
-function harness(options: { manualApply?: boolean } = {}) {
+function harness(options: { manualApply?: boolean; account?: string | null } = {}) {
   let clock = 0;
-  let account: string | null = "account-a";
+  let account: string | null = options.account === undefined ? "account-a" : options.account;
   const pendingApplies: Array<() => void> = [];
   let nextId = 1;
   const timers = new Map<number, { at: number; callback: () => void }>();
@@ -175,6 +175,46 @@ test("after another account signs in, nothing is read, written or merged", async
   h.sync.flush();
   await h.advance(5_000);
   assert.equal(h.patches.length, 0, "no write into the other account");
+  assert.deepEqual(h.failedChanges, [true], "the reader is told changes stay on this device");
+});
+
+test("an account that becomes known mid-session is adopted and keeps syncing", async () => {
+  // Sessions from before the owner cookie existed get it on their next refresh.
+  const h = harness({ account: null });
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.flushPromises();
+  h.setAccount("account-a");
+  h.edit({ notes: "typed after the refresh", notesUpdatedAt: "2026-11-13T10:00:00.000Z" });
+  await h.advance(200);
+  assert.equal(h.patches.length, 1, "the next edit is written");
+  assert.equal(h.patches[0]!.state.notes, "typed after the refresh");
+  h.patches[0]!.resolve({ state: h.patches[0]!.state, updatedAt: "2026-11-13T10:00:01.000Z" });
+  await h.flushPromises();
+  h.edit({ notes: "typed after the refresh + more", notesUpdatedAt: "2026-11-13T10:01:00.000Z" });
+  h.sync.flush();
+  assert.equal(h.patches.length, 2, "the leave-page flush still runs");
+  assert.equal(h.patches[1]!.keepalive, true);
+  assert.deepEqual(h.failedChanges, []);
+});
+
+test("an adopted account that changes again stops syncing and warns", async () => {
+  const h = harness({ account: null });
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.flushPromises();
+  h.setAccount("account-a");
+  h.edit({ activeTab: "examples" });
+  await h.advance(200);
+  assert.equal(h.patches.length, 1);
+  h.patches[0]!.resolve({ state: h.patches[0]!.state, updatedAt: "2026-11-13T10:00:01.000Z" });
+  await h.flushPromises();
+  h.setAccount("account-b");
+  h.edit({ activeTab: "quiz" });
+  await h.advance(5_000);
+  h.sync.flush();
+  assert.equal(h.patches.length, 1, "nothing is written into the other account");
+  assert.deepEqual(h.failedChanges, [true], "the reader is told");
 });
 
 test("a read that lands after the account changed is not merged or written", async () => {
