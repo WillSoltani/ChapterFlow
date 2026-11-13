@@ -34,3 +34,33 @@ export function isSafeInternalPath(raw: string): boolean {
   if (/^\/[/\\]/.test(raw)) return false;
   return true;
 }
+
+/**
+ * Where a sign-in lands when no returnTo survives. The dashboard, not /book:
+ * /book is the onboarding funnel and only bounces onboarded readers onward
+ * (SHELL-16). Un-onboarded readers are still sent to /book by the page gate.
+ */
+export const DEFAULT_POST_LOGIN_PATH = "/dashboard";
+
+const IN_APP_ROOTS = new Set(["book", "dashboard", "rewards"]);
+
+/**
+ * Best-effort recovery of the in-app page a server component was rendering
+ * (from a path header or the Referer), for the sign-in returnTo. Only the path
+ * and query are kept, and only for a same-origin path on an in-app surface;
+ * anything else falls back to the dashboard.
+ */
+export function recoverInAppReturnTo(candidate: string | null | undefined): string {
+  let path = String(candidate ?? "").trim();
+  if (/^https?:\/\//i.test(path)) {
+    try {
+      const url = new URL(path);
+      path = url.pathname + url.search;
+    } catch {
+      return DEFAULT_POST_LOGIN_PATH;
+    }
+  }
+  if (!isSafeInternalPath(path)) return DEFAULT_POST_LOGIN_PATH;
+  const firstSegment = path.slice(1).split(/[/?#]/, 1)[0] ?? "";
+  return IN_APP_ROOTS.has(firstSegment) ? path : DEFAULT_POST_LOGIN_PATH;
+}

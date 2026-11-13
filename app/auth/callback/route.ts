@@ -7,6 +7,7 @@ import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
 import { rotateAuthCacheGeneration } from "../_lib/auth-cache-generation";
 import { sanitizeReturnTo } from "../_lib/return-to";
+import { DEFAULT_POST_LOGIN_PATH } from "../_lib/return-to-core";
 import { decryptState } from "../_lib/state-crypto";
 import { applyDeviceIdCookie, getOrCreateDeviceId } from "@/app/app/api/book/_lib/abuse";
 
@@ -45,7 +46,7 @@ async function resolveAuthState(
   if (decrypted) {
     return {
       verifier: decrypted.v,
-      returnTo: sanitizeReturnTo(decrypted.r, "/book"),
+      returnTo: sanitizeReturnTo(decrypted.r, DEFAULT_POST_LOGIN_PATH),
       acquisition: {
         referer: decrypted.ref,
         utmSource: decrypted.us,
@@ -68,14 +69,14 @@ async function resolveAuthState(
   const rawReturnTo = req.cookies.get("post_auth_redirect")?.value;
 
   if (!nonce || !timingSafeStrEqual(nonce, stateParam)) {
-    return { verifier: null, returnTo: sanitizeReturnTo(rawReturnTo, "/book") };
+    return { verifier: null, returnTo: sanitizeReturnTo(rawReturnTo, DEFAULT_POST_LOGIN_PATH) };
   }
 
   const verifier = req.cookies.get("pkce_verifier")?.value ?? null;
 
   return {
     verifier,
-    returnTo: sanitizeReturnTo(rawReturnTo, "/book"),
+    returnTo: sanitizeReturnTo(rawReturnTo, DEFAULT_POST_LOGIN_PATH),
   };
 }
 
