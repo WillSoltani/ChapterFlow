@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { CheckCircle, CheckCircle2, Clock, Loader2, SkipForward, TriangleAlert, X } from "lucide-react";
+import { CheckCircle, CheckCircle2, Clock, SkipForward, TriangleAlert, X } from "lucide-react";
 import { JetBrains_Mono } from "next/font/google";
 import { motion, useReducedMotion } from "framer-motion";
 import { AnimatedBackground } from "./AnimatedBackground";
@@ -1121,7 +1121,7 @@ export function WorkspacePage() {
           role="status"
           className="relative z-20 flex items-center gap-2.5 border-b border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3 text-(--cf-text-1) sm:px-6"
         >
-          <Loader2 className="h-4 w-4 shrink-0 motion-safe:animate-spin" aria-hidden="true" />
+          <Clock className="h-4 w-4 shrink-0 text-(--cf-text-3)" aria-hidden="true" />
           <p className="text-sm font-medium">Activating your Pro plan…</p>
         </div>
       )}
