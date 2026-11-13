@@ -5,6 +5,10 @@ import { isUserInAdminGroup } from "@/app/app/api/book/_lib/admin-group-core";
 import { BookSettingsClient } from "@/app/book/settings/BookSettingsClient";
 import type { BillingInterval } from "@/app/book/hooks/useBookEntitlements";
 import packageJson from "@/package.json";
+import type { Metadata } from "next";
+
+// SHELL-18: the /book layout's template adds " | ChapterFlow".
+export const metadata: Metadata = { title: "Settings" };
 
 /** The upgrade deep-link (e.g. from the landing "Annual" toggle) may carry a
  *  `plan` hint so the billing card pre-selects that interval. Validate it before

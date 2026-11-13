@@ -566,3 +566,21 @@ test("ACCT-21: with no email consent stored the Email switch shows off", async (
   const email = within(section(view, "Notifications")).getByRole("switch", { name: "Email" });
   assert.equal(email.getAttribute("aria-checked"), "false");
 });
+
+test("SHELL-22: the header and tab bar sit outside the page entrance animation", async () => {
+  const view = renderSettings();
+  await wait(50);
+  const main = view.container.querySelector("#main") as HTMLElement;
+  const animated = (el: Element | null) => {
+    for (let node = el?.parentElement ?? null; node; node = node.parentElement) {
+      if (node.style.opacity !== "" || node.style.transform !== "") return true;
+    }
+    return false;
+  };
+  assert.equal(animated(main), true, "the page content still has its entrance");
+  const navs = Array.from(view.container.querySelectorAll("header, nav")).filter(
+    (el) => !main.contains(el),
+  );
+  assert.ok(navs.length > 0, "the shared header renders");
+  for (const nav of navs) assert.equal(animated(nav), false, "the header is not animated with the page");
+});

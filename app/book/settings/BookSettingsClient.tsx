@@ -738,7 +738,7 @@ export function BookSettingsClient({
   // ---------------------------------------------------------------------------
 
   return (
-    <PageTransition className="cf-app-shell min-h-screen pb-10">
+    <div className="cf-app-shell min-h-screen pb-10">
       <TopNav
         name={viewerName}
         avatarUrl={viewerIdentity.avatarDataUrl}
@@ -750,6 +750,9 @@ export function BookSettingsClient({
         showGlobalSearchPanel={false}
         logoVariant="dashboard"
       />
+      {/* SHELL-22: only the page content animates in. A transformed ancestor
+          would carry the fixed header, tab bar and toasts with it. */}
+      <PageTransition>
       {/* Skip-link target (TopNav renders the shared "Skip to main content"
           link to the #main anchor). This is the first content element AFTER
           TopNav, so focusing it actually bypasses the nav (per batch 12 / PR 148:
@@ -1939,6 +1942,7 @@ export function BookSettingsClient({
         </div>{/* section-rail grid */}
       </div>{/* max-w-5xl */}
       </div>{/* #main skip-target */}
+      </PageTransition>
 
       {/* Export Modal */}
       <ExportModal
@@ -1994,6 +1998,6 @@ export function BookSettingsClient({
       <div className="sr-only" aria-live="polite" aria-atomic="true">
         {liveAnnouncement}
       </div>
-    </PageTransition>
+    </div>
   );
 }

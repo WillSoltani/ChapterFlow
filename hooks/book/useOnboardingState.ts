@@ -141,8 +141,9 @@ function clampStep(step: number) {
   return Math.min(Math.max(step, 0), MAX_STEPS - 1);
 }
 
+// C10: the daily goal's floor is 5 minutes (the "Light" tier).
 function clampGoal(goal: number) {
-  return Math.min(Math.max(goal, 10), 240);
+  return Math.min(Math.max(goal, 5), 240);
 }
 
 function isTimeValue(value: unknown): value is string {
