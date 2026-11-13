@@ -3,7 +3,6 @@
 // Canonical shared book-analytics hook (WS3-001).
 
 import { useCallback, useEffect, useState } from "react";
-import { fetchBookJson } from "@/lib/client/book-api";
 import { getBookErrorMessage } from "@/app/book/_lib/error-messages";
 import { useDashboardQuery, type DashboardQueryPayload } from "@/hooks/book/useDashboardQuery";
 import type { LibraryCatalogBook } from "@/lib/library-data";
@@ -63,13 +62,6 @@ export type HeatmapCell = {
   level: number;
 };
 
-export type UpcomingReviewItem = {
-  id: string;
-  prompt: string;
-  dueLabel: string;
-  bookId: string;
-};
-
 export type AnalyticsState = {
   streakDays: number;
   /** Streak counted through yesterday and nothing read yet today. */
@@ -89,7 +81,6 @@ export type AnalyticsState = {
   completedBookSnapshots: BookProgressSnapshot[];
   inProgressBookSnapshots: BookProgressSnapshot[];
   heatmapCells: HeatmapCell[];
-  upcomingReviews: UpcomingReviewItem[];
   hasAnyProgress: boolean;
   hasAnyEngagement: boolean;
   earnedBadgeIds: Set<string>;
@@ -431,7 +422,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
     let mounted = true;
     const payload = dashboardPayload;
 
-    const load = async () => {
+    const load = () => {
       try {
         // Surface the server's partial-load flag (#2). Critical data is present
         // (the route 503s otherwise), so we render normally + a non-blocking
@@ -758,34 +749,6 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           readingListCount: Array.isArray(payload.saved) ? payload.saved.length : 0,
         });
 
-        // Load real FSRS review cards (3s timeout). These are seeded server-side
-        // when a chapter quiz is passed; when none are due we show NOTHING rather
-        // than fabricating placeholder cards from in-progress books.
-        let upcomingReviews: UpcomingReviewItem[] = [];
-        try {
-          const fsrsController = new AbortController();
-          const fsrsTimeout = setTimeout(() => fsrsController.abort(), 3000);
-          const fsrsResponse = await fetchBookJson<{ cards: Array<{ cardId: string; front: string; dueAt: string; bookId: string }> }>(
-            "/app/api/book/me/reviews?limit=5",
-            { signal: fsrsController.signal }
-          );
-          clearTimeout(fsrsTimeout);
-          if (fsrsResponse.cards && fsrsResponse.cards.length > 0) {
-            upcomingReviews = fsrsResponse.cards.map((card) => ({
-              id: card.cardId,
-              prompt: card.front,
-              dueLabel: new Date(card.dueAt).toLocaleDateString(undefined, {
-                weekday: "short",
-                month: "short",
-                day: "numeric",
-              }),
-              bookId: card.bookId,
-            }));
-          }
-        } catch {
-          // FSRS unavailable or timed out — leave reviews empty.
-        }
-
         setAnalytics({
           streakDays: currentStreak,
           streakAtRisk: streakAtRisk(activityDaySet, todayKey),
@@ -804,7 +767,6 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           completedBookSnapshots,
           inProgressBookSnapshots,
           heatmapCells,
-          upcomingReviews,
           hasAnyProgress: totalCompletedChapters > 0,
           hasAnyEngagement: engagedBookSnapshots.length > 0,
           earnedBadgeIds,
