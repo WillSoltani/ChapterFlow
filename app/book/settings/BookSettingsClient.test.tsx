@@ -102,6 +102,11 @@ async function wait(ms: number) {
   });
 }
 
+async function waitUntil(check: () => boolean, timeoutMs: number) {
+  const deadline = Date.now() + timeoutMs;
+  while (!check() && Date.now() < deadline) await wait(50);
+}
+
 function writes(path: string) {
   return calls.filter((c) => c.method !== "GET" && c.url.endsWith(path));
 }
@@ -324,6 +329,8 @@ test("ACCT-06: upgrade=1 opens Account, focuses the subscription button and writ
   entitlements = entitlementsPayload("FREE");
   const view = renderSettings({ openUpgrade: true });
   await wait(1500);
+  // Focus lands one frame after the button appears; allow for a slow render.
+  await waitUntil(() => document.activeElement?.id === "subscription-cta", 5000);
 
   const header = section(view, "Account & Subscription").querySelector("button[aria-expanded]");
   assert.equal(header?.getAttribute("aria-expanded"), "true", "Account is open");
@@ -378,8 +385,34 @@ test("ACCT-09: a Pro feature card opens the subscription card instead of startin
   fireEvent.click(within(tts).getByRole("button", { name: /Learn more/ }));
   await wait(50);
   const dialog = view.getByRole("dialog");
-  fireEvent.click(within(dialog).getAllByRole("button").find((b) => /Upgrade|trial/i.test(b.textContent ?? ""))!);
-  await wait(900);
+  // The scroll must run once the dialog has closed and Account has opened: a
+  // scroll started in the commit that closes the dialog (scroll lock release,
+  // focus back to "Learn more", Account still growing) stops short of the card.
+  const scrolls: { id: string; block: unknown; bodyOverflow: string }[] = [];
+  const proto = window.HTMLElement.prototype as unknown as { scrollIntoView?: unknown };
+  const hadScroll = Object.prototype.hasOwnProperty.call(proto, "scrollIntoView");
+  const prevScroll = proto.scrollIntoView;
+  proto.scrollIntoView = function (this: HTMLElement, opts?: ScrollIntoViewOptions) {
+    scrolls.push({ id: this.id, block: opts?.block, bodyOverflow: document.body.style.overflow });
+  };
+  try {
+    fireEvent.click(within(dialog).getAllByRole("button").find((b) => /Upgrade|trial/i.test(b.textContent ?? ""))!);
+    assert.equal(scrolls.length, 0, "no scroll in the commit that closes the dialog");
+    await waitUntil(() => scrolls.length > 0, 5000);
+    await wait(300);
+  } finally {
+    if (hadScroll) proto.scrollIntoView = prevScroll;
+    else delete proto.scrollIntoView;
+  }
+  assert.equal(scrolls.length, 1, "one scroll, after the dialog closed");
+  // jsdom has no layout, so the card "fits" and its top is scrolled under the
+  // header; a card taller than the screen centres the button instead.
+  assert.deepEqual(
+    { id: scrolls[0]?.id, block: scrolls[0]?.block },
+    { id: "subscription", block: "start" },
+    "the subscription card is scrolled into view",
+  );
+  assert.equal(scrolls[0]?.bodyOverflow, "", "the dialog had released the page scroll");
 
   assert.equal(calls.filter((c) => c.url.includes("/billing/")).length, 0, "no checkout was started");
   assert.equal(view.queryByRole("dialog"), null, "the feature dialog closed");

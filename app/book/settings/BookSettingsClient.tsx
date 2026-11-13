@@ -173,6 +173,12 @@ function PlanPendingRow({ error, onRetry }: { error: string | null; onRetry: () 
 // Main Component
 // ---------------------------------------------------------------------------
 
+// Where an upgrade scroll places the subscription card: below the sticky header
+// (html scroll-padding-top in globals.css), with the button kept clear of the
+// phone tab bar at the bottom.
+const SUBSCRIPTION_SCROLL_TOP = 88;
+const SUBSCRIPTION_SCROLL_BOTTOM = 96;
+
 type BookSettingsClientProps = {
   isAdmin: boolean;
   userEmail: string | null;
@@ -523,12 +529,47 @@ export function BookSettingsClient({
   }, []);
   useEffect(() => {
     if (!subscriptionFocusPendingRef.current) return;
-    const button = document.getElementById("subscription-cta");
-    if (!button) return;
-    subscriptionFocusPendingRef.current = false;
-    document.getElementById("subscription")?.scrollIntoView?.({ block: "start" });
-    button.focus({ preventScroll: true });
-  }, [subscriptionFocusRequest, billingState.loading, billingState.payload, forceOpenSections, isSearching]);
+    if (!document.getElementById("subscription-cta")) return;
+    // Scroll once the page has stopped moving. A Pro feature dialog closing in
+    // this same commit releases the page scroll and returns focus to its
+    // opener, and a section opened just now grows for DUR.fast; until it has
+    // grown the page is too short to reach the button, so an earlier scroll
+    // stops short. The card's top goes under the header when the button then
+    // still clears the bottom (tab bar included); otherwise the button is
+    // centred. Either way the focused button is on screen.
+    let frame = 0;
+    let lastHeight = -1;
+    let framesLeft = 60;
+    const scrollWhenStill = () => {
+      const height = document.documentElement.scrollHeight;
+      if (height !== lastHeight && framesLeft > 0) {
+        lastHeight = height;
+        framesLeft -= 1;
+        frame = window.requestAnimationFrame(scrollWhenStill);
+        return;
+      }
+      const button = document.getElementById("subscription-cta");
+      if (!button) return;
+      subscriptionFocusPendingRef.current = false;
+      const card = document.getElementById("subscription");
+      const buttonBottomInCard = card
+        ? button.getBoundingClientRect().bottom - card.getBoundingClientRect().top
+        : Infinity;
+      if (card && SUBSCRIPTION_SCROLL_TOP + buttonBottomInCard + SUBSCRIPTION_SCROLL_BOTTOM <= window.innerHeight) {
+        card.scrollIntoView?.({ block: "start" });
+      } else {
+        button.scrollIntoView?.({ block: "center" });
+      }
+      button.focus({ preventScroll: true });
+    };
+    const timer = window.setTimeout(() => {
+      frame = window.requestAnimationFrame(scrollWhenStill);
+    }, reducedMotion ? 0 : DUR.fast * 1000);
+    return () => {
+      window.clearTimeout(timer);
+      window.cancelAnimationFrame(frame);
+    };
+  }, [subscriptionFocusRequest, billingState.loading, billingState.payload, forceOpenSections, isSearching, reducedMotion]);
 
   // Derived state. ACCT-14: the plan is unknown until entitlements load; Pro
   // controls need a known PRO and upsells a known FREE (never a default).
