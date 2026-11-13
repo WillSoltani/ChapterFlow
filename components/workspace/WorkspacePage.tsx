@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { CheckCircle, CheckCircle2, Clock, SkipForward, TriangleAlert, X } from "lucide-react";
+import { CheckCircle, CheckCircle2, Clock, Loader2, SkipForward, TriangleAlert, X } from "lucide-react";
 import { JetBrains_Mono } from "next/font/google";
 import { motion, useReducedMotion } from "framer-motion";
 import { AnimatedBackground } from "./AnimatedBackground";
@@ -17,11 +17,16 @@ import { TopNav } from "@/components/navigation/TopNav";
 import { PartnerProgressCard } from "@/components/workspace/PartnerProgressCard";
 import { fetchBookJson, BookClientError } from "@/lib/client/book-api";
 import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
-import { COMMITMENTS_KEY } from "@/lib/client/book-read-keys";
+import { COMMITMENTS_KEY, ENTITLEMENTS_KEY } from "@/lib/client/book-read-keys";
 import type { BookUserCommitmentItem, CommitmentOutcome } from "@/app/app/api/book/_lib/types";
 import { useBookAnalytics, type AnalyticsState } from "@/hooks/book/useBookAnalytics";
 import { DASHBOARD_KEY, useDashboardQuery } from "@/hooks/book/useDashboardQuery";
 import { resumeChapterNumber } from "@/components/book/book-cta-core";
+import {
+  billingReturnKind,
+  startBillingReturnPoll,
+  type BillingReturnStatus,
+} from "./billing-return-core";
 import { useBookViewer } from "@/hooks/book/useBookViewer";
 import { useFreeBookAllowance, type FreeBookAllowance } from "@/hooks/book/useFreeBookAllowance";
 import {
@@ -1026,26 +1031,64 @@ export function WorkspacePage() {
 
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [showProBanner, setShowProBanner] = useState(
-    () => searchParams.get("billing") === "success",
+  // Read once on mount: the effect below strips ?billing from the URL.
+  const [billingReturn] = useState(() => billingReturnKind(searchParams.get("billing")));
+  const [billingStatus, setBillingStatus] = useState<BillingReturnStatus | "cancelled" | null>(
+    () => (billingReturn === "success" ? "activating" : billingReturn),
   );
+  const [billingRefreshing, setBillingRefreshing] = useState(false);
 
   // Single owner of the post-Stripe ?billing redirect (BillingStatusBanner used
-  // to double up here). On success we flag the upgrade and show the in-page Pro
-  // banner; for any billing value we strip just that param (preserving others)
-  // so a refresh doesn't re-trigger.
+  // to double up here). On success we flag the upgrade for Settings; for any
+  // billing value we strip just that param (preserving others) so a refresh
+  // doesn't re-trigger.
   useEffect(() => {
     const billing = searchParams.get("billing");
     if (!billing) return;
     if (billing === "success") {
       sessionStorage.setItem("cf:billing-upgraded", "1");
-      invalidateBookCache(DASHBOARD_KEY);
-      refetch();
     }
     const url = new URL(window.location.href);
     url.searchParams.delete("billing");
     router.replace(url.pathname + url.search);
-  }, [searchParams, router, refetch]);
+  }, [searchParams, router]);
+
+  // ACCT-17 / DATA-17: the plan turns Pro when the payment webhook lands, which
+  // can be a few seconds after the reader is back. Re-read Home's data and the
+  // plan (forced, so mounted readers update) and say Pro only once it is.
+  const checkPro = useCallback(async () => {
+    const [dashboardPayload] = await Promise.all([
+      fetchBookJsonCached<{ entitlement?: { plan?: string } }>(DASHBOARD_KEY, undefined, {
+        forceRevalidate: true,
+      }),
+      fetchBookJsonCached(ENTITLEMENTS_KEY, undefined, { forceRevalidate: true }).catch(
+        () => null,
+      ),
+    ]);
+    return dashboardPayload?.entitlement?.plan === "PRO";
+  }, []);
+
+  useEffect(() => {
+    if (billingReturn !== "success") return;
+    return startBillingReturnPoll({ check: checkPro, onStatus: setBillingStatus });
+  }, [billingReturn, checkPro]);
+
+  const recheckBilling = useCallback(() => {
+    setBillingRefreshing(true);
+    void checkPro()
+      .catch(() => false)
+      .then((isPro) => {
+        setBillingRefreshing(false);
+        if (isPro) setBillingStatus("active");
+      });
+  }, [checkPro]);
+
+  // Still Free after the last try: one more re-read when the reader comes back.
+  useEffect(() => {
+    if (billingStatus !== "pending") return;
+    window.addEventListener("focus", recheckBilling, { once: true });
+    return () => window.removeEventListener("focus", recheckBilling);
+  }, [billingStatus, recheckBilling]);
 
   return (
     <div
@@ -1072,8 +1115,55 @@ export function WorkspacePage() {
         Skip to main content
       </a>
 
-      {/* Pro upgrade success banner (the single billing-success surface) */}
-      {showProBanner && (
+      {/* After checkout: re-reading the plan; never claims Pro before it is. */}
+      {billingStatus === "activating" && (
+        <div
+          role="status"
+          className="relative z-20 flex items-center gap-2.5 border-b border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3 text-(--cf-text-1) sm:px-6"
+        >
+          <Loader2 className="h-4 w-4 shrink-0 motion-safe:animate-spin" aria-hidden="true" />
+          <p className="text-sm font-medium">Activating your Pro plan…</p>
+        </div>
+      )}
+
+      {(billingStatus === "pending" || billingStatus === "cancelled") && (
+        <div
+          role="status"
+          className="relative z-20 flex items-center justify-between gap-3 border-b border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3 text-(--cf-text-1) sm:px-6"
+        >
+          <div className="flex items-center gap-2.5">
+            <Clock className="h-4 w-4 shrink-0 text-(--cf-text-3)" aria-hidden="true" />
+            <p className="text-sm font-medium">
+              {billingStatus === "pending"
+                ? "Payment received; Pro will appear shortly."
+                : "No charge was made."}
+            </p>
+          </div>
+          <div className="flex shrink-0 items-center gap-2">
+            {billingStatus === "pending" && (
+              <button
+                type="button"
+                onClick={recheckBilling}
+                disabled={billingRefreshing}
+                className="cf-btn cf-btn-secondary rounded-lg px-3 py-1.5 text-sm font-semibold cf-focus"
+              >
+                {billingRefreshing ? "Refreshing…" : "Refresh"}
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={() => setBillingStatus(null)}
+              aria-label="Dismiss"
+              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition hover:bg-(--cf-surface-strong)"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Pro upgrade success banner, shown once the plan really is Pro */}
+      {billingStatus === "active" && (
         <div
           role="status"
           className="relative z-20 flex items-center justify-between gap-3 border-b border-(--cf-success-border) bg-(--cf-success-bg) px-4 py-3 text-(--cf-success-text) sm:px-6"
@@ -1086,7 +1176,7 @@ export function WorkspacePage() {
           </div>
           <button
             type="button"
-            onClick={() => setShowProBanner(false)}
+            onClick={() => setBillingStatus(null)}
             aria-label="Dismiss"
             className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition hover:bg-(--cf-success-soft)"
           >
