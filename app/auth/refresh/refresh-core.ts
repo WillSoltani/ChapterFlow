@@ -14,7 +14,14 @@ export const REFRESH_DEFAULT_RETURN_TO = "/dashboard";
 export function resolveRefreshReturnTo(value: string | null | undefined): string {
   const raw = String(value ?? "").trim();
   if (!isSafeInternalPath(raw)) return REFRESH_DEFAULT_RETURN_TO;
-  const path = raw.split(/[?#]/, 1)[0]?.toLowerCase() ?? "";
+  // Check the path the redirect will actually resolve to: the URL parser folds
+  // dot segments (including percent-encoded dots) before the browser follows it.
+  let path: string;
+  try {
+    path = new URL(raw, "http://refresh.invalid").pathname.toLowerCase();
+  } catch {
+    return REFRESH_DEFAULT_RETURN_TO;
+  }
   if (path === "/auth" || path.startsWith("/auth/")) return REFRESH_DEFAULT_RETURN_TO;
   return raw;
 }

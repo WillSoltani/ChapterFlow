@@ -34,6 +34,12 @@ test("never returns into an /auth route, so refresh cannot chain into itself", (
     "/auth/logout",
     "/AUTH/login",
     "/auth",
+    // Dot segments and encoded dots resolve into /auth once the URL is built.
+    "/./auth/logout",
+    "/%2e/auth/logout",
+    "/%2E%2E/auth/logout",
+    "/book/../auth/logout",
+    "/book/%2e%2e/auth/refresh",
   ]) {
     assert.equal(resolveRefreshReturnTo(raw), REFRESH_DEFAULT_RETURN_TO, raw);
   }
