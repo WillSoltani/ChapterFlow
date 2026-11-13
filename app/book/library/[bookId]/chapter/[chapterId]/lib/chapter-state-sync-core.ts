@@ -13,6 +13,10 @@ import type { ChapterTab, ExampleFilter, FontScale } from "@/lib/reader-state-ty
 //  - One request at a time; edits made meanwhile go out after it settles.
 //  - Failures retry with backoff; after two in a row (or a refusal) the reader
 //    shows "Changes saved on this device only." until a request succeeds.
+//  - A sync belongs to the account signed in when it was created. Once another
+//    account (or none) is signed in, it stops: nothing more is read, written or
+//    merged. An empty read after an account copy was seen stops it too, instead
+//    of writing this device's whole state as if the chapter were new.
 
 export type QuizResult = {
   score: number;
@@ -275,6 +279,8 @@ export type ChapterStateSyncDeps = {
     merge: (local: PersistedChapterState) => PersistedChapterState
   ) => void;
   onSyncFailedChange: (failed: boolean) => void;
+  /** Which account is signed in now (null when unknown or signed out). */
+  account: () => string | null;
   setTimer: (callback: () => void, ms: number) => unknown;
   clearTimer: (handle: unknown) => void;
   now: () => number;
@@ -310,6 +316,23 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
   // A state the server refused (4xx); not resent until the reader changes it.
   let refusedJson: string | null = null;
   let syncFailed = false;
+  const owner = deps.account();
+
+  function stop() {
+    disposed = true;
+    clearSaveTimer();
+    if (retryTimer !== null) deps.clearTimer(retryTimer);
+    retryTimer = null;
+  }
+
+  // False (and stopped for good) once the signed-in account is not the one
+  // this sync was created for.
+  function sameAccount(): boolean {
+    if (disposed) return false;
+    if (deps.account() === owner) return true;
+    stop();
+    return false;
+  }
 
   function setSyncFailed(next: boolean) {
     if (syncFailed === next) return;
@@ -353,11 +376,20 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
   }
 
   function runGet() {
+    if (!sameAccount()) return;
     getInFlight = true;
     deps.get().then(
       (copy) => {
         if (disposed) return;
         getInFlight = false;
+        if (!sameAccount()) return;
+        if (copy.state === null && baseline !== null) {
+          // The account copy seen earlier is gone. Writing now would replace
+          // it with this device's whole state, so stop syncing instead.
+          setSyncFailed(true);
+          stop();
+          return;
+        }
         getFailures = 0;
         loaded = true;
         refreshWanted = false;
@@ -378,6 +410,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
       (error: unknown) => {
         if (disposed) return;
         getInFlight = false;
+        if (!sameAccount()) return;
         if (!isRetryableSyncError(error)) {
           setSyncFailed(true);
           // A refused first read stops here (the next focus tries again); a
@@ -396,6 +429,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
   }
 
   function runPatch(state: PersistedChapterState, keepalive: boolean) {
+    if (!sameAccount()) return;
     patchesInFlight += 1;
     inFlightState = state;
     deps.patch(state, { keepalive }).then(
@@ -403,6 +437,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
         if (disposed) return;
         patchesInFlight -= 1;
         if (patchesInFlight === 0) inFlightState = null;
+        if (!sameAccount()) return;
         patchFailures = 0;
         refusedJson = null;
         setSyncFailed(false);
@@ -413,6 +448,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
         if (disposed) return;
         patchesInFlight -= 1;
         if (patchesInFlight === 0) inFlightState = null;
+        if (!sameAccount()) return;
         if (!isRetryableSyncError(error)) {
           refusedJson = stableJson(state);
           setSyncFailed(true);
@@ -462,7 +498,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
       pump();
     },
     flush() {
-      if (disposed) return;
+      if (!sameAccount()) return;
       clearSaveTimer();
       if (!needsWrite(local)) return;
       if (patchesInFlight > 0 && inFlightState && chapterStatesEqual(local, inFlightState)) {
@@ -471,10 +507,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
       runPatch(local, true);
     },
     dispose() {
-      disposed = true;
-      clearSaveTimer();
-      if (retryTimer !== null) deps.clearTimer(retryTimer);
-      retryTimer = null;
+      stop();
     },
   };
 }

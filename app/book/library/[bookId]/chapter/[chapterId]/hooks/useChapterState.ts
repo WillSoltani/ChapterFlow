@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchBookJson } from "@/lib/client/book-api";
+import { LOCAL_DATA_OWNER_COOKIE, readCookieValue } from "@/lib/auth-cache-generation";
 import { getChapterReaderStorageKey } from "@/app/book/_lib/reader-storage";
 import type { ReadingDepth } from "@/lib/reader-content-types";
 import { emitBookStorageChanged } from "@/lib/client/book-storage-events";
@@ -305,6 +306,15 @@ export function useChapterState(
         setState((prev) => merge(prev));
       },
       onSyncFailedChange: setSyncFailed,
+      // The account the reader's notes belong to: once another one signs in
+      // (here or in another tab), this sync stops reading and writing.
+      account: () => {
+        try {
+          return readCookieValue(document.cookie, LOCAL_DATA_OWNER_COOKIE);
+        } catch {
+          return null;
+        }
+      },
       setTimer: (callback, ms) => window.setTimeout(callback, ms),
       clearTimer: (handle) => window.clearTimeout(handle as number),
       now: () => Date.now(),

@@ -13,8 +13,10 @@ import {
 
 type Deferred<T> = { resolve: (value: T) => void; reject: (error: unknown) => void };
 
-function harness() {
+function harness(options: { manualApply?: boolean } = {}) {
   let clock = 0;
+  let account: string | null = "account-a";
+  const pendingApplies: Array<() => void> = [];
   let nextId = 1;
   const timers = new Map<number, { at: number; callback: () => void }>();
   const gets: Deferred<ServerChapterCopy>[] = [];
@@ -35,11 +37,14 @@ function harness() {
       ),
     // React applies the merge on a later render, like setState(prev => ...).
     applyServer: (_server, merge) => {
-      queueMicrotask(() => {
+      const apply = () => {
         current = merge(current);
         sync.setLocal(current);
-      });
+      };
+      if (options.manualApply) pendingApplies.push(apply);
+      else queueMicrotask(apply);
     },
+    account: () => account,
     onSyncFailedChange: (failed) => failedChanges.push(failed),
     setTimer: (callback, ms) => {
       const id = nextId++;
@@ -79,6 +84,14 @@ function harness() {
     flushPromises,
     get current() {
       return current;
+    },
+    /** The signed-in account, as the reader sees it in the browser. */
+    setAccount(next: string | null) {
+      account = next;
+    },
+    /** Run the React merges held back by `manualApply`. */
+    applyPending() {
+      for (const apply of pendingApplies.splice(0)) apply();
     },
     edit(change: Partial<PersistedChapterState>) {
       current = { ...current, ...change };
@@ -147,6 +160,66 @@ test("no server row: exactly one write, then nothing until the reader changes so
   h.edit({ ...h.current });
   await h.advance(5_000);
   assert.equal(h.patches.length, 1, "an unchanged state is not written again");
+});
+
+test("after another account signs in, nothing is read, written or merged", async () => {
+  const h = harness();
+  h.open({ notes: "account A notes", notesUpdatedAt: "2026-11-13T09:00:00.000Z" });
+  h.gets[0]!.resolve(server({ notes: "account A notes", notesUpdatedAt: "2026-11-13T09:00:00.000Z" }));
+  await h.advance(5_000);
+  h.edit({ notes: "account A notes + more", notesUpdatedAt: "2026-11-13T09:10:00.000Z" });
+  h.setAccount("account-b");
+  h.sync.refresh();
+  await h.advance(5_000);
+  assert.equal(h.gets.length, 1, "no read with the other account");
+  h.sync.flush();
+  await h.advance(5_000);
+  assert.equal(h.patches.length, 0, "no write into the other account");
+});
+
+test("a read that lands after the account changed is not merged or written", async () => {
+  const h = harness();
+  h.open({ notes: "account A notes", notesUpdatedAt: "2026-11-13T09:00:00.000Z" });
+  h.gets[0]!.resolve(server({ notes: "account A notes", notesUpdatedAt: "2026-11-13T09:00:00.000Z" }));
+  await h.advance(5_000);
+  h.sync.refresh();
+  assert.equal(h.gets.length, 2);
+  h.setAccount("account-b");
+  h.gets[1]!.resolve(server({ notes: "account B notes", notesUpdatedAt: "2026-11-13T10:00:00.000Z" }, "2026-11-13T10:00:00.000Z"));
+  await h.advance(5_000);
+  assert.equal(h.current.notes, "account A notes", "the other account's copy is not merged");
+  h.sync.flush();
+  assert.equal(h.patches.length, 0);
+});
+
+test("a write retried after the account changed is not sent", async () => {
+  const h = harness();
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.flushPromises();
+  h.edit({ notes: "account A", notesUpdatedAt: "2026-11-13T10:00:00.000Z" });
+  await h.advance(200);
+  assert.equal(h.patches.length, 1);
+  h.patches[0]!.reject(new TypeError("offline"));
+  await h.flushPromises();
+  h.setAccount(null);
+  await h.advance(60_000);
+  h.sync.flush();
+  assert.equal(h.patches.length, 1, "no retry and no flush once the account changed");
+});
+
+test("an empty read after the account copy was seen never writes the whole state", async () => {
+  const h = harness();
+  h.open({ notes: "mine", notesUpdatedAt: "2026-11-13T09:00:00.000Z", bookmarkedTakeaways: [1], bookmarkedTakeawayTexts: { "1": "One" } });
+  h.gets[0]!.resolve(server({ notes: "mine", notesUpdatedAt: "2026-11-13T09:00:00.000Z", bookmarkedTakeaways: [1], bookmarkedTakeawayTexts: { "1": "One" } }));
+  await h.advance(5_000);
+  assert.equal(h.patches.length, 0);
+  h.sync.refresh();
+  h.gets[1]!.resolve({ state: null, updatedAt: null });
+  await h.advance(5_000);
+  h.sync.flush();
+  await h.advance(5_000);
+  assert.equal(h.patches.length, 0, "no write-once after a non-empty account copy");
 });
 
 test("opening a chapter whose server copy matches sends no write", async () => {
