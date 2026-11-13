@@ -65,6 +65,7 @@ import { MomentumEmptyState } from "@/app/book/profile/components/MomentumEmptyS
 import { NotePreviewCard } from "@/app/book/profile/components/NotePreviewCard";
 import { PinnedTakeawayCard } from "@/app/book/profile/components/PinnedTakeawayCard";
 import { ProfileSkeleton } from "@/app/book/profile/components/ProfileSkeleton";
+import { buildStatsSummary, exploredCategoriesFrom } from "@/app/book/profile/lib/profile-stats-core";
 import { ProStatusCard } from "@/app/book/profile/components/ProStatusCard";
 import { QuizBarChart } from "@/app/book/profile/components/QuizBarChart";
 import { SectionCard } from "@/app/book/profile/components/SectionCard";
@@ -343,7 +344,6 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
         activityLog: [] as ActivityEntry[],
         depthCounts: { simple: 0, standard: 0, deeper: 0 },
         recentOpenedChapters: [] as ActivityEntry[],
-        categoriesSet: new Set<string>(),
       };
     }
 
@@ -352,13 +352,10 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
     const activityLog: ActivityEntry[] = [];
     const recentOpenedChapters: ActivityEntry[] = [];
     const depthCounts = { simple: 0, standard: 0, deeper: 0 };
-    const categoriesSet = new Set<string>();
     let quizQuestionsAnswered = 0;
     void revision;
 
     for (const snapshot of analytics?.bookSnapshots ?? []) {
-      if (snapshot.book.category) categoriesSet.add(snapshot.book.category);
-
       const progress = parseStoredBookProgress(
         window.localStorage.getItem(getBookProgressStorageKey(snapshot.book.id))
       );
@@ -431,24 +428,13 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
     activityLog.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
     recentOpenedChapters.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
 
-    return { quizQuestionsAnswered, notes, recentQuizEntries, activityLog, depthCounts, recentOpenedChapters, categoriesSet };
+    return { quizQuestionsAnswered, notes, recentQuizEntries, activityLog, depthCounts, recentOpenedChapters };
   }, [analytics, analyticsHydrated, revision]);
 
-  const statsSummary = useMemo(() => {
-    const totalReadingMinutes = analytics?.heatmapCells.reduce((sum, cell) => sum + cell.minutes, 0) ?? 0;
-    return {
-      currentStreak: analytics?.streakDays ?? 0,
-      longestStreak: analytics?.longestStreak ?? 0,
-      booksCompleted: analytics?.booksCompleted ?? 0,
-      totalChaptersCompleted: analytics?.totalCompletedChapters ?? 0,
-      quizQuestionsAnswered: localInsights.quizQuestionsAnswered,
-      averageQuizScore: analytics?.avgQuizScore ?? 0,
-      maxQuizScore: analytics?.maxQuizScore ?? 0,
-      totalReadingMinutes,
-      categoriesCount: localInsights.categoriesSet.size,
-      minutesReadToday: analytics?.minutesReadToday ?? 0,
-    };
-  }, [analytics, localInsights.quizQuestionsAnswered, localInsights.categoriesSet.size]);
+  const statsSummary = useMemo(
+    () => buildStatsSummary(analytics, localInsights.quizQuestionsAnswered),
+    [analytics, localInsights.quizQuestionsAnswered]
+  );
 
   const currentSnapshot = useMemo(() => {
     const sorted = [...(analytics?.bookSnapshots ?? [])].sort((a, b) => {
@@ -495,18 +481,10 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
   }, [currentSnapshot, activeBooks, analytics]);
 
   // E2: Category exploration map
-  const exploredCategories = useMemo(() => {
-    const catMap = new Map<string, number>();
-    for (const snapshot of analytics?.bookSnapshots ?? []) {
-      const cat = snapshot.book.category;
-      if (cat && snapshot.completedChapters > 0) {
-        catMap.set(cat, (catMap.get(cat) ?? 0) + snapshot.completedChapters);
-      }
-    }
-    return Array.from(catMap.entries())
-      .map(([name, chapters]) => ({ name, chapters }))
-      .sort((a, b) => b.chapters - a.chapters);
-  }, [analytics]);
+  const exploredCategories = useMemo(
+    () => exploredCategoriesFrom(analytics?.bookSnapshots ?? []),
+    [analytics]
+  );
 
   // B1/B2: Current reading details with learning loop steps + chapter time
   const currentReadingDetails = useMemo(() => {
@@ -1182,7 +1160,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                     : "Monthly plan · renews monthly"
                 }
                 booksAccessedCount={billingState.payload?.entitlement.unlockedBooksCount ?? 0}
-                proSinceLabel={profile.createdAt ? `Pro since ${new Date(profile.createdAt).toLocaleDateString(undefined, { month: "short", year: "numeric" })}` : "Pro member"}
+                proSinceLabel="Pro member"
                 proSource={billingState.payload?.entitlement.proSource}
                 onManage={() => handleBillingAction("portal")}
               />
