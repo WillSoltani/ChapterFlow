@@ -1459,7 +1459,7 @@ export async function adjustEngagementPointsAdmin(
       throw new BookApiError(
         400,
         "insufficient_balance",
-        "User does not have enough points for this deduction."
+        "You don't have enough Insight Points for this yet."
       );
     }
     throw error;
@@ -1567,7 +1567,7 @@ export async function purchaseGiftAFriend(
     );
   } catch (error: unknown) {
     if (error && typeof error === "object" && (error as Record<string, unknown>).name === "TransactionCanceledException") {
-      throw new BookApiError(400, "insufficient_points", "Insufficient Insight Points balance.");
+      throw new BookApiError(400, "insufficient_points", "You don't have enough Insight Points for this yet.");
     }
     throw error;
   }
@@ -1647,7 +1647,7 @@ export async function purchasePersonalizationItem(
     );
   } catch (error: unknown) {
     if (error && typeof error === "object" && (error as Record<string, unknown>).name === "TransactionCanceledException") {
-      throw new BookApiError(400, "insufficient_points", "Insufficient Insight Points balance.");
+      throw new BookApiError(400, "insufficient_points", "You don't have enough Insight Points for this yet.");
     }
     throw error;
   }

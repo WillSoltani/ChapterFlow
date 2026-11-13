@@ -1,7 +1,7 @@
 import "server-only";
 
 import type { AuthedUser } from "@/app/app/api/_lib/auth";
-import { BookApiError } from "./errors";
+import { BookApiError, invalidAnswersError } from "./errors";
 import {
   getLocalQuizQuestions,
   getPublishedBookManifest,
@@ -115,18 +115,14 @@ export type RequestResponse = {
 export function parseResponses(body: Record<string, unknown>): RequestResponse[] {
   const responsesRaw = body.responses;
   if (!Array.isArray(responsesRaw) || responsesRaw.length === 0) {
-    throw new BookApiError(
-      400,
-      "invalid_answers",
+    throw invalidAnswersError(
       "responses must include one answer for every question."
     );
   }
 
   return responsesRaw.map((entry, index) => {
     if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
-      throw new BookApiError(
-        400,
-        "invalid_answers",
+      throw invalidAnswersError(
         `responses[${index}] must be an object.`
       );
     }
@@ -143,16 +139,12 @@ export function parseResponses(body: Record<string, unknown>): RequestResponse[]
         : null;
 
     if (!questionId) {
-      throw new BookApiError(
-        400,
-        "invalid_answers",
+      throw invalidAnswersError(
         `responses[${index}].questionId is required.`
       );
     }
     if (!selectedChoiceId && selectedIndexRaw === null) {
-      throw new BookApiError(
-        400,
-        "invalid_answers",
+      throw invalidAnswersError(
         `responses[${index}] must include selectedChoiceId or selectedIndex.`
       );
     }
@@ -475,9 +467,7 @@ export async function completeLearningLoop(input: CompleteLearningLoopInput) {
     responses.map((r) => r.questionId)
   );
   if (!answersExactlyCoverAttempt) {
-    throw new BookApiError(
-      400,
-      "invalid_answers",
+    throw invalidAnswersError(
       `responses must answer exactly the ${attemptQuestions.length} assigned question(s).`
     );
   }
@@ -526,9 +516,7 @@ export async function completeLearningLoop(input: CompleteLearningLoopInput) {
           };
         })();
   } catch (error: unknown) {
-    throw new BookApiError(
-      400,
-      "invalid_answers",
+    throw invalidAnswersError(
       error instanceof Error ? error.message : "Quiz answers are invalid."
     );
   }

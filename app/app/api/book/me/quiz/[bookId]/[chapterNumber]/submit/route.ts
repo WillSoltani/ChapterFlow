@@ -32,7 +32,7 @@ export async function POST(
     try {
       bodyRaw = await req.json();
     } catch {
-      throw new BookApiError(400, "invalid_json", "Request body must be valid JSON.");
+      throw new BookApiError(400, "invalid_json", "We couldn't read that request. Please try again.");
     }
     const body = requireBodyObject(bodyRaw);
     // Parse + validate responses BEFORE ensureUserBookStarted so a malformed

@@ -74,7 +74,7 @@ export function decodeListCursor<T = unknown>(raw: string): T {
     const json = Buffer.from(raw, "base64url").toString("utf8");
     return JSON.parse(json) as T;
   } catch {
-    throw new BookApiError(400, "invalid_cursor", "The pagination cursor is malformed.");
+    throw new BookApiError(400, "invalid_cursor", "We couldn't load more items. Refresh and try again.");
   }
 }
 
@@ -152,7 +152,7 @@ export function paginateArray<T>(
   if (opts.cursor) {
     const decoded = decodeListCursor(opts.cursor);
     if (!isArrayCursorPayload(decoded)) {
-      throw new BookApiError(400, "invalid_cursor", "The pagination cursor is malformed.");
+      throw new BookApiError(400, "invalid_cursor", "We couldn't load more items. Refresh and try again.");
     }
     const idx = sortedItems.findIndex((item) => {
       const key = cursorKey(item);

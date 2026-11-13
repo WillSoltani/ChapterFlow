@@ -127,7 +127,7 @@ export async function POST(req: Request, ctx: Params) {
       limitTtl,
     );
     if (!claimed) {
-      return bookErr(req, 429, "rate_limited", "Feedback already requested for this example today");
+      return bookErr(req, 429, "rate_limited", "You already asked for feedback on this example today. Try again tomorrow.");
     }
 
     // The rate-limit slot was claimed above to close the concurrent/abort race.
@@ -241,7 +241,7 @@ export async function POST(req: Request, ctx: Params) {
     // client would treat as a logout. (REAUTH_REQUIRED is N/A — no step-up here.)
     if (err instanceof AuthError) {
       if (err.message === "VERIFIER_UNAVAILABLE") {
-        return bookErr(req, 503, "verifier_unavailable", "Authentication is temporarily unavailable. Please retry.");
+        return bookErr(req, 503, "verifier_unavailable", "We couldn't check your sign-in just now. Please try again.");
       }
       return bookErr(req, 401, "unauthenticated", "Authentication is required.");
     }

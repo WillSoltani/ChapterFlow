@@ -41,7 +41,7 @@ export async function POST(req: Request, ctx: Params) {
     try {
       body = (await req.json()) as Record<string, unknown>;
     } catch {
-      return bookErr(req, 400, "invalid_json", "Request body must be valid JSON.");
+      return bookErr(req, 400, "invalid_json", "We couldn't read that request. Please try again.");
     }
 
     const question = typeof body.question === "string" ? body.question.trim() : "";
@@ -117,7 +117,7 @@ export async function POST(req: Request, ctx: Params) {
     // point (see H10).
     const currentCount = await getAiQuestionCount(tableName, user.sub, today);
     if (currentCount >= limit) {
-      return bookErr(req, 429, "question_limit", `Daily question limit reached (${limit}/day)`);
+      return bookErr(req, 429, "question_limit", `You've asked all ${limit} of today's questions. You can ask more tomorrow.`);
     }
 
     // Get API key
@@ -282,7 +282,7 @@ export async function POST(req: Request, ctx: Params) {
     const countTtl = Math.floor(Date.now() / 1000) + 3 * 86400;
     const reserved = await reserveDailyAiQuestionSlot(tableName, user.sub, today, limit, countTtl);
     if (!reserved) {
-      return bookErr(req, 429, "question_limit", `Daily question limit reached (${limit}/day)`);
+      return bookErr(req, 429, "question_limit", `You've asked all ${limit} of today's questions. You can ask more tomorrow.`);
     }
 
     // Stream Claude response. The question is already counted (reserved above),
@@ -415,7 +415,7 @@ ${bookContext}`,
     // uses plain requireActiveBookUser, no step-up auth.)
     if (err instanceof AuthError) {
       if (err.message === "VERIFIER_UNAVAILABLE") {
-        return bookErr(req, 503, "verifier_unavailable", "Authentication is temporarily unavailable. Please retry.");
+        return bookErr(req, 503, "verifier_unavailable", "We couldn't check your sign-in just now. Please try again.");
       }
       return bookErr(req, 401, "unauthenticated", "Authentication is required.");
     }

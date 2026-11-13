@@ -230,7 +230,7 @@ export async function withBookApiErrors<T>(
             req,
             503,
             "verifier_unavailable",
-            "Authentication is temporarily unavailable. Please retry.",
+            "We couldn't check your sign-in just now. Please try again.",
             undefined,
             requestId
           );
@@ -289,7 +289,7 @@ export async function withBookApiErrors<T>(
           req,
           503,
           "throttled",
-          "The service is temporarily busy. Please retry.",
+          "ChapterFlow is busy right now. Please try again in a moment.",
           undefined,
           requestId
         );
@@ -320,7 +320,7 @@ export async function withBookApiErrors<T>(
 
 export function requireBodyObject(reqBody: unknown): Record<string, unknown> {
   if (!reqBody || typeof reqBody !== "object" || Array.isArray(reqBody)) {
-    throw new BookApiError(400, "invalid_json", "Request body must be a JSON object.");
+    throw new BookApiError(400, "invalid_json", "We couldn't read that request. Please try again.");
   }
   return reqBody as Record<string, unknown>;
 }
@@ -335,7 +335,7 @@ export async function readJsonBody(req: Request): Promise<Record<string, unknown
   try {
     raw = await req.json();
   } catch {
-    throw new BookApiError(400, "invalid_json", "Request body must be a JSON object.");
+    throw new BookApiError(400, "invalid_json", "We couldn't read that request. Please try again.");
   }
   return requireBodyObject(raw);
 }
@@ -444,7 +444,7 @@ export async function enforceDailyUserLimit(params: {
       throw new BookApiError(
         429,
         "rate_limited",
-        `Daily limit reached for ${params.resource ?? "requests"} (${params.limit}/day). Try again tomorrow.`
+        `You've reached today's limit for ${params.resource ?? "this"}. Try again tomorrow.`
       );
     }
     throw e;

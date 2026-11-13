@@ -382,7 +382,7 @@ export async function recordQuizAttemptOutcome(
         throw new BookApiError(
           409,
           "quiz_state_conflict",
-          "Quiz state changed. Refresh and try again."
+          "This quiz changed while you were answering. Refresh and try again."
         );
       }
 
@@ -391,7 +391,7 @@ export async function recordQuizAttemptOutcome(
         new BookApiError(
           503,
           "progress_write_contended",
-          "Saving your progress hit heavy contention. Please try again."
+          "We couldn't save your progress just now. Please try again."
         );
 
       if (klass === "progress_conflict") {
@@ -442,7 +442,7 @@ export async function recordQuizAttemptOutcome(
           throw new BookApiError(
             503,
             "quiz_write_contended",
-            "Saving your quiz result hit heavy contention. Please try again."
+            "We couldn't save your quiz result just now. Please try again."
           );
         }
         await new Promise((resolve) => setTimeout(resolve, 25 * (attemptNo + 1)));
