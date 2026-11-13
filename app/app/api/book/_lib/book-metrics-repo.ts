@@ -31,6 +31,7 @@ import {
   readNum,
   readStr,
 } from "./repo-shared";
+import { dailyReaderMarkerSk } from "./book-metrics-core";
 
 export async function getUserEngagement(
   tableName: string,
@@ -219,24 +220,51 @@ export async function putBadgeAward(
   }
 }
 
+/** The reader marker only has to outlive its own day; keep a week of slack. */
+const DAILY_READER_MARKER_RETENTION_DAYS = 8;
+
 /**
  * Increment the per-book, per-day reader metrics (unique readers + loop
- * completions) surfaced on the Progress page's per-title KPIs. Extracted verbatim
- * from the quiz-submit route (WS3-003) — the raw BOOKMETRICS#<bookId> /
- * BOOK_CHAPTER_DAILY_METRICS update is unchanged. Read back by
+ * completions) surfaced on the Progress page's per-title KPIs. Read back by
  * books/[bookId]/metrics/route.ts. Callers fire this best-effort (a metrics
  * write must never fail a loop), so they swallow rejections.
+ *
+ * API-08: every loop adds to loopCompletions, but uniqueReaders grows only on
+ * the reader's first loop of the day for this book, decided by a conditional
+ * Put of a per-(book, day, reader) marker.
  */
 export async function incrementDailyReaderMetrics(
   tableName: string,
-  params: { bookId: string; dayKey: string; ts: string }
+  params: { bookId: string; userId: string; dayKey: string; ts: string }
 ): Promise<void> {
+  let newReader = true;
+  try {
+    await ddbDoc.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: bookMetricsPk(params.bookId),
+          SK: dailyReaderMarkerSk(params.dayKey, params.userId),
+          entity: "BOOK_DAILY_READER_MARKER",
+          bookId: params.bookId,
+          dayKey: params.dayKey,
+          createdAt: params.ts,
+          ttl: ttlEpochSeconds(DAILY_READER_MARKER_RETENTION_DAYS),
+        },
+        ConditionExpression: "attribute_not_exists(PK)",
+      })
+    );
+  } catch (error: unknown) {
+    if (!isConditionalCheckFailed(error)) throw error;
+    newReader = false;
+  }
   await ddbDoc.send(
     new UpdateCommand({
       TableName: tableName,
       Key: { PK: bookMetricsPk(params.bookId), SK: dailyMetricsSk(params.dayKey) },
-      UpdateExpression:
-        "SET entity = :entity, bookId = :bookId, dayKey = :day, updatedAt = :now ADD uniqueReaders :one, loopCompletions :one",
+      UpdateExpression: newReader
+        ? "SET entity = :entity, bookId = :bookId, dayKey = :day, updatedAt = :now ADD uniqueReaders :one, loopCompletions :one"
+        : "SET entity = :entity, bookId = :bookId, dayKey = :day, updatedAt = :now ADD loopCompletions :one",
       ExpressionAttributeValues: {
         ":entity": "BOOK_CHAPTER_DAILY_METRICS",
         ":bookId": params.bookId,
@@ -251,8 +279,7 @@ export async function incrementDailyReaderMetrics(
 /**
  * Query the daily reader/loop KPI rows for one book across a SK range
  * (inclusive). Moved verbatim from books/[bookId]/metrics/route.ts
- * (WS3-002) — the per-item aggregation (today vs week totals) stays in the
- * route, unchanged.
+ * (WS3-002). The today/week aggregation lives in book-metrics-core.ts.
  */
 export async function queryDailyReaderMetricsRange(
   tableName: string,

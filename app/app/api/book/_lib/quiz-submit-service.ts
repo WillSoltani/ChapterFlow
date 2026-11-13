@@ -681,6 +681,7 @@ export async function completeLearningLoop(input: CompleteLearningLoopInput) {
     incrementDailyMetrics: () =>
       incrementDailyReaderMetrics(tableName, {
         bookId,
+        userId: user.sub,
         dayKey: ts.slice(0, 10),
         ts,
       }),

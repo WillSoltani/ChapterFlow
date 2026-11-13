@@ -5,6 +5,7 @@ import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getCatalogBook, getUserProgress } from "@/app/app/api/book/_lib/repo";
 import { queryDailyReaderMetricsRange } from "@/app/app/api/book/_lib/book-metrics-repo";
+import { aggregateMetrics } from "@/app/app/api/book/_lib/book-metrics-core";
 
 import { loadMetricsAccess } from "./metrics-core";
 
@@ -37,21 +38,7 @@ export async function GET(
 
     const items = await queryDailyReaderMetricsRange(tableName, bookId, weekAgo, today);
 
-    let readersToday = 0;
-    let readersWeek = 0;
-    let loopsToday = 0;
-    let loopsWeek = 0;
-
-    for (const item of items) {
-      const readers = typeof item.uniqueReaders === "number" ? item.uniqueReaders : 0;
-      const loops = typeof item.loopCompletions === "number" ? item.loopCompletions : 0;
-      readersWeek += readers;
-      loopsWeek += loops;
-      if (item.dayKey === today) {
-        readersToday = readers;
-        loopsToday = loops;
-      }
-    }
+    const { readersToday, readersWeek, loopsToday, loopsWeek } = aggregateMetrics(items, today);
 
     return bookOk({
       bookId,
