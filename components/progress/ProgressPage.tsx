@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { TopNav } from "@/components/navigation/TopNav";
-import { useOnboardingState } from "@/hooks/book/useOnboardingState";
+import { useOnboardingRedirect, useOnboardingState } from "@/hooks/book/useOnboardingState";
 import { useBookAnalytics } from "@/hooks/book/useBookAnalytics";
 import { useBookViewer } from "@/hooks/book/useBookViewer";
 import { useInsightPoints } from "@/hooks/book/useInsightPoints";
@@ -469,7 +469,6 @@ export function ProgressPage() {
   const {
     state: onboarding,
     hydrated: onboardingHydrated,
-    statusResolved: onboardingStatusResolved,
   } = useOnboardingState();
   const { identity: viewerIdentity } = useBookViewer();
   const { hydrated, analytics } = useBookAnalytics(
@@ -520,17 +519,9 @@ export function ProgressPage() {
     { ignoreWhenTyping: true }
   );
 
-  // Redirect if not onboarded — but only after the server onboarding check has
-  // settled (onboardingStatusResolved). A returning user on a fresh browser
-  // starts with the optimistic localStorage default setupComplete=false; without
-  // this gate they'd be bounced to /book (then /dashboard) before the server
-  // confirmation could flip the flag. See finding M36.
-  useEffect(() => {
-    if (!onboardingHydrated || !onboardingStatusResolved) return;
-    if (!onboarding.setupComplete) {
-      router.replace("/book");
-    }
-  }, [onboarding.setupComplete, onboardingHydrated, onboardingStatusResolved, router]);
+  // Redirect if not onboarded — only once the server has positively said so,
+  // never on the fresh-browser default or a failed check (M36, SHELL-02).
+  useOnboardingRedirect({ hydrated: onboardingHydrated, setupComplete: onboarding.setupComplete });
 
   // ── Build page data ──
   const data = useMemo<ProgressPageData | null>(() => {
