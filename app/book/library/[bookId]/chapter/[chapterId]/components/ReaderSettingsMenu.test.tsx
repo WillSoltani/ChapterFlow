@@ -109,7 +109,7 @@ test("a click inside a confirm dialog above the menu keeps the menu open and foc
     return (
       <header>
         {menu(() => (closed += 1), { onChangeLearningMode: () => setConfirming(true) })}
-        <Dialog open={confirming} onClose={() => setConfirming(false)} title="Switch to Deeper now?">
+        <Dialog open={confirming} onClose={() => setConfirming(false)} ariaLabel="Switch to Deeper now?">
           <button type="button" onClick={() => setConfirming(false)}>
             Keep my answers
           </button>
