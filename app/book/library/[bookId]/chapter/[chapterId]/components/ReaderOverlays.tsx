@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { CheckCircle2, CloudOff, X } from "lucide-react";
+import { X } from "lucide-react";
 import type { BookChapter, ReadingDepth } from "@/app/book/data/bookChapters";
 import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
 import { Dialog } from "@/components/ui/Dialog";
@@ -68,6 +68,8 @@ type Props = {
   nextChapter?: ChapterLink | undefined;
   notesOpen: boolean;
   onNotesOpenChange: (open: boolean) => void;
+  askOpen: boolean;
+  onAskOpenChange: (open: boolean) => void;
   sessionMode: boolean;
   onSessionTourDone: () => void;
   showCompleteModal: boolean;
@@ -93,6 +95,8 @@ export function ReaderOverlays({
   nextChapter,
   notesOpen,
   onNotesOpenChange,
+  askOpen,
+  onAskOpenChange,
   sessionMode,
   onSessionTourDone,
   showCompleteModal,
@@ -111,7 +115,7 @@ export function ReaderOverlays({
 }: Props) {
   const { entry } = access;
   const { chapterProgress, readerInteractionsReady } = progress;
-  const { state, setNotes, appendNote, syncFailed } = chapterProgress;
+  const { state, setNotes, appendNote } = chapterProgress;
   const { interstitial, handleInterstitialComplete } = phaseFlow;
   const { quiz, justPassedThisSession } = chapterQuiz;
   const {
@@ -290,15 +294,11 @@ export function ReaderOverlays({
         />
       )}
 
+      {/* Transient confirmations only (they time out). The persistent
+       *  "saved on this device only" note lives in the page under the title. */}
       <div role="status" aria-live="polite" aria-atomic="true">
-        {syncFailed && !toast && (
-          <div className="pointer-events-none fixed bottom-[calc(env(safe-area-inset-bottom)+8rem)] left-1/2 z-40 md:bottom-[calc(env(safe-area-inset-bottom)+5rem)] -translate-x-1/2 inline-flex items-center gap-1.5 rounded-xl border border-(--cr-warning)/30 bg-(--cr-warning)/10 px-3 py-2 text-xs text-(--cr-warning)">
-            <CloudOff className="h-3.5 w-3.5" />
-            Changes saved locally only
-          </div>
-        )}
         {toast && (
-          <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+8rem)] left-1/2 z-50 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 md:bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] items-start gap-2 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-sm text-(--cr-text-primary) shadow-[0_14px_28px_rgba(0,0,0,0.22)]">
+          <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] left-1/2 z-50 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 md:bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] items-start gap-2 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-sm text-(--cr-text-primary) shadow-[0_14px_28px_rgba(0,0,0,0.22)]">
             <span>{toast}</span>
             <button
               type="button"
@@ -312,17 +312,14 @@ export function ReaderOverlays({
         )}
       </div>
 
-      {state.focusMode && (
-        <div className="pointer-events-none fixed bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] left-6 hidden rounded-xl border border-(--cr-success)/30 bg-(--cr-success-bg) px-3 py-1.5 text-xs text-(--cr-success) md:inline-flex md:items-center md:gap-1.5">
-          <CheckCircle2 className="h-4 w-4" />
-          Focus mode enabled
-        </div>
-      )}
       {readerInteractionsReady && (
         <LazyAskBookDrawer
           bookId={bookId}
           bookTitle={entry.title ?? bookId}
           chapterNumber={chapter.order}
+          open={askOpen}
+          onOpenChange={onAskOpenChange}
+          showLauncher={false}
         />
       )}
     </>

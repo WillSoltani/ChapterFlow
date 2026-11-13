@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, type ReactNode, type RefObject } from "react";
+import { useState, type ReactNode, type RefObject } from "react";
 import dynamic from "next/dynamic";
-import { CloudOff, Lightbulb, X } from "lucide-react";
 import type { BookChapter, ReadingDepth } from "@/app/book/data/bookChapters";
 import type { LibraryBookDetail } from "@/app/book/_lib/library-data";
 import type { LearningMode } from "@/app/book/settings/types/settings";
@@ -10,12 +9,10 @@ import type { useReaderAccess } from "../hooks/useReaderAccess";
 import type { useReaderPhaseFlow } from "../hooks/useReaderPhaseFlow";
 import type { useReaderProgress } from "../hooks/useReaderProgress";
 import type { useReaderSettings } from "../hooks/useReaderSettings";
-import { getPhaseThresholds } from "../hooks/usePhaseCompletion";
-import { AutoCollapsingHookBanner } from "./HookBanner";
-import { ChapterBackgroundOrbs } from "./ChapterBackgroundOrbs";
-import { ChapterHeader } from "./ChapterHeader";
-import { PhaseStepper } from "./PhaseStepper";
-import { nextFloatingControlsHidden } from "./floating-controls-core";
+import { HookLead } from "./HookBanner";
+import { ChapterPager, type ChapterNeighbours } from "./ReaderChapterNav";
+import { ReaderSettingsMenu } from "./ReaderSettingsMenu";
+import { ReaderTopBar } from "./ReaderTopBar";
 
 const LazyAudioPlayer = dynamic(
   () => import("./AudioPlayer").then((module) => module.AudioPlayer),
@@ -27,6 +24,12 @@ const LazyAudioPlayer = dynamic(
     ),
   },
 );
+
+const MODE_LABELS: Record<LearningMode, string> = {
+  guided: "Guided",
+  standard: "Standard",
+  challenge: "Challenge",
+};
 
 type Props = {
   bookId: string;
@@ -41,7 +44,12 @@ type Props = {
   onDismissLoopCoachmark: () => void;
   onOpenNotes: () => void;
   onOpenShortcuts: () => void;
+  askOpen: boolean;
+  onOpenAsk: () => void;
   onChangeLearningMode: (mode: LearningMode) => void;
+  neighbours: ChapterNeighbours;
+  /** Quiz step: answered / total (0..1). Reading steps pass null. */
+  progressOverride: number | null;
   access: ReturnType<typeof useReaderAccess>;
   settings: ReturnType<typeof useReaderSettings>;
   progress: ReturnType<typeof useReaderProgress>;
@@ -50,6 +58,9 @@ type Props = {
   overlays: ReactNode;
 };
 
+/** Layout A, "Page": one thin sticky top bar holds all chrome; below it the
+ *  chapter is set like a page of a book in one centred column (title, lead,
+ *  text, the end-of-step button, then Previous / Next chapter). */
 export function ReaderChrome({
   bookId,
   initialBook,
@@ -63,7 +74,11 @@ export function ReaderChrome({
   onDismissLoopCoachmark,
   onOpenNotes,
   onOpenShortcuts,
+  askOpen,
+  onOpenAsk,
   onChangeLearningMode,
+  neighbours,
+  progressOverride,
   access,
   settings,
   progress,
@@ -72,58 +87,31 @@ export function ReaderChrome({
   overlays,
 }: Props) {
   const { entry, chapters } = access;
-  const {
-    bookPrefs,
-    patchBookPrefs,
-    learningMode,
-    contentTone,
-    settingsOpen,
-    setSettingsOpen,
-  } = settings;
-  const { chapterProgress, readingSession } = progress;
-  const { state, setReadingDepth, toggleFocusMode } = chapterProgress;
-  const { phaseCompletion, setActiveTab, progressPercent } = phaseFlow;
+  const { bookPrefs, patchBookPrefs, learningMode, contentTone, settingsOpen, setSettingsOpen } =
+    settings;
+  const { chapterProgress } = progress;
+  const { state, setReadingDepth, toggleFocusMode, syncFailed } = chapterProgress;
+  const { phaseCompletion, setActiveTab } = phaseFlow;
+  const [audioOpen, setAudioOpen] = useState(false);
 
-  // Phones: the audio and "Ask" buttons step aside while the reader scrolls
-  // down (they would sit on top of the text) and return on scroll-up. They
-  // read this attribute; see floating-controls-core.ts.
-  useEffect(() => {
-    const root = document.documentElement;
-    let prevY = window.scrollY;
-    let prevDocH = root.scrollHeight;
-    let hidden = false;
-    const onScroll = () => {
-      const y = window.scrollY;
-      // A scroll caused by the page changing height (e.g. the hook banner
-      // collapsing) is not the reader's intent: re-baseline and keep state.
-      if (root.scrollHeight !== prevDocH) {
-        prevDocH = root.scrollHeight;
-        prevY = y;
-        return;
-      }
-      const next = nextFloatingControlsHidden({
-        prevY,
-        y,
-        hidden,
-        viewportH: window.innerHeight,
-        docH: root.scrollHeight,
-      });
-      prevY = y;
-      if (next !== hidden) {
-        hidden = next;
-        root.toggleAttribute("data-reader-fab-hidden", hidden);
-      }
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      root.removeAttribute("data-reader-fab-hidden");
-    };
-  }, []);
+  // The text column is measured in the reading font's size, so a line keeps
+  // its length when the font size changes: Narrow (the default) sets about 68
+  // characters per line, Medium and Wide about 78 and 88. 4rem = side margins.
+  const contentWidth = bookPrefs.reading.contentWidth;
+  const columnEm = contentWidth <= 720 ? 29 : contentWidth >= 880 ? 37 : 33;
+  const columnMaxWidth = `calc(var(--reading-font-size, 18px) * ${columnEm} + 4rem)`;
+  const bookTitle = initialBook?.title ?? entry.title;
+  const author = initialBook?.author ?? entry.author;
+  const meta = [
+    bookTitle,
+    author,
+    bookPrefs.reading.showEstimatedReadingTime ? `${chapter.minutes} min read` : null,
+    learningMode !== "standard" ? `${MODE_LABELS[learningMode]} mode` : null,
+  ].filter(Boolean);
 
   return (
     <main
-      className="relative min-h-screen overflow-x-hidden text-(--cr-text-primary)"
+      className="relative min-h-screen overflow-x-clip bg-(--cr-bg-root) text-(--cr-text-primary)"
       inert={readerInteractionsReady ? undefined : true}
       aria-busy={!readerInteractionsReady}
     >
@@ -133,150 +121,122 @@ export function ReaderChrome({
         {state.activeTab === "quiz" && "Now taking: Quiz"}
         {state.activeTab === "practice" && "Now on: Practice"}
       </div>
-      {!state.focusMode && <ChapterBackgroundOrbs />}
 
-      {readerInteractionsReady && (
-        <div
-          className={[
-            "pointer-events-none fixed left-4 right-4 z-50 md:left-auto md:right-6",
-            "bottom-[calc(env(safe-area-inset-bottom)+4.5rem)] md:bottom-[calc(env(safe-area-inset-bottom)+5rem)]",
-            state.focusMode ? "hidden" : "",
-          ].join(" ")}
-        >
-          {/* Phones: this row spans the screen, so only the player's own
-           *  controls take taps; the empty rest lets taps reach the page. */}
-          <div className="pointer-events-none md:pointer-events-auto md:ml-auto">
+      <ReaderTopBar
+        bookId={bookId}
+        chapterOrder={chapter.order}
+        totalChapters={chapters.length}
+        chapterTitle={chapter.title}
+        contentRef={contentRef}
+        currentPhase={state.activeTab}
+        completedPhases={phaseCompletion.completedPhases}
+        isPhaseAccessible={phaseCompletion.isPhaseAccessible}
+        getLockMessage={phaseCompletion.getLockMessage}
+        onSelectPhase={setActiveTab}
+        neighbours={neighbours}
+        progressOverride={progressOverride}
+        focusMode={state.focusMode}
+        onToggleFocus={toggleFocusMode}
+        audioOpen={audioOpen}
+        onToggleAudio={() => setAudioOpen((open) => !open)}
+        audioSlot={
+          readerInteractionsReady && (
             <LazyAudioPlayer
+              layout="inline"
+              open={audioOpen}
+              onOpenChange={setAudioOpen}
               bookId={bookId}
               chapterNumber={chapter.order}
               chapterTitle={`Chapter ${chapter.order}: ${chapter.title}`}
               tone={contentTone}
               variant={
-                activeDepth === "simple"
-                  ? "easy"
-                  : activeDepth === "deeper"
-                    ? "hard"
-                    : "medium"
+                activeDepth === "simple" ? "easy" : activeDepth === "deeper" ? "hard" : "medium"
               }
               initialSpeed={bookPrefs.extended.ttsSpeed}
               onSpeedChange={(speed) => patchBookPrefs("extended", { ttsSpeed: speed })}
             />
-          </div>
+          )
+        }
+        askOpen={askOpen}
+        onOpenAsk={onOpenAsk}
+        onOpenNotes={onOpenNotes}
+        settingsOpen={settingsOpen}
+        onToggleSettings={() => setSettingsOpen(!settingsOpen)}
+        settingsMenu={
+          <ReaderSettingsMenu
+            open={settingsOpen}
+            onClose={() => setSettingsOpen(false)}
+            learningMode={learningMode}
+            onChangeLearningMode={onChangeLearningMode}
+            showDepthSelector={false}
+            readingDepth={state.readingDepth}
+            onChangeReadingDepth={setReadingDepth}
+            focusMode={state.focusMode}
+            onToggleFocus={toggleFocusMode}
+            fontSize={bookPrefs.reading.fontSize}
+            onChangeFontSize={(fontSize) => patchBookPrefs("reading", { fontSize })}
+            lineSpacing={bookPrefs.extended.lineSpacing}
+            onChangeLineSpacing={(lineSpacing) => patchBookPrefs("extended", { lineSpacing })}
+            contentWidth={bookPrefs.reading.contentWidth}
+            onChangeContentWidth={(contentWidth) => patchBookPrefs("reading", { contentWidth })}
+            fontFamily={bookPrefs.extended.fontFamily}
+            onChangeFontFamily={(fontFamily) => patchBookPrefs("extended", { fontFamily })}
+          />
+        }
+        onOpenShortcuts={onOpenShortcuts}
+        columnMaxWidth={columnMaxWidth}
+      />
+
+      <article
+        className="mx-auto w-full px-5 pb-[calc(env(safe-area-inset-bottom)+4rem)] sm:px-8"
+        style={{ maxWidth: columnMaxWidth }}
+      >
+        <div className="pb-7 pt-6 sm:pb-10 sm:pt-14">
+          <p className="text-cf-caption font-medium uppercase tracking-[0.16em] text-(--cr-text-secondary)">
+            Chapter {chapter.order}
+          </p>
+          <h1 className="mt-2 font-(family-name:--font-reading) text-[1.75rem] font-medium leading-[1.15] tracking-[-0.01em] text-balance text-(--cr-text-heading) sm:text-[2.5rem]">
+            {chapter.title}
+          </h1>
+          <p className="mt-2.5 text-cf-caption text-(--cr-text-secondary)">{meta.join(" · ")}</p>
+          {servingOfflineCopy && (
+            <p className="mt-1 text-cf-caption text-(--cr-text-secondary)">
+              Showing an offline copy. Reconnect for the latest.
+            </p>
+          )}
+          {syncFailed && (
+            <p className="mt-1 text-cf-caption text-(--cr-warning)" role="status">
+              Changes saved on this device only.
+            </p>
+          )}
         </div>
-      )}
-
-      {/* Phone bottom padding clears the audio + Ask stack (about 7.5rem tall). */}
-      <section className="w-full px-5 pb-[calc(env(safe-area-inset-bottom)+8rem)] pt-3 sm:px-8 sm:pt-3 md:pb-16">
-        <ChapterHeader
-          bookId={bookId}
-          bookTitle={initialBook?.title ?? entry.title}
-          chapterLabel={`Chapter ${chapter.order}`}
-          chapterTitle={chapter.title}
-          author={initialBook?.author ?? entry.author}
-          minutes={chapter.minutes}
-          chapterOrder={chapter.order}
-          totalChapters={chapters.length}
-          focusMode={state.focusMode}
-          onToggleFocus={toggleFocusMode}
-          onOpenNotes={onOpenNotes}
-          trackedMinutesToday={readingSession.todayTrackedMinutes}
-          learningMode={learningMode}
-          onChangeLearningMode={onChangeLearningMode}
-          showProgressBar={bookPrefs.reading.showProgressBar}
-          showEstimatedReadingTime={bookPrefs.reading.showEstimatedReadingTime}
-          showReadingSessionTimer={bookPrefs.reading.showReadingSessionTimer}
-          readingDepth={state.readingDepth}
-          onChangeReadingDepth={setReadingDepth}
-          showDepthSelector={false}
-          onOpenShortcuts={onOpenShortcuts}
-          settingsOpen={settingsOpen}
-          onSettingsOpenChange={setSettingsOpen}
-          fontSize={bookPrefs.reading.fontSize}
-          onChangeFontSize={(fontSize) => patchBookPrefs("reading", { fontSize })}
-          lineSpacing={bookPrefs.extended.lineSpacing}
-          onChangeLineSpacing={(lineSpacing) => patchBookPrefs("extended", { lineSpacing })}
-          contentWidth={bookPrefs.reading.contentWidth}
-          onChangeContentWidth={(contentWidth) => patchBookPrefs("reading", { contentWidth })}
-          fontFamily={bookPrefs.extended.fontFamily}
-          onChangeFontFamily={(fontFamily) => patchBookPrefs("extended", { fontFamily })}
-        />
-
-        {isV21Chapter && chapter.hook && state.activeTab === "summary" ? (
-          <div className="mt-4">
-            <AutoCollapsingHookBanner
-              hook={chapter.hook}
-              counterintuition={chapter.counterintuition}
-            />
-          </div>
-        ) : null}
-
-        {!state.focusMode && (
-          <div className="mt-6">
-            <PhaseStepper
-              currentPhase={state.activeTab}
-              completedPhases={phaseCompletion.completedPhases}
-              onChange={setActiveTab}
-              progressPercent={progressPercent}
-              isPhaseAccessible={phaseCompletion.isPhaseAccessible}
-              getLockMessage={phaseCompletion.getLockMessage}
-              showProgressBar={bookPrefs.reading.showProgressBar}
-            />
-          </div>
-        )}
 
         {showLoopCoachmark && !state.focusMode && (
-          <div className="mt-3 flex items-start gap-3 rounded-xl border border-(--cr-glass-border-teal) bg-(--cr-accent-active) p-3 text-left">
-            <Lightbulb className="mt-0.5 h-4 w-4 flex-shrink-0 text-(--cr-accent)" />
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-(--cr-text-heading)">How this chapter works</p>
-              <p className="mt-0.5 text-cf-label text-(--cr-text-secondary)">
-                Read the <strong>Summary</strong>, see it in <strong>Examples</strong>, then prove
-                it stuck in the <strong>Quiz</strong> to unlock the next chapter. Pick Guided,
-                Standard, or Challenge in Reading settings to set how much detail you get.
-              </p>
-            </div>
+          <p className="mb-7 border-l-2 border-(--cr-glass-border) pl-4 text-cf-label-sm leading-relaxed text-(--cr-text-secondary)">
+            Read the Summary, see it at work in Examples, then pass the Quiz to open the next
+            chapter. Reading settings sets how much detail you get.{" "}
             <button
               type="button"
               onClick={onDismissLoopCoachmark}
-              className="rounded-lg p-1 text-(--cr-text-secondary) transition hover:text-(--cr-text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
-              aria-label="Dismiss tip"
+              className="font-medium text-(--cr-text-primary) underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
             >
-              <X className="h-4 w-4" />
+              Got it
             </button>
-          </div>
-        )}
-
-        {!state.focusMode &&
-          state.activeTab !== "quiz" &&
-          !phaseCompletion.currentPhaseReady &&
-          (() => {
-            const thresholds = getPhaseThresholds(learningMode, state.activeTab);
-            if (!thresholds.minTime && !Math.round(thresholds.minScroll * 100)) return null;
-            return (
-              <p className="mt-4 text-cf-label-sm text-(--cr-text-secondary)">
-                Take a moment with this section — Continue unlocks once you&apos;ve read it.
-                {state.activeTab === "examples" &&
-                  learningMode === "challenge" &&
-                  " Be sure to react to every scenario, too."}
-              </p>
-            );
-          })()}
-
-        {servingOfflineCopy && (
-          <p className="mt-4 flex items-center gap-1.5 text-cf-label-sm text-(--cr-text-disabled)">
-            <CloudOff className="h-3.5 w-3.5" />
-            Showing an offline copy — reconnect for the latest.
           </p>
         )}
 
-        <div
-          ref={contentRef}
-          className="mx-auto mt-4 space-y-5"
-          style={{ maxWidth: `min(${bookPrefs.reading.contentWidth}px, 72ch)` }}
-        >
+        {isV21Chapter && chapter.hook && state.activeTab === "summary" ? (
+          <div className="mb-5">
+            <HookLead hook={chapter.hook} counterintuition={chapter.counterintuition} />
+          </div>
+        ) : null}
+
+        <div ref={contentRef} className="space-y-5">
           {phaseContent}
         </div>
-      </section>
+
+        <ChapterPager neighbours={neighbours} />
+      </article>
       {overlays}
     </main>
   );

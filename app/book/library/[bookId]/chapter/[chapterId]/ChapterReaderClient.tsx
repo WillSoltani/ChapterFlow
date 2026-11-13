@@ -85,6 +85,7 @@ export function ChapterReaderClient({
     bookAccessStatus,
   } = readerAccess;
   const [notesOpen, setNotesOpen] = useState(false);
+  const [askOpen, setAskOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [sessionMode, setSessionMode] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
@@ -257,7 +258,35 @@ export function ChapterReaderClient({
   if (!chapter) return <ReaderAccessState {...accessStateProps} />;
 
   const chapterIndex = chapters.findIndex((item) => item.id === chapter.id);
-  const nextChapter = chapters[chapterIndex + 1];
+  const prevChapter = chapterIndex > 0 ? chapters[chapterIndex - 1] : undefined;
+  const nextChapter = chapterIndex >= 0 ? chapters[chapterIndex + 1] : undefined;
+  // Same route builder as the completion modal's "Open Next Chapter".
+  const neighbours = {
+    prev: prevChapter
+      ? {
+          order: prevChapter.order,
+          title: prevChapter.title,
+          href: buildNextChapterRoute(bookId, prevChapter.id, sessionMode),
+          locked: false,
+        }
+      : null,
+    next: nextChapter
+      ? {
+          order: nextChapter.order,
+          title: nextChapter.title,
+          href: buildNextChapterRoute(bookId, nextChapter.id, sessionMode),
+          locked: bookProgress.getChapterState(nextChapter.id) === "locked",
+        }
+      : null,
+  };
+  const quizSession = quiz.session;
+  const quizProgress =
+    state.activeTab !== "quiz" || !quizSession
+      ? null
+      : quizSession.result
+        ? 1
+        : quizSession.questions.filter((question) => Boolean(quiz.answers[question.questionId]))
+            .length / Math.max(1, quizSession.questions.length);
   const handleLearningModeChange = (mode: LearningMode) => {
     if (mode === learningMode) return;
     const toneByMode: Record<LearningMode, ContentTone> = {
@@ -336,6 +365,10 @@ export function ChapterReaderClient({
         onDismissLoopCoachmark={dismissLoopCoachmark}
         onOpenNotes={() => setNotesOpen(true)}
         onOpenShortcuts={() => setShowShortcuts(true)}
+        askOpen={askOpen}
+        onOpenAsk={() => setAskOpen(true)}
+        neighbours={neighbours}
+        progressOverride={quizProgress}
         onChangeLearningMode={handleLearningModeChange}
         access={readerAccess}
         settings={readerSettings}
@@ -368,6 +401,8 @@ export function ChapterReaderClient({
             nextChapter={nextChapter}
             notesOpen={notesOpen}
             onNotesOpenChange={setNotesOpen}
+            askOpen={askOpen}
+            onAskOpenChange={setAskOpen}
             sessionMode={sessionMode}
             onSessionTourDone={handleSessionTourDone}
             showCompleteModal={showCompleteModal}

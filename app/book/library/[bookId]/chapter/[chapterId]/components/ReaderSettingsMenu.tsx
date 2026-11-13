@@ -359,7 +359,7 @@ export function ReaderSettingsMenu({
             <div className="border-t border-(--cr-glass-border) pt-3">
               <ToggleRow
                 label="Focus mode"
-                description="Hide stepper and chrome"
+                description="Hide Listen, Ask and Notes"
                 value={focusMode}
                 onChange={onToggleFocus}
               />
