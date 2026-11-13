@@ -641,7 +641,9 @@ export function BookDetailClient({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: DUR.fast }}
-            className="cf-panel-strong fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-xl px-5 py-3 text-sm text-(--cf-text-1) shadow-shadow-book"
+            role="status"
+            aria-live="polite"
+            className="cf-panel-strong fixed bottom-36 left-1/2 lg:bottom-6 z-50 -translate-x-1/2 rounded-xl px-5 py-3 text-sm text-(--cf-text-1) shadow-shadow-book"
           >
             {lockedToast}
           </motion.div>
