@@ -15,7 +15,7 @@ type RouteSkeletonProps = {
 };
 
 function Block({ className = "" }: { className?: string }) {
-  return <div className={`animate-pulse rounded-xl bg-(--cf-surface-muted) ${className}`} />;
+  return <div className={`animate-shimmer rounded-xl bg-(--cf-surface-muted) ${className}`} />;
 }
 
 export function RouteSkeleton({ label, showNav = true }: RouteSkeletonProps) {
