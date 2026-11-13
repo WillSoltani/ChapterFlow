@@ -26,6 +26,13 @@ type AudioPlayerProps = {
   // adjusts speed here, at which point onSpeedChange persists their choice back.
   initialSpeed?: number;
   onSpeedChange?: (speed: number) => void;
+  /** Controlled open state. When set, the host owns the Listen trigger. */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  /** "inline": no launcher of its own; when open, a slim in-flow player row
+   *  (the reader's top bar hosts it). "floating" keeps the legacy round
+   *  launcher + card. */
+  layout?: "floating" | "inline";
 };
 
 export function AudioPlayer({
@@ -36,6 +43,9 @@ export function AudioPlayer({
   variant,
   initialSpeed,
   onSpeedChange,
+  open: openProp,
+  onOpenChange,
+  layout = "floating",
 }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
@@ -53,7 +63,16 @@ export function AudioPlayer({
   // pref (initialSpeed) so a late prefs hydration can't override their choice.
   const userAdjustedSpeedRef = useRef(false);
 
-  const [open, setOpen] = useState(false);
+  const [openState, setOpenState] = useState(false);
+  const isControlled = openProp !== undefined;
+  const open = isControlled ? openProp : openState;
+  const setOpen = useCallback(
+    (next: boolean) => {
+      if (!isControlled) setOpenState(next);
+      onOpenChange?.(next);
+    },
+    [isControlled, onOpenChange],
+  );
   const [minimized, setMinimized] = useState(false);
   const [loading, setLoading] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -299,15 +318,31 @@ export function AudioPlayer({
   const handleOpen = useCallback(() => {
     setOpen(true);
     setMinimized(false);
-    loadAudio();
-  }, [loadAudio]);
+    // Controlled: the open-effect below loads once the host flips `open`.
+    if (!isControlled) loadAudio();
+  }, [isControlled, loadAudio, setOpen]);
 
   const handleClose = useCallback(() => {
     audioRef.current?.pause();
     setOpen(false);
     setMinimized(false);
     setPlaying(false);
-  }, []);
+  }, [setOpen]);
+
+  // Controlled mode: the host's Listen button opens/closes the player.
+  const loadAudioRef = useRef(loadAudio);
+  useEffect(() => {
+    loadAudioRef.current = loadAudio;
+  }, [loadAudio]);
+  useEffect(() => {
+    if (!isControlled) return;
+    if (openProp) {
+      void loadAudioRef.current();
+    } else {
+      audioRef.current?.pause();
+      setPlaying(false);
+    }
+  }, [isControlled, openProp]);
 
   useEffect(() => {
     const audioEl = audioRef.current;
@@ -327,6 +362,102 @@ export function AudioPlayer({
   };
 
   const progress = duration > 0 ? Math.min((currentTime / duration) * 100, 100) : 0;
+
+  // ── Inline row (hosted by the reader's top bar) ────────────────────
+  // No launcher of its own: the top bar's Listen button opens it. One quiet
+  // row: play, title + scrubber, time, speed, close.
+  if (layout === "inline") {
+    if (!open) return null;
+    const reload = () => {
+      loadedParamsRef.current = "";
+      setLoadedParams("");
+      loadAudio();
+    };
+    return (
+      <>
+        <audio ref={audioRef} preload="auto" />
+        <div className="flex items-center gap-2 py-1.5" role="group" aria-label="Chapter audio">
+          <button
+            type="button"
+            onClick={togglePlay}
+            disabled={loading || Boolean(error)}
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-(--cr-accent) transition hover:bg-(--cr-bg-surface-3) disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
+            aria-label={loading ? "Preparing audio" : playing ? "Pause" : "Play"}
+          >
+            {loading ? (
+              <Loader2 className="h-5 w-5 motion-safe:animate-spin" />
+            ) : playing ? (
+              <Pause className="h-5 w-5" />
+            ) : (
+              <Play className="ml-0.5 h-5 w-5" />
+            )}
+          </button>
+          <div className="min-w-0 flex-1">
+            {error ? (
+              <p className="truncate text-cf-label-sm text-(--cr-text-secondary)" title={error}>
+                {error}
+              </p>
+            ) : !audioMatchesCurrent && !loading ? (
+              <button type="button" onClick={reload} className="truncate text-cf-label-sm text-(--cr-text-secondary) underline-offset-2 hover:underline">
+                Reading settings changed. Reload audio
+              </button>
+            ) : (
+              <div
+                ref={progressBarRef}
+                className="flex cursor-pointer items-center py-[18px] -my-[18px]"
+                onClick={handleProgressClick}
+                role="slider"
+                aria-label="Audio progress"
+                aria-valuenow={Math.round(currentTime)}
+                aria-valuemin={0}
+                aria-valuemax={Math.round(duration)}
+                aria-valuetext={`${fmt(currentTime)} of ${fmt(duration)}`}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowRight") seekTo(currentTime + 10);
+                  if (e.key === "ArrowLeft") seekTo(currentTime - 10);
+                }}
+              >
+                <div className="relative h-0.5 w-full rounded-full bg-(--cr-glass-border)">
+                  <div className="absolute inset-y-0 left-0 rounded-full bg-(--cr-text-secondary)" style={{ width: `${progress}%` }} />
+                </div>
+              </div>
+            )}
+          </div>
+          {error ? (
+            <button
+              type="button"
+              onClick={reload}
+              className="flex h-11 shrink-0 items-center rounded-lg px-2 text-cf-label-sm font-medium text-(--cr-text-primary) transition hover:bg-(--cr-bg-surface-3)"
+            >
+              Try again
+            </button>
+          ) : (
+            <span className="shrink-0 text-cf-caption tabular-nums text-(--cr-text-secondary)">
+              {loading ? "Preparing…" : `${fmt(currentTime)} / ${duration > 0 ? fmt(duration) : "--:--"}`}
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={cycleSpeed}
+            hidden={Boolean(error)}
+            className="flex h-11 min-w-11 shrink-0 items-center justify-center rounded-lg text-cf-caption font-semibold tabular-nums text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary)"
+            aria-label={`Playback speed ${speed}x`}
+          >
+            {speed}x
+          </button>
+          <button
+            type="button"
+            onClick={handleClose}
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary)"
+            aria-label="Stop and close audio"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      </>
+    );
+  }
 
   // ── Collapsed ──────────────────────────────────────────────────────
   // Round icon-only trigger that visually matches the AskBookDrawer chat

@@ -13,6 +13,11 @@ type AskBookDrawerProps = {
   bookId: string;
   bookTitle: string;
   chapterNumber?: number;
+  /** Controlled open state (the reader's top bar owns the Ask button). */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  /** Render the floating "Ask Raymond" launcher (default true). */
+  showLauncher?: boolean;
 };
 
 function sessionKey(bookId: string) {
@@ -96,8 +101,24 @@ function TypingIndicator() {
   );
 }
 
-export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawerProps) {
-  const [open, setOpen] = useState(false);
+export function AskBookDrawer({
+  bookId,
+  bookTitle,
+  chapterNumber,
+  open: openProp,
+  onOpenChange,
+  showLauncher = true,
+}: AskBookDrawerProps) {
+  const [openState, setOpenState] = useState(false);
+  const isControlled = openProp !== undefined;
+  const open = isControlled ? openProp : openState;
+  const setOpen = useCallback(
+    (next: boolean) => {
+      if (!isControlled) setOpenState(next);
+      onOpenChange?.(next);
+    },
+    [isControlled, onOpenChange],
+  );
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [streaming, setStreaming] = useState(false);
@@ -149,7 +170,16 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
   const handleClose = useCallback(() => {
     handleAbort();
     setOpen(false);
-  }, [handleAbort]);
+  }, [handleAbort, setOpen]);
+
+  // Return focus to whatever opened the drawer (e.g. the top bar's Ask button).
+  useEffect(() => {
+    if (!open) return;
+    const opener = document.activeElement as HTMLElement | null;
+    return () => {
+      if (opener && document.contains(opener)) opener.focus({ preventScroll: true });
+    };
+  }, [open]);
 
   // Close on Escape key
   useEffect(() => {
@@ -292,7 +322,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
        *  bottom edge (safe-area aware; the audio bar reserves space to its left).
        *  aria-label gives it an explicit accessible name (the title attribute
        *  alone is never announced on touch / by most screen readers). */}
-      {!open && (
+      {!open && showLauncher && (
         <button
           type="button"
           onClick={() => setOpen(true)}
