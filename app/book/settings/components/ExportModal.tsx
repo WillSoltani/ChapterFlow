@@ -6,6 +6,7 @@ import type { ExportFormat } from "../types/settings";
 import { cn } from "@/lib/utils";
 import { Dialog } from "@/components/ui/Dialog";
 import { redirectToReauth } from "@/app/book/_lib/book-api";
+import { exportErrorMessage } from "../lib/export-error-core";
 
 type ExportModalProps = {
   open: boolean;
@@ -53,28 +54,36 @@ export function ExportModal({ open, onClose }: ExportModalProps) {
     setCompleted(null);
     setError(null);
 
+    let response: Response;
     try {
-      const response = await fetch(
+      response = await fetch(
         `/app/api/book/me/export?format=${encodeURIComponent(format)}`,
         { cache: "no-store" }
       );
+    } catch {
+      setExporting(null);
+      setError(exportErrorMessage(null, null));
+      return;
+    }
 
-      if (!response.ok) {
-        // Step-up re-auth (#5): an old session gets 401 `reauth_required`.
-        // Send the user through a forced fresh login and return to settings so
-        // they can retry the export. Read the JSON error envelope to detect it.
-        if (response.status === 401) {
-          const body = (await response.json().catch(() => null)) as
-            | { error?: { code?: string } }
-            | null;
-          if (body?.error?.code === "reauth_required") {
-            redirectToReauth("/book/settings");
-            return;
-          }
-        }
-        throw new Error(`Export failed (${response.status})`);
+    if (!response.ok) {
+      // Step-up re-auth (#5): an old session gets 401 `reauth_required`.
+      // Send the user through a forced fresh login and return to settings so
+      // they can retry the export. Read the JSON error envelope to detect it.
+      const body = (await response.json().catch(() => null)) as
+        | { error?: { code?: string } }
+        | null;
+      if (response.status === 401 && body?.error?.code === "reauth_required") {
+        redirectToReauth("/book/settings");
+        return;
       }
+      // ACCT-27: say what happened (the daily limit, or the server's reason).
+      setExporting(null);
+      setError(exportErrorMessage(response.status, body));
+      return;
+    }
 
+    try {
       // Get the filename from Content-Disposition or construct one
       const disposition = response.headers.get("Content-Disposition");
       const filenameMatch = disposition?.match(/filename="?([^"]+)"?/);
