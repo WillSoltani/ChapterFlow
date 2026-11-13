@@ -346,3 +346,45 @@ test("ACCT-06: without upgrade=1 Account stays closed", async () => {
   const header = section(view, "Account & Subscription").querySelector("button[aria-expanded]");
   assert.equal(header?.getAttribute("aria-expanded"), "false");
 });
+
+test("ACCT-14: no Free upsell while the plan loads; a Pro reader gets the Pro controls", async () => {
+  entitlements = entitlementsPayload("PRO", { proSource: "stripe" });
+  const view = renderSettings();
+  assert.equal(view.queryByText(/Learn more/), null, "no upsell before the plan is known");
+  await wait(300);
+  assert.equal(view.queryByText(/Learn more/), null, "no upsell for a Pro reader");
+  assert.ok(view.getByText("Playback speed"), "the Pro text-to-speech control shows");
+});
+
+test("ACCT-14: a failed plan read shows an error with a retry instead of the Free upsell", async () => {
+  const view = renderSettings();
+  await wait(300);
+  assert.equal(view.queryByText(/Learn more/), null);
+  const tryAgain = view.getAllByRole("button", { name: "Try again" });
+  assert.ok(tryAgain.length > 0, "the plan error offers a retry");
+  assert.ok(view.getAllByText(/Couldn.t load your plan/).length > 0);
+
+  entitlements = entitlementsPayload("FREE");
+  fireEvent.click(tryAgain[0]!);
+  await wait(300);
+  assert.ok(view.getAllByText(/Learn more/).length > 0, "a Free reader sees the Pro cards after the retry");
+});
+
+test("ACCT-09: a Pro feature card opens the subscription card instead of starting checkout", async () => {
+  entitlements = entitlementsPayload("FREE");
+  const view = renderSettings();
+  await wait(300);
+  const tts = view.container.querySelector("#text-to-speech") as HTMLElement;
+  fireEvent.click(within(tts).getByRole("button", { name: /Learn more/ }));
+  await wait(50);
+  const dialog = view.getByRole("dialog");
+  fireEvent.click(within(dialog).getAllByRole("button").find((b) => /Upgrade|trial/i.test(b.textContent ?? ""))!);
+  await wait(900);
+
+  assert.equal(calls.filter((c) => c.url.includes("/billing/")).length, 0, "no checkout was started");
+  assert.equal(view.queryByRole("dialog"), null, "the feature dialog closed");
+  const header = section(view, "Account & Subscription").querySelector("button[aria-expanded]");
+  assert.equal(header?.getAttribute("aria-expanded"), "true", "Account is open");
+  assert.equal(document.activeElement?.id, "subscription-cta", "the subscription button has focus");
+  assert.equal(writes("/me/settings").length, 0, "opening it wrote nothing");
+});

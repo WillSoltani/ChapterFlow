@@ -127,6 +127,32 @@ function detectReminderTimezone(): string {
   }
 }
 
+/** Stands in for plan-dependent controls until the plan is known (ACCT-14). */
+function PlanPendingRow({ error, onRetry }: { error: string | null; onRetry: () => void }) {
+  if (error) {
+    return (
+      <div className="flex items-center justify-between gap-3 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
+        <p className="text-sm text-(--cf-text-2)">Couldn&apos;t load your plan.</p>
+        <button
+          type="button"
+          onClick={onRetry}
+          className="cf-pressable cf-focus min-h-11 shrink-0 rounded-xl px-3 text-sm font-semibold text-(--cf-accent)"
+        >
+          Try again
+        </button>
+      </div>
+    );
+  }
+  return (
+    <div
+      aria-busy="true"
+      className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3 text-sm text-(--cf-text-3)"
+    >
+      Loading your plan&hellip;
+    </div>
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Main Component
 // ---------------------------------------------------------------------------
@@ -165,8 +191,12 @@ export function BookSettingsClient({
     setMotivationStyle: _setOnboardingMotivationStyle,
     resetSetup: _resetSetup,
   } = useOnboardingState();
-  const { billingState, launchBillingAction, redeemLicenseKey } =
-    useBookEntitlements(true);
+  const {
+    billingState,
+    launchBillingAction,
+    redeemLicenseKey,
+    refetch: refetchBilling,
+  } = useBookEntitlements(true);
   const { toast, showToast } = useToast();
 
   // ACCT-13: save feedback follows the writes themselves. Preference writes
@@ -448,6 +478,14 @@ export function BookSettingsClient({
     () => new Set(openUpgrade ? ["account"] : []),
   );
   const subscriptionFocusPendingRef = useRef(openUpgrade);
+  const [subscriptionFocusRequest, setSubscriptionFocusRequest] = useState(0);
+  // ACCT-09: Pro feature cards send the reader to the subscription card, where
+  // the interval choice and checkout errors are shown.
+  const openSubscription = useCallback(() => {
+    setForceOpenSections((prev) => (prev.has("account") ? prev : new Set([...prev, "account"])));
+    subscriptionFocusPendingRef.current = true;
+    setSubscriptionFocusRequest((n) => n + 1);
+  }, []);
   useEffect(() => {
     if (!subscriptionFocusPendingRef.current) return;
     const button = document.getElementById("subscription-cta");
@@ -455,11 +493,12 @@ export function BookSettingsClient({
     subscriptionFocusPendingRef.current = false;
     document.getElementById("subscription")?.scrollIntoView?.({ block: "start" });
     button.focus({ preventScroll: true });
-  }, [billingState.loading, billingState.payload, forceOpenSections, isSearching]);
+  }, [subscriptionFocusRequest, billingState.loading, billingState.payload, forceOpenSections, isSearching]);
 
-  // Derived state
-  const isPro = billingState.payload?.entitlement.plan === "PRO";
-  const plan = billingState.payload?.entitlement.plan ?? "FREE";
+  // Derived state. ACCT-14: the plan is unknown until entitlements load; Pro
+  // controls need a known PRO and upsells a known FREE (never a default).
+  const plan = billingState.payload?.entitlement.plan;
+  const isPro = plan === "PRO";
   const price = billingState.payload?.paywall.price ?? MONTHLY_PRICE_WITH_CURRENCY;
   // Free-tier slot count is server-driven (BOOK_FREE_SLOTS_DEFAULT, per-user
   // overridable) — never hardcode it in the UI.
@@ -598,9 +637,9 @@ export function BookSettingsClient({
   }
 
   function getAccountSummary() {
-    return plan === "PRO"
-      ? "Pro plan"
-      : `Free plan · ${freeBookSlots} book${freeBookSlots === 1 ? "" : "s"}`;
+    if (plan === "PRO") return "Pro plan";
+    if (plan === "FREE") return `Free plan · ${freeBookSlots} book${freeBookSlots === 1 ? "" : "s"}`;
+    return billingState.error ? "Plan details unavailable" : "";
   }
 
   // --- Search helpers ---
@@ -986,6 +1025,8 @@ export function BookSettingsClient({
                     </SettingRow>
                   </div>
                 </>
+              ) : plan !== "FREE" ? (
+                <PlanPendingRow error={billingState.error} onRetry={refetchBilling} />
               ) : (
                 <ProFeatureCard
                   icon="&#128266;"
@@ -993,7 +1034,7 @@ export function BookSettingsClient({
                   description="Listen to chapters read aloud while you walk, cook, or commute."
                   detailDescription="Text-to-speech lets you listen to any chapter read aloud with natural-sounding narration. Open any chapter in the reader and tap the speaker to start, so you can learn hands-free while you walk, cook, or commute."
                   reducedMotion={reducedMotion}
-                  onUpgrade={() => launchBillingAction("upgrade")}
+                  onUpgrade={openSubscription}
                 />
               )}
             </div>
@@ -1246,6 +1287,8 @@ export function BookSettingsClient({
                     label="Spaced repetition target"
                   />
                 </SettingRow>
+              ) : plan !== "FREE" ? (
+                <PlanPendingRow error={billingState.error} onRetry={refetchBilling} />
               ) : (
                 <ProFeatureCard
                   icon="&#128202;"
@@ -1253,7 +1296,7 @@ export function BookSettingsClient({
                   description="ChapterFlow can intelligently schedule quiz reviews so you never forget what you learned."
                   detailDescription="Spaced repetition uses cognitive science to schedule review sessions at optimal intervals. Set your retention target and ChapterFlow will automatically remind you to review chapters before you forget them."
                   reducedMotion={reducedMotion}
-                  onUpgrade={() => launchBillingAction("upgrade")}
+                  onUpgrade={openSubscription}
                 />
               )}
             </div>
@@ -1592,20 +1635,24 @@ export function BookSettingsClient({
           >
             {/* 6A. Subscription Status */}
             <div className="px-3 py-3" id="subscription">
-              <SubscriptionCard
-                plan={plan}
-                freeBookSlots={freeBookSlots}
-                currentPeriodEnd={billingState.payload?.entitlement.currentPeriodEnd}
-                cancelAtPeriodEnd={billingState.payload?.entitlement.cancelAtPeriodEnd}
-                proSource={billingState.payload?.entitlement.proSource}
-                price={price}
-                pricingTiers={billingState.payload?.paywall.pricingTiers}
-                initialInterval={initialUpgradeInterval}
-                onUpgrade={(interval) => launchBillingAction("upgrade", interval)}
-                onManage={() => launchBillingAction("portal")}
-                onRedeemKey={redeemLicenseKey}
-                reducedMotion={reducedMotion}
-              />
+              {plan === undefined ? (
+                <PlanPendingRow error={billingState.error} onRetry={refetchBilling} />
+              ) : (
+                <SubscriptionCard
+                  plan={plan}
+                  freeBookSlots={freeBookSlots}
+                  currentPeriodEnd={billingState.payload?.entitlement.currentPeriodEnd}
+                  cancelAtPeriodEnd={billingState.payload?.entitlement.cancelAtPeriodEnd}
+                  proSource={billingState.payload?.entitlement.proSource}
+                  price={price}
+                  pricingTiers={billingState.payload?.paywall.pricingTiers}
+                  initialInterval={initialUpgradeInterval}
+                  onUpgrade={(interval) => launchBillingAction("upgrade", interval)}
+                  onManage={() => launchBillingAction("portal")}
+                  onRedeemKey={redeemLicenseKey}
+                  reducedMotion={reducedMotion}
+                />
+              )}
             </div>
 
             <Divider />

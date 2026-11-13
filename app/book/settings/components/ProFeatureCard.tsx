@@ -84,7 +84,14 @@ export function ProFeatureCard({
           </p>
 
           <div className="mt-6 space-y-3">
-            <Button variant="primary" fullWidth onClick={onUpgrade}>
+            <Button
+              variant="primary"
+              fullWidth
+              onClick={() => {
+                setShowModal(false);
+                onUpgrade?.();
+              }}
+            >
               {TRIAL_CTA_LABEL}
             </Button>
             <button
