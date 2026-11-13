@@ -22,6 +22,11 @@ export function continueHref(bookId: string, chapterNumber: number): string {
   return `/book/library/${encodeURIComponent(bookId)}/chapter/${chapterNumber}`;
 }
 
-export function bookCtaLabel(chapterNumber: number): string {
-  return `Continue chapter ${chapterNumber}`;
+/** Review book / Continue chapter N / Start chapter N (HOME-10). */
+export function bookCtaLabel(
+  chapterNumber: number,
+  { allCompleted = false, started = true }: { allCompleted?: boolean; started?: boolean } = {},
+): string {
+  if (allCompleted) return "Review book";
+  return started ? `Continue chapter ${chapterNumber}` : `Start chapter ${chapterNumber}`;
 }

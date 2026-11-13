@@ -69,11 +69,7 @@ export function BookHero({
   const hasProgress = progressPercent > 0 || completedCount > 0;
   const allCompleted = completedCount >= totalCount && totalCount > 0;
 
-  const ctaText = allCompleted
-    ? "Review book"
-    : hasProgress
-      ? bookCtaLabel(currentChapterOrder)
-      : `Start Chapter ${currentChapterOrder}`;
+  const ctaText = bookCtaLabel(currentChapterOrder, { allCompleted, started: hasProgress });
 
   const ctaIcon = allCompleted ? (
     <RefreshCw className="h-4.5 w-4.5" />

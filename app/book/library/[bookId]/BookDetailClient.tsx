@@ -579,9 +579,11 @@ export function BookDetailClient({
             }
             className="cf-btn cf-btn-primary w-full rounded-2xl px-4 py-3 text-base"
           >
-            {completedCount > 0
-              ? bookCtaLabel(currentChapter.number)
-              : `Start Chapter ${currentChapter.number}`}
+            {/* Same label as the hero (HOME-10). */}
+            {bookCtaLabel(currentChapter.number, {
+              allCompleted: totalCount > 0 && completedCount >= totalCount,
+              started: progressPercent > 0 || completedCount > 0,
+            })}
           </button>
         </div>
       )}

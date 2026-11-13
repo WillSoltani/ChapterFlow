@@ -41,3 +41,17 @@ test("the label names the same chapter the link opens", () => {
 test("book ids are encoded in the link", () => {
   assert.equal(continueHref("a b", 2), "/book/library/a%20b/chapter/2");
 });
+
+// HOME-10: the book page hero and its phone sticky bar share one label.
+
+test("a finished book says Review book", () => {
+  assert.equal(bookCtaLabel(1, { allCompleted: true, started: true }), "Review book");
+});
+
+test("a started book says Continue chapter N", () => {
+  assert.equal(bookCtaLabel(5, { allCompleted: false, started: true }), "Continue chapter 5");
+});
+
+test("a book not started says Start chapter N", () => {
+  assert.equal(bookCtaLabel(1, { allCompleted: false, started: false }), "Start chapter 1");
+});
