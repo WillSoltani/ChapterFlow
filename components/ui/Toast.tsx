@@ -48,10 +48,16 @@ export function Toast({
   const aboveTabBar = "bottom-[calc(5.5rem+env(safe-area-inset-bottom))]";
 
   // The live region stays mounted (outside AnimatePresence) so the text change is
-  // announced; the animated node is purely visual.
+  // announced; the animated node is purely visual. The announcement is a short
+  // sentence (full stop, pause for the reader) rather than a second copy of the
+  // visible words.
+  const announcement = [message, detail]
+    .filter((part): part is string => Boolean(part))
+    .map((part) => part.replace(/[.!?\s]+$/, ""))
+    .join(". ");
   const liveRegion = (
     <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
-      {open ? [message, detail].filter(Boolean).join(". ") : ""}
+      {open && announcement ? `${announcement}.` : ""}
     </div>
   );
 
