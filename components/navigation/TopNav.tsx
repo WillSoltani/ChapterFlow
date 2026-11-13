@@ -450,7 +450,11 @@ export function TopNav({
                 open={showBell}
                 onOpenChange={(next) => {
                   setShowBell(next);
-                  if (next) setShowProfileMenu(false);
+                  if (next) {
+                    // Focus stays on the bell; skip the menu's return-focus step.
+                    wasProfileMenuOpen.current = false;
+                    setShowProfileMenu(false);
+                  }
                 }}
               />
               <ThemeModeToggle className="h-9" />

@@ -193,9 +193,11 @@ test("only one header popover is open at a time", async () => {
   fireEvent.click(trigger);
   assert.ok(view.container.querySelector("#profile-menu"));
 
+  bell.focus();
   fireEvent.click(bell);
   assert.equal(view.container.querySelector("#profile-menu"), null);
   assert.ok(view.container.querySelector("#notification-panel"));
+  assert.equal(document.activeElement, bell, "opening the bell keeps focus on the bell");
 
   fireEvent.click(trigger);
   assert.ok(view.container.querySelector("#profile-menu"));
