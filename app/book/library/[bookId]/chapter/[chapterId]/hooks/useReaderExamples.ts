@@ -7,6 +7,8 @@ import { trackReaderFunnel } from "@/app/book/_lib/reader-analytics";
 import { deriveChapterApplicationState } from "@/app/app/api/book/_lib/commitment-application-core";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { useCommitments } from "@/app/book/hooks/useCommitments";
+import { invalidateBookCache } from "@/lib/client/book-api-cache";
+import { COMMITMENTS_KEY } from "@/lib/client/book-read-keys";
 import type { BookChapter, ChapterExample } from "@/app/book/data/bookChapters";
 import type { V21ReaderPattern } from "@/app/book/lib/v21-adapter";
 import type { ExampleFilter } from "./useChapterState";
@@ -16,6 +18,8 @@ import type {
 } from "../components/ExamplesList";
 
 const SCENARIO_SUBMISSION_POINTS = INSIGHT_POINTS_AMOUNTS.scenarioApproved;
+/** Wait before trying a commitment again while its first save is still running. */
+const COMMITMENT_RETRY_DELAY_MS = 800;
 
 export function useReaderExamples({
   bookId,
@@ -81,6 +85,7 @@ export function useReaderExamples({
     commitments,
     activeCommitments,
     loading: commitmentsLoading,
+    create: createCommitment,
     refresh: refreshCommitments,
   } = useCommitments(commitmentsEnabled);
   const activeChapterCommitment = chapter
@@ -115,23 +120,33 @@ export function useReaderExamples({
       followUpDays: 3 | 7;
     }) => {
       if (!enabled) return;
+      const isConflict = (error: unknown): error is BookClientError =>
+        error instanceof BookClientError && error.status === 409;
       try {
-        await fetchBookJson("/app/api/book/me/commitments", {
-          method: "POST",
-          body: JSON.stringify(params),
-        });
+        // create() drops the cached list and re-reads it, so the complete
+        // window sees this commitment.
+        await createCommitment(params);
         setCommittedToChapter(true);
-        void refreshCommitments();
       } catch (error) {
-        if (error instanceof BookClientError && error.status === 409) {
-          setCommittedToChapter(true);
-          void refreshCommitments();
-          return;
+        if (!isConflict(error)) throw error;
+        if (error.code === "idempotency_in_progress") {
+          // The first save of this commitment is still running: try once more.
+          await new Promise((resolve) => setTimeout(resolve, COMMITMENT_RETRY_DELAY_MS));
+          try {
+            await createCommitment(params);
+            setCommittedToChapter(true);
+            return;
+          } catch (retryError) {
+            if (!isConflict(retryError)) throw retryError;
+          }
         }
-        throw error;
+        // Already committed: show the account's list, not the cached one.
+        setCommittedToChapter(true);
+        invalidateBookCache(COMMITMENTS_KEY);
+        await refreshCommitments();
       }
     },
-    [enabled, refreshCommitments],
+    [createCommitment, enabled, refreshCommitments],
   );
 
   const readerPatterns = chapter?.experiencePlan?.behaviorLoop?.readerPatterns ?? [];
