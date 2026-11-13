@@ -4,11 +4,11 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import type { ReviewData, ActiveBook } from "./progressTypes";
+import { REVIEW_PAGE_PATH } from "./daily-quests-core";
 
 interface KnowledgeReviewProps {
   reviews: ReviewData;
   firstActiveBook: ActiveBook | null;
-  onStartReview?: () => void;
   /** PROG-19: the deck read is still pending or failed; never the new-reader state. */
   status?: "ready" | "loading" | "error";
   onRetry?: () => void;
@@ -32,7 +32,6 @@ function isToday(dateStr: string): boolean {
 export function KnowledgeReview({
   reviews,
   firstActiveBook,
-  onStartReview,
   status = "ready",
   onRetry,
 }: KnowledgeReviewProps) {
@@ -210,9 +209,8 @@ export function KnowledgeReview({
 
             {/* Start Review button */}
             {totalDue > 0 && (
-              <button
-                type="button"
-                onClick={onStartReview}
+              <Link
+                href={REVIEW_PAGE_PATH}
                 className="cf-pressable cf-focus cursor-pointer rounded-xl px-5 py-2.5 text-sm font-semibold transition-all"
                 style={{
                   background: "var(--accent-cyan)",
@@ -223,7 +221,7 @@ export function KnowledgeReview({
                 }}
               >
                 Start Review {"\u2192"}
-              </button>
+              </Link>
             )}
 
             {/* 7-day forecast strip */}

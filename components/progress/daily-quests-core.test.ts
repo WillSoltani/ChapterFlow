@@ -61,6 +61,7 @@ test("PROG-16: without a book in progress, quests 1 and 2 open the Library", () 
 test("PROG-16: the review quest targets at most 5 and never more than are due", () => {
   const three = buildDailyQuests(analytics(), 3, TODAY).find((q) => q.id === "q3")!;
   assert.equal(three.title, "Review 3 concepts");
+  assert.equal(three.href, "/book/progress/review");
   assert.equal(three.target, 3);
   const many = buildDailyQuests(analytics(), 40, TODAY).find((q) => q.id === "q3")!;
   assert.equal(many.title, "Review 5 concepts");

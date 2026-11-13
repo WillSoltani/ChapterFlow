@@ -24,13 +24,8 @@ import type {
 import { tierPill } from "./progressTypes";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { fetchBookJson } from "@/lib/client/book-api";
-import {
-  fetchBookJsonCached,
-  invalidateBookCache,
-  useBookQuery,
-} from "@/lib/client/book-api-cache";
+import { fetchBookJsonCached, useBookQuery } from "@/lib/client/book-api-cache";
 import { aggregateHourlyForDay } from "@/lib/client/reading-activity-storage";
-import { ReviewSessionFSRS } from "@/components/review/ReviewSessionFSRS";
 import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { HeroSection } from "./HeroSection";
 import { DailyQuests } from "./DailyQuests";
@@ -338,8 +333,6 @@ export function ProgressPage() {
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [query, setQuery] = useState("");
   const [primaryBookId, setPrimaryBookId] = useState<string | null>(null);
-  const [showReviewSession, setShowReviewSession] = useState(false);
-  const [refreshKey, setRefreshKey] = useState(0);
 
   // ── Hooks ──
   const {
@@ -373,7 +366,8 @@ export function ProgressPage() {
   // Source the KnowledgeReview counts, the "Review 5 concepts" quest, and the
   // Streak Shield count from the server (FSRS deck + streak store) so this page
   // agrees with the home ReviewDueWidget instead of a per-device localStorage
-  // SRS. Re-runs when a review session closes (refreshKey bumps).
+  // SRS. The review session is its own page (/book/progress/review); ratings
+  // invalidate the deck, so coming back here mounts a fresh read.
   const reviewsQuery = useBookQuery<{ cards: FSRSCardLite[] }>(REVIEWS_ALL_KEY);
   const reviewCards = reviewsQuery.data?.cards;
   const reviewData = useMemo<ReviewData | null>(
@@ -396,7 +390,7 @@ export function ProgressPage() {
     fetchBookJsonCached<{ shieldsHeld?: number }>(STREAK_KEY)
       .then((s) => setShieldsHeld(s.shieldsHeld ?? 0))
       .catch(() => {});
-  }, [refreshKey]);
+  }, []);
 
   useKeyboardShortcut(
     "/",
@@ -425,8 +419,7 @@ export function ProgressPage() {
       shieldsHeld,
       tier
     );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro, reviewData, reviewedTodayCount, shieldsHeld, tier, refreshKey]);
+  }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro, reviewData, reviewedTodayCount, shieldsHeld, tier]);
 
   // Fetch daily reader metrics for the active books in ONE batched request
   // (WS3-023) instead of an HTTP fan-out of one /books/[id]/metrics call per book.
@@ -585,12 +578,7 @@ export function ProgressPage() {
 
         {/* SECTION 2: Daily Quests */}
         <motion.div variants={sectionVariants}>
-          <DailyQuests
-            quests={displayData.dailyQuests}
-            onQuestClick={(questId) => {
-              if (questId === "q3") setShowReviewSession(true);
-            }}
-          />
+          <DailyQuests quests={displayData.dailyQuests} />
         </motion.div>
 
         {/* SECTION 3: This Week Summary (scroll-triggered) */}
@@ -643,7 +631,6 @@ export function ProgressPage() {
             status={reviewStatus}
             onRetry={refetchReviews}
             firstActiveBook={displayData.activeBooks[0] ?? null}
-            onStartReview={() => setShowReviewSession(true)}
           />
         </motion.div>
 
@@ -685,21 +672,6 @@ export function ProgressPage() {
         </motion.div>
       </motion.div>
       </motion.main>
-
-      {showReviewSession && (
-        <ReviewSessionFSRS
-          key={refreshKey}
-          onClose={() => {
-            setShowReviewSession(false);
-            // The session mutated the FSRS deck + streak store. Invalidation does
-            // not refetch mounted readers (C14), so refetch the deck explicitly;
-            // the refreshKey bump re-reads the streak store.
-            invalidateBookCache(STREAK_KEY);
-            refetchReviews();
-            setRefreshKey((k) => k + 1);
-          }}
-        />
-      )}
     </div>
   );
 }

@@ -6,6 +6,8 @@ import type { DailyQuest } from "./progressTypes";
 import { localDateKey } from "./review-data-core";
 
 const REVIEW_QUEST_MAX = 5;
+/** PROG-22: the spaced-review page. */
+export const REVIEW_PAGE_PATH = "/book/progress/review";
 
 const STEP_BEFORE: Record<NonNullable<BookProgressSnapshot["currentLoopStep"]>, number> = {
   summary: 0,
@@ -79,6 +81,7 @@ export function buildDailyQuests(
       target: reviewTarget,
       type: "progress",
       completed: reviewedToday >= reviewTarget,
+      href: REVIEW_PAGE_PATH,
     });
   }
   return quests;

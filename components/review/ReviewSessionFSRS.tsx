@@ -192,7 +192,7 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
             onClick={onClose}
             className="cf-btn cf-btn-primary mt-6 w-full rounded-2xl text-sm"
           >
-            Back to Dashboard
+            Done
           </button>
         </motion.div>
       </div>
