@@ -16,6 +16,7 @@ type ProgressChapter = { id: string; order: number; title: string };
 export function useReaderProgress({
   bookId,
   chapterId,
+  chapterNumber,
   chapter,
   chapters,
   initialProgressFloor,
@@ -35,6 +36,8 @@ export function useReaderProgress({
 }: {
   bookId: string;
   chapterId: string;
+  /** The route's chapter number from the book manifest (useReaderAccess). */
+  chapterNumber: number | undefined;
   chapter?: BookChapter | undefined;
   chapters: ProgressChapter[];
   initialProgressFloor?: BookProgressFloor | null | undefined;
@@ -56,12 +59,13 @@ export function useReaderProgress({
   const chapterProgress = useChapterState(
     bookId,
     chapterId,
-    chapter?.order,
+    chapterNumber,
     preferredReadingDepth,
     preferredActiveTab,
     preferredExampleFilter,
     preferredFocusMode,
     preferredFontScale,
+    onboardingHydrated && bookPrefsHydrated && Boolean(chapter),
   );
 
   const chapterState = chapter ? bookProgress.getChapterState(chapter.id) : "locked";

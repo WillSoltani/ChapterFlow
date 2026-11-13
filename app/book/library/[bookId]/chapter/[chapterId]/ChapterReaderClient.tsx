@@ -119,6 +119,7 @@ export function ChapterReaderClient({
   const readerProgress = useReaderProgress({
     bookId,
     chapterId,
+    chapterNumber,
     chapter,
     chapters,
     initialProgressFloor,

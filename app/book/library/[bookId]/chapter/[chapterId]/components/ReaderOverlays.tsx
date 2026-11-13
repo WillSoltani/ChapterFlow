@@ -121,7 +121,7 @@ export function ReaderOverlays({
 }: Props) {
   const { entry } = access;
   const { chapterProgress, readerInteractionsReady } = progress;
-  const { state, setNotes, appendNote } = chapterProgress;
+  const { state, setNotes, appendNote, syncFailed } = chapterProgress;
   const { interstitial, handleInterstitialComplete } = phaseFlow;
   const { quiz, justPassedThisSession } = chapterQuiz;
   const {
@@ -143,6 +143,7 @@ export function ReaderOverlays({
           onClose={() => onNotesOpenChange(false)}
           notes={state.notes}
           onNotesChange={setNotes}
+          syncFailed={syncFailed}
           onAddNote={() => {
             appendNote(
               `\u2022 ${new Date().toLocaleTimeString([], {
