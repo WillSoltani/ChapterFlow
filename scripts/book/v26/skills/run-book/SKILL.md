@@ -31,7 +31,7 @@ line saying where the book stands. No pack, no sample read, no list of flags, no
 | 1 | 97.6 |
 | ... |
 | Average | 96.1 |
-LIVE in the app, version 7.
+LIVE in the app, version 7. Cover: new (cut-paper).
 ```
 
 The numbers are the `chapter scores:` line `auto` prints just before its outcome (also `chapterScores` in
@@ -71,6 +71,11 @@ background with a log; after any stop (usage limit, budget, crash) run the ident
 `PUBLISHED`, `READY` (`--no-publish`), `DRY-RUN`, `NEEDS-OWNER` (exit 1) or `FAILED` (exit 2), with the reasons on
 the last line and in `<runDir>/auto.json`. Many books: `CLI auto --queue <file>` (one config path per line), one
 line per book in `<file>.report.jsonl`.
+
+While `auto` runs, make the book's cover (reference.md section 1C): choose one picture from the book, `CLI cover
+--book <cfg> --concept "..."`, generate it through the owner's Higgsfield connector (`gpt_image_2`, 2:3), look at
+it, `CLI cover --book <cfg> --image <file>`. Installed before the publish, it ships with the package and the site
+pull request.
 
 Three flags are the owner's rulings and are passed only when the owner gave them, for one book, never with
 `--queue`: `--approve` (yes to the pack they read; taken only while the book waits and the chapters are unchanged),

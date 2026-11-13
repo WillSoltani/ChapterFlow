@@ -21,6 +21,8 @@ import {
   fixGeneratorPath,
   inferredPresentation,
   registryBlock,
+  removeFallbackCover,
+  removeOptimizerListEntry,
   siteBook,
   type LedgerRecord,
   type PackageStore,
@@ -125,6 +127,33 @@ export function getBookCoverSourceCandidates(bookId: string): string[] {
 }
 `;
 
+/** main's components/ui/BookCover.optimizer.test.ts, small: the loop over the fallback-only ids in its real form, and a
+ *  later test that names one of them outside the list. */
+const OPTIMIZER_TS = `import assert from "node:assert/strict";
+import { test } from "node:test";
+import { getBookCoverSourceCandidates } from "@/lib/use-book-cover-source";
+
+test("catalog titles without committed rasters render their fallback immediately", () => {
+  for (const bookId of [
+    "behave",
+    "decisive",
+    "multipliers",
+    "the-first-90-days",
+    "the-now-habit",
+  ]) {
+    assert.deepEqual(
+      getBookCoverSourceCandidates(bookId, \`/book-covers/\${bookId}.webp\`),
+      [],
+    );
+  }
+});
+
+test("fallback-only catalog titles still preserve an authored remote cover", () => {
+  const remote = "https://chapterflow-covers.s3.amazonaws.com/behave.webp";
+  assert.deepEqual(getBookCoverSourceCandidates("behave", remote), [remote]);
+});
+`;
+
 /** A v21 package; `compact` writes it the way no generator would, to prove the bytes are kept as they are. */
 function pkg(id: string, title: string, chapters: number, opts: { categories?: string[]; tags?: string[]; rev?: string; compact?: boolean; createdAt?: string } = {}): string {
   const body = {
@@ -173,6 +202,8 @@ interface Fixture {
   runDir: string;
   ctx: SiteCtx;
   store: PackageStore & { gets: string[]; lists: number };
+  /** The tool repo's cover folder for this fixture: empty unless a test puts a pair in it. */
+  coversDir: string;
   runs: Array<{ cmd: string; cwd: string }>;
   run: Runner;
   git(...a: string[]): string;
@@ -208,6 +239,7 @@ function fixture(opts: { bookId?: string; title?: string; ledger?: unknown[]; pu
   write("scripts/book/generate-catalog-metadata.ts", GENERATOR_TS);
   write("scripts/book/generate-chapter-meta.ts", CHAPTER_META_TS);
   write("lib/use-book-cover-source.ts", COVER_TS);
+  write("components/ui/BookCover.optimizer.test.ts", OPTIMIZER_TS);
   write("scripts/ci/ws7-shared-repair-approvals.json", ledgerText(opts.ledger ?? [ROOT_REC, LEAF_REC, OTHER_REC]));
   // The packages: one equal to live, one equal behind a multipart ETag, one stale (main's old copy), one only in the repo.
   const tinyOld = pkg("tiny-habits", "Tiny Habits", 8, { rev: "v21-old" });
@@ -268,9 +300,13 @@ function fixture(opts: { bookId?: string; title?: string; ledger?: unknown[]; pu
     }
   };
 
+  const coversDir = path.join(dir, "covers");
+  fs.mkdirSync(coversDir);
+
   return {
     repo,
     runDir,
+    coversDir,
     ctx: { config: { bookId: opts.bookId ?? "demo-book", runDir, title: opts.title ?? "Demo Book" } },
     store,
     runs,
@@ -282,8 +318,8 @@ function fixture(opts: { bookId?: string; title?: string; ledger?: unknown[]; pu
   };
 }
 
-const site = (f: Fixture, extra: { synopsis?: string; dryRun?: boolean; run?: Runner } = {}) =>
-  siteBook(f.ctx, { repo: f.repo, store: f.store, run: f.run, now: NOW, ...extra });
+const site = (f: Fixture, extra: { synopsis?: string; dryRun?: boolean; run?: Runner; coversDir?: string } = {}) =>
+  siteBook(f.ctx, { repo: f.repo, store: f.store, run: f.run, now: NOW, coversDir: f.coversDir, ...extra });
 
 const ledgerRecords = (f: Fixture) => (JSON.parse(f.read("scripts/ci/ws7-shared-repair-approvals.json")) as { records: Array<Record<string, unknown>> }).records;
 
@@ -437,6 +473,204 @@ test("site, new title with a cover file: the fallback set is left alone", async 
   assert.equal(r.cover, "file");
   assert.equal(f.read("lib/use-book-cover-source.ts"), COVER_TS);
   assert.ok(!r.filesChanged.includes("lib/use-book-cover-source.ts"));
+});
+
+// ---------------------------------------------------------------- a cover from the cover verb
+
+/** Stand-ins for the cover verb's pair: the site step copies bytes and never decodes them. */
+const WEBP = Buffer.from([0x52, 0x49, 0x46, 0x46, 0xff, 0x00, 0x10, 0x80, ...Array.from({ length: 64 }, (_, i) => (i * 37) % 256)]);
+const AVIF = Buffer.from([0x00, 0x00, 0x00, 0x1c, 0x66, 0x74, 0x79, 0x70, ...Array.from({ length: 48 }, (_, i) => (i * 53) % 256)]);
+/** The pair in the cover folder and, as the cover verb leaves it, in the run's own cover folder (unless `run` is false). */
+const putPair = (f: Fixture, id: string, which: Array<"webp" | "avif"> = ["webp", "avif"], run = true) => {
+  const runCover = path.join(f.runDir, "cover");
+  if (run) fs.mkdirSync(runCover, { recursive: true });
+  for (const [ext, bytes] of [["webp", WEBP], ["avif", AVIF]] as const) {
+    if (!which.includes(ext)) continue;
+    fs.writeFileSync(path.join(f.coversDir, `${id}.${ext}`), bytes);
+    if (run) fs.writeFileSync(path.join(runCover, `${id}.${ext}`), bytes);
+  }
+};
+
+test("site, new title with a cover pair from the cover verb: both files land byte for byte, no fallback entry, cover file", async () => {
+  const f = fixture();
+  // A checkout with no public/book-covers folder at all: the folder is made.
+  f.git("rm", "-q", "public/book-covers/radical-candor.webp");
+  f.commit("no covers");
+  putPair(f, "demo-book");
+  const r = await site(f);
+  assert.ok(fs.readFileSync(path.join(f.repo, "public/book-covers/demo-book.webp")).equals(WEBP));
+  assert.ok(fs.readFileSync(path.join(f.repo, "public/book-covers/demo-book.avif")).equals(AVIF));
+  assert.ok(r.filesChanged.includes("public/book-covers/demo-book.webp") && r.filesChanged.includes("public/book-covers/demo-book.avif"));
+  assert.equal(f.read("lib/use-book-cover-source.ts"), COVER_TS, "the id is not added to the fallback set");
+  assert.ok(!r.filesChanged.includes("lib/use-book-cover-source.ts"));
+  assert.equal(r.cover, "file");
+  assert.equal(r.coverCopied, true);
+  assert.deepEqual(r.coverFiles, [{ file: "public/book-covers/demo-book.webp", size: WEBP.length }, { file: "public/book-covers/demo-book.avif", size: AVIF.length }]);
+  // What the caller stages is exactly what changed, the binaries included.
+  const status = f.git("status", "--porcelain", "--untracked-files=all").split("\n").filter(Boolean).map((l) => l.slice(3)).sort();
+  assert.deepEqual([...r.filesChanged].sort(), status);
+  const body = fs.readFileSync(path.join(f.runDir, "site-pr.md"), "utf8");
+  assert.ok(body.includes(`- Cover: original generated art for this edition`), body);
+  assert.ok(body.includes(`\`public/book-covers/demo-book.webp\` (${WEBP.length} bytes) and \`public/book-covers/demo-book.avif\` (${AVIF.length} bytes)`), body);
+  assert.ok(!body.includes("FALLBACK_ONLY_BOOK_COVERS"));
+
+  // The CLI line, and a second run once committed changes nothing.
+  f.commit("wire with cover");
+  const again = await site(f);
+  assert.deepEqual(again.filesChanged, []);
+  assert.equal(again.coverCopied, false);
+  assert.equal(again.cover, "file");
+  assert.equal(f.git("status", "--porcelain", "--untracked-files=all"), "");
+
+  // A new image (another cover run) replaces the committed one.
+  const newer = Buffer.concat([WEBP, Buffer.from([1, 2, 3])]);
+  fs.writeFileSync(path.join(f.coversDir, "demo-book.webp"), newer);
+  fs.writeFileSync(path.join(f.runDir, "cover", "demo-book.webp"), newer);
+  const third = await site(f, { dryRun: true });
+  assert.deepEqual(third.coverFiles, [{ file: "public/book-covers/demo-book.webp", size: newer.length }]);
+  assert.deepEqual(third.filesChanged, ["public/book-covers/demo-book.webp"]);
+  assert.equal(f.git("status", "--porcelain", "--untracked-files=all"), "", "a dry run writes nothing");
+});
+
+test("site, replaced title in the fallback set gets its cover: out of the set and out of the optimizer test's list", async () => {
+  // "decisive" is on main, wired, in the fallback set and in the optimizer test's list.
+  const live = { ...LIVE, decisive: pkg("decisive", "Decisive", 2) };
+  const f = fixture({ bookId: "decisive", title: "Decisive", live });
+  f.write("book-packages/decisive.v21.json", live.decisive);
+  f.write("app/book/data/bookPackages.ts", appendRegistryBlock(addRegistryImport(REGISTRY_TS, "decisive"), "decisive"));
+  const rows = JSON.parse(f.read("lib/books-catalog.metadata.json")) as unknown[];
+  f.write("lib/books-catalog.metadata.json", JSON.stringify([...rows, metaRow(live.decisive)], null, 2) + "\n");
+  f.commit("decisive on main");
+  putPair(f, "decisive");
+
+  const r = await site(f);
+  assert.equal(r.kind, "replaced");
+  assert.equal(r.cover, "file");
+  assert.equal(r.coverCopied, true);
+  assert.ok(fs.readFileSync(path.join(f.repo, "public/book-covers/decisive.avif")).equals(AVIF));
+  assert.equal(f.read("lib/use-book-cover-source.ts"), COVER_TS.replace(`  "decisive",\n`, ""));
+  assert.equal(f.read("components/ui/BookCover.optimizer.test.ts"), OPTIMIZER_TS.replace(`    "decisive",\n`, ""));
+  for (const file of ["public/book-covers/decisive.webp", "public/book-covers/decisive.avif", "lib/use-book-cover-source.ts", "components/ui/BookCover.optimizer.test.ts"]) {
+    assert.ok(r.filesChanged.includes(file), file);
+  }
+  assert.equal(r.ledgerRecordId, null, "no registry edit, no approval record");
+  assert.match(r.notes.join("\n"), /out of FALLBACK_ONLY_BOOK_COVERS/);
+  const status = f.git("status", "--porcelain", "--untracked-files=all").split("\n").filter(Boolean).map((l) => l.slice(3)).sort();
+  assert.deepEqual([...r.filesChanged].sort(), status);
+
+  // A second run once committed changes nothing.
+  f.commit("cover");
+  const again = await site(f);
+  assert.deepEqual(again.filesChanged, []);
+  assert.equal(f.git("status", "--porcelain", "--untracked-files=all"), "");
+
+  // "behave" is also named outside the list: the line goes, and a note says to check the rest by hand.
+  const live2 = { ...LIVE, behave: pkg("behave", "Behave", 2) };
+  const g = fixture({ bookId: "behave", title: "Behave", live: live2 });
+  g.write("book-packages/behave.v21.json", live2.behave);
+  g.write("app/book/data/bookPackages.ts", appendRegistryBlock(addRegistryImport(REGISTRY_TS, "behave"), "behave"));
+  g.write("lib/books-catalog.metadata.json", JSON.stringify([...(JSON.parse(g.read("lib/books-catalog.metadata.json")) as unknown[]), metaRow(live2.behave)], null, 2) + "\n");
+  g.commit("behave on main");
+  putPair(g, "behave");
+  const r2 = await site(g, { dryRun: true });
+  assert.ok(r2.filesChanged.includes("components/ui/BookCover.optimizer.test.ts"));
+  assert.match(r2.notes.join("\n"), /still names "behave" elsewhere/);
+});
+
+test("site, a fallback-only title whose pair is already in the checkout leaves the set; one with only a webp stays", async () => {
+  const live = { ...LIVE, decisive: pkg("decisive", "Decisive", 2) };
+  const setup = (files: Array<"webp" | "avif">) => {
+    const f = fixture({ bookId: "decisive", title: "Decisive", live });
+    f.write("book-packages/decisive.v21.json", live.decisive);
+    f.write("app/book/data/bookPackages.ts", appendRegistryBlock(addRegistryImport(REGISTRY_TS, "decisive"), "decisive"));
+    f.write("lib/books-catalog.metadata.json", JSON.stringify([...(JSON.parse(f.read("lib/books-catalog.metadata.json")) as unknown[]), metaRow(live.decisive)], null, 2) + "\n");
+    for (const ext of files) f.write(`public/book-covers/decisive.${ext}`, ext === "webp" ? WEBP : AVIF);
+    f.commit("decisive on main");
+    return f;
+  };
+  // (The fixture's stale tiny-habits package and generator path come along as in every run; only the cover files matter here.)
+  const coverEdits = (files: string[]) => files.filter((x) => /cover/i.test(x));
+  const both = await site(setup(["webp", "avif"]), { dryRun: true });
+  assert.equal(both.coverCopied, false);
+  assert.deepEqual(coverEdits(both.filesChanged), ["lib/use-book-cover-source.ts", "components/ui/BookCover.optimizer.test.ts"]);
+  const half = await site(setup(["webp"]), { dryRun: true });
+  assert.deepEqual(coverEdits(half.filesChanged), []);
+});
+
+test("site SITE_COVER_INCOMPLETE: only one of the two files in the cover folder is refused, the checkout untouched", async () => {
+  for (const which of [["webp"], ["avif"]] as Array<Array<"webp" | "avif">>) {
+    for (const dryRun of [false, true]) {
+      const f = fixture();
+      putPair(f, "demo-book", which);
+      await assert.rejects(site(f, { dryRun }), new RegExp(`^Error: SITE_COVER_INCOMPLETE: .*demo-book\\.${which[0]} has no \\.${which[0] === "webp" ? "avif" : "webp"} sibling`));
+      assert.equal(f.git("status", "--porcelain", "--untracked-files=all"), "");
+      assert.deepEqual(f.runs, []);
+      assert.ok(!fs.existsSync(path.join(f.runDir, "site.json")));
+    }
+  }
+});
+
+test("site: a pair in the cover folder that this run's cover step did not make is not carried in", async () => {
+  // A new title: no run pair, or a run pair that differs, leaves the cover handling as before (the fallback set).
+  for (const runBytes of [null, Buffer.from("another image")]) {
+    const f = fixture();
+    putPair(f, "demo-book", ["webp", "avif"], false);
+    if (runBytes) {
+      fs.mkdirSync(path.join(f.runDir, "cover"), { recursive: true });
+      fs.writeFileSync(path.join(f.runDir, "cover", "demo-book.webp"), runBytes);
+      fs.writeFileSync(path.join(f.runDir, "cover", "demo-book.avif"), AVIF);
+    }
+    const r = await site(f, { dryRun: true });
+    assert.equal(r.coverCopied, false);
+    assert.deepEqual(r.coverFiles, []);
+    assert.equal(r.cover, "fallback");
+    assert.ok(!r.filesChanged.some((x) => x.startsWith("public/book-covers/")), r.filesChanged.join(" "));
+    // Said only when the run made a cover and the folder now holds another: with no run cover there is nothing to report
+    // (the tool branch tracks every catalog cover, so a silent pass is the everyday case).
+    if (runBytes) assert.match(r.notes.join("\n"), /is not the one this run's cover step made/);
+    else assert.doesNotMatch(r.notes.join("\n"), /cover step/);
+  }
+  // A replaced title whose cover on main differs from the stale one in the tool repo's folder: main's file is kept.
+  const g = fixture({ bookId: "radical-candor", title: "Radical Candor" });
+  putPair(g, "radical-candor", ["webp", "avif"], false);
+  const r = await site(g);
+  assert.equal(r.coverCopied, false);
+  assert.ok(!r.filesChanged.some((x) => x.startsWith("public/book-covers/")), r.filesChanged.join(" "));
+  assert.equal(g.read("public/book-covers/radical-candor.webp"), "webp");
+  assert.ok(!fs.readFileSync(path.join(g.runDir, "site-pr.md"), "utf8").includes("original generated art"));
+});
+
+test("site with no cover in the cover folder (empty or absent) behaves as before", async () => {
+  const expected = [
+    "book-packages/demo-book.v21.json",
+    "book-packages/tiny-habits.v21.json",
+    "app/book/data/bookPackages.ts",
+    "scripts/book/generate-catalog-metadata.ts",
+    "lib/use-book-cover-source.ts",
+    "scripts/ci/ws7-shared-repair-approvals.json",
+  ];
+  for (const coversDir of [undefined, "absent"]) {
+    const f = fixture();
+    // Another book's pair in the folder is not this book's cover.
+    putPair(f, "tiny-habits");
+    const r = await site(f, { dryRun: true, ...(coversDir ? { coversDir: path.join(f.coversDir, coversDir) } : {}) });
+    assert.deepEqual(r.filesChanged, expected);
+    assert.equal(r.coverCopied, false);
+    assert.deepEqual(r.coverFiles, []);
+    assert.equal(r.cover, "fallback");
+  }
+  const g = fixture();
+  await site(g);
+  assert.match(fs.readFileSync(path.join(g.runDir, "site-pr.md"), "utf8"), /FALLBACK_ONLY_BOOK_COVERS/);
+  assert.ok(!fs.readFileSync(path.join(g.runDir, "site-pr.md"), "utf8").includes("original generated art"));
+});
+
+test("site: a late failure takes the carried-in cover back out of the checkout", async () => {
+  const f = fixture();
+  putPair(f, "demo-book");
+  await assert.rejects(site(f, { run: () => { throw new Error("exit 1"); } }), /SITE_GENERATOR_FAILED: .*; the checkout was restored$/);
+  assert.equal(f.git("status", "--porcelain", "--untracked-files=all"), "");
+  assert.ok(!fs.existsSync(path.join(f.repo, "public/book-covers/demo-book.webp")));
 });
 
 // ---------------------------------------------------------------- a replaced title
@@ -685,7 +919,7 @@ test("site: another title whose package on main is newer than the live one is le
   // The CLI line.
   const c = setup("2026-11-12T09:00:00.000Z", "2026-11-10T09:00:00.000Z");
   let out = "";
-  const code = await main(["site", "--book", cliConfig(c), "--repo", c.repo], { out: (s) => (out += s), err: () => {} }, { store: c.store, run: c.run });
+  const code = await main(["site", "--book", cliConfig(c), "--repo", c.repo], { out: (s) => (out += s), err: () => {} }, { store: c.store, run: c.run, coversDir: c.coversDir });
   assert.equal(code, 0);
   assert.ok(out.includes("  main is ahead of the live store for tiny-habits (main 2026-11-12T09:00:00.000Z, live 2026-11-10T09:00:00.000Z): left alone; a prod deploy of main puts it live\n"), out);
 
@@ -752,6 +986,23 @@ test("registry edits are idempotent and the import lands after the last package 
   assert.ok(p2.includes("\n  zen: {\n    icon: \"📘\","), "a key that is an identifier is written bare, as prettier does");
   assert.equal(addPresentationEntry(p2, "zen", "Other.", f), p2);
   assert.throws(() => addRegistryImport("const x = 1;\n", "a"), /SITE_REGISTRY_SHAPE/);
+});
+
+test("the fallback set and the optimizer list lose one id, keep their form, and are idempotent", () => {
+  const a = removeFallbackCover(COVER_TS, "multipliers");
+  assert.equal(a, COVER_TS.replace(`  "multipliers",\n`, ""));
+  assert.equal(removeFallbackCover(a, "multipliers"), a);
+  assert.equal(removeFallbackCover(COVER_TS, "zzz"), COVER_TS);
+  assert.equal(removeFallbackCover(addFallbackCover(COVER_TS, "zzz"), "zzz"), COVER_TS);
+  assert.throws(() => removeFallbackCover("const x = 1;", "a"), /SITE_COVER_SHAPE/);
+  const b = removeOptimizerListEntry(OPTIMIZER_TS, "the-now-habit");
+  assert.ok(b.includes(`    "the-first-90-days",\n  ]) {`));
+  assert.equal(b, OPTIMIZER_TS.replace(`    "the-now-habit",\n`, ""));
+  assert.equal(removeOptimizerListEntry(b, "the-now-habit"), b);
+  // A prefix of a listed id, or the id only inside a string or a call, not as a list line, is left alone.
+  assert.equal(removeOptimizerListEntry(OPTIMIZER_TS, "the-now"), OPTIMIZER_TS);
+  assert.equal(removeOptimizerListEntry(OPTIMIZER_TS, "atomic-habits"), OPTIMIZER_TS);
+  assert.ok(removeOptimizerListEntry(OPTIMIZER_TS, "behave").includes(`getBookCoverSourceCandidates("behave", remote)`));
 });
 
 test("the fallback set keeps its order and is not added to twice; the generator fix touches one string", () => {
@@ -840,7 +1091,7 @@ test("cli site: wired with --repo, --synopsis and --dry-run; usage errors exit 1
   const cli = async (...args: string[]) => {
     let out = "";
     let err = "";
-    const code = await main(args, { out: (s) => (out += s), err: (s) => (err += s) }, { store: f.store, run: f.run });
+    const code = await main(args, { out: (s) => (out += s), err: (s) => (err += s) }, { store: f.store, run: f.run, coversDir: f.coversDir });
     return { code, out, err };
   };
 
@@ -878,6 +1129,17 @@ test("cli site: wired with --repo, --synopsis and --dry-run; usage errors exit 1
   assert.equal(refused.code, 2);
   assert.match(refused.err, /^error: SITE_NOT_PUBLISHED/);
 
+  // A cover pair from the cover verb: one line names the files carried in (dry run: to carry in).
+  const h = fixture();
+  const hConfig = cliConfig(h);
+  putPair(h, "demo-book");
+  for (const [args, verb] of [[["--dry-run"], "to carry in"], [[], "carried in"]] as Array<[string[], string]>) {
+    let out = "";
+    const code = await main(["site", "--book", hConfig, "--repo", h.repo, ...args], { out: (s) => (out += s), err: () => {} }, { store: h.store, run: h.run, coversDir: h.coversDir });
+    assert.equal(code, 0);
+    assert.match(out, new RegExp(`\\n {2}cover ${verb}: public/book-covers/demo-book\\.webp \\(${WEBP.length} bytes\\), public/book-covers/demo-book\\.avif \\(${AVIF.length} bytes\\)\\n`), out);
+  }
+
   // The real store with no aws CLI, then a wrong profile: SITE_STORE_FAILED and exit 2, not a raw error and exit 1.
   const g = fixture();
   const gConfig = cliConfig(g);
@@ -887,7 +1149,7 @@ test("cli site: wired with --repo, --synopsis and --dry-run; usage errors exit 1
     () => { throw new Error("Command failed: aws s3api list-objects-v2\nThe config profile (cf) could not be found"); },
   ]) {
     let err = "";
-    const code = await main(["site", "--book", gConfig, "--repo", g.repo], { out: () => {}, err: (s) => (err += s) }, { store: awsPackageStore(publisher, fail), run: g.run });
+    const code = await main(["site", "--book", gConfig, "--repo", g.repo], { out: () => {}, err: (s) => (err += s) }, { store: awsPackageStore(publisher, fail), run: g.run, coversDir: g.coversDir });
     assert.equal(code, 2, err);
     assert.match(err, /^error: SITE_STORE_FAILED: (spawnSync aws ENOENT|Command failed: aws s3api list-objects-v2);/);
   }

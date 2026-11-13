@@ -18,7 +18,7 @@ import { createHash } from "node:crypto";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { awsPublisher, type Publisher } from "./publish";
+import { awsPublisher, REPO_ROOT, type Publisher } from "./publish";
 
 // ---------------------------------------------------------------- the repo's paths (main)
 
@@ -31,6 +31,9 @@ export const CHAPTER_META_GENERATOR = "scripts/book/generate-chapter-meta.ts";
 /** Where generate-catalog-metadata.ts wrote before the file moved to lib/ (ac27796d2); nothing reads it. */
 export const DEAD_METADATA = "app/book/data/booksCatalog.metadata.json";
 export const COVER_SOURCE = "lib/use-book-cover-source.ts";
+export const COVERS_DIR = "public/book-covers";
+/** Main's test that lists the fallback-only ids and asserts they get no local candidates. */
+export const COVER_OPTIMIZER_TEST = "components/ui/BookCover.optimizer.test.ts";
 export const LEDGER = "scripts/ci/ws7-shared-repair-approvals.json";
 export const LIVE_PREFIX = "book-content/packages/";
 const TOOL_TAG = "v26 site";
@@ -264,6 +267,29 @@ export function addFallbackCover(src: string, id: string): string {
   return src.slice(0, m.index) + block + src.slice(m.index + m[0].length);
 }
 
+const FALLBACK_SET = /const FALLBACK_ONLY_BOOK_COVERS = new Set\(\[\n((?:[ \t]*"[^"\n]*",\n)*)\]\);/;
+
+/** Takes the id out of FALLBACK_ONLY_BOOK_COVERS (its one line; the rest as they were). No-op when it is not there. */
+export function removeFallbackCover(src: string, id: string): string {
+  const m = FALLBACK_SET.exec(src);
+  if (!m) throw new Error(`SITE_COVER_SHAPE: ${COVER_SOURCE} has no FALLBACK_ONLY_BOOK_COVERS set in the expected form`);
+  const lines = m[1]!.split("\n").filter(Boolean);
+  const kept = lines.filter((l) => /"([^"]*)"/.exec(l)![1] !== id);
+  const block = `const FALLBACK_ONLY_BOOK_COVERS = new Set([\n${kept.map((l) => `${l}\n`).join("")}]);`;
+  return src.slice(0, m.index) + block + src.slice(m.index + m[0].length);
+}
+
+/** Takes the id's line out of every array literal that lists string literals one per line (main's optimizer test loops
+ *  over the fallback-only ids that way, and would fail once the id has a cover). No-op when no such line exists. */
+export function removeOptimizerListEntry(src: string, id: string): string {
+  const own = (line: string): boolean => line.trim().replace(/,$/, "") === JSON.stringify(id);
+  return src.replace(/\[\n((?:[ \t]*"[^"\n]*",?[ \t]*\n)+)([ \t]*)\]/g, (whole, items: string, indent: string) => {
+    const lines = items.split("\n").filter(Boolean);
+    const kept = lines.filter((l) => !own(l));
+    return kept.length === lines.length ? whole : `[\n${kept.map((l) => `${l}\n`).join("")}${indent}]`;
+  });
+}
+
 /** A top-level string field of a package, or null when the bytes are not JSON or the field is missing, empty or not a
  *  string. A null means "cannot tell", never a refusal. */
 export function packageField(bytes: Buffer, key: string): string | null {
@@ -389,6 +415,8 @@ export interface SiteOptions {
   store?: PackageStore;
   run?: Runner;
   now?: () => Date;
+  /** The tool repo's cover folder, where `cover --image` puts a book's pair (default <REPO_ROOT>/public/book-covers). */
+  coversDir?: string;
 }
 
 export interface SyncedPackage {
@@ -421,6 +449,10 @@ export interface SiteReport {
   supersedesRecordId: string | null;
   synopsis: "authored" | "generic";
   cover: "file" | "fallback" | "missing";
+  /** The pair from the tool repo's cover folder was written into the checkout (or would be, in a dry run). */
+  coverCopied: boolean;
+  /** The files carried in, repo-relative, with their sizes; empty when coverCopied is false. */
+  coverFiles: Array<{ file: string; size: number }>;
   generatorPathFixed: boolean;
   /** Ids whose rows or chapter lists the regeneration changed, other than this title (unrelated drift). */
   drift: { metadata: string[]; chapterMeta: string[] };
@@ -512,6 +544,13 @@ export async function siteBook(ctx: SiteCtx, opts: SiteOptions): Promise<SiteRep
   const publishedId = (JSON.parse(fs.readFileSync(publishFile, "utf8")) as { packageId?: unknown }).packageId;
   const packageId = typeof publishedId === "string" && publishedId !== "" ? publishedId : null;
   checkRepo(repo);
+  // The app's cover test requires the pair, so half of one is refused rather than carried in.
+  const coversDir = opts.coversDir ?? path.join(REPO_ROOT, COVERS_DIR);
+  const coverPair = (["webp", "avif"] as const).map((ext) => ({ src: path.join(coversDir, `${bookId}.${ext}`), file: rel(COVERS_DIR, `${bookId}.${ext}`) }));
+  const coverHave = coverPair.filter((c) => fs.existsSync(c.src));
+  if (coverHave.length === 1) {
+    throw new Error(`SITE_COVER_INCOMPLETE: ${coverHave[0]!.src} has no ${coverHave[0] === coverPair[0] ? ".avif" : ".webp"} sibling in ${coversDir}; the app requires the pair (run cover --image again, or remove the file)`);
+  }
   // Without the repo's own tsx, npx (stdin not a TTY) would install whatever tsx the registry serves, after the edits.
   if (!dryRun && !fs.existsSync(path.join(repo, TSX_BIN))) throw new Error(`SITE_REPO_INVALID: ${repo} has no ${TSX_BIN} (run npm ci there first)`);
 
@@ -626,14 +665,51 @@ export async function siteBook(ctx: SiteCtx, opts: SiteOptions): Promise<SiteRep
   if (generatorPathFixed) writes.set(CATALOG_GENERATOR, Buffer.from(fixedGenerator!));
   if (generator === null) notes.push(`${CATALOG_GENERATOR} not found; the metadata regeneration will fail`);
 
+  // 7a. A cover the cover verb made (the pair in the tool repo's folder) goes into the checkout unchanged, byte for byte.
+  // Only when this run made it (its <runDir>/cover/ holds the same pair): the folder is the tool branch's tracked
+  // public/book-covers, so an older catalog cover there must not overwrite main's under a "generated art" line.
+  const coverFiles: SiteReport["coverFiles"] = [];
+  const coverBytes = coverHave.length === 2 ? coverPair.map((c) => fs.readFileSync(c.src)) : null;
+  const madeByRun = coverBytes !== null && coverPair.every((c, i) => readBytesOrNull(path.join(runDir, "cover", path.basename(c.src)))?.equals(coverBytes[i]!) === true);
+  // No pair in the run dir is the usual case (the tool branch tracks the whole catalog's covers): nothing to say. A run
+  // pair that differs from the folder's means the files were changed after the cover step, and that is worth a note.
+  const runHasPair = coverPair.every((c) => fs.existsSync(path.join(runDir, "cover", path.basename(c.src))));
+  if (coverBytes !== null && !madeByRun && runHasPair) notes.push(`the cover pair in ${coversDir} is not the one this run's cover step made (${path.join(runDir, "cover")}), so it was not carried in; run cover --image again`);
+  if (madeByRun && coverBytes !== null) {
+    for (const [i, c] of coverPair.entries()) {
+      const bytes = coverBytes[i]!;
+      const have = readBytesOrNull(path.join(repo, c.file));
+      if (have && have.equals(bytes)) continue;
+      writes.set(c.file, bytes);
+      coverFiles.push({ file: c.file, size: bytes.length });
+    }
+  }
+  const coverCopied = coverFiles.length > 0;
+  const pairInCheckout = coverPair.every((c) => writes.has(c.file) || fs.existsSync(path.join(repo, c.file)));
+
   // 7. The cover (new titles only): no raster means the fallback tile at once, with no 404s first.
-  const coverFile = path.join(repo, "public/book-covers", `${bookId}.webp`);
+  const coverFile = path.join(repo, COVERS_DIR, `${bookId}.webp`);
   const coverSrc = readOrNull(path.join(repo, COVER_SOURCE));
-  let cover: SiteReport["cover"] = fs.existsSync(coverFile) ? "file" : coverSrc !== null && isFallbackCover(coverSrc, bookId) ? "fallback" : "missing";
+  let cover: SiteReport["cover"] = fs.existsSync(coverFile) || writes.has(coverPair[0]!.file) ? "file" : coverSrc !== null && isFallbackCover(coverSrc, bookId) ? "fallback" : "missing";
   if (kind === "new" && cover === "missing") {
     if (coverSrc === null) throw new Error(`SITE_COVER_SHAPE: ${COVER_SOURCE} not found`);
     writes.set(COVER_SOURCE, Buffer.from(addFallbackCover(coverSrc, bookId)));
     cover = "fallback";
+  }
+  // 7b. A fallback-only id that now has its pair loads it: out of the set, and out of the optimizer test's list of
+  // ids that must get no local candidates (that test would fail on the cover otherwise).
+  if (pairInCheckout && coverSrc !== null && isFallbackCover(coverSrc, bookId)) {
+    writes.set(COVER_SOURCE, Buffer.from(removeFallbackCover(coverSrc, bookId)));
+    notes.push(`${bookId} has its cover pair now, so it is out of FALLBACK_ONLY_BOOK_COVERS in ${COVER_SOURCE}`);
+    const testSrc = readOrNull(path.join(repo, COVER_OPTIMIZER_TEST));
+    if (testSrc !== null) {
+      const nextTest = removeOptimizerListEntry(testSrc, bookId);
+      if (nextTest !== testSrc) {
+        writes.set(COVER_OPTIMIZER_TEST, Buffer.from(nextTest));
+        notes.push(`its line in the fallback-only list of ${COVER_OPTIMIZER_TEST} is removed too`);
+      }
+      if (nextTest.includes(JSON.stringify(bookId))) notes.push(`${COVER_OPTIMIZER_TEST} still names "${bookId}" elsewhere; check that test by hand`);
+    }
   }
 
   // 9 (checked now). The ledger's leaf and form, so a ledger that cannot take the record refuses before any write.
@@ -658,7 +734,10 @@ export async function siteBook(ctx: SiteCtx, opts: SiteOptions): Promise<SiteRep
     // of a refusal (dirty) or a cleanup that leaves this run's untracked package behind.
     const originals = new Map([...writes.keys(), METADATA, CHAPTER_META, LEDGER, DEAD_METADATA].map((f) => [f, readBytesOrNull(path.join(repo, f))]));
     try {
-      for (const [f, bytes] of writes) fs.writeFileSync(path.join(repo, f), bytes);
+      for (const [f, bytes] of writes) {
+        fs.mkdirSync(path.dirname(path.join(repo, f)), { recursive: true });
+        fs.writeFileSync(path.join(repo, f), bytes);
+      }
 
       // 8. The generated files, from the edited registry. `--no`: npx must never install a package.
       const before = { metadata: readOrNull(path.join(repo, METADATA)), chapterMeta: readOrNull(path.join(repo, CHAPTER_META)) };
@@ -710,6 +789,8 @@ export async function siteBook(ctx: SiteCtx, opts: SiteOptions): Promise<SiteRep
     supersedesRecordId: record?.supersedesRecordId ?? null,
     synopsis,
     cover,
+    coverCopied,
+    coverFiles,
     generatorPathFixed,
     drift,
     notes,
@@ -821,7 +902,9 @@ export function prBody(r: SiteReport, packageId: string | null): string {
   lines.push(r.synopsis === "authored"
     ? `- Synopsis: authored, in \`BOOK_PACKAGE_PRESENTATION\` in \`${REGISTRY}\` (the only place it survives regeneration).`
     : `- Synopsis: generic. No authored synopsis, so the catalog shows the fallback "A modern reading of <tags> with concise summaries, scenarios, quizzes, and gated chapter progression."`);
-  lines.push(r.cover === "file"
+  lines.push(r.coverCopied
+    ? `- Cover: original generated art for this edition (it does not copy any published cover), made with the v26 tool's \`cover\` verb and carried in here: ${r.coverFiles.map((c) => `\`${c.file}\` (${c.size} bytes)`).join(" and ")}. 600x900, WebP quality 82 and AVIF quality 55.`
+    : r.cover === "file"
     ? `- Cover: \`public/book-covers/${r.bookId}.webp\` is in the repo.`
     : r.cover === "fallback"
       ? `- Cover: no cover file, so \`${r.bookId}\` is in \`FALLBACK_ONLY_BOOK_COVERS\` (\`${COVER_SOURCE}\`): the designed title tile shows at once, with no 404s first. Remove it there when a cover pair lands.`

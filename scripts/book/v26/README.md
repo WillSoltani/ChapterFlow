@@ -87,6 +87,16 @@ What stays the owner's: `--approve` (yes to the pack that was read: taken only w
 
 `--queue <file>` runs a list of configs (one path per line, or a JSON array) one after another and appends one line per book to `<file>.report.jsonl`. Exit codes for `auto`: 0 published, dry run or ready; 1 waiting for the owner; 2 failed; 3 usage limit; 4 budget.
 
+### The cover: `cover`
+
+```
+npx tsx scripts/book/v26/cli.ts cover --book <cfg>                                   # art directions and pictures already taken
+npx tsx scripts/book/v26/cli.ts cover --book <cfg> --concept "<one picture>" [--style <name>]   # writes <runDir>/cover/prompt.txt
+npx tsx scripts/book/v26/cli.ts cover --book <cfg> --image <generated image>         # installs the cover
+```
+
+`cover` (`src/cover.ts`, `prompts/cover.md`) holds the fixed recipe for a generated cover and makes no model or network call itself: a session passes `prompt.txt` to an image model through a connector (`gpt_image_2`, aspect ratio 2:3) and hands the image back. The recipe allows two pieces of lettering only, the title and the author's name, and one bold picture; six art directions rotate through a ledger (`covers.json`) that also records each book's picture, so a catalogue does not repeat itself. `--image` converts the result to the app's two files (600x900 WebP and AVIF) in the run dir and in `public/book-covers/`; the publish registration uploads the WebP with the package, and `site` carries the pair into the checkout of main (only a pair this run made) and takes the title off the placeholder list.
+
 ### After a publish: `site`
 
 ```

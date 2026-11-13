@@ -3,7 +3,8 @@
  *    npx tsx scripts/book/v26/cli.ts auto --queue <books.txt>     (every book of a list, one after another)
  *      [--chapters 1,13] [--force] [--review] [--issues <findings.json>] [--finish] [--file <chapter.json> --tag <t> --out <dir>]
  *    npx tsx scripts/book/v26/cli.ts site --book <config.json> --repo <checkout of main> [--synopsis <text>] [--dry-run]
- *  Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget. */
+ *    npx tsx scripts/book/v26/cli.ts cover --book <config.json> [--concept <text> [--style <name>] | --image <file>]
+ *  Exit codes: 0 ok, 1 open issues or a usage error, 2 a SITE_ or COVER_ refusal (and score/publish/auto: fail), 3 usage limit, 4 budget. */
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { parseArgs } from "node:util";
@@ -36,8 +37,9 @@ import { publishBook } from "./src/publish";
 import { autoBook, autoQueue, type AutoOptions, type AutoOutcome } from "./src/auto";
 import { keysFor } from "./src/keysText";
 import { siteBook, type PackageStore, type Runner } from "./src/site";
+import { COVER_GENERATION, coverBrief, coverStatus, installCover } from "./src/cover";
 
-const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys", "score", "publish", "auto", "site"] as const;
+const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys", "score", "publish", "auto", "site", "cover"] as const;
 type Verb = (typeof VERBS)[number];
 
 const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --book <config.json> [options]
@@ -83,7 +85,15 @@ const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --boo
                     regenerated. Writes <runDir>/site.json and <runDir>/site-pr.md (the pull request body).
   --repo <dir>      site: a clean checkout of main to edit (required)
   --synopsis <t>    site: the authored synopsis for a new title (default: the catalog's generic fallback)
-Exit codes: 0 ok (score: the auto band; publish, auto: published, dry run or ready), 1 open issues or a usage error (score: manual; publish, auto: needs the owner), 2 score/publish/auto: fail (site: a SITE_ refusal), 3 usage limit, 4 budget.
+  cover             the book's cover, made by an image model the session calls (the tool calls none). Alone: the art directions
+                    with how many books use each, and the pictures already taken (scripts/book/v26/covers.json). With --concept:
+                    <runDir>/cover/prompt.txt for the image model, and the book's entry in covers.json. With --image: the
+                    returned image as the app's 600x900 WebP and AVIF pair, in <runDir>/cover and the repo's public/book-covers,
+                    which the next publish uploads and the site step carries into the checkout of main.
+  --concept <t>     cover: the one picture on the cover, in a sentence (at most 60 words, one line)
+  --style <name>    cover, with --concept: the art direction (default: the one the fewest other books use)
+  --image <f>       cover: the image the model returned (portrait 2:3, at least 600x900); not with --concept
+Exit codes: 0 ok (score: the auto band; publish, auto: published, dry run or ready), 1 open issues or a usage error (score: manual; publish, auto: needs the owner), 2 score/publish/auto: fail (site: a SITE_ refusal; cover: a COVER_ refusal), 3 usage limit, 4 budget.
 `;
 
 export interface Io {
@@ -93,10 +103,15 @@ export interface Io {
 
 class UsageError extends Error {}
 
-/** What the site verb reaches outside the process, replaceable so tests run without AWS or the repo's generators. */
+/** What the site and cover verbs reach outside the process, replaceable so tests run without AWS, the repo's generators,
+ *  the shared covers.json or the repo's public/book-covers. */
 export interface Deps {
   store?: PackageStore;
   run?: Runner;
+  /** The tool repo's cover folder (cover --image writes to it, site reads from it). */
+  coversDir?: string;
+  /** covers.json. */
+  coverLedger?: string;
 }
 
 /** A step stops at 2 fix rounds, as in the pipeline's run. */
@@ -527,7 +542,14 @@ async function cmdAutoQueue(queueFile: string, opts: AutoOptions, io: Io): Promi
 async function cmdSite(ctx: PipelineCtx, opts: { repo: string; synopsis?: string; dryRun: boolean }, deps: Deps, io: Io): Promise<number> {
   let r;
   try {
-    r = await siteBook(ctx, { repo: path.resolve(opts.repo), dryRun: opts.dryRun, ...(opts.synopsis !== undefined ? { synopsis: opts.synopsis } : {}), ...deps });
+    r = await siteBook(ctx, {
+      repo: path.resolve(opts.repo),
+      dryRun: opts.dryRun,
+      ...(opts.synopsis !== undefined ? { synopsis: opts.synopsis } : {}),
+      ...(deps.store ? { store: deps.store } : {}),
+      ...(deps.run ? { run: deps.run } : {}),
+      ...(deps.coversDir !== undefined ? { coversDir: deps.coversDir } : {}),
+    });
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     if (!msg.startsWith("SITE_")) throw e;
@@ -540,6 +562,7 @@ async function cmdSite(ctx: PipelineCtx, opts: { repo: string; synopsis?: string
   io.out(`  ${r.equal} package${r.equal === 1 ? "" : "s"} already equal the live store\n`);
   if (r.repoOnly.length > 0) io.out(`  repo only, left alone: ${r.repoOnly.join(", ")}\n`);
   io.out(`  synopsis: ${r.synopsis === "authored" ? "authored" : "generic fallback"}; cover: ${r.cover}\n`);
+  if (r.coverCopied) io.out(`  cover ${r.dryRun ? "to carry in" : "carried in"}: ${r.coverFiles.map((c) => `${c.file} (${c.size} bytes)`).join(", ")}\n`);
   if (r.generatorPathFixed) io.out("  generator output path fixed to lib/books-catalog.metadata.json\n");
   io.out(r.ledgerRecordId ? `  approval record ${r.ledgerRecordId} (supersedes ${r.supersedesRecordId})\n` : "  no approval record (bookPackages.ts unchanged)\n");
   if (r.drift.metadata.length > 0) io.out(`  catalog rows that also changed: ${r.drift.metadata.join(", ")}\n`);
@@ -552,41 +575,94 @@ async function cmdSite(ctx: PipelineCtx, opts: { repo: string; synopsis?: string
   return 0;
 }
 
+/** The cover: what is taken (alone), the prompt for the image model (--concept), or the returned image installed (--image).
+ *  A COVER_ refusal is exit 2 with its message. */
+async function cmdCover(ctx: PipelineCtx, opts: { concept?: string; style?: string; image?: string }, deps: Deps, io: Io): Promise<number> {
+  const { bookId, title, author } = ctx.config;
+  try {
+    if (opts.image !== undefined) {
+      const r = await installCover(ctx, { image: opts.image, ...(deps.coversDir !== undefined ? { coversDir: deps.coversDir } : {}) });
+      io.out(`${bookId}: cover installed from ${path.resolve(opts.image)} (${r.sourceWidth}x${r.sourceHeight})\n`);
+      for (const [file, size] of [[r.webp, r.webpBytes], [r.avif, r.avifBytes], [r.coversWebp, r.webpBytes], [r.coversAvif, r.avifBytes]] as const) io.out(`  ${file} (${size} bytes)\n`);
+      io.out(`  ${r.source} (the source, kept)\n`);
+      io.out(`  the next publish uploads ${r.coversWebp} with the package, and the site step carries the pair into the checkout of main\n`);
+      return 0;
+    }
+    if (opts.concept !== undefined) {
+      const r = coverBrief(ctx, { concept: opts.concept, ...(opts.style !== undefined ? { style: opts.style } : {}), ...(deps.coverLedger !== undefined ? { ledgerPath: deps.coverLedger } : {}) });
+      const g = COVER_GENERATION;
+      io.out(`${bookId}: style ${r.style}${opts.style === undefined ? " (the one the fewest other books use)" : ""}\n`);
+      io.out(`generation: model ${g.model}, aspect ratio ${g.aspectRatio}, resolution ${g.resolution}, quality ${g.quality}; if the connector lacks that model: ${g.fallbackModels.join(", then ")}\n`);
+      io.out(`${r.briefFile}\n`);
+      io.out(`${r.promptFile}\n`);
+      return 0;
+    }
+    const s = coverStatus(ctx, deps.coverLedger !== undefined ? { ledgerPath: deps.coverLedger } : {});
+    io.out(`${title} by ${author} (${bookId})\n`);
+    io.out("styles, fewest books first (a new cover gets the first):\n");
+    for (const x of s.styles) io.out(`  ${x.style.padEnd(18)} ${String(x.count).padStart(2)}  ${x.description}\n`);
+    io.out(s.entries.length === 0 ? "pictures already taken: none yet\n" : "pictures already taken:\n");
+    for (const e of s.entries) io.out(`  ${e.bookId} (${e.style}): ${e.concept}\n`);
+    io.out(`next: cover --book <config.json> --concept "<the one picture, unlike those above>" [--style <name>], then give prompt.txt to the image model and run cover --image <the image it returns>\n`);
+    return 0;
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    if (!msg.startsWith("COVER_")) throw e;
+    io.err(`error: ${msg}\n`);
+    return 2;
+  }
+}
+
 // ---------------------------------------------------------------- main
+
+const OPTIONS = {
+  book: { type: "string" },
+  chapters: { type: "string" },
+  force: { type: "boolean" },
+  review: { type: "boolean" },
+  issues: { type: "string" },
+  finish: { type: "boolean" },
+  style: { type: "boolean" },
+  approve: { type: "boolean" },
+  "dry-run": { type: "boolean" },
+  file: { type: "string" },
+  tag: { type: "string" },
+  out: { type: "string" },
+  only: { type: "string" },
+  lesson: { type: "string" },
+  reference: { type: "string" },
+  picks: { type: "string" },
+  exemplar: { type: "string" },
+  queue: { type: "string" },
+  "no-publish": { type: "boolean" },
+  redo: { type: "boolean" },
+  "keys-ok": { type: "boolean" },
+  repo: { type: "string" },
+  synopsis: { type: "string" },
+  concept: { type: "string" },
+  image: { type: "string" },
+  "cover-style": { type: "string" },
+} as const;
+
+/** `--style` is a switch on fix and takes a style name on cover, and one parse cannot give a flag both types: on the cover
+ *  verb it is read as --cover-style. The verb is found by a lenient first parse, so a value of --book or --concept is
+ *  never mistaken for it. */
+function coverStyleArgs(argv: string[]): string[] {
+  let positionals: string[];
+  try {
+    positionals = parseArgs({ args: argv, allowPositionals: true, strict: false, options: OPTIONS }).positionals;
+  } catch {
+    return argv;
+  }
+  if (positionals.find((p) => (VERBS as readonly string[]).includes(p)) !== "cover") return argv;
+  return argv.map((a) => (a === "--style" ? "--cover-style" : a.startsWith("--style=") ? `--cover-style=${a.slice("--style=".length)}` : a));
+}
 
 export async function main(argv: string[], io: Io = { out: (s) => void process.stdout.write(s), err: (s) => void process.stderr.write(s) }, deps: Deps = {}): Promise<number> {
   try {
     let parsed;
     try {
-      parsed = parseArgs({
-        args: argv,
-        allowPositionals: true,
-        options: {
-          book: { type: "string" },
-          chapters: { type: "string" },
-          force: { type: "boolean" },
-          review: { type: "boolean" },
-          issues: { type: "string" },
-          finish: { type: "boolean" },
-          style: { type: "boolean" },
-          approve: { type: "boolean" },
-          "dry-run": { type: "boolean" },
-          file: { type: "string" },
-          tag: { type: "string" },
-          out: { type: "string" },
-          only: { type: "string" },
-          lesson: { type: "string" },
-          reference: { type: "string" },
-          picks: { type: "string" },
-          exemplar: { type: "string" },
-          queue: { type: "string" },
-          "no-publish": { type: "boolean" },
-          redo: { type: "boolean" },
-          "keys-ok": { type: "boolean" },
-          repo: { type: "string" },
-          synopsis: { type: "string" },
-        },
-      });
+      parsed = parseArgs({ args: coverStyleArgs(argv), allowPositionals: true, options: OPTIONS });
     } catch (e) {
       throw new UsageError((e as Error).message);
     }
@@ -603,7 +679,13 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
     if (verb === "auto" && values.chapters !== undefined) throw new UsageError("auto runs the whole book: --chapters does not go with it");
     if (values.issues !== undefined && verb !== "fix") throw new UsageError("--issues only goes with the fix command");
     if (values.finish === true && verb !== "fix") throw new UsageError("--finish only goes with the fix command");
-    if (values.style === true && verb !== "fix") throw new UsageError("--style only goes with the fix command");
+    if (values.style === true && verb !== "fix") throw new UsageError("--style only goes with the fix command (as a switch) and the cover command (with a style name)");
+    for (const k of ["concept", "image"] as const) {
+      if (values[k] !== undefined && verb !== "cover") throw new UsageError(`--${k} only goes with the cover command`);
+    }
+    if (values["cover-style"] !== undefined && verb !== "cover") throw new UsageError("--style <name> only goes with the cover command");
+    if (values.concept !== undefined && values.image !== undefined) throw new UsageError("cover takes --concept (write the prompt) or --image (install the cover), not both");
+    if (values["cover-style"] !== undefined && values.concept === undefined) throw new UsageError("--style <name> goes with --concept: the style is chosen when the prompt is written");
     for (const k of ["only", "lesson", "reference"] as const) {
       if (values[k] !== undefined && verb !== "variants") throw new UsageError(`--${k} only goes with the variants command`);
     }
@@ -660,6 +742,8 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
         return await guarded(ctx, () => cmdAuto(ctx, values.book!, autoOpts, io));
       case "site":
         return await cmdSite(ctx, { repo: values.repo!, synopsis: values.synopsis, dryRun: values["dry-run"] === true }, deps, io);
+      case "cover":
+        return await cmdCover(ctx, { concept: values.concept, style: values["cover-style"], image: values.image }, deps, io);
     }
   } catch (e) {
     if (e instanceof UsageLimitError || e instanceof BudgetError) {
