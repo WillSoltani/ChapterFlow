@@ -19,6 +19,7 @@ import type {
   LibraryChapterSummary,
 } from "@/app/book/_lib/library-data";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
+import { freeStartsLeft } from "@/components/library/LibraryContext";
 import { BookHero } from "./components/BookHero";
 import { ChapterCard, type ChapterCardStatus } from "./components/ChapterCard";
 import { BackgroundOrbs } from "./components/BackgroundOrbs";
@@ -79,6 +80,8 @@ export function BookDetailClient({
     const isPro = entitlement.plan === "PRO";
     return !alreadyUnlocked && !isPro && entitlement.remainingFreeStarts <= 0;
   }, [entitlement, bookId]);
+  // HOME-21: say up front that opening chapter 1 uses one of the free books.
+  const freeLeft = entitlement ? freeStartsLeft(bookId, entitlement) : null;
 
   const entry = useMemo<LibraryBookEntry>(
     () => ({
@@ -322,6 +325,7 @@ export function BookDetailClient({
           currentChapterOrder={currentChapter?.number ?? 1}
           firstChapterMinutes={firstChapterMinutes}
           accessBlocked={accessBlocked}
+          freeStartsLeft={freeLeft}
           onContinue={() =>
             currentChapter &&
             openChapter(currentChapter, {

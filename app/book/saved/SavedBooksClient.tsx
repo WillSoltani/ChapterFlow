@@ -9,6 +9,7 @@ import { useToast } from "@/app/book/hooks/useToast";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { useLibraryDashboard } from "@/app/book/hooks/useLibraryDashboard";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
+import { useFreeBookAllowance } from "@/hooks/book/useFreeBookAllowance";
 import { BookCard } from "@/components/library/BookCard";
 import { LibraryGridSkeleton } from "@/components/library/LibrarySkeleton";
 import {
@@ -28,6 +29,7 @@ export function SavedBooksClient() {
   const { hydrated, catalog, entries, entitlement, error, partial, refetch } =
     useLibraryDashboard();
   const { savedSet, toggleSaved, hydrated: savedHydrated } = useSavedBooks(true);
+  const allowance = useFreeBookAllowance();
 
   const books = useMemo(() => toLibraryBooks(catalog, entries), [catalog, entries]);
   const booksById = useMemo(() => new Map(books.map((b) => [b.id, b])), [books]);
@@ -61,8 +63,8 @@ export function SavedBooksClient() {
   );
 
   const libraryContext = useMemo<LibraryContextValue>(
-    () => ({ booksById, isFreeUser, unlockedBookIds, savedSet, onToggleSave }),
-    [booksById, isFreeUser, unlockedBookIds, savedSet, onToggleSave],
+    () => ({ booksById, isFreeUser, unlockedBookIds, allowance, savedSet, onToggleSave }),
+    [booksById, isFreeUser, unlockedBookIds, allowance, savedSet, onToggleSave],
   );
 
   const viewerName = identity.displayName || "Reader";

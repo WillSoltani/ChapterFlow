@@ -4,6 +4,8 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { BookCardWorkspace } from "./BookCardWorkspace";
+import { freeCaptionFor, isFreeLimitLocked } from "@/components/library/LibraryContext";
+import type { FreeBookAllowance } from "@/hooks/book/useFreeBookAllowance";
 import { MONTHLY_PRICE } from "@/lib/pricing";
 import {
   CATALOG_BOOK_COUNT_DISPLAY,
@@ -25,9 +27,11 @@ interface ProBook {
 interface DiscoveryRowProps {
   books: ProBook[];
   isPro: boolean;
+  /** Free books left (D7); null while unknown. */
+  allowance?: FreeBookAllowance | null;
 }
 
-export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
+export function DiscoveryRow({ books, isPro, allowance = null }: DiscoveryRowProps) {
   const prefersReducedMotion = useReducedMotion();
 
   if (books.length === 0) return null;
@@ -81,6 +85,8 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
               <BookCardWorkspace
                 variant="pro"
                 book={book}
+                showProBadge={isFreeLimitLocked(book.id, allowance)}
+                freeCaption={freeCaptionFor(book.id, allowance)}
               />
             )}
           </motion.div>

@@ -7,7 +7,12 @@ import { DUR } from "@/lib/motion";
 import { ChevronDown } from "lucide-react";
 import { BookCover } from "@/components/ui/BookCover";
 import { BookSaveButton } from "@/components/book/BookSaveButton";
-import { useLibraryContext, computeProLocked } from "./LibraryContext";
+import {
+  useLibraryContext,
+  computeProLocked,
+  freeStartsLeft,
+  freeWithPlanLabel,
+} from "./LibraryContext";
 import { formatReadingTime, type LibraryBook } from "./libraryData";
 
 interface BookCardProps {
@@ -35,9 +40,11 @@ export function BookCard({ book, index = 0, layout = "grid", showProLock = false
   const prefersReduced = useReducedMotion();
   const panelId = useId();
 
-  const { booksById, unlockedBookIds, savedSet, onToggleSave } = useLibraryContext();
+  const { booksById, allowance, savedSet, onToggleSave } = useLibraryContext();
   const badge = book.badges[0]; // Max 1 badge per card
-  const isProLocked = computeProLocked(book, showProLock, unlockedBookIds);
+  const isProLocked = showProLock && computeProLocked(book, allowance);
+  // D7: a free reader with free books left sees what starting this book costs.
+  const freeLeft = showProLock && !book.userProgress ? freeStartsLeft(book.id, allowance) : null;
   const saved = savedSet.has(book.id);
   const similarBook = book.similarBookId ? booksById.get(book.similarBookId) : undefined;
 
@@ -93,7 +100,8 @@ export function BookCard({ book, index = 0, layout = "grid", showProLock = false
             </span>
           )}
 
-          {/* Pro lock overlay — only when the free viewer hasn't unlocked/started it */}
+          {/* Pro lock overlay — only when the free viewer has no free books left
+              and hasn't unlocked/started this one */}
           {isProLocked && (
             <div
               className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-center pb-3"
@@ -173,6 +181,11 @@ export function BookCard({ book, index = 0, layout = "grid", showProLock = false
           <span aria-hidden="true">·</span>
           <span>{book.totalChapters} chapters</span>
         </div>
+        {freeLeft !== null && (
+          <p className="mt-1 text-cf-label-sm font-medium" style={{ color: "var(--accent-emerald)" }}>
+            {freeWithPlanLabel(freeLeft)}
+          </p>
+        )}
       </Link>
 
       {/* Save affordance — overlays the cover, but a sibling of the anchor (no nested interactive). */}

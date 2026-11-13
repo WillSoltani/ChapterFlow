@@ -4,6 +4,8 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { BookCardWorkspace } from "./BookCardWorkspace";
+import { freeCaptionFor, isFreeLimitLocked } from "@/components/library/LibraryContext";
+import type { FreeBookAllowance } from "@/hooks/book/useFreeBookAllowance";
 
 interface UserBook {
   id: string;
@@ -31,6 +33,8 @@ interface WorkspaceBookRowProps {
   recommendedProBooks: ProBook[];
   isNewUser?: boolean;
   isPro?: boolean;
+  /** Free books left (D7); null while unknown. */
+  allowance?: FreeBookAllowance | null;
 }
 
 export function WorkspaceBookRow({
@@ -38,6 +42,7 @@ export function WorkspaceBookRow({
   recommendedProBooks,
   isNewUser = false,
   isPro = false,
+  allowance = null,
 }: WorkspaceBookRowProps) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -121,6 +126,8 @@ export function WorkspaceBookRow({
               <BookCardWorkspace
                 variant="pro"
                 book={book}
+                showProBadge={isFreeLimitLocked(book.id, allowance)}
+                freeCaption={freeCaptionFor(book.id, allowance)}
               />
             )}
           </motion.div>

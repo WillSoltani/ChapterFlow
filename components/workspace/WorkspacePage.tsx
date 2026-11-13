@@ -22,6 +22,7 @@ import type { BookUserCommitmentItem, CommitmentOutcome } from "@/app/app/api/bo
 import { useBookAnalytics, type AnalyticsState } from "@/hooks/book/useBookAnalytics";
 import { DASHBOARD_KEY } from "@/hooks/book/useDashboardQuery";
 import { useBookViewer } from "@/hooks/book/useBookViewer";
+import { useFreeBookAllowance, type FreeBookAllowance } from "@/hooks/book/useFreeBookAllowance";
 import { BOOKS_CATALOG, getBookMetadata } from "@/lib/books-catalog";
 import { getBookRating } from "@/lib/book-ratings";
 import { getBookCoverPath } from "@/lib/book-covers";
@@ -547,7 +548,10 @@ function DashboardSkeleton() {
    State Derivation
    ──────────────────────────────────────────── */
 
-function deriveUserState(data: WorkspaceData): UserState {
+function deriveUserState(
+  data: WorkspaceData,
+  allowance: FreeBookAllowance | null,
+): UserState {
   const { currentBook, userBooks, user } = data;
 
   if (isNewUserShelf(userBooks)) {
@@ -563,7 +567,7 @@ function deriveUserState(data: WorkspaceData): UserState {
 
   if (
     !user.isPro &&
-    userBooks.filter((b) => b.status !== "not_started").length >= 2 &&
+    allowance?.remainingFreeStarts === 0 &&
     !currentBook
   ) {
     return "free_limit_reached";
@@ -882,12 +886,14 @@ function CommitmentFollowUpSection() {
 
 function DashboardContent({
   data,
+  allowance,
   prefersReducedMotion,
 }: {
   data: WorkspaceData;
+  allowance: FreeBookAllowance | null;
   prefersReducedMotion: boolean | null;
 }) {
-  const userState = deriveUserState(data);
+  const userState = deriveUserState(data, allowance);
   const subtitle = getSubtitle(userState, data);
   const dailyProgress = Math.min(
     (data.user.dailyProgressMinutes / (data.user.dailyGoalMinutes || 20)) * 100,
@@ -975,6 +981,7 @@ function DashboardContent({
           recommendedProBooks={data.recommendedProBooks}
           isNewUser={isNewUser}
           isPro={data.user.isPro}
+          allowance={allowance}
         />
       </SectionWrapper>
 
@@ -1019,6 +1026,7 @@ function DashboardContent({
           <DiscoveryRow
             books={data.discoveryBooks}
             isPro={data.user.isPro}
+            allowance={allowance}
           />
         </SectionWrapper>
       )}
@@ -1036,6 +1044,7 @@ export function WorkspacePage() {
   const prefersReducedMotion = useReducedMotion();
   const { analytics, error, partial, refetch } = useBookAnalytics(ALL_BOOK_IDS, 20);
   const { identity } = useBookViewer();
+  const allowance = useFreeBookAllowance();
   const firstName = (identity.displayName || "").split(" ")[0] || "Reader";
   const isLoading = !analytics && !error;
   // Memoize so the heavy mapper (ranking + badge evaluation over the whole
@@ -1164,6 +1173,7 @@ export function WorkspacePage() {
               )}
               <DashboardContent
                 data={data}
+                allowance={allowance}
                 prefersReducedMotion={prefersReducedMotion}
               />
             </>

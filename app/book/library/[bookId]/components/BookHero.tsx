@@ -29,6 +29,8 @@ type BookHeroProps = {
   onToggleSaved: () => void;
   /** Free-book limit reached for this not-yet-started book — gate the start CTA. */
   accessBlocked: boolean;
+  /** HOME-21: free books a FREE reader has left when starting this book uses one. */
+  freeStartsLeft?: number | null;
 };
 
 function difficultyPillStyle(value: LibraryBookEntry["difficulty"]): { background: string; color: string } {
@@ -52,6 +54,7 @@ export function BookHero({
   isSaved,
   onToggleSaved,
   accessBlocked,
+  freeStartsLeft = null,
 }: BookHeroProps) {
   const prefersReducedMotion = useReducedMotion();
   const [synopsisExpanded, setSynopsisExpanded] = useState(false);
@@ -213,6 +216,13 @@ export function BookHero({
               )}
               <BookSaveButton saved={isSaved} onToggle={onToggleSaved} className="h-11 w-11 rounded-xl" />
             </motion.div>
+            {!accessBlocked && freeStartsLeft !== null && freeStartsLeft > 0 && (
+              <p className="mt-2 text-sm text-(--cf-text-3)">
+                {freeStartsLeft === 1
+                  ? "Starting this book uses your last free book"
+                  : `Starting this book uses 1 of your ${freeStartsLeft} free books`}
+              </p>
+            )}
 
             {/* Progress (real data only) vs. forward-looking zero-state */}
             {hasProgress ? (

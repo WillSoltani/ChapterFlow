@@ -12,6 +12,7 @@ import { useLibraryDashboard } from "@/hooks/book/useLibraryDashboard";
 import { emitBookStorageChanged } from "@/lib/client/book-storage-events";
 import { useBookViewer } from "@/hooks/book/useBookViewer";
 import { useSavedBooks } from "@/hooks/book/useSavedBooks";
+import { useFreeBookAllowance } from "@/hooks/book/useFreeBookAllowance";
 import { BookCover } from "@/components/ui/BookCover";
 import { deriveReaderLevel } from "@/lib/reader-levels";
 import { HeroRecommendation } from "./HeroRecommendation";
@@ -52,6 +53,7 @@ export function LibraryPage() {
     useLibraryDashboard();
   const { identity } = useBookViewer();
   const { savedSet, toggleSaved } = useSavedBooks(true);
+  const allowance = useFreeBookAllowance();
 
   const firstName = useMemo(
     () => (identity.givenName || identity.displayName || "Reader").split(" ")[0] ?? "Reader",
@@ -103,8 +105,8 @@ export function LibraryPage() {
   );
 
   const libraryContext = useMemo<LibraryContextValue>(
-    () => ({ booksById, isFreeUser, unlockedBookIds, savedSet, onToggleSave }),
-    [booksById, isFreeUser, unlockedBookIds, savedSet, onToggleSave],
+    () => ({ booksById, isFreeUser, unlockedBookIds, allowance, savedSet, onToggleSave }),
+    [booksById, isFreeUser, unlockedBookIds, allowance, savedSet, onToggleSave],
   );
 
   // "Active read" = any started, not-yet-completed book.
@@ -167,7 +169,7 @@ export function LibraryPage() {
     document.getElementById("browse-all")?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
-  const freeExhausted = isFreeUser && userStats.freeBooksUsed >= userStats.freeBooksLimit;
+  const freeExhausted = allowance?.plan === "FREE" && allowance.remainingFreeStarts === 0;
   const [bannerDismissed, setBannerDismissed] = useState(false);
 
   // Completion celebration (Change 11) — fires once per newly completed book
