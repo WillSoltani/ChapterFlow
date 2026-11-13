@@ -1,8 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
-import { motion } from "framer-motion";
-import { DUR } from "@/lib/motion";
 import {
   ArrowLeft,
   ArrowRight,
@@ -1006,30 +1004,11 @@ export function QuizPanel({
       <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
         {liveMessage}
       </div>
-      {/* Sticky question progress bar */}
+      {/* Question count. Progress itself is the top bar's hairline. */}
       {!submitted && (
-        <div
-          className="sticky top-(--cr-header-h,64px) z-20 flex items-center gap-3 py-2 px-4 -mx-4 sm:-mx-6 sm:px-6 border-b border-(--cr-glass-border)"
-          style={{
-            background:
-              "color-mix(in srgb, var(--cr-bg-root) 92%, transparent)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-          }}
-        >
-          <span className="text-cf-label font-semibold whitespace-nowrap text-(--cr-text-heading)">
-            Question {safeCurrentIndex + 1} of {displayQuestions.length}
-          </span>
-          <div className="flex-1 h-0.5 rounded-full overflow-hidden bg-(--cr-glass-border)">
-            <motion.div
-              className="h-full rounded-full bg-(--cr-accent)"
-              animate={{
-                width: `${Math.round(((safeCurrentIndex + 1) / displayQuestions.length) * 100)}%`,
-              }}
-              transition={{ duration: DUR.normal }}
-            />
-          </div>
-        </div>
+        <p className="text-cf-label font-semibold text-(--cr-text-heading)">
+          Question {safeCurrentIndex + 1} of {displayQuestions.length}
+        </p>
       )}
 
       {/* Quiz Header — FIX 9: simplified when results shown */}

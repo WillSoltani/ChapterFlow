@@ -21,14 +21,12 @@ export function TryThisNow({ text }: TryThisNowProps) {
     <aside
       role="note"
       aria-label="Try this now"
-      className="cr-try-this-now rounded-2xl border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-5 py-4"
+      className="cr-try-this-now cr-reading-content border-l-2 border-(--cr-accent) pl-5"
     >
-      <p className="text-cf-caption font-bold uppercase tracking-[0.16em] text-(--cr-accent)">
+      <p className="font-(family-name:--font-body) text-cf-caption font-medium uppercase tracking-[0.16em] text-(--cr-text-secondary)">
         Try this now
       </p>
-      <p className="mt-2 text-base italic leading-relaxed text-(--cr-text-primary)">
-        {trimmed}
-      </p>
+      <p className="mt-2 italic text-(--cr-text-heading)">{trimmed}</p>
     </aside>
   );
 }

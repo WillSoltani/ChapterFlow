@@ -310,7 +310,7 @@ export function SummaryCard({
         <button
           type="button"
           onClick={onSaveTakeaways}
-          className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)"
+          className="-ml-3 inline-flex min-h-11 items-center gap-1.5 rounded-lg px-3 text-sm text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)"
         >
           <BookmarkPlus className="h-4 w-4" />
           {bookmarkedTakeaways.size > 0 ? "Save bookmarked to notes" : "Save takeaways to notes"}

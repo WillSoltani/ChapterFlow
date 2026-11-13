@@ -122,7 +122,7 @@ export function ReaderPhaseContent({
           initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: DUR.fast, ease: EASE.standard }}
-          className="space-y-4"
+          className="space-y-10"
         >
           <SummaryCard
             blocks={summaryBlocks}

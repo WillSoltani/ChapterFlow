@@ -33,32 +33,23 @@ export function ContinueButton({
   // unchanged and lives upstream.
   const label = ready ? readyText : lockedText;
 
+  // Calm primary: one solid accent button when ready, a quiet disabled one
+  // (with the reason as its label) until the step has been read.
   const button = (
-    <div className="mt-8 flex justify-center">
+    <div className="mt-10 flex justify-center">
       <button
         type="button"
         disabled={!ready}
         onClick={onClick}
         className={[
-          "cf-pressable flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]",
+          "cf-pressable inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl px-6 text-base font-semibold transition-colors duration-200 sm:w-auto sm:min-w-72 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cr-bg-root) focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]",
           ready
-            ? "bg-(--cr-accent) text-(--cr-text-inverse) shadow-[0_0_0_0_rgba(77,182,172,0.4)] hover:shadow-[0_4px_20px_rgba(77,182,172,0.3)] hover:opacity-90"
-            : "cursor-not-allowed bg-(--cr-bg-surface-3) text-(--cr-text-disabled)",
+            ? "bg-(--cr-accent) text-(--cr-text-inverse) hover:bg-(--cr-accent-hover)"
+            : "cursor-not-allowed bg-(--cr-bg-surface-3) text-(--cr-text-secondary)",
         ].join(" ")}
-        style={
-          ready
-            ? { animation: "cr-pulse-glow 1.2s ease-in-out 2" }
-            : undefined
-        }
       >
-        {ready ? (
-          <>
-            {label}
-            <ArrowRight className="h-5 w-5" />
-          </>
-        ) : (
-          label
-        )}
+        {label}
+        {ready ? <ArrowRight className="h-4 w-4" aria-hidden="true" /> : null}
       </button>
     </div>
   );
