@@ -190,6 +190,28 @@ test("chapter neighbours link the previous and next chapter with the completion 
   assert.deepEqual(unknown, { prev: null, next: null });
 });
 
+test("the next chapter is open once this chapter's quiz is passed", () => {
+  const passed = buildChapterNeighbours({
+    bookId: "b",
+    chapters: NAV_CHAPTERS,
+    chapterId: "c1",
+    sessionMode: false,
+    getChapterState: (id) => (id === "c2" ? "locked" : "unlocked"),
+    quizPassed: true,
+  });
+  assert.equal(passed.next?.locked, false);
+
+  const notPassed = buildChapterNeighbours({
+    bookId: "b",
+    chapters: NAV_CHAPTERS,
+    chapterId: "c1",
+    sessionMode: false,
+    getChapterState: (id) => (id === "c2" ? "locked" : "unlocked"),
+    quizPassed: false,
+  });
+  assert.equal(notPassed.next?.locked, true);
+});
+
 test("quiz step progress is answered over total on the quiz, full once graded, null elsewhere", () => {
   const session = {
     questions: [{ questionId: "q1" }, { questionId: "q2" }, { questionId: "q3" }, { questionId: "q4" }],

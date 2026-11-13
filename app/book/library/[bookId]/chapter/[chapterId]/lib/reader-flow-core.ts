@@ -131,12 +131,15 @@ export function buildChapterNeighbours({
   chapterId,
   sessionMode,
   getChapterState,
+  quizPassed = false,
 }: {
   bookId: string;
   chapters: ReadonlyArray<{ id: string; order: number; title: string }>;
   chapterId: string;
   sessionMode: boolean;
   getChapterState: (chapterId: string) => string;
+  /** This chapter's quiz is passed, so the next one is open. */
+  quizPassed?: boolean;
 }): { prev: NeighbourLink | null; next: NeighbourLink | null } {
   const index = chapters.findIndex((item) => item.id === chapterId);
   if (index < 0) return { prev: null, next: null };
@@ -156,7 +159,7 @@ export function buildChapterNeighbours({
           order: next.order,
           title: next.title,
           href: buildNextChapterRoute(bookId, next.id, sessionMode),
-          locked: getChapterState(next.id) === "locked",
+          locked: !quizPassed && getChapterState(next.id) === "locked",
         }
       : null,
   };

@@ -296,6 +296,7 @@ export function ChapterReaderClient({
     chapterId: chapter.id,
     sessionMode,
     getChapterState: bookProgress.getChapterState,
+    quizPassed,
   });
   const quizProgress = quizStepProgress(state.activeTab, quiz.session, quiz.answers);
   const handleLearningModeChange = (mode: LearningMode) => {
