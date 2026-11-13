@@ -8,7 +8,7 @@ import {
   applyAndPersistDocumentTheme,
   createSystemThemeChangeHandler,
   readStoredDocumentThemeSettings,
-  resolveDocumentThemeLabel,
+  resolveStoredThemeLabel,
 } from "@/app/_lib/document-theme";
 import { fetchBookJson } from "@/lib/client/book-api";
 import { invalidateBookCache } from "@/lib/client/book-api-cache";
@@ -34,7 +34,8 @@ function readThemeState(): {
   );
   return {
     themePreference: settings.theme,
-    resolvedTheme: resolveDocumentThemeLabel(settings.theme),
+    // SHELL-07: an active night schedule decides what the page shows.
+    resolvedTheme: resolveStoredThemeLabel(settings),
   };
 }
 
@@ -81,9 +82,17 @@ export function useThemePreference(options?: UseThemePreferenceOptions) {
 
   const setThemePreference = useCallback(
     async (nextTheme: ThemePreference) => {
-      const next = applyAndPersistDocumentTheme({ theme: nextTheme });
+      // SHELL-07: while the night schedule is in charge a theme tap would do
+      // nothing visible, so the tap turns the schedule off and applies the choice.
+      const current = readStoredDocumentThemeSettings(
+        window.localStorage.getItem(BOOK_THEME_STORAGE_KEY)
+      );
+      const scheduleInCharge = current.scheduledDarkMode && current.theme !== "dark";
+      const next = applyAndPersistDocumentTheme(
+        scheduleInCharge ? { theme: nextTheme, scheduledDarkMode: false } : { theme: nextTheme }
+      );
       setThemePreferenceState(next.theme);
-      setResolvedTheme(resolveDocumentThemeLabel(next.theme));
+      setResolvedTheme(resolveStoredThemeLabel(next));
 
       if (!persistToServer) return;
 
@@ -97,6 +106,7 @@ export function useThemePreference(options?: UseThemePreferenceOptions) {
               appearance: {
                 theme: nextTheme,
               },
+              ...(scheduleInCharge ? { extended: { scheduledDarkMode: false } } : {}),
             },
           }),
         });
