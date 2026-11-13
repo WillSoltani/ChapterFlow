@@ -155,3 +155,20 @@ test("DATA-02: a change made just before leaving is still sent", async () => {
   const settings = (sent[0]!.body as { settings: Record<string, unknown> }).settings;
   assert.equal((settings.reading as { fontSize: number }).fontSize, 21);
 });
+
+test("SHELL-08: changing the theme keeps colour-blind mode on", async () => {
+  window.localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify({
+      ...defaultBookPreferencesState,
+      extended: { ...defaultBookPreferencesState.extended, colorBlindMode: "protanopia" },
+    }),
+  );
+  const { result } = renderHook(() => useBookPreferences());
+  await wait(50);
+  assert.equal(document.documentElement.dataset.colorBlindMode, "protanopia");
+
+  act(() => result.current.patchSection("appearance", { theme: "dark" }));
+  await wait(20);
+  assert.equal(document.documentElement.dataset.colorBlindMode, "protanopia");
+});

@@ -977,6 +977,8 @@ export function useBookPreferences() {
         reducedMotion: state.appearance.reducedMotion,
         highContrastMode: state.accessibility.highContrastMode,
         focusRingStrength: state.accessibility.focusRingStrength,
+        // SHELL-08: applyDocumentTheme defaults a missing value to "off".
+        colorBlindMode: state.extended.colorBlindMode,
       });
     };
 
@@ -1018,6 +1020,7 @@ export function useBookPreferences() {
     state.appearance.reducedMotion,
     state.accessibility.highContrastMode,
     state.accessibility.focusRingStrength,
+    state.extended.colorBlindMode,
     state.extended.scheduledDarkMode,
     state.extended.darkModeFrom,
     state.extended.darkModeTo,
