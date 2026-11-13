@@ -1944,7 +1944,7 @@
             {
               "path": "app/app/api/book/books/[bookId]/chapters/[chapterNumber]/audio/route.ts",
               "role": "route",
-              "sourceSha256": "8606442d7ec3e0893c67c4f19d74151f8927970eed5f591bc54973dd76e6d717"
+              "sourceSha256": "292d61fbf4e6dc64f0d30060df374e3d0e1f97caace23b201a3e44331590a87a"
             },
             {
               "path": "app/app/api/book/_lib/http.ts",
@@ -3346,7 +3346,7 @@
           {
             "path": "app/app/api/book/_lib/flow-points-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "37ae273183e0018f01ea2c15733569f8202492bb84898a31e69e1f474a28dee1"
+            "sourceSha256": "59af44a7b84e2fe876849ba0c522384223d395ed2f435bd0e1240b6873895fc7"
           }
         ],
         "serializerProof": {
@@ -9083,7 +9083,7 @@
           {
             "path": "app/app/api/book/_lib/flow-points-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "37ae273183e0018f01ea2c15733569f8202492bb84898a31e69e1f474a28dee1"
+            "sourceSha256": "59af44a7b84e2fe876849ba0c522384223d395ed2f435bd0e1240b6873895fc7"
           }
         ],
         "serializerProof": {
@@ -9792,7 +9792,7 @@
           {
             "path": "app/app/api/book/me/commitments/[commitmentId]/route.ts",
             "role": "route",
-            "sourceSha256": "207476b79eb31f1cbf750b1e727835b7142c026e27b9914d12c1dd3916a7844a"
+            "sourceSha256": "68da907897f5f198077501de6413b0e0fe1334117aceecebb05a717f05b09402"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
@@ -9812,7 +9812,7 @@
           {
             "path": "app/app/api/book/_lib/flow-points-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "37ae273183e0018f01ea2c15733569f8202492bb84898a31e69e1f474a28dee1"
+            "sourceSha256": "59af44a7b84e2fe876849ba0c522384223d395ed2f435bd0e1240b6873895fc7"
           }
         ],
         "serializerProof": {
@@ -10345,7 +10345,7 @@
             {
               "path": "app/app/api/book/books/[bookId]/ask/route.ts",
               "role": "route",
-              "sourceSha256": "b88e6130a4a4c08171b6bef54ad8ed97015f12be5578207da4e38eca9b2ee18c"
+              "sourceSha256": "826402fb1100a8e12b7a2f81ed21ef141771b9242beb1ff91ac7861930c9f47b"
             },
             {
               "path": "app/app/api/book/_lib/http.ts",
@@ -10809,7 +10809,7 @@
             {
               "path": "app/app/api/book/me/account/delete/route.ts",
               "role": "route",
-              "sourceSha256": "96d6046ca9d521713fd5d1a3a80aecd9f8a84804098bdbee06715a9e7e8e2ff7"
+              "sourceSha256": "86200a625c1a6e166795a115fd724a534c908b40f0ad0f10fc19c32571264684"
             },
             {
               "path": "app/app/api/book/_lib/http.ts",
@@ -12734,7 +12734,7 @@
           {
             "path": "app/app/api/book/_lib/flow-points-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "37ae273183e0018f01ea2c15733569f8202492bb84898a31e69e1f474a28dee1"
+            "sourceSha256": "59af44a7b84e2fe876849ba0c522384223d395ed2f435bd0e1240b6873895fc7"
           }
         ],
         "serializerProof": {
@@ -13862,7 +13862,7 @@
           {
             "path": "app/app/api/book/_lib/flow-points-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "37ae273183e0018f01ea2c15733569f8202492bb84898a31e69e1f474a28dee1"
+            "sourceSha256": "59af44a7b84e2fe876849ba0c522384223d395ed2f435bd0e1240b6873895fc7"
           }
         ],
         "serializerProof": {
@@ -16824,7 +16824,7 @@
             {
               "path": "app/app/api/book/me/commitments/[commitmentId]/route.ts",
               "role": "route",
-              "sourceSha256": "207476b79eb31f1cbf750b1e727835b7142c026e27b9914d12c1dd3916a7844a"
+              "sourceSha256": "68da907897f5f198077501de6413b0e0fe1334117aceecebb05a717f05b09402"
             },
             {
               "path": "app/app/api/book/_lib/http.ts",
