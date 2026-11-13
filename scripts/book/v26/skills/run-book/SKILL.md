@@ -31,7 +31,7 @@ line saying where the book stands. No pack, no sample read, no list of flags, no
 | 1 | 97.6 |
 | ... |
 | Average | 96.1 |
-LIVE in the app, version 7. Cover: new (cut-paper).
+LIVE in the app, version 7. Cover: new (daylight-photo).
 ```
 
 The numbers are the `chapter scores:` line `auto` prints just before its outcome (also `chapterScores` in

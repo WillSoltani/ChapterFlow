@@ -16,14 +16,15 @@ import type { Sharp } from "sharp";
 import { loadPrompt, renderTemplate } from "./prompts";
 import { REPO_ROOT } from "./publish";
 
-/** The art directions, in the order a tie is broken. */
+/** The art directions, in the order a tie is broken. Every one renders the picture realistically (a photograph, or a
+ *  painting true to life): the owner asked for covers that look somewhat realistic after seeing the first flat ones. */
 export const COVER_STYLES: ReadonlyArray<readonly [string, string]> = [
-  ["painted-still-life", "A painted still life: the subject lit from one side against a deep, dark ground, visible brushwork, rich jewel colours, with the title in a warm metallic serif."],
-  ["flat-poster", "A bold flat poster in the mid-century manner: two or three flat colours, one large simple shape, a little paper grain, with the title in a heavy geometric sans-serif."],
-  ["cut-paper", "Layered cut paper: simple shapes cut from coloured paper with soft real shadows between the layers, warm daylight colours, with the title in a friendly serif."],
-  ["ink-wash", "Loose black ink line with a single watercolour wash of one strong colour on warm off-white paper, plenty of empty space, with the title in an elegant high-contrast serif."],
-  ["dusk-scene", "A small cinematic scene at dusk with one warm light source against deep blue, soft painterly rendering, with the title in clean, widely spaced capitals."],
-  ["engraving", "A vintage engraving in two inks on cream paper: fine hatched lines, one accent colour, with the title in a classic book serif."],
+  ["painted-still-life", "A painted still life, true to life in the manner of a realist oil painting: the subject lit from one side, its surroundings falling into deep shadow, fine brushwork, a few rich deep colours, with the title in a warm metallic serif."],
+  ["studio-object", "A studio photograph of the subject: soft light from one side, a gentle natural shadow, true materials and texture, and where the picture names no setting a seamless backdrop of one muted colour, with the title in a clean modern serif."],
+  ["miniature-scene", "A photograph inside a finely made miniature world: the model fills the whole frame edge to edge, real materials at small scale, soft light, shallow tilt-shift depth of field, no base, plinth, table edge or label in view, with the title in a friendly serif."],
+  ["mono-photo", "A black-and-white fine-art photograph: every colour the picture names rendered as a tone of grey, deep contrast, a little film grain, plenty of dark empty space, with the title in an elegant serif set in one strong warm colour, the only colour on the cover."],
+  ["dusk-scene", "A photograph at dusk with the light of a film still: one warm light source against deep blue, real atmosphere and depth, the background soft and quiet, with the title in clean, widely spaced capitals."],
+  ["daylight-photo", "A natural-light photograph: the real subject in soft early daylight, true colours, shallow depth of field so the background falls away into a quiet blur, with the title in a bold clean sans-serif."],
 ];
 
 /** What the session passes to the Higgsfield CLI (`higgsfield generate create`). The tool only records and prints it.

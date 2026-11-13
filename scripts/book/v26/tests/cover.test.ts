@@ -82,12 +82,14 @@ async function picture(file: string, width: number, height: number, opts: { flat
 // ---------------------------------------------------------------- the prompt
 
 test("coverPrompt: title, author, picture and the style's description filled in, nothing left, double quotes made single", () => {
-  const p = coverPrompt({ title: 'The "Real" Title', author: 'Jo "JJ" Smith', concept: "A lighthouse made of stacked books.", style: "ink-wash" });
+  const p = coverPrompt({ title: 'The "Real" Title', author: 'Jo "JJ" Smith', concept: "A lighthouse made of stacked books.", style: "mono-photo" });
   assert.ok(p.startsWith("Front cover design for a non-fiction book. Portrait, 2:3."));
   assert.ok(p.includes(`- the title, set large and perfectly legible: "The 'Real' Title"\n`));
   assert.ok(p.includes(`- the author's name, smaller, in a clear band near the bottom: "Jo 'JJ' Smith"\n`));
   assert.ok(p.includes("THE PICTURE: A lighthouse made of stacked books.\n"));
-  assert.ok(p.includes(`ART DIRECTION: ${desc("ink-wash")}\n`));
+  assert.ok(p.includes(`ART DIRECTION: ${desc("mono-photo")}\nRender the picture realistically: `), "the fixed realism line follows the art direction");
+  assert.ok(!/three colours|big simple shapes/.test(p), "the flat-poster layout rule is gone");
+  for (const [name, description] of COVER_STYLES) assert.match(description, /photograph|true to life/, `${name} renders realistically`);
   assert.ok(!p.includes("@@"));
   assert.ok(p.includes("no logo and no trademark."));
   assert.throws(() => coverPrompt({ title: "T", author: "A", concept: "c", style: "neon" }), /^Error: COVER_STYLE_UNKNOWN: "neon"/);
@@ -97,13 +99,13 @@ test("coverPrompt: title, author, picture and the style's description filled in,
 
 test("styleCounts and coverBrief's style: fewest used by other books, ties in list order, an explicit style wins", () => {
   assert.deepEqual(styleCounts({}).map((s) => s.style), names);
-  const ledger: CoverLedger = { a: entry("painted-still-life"), b: entry("painted-still-life"), c: entry("flat-poster"), d: entry("unknown-old-style") };
+  const ledger: CoverLedger = { a: entry("painted-still-life"), b: entry("painted-still-life"), c: entry("studio-object"), d: entry("unknown-old-style") };
   const counts = styleCounts(ledger);
-  assert.deepEqual(counts.map((s) => [s.style, s.count]), [["cut-paper", 0], ["ink-wash", 0], ["dusk-scene", 0], ["engraving", 0], ["flat-poster", 1], ["painted-still-life", 2]]);
+  assert.deepEqual(counts.map((s) => [s.style, s.count]), [["miniature-scene", 0], ["mono-photo", 0], ["dusk-scene", 0], ["daylight-photo", 0], ["studio-object", 1], ["painted-still-life", 2]]);
 
 
   const f = setup({ ledger });
-  assert.equal(coverBrief(f.ctx, { concept: "x", ledgerPath: f.ledgerPath, now: NOW }).style, "cut-paper");
+  assert.equal(coverBrief(f.ctx, { concept: "x", ledgerPath: f.ledgerPath, now: NOW }).style, "miniature-scene");
   // An explicit style wins, even the most used one.
   const g = setup({ ledger });
   assert.equal(coverBrief(g.ctx, { concept: "x", style: "painted-still-life", ledgerPath: g.ledgerPath, now: NOW }).style, "painted-still-life");
@@ -112,9 +114,9 @@ test("styleCounts and coverBrief's style: fewest used by other books, ties in li
   assert.throws(() => coverBrief(h.ctx, { concept: "x", style: "neon", ledgerPath: h.ledgerPath, now: NOW }), /^Error: COVER_STYLE_UNKNOWN: "neon" is not a cover style \(choose from painted-still-life, /);
   assert.ok(!fs.existsSync(path.join(h.ctx.config.runDir, "cover")));
   assert.deepEqual(JSON.parse(fs.readFileSync(h.ledgerPath, "utf8")), ledger);
-  // The book's own earlier entry does not count against it: with it, cut-paper would be taken and ink-wash next.
-  const own = setup({ ledger: { "demo-book": entry("cut-paper"), a: entry("painted-still-life"), b: entry("flat-poster") } });
-  assert.equal(coverBrief(own.ctx, { concept: "x", ledgerPath: own.ledgerPath, now: NOW }).style, "cut-paper");
+  // The book's own earlier entry does not count against it: with it, miniature-scene would be taken and mono-photo next.
+  const own = setup({ ledger: { "demo-book": entry("miniature-scene"), a: entry("painted-still-life"), b: entry("studio-object") } });
+  assert.equal(coverBrief(own.ctx, { concept: "x", ledgerPath: own.ledgerPath, now: NOW }).style, "miniature-scene");
 });
 
 // ---------------------------------------------------------------- the brief
@@ -136,12 +138,12 @@ test("coverBrief: prompt.txt, brief.json and the ledger entry (created, then rep
   assert.equal(text, JSON.stringify({ "demo-book": { concept: "A single red door in a long grey wall.", style: "painted-still-life", at: "2026-11-12T10:00:00.000Z" } }, null, 2) + "\n");
 
   // Other books keep their order; this one's entry is replaced where it was.
-  const g = setup({ ledger: { a: entry("flat-poster"), "demo-book": entry("engraving", "old"), z: entry("ink-wash") } });
+  const g = setup({ ledger: { a: entry("studio-object"), "demo-book": entry("daylight-photo", "old"), z: entry("mono-photo") } });
   coverBrief(g.ctx, { concept: "new picture", style: "dusk-scene", ledgerPath: g.ledgerPath, now: NOW });
   const after = JSON.parse(fs.readFileSync(g.ledgerPath, "utf8")) as CoverLedger;
   assert.deepEqual(Object.keys(after), ["a", "demo-book", "z"]);
   assert.deepEqual(after["demo-book"], { concept: "new picture", style: "dusk-scene", at: "2026-11-12T10:00:00.000Z" });
-  assert.deepEqual(after.a, entry("flat-poster"));
+  assert.deepEqual(after.a, entry("studio-object"));
 });
 
 test("coverBrief refuses a concept that is empty, has a line break or runs past 60 words; 60 words pass", () => {
@@ -159,12 +161,12 @@ test("coverStatus: the styles by use (this book's own entry left out) and the pi
   const f = setup();
   assert.deepEqual(coverStatus(f.ctx, { ledgerPath: f.ledgerPath }), { styles: styleCounts({}), entries: [] });
   assert.ok(!fs.existsSync(f.ledgerPath));
-  const ledger = { a: entry("engraving", "a key"), "demo-book": entry("painted-still-life", "mine"), b: entry("engraving", "a bell") };
+  const ledger = { a: entry("daylight-photo", "a key"), "demo-book": entry("painted-still-life", "mine"), b: entry("daylight-photo", "a bell") };
   const g = setup({ ledger });
   const s = coverStatus(g.ctx, { ledgerPath: g.ledgerPath });
   assert.equal(s.styles[0]!.style, "painted-still-life");
-  assert.deepEqual(s.styles.at(-1), { style: "engraving", description: desc("engraving"), count: 2 });
-  assert.deepEqual(s.entries, [{ bookId: "a", style: "engraving", concept: "a key" }, { bookId: "demo-book", style: "painted-still-life", concept: "mine" }, { bookId: "b", style: "engraving", concept: "a bell" }]);
+  assert.deepEqual(s.styles.at(-1), { style: "daylight-photo", description: desc("daylight-photo"), count: 2 });
+  assert.deepEqual(s.entries, [{ bookId: "a", style: "daylight-photo", concept: "a key" }, { bookId: "demo-book", style: "painted-still-life", concept: "mine" }, { bookId: "b", style: "daylight-photo", concept: "a bell" }]);
   assert.equal(fs.readFileSync(g.ledgerPath, "utf8"), JSON.stringify(ledger, null, 2) + "\n");
 });
 
@@ -265,10 +267,10 @@ test("a template token in the concept, title or author is a COVER_ refusal, not 
   const f = setup();
   assert.throws(() => coverBrief(f.ctx, { concept: "A sign reading @@TITLE@@ on a door", ledgerPath: f.ledgerPath, now: NOW }), /^Error: COVER_CONCEPT_INVALID: the concept contains a template token \(@@TITLE@@\)/);
   assert.ok(!fs.existsSync(f.ledgerPath));
-  assert.throws(() => coverPrompt({ title: "@@AUTHOR@@ x", author: "A", concept: "c", style: "ink-wash" }), /^Error: COVER_TITLE_INVALID: the title contains a template token \(@@AUTHOR@@\)/);
-  assert.throws(() => coverPrompt({ title: "T", author: "@@CONCEPT@@", concept: "c", style: "ink-wash" }), /^Error: COVER_TITLE_INVALID: the author contains a template token/);
+  assert.throws(() => coverPrompt({ title: "@@AUTHOR@@ x", author: "A", concept: "c", style: "mono-photo" }), /^Error: COVER_TITLE_INVALID: the title contains a template token \(@@AUTHOR@@\)/);
+  assert.throws(() => coverPrompt({ title: "T", author: "@@CONCEPT@@", concept: "c", style: "mono-photo" }), /^Error: COVER_TITLE_INVALID: the author contains a template token/);
   // A bare @@ or a lowercase one is plain text.
-  assert.ok(coverPrompt({ title: "a @@ b @@x@@", author: "A", concept: "c", style: "ink-wash" }).includes(`"a @@ b @@x@@"`));
+  assert.ok(coverPrompt({ title: "a @@ b @@x@@", author: "A", concept: "c", style: "mono-photo" }).includes(`"a @@ b @@x@@"`));
 });
 
 // ---------------------------------------------------------------- the CLI
@@ -302,26 +304,26 @@ test("cli cover: the status, the prompt and the install forms; flag misuse exits
   const status = await cli("cover", "--book", config);
   assert.equal(status.code, 0, status.err);
   assert.match(status.out, /^Demo Book by A\. Author \(demo-book\)\n/);
-  assert.match(status.out, /styles, fewest books first[^\n]*\n {2}flat-poster +0 {2}A bold flat poster/);
+  assert.match(status.out, /styles, fewest books first[^\n]*\n {2}studio-object +0 {2}A studio photograph/);
   assert.match(status.out, /\n {2}painted-still-life +1 {2}A painted still life/);
   assert.match(status.out, /pictures already taken:\n {2}other \(painted-still-life\): a brass key on velvet\n/);
   assert.match(status.out, /next: cover --book .*--concept/);
   assert.ok(!fs.existsSync(path.join(runDir, "cover")));
 
-  const brief = await cli("cover", "--style", "engraving", "--book", config, "--concept", "A paper boat on a dark sea.");
+  const brief = await cli("cover", "--style", "daylight-photo", "--book", config, "--concept", "A paper boat on a dark sea.");
   assert.equal(brief.code, 0, brief.err);
-  assert.match(brief.out, /^demo-book: style engraving\n/);
+  assert.match(brief.out, /^demo-book: style daylight-photo\n/);
   const promptPath = path.join(runDir, "cover", "prompt.txt");
   assert.ok(brief.out.includes(`generate: higgsfield generate create gpt_image_2_6 --prompt "$(cat '${promptPath}')" --aspect_ratio 2:3 --resolution 2k --quality low --wait --json\n`), brief.out);
   assert.ok(brief.out.includes("  after two tries with wrong lettering: --quality medium\n"), brief.out);
   const lines = brief.out.trimEnd().split("\n");
   assert.equal(lines.at(-1), path.join(runDir, "cover", "prompt.txt"), "prompt.txt is the last line");
-  assert.match(fs.readFileSync(path.join(runDir, "cover", "prompt.txt"), "utf8"), /THE PICTURE: A paper boat on a dark sea\.\n\nART DIRECTION: A vintage engraving/);
-  assert.equal((JSON.parse(fs.readFileSync(f.ledgerPath, "utf8")) as CoverLedger)["demo-book"]!.style, "engraving");
+  assert.match(fs.readFileSync(path.join(runDir, "cover", "prompt.txt"), "utf8"), /THE PICTURE: A paper boat on a dark sea\.\n\nART DIRECTION: A natural-light photograph/);
+  assert.equal((JSON.parse(fs.readFileSync(f.ledgerPath, "utf8")) as CoverLedger)["demo-book"]!.style, "daylight-photo");
   const byDefault = await cli("cover", "--book", config, "--concept", "A paper boat.");
-  assert.match(byDefault.out, /^demo-book: style flat-poster \(the one the fewest other books use\)\n/);
+  assert.match(byDefault.out, /^demo-book: style studio-object \(the one the fewest other books use\)\n/);
   // `--style=<name>` works too.
-  assert.match((await cli("cover", "--book", config, "--concept", "A boat.", "--style=ink-wash")).out, /^demo-book: style ink-wash\n/);
+  assert.match((await cli("cover", "--book", config, "--concept", "A boat.", "--style=mono-photo")).out, /^demo-book: style mono-photo\n/);
 
   const image = await picture(path.join(f.dir, "model.png"), 1024, 1536);
   const inst = await cli("cover", "--book", config, "--image", image);
@@ -362,10 +364,10 @@ test("cli cover: the status, the prompt and the install forms; flag misuse exits
     [["site", "--book", config, "--repo", f.dir, "--image", image], /--image only goes with the cover command/],
     [["status", "--book", config, "--style"], /--style only goes with the fix command \(as a switch\) and the cover command/],
     [["cover", "--book", config, "--concept", "x", "--image", image], /cover takes --concept .* or --image .*, not both/],
-    [["cover", "--book", config, "--style", "ink-wash"], /--style <name> goes with --concept/],
-    [["cover", "--book", config, "--image", image, "--style", "ink-wash"], /--style <name> goes with --concept/],
+    [["cover", "--book", config, "--style", "mono-photo"], /--style <name> goes with --concept/],
+    [["cover", "--book", config, "--image", image, "--style", "mono-photo"], /--style <name> goes with --concept/],
     [["cover", "--book", config, "--concept", "x", "--style"], /argument missing|requires|--cover-style/],
-    [["status", "--book", config, "--cover-style", "ink-wash"], /--style <name> only goes with the cover command/],
+    [["status", "--book", config, "--cover-style", "mono-photo"], /--style <name> only goes with the cover command/],
   ] as Array<[string[], RegExp]>) {
     const r = await cli(...args);
     assert.equal(r.code, 1, `${JSON.stringify(args)}: ${r.err}`);

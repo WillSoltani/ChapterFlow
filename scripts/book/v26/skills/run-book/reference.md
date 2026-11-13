@@ -203,10 +203,15 @@ and turns the image into the app's files; the picture and the look at the result
      lawn. A picture drawn from the book is never the stock one (a light bulb, a brain, a summit).
    - Not the image on the book's well-known cover. No real person's face, no brand, nothing with words on it.
    - Not a picture already in the ledger.
+   - Something that exists and could be photographed: every art direction renders the picture realistically (a
+     photograph, or a painting true to life). Not a diagram, an icon or an impossible scene.
+   - No face. A person appears at most from behind, far off or cropped (hands, feet).
    - One sentence, 60 words at most, saying only what is seen: the subject, where, from what viewpoint. No style
-     words (the art direction supplies them) and no meaning ("a symbol of ...").
+     words, no time of day and no lighting (the art direction supplies them) and no meaning ("a symbol of ...").
    - Pick the art direction that suits the picture from the least used ones (`--style <name>`); with no `--style`
-     the tool takes the least used.
+     the tool takes the least used, which may not fit. `studio-object` and `painted-still-life` suit a single object
+     with no setting; `daylight-photo`, `dusk-scene` and `miniature-scene` suit a place or a small scene; `mono-photo`
+     suits either, where colour carries nothing.
 3. `CLI cover --book <cfg> --concept "<the picture>" [--style <name>]` writes `<runDir>/cover/prompt.txt` (the last
    line it prints) and records the choice in the ledger.
 4. Generate. Run the `generate:` line step 3 printed, as it stands (model `gpt_image_2_6`, aspect ratio `2:3`,
@@ -224,7 +229,9 @@ and turns the image into the app's files; the picture and the look at the result
    - the title and the author's name are spelled exactly, and there is no other lettering anywhere in the image;
    - it is the flat cover itself, portrait, with nothing cut off at the edges;
    - the picture is the one asked for and reads at a glance, and the title would still be legible as a thumbnail;
-   - nothing malformed (hands, faces, objects), no watermark, no real person, no brand.
+   - it looks real (a photograph or a true-to-life painting), with nothing malformed (hands, laces, objects);
+   - no watermark, no border or frame, no brand, and no recognisable face (an invented figure from behind, far
+     off or cropped is fine).
    Otherwise generate again with the same prompt; after two failures on the lettering, the third try uses
    `--quality medium` (1 credit).
    Three tries at most. Never install an image with wrong or extra words. If none passes: `Cover: not generated
