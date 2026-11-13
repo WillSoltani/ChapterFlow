@@ -161,7 +161,7 @@ function completeRequest(): Request {
   });
 }
 
-async function complete(): Promise<{ status: number; ipAwarded?: number }> {
+async function complete(): Promise<{ status: number; ipAwarded: number | undefined }> {
   const res = await PATCH(completeRequest(), {
     params: Promise.resolve({ commitmentId: "c-1" }),
   });
@@ -171,8 +171,8 @@ async function complete(): Promise<{ status: number; ipAwarded?: number }> {
 
 function recordedIp(): number | undefined {
   assert.equal(updateCommitmentStatus.calls.length, 1, "check-in is recorded");
-  assert.equal(updateCommitmentStatus.calls[0][3], "completed");
-  return updateCommitmentStatus.calls[0][5];
+  assert.equal(updateCommitmentStatus.calls[0]?.[3], "completed");
+  return updateCommitmentStatus.calls[0]?.[5];
 }
 
 test("eligible: one award keyed by book chapter, 25 IP reported and recorded", async () => {
@@ -181,7 +181,8 @@ test("eligible: one award keyed by book chapter, 25 IP reported and recorded", a
   assert.equal(res.ipAwarded, 25);
   assert.equal(recordedIp(), 25);
   assert.equal(awardFlowPoints.calls.length, 1);
-  const input = awardFlowPoints.calls[0][1];
+  const input = awardFlowPoints.calls[0]?.[1];
+  assert.ok(input);
   assert.equal(input.sourceId, "book-1:2");
   assert.equal(input.amount, 25);
   assert.equal(enforceDailyUserLimit.calls.length, 1, "one daily-cap unit reserved");
@@ -213,7 +214,7 @@ test("already granted for this chapter: 0 IP, no award", async () => {
   assert.equal(res.ipAwarded, 0);
   assert.equal(recordedIp(), 0);
   assert.equal(awardFlowPoints.calls.length, 0);
-  assert.equal(hasFlowPointsGrant.calls[0][3], "book-1:2");
+  assert.equal(hasFlowPointsGrant.calls[0]?.[3], "book-1:2");
 });
 
 test("daily cap reached: check-in still succeeds with 0 IP, no award", async () => {
