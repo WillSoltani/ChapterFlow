@@ -1196,9 +1196,11 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                       ? <>You&apos;ve explored {statsSummary.totalChaptersCompleted} chapter{statsSummary.totalChaptersCompleted !== 1 ? "s" : ""} but haven&apos;t saved any takeaways yet.</>
                       : <>You&apos;re reading but haven&apos;t saved any takeaways yet.</>}
                   </p>
+                  {takeawayTarget ? (
                   <p className="mt-2 text-base font-medium text-(--cf-text-1)">
                     What&apos;s one thing from {currentSnapshot?.book.title ?? "your reading"} that stuck with you?
                   </p>
+                  ) : null}
                   {takeawayTarget ? (
                   <div className="mt-4 flex gap-2">
                     <input
