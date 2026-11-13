@@ -54,6 +54,7 @@ interface WorkspaceData {
     isPro: boolean;
     streakCount: number;
     streakActive: boolean;
+    streakAtRisk: boolean;
     insightPoints: number;
     dailyGoalMinutes: number;
     dailyProgressMinutes: number;
@@ -384,6 +385,7 @@ function mapAnalyticsToWorkspaceData(
       isPro: analytics.isPro,
       streakCount: analytics.streakDays,
       streakActive: analytics.streakDays > 0,
+      streakAtRisk: analytics.streakAtRisk,
       insightPoints: analytics.insightPoints,
       dailyGoalMinutes: analytics.dailyGoalMinutes,
       dailyProgressMinutes: analytics.minutesReadToday,
@@ -877,6 +879,7 @@ function DashboardContent({
         <CompactHeader
           firstName={data.user.firstName}
           streakCount={data.user.streakCount}
+          streakAtRisk={data.user.streakAtRisk}
           dailyProgress={dailyProgress}
           insightPoints={data.user.insightPoints}
           subtitle={subtitle}
