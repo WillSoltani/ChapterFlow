@@ -1,3 +1,5 @@
+import type { ReadingDepth } from "@/app/book/data/bookChapters";
+
 type QuizResultLike = { passed?: boolean; scorePercent?: number } | null | undefined;
 type QuizSessionLike = { provisional?: boolean; result?: QuizResultLike } | null | undefined;
 
@@ -198,4 +200,54 @@ export function isQuizAttemptInProgress(
 export function shouldReloadQuizAfterSubmitError(error: unknown): boolean {
   const code = typeof error === "object" && error !== null ? (error as { code?: unknown }).code : undefined;
   return code === "attempt_cooldown" || code === "invalid_answers";
+}
+
+// READER-12: a learning-mode change made on the Quiz tab. The quiz keeps the
+// depth it shows until the preferences save carrying the new mode has landed
+// on the server, so the reloaded quiz and the server agree on the question
+// set. "landed" is that save's success (the settings cache is invalidated);
+// the save status alone is not enough, because "saving" and "saved" can
+// arrive in one render. A save already in flight when the change is made is
+// not this change's save, so the change waits for it to end first.
+export type PreferencesSaveStatusLike = "idle" | "saving" | "saved" | "error";
+export type QuizDepthHoldSignal = PreferencesSaveStatusLike | "landed";
+
+export type QuizDepthHold = {
+  depth: ReadingDepth;
+  phase: "await-idle" | "await-save" | "saving";
+} | null;
+
+export function startQuizDepthHold(
+  current: QuizDepthHold,
+  quizDepth: ReadingDepth,
+  status: PreferencesSaveStatusLike,
+): { hold: QuizDepthHold; applyNow: boolean } {
+  const depth = current?.depth ?? quizDepth;
+  return status === "saving"
+    ? { hold: { depth, phase: "await-idle" }, applyNow: false }
+    : { hold: { depth, phase: "await-save" }, applyNow: true };
+}
+
+/** One step per signal. Returns the same `hold` object when nothing changes.
+ *  `apply`: apply the deferred change now. `failed`: this change's save failed
+ *  (the hold stays until a retry lands). */
+export function advanceQuizDepthHold(
+  hold: QuizDepthHold,
+  signal: QuizDepthHoldSignal,
+): { hold: QuizDepthHold; apply: boolean; failed: boolean } {
+  const same = { hold, apply: false, failed: false };
+  if (!hold) return same;
+  if (hold.phase === "await-idle") {
+    return signal === "saving" || signal === "landed"
+      ? same
+      : { hold: { depth: hold.depth, phase: "await-save" }, apply: true, failed: false };
+  }
+  if (signal === "landed") return { hold: null, apply: false, failed: false };
+  if (signal === "saving" && hold.phase === "await-save") {
+    return { hold: { depth: hold.depth, phase: "saving" }, apply: false, failed: false };
+  }
+  if (signal === "error" && hold.phase === "saving") {
+    return { hold: { depth: hold.depth, phase: "await-save" }, apply: false, failed: true };
+  }
+  return same;
 }

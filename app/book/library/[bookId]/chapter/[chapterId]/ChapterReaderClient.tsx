@@ -19,6 +19,7 @@ import { useReaderAccess } from "./hooks/useReaderAccess";
 import { useReaderExamples } from "./hooks/useReaderExamples";
 import { useReaderPhaseFlow } from "./hooks/useReaderPhaseFlow";
 import { useReaderProgress } from "./hooks/useReaderProgress";
+import { useQuizDepthHold } from "./hooks/useQuizDepthHold";
 import { useReaderSettings } from "./hooks/useReaderSettings";
 import type { InitialChapterReaderSeed } from "./lib/chapterFromApi";
 import {
@@ -69,6 +70,8 @@ export function ChapterReaderClient({
     preferredFocusMode,
     preferredFontScale,
     dailyGoalMinutes,
+    saveStatus,
+    retrySave,
   } = readerSettings;
   const readerAccess = useReaderAccess({
     bookId,
@@ -95,6 +98,13 @@ export function ChapterReaderClient({
   const [notesOpen, setNotesOpen] = useState(false);
   const [askOpen, setAskOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  // An action shown only while its own toast text is on screen.
+  const [toastAction, setToastAction] = useState<{
+    toast: string;
+    label: string;
+    onClick: () => void;
+  } | null>(null);
+  const [confirmMode, setConfirmMode] = useState<LearningMode | null>(null);
   const [sessionMode, setSessionMode] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
@@ -150,13 +160,23 @@ export function ChapterReaderClient({
     } catch {}
   }, []);
 
+  const { quizDepth, quizTone, changeOnQuiz } = useQuizDepthHold({
+    activeDepth,
+    activeTone: contentTone,
+    saveStatus,
+    onSaveFailed: () => {
+      const message = "Couldn't save your reading mode. The quiz stays as it is.";
+      setToast(message);
+      setToastAction({ toast: message, label: "Try again", onClick: () => retrySave() });
+    },
+  });
   const chapterQuiz = useChapterQuiz({
     bookId,
     chapterId,
     chapter,
     chapterNumber: chapter?.order ?? baseChapter?.order ?? 1,
-    activeDepth,
-    contentTone,
+    activeDepth: quizDepth,
+    contentTone: quizTone,
     enabled: Boolean(chapter) && readerInteractionsReady,
     showQuiz: state.activeTab === "quiz",
     retryIncorrectOnly: bookPrefs.learning.retryIncorrectOnly,
@@ -276,6 +296,13 @@ export function ChapterReaderClient({
   const quizProgress = quizStepProgress(state.activeTab, quiz.session, quiz.answers);
   const handleLearningModeChange = (mode: LearningMode) => {
     if (learningModeTapIsNoop(mode, learningMode, defaultToFastPath)) return;
+    // READER-12: on the Quiz tab the quiz keeps its depth until the change is
+    // saved; an attempt in progress asks first, since the reload clears it.
+    if (state.activeTab !== "quiz") applyLearningModeChange(mode);
+    else if (chapterQuiz.attemptInProgress) setConfirmMode(mode);
+    else changeOnQuiz(() => applyLearningModeChange(mode));
+  };
+  const applyLearningModeChange = (mode: LearningMode) => {
     const toneByMode: Record<LearningMode, ContentTone> = {
       guided: "gentle",
       standard: "gentle",
@@ -398,6 +425,17 @@ export function ChapterReaderClient({
             onShortcutsOpenChange={setShowShortcuts}
             toast={toast}
             onToastChange={setToast}
+            toastAction={toastAction?.toast === toast ? toastAction : null}
+            modeConfirm={
+              confirmMode && {
+                label: DEPTH_LABELS[modeToDepth(confirmMode)],
+                onCancel: () => setConfirmMode(null),
+                onConfirm: () => {
+                  setConfirmMode(null);
+                  changeOnQuiz(() => applyLearningModeChange(confirmMode));
+                },
+              }
+            }
             onChapterCompleteNext={handleChapterCompleteNext}
             onChapterCompleteLibrary={handleChapterCompleteLibrary}
             access={readerAccess}

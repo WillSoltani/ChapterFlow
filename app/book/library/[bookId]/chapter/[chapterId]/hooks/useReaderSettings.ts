@@ -31,6 +31,9 @@ export function useReaderSettings(initialDepth?: ReadingDepth) {
   return {
     bookPrefs,
     patchBookPrefs: preferences.patchSection,
+    // C8: the preferences save state, for changes that must land first.
+    saveStatus: preferences.saveStatus,
+    retrySave: preferences.retrySave,
     bookPrefsHydrated,
     onboarding,
     onboardingHydrated,

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 
 import {
+  advanceQuizDepthHold,
   canRetakeFromReview,
   classifyQuizSubmission,
   completionScore,
@@ -15,6 +16,7 @@ import {
   readQuizDraft,
   shouldEnrollFlashcards,
   shouldReloadQuizAfterSubmitError,
+  startQuizDepthHold,
   unansweredQuestionIds,
 } from "./reader-quiz-flow-core";
 
@@ -196,4 +198,60 @@ test("shouldReloadQuizAfterSubmitError reloads on a cooldown or a question-set m
   assert.equal(shouldReloadQuizAfterSubmitError({ code: "invalid_answers" }), true);
   assert.equal(shouldReloadQuizAfterSubmitError({ code: "quiz_session_stale" }), false);
   assert.equal(shouldReloadQuizAfterSubmitError(new Error("offline")), false);
+});
+
+test("quiz depth hold: the old depth stays until this change's save lands", () => {
+  const start = startQuizDepthHold(null, "simple", "saved");
+  assert.equal(start.applyNow, true);
+  assert.equal(start.hold?.depth, "simple");
+  // A "saved" status alone (left over, or batched with "saving") releases nothing.
+  let step = advanceQuizDepthHold(start.hold, "saved");
+  assert.equal(step.hold, start.hold);
+  step = advanceQuizDepthHold(step.hold, "saving");
+  assert.equal(step.hold?.depth, "simple");
+  assert.equal(advanceQuizDepthHold(step.hold, "saving").hold, step.hold, "idempotent");
+  assert.equal(advanceQuizDepthHold(step.hold, "saved").hold, step.hold);
+  step = advanceQuizDepthHold(step.hold, "landed");
+  assert.equal(step.hold, null);
+  assert.equal(step.failed, false);
+});
+
+test("quiz depth hold: a save that lands without a visible 'saving' still releases", () => {
+  const start = startQuizDepthHold(null, "standard", "idle");
+  assert.equal(advanceQuizDepthHold(start.hold, "landed").hold, null);
+});
+
+test("quiz depth hold: a save already in flight delays the change until it ends", () => {
+  const start = startQuizDepthHold(null, "standard", "saving");
+  assert.equal(start.applyNow, false);
+  // That earlier save landing is not this change's save.
+  let step = advanceQuizDepthHold(start.hold, "landed");
+  assert.equal(step.hold, start.hold);
+  assert.equal(step.apply, false);
+  step = advanceQuizDepthHold(step.hold, "saved");
+  assert.equal(step.apply, true);
+  assert.equal(step.hold?.depth, "standard");
+  step = advanceQuizDepthHold(step.hold, "saving");
+  step = advanceQuizDepthHold(step.hold, "landed");
+  assert.equal(step.hold, null);
+});
+
+test("quiz depth hold: a failed save reports once and keeps holding until a retry lands", () => {
+  let step = advanceQuizDepthHold(startQuizDepthHold(null, "deeper", "idle").hold, "saving");
+  step = advanceQuizDepthHold(step.hold, "error");
+  assert.equal(step.failed, true);
+  assert.equal(step.hold?.depth, "deeper");
+  const again = advanceQuizDepthHold(step.hold, "error");
+  assert.equal(again.failed, false);
+  assert.equal(again.hold, step.hold);
+  step = advanceQuizDepthHold(again.hold, "saving");
+  step = advanceQuizDepthHold(step.hold, "landed");
+  assert.equal(step.hold, null);
+});
+
+test("quiz depth hold: a second change keeps the depth the quiz shows", () => {
+  const first = startQuizDepthHold(null, "simple", "idle");
+  const second = startQuizDepthHold(first.hold, "standard", "idle");
+  assert.equal(second.hold?.depth, "simple");
+  assert.equal(advanceQuizDepthHold(null, "landed").hold, null);
 });

@@ -78,6 +78,10 @@ type Props = {
   onShortcutsOpenChange: (open: boolean) => void;
   toast: string | null;
   onToastChange: (toast: string | null) => void;
+  /** An action button on the current toast (e.g. retry a failed save). */
+  toastAction?: { label: string; onClick: () => void } | null | undefined;
+  /** READER-12: confirm a learning-mode change during a quiz attempt. */
+  modeConfirm?: { label: string; onConfirm: () => void; onCancel: () => void } | null | undefined;
   onChapterCompleteNext: () => void;
   onChapterCompleteLibrary: () => void;
   access: ReturnType<typeof useReaderAccess>;
@@ -105,6 +109,8 @@ export function ReaderOverlays({
   onShortcutsOpenChange,
   toast,
   onToastChange,
+  toastAction,
+  modeConfirm,
   onChapterCompleteNext,
   onChapterCompleteLibrary,
   access,
@@ -286,6 +292,41 @@ export function ReaderOverlays({
         </Dialog>
       )}
 
+      <Dialog
+        open={Boolean(modeConfirm)}
+        onClose={() => modeConfirm?.onCancel()}
+        size="sm"
+        labelledBy="reader-mode-confirm-title"
+      >
+        <div className="p-6">
+          <h3
+            id="reader-mode-confirm-title"
+            className="text-cf-body-lg font-semibold text-(--cr-text-heading)"
+          >
+            Switch to {modeConfirm?.label} now?
+          </h3>
+          <p className="mt-2 text-cf-label text-(--cr-text-secondary)">
+            This clears your answers so far and reloads the quiz for {modeConfirm?.label}.
+          </p>
+          <div className="mt-5 flex gap-2.5">
+            <button
+              type="button"
+              onClick={() => modeConfirm?.onCancel()}
+              className="min-h-11 flex-1 rounded-full bg-(--cr-bg-surface-3) px-4 text-cf-label text-(--cr-text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
+            >
+              Keep my answers
+            </button>
+            <button
+              type="button"
+              onClick={() => modeConfirm?.onConfirm()}
+              className="min-h-11 flex-1 rounded-full bg-(--cr-accent) px-4 text-cf-label font-medium text-(--cr-text-inverse) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
+            >
+              Switch and reload
+            </button>
+          </div>
+        </div>
+      </Dialog>
+
       {interstitial && (
         <PhaseInterstitial
           from={interstitial.from}
@@ -300,6 +341,15 @@ export function ReaderOverlays({
         {toast && (
           <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] left-1/2 z-50 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 md:bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] items-start gap-2 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-sm text-(--cr-text-primary) shadow-[0_14px_28px_rgba(0,0,0,0.22)]">
             <span>{toast}</span>
+            {toastAction ? (
+              <button
+                type="button"
+                onClick={toastAction.onClick}
+                className="shrink-0 font-medium text-(--cr-accent) underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]"
+              >
+                {toastAction.label}
+              </button>
+            ) : null}
             <button
               type="button"
               onClick={() => onToastChange(null)}
