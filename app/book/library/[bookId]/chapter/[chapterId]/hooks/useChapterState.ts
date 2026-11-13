@@ -31,10 +31,10 @@ const PREFS_KEY = "book-accelerator:reader-prefs:v1";
 // A read or save that has not answered by then counts as failed and is retried.
 const SYNC_REQUEST_TIMEOUT_MS = 15_000;
 
-function requestTimeoutSignal(): AbortSignal | undefined {
+function requestTimeoutSignal(): AbortSignal | null {
   return typeof AbortSignal !== "undefined" && typeof AbortSignal.timeout === "function"
     ? AbortSignal.timeout(SYNC_REQUEST_TIMEOUT_MS)
-    : undefined;
+    : null;
 }
 
 // Mirror the server cap (state/route.ts MAX_BOOKMARK_TEXT_LENGTH) so the client
