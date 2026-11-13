@@ -270,6 +270,71 @@ test("one write in flight; edits made meanwhile go out after it, as the latest s
   assert.equal(h.patches[1]!.state.notes, "abc");
 });
 
+// Answers every write with `answer(sent)` until no new write arrives.
+async function serveWrites(
+  h: ReturnType<typeof harness>,
+  answer: (sent: PersistedChapterState) => PersistedChapterState
+) {
+  for (let answered = 0; answered < 10 && answered < h.patches.length; answered += 1) {
+    const write = h.patches[answered]!;
+    write.resolve({ state: answer(write.state), updatedAt: `2026-11-13T11:00:${String(answered).padStart(2, "0")}.000Z` });
+    await h.advance(5_000);
+  }
+}
+
+test("a save answered with newer notes from another device takes them, with at most one follow-up write", async () => {
+  const h = harness();
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.flushPromises();
+  h.edit({
+    notes: "mine",
+    notesUpdatedAt: "2026-11-13T10:00:00.000Z",
+    bookmarkedTakeaways: [1],
+    bookmarkedTakeawayTexts: { "1": "One" },
+  });
+  await h.advance(200);
+  assert.equal(h.patches.length, 1);
+  // The account keeps the newer notes it already had and returns them.
+  await serveWrites(h, (sent) => ({
+    ...sent,
+    notes: "theirs",
+    notesUpdatedAt: "2026-11-13T10:30:00.000Z",
+    bookmarkedTakeaways: [1, 3],
+    bookmarkedTakeawayTexts: { "1": "One", "3": "Three" },
+  }));
+  assert.ok(h.patches.length <= 2, `at most one follow-up write (sent ${h.patches.length})`);
+  assert.equal(h.current.notes, "theirs");
+  assert.deepEqual(h.current.bookmarkedTakeaways, [1, 3]);
+});
+
+test("a save answered with different notes keeps notes typed since it was sent", async () => {
+  const h = harness();
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.flushPromises();
+  h.edit({ notes: "mine", notesUpdatedAt: "2026-11-13T10:00:00.000Z" });
+  await h.advance(200);
+  h.edit({ notes: "mine, still typing", notesUpdatedAt: "2026-11-13T10:00:05.000Z" });
+  h.patches[0]!.resolve({
+    state: { ...h.patches[0]!.state, notes: "theirs", notesUpdatedAt: "2026-11-13T10:30:00.000Z" },
+    updatedAt: "2026-11-13T11:00:00.000Z",
+  });
+  await h.flushPromises();
+  assert.equal(h.current.notes, "mine, still typing");
+});
+
+test("legacy notes the account will not take are not resent in a loop", async () => {
+  const h = harness();
+  h.open({ notes: "legacy notes", notesUpdatedAt: null });
+  h.gets[0]!.resolve(server({ notes: "", notesUpdatedAt: "2026-11-01T00:00:00.000Z" }));
+  await h.advance(200);
+  assert.equal(h.patches.length, 1);
+  await serveWrites(h, (sent) => ({ ...sent, notes: "", notesUpdatedAt: "2026-11-01T00:00:00.000Z" }));
+  assert.equal(h.patches.length, 1, "the same state is not sent again");
+  assert.equal(h.current.notes, "legacy notes", "the device keeps its notes");
+});
+
 test("failed writes retry with backoff and warn after the second failure", async () => {
   const h = harness();
   h.open();

@@ -11,6 +11,9 @@ import type { ChapterTab, ExampleFilter, FontScale } from "@/lib/reader-state-ty
 //  - Nothing is written until a GET has succeeded, so a failed read can never
 //    replace the account copy with this device's (possibly empty) state.
 //  - One request at a time; edits made meanwhile go out after it settles.
+//  - A save the server answers with a different copy is merged in like a
+//    re-read, and a state the server has just accepted is not sent again, so
+//    a server that keeps its own notes can never cause a resend loop.
 //  - Failures retry with backoff; after two in a row (or a refusal) the reader
 //    shows "Changes saved on this device only." until a request succeeds.
 //  - A sync belongs to the account signed in when it was created. Once another
@@ -346,6 +349,8 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
   let patchFailures = 0;
   // A state the server refused (4xx); not resent until the reader changes it.
   let refusedJson: string | null = null;
+  // The last state a save delivered (cleared by a read): never sent again.
+  let acceptedJson: string | null = null;
   let syncFailed = false;
   // The reader's state when the chapter opened: the base for a first read, so
   // changes made before it lands stay as they are.
@@ -382,6 +387,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
   function needsWrite(state: PersistedChapterState | null): state is PersistedChapterState {
     if (!state || !loaded) return false;
     if (baseline && chapterStatesEqual(state, baseline)) return false;
+    if (acceptedJson !== null && stableJson(state) === acceptedJson) return false;
     return refusedJson === null || stableJson(state) !== refusedJson;
   }
 
@@ -432,7 +438,9 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
         // those changes have still not reached the account.
         if (refusedJson === null && patchFailures === 0) setSyncFailed(false);
         const previousBaseline = baseline ?? openedWith;
-        if (acceptServerCopy(copy) && copy.state) {
+        const accepted = acceptServerCopy(copy);
+        if (accepted) acceptedJson = null;
+        if (accepted && copy.state) {
           const server = copy.state;
           const merge = (current: PersistedChapterState) =>
             mergeRefreshedChapterState(current, server, previousBaseline);
@@ -477,7 +485,19 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
         patchFailures = 0;
         refusedJson = null;
         setSyncFailed(false);
-        acceptServerCopy(copy);
+        if (acceptServerCopy(copy)) {
+          const sentJson = stableJson(state);
+          acceptedJson = sentJson;
+          if (copy.state && stableJson(copy.state) !== sentJson) {
+            // The server kept something else (say, newer notes from another
+            // device): merge it in; changes made since this save stay.
+            const server = copy.state;
+            const merge = (current: PersistedChapterState) =>
+              mergeRefreshedChapterState(current, server, state);
+            if (local) local = merge(local);
+            deps.applyServer(server, merge);
+          }
+        }
         pump();
       },
       (error: unknown) => {
