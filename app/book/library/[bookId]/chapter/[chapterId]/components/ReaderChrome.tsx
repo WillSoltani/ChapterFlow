@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode, RefObject } from "react";
+import { useEffect, type ReactNode, type RefObject } from "react";
 import dynamic from "next/dynamic";
 import { CloudOff, Lightbulb, X } from "lucide-react";
 import type { BookChapter, ReadingDepth } from "@/app/book/data/bookChapters";
@@ -15,6 +15,7 @@ import { AutoCollapsingHookBanner } from "./HookBanner";
 import { ChapterBackgroundOrbs } from "./ChapterBackgroundOrbs";
 import { ChapterHeader } from "./ChapterHeader";
 import { PhaseStepper } from "./PhaseStepper";
+import { nextFloatingControlsHidden } from "./floating-controls-core";
 
 const LazyAudioPlayer = dynamic(
   () => import("./AudioPlayer").then((module) => module.AudioPlayer),
@@ -83,6 +84,43 @@ export function ReaderChrome({
   const { state, setReadingDepth, toggleFocusMode } = chapterProgress;
   const { phaseCompletion, setActiveTab, progressPercent } = phaseFlow;
 
+  // Phones: the audio and "Ask" buttons step aside while the reader scrolls
+  // down (they would sit on top of the text) and return on scroll-up. They
+  // read this attribute; see floating-controls-core.ts.
+  useEffect(() => {
+    const root = document.documentElement;
+    let prevY = window.scrollY;
+    let prevDocH = root.scrollHeight;
+    let hidden = false;
+    const onScroll = () => {
+      const y = window.scrollY;
+      // A scroll caused by the page changing height (e.g. the hook banner
+      // collapsing) is not the reader's intent: re-baseline and keep state.
+      if (root.scrollHeight !== prevDocH) {
+        prevDocH = root.scrollHeight;
+        prevY = y;
+        return;
+      }
+      const next = nextFloatingControlsHidden({
+        prevY,
+        y,
+        hidden,
+        viewportH: window.innerHeight,
+        docH: root.scrollHeight,
+      });
+      prevY = y;
+      if (next !== hidden) {
+        hidden = next;
+        root.toggleAttribute("data-reader-fab-hidden", hidden);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      root.removeAttribute("data-reader-fab-hidden");
+    };
+  }, []);
+
   return (
     <main
       className="relative min-h-screen overflow-x-hidden text-(--cr-text-primary)"
@@ -105,7 +143,9 @@ export function ReaderChrome({
             state.focusMode ? "hidden" : "",
           ].join(" ")}
         >
-          <div className="pointer-events-auto md:ml-auto">
+          {/* Phones: this row spans the screen, so only the player's own
+           *  controls take taps; the empty rest lets taps reach the page. */}
+          <div className="pointer-events-none md:pointer-events-auto md:ml-auto">
             <LazyAudioPlayer
               bookId={bookId}
               chapterNumber={chapter.order}
@@ -125,7 +165,8 @@ export function ReaderChrome({
         </div>
       )}
 
-      <section className="w-full px-5 pb-12 pt-3 sm:px-8 sm:pt-3 md:pb-16">
+      {/* Phone bottom padding clears the audio + Ask stack (about 7.5rem tall). */}
+      <section className="w-full px-5 pb-[calc(env(safe-area-inset-bottom)+8rem)] pt-3 sm:px-8 sm:pt-3 md:pb-16">
         <ChapterHeader
           bookId={bookId}
           bookTitle={initialBook?.title ?? entry.title}

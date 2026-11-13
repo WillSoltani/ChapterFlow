@@ -292,13 +292,13 @@ export function ReaderOverlays({
 
       <div role="status" aria-live="polite" aria-atomic="true">
         {syncFailed && !toast && (
-          <div className="pointer-events-none fixed bottom-[calc(env(safe-area-inset-bottom)+5rem)] left-1/2 z-40 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-xl border border-(--cr-warning)/30 bg-(--cr-warning)/10 px-3 py-2 text-xs text-(--cr-warning)">
+          <div className="pointer-events-none fixed bottom-[calc(env(safe-area-inset-bottom)+8rem)] left-1/2 z-40 md:bottom-[calc(env(safe-area-inset-bottom)+5rem)] -translate-x-1/2 inline-flex items-center gap-1.5 rounded-xl border border-(--cr-warning)/30 bg-(--cr-warning)/10 px-3 py-2 text-xs text-(--cr-warning)">
             <CloudOff className="h-3.5 w-3.5" />
             Changes saved locally only
           </div>
         )}
         {toast && (
-          <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] left-1/2 z-50 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 items-start gap-2 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-sm text-(--cr-text-primary) shadow-[0_14px_28px_rgba(0,0,0,0.22)]">
+          <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+8rem)] left-1/2 z-50 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 md:bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] items-start gap-2 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-sm text-(--cr-text-primary) shadow-[0_14px_28px_rgba(0,0,0,0.22)]">
             <span>{toast}</span>
             <button
               type="button"

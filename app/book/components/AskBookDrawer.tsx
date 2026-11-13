@@ -296,7 +296,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="cf-pressable fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-4 z-50 flex items-center gap-2 rounded-full bg-(--cr-accent) px-4 py-3 text-(--cr-text-inverse) shadow-lg transition hover:brightness-110 md:bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] md:right-6"
+          className="cf-pressable fixed bottom-[calc(max(env(safe-area-inset-bottom),var(--reader-audio-bar-h,0px))+1rem)] right-4 z-50 flex items-center gap-2 rounded-full bg-(--cr-accent) px-4 py-3 text-(--cr-text-inverse) shadow-lg transition hover:brightness-110 md:bottom-[calc(max(env(safe-area-inset-bottom),var(--reader-audio-bar-h,0px))+1.5rem)] md:right-6 [html[data-reader-fab-hidden]_&]:max-md:pointer-events-none [html[data-reader-fab-hidden]_&]:max-md:translate-y-6 [html[data-reader-fab-hidden]_&]:max-md:opacity-0"
           title="Ask Raymond"
           aria-label="Ask Raymond about this chapter"
         >
