@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { DUR } from "@/lib/motion";
@@ -15,41 +15,38 @@ interface NextAchievementsProps {
   recentlyEarnedBadgeId?: string | null;
 }
 
+function readDismissed(badgeId: string): boolean {
+  try {
+    return typeof window !== "undefined" && localStorage.getItem(`badge_dismissed_${badgeId}`) === "true";
+  } catch {
+    return false;
+  }
+}
+
 export function NextAchievements({
   milestones,
   recentlyEarnedBadge = null,
   recentlyEarnedBadgeId = null,
 }: NextAchievementsProps) {
   const prefersReduced = usePrefersReducedMotion();
-  const [dismissed, setDismissed] = useState(false);
-
-  // Check localStorage for previously dismissed badge banners
-  useEffect(() => {
-    if (recentlyEarnedBadgeId) {
-      const key = `badge_dismissed_${recentlyEarnedBadgeId}`;
-      if (localStorage.getItem(key) === "true") {
-        setDismissed(true);
-      }
-    }
-  }, [recentlyEarnedBadgeId]);
+  // Dismissal is remembered per badge on this device.
+  const [dismissedId, setDismissedId] = useState<string | null>(null);
+  const dismissed =
+    recentlyEarnedBadgeId !== null &&
+    (dismissedId === recentlyEarnedBadgeId || readDismissed(recentlyEarnedBadgeId));
 
   const handleDismiss = useCallback(() => {
-    setDismissed(true);
-    if (recentlyEarnedBadgeId) {
+    if (!recentlyEarnedBadgeId) return;
+    setDismissedId(recentlyEarnedBadgeId);
+    try {
       localStorage.setItem(`badge_dismissed_${recentlyEarnedBadgeId}`, "true");
+    } catch {
+      // storage unavailable: the banner stays dismissed for this visit only
     }
   }, [recentlyEarnedBadgeId]);
 
-  // Auto-dismiss after 5 seconds
-  useEffect(() => {
-    if (recentlyEarnedBadge && !dismissed) {
-      const timer = setTimeout(() => {
-        handleDismiss();
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-    return undefined;
-  }, [recentlyEarnedBadge, dismissed, handleDismiss]);
+  // No auto-dismiss: the banner sits far down the page, and the caller only
+  // passes a badge earned in the last 48 hours (PROG-18).
 
   if (milestones.length === 0) return null;
 

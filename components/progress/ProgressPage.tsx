@@ -9,7 +9,7 @@ import { useOnboardingRedirect, useOnboardingState } from "@/hooks/book/useOnboa
 import { useBookAnalytics } from "@/hooks/book/useBookAnalytics";
 import { useBookViewer } from "@/hooks/book/useBookViewer";
 import { useInsightPoints } from "@/hooks/book/useInsightPoints";
-import { useBadgeSystem } from "@/hooks/book/useBadgeSystem";
+import { isJustEarned, useBadgeSystem } from "@/hooks/book/useBadgeSystem";
 import { useServerTier } from "@/hooks/book/useServerTier";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import type {
@@ -480,9 +480,10 @@ export function ProgressPage() {
   // ── Determine which sections to show (progressive disclosure) ──
   const totalDaysWithData = displayData?.readingActivity.totalDaysWithData ?? 0;
 
-  // Recent badge for celebration banner
-  const recentBadgeName = recentlyEarned[0]?.name ?? null;
-  const recentBadgeId = recentlyEarned[0]?.id ?? null;
+  // "Just earned" banner: only a badge earned in the last 48 hours (PROG-18).
+  const recentBadge = recentlyEarned[0] && isJustEarned(recentlyEarned[0].earnedAt) ? recentlyEarned[0] : null;
+  const recentBadgeName = recentBadge?.name ?? null;
+  const recentBadgeId = recentBadge?.id ?? null;
 
   // ── Loading state ──
   if (!onboardingHydrated || !hydrated || !onboarding.setupComplete) {
