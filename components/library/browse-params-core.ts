@@ -1,5 +1,7 @@
-// Library "Browse all" state in the URL (HOME-17). Pure so it is testable.
+// Library "Browse all" state in the URL (HOME-17) and its search ranking
+// (HOME-18). Pure so both are testable.
 
+import { scoreBookMatch, tokenizeQuery } from "@/hooks/book/useGlobalSearch";
 import { SORT_OPTIONS, type Category, type Difficulty, type SortOption } from "./libraryData";
 
 export type StatusFilter = "all" | "in_progress" | "not_started" | "completed";
@@ -69,4 +71,18 @@ export function serializeBrowseParams(base: URLSearchParams, state: BrowseParams
   if (state.mood) out.set("mood", state.mood);
   if (state.showAll) out.set("all", "1");
   return out.toString();
+}
+
+/** Books matching `query`, best first, with the header search's matcher. */
+export function rankBooks<T extends { title: string; author: string }>(
+  books: readonly T[],
+  query: string,
+): T[] {
+  const terms = tokenizeQuery(query);
+  if (terms.length === 0) return [];
+  return books
+    .map((book, index) => ({ book, index, score: scoreBookMatch(book.title, book.author, terms) }))
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.index - b.index)
+    .map((item) => item.book);
 }

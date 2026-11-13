@@ -4,6 +4,7 @@ import { test } from "node:test";
 import {
   DEFAULT_BROWSE_PARAMS,
   parseBrowseParams,
+  rankBooks,
   serializeBrowseParams,
 } from "./browse-params-core";
 
@@ -59,4 +60,36 @@ test("serializing the same state twice gives the same string (no URL-sync loop)"
   const once = serializeBrowseParams(new URLSearchParams("q=x"), params);
   const twice = serializeBrowseParams(new URLSearchParams(once), params);
   assert.equal(once, twice);
+});
+
+// HOME-18: the Library's ?q= results use the header search matcher.
+
+const books = [
+  { id: "power-of-habit", title: "The Power of Habit", author: "Charles Duhigg" },
+  { id: "atomic-habits", title: "Atomic Habits", author: "James Clear" },
+  { id: "deep-work", title: "Deep Work", author: "Cal Newport" },
+  { id: "power", title: "The 48 Laws of Power", author: "Robert Greene" },
+];
+
+test("multi-word queries match by word, not as one phrase", () => {
+  const ids = rankBooks(books, "power habit").map((b) => b.id);
+  assert.equal(ids[0], "power-of-habit");
+  assert.ok(ids.includes("atomic-habits"));
+  assert.ok(ids.includes("power"));
+  assert.ok(!ids.includes("deep-work"));
+});
+
+test("title matches rank first and stop words are ignored", () => {
+  assert.deepEqual(
+    rankBooks(books, "the deep").map((b) => b.id),
+    ["deep-work"],
+  );
+  assert.deepEqual(
+    rankBooks(books, "newport").map((b) => b.id),
+    ["deep-work"],
+  );
+});
+
+test("a query of only stop words matches nothing, like the header search", () => {
+  assert.deepEqual(rankBooks(books, "the of"), []);
 });

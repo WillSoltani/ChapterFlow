@@ -15,6 +15,7 @@ import {
 } from "./libraryData";
 import {
   parseBrowseParams,
+  rankBooks,
   serializeBrowseParams,
   type BrowseParams,
   type StatusFilter,
@@ -127,13 +128,10 @@ export function BrowseAll({
   const filtered = useMemo(() => {
     let result = [...books];
 
-    // Text search
+    // Text search: same matcher and ranking as the header search (HOME-18);
+    // the "featured" sort keeps this best-first order.
     if (trimmedQuery) {
-      const q = trimmedQuery.toLowerCase();
-      result = result.filter((b) => {
-        const searchable = `${b.title} ${b.author} ${b.category} ${b.hook}`.toLowerCase();
-        return searchable.includes(q);
-      });
+      result = rankBooks(result, trimmedQuery);
     }
 
     // Mood filter — every option is an honest, derivable signal
