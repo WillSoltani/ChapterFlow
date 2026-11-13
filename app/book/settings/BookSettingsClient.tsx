@@ -29,13 +29,15 @@ import { Toast } from "@/components/ui/Toast";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { fetchBookJson, redirectToReauth, isReauthResponse } from "@/app/book/_lib/book-api";
-import { fetchBookJsonCached } from "@/lib/client/book-api-cache";
+import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
 import { SETTINGS_KEY } from "@/app/book/hooks/book-read-keys";
 
 // New settings hooks
 import {
+  buildEmailChannelPatch,
   buildReminderSchedulePatch,
   buildReadingReminderTogglePatch,
+  readEmailChannelConsent,
 } from "./lib/reminder-consent-core";
 import {
   buildOnboardingProfileSnapshot,
@@ -416,14 +418,18 @@ export function BookSettingsClient({
   // ACCT-04: show the reminder time the server actually sends at
   // (settings.notifications.reminderTimeLocal), not this device's onboarding copy.
   const [serverReminderTime, setServerReminderTime] = useState<string | null>(null);
+  // ACCT-21: the "Email" switch shows the stored consent (null until read).
+  const [emailConsent, setEmailConsent] = useState<boolean | null>(null);
   useEffect(() => {
     let cancelled = false;
     fetchBookJsonCached<{
       settings: { notifications?: { reminderTimeLocal?: unknown } } | null;
     }>(SETTINGS_KEY)
       .then((payload) => {
+        if (cancelled) return;
         const time = payload.settings?.notifications?.reminderTimeLocal;
-        if (!cancelled && typeof time === "string") setServerReminderTime(time);
+        if (typeof time === "string") setServerReminderTime(time);
+        setEmailConsent(readEmailChannelConsent(payload.settings));
       })
       .catch(() => {});
     return () => {
@@ -431,6 +437,13 @@ export function BookSettingsClient({
     };
   }, []);
   const reminderTime = serverReminderTime ?? onboarding.reminderTime;
+
+  // The reminder writes also record the email opt-in (F4), so the Email
+  // switch follows them once they succeed.
+  const markEmailOptedIn = useCallback(() => {
+    setEmailConsent(true);
+    invalidateBookCache(SETTINGS_KEY);
+  }, []);
 
   // H26: The reading-reminder cron reads the per-user send time exclusively from
   // settings.notifications.reminderTimeLocal / reminderTimezone (defaulting to
@@ -447,9 +460,9 @@ export function BookSettingsClient({
         body: JSON.stringify(
           buildReminderSchedulePatch(timeLocal, detectReminderTimezone()),
         ),
-      }),
+      }).then(markEmailOptedIn),
     );
-  }, [trackSideWrite]);
+  }, [trackSideWrite, markEmailOptedIn]);
 
   // F4: The reading-reminder cron only sends the reminder EMAIL when the user
   // has opted into the email channel (`settings.notifications.channels.email ===
@@ -472,9 +485,20 @@ export function BookSettingsClient({
       fetchBookJson("/app/api/book/me/settings", {
         method: "PATCH",
         body: JSON.stringify(patch),
-      }),
+      }).then(markEmailOptedIn),
     );
-  }, [reminderTime, trackSideWrite]);
+  }, [reminderTime, trackSideWrite, markEmailOptedIn]);
+
+  // ACCT-21: the explicit "Email" master switch writes only channels.email.
+  const persistEmailConsent = useCallback((enabled: boolean) => {
+    setEmailConsent(enabled);
+    trackSideWrite("emailChannel", () =>
+      fetchBookJson("/app/api/book/me/settings", {
+        method: "PATCH",
+        body: JSON.stringify(buildEmailChannelPatch(enabled)),
+      }).then(() => invalidateBookCache(SETTINGS_KEY)),
+    );
+  }, [trackSideWrite]);
 
   // ACCT-08: there is deliberately no background write here. A former one-shot
   // backfill seeded the reminder schedule and `channels.email: true` on any
@@ -626,6 +650,8 @@ export function BookSettingsClient({
     if (ext.colorBlindMode !== "off") active.push("Color adjusted");
     return active.length > 0 ? active.join(" · ") : "No adjustments active";
   }
+
+  const emailOffHint = emailConsent === false ? " Email is off, so this isn't sent." : "";
 
   function getNotificationsSummary() {
     const parts: string[] = [];
@@ -1524,6 +1550,23 @@ export function BookSettingsClient({
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("notifications")}
           >
+            {/* ACCT-21: the master email switch (settings.notifications.channels.email). */}
+            <SettingRow
+              id="email-channel"
+              highlighted={isMatch("email-channel")}
+              label="Email"
+              description="Lets ChapterFlow email you reminders, the weekly summary and welcome-back notes."
+            >
+              <ToggleSwitch
+                checked={emailConsent === true}
+                onChange={(v) => { persistEmailConsent(v); announce(`Email ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
+                disabled={emailConsent === null}
+                label="Email"
+              />
+            </SettingRow>
+
+            <Divider />
+
             {/* 5A. Reading Reminders */}
             <SettingRow
               id="reading-reminders"
@@ -1642,7 +1685,7 @@ export function BookSettingsClient({
               id="weekly-summary"
               highlighted={isMatch("weekly-summary")}
               label="Weekly summary email"
-              description="A brief digest of your reading progress, delivered every Monday."
+              description={`A brief digest of your reading progress, once a week.${emailOffHint}`}
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.notifications.weeklyDigestEnabled : true}
@@ -1658,7 +1701,7 @@ export function BookSettingsClient({
               id="welcome-back"
               highlighted={isMatch("welcome-back")}
               label="Welcome-back emails"
-              description="A friendly email if you've been away for a while, with a bonus to welcome you back."
+              description={`A friendly email if you've been away for a while, with a bonus to welcome you back.${emailOffHint}`}
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.notifications.welcomeBackEnabled : true}

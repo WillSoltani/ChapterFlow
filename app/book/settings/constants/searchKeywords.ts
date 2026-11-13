@@ -172,6 +172,13 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
 
   // Section 5: Notifications
   {
+    id: "email-channel",
+    section: "notifications",
+    label: "Email",
+    description: "Reminders, the weekly summary and welcome-back emails",
+    keywords: ["email", "mail", "unsubscribe", "inbox", "notification"],
+  },
+  {
     id: "reading-reminders",
     section: "notifications",
     label: "Reading reminders",
@@ -203,7 +210,7 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     id: "weekly-summary",
     section: "notifications",
     label: "Weekly summary email",
-    description: "A brief digest of your reading progress every Monday",
+    description: "A brief digest of your reading progress once a week",
     keywords: ["weekly", "summary", "email", "digest", "progress"],
   },
   {

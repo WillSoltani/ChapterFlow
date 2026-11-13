@@ -529,3 +529,40 @@ test("ACCT-26: search highlights the matching rows", async () => {
   const del = view.container.querySelector("#delete-account") as HTMLElement | null;
   assert.equal(del?.dataset.highlighted, "true");
 });
+
+test("ACCT-21: the weekly summary says once a week; the Email switch shows and writes email consent", async () => {
+  serverSettings = {
+    settings: { notifications: { channels: { email: true } } },
+    updatedAt: "2026-11-11T00:00:00.000Z",
+  };
+  const view = renderSettings();
+  await wait(100);
+  toggleSection(view, "Notifications");
+  await wait(50);
+  const notifications = within(section(view, "Notifications"));
+  assert.match(view.container.querySelector("#weekly-summary")?.textContent ?? "", /once a week/);
+  assert.doesNotMatch(view.container.textContent ?? "", /every Monday/);
+
+  const email = notifications.getByRole("switch", { name: "Email" });
+  assert.equal(email.getAttribute("aria-checked"), "true");
+  assert.equal(notifications.queryByText(/Email is off/), null, "no hint while email is on");
+
+  fireEvent.click(email);
+  await wait(100);
+  const sent = writes("/me/settings").filter(
+    (c) => JSON.stringify(c.body).includes('"channels"'),
+  );
+  assert.equal(sent.length, 1);
+  assert.deepEqual(sent[0]!.body, { settings: { notifications: { channels: { email: false } } } });
+  assert.equal(email.getAttribute("aria-checked"), "false");
+  assert.ok(notifications.getAllByText(/Email is off/).length >= 2, "the email categories say they will not be sent");
+});
+
+test("ACCT-21: with no email consent stored the Email switch shows off", async () => {
+  const view = renderSettings();
+  await wait(100);
+  toggleSection(view, "Notifications");
+  await wait(50);
+  const email = within(section(view, "Notifications")).getByRole("switch", { name: "Email" });
+  assert.equal(email.getAttribute("aria-checked"), "false");
+});
