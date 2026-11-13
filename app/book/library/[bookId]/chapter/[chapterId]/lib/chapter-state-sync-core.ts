@@ -394,7 +394,9 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
         loaded = true;
         refreshWanted = false;
         lastGetAt = deps.now();
-        setSyncFailed(false);
+        // A read clears the warning only while no save is failing or refused:
+        // those changes have still not reached the account.
+        if (refusedJson === null && patchFailures === 0) setSyncFailed(false);
         const previousBaseline = baseline;
         if (acceptServerCopy(copy) && copy.state) {
           const server = copy.state;

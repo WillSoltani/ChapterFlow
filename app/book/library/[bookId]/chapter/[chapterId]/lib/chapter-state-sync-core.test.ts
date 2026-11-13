@@ -311,6 +311,51 @@ test("a refused write is not resent until the state changes", async () => {
   assert.equal(h.patches.length, 2);
 });
 
+test("a successful re-read keeps the warning while a refused state is still unsaved", async () => {
+  const h = harness();
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.flushPromises();
+  h.edit({ notes: "x".repeat(20_001), notesUpdatedAt: "2026-11-13T10:00:00.000Z" });
+  await h.advance(200);
+  h.patches[0]!.reject(Object.assign(new Error("invalid"), { status: 400, code: "invalid_state" }));
+  await h.flushPromises();
+  assert.deepEqual(h.failedChanges, [true]);
+  await h.advance(5_000);
+  h.sync.refresh();
+  h.gets[1]!.resolve(server({}, "2026-11-13T10:00:01.000Z"));
+  await h.advance(5_000);
+  assert.deepEqual(h.failedChanges, [true], "the warning stays: the changes never reached the account");
+});
+
+test("a successful re-read keeps the warning while saves are still failing", async () => {
+  const h = harness();
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.flushPromises();
+  h.edit({ notes: "keep me", notesUpdatedAt: "2026-11-13T10:00:00.000Z" });
+  await h.advance(200);
+  h.patches[0]!.reject(new TypeError("offline"));
+  await h.flushPromises();
+  await h.advance(1_000);
+  h.patches[1]!.reject(new TypeError("offline"));
+  await h.flushPromises();
+  assert.deepEqual(h.failedChanges, [true]);
+  await h.advance(1_500);
+  h.sync.refresh();
+  // The re-read goes first when the retry timer fires.
+  await h.advance(500);
+  assert.equal(h.gets.length, 2);
+  h.gets[1]!.resolve(server({}, "2026-11-13T10:00:01.000Z"));
+  await h.flushPromises();
+  assert.deepEqual(h.failedChanges, [true], "a read alone does not clear a failing save");
+  await h.advance(200);
+  assert.equal(h.patches.length, 3);
+  h.patches[2]!.resolve({ state: h.patches[2]!.state, updatedAt: "2026-11-13T10:00:02.000Z" });
+  await h.flushPromises();
+  assert.deepEqual(h.failedChanges, [true, false], "the save that lands clears it");
+});
+
 test("flush sends unsynced edits at once with keepalive, and skips a clean state", async () => {
   const h = harness();
   h.open();
