@@ -36,3 +36,18 @@ test("active reader: Continue chapter N links to chapter N with ?from=dashboard"
     "/book/library/atomic-habits/chapter/4?from=dashboard",
   );
 });
+
+// LIVE-21: one starter book reads "1 book", not "1 books".
+test("a one-book starter shelf says 'We picked 1 book'", () => {
+  render(
+    <HeroSessionCard
+      userState="new_user"
+      currentBook={null}
+      firstName="Sam"
+      starterShelfBooks={[
+        { id: "atomic-habits", title: "Atomic Habits", author: "James Clear", coverUrl: "" },
+      ]}
+    />,
+  );
+  assert.ok(screen.getByText("We picked 1 book based on your interests"));
+});
