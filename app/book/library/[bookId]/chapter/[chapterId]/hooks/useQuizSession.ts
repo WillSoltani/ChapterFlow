@@ -6,7 +6,13 @@ import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ToneKey } from "@/app/book/data/bookPackages";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import type { LoopPipelineResult } from "@/app/book/_lib/flow-points-economy";
-import { buildCarryForwardAnswers, scoreSessionLocally, type CheckedResults } from "../lib/quizScoring";
+import {
+  buildCarryForwardAnswers,
+  buildQuizSubmitResponses,
+  planRetakeCarry,
+  scoreSessionLocally,
+  type CheckedResults,
+} from "../lib/quizScoring";
 import { IS_DEV } from "@/app/book/_lib/client-env";
 import { shouldUseLocalFallback } from "../lib/fallbackPolicy";
 
@@ -496,10 +502,7 @@ export function useQuizSession(params: {
           method: "POST",
           body: JSON.stringify({
             attemptNumber: session.attemptNumber,
-            responses: session.questions.map((question) => ({
-              questionId: question.questionId,
-              selectedChoiceId: answers[question.questionId] ?? null,
-            })),
+            responses: buildQuizSubmitResponses(session.questions, answers),
             difficulty,
             tone: contentTone,
             timeSpentSeconds: startedAtRef.current
@@ -616,7 +619,17 @@ export function useQuizSession(params: {
         return fresh;
       }
     }
-    return load();
+    // Production has no local session, so the retake is the server session
+    // load() returns. Seat the carry on it here too, or the hidden,
+    // previously-correct questions submit unanswered and the server refuses.
+    const server = await load();
+    const carry = planRetakeCarry({ graded, next: server, retryIncorrectOnly });
+    if (server && Object.keys(carry).length > 0) {
+      saveDraftAnswers(bookId, chapterNumber, difficulty, server.attemptNumber, carry);
+      checkedResultsRef.current = seedCheckedFromCarry(carry);
+      syncFromSession(server);
+    }
+    return server;
   }, [load, session, buildLocalSession, syncFromSession, bookId, chapterNumber, difficulty, retryIncorrectOnly]);
 
   const toggleExplanation = useCallback(
