@@ -1132,7 +1132,9 @@ export function WorkspacePage() {
           className="relative z-20 flex items-center justify-between gap-3 border-b border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3 text-(--cf-text-1) sm:px-6"
         >
           <div className="flex items-center gap-2.5">
-            <Clock className="h-4 w-4 shrink-0 text-(--cf-text-3)" aria-hidden="true" />
+            {billingStatus === "pending" && (
+              <Clock className="h-4 w-4 shrink-0 text-(--cf-text-3)" aria-hidden="true" />
+            )}
             <p className="text-sm font-medium">
               {billingStatus === "pending"
                 ? "Payment received; Pro will appear shortly."
