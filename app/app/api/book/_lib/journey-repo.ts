@@ -4,9 +4,16 @@ import { GetCommand, PutCommand, QueryCommand, UpdateCommand } from "@aws-sdk/li
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, journeySk, nowIso } from "./keys";
 import { awardFlowPoints } from "./flow-points-repo";
-import { putBadgeAward } from "./repo";
+import { getUserProgress, putBadgeAward } from "./repo";
+import { readPinnedChapterCounts } from "./content-service";
+import {
+  reconcileJourneyCore,
+  type JourneyAdvancementResult,
+} from "./journey-reconcile-core";
 import type { BookUserJourneyItem, JourneyDefinition } from "./types";
 import journeyDefinitions from "@/content/journeys/journeys.json";
+
+export type { JourneyAdvancementResult } from "./journey-reconcile-core";
 
 export async function startJourney(
   tableName: string,
@@ -148,13 +155,100 @@ function isConditionalCheckFailed(error: unknown): boolean {
 
 // ── Orchestrator ───────────────────────────────────────────────────────────
 
-export type JourneyAdvancementResult = {
-  journeyId: string;
-  advanced: boolean;
-  completed: boolean;
-  bonusIPAwarded: number;
-  badgeAwarded: string | null;
-};
+/**
+ * The journey-completion award (bonus points + badge). Call only after the
+ * advance that set `completedAt` (advanceJourney returns it only on that call);
+ * the point award is keyed by journey and the badge write is conditional.
+ */
+async function awardJourneyCompletion(
+  tableName: string,
+  userId: string,
+  def: JourneyDefinition,
+): Promise<{ bonusIPAwarded: number; badgeAwarded: string | null }> {
+  let bonusIPAwarded = 0;
+  let badgeAwarded: string | null = null;
+
+  if (def.bonusIP > 0) {
+    const ipResult = await awardFlowPoints(tableName, {
+      userId,
+      amount: def.bonusIP,
+      sourceType: "journey_complete",
+      sourceId: def.journeyId,
+      metadata: { journeyId: def.journeyId, journeyTitle: def.title },
+    });
+    if (ipResult.awarded) bonusIPAwarded = def.bonusIP;
+  }
+
+  if (def.badge?.badgeId) {
+    const awarded = await putBadgeAward(tableName, {
+      userId,
+      badgeId: def.badge.badgeId,
+      earnedAt: nowIso(),
+      tier: "gold",
+    });
+    if (awarded) badgeAwarded = def.badge.badgeId;
+  }
+
+  return { bonusIPAwarded, badgeAwarded };
+}
+
+/**
+ * Credit journey books the reader had already finished (e.g. before starting
+ * the journey) and complete the journey when that finishes it. Write paths only
+ * (journey start, passed quiz); GET routes stay read-only.
+ */
+export async function reconcileJourneyCompletedBooks(
+  tableName: string,
+  contentBucket: string,
+  userId: string,
+  journey: BookUserJourneyItem,
+): Promise<JourneyAdvancementResult | null> {
+  const def = (journeyDefinitions as JourneyDefinition[]).find(
+    (d) => d.journeyId === journey.journeyId,
+  );
+  if (!def) return null;
+
+  return reconcileJourneyCore(
+    {
+      readProgress: async (bookIds) => {
+        // Consistent reads: the quiz that just finished a book wrote its row.
+        const rows = await Promise.all(
+          bookIds.map((bookId) =>
+            getUserProgress(tableName, userId, bookId, { consistentRead: true }),
+          ),
+        );
+        return rows.filter((r): r is NonNullable<typeof r> => r !== null);
+      },
+      readChapterCounts: (entries) => readPinnedChapterCounts({ contentBucket, entries }),
+      advance: (bookId) =>
+        advanceJourney(tableName, userId, journey.journeyId, bookId, def.books.length),
+      awardCompletion: () => awardJourneyCompletion(tableName, userId, def),
+    },
+    journey,
+    def,
+  );
+}
+
+/** Reconcile every active journey; used by the quiz-submit journey step. */
+export async function reconcileActiveJourneys(
+  tableName: string,
+  contentBucket: string,
+  userId: string,
+): Promise<JourneyAdvancementResult[]> {
+  const journeys = await listUserJourneys(tableName, userId);
+  const results: JourneyAdvancementResult[] = [];
+  for (const journey of journeys) {
+    if (journey.completedAt) continue;
+    const result = await reconcileJourneyCompletedBooks(
+      tableName,
+      contentBucket,
+      userId,
+      journey,
+    );
+    if (result) results.push(result);
+  }
+  return results;
+}
 
 export async function checkAndAdvanceJourneys(
   tableName: string,
@@ -200,30 +294,11 @@ export async function checkAndAdvanceJourneys(
     let badgeAwarded: string | null = null;
 
     if (justCompleted) {
-      const now = nowIso();
-
-      // Award bonus IP
-      if (def.bonusIP > 0) {
-        const ipResult = await awardFlowPoints(tableName, {
-          userId,
-          amount: def.bonusIP,
-          sourceType: "journey_complete",
-          sourceId: journey.journeyId,
-          metadata: { journeyId: journey.journeyId, journeyTitle: def.title },
-        });
-        if (ipResult.awarded) bonusIPAwarded = def.bonusIP;
-      }
-
-      // Award journey badge
-      if (def.badge?.badgeId) {
-        const awarded = await putBadgeAward(tableName, {
-          userId,
-          badgeId: def.badge.badgeId,
-          earnedAt: now,
-          tier: "gold",
-        });
-        if (awarded) badgeAwarded = def.badge.badgeId;
-      }
+      ({ bonusIPAwarded, badgeAwarded } = await awardJourneyCompletion(
+        tableName,
+        userId,
+        def,
+      ));
     }
 
     results.push({

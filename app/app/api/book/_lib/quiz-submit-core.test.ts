@@ -420,3 +420,44 @@ test("buildPassedRetryBackfill reconstructs first-attempt/perfect/book-complete 
     null,
   );
 });
+
+// ── PROG-09: journeys reconcile on every passed quiz ──────────────────────────
+
+test("the journey step runs on a pass that does not finish the book", async () => {
+  const calls: string[] = [];
+  const result = await runLoopCompletionSaga(
+    makeDeps(calls),
+    passCtx({ completedBookNow: false }),
+  );
+
+  assert.equal(calls.includes("awardBookCompletePoints"), false);
+  assert.equal(calls.includes("checkAndAdvanceJourneys"), true);
+  assert.equal(calls.includes("markLoopStep:journeyAdvancedAt"), true);
+  assert.equal(result.loopPipeline?.journeys?.length, 1);
+});
+
+test("a failing journey step never fails the submit", async () => {
+  const calls: string[] = [];
+  const result = await runLoopCompletionSaga(
+    makeDeps(calls, {
+      checkAndAdvanceJourneys: async () => {
+        calls.push("checkAndAdvanceJourneys");
+        throw new Error("journey boom");
+      },
+    }),
+    passCtx({ completedBookNow: false }),
+  );
+
+  assert.ok(result.loopPipeline);
+  assert.equal(result.quizPassAwarded, true);
+  assert.equal(result.loopPipeline?.journeys, undefined);
+  assert.equal(calls.includes("markLoopStep:journeyAdvancedAt"), false);
+  // Recorded like every other pipeline step: the completion marker stays unset.
+  assert.equal(calls.includes("markLoopPipelineCompleted"), false);
+});
+
+test("a failed quiz never runs the journey step", async () => {
+  const calls: string[] = [];
+  await runLoopCompletionSaga(makeDeps(calls), passCtx({ passed: false, completedBookNow: false }));
+  assert.equal(calls.includes("checkAndAdvanceJourneys"), false);
+});

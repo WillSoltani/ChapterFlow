@@ -49,7 +49,8 @@ import { scoreQuizResponsesByQuestionId } from "./quiz-service";
 import { updateStreakOnLoopComplete } from "./streak-repo";
 import { updateTierOnLoopComplete } from "./tier-repo";
 import { checkAchievementsAfterLoopComplete } from "./achievement-repo";
-import { checkAndAdvanceJourneys } from "./journey-repo";
+import { checkAndAdvanceJourneys, reconcileActiveJourneys } from "./journey-repo";
+import { mergeJourneyResults } from "./journey-reconcile-core";
 import { listUserEvents, recordEventChapter } from "./events-repo";
 import { listEventDefinitions } from "./admin-events-repo";
 import { maybeAwardInsightSpark } from "./insight-spark";
@@ -240,7 +241,7 @@ export interface CompleteLearningLoopInput {
  *  30  listUserEvents
  *  31  recordEventChapter × N
  *  32  markLoopStepCompleted(events)
- *  33  checkAndAdvanceJourneys          → pipelineErrors
+ *  33  checkAndAdvanceJourneys (completedBookNow) + reconcileActiveJourneys → pipelineErrors
  *  34  markLoopStepCompleted(journeys)
  *  35  markLoopPipelineCompleted        (only when pipelineErrors empty) → swallowed
  *  Analytics (this fn):
@@ -772,8 +773,15 @@ export async function completeLearningLoop(input: CompleteLearningLoopInput) {
     listUserEvents: () => listUserEvents(tableName, user.sub),
     recordEventChapter: (eventId, chapterId, eventDef) =>
       recordEventChapter(tableName, user.sub, eventId, chapterId, eventDef),
-    checkAndAdvanceJourneys: () =>
-      checkAndAdvanceJourneys(tableName, user.sub, bookId),
+    // Every passed quiz: credit the book this quiz finished (if any), then
+    // credit journey books finished earlier (e.g. before the journey started).
+    checkAndAdvanceJourneys: async () => {
+      const advanced = completedBookNow
+        ? await checkAndAdvanceJourneys(tableName, user.sub, bookId)
+        : [];
+      const reconciled = await reconcileActiveJourneys(tableName, contentBucket, user.sub);
+      return mergeJourneyResults([...advanced, ...reconciled]);
+    },
     markLoopPipelineCompleted: () =>
       markLoopPipelineCompleted(tableName, user.sub, bookId, chapterNumberInt, ts),
     logError: (...args) => logLoopPipelineError(...args),
