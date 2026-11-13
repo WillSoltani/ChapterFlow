@@ -15,8 +15,23 @@ import {
   updateCommitmentStatus,
 } from "@/app/app/api/book/_lib/commitment-repo";
 import { analyticsTrackCommitment } from "@/app/app/api/book/_lib/analytics-repo";
-import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
+import {
+  awardFlowPoints,
+  getUserFlowPointsState,
+  hasFlowPointsGrant,
+} from "@/app/app/api/book/_lib/flow-points-repo";
+import { getUserProgress } from "@/app/app/api/book/_lib/progress-repo";
+import { enforceDailyUserLimit } from "@/app/app/api/book/_lib/http";
+import { dailyLimitDateKey } from "@/app/app/api/book/_lib/http-guards-core";
+import { isBookApiError } from "@/app/app/api/book/_lib/errors";
+import { bookUserPk } from "@/app/app/api/book/_lib/keys";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import {
+  COMMITMENT_FOLLOW_THROUGH_DAILY_CAP,
+  commitmentAwardLimitSk,
+  commitmentAwardSourceId,
+  precheckCommitmentAward,
+} from "../commitment-award-core";
 import type { CommitmentOutcome } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
@@ -59,7 +74,36 @@ export async function PATCH(req: Request, ctx: Params) {
         }
       }
 
-      const ipAmount = INSIGHT_POINTS_AMOUNTS.commitmentFollowThrough;
+      // Points are paid once per book chapter, only after the follow-up date, for a
+      // completed chapter, under a daily cap. The check-in is recorded either way.
+      const awardSourceId = commitmentAwardSourceId(existing.bookId, existing.chapterNumber);
+      const [progress, alreadyAwarded] = await Promise.all([
+        getUserProgress(tableName, user.sub, existing.bookId),
+        hasFlowPointsGrant(tableName, user.sub, "commitment_follow_through", awardSourceId),
+      ]);
+      let eligible =
+        precheckCommitmentAward({
+          followUpDate: existing.followUpDate,
+          nowMs: Date.now(),
+          chapterNumber: existing.chapterNumber,
+          completedChapters: progress?.completedChapters,
+          alreadyAwardedForChapter: alreadyAwarded,
+        }) === null;
+      if (eligible) {
+        try {
+          await enforceDailyUserLimit({
+            tableName,
+            userPk: bookUserPk(user.sub),
+            counterSk: commitmentAwardLimitSk(dailyLimitDateKey()),
+            limit: COMMITMENT_FOLLOW_THROUGH_DAILY_CAP,
+            entity: "BOOK_COMMITMENT_IP_COUNT",
+          });
+        } catch (err) {
+          if (!(isBookApiError(err) && err.code === "rate_limited")) throw err;
+          eligible = false;
+        }
+      }
+      const ipAmount = eligible ? INSIGHT_POINTS_AMOUNTS.commitmentFollowThrough : 0;
 
       let updated;
       try {
@@ -79,12 +123,16 @@ export async function PATCH(req: Request, ctx: Params) {
         throw err;
       }
 
-      const ipResult = await awardFlowPoints(tableName, {
-        userId: user.sub,
-        amount: ipAmount,
-        sourceType: "commitment_follow_through",
-        sourceId: commitmentId,
-      });
+      const ipResult =
+        ipAmount > 0
+          ? await awardFlowPoints(tableName, {
+              userId: user.sub,
+              amount: ipAmount,
+              sourceType: "commitment_follow_through",
+              sourceId: awardSourceId,
+              metadata: { commitmentId },
+            })
+          : null;
 
       // Always-on commitment-funnel event (not gated on beacon opt-in). Fire-and-forget.
       getBookAnalyticsTableName()
@@ -127,10 +175,11 @@ export async function PATCH(req: Request, ctx: Params) {
         })
         .catch(() => {});
 
+      const balanceState = ipResult?.state ?? (await getUserFlowPointsState(tableName, user.sub));
       return bookOk({
         commitment: updated,
-        ipAwarded: ipAmount,
-        balance: ipResult.state.points,
+        ipAwarded: ipResult?.awarded ? ipAmount : 0,
+        balance: balanceState.points,
       });
     }
 

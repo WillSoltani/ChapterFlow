@@ -53,11 +53,36 @@ const sessionsCreate = makeSpy(
   },
 );
 
+let openSessions: Array<Record<string, unknown>> = [];
+const sessionsList = makeSpy(async (_options: Record<string, unknown>) => ({
+  data: openSessions,
+}));
+const sessionsExpire = makeSpy(async (_id: string) => ({}));
+const portalCreate = makeSpy(async (_options: Record<string, unknown>) => ({
+  url: "https://stripe.test/portal",
+  id: "bps_test",
+}));
+
 const stripeSpy = {
   customers: { create: customersCreate, del: customersDel },
   subscriptions: { list: subscriptionsList },
-  checkout: { sessions: { create: sessionsCreate } },
+  checkout: {
+    sessions: { create: sessionsCreate, list: sessionsList, expire: sessionsExpire },
+  },
+  billingPortal: { sessions: { create: portalCreate } },
 };
+
+// Step-up auth for the billing-portal branch: stubbed so each test can decide
+// whether the sign-in is recent. Everything else on the auth module is real.
+let recentAuth = true;
+const requireRecentAuth = makeSpy((_user: unknown, _maxAgeMinutes: number) => {
+  if (!recentAuth) {
+    const auth = originalLoad.call(Module, "@/app/app/api/_lib/auth", null, false) as {
+      AuthError: new (message: string) => Error;
+    };
+    throw new auth.AuthError("REAUTH_REQUIRED");
+  }
+});
 
 // Mutable per-test entitlement returned by the stubbed repo.
 let currentEntitlement: unknown = null;
@@ -68,6 +93,11 @@ Module._load = function patchedLoad(
   isMain: boolean,
 ) {
   if (request === "server-only") return {};
+
+  if (request === "@/app/app/api/_lib/auth") {
+    const real = originalLoad.call(this, request, parent, isMain) as Record<string, unknown>;
+    return { ...real, requireRecentAuth };
+  }
 
   if (request === "@/app/app/api/book/_lib/account-guard") {
     return {
@@ -120,6 +150,8 @@ before(async () => {
 beforeEach(() => {
   currentEntitlement = null;
   priorSubscriptions = [];
+  openSessions = [];
+  recentAuth = true;
   resetStripeSpy();
 });
 
@@ -148,6 +180,10 @@ function resetStripeSpy(): void {
   customersDel.calls.length = 0;
   subscriptionsList.calls.length = 0;
   sessionsCreate.calls.length = 0;
+  sessionsList.calls.length = 0;
+  sessionsExpire.calls.length = 0;
+  portalCreate.calls.length = 0;
+  requireRecentAuth.calls.length = 0;
 }
 
 async function assertCheckoutSuccess(res: Response): Promise<void> {
@@ -243,20 +279,92 @@ test("existing customer with empty history receives the canonical trial", async 
   );
 });
 
+async function assertSentToPortal(res: Response): Promise<void> {
+  assert.equal(res.status, 200);
+  assert.deepEqual(await res.json(), {
+    checkoutUrl: "https://stripe.test/portal",
+    sessionId: "bps_test",
+  });
+  assert.equal(portalCreate.calls.length, 1);
+  assert.equal(portalCreate.calls[0]?.[0]?.customer, "cus_existing");
+  assert.equal(requireRecentAuth.calls.length, 1, "portal needs a recent sign-in");
+  assert.equal(sessionsCreate.calls.length, 0, "must not create a second Checkout");
+}
+
 for (const status of ["active", "trialing", "past_due"] as const) {
-  test(`existing customer with ${status} subscription is blocked before Checkout`, async () => {
+  test(`existing customer with ${status} subscription is sent to the billing portal`, async () => {
     currentEntitlement = existingCustomerEntitlement();
     priorSubscriptions = [{ status }];
 
     const res = await POST(checkoutRequest());
-    assert.equal(res.status, 409);
-    const body = (await res.json()) as { error?: { code?: string } };
-    assert.equal(body.error?.code, "subscription_already_active");
+    await assertSentToPortal(res);
     assert.equal(subscriptionsList.calls.length, 1);
     assert.equal(customersCreate.calls.length, 0);
-    assert.equal(sessionsCreate.calls.length, 0);
   });
 }
+
+test("a Stripe-sourced Pro entitlement is sent to the billing portal", async () => {
+  currentEntitlement = { ...existingCustomerEntitlement(), plan: "PRO", proSource: "stripe" };
+
+  const res = await POST(checkoutRequest());
+  await assertSentToPortal(res);
+  assert.equal(customersCreate.calls.length, 0);
+});
+
+test("the portal branch asks for a fresh sign-in when the session is old", async () => {
+  currentEntitlement = existingCustomerEntitlement();
+  priorSubscriptions = [{ status: "active" }];
+  recentAuth = false;
+
+  const res = await POST(checkoutRequest());
+  assert.equal(res.status, 401);
+  const body = (await res.json()) as { error?: { code?: string } };
+  assert.equal(body.error?.code, "reauth_required");
+  assert.equal(portalCreate.calls.length, 0);
+  assert.equal(sessionsCreate.calls.length, 0);
+});
+
+test("an open Checkout for the same interval is reused, not duplicated", async () => {
+  currentEntitlement = existingCustomerEntitlement();
+  openSessions = [
+    {
+      id: "cs_open",
+      url: "https://stripe.test/open",
+      expires_at: Math.floor(Date.now() / 1000) + 3600,
+      metadata: { userId: "user-1", interval: "monthly" },
+    },
+  ];
+
+  const res = await POST(checkoutRequest());
+  assert.equal(res.status, 200);
+  assert.deepEqual(await res.json(), {
+    checkoutUrl: "https://stripe.test/open",
+    sessionId: "cs_open",
+  });
+  assert.equal(sessionsCreate.calls.length, 0);
+  assert.equal(sessionsExpire.calls.length, 0);
+});
+
+test("other open Checkouts are expired before a new one is created", async () => {
+  currentEntitlement = existingCustomerEntitlement();
+  openSessions = [
+    {
+      id: "cs_annual",
+      url: "https://stripe.test/annual",
+      expires_at: Math.floor(Date.now() / 1000) + 3600,
+      metadata: { userId: "user-1", interval: "annual" },
+    },
+  ];
+
+  const res = await POST(checkoutRequest());
+  await assertCheckoutSuccess(res);
+  assert.deepEqual(
+    sessionsExpire.calls.map((c) => c[0]),
+    ["cs_annual"],
+  );
+  const options = createdSessionOptions() as { metadata?: Record<string, string> };
+  assert.deepEqual(options.metadata, { userId: "user-1", interval: "monthly" });
+});
 
 for (const status of ["canceled", "incomplete_expired"] as const) {
   test(`existing customer with prior ${status} subscription gets no repeat trial`, async () => {
