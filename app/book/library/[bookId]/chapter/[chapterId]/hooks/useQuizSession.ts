@@ -16,7 +16,10 @@ import {
 import {
   createInFlightGuard,
   isStaleAfterRecordedSubmit,
+  mergeQuizDraft,
+  readQuizDraft,
   unansweredQuestionIds,
+  type QuizAttemptProgress,
 } from "../lib/reader-quiz-flow-core";
 import { IS_DEV } from "@/app/book/_lib/client-env";
 import { shouldUseLocalFallback } from "../lib/fallbackPolicy";
@@ -159,6 +162,28 @@ function draftAnswersKey(bookId: string, chapterNumber: number, difficulty: Read
   return `quiz-draft:${bookId}:${chapterNumber}:${difficulty}`;
 }
 
+function readStoredDraft(key: string): unknown {
+  try {
+    const raw = window.localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeDraft(
+  bookId: string,
+  chapterNumber: number,
+  difficulty: ReadingDepth,
+  attemptNumber: number,
+  patch: { answers?: Record<string, string>; progress?: QuizAttemptProgress }
+): void {
+  const key = draftAnswersKey(bookId, chapterNumber, difficulty);
+  try {
+    window.localStorage.setItem(key, JSON.stringify(mergeQuizDraft(readStoredDraft(key), attemptNumber, patch)));
+  } catch { /* ignore quota errors */ }
+}
+
 function saveDraftAnswers(
   bookId: string,
   chapterNumber: number,
@@ -166,12 +191,7 @@ function saveDraftAnswers(
   attemptNumber: number,
   answers: Record<string, string>
 ): void {
-  try {
-    window.localStorage.setItem(
-      draftAnswersKey(bookId, chapterNumber, difficulty),
-      JSON.stringify({ attemptNumber, answers })
-    );
-  } catch { /* ignore quota errors */ }
+  writeDraft(bookId, chapterNumber, difficulty, attemptNumber, { answers });
 }
 
 function loadDraftAnswers(
@@ -180,15 +200,7 @@ function loadDraftAnswers(
   difficulty: ReadingDepth,
   attemptNumber: number
 ): Record<string, string> {
-  try {
-    const raw = window.localStorage.getItem(draftAnswersKey(bookId, chapterNumber, difficulty));
-    if (!raw) return {};
-    const parsed = JSON.parse(raw);
-    if (parsed.attemptNumber !== attemptNumber) return {};
-    return parsed.answers && typeof parsed.answers === "object" ? parsed.answers : {};
-  } catch {
-    return {};
-  }
+  return readQuizDraft(readStoredDraft(draftAnswersKey(bookId, chapterNumber, difficulty)), attemptNumber).answers;
 }
 
 function clearDraftAnswers(bookId: string, chapterNumber: number, difficulty: ReadingDepth): void {
@@ -654,6 +666,20 @@ export function useQuizSession(params: {
     return server;
   }, [load, session, buildLocalSession, syncFromSession, bookId, chapterNumber, difficulty, retryIncorrectOnly]);
 
+  // Per-question grading for the current attempt, kept with the answer draft so
+  // QuizPanel can restore it after a tab switch or a refresh.
+  const loadAttemptProgress = useCallback(
+    (attemptNumber: number): QuizAttemptProgress =>
+      readQuizDraft(readStoredDraft(draftAnswersKey(bookId, chapterNumber, difficulty)), attemptNumber).progress,
+    [bookId, chapterNumber, difficulty]
+  );
+  const saveAttemptProgress = useCallback(
+    (attemptNumber: number, progress: QuizAttemptProgress) => {
+      writeDraft(bookId, chapterNumber, difficulty, attemptNumber, { progress });
+    },
+    [bookId, chapterNumber, difficulty]
+  );
+
   const toggleExplanation = useCallback(
     (questionId: string) => {
       const shouldTrack = !explanationOpen[questionId];
@@ -707,5 +733,7 @@ export function useQuizSession(params: {
     load,
     toggleExplanation,
     trackNextChapterClick,
+    loadAttemptProgress,
+    saveAttemptProgress,
   };
 }

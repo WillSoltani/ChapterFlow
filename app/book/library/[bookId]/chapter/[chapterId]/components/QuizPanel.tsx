@@ -24,7 +24,11 @@ import {
 } from "@/app/book/_lib/flow-points-economy";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { ProgressRing as SharedProgressRing } from "@/components/ui/ProgressRing";
-import { unansweredQuestionIds } from "../lib/reader-quiz-flow-core";
+import {
+  unansweredQuestionIds,
+  type QuizAttemptProgress,
+  type QuizFeedbackState,
+} from "../lib/reader-quiz-flow-core";
 
 const OPTION_LABELS = ["A", "B", "C", "D", "E"];
 
@@ -53,6 +57,9 @@ type QuizPanelProps = {
   questionFlow?: QuestionPresentationStyle;
   shuffleQuestions?: boolean;
   retryIncorrectOnly?: boolean;
+  /** Saved per-question grading for an attempt (survives tab switch / refresh). */
+  loadProgress?: (attemptNumber: number) => QuizAttemptProgress;
+  onProgressChange?: (attemptNumber: number, progress: QuizAttemptProgress) => void;
 };
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -620,6 +627,8 @@ export function QuizPanel({
   questionFlow = "all-at-once",
   shuffleQuestions = false,
   retryIncorrectOnly = false,
+  loadProgress,
+  onProgressChange,
 }: QuizPanelProps) {
   const [questionFeedback, setQuestionFeedback] = useState<
     Record<string, "pending" | "correct" | "incorrect-retry" | "incorrect-final">
@@ -673,14 +682,21 @@ export function QuizPanel({
     return questions;
   }, [session, shuffleQuestions, retryIncorrectOnly, previousIncorrectIds]);
 
-  // Reset local quiz state when session refreshes (e.g. retry)
+  // Reset local quiz state when session refreshes (e.g. retry), or restore the
+  // saved grading the first time this panel sees an in-progress attempt.
   const prevSessionRef = useRef(session);
+  const hydratedAttemptRef = useRef<number | null>(null);
+  // The commit that resets or restores state still holds the old values, so
+  // the save effect skips that one run.
+  const skipProgressSaveRef = useRef(false);
   useEffect(() => {
     const prev = prevSessionRef.current;
     prevSessionRef.current = session;
-    if (!session || session === prev) return;
+    if (!session || session.result) return;
     // Fresh session (no result) after a submitted session means retry
-    if (!session.result && prev?.result) {
+    if (session !== prev && prev?.result) {
+      hydratedAttemptRef.current = session.attemptNumber;
+      skipProgressSaveRef.current = true;
       // Capture incorrect question IDs from previous attempt for retry-incorrect-only mode
       const incorrectIds = new Set(
         prev.questions.filter((q) => q.isCorrect === false).map((q) => q.questionId)
@@ -692,8 +708,41 @@ export function QuizPanel({
       setCorrectByQuestion({});
       setResultView("results");
       setOneByOneIndex(0);
+      return;
     }
-  }, [session]);
+    if (hydratedAttemptRef.current === session.attemptNumber) return;
+    hydratedAttemptRef.current = session.attemptNumber;
+    const saved = loadProgress?.(session.attemptNumber);
+    if (!saved) return;
+    skipProgressSaveRef.current = true;
+    setQuestionFeedback(saved.feedback);
+    setRetriesUsed(saved.retriesUsed);
+    setDisabledChoices(
+      Object.fromEntries(Object.entries(saved.disabledChoices).map(([id, choices]) => [id, new Set(choices)]))
+    );
+    setCorrectByQuestion(saved.correctByQuestion);
+    setPreviousIncorrectIds(new Set(saved.retakeQuestionIds));
+  }, [session, loadProgress]);
+
+  useEffect(() => {
+    if (!session || session.result || !onProgressChange) return;
+    if (hydratedAttemptRef.current !== session.attemptNumber) return;
+    if (skipProgressSaveRef.current) {
+      skipProgressSaveRef.current = false;
+      return;
+    }
+    const feedback: Record<string, QuizFeedbackState> = {};
+    for (const [id, state] of Object.entries(questionFeedback)) {
+      if (state !== "pending") feedback[id] = state;
+    }
+    onProgressChange(session.attemptNumber, {
+      feedback,
+      retriesUsed,
+      disabledChoices: Object.fromEntries(Object.entries(disabledChoices).map(([id, set]) => [id, [...set]])),
+      correctByQuestion,
+      retakeQuestionIds: [...previousIncorrectIds],
+    });
+  }, [session, onProgressChange, questionFeedback, retriesUsed, disabledChoices, correctByQuestion, previousIncorrectIds]);
 
   // Announce the final score to screen readers once the result lands (WCAG 4.1.3).
   const announcedResultRef = useRef(false);

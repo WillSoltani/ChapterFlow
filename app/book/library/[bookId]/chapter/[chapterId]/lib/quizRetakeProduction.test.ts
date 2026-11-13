@@ -138,3 +138,9 @@ test("READER-06: submit() is single-flight and ignores a late 409 for an already
   assert.match(submitBody, /submitGuardRef\.current\.exit\(\);/);
   assert.match(submitBody, /isStaleAfterRecordedSubmit\(submitError, session\.attemptNumber, recordedAttemptRef\.current\)/);
 });
+
+test("READER-10: the live quiz panel is wired to restore and save per-question grading", () => {
+  const content = readFileSync(new URL("../components/ReaderPhaseContent.tsx", import.meta.url), "utf8");
+  assert.match(content, /loadProgress=\{quiz\.loadAttemptProgress\}/);
+  assert.match(content, /onProgressChange=\{quiz\.saveAttemptProgress\}/);
+});

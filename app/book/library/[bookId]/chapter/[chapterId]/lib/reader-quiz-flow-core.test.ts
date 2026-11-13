@@ -5,9 +5,12 @@ import {
   classifyQuizSubmission,
   completionScore,
   createInFlightGuard,
+  emptyQuizProgress,
   isStaleAfterRecordedSubmit,
+  mergeQuizDraft,
   projectIncorrectQuestionReviews,
   quizSubmitErrorMessage,
+  readQuizDraft,
   shouldEnrollFlashcards,
   unansweredQuestionIds,
 } from "./reader-quiz-flow-core";
@@ -98,4 +101,70 @@ test("isStaleAfterRecordedSubmit ignores a 409 only for an attempt already recor
   assert.equal(isStaleAfterRecordedSubmit(stale, 3, 2), false);
   assert.equal(isStaleAfterRecordedSubmit({ code: "invalid_answers" }, 2, 2), false);
   assert.equal(isStaleAfterRecordedSubmit(new Error("x"), 2, 2), false);
+});
+
+// READER-10: per-question grading and retry counts survive a tab switch or a
+// refresh, stored with the answer draft for the same attempt.
+const savedProgress = {
+  feedback: { q1: "correct", q2: "incorrect-retry", q3: "incorrect-final" } as const,
+  retriesUsed: { q2: 1, q3: 3 },
+  disabledChoices: { q2: ["q2::choice::1"], q3: ["q3::choice::0", "q3::choice::2"] },
+  correctByQuestion: { q1: "q1::choice::0" },
+  retakeQuestionIds: ["q2", "q3"],
+};
+
+test("readQuizDraft restores answers and grading progress for the same attempt only", () => {
+  const raw = { attemptNumber: 2, answers: { q1: "q1::choice::0" }, progress: savedProgress };
+  const restored = readQuizDraft(raw, 2);
+  assert.deepEqual(restored.answers, { q1: "q1::choice::0" });
+  assert.deepEqual(restored.progress, savedProgress);
+  assert.deepEqual(readQuizDraft(raw, 3), { answers: {}, progress: emptyQuizProgress() });
+});
+
+test("readQuizDraft reads an older answers-only draft and drops malformed progress", () => {
+  assert.deepEqual(readQuizDraft({ attemptNumber: 1, answers: { q1: "a" } }, 1), {
+    answers: { q1: "a" },
+    progress: emptyQuizProgress(),
+  });
+  const messy = {
+    attemptNumber: 1,
+    answers: { q1: "a", q2: 7 },
+    progress: {
+      feedback: { q1: "pending", q2: "correct", q3: "bogus" },
+      retriesUsed: { q1: "2", q2: 1 },
+      disabledChoices: { q1: "x", q2: ["b", 3] },
+      correctByQuestion: { q2: "b", q3: null },
+      retakeQuestionIds: ["q2", 4],
+    },
+  };
+  assert.deepEqual(readQuizDraft(messy, 1), {
+    answers: { q1: "a" },
+    progress: {
+      feedback: { q2: "correct" },
+      retriesUsed: { q2: 1 },
+      disabledChoices: { q2: ["b"] },
+      correctByQuestion: { q2: "b" },
+      retakeQuestionIds: ["q2"],
+    },
+  });
+  assert.deepEqual(readQuizDraft(null, 1), { answers: {}, progress: emptyQuizProgress() });
+});
+
+test("mergeQuizDraft keeps the other half of the draft for the same attempt and resets on a new one", () => {
+  const existing = { attemptNumber: 2, answers: { q1: "a" }, progress: savedProgress };
+  assert.deepEqual(mergeQuizDraft(existing, 2, { answers: { q1: "a", q2: "b" } }), {
+    attemptNumber: 2,
+    answers: { q1: "a", q2: "b" },
+    progress: savedProgress,
+  });
+  assert.deepEqual(mergeQuizDraft(existing, 2, { progress: emptyQuizProgress() }), {
+    attemptNumber: 2,
+    answers: { q1: "a" },
+    progress: emptyQuizProgress(),
+  });
+  assert.deepEqual(mergeQuizDraft(existing, 3, { answers: { q4: "d" } }), {
+    attemptNumber: 3,
+    answers: { q4: "d" },
+    progress: emptyQuizProgress(),
+  });
 });
