@@ -88,12 +88,22 @@ test("the same account keeps its local data", () => {
   assert.equal(local.getItem("book-accelerator:profile:v1") !== null, true);
 });
 
-test("data with no recorded owner is treated as someone else's", () => {
+test("data from before owner records existed is kept and claimed, not wiped", () => {
   const local = new MemoryStorage();
   const session = new MemoryStorage();
   seedUserA(local, session);
+  // No owner record yet: the first account seen claims the data, so shipping
+  // this check does not wipe every reader's device-only data once.
+  assert.equal(reconcileLocalUserDataOwner([local, session], USER_A), "claimed");
+  assert.equal(local.getItem("book-accelerator:profile:v1") !== null, true);
+  assert.equal(local.getItem("quiz-draft:atomic-habits:1:standard") !== null, true);
+  assert.equal(session.getItem("ask-book-chat:atomic-habits") !== null, true);
+  assert.equal(local.getItem(LOCAL_USER_DATA_OWNER_KEY), USER_A);
+  assert.equal(session.getItem(LOCAL_USER_DATA_OWNER_KEY), USER_A);
+  // From then on a different account clears it.
   assert.equal(reconcileLocalUserDataOwner([local, session], USER_B), "cleared");
   assert.equal(local.getItem("book-accelerator:profile:v1"), null);
+  assert.equal(session.getItem("ask-book-chat:atomic-habits"), null);
   assert.equal(local.getItem(LOCAL_USER_DATA_OWNER_KEY), USER_B);
 });
 

@@ -15,7 +15,9 @@
  * keeps that account's device-only data (quiz drafts, practice checks, local
  * takeaways); it differs for every other account, which triggers the wipe. A
  * missing owner (signed out, or a session from before this cookie existed)
- * changes nothing. It is a storage scope only, never identity.
+ * changes nothing, and stored data that has no owner record yet is claimed,
+ * not wiped (see reconcileLocalUserDataOwner). It is a storage scope only,
+ * never identity.
  *
  * Kept (device-level, not personal): everything not matched below, notably
  * `cf:auth-generation` (the cross-tab cache wake-up signal). The theme is NOT
@@ -82,9 +84,13 @@ export type OwnerReconcileResult = "unknown" | "same" | "claimed" | "cleared";
 /**
  * Compare each storage's recorded owner with the current one (localStorage and
  * this tab's sessionStorage are checked separately, since another tab may have
- * already re-owned localStorage). A different or missing owner wipes that
- * storage's personal keys; data without an owner record predates this check and
- * cannot be attributed. An unknown current account changes nothing.
+ * already re-owned localStorage). A different recorded owner wipes that
+ * storage's personal keys. Data with no owner record predates this check: it is
+ * kept and claimed by the first account seen, because wiping it would destroy
+ * every existing reader's device-only data (quiz drafts, notes not yet synced)
+ * once when this ships. The cost is that, on a shared browser, data left from
+ * before this check is seen one more time by the next account. An unknown
+ * current account changes nothing.
  */
 export function reconcileLocalUserDataOwner(
   storages: readonly StorageLike[],
@@ -95,15 +101,14 @@ export function reconcileLocalUserDataOwner(
   for (const storage of storages) {
     const recorded = storage.getItem(LOCAL_USER_DATA_OWNER_KEY);
     if (recorded === currentOwner) continue;
-    let hadPersonal = false;
-    for (let i = 0; i < storage.length && !hadPersonal; i += 1) {
-      const key = storage.key(i);
-      if (key !== null && isPersonalStorageKey(key)) hadPersonal = true;
+    if (recorded === null) {
+      storage.setItem(LOCAL_USER_DATA_OWNER_KEY, currentOwner);
+      if (result === "same") result = "claimed";
+      continue;
     }
     clearPersonalStorage([storage]);
     storage.setItem(LOCAL_USER_DATA_OWNER_KEY, currentOwner);
-    if (recorded !== null || hadPersonal) result = "cleared";
-    else if (result === "same") result = "claimed";
+    result = "cleared";
   }
   return result;
 }
