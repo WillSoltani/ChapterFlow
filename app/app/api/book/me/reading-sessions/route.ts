@@ -25,17 +25,10 @@ import {
 import { getUserAgentFromRequest } from "@/app/app/api/book/_lib/user-agent";
 import { resolveLocation } from "@/app/app/api/book/_lib/location";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
+import { resolveReadingDayKey } from "@/app/app/api/book/_lib/day-key-core";
+import { sanitizeLastOpenedAt } from "@/app/app/api/book/_lib/progress-write-core";
 
 export const runtime = "nodejs";
-
-function toDayKey(value: string): string {
-  const date = new Date(value);
-  if (!Number.isFinite(date.getTime())) return "";
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
 
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
@@ -55,11 +48,17 @@ export async function POST(req: Request) {
       min: 1,
       max: 60 * 60 * 1000,
     });
-    const occurredAt =
-      typeof body.occurredAt === "string" && body.occurredAt.trim()
-        ? body.occurredAt
-        : nowIso();
-    const dayKey = toDayKey(occurredAt) || toDayKey(nowIso());
+    const serverNow = nowIso();
+    // Unparseable or future timestamps fall back to the server time, so they
+    // can't land raw in lastActiveAt or file reading under an arbitrary day.
+    const occurredAt = sanitizeLastOpenedAt(body.occurredAt, serverNow);
+    // Optional `localDay` (YYYY-MM-DD): the reader's own calendar day. Clients
+    // that don't send it (current iOS, older web bundles) keep the server-clock key.
+    const dayKey = resolveReadingDayKey({
+      clientLocalDay: body.localDay,
+      occurredAt,
+      serverNow,
+    });
 
     // Idempotent write: a retried reading-session POST carrying the same
     // client mutation id (Idempotency-Key) replays the first response instead
