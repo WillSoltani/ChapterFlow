@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { startTransition, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function ChapterError({
   error,
@@ -10,9 +11,18 @@ export default function ChapterError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const router = useRouter();
   useEffect(() => {
     console.error("Chapter reading error:", error);
   }, [error]);
+
+  // reset() alone re-renders with the same failed server payload; refresh
+  // re-requests it first.
+  const retry = () =>
+    startTransition(() => {
+      router.refresh();
+      reset();
+    });
 
   return (
     <div
@@ -44,7 +54,8 @@ export default function ChapterError({
         </p>
         <div style={{ display: "flex", gap: 12, justifyContent: "center" }}>
           <button
-            onClick={reset}
+            type="button"
+            onClick={retry}
             style={{
               padding: "12px 24px",
               borderRadius: 12,

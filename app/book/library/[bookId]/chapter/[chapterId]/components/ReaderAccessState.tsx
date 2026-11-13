@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { BookLock, CheckCircle2, CloudOff, FileQuestion } from "lucide-react";
-import { PRICING, MONTHLY_PRICE_WITH_CURRENCY, TRIAL_CTA_LABEL, UPGRADE_RETURN_PATH } from "@/lib/pricing";
+import { PRICING, MONTHLY_PRICE_WITH_CURRENCY, UPGRADE_RETURN_PATH } from "@/lib/pricing";
 import { buildReauthReturnTo } from "../lib/reader-flow-core";
 import type { useReaderAccess } from "../hooks/useReaderAccess";
 import { ChapterSkeleton } from "./ChapterSkeleton";
@@ -40,8 +40,7 @@ function PaywallCard({ bookId }: { bookId: string }) {
             Unlimited books for {MONTHLY_PRICE_WITH_CURRENCY}/mo
           </h1>
           <p className="mt-1 text-sm text-(--cr-text-secondary)">
-            That&rsquo;s about ${(PRICING.monthlyAmount / 30).toFixed(2)} a day — and the
-            first {PRICING.trialDays} days are free. Cancel anytime.
+            That&rsquo;s about ${(PRICING.monthlyAmount / 30).toFixed(2)} a day. Cancel anytime.
           </p>
           <ul className="mx-auto mt-5 max-w-sm space-y-2 text-left">
             {[
@@ -64,8 +63,12 @@ function PaywallCard({ bookId }: { bookId: string }) {
               href={UPGRADE_RETURN_PATH}
               className="inline-flex min-h-11 items-center rounded-xl bg-(--cr-accent) px-5 py-2.5 text-sm font-semibold text-(--cr-text-inverse) transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cr-bg-root) focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]"
             >
-              {TRIAL_CTA_LABEL}
+              Upgrade to Pro
             </Link>
+            {/* The trial goes to new subscribers only, so it is not promised. */}
+            <p className="-mt-1 text-xs text-(--cr-text-secondary)">
+              New subscribers get {PRICING.trialDays} days free.
+            </p>
             <Link
               href={`/book/library/${encodeURIComponent(bookId)}`}
               className="inline-flex rounded-xl border border-(--cr-glass-border-teal) bg-(--cr-accent-active) px-4 py-2 text-sm font-medium text-(--cr-accent)"

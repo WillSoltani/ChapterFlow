@@ -79,3 +79,19 @@ test("a 402 book-limit answer on the chapter shows the paywall card", () => {
   const upgrade = view.getAllByRole("link").find((link) => link.getAttribute("href") === "/book/settings?upgrade=1");
   assert.ok(upgrade, "upgrade link goes to the settings subscription card");
 });
+
+test("ACCT-12: the reader's upgrade button says Upgrade to Pro and qualifies the trial", () => {
+  const cases: Array<Partial<Access>> = [
+    { contentStatus: 402, errorCode: "paywall_book_limit" },
+    { bookAccessStatus: "blocked", paywallHit: true },
+  ];
+  for (const overrides of cases) {
+    const view = renderState(overrides);
+    const upgrade = view.getByRole("link", { name: "Upgrade to Pro" });
+    assert.equal(upgrade.getAttribute("href"), "/book/settings?upgrade=1");
+    assert.ok(view.getByText("New subscribers get 14 days free."));
+    assert.equal(view.queryByText(/free trial/i), null);
+    assert.equal(view.queryByText(/first 14 days are free/), null);
+    view.unmount();
+  }
+});

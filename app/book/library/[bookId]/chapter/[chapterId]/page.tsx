@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { requireDashboardAccess } from "@/app/_lib/require-dashboard-access";
 import { requireUser } from "@/app/app/api/_lib/auth";
@@ -49,6 +50,23 @@ async function loadInitialDepth(): Promise<ReadingDepth | undefined> {
     return initialReaderDepth(item?.settings);
   } catch {
     return undefined;
+  }
+}
+
+// The tab names the chapter and the book; the layout template adds the brand.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ bookId: string; chapterId: string }>;
+}): Promise<Metadata> {
+  const { bookId, chapterId } = await params;
+  try {
+    const book = await loadBook(bookId);
+    const chapter = book ? findLibraryChapterSummary(book, chapterId) : null;
+    if (!book || !chapter) return {};
+    return { title: `${chapter.title} · ${book.title}` };
+  } catch {
+    return {};
   }
 }
 
