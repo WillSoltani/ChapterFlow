@@ -281,6 +281,7 @@ export function ChapterReaderClient({
     progressHydrated: hydrated,
     chapterHydrated,
     isLocked,
+    currentChapterNumber: hydrated ? bookProgress.currentChapter?.order : undefined,
     access: readerAccess,
   };
   if (!chapter) return <ReaderAccessState {...accessStateProps} />;

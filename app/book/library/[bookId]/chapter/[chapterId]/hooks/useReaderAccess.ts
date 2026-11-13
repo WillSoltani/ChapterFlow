@@ -111,6 +111,7 @@ export function useReaderAccess({
     source: contentSource,
     error: contentError,
     status: contentStatus,
+    code: contentErrorCode,
   } = useChapterContent({
     bookId,
     chapterNumber,
@@ -214,6 +215,7 @@ export function useReaderAccess({
     chapter,
     contentHydrated,
     contentStatus,
+    errorCode: contentErrorCode,
     servingOfflineCopy,
     initialProgressFloor: attestedInitial?.progressFloor,
     hasAttestedSeed,
