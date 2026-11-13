@@ -1,5 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { shouldRedirectToOnboarding } from "@/hooks/book/onboarding-redirect-core";
 
 // SHELL-02 / PROG-06 / DATA-03: a client page sends the reader to onboarding
@@ -43,3 +45,25 @@ test("local state already complete, not hydrated yet, or caller opts out: no red
   assert.equal(shouldRedirectToOnboarding({ ...base, hydrated: false, serverAnswer: no }), false);
   assert.equal(shouldRedirectToOnboarding({ ...base, skip: true, serverAnswer: no }), false);
 });
+
+// The nine client pages use the shared rule; none redirects to onboarding on
+// its own.
+const ONBOARDING_REDIRECT_PAGES = [
+  "app/book/library/[bookId]/BookDetailClient.tsx",
+  "app/book/badges/BookBadgesClient.tsx",
+  "app/book/profile/BookProfileClient.tsx",
+  "app/book/journeys/JourneysClient.tsx",
+  "app/book/journeys/[journeyId]/JourneyDetailClient.tsx",
+  "app/book/events/EventsClient.tsx",
+  "app/book/events/[eventId]/EventDetailClient.tsx",
+  "components/progress/ProgressPage.tsx",
+  "app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderAccess.ts",
+];
+
+for (const file of ONBOARDING_REDIRECT_PAGES) {
+  test(`${file} redirects to onboarding only through the shared rule`, () => {
+    const source = readFileSync(path.join(process.cwd(), file), "utf8");
+    assert.match(source, /useOnboardingRedirect\(/);
+    assert.doesNotMatch(source, /router\.replace\(\s*["'`]\/book["'`]\s*\)/);
+  });
+}
