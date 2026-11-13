@@ -15,6 +15,8 @@ export type ChapterNavLink = {
   title: string;
   href: string;
   locked: boolean;
+  /** Runs before the link opens (see buildChapterNeighbours). */
+  onFollow?: (() => void) | undefined;
 };
 
 export type ChapterNeighbours = {
@@ -317,7 +319,10 @@ function NeighbourRow({
   return (
     <Link
       href={link.href}
-      onClick={onNavigate}
+      onClick={() => {
+        link.onFollow?.();
+        onNavigate();
+      }}
       className={`${rowClass} transition-colors hover:bg-(--cr-bg-surface-3) ${focusRing}`}
     >
       {icon}
@@ -351,7 +356,7 @@ export function ChapterPager({ neighbours }: { neighbours: ChapterNeighbours }) 
             <span className="text-cf-caption">{NEXT_LOCKED_REASON}</span>
           </span>
         ) : (
-          <Link href={next.href} className={`${linkClass} -mr-2`}>
+          <Link href={next.href} onClick={() => next.onFollow?.()} className={`${linkClass} -mr-2`}>
             <span>Chapter {next.order}</span>
             <ChevronRight className="h-4 w-4" aria-hidden="true" />
           </Link>

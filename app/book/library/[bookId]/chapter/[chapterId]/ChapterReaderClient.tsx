@@ -297,6 +297,8 @@ export function ChapterReaderClient({
     sessionMode,
     getChapterState: bookProgress.getChapterState,
     quizPassed,
+    chapterCompleted: readerProgress.chapterState === "completed",
+    onFinishChapter: () => finishChapter(),
   });
   const quizProgress = quizStepProgress(state.activeTab, quiz.session, quiz.answers);
   const handleLearningModeChange = (mode: LearningMode) => {
@@ -339,13 +341,18 @@ export function ChapterReaderClient({
     const outcome = await submitQuiz();
     if (outcome.kind === "passed") phaseCompletion.markPhaseCompleted("quiz");
   };
-  const handleContinueToPractice = () => {
-    if (!readerInteractionsReady) return;
+  // "Finish chapter", also run by the next chapter link after a pass so the
+  // chapter is marked finished and its loop-complete points are claimed.
+  const finishChapter = () => {
+    if (!readerInteractionsReady) return false;
     phaseCompletion.markPhaseCompleted("quiz");
     phaseCompletion.markPhaseCompleted("practice");
     markChapterComplete(chapter.id, chapterQuiz.completionScore);
-    setShowCompleteModal(true);
     claimLoopCompleteIP().catch(() => {});
+    return true;
+  };
+  const handleContinueToPractice = () => {
+    if (finishChapter()) setShowCompleteModal(true);
   };
   const handleRetryQuiz = () => {
     if (readerInteractionsReady) void retryQuiz();

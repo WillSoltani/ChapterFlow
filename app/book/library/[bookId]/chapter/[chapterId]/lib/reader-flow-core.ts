@@ -121,10 +121,20 @@ export function buildNextChapterRoute(
   return sessionMode ? `${route}?session=1` : route;
 }
 
-type NeighbourLink = { order: number; title: string; href: string; locked: boolean };
+type NeighbourLink = {
+  order: number;
+  title: string;
+  href: string;
+  locked: boolean;
+  /** Runs before the link opens (the next chapter after a pass, while this
+   *  chapter is not finished: the finish flow, so nothing is skipped). */
+  onFollow?: () => void;
+};
 
 /** Previous / next chapter for the step menu and the pager. Only the next
- *  chapter can be locked (it opens once this chapter's quiz is passed). */
+ *  chapter can be locked (it opens once this chapter's quiz is passed). Once
+ *  the quiz is passed and this chapter is not finished yet, following the next
+ *  link runs `onFinishChapter` first, as "Finish chapter" would. */
 export function buildChapterNeighbours({
   bookId,
   chapters,
@@ -132,6 +142,8 @@ export function buildChapterNeighbours({
   sessionMode,
   getChapterState,
   quizPassed = false,
+  chapterCompleted = false,
+  onFinishChapter,
 }: {
   bookId: string;
   chapters: ReadonlyArray<{ id: string; order: number; title: string }>;
@@ -140,11 +152,15 @@ export function buildChapterNeighbours({
   getChapterState: (chapterId: string) => string;
   /** This chapter's quiz is passed, so the next one is open. */
   quizPassed?: boolean;
+  /** This chapter is already marked finished. */
+  chapterCompleted?: boolean;
+  onFinishChapter?: (() => void) | undefined;
 }): { prev: NeighbourLink | null; next: NeighbourLink | null } {
   const index = chapters.findIndex((item) => item.id === chapterId);
   if (index < 0) return { prev: null, next: null };
   const prev = index > 0 ? chapters[index - 1] : undefined;
   const next = chapters[index + 1];
+  const finishFirst = quizPassed && !chapterCompleted ? onFinishChapter : undefined;
   return {
     prev: prev
       ? {
@@ -160,6 +176,7 @@ export function buildChapterNeighbours({
           title: next.title,
           href: buildNextChapterRoute(bookId, next.id, sessionMode),
           locked: !quizPassed && getChapterState(next.id) === "locked",
+          ...(finishFirst ? { onFollow: finishFirst } : {}),
         }
       : null,
   };

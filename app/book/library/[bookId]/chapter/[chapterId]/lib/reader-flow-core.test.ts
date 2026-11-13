@@ -212,6 +212,48 @@ test("the next chapter is open once this chapter's quiz is passed", () => {
   assert.equal(notPassed.next?.locked, true);
 });
 
+test("after a pass, following the next chapter link finishes this chapter first", () => {
+  const finish = () => {};
+  const base = {
+    bookId: "b",
+    chapters: NAV_CHAPTERS,
+    chapterId: "c1",
+    sessionMode: false,
+    getChapterState: (id: string) => (id === "c2" ? "locked" : "current"),
+    onFinishChapter: finish,
+  };
+
+  // Passed but not finished: the next link runs the finish flow (chapter
+  // marked complete, loop-complete Insight Points claimed) before it opens.
+  const passed = buildChapterNeighbours({ ...base, quizPassed: true, chapterCompleted: false });
+  assert.equal(passed.next?.onFollow, finish);
+  // The previous chapter link never finishes this chapter.
+  assert.equal(passed.prev, null);
+
+  // Already finished: a plain link.
+  const finished = buildChapterNeighbours({ ...base, quizPassed: true, chapterCompleted: true });
+  assert.equal(finished.next?.onFollow, undefined);
+
+  // Not passed: nothing to finish (the server would refuse the claim).
+  const notPassed = buildChapterNeighbours({
+    ...base,
+    getChapterState: () => "current",
+    quizPassed: false,
+    chapterCompleted: false,
+  });
+  assert.equal(notPassed.next?.locked, false);
+  assert.equal(notPassed.next?.onFollow, undefined);
+
+  const middle = buildChapterNeighbours({
+    ...base,
+    chapterId: "c2",
+    quizPassed: true,
+    chapterCompleted: false,
+  });
+  assert.equal(middle.prev?.onFollow, undefined);
+  assert.equal(middle.next?.onFollow, finish);
+});
+
 test("quiz step progress is answered over total on the quiz, full once graded, null elsewhere", () => {
   const session = {
     questions: [{ questionId: "q1" }, { questionId: "q2" }, { questionId: "q3" }, { questionId: "q4" }],

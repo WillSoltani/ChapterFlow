@@ -3,8 +3,8 @@ import "../../../../../../../tests/_lib/dom";
 import assert from "node:assert/strict";
 import { afterEach, test } from "node:test";
 import { useRef, useState } from "react";
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
-import { ReaderStepMenu } from "./ReaderChapterNav";
+import { cleanup, fireEvent, render, waitFor, within } from "@testing-library/react";
+import { ChapterPager, ReaderStepMenu, type ChapterNeighbours } from "./ReaderChapterNav";
 
 // next/link's idle-callback fallback reads `self`, which jsdom globals omit.
 Object.defineProperty(globalThis, "self", { configurable: true, writable: true, value: globalThis });
@@ -34,7 +34,11 @@ afterEach(() => {
 
 // The trigger is deliberately not focused on click (Safari and touch browsers
 // do not focus a clicked button), so focus return cannot lean on the opener.
-function Harness() {
+function Harness({
+  neighbours = { prev: null, next: null },
+}: {
+  neighbours?: ChapterNeighbours;
+}) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   return (
@@ -54,7 +58,7 @@ function Harness() {
         isPhaseAccessible={() => true}
         getLockMessage={() => null}
         onSelectPhase={() => {}}
-        neighbours={{ prev: null, next: null }}
+        neighbours={neighbours}
       />
       <button type="button">Elsewhere</button>
     </>
@@ -109,5 +113,34 @@ test("phone step menu is a sheet that closes on Escape", async () => {
   const sheet = await openMenu(view);
   assert.equal(sheet.getAttribute("aria-modal"), "true");
   fireEvent.keyDown(document, { key: "Escape" });
+  await waitFor(() => assert.equal(view.queryByRole("dialog", { name: "Chapter steps" }), null));
+});
+
+// The reader attaches onFollow to the next chapter link once the quiz is
+// passed and the chapter is not finished yet, so the finish flow (and its
+// loop-complete Insight Points claim) runs before the next chapter opens.
+function finishingNeighbours(onFollow: () => void): ChapterNeighbours {
+  return {
+    prev: { order: 1, title: "One", href: "/book/library/b/chapter/c1", locked: false },
+    next: { order: 3, title: "Three", href: "/book/library/b/chapter/c3", locked: false, onFollow },
+  };
+}
+
+test("the pager's next chapter link runs the finish flow before it navigates", () => {
+  let finished = 0;
+  const view = render(<ChapterPager neighbours={finishingNeighbours(() => (finished += 1))} />);
+  fireEvent.click(view.getByRole("link", { name: "Chapter 1" }));
+  assert.equal(finished, 0);
+  fireEvent.click(view.getByRole("link", { name: "Chapter 3" }));
+  assert.equal(finished, 1);
+});
+
+test("the step menu's next chapter row runs the finish flow and closes the menu", async () => {
+  setPhone(false);
+  let finished = 0;
+  const view = render(<Harness neighbours={finishingNeighbours(() => (finished += 1))} />);
+  const menu = await openMenu(view);
+  fireEvent.click(within(menu).getByRole("link", { name: /Next chapter/ }));
+  assert.equal(finished, 1);
   await waitFor(() => assert.equal(view.queryByRole("dialog", { name: "Chapter steps" }), null));
 });
