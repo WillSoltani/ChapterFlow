@@ -211,10 +211,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
           </div>
         )}
         {props.variant === "pro" && props.freeCaption && (
-          <p
-            className="mt-1 text-cf-caption font-medium"
-            style={{ color: "var(--accent-emerald)" }}
-          >
+          <p className="mt-1 text-cf-caption font-medium text-(--cf-text-3)">
             {props.freeCaption}
           </p>
         )}

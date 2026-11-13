@@ -184,7 +184,7 @@ export function BookCard({ book, index = 0, layout = "grid", showProLock = false
           <span>{book.totalChapters} chapters</span>
         </div>
         {freeLeft !== null && (
-          <p className="mt-1 text-cf-label-sm font-medium" style={{ color: "var(--accent-emerald)" }}>
+          <p className="mt-1 text-cf-label-sm font-medium text-(--cf-text-3)">
             {freeWithPlanLabel(freeLeft)}
           </p>
         )}
