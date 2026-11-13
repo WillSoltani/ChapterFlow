@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Map, ArrowRight, CheckCircle } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
@@ -27,12 +27,18 @@ export function JourneysClient() {
   // as /book/badges. The page is also guarded server-side by requireDashboardAccess.
   useOnboardingRedirect({ hydrated: onboardingHydrated, setupComplete: onboarding.setupComplete });
 
-  useEffect(() => {
+  const load = useCallback(() => {
+    setLoading(true);
+    setError(null);
     fetchBookJson<JourneysResponse>("/app/api/book/books/journeys")
       .then((data) => setJourneys(data.journeys))
-      .catch((err) => setError(err?.message ?? "Failed to load journeys"))
+      .catch(() => setError("We couldn't load journeys. Check your connection and try again."))
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    load();
+  }, [load]);
 
   if (!onboardingHydrated || !onboarding.setupComplete) {
     return (
@@ -80,9 +86,16 @@ export function JourneysClient() {
           Curated book sequences to master a topic
         </p>
 
-        {error && (
-          <div className="mt-4 rounded-2xl border border-(--cf-danger-border) bg-(--cf-danger-bg) px-4 py-3 text-sm text-(--cf-danger-text)">
-            {error}
+        {error && !loading && (
+          <div role="alert" className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-(--cf-danger-border) bg-(--cf-danger-bg) px-4 py-3 text-sm text-(--cf-danger-text)">
+            <span>{error}</span>
+            <button
+              type="button"
+              onClick={load}
+              className="cf-pressable rounded-xl border border-(--cf-danger-border) px-3 py-1.5 text-sm font-semibold"
+            >
+              Retry
+            </button>
           </div>
         )}
 
@@ -93,7 +106,7 @@ export function JourneysClient() {
                 <div key={i} className="h-48 rounded-3xl bg-(--cf-surface-muted)" />
               ))}
             </div>
-          ) : journeys.length === 0 ? (
+          ) : error ? null : journeys.length === 0 ? (
             <div className="cf-panel rounded-3xl p-8 text-center">
               <Map className="mx-auto h-8 w-8 text-(--cf-text-3)" />
               <p className="mt-3 text-sm text-(--cf-text-3)">
