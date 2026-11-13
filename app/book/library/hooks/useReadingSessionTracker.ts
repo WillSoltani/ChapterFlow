@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import {
@@ -14,6 +14,8 @@ import {
 
 const IDLE_TIMEOUT_MS = 45_000;
 const FLUSH_INTERVAL_MS = 5_000;
+/** The local day ("YYYY-MM-DD") the daily-goal message was last shown, on any chapter. */
+const DAILY_GOAL_CELEBRATED_KEY = "book-accelerator:daily-goal-celebrated:v1";
 
 type UseReadingSessionTrackerArgs = {
   bookId: string;
@@ -28,7 +30,11 @@ type UseReadingSessionTrackerResult = {
   todayTrackedSeconds: number;
   totalTrackedMinutes: number;
   dailyGoalReached: boolean;
+  /** True the first time it is called on a local day (then records the day). */
+  claimDailyGoalCelebration: () => boolean;
 };
+
+type ReadingSessionResponse = { readingDay?: unknown; trackedMinutesToday?: unknown };
 
 function isEngagedNow(lastActivityAt: number, allowBackgroundTransition = false) {
   const now = Date.now();
@@ -58,6 +64,8 @@ export function useReadingSessionTracker({
   useEffect(() => {
     activityRef.current = activity;
   }, [activity]);
+  // Today's minutes across every chapter and device, from the last POST.
+  const [serverToday, setServerToday] = useState<{ day: string; minutes: number } | null>(null);
   const lastActivityAtRef = useRef(0);
   const lastTickAtRef = useRef(0);
 
@@ -82,7 +90,7 @@ export function useReadingSessionTracker({
       setActivity(next);
       emitBookStorageChanged(`reading-activity:${bookId}:${chapterId}`);
 
-      fetchBookJson("/app/api/book/me/reading-sessions", {
+      fetchBookJson<ReadingSessionResponse>("/app/api/book/me/reading-sessions", {
         method: "POST",
         body: JSON.stringify({
           bookId,
@@ -93,7 +101,15 @@ export function useReadingSessionTracker({
           // tomorrow's UTC date.
           localDay: toDayKey(now),
         }),
-      }).catch(() => {});
+      })
+        .then((response) => {
+          const minutes = response?.trackedMinutesToday;
+          const day = response?.readingDay;
+          if (typeof minutes === "number" && Number.isFinite(minutes) && typeof day === "string") {
+            setServerToday({ day, minutes });
+          }
+        })
+        .catch(() => {});
     };
 
     const flushElapsed = (allowBackgroundTransition = false) => {
@@ -169,7 +185,19 @@ export function useReadingSessionTracker({
     Number(activity.dailyActiveMs[toDayKey(new Date())] ?? 0) / 1000
   );
   const todayTrackedMinutes = Math.floor(todayTrackedSeconds / 60);
-  const dailyGoalReached = dailyGoalMinutes > 0 && todayTrackedMinutes >= dailyGoalMinutes;
+  const todayKey = toDayKey(new Date());
+  const serverMinutesToday = serverToday?.day === todayKey ? serverToday.minutes : 0;
+  const dailyGoalReached =
+    dailyGoalMinutes > 0 && Math.max(serverMinutesToday, todayTrackedMinutes) >= dailyGoalMinutes;
+
+  const claimDailyGoalCelebration = useCallback(() => {
+    const today = toDayKey(new Date());
+    try {
+      if (window.localStorage.getItem(DAILY_GOAL_CELEBRATED_KEY) === today) return false;
+      window.localStorage.setItem(DAILY_GOAL_CELEBRATED_KEY, today);
+    } catch {}
+    return true;
+  }, []);
 
   return {
     hydrated,
@@ -177,5 +205,6 @@ export function useReadingSessionTracker({
     todayTrackedMinutes,
     totalTrackedMinutes: Math.floor(Number(activity.totalActiveMs ?? 0) / 60000),
     dailyGoalReached,
+    claimDailyGoalCelebration,
   };
 }

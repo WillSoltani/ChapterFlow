@@ -102,12 +102,21 @@ export function useReaderProgress({
   });
 
   const dailyGoalCelebrated = useRef(false);
+  const { dailyGoalReached, claimDailyGoalCelebration } = readingSession;
   useEffect(() => {
-    if (!readingSession.dailyGoalReached || dailyGoalCelebrated.current) return;
+    if (!dailyGoalReached || dailyGoalCelebrated.current) return;
     dailyGoalCelebrated.current = true;
+    // Once per day across chapters and visits, not once per chapter open.
+    if (!claimDailyGoalCelebration()) return;
     const persona = bookPrefs.extended.motivationPersona || "coach";
     onToast(getMotivationMessage(persona, "daily_goal", { goal: dailyGoalMinutes }));
-  }, [bookPrefs.extended.motivationPersona, dailyGoalMinutes, onToast, readingSession.dailyGoalReached]);
+  }, [
+    bookPrefs.extended.motivationPersona,
+    claimDailyGoalCelebration,
+    dailyGoalMinutes,
+    dailyGoalReached,
+    onToast,
+  ]);
 
   useBreakReminder({
     enabled: bookPrefs.extended.breakReminders && readerInteractionsReady,
