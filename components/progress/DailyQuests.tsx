@@ -131,7 +131,7 @@ export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
                 >
                   {quest.title}
                 </span>
-                {quest.historyOff && <ReadingHistoryOffNote />}
+                {quest.historyOff && !quest.href && <ReadingHistoryOffNote />}
                 {almostThere && (
                   <span
                     className="text-[10px] font-medium"
@@ -189,10 +189,19 @@ export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
           );
 
           if (quest.href) {
-            return (
+            const row = (
               <Link key={quest.id} href={quest.href} className={rowClass} style={rowStyle}>
                 {content}
               </Link>
+            );
+            // The Settings link sits under the row, never inside the row's link.
+            return quest.historyOff ? (
+              <div key={quest.id}>
+                {row}
+                <ReadingHistoryOffNote className="mt-1 pl-14" />
+              </div>
+            ) : (
+              row
             );
           }
 
