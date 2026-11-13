@@ -36,7 +36,7 @@ export function HeroSection({ data, onSwitchBook }: HeroSectionProps) {
             nextMilestones={data.nextMilestones}
             completedMinutesToday={data.todayGoal.completedMinutes}
           />
-          <FlowPointsIndicator points={data.user.insightPoints} />
+          <FlowPointsIndicator points={data.user.insightPoints} isPro={data.user.isPro} />
         </div>
 
         {/* Daily Goal Ring — centered */}

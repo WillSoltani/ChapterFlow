@@ -69,7 +69,7 @@ function BalanceHeader({ summary }: { summary: InsightPointsPayload["summary"] }
   );
 }
 
-function RewardCard({
+export function RewardCard({
   reward,
   redeeming,
   onRedeem,
@@ -81,6 +81,8 @@ function RewardCard({
   const isAvailable = reward.status === "available";
   const isClaimed = reward.status === "claimed";
   const isLocked = reward.status === "locked";
+  // PROG-23: spending points cannot be undone here, so Redeem asks first.
+  const [confirming, setConfirming] = useState(false);
 
   return (
     <div
@@ -110,14 +112,39 @@ function RewardCard({
         <p className="text-cf-label-sm font-medium text-(--cf-accent)">{reward.highlight}</p>
       )}
 
-      {isAvailable && (
+      {isAvailable && !confirming && (
         <button
-          onClick={onRedeem}
+          onClick={() => setConfirming(true)}
           disabled={redeeming}
           className="cf-btn cf-btn-primary mt-auto w-full rounded-xl text-cf-body-sm"
         >
           {redeeming ? "Redeeming…" : "Redeem"}
         </button>
+      )}
+
+      {isAvailable && confirming && (
+        <div className="mt-auto space-y-2" role="group" aria-label={`Confirm redeeming ${reward.name}`}>
+          <p className="text-cf-label text-(--cf-text-2)">
+            Spend {reward.costPoints.toLocaleString()} IP on {reward.name}?
+          </p>
+          <div className="flex gap-2">
+            <button
+              onClick={() => {
+                setConfirming(false);
+                onRedeem();
+              }}
+              className="cf-btn cf-btn-primary flex-1 rounded-xl text-cf-body-sm"
+            >
+              Confirm
+            </button>
+            <button
+              onClick={() => setConfirming(false)}
+              className="cf-btn cf-btn-secondary flex-1 rounded-xl text-cf-body-sm"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
       )}
 
       {isClaimed && (
