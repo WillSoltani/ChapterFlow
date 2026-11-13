@@ -552,6 +552,23 @@ export async function createReferralClaimFromCode(
   }
 }
 
+/** True when a (sourceType, sourceId) award was already granted to this user. */
+export async function hasFlowPointsGrant(
+  tableName: string,
+  userId: string,
+  sourceType: FlowPointsSourceType,
+  sourceId: string
+): Promise<boolean> {
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: { PK: bookUserPk(userId), SK: flowPointsGrantSk(sourceType, sourceId) },
+      ConsistentRead: true,
+    })
+  );
+  return Boolean(res.Item);
+}
+
 /**
  * Reason an awardFlowPoints call did not grant points.
  *  - "duplicate": the (sourceType, sourceId) grant already exists for this user.
