@@ -33,7 +33,7 @@ export const ERROR_MESSAGES: Record<string, string> = {
   reward_already_claimed: "You've already claimed this reward.",
   already_pro: "You already have Pro. Manage your plan in Settings.",
   already_owned: "You already own this item.",
-  question_limit: "You've used today's questions for this book. You can ask more tomorrow.",
+  question_limit: "You've used today's questions. You can ask more tomorrow.",
   pro_required: "This is part of Pro. Upgrade to use it.",
   invalid_answers: "Some answers didn't match this quiz. Refresh and try again.",
   reset_incomplete: "Your progress didn't fully reset. Please try again.",
