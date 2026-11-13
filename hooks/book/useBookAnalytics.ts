@@ -757,7 +757,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             // auto-PATCHed to the server the moment a detail page is viewed, so
             // `Boolean(state)` alone falsely marks browsed-but-unread books as
             // started, inflating "Book in Motion" and the level for zero-read
-            // accounts. Mirrors the localStorage deriver in useBadgeSystem.ts.
+            // accounts.
             isStarted:
               completedIds.size > 0 ||
               Object.keys(chapterScores).length > 0 ||
