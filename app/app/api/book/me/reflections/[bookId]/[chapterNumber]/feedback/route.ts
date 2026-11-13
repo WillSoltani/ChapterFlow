@@ -1,7 +1,7 @@
 import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
-import { bookErr, requireSameOrigin } from "@/app/app/api/book/_lib/http";
+import { bookErr, readJsonBody, requireSameOrigin } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookContentBucket } from "@/app/app/api/book/_lib/env";
 import { getUserAccessibleChapter } from "@/app/app/api/book/_lib/content-service";
 import { isBookApiError } from "@/app/app/api/book/_lib/errors";
@@ -46,7 +46,7 @@ export async function POST(req: Request, ctx: Params) {
       return bookErr(req, 400, "invalid_params", "Invalid bookId or chapterNumber");
     }
 
-    const body = await req.json();
+    const body = await readJsonBody(req);
     const exampleId = typeof body.exampleId === "string" ? body.exampleId.trim() : "";
     const reflectionText = typeof body.reflectionText === "string" ? body.reflectionText.trim() : "";
     const scenario = typeof body.scenario === "string" ? body.scenario : "";

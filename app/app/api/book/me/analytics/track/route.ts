@@ -4,7 +4,7 @@ import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookOk,
   bookErr,
-  requireBodyObject,
+  readJsonBody,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
 import { getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
@@ -31,7 +31,7 @@ const ALLOWED_EVENTS: ReadonlySet<ReaderFunnelEvent> = new Set([
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
-    const body = requireBodyObject(await req.json());
+    const body = await readJsonBody(req);
 
     const event = typeof body.event === "string" ? body.event : "";
     if (!ALLOWED_EVENTS.has(event as ReaderFunnelEvent)) {

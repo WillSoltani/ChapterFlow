@@ -3,7 +3,7 @@ import "server-only";
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookOk,
-  requireBodyObject,
+  readJsonBody,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
@@ -77,7 +77,7 @@ export async function POST(req: Request) {
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
 
-    const body = requireBodyObject(await req.json());
+    const body = await readJsonBody(req);
 
     /* ── Extract & coerce (lenient — never reject onboarding completion) ── */
 

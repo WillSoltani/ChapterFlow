@@ -325,6 +325,21 @@ export function requireBodyObject(reqBody: unknown): Record<string, unknown> {
   return reqBody as Record<string, unknown>;
 }
 
+/**
+ * Parse a request body that must be a JSON object. A malformed or empty body,
+ * or a JSON value that is not an object, is a typed 400 `invalid_json` (never
+ * an escaped SyntaxError that surfaces as a 500).
+ */
+export async function readJsonBody(req: Request): Promise<Record<string, unknown>> {
+  let raw: unknown;
+  try {
+    raw = await req.json();
+  } catch {
+    throw new BookApiError(400, "invalid_json", "Request body must be a JSON object.");
+  }
+  return requireBodyObject(raw);
+}
+
 export function requireString(
   value: unknown,
   field: string,

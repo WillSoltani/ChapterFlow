@@ -2,7 +2,7 @@ import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
-import { bookOk, requireBodyObject, requireString, withBookApiErrors } from "@/app/app/api/book/_lib/http";
+import { bookOk, readJsonBody, requireString, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import {
   listNotificationsPage,
   countUnreadNotifications,
@@ -57,7 +57,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
-    const body = requireBodyObject(await req.json());
+    const body = await readJsonBody(req);
     const notificationId = requireString(body.notificationId, "notificationId", { maxLength: 100 });
     const createdAt = requireString(body.createdAt, "createdAt", { maxLength: 50 });
 
