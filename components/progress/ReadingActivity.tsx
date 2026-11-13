@@ -5,10 +5,13 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import type { ReadingActivityData } from "./progressTypes";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { ReadingHistoryOffNote } from "./ReadingHistoryOffNote";
 
 interface ReadingActivityProps {
   activity: ReadingActivityData;
   onStartReading?: () => void;
+  /** Settings "Save reading history" is off: nothing is recorded (PROG-26). */
+  historyOff?: boolean;
 }
 
 function getWeekdayName(dateStr: string): string {
@@ -75,6 +78,7 @@ type DataView = "minutes" | "chapters";
 export function ReadingActivity({
   activity,
   onStartReading,
+  historyOff = false,
 }: ReadingActivityProps) {
   const prefersReduced = useReducedMotion();
   const [hoveredDay, setHoveredDay] = useState<string | null>(null);
@@ -180,7 +184,9 @@ export function ReadingActivity({
       </div>
 
       {/* Content */}
-      {!hasData ? (
+      {historyOff ? (
+        <ReadingHistoryOffNote className="mt-4 py-6 text-center" />
+      ) : !hasData ? (
         <EmptyState
           title="Your reading pattern will appear here after your first session"
           description=""

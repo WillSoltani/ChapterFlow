@@ -7,6 +7,7 @@ import {
   calculateCurrentStreak,
   isBookStarted,
   readDailyGoal,
+  readReadingHistoryOff,
   resumeChapterNumber,
   statusFromCounts,
   streakAtRisk,
@@ -110,4 +111,12 @@ test("C13: the resume chapter is capped at the book's chapter count", () => {
   assert.equal(resumeChapterNumber(undefined, 12, 12), 12);
   assert.equal(resumeChapterNumber(15, 9, 12), 12);
   assert.equal(resumeChapterNumber(0, 0, 12), 1);
+});
+
+test("PROG-26: reading history is off only when Settings turned it off", () => {
+  assert.equal(readReadingHistoryOff({ privacy: { saveReadingHistory: false } }), true);
+  assert.equal(readReadingHistoryOff({ privacy: { saveReadingHistory: true } }), false);
+  assert.equal(readReadingHistoryOff({ privacy: {} }), false);
+  assert.equal(readReadingHistoryOff({}), false);
+  assert.equal(readReadingHistoryOff(null), false);
 });

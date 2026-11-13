@@ -49,6 +49,7 @@ export function HeroSection({ data, onSwitchBook }: HeroSectionProps) {
             stepsCompleted={data.todayGoal.stepsCompletedToday}
             totalSteps={data.todayGoal.totalStepsToday}
             hasEndowedProgress={hasEndowedProgress}
+            historyOff={data.readingHistoryOff}
           />
         </div>
 

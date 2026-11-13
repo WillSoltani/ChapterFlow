@@ -123,3 +123,11 @@ test("HOME-15 / C13: total chapters come from the catalog and Continue names the
   assert.equal(snap.resumeChapterNumber, 4);
   assert.match(snap.resumeChapterLabel, /^CH\.04 /);
 });
+
+test("PROG-26: analytics carry readingHistoryOff from settings.privacy", async () => {
+  const off = await snapshotsFor({ settings: { privacy: { saveReadingHistory: false } } });
+  assert.equal(off.readingHistoryOff, true);
+  cleanup();
+  const on = await snapshotsFor({ settings: { privacy: { saveReadingHistory: true } } });
+  assert.equal(on.readingHistoryOff, false);
+});

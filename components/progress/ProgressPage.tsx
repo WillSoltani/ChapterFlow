@@ -252,6 +252,7 @@ function buildProgressData(
           ...q,
           current: Math.min(analytics.minutesReadToday, q.target),
           completed: analytics.minutesReadToday >= q.target,
+          historyOff: analytics.readingHistoryOff,
         };
       }
       if (q.id === "q2") {
@@ -332,6 +333,7 @@ function buildProgressData(
       todayHourly,
     },
     nextMilestones: effectiveMilestones,
+    readingHistoryOff: analytics.readingHistoryOff,
   };
 }
 
@@ -668,8 +670,8 @@ export function ProgressPage() {
           />
         </motion.div>
 
-        {/* SECTION 4: Reading Activity — hide if truly no data */}
-        {totalDaysWithData > 0 && (
+        {/* SECTION 4: Reading Activity — hide if truly no data (or say history is off) */}
+        {(totalDaysWithData > 0 || displayData.readingHistoryOff) && (
           <motion.div
             initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -678,6 +680,7 @@ export function ProgressPage() {
           >
             <ReadingActivity
               activity={displayData.readingActivity}
+              historyOff={displayData.readingHistoryOff}
               onStartReading={() => {
                 if (displayData.activeBooks[0]) {
                   router.push(

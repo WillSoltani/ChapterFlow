@@ -5,6 +5,7 @@ import { DUR } from "@/lib/motion";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { BookOpen, Brain, RotateCcw, Check } from "lucide-react";
 import type { DailyQuest } from "./progressTypes";
+import { ReadingHistoryOffNote } from "./ReadingHistoryOffNote";
 
 interface DailyQuestsProps {
   quests: DailyQuest[];
@@ -135,6 +136,7 @@ export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
                 >
                   {quest.title}
                 </span>
+                {quest.historyOff && <ReadingHistoryOffNote />}
                 {almostThere && (
                   <span
                     className="text-[10px] font-medium"

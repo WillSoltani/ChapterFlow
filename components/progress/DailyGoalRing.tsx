@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ProgressRing } from "../ui/ProgressRing";
+import { ReadingHistoryOffNote } from "./ReadingHistoryOffNote";
 
 interface DailyGoalRingProps {
   completedMinutes: number;
@@ -10,6 +11,8 @@ interface DailyGoalRingProps {
   totalSteps: number;
   /** Whether user browsed a book today but hasn't started reading */
   hasEndowedProgress?: boolean;
+  /** Settings turned "Save reading history" off: no minutes to show (PROG-26). */
+  historyOff?: boolean;
 }
 
 // Color constants — theme-aware tokens (resolve correctly as SVG stroke / inline
@@ -25,6 +28,7 @@ export function DailyGoalRing({
   stepsCompleted,
   totalSteps,
   hasEndowedProgress = false,
+  historyOff = false,
 }: DailyGoalRingProps) {
   const prefersReduced = useReducedMotion();
 
@@ -39,7 +43,7 @@ export function DailyGoalRing({
   const effectiveOuterPercent =
     outerPercent === 0 && hasEndowedProgress ? 5 : outerPercent;
 
-  const isGoalComplete = effectiveOuterPercent >= 100;
+  const isGoalComplete = !historyOff && effectiveOuterPercent >= 100;
   const remaining = Math.max(0, targetMinutes - completedMinutes);
 
   // SVG dimensions — responsive
@@ -68,7 +72,11 @@ export function DailyGoalRing({
         aria-valuenow={Math.round(effectiveOuterPercent)}
         aria-valuemin={0}
         aria-valuemax={100}
-        aria-label={`Daily goal: ${completedMinutes} of ${targetMinutes} minutes completed. ${stepsCompleted} of ${totalSteps} learning steps done today.`}
+        aria-label={
+          historyOff
+            ? `Daily goal: reading history is off. ${stepsCompleted} of ${totalSteps} learning steps done today.`
+            : `Daily goal: ${completedMinutes} of ${targetMinutes} minutes completed. ${stepsCompleted} of ${totalSteps} learning steps done today.`
+        }
       >
         {/* Outer arc — reading minutes. Keep the bespoke 8px completion glow on
             a wrapping element (ProgressRing's built-in glow is 6px) for exact
@@ -112,7 +120,14 @@ export function DailyGoalRing({
 
         {/* Center text */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          {isGoalComplete ? (
+          {historyOff ? (
+            <span
+              className="font-(family-name:--font-display) text-2xl font-bold"
+              style={{ color: "var(--text-muted)" }}
+            >
+              Off
+            </span>
+          ) : isGoalComplete ? (
             <motion.span
               className="font-(family-name:--font-display) text-2xl font-bold text-accent-emerald"
               initial={{ scale: prefersReduced ? 1 : 0.8 }}
@@ -140,9 +155,11 @@ export function DailyGoalRing({
             className="mt-0.5 text-xs"
             style={{ color: "var(--text-muted)" }}
           >
-            {isGoalComplete
-              ? `${targetMinutes} min goal reached`
-              : `of ${targetMinutes} min goal`}
+            {historyOff
+              ? "reading history"
+              : isGoalComplete
+                ? `${targetMinutes} min goal reached`
+                : `of ${targetMinutes} min goal`}
           </span>
         </div>
 
@@ -198,6 +215,7 @@ export function DailyGoalRing({
           </span>
         </div>
       </div>
+      {historyOff && <ReadingHistoryOffNote className="text-center" />}
     </div>
   );
 }

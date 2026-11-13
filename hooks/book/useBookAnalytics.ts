@@ -94,6 +94,8 @@ export type AnalyticsState = {
   interests: string[];
   motivation: string | null;
   badgeStats: BadgeProgressStats;
+  /** Settings "Save reading history" is off: the server returns no reading days. */
+  readingHistoryOff: boolean;
 };
 
 const EMPTY_ACTIVITY_LABEL = "No activity yet";
@@ -179,6 +181,13 @@ export function readDailyGoal(settings: unknown, fallback: number): number {
   );
   const goal = found ?? fallback;
   return Math.max(MIN_DAILY_GOAL_MINUTES, Number.isFinite(goal) ? Math.round(goal) : 0);
+}
+
+/** PROG-26: Settings turned "Save reading history" off (default on). */
+export function readReadingHistoryOff(settings: unknown): boolean {
+  if (!settings || typeof settings !== "object") return false;
+  const privacy = (settings as { privacy?: { saveReadingHistory?: unknown } | null }).privacy;
+  return privacy?.saveReadingHistory === false;
 }
 
 /**
@@ -804,6 +813,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           interests,
           motivation,
           badgeStats,
+          readingHistoryOff: readReadingHistoryOff(payload.settings),
         });
         setError(null);
         setHydrated(true);

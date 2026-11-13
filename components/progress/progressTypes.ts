@@ -122,6 +122,8 @@ export interface DailyQuest {
   target: number;
   type: QuestType;
   completed: boolean;
+  /** Minutes quest while Settings "Save reading history" is off (PROG-26). */
+  historyOff?: boolean;
 }
 
 export interface ReviewData {
@@ -172,4 +174,6 @@ export interface ProgressPageData {
   reviews: ReviewData;
   readingActivity: ReadingActivityData;
   nextMilestones: Milestone[];
+  /** Settings "Save reading history" is off (PROG-26). */
+  readingHistoryOff: boolean;
 }
