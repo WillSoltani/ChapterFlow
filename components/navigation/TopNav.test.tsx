@@ -43,6 +43,7 @@ const profilePayload = {
 };
 
 let releaseProfile: (() => void) | null = null;
+let currentProfilePayload: unknown = profilePayload;
 
 globalThis.fetch = (async (input: RequestInfo | URL) => {
   const url = String(input);
@@ -50,7 +51,7 @@ globalThis.fetch = (async (input: RequestInfo | URL) => {
     await new Promise<void>((resolve) => {
       releaseProfile = resolve;
     });
-    return Response.json(profilePayload);
+    return Response.json(currentProfilePayload);
   }
   if (url.includes("/me/is-admin")) return Response.json({ isAdmin: false });
   return Response.json({ notifications: [], unreadCount: 0 });
@@ -221,4 +222,47 @@ test("Escape closes the notification panel and returns focus to the bell", async
   fireEvent.keyDown(document, { key: "Escape" });
   await waitFor(() => assert.equal(view.container.querySelector("#notification-panel"), null));
   assert.equal(document.activeElement, bell);
+});
+
+test("a name the reader chose in Profile wins over the sign-in first name on the chip", async () => {
+  const { invalidateBookCache } = await import("@/lib/client/book-api-cache");
+  currentProfilePayload = {
+    identity: {
+      sub: "user-1",
+      displayName: "Sam",
+      profileDisplayName: "Sam",
+      givenName: "Samantha",
+      source: "profile",
+    },
+    profile: { avatarDataUrl: "data:image/png;base64,CCCC" },
+  };
+  invalidateBookCache(PROFILE_PATH);
+  releaseProfile = null;
+
+  const view = await renderNav();
+  await waitFor(() => assert.ok(releaseProfile, "profile request started"));
+  releaseProfile?.();
+  const chip = view.getByRole("link", { name: "Profile" });
+  await waitFor(() => assert.equal(chip.textContent, "Sam"));
+});
+
+test("without a Profile name the chip uses the sign-in first name", async () => {
+  const { invalidateBookCache } = await import("@/lib/client/book-api-cache");
+  currentProfilePayload = {
+    identity: {
+      sub: "user-1",
+      displayName: "Robert Smith",
+      givenName: "Robert",
+      source: "cognito",
+    },
+    profile: { avatarDataUrl: "data:image/png;base64,CCCC" },
+  };
+  invalidateBookCache(PROFILE_PATH);
+  releaseProfile = null;
+
+  const view = await renderNav();
+  await waitFor(() => assert.ok(releaseProfile, "profile request started"));
+  releaseProfile?.();
+  const chip = view.getByRole("link", { name: "Profile" });
+  await waitFor(() => assert.equal(chip.textContent, "Robert"));
 });

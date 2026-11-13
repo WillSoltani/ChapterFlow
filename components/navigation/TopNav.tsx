@@ -177,7 +177,13 @@ export function TopNav({
   const fullName = viewer.identity.displayName.trim() || "Reader";
   const givenName =
     typeof viewer.identity.givenName === "string" ? viewer.identity.givenName.trim() : "";
-  const firstName = givenName.split(/\s+/)[0] || fullName.split(/\s+/)[0] || fullName;
+  const fullFirstWord = fullName.split(/\s+/)[0] || fullName;
+  // A name the reader set in Profile wins; the sign-in given name is only for
+  // readers who never set one.
+  const firstName =
+    viewer.identity.source === "profile"
+      ? fullFirstWord
+      : givenName.split(/\s+/)[0] || fullFirstWord;
   const avatarUrl = avatarUrlProp || viewer.identity.avatarDataUrl;
   const initial = identityPending ? "" : fullName.charAt(0).toUpperCase() || "R";
   const showAvatar = !!avatarUrl && !avatarError;
