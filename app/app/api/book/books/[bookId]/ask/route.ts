@@ -17,6 +17,7 @@ import {
 import { createHash } from "crypto";
 import { getUserEntitlement } from "@/app/app/api/book/_lib/repo";
 import { getServerBookPackage } from "@/app/app/api/book/_lib/book-package-source";
+import { runAuthorizedChapterHydration } from "@/app/app/api/book/_lib/initial-chapter-content-core";
 import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
@@ -92,6 +93,22 @@ export async function POST(req: Request, ctx: Params) {
     const entitlement = await getUserEntitlement(tableName, user.sub);
     const isPro = entitlement?.plan === "PRO";
     const limit = isPro ? 20 : 5;
+
+    // Same entitlement rule the reader uses: Pro, or one of the reader's
+    // unlocked books. Checked before any content is loaded or question counted.
+    const canOpenBook = await runAuthorizedChapterHydration({
+      entitlement,
+      bookId,
+      load: async () => true,
+    });
+    if (!canOpenBook) {
+      return bookErr(
+        req,
+        403,
+        "book_not_accessible",
+        "Start this book from your library to ask questions about it.",
+      );
+    }
 
     // Cheap fast-path: reject callers already over the cap before doing any
     // content work. This read is NOT the authoritative gate — a stale read

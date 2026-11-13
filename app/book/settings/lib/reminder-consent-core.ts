@@ -69,8 +69,8 @@ export function buildReminderSchedulePatch(
  *
  * Enabling → record the email opt-in (so the cron gate becomes satisfiable) and,
  * when we have a concrete time, also seed the canonical send-time fields so the
- * very first enable is immediately deliverable rather than waiting on the
- * deferred backfill.
+ * very first enable is immediately deliverable. This is the only place consent
+ * is written from a toggle; nothing writes it on page load (ACCT-08).
  *
  * Disabling → no email-consent mutation (see module header): returns `null` so
  * the caller skips the dedicated PATCH entirely and lets the preferences

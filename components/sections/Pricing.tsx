@@ -169,7 +169,7 @@ export function Pricing() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [isAnnual, setIsAnnual] = useState(false);
   const { loggedIn, isPro } = useAuthStatus({ withPlan: true });
-  const freeHref = loggedIn ? "/book" : AUTH_LOGIN_BOOK_URL;
+  const freeHref = loggedIn ? "/dashboard" : AUTH_LOGIN_BOOK_URL;
   // The Pro CTA advertises "Start 14-day free trial" with a "card required,
   // charged when the trial ends" promise — so it must land on the trial-start
   // (Stripe checkout) surface, not the free reader. Already-Pro users go to

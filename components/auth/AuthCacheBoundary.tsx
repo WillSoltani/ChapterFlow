@@ -11,13 +11,23 @@ import {
   AUTH_CACHE_GENERATION_CHANGED_EVENT,
   AUTH_CACHE_GENERATION_STORAGE_KEY,
 } from "@/lib/auth-cache-generation";
+import { ensureLocalUserDataOwner } from "@/lib/client/local-user-data";
 
 /** Clears and reloads an old document when shared auth cookies change identity. */
 export function AuthCacheBoundary() {
+  // DATA-01: drop the previous account's stored data before anything reads it.
+  // This component renders ahead of the whole app in the root layout, and
+  // render runs before every effect and every later sibling's state
+  // initializer, so the check must happen here, synchronously, not in an
+  // effect (parent effects run after their children's).
+  if (typeof window !== "undefined") ensureLocalUserDataOwner();
+
   useEffect(() => {
     let reloading = false;
 
     const reconcileAndReload = () => {
+      // Another tab signed in or out: re-scope storage before this page reloads.
+      ensureLocalUserDataOwner();
       reconcileBookCacheAuthGeneration();
       if (!reloading && consumeBookCacheAuthReloadRequired()) {
         reloading = true;

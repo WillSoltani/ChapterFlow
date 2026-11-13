@@ -19,8 +19,18 @@ import {
   formatAmountWithCurrency,
 } from "@/lib/pricing";
 import { stripeCheckoutBlockReason } from "@/app/app/api/book/_lib/stripe-checkout-entitlement-core";
+import { requireRecentAuth } from "@/app/app/api/_lib/auth";
+import {
+  isBillableSubscriptionStatus,
+  isStripeSubscriberEntitlement,
+  planOpenCheckoutSessions,
+  type OpenCheckoutSession,
+} from "./checkout-session-core";
 
 export const runtime = "nodejs";
+
+/** Same step-up window as /billing/portal-session (the portal can cancel or change payment). */
+const PORTAL_MAX_AUTH_AGE_MINUTES = 10;
 
 /** Human-readable renewal terms per interval, for the Stripe Checkout disclosure. */
 function renewalDescription(interval: BillingInterval): string {
@@ -59,6 +69,21 @@ export async function POST(req: Request) {
     ]);
 
     const entitlement = await getUserEntitlement(tableName, user.sub);
+
+    // An existing Stripe subscriber is sent to the billing portal rather than a
+    // second Checkout. The URL travels in the same `checkoutUrl` field.
+    const sendToBillingPortal = async (customer: string) => {
+      requireRecentAuth(user, PORTAL_MAX_AUTH_AGE_MINUTES);
+      const portal = await stripe.billingPortal.sessions.create({
+        customer,
+        return_url: `${appBaseUrl}/book/settings`,
+      });
+      return bookOk({ checkoutUrl: portal.url, sessionId: portal.id });
+    };
+
+    if (isStripeSubscriberEntitlement(entitlement) && entitlement?.stripeCustomerId) {
+      return sendToBillingPortal(entitlement.stripeCustomerId);
+    }
 
     // Money-path guard (CHECKOUT-DOUBLE): refuse a NEW subscription for anyone
     // who is already Pro by ANY source — Stripe, license, gift_code,
@@ -137,18 +162,11 @@ export async function POST(req: Request) {
       // endpoint again (the UI hides the button, but the API is reachable)
       // would create a SECOND subscription and be double-billed. Refuse if any
       // billable subscription already exists.
-      const hasActiveSubscription = priorSubs.data.some(
-        (sub) =>
-          sub.status === "active" ||
-          sub.status === "trialing" ||
-          sub.status === "past_due"
+      const hasActiveSubscription = priorSubs.data.some((sub) =>
+        isBillableSubscriptionStatus(sub.status)
       );
       if (hasActiveSubscription) {
-        throw new BookApiError(
-          409,
-          "subscription_already_active",
-          "You already have an active subscription. Manage it from your account settings."
-        );
+        return sendToBillingPortal(customerId);
       }
 
       // Free trials are for NEW subscribers only (Terms: "14-day free trial for
@@ -156,6 +174,27 @@ export async function POST(req: Request) {
       // subscription — active, canceled, or past (status "all") — has used their
       // trial, so suppress it to prevent cancel-and-resubscribe trial farming.
       grantTrial = priorSubs.data.length === 0;
+
+      // Keep at most one open Checkout per customer: two open sessions can both
+      // complete into two subscriptions. Reuse an open one for this interval;
+      // expire the rest before creating a new one.
+      const open = await stripe.checkout.sessions.list({
+        customer: customerId,
+        status: "open",
+        limit: 10,
+      });
+      const { reuse, expire } = planOpenCheckoutSessions(
+        open.data as OpenCheckoutSession[],
+        { userId: user.sub, interval, nowSeconds: Math.floor(Date.now() / 1000) }
+      );
+      if (reuse?.url) {
+        return bookOk({ checkoutUrl: reuse.url, sessionId: reuse.id });
+      }
+      // A session that completed or expired meanwhile can no longer be expired;
+      // that is the outcome we want, so the error is ignored.
+      await Promise.all(
+        expire.map((id) => stripe.checkout.sessions.expire(id).catch(() => null))
+      );
     }
 
     // Pre-charge disclosure shown on Stripe's hosted Checkout page (card-network
@@ -181,6 +220,7 @@ export async function POST(req: Request) {
       cancel_url: `${appBaseUrl}/dashboard?billing=cancelled`,
       metadata: {
         userId: user.sub,
+        interval,
       },
       allow_promotion_codes: true,
       custom_text: { submit: { message: submitMessage } },

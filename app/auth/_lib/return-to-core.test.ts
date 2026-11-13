@@ -1,6 +1,10 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { isSafeInternalPath } from "./return-to-core";
+import {
+  DEFAULT_POST_LOGIN_PATH,
+  isSafeInternalPath,
+  recoverInAppReturnTo,
+} from "./return-to-core";
 
 test("accepts ordinary same-origin paths", () => {
   assert.equal(isSafeInternalPath("/"), true);
@@ -36,4 +40,43 @@ test("rejects absolute URLs and non-paths (handled by the allowlist branch, not 
   assert.equal(isSafeInternalPath("javascript:alert(1)"), false);
   assert.equal(isSafeInternalPath("book/library"), false);
   assert.equal(isSafeInternalPath(""), false);
+});
+
+// SHELL-16: sign-in lands on the dashboard (un-onboarded readers are still sent
+// to /book by the page gate), and a page-level INVALID_TOKEN bounce keeps the
+// reader's target on any in-app surface, not only /book.
+test("the post-login default is the dashboard", () => {
+  assert.equal(DEFAULT_POST_LOGIN_PATH, "/dashboard");
+});
+
+test("recoverInAppReturnTo keeps in-app targets", () => {
+  for (const path of [
+    "/book",
+    "/book/library/atomic-habits?tab=notes",
+    "/dashboard",
+    "/rewards",
+    "/rewards?tab=redeem",
+  ]) {
+    assert.equal(recoverInAppReturnTo(path), path, path);
+  }
+  assert.equal(
+    recoverInAppReturnTo("https://app.chapterflow.ca/rewards?x=1"),
+    "/rewards?x=1",
+  );
+});
+
+test("recoverInAppReturnTo falls back to the dashboard for anything else", () => {
+  for (const candidate of [
+    null,
+    "",
+    "/",
+    "/books",
+    "/auth/login?returnTo=/book",
+    "//evil.example/book",
+    "/\\evil.example",
+    "https://evil.example//book",
+    "not a url",
+  ]) {
+    assert.equal(recoverInAppReturnTo(candidate), DEFAULT_POST_LOGIN_PATH, String(candidate));
+  }
 });

@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
+import { useOnboardingRedirect } from "@/app/book/hooks/useOnboardingState";
 import type { LibraryBookDetail } from "@/app/book/_lib/library-data";
 import { getChapterById, type BookChapter } from "@/app/book/data/bookChapters";
 import type { ContentTone } from "@/app/book/settings/types/settings";
@@ -43,7 +43,6 @@ export function useReaderAccess({
   onboarding: OnboardingAccess;
   onboardingHydrated: boolean;
 }) {
-  const router = useRouter();
   const [contentRefetchKey, setContentRefetchKey] = useState(0);
   const entry = useMemo(
     () => ({ title: initialBook?.title ?? bookId, author: initialBook?.author ?? "" }),
@@ -132,10 +131,11 @@ export function useReaderAccess({
     hasChapter: Boolean(chapter),
   });
 
-  useEffect(() => {
-    if (!onboardingHydrated || hasAttestedSeed) return;
-    if (!onboarding.setupComplete) router.replace("/book");
-  }, [hasAttestedSeed, onboarding.setupComplete, onboardingHydrated, router]);
+  useOnboardingRedirect({
+    hydrated: onboardingHydrated,
+    setupComplete: onboarding.setupComplete,
+    skip: hasAttestedSeed,
+  });
 
   useEffect(() => {
     if (!entry || !onboardingHydrated || !effectiveOnboardingComplete) return;
