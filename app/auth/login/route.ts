@@ -5,6 +5,7 @@ import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
 import { rotateAuthCacheGeneration } from "../_lib/auth-cache-generation";
 import { sanitizeReturnTo } from "../_lib/return-to";
+import { DEFAULT_POST_LOGIN_PATH } from "../_lib/return-to-core";
 import { encryptState } from "../_lib/state-crypto";
 import { logger } from "@/lib/logging/logger";
 
@@ -80,7 +81,10 @@ export async function GET(req: NextRequest) {
     const clientId = await mustServerEnv("COGNITO_CLIENT_ID");
     const redirectUri = await mustServerEnv("COGNITO_REDIRECT_URI");
 
-    const returnTo = sanitizeReturnTo(req.nextUrl.searchParams.get("returnTo"), "/book");
+    const returnTo = sanitizeReturnTo(
+      req.nextUrl.searchParams.get("returnTo"),
+      DEFAULT_POST_LOGIN_PATH,
+    );
 
     // Optional branded deep-links from the entry screen: jump straight into a
     // social IdP, and/or prefill the email on the hosted UI.

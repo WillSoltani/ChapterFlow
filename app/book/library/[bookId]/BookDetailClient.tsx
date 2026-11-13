@@ -8,7 +8,7 @@ import { DUR, EASE } from "@/lib/motion";
 import { ChevronRight, Lock, Search, Sparkles } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { PageTransition } from "@/components/ui/PageTransition";
-import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
+import { useOnboardingRedirect, useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
@@ -128,12 +128,7 @@ export function BookDetailClient({
     { ignoreWhenTyping: true },
   );
 
-  useEffect(() => {
-    if (!onboardingHydrated) return;
-    if (!onboarding.setupComplete) {
-      router.replace("/book");
-    }
-  }, [onboarding.setupComplete, onboardingHydrated, router]);
+  useOnboardingRedirect({ hydrated: onboardingHydrated, setupComplete: onboarding.setupComplete });
 
   useEffect(() => {
     if (!lockedToast) return;

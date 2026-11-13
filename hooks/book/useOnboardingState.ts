@@ -9,8 +9,10 @@ import {
   isChapterStartMode,
   isPreferredExampleContext,
 } from "@/app/book/_lib/onboarding-personalization";
+import { useRouter } from "next/navigation";
 import { BOOKS_CATALOG } from "@/lib/books-catalog";
-import { fetchBookJsonCached } from "@/lib/client/book-api-cache";
+import { fetchBookJsonCached, useBookQuery } from "@/lib/client/book-api-cache";
+import { shouldRedirectToOnboarding } from "./onboarding-redirect-core";
 
 const ONBOARDING_PROGRESS_KEY = "/app/api/book/me/onboarding/progress";
 
@@ -484,4 +486,36 @@ export function useOnboardingState() {
     completeSetup,
     resetSetup,
   };
+}
+
+/**
+ * Shared client backstop for the onboarding redirect (SHELL-02 / PROG-06 /
+ * DATA-03). Sends the reader to the onboarding funnel only when the server has
+ * positively answered "not onboarded" (shouldRedirectToOnboarding); a pending
+ * or failed status check never redirects. The status read shares the cached
+ * request useOnboardingState already makes.
+ */
+export function useOnboardingRedirect({
+  hydrated,
+  setupComplete,
+  skip = false,
+}: {
+  hydrated: boolean;
+  setupComplete: boolean;
+  skip?: boolean;
+}): void {
+  const router = useRouter();
+  const needsAnswer = hydrated && !setupComplete && !skip;
+  const { data } = useBookQuery<{ onboardingCompleted?: boolean }>(
+    needsAnswer ? ONBOARDING_PROGRESS_KEY : null,
+  );
+  const redirect = shouldRedirectToOnboarding({
+    hydrated,
+    setupComplete,
+    serverAnswer: data,
+    skip,
+  });
+  useEffect(() => {
+    if (redirect) router.replace("/book");
+  }, [redirect, router]);
 }
