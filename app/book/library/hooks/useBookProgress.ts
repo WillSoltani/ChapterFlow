@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
 import {
@@ -276,6 +276,10 @@ export function useBookProgress<TChapter extends ProgressChapter>(
     )
   );
   const [serverReady, setServerReady] = useState(false);
+  // Set only by the setters below (a chapter opened, made current or completed)
+  // and cleared when the PATCH is sent. Hydration and the GET merge never set
+  // it, so viewing a book does not write progress (HOME-01 / DATA-12).
+  const dirtyRef = useRef(false);
   // Two-axis completion (feedback #4): the application axis is SERVER-ONLY and
   // read-only. It lives in its OWN state — never merged into `progress`, never
   // reconstructed from local data — so the progress union-merge below cannot clobber
@@ -367,8 +371,9 @@ export function useBookProgress<TChapter extends ProgressChapter>(
   }, [bookId, hydrated, progress, storageKey]);
 
   useEffect(() => {
-    if (!hydrated || !serverReady) return;
+    if (!hydrated || !serverReady || !dirtyRef.current) return;
     const timeout = window.setTimeout(() => {
+      dirtyRef.current = false;
       fetchBookJson(stateKey, {
         method: "PATCH",
         body: JSON.stringify({ state: progress }),
@@ -437,6 +442,7 @@ export function useBookProgress<TChapter extends ProgressChapter>(
   const setLastReadChapter = useCallback((chapterId: string) => {
     setProgress((prev) => {
       if (!chapters.some((chapter) => chapter.id === chapterId)) return prev;
+      dirtyRef.current = true;
       return {
         ...prev,
         lastReadChapterId: chapterId,
@@ -450,6 +456,7 @@ export function useBookProgress<TChapter extends ProgressChapter>(
       setProgress((prev) => {
         const allowed = prev.completedChapterIds.includes(chapterId) || prev.unlockedChapterIds.includes(chapterId);
         if (!allowed) return prev;
+        dirtyRef.current = true;
         return {
           ...prev,
           currentChapterId: chapterId,
@@ -467,6 +474,7 @@ export function useBookProgress<TChapter extends ProgressChapter>(
 
       setProgress((prev) => {
         if (!chapters.some((chapter) => chapter.id === chapterId)) return prev;
+        dirtyRef.current = true;
 
         const alreadyCompleted = prev.completedChapterIds.includes(chapterId);
         const completedChapterIds = alreadyCompleted

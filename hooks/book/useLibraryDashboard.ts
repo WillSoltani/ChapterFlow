@@ -25,6 +25,7 @@ const EMPTY: DashboardResponse = {
   catalog: [],
   progress: [],
   bookStates: [],
+  chapterStates: [],
   entitlement: null,
   saved: [],
   insightPointsBalance: 0,
@@ -55,6 +56,7 @@ export function useLibraryDashboard(enabled = true) {
       catalog: data.catalog ?? [],
       progress: data.progress ?? [],
       bookStates: data.bookStates ?? [],
+      chapterStates: data.chapterStates ?? [],
       entitlement: data.entitlement ?? null,
       saved: (data.saved ?? []).filter(
         (item): item is { bookId: string } => typeof item.bookId === "string",

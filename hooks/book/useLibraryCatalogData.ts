@@ -34,6 +34,10 @@ type DashboardCatalogPayload = {
     lastOpenedAt: string;
     updatedAt: string;
   }>;
+  chapterStates: Array<{
+    bookId: string;
+    chapterNumber: number;
+  }>;
 };
 
 const EPOCH_ISO = new Date(0).toISOString();
@@ -43,6 +47,7 @@ export type { DashboardCatalogPayload };
 export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry[] {
   const progressByBook = new Map(payload.progress.map((item) => [item.bookId, item]));
   const stateByBook = new Map(payload.bookStates.map((item) => [item.bookId, item]));
+  const booksWithChapterState = new Set(payload.chapterStates.map((item) => item.bookId));
 
   return payload.catalog.map((book) => {
     const progress = progressByBook.get(book.id);
@@ -56,10 +61,15 @@ export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry
       100,
       Math.round((chaptersCompleted / chaptersTotal) * 100)
     );
+    // D3: started = a chapter completed, or a progress row, or a chapter-state
+    // row. A book-state row alone does not count: older clients wrote one when
+    // the book page was only viewed.
+    const started =
+      chaptersCompleted > 0 || Boolean(progress) || booksWithChapterState.has(book.id);
     const status =
       chaptersCompleted >= chaptersTotal
         ? "completed"
-        : chaptersCompleted > 0 || Boolean(state || progress)
+        : started
           ? "in_progress"
           : "not_started";
 
@@ -75,10 +85,9 @@ export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry
       // Canonicalize the runtime catalog's category at this entry-construction
       // boundary so the options (buildLibraryCategoryOptions), the filter match
       // (useLibraryFilters: entry.category === filters.category) and the per-card
-      // tag of THIS library-data surface stay internally consistent. (This
-      // surface currently has no live consumer — the shipped in-app library uses
-      // the closed-enum components/library path — so the edit is drift-proofing,
-      // not load-bearing; kept for the named LM-4 builder.) See lib/category-taxonomy.ts.
+      // tag of THIS library-data surface stay internally consistent. Live:
+      // useLibraryDashboard feeds these entries to LibraryPage and the Saved
+      // page. See lib/category-taxonomy.ts.
       category: canonicalizeCategory(book.category),
       status,
       progressPercent,
@@ -101,6 +110,7 @@ export function useLibraryCatalogData(enabled = true) {
       catalog: data.catalog ?? [],
       progress: data.progress ?? [],
       bookStates: data.bookStates ?? [],
+      chapterStates: data.chapterStates ?? [],
     });
   }, [data]);
 
