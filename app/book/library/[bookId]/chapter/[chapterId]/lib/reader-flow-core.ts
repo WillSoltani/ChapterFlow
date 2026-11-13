@@ -1,3 +1,4 @@
+import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import type { LearningMode } from "@/app/book/settings/types/settings";
 import type { ChapterTab } from "@/lib/reader-state-types";
@@ -21,6 +22,20 @@ export function modeToDepth(mode: LearningMode): ReadingDepth {
   if (mode === "guided") return "simple";
   if (mode === "challenge") return "deeper";
   return "standard";
+}
+
+/** The depth a reader first sees, from their stored settings: Lite until they
+ *  customize their reading profile, then the depth of their learning mode. The
+ *  chapter page resolves it on the server so the first paint already matches. */
+export function initialReaderDepth(
+  settings: Record<string, unknown> | null | undefined,
+): ReadingDepth {
+  const extended = settings?.extended;
+  const customized =
+    typeof extended === "object" &&
+    extended !== null &&
+    (extended as { profileCustomized?: unknown }).profileCustomized === true;
+  return customized ? modeToDepth(resolveLearningMode(settings)) : "simple";
 }
 
 export function computeProgressPercent(

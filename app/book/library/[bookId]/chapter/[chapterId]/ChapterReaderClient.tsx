@@ -37,18 +37,21 @@ export function ChapterReaderClient({
   chapterOrder,
   initialBook,
   initialSeed,
+  initialDepth,
 }: {
   bookId: string;
   chapterId: string;
   chapterOrder?: number | undefined;
   initialBook?: LibraryBookDetail | undefined;
   initialSeed?: InitialChapterReaderSeed | undefined;
+  /** Server-resolved first depth (undefined when the settings read failed). */
+  initialDepth?: ReadingDepth | undefined;
 }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const prefersReducedMotion = useReducedMotion();
-  const readerSettings = useReaderSettings();
+  const readerSettings = useReaderSettings(initialDepth);
   const {
     bookPrefs,
     patchBookPrefs,
@@ -58,6 +61,7 @@ export function ChapterReaderClient({
     learningMode,
     contentTone,
     defaultToFastPath,
+    activeDepth,
     preferredActiveTab,
     preferredExampleFilter,
     preferredFocusMode,
@@ -144,7 +148,6 @@ export function ChapterReaderClient({
     } catch {}
   }, []);
 
-  const activeDepth: ReadingDepth = defaultToFastPath ? "simple" : modeToDepth(learningMode);
   const chapterQuiz = useChapterQuiz({
     bookId,
     chapterId,

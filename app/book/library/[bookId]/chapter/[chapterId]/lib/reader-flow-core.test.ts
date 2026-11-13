@@ -7,6 +7,7 @@ import {
   buildReauthReturnTo,
   computeProgressPercent,
   decidePhaseTransition,
+  initialReaderDepth,
   mapLearningStyleToDepth,
   modeToDepth,
   quizStepProgress,
@@ -200,4 +201,35 @@ test("quiz step progress is answered over total on the quiz, full once graded, n
   assert.equal(quizStepProgress("quiz", session, { q1: "a", stale: "b" }), 0.25);
   assert.equal(quizStepProgress("quiz", { ...session, result: { passed: false } }, {}), 1);
   assert.equal(quizStepProgress("quiz", { questions: [], result: null }, {}), 0);
+});
+
+test("initialReaderDepth: a reader who never customized their profile gets Lite", () => {
+  assert.equal(initialReaderDepth(null), "simple");
+  assert.equal(initialReaderDepth(undefined), "simple");
+  assert.equal(initialReaderDepth({}), "simple");
+  assert.equal(initialReaderDepth({ learningMode: "challenge" }), "simple");
+  assert.equal(
+    initialReaderDepth({ extended: { learningMode: "challenge", profileCustomized: false } }),
+    "simple",
+  );
+});
+
+test("initialReaderDepth: a customized reader gets the depth of their mode", () => {
+  assert.equal(
+    initialReaderDepth({ learningMode: "challenge", extended: { profileCustomized: true } }),
+    "deeper",
+  );
+  assert.equal(
+    initialReaderDepth({ extended: { learningMode: "guided", profileCustomized: true } }),
+    "simple",
+  );
+  assert.equal(initialReaderDepth({ extended: { profileCustomized: true } }), "standard");
+  // The canonical top-level mode wins over the legacy extended copy.
+  assert.equal(
+    initialReaderDepth({
+      learningMode: "standard",
+      extended: { learningMode: "challenge", profileCustomized: true },
+    }),
+    "standard",
+  );
 });

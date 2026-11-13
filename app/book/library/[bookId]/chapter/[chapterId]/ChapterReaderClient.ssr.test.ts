@@ -119,3 +119,79 @@ test("production reader SSR contains attested prose before effects run", async (
   assert.match(legacyHtml, /Loading chapter/);
   assert.doesNotMatch(legacyHtml, /Known server-rendered prose marker/);
 });
+
+test("the server-resolved initial depth reaches the first render", async () => {
+  const { ChapterReaderClient } = await import("./ChapterReaderClient");
+  const chapters = [1, 2].map((number) => ({
+    id: `book-a-ch0${number}`,
+    chapterId: `book-a-ch0${number}`,
+    number,
+    code: `0${number}`,
+    title: number === 2 ? "Known heading" : "First",
+    minutes: 5,
+  }));
+  const initialBook: LibraryBookDetail = {
+    id: "book-a",
+    title: "Known Book",
+    author: "Known Author",
+    icon: "book",
+    category: "Learning",
+    categories: ["Learning"],
+    difficulty: "Easy",
+    estimatedMinutes: 10,
+    chapterCount: 2,
+    synopsis: "Known synopsis",
+    tags: [],
+    variantFamily: "EMH",
+    publishedVersion: 1,
+    chapters,
+  };
+  const initialSeed: InitialChapterReaderSeed = {
+    schemaVersion: 1,
+    authorization: "active-entitled-started-unlocked",
+    route: { bookId: "book-a", chapterId: "book-a-ch02", chapterNumber: 2 },
+    onboardingCompleted: true,
+    content: {
+      chapter: {
+        chapterId: "internal-ch02",
+        number: 2,
+        title: "Known heading",
+        readingTimeMinutes: 5,
+        contentVariants: {
+          easy: {
+            chapterBreakdown: { direct: "Known lite prose marker." },
+            takeaways: ["Known takeaway"],
+          },
+          medium: {
+            chapterBreakdown: { direct: "Known standard prose marker." },
+            takeaways: ["Known takeaway"],
+          },
+        },
+      },
+      progress: {
+        currentChapterNumber: 2,
+        unlockedThroughChapterNumber: 2,
+        completedChapters: [1],
+      },
+    },
+  };
+  const render = (initialDepth?: "simple" | "standard" | "deeper") =>
+    renderToStaticMarkup(
+      React.createElement(ChapterReaderClient, {
+        bookId: "book-a",
+        chapterId: "book-a-ch02",
+        chapterOrder: 2,
+        initialBook,
+        initialSeed,
+        initialDepth,
+      }),
+    );
+
+  const lite = render("simple");
+  assert.match(lite, /Known lite prose marker/);
+  assert.doesNotMatch(lite, /Known standard prose marker/);
+
+  // No server depth (failed settings read): the first render is unchanged.
+  const unknown = render(undefined);
+  assert.match(unknown, /Known standard prose marker/);
+});
