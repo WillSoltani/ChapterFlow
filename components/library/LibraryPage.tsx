@@ -14,7 +14,6 @@ import { useBookViewer } from "@/hooks/book/useBookViewer";
 import { useSavedBooks } from "@/hooks/book/useSavedBooks";
 import { useFreeBookAllowance } from "@/hooks/book/useFreeBookAllowance";
 import { BookCover } from "@/components/ui/BookCover";
-import { deriveReaderLevel } from "@/lib/reader-levels";
 import { HeroRecommendation } from "./HeroRecommendation";
 import { ActiveReads } from "./ActiveReads";
 import { WeeklyChallenge } from "./WeeklyChallenge";
@@ -66,17 +65,6 @@ export function LibraryPage() {
     [entitlement, entries, insightPointsBalance, firstName],
   );
   const weeklyChallenge = WEEKLY_CHALLENGE;
-
-  // Named reader tier (NAMED TIERS, not numeric "Level N") — shared derivation
-  // with the Progress page via deriveReaderLevel, keyed on the same basis
-  // (total completed chapters across the reader's library).
-  const readerLevel = useMemo(
-    () =>
-      deriveReaderLevel(
-        entries.reduce((sum, entry) => sum + (entry.chaptersCompleted ?? 0), 0),
-      ),
-    [entries],
-  );
 
   const booksById = useMemo(() => new Map(books.map((b) => [b.id, b])), [books]);
   const isFreeUser = !userStats.isPro;
@@ -196,10 +184,11 @@ export function LibraryPage() {
     const xp = celebratedBookData.userProgress?.xpEarned ?? 0;
     showToast(`You've mastered ${celebratedBookData.title}!`, "success", {
       autoDismissMs: 5000,
-      detail: `${xp > 0 ? `+${xp} IP earned · ` : ""}${readerLevel}`,
+      // D6: no client reading level here; the server tier ladder is the only one.
+      ...(xp > 0 ? { detail: `+${xp} IP earned` } : {}),
       presentation: "celebration",
     });
-  }, [celebratedBookData, celebrationBook, readerLevel, showToast]);
+  }, [celebratedBookData, celebrationBook, showToast]);
 
   // Search query from navbar / URL → auto-scroll to Browse All
   const navSearchQuery = searchParams.get("q") ?? "";
