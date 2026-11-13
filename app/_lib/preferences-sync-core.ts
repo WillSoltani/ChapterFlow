@@ -11,13 +11,15 @@
 import type { ColorBlindMode, DocumentThemeSettings, ThemePreference } from "./document-theme";
 
 /**
- * Pages where the shell syncs preferences. Settings, the chapter reader and
- * onboarding mount useBookPreferences themselves, so the shell stays out of
- * their way.
+ * Pages where the shell syncs preferences. Settings and the chapter reader
+ * mount useBookPreferences themselves, and onboarding (`/onboarding`, and
+ * `/book`, which renders the same funnel) is left alone, so the shell stays
+ * out of their way.
  */
 export function isPreferencesSyncPath(pathname: string | null | undefined): boolean {
   if (!pathname) return false;
   if (
+    pathname === "/book" ||
     pathname === "/book/settings" ||
     pathname.startsWith("/book/settings/") ||
     pathname === "/book/onboarding" ||
@@ -31,7 +33,6 @@ export function isPreferencesSyncPath(pathname: string | null | undefined): bool
     pathname.startsWith("/dashboard/") ||
     pathname === "/rewards" ||
     pathname.startsWith("/rewards/") ||
-    pathname === "/book" ||
     pathname.startsWith("/book/")
   );
 }
