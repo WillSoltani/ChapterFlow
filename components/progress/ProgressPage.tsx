@@ -40,6 +40,11 @@ import { KnowledgeReview } from "./KnowledgeReview";
 import { YourBooks } from "./YourBooks";
 import { NextAchievements } from "./NextAchievements";
 import { ProInsightsPreview } from "./ProInsightsPreview";
+import {
+  buildReviewDataFromCards,
+  localDateKey,
+  type FSRSCardLite,
+} from "./review-data-core";
 
 // ──────────────────────────────────────────────────
 // Data transformation: hooks → ProgressPageData
@@ -91,73 +96,18 @@ const LOOP_STEP_MAP: Record<string, { step: LearningStep; stepNumber: StepNumber
 // source the home ReviewDueWidget uses — instead of the former per-device
 // localStorage SRS, so the two surfaces no longer contradict each other.
 
-const DAY_MS = 86_400_000;
-
 // Cache keys for this page's independent server reads (WS3-022).
 const REVIEWS_ALL_KEY = "/app/api/book/me/reviews?mode=all";
 const STREAK_KEY = "/app/api/book/me/streak";
 
-/** Lite shape of an FSRS card row as returned by GET /me/reviews?mode=all. */
-type FSRSCardLite = { dueAt: string; lastReviewAt: string; reps: number };
-
 const EMPTY_REVIEW_DATA: ReviewData = {
   overdueCount: 0,
   dueTodayCount: 0,
+  laterTodayCount: 0,
   upcomingThisWeekCount: 0,
   totalConceptsLearned: 0,
   forecast: [],
 };
-
-function localDateKey(d: Date): string {
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-}
-
-/** Whole-day offset of a due date from the start of today (negative = overdue). */
-function dayOffsetFromToday(dueAt: string, todayMs: number): number {
-  const dueDayStart = new Date(dueAt);
-  dueDayStart.setHours(0, 0, 0, 0);
-  return Math.round((dueDayStart.getTime() - todayMs) / DAY_MS);
-}
-
-function buildReviewDataFromCards(cards: FSRSCardLite[]): ReviewData {
-  const startOfToday = new Date();
-  startOfToday.setHours(0, 0, 0, 0);
-  const todayMs = startOfToday.getTime();
-
-  // forecast[0] = today (also absorbs overdue, which is actionable now);
-  // forecast[1..6] = each of the next six days.
-  const forecast = Array.from({ length: 7 }, (_, offset) => ({
-    date: localDateKey(new Date(todayMs + offset * DAY_MS)),
-    count: 0,
-  }));
-
-  let overdueCount = 0;
-  let dueTodayCount = 0;
-  let upcomingThisWeekCount = 0;
-
-  // forecast always has 7 buckets (index 0..6); every index below is in-bounds.
-  for (const card of cards) {
-    const offset = dayOffsetFromToday(card.dueAt, todayMs);
-    if (offset < 0) {
-      overdueCount += 1;
-      forecast[0]!.count += 1;
-    } else if (offset === 0) {
-      dueTodayCount += 1;
-      forecast[0]!.count += 1;
-    } else if (offset <= 7) {
-      upcomingThisWeekCount += 1;
-      if (offset <= 6) forecast[offset]!.count += 1;
-    }
-  }
-
-  return {
-    overdueCount,
-    dueTodayCount,
-    upcomingThisWeekCount,
-    totalConceptsLearned: cards.length,
-    forecast,
-  };
-}
 
 /** Distinct cards actually reviewed today (drives the "Review 5 concepts" quest).
  *  Guards on reps > 0 because createNewCard seeds lastReviewAt on unreviewed cards. */

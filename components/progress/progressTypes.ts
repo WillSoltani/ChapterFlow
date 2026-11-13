@@ -126,7 +126,10 @@ export interface DailyQuest {
 
 export interface ReviewData {
   overdueCount: number;
+  /** Due today and already reviewable (dueAt <= now). */
   dueTodayCount: number;
+  /** Due later today; not reviewable yet. */
+  laterTodayCount: number;
   upcomingThisWeekCount: number;
   totalConceptsLearned: number;
   forecast: Array<{ date: string; count: number }>;

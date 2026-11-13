@@ -150,6 +150,11 @@ export function KnowledgeReview({
                     : `${reviews.dueTodayCount} due today`}
                 </span>
               )}
+              {reviews.laterTodayCount > 0 && (
+                <span className="cf-pill cf-pill-info px-3 py-1 text-xs font-medium">
+                  {reviews.laterTodayCount} later today
+                </span>
+              )}
               {reviews.upcomingThisWeekCount > 0 && (
                 <span className="cf-pill cf-pill-info px-3 py-1 text-xs font-medium">
                   {reviews.upcomingThisWeekCount} upcoming

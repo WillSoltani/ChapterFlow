@@ -8,12 +8,15 @@ import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-
 import type { FSRSCardState, FSRSRating } from "@/app/app/api/book/_lib/types";
 
 const REVIEWS_KEY = "/app/api/book/me/reviews";
+// The server's largest page; `hasMore` says whether more cards are due after it.
+const SESSION_PAGE_SIZE = 50;
 
 type CardWithRetrievability = FSRSCardState & { retrievability: number };
 
 type DueResponse = {
   cards: CardWithRetrievability[];
   count: number;
+  hasMore?: boolean;
 };
 
 type ReviewResponse = {
@@ -34,19 +37,23 @@ export function useReviewQueue(bookId?: string) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<StatsResponse["stats"] | null>(null);
+  const [hasMore, setHasMore] = useState(false);
 
   const fetchDueCards = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
       if (bookId) params.set("bookId", bookId);
-      const { cards: dueCards } = await fetchBookJsonCached<DueResponse>(
+      params.set("limit", String(SESSION_PAGE_SIZE));
+      const { cards: dueCards, hasMore: more } = await fetchBookJsonCached<DueResponse>(
         `${REVIEWS_KEY}?${params.toString()}`
       );
       setCards(dueCards);
+      setHasMore(more === true);
       setCurrentIndex(0);
     } catch {
       setCards([]);
+      setHasMore(false);
     } finally {
       setLoading(false);
     }
@@ -117,6 +124,7 @@ export function useReviewQueue(bookId?: string) {
     remaining,
     loading,
     stats,
+    hasMore,
     submitRating,
     refresh: fetchDueCards,
   };

@@ -15,6 +15,7 @@ import {
 import { useReviewQueue } from "@/hooks/book/useReviewQueue";
 import { getBookById } from "@/lib/books-catalog";
 import { cn } from "@/lib/utils";
+import { moreDueAfterSession } from "@/components/progress/review-data-core";
 import type { FSRSRating } from "@/app/app/api/book/_lib/types";
 
 type Props = {
@@ -89,6 +90,9 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
     cards,
     currentIndex,
     submitRating,
+    hasMore,
+    stats,
+    refresh,
   } = useReviewQueue(bookId);
 
   const [flipped, setFlipped] = useState(false);
@@ -165,6 +169,11 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
 
   // ── Completion screen ──
   if (isComplete) {
+    const more = moreDueAfterSession({
+      hasMore,
+      totalDue: stats?.dueCards ?? null,
+      sessionSize: total,
+    });
     return (
       <div className="cf-overlay fixed inset-0 z-50 flex items-center justify-center">
         <motion.div
@@ -220,13 +229,30 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
               . Your memory is getting stronger with each session.
             </motion.p>
 
+            {more.more && (
+              <motion.button
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: DUR.page, ease: EASE.standard }}
+                type="button"
+                onClick={() => void refresh()}
+                className="cf-btn cf-btn-primary mt-7 w-full rounded-2xl text-sm"
+              >
+                {more.count !== null ? `${more.count} more due` : "More cards due"} · Keep going
+                <ChevronRight className="h-4 w-4" />
+              </motion.button>
+            )}
+
             <motion.button
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: DUR.page, ease: EASE.standard }}
               type="button"
               onClick={onClose}
-              className="cf-btn cf-btn-primary mt-7 w-full rounded-2xl text-sm"
+              className={cn(
+                "cf-btn w-full rounded-2xl text-sm",
+                more.more ? "cf-btn-secondary mt-3" : "cf-btn-primary mt-7",
+              )}
             >
               Done
               <ChevronRight className="h-4 w-4" />
