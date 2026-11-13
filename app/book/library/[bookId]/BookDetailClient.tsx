@@ -21,7 +21,12 @@ import type {
 } from "@/app/book/_lib/library-data";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
 import { freeStartsLeft } from "@/components/library/LibraryContext";
-import { bookCtaLabel, dailyGoalFromSettings, daysAtGoal } from "@/components/book/book-cta-core";
+import {
+  bookCtaLabel,
+  dailyGoalFromSettings,
+  daysAtGoal,
+  shouldAutoScrollToChapter,
+} from "@/components/book/book-cta-core";
 import { useBookQuery } from "@/lib/client/book-api-cache";
 import { SETTINGS_KEY } from "@/lib/client/book-read-keys";
 import { BookHero } from "./components/BookHero";
@@ -162,17 +167,26 @@ export function BookDetailClient({
   // HOME-08: no Start / Continue / Upgrade until both progress and plan are known.
   const ctaReady = progressReady && !billingState.loading;
 
-  // Auto-scroll to current chapter once server progress is known
+  // Once server progress is known, scroll to the current chapter for a book
+  // already started (a book not started keeps its hero in view), unless that
+  // row is already fully on screen.
+  const autoScrollDoneRef = useRef(false);
   useEffect(() => {
-    if (!serverReady || !currentChapterRef.current) return;
+    if (!serverReady || autoScrollDoneRef.current || !currentChapterRef.current) return;
     const timer = window.setTimeout(() => {
-      currentChapterRef.current?.scrollIntoView({
+      const row = currentChapterRef.current;
+      if (!row) return;
+      autoScrollDoneRef.current = true;
+      const rect = row.getBoundingClientRect();
+      const rowFullyInView = rect.top >= 0 && rect.bottom <= window.innerHeight;
+      if (!shouldAutoScrollToChapter({ completedCount, progressPercent, rowFullyInView })) return;
+      row.scrollIntoView({
         behavior: prefersReducedMotion ? "auto" : "smooth",
         block: "center",
       });
     }, 900);
     return () => window.clearTimeout(timer);
-  }, [serverReady, prefersReducedMotion]);
+  }, [serverReady, completedCount, progressPercent, prefersReducedMotion]);
 
   // When the free-book limit gates this book, no chapter can be opened without
   // claiming a slot — so every card renders locked, consistent with the gated

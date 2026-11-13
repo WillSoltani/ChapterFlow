@@ -74,3 +74,21 @@ export function daysAtGoal({
   const goal = Math.max(MIN_DAILY_GOAL_MINUTES, goalMinutes);
   return Math.max(1, Math.ceil(left / goal));
 }
+
+/**
+ * The book page scrolls to the reader's current chapter only for a book already
+ * started, and only when that chapter row is not already fully in view. A book
+ * not started keeps its title, description and start button at the top.
+ */
+export function shouldAutoScrollToChapter({
+  completedCount,
+  progressPercent,
+  rowFullyInView,
+}: {
+  completedCount: number;
+  progressPercent: number;
+  rowFullyInView: boolean;
+}): boolean {
+  if (completedCount <= 0 && progressPercent <= 0) return false;
+  return !rowFullyInView;
+}

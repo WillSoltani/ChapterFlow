@@ -7,6 +7,7 @@ import {
   dailyGoalFromSettings,
   daysAtGoal,
   resumeChapterNumber,
+  shouldAutoScrollToChapter,
 } from "./book-cta-core";
 
 // D4 / C13: "Continue" opens the chapter it names.
@@ -108,4 +109,31 @@ test("goal: then settings.dailyGoal, then onboarding.dailyGoal, then the caller 
 test("goal: non-numbers are skipped and the result is never below 5", () => {
   assert.equal(dailyGoalFromSettings({ extended: { dailyGoalPreset: "x" }, dailyGoal: 20 }, 10), 20);
   assert.equal(dailyGoalFromSettings({ dailyGoal: 0 }, 2), 5);
+});
+
+// The book page scrolls to the reader's chapter only for a book already started.
+
+test("auto-scroll: a book not started keeps the top of the page in view", () => {
+  assert.equal(
+    shouldAutoScrollToChapter({ completedCount: 0, progressPercent: 0, rowFullyInView: false }),
+    false,
+  );
+});
+
+test("auto-scroll: a started book scrolls to the current chapter", () => {
+  assert.equal(
+    shouldAutoScrollToChapter({ completedCount: 3, progressPercent: 30, rowFullyInView: false }),
+    true,
+  );
+  assert.equal(
+    shouldAutoScrollToChapter({ completedCount: 0, progressPercent: 5, rowFullyInView: false }),
+    true,
+  );
+});
+
+test("auto-scroll: no scroll when the current chapter row is already fully in view", () => {
+  assert.equal(
+    shouldAutoScrollToChapter({ completedCount: 3, progressPercent: 30, rowFullyInView: true }),
+    false,
+  );
 });
