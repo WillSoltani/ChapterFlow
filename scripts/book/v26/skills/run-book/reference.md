@@ -253,9 +253,16 @@ A cover made after the book published still reaches the public site through the 
 title the live store's own copy is only uploaded by the publish, so it stays without one until the registration
 runs again: say so and ask the owner.
 
-For a replaced title the public site and the logged-in web app get the new cover through the site pull request;
-the copy in the live store's own cover folder is only written for a title that has none, and which of the two
-the iOS app shows was not checked. Say so if the owner asks.
+For a replaced title there are two copies of the cover, and the site pull request replaces only one (checked
+2026-11-13):
+- the web pages (public site and logged-in library) show `public/book-covers/<bookId>.webp` from the deployed
+  build: the site pull request, merged and deployed, replaces it;
+- the API hands every other client (the iOS app, and the web as a last resort) the live store's copy,
+  `book-content/library/covers/<bookId>.webp`, named in `book-content/library/catalog.json`. The publish writes
+  it only for a title that has none, and it is served with a one-year immutable cache. Replacing it is a write to
+  the live store (put the new WebP at the same key with content type `image/webp` and the same cache header, then
+  a CloudFront invalidation of that path): do it only on the owner's yes, and say that devices which already
+  cached the old cover may keep it. The bucket keeps old versions, so it can be put back.
 
 ## 2. Keys, knowledge mode only (1 call, under $1)
 
