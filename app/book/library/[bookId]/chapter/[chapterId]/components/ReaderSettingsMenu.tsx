@@ -146,10 +146,12 @@ export function ReaderSettingsMenu({
   const isPhone = useIsPhone();
   const [advancedOpen, setAdvancedOpen] = useState(false);
 
-  // Close on outside click
+  // Close on outside click; a click in a modal dialog above (the mode confirm)
+  // belongs to that dialog.
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent) => {
+      if (modalOpenAbove(popoverRef.current)) return;
       if (popoverRef.current && !popoverRef.current.contains(e.target as Node)) {
         onClose();
       }

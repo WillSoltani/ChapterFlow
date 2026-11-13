@@ -2,7 +2,9 @@ import "../../../../../../../tests/_lib/dom";
 
 import assert from "node:assert/strict";
 import { afterEach, test } from "node:test";
+import { useState } from "react";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { Dialog } from "@/components/ui/Dialog";
 import { ReaderSettingsMenu } from "./ReaderSettingsMenu";
 
 const realMatchMedia = window.matchMedia;
@@ -96,6 +98,41 @@ test("settings menu leaves Escape to a modal dialog open above it", async () => 
     modal.remove();
   }
   fireEvent.keyDown(document, { key: "Escape" });
+  assert.equal(closed, 1);
+});
+
+test("a click inside a confirm dialog above the menu keeps the menu open and focus on the option", async () => {
+  setPhone(false);
+  let closed = 0;
+  function WithConfirm() {
+    const [confirming, setConfirming] = useState(false);
+    return (
+      <header>
+        {menu(() => (closed += 1), { onChangeLearningMode: () => setConfirming(true) })}
+        <Dialog open={confirming} onClose={() => setConfirming(false)} title="Switch to Deeper now?">
+          <button type="button" onClick={() => setConfirming(false)}>
+            Keep my answers
+          </button>
+        </Dialog>
+      </header>
+    );
+  }
+  const view = render(<WithConfirm />);
+  await waitFor(() => view.getByRole("dialog", { name: "Reading settings" }));
+  // The outside-click listener is attached on the next tick.
+  await new Promise((resolve) => setTimeout(resolve, 10));
+  const deeper = view.getByRole("button", { name: /Deeper/ });
+  deeper.focus();
+  fireEvent.click(deeper);
+  const keep = await waitFor(() => view.getByRole("button", { name: "Keep my answers" }));
+  fireEvent.mouseDown(keep);
+  fireEvent.click(keep);
+  await waitFor(() => assert.equal(view.queryByRole("button", { name: "Keep my answers" }), null));
+  assert.equal(closed, 0, "the settings menu stays open");
+  await waitFor(() => assert.equal(document.activeElement, deeper));
+
+  // A click outside both still closes the menu.
+  fireEvent.mouseDown(document.body);
   assert.equal(closed, 1);
 });
 
