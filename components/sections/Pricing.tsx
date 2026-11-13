@@ -243,7 +243,10 @@ export function Pricing() {
               className="mt-4 max-w-xl text-cf-body-lg leading-[1.6] text-(--text-secondary)"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Read {FREE_OFFER_LABEL} with no card. Start a {PRICING.trialDays}-day
+              {/* ACCT-12: the trial goes only to new subscribers, so a signed-in
+                  reader (who may have subscribed before) is told so. */}
+              Read {FREE_OFFER_LABEL} with no card.{" "}
+              {loggedIn ? "New subscribers can start" : "Start"} a {PRICING.trialDays}-day
               Pro trial for unlimited access and the deepest reading mode — cancel
               before it ends and you won&apos;t be charged.
             </p>
