@@ -14,6 +14,7 @@ import {
   DEFAULT_DESIRED_RETENTION,
 } from "./fsrs";
 import { getUserEntitlement, getUserSettingsItem } from "./repo";
+import { isConditionalCheckFailed } from "./repo-shared";
 import type {
   FSRSCardState,
   FSRSRating,
@@ -230,16 +231,11 @@ export async function recordReview(
   tableName: string,
   userId: string,
   cardId: string,
-  rating: FSRSRating
+  rating: FSRSRating,
+  /** The card the caller already read; saves a second read. */
+  currentCard?: FSRSCardState
 ): Promise<FSRSCardState> {
-  const getResult = await ddbDoc.send(
-    new GetCommand({
-      TableName: tableName,
-      Key: { PK: bookUserPk(userId), SK: fsrsCardSk(cardId) },
-    })
-  );
-
-  const card = getResult.Item as FSRSCardState | undefined;
+  const card = currentCard ?? (await getFSRSCard(tableName, userId, cardId));
   if (!card) {
     throw new Error(`FSRS card not found: ${cardId}`);
   }
@@ -248,16 +244,29 @@ export async function recordReview(
   const desiredRetention = await resolveDesiredRetentionForUser(tableName, userId);
   const updated = scheduleCard(card, rating, now, desiredRetention);
 
-  await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: bookUserPk(userId),
-        SK: fsrsCardSk(cardId),
-        ...updated,
-      },
-    })
-  );
+  // Save only if nobody graded the card since it was read. Otherwise the other
+  // grade stands: return the card as it is now and write no review log.
+  try {
+    await ddbDoc.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: bookUserPk(userId),
+          SK: fsrsCardSk(cardId),
+          ...updated,
+        },
+        ConditionExpression: "reps = :expectedReps",
+        ExpressionAttributeValues: { ":expectedReps": card.reps },
+      })
+    );
+  } catch (error: unknown) {
+    if (!isConditionalCheckFailed(error)) throw error;
+    const latest = await getFSRSCard(tableName, userId, cardId);
+    if (!latest) {
+      throw new Error(`FSRS card not found: ${cardId}`);
+    }
+    return latest;
+  }
 
   const reviewId = crypto.randomUUID();
   const reviewedAt = now.toISOString();
