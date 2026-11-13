@@ -807,7 +807,7 @@ export function BookSettingsClient({
           <Link
             href="/dashboard"
             aria-label="Back to Home"
-            className="cf-pressable cf-focus flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) transition hover:bg-(--cf-surface-muted)"
+            className="cf-pressable cf-focus flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) transition hover:bg-(--cf-surface-muted)"
           >
             <ArrowLeft className="h-4 w-4" />
           </Link>

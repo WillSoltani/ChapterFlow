@@ -530,6 +530,7 @@ test("ACCT-26: Back goes to Home", async () => {
   await wait(50);
   const back = view.getByRole("link", { name: "Back to Home" });
   assert.equal(back.getAttribute("href"), "/dashboard");
+  assert.match(back.className, /(^|\s)h-11 w-11(\s|$)/, "a 44px touch target");
 });
 
 test("ACCT-26: every searchable setting has a row on the page", async () => {
