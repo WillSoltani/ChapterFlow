@@ -295,7 +295,7 @@ export function ReadingActivity({
             <div className="flex gap-2">
               {/* Day labels: a fixed-width column so "Mon/Wed/Fri" never clip (LIVE-15) */}
               <div
-                className="grid w-8 shrink-0 select-none grid-rows-7 gap-1.5"
+                className="grid w-8 shrink-0 select-none grid-rows-7 gap-1 sm:gap-1.5"
                 style={{ gridTemplateRows: "repeat(7, 1rem)" }}
               >
                 {/* Row 0 = Sunday (the heatmap leadingPad guarantees this), so
@@ -313,7 +313,7 @@ export function ReadingActivity({
 
               {/* Grid cells: the weeks share the card's width (LIVE-15) */}
               <div
-                className="grid min-w-0 flex-1 grid-flow-col grid-rows-7 gap-1.5"
+                className="grid min-w-0 flex-1 grid-flow-col grid-rows-7 gap-1 sm:gap-1.5"
                 style={{ gridTemplateRows: "repeat(7, 1rem)", gridAutoColumns: "minmax(1rem, 1fr)" }}
               >
                 {heatmapData.map((cell, i) =>
