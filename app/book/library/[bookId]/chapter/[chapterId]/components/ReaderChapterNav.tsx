@@ -125,17 +125,18 @@ function StepPopover(props: StepMenuProps) {
   // unless focus has already moved on to another control.
   useEffect(() => {
     if (!open) return;
+    const panel = panelRef.current;
+    const trigger = triggerRef.current;
     const t = window.setTimeout(() => {
-      panelRef.current
+      panel
         ?.querySelector<HTMLElement>("[aria-current='step'], button:not([disabled]), a[href]")
         ?.focus();
     }, 0);
     return () => {
       window.clearTimeout(t);
       const active = document.activeElement;
-      const focusStayed =
-        !active || active === document.body || Boolean(panelRef.current?.contains(active));
-      if (focusStayed) triggerRef.current?.focus?.({ preventScroll: true });
+      const focusStayed = !active || active === document.body || Boolean(panel?.contains(active));
+      if (focusStayed) trigger?.focus?.({ preventScroll: true });
     };
   }, [open, triggerRef]);
 
