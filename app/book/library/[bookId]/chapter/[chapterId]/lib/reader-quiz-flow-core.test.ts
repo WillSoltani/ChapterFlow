@@ -7,12 +7,14 @@ import {
   completionScore,
   createInFlightGuard,
   emptyQuizProgress,
+  isQuizAttemptInProgress,
   isStaleAfterRecordedSubmit,
   mergeQuizDraft,
   projectIncorrectQuestionReviews,
   quizSubmitErrorMessage,
   readQuizDraft,
   shouldEnrollFlashcards,
+  shouldReloadQuizAfterSubmitError,
   unansweredQuestionIds,
 } from "./reader-quiz-flow-core";
 
@@ -177,4 +179,21 @@ test("canRetakeFromReview is false once the attempt passed", () => {
   assert.equal(canRetakeFromReview({ result: { passed: false, scorePercent: 40 } }), true);
   assert.equal(canRetakeFromReview({ result: null }), false);
   assert.equal(canRetakeFromReview(null), false);
+});
+
+// READER-12 (part in this package): a mode switch mid-quiz can leave the reader
+// holding the old mode's question set; the server then refuses the submit.
+test("isQuizAttemptInProgress is true only for an unsubmitted attempt with an answer", () => {
+  assert.equal(isQuizAttemptInProgress({ result: null }, { q1: "a" }), true);
+  assert.equal(isQuizAttemptInProgress({ result: null }, {}), false);
+  assert.equal(isQuizAttemptInProgress({ result: null }, { q1: "" }), false);
+  assert.equal(isQuizAttemptInProgress({ result: { passed: false } }, { q1: "a" }), false);
+  assert.equal(isQuizAttemptInProgress(null, { q1: "a" }), false);
+});
+
+test("shouldReloadQuizAfterSubmitError reloads on a cooldown or a question-set mismatch", () => {
+  assert.equal(shouldReloadQuizAfterSubmitError({ code: "attempt_cooldown" }), true);
+  assert.equal(shouldReloadQuizAfterSubmitError({ code: "invalid_answers" }), true);
+  assert.equal(shouldReloadQuizAfterSubmitError({ code: "quiz_session_stale" }), false);
+  assert.equal(shouldReloadQuizAfterSubmitError(new Error("offline")), false);
 });

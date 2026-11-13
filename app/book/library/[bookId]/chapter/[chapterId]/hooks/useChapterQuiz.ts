@@ -12,6 +12,7 @@ import { needsReconcile, reconcileProvisionalPass } from "../lib/quizReconcile";
 import {
   classifyQuizSubmission,
   completionScore,
+  isQuizAttemptInProgress,
   projectIncorrectQuestionReviews,
   quizSubmitErrorMessage,
   shouldEnrollFlashcards,
@@ -172,6 +173,9 @@ export function useChapterQuiz({
     justPassedThisSession,
     submitQuiz,
     retryQuiz: quiz.retry,
+    /** True while answers for an unsubmitted attempt exist; confirm before a
+     *  learning-mode switch discards them. */
+    attemptInProgress: isQuizAttemptInProgress(quiz.session, quiz.answers),
     claimLoopCompleteIP,
     completionScore: completionScore(quiz.session),
   };

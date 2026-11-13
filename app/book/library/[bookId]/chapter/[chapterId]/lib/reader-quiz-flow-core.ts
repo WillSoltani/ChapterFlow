@@ -183,3 +183,19 @@ export function mergeQuizDraft(
 export function canRetakeFromReview(session: QuizSessionLike): boolean {
   return Boolean(session?.result) && session?.result?.passed !== true;
 }
+
+/** An attempt the reader has started answering and not yet submitted. Used to
+ *  confirm before a learning-mode switch throws those answers away. */
+export function isQuizAttemptInProgress(
+  session: { result?: unknown } | null | undefined,
+  answers: Record<string, string>,
+): boolean {
+  return Boolean(session) && !session?.result && Object.values(answers).some(Boolean);
+}
+
+/** Submit errors after which the quiz must be re-fetched: a cooldown, or a
+ *  question set that no longer matches the server's (a mode switch mid-quiz). */
+export function shouldReloadQuizAfterSubmitError(error: unknown): boolean {
+  const code = typeof error === "object" && error !== null ? (error as { code?: unknown }).code : undefined;
+  return code === "attempt_cooldown" || code === "invalid_answers";
+}

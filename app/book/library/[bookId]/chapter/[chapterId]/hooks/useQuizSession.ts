@@ -18,6 +18,7 @@ import {
   isStaleAfterRecordedSubmit,
   mergeQuizDraft,
   readQuizDraft,
+  shouldReloadQuizAfterSubmitError,
   unansweredQuestionIds,
   type QuizAttemptProgress,
 } from "../lib/reader-quiz-flow-core";
@@ -572,10 +573,9 @@ export function useQuizSession(params: {
           return { session: local, loopPipeline: null };
         }
       }
-      if (
-        submitError instanceof BookClientError &&
-        submitError.code === "attempt_cooldown"
-      ) {
+      // Re-fetch so the next try uses the server's current attempt and question
+      // set (after a cooldown, or a mode switch that changed the question count).
+      if (shouldReloadQuizAfterSubmitError(submitError)) {
         await load();
       }
       throw submitError;
