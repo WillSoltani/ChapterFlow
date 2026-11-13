@@ -21,7 +21,11 @@ export default async function BookSettingsPage({
 }) {
   await requireDashboardAccess();
 
-  const initialUpgradeInterval = parsePlanHint((await searchParams).plan);
+  const params = await searchParams;
+  const initialUpgradeInterval = parsePlanHint(params.plan);
+  // `upgrade=1` (UPGRADE_RETURN_PATH): open Account and focus the subscription card.
+  const upgradeParam = Array.isArray(params.upgrade) ? params.upgrade[0] : params.upgrade;
+  const openUpgrade = upgradeParam === "1";
 
   let userEmail: string | null = null;
   let isAdmin = false;
@@ -48,6 +52,7 @@ export default async function BookSettingsPage({
       userEmail={userEmail}
       appVersion={packageJson.version}
       initialUpgradeInterval={initialUpgradeInterval}
+      openUpgrade={openUpgrade}
     />
   );
 }

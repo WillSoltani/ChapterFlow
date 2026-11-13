@@ -138,9 +138,17 @@ type BookSettingsClientProps = {
   /** Optional billing-interval pre-selection carried from an upgrade deep-link
    *  (e.g. the landing "Annual" toggle). Clamped to an available tier downstream. */
   initialUpgradeInterval?: BillingInterval | undefined;
+  /** `upgrade=1` on the URL: open Account & Subscription and focus its button. */
+  openUpgrade?: boolean | undefined;
 };
 
-export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgradeInterval }: BookSettingsClientProps) {
+export function BookSettingsClient({
+  isAdmin,
+  userEmail,
+  appVersion,
+  initialUpgradeInterval,
+  openUpgrade = false,
+}: BookSettingsClientProps) {
   const router = useRouter();
 
   // Existing state hooks
@@ -433,6 +441,22 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   // an action. Email consent is now written only by the reminder toggle and the
   // reminder-time picker below, and nothing is written on page load.
 
+  // ACCT-06: open Account & Subscription (without writing section states),
+  // then bring the subscription card's main button into view and focus it.
+  // The button exists once the plan is known, so this waits for it.
+  const [forceOpenSections, setForceOpenSections] = useState<ReadonlySet<string>>(
+    () => new Set(openUpgrade ? ["account"] : []),
+  );
+  const subscriptionFocusPendingRef = useRef(openUpgrade);
+  useEffect(() => {
+    if (!subscriptionFocusPendingRef.current) return;
+    const button = document.getElementById("subscription-cta");
+    if (!button) return;
+    subscriptionFocusPendingRef.current = false;
+    document.getElementById("subscription")?.scrollIntoView?.({ block: "start" });
+    button.focus({ preventScroll: true });
+  }, [billingState.loading, billingState.payload, forceOpenSections, isSearching]);
+
   // Derived state
   const isPro = billingState.payload?.entitlement.plan === "PRO";
   const plan = billingState.payload?.entitlement.plan ?? "FREE";
@@ -592,9 +616,27 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
 
   // While searching, force-expand a matched (but collapsed) section so the
   // matched row is actually visible instead of hidden behind a collapsed header.
+  // Sections opened for an upgrade are shown the same way: held on this page
+  // only, never written to the stored section states.
   function isSectionShown(sectionId: string) {
     if (isSearching && results?.matchedSections.has(sectionId)) return true;
+    if (forceOpenSections.has(sectionId)) return true;
     return isSectionExpanded(sectionId);
+  }
+
+  // A header tap on a force-opened section closes it without a write when the
+  // stored state is already closed.
+  function handleSectionToggle(sectionId: string) {
+    if (forceOpenSections.has(sectionId)) {
+      setForceOpenSections((prev) => {
+        const next = new Set(prev);
+        next.delete(sectionId);
+        return next;
+      });
+      if (isSectionExpanded(sectionId)) toggleSection(sectionId);
+      return;
+    }
+    toggleSection(sectionId);
   }
 
   // Finding C: section-index jump. Expand the target (a non-mutating UI toggle)
@@ -718,7 +760,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             title="Reading Experience"
             summary={getReadingSummary()}
             expanded={isSectionShown("reading")}
-            onToggle={() => toggleSection("reading")}
+            onToggle={() => handleSectionToggle("reading")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("reading")}
           >
@@ -967,7 +1009,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             title="Goals & Motivation"
             summary={getGoalsSummary()}
             expanded={isSectionShown("goals")}
-            onToggle={() => toggleSection("goals")}
+            onToggle={() => handleSectionToggle("goals")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("goals")}
           >
@@ -1227,7 +1269,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             title="Appearance"
             summary={getAppearanceSummary()}
             expanded={isSectionShown("appearance")}
-            onToggle={() => toggleSection("appearance")}
+            onToggle={() => handleSectionToggle("appearance")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("appearance")}
           >
@@ -1326,7 +1368,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             title="Accessibility"
             summary={getAccessibilitySummary()}
             expanded={isSectionShown("accessibility")}
-            onToggle={() => toggleSection("accessibility")}
+            onToggle={() => handleSectionToggle("accessibility")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("accessibility")}
           >
@@ -1392,7 +1434,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             title="Notifications"
             summary={getNotificationsSummary()}
             expanded={isSectionShown("notifications")}
-            onToggle={() => toggleSection("notifications")}
+            onToggle={() => handleSectionToggle("notifications")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("notifications")}
           >
@@ -1544,7 +1586,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             title="Account & Subscription"
             summary={getAccountSummary()}
             expanded={isSectionShown("account")}
-            onToggle={() => toggleSection("account")}
+            onToggle={() => handleSectionToggle("account")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("account")}
           >

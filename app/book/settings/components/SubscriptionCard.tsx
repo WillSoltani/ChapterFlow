@@ -154,6 +154,7 @@ export function SubscriptionCard({
               {APPLE_MANAGED_SUBSCRIPTION_LABEL}.
             </p>
             <a
+              id="subscription-cta"
               href={APPLE_MANAGE_SUBSCRIPTIONS_URL}
               target="_blank"
               rel="noreferrer"
@@ -164,6 +165,7 @@ export function SubscriptionCard({
           </>
         ) : (
           <Button
+            id="subscription-cta"
             variant="secondary"
             size="sm"
             className="mt-4"
@@ -301,6 +303,7 @@ export function SubscriptionCard({
             ramp is darkened at the start for exactly this) and an amber focus
             ring, so this reads identically to every other "Upgrade"/"Go Pro" CTA. */}
         <button
+          id="subscription-cta"
           type="button"
           disabled={actionLoading}
           onClick={handleUpgrade}

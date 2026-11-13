@@ -19,6 +19,30 @@ let serverSettings: { settings: Record<string, unknown> | null; updatedAt: strin
   settings: null,
   updatedAt: null,
 };
+let entitlements: unknown = null;
+
+function entitlementsPayload(plan: "FREE" | "PRO", extra: Record<string, unknown> = {}) {
+  return {
+    entitlement: {
+      plan,
+      proStatus: plan === "PRO" ? "active" : "inactive",
+      freeBookSlots: 2,
+      unlockedBookIds: [],
+      unlockedBooksCount: 0,
+      remainingFreeStarts: 2,
+      cancelAtPeriodEnd: false,
+      ...extra,
+    },
+    paywall: {
+      price: "$7.99/month",
+      pricingTiers: [
+        { interval: "monthly", price: "$7.99", label: "Monthly", period: "month" },
+        { interval: "annual", price: "$5.99", label: "Annual", annualTotal: "$71.88", period: "year" },
+      ],
+      benefits: [],
+    },
+  };
+}
 
 function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -38,6 +62,9 @@ globalThis.fetch = (async (input: RequestInfo | URL, init: RequestInit = {}) => 
   if (method === "GET" && url.endsWith("/me/settings")) {
     return json(serverSettings);
   }
+  if (method === "GET" && url.endsWith("/me/entitlements") && entitlements) {
+    return json(entitlements);
+  }
   if (method !== "GET") {
     if (failWrites) return json({ error: "unavailable" }, 503);
     return json({ settings: {}, updatedAt: new Date().toISOString() });
@@ -56,10 +83,15 @@ const router = {
   prefetch() {},
 } as unknown as AppRouterInstance;
 
-function renderSettings() {
+function renderSettings(props: { openUpgrade?: boolean } = {}) {
   return render(
     <AppRouterContext.Provider value={router}>
-      <BookSettingsClient isAdmin={false} userEmail="reader@example.com" appVersion="test" />
+      <BookSettingsClient
+        isAdmin={false}
+        userEmail="reader@example.com"
+        appVersion="test"
+        openUpgrade={props.openUpgrade}
+      />
     </AppRouterContext.Provider>,
   );
 }
@@ -92,6 +124,7 @@ beforeEach(() => {
   calls = [];
   failWrites = false;
   serverSettings = { settings: null, updatedAt: null };
+  entitlements = null;
   window.localStorage.clear();
   invalidateBookCache("/app/api/book/me");
   document.documentElement.className = "";
@@ -285,4 +318,31 @@ test("ACCT-13: a failed save says so and offers a retry; Saved shows only after 
     (c) => (c.body as { settings?: { appearance?: unknown } }).settings?.appearance,
   );
   assert.equal(appearanceWrites.length, 2, "the retry re-sends the change");
+});
+
+test("ACCT-06: upgrade=1 opens Account, focuses the subscription button and writes nothing", async () => {
+  entitlements = entitlementsPayload("FREE");
+  const view = renderSettings({ openUpgrade: true });
+  await wait(1500);
+
+  const header = section(view, "Account & Subscription").querySelector("button[aria-expanded]");
+  assert.equal(header?.getAttribute("aria-expanded"), "true", "Account is open");
+  assert.equal(document.activeElement?.id, "subscription-cta", "the subscription button has focus");
+  assert.equal(writes("/me/settings").length, 0, "opening it wrote no section state");
+  const stored = JSON.parse(window.localStorage.getItem("book-accelerator:preferences:v2") ?? "{}");
+  assert.notEqual(stored.extended?.sectionStates?.account, true, "the stored section state stays closed");
+
+  // Closing it again is a plain UI change: the stored state was already closed.
+  fireEvent.click(header!);
+  await wait(900);
+  assert.equal(header?.getAttribute("aria-expanded"), "false");
+  assert.equal(writes("/me/settings").length, 0);
+});
+
+test("ACCT-06: without upgrade=1 Account stays closed", async () => {
+  entitlements = entitlementsPayload("FREE");
+  const view = renderSettings();
+  await wait(300);
+  const header = section(view, "Account & Subscription").querySelector("button[aria-expanded]");
+  assert.equal(header?.getAttribute("aria-expanded"), "false");
 });

@@ -15,7 +15,6 @@ import {
   formatAmount,
   TRIAL_CTA_LABEL,
   FREE_OFFER_LABEL,
-  UPGRADE_RETURN_PATH,
   UPGRADE_LOGIN_URL,
   PRICING_TIER_DISPLAY,
   PRO_FEATURES,
@@ -23,6 +22,11 @@ import {
   ANNUAL_UPFRONT_SAVINGS_PCT,
 } from "@/lib/pricing";
 import { gatedRoutePrefetchProps } from "@/components/landing/recall/RecallNavModel";
+import {
+  saveUpgradeIntent,
+  sessionStorageOrNull,
+  upgradeHrefForInterval,
+} from "@/app/_lib/upgrade-intent-core";
 
 /**
  * Public pricing and plan comparison.
@@ -174,10 +178,11 @@ export function Pricing() {
   // charged when the trial ends" promise — so it must land on the trial-start
   // (Stripe checkout) surface, not the free reader. Already-Pro users go to
   // settings to MANAGE, never a second checkout (CHECKOUT-DOUBLE).
+  const proInterval = isAnnual ? "annual_upfront" : "monthly";
   const proHref = isPro
     ? "/book/settings"
     : loggedIn
-      ? UPGRADE_RETURN_PATH
+      ? upgradeHrefForInterval(proInterval)
       : UPGRADE_LOGIN_URL;
   const proCtaLabel = isPro ? "Manage subscription" : TRIAL_CTA_LABEL;
   // Only the monthly view reads this; the annual view prices the annual-upfront
@@ -352,11 +357,16 @@ export function Pricing() {
                   data-public-sticky-cta-suppress
                   href={proHref}
                   {...gatedRoutePrefetchProps(proHref, loggedIn === true)}
-                  onClick={() =>
+                  onClick={() => {
                     track("cta_click", {
                       source: isPro ? "pricing_manage" : "pricing_pro",
-                    })
-                  }
+                    });
+                    // A new reader goes through sign-up and onboarding first;
+                    // onboarding then finishes on the subscription card.
+                    if (!loggedIn) {
+                      saveUpgradeIntent(sessionStorageOrNull(), proInterval, Date.now());
+                    }
+                  }}
                   className="inline-flex w-full items-center justify-center rounded-xl bg-(--accent-cyan) px-5 py-3 text-cf-body font-semibold text-(--primary-foreground) transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
