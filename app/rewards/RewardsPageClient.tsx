@@ -222,7 +222,11 @@ export function RewardsPageClient() {
         activeTab={"rewards" as BookNavTab}
       />
 
-      <section className="mx-auto w-full max-w-2xl space-y-8 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
+      <section
+        id="main"
+        tabIndex={-1}
+        className="mx-auto w-full max-w-2xl space-y-8 px-4 pb-28 pt-7 focus:outline-none sm:px-6 sm:pt-8 md:pb-24"
+      >
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-(--cf-text-1)">Rewards</h1>
           <p className="mt-1 text-sm text-(--cf-text-soft)">

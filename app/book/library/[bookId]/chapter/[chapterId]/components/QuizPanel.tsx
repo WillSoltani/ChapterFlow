@@ -24,6 +24,12 @@ import {
 } from "@/app/book/_lib/flow-points-economy";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { ProgressRing as SharedProgressRing } from "@/components/ui/ProgressRing";
+import {
+  canRetakeFromReview,
+  unansweredQuestionIds,
+  type QuizAttemptProgress,
+  type QuizFeedbackState,
+} from "../lib/reader-quiz-flow-core";
 
 const OPTION_LABELS = ["A", "B", "C", "D", "E"];
 
@@ -52,6 +58,9 @@ type QuizPanelProps = {
   questionFlow?: QuestionPresentationStyle;
   shuffleQuestions?: boolean;
   retryIncorrectOnly?: boolean;
+  /** Saved per-question grading for an attempt (survives tab switch / refresh). */
+  loadProgress?: (attemptNumber: number) => QuizAttemptProgress;
+  onProgressChange?: (attemptNumber: number, progress: QuizAttemptProgress) => void;
 };
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -157,7 +166,8 @@ function ProgressDots({
 function ImmediateQuestionCard({
   index, question, answerChoiceId, correctChoiceId, learningMode, onAnswer,
   onToggleExplanation, explanationOpen, feedbackState, disabledChoices,
-  retriesLeft, isLast, onSeeResults, totalQuestions,
+  retriesLeft, isLast, onSeeResults, totalQuestions, remainingCount, nextUnansweredNumber, onJumpToUnanswered,
+  submitting,
 }: {
   index: number;
   question: QuizQuestionView;
@@ -176,6 +186,12 @@ function ImmediateQuestionCard({
   isLast: boolean;
   onSeeResults: () => void;
   totalQuestions: number;
+  /** Session questions still without an answer (hidden ones included). */
+  remainingCount: number;
+  /** 1-based position of the first visible unanswered question, if any. */
+  nextUnansweredNumber: number | null;
+  onJumpToUnanswered: () => void;
+  submitting: boolean;
 }) {
   const cardRef = useRef<HTMLElement>(null);
   const resolved = feedbackState === "correct" || feedbackState === "incorrect-final";
@@ -236,7 +252,7 @@ function ImmediateQuestionCard({
   }
 
   return (
-    <article ref={cardRef} className="cr-glass-reading p-6 scroll-mt-24"
+    <article ref={cardRef} data-quiz-question={question.questionId} className="cr-glass-reading p-6 scroll-mt-24"
       style={{ animation: `cr-card-enter 300ms ease-out ${index * 50}ms both` }}>
 
       {/* Question header — FIX 5: result badge NEXT TO number, not top-right */}
@@ -381,14 +397,28 @@ function ImmediateQuestionCard({
         </div>
       )}
 
-      {/* See Results on last question */}
+      {/* See Results on last question — only once every question has an answer */}
       {isLast && resolved && (
         <div className="mt-5 flex flex-col items-center gap-2">
-          <button type="button" onClick={onSeeResults}
-            className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90">
-            See Your Results <ArrowRight className="h-5 w-5" />
-          </button>
-          <p className="text-xs text-(--cr-text-disabled)">All {totalQuestions} questions answered</p>
+          {remainingCount === 0 ? (
+            <button type="button" onClick={onSeeResults} disabled={submitting} aria-busy={submitting}
+              className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90 disabled:cursor-wait disabled:opacity-70">
+              {submitting
+                ? <><LoaderCircle className="h-5 w-5 animate-spin" /> Checking your answers...</>
+                : <>See Your Results <ArrowRight className="h-5 w-5" /></>}
+            </button>
+          ) : (
+            <button type="button" onClick={onJumpToUnanswered} disabled={nextUnansweredNumber == null}
+              className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90 disabled:opacity-50">
+              {nextUnansweredNumber != null ? `Answer question ${nextUnansweredNumber}` : "Answer the remaining questions"}
+              <ArrowRight className="h-5 w-5" />
+            </button>
+          )}
+          <p className="text-xs text-(--cr-text-disabled)">
+            {remainingCount === 0
+              ? `All ${totalQuestions} questions answered`
+              : `${remainingCount} ${remainingCount === 1 ? "question" : "questions"} left`}
+          </p>
         </div>
       )}
     </article>
@@ -472,12 +502,14 @@ function ReviewMistakesView({
         );
       })}
 
-      <div className="flex justify-center pt-2">
-        <button type="button" onClick={onRetake}
-          className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90">
-          <RotateCcw className="h-4 w-4" /> Retake Quiz
-        </button>
-      </div>
+      {canRetakeFromReview(session) && (
+        <div className="flex justify-center pt-2">
+          <button type="button" onClick={onRetake}
+            className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90">
+            <RotateCcw className="h-4 w-4" /> Retake Quiz
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -598,6 +630,8 @@ export function QuizPanel({
   questionFlow = "all-at-once",
   shuffleQuestions = false,
   retryIncorrectOnly = false,
+  loadProgress,
+  onProgressChange,
 }: QuizPanelProps) {
   const [questionFeedback, setQuestionFeedback] = useState<
     Record<string, "pending" | "correct" | "incorrect-retry" | "incorrect-final">
@@ -651,14 +685,27 @@ export function QuizPanel({
     return questions;
   }, [session, shuffleQuestions, retryIncorrectOnly, previousIncorrectIds]);
 
-  // Reset local quiz state when session refreshes (e.g. retry)
+  // Reset local quiz state when session refreshes (e.g. retry), or restore the
+  // saved grading the first time this panel sees an in-progress attempt.
   const prevSessionRef = useRef(session);
+  const hydratedAttemptRef = useRef<number | null>(null);
+  // The commit that resets or restores state still holds the old values, so
+  // the save effect skips that one run.
+  const skipProgressSaveRef = useRef(false);
   useEffect(() => {
     const prev = prevSessionRef.current;
     prevSessionRef.current = session;
-    if (!session || session === prev) return;
+    if (!session) {
+      // The hook clears the session on a chapter or mode change: restore the
+      // next attempt from its own draft rather than saving this one over it.
+      hydratedAttemptRef.current = null;
+      return;
+    }
+    if (session.result) return;
     // Fresh session (no result) after a submitted session means retry
-    if (!session.result && prev?.result) {
+    if (session !== prev && prev?.result) {
+      hydratedAttemptRef.current = session.attemptNumber;
+      skipProgressSaveRef.current = true;
       // Capture incorrect question IDs from previous attempt for retry-incorrect-only mode
       const incorrectIds = new Set(
         prev.questions.filter((q) => q.isCorrect === false).map((q) => q.questionId)
@@ -670,8 +717,41 @@ export function QuizPanel({
       setCorrectByQuestion({});
       setResultView("results");
       setOneByOneIndex(0);
+      return;
     }
-  }, [session]);
+    if (hydratedAttemptRef.current === session.attemptNumber) return;
+    hydratedAttemptRef.current = session.attemptNumber;
+    const saved = loadProgress?.(session.attemptNumber);
+    if (!saved) return;
+    skipProgressSaveRef.current = true;
+    setQuestionFeedback(saved.feedback);
+    setRetriesUsed(saved.retriesUsed);
+    setDisabledChoices(
+      Object.fromEntries(Object.entries(saved.disabledChoices).map(([id, choices]) => [id, new Set(choices)]))
+    );
+    setCorrectByQuestion(saved.correctByQuestion);
+    setPreviousIncorrectIds(new Set(saved.retakeQuestionIds));
+  }, [session, loadProgress]);
+
+  useEffect(() => {
+    if (!session || session.result || !onProgressChange) return;
+    if (hydratedAttemptRef.current !== session.attemptNumber) return;
+    if (skipProgressSaveRef.current) {
+      skipProgressSaveRef.current = false;
+      return;
+    }
+    const feedback: Record<string, QuizFeedbackState> = {};
+    for (const [id, state] of Object.entries(questionFeedback)) {
+      if (state !== "pending") feedback[id] = state;
+    }
+    onProgressChange(session.attemptNumber, {
+      feedback,
+      retriesUsed,
+      disabledChoices: Object.fromEntries(Object.entries(disabledChoices).map(([id, set]) => [id, [...set]])),
+      correctByQuestion,
+      retakeQuestionIds: [...previousIncorrectIds],
+    });
+  }, [session, onProgressChange, questionFeedback, retriesUsed, disabledChoices, correctByQuestion, previousIncorrectIds]);
 
   // Announce the final score to screen readers once the result lands (WCAG 4.1.3).
   const announcedResultRef = useRef(false);
@@ -756,10 +836,35 @@ export function QuizPanel({
     [session, questionFeedback, disabledChoices, retriesUsed, maxRetries, onAnswer, onCheckAnswer, announce]
   );
 
+  // Every session question must carry an answer before submit: the server
+  // refuses a submit with any question unanswered.
+  const unansweredIds = useMemo(
+    () => (session && !session.result ? unansweredQuestionIds(session.questions, answers) : []),
+    [session, answers]
+  );
+  const firstUnansweredDisplayIndex = displayQuestions.findIndex((q) => unansweredIds.includes(q.questionId));
+
+  const jumpToUnanswered = useCallback(() => {
+    const target = displayQuestions[firstUnansweredDisplayIndex];
+    if (!target) return;
+    if (questionFlow === "one-by-one") {
+      setOneByOneIndex(firstUnansweredDisplayIndex);
+      return;
+    }
+    document
+      .querySelector(`[data-quiz-question="${CSS.escape(target.questionId)}"]`)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [displayQuestions, firstUnansweredDisplayIndex, questionFlow]);
+
   const handleSeeResults = useCallback(() => {
+    if (submitting) return;
+    if (unansweredIds.length > 0) {
+      jumpToUnanswered();
+      return;
+    }
     setResultView("results");
     onSubmit();
-  }, [onSubmit]);
+  }, [onSubmit, unansweredIds, jumpToUnanswered, submitting]);
 
   // Keyboard navigation: 1-5 to pick a choice. Must target the questions the
   // user can actually SEE (displayQuestions) — session.questions includes the
@@ -810,7 +915,7 @@ export function QuizPanel({
             questionFeedback[q.questionId] === "correct" ||
             questionFeedback[q.questionId] === "incorrect-final"
         );
-        if (resolved && !submitting) {
+        if (resolved && !submitting && unansweredIds.length === 0) {
           e.preventDefault();
           handleSeeResults();
         }
@@ -886,7 +991,12 @@ export function QuizPanel({
     );
   }
 
-  const safeCurrentIndex = currentQuestionIndex === -1 ? displayQuestions.length - 1 : currentQuestionIndex;
+  // One-by-one shows the card at oneByOneIndex, so the header follows it.
+  const safeCurrentIndex = questionFlow === "one-by-one"
+    ? Math.min(oneByOneIndex, displayQuestions.length - 1)
+    : currentQuestionIndex === -1 ? displayQuestions.length - 1 : currentQuestionIndex;
+  const canSeeResults = allResolved && unansweredIds.length === 0;
+  const nextUnansweredNumber = firstUnansweredDisplayIndex >= 0 ? firstUnansweredDisplayIndex + 1 : null;
 
   return (
     <section className="cr-reading-content space-y-5">
@@ -969,6 +1079,10 @@ export function QuizPanel({
                   isLast={oneByOneIndex === displayQuestions.length - 1}
                   onSeeResults={handleSeeResults}
                   totalQuestions={displayQuestions.length}
+                  remainingCount={unansweredIds.length}
+                  nextUnansweredNumber={nextUnansweredNumber}
+                  onJumpToUnanswered={jumpToUnanswered}
+                  submitting={submitting}
                 />
               )}
               <div className="flex items-center justify-between">
@@ -999,6 +1113,10 @@ export function QuizPanel({
                 isLast={index === displayQuestions.length - 1}
                 onSeeResults={handleSeeResults}
                 totalQuestions={displayQuestions.length}
+                remainingCount={unansweredIds.length}
+                nextUnansweredNumber={nextUnansweredNumber}
+                onJumpToUnanswered={jumpToUnanswered}
+                submitting={submitting}
               />
             ))
           )}
@@ -1013,10 +1131,10 @@ export function QuizPanel({
 
       {/* Challenge mode submit */}
       {!submitted && learningMode === "challenge" && (
-        <button type="button" disabled={!allResolved || submitting} onClick={handleSeeResults}
+        <button type="button" disabled={!canSeeResults || submitting} onClick={handleSeeResults}
           className={[
             "w-full rounded-2xl px-6 py-4 text-lg font-bold transition",
-            allResolved && !submitting
+            canSeeResults && !submitting
               ? "bg-(--cr-accent) text-(--cr-text-inverse) hover:opacity-90"
               : "cursor-not-allowed bg-(--cr-bg-surface-3) text-(--cr-text-disabled)",
           ].join(" ")}>

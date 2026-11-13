@@ -11,6 +11,7 @@ import {
 } from "@/app/app/api/book/_lib/ops-failure-repo";
 import { revokeUserSessions } from "@/app/app/api/book/_lib/cognito-admin";
 import { revokeAppleIdentityOnDelete } from "@/app/app/api/book/_lib/apple-auth";
+import { cancelStripeSubscriptionOnDelete } from "./stripe-cancel-core";
 
 export const runtime = "nodejs";
 
@@ -26,7 +27,7 @@ const DELETE_MAX_AUTH_AGE_MINUTES = 10;
  *
  * Requires body: { confirm: "DELETE" } as a server-side safety guard.
  *
- * If the user has an active Stripe subscription, it's cancelled immediately.
+ * If the user has a Stripe subscription that can still bill, it's cancelled immediately.
  */
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
@@ -102,13 +103,21 @@ export async function POST(req: Request) {
       });
     }
 
-    // Cancel Stripe subscription immediately if active. A failure must NOT block
-    // the deletion, but it must NOT be swallowed either — record it for operator
-    // follow-up (admin Ops dashboard) and emit a CloudWatch metric.
-    if (entitlement?.stripeSubscriptionId && entitlement.proStatus === "active") {
+    // Cancel the Stripe subscription immediately unless Stripe says it is already
+    // finished (past_due, unpaid and paused can still bill; the local proStatus
+    // does not distinguish them). A failure must NOT block the deletion, but it
+    // must NOT be swallowed either — record it for operator follow-up (admin Ops
+    // dashboard) and emit a CloudWatch metric.
+    if (entitlement?.stripeSubscriptionId) {
       try {
         const stripe = await getStripeClient();
-        await stripe.subscriptions.cancel(entitlement.stripeSubscriptionId);
+        await cancelStripeSubscriptionOnDelete(
+          {
+            retrieve: (id) => stripe.subscriptions.retrieve(id),
+            cancel: (id) => stripe.subscriptions.cancel(id),
+          },
+          entitlement.stripeSubscriptionId
+        );
       } catch (error) {
         await captureStripeCancelFailure(tableName, {
           kind: "stripe_cancel",

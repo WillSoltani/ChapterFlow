@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { X } from "lucide-react";
@@ -72,6 +73,22 @@ const TYPEFACE_OPTIONS: Array<{ id: TypefaceToggle; label: string }> = [
 const FONT_MIN = 12;
 const FONT_MAX = 24;
 
+// Matches Tailwind's `sm` breakpoint (640px): below it the menu is a bottom sheet.
+const PHONE_QUERY = "(max-width: 639.98px)";
+
+function useIsPhone(): boolean {
+  const [isPhone, setIsPhone] = useState(false);
+  useEffect(() => {
+    if (typeof window.matchMedia !== "function") return;
+    const mq = window.matchMedia(PHONE_QUERY);
+    const sync = () => setIsPhone(mq.matches);
+    sync();
+    mq.addEventListener?.("change", sync);
+    return () => mq.removeEventListener?.("change", sync);
+  }, []);
+  return isPhone;
+}
+
 export type ReaderSettingsMenuProps = {
   open: boolean;
   onClose: () => void;
@@ -119,6 +136,7 @@ export function ReaderSettingsMenu({
 }: ReaderSettingsMenuProps) {
   const popoverRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+  const isPhone = useIsPhone();
   const [advancedOpen, setAdvancedOpen] = useState(false);
 
   // Close on outside click
@@ -167,7 +185,7 @@ export function ReaderSettingsMenu({
     };
   }, [open]);
 
-  return (
+  const sheet = (
     <AnimatePresence>
       {open && (
         <motion.div
@@ -204,10 +222,10 @@ export function ReaderSettingsMenu({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg p-1 text-(--cr-text-secondary) hover:text-(--cr-text-primary) sm:hidden"
+              className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-lg text-(--cr-text-secondary) hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary) sm:hidden"
               aria-label="Close settings"
             >
-              <X className="h-4 w-4" />
+              <X className="h-5 w-5" />
             </button>
           </div>
 
@@ -351,6 +369,11 @@ export function ReaderSettingsMenu({
       )}
     </AnimatePresence>
   );
+
+  // The reader header has a backdrop-filter, which makes it the containing block
+  // for position:fixed. On a phone, portal the sheet to <body> so it anchors to
+  // the viewport; desktop keeps the absolute dropdown inside the header anchor.
+  return isPhone ? createPortal(sheet, document.body) : sheet;
 }
 
 function SettingsSection({ label, children }: { label: string; children: React.ReactNode }) {

@@ -8,6 +8,10 @@ import { evaluateOriginVerify } from "@/lib/origin-verify-core";
 import { resolveMiddlewareOrigin } from "@/lib/middleware-origin-core";
 import { buildContentSecurityPolicy } from "@/lib/csp";
 import { isProtectedSurfacePath } from "@/lib/protected-surface";
+import {
+  REFRESH_ATTEMPT_COOKIE,
+  decideMiddlewareAuth,
+} from "@/lib/middleware-auth-core";
 
 let missingConfigWarned = false;
 let originVerifyWarned = false;
@@ -181,13 +185,23 @@ export function middleware(req: NextRequest) {
   }
 
   // Lightweight cookie-presence + expiry check. Full JWT verification
-  // happens in requireUser() at the route/API level.
-  const token = req.cookies.get("id_token")?.value;
-  const expiresAt = Number(req.cookies.get("auth_expires_at")?.value);
-  const isExpired =
-    Number.isFinite(expiresAt) && expiresAt <= Math.floor(Date.now() / 1000);
+  // happens in requireUser() at the route/API level. A document navigation
+  // with an expired/missing session but a live refresh_token cookie is sent
+  // through GET /auth/refresh first (SHELL-01); the decision is pure and
+  // tested in lib/middleware-auth-core.test.ts.
+  const decision = decideMiddlewareAuth({
+    idToken: req.cookies.get("id_token")?.value,
+    expiresAtRaw: req.cookies.get("auth_expires_at")?.value,
+    hasRefreshToken: Boolean(req.cookies.get("refresh_token")?.value),
+    refreshAttempted: Boolean(req.cookies.get(REFRESH_ATTEMPT_COOKIE)?.value),
+    method: req.method,
+    accept: req.headers.get("accept"),
+    purpose: req.headers.get("sec-purpose") ?? req.headers.get("purpose"),
+    isRsc: req.headers.get("rsc") === "1",
+    nowSeconds: Math.floor(Date.now() / 1000),
+  });
 
-  if (!token || isExpired) {
+  if (decision !== "pass") {
     const publicOrigin = resolveRequestOrigin(req);
     if (!publicOrigin) {
       return new NextResponse(
@@ -198,7 +212,10 @@ export function middleware(req: NextRequest) {
         },
       );
     }
-    const loginUrl = new URL("/auth/login", publicOrigin);
+    const target = new URL(
+      decision === "refresh" ? "/auth/refresh" : "/auth/login",
+      publicOrigin,
+    );
     // Emit a RELATIVE returnTo (path + query only). sanitizeReturnTo accepts
     // same-origin relative paths unconditionally (isSafeInternalPath), so the
     // original destination survives regardless of which host/alias served the
@@ -206,15 +223,17 @@ export function middleware(req: NextRequest) {
     // which is built solely from env vars — on any host those don't cover (a
     // new CloudFront alias, a preview/staging domain, a forwarded-host
     // mismatch) the deep link is silently dropped and the user lands on /book.
-    loginUrl.searchParams.set(
+    target.searchParams.set(
       "returnTo",
       `${req.nextUrl.pathname}${req.nextUrl.search}`,
     );
-    const res = NextResponse.redirect(loginUrl);
+    const res = NextResponse.redirect(target);
 
-    // Clear any stale token fragments
-    res.cookies.set("id_token", "", { path: "/", maxAge: 0 });
-    res.cookies.set("access_token", "", { path: "/", maxAge: 0 });
+    if (decision === "login") {
+      // Clear any stale token fragments
+      res.cookies.set("id_token", "", { path: "/", maxAge: 0 });
+      res.cookies.set("access_token", "", { path: "/", maxAge: 0 });
+    }
 
     return res;
   }

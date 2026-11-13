@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Calendar, ArrowRight, Trophy, Check } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
-import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
+import { useOnboardingRedirect, useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import type { EventDefinition, EventParticipationItem } from "@/app/app/api/book/_lib/types";
@@ -17,7 +16,6 @@ type ActiveEventWithParticipation = EventDefinition & {
 type EventsResponse = { events: ActiveEventWithParticipation[] };
 
 export function EventsClient() {
-  const router = useRouter();
   const searchRef = useRef<HTMLInputElement | null>(null);
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
   const { identity: viewerIdentity } = useBookViewer();
@@ -29,9 +27,7 @@ export function EventsClient() {
 
   // Non-onboarded users get redirected (don't skeleton forever) — same posture
   // as /book/badges. The page is also guarded server-side by requireDashboardAccess.
-  useEffect(() => {
-    if (onboardingHydrated && !onboarding.setupComplete) router.replace("/book");
-  }, [onboardingHydrated, onboarding.setupComplete, router]);
+  useOnboardingRedirect({ hydrated: onboardingHydrated, setupComplete: onboarding.setupComplete });
 
   useEffect(() => {
     fetchBookJson<EventsResponse>("/app/api/book/events/active")

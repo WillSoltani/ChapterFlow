@@ -41,6 +41,18 @@ const ESSENTIAL_COOKIES: readonly CookieEntry[] = [
     duration: "30 days",
   },
   {
+    name: "cf_refresh_attempt",
+    purpose:
+      "Short-lived marker set when an expired session is renewed on page load, so renewal is tried at most once before you are asked to sign in. Secure, httpOnly, contains no personal information.",
+    duration: "1 minute",
+  },
+  {
+    name: "cf_data_owner",
+    purpose:
+      "One-way digest of your signed-in account, used only to tell whether data saved in this browser belongs to the account now signed in, so a different account never sees or saves it. Client-readable, cannot be turned back into your account identifier, removed when you sign out, and not used to authenticate you.",
+    duration: "30 days",
+  },
+  {
     name: "cf_device",
     purpose:
       "Randomly generated device identifier for abuse prevention. An opaque random value that does not contain personal information.",

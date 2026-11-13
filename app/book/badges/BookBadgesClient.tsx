@@ -1,12 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
-import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
+import { useOnboardingRedirect, useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
@@ -54,7 +53,6 @@ function eventToSeasonalChallenge(
 }
 
 export function BookBadgesClient() {
-  const router = useRouter();
   const searchRef = useRef<HTMLInputElement | null>(null);
   const reduced = useReducedMotion();
 
@@ -80,12 +78,7 @@ export function BookBadgesClient() {
   }, []);
 
   // Redirect if onboarding not complete
-  useEffect(() => {
-    if (!onboardingHydrated) return;
-    if (!onboarding.setupComplete) {
-      router.replace("/book");
-    }
-  }, [onboarding.setupComplete, onboardingHydrated, router]);
+  useOnboardingRedirect({ hydrated: onboardingHydrated, setupComplete: onboarding.setupComplete });
 
   // One canonical catalog (badge-ui-definitions) with server-truth earned state:
   // useBadgeSystem fetches /me/badges and stamps earnedAt, so we just adapt its
@@ -203,7 +196,7 @@ export function BookBadgesClient() {
           showSearch={false}
           logoVariant="dashboard"
         />
-        <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
+        <section id="main" tabIndex={-1} className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 focus:outline-none sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
           <LoadingSkeleton />
         </section>
       </main>
@@ -226,7 +219,7 @@ export function BookBadgesClient() {
           showSearch={false}
           logoVariant="dashboard"
         />
-        <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
+        <section id="main" tabIndex={-1} className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 focus:outline-none sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
           <ErrorBanner
             title="We couldn’t load your badges"
             message={badgeSystem.error}
@@ -251,7 +244,9 @@ export function BookBadgesClient() {
       />
 
       <motion.section
-        className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16"
+        id="main"
+        tabIndex={-1}
+        className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 focus:outline-none sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16"
         initial={reduced ? false : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: DUR.slow, ease: EASE.standard }}

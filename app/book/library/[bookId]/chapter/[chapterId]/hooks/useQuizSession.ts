@@ -6,7 +6,22 @@ import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ToneKey } from "@/app/book/data/bookPackages";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import type { LoopPipelineResult } from "@/app/book/_lib/flow-points-economy";
-import { buildCarryForwardAnswers, scoreSessionLocally, type CheckedResults } from "../lib/quizScoring";
+import {
+  buildCarryForwardAnswers,
+  buildQuizSubmitResponses,
+  planRetakeCarry,
+  scoreSessionLocally,
+  type CheckedResults,
+} from "../lib/quizScoring";
+import {
+  createInFlightGuard,
+  isStaleAfterRecordedSubmit,
+  mergeQuizDraft,
+  readQuizDraft,
+  shouldReloadQuizAfterSubmitError,
+  unansweredQuestionIds,
+  type QuizAttemptProgress,
+} from "../lib/reader-quiz-flow-core";
 import { IS_DEV } from "@/app/book/_lib/client-env";
 import { shouldUseLocalFallback } from "../lib/fallbackPolicy";
 
@@ -148,6 +163,28 @@ function draftAnswersKey(bookId: string, chapterNumber: number, difficulty: Read
   return `quiz-draft:${bookId}:${chapterNumber}:${difficulty}`;
 }
 
+function readStoredDraft(key: string): unknown {
+  try {
+    const raw = window.localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeDraft(
+  bookId: string,
+  chapterNumber: number,
+  difficulty: ReadingDepth,
+  attemptNumber: number,
+  patch: { answers?: Record<string, string>; progress?: QuizAttemptProgress }
+): void {
+  const key = draftAnswersKey(bookId, chapterNumber, difficulty);
+  try {
+    window.localStorage.setItem(key, JSON.stringify(mergeQuizDraft(readStoredDraft(key), attemptNumber, patch)));
+  } catch { /* ignore quota errors */ }
+}
+
 function saveDraftAnswers(
   bookId: string,
   chapterNumber: number,
@@ -155,12 +192,7 @@ function saveDraftAnswers(
   attemptNumber: number,
   answers: Record<string, string>
 ): void {
-  try {
-    window.localStorage.setItem(
-      draftAnswersKey(bookId, chapterNumber, difficulty),
-      JSON.stringify({ attemptNumber, answers })
-    );
-  } catch { /* ignore quota errors */ }
+  writeDraft(bookId, chapterNumber, difficulty, attemptNumber, { answers });
 }
 
 function loadDraftAnswers(
@@ -169,15 +201,7 @@ function loadDraftAnswers(
   difficulty: ReadingDepth,
   attemptNumber: number
 ): Record<string, string> {
-  try {
-    const raw = window.localStorage.getItem(draftAnswersKey(bookId, chapterNumber, difficulty));
-    if (!raw) return {};
-    const parsed = JSON.parse(raw);
-    if (parsed.attemptNumber !== attemptNumber) return {};
-    return parsed.answers && typeof parsed.answers === "object" ? parsed.answers : {};
-  } catch {
-    return {};
-  }
+  return readQuizDraft(readStoredDraft(draftAnswersKey(bookId, chapterNumber, difficulty)), attemptNumber).answers;
 }
 
 function clearDraftAnswers(bookId: string, chapterNumber: number, difficulty: ReadingDepth): void {
@@ -225,6 +249,11 @@ export function useQuizSession(params: {
   // after unmount) can't clobber the current session. Mirrors the mounted-flag
   // guard in the sibling useChapterContent/useBookViewer hooks.
   const loadTokenRef = useRef(0);
+  // One submit at a time, checked synchronously so a double tap sends one POST.
+  const submitGuardRef = useRef(createInFlightGuard());
+  // Attempt number the server last recorded for this chapter, so a late 409
+  // for that same attempt is ignored instead of shown over the result.
+  const recordedAttemptRef = useRef<number | null>(null);
 
   const syncFromSession = useCallback((nextSession: QuizSessionView | null) => {
     if (!nextSession) {
@@ -350,6 +379,7 @@ export function useQuizSession(params: {
     startedAtRef.current = null;
     trackedExplanationIds.current = new Set();
     checkedResultsRef.current = {};
+    recordedAttemptRef.current = null;
   }, [bookId, chapterNumber, difficulty, contentTone]);
 
   // Invalidate any in-flight load() on unmount so it can't setState afterward.
@@ -488,6 +518,12 @@ export function useQuizSession(params: {
 
   const submit = useCallback(async () => {
     if (!session) return null;
+    // The server refuses a submit with any question unanswered; don't send one.
+    if (unansweredQuestionIds(session.questions, answers).length > 0) {
+      setError("Answer every question to see your results.");
+      return null;
+    }
+    if (!submitGuardRef.current.tryEnter()) return null;
     setSubmitting(true);
     try {
       const payload = await fetchBookJson<QuizSubmitResponse>(
@@ -496,10 +532,7 @@ export function useQuizSession(params: {
           method: "POST",
           body: JSON.stringify({
             attemptNumber: session.attemptNumber,
-            responses: session.questions.map((question) => ({
-              questionId: question.questionId,
-              selectedChoiceId: answers[question.questionId] ?? null,
-            })),
+            responses: buildQuizSubmitResponses(session.questions, answers),
             difficulty,
             tone: contentTone,
             timeSpentSeconds: startedAtRef.current
@@ -509,6 +542,7 @@ export function useQuizSession(params: {
           }),
         }
       );
+      recordedAttemptRef.current = session.attemptNumber;
       clearDraftAnswers(bookId, chapterNumber, difficulty);
       setSession(payload.quiz);
       syncFromSession(payload.quiz);
@@ -519,6 +553,9 @@ export function useQuizSession(params: {
       setError(null);
       return { session: payload.quiz, loopPipeline: payload.loopPipeline ?? null };
     } catch (submitError: unknown) {
+      if (isStaleAfterRecordedSubmit(submitError, session.attemptNumber, recordedAttemptRef.current)) {
+        return null;
+      }
       // Dev/CI only: fall back to local provisional scoring — mark as provisional
       // so the UI can indicate the result is unverified and needs server
       // re-validation. In PROD we never grade locally (#1): the local scheme can
@@ -536,15 +573,15 @@ export function useQuizSession(params: {
           return { session: local, loopPipeline: null };
         }
       }
-      if (
-        submitError instanceof BookClientError &&
-        submitError.code === "attempt_cooldown"
-      ) {
+      // Re-fetch so the next try uses the server's current attempt and question
+      // set (after a cooldown, or a mode switch that changed the question count).
+      if (shouldReloadQuizAfterSubmitError(submitError)) {
         await load();
       }
       throw submitError;
     } finally {
       setSubmitting(false);
+      submitGuardRef.current.exit();
     }
   }, [answers, bookId, chapterNumber, difficulty, contentTone, load, session, syncFromSession, scoreLocally]);
 
@@ -616,8 +653,32 @@ export function useQuizSession(params: {
         return fresh;
       }
     }
-    return load();
+    // Production has no local session, so the retake is the server session
+    // load() returns. Seat the carry on it here too, or the hidden,
+    // previously-correct questions submit unanswered and the server refuses.
+    const server = await load();
+    const carry = planRetakeCarry({ graded, next: server, retryIncorrectOnly });
+    if (server && Object.keys(carry).length > 0) {
+      saveDraftAnswers(bookId, chapterNumber, difficulty, server.attemptNumber, carry);
+      checkedResultsRef.current = seedCheckedFromCarry(carry);
+      syncFromSession(server);
+    }
+    return server;
   }, [load, session, buildLocalSession, syncFromSession, bookId, chapterNumber, difficulty, retryIncorrectOnly]);
+
+  // Per-question grading for the current attempt, kept with the answer draft so
+  // QuizPanel can restore it after a tab switch or a refresh.
+  const loadAttemptProgress = useCallback(
+    (attemptNumber: number): QuizAttemptProgress =>
+      readQuizDraft(readStoredDraft(draftAnswersKey(bookId, chapterNumber, difficulty)), attemptNumber).progress,
+    [bookId, chapterNumber, difficulty]
+  );
+  const saveAttemptProgress = useCallback(
+    (attemptNumber: number, progress: QuizAttemptProgress) => {
+      writeDraft(bookId, chapterNumber, difficulty, attemptNumber, { progress });
+    },
+    [bookId, chapterNumber, difficulty]
+  );
 
   const toggleExplanation = useCallback(
     (questionId: string) => {
@@ -672,5 +733,7 @@ export function useQuizSession(params: {
     load,
     toggleExplanation,
     trackNextChapterClick,
+    loadAttemptProgress,
+    saveAttemptProgress,
   };
 }

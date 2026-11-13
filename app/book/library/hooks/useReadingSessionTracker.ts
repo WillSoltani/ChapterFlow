@@ -75,7 +75,8 @@ export function useReadingSessionTracker({
     const persistDelta = (deltaMs: number) => {
       if (deltaMs <= 0) return;
 
-      const next = appendReadingActivity(activityRef.current, new Date(), deltaMs);
+      const now = new Date();
+      const next = appendReadingActivity(activityRef.current, now, deltaMs);
       activityRef.current = next;
       window.localStorage.setItem(storageKey, JSON.stringify(next));
       setActivity(next);
@@ -87,7 +88,10 @@ export function useReadingSessionTracker({
           bookId,
           chapterId,
           deltaMs,
-          occurredAt: new Date().toISOString(),
+          occurredAt: now.toISOString(),
+          // The reader's own calendar day, so evening reading isn't filed under
+          // tomorrow's UTC date.
+          localDay: toDayKey(now),
         }),
       }).catch(() => {});
     };

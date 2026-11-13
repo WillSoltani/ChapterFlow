@@ -1188,6 +1188,7 @@ nativeContractOperationDefinitions.push(
     iosModels: ["ReadingSessionResponse", "SessionEventResponse"],
     cacheNotes: "Session events belong in an account-scoped durable journal with heartbeat coalescing.",
     idempotencyNotes: "sessionId is available but exact server dedupe semantics are not declared centrally.",
+    optionality: "Optional request field localDay (YYYY-MM-DD, the reader's local calendar day) files the session under that day when it is within one day of the server's UTC date; when absent or out of range the server-clock day of occurredAt is used, as before. Additive unknown fields are allowed.",
     responseBody: json({
       readingDay: {
         date: "2026-01-01",

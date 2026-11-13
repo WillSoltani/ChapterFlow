@@ -185,6 +185,12 @@ export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
                 <li>&bull; Streaks and badges</li>
                 <li>&bull; Account settings and preferences</li>
               </ul>
+              <p className="mt-3 text-sm text-(--cf-text-2)">
+                Billing: a Pro subscription bought on this website is cancelled right away,
+                with no refund for the rest of the period. If you subscribed in the iPhone
+                app, cancel it in the App Store too; deleting your account doesn&apos;t stop
+                App Store billing.
+              </p>
               <p className="mt-3 text-xs text-(--cf-text-3)">
                 Your data is retained per our Privacy Policy and is no longer used in the
                 product. To request complete erasure, contact support after deleting.

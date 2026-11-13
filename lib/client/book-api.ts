@@ -2,6 +2,11 @@
 
 // Canonical client data-access boundary (WS3-001).
 
+import {
+  AUTH_CACHE_GENERATION_COOKIE,
+  readCookieValue,
+} from "@/lib/auth-cache-generation";
+
 export class BookClientError extends Error {
   status: number;
   code?: string | undefined;
@@ -20,6 +25,7 @@ export async function fetchBookJson<T>(
   input: RequestInfo | URL,
   init?: RequestInit
 ): Promise<T> {
+  captureDocumentAuthGeneration();
   const response = await fetch(input, {
     ...init,
     headers: {
@@ -66,10 +72,105 @@ export async function fetchBookJson<T>(
       "details" in payload.error
         ? payload.error.details
         : undefined;
-    throw new BookClientError(message, response.status, code, details);
+    const error = new BookClientError(message, response.status, code, details);
+    redirectOnUnauthorized(error);
+    throw error;
   }
 
   return payload as T;
+}
+
+/**
+ * DATA-08: a plain 401 means the session is gone (refresh token lapsed or
+ * revoked, cookie missing). Without this, pages read it as an outage or an
+ * empty library. The reader goes through GET /auth/refresh once (it renews and
+ * comes back, or falls through to sign-in); if the next page still gets a 401
+ * they go to sign-in; after that we stop and let the page show its error, so a
+ * server that keeps rejecting a valid sign-in can never loop. The attempt count
+ * lives in this tab's sessionStorage because each step is a full navigation.
+ */
+export const UNAUTHORIZED_REDIRECT_KEY = "cf:unauthorized-redirect";
+const UNAUTHORIZED_REDIRECT_WINDOW_MS = 2 * 60_000;
+
+type UnauthorizedRedirectStamp = { at: number; count: number };
+export type UnauthorizedRedirectPlan = "refresh" | "login" | "none";
+
+export function planUnauthorizedRedirect(
+  error: BookClientError,
+  previous: UnauthorizedRedirectStamp | null,
+  now: number,
+): UnauthorizedRedirectPlan {
+  if (error.status !== 401 || isReauthRequired(error)) return "none";
+  const recent = previous && now - previous.at < UNAUTHORIZED_REDIRECT_WINDOW_MS ? previous.count : 0;
+  if (recent <= 0) return "refresh";
+  if (recent === 1) return "login";
+  return "none";
+}
+
+let unauthorizedRedirectStarted = false;
+// The auth generation this document started with. Sign-out (here, in another
+// tab, or via account delete/deactivate) rotates it; a 401 after that is the
+// expected end of the session, and redirecting would hijack the sign-out
+// navigation, so it is left alone (AuthCacheBoundary reloads the page instead).
+let documentAuthGeneration: string | null | undefined;
+
+function readAuthGeneration(): string | null {
+  return typeof document === "undefined"
+    ? null
+    : readCookieValue(document.cookie, AUTH_CACHE_GENERATION_COOKIE);
+}
+
+function captureDocumentAuthGeneration(): void {
+  if (documentAuthGeneration === undefined && typeof document !== "undefined") {
+    documentAuthGeneration = readAuthGeneration();
+  }
+}
+
+/** Test hook: forget that this module already navigated. */
+export function resetUnauthorizedRedirectForTests(): void {
+  unauthorizedRedirectStarted = false;
+  documentAuthGeneration = undefined;
+}
+
+function readUnauthorizedStamp(): UnauthorizedRedirectStamp | null {
+  try {
+    const raw = window.sessionStorage.getItem(UNAUTHORIZED_REDIRECT_KEY);
+    const parsed = raw ? (JSON.parse(raw) as Partial<UnauthorizedRedirectStamp>) : null;
+    return parsed && typeof parsed.at === "number" && typeof parsed.count === "number"
+      ? { at: parsed.at, count: parsed.count }
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+function redirectOnUnauthorized(error: BookClientError): void {
+  if (typeof window === "undefined" || unauthorizedRedirectStarted) return;
+  if (error.status !== 401) return;
+  if (documentAuthGeneration !== undefined && readAuthGeneration() !== documentAuthGeneration) {
+    return;
+  }
+  const now = Date.now();
+  const previous = readUnauthorizedStamp();
+  const plan = planUnauthorizedRedirect(error, previous, now);
+  if (plan === "none") return;
+  const recent =
+    previous && now - previous.at < UNAUTHORIZED_REDIRECT_WINDOW_MS ? previous.count : 0;
+  try {
+    window.sessionStorage.setItem(
+      UNAUTHORIZED_REDIRECT_KEY,
+      JSON.stringify({ at: now, count: recent + 1 }),
+    );
+  } catch {
+    // Without storage the attempts cannot be counted across page loads, so
+    // no loop-free promise can be made: leave the error to the page.
+    return;
+  }
+  unauthorizedRedirectStarted = true;
+  const returnTo = window.location.pathname + window.location.search;
+  window.location.assign(
+    `${plan === "refresh" ? "/auth/refresh" : "/auth/login"}?returnTo=${encodeURIComponent(returnTo)}`,
+  );
 }
 
 /**

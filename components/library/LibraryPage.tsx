@@ -231,7 +231,7 @@ export function LibraryPage() {
         logoVariant="dashboard"
       />
 
-      <main>
+      <main id="main" tabIndex={-1} className="focus:outline-none">
         <h1 className="sr-only">Your library</h1>
 
         {!hydrated ? (
