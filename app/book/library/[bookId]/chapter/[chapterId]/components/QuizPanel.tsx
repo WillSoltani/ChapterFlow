@@ -695,7 +695,13 @@ export function QuizPanel({
   useEffect(() => {
     const prev = prevSessionRef.current;
     prevSessionRef.current = session;
-    if (!session || session.result) return;
+    if (!session) {
+      // The hook clears the session on a chapter or mode change: restore the
+      // next attempt from its own draft rather than saving this one over it.
+      hydratedAttemptRef.current = null;
+      return;
+    }
+    if (session.result) return;
     // Fresh session (no result) after a submitted session means retry
     if (session !== prev && prev?.result) {
       hydratedAttemptRef.current = session.attemptNumber;
