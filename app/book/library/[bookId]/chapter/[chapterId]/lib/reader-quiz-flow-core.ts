@@ -69,3 +69,30 @@ export function quizSubmitErrorMessage(error: unknown): string {
   if (typeof code === "string" && QUIZ_SUBMIT_ERROR_COPY[code]) return QUIZ_SUBMIT_ERROR_COPY[code];
   return typeof message === "string" && message ? message : "Unable to submit quiz right now.";
 }
+
+/** Synchronous single-flight guard (a ref, not React state, so a second tap in
+ *  the same frame sees it). */
+export function createInFlightGuard() {
+  let busy = false;
+  return {
+    tryEnter(): boolean {
+      if (busy) return false;
+      busy = true;
+      return true;
+    },
+    exit(): void {
+      busy = false;
+    },
+  };
+}
+
+/** A `quiz_session_stale` 409 for an attempt this reader already submitted
+ *  successfully is a late duplicate, not an error worth showing. */
+export function isStaleAfterRecordedSubmit(
+  error: unknown,
+  attemptNumber: number,
+  lastRecordedAttempt: number | null,
+): boolean {
+  const code = typeof error === "object" && error !== null ? (error as { code?: unknown }).code : undefined;
+  return code === "quiz_session_stale" && lastRecordedAttempt != null && attemptNumber === lastRecordedAttempt;
+}

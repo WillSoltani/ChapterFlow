@@ -130,3 +130,11 @@ test("READER-07: submit() and the results button refuse a quiz with an unanswere
   assert.match(panel, /unansweredQuestionIds\(session\.questions, answers\)/);
   assert.doesNotMatch(panel, /\{isLast && resolved && \(\s*<div[^>]*>\s*<button type="button" onClick=\{onSeeResults\}/);
 });
+
+test("READER-06: submit() is single-flight and ignores a late 409 for an already recorded attempt", () => {
+  const hook = readFileSync(new URL("../hooks/useQuizSession.ts", import.meta.url), "utf8");
+  const submitBody = hook.slice(hook.indexOf("const submit = useCallback"), hook.indexOf("const retry = useCallback"));
+  assert.match(submitBody, /if \(!submitGuardRef\.current\.tryEnter\(\)\) return null;/);
+  assert.match(submitBody, /submitGuardRef\.current\.exit\(\);/);
+  assert.match(submitBody, /isStaleAfterRecordedSubmit\(submitError, session\.attemptNumber, recordedAttemptRef\.current\)/);
+});

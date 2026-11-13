@@ -4,6 +4,8 @@ import { test } from "node:test";
 import {
   classifyQuizSubmission,
   completionScore,
+  createInFlightGuard,
+  isStaleAfterRecordedSubmit,
   projectIncorrectQuestionReviews,
   quizSubmitErrorMessage,
   shouldEnrollFlashcards,
@@ -77,4 +79,23 @@ test("quizSubmitErrorMessage maps server codes to friendly copy instead of raw v
   assert.equal(quizSubmitErrorMessage({ code: "attempt_cooldown", message: "Locked for now." }), "Locked for now.");
   assert.equal(quizSubmitErrorMessage(new Error("Network down")), "Network down");
   assert.equal(quizSubmitErrorMessage("nope"), "Unable to submit quiz right now.");
+});
+
+// READER-06: a double tap on "See Your Results" must send one submit, and a late
+// 409 for an attempt that was already recorded must not surface as an error.
+test("createInFlightGuard lets one caller in until it exits", () => {
+  const guard = createInFlightGuard();
+  assert.equal(guard.tryEnter(), true);
+  assert.equal(guard.tryEnter(), false, "a second tap while the first submit is in flight is refused");
+  guard.exit();
+  assert.equal(guard.tryEnter(), true);
+});
+
+test("isStaleAfterRecordedSubmit ignores a 409 only for an attempt already recorded", () => {
+  const stale = { code: "quiz_session_stale" };
+  assert.equal(isStaleAfterRecordedSubmit(stale, 2, 2), true);
+  assert.equal(isStaleAfterRecordedSubmit(stale, 2, null), false);
+  assert.equal(isStaleAfterRecordedSubmit(stale, 3, 2), false);
+  assert.equal(isStaleAfterRecordedSubmit({ code: "invalid_answers" }, 2, 2), false);
+  assert.equal(isStaleAfterRecordedSubmit(new Error("x"), 2, 2), false);
 });

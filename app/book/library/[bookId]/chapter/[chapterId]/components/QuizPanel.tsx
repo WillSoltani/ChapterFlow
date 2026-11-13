@@ -159,6 +159,7 @@ function ImmediateQuestionCard({
   index, question, answerChoiceId, correctChoiceId, learningMode, onAnswer,
   onToggleExplanation, explanationOpen, feedbackState, disabledChoices,
   retriesLeft, isLast, onSeeResults, totalQuestions, remainingCount, nextUnansweredNumber, onJumpToUnanswered,
+  submitting,
 }: {
   index: number;
   question: QuizQuestionView;
@@ -182,6 +183,7 @@ function ImmediateQuestionCard({
   /** 1-based position of the first visible unanswered question, if any. */
   nextUnansweredNumber: number | null;
   onJumpToUnanswered: () => void;
+  submitting: boolean;
 }) {
   const cardRef = useRef<HTMLElement>(null);
   const resolved = feedbackState === "correct" || feedbackState === "incorrect-final";
@@ -391,9 +393,11 @@ function ImmediateQuestionCard({
       {isLast && resolved && (
         <div className="mt-5 flex flex-col items-center gap-2">
           {remainingCount === 0 ? (
-            <button type="button" onClick={onSeeResults}
-              className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90">
-              See Your Results <ArrowRight className="h-5 w-5" />
+            <button type="button" onClick={onSeeResults} disabled={submitting} aria-busy={submitting}
+              className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90 disabled:cursor-wait disabled:opacity-70">
+              {submitting
+                ? <><LoaderCircle className="h-5 w-5 animate-spin" /> Checking your answers...</>
+                : <>See Your Results <ArrowRight className="h-5 w-5" /></>}
             </button>
           ) : (
             <button type="button" onClick={onJumpToUnanswered} disabled={nextUnansweredNumber == null}
@@ -795,13 +799,14 @@ export function QuizPanel({
   }, [displayQuestions, firstUnansweredDisplayIndex, questionFlow]);
 
   const handleSeeResults = useCallback(() => {
+    if (submitting) return;
     if (unansweredIds.length > 0) {
       jumpToUnanswered();
       return;
     }
     setResultView("results");
     onSubmit();
-  }, [onSubmit, unansweredIds, jumpToUnanswered]);
+  }, [onSubmit, unansweredIds, jumpToUnanswered, submitting]);
 
   // Keyboard navigation: 1-5 to pick a choice. Must target the questions the
   // user can actually SEE (displayQuestions) — session.questions includes the
@@ -1019,6 +1024,7 @@ export function QuizPanel({
                   remainingCount={unansweredIds.length}
                   nextUnansweredNumber={nextUnansweredNumber}
                   onJumpToUnanswered={jumpToUnanswered}
+                  submitting={submitting}
                 />
               )}
               <div className="flex items-center justify-between">
@@ -1052,6 +1058,7 @@ export function QuizPanel({
                 remainingCount={unansweredIds.length}
                 nextUnansweredNumber={nextUnansweredNumber}
                 onJumpToUnanswered={jumpToUnanswered}
+                submitting={submitting}
               />
             ))
           )}

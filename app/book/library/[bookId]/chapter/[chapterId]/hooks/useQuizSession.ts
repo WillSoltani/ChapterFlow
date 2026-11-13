@@ -13,7 +13,11 @@ import {
   scoreSessionLocally,
   type CheckedResults,
 } from "../lib/quizScoring";
-import { unansweredQuestionIds } from "../lib/reader-quiz-flow-core";
+import {
+  createInFlightGuard,
+  isStaleAfterRecordedSubmit,
+  unansweredQuestionIds,
+} from "../lib/reader-quiz-flow-core";
 import { IS_DEV } from "@/app/book/_lib/client-env";
 import { shouldUseLocalFallback } from "../lib/fallbackPolicy";
 
@@ -232,6 +236,11 @@ export function useQuizSession(params: {
   // after unmount) can't clobber the current session. Mirrors the mounted-flag
   // guard in the sibling useChapterContent/useBookViewer hooks.
   const loadTokenRef = useRef(0);
+  // One submit at a time, checked synchronously so a double tap sends one POST.
+  const submitGuardRef = useRef(createInFlightGuard());
+  // Attempt number the server last recorded for this chapter, so a late 409
+  // for that same attempt is ignored instead of shown over the result.
+  const recordedAttemptRef = useRef<number | null>(null);
 
   const syncFromSession = useCallback((nextSession: QuizSessionView | null) => {
     if (!nextSession) {
@@ -357,6 +366,7 @@ export function useQuizSession(params: {
     startedAtRef.current = null;
     trackedExplanationIds.current = new Set();
     checkedResultsRef.current = {};
+    recordedAttemptRef.current = null;
   }, [bookId, chapterNumber, difficulty, contentTone]);
 
   // Invalidate any in-flight load() on unmount so it can't setState afterward.
@@ -500,6 +510,7 @@ export function useQuizSession(params: {
       setError("Answer every question to see your results.");
       return null;
     }
+    if (!submitGuardRef.current.tryEnter()) return null;
     setSubmitting(true);
     try {
       const payload = await fetchBookJson<QuizSubmitResponse>(
@@ -518,6 +529,7 @@ export function useQuizSession(params: {
           }),
         }
       );
+      recordedAttemptRef.current = session.attemptNumber;
       clearDraftAnswers(bookId, chapterNumber, difficulty);
       setSession(payload.quiz);
       syncFromSession(payload.quiz);
@@ -528,6 +540,9 @@ export function useQuizSession(params: {
       setError(null);
       return { session: payload.quiz, loopPipeline: payload.loopPipeline ?? null };
     } catch (submitError: unknown) {
+      if (isStaleAfterRecordedSubmit(submitError, session.attemptNumber, recordedAttemptRef.current)) {
+        return null;
+      }
       // Dev/CI only: fall back to local provisional scoring — mark as provisional
       // so the UI can indicate the result is unverified and needs server
       // re-validation. In PROD we never grade locally (#1): the local scheme can
@@ -554,6 +569,7 @@ export function useQuizSession(params: {
       throw submitError;
     } finally {
       setSubmitting(false);
+      submitGuardRef.current.exit();
     }
   }, [answers, bookId, chapterNumber, difficulty, contentTone, load, session, syncFromSession, scoreLocally]);
 
