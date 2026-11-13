@@ -41,6 +41,12 @@ const ESSENTIAL_COOKIES: readonly CookieEntry[] = [
     duration: "30 days",
   },
   {
+    name: "cf_data_owner",
+    purpose:
+      "One-way digest of your signed-in account, used only to tell whether data saved in this browser belongs to the account now signed in, so a different account never sees or saves it. Client-readable, cannot be turned back into your account identifier, removed when you sign out, and not used to authenticate you.",
+    duration: "30 days",
+  },
+  {
     name: "cf_device",
     purpose:
       "Randomly generated device identifier for abuse prevention. An opaque random value that does not contain personal information.",

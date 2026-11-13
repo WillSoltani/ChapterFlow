@@ -124,8 +124,32 @@ test("personal key classification", () => {
   assert.equal(isPersonalStorageKey("something-else"), false);
 });
 
-test("the owner comes from the auth generation cookie", () => {
-  assert.equal(ownerFromCookieHeader(`a=1; cf_auth_generation=${USER_B}; b=2`), USER_B);
-  assert.equal(ownerFromCookieHeader("cf_auth_generation=not-a-uuid"), null);
+test("the owner is the account, so signing in again as the same account keeps its data", () => {
+  const ACCOUNT = "0123456789abcdef0123456789abcdef";
+  const GEN_1 = "11111111-1111-4111-8111-111111111111";
+  const GEN_2 = "22222222-2222-4222-8222-222222222222";
+  const beforeReauth = ownerFromCookieHeader(
+    `a=1; cf_auth_generation=${GEN_1}; cf_data_owner=${ACCOUNT}; b=2`,
+  );
+  const afterReauth = ownerFromCookieHeader(
+    `cf_auth_generation=${GEN_2}; cf_data_owner=${ACCOUNT}`,
+  );
+  assert.equal(beforeReauth, ACCOUNT);
+  assert.equal(afterReauth, ACCOUNT);
+
+  const local = new MemoryStorage();
+  const session = new MemoryStorage();
+  reconcileLocalUserDataOwner([local, session], beforeReauth);
+  seedUserA(local, session);
+  assert.equal(reconcileLocalUserDataOwner([local, session], afterReauth), "same");
+  assert.notEqual(local.getItem("quiz-draft:atomic-habits:1:standard"), null);
+});
+
+test("without an account owner cookie the owner is unknown", () => {
+  assert.equal(
+    ownerFromCookieHeader("cf_auth_generation=11111111-1111-4111-8111-111111111111"),
+    null,
+  );
+  assert.equal(ownerFromCookieHeader("cf_data_owner=not-a-digest"), null);
   assert.equal(ownerFromCookieHeader(""), null);
 });

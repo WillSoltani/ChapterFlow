@@ -8,8 +8,11 @@ import { BOOK_DEVICE_COOKIE } from "@/app/app/api/book/_lib/abuse";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
 import {
+  clearLocalDataOwner,
   preserveOrCreateAuthCacheGeneration,
   rotateAuthCacheGeneration,
+  subFromIssuedIdToken,
+  writeLocalDataOwner,
 } from "../_lib/auth-cache-generation";
 
 // Shared refresh-token exchange for POST /auth/refresh (TokenExpiryGuard) and
@@ -101,24 +104,6 @@ function readString(value: unknown): string | null {
   return typeof value === "string" && value.trim().length > 0 ? value : null;
 }
 
-/**
- * Read the `sub` from a freshly-issued id token. The token came straight from
- * Cognito's token endpoint over TLS in this request, so reading a claim without
- * re-verifying the signature is safe here (we are not trusting client input).
- */
-function subFromIdToken(idToken: string): string | null {
-  try {
-    const payload = idToken.split(".")[1];
-    if (!payload) return null;
-    const json = JSON.parse(
-      Buffer.from(payload.replace(/-/g, "+").replace(/_/g, "/"), "base64").toString("utf8"),
-    ) as Record<string, unknown>;
-    return typeof json.sub === "string" ? json.sub : null;
-  } catch {
-    return null;
-  }
-}
-
 export type RefreshFailureReason =
   | "rate_limited"
   | "no_refresh_token"
@@ -205,7 +190,7 @@ export async function exchangeRefreshToken(
   // itself keeps succeeding — this is the only place that can stop a revoked
   // account from silently resurrecting its session cookies. Fail open on a
   // status-store error: page-level requireActiveBookUser still gates all data.
-  const sub = subFromIdToken(idToken);
+  const sub = subFromIssuedIdToken(idToken);
   if (sub) {
     try {
       const tableName = await getBookTableName();
@@ -246,6 +231,7 @@ export function applyRefreshFailureCookies(
     res.cookies.set("access_token", "", { ...cookieBase, maxAge: 0 });
     res.cookies.set("auth_expires_at", "", { ...cookieBase, httpOnly: false, maxAge: 0 });
     rotateAuthCacheGeneration(res);
+    clearLocalDataOwner(res);
   }
 }
 
@@ -272,5 +258,6 @@ export function applyRefreshedSession(
     maxAge: REFRESH_TOKEN_MAX_AGE,
   });
   preserveOrCreateAuthCacheGeneration(req, res);
+  writeLocalDataOwner(res, result.idToken);
 }
 

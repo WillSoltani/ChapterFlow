@@ -5,7 +5,7 @@ import { timingSafeStrEqual } from "../_lib/timing-safe-equal";
 import { resolvePublicOrigin } from "@/app/app/_lib/server-origin";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
-import { rotateAuthCacheGeneration } from "../_lib/auth-cache-generation";
+import { rotateAuthCacheGeneration, writeLocalDataOwner } from "../_lib/auth-cache-generation";
 import { sanitizeReturnTo } from "../_lib/return-to";
 import { DEFAULT_POST_LOGIN_PATH } from "../_lib/return-to-core";
 import { decryptState } from "../_lib/state-crypto";
@@ -206,6 +206,8 @@ export async function GET(req: NextRequest) {
       maxAge: REFRESH_TOKEN_MAX_AGE,
     });
     rotateAuthCacheGeneration(res);
+    // DATA-01: scope this browser's stored data to the account, not the sign-in.
+    writeLocalDataOwner(res, idToken);
 
     // Clear ephemeral OAuth cookies (single-use; cleared on every exit path).
     clearTransientOAuthCookies(res);

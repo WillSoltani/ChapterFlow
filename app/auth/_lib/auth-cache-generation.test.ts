@@ -6,6 +6,8 @@ import { installServerOnlyShim } from "@/tests/_lib/server-only-shim";
 import {
   AUTH_CACHE_GENERATION_COOKIE,
   AUTH_CACHE_GENERATION_MAX_AGE_SECONDS,
+  LOCAL_DATA_OWNER_COOKIE,
+  normalizeLocalDataOwner,
 } from "@/lib/auth-cache-generation";
 
 const EXISTING = "123e4567-e89b-42d3-a456-426614174000";
@@ -13,11 +15,61 @@ const EXISTING = "123e4567-e89b-42d3-a456-426614174000";
 let restoreServerOnly: (() => void) | undefined;
 let rotateAuthCacheGeneration: typeof import("./auth-cache-generation").rotateAuthCacheGeneration;
 let preserveOrCreateAuthCacheGeneration: typeof import("./auth-cache-generation").preserveOrCreateAuthCacheGeneration;
+let writeLocalDataOwner: typeof import("./auth-cache-generation").writeLocalDataOwner;
+let clearLocalDataOwner: typeof import("./auth-cache-generation").clearLocalDataOwner;
 
 before(async () => {
   restoreServerOnly = installServerOnlyShim();
-  ({ rotateAuthCacheGeneration, preserveOrCreateAuthCacheGeneration } =
-    await import("./auth-cache-generation"));
+  ({
+    rotateAuthCacheGeneration,
+    preserveOrCreateAuthCacheGeneration,
+    writeLocalDataOwner,
+    clearLocalDataOwner,
+  } = await import("./auth-cache-generation"));
+});
+
+function idTokenFor(claims: Record<string, unknown>): string {
+  const part = (value: unknown) =>
+    Buffer.from(JSON.stringify(value)).toString("base64url");
+  return `${part({ alg: "none" })}.${part(claims)}.sig`;
+}
+
+const SUB_A = "a1b2c3d4-0000-4000-8000-00000000000a";
+const SUB_B = "a1b2c3d4-0000-4000-8000-00000000000b";
+
+test("DATA-01: the local-data owner is the account, stable across sign-ins", () => {
+  const first = NextResponse.next();
+  const second = NextResponse.next();
+  const other = NextResponse.next();
+  const ownerA1 = writeLocalDataOwner(first, idTokenFor({ sub: SUB_A, iat: 1 }));
+  const ownerA2 = writeLocalDataOwner(second, idTokenFor({ sub: SUB_A, iat: 2 }));
+  const ownerB = writeLocalDataOwner(other, idTokenFor({ sub: SUB_B, iat: 1 }));
+
+  assert.ok(ownerA1);
+  assert.equal(ownerA1, ownerA2);
+  assert.notEqual(ownerA1, ownerB);
+  assert.equal(normalizeLocalDataOwner(ownerA1), ownerA1);
+  // An opaque digest, never the raw subject.
+  assert.ok(!ownerA1.includes(SUB_A));
+  assert.equal(first.cookies.get(LOCAL_DATA_OWNER_COOKIE)?.value, ownerA1);
+
+  const header = first.headers.get("set-cookie") ?? "";
+  assert.match(header, new RegExp(`${LOCAL_DATA_OWNER_COOKIE}=${ownerA1}`));
+  assert.match(header, /Path=\//);
+  assert.doesNotMatch(header, /HttpOnly/i);
+});
+
+test("DATA-01: an id token without a subject clears the owner instead of keeping a stale one", () => {
+  for (const token of ["not-a-jwt", idTokenFor({ email: "x@example.com" })]) {
+    const response = NextResponse.next();
+    assert.equal(writeLocalDataOwner(response, token), null);
+    const header = response.headers.get("set-cookie") ?? "";
+    assert.match(header, new RegExp(`${LOCAL_DATA_OWNER_COOKIE}=;`));
+    assert.match(header, /Max-Age=0/);
+  }
+  const cleared = NextResponse.next();
+  clearLocalDataOwner(cleared);
+  assert.match(cleared.headers.get("set-cookie") ?? "", /Max-Age=0/);
 });
 
 after(() => restoreServerOnly?.());

@@ -8,13 +8,14 @@
  * and preferences. This module records the owner beside the data and wipes the
  * personal keys whenever the signed-in account differs, and on logout.
  *
- * The owner is the auth cache generation (`cf_auth_generation`, a JS-readable
- * opaque UUID). It rotates on every sign-in, sign-out and account deletion and
- * is preserved across silent refreshes, so it changes exactly when the account
- * in this browser may have changed. It is never treated as identity, only as a
- * cache scope. Cost: signing in again (even as the same account) starts from an
- * empty local cache; every cleared key is a cache of server state that the
- * hooks re-read.
+ * The owner is the `cf_data_owner` cookie: a JS-readable, opaque one-way
+ * digest of the signed-in account, written by the sign-in callback and the
+ * silent refresh and removed on sign-out. It is the same for every sign-in of
+ * one account, so re-authenticating (billing step-up, an expired refresh token)
+ * keeps that account's device-only data (quiz drafts, practice checks, local
+ * takeaways); it differs for every other account, which triggers the wipe. A
+ * missing owner (signed out, or a session from before this cookie existed)
+ * changes nothing. It is a storage scope only, never identity.
  *
  * Kept (device-level, not personal): everything not matched below, notably
  * `cf:auth-generation` (the cross-tab cache wake-up signal). The theme is NOT
@@ -24,8 +25,8 @@
  * account's own theme comes back with its server settings.
  */
 import {
-  AUTH_CACHE_GENERATION_COOKIE,
-  normalizeAuthCacheGeneration,
+  LOCAL_DATA_OWNER_COOKIE,
+  normalizeLocalDataOwner,
   readCookieValue,
 } from "@/lib/auth-cache-generation";
 
@@ -108,9 +109,7 @@ export function reconcileLocalUserDataOwner(
 }
 
 export function ownerFromCookieHeader(cookieHeader: string): string | null {
-  return normalizeAuthCacheGeneration(
-    readCookieValue(cookieHeader, AUTH_CACHE_GENERATION_COOKIE),
-  );
+  return normalizeLocalDataOwner(readCookieValue(cookieHeader, LOCAL_DATA_OWNER_COOKIE));
 }
 
 function browserStorages(): { local: StorageLike; session: StorageLike } | null {
