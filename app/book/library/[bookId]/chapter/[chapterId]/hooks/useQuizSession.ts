@@ -13,6 +13,7 @@ import {
   scoreSessionLocally,
   type CheckedResults,
 } from "../lib/quizScoring";
+import { unansweredQuestionIds } from "../lib/reader-quiz-flow-core";
 import { IS_DEV } from "@/app/book/_lib/client-env";
 import { shouldUseLocalFallback } from "../lib/fallbackPolicy";
 
@@ -494,6 +495,11 @@ export function useQuizSession(params: {
 
   const submit = useCallback(async () => {
     if (!session) return null;
+    // The server refuses a submit with any question unanswered; don't send one.
+    if (unansweredQuestionIds(session.questions, answers).length > 0) {
+      setError("Answer every question to see your results.");
+      return null;
+    }
     setSubmitting(true);
     try {
       const payload = await fetchBookJson<QuizSubmitResponse>(

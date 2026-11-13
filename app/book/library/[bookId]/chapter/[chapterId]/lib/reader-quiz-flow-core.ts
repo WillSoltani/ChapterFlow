@@ -45,3 +45,27 @@ export function projectIncorrectQuestionReviews<
 export function shouldEnrollFlashcards(result: QuizResultLike): boolean {
   return result?.passed === true;
 }
+
+/** Session questions with no recorded answer. A wrong pick that still has
+ *  retries left is never recorded, so a question skipped in that state counts. */
+export function unansweredQuestionIds(
+  questions: ReadonlyArray<{ questionId: string }>,
+  answers: Record<string, string>,
+): string[] {
+  return questions.filter((question) => !answers[question.questionId]).map((question) => question.questionId);
+}
+
+const QUIZ_SUBMIT_ERROR_COPY: Record<string, string> = {
+  invalid_answers: "Some answers didn't come through. Check every question is answered, then try again.",
+  quiz_session_stale: "This quiz changed since you opened it. Reload the page to get the latest version.",
+};
+
+/** Reader-facing copy for a failed submit; server validator text is never shown raw. */
+export function quizSubmitErrorMessage(error: unknown): string {
+  const { code, message } = (typeof error === "object" && error !== null ? error : {}) as {
+    code?: unknown;
+    message?: unknown;
+  };
+  if (typeof code === "string" && QUIZ_SUBMIT_ERROR_COPY[code]) return QUIZ_SUBMIT_ERROR_COPY[code];
+  return typeof message === "string" && message ? message : "Unable to submit quiz right now.";
+}

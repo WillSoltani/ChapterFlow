@@ -13,6 +13,7 @@ import {
   classifyQuizSubmission,
   completionScore,
   projectIncorrectQuestionReviews,
+  quizSubmitErrorMessage,
   shouldEnrollFlashcards,
 } from "../lib/reader-quiz-flow-core";
 import { useQuizSession } from "./useQuizSession";
@@ -160,7 +161,7 @@ export function useChapterQuiz({
       }
       return outcome;
     } catch (error: unknown) {
-      onToast(error instanceof Error ? error.message : "Unable to submit quiz right now.");
+      onToast(quizSubmitErrorMessage(error));
       return classifyQuizSubmission(null);
     }
   }, [bookId, bookTitle, chapter, chapterId, enabled, motivationPersona, onToast, quiz]);

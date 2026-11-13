@@ -5,7 +5,9 @@ import {
   classifyQuizSubmission,
   completionScore,
   projectIncorrectQuestionReviews,
+  quizSubmitErrorMessage,
   shouldEnrollFlashcards,
+  unansweredQuestionIds,
 } from "./reader-quiz-flow-core";
 
 test("quiz submissions classify absent, failed, passed, and provisional pass outcomes", () => {
@@ -50,4 +52,29 @@ test("completion score preserves a finite result and defaults absent/non-finite 
   assert.equal(completionScore({ result: { scorePercent: 87 } }), 87);
   assert.equal(completionScore({ result: { scorePercent: Number.NaN } }), 0);
   assert.equal(completionScore(null), 0);
+});
+
+// READER-07 / LIVE-03: a quiz with an unanswered question must not be submitted.
+test("unansweredQuestionIds lists every session question without an answer, in order", () => {
+  const questions = [{ questionId: "q1" }, { questionId: "q2" }, { questionId: "q3" }];
+  assert.deepEqual(unansweredQuestionIds(questions, { q1: "a", q2: "b", q3: "c" }), []);
+  // q1 was answered wrong with retries left and skipped with Next: no answer is
+  // recorded for it, so it still counts as left.
+  assert.deepEqual(unansweredQuestionIds(questions, { q3: "c" }), ["q1", "q2"]);
+  assert.deepEqual(unansweredQuestionIds(questions, { q1: "", q2: "b", q3: "c" }), ["q1"]);
+});
+
+test("quizSubmitErrorMessage maps server codes to friendly copy instead of raw validator text", () => {
+  const raw = "responses[0] must include selectedChoiceId or selectedIndex.";
+  assert.equal(
+    quizSubmitErrorMessage({ code: "invalid_answers", message: raw }),
+    "Some answers didn't come through. Check every question is answered, then try again.",
+  );
+  assert.equal(
+    quizSubmitErrorMessage({ code: "quiz_session_stale", message: "This quiz session is out of date." }),
+    "This quiz changed since you opened it. Reload the page to get the latest version.",
+  );
+  assert.equal(quizSubmitErrorMessage({ code: "attempt_cooldown", message: "Locked for now." }), "Locked for now.");
+  assert.equal(quizSubmitErrorMessage(new Error("Network down")), "Network down");
+  assert.equal(quizSubmitErrorMessage("nope"), "Unable to submit quiz right now.");
 });

@@ -121,3 +121,12 @@ test("useQuizSession.retry() seats the carry on the session load() returns, outs
   assert.match(tail, /planRetakeCarry\(/, "production retry must carry forward previously-correct answers");
   assert.match(source, /responses: buildQuizSubmitResponses\(/, "submit must build responses through the tested helper");
 });
+
+test("READER-07: submit() and the results button refuse a quiz with an unanswered question", () => {
+  const hook = readFileSync(new URL("../hooks/useQuizSession.ts", import.meta.url), "utf8");
+  const submitBody = hook.slice(hook.indexOf("const submit = useCallback"), hook.indexOf("fetchBookJson<QuizSubmitResponse>"));
+  assert.match(submitBody, /unansweredQuestionIds\(session\.questions, answers\)\.length > 0/);
+  const panel = readFileSync(new URL("../components/QuizPanel.tsx", import.meta.url), "utf8");
+  assert.match(panel, /unansweredQuestionIds\(session\.questions, answers\)/);
+  assert.doesNotMatch(panel, /\{isLast && resolved && \(\s*<div[^>]*>\s*<button type="button" onClick=\{onSeeResults\}/);
+});
