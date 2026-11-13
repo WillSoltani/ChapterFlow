@@ -106,6 +106,8 @@ export function usePhaseCompletion(params: {
   enabled: boolean;
   /** Whether the quiz has been passed (required to unlock Practice) */
   quizPassed: boolean;
+  /** The account shows this chapter finished (see chapterDoneOnServer). */
+  chapterDone?: boolean | undefined;
 }) {
   const {
     bookId,
@@ -117,6 +119,7 @@ export function usePhaseCompletion(params: {
     totalScenarios,
     enabled,
     quizPassed,
+    chapterDone = false,
   } = params;
 
   const [completedPhases, setCompletedPhases] = useState<Set<ChapterTab>>(new Set());
@@ -147,6 +150,12 @@ export function usePhaseCompletion(params: {
     }
     setHydrated(true);
   }, [bookId, chapterId]);
+
+  // A chapter finished on another device opens every phase here too. Runs
+  // after the hydrate above (also on a chapter change), so it wins over it.
+  useEffect(() => {
+    if (hydrated && chapterDone) setAllPhasesCompletedOnce(true);
+  }, [bookId, chapterId, chapterDone, hydrated]);
 
   // Persist to localStorage when completedPhases changes
   useEffect(() => {

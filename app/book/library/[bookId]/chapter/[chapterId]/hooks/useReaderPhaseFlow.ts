@@ -30,6 +30,7 @@ export function useReaderPhaseFlow({
   enabled,
   focusReady,
   quizPassed,
+  chapterDone,
   sessionMode,
 }: {
   bookId: string;
@@ -45,6 +46,7 @@ export function useReaderPhaseFlow({
   enabled: boolean;
   focusReady: boolean;
   quizPassed: boolean;
+  chapterDone: boolean;
   sessionMode: boolean;
 }) {
   const router = useRouter();
@@ -62,6 +64,7 @@ export function useReaderPhaseFlow({
     totalScenarios: requiredScenarioInteractions(learningMode, totalScenarios),
     enabled,
     quizPassed,
+    chapterDone,
   });
 
   const setActiveTab = useCallback(

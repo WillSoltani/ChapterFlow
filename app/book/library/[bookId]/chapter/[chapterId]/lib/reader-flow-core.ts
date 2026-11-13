@@ -57,6 +57,16 @@ export function learningModeTapIsNoop(
   return mode === learningMode && !defaultToFastPath;
 }
 
+/** True when the account already shows this chapter finished (book progress)
+ *  or its quiz is passed. Phase progress lives on one device only, so this
+ *  opens every phase on a device that never saw the reader walk through them. */
+export function chapterDoneOnServer(
+  chapterState: "completed" | "current" | "locked",
+  quizPassed: boolean,
+): boolean {
+  return chapterState === "completed" || quizPassed;
+}
+
 export function computeProgressPercent(
   activeTab: ChapterTab,
   completedPhases: ReadonlySet<ChapterTab>,

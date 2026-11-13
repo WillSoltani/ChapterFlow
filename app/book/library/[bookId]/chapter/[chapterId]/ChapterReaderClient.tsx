@@ -25,6 +25,7 @@ import type { InitialChapterReaderSeed } from "./lib/chapterFromApi";
 import {
   buildChapterNeighbours,
   buildNextChapterRoute,
+  chapterDoneOnServer,
   DEPTH_LABELS,
   learningModeTapIsNoop,
   mapLearningStyleToDepth,
@@ -214,6 +215,7 @@ export function ChapterReaderClient({
     enabled: readerInteractionsReady,
     focusReady: chapterHydrated,
     quizPassed,
+    chapterDone: chapterDoneOnServer(readerProgress.chapterState, quizPassed),
     sessionMode,
   });
   const { phaseCompletion, setActiveTab } = phaseFlow;

@@ -5,6 +5,7 @@ import {
   buildChapterNeighbours,
   buildNextChapterRoute,
   buildReauthReturnTo,
+  chapterDoneOnServer,
   computeProgressPercent,
   decidePhaseTransition,
   initialReaderDepth,
@@ -243,4 +244,12 @@ test("learningModeTapIsNoop: on the fast path a tap on the shown mode still save
   // Customized: re-tapping the current mode changes nothing.
   assert.equal(learningModeTapIsNoop("standard", "standard", false), true);
   assert.equal(learningModeTapIsNoop("challenge", "standard", false), false);
+});
+
+test("READER-09: a chapter finished on any device opens every phase", () => {
+  assert.equal(chapterDoneOnServer("completed", false), true);
+  assert.equal(chapterDoneOnServer("current", true), true);
+  assert.equal(chapterDoneOnServer("completed", true), true);
+  assert.equal(chapterDoneOnServer("current", false), false);
+  assert.equal(chapterDoneOnServer("locked", false), false);
 });
