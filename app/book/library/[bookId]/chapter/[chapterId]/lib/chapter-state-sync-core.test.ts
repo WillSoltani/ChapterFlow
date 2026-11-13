@@ -440,6 +440,69 @@ test("flush sends unsynced edits at once with keepalive, and skips a clean state
   assert.equal(h.patches.length, 1, "the debounced write was cancelled by the flush");
 });
 
+// A debounced save in flight, then a page-hide flush of newer notes.
+async function twoSavesInFlight() {
+  const h = harness();
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.flushPromises();
+  h.edit({ notes: "a", notesUpdatedAt: "2026-11-13T10:00:01.000Z" });
+  await h.advance(200);
+  assert.equal(h.patches.length, 1);
+  h.edit({ notes: "ab", notesUpdatedAt: "2026-11-13T10:00:02.000Z" });
+  h.sync.flush();
+  assert.equal(h.patches.length, 2);
+  assert.equal(h.patches[1]!.keepalive, true);
+  h.sync.flush();
+  assert.equal(h.patches.length, 2, "a second flush of the state already in flight sends nothing");
+  return h;
+}
+
+test("an out-of-date save answer that arrives last is ignored", async () => {
+  const h = await twoSavesInFlight();
+  h.patches[1]!.resolve({ state: h.patches[1]!.state, updatedAt: "2026-11-13T11:00:02.000Z" });
+  await h.flushPromises();
+  h.patches[0]!.resolve({ state: h.patches[0]!.state, updatedAt: "2026-11-13T11:00:01.000Z" });
+  await h.advance(5_000);
+  assert.equal(h.patches.length, 2, "nothing is resent");
+  assert.equal(h.current.notes, "ab");
+});
+
+test("an older state the account stored last is followed by exactly one save of the newer state", async () => {
+  const h = await twoSavesInFlight();
+  h.patches[1]!.resolve({ state: h.patches[1]!.state, updatedAt: "2026-11-13T11:00:01.000Z" });
+  await h.flushPromises();
+  h.patches[0]!.resolve({ state: h.patches[0]!.state, updatedAt: "2026-11-13T11:00:02.000Z" });
+  await h.advance(5_000);
+  assert.equal(h.patches.length, 3);
+  assert.equal(h.patches[2]!.state.notes, "ab");
+  h.patches[2]!.resolve({ state: h.patches[2]!.state, updatedAt: "2026-11-13T11:00:03.000Z" });
+  await h.advance(5_000);
+  assert.equal(h.patches.length, 3);
+  assert.equal(h.current.notes, "ab");
+});
+
+test("a flush between a read landing and the reader's merge sends the merged notes", async () => {
+  const h = harness({ manualApply: true });
+  h.open({
+    notes: "older notes on this device",
+    notesUpdatedAt: "2026-11-01T00:00:00.000Z",
+    bookmarkedTakeaways: [2],
+    bookmarkedTakeawayTexts: { "2": "Two" },
+  });
+  h.gets[0]!.resolve(
+    server({ notes: "newer account notes", notesUpdatedAt: "2026-11-12T00:00:00.000Z", bookmarkedTakeaways: [0], bookmarkedTakeawayTexts: { "0": "Zero" } })
+  );
+  await h.flushPromises();
+  assert.equal(h.current.notes, "older notes on this device", "the reader has not merged yet");
+  h.sync.flush();
+  assert.equal(h.patches.length, 1);
+  assert.equal(h.patches[0]!.state.notes, "newer account notes");
+  assert.deepEqual(h.patches[0]!.state.bookmarkedTakeaways, [2, 0]);
+  h.applyPending();
+  assert.equal(h.current.notes, "newer account notes");
+});
+
 test("refresh re-reads before the next write and keeps notes being typed", async () => {
   const h = harness();
   h.open({ notes: "synced", notesUpdatedAt: "2026-11-13T09:00:00.000Z" });
