@@ -229,7 +229,7 @@ export function BookHero({
               )}
               <BookSaveButton saved={isSaved} onToggle={onToggleSaved} className="h-11 w-11 rounded-xl" />
             </motion.div>
-            {ctaReady && !accessBlocked && freeStartsLeft !== null && freeStartsLeft > 0 && (
+            {ctaReady && !accessBlocked && !hasProgress && freeStartsLeft !== null && freeStartsLeft > 0 && (
               <p className="mt-2 text-sm text-(--cf-text-3)">
                 {freeStartsLeft === 1
                   ? "Starting this book uses your last free book"
