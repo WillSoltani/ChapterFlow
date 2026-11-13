@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
+import { UPGRADE_RETURN_PATH } from "@/lib/pricing";
 import { useSearchParams } from "next/navigation";
 import { TriangleAlert } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -318,7 +319,7 @@ export function LibraryPage() {
                           </div>
                         ))}
                         <a
-                          href="/pricing"
+                          href={UPGRADE_RETURN_PATH}
                           className="ml-2 rounded-lg px-4 py-2 text-cf-label font-semibold text-black transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
                           style={{ background: "var(--cf-upgrade-accent)" }}
                         >

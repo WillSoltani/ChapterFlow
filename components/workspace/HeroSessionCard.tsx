@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { UPGRADE_RETURN_PATH } from "@/lib/pricing";
 import {
   CATALOG_BOOK_COUNT_DISPLAY,
   CATALOG_CATEGORY_COUNT_DISPLAY,
@@ -111,7 +112,7 @@ function getCTAHref(userState: UserState, book: CurrentBook | null): string {
     case "between_books":
       return "/book/library";
     case "free_limit_reached":
-      return "/pricing";
+      return UPGRADE_RETURN_PATH;
     default:
       return "/book/library";
   }
@@ -139,7 +140,7 @@ function getCTAText(userState: UserState, book: CurrentBook | null): string {
 /**
  * Append `?from=dashboard` to in-app chapter-reader hrefs so the reader's
  * context-aware Back (ChapterHeader, batch 04) returns to /dashboard. Only
- * touches `/book/library/{id}/chapter/{n}` — leaves /pricing and the
+ * touches `/book/library/{id}/chapter/{n}` — leaves the upgrade link and the
  * /book/library browse target unchanged.
  */
 function withDashboardReturn(href: string): string {

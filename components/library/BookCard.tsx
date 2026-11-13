@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import Link from "next/link";
+import { UPGRADE_RETURN_PATH } from "@/lib/pricing";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { ChevronDown } from "lucide-react";
@@ -241,7 +242,7 @@ export function BookCard({ book, index = 0, layout = "grid", showProLock = false
           <div className="mt-3">
             {isProLocked ? (
               <Link
-                href="/pricing"
+                href={UPGRADE_RETURN_PATH}
                 className="inline-block cursor-pointer rounded-lg px-4 py-2 text-cf-label font-semibold transition-colors"
                 style={{
                   background: "var(--cf-gold-soft)",

@@ -51,3 +51,13 @@ test("a one-book starter shelf says 'We picked 1 book'", () => {
   );
   assert.ok(screen.getByText("We picked 1 book based on your interests"));
 });
+
+// ACCT-06 (C11): the in-app upgrade link opens the subscription section in Settings.
+test("free limit reached: the upgrade link goes to Settings' subscription section", () => {
+  render(
+    <HeroSessionCard userState="free_limit_reached" currentBook={null} firstName="Sam" />,
+  );
+  const link = screen.getByText("Unlock your full library").closest("a");
+  assert.ok(link, "the CTA is a link");
+  assert.equal(link.getAttribute("href"), "/book/settings?upgrade=1");
+});

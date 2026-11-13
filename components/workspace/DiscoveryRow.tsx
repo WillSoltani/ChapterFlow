@@ -6,7 +6,7 @@ import { DUR, EASE } from "@/lib/motion";
 import { BookCardWorkspace } from "./BookCardWorkspace";
 import { freeCaptionFor, isFreeLimitLocked } from "@/components/library/LibraryContext";
 import type { FreeBookAllowance } from "@/hooks/book/useFreeBookAllowance";
-import { MONTHLY_PRICE } from "@/lib/pricing";
+import { MONTHLY_PRICE, UPGRADE_RETURN_PATH } from "@/lib/pricing";
 import {
   CATALOG_BOOK_COUNT_DISPLAY,
   CATALOG_CATEGORY_COUNT_DISPLAY,
@@ -112,7 +112,7 @@ export function DiscoveryRow({ books, isPro, allowance = null }: DiscoveryRowPro
             Unlock your full library — {CATALOG_BOOK_COUNT_DISPLAY} books across{" "}
             {CATALOG_CATEGORY_COUNT_DISPLAY} categories
           </p>
-          <Link href="/pricing">
+          <Link href={UPGRADE_RETURN_PATH}>
           <motion.span
             className="mt-3 inline-flex cursor-pointer items-center rounded-xl px-6 py-2.5 text-sm font-semibold text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
             style={{

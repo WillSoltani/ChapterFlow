@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { UPGRADE_RETURN_PATH } from "@/lib/pricing";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { ArrowRight, RefreshCw, Clock, Sparkles } from "lucide-react";
@@ -210,7 +211,7 @@ export function BookHero({
                 </button>
               ) : accessBlocked ? (
                 <Link
-                  href="/pricing"
+                  href={UPGRADE_RETURN_PATH}
                   className="cf-btn cf-btn-primary rounded-xl px-7 py-3 text-base font-semibold cf-focus"
                 >
                   <Sparkles className="h-4.5 w-4.5" />

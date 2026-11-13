@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { UPGRADE_RETURN_PATH } from "@/lib/pricing";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
@@ -365,7 +366,7 @@ export function BookDetailClient({
               this book and unlock unlimited reading.
             </p>
             <Link
-              href="/pricing"
+              href={UPGRADE_RETURN_PATH}
               className="cf-btn cf-btn-primary mt-3 inline-flex rounded-xl px-5 py-3 text-sm font-semibold cf-focus"
             >
               <Sparkles className="h-4 w-4" />
