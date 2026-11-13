@@ -9,8 +9,7 @@ import {
 import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import {
   updateUserSettingsItem,
-  getUserProfileItem,
-  putUserProfileItem,
+  updateUserProfileItem,
 } from "@/app/app/api/book/_lib/repo";
 import { generateStarterPrescription } from "@/app/app/api/book/_lib/starter-prescription";
 import {
@@ -270,19 +269,15 @@ export async function POST(req: Request) {
       // profile item (where the legacy path and the profile reader expect it).
       // Only stamp if not already present, so a prior acceptance is preserved.
       try {
-        const profileItem = await getUserProfileItem(tableName, user.sub);
-        const existingProfile = (profileItem?.profile ?? {}) as Record<string, unknown>;
-        if (typeof existingProfile.termsAcceptedAt !== "string") {
-          await putUserProfileItem(tableName, {
-            userId: user.sub,
-            profile: {
-              ...existingProfile,
-              termsAcceptedAt: nowIso(),
-              termsVersion: LEGAL_TERMS_VERSION,
-            },
-            createdAt: profileItem?.createdAt,
-          });
-        }
+        await updateUserProfileItem(tableName, user.sub, (existingProfile) =>
+          typeof existingProfile.termsAcceptedAt === "string"
+            ? null
+            : {
+                ...existingProfile,
+                termsAcceptedAt: nowIso(),
+                termsVersion: LEGAL_TERMS_VERSION,
+              }
+        );
       } catch {
         /* non-fatal */
       }
