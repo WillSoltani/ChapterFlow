@@ -175,8 +175,13 @@ commits, pushes, merges or deploys.
    the cover check, `git push -u origin HEAD`, and `gh pr create` with `<runDir>/site-pr.md` as the body. Skip
    `npm run verify` when `node_modules` is borrowed from another checkout (missing modules fail it for reasons that
    are not this change); CI runs it on the pull request.
-5. The status line the owner sees gains: `Public site: pull request <url>. Merge it, then deploy.` Never merge it
-   and never start the deploy.
+5. The status line the owner sees gains: `Public site: pull request <url>. Merge it BEFORE any deploy, then
+   deploy.` Never merge it and never start the deploy. The order matters: a prod deploy that runs from main while
+   this pull request is still open uploads main's older package over the live one (the quiz, ask and narration
+   text go back a version; the chapter text does not). If that has happened: merge the pull request, then deploy
+   main again; that puts the published package back. `site` refuses with `SITE_LIVE_STALE` while the live store
+   holds a package other than the one this run published, and it never brings main down to an older live package
+   of another title (it reports that title as ahead).
 
 A refusal (`SITE_...`, exit 2) leaves the checkout as it was; fix what it names and run the same command again.
 Two site pull requests open at once both supersede the same approval record: merge one, then rebase and rerun the
@@ -397,6 +402,8 @@ to `~/cf-wt/v26-plan/status/V1-variants.md` and one to the `v26-campaign` memory
 | `site`: `SITE_REPO_DIRTY` | the checkout of main has changes to tracked files | use a fresh worktree of `origin/main` |
 | `site`: `SITE_REPO_INVALID ... node_modules/.bin/tsx` | the worktree has no `node_modules` | link one or `npm ci` there (section 1B, step 2) |
 | `site`: `SITE_STORE_FAILED` | the aws CLI, the profile or the SSM names | `aws sts get-caller-identity --profile chapterflow`; rerun |
+| `site`: `SITE_LIVE_STALE` | the live store holds another package than this run published: a deploy ran from an older main, or the book was published from another run dir | merge the open site pull request if there is one, deploy main (the owner), then run `site` again; or publish again |
+| `site`: `main is ahead of the live store for <id>` | main holds a newer package of another title than the live store | nothing to do here; the next prod deploy of main puts it live. Tell the owner |
 | `site`: `SITE_HALF_WIRED` | the title is in the registry or in the catalog rows, not both | stop; tell the owner which, do not patch it by hand |
 | `site`: `SITE_NOT_PUBLISHED` / `SITE_NOT_LIVE` | the book was not published by this tool, or is not in the live store | publish first |
 | `auto`: `NEEDS-OWNER ... keys could not be checked` | a checker or the editor did not answer (web down, a refusal) | run the identical command later; or the owner reads the notes in the config and you pass `--keys-ok` |

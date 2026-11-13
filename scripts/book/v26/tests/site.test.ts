@@ -126,10 +126,11 @@ export function getBookCoverSourceCandidates(bookId: string): string[] {
 `;
 
 /** A v21 package; `compact` writes it the way no generator would, to prove the bytes are kept as they are. */
-function pkg(id: string, title: string, chapters: number, opts: { categories?: string[]; tags?: string[]; rev?: string; compact?: boolean } = {}): string {
+function pkg(id: string, title: string, chapters: number, opts: { categories?: string[]; tags?: string[]; rev?: string; compact?: boolean; createdAt?: string } = {}): string {
   const body = {
     schemaVersion: "chapterflow-v21-authored",
     packageId: `${id}-${opts.rev ?? "v1"}`,
+    ...(opts.createdAt !== undefined ? { createdAt: opts.createdAt } : {}),
     book: { bookId: id, title, author: "A. Author", categories: opts.categories ?? ["Psychology"], tags: opts.tags ?? ["habits"] },
     chapters: Array.from({ length: chapters }, (_, i) => ({ chapterId: `${id}-ch0${i + 1}`, number: i + 1, readingTimeMinutes: 7 })),
   };
@@ -180,13 +181,24 @@ interface Fixture {
   commit(msg?: string): void;
 }
 
-/** A clean main-like checkout (git, branch main) and a run dir with publish.json, for the book `bookId`. */
-function fixture(opts: { bookId?: string; title?: string; ledger?: unknown[]; published?: boolean; live?: Record<string, string>; etags?: Record<string, string> } = {}): Fixture {
+/** A clean main-like checkout (git, branch main) and a run dir with publish.json, for the book `bookId`. publish.json names
+ *  the live package's packageId unless `publishedId` says otherwise (null: no packageId at all). */
+function fixture(opts: { bookId?: string; title?: string; ledger?: unknown[]; published?: boolean; publishedId?: string | null; live?: Record<string, string>; etags?: Record<string, string> } = {}): Fixture {
   const dir = tmp("v26-site-");
   const repo = path.join(dir, "main");
   const runDir = path.join(dir, "run");
   fs.mkdirSync(runDir, { recursive: true });
-  if (opts.published !== false) fs.writeFileSync(path.join(runDir, "publish.json"), JSON.stringify({ bookId: opts.bookId ?? "demo-book", packageId: "demo-book-v26-1" }));
+  const bookId = opts.bookId ?? "demo-book";
+  const liveBody = (opts.live ?? LIVE)[bookId];
+  const liveId = (() => {
+    try {
+      return liveBody ? (JSON.parse(liveBody) as { packageId?: string }).packageId : undefined;
+    } catch {
+      return undefined;
+    }
+  })();
+  const publishedId = opts.publishedId === undefined ? liveId ?? `${bookId}-v26-1` : opts.publishedId;
+  if (opts.published !== false) fs.writeFileSync(path.join(runDir, "publish.json"), JSON.stringify({ bookId, ...(publishedId !== null ? { packageId: publishedId } : {}) }));
   const write = (f: string, s: string | Buffer) => {
     fs.mkdirSync(path.dirname(path.join(repo, f)), { recursive: true });
     fs.writeFileSync(path.join(repo, f), s);
@@ -607,6 +619,121 @@ test("site after a failed run: the checkout is restored, and a leftover untracke
   assert.deepEqual(r2.synced.map((s) => [s.bookId, s.oldMd5]), [["demo-book", null], ["tiny-habits", md5(pkg("tiny-habits", "Tiny Habits", 8, { rev: "v21-old" }))]]);
   const status = g.git("status", "--porcelain", "--untracked-files=all").split("\n").filter(Boolean).map((l) => l.slice(3)).sort();
   assert.deepEqual([...r2.filesChanged].sort(), status, "every change in the checkout is in the list the caller stages");
+});
+
+// ---------------------------------------------------------------- a live store a deploy rolled back
+
+test("site SITE_LIVE_STALE: the called-for title is live with another package than this run published; refused before any write, dry run too", async () => {
+  const noReport = (f: Fixture) => assert.ok(!fs.existsSync(path.join(f.runDir, "site.json")) && !fs.existsSync(path.join(f.runDir, "site-pr.md")));
+  // The repo file equals the live bytes (radical-candor-v1 on both), but this run published radical-candor-v2.
+  // The repo file differs from the live bytes: main holds the newer published package, a deploy put tiny-habits-v26 back.
+  const cases = [
+    { bookId: "radical-candor", title: "Radical Candor", published: "radical-candor-v2", liveId: "radical-candor-v1" },
+    { bookId: "tiny-habits", title: "Tiny Habits", published: "tiny-habits-v21-old", liveId: "tiny-habits-v26" },
+  ];
+  for (const c of cases) {
+    for (const dryRun of [false, true]) {
+      const f = fixture({ bookId: c.bookId, title: c.title, publishedId: c.published });
+      const msg = `SITE_LIVE_STALE: the live store holds package ${c.liveId} for ${c.bookId}, but this run last published ${c.published}. A deploy from an older main has probably put an older package back, or the book was published from another run dir. Deploy main or publish again, then run site.`;
+      await assert.rejects(site(f, { dryRun }), (e: Error) => e.message === msg);
+      clean(f);
+      noReport(f);
+      assert.deepEqual(f.runs, []);
+    }
+  }
+
+  // Cannot tell: no packageId in publish.json, or live bytes with no packageId (a real run) or not JSON (a dry run, since
+  // the fake generators parse every package). Each proceeds with a note.
+  const f = fixture({ publishedId: null });
+  const r = await site(f);
+  assert.ok(r.filesChanged.length > 0);
+  assert.match(r.notes.join("\n"), /the live package check could not be made: .*publish\.json has no packageId/);
+  const noId = JSON.stringify({ book: { bookId: "demo-book", title: "Demo Book" }, chapters: [{ chapterId: "d1" }] });
+  const g = fixture({ live: { ...LIVE, "demo-book": noId }, publishedId: "demo-book-v26-1" });
+  const r2 = await site(g);
+  assert.equal(g.read("book-packages/demo-book.v21.json"), noId);
+  assert.match(r2.notes.join("\n"), /the live package check could not be made: the live demo-book package is not JSON or has no packageId/);
+  const h = fixture({ live: { ...LIVE, "demo-book": "not json" }, publishedId: "demo-book-v26-1" });
+  const r3 = await site(h, { dryRun: true });
+  assert.match(r3.notes.join("\n"), /the live package check could not be made: the live demo-book package/);
+  // The ids agree: no note.
+  const k = fixture();
+  assert.ok(!(await site(k, { dryRun: true })).notes.some((n) => /live package check/.test(n)));
+});
+
+test("site: another title whose package on main is newer than the live one is left alone and reported as ahead; older, equal or undated is synced", async () => {
+  const tinyRepo = (createdAt?: string) => pkg("tiny-habits", "Tiny Habits", 8, { rev: "v27", ...(createdAt !== undefined ? { createdAt } : {}) });
+  const tinyLive = (createdAt?: string) => pkg("tiny-habits", "Tiny Habits", 8, { rev: "v26", ...(createdAt !== undefined ? { createdAt } : {}) });
+  const setup = (repoAt?: string, liveAt?: string) => {
+    const f = fixture({ live: { ...LIVE, "tiny-habits": tinyLive(liveAt) } });
+    f.write("book-packages/tiny-habits.v21.json", tinyRepo(repoAt));
+    f.commit("main is ahead");
+    return f;
+  };
+
+  const f = setup("2026-11-12T09:00:00.000Z", "2026-11-10T09:00:00.000Z");
+  const r = await site(f);
+  assert.equal(f.read("book-packages/tiny-habits.v21.json"), tinyRepo("2026-11-12T09:00:00.000Z"), "byte-identical");
+  assert.deepEqual(r.ahead, [{ bookId: "tiny-habits", file: "book-packages/tiny-habits.v21.json", repoCreatedAt: "2026-11-12T09:00:00.000Z", liveCreatedAt: "2026-11-10T09:00:00.000Z" }]);
+  assert.ok(!r.synced.some((s) => s.bookId === "tiny-habits"));
+  assert.ok(!r.filesChanged.includes("book-packages/tiny-habits.v21.json"));
+  assert.equal(r.equal, 2, "not counted as equal");
+  const body = fs.readFileSync(path.join(f.runDir, "site-pr.md"), "utf8");
+  assert.match(body, /### Titles where main is ahead of the live store\n\n.*next prod deploy of main puts main's copy live; nothing in this pull request changes them:\n\n- `tiny-habits`: main `2026-11-12T09:00:00\.000Z`, live `2026-11-10T09:00:00\.000Z`/);
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(f.runDir, "site.json"), "utf8")).ahead, r.ahead);
+
+  // The CLI line.
+  const c = setup("2026-11-12T09:00:00.000Z", "2026-11-10T09:00:00.000Z");
+  let out = "";
+  const code = await main(["site", "--book", cliConfig(c), "--repo", c.repo], { out: (s) => (out += s), err: () => {} }, { store: c.store, run: c.run });
+  assert.equal(code, 0);
+  assert.ok(out.includes("  main is ahead of the live store for tiny-habits (main 2026-11-12T09:00:00.000Z, live 2026-11-10T09:00:00.000Z): left alone; a prod deploy of main puts it live\n"), out);
+
+  // Repo older, equal, either date missing or not a date: synced to the live bytes as before.
+  for (const [repoAt, liveAt] of [
+    ["2026-11-09T09:00:00.000Z", "2026-11-10T09:00:00.000Z"],
+    ["2026-11-10T09:00:00.000Z", "2026-11-10T09:00:00.000Z"],
+    [undefined, "2026-11-10T09:00:00.000Z"],
+    ["2026-11-12T09:00:00.000Z", undefined],
+    ["not a date", "2026-11-10T09:00:00.000Z"],
+  ] as Array<[string | undefined, string | undefined]>) {
+    const g = setup(repoAt, liveAt);
+    const r2 = await site(g);
+    assert.deepEqual(r2.ahead, [], `${repoAt} vs ${liveAt}`);
+    assert.ok(r2.synced.some((s) => s.bookId === "tiny-habits"), `${repoAt} vs ${liveAt}`);
+    assert.equal(g.read("book-packages/tiny-habits.v21.json"), tinyLive(liveAt));
+    assert.ok(!fs.readFileSync(path.join(g.runDir, "site-pr.md"), "utf8").includes("main is ahead"));
+  }
+
+  // An untracked newer copy counts as missing, not ahead: it is written and staged like any missing package.
+  const u = setup("2026-11-12T09:00:00.000Z", "2026-11-10T09:00:00.000Z");
+  u.git("rm", "-q", "--cached", "book-packages/tiny-habits.v21.json");
+  u.git("commit", "-q", "-m", "untrack");
+  const r3 = await site(u, { dryRun: true });
+  assert.deepEqual(r3.ahead, []);
+  assert.deepEqual(r3.synced.filter((s) => s.bookId === "tiny-habits").map((s) => s.oldMd5), [null]);
+
+  // The called-for title is never ahead: the stale check covers it, and with the ids agreeing main goes to the live bytes.
+  const w = fixture({ bookId: "tiny-habits", title: "Tiny Habits", live: { ...LIVE, "tiny-habits": tinyLive("2026-11-10T09:00:00.000Z") } });
+  w.write("book-packages/tiny-habits.v21.json", tinyRepo("2026-11-12T09:00:00.000Z"));
+  w.commit("main is newer");
+  const r4 = await site(w, { dryRun: true });
+  assert.deepEqual(r4.ahead, []);
+  assert.ok(r4.synced.some((s) => s.bookId === "tiny-habits"));
+});
+
+test("site: the pull request body says to merge before the next prod deploy, and next says it after gh pr create", async () => {
+  const f = fixture();
+  const r = await site(f);
+  const body = fs.readFileSync(path.join(f.runDir, "site-pr.md"), "utf8");
+  assert.ok(body.includes("### Merging changes nothing live\n\n**Merge this before the next production deploy.** A deploy that runs from main without this pull request uploads main's older copy of these packages over the live ones.\n\nMerging only changes main."), body);
+  const i = r.next.findIndex((c) => c.startsWith("gh pr create "));
+  assert.ok(i >= 0);
+  assert.equal(r.next[i + 1], "# merge that pull request BEFORE any prod deploy: a deploy from main without it puts the older package back live");
+  // Nothing to commit (or a dry run): no git or gh lines, so no comment either.
+  f.commit("site");
+  assert.ok(!(await site(f)).next.some((c) => c.includes("BEFORE any prod deploy")));
+  assert.ok(!(await site(fixture(), { dryRun: true })).next.some((c) => c.includes("BEFORE any prod deploy")));
 });
 
 // ---------------------------------------------------------------- helpers

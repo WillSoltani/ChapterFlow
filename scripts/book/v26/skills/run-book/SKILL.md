@@ -42,8 +42,11 @@ The numbers are the `chapter scores:` line `auto` prints just before its outcome
   permission check stops the publish step, ask one yes-or-no question ("Publish <title>? Average 96.1.") and on a
   yes run the identical command again. Status line: `LIVE in the app, version N.` Then do the public-site step
   (reference.md section 1B: `site` in a fresh worktree of main, its checks, a pull request) and add to the status
-  line: `Public site: pull request <url>. Merge it, then deploy.` This holds for a replaced title too: main must
-  hold the live package, or the next deploy puts the old one back.
+  line: `Public site: pull request <url>. Merge it BEFORE any deploy, then deploy.` This holds for a replaced
+  title too: main must hold the live package, or the next deploy puts the old one back. The order is the whole
+  point: a deploy approved while that pull request is still open uploads main's older package over the live one
+  (it happened to The Power of Habit on 2026-11-12). If the owner starts a deploy first, say so at once, in plain
+  words, and tell them not to approve the waiting run.
 - **NEEDS-OWNER, band manual**: show the table and the reason in one line (for example "ch06 is under 70" or
   "TRY fails in 5 of 8 chapters"), and ask: "Publish anyway?" Yes: `auto --approve`. No: leave it and stop.
 - **NEEDS-OWNER, keys could not be checked**: run the identical command once more. If it holds again, ask: "The

@@ -6,6 +6,10 @@
  *  main, and the deploy that follows any pull request touching book-packages/ would put those old copies back live. So
  *  every package in the checkout that differs from the live store is brought up to the live bytes ("the revert guard").
  *
+ *  The live store is not always the authority: a deploy approved before the pull request merged puts main's older copy
+ *  back live. So the called-for title must be live as this run published it (SITE_LIVE_STALE otherwise), and another
+ *  title whose copy on main is newer than the live one (by the package's createdAt) is left alone and reported as ahead.
+ *
  *  Order: everything that can refuse (preconditions, the live list, the fetches, the ledger's leaf) runs before the first
  *  write, so a refusal leaves the checkout as it was. The approval record is the last edit, since it hashes the final
  *  bookPackages.ts. See the spec this follows: what main needs for a new or replaced title, read from main itself. */
@@ -260,6 +264,28 @@ export function addFallbackCover(src: string, id: string): string {
   return src.slice(0, m.index) + block + src.slice(m.index + m[0].length);
 }
 
+/** A top-level string field of a package, or null when the bytes are not JSON or the field is missing, empty or not a
+ *  string. A null means "cannot tell", never a refusal. */
+export function packageField(bytes: Buffer, key: string): string | null {
+  try {
+    const v = (JSON.parse(bytes.toString("utf8")) as Record<string, unknown> | null)?.[key];
+    return typeof v === "string" && v !== "" ? v : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Main's copy is ahead when both packages carry a valid createdAt and main's is strictly later: a deploy from an older
+ *  main has put an older package back live, and syncing main down to it would make the rollback permanent. */
+export function mainAhead(repoBytes: Buffer, liveBytes: Buffer): { repoCreatedAt: string; liveCreatedAt: string } | null {
+  const repoCreatedAt = packageField(repoBytes, "createdAt");
+  const liveCreatedAt = packageField(liveBytes, "createdAt");
+  if (repoCreatedAt === null || liveCreatedAt === null) return null;
+  const repoMs = Date.parse(repoCreatedAt);
+  const liveMs = Date.parse(liveCreatedAt);
+  return Number.isNaN(repoMs) || Number.isNaN(liveMs) || repoMs <= liveMs ? null : { repoCreatedAt, liveCreatedAt };
+}
+
 export const isFallbackCover = (src: string, id: string): boolean => {
   const m = /const FALLBACK_ONLY_BOOK_COVERS = new Set\(\[([^\]]*)\]\);/.exec(src);
   return m !== null && m[1]!.includes(JSON.stringify(id));
@@ -382,6 +408,9 @@ export interface SiteReport {
   dryRun: boolean;
   /** Packages brought up to the live bytes (or that would be, in a dry run). */
   synced: SyncedPackage[];
+  /** Other titles whose package on main is newer (createdAt) than the live one; left alone, the next prod deploy puts
+   *  main's copy live. Neither equal nor synced. */
+  ahead: Array<{ bookId: string; file: string; repoCreatedAt: string; liveCreatedAt: string }>;
   /** Packages in the checkout that the live store does not have; left alone. */
   repoOnly: string[];
   /** How many packages already equalled the live store. */
@@ -480,7 +509,8 @@ export async function siteBook(ctx: SiteCtx, opts: SiteOptions): Promise<SiteRep
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(bookId)) throw new Error(`SITE_BAD_ID: "${bookId}" is not kebab-case; the registry and its tests key books by kebab-case ids`);
   const publishFile = path.join(runDir, "publish.json");
   if (!fs.existsSync(publishFile)) throw new Error(`SITE_NOT_PUBLISHED: ${publishFile} does not exist; run publish first (the site step wires a book that is already live)`);
-  const packageId = (JSON.parse(fs.readFileSync(publishFile, "utf8")) as { packageId?: string }).packageId ?? null;
+  const publishedId = (JSON.parse(fs.readFileSync(publishFile, "utf8")) as { packageId?: unknown }).packageId;
+  const packageId = typeof publishedId === "string" && publishedId !== "" ? publishedId : null;
   checkRepo(repo);
   // Without the repo's own tsx, npx (stdin not a TTY) would install whatever tsx the registry serves, after the edits.
   if (!dryRun && !fs.existsSync(path.join(repo, TSX_BIN))) throw new Error(`SITE_REPO_INVALID: ${repo} has no ${TSX_BIN} (run npm ci there first)`);
@@ -522,12 +552,16 @@ export async function siteBook(ctx: SiteCtx, opts: SiteOptions): Promise<SiteRep
   const untracked = new Set(git(repo, ["ls-files", "--others", "--exclude-standard", "--", PACKAGES_DIR]).split("\n").filter(Boolean));
   const writes = new Map<string, Buffer>();
   const synced: SyncedPackage[] = [];
+  const ahead: SiteReport["ahead"] = [];
   let equal = 0;
+  // The called-for title's live bytes, for the stale check below (the repo file when it matched the ETag, else the fetch).
+  let calledLive: Buffer | null = null;
   for (const id of [...new Set([...repoIds.filter((x) => live.has(x)), bookId])].sort()) {
     const { etag, size } = live.get(id)!;
     const file = path.join(repo, pkgRel(id));
     const have = fs.existsSync(file) && !untracked.has(pkgRel(id)) ? fs.readFileSync(file) : null;
     if (have && isPlainMd5(etag) && md5(have) === etag) {
+      if (id === bookId) calledLive = have;
       equal++;
       continue;
     }
@@ -540,14 +574,31 @@ export async function siteBook(ctx: SiteCtx, opts: SiteOptions): Promise<SiteRep
     if ((isPlainMd5(etag) && md5(bytes) !== etag) || bytes.length !== size) {
       throw new Error(`SITE_FETCH_MISMATCH: the fetched ${id} package (md5 ${md5(bytes)}, ${bytes.length} bytes) does not match the live listing (ETag ${etag}, ${size} bytes)`);
     }
+    if (id === bookId) calledLive = bytes;
     // A multipart ETag says nothing about the bytes, so the fetch is the comparison.
     if (have && have.equals(bytes)) {
       equal++;
       continue;
     }
+    // Never bring main down to an older live package: that is a deploy's rollback, not a runtime republish. The called-for
+    // title is covered by the stale check instead.
+    const isAhead = have && id !== bookId ? mainAhead(have, bytes) : null;
+    if (isAhead) {
+      ahead.push({ bookId: id, file: pkgRel(id), ...isAhead });
+      continue;
+    }
     writes.set(pkgRel(id), bytes);
     synced.push({ bookId: id, file: pkgRel(id), oldMd5: have ? md5(have) : null, newMd5: md5(bytes), sha256: sha256(bytes), size: bytes.length });
   }
+
+  // 4b. The called-for title must be live as this run published it. If a deploy put an older package back, syncing main to
+  // the live bytes would hand main the older package and call it a refresh.
+  const liveId = calledLive ? packageField(calledLive, "packageId") : null;
+  if (packageId !== null && liveId !== null && liveId !== packageId) {
+    throw new Error(`SITE_LIVE_STALE: the live store holds package ${liveId} for ${bookId}, but this run last published ${packageId}. A deploy from an older main has probably put an older package back, or the book was published from another run dir. Deploy main or publish again, then run site.`);
+  }
+  if (packageId === null) notes.push(`the live package check could not be made: ${publishFile} has no packageId`);
+  else if (liveId === null) notes.push(`the live package check could not be made: the live ${bookId} package is not JSON or has no packageId`);
 
   // 5. The registry (new titles only): the import, the presentation entry when a synopsis was authored, the block.
   let nextRegistry = registry;
@@ -651,6 +702,7 @@ export async function siteBook(ctx: SiteCtx, opts: SiteOptions): Promise<SiteRep
     kind,
     dryRun,
     synced,
+    ahead,
     repoOnly,
     equal,
     filesChanged,
@@ -715,6 +767,7 @@ function nextCommands(repo: string, r: SiteReport, runDir: string): string[] {
     `git status --short   # expect no ${DEAD_METADATA}`,
     "git push -u origin HEAD",
     `gh pr create --base main --title ${sh(`books(site): ${r.title} on the public catalog`)} --body-file ${sh(path.join(runDir, "site-pr.md"))}`,
+    "# merge that pull request BEFORE any prod deploy: a deploy from main without it puts the older package back live",
   );
   return cmds;
 }
@@ -727,6 +780,7 @@ export function prBody(r: SiteReport, packageId: string | null): string {
   lines.push(`Prepared by the v26 tool's \`site\` verb. \`${r.bookId}\` is already live at runtime${packageId ? ` (package \`${packageId}\`)` : ""}; this pull request brings main's static catalog and packages up to it.`, "");
 
   lines.push("### Merging changes nothing live", "");
+  lines.push("**Merge this before the next production deploy.** A deploy that runs from main without this pull request uploads main's older copy of these packages over the live ones.", "");
   lines.push("Merging only changes main. The public grid, the chapter metadata and the packages change on the next prod deploy, which the owner runs and approves:", "");
   lines.push("```", "gh workflow run deploy.yml --ref main -f environment=prod -f deploy_app=true", "```", "");
 
@@ -745,9 +799,16 @@ export function prBody(r: SiteReport, packageId: string | null): string {
     lines.push(`Main held older copies of these titles than the live store (they were republished at runtime). Without them here, the deploy after this pull request would overwrite the live packages with main's old ones, and quizzes, answer keys, ask and audio text would revert for every reader:`, "");
     for (const s of others) lines.push(`- \`${s.bookId}\``);
   } else {
-    lines.push("None: no other package in main differed from the live store.");
+    lines.push("None: no other package in main was behind the live store.");
   }
   lines.push("");
+
+  if (r.ahead.length > 0) {
+    lines.push("### Titles where main is ahead of the live store", "");
+    lines.push("Main's copy of these packages is newer than the live one (by `createdAt`), most likely because a deploy from an older main put an older package back. The next prod deploy of main puts main's copy live; nothing in this pull request changes them:", "");
+    for (const a of r.ahead) lines.push(`- \`${a.bookId}\`: main \`${a.repoCreatedAt}\`, live \`${a.liveCreatedAt}\``);
+    lines.push("");
+  }
 
   lines.push("### Regenerated files", "");
   lines.push(`\`${METADATA}\` and \`${CHAPTER_META}\` are regenerated from every wired package, so their diff can carry drift unrelated to \`${r.bookId}\`, for titles whose packages changed without a regeneration.`);

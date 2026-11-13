@@ -536,6 +536,7 @@ async function cmdSite(ctx: PipelineCtx, opts: { repo: string; synopsis?: string
   }
   io.out(`${r.bookId}: site ${r.kind.toUpperCase()}${r.dryRun ? ", dry run" : ""}\n`);
   for (const s of r.synced) io.out(`  synced ${s.file}: md5 ${s.oldMd5 ?? "(missing)"} -> ${s.newMd5}${s.bookId === r.bookId ? "" : " (revert guard)"}\n`);
+  for (const a of r.ahead) io.out(`  main is ahead of the live store for ${a.bookId} (main ${a.repoCreatedAt}, live ${a.liveCreatedAt}): left alone; a prod deploy of main puts it live\n`);
   io.out(`  ${r.equal} package${r.equal === 1 ? "" : "s"} already equal the live store\n`);
   if (r.repoOnly.length > 0) io.out(`  repo only, left alone: ${r.repoOnly.join(", ")}\n`);
   io.out(`  synopsis: ${r.synopsis === "authored" ? "authored" : "generic fallback"}; cover: ${r.cover}\n`);
