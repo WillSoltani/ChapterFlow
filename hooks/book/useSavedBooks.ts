@@ -58,6 +58,14 @@ export function useSavedBooks(enabled = true) {
         ? query.error.message
         : "Unable to load saved books."
       : null);
+  // The list itself could not be read (not a failed toggle): callers show a
+  // retry state instead of an empty list (HOME-11).
+  const loadError =
+    enabled && query.data === undefined && query.error !== undefined && query.error !== null
+      ? query.error instanceof Error
+        ? query.error.message
+        : "Unable to load saved books."
+      : null;
   const refresh = query.refetch;
 
   const savedSet = useMemo(() => new Set(saved.map((item) => item.bookId)), [saved]);
@@ -121,6 +129,7 @@ export function useSavedBooks(enabled = true) {
     hydrated,
     loading,
     error,
+    loadError,
     saved,
     savedSet,
     refresh,

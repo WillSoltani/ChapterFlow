@@ -28,7 +28,13 @@ export function SavedBooksClient() {
   const { identity } = useBookViewer();
   const { hydrated, catalog, entries, entitlement, error, partial, refetch } =
     useLibraryDashboard();
-  const { savedSet, toggleSaved, hydrated: savedHydrated } = useSavedBooks(true);
+  const {
+    savedSet,
+    toggleSaved,
+    hydrated: savedHydrated,
+    loadError: savedError,
+    refresh: refetchSaved,
+  } = useSavedBooks(true);
   const allowance = useFreeBookAllowance();
 
   const books = useMemo(() => toLibraryBooks(catalog, entries), [catalog, entries]);
@@ -113,7 +119,7 @@ export function SavedBooksClient() {
 
         {/* Partial-load notice (#2): critical data is present (the route 503s
             otherwise), but some optional data couldn't be fetched. Non-blocking. */}
-        {!loading && !error && partial && (
+        {!loading && !error && !savedError && partial && (
           <div
             role="status"
             className="cf-banner cf-banner-warning mb-5 flex items-start gap-2 rounded-xl px-4 py-3 text-sm"
@@ -125,11 +131,12 @@ export function SavedBooksClient() {
 
         {loading ? (
           <LibraryGridSkeleton count={8} />
-        ) : error ? (
+        ) : error || savedError ? (
           // A dashboard outage (incl. 503 dashboard_unavailable) must surface a
           // RETRYABLE error — NOT the "No saved books" empty state, which would
           // falsely imply the user has nothing saved, and NOT a FREE-collapsed
-          // locked grid. We never read entitlement as FREE on failure.
+          // locked grid. We never read entitlement as FREE on failure. The same
+          // goes for a failed saved-list read (HOME-11).
           <div
             role="alert"
             className="mx-auto max-w-md rounded-2xl px-8 py-12 text-center"
@@ -147,7 +154,10 @@ export function SavedBooksClient() {
             </p>
             <button
               type="button"
-              onClick={refetch}
+              onClick={() => {
+                if (error) refetch();
+                if (savedError) refetchSaved();
+              }}
               className="mt-5 inline-block rounded-lg px-5 py-2.5 text-cf-label font-semibold transition-colors"
               style={{ background: "var(--cf-accent)", color: "var(--cf-page-bg)" }}
             >
