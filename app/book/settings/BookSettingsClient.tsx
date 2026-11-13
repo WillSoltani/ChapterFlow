@@ -103,6 +103,20 @@ const DEPTH_DISPLAY: Record<ReadingProfile, string> = {
   deep: "Deeper",
 };
 
+// ACCT-02: a reading profile picked here sets the depth exactly as the
+// reader's own mode switch does: the learning mode, its tone, and
+// profileCustomized (without it the reader and quizzes stay on the short path).
+const LEARNING_MODE_BY_STYLE: Record<string, "guided" | "standard" | "challenge"> = {
+  concise: "guided",
+  balanced: "standard",
+  deep: "challenge",
+};
+const TONE_BY_LEARNING_MODE = {
+  guided: "gentle",
+  standard: "gentle",
+  challenge: "competitive",
+} as const;
+
 // Finding C: the in-page section index (sticky left rail ≥lg, horizontal pill
 // row <lg). ids + icons mirror the six SettingsSection blocks below; `title`
 // matches each SettingsSection's aria-label so goToSection can find its anchor
@@ -328,14 +342,13 @@ export function BookSettingsClient({
     // redundant state updates, and unwanted celebrations during a bulk refresh.
     const preset = READING_PROFILES.find((p) => p.id === result.profile);
     if (preset) {
-      const learningModeMap: Record<string, "guided" | "standard" | "challenge"> = {
-        concise: "guided", balanced: "standard", deep: "challenge",
-      };
+      const learningMode = LEARNING_MODE_BY_STYLE[preset.defaults.learningStyle] ?? "standard";
       patchExt({
         readingProfile: result.profile,
-        profileCustomized: false,
+        profileCustomized: true,
+        contentTone: TONE_BY_LEARNING_MODE[learningMode],
         quizStyle: preset.defaults.quizStyle,
-        learningMode: learningModeMap[preset.defaults.learningStyle] ?? "standard",
+        learningMode,
         dailyGoalPreset: result.goal,
         motivationPersona: result.motivation,
         colorBlindMode: result.colorBlind,
@@ -508,17 +521,14 @@ export function BookSettingsClient({
   function handleProfileChange(profile: ReadingProfile) {
     const preset = READING_PROFILES.find((p) => p.id === profile);
     if (!preset) return;
-    const learningModeMap: Record<string, "guided" | "standard" | "challenge"> = {
-      concise: "guided",
-      balanced: "standard",
-      deep: "challenge",
-    };
+    const learningMode = LEARNING_MODE_BY_STYLE[preset.defaults.learningStyle] ?? "standard";
     patchExt({
       readingProfile: profile,
-      profileCustomized: false,
+      profileCustomized: true,
+      contentTone: TONE_BY_LEARNING_MODE[learningMode],
       quizStyle: preset.defaults.quizStyle,
       dailyGoalPreset: preset.defaults.dailyGoalPreset,
-      learningMode: learningModeMap[preset.defaults.learningStyle] ?? "standard",
+      learningMode,
     });
     setLearningStyle(preset.defaults.learningStyle);
     setQuizIntensity(

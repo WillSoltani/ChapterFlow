@@ -425,3 +425,45 @@ test("ACCT-15: a failed deactivate keeps the dialog open with its error", async 
   assert.equal(calls.filter((c) => c.url.endsWith("/me/account/deactivate")).length, 1);
   assert.match(within(view.getByRole("dialog")).getByRole("alert").textContent ?? "", /couldn't deactivate/);
 });
+
+function lastExtendedWrite() {
+  return writes("/me/settings")
+    .map((c) => (c.body as { settings?: { extended?: Record<string, unknown> } }).settings?.extended)
+    .filter((e): e is Record<string, unknown> => e !== undefined)
+    .at(-1);
+}
+
+test("ACCT-02: choosing Deeper sets the reading depth the reader and quizzes use", async () => {
+  const view = renderSettings();
+  await wait(100);
+  const reading = within(section(view, "Reading Experience"));
+  fireEvent.click(reading.getByRole("radio", { name: /Deeper/ }));
+  await wait(900);
+
+  const extended = lastExtendedWrite();
+  assert.ok(extended, "the profile change was saved");
+  assert.equal(extended.learningMode, "challenge");
+  assert.equal(extended.profileCustomized, true, "the choice counts as the reader's own");
+  assert.equal(extended.contentTone, "competitive");
+});
+
+test("ACCT-02: finishing the preferences wizard also sets the depth", async () => {
+  const view = renderSettings();
+  await wait(100);
+  toggleSection(view, "Account & Subscription");
+  await wait(50);
+  fireEvent.click(view.getByRole("button", { name: "Refresh" }));
+  await wait(50);
+  for (let i = 0; i < 3; i += 1) {
+    fireEvent.click(within(view.getByRole("dialog")).getByRole("button", { name: "Next" }));
+    await wait(30);
+  }
+  fireEvent.click(within(view.getByRole("dialog")).getByRole("button", { name: /Update my preferences/ }));
+  await wait(900);
+
+  const extended = lastExtendedWrite();
+  assert.ok(extended);
+  assert.equal(extended.learningMode, "standard");
+  assert.equal(extended.profileCustomized, true);
+  assert.equal(extended.contentTone, "gentle");
+});
