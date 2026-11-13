@@ -11,6 +11,7 @@ import {
 import { MotionProvider } from "@/components/MotionProvider";
 import { AuthCacheBoundary } from "@/components/auth/AuthCacheBoundary";
 import { buildDocumentThemeBootstrapScript } from "@/app/_lib/document-theme";
+import { SignedInShellEffects } from "@/app/_lib/signed-in-shell-effects";
 
 // Satoshi is ONE family ("satoshi") from two declarations, so that only the
 // weight a first screen uses is preloaded: 700 (every public route's and the
@@ -140,6 +141,7 @@ export default async function RootLayout({
       <body className="min-h-screen w-full overflow-x-hidden antialiased font-(--font-body)">
         <AuthCacheBoundary />
         <MotionProvider>{children}</MotionProvider>
+        <SignedInShellEffects />
         {/* Color-blind support no longer uses an SVG feColorMatrix filter on
             <html>. That global url() filter forced a full-page raster on every
             paint (heavy GPU/jank) and was a color *simulation* that compounded
