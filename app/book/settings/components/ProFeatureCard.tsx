@@ -31,7 +31,10 @@ export function ProFeatureCard({
     <>
       <div className="relative overflow-hidden rounded-2xl border border-(--cf-border) bg-gradient-to-br from-(--accent-amber)/3 to-(--accent-rose)/3 p-4">
         {/* Shimmer border */}
-        <div className="absolute inset-0 rounded-2xl border border-transparent bg-gradient-to-r from-(--accent-amber)/10 via-(--accent-rose)/10 to-(--accent-rose)/10 opacity-40" />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 rounded-2xl border border-transparent bg-gradient-to-r from-(--accent-amber)/10 via-(--accent-rose)/10 to-(--accent-rose)/10 opacity-40"
+        />
 
         <div className="relative flex items-start justify-between">
           <div className="flex-1">
