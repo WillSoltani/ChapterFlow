@@ -17,7 +17,10 @@ const serverState = {
   lastReadChapterId: "ch02",
   lastOpenedAt: "2026-11-01T10:00:00.000Z",
 };
-const fetchBookJsonCached = makeSpy(async (_url: string) => ({ state: serverState }));
+type StatePayload = { state: typeof serverState };
+const defaultGet = async (_url: string): Promise<StatePayload> => ({ state: serverState });
+let getImpl = defaultGet;
+const fetchBookJsonCached = makeSpy((url: string) => getImpl(url));
 
 const harness = installRouteHarness({
   "@/app/book/_lib/book-api": { fetchBookJson },
@@ -34,6 +37,7 @@ before(async () => {
 });
 
 beforeEach(() => {
+  getImpl = defaultGet;
   fetchBookJson.calls.length = 0;
   fetchBookJsonCached.calls.length = 0;
   window.localStorage.clear();
@@ -83,4 +87,35 @@ test("setLastReadChapter sends exactly one PATCH", async () => {
   };
   assert.equal(body.state?.lastReadChapterId, "ch02");
   assert.deepEqual(body.state?.completedChapterIds, ["ch01"]);
+});
+
+test("serverReady is false after local hydration and true once the server copy is merged (C6)", async () => {
+  let release: (value: StatePayload) => void = () => {};
+  getImpl = () =>
+    new Promise<StatePayload>((resolve) => {
+      release = resolve;
+    });
+  const view = renderHook(() => useBookProgress("book-1", chapters));
+  await settle();
+  assert.equal(view.result.current.hydrated, true);
+  assert.equal(view.result.current.serverReady, false);
+  assert.equal(view.result.current.progress.currentChapterId, "ch01");
+
+  await act(async () => {
+    release({ state: serverState });
+  });
+  await settle();
+  assert.equal(view.result.current.serverReady, true);
+  assert.equal(view.result.current.progress.currentChapterId, "ch02");
+  assert.equal(patches().length, 0);
+});
+
+test("a failed server read still ends the wait (serverReady true, no PATCH)", async () => {
+  getImpl = async () => {
+    throw new Error("offline");
+  };
+  const view = renderHook(() => useBookProgress("book-1", chapters));
+  await settle();
+  assert.equal(view.result.current.serverReady, true);
+  assert.equal(patches().length, 0);
 });

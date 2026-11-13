@@ -25,7 +25,7 @@ import { BookHero } from "./components/BookHero";
 import { ChapterCard, type ChapterCardStatus } from "./components/ChapterCard";
 import { BackgroundOrbs } from "./components/BackgroundOrbs";
 import { BookDetails } from "./components/BookDetails";
-import { BookDetailLoading } from "./components/BookDetailSkeleton";
+import { BookDetailLoading, ChapterListSkeleton } from "./components/BookDetailSkeleton";
 import { ResetProgressModal } from "./components/ResetProgressModal";
 
 /* ── Types ── */
@@ -63,17 +63,15 @@ export function BookDetailClient({
   const { state: onboarding, hydrated: onboardingHydrated } =
     useOnboardingState();
   const { identity: viewerIdentity } = useBookViewer();
-  const { savedSet, toggleSaved, hydrated: savedHydrated } = useSavedBooks(
-    onboarding.setupComplete,
-  );
+  // Not gated on the client onboarding read: the server route already requires
+  // a set-up account, and waiting here flashed "Start" before the plan loaded.
+  const { savedSet, toggleSaved } = useSavedBooks(true);
 
   // Read-only entitlement check (no slot claim) so we can proactively gate the
   // start affordances when the free-book limit is already reached for a book
   // this user hasn't unlocked. The actual slot claim happens downstream when a
   // chapter is opened (the chapter content route runs ensureUserBookStarted).
-  const { billingState } = useBookEntitlements(
-    onboardingHydrated && onboarding.setupComplete,
-  );
+  const { billingState } = useBookEntitlements(true);
   const entitlement = billingState.payload?.entitlement ?? null;
   const accessBlocked = useMemo(() => {
     if (!entitlement) return false;
@@ -100,6 +98,7 @@ export function BookDetailClient({
   const chapters = book.chapters;
   const {
     hydrated,
+    serverReady,
     progress,
     applicationStates,
     appliedCount,
@@ -146,9 +145,21 @@ export function BookDetailClient({
     return () => window.clearTimeout(timer);
   }, []);
 
-  // Auto-scroll to current chapter after mount
+  // HOME-09: progress numbers wait for the server copy (or 1.5 s after the
+  // local read, so a slow or failed read never hides them for long).
+  const [progressWaitOver, setProgressWaitOver] = useState(false);
   useEffect(() => {
-    if (!hydrated || !currentChapterRef.current) return;
+    if (!hydrated || serverReady) return;
+    const timer = window.setTimeout(() => setProgressWaitOver(true), 1500);
+    return () => window.clearTimeout(timer);
+  }, [hydrated, serverReady]);
+  const progressReady = serverReady || progressWaitOver;
+  // HOME-08: no Start / Continue / Upgrade until both progress and plan are known.
+  const ctaReady = progressReady && !billingState.loading;
+
+  // Auto-scroll to current chapter once server progress is known
+  useEffect(() => {
+    if (!serverReady || !currentChapterRef.current) return;
     const timer = window.setTimeout(() => {
       currentChapterRef.current?.scrollIntoView({
         behavior: prefersReducedMotion ? "auto" : "smooth",
@@ -156,7 +167,7 @@ export function BookDetailClient({
       });
     }, 900);
     return () => window.clearTimeout(timer);
-  }, [hydrated, prefersReducedMotion]);
+  }, [serverReady, prefersReducedMotion]);
 
   // When the free-book limit gates this book, no chapter can be opened without
   // claiming a slot — so every card renders locked, consistent with the gated
@@ -257,12 +268,7 @@ export function BookDetailClient({
   const lockedRemainder = accessBlocked ? Math.max(0, chapters.length - 1) : 0;
 
   /* ── Loading state — same skeleton as the route-level loading.tsx ── */
-  if (
-    !onboardingHydrated ||
-    !hydrated ||
-    !savedHydrated ||
-    !onboarding.setupComplete
-  ) {
+  if (!hydrated) {
     return <BookDetailLoading />;
   }
 
@@ -327,6 +333,8 @@ export function BookDetailClient({
           firstChapterMinutes={firstChapterMinutes}
           accessBlocked={accessBlocked}
           freeStartsLeft={freeLeft}
+          progressReady={progressReady}
+          ctaReady={ctaReady}
           onContinue={() =>
             currentChapter &&
             openChapter(currentChapter, {
@@ -379,9 +387,11 @@ export function BookDetailClient({
             >
               Your Journey
             </h2>
-            <span className="text-sm text-(--cf-text-3)">
-              {completedCount}/{totalCount} completed
-            </span>
+            {progressReady && (
+              <span className="text-sm text-(--cf-text-3)">
+                {completedCount}/{totalCount} completed
+              </span>
+            )}
           </div>
 
           {/* Filter tabs + search */}
@@ -431,6 +441,9 @@ export function BookDetailClient({
               Uses CSS transitions for filter show/hide instead of Framer Motion
               to avoid the disappearing-cards bug. All cards stay in the DOM;
               visibility is controlled purely by inline styles. */}
+          {!progressReady ? (
+            <ChapterListSkeleton rows={Math.min(6, Math.max(1, chapters.length))} />
+          ) : (
           <div
             className="flex flex-col"
             role="tabpanel"
@@ -521,6 +534,7 @@ export function BookDetailClient({
               </p>
             )}
           </div>
+          )}
         </motion.section>
 
         {/* ═══════ ZONE 3 — Book Details ═══════ */}
@@ -554,7 +568,7 @@ export function BookDetailClient({
           limit blocks this book, the hero "Upgrade to start" + the paywall banner
           already provide the upgrade path, so we render no sticky bar here: a third
           (and label-duplicate) "Upgrade to start" would be a redundant primary CTA. */}
-      {!accessBlocked && currentChapter && (
+      {ctaReady && !accessBlocked && currentChapter && (
         <div className="fixed bottom-20 left-4 right-4 z-50 lg:hidden">
           <button
             type="button"

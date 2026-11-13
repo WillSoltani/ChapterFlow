@@ -549,6 +549,9 @@ export function useBookProgress<TChapter extends ProgressChapter>(
 
   return {
     hydrated,
+    // True once the server copy has been merged (or its read failed); until
+    // then progress reflects this device only (HOME-09 / DATA-16).
+    serverReady,
     progress,
     applicationStates,
     appliedCount,

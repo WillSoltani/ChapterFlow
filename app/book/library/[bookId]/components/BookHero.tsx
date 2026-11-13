@@ -32,6 +32,10 @@ type BookHeroProps = {
   accessBlocked: boolean;
   /** HOME-21: free books a FREE reader has left when starting this book uses one. */
   freeStartsLeft?: number | null;
+  /** Server progress merged (or timed out): progress numbers can show (HOME-09). */
+  progressReady?: boolean;
+  /** Progress and plan both known: the CTA can commit to Start / Continue / Upgrade (HOME-08). */
+  ctaReady?: boolean;
 };
 
 function difficultyPillStyle(value: LibraryBookEntry["difficulty"]): { background: string; color: string } {
@@ -56,6 +60,8 @@ export function BookHero({
   onToggleSaved,
   accessBlocked,
   freeStartsLeft = null,
+  progressReady = true,
+  ctaReady = true,
 }: BookHeroProps) {
   const prefersReducedMotion = useReducedMotion();
   const [synopsisExpanded, setSynopsisExpanded] = useState(false);
@@ -197,7 +203,16 @@ export function BookHero({
               }
               className="mt-5 flex items-center gap-3"
             >
-              {accessBlocked ? (
+              {!ctaReady ? (
+                <button
+                  type="button"
+                  disabled
+                  aria-busy="true"
+                  className="cf-btn cf-btn-primary rounded-xl px-7 py-3 text-base font-semibold opacity-60"
+                >
+                  <span>Loading…</span>
+                </button>
+              ) : accessBlocked ? (
                 <Link
                   href="/pricing"
                   className="cf-btn cf-btn-primary rounded-xl px-7 py-3 text-base font-semibold cf-focus"
@@ -217,7 +232,7 @@ export function BookHero({
               )}
               <BookSaveButton saved={isSaved} onToggle={onToggleSaved} className="h-11 w-11 rounded-xl" />
             </motion.div>
-            {!accessBlocked && freeStartsLeft !== null && freeStartsLeft > 0 && (
+            {ctaReady && !accessBlocked && freeStartsLeft !== null && freeStartsLeft > 0 && (
               <p className="mt-2 text-sm text-(--cf-text-3)">
                 {freeStartsLeft === 1
                   ? "Starting this book uses your last free book"
@@ -225,8 +240,9 @@ export function BookHero({
               </p>
             )}
 
-            {/* Progress (real data only) vs. forward-looking zero-state */}
-            {hasProgress ? (
+            {/* Progress (real data only) vs. forward-looking zero-state; nothing
+                until the server copy is known, so 0% never jumps to N%. */}
+            {!progressReady ? null : hasProgress ? (
               <div className="mt-5 flex flex-wrap items-center justify-center gap-4 md:justify-start">
                 <BookHeroProgressRing percent={progressPercent} size={56} strokeWidth={4} />
                 <div className="flex flex-wrap items-center gap-3">
