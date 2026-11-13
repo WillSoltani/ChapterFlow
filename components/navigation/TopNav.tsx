@@ -211,6 +211,22 @@ export function TopNav({
     return () => window.removeEventListener("mousedown", onPointerDown);
   }, []);
 
+  const avatarChip = (
+    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-full bg-linear-to-br from-(--cf-accent) to-(--cf-accent-strong) text-xs font-bold text-(--cf-accent-contrast) shadow-[0_0_10px_var(--cf-accent-shadow)]">
+      {showAvatar ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={avatarUrl}
+          alt={name}
+          className="h-full w-full object-cover"
+          onError={() => setAvatarError(true)}
+        />
+      ) : (
+        initial
+      )}
+    </span>
+  );
+
   return (
     <>
       {/* Skip to main content (WCAG 2.4.1 Bypass Blocks) — the first focusable
@@ -233,12 +249,12 @@ export function TopNav({
             {/* Logo */}
             <Link
               href="/dashboard"
-              className="inline-flex shrink-0 items-center gap-2.5 rounded-xl cf-focus"
+              className="inline-flex min-w-0 items-center gap-2.5 rounded-xl cf-focus"
               aria-label="Go to ChapterFlow workspace"
             >
               {logoVariant === "dashboard" ? (
                 <>
-                  <svg width={28} height={28} viewBox="0 0 28 28" fill="none">
+                  <svg width={28} height={28} viewBox="0 0 28 28" fill="none" className="shrink-0">
                     <path
                       d="M4 7C4 5.9 4.9 5 6 5H12C13.1 5 14 5.9 14 7V21C14 22.1 13.1 23 12 23H6C4.9 23 4 22.1 4 21V7Z"
                       stroke="var(--accent-cyan)"
@@ -259,15 +275,15 @@ export function TopNav({
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <div className="flex flex-col">
+                  <div className="flex min-w-0 flex-col">
                     <span
-                      className="text-cf-caption font-semibold uppercase tracking-[0.12em]"
+                      className="truncate text-cf-caption font-semibold uppercase tracking-[0.12em]"
                       style={{ color: "var(--text-muted)" }}
                     >
                       Guided reading
                     </span>
                     <span
-                      className="font-(family-name:--font-display) text-cf-body font-semibold"
+                      className="truncate font-(family-name:--font-display) text-cf-body font-semibold"
                       style={{ color: "var(--text-heading)" }}
                     >
                       ChapterFlow
@@ -356,9 +372,10 @@ export function TopNav({
             )}
 
             {/* Right: notifications + settings + profile.
-                md:ml-auto right-aligns the cluster across the tablet band, where the
-                centered desktop search (lg+) isn't present to absorb the free space. */}
-            <div className="relative flex items-center gap-1.5 md:ml-auto lg:ml-0">
+                ml-auto right-aligns the cluster on phones and across the tablet band, where
+                the centered desktop search (lg+) isn't present to absorb the free space.
+                shrink-0 keeps the controls whole; the logo is what gives way. */}
+            <div className="relative ml-auto flex shrink-0 items-center gap-1.5 lg:ml-0">
               <NotificationBell />
               <ThemeModeToggle className="h-9" />
 
@@ -378,26 +395,14 @@ export function TopNav({
               <Link
                 href="/book/profile"
                 className={[
-                  "inline-flex h-9 items-center gap-2 rounded-xl border px-2.5 transition",
+                  "hidden h-9 items-center gap-2 rounded-xl border px-2.5 transition sm:inline-flex",
                   activeTab === "profile"
                     ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
                     : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-1) hover:bg-(--cf-accent-muted)",
                 ].join(" ")}
                 aria-label="Profile"
               >
-                <span className="inline-flex h-6 w-6 items-center justify-center overflow-hidden rounded-full bg-linear-to-br from-(--cf-accent) to-(--cf-accent-strong) text-xs font-bold text-(--cf-accent-contrast) shadow-[0_0_10px_var(--cf-accent-shadow)]">
-                  {showAvatar ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={avatarUrl}
-                      alt={name}
-                      className="h-full w-full object-cover"
-                      onError={() => setAvatarError(true)}
-                    />
-                  ) : (
-                    initial
-                  )}
-                </span>
+                {avatarChip}
                 <span className="hidden text-sm font-medium lg:inline-flex">{name || "Reader"}</span>
               </Link>
 
@@ -406,7 +411,7 @@ export function TopNav({
                 type="button"
                 onClick={() => setShowProfileMenu((prev) => !prev)}
                 className={[
-                  "inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border transition",
+                  "inline-flex min-h-11 min-w-11 items-center justify-center gap-1 rounded-xl border max-sm:px-2 transition",
                   activeTab === "profile"
                     ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
                     : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
@@ -415,6 +420,9 @@ export function TopNav({
                 aria-haspopup="menu"
                 aria-expanded={showProfileMenu}
               >
+                {/* Below sm the Profile chip is hidden (Profile is in this menu), so the
+                    avatar rides in this one 44px button instead of a second target. */}
+                <span className="sm:hidden">{avatarChip}</span>
                 <ChevronDown className="h-4 w-4" />
               </button>
 
