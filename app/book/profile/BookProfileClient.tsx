@@ -722,7 +722,9 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
 
   const viewerName = profile.displayName || viewerIdentity.displayName || "Reader";
   const identityLabel = getIdentityLabel(statsSummary.booksCompleted, statsSummary.categoriesCount);
-  const streakMicrocopy = getStreakMicrocopy(statsSummary.currentStreak);
+  const streakMicrocopy = analytics?.streakAtRisk
+    ? `Read today to keep your ${statsSummary.currentStreak}-day streak.`
+    : getStreakMicrocopy(statsSummary.currentStreak);
 
   // C4: Personal best streak indicator
   const isPersonalBest = statsSummary.currentStreak > 0 && statsSummary.currentStreak >= statsSummary.longestStreak;

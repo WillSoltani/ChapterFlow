@@ -361,6 +361,7 @@ function buildProgressData(
         (c) => c.minutes > 0
       ).length,
       daysActiveLast7,
+      atRisk: analytics.streakAtRisk,
     },
     weekSummary: {
       timeReadMinutes: thisWeekMinutes,

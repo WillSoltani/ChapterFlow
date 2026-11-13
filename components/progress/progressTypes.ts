@@ -31,6 +31,8 @@ export interface StreakData {
   freezesAvailable: number;
   consistencyLast30Days: number;
   daysActiveLast7: number;
+  /** Streak alive through yesterday, nothing read yet today (analytics.streakAtRisk). */
+  atRisk: boolean;
 }
 
 export interface WeekSummaryData {

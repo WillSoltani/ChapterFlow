@@ -36,12 +36,11 @@ function getMotivationLine(
   completedMinutesToday: number,
   targetMinutes: number
 ): string {
-  const remaining = Math.max(0, targetMinutes - completedMinutesToday);
   const readToday = completedMinutesToday > 0;
 
-  // Streak at risk: last active yesterday, hasn't read today
-  if (streak.currentDays > 0 && !readToday) {
-    return `Your ${streak.currentDays}-day streak needs you \u2014 just ${remaining}m to keep it alive`;
+  // Streak at risk: alive through yesterday, nothing read yet today.
+  if (streak.atRisk) {
+    return `Read today to keep your ${streak.currentDays}-day streak.`;
   }
 
   // Milestone 1 action away
