@@ -75,3 +75,22 @@ test("phone sheet has a close control and closes on Escape", async () => {
   fireEvent.keyDown(document, { key: "Escape" });
   assert.equal(closed, 2);
 });
+
+test("settings menu leaves Escape to a modal dialog open above it", async () => {
+  setPhone(false);
+  let closed = 0;
+  const view = render(<header>{menu(() => (closed += 1))}</header>);
+  await waitFor(() => view.getByRole("dialog", { name: "Reading settings" }));
+  const modal = document.createElement("div");
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  document.body.appendChild(modal);
+  try {
+    fireEvent.keyDown(document, { key: "Escape" });
+    assert.equal(closed, 0);
+  } finally {
+    modal.remove();
+  }
+  fireEvent.keyDown(document, { key: "Escape" });
+  assert.equal(closed, 1);
+});

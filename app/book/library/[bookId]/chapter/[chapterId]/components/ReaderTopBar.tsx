@@ -99,6 +99,8 @@ type Props = {
   neighbours: ChapterNeighbours;
   /** Explicit step progress 0..1 (quiz); null = follow the page scroll. */
   progressOverride: number | null;
+  /** The reader's "show progress bar" setting: hides the hairline when off. */
+  showProgress: boolean;
   focusMode: boolean;
   onToggleFocus: () => void;
   audioOpen: boolean;
@@ -133,6 +135,7 @@ export function ReaderTopBar({
   onSelectPhase,
   neighbours,
   progressOverride,
+  showProgress,
   focusMode,
   onToggleFocus,
   audioOpen,
@@ -187,7 +190,12 @@ export function ReaderTopBar({
           <button
             ref={stepTriggerRef}
             type="button"
-            onClick={() => setStepMenuOpen((value) => !value)}
+            onClick={(event) => {
+              // Focus the trigger so every menu layer returns focus here.
+              event.currentTarget.focus();
+              if (!stepMenuOpen && settingsOpen) onToggleSettings();
+              setStepMenuOpen((value) => !value);
+            }}
             aria-haspopup="dialog"
             aria-expanded={stepMenuOpen}
             aria-label={`Chapter ${chapterOrder}, ${step}. Steps and chapters`}
@@ -244,14 +252,17 @@ export function ReaderTopBar({
                 onClick={onToggleAudio}
                 aria-pressed={audioOpen}
                 aria-label="Listen to this chapter"
-                title="Listen (L)"
+                title="Listen"
                 className={iconButton}
               >
                 <Headphones className="h-[18px] w-[18px]" aria-hidden="true" />
               </button>
               <button
                 type="button"
-                onClick={onOpenAsk}
+                onClick={(event) => {
+                  event.currentTarget.focus();
+                  onOpenAsk();
+                }}
                 aria-expanded={askOpen}
                 aria-haspopup="dialog"
                 aria-label="Ask Raymond about this chapter"
@@ -262,7 +273,10 @@ export function ReaderTopBar({
               </button>
               <button
                 type="button"
-                onClick={onOpenNotes}
+                onClick={(event) => {
+                  event.currentTarget.focus();
+                  onOpenNotes();
+                }}
                 aria-haspopup="dialog"
                 aria-label="Open notes"
                 title="Notes (N)"
@@ -276,7 +290,11 @@ export function ReaderTopBar({
                   // The settings menu closes on outside mousedown; keep this
                   // button's own mousedown from counting as "outside".
                   onMouseDown={(event) => event.stopPropagation()}
-                  onClick={onToggleSettings}
+                  onClick={(event) => {
+                    event.currentTarget.focus();
+                    setStepMenuOpen(false);
+                    onToggleSettings();
+                  }}
                   aria-haspopup="dialog"
                   aria-expanded={settingsOpen}
                   aria-label="Reading settings"
@@ -298,22 +316,24 @@ export function ReaderTopBar({
         {audioSlot}
       </div>
 
-      <div
-        className="absolute inset-x-0 -bottom-px h-[2px]"
-        role="progressbar"
-        aria-label={`Progress through ${step}`}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-valuenow={Math.round(progress * 100)}
-      >
+      {showProgress ? (
         <div
-          className="h-full origin-left bg-(--cr-accent)"
-          style={{
-            transform: `scaleX(${progress})`,
-            transition: reduced ? "none" : "transform 150ms ease-out",
-          }}
-        />
-      </div>
+          className="absolute inset-x-0 -bottom-px h-[2px]"
+          role="progressbar"
+          aria-label={`Progress through ${step}`}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(progress * 100)}
+        >
+          <div
+            className="h-full origin-left bg-(--cr-accent)"
+            style={{
+              transform: `scaleX(${progress})`,
+              transition: reduced ? "none" : "transform 150ms ease-out",
+            }}
+          />
+        </div>
+      ) : null}
     </header>
   );
 }

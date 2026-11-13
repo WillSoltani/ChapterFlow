@@ -37,6 +37,15 @@ const NEXT_LOCKED_REASON = "Opens once you pass this chapter's quiz";
 const focusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]";
 
+/** True while a modal dialog (notes, shortcuts, Ask, a sheet) is open and
+ *  `panel` is not inside it: that dialog owns Escape, so one press closes
+ *  only the top-most layer. */
+export function modalOpenAbove(panel: Element | null): boolean {
+  return Array.from(document.querySelectorAll('[aria-modal="true"]')).some(
+    (modal) => !panel || !modal.contains(panel),
+  );
+}
+
 // Matches Tailwind's `sm` breakpoint, like ReaderSettingsMenu: below it the
 // chapter menu is a bottom sheet, above it a small popover.
 const PHONE_QUERY = "(max-width: 639.98px)";
@@ -101,7 +110,7 @@ function StepPopover(props: StepMenuProps) {
       onClose();
     };
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape" && !modalOpenAbove(panelRef.current)) onClose();
     };
     document.addEventListener("mousedown", onDown);
     document.addEventListener("keydown", onKey);
@@ -111,10 +120,11 @@ function StepPopover(props: StepMenuProps) {
     };
   }, [open, onClose, triggerRef]);
 
-  // Non-modal: focus moves in on open and back to the trigger on close.
+  // Non-modal: focus moves in on open and back to the trigger on close (the
+  // trigger itself, since a tap does not focus a button in every browser),
+  // unless focus has already moved on to another control.
   useEffect(() => {
     if (!open) return;
-    const opener = document.activeElement as HTMLElement | null;
     const t = window.setTimeout(() => {
       panelRef.current
         ?.querySelector<HTMLElement>("[aria-current='step'], button:not([disabled]), a[href]")
@@ -122,9 +132,12 @@ function StepPopover(props: StepMenuProps) {
     }, 0);
     return () => {
       window.clearTimeout(t);
-      opener?.focus?.({ preventScroll: true });
+      const active = document.activeElement;
+      const focusStayed =
+        !active || active === document.body || Boolean(panelRef.current?.contains(active));
+      if (focusStayed) triggerRef.current?.focus?.({ preventScroll: true });
     };
-  }, [open]);
+  }, [open, triggerRef]);
 
   return (
     <AnimatePresence>

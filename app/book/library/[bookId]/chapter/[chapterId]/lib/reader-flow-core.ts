@@ -77,6 +77,60 @@ export function buildNextChapterRoute(
   return sessionMode ? `${route}?session=1` : route;
 }
 
+type NeighbourLink = { order: number; title: string; href: string; locked: boolean };
+
+/** Previous / next chapter for the step menu and the pager. Only the next
+ *  chapter can be locked (it opens once this chapter's quiz is passed). */
+export function buildChapterNeighbours({
+  bookId,
+  chapters,
+  chapterId,
+  sessionMode,
+  getChapterState,
+}: {
+  bookId: string;
+  chapters: ReadonlyArray<{ id: string; order: number; title: string }>;
+  chapterId: string;
+  sessionMode: boolean;
+  getChapterState: (chapterId: string) => string;
+}): { prev: NeighbourLink | null; next: NeighbourLink | null } {
+  const index = chapters.findIndex((item) => item.id === chapterId);
+  if (index < 0) return { prev: null, next: null };
+  const prev = index > 0 ? chapters[index - 1] : undefined;
+  const next = chapters[index + 1];
+  return {
+    prev: prev
+      ? {
+          order: prev.order,
+          title: prev.title,
+          href: buildNextChapterRoute(bookId, prev.id, sessionMode),
+          locked: false,
+        }
+      : null,
+    next: next
+      ? {
+          order: next.order,
+          title: next.title,
+          href: buildNextChapterRoute(bookId, next.id, sessionMode),
+          locked: getChapterState(next.id) === "locked",
+        }
+      : null,
+  };
+}
+
+/** The top bar's hairline on the quiz step: answered / total, 1 once graded;
+ *  null (follow the page scroll) on the other steps or before a session. */
+export function quizStepProgress(
+  activeTab: ChapterTab,
+  session: { questions: ReadonlyArray<{ questionId: string }>; result?: unknown } | null | undefined,
+  answers: Readonly<Record<string, unknown>>,
+): number | null {
+  if (activeTab !== "quiz" || !session) return null;
+  if (session.result) return 1;
+  const answered = session.questions.filter((question) => Boolean(answers[question.questionId]));
+  return answered.length / Math.max(1, session.questions.length);
+}
+
 export function buildReauthReturnTo(pathname: string, search: string): string {
   return `${pathname}${search ? `?${search}` : ""}`;
 }

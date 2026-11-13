@@ -11,7 +11,7 @@ import { ChapterBackgroundOrbs } from "@/app/book/library/[bookId]/chapter/[chap
  */
 export default function ChapterLoading() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden">
+    <main className="relative min-h-screen overflow-x-clip bg-(--cr-bg-root)">
       <ChapterBackgroundOrbs />
       <ChapterSkeleton />
     </main>

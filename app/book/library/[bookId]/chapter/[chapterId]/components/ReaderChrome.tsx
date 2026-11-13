@@ -135,6 +135,7 @@ export function ReaderChrome({
         onSelectPhase={setActiveTab}
         neighbours={neighbours}
         progressOverride={progressOverride}
+        showProgress={bookPrefs.reading.showProgressBar}
         focusMode={state.focusMode}
         onToggleFocus={toggleFocusMode}
         audioOpen={audioOpen}

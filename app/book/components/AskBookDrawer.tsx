@@ -125,6 +125,7 @@ export function AskBookDrawer({
   const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
   const abortRef = useRef<AbortController | null>(null);
   const messagesRef = useRef<Message[]>(messages);
   // Keep the latest-messages ref in sync after commit (instead of writing it
@@ -181,11 +182,16 @@ export function AskBookDrawer({
     };
   }, [open]);
 
-  // Close on Escape key
+  // Close on Escape key, unless a modal opened above the drawer (the notes
+  // sheet, a dialog) owns this press.
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") handleClose();
+      if (e.key !== "Escape") return;
+      const modalAbove = Array.from(document.querySelectorAll('[aria-modal="true"]')).some(
+        (el) => el !== drawerRef.current,
+      );
+      if (!modalAbove) handleClose();
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
@@ -346,6 +352,7 @@ export function AskBookDrawer({
 
       {/* Drawer */}
       <aside
+        ref={drawerRef}
         className={[
           "fixed z-[60] flex flex-col border-(--cf-border) bg-(--cf-surface-strong) shadow-(--shadow-modal) transition-transform duration-200",
           "inset-x-0 bottom-0 h-[70dvh] max-h-[90dvh] rounded-t-3xl border md:inset-y-0 md:right-0 md:left-auto md:h-full md:max-h-none md:w-[400px] md:rounded-none md:border-l md:border-t-0",

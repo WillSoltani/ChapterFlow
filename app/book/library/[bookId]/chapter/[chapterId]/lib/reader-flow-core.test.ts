@@ -2,12 +2,14 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 
 import {
+  buildChapterNeighbours,
   buildNextChapterRoute,
   buildReauthReturnTo,
   computeProgressPercent,
   decidePhaseTransition,
   mapLearningStyleToDepth,
   modeToDepth,
+  quizStepProgress,
   requiredScenarioInteractions,
 } from "./reader-flow-core";
 import { getPhaseThresholds } from "../hooks/usePhaseCompletion";
@@ -128,4 +130,74 @@ test("reader routes preserve encoding, session propagation, and relative reauth 
     "/book/library/a/chapter/b?session=1&from=dashboard",
   );
   assert.equal(buildReauthReturnTo("/book/library/a/chapter/b", ""), "/book/library/a/chapter/b");
+});
+
+const NAV_CHAPTERS = [
+  { id: "c1", order: 1, title: "One" },
+  { id: "c2", order: 2, title: "Two" },
+  { id: "c3", order: 3, title: "Three" },
+];
+
+test("chapter neighbours link the previous and next chapter with the completion modal's route", () => {
+  const middle = buildChapterNeighbours({
+    bookId: "b",
+    chapters: NAV_CHAPTERS,
+    chapterId: "c2",
+    sessionMode: false,
+    getChapterState: () => "unlocked",
+  });
+  assert.deepEqual(middle, {
+    prev: { order: 1, title: "One", href: "/book/library/b/chapter/c1", locked: false },
+    next: { order: 3, title: "Three", href: "/book/library/b/chapter/c3", locked: false },
+  });
+
+  const first = buildChapterNeighbours({
+    bookId: "b",
+    chapters: NAV_CHAPTERS,
+    chapterId: "c1",
+    sessionMode: true,
+    getChapterState: (id) => (id === "c2" ? "locked" : "unlocked"),
+  });
+  assert.equal(first.prev, null);
+  assert.deepEqual(first.next, {
+    order: 2,
+    title: "Two",
+    href: "/book/library/b/chapter/c2?session=1",
+    locked: true,
+  });
+
+  const last = buildChapterNeighbours({
+    bookId: "b",
+    chapters: NAV_CHAPTERS,
+    chapterId: "c3",
+    sessionMode: false,
+    getChapterState: () => "locked",
+  });
+  assert.equal(last.next, null);
+  // A previous chapter is never shown as locked.
+  assert.equal(last.prev?.locked, false);
+
+  const unknown = buildChapterNeighbours({
+    bookId: "b",
+    chapters: NAV_CHAPTERS,
+    chapterId: "missing",
+    sessionMode: false,
+    getChapterState: () => "unlocked",
+  });
+  assert.deepEqual(unknown, { prev: null, next: null });
+});
+
+test("quiz step progress is answered over total on the quiz, full once graded, null elsewhere", () => {
+  const session = {
+    questions: [{ questionId: "q1" }, { questionId: "q2" }, { questionId: "q3" }, { questionId: "q4" }],
+    result: null,
+  };
+  assert.equal(quizStepProgress("summary", session, { q1: "a" }), null);
+  assert.equal(quizStepProgress("quiz", null, {}), null);
+  assert.equal(quizStepProgress("quiz", session, {}), 0);
+  assert.equal(quizStepProgress("quiz", session, { q1: "a", q3: "b" }), 0.5);
+  // Answers for questions outside this attempt do not count.
+  assert.equal(quizStepProgress("quiz", session, { q1: "a", stale: "b" }), 0.25);
+  assert.equal(quizStepProgress("quiz", { ...session, result: { passed: false } }, {}), 1);
+  assert.equal(quizStepProgress("quiz", { questions: [], result: null }, {}), 0);
 });

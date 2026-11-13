@@ -7,6 +7,7 @@ import { DUR, EASE } from "@/lib/motion";
 import { X } from "lucide-react";
 import type { LearningMode, FontFamily } from "@/app/book/settings/types/settings";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
+import { modalOpenAbove } from "./ReaderChapterNav";
 
 const MODE_OPTIONS: Array<{
   id: LearningMode;
@@ -159,7 +160,7 @@ export function ReaderSettingsMenu({
   useEffect(() => {
     if (!open) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape" && !modalOpenAbove(popoverRef.current)) onClose();
     };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);

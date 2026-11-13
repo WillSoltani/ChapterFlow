@@ -22,9 +22,11 @@ import { useReaderProgress } from "./hooks/useReaderProgress";
 import { useReaderSettings } from "./hooks/useReaderSettings";
 import type { InitialChapterReaderSeed } from "./lib/chapterFromApi";
 import {
+  buildChapterNeighbours,
   buildNextChapterRoute,
   mapLearningStyleToDepth,
   modeToDepth,
+  quizStepProgress,
 } from "./lib/reader-flow-core";
 
 const READER_LOOP_COACHMARK_KEY = "cf-reader-loop-coachmark-seen:v1";
@@ -258,35 +260,15 @@ export function ChapterReaderClient({
   if (!chapter) return <ReaderAccessState {...accessStateProps} />;
 
   const chapterIndex = chapters.findIndex((item) => item.id === chapter.id);
-  const prevChapter = chapterIndex > 0 ? chapters[chapterIndex - 1] : undefined;
   const nextChapter = chapterIndex >= 0 ? chapters[chapterIndex + 1] : undefined;
-  // Same route builder as the completion modal's "Open Next Chapter".
-  const neighbours = {
-    prev: prevChapter
-      ? {
-          order: prevChapter.order,
-          title: prevChapter.title,
-          href: buildNextChapterRoute(bookId, prevChapter.id, sessionMode),
-          locked: false,
-        }
-      : null,
-    next: nextChapter
-      ? {
-          order: nextChapter.order,
-          title: nextChapter.title,
-          href: buildNextChapterRoute(bookId, nextChapter.id, sessionMode),
-          locked: bookProgress.getChapterState(nextChapter.id) === "locked",
-        }
-      : null,
-  };
-  const quizSession = quiz.session;
-  const quizProgress =
-    state.activeTab !== "quiz" || !quizSession
-      ? null
-      : quizSession.result
-        ? 1
-        : quizSession.questions.filter((question) => Boolean(quiz.answers[question.questionId]))
-            .length / Math.max(1, quizSession.questions.length);
+  const neighbours = buildChapterNeighbours({
+    bookId,
+    chapters,
+    chapterId: chapter.id,
+    sessionMode,
+    getChapterState: bookProgress.getChapterState,
+  });
+  const quizProgress = quizStepProgress(state.activeTab, quiz.session, quiz.answers);
   const handleLearningModeChange = (mode: LearningMode) => {
     if (mode === learningMode) return;
     const toneByMode: Record<LearningMode, ContentTone> = {

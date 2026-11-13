@@ -23,7 +23,7 @@ type Props = {
 
 function ReaderSkeleton() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden">
+    <main className="relative min-h-screen overflow-x-clip bg-(--cr-bg-root)">
       <ChapterBackgroundOrbs />
       <ChapterSkeleton />
     </main>
@@ -88,7 +88,7 @@ export function ReaderAccessState({
           : "We hit a problem loading this chapter's content. Check your connection and try again.";
     const showRetry = !isAuthExpired && !isBlocked && !isNotFound;
     return (
-      <main className="relative min-h-screen overflow-x-hidden">
+      <main className="relative min-h-screen overflow-x-clip bg-(--cr-bg-root)">
         <ChapterBackgroundOrbs />
         <section className="mx-auto flex min-h-screen w-full max-w-3xl items-center px-4 py-10 sm:px-6">
           <div role="alert" className="w-full cr-glass-reading p-8 text-center">
@@ -128,7 +128,7 @@ export function ReaderAccessState({
 
   if (bookAccessStatus === "blocked") {
     return (
-      <main className="relative min-h-screen overflow-x-hidden">
+      <main className="relative min-h-screen overflow-x-clip bg-(--cr-bg-root)">
         <ChapterBackgroundOrbs />
         <section className="mx-auto flex min-h-screen w-full max-w-3xl items-center px-4 py-10 sm:px-6">
           <div className="w-full cr-glass-reading p-8 text-center">
@@ -211,7 +211,7 @@ export function ReaderAccessState({
   if (!chapter) return <ReaderSkeleton />;
   if (isLocked) {
     return (
-      <main className="relative min-h-screen overflow-x-hidden">
+      <main className="relative min-h-screen overflow-x-clip bg-(--cr-bg-root)">
         <ChapterBackgroundOrbs />
         <section className="mx-auto flex min-h-screen w-full max-w-3xl items-center px-4 py-10 sm:px-6">
           <div className="w-full cr-glass-reading p-8 text-center">
