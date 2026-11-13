@@ -40,8 +40,7 @@ type TopNavProps = {
   /** A page-specific avatar (e.g. one just uploaded on Profile) wins over the
    *  cached viewer avatar. */
   avatarUrl?: string | null;
-  /** Highlighted nav tab. Omit on secondary surfaces (e.g. Notebook) that have
-   *  no entry in the main nav so nothing is mis-highlighted. */
+  /** Highlighted nav tab. When omitted it is derived from the current path. */
   activeTab?: BookNavTab;
   searchQuery: string;
   onSearchChange: (value: string) => void;
@@ -89,9 +88,42 @@ const moreNavItems: NavItem[] = [
   { id: "settings", label: "Settings", href: "/book/settings", icon: Settings },
 ];
 
+/** Which nav entry a path belongs to (a nested path counts for its section). */
+export function navTabFromPathname(pathname: string | null | undefined): BookNavTab | undefined {
+  if (!pathname) return undefined;
+  const entries: Array<[string, BookNavTab]> = [
+    ["/dashboard", "home"],
+    ["/book/library", "library"],
+    ["/book/progress", "progress"],
+    ["/book/badges", "badges"],
+    ["/book/journeys", "journeys"],
+    ["/book/events", "events"],
+    ["/book/saved", "saved"],
+    ["/book/notebook", "notebook"],
+    ["/book/settings", "settings"],
+    ["/book/profile", "profile"],
+    ["/rewards", "rewards"],
+  ];
+  for (const [prefix, tab] of entries) {
+    if (pathname === prefix || pathname.startsWith(`${prefix}/`)) return tab;
+  }
+  return undefined;
+}
+
+/** Rows of the profile dropdown (desktop), in display order. */
+const menuItems: NavItem[] = [
+  { id: "profile", label: "Profile", href: "/book/profile", icon: User },
+  { id: "rewards", label: "Rewards", href: "/rewards", icon: Gift },
+  { id: "journeys", label: "Journeys", href: "/book/journeys", icon: Map },
+  { id: "events", label: "Events", href: "/book/events", icon: Trophy },
+  { id: "saved", label: "Read Next", href: "/book/saved", icon: Bookmark },
+  { id: "notebook", label: "Notebook", href: "/book/notebook", icon: NotebookPen },
+  { id: "settings", label: "Settings", href: "/book/settings", icon: Settings },
+];
+
 export function TopNav({
   avatarUrl: avatarUrlProp,
-  activeTab,
+  activeTab: activeTabProp,
   searchQuery,
   onSearchChange,
   searchInputRef,
@@ -102,6 +134,11 @@ export function TopNav({
 }: TopNavProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const activeTab = activeTabProp ?? navTabFromPathname(pathname);
+  // The profile menu holds every secondary page, so its trigger lights up
+  // whenever the reader is on one of them (or on Profile itself).
+  const secondaryActive =
+    activeTab === "profile" || moreNavItems.some((item) => item.id === activeTab);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showSearchPanel, setShowSearchPanel] = useState(false);
   const [showMoreSheet, setShowMoreSheet] = useState(false);
@@ -436,7 +473,7 @@ export function TopNav({
                 onClick={() => setShowProfileMenu((prev) => !prev)}
                 className={[
                   "inline-flex min-h-11 min-w-11 items-center justify-center gap-1 rounded-xl border max-sm:px-2 transition",
-                  activeTab === "profile"
+                  secondaryActive
                     ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
                     : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
                 ].join(" ")}
@@ -464,55 +501,31 @@ export function TopNav({
                     <p className="text-xs text-(--cf-text-3)">ChapterFlow</p>
                   </div>
                   <div className="mt-1 space-y-0.5">
-                    <Link
-                      href="/book/profile"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <User className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Profile
-                    </Link>
-                    <Link
-                      href="/rewards"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <Gift className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Rewards
-                    </Link>
-                    <Link
-                      href="/book/journeys"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <Map className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Journeys
-                    </Link>
-                    <Link
-                      href="/book/events"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <Trophy className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Events
-                    </Link>
-                    <Link
-                      href="/book/saved"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <Bookmark className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Read Next
-                    </Link>
-                    <Link
-                      href="/book/notebook"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <NotebookPen className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Notebook
-                    </Link>
-                    <Link
-                      href="/book/settings"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <Settings className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Settings
-                    </Link>
+                    {menuItems.map((item) => {
+                      const active = item.id === activeTab;
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.id}
+                          href={item.href}
+                          aria-current={active ? "page" : undefined}
+                          className={[
+                            "flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm transition",
+                            active
+                              ? "bg-(--cf-accent-soft) font-medium text-(--cf-accent)"
+                              : "text-(--cf-text-2) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
+                          ].join(" ")}
+                        >
+                          <Icon
+                            className={[
+                              "h-3.5 w-3.5",
+                              active ? "text-(--cf-accent)" : "text-(--cf-text-3)",
+                            ].join(" ")}
+                          />
+                          {item.label}
+                        </Link>
+                      );
+                    })}
                     {isAdmin && (
                       <Link
                         href="/book/admin"

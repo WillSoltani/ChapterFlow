@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { createRequire } from "node:module";
 import { after, afterEach, test } from "node:test";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import type { BookNavTab } from "./TopNav";
 
 const require = createRequire(import.meta.url);
 const Module = require("node:module") as {
@@ -11,6 +12,7 @@ const Module = require("node:module") as {
 };
 const originalLoad = Module._load;
 const originalFetch = globalThis.fetch;
+let currentPathname = "/book/library";
 
 // next/link schedules prefetch work through `self`.
 Object.defineProperty(globalThis, "self", {
@@ -22,7 +24,7 @@ Object.defineProperty(globalThis, "self", {
 Module._load = function patchedLoad(request, parent, isMain) {
   if (request === "next/navigation") {
     return {
-      usePathname: () => "/book/library",
+      usePathname: () => currentPathname,
       useRouter: () => ({ push() {}, replace() {}, refresh() {}, prefetch() {} }),
     };
   }
@@ -54,12 +56,15 @@ globalThis.fetch = (async (input: RequestInfo | URL) => {
   return Response.json({ notifications: [], unreadCount: 0 });
 }) as typeof fetch;
 
-async function renderNav(props: { name?: string; avatarUrl?: string | null } = {}) {
+async function renderNav(
+  props: { name?: string; avatarUrl?: string | null; activeTab?: BookNavTab | null } = {},
+) {
   const { TopNav } = await import("./TopNav");
+  const { activeTab = "library", ...rest } = props;
   return render(
     <TopNav
-      {...props}
-      activeTab="library"
+      {...rest}
+      {...(activeTab ? { activeTab } : {})}
       searchQuery=""
       onSearchChange={() => {}}
       searchInputRef={{ current: null }}
@@ -67,7 +72,16 @@ async function renderNav(props: { name?: string; avatarUrl?: string | null } = {
   );
 }
 
+function primaryLink(view: ReturnType<typeof render>, name: string): HTMLElement {
+  const nav = view.container.querySelector("nav[aria-label='Primary']");
+  assert.ok(nav);
+  const link = Array.from(nav.querySelectorAll("a")).find((a) => a.getAttribute("aria-label") === name);
+  assert.ok(link, `primary link ${name}`);
+  return link as HTMLElement;
+}
+
 afterEach(() => {
+  currentPathname = "/book/library";
   cleanup();
   window.localStorage.clear();
 });
@@ -112,4 +126,33 @@ test("an avatar passed by the page wins over the cached one", async () => {
   const view = await renderNav({ avatarUrl: "data:image/png;base64,BBBB" });
   const chip = view.getByRole("link", { name: "Profile" });
   assert.equal(chip.querySelector("img")?.getAttribute("src"), "data:image/png;base64,BBBB");
+});
+
+test("without an activeTab prop the Notebook page lights up the profile menu and its row", async () => {
+  currentPathname = "/book/notebook";
+  const view = await renderNav({ activeTab: null });
+
+  const trigger = view.getByRole("button", { name: "Open profile menu" });
+  assert.match(trigger.className, /bg-\(--cf-accent-soft\)/);
+  assert.equal(primaryLink(view, "Library").getAttribute("aria-current"), null);
+
+  fireEvent.click(trigger);
+  const menu = view.container.querySelector(".cf-panel-strong");
+  assert.ok(menu);
+  const rows = Array.from(menu.querySelectorAll("a[aria-current='page']"));
+  assert.deepEqual(rows.map((el) => el.textContent), ["Notebook"]);
+});
+
+test("without an activeTab prop a primary page is highlighted from the path and the menu trigger stays plain", async () => {
+  currentPathname = "/book/progress";
+  const view = await renderNav({ activeTab: null });
+  assert.equal(primaryLink(view, "Progress").getAttribute("aria-current"), "page");
+  const trigger = view.getByRole("button", { name: "Open profile menu" });
+  assert.doesNotMatch(trigger.className, /bg-\(--cf-accent-soft\)/);
+});
+
+test("an explicit activeTab wins over the path", async () => {
+  currentPathname = "/book/notebook";
+  const view = await renderNav({ activeTab: "library" });
+  assert.equal(primaryLink(view, "Library").getAttribute("aria-current"), "page");
 });
