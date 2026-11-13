@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import type { LearningMode } from "@/app/book/settings/types/settings";
+import { safeGetItem, safeSetItem } from "../lib/safe-storage";
 
 export type PhaseCompletionState = {
   /** Which phases the user has completed at least once */
@@ -73,7 +74,7 @@ type PersistedPhaseCompletion = {
 
 function loadPersisted(bookId: string, chapterId: string): PersistedPhaseCompletion | null {
   try {
-    const raw = window.localStorage.getItem(getStorageKey(bookId, chapterId));
+    const raw = safeGetItem(getStorageKey(bookId, chapterId));
     if (!raw) return null;
     const parsed = JSON.parse(raw) as Partial<PersistedPhaseCompletion>;
     return {
@@ -165,10 +166,7 @@ export function usePhaseCompletion(params: {
       allPhasesCompletedOnce,
       scenarioInteractions,
     };
-    window.localStorage.setItem(
-      getStorageKey(bookId, chapterId),
-      JSON.stringify(data)
-    );
+    safeSetItem(getStorageKey(bookId, chapterId), JSON.stringify(data));
   }, [bookId, chapterId, completedPhases, allPhasesCompletedOnce, scenarioInteractions, hydrated]);
 
   // Restore per-phase progress when switching phases. Save the previous

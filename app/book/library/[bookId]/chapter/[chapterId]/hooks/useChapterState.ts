@@ -7,6 +7,7 @@ import { getChapterReaderStorageKey } from "@/app/book/_lib/reader-storage";
 import type { ReadingDepth } from "@/lib/reader-content-types";
 import { emitBookStorageChanged } from "@/lib/client/book-storage-events";
 import type { ChapterTab, ExampleFilter, FontScale } from "@/lib/reader-state-types";
+import { safeGetItem, safeSetItem } from "../lib/safe-storage";
 import {
   canSendWithKeepalive,
   createChapterStateSync,
@@ -225,8 +226,8 @@ export function useChapterState(
   const [syncFailed, setSyncFailed] = useState(false);
 
   useEffect(() => {
-    const parsed = parseStored(window.localStorage.getItem(storageKey));
-    const prefs = parsePrefs(window.localStorage.getItem(PREFS_KEY));
+    const parsed = parseStored(safeGetItem(storageKey));
+    const prefs = parsePrefs(safeGetItem(PREFS_KEY));
     setState({
       ...(
         parsed ?? {
@@ -360,7 +361,7 @@ export function useChapterState(
 
   useEffect(() => {
     if (!hydrated) return;
-    window.localStorage.setItem(storageKey, JSON.stringify(state));
+    safeSetItem(storageKey, JSON.stringify(state));
     emitBookStorageChanged(`chapter-reader:${bookId}:${chapterId}`);
   }, [bookId, chapterId, hydrated, state, storageKey]);
 
@@ -378,7 +379,7 @@ export function useChapterState(
       focusMode: false,
       fontScale: state.fontScale,
     };
-    window.localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+    safeSetItem(PREFS_KEY, JSON.stringify(prefs));
   }, [hydrated, state.fontScale]);
 
   const setActiveTab = useCallback((activeTab: ChapterTab) => {

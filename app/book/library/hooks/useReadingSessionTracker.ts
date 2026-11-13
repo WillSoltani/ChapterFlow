@@ -11,6 +11,7 @@ import {
   toDayKey,
   type PersistedReadingActivity,
 } from "@/app/book/library/hooks/readingActivityStorage";
+import { safeGetItem, safeSetItem } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/safe-storage";
 
 const IDLE_TIMEOUT_MS = 45_000;
 const FLUSH_INTERVAL_MS = 5_000;
@@ -70,7 +71,7 @@ export function useReadingSessionTracker({
   const lastTickAtRef = useRef(0);
 
   useEffect(() => {
-    const stored = parseReadingActivity(window.localStorage.getItem(storageKey));
+    const stored = parseReadingActivity(safeGetItem(storageKey));
     setActivity(stored ?? emptyReadingActivity());
     lastActivityAtRef.current = Date.now();
     lastTickAtRef.current = Date.now();
@@ -86,7 +87,7 @@ export function useReadingSessionTracker({
       const now = new Date();
       const next = appendReadingActivity(activityRef.current, now, deltaMs);
       activityRef.current = next;
-      window.localStorage.setItem(storageKey, JSON.stringify(next));
+      safeSetItem(storageKey, JSON.stringify(next));
       setActivity(next);
       emitBookStorageChanged(`reading-activity:${bookId}:${chapterId}`);
 
@@ -192,10 +193,8 @@ export function useReadingSessionTracker({
 
   const claimDailyGoalCelebration = useCallback(() => {
     const today = toDayKey(new Date());
-    try {
-      if (window.localStorage.getItem(DAILY_GOAL_CELEBRATED_KEY) === today) return false;
-      window.localStorage.setItem(DAILY_GOAL_CELEBRATED_KEY, today);
-    } catch {}
+    if (safeGetItem(DAILY_GOAL_CELEBRATED_KEY) === today) return false;
+    safeSetItem(DAILY_GOAL_CELEBRATED_KEY, today);
     return true;
   }, []);
 
