@@ -5,22 +5,15 @@ export const CHAPTER_STATE_QUIZ_RESULT_MAX_CHARS = 20_000;
 /** Length cap for the top-level `chapterId`. */
 export const CHAPTER_STATE_CHAPTER_ID_MAX_CHARS = 200;
 
-function readStamp(state: Record<string, unknown> | undefined): string | null {
+/**
+ * The notes stamp as epoch ms. A missing, blank or unparseable stamp counts as
+ * no stamp, so a malformed value can never outrank a real dated edit.
+ */
+function readStamp(state: Record<string, unknown> | undefined): number | null {
   const value = state?.notesUpdatedAt;
-  return typeof value === "string" && value.trim() ? value : null;
-}
-
-function stampMs(stamp: string): number {
-  const ms = Date.parse(stamp);
-  return Number.isFinite(ms) ? ms : Number.NaN;
-}
-
-/** True when stamp `a` is strictly older than stamp `b`. */
-function isOlder(a: string, b: string): boolean {
-  const am = stampMs(a);
-  const bm = stampMs(b);
-  if (Number.isFinite(am) && Number.isFinite(bm)) return am < bm;
-  return a < b;
+  if (typeof value !== "string" || !value.trim()) return null;
+  const ms = Date.parse(value);
+  return Number.isFinite(ms) ? ms : null;
 }
 
 /**
@@ -36,10 +29,10 @@ export function mergeChapterState(
 ): Record<string, unknown> {
   const merged: Record<string, unknown> = { ...(stored ?? {}), ...incoming };
   const storedStamp = readStamp(stored);
-  if (!storedStamp) return merged;
+  if (storedStamp === null) return merged;
 
   const incomingStamp = readStamp(incoming);
-  if (!incomingStamp || isOlder(incomingStamp, storedStamp)) {
+  if (incomingStamp === null || incomingStamp < storedStamp) {
     if (stored && "notes" in stored) merged.notes = stored.notes;
     else delete merged.notes;
     merged.notesUpdatedAt = stored?.notesUpdatedAt;

@@ -99,3 +99,21 @@ test("isChapterStateStale only checks when the caller sends expectedUpdatedAt", 
   assert.equal(isChapterStateStale(null, null), false);
   assert.equal(isChapterStateStale(null, OLD), true);
 });
+
+test("a stored stamp that is not a date counts as unstamped, so a dated edit wins", () => {
+  const merged = mergeChapterState(
+    { notes: "old", notesUpdatedAt: "zzz" },
+    { notes: "new", notesUpdatedAt: OLD }
+  );
+  assert.equal(merged.notes, "new");
+  assert.equal(merged.notesUpdatedAt, OLD);
+});
+
+test("an incoming stamp that is not a date counts as unstamped, so dated stored notes stay", () => {
+  const merged = mergeChapterState(
+    { notes: "stored", notesUpdatedAt: OLD },
+    { notes: "incoming", notesUpdatedAt: "zzz" }
+  );
+  assert.equal(merged.notes, "stored");
+  assert.equal(merged.notesUpdatedAt, OLD);
+});
