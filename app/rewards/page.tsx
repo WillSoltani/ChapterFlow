@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { requireDashboardAccess } from "@/app/_lib/require-dashboard-access";
 import { RewardsPageClient } from "./RewardsPageClient";
+import { TokenExpiryGuard } from "@/components/auth/TokenExpiryGuard";
 
 export const metadata: Metadata = {
   title: "Rewards | ChapterFlow",
@@ -10,5 +11,10 @@ export const metadata: Metadata = {
 
 export default async function RewardsPage() {
   await requireDashboardAccess();
-  return <RewardsPageClient />;
+  return (
+    <>
+      <RewardsPageClient />
+      <TokenExpiryGuard />
+    </>
+  );
 }
