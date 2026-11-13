@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { buildStatsSummary, exploredCategoriesFrom, type StatsAnalytics } from "./profile-stats-core";
+import {
+  buildProfileInsights,
+  buildStatsSummary,
+  exploredCategoriesFrom,
+  type StatsAnalytics,
+} from "./profile-stats-core";
 
 function snap(id: string, category: string, completedChapters: number) {
   return { book: { id, category }, completedChapters };
@@ -51,4 +56,101 @@ test("no analytics yet is all zeros", () => {
   assert.equal(summary.categoriesCount, 0);
   assert.equal(summary.totalReadingMinutes, 0);
   assert.equal(summary.currentStreak, 0);
+});
+
+// ── PROG-13: notes and quiz history from the account, this device as fallback ──
+
+const CATALOG = {
+  books: [
+    { id: "atomic-habits", title: "Atomic Habits" },
+    { id: "deep-work", title: "Deep Work" },
+  ],
+  chapter: (bookId: string, chapterId: string) => {
+    const n = Number(chapterId.slice(-2));
+    if (!chapterId.startsWith(bookId) || !Number.isFinite(n)) return null;
+    return { code: `CH.${String(n).padStart(2, "0")}`, title: `Chapter ${n} title` };
+  },
+  chapterIdFor: (bookId: string, chapterNumber: number) => `${bookId}-ch${String(chapterNumber).padStart(2, "0")}`,
+};
+
+const DASHBOARD = {
+  bookStates: [
+    {
+      bookId: "atomic-habits",
+      lastReadChapterId: "atomic-habits-ch04",
+      lastOpenedAt: "2026-11-12T09:00:00.000Z",
+      chapterCompletedAt: { "atomic-habits-ch01": "2026-11-01T09:00:00.000Z" },
+    },
+  ],
+  chapterStates: [
+    {
+      bookId: "atomic-habits",
+      chapterNumber: 1,
+      chapterId: "atomic-habits-ch01",
+      state: { readingDepth: "standard", quizAnswers: { q1: 0, q2: 1 }, quizResult: { score: 90, passed: true }, notes: "Server note" },
+    },
+    {
+      bookId: "atomic-habits",
+      chapterNumber: 2,
+      state: { readingDepth: "simple", notes: "Second chapter note" },
+    },
+  ],
+};
+
+const EMPTY_LOCAL = { books: [], chapters: [] };
+
+test("PROG-13: notes and quiz history come from the account when this device has none", () => {
+  const insights = buildProfileInsights(DASHBOARD, EMPTY_LOCAL, CATALOG);
+  assert.deepEqual(insights.notes.map((n) => n.body).sort(), ["Second chapter note", "Server note"]);
+  assert.equal(insights.recentQuizEntries.length, 1);
+  assert.equal(insights.recentQuizEntries[0]!.score, 90);
+  assert.equal(insights.quizQuestionsAnswered, 2);
+  assert.deepEqual(insights.depthCounts, { simple: 1, standard: 1, deeper: 0 });
+  assert.equal(insights.activityLog.length, 1);
+  assert.equal(insights.recentOpenedChapters.length, 1);
+});
+
+test("PROG-13: a chapter row from the account wins over this device's copy", () => {
+  const local = {
+    books: [],
+    chapters: [
+      { bookId: "atomic-habits", chapterId: "atomic-habits-ch01", reader: { readingDepth: "deeper" as const, quizAnswers: {}, quizResult: null, notes: "Stale device note" } },
+    ],
+  };
+  const insights = buildProfileInsights(DASHBOARD, local, CATALOG);
+  const bodies = insights.notes.map((n) => n.body);
+  assert.ok(bodies.includes("Server note"));
+  assert.ok(!bodies.includes("Stale device note"));
+});
+
+test("PROG-13: this device fills in only what the account does not have", () => {
+  const local = {
+    books: [{ bookId: "deep-work", lastReadChapterId: "deep-work-ch02", lastOpenedAt: "2026-11-11T09:00:00.000Z", chapterCompletedAt: {} }],
+    chapters: [
+      { bookId: "deep-work", chapterId: "deep-work-ch02", reader: { readingDepth: "deeper" as const, quizAnswers: {}, quizResult: null, notes: "Unsynced note" } },
+    ],
+  };
+  const insights = buildProfileInsights(DASHBOARD, local, CATALOG);
+  assert.ok(insights.notes.some((n) => n.body === "Unsynced note" && n.bookId === "deep-work"));
+  assert.equal(insights.recentOpenedChapters.length, 2);
+});
+
+test("PROG-13: without a dashboard, this device's copy is used", () => {
+  const local = {
+    books: [],
+    chapters: [
+      { bookId: "deep-work", chapterId: "deep-work-ch01", reader: { readingDepth: "deeper" as const, quizAnswers: {}, quizResult: null, notes: "Only here" } },
+    ],
+  };
+  const insights = buildProfileInsights(null, local, CATALOG);
+  assert.deepEqual(insights.notes.map((n) => n.body), ["Only here"]);
+});
+
+test("PROG-13: a book page view (no open time) is not recent reading", () => {
+  const insights = buildProfileInsights(
+    { bookStates: [{ bookId: "deep-work", lastReadChapterId: "deep-work-ch01", lastOpenedAt: "1970-01-01T00:00:00.000Z", chapterCompletedAt: {} }], chapterStates: [] },
+    EMPTY_LOCAL,
+    CATALOG
+  );
+  assert.equal(insights.recentOpenedChapters.length, 0);
 });

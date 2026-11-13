@@ -65,7 +65,14 @@ import { MomentumEmptyState } from "@/app/book/profile/components/MomentumEmptyS
 import { NotePreviewCard } from "@/app/book/profile/components/NotePreviewCard";
 import { PinnedTakeawayCard } from "@/app/book/profile/components/PinnedTakeawayCard";
 import { ProfileSkeleton } from "@/app/book/profile/components/ProfileSkeleton";
-import { buildStatsSummary, exploredCategoriesFrom } from "@/app/book/profile/lib/profile-stats-core";
+import {
+  buildProfileInsights,
+  buildStatsSummary,
+  exploredCategoriesFrom,
+  readerStateLite,
+  type InsightSource,
+} from "@/app/book/profile/lib/profile-stats-core";
+import { useDashboardQuery } from "@/hooks/book/useDashboardQuery";
 import { ProStatusCard } from "@/app/book/profile/components/ProStatusCard";
 import { QuizBarChart } from "@/app/book/profile/components/QuizBarChart";
 import { SectionCard } from "@/app/book/profile/components/SectionCard";
@@ -151,12 +158,6 @@ function depthLabel(value: string) {
 
 function firstLine(text: string) {
   return text.split("\n").find((line) => line.trim())?.trim() || text.trim();
-}
-
-function summarizeNote(text: string) {
-  const clean = text.replace(/\s+/g, " ").trim();
-  if (clean.length <= 180) return clean;
-  return `${clean.slice(0, 177)}...`;
 }
 
 function initialsFromName(name: string) {
@@ -335,6 +336,9 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
 
   // ─── Derived data ───
 
+  // PROG-13: notes, quiz history and activity come from the account's rows in
+  // the dashboard payload; this device's copy only fills in what is missing.
+  const { data: dashboardData } = useDashboardQuery();
   const localInsights = useMemo(() => {
     if (!analyticsHydrated) {
       return {
@@ -346,90 +350,46 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
         recentOpenedChapters: [] as ActivityEntry[],
       };
     }
-
-    const notes: NoteEntry[] = [];
-    const recentQuizEntries: QuizEntry[] = [];
-    const activityLog: ActivityEntry[] = [];
-    const recentOpenedChapters: ActivityEntry[] = [];
-    const depthCounts = { simple: 0, standard: 0, deeper: 0 };
-    let quizQuestionsAnswered = 0;
     void revision;
 
-    for (const snapshot of analytics?.bookSnapshots ?? []) {
+    const snapshots = analytics?.bookSnapshots ?? [];
+    const bundles = new Map<string, ReturnType<typeof getBookChaptersBundle>["chapters"]>();
+    const chaptersOf = (bookId: string) => {
+      let chapters = bundles.get(bookId);
+      if (!chapters) {
+        chapters = getBookChaptersBundle(bookId).chapters;
+        bundles.set(bookId, chapters);
+      }
+      return chapters;
+    };
+
+    const local: InsightSource = { books: [], chapters: [] };
+    for (const snapshot of snapshots) {
       const progress = parseStoredBookProgress(
         window.localStorage.getItem(getBookProgressStorageKey(snapshot.book.id))
       );
-      const chapters = getBookChaptersBundle(snapshot.book.id).chapters;
-      const chapterMap = new Map(chapters.map((ch) => [ch.id, ch]));
-
-      if (progress?.lastReadChapterId) {
-        const chapter = chapterMap.get(progress.lastReadChapterId);
-        const dateStr = progress.lastOpenedAt;
-        const dateKey = dateStr ? toDayKeyLocal(new Date(dateStr)) : "";
-        recentOpenedChapters.push({
-          id: `${snapshot.book.id}:${progress.lastReadChapterId}:opened`,
-          title: chapter ? `${snapshot.book.title} • ${chapter.code}` : `${snapshot.book.title} • Recent chapter`,
-          detail: chapter ? chapter.title : "Recent chapter activity",
-          meta: new Date(dateStr).toLocaleDateString(undefined, { month: "short", day: "numeric" }),
-          sortAt: dateStr,
-          dateKey,
+      if (progress) {
+        local.books.push({
+          bookId: snapshot.book.id,
+          lastReadChapterId: progress.lastReadChapterId,
+          lastOpenedAt: progress.lastOpenedAt,
+          chapterCompletedAt: progress.chapterCompletedAt,
         });
       }
-
-      Object.entries(progress?.chapterCompletedAt ?? {}).forEach(([chapterId, completedAt]) => {
-        const chapter = chapterMap.get(chapterId);
-        if (!chapter) return;
-        const dateKey = toDayKeyLocal(new Date(completedAt));
-        activityLog.push({
-          id: `${snapshot.book.id}:${chapterId}:completed`,
-          title: `${snapshot.book.title} • ${chapter.code}`,
-          detail: `Completed ${chapter.title}`,
-          meta: new Date(completedAt).toLocaleDateString(undefined, { month: "short", day: "numeric" }),
-          sortAt: completedAt,
-          dateKey,
-        });
-      });
-
-      for (const chapter of chapters) {
+      for (const chapter of chaptersOf(snapshot.book.id)) {
         const reader = parseStoredReaderState(
           window.localStorage.getItem(getChapterReaderStorageKey(snapshot.book.id, chapter.id))
         );
-        if (!reader) continue;
-        depthCounts[reader.readingDepth] += 1;
-        quizQuestionsAnswered += Object.keys(reader.quizAnswers).length;
-
-        if (reader.quizResult) {
-          const sortAt = progress?.chapterCompletedAt?.[chapter.id] ?? progress?.lastOpenedAt ?? "1970-01-01T00:00:00.000Z";
-          recentQuizEntries.push({
-            id: `${snapshot.book.id}:${chapter.id}:quiz`,
-            label: `${snapshot.book.title} • ${chapter.code}`,
-            score: reader.quizResult.score,
-            sortAt,
-          });
-        }
-
-        if (reader.notes.trim()) {
-          const sortAt = progress?.lastOpenedAt ?? "1970-01-01T00:00:00.000Z";
-          notes.push({
-            id: `${snapshot.book.id}:${chapter.id}:note`,
-            bookId: snapshot.book.id,
-            chapterId: chapter.id,
-            title: `${snapshot.book.title} • ${chapter.code}`,
-            body: summarizeNote(reader.notes),
-            meta: chapter.title,
-            sortAt,
-          });
-        }
+        if (reader) local.chapters.push({ bookId: snapshot.book.id, chapterId: chapter.id, reader: readerStateLite(reader) });
       }
     }
 
-    notes.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
-    recentQuizEntries.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
-    activityLog.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
-    recentOpenedChapters.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
-
-    return { quizQuestionsAnswered, notes, recentQuizEntries, activityLog, depthCounts, recentOpenedChapters };
-  }, [analytics, analyticsHydrated, revision]);
+    return buildProfileInsights(dashboardData, local, {
+      books: snapshots.map((snapshot) => ({ id: snapshot.book.id, title: snapshot.book.title })),
+      chapter: (bookId, chapterId) => chaptersOf(bookId).find((c) => c.id === chapterId) ?? null,
+      chapterIdFor: (bookId, chapterNumber) => chaptersOf(bookId).find((c) => c.order === chapterNumber)?.id ?? null,
+    });
+  }, [analytics, analyticsHydrated, dashboardData, revision]);
 
   const statsSummary = useMemo(
     () => buildStatsSummary(analytics, localInsights.quizQuestionsAnswered),
