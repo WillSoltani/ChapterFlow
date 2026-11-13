@@ -425,7 +425,7 @@ export function AudioPlayer({
             <span className="flex h-11 w-11 shrink-0 items-center justify-center text-(--cr-text-secondary)">
               <Headphones className="h-5 w-5" aria-hidden="true" />
             </span>
-            <p className="min-w-0 flex-1 truncate text-cf-label-sm text-(--cr-text-secondary)">
+            <p className="min-w-0 flex-1 text-cf-label-sm leading-snug text-(--cr-text-secondary)">
               Listening is part of Pro
             </p>
             <Link
