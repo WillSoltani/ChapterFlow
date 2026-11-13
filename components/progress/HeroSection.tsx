@@ -37,13 +37,11 @@ export function HeroSection({ data, onSwitchBook }: HeroSectionProps) {
         <div className="flex items-start justify-between">
           <PersonalizedGreeting
             name={data.user.name}
-            readerLevel={data.user.readerLevel}
-            readerLevelProgress={data.user.readerLevelProgress}
+            tier={data.user.tier}
             streak={data.streak}
             goalCompletedToday={goalComplete}
             nextMilestones={data.nextMilestones}
             completedMinutesToday={data.todayGoal.completedMinutes}
-            targetMinutes={data.todayGoal.targetMinutes}
           />
           <FlowPointsIndicator
             points={data.user.insightPoints}

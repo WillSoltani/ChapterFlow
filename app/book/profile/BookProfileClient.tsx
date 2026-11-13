@@ -41,6 +41,8 @@ import { useBookProfile } from "@/app/book/hooks/useBookProfile";
 import { useOnboardingRedirect, useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useToast } from "@/app/book/hooks/useToast";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
+import { useServerTier } from "@/hooks/book/useServerTier";
+import { tierIdentity } from "@/components/progress/progressTypes";
 import {
   BadgeDetailPanel,
   BadgeTimelineItem,
@@ -163,18 +165,6 @@ function toDayKeyLocal(d: Date) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
-// ─── Identity label (unchanged) ───
-
-function getIdentityLabel(booksCompleted: number, categoriesCount: number): string {
-  if (booksCompleted === 0) return "Getting Started";
-  if (booksCompleted <= 2) return "Curious Reader";
-  if (booksCompleted <= 5) return "Knowledge Seeker";
-  if (booksCompleted <= 10) return "Dedicated Learner";
-  if (booksCompleted <= 20) return "Knowledge Builder";
-  if (booksCompleted > 20 && categoriesCount >= 5) return "Polymath";
-  return "Knowledge Builder";
-}
-
 // ─── Streak microcopy — full lookup table (A5) ───
 
 const STREAK_MILESTONES: [number, string][] = [
@@ -262,6 +252,9 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
     pronouns: onboarding.pronoun,
     createdAt: onboarding.completedAt,
   });
+  // Identity = the server tier ladder (hidden while the read is pending or failed).
+  const { data: serverTier } = useServerTier();
+  const identity = useMemo(() => tierIdentity(serverTier), [serverTier]);
   const { billingState, launchBillingAction } = useBookEntitlements(
     onboarding.setupComplete
   );
@@ -721,7 +714,6 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
   }
 
   const viewerName = profile.displayName || viewerIdentity.displayName || "Reader";
-  const identityLabel = getIdentityLabel(statsSummary.booksCompleted, statsSummary.categoriesCount);
   const streakMicrocopy = analytics?.streakAtRisk
     ? `Read today to keep your ${statsSummary.currentStreak}-day streak.`
     : getStreakMicrocopy(statsSummary.currentStreak);
@@ -783,7 +775,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
             username={profile.username}
             bio={profile.bio || profile.tagline || "Building a sharper reading practice with ChapterFlow."}
             plan={plan}
-            identityLabel={identityLabel}
+            identity={identity}
             streakDays={statsSummary.currentStreak}
             streakMicrocopy={streakMicrocopy}
             booksCompleted={statsSummary.booksCompleted}

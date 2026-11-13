@@ -10,6 +10,7 @@ import { useBookAnalytics } from "@/hooks/book/useBookAnalytics";
 import { useBookViewer } from "@/hooks/book/useBookViewer";
 import { useInsightPoints } from "@/hooks/book/useInsightPoints";
 import { useBadgeSystem } from "@/hooks/book/useBadgeSystem";
+import { useServerTier } from "@/hooks/book/useServerTier";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import type {
   ProgressPageData,
@@ -19,9 +20,10 @@ import type {
   ReviewData,
   StepNumber,
   LearningStep,
+  TierPill,
 } from "./progressTypes";
+import { tierPill } from "./progressTypes";
 import { getBookCoverPath } from "@/lib/book-covers";
-import { deriveReaderLevel, deriveReaderLevelProgress } from "@/lib/reader-levels";
 import { fetchBookJson } from "@/lib/client/book-api";
 import {
   fetchBookJsonCached,
@@ -174,11 +176,10 @@ function buildProgressData(
   isPro: boolean,
   reviewData: ReviewData,
   reviewedTodayCount: number,
-  shieldsHeld: number
+  shieldsHeld: number,
+  tier: TierPill | null
 ): ProgressPageData {
   const totalCompletedChapters = analytics.totalCompletedChapters;
-  const readerLevel = deriveReaderLevel(totalCompletedChapters);
-  const readerLevelProgress = deriveReaderLevelProgress(totalCompletedChapters);
 
   // Map active books from analytics
   const activeBooks: ActiveBook[] = analytics.recentlyOpenedSnapshots.map(
@@ -325,8 +326,7 @@ function buildProgressData(
   return {
     user: {
       name: viewerName,
-      readerLevel,
-      readerLevelProgress,
+      tier,
       insightPoints: insightPointsBalance,
       isPro,
     },
@@ -484,6 +484,9 @@ export function ProgressPage() {
     dailyGoalMinutes: onboarding.dailyGoalMinutes,
   });
 
+  const { data: serverTier } = useServerTier();
+  const tier = useMemo(() => tierPill(serverTier), [serverTier]);
+
   const viewerName = viewerIdentity.displayName || "Reader";
 
   // isPro derives from the dashboard aggregate's `entitlement.plan` (already
@@ -535,10 +538,11 @@ export function ProgressPage() {
       isPro,
       reviewData ?? EMPTY_REVIEW_DATA,
       reviewedTodayCount,
-      shieldsHeld
+      shieldsHeld,
+      tier
     );
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro, reviewData, reviewedTodayCount, shieldsHeld, refreshKey]);
+  }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro, reviewData, reviewedTodayCount, shieldsHeld, tier, refreshKey]);
 
   // Fetch daily reader metrics for the active books in ONE batched request
   // (WS3-023) instead of an HTTP fan-out of one /books/[id]/metrics call per book.

@@ -1,8 +1,4 @@
-// Canonical definition moved to lib/reader-levels.ts (WS3-007): lib/ is the
-// base layer and components/ may depend on it, never the reverse. Imported
-// (not just re-exported) so the type is also in scope for ProgressUser below.
-import type { ReaderLevel } from "@/lib/reader-levels";
-export type { ReaderLevel };
+import type { ServerTier } from "@/hooks/book/useServerTier";
 
 export type LearningStep = "summary" | "scenarios" | "quiz" | "unlock";
 export type StepNumber = 1 | 2 | 3 | 4;
@@ -10,10 +6,56 @@ export type QuestType = "progress" | "boolean";
 
 export interface ProgressUser {
   name: string;
-  readerLevel: ReaderLevel;
-  readerLevelProgress: number; // 0-100 toward next level
+  /** Server tier pill; null while the tier read is pending or failed. */
+  tier: TierPill | null;
   insightPoints: number;
   isPro: boolean;
+}
+
+export interface TierPill {
+  label: string;
+  /** 0-100: loops toward the next tier (100 at the top tier). */
+  percent: number;
+  nextLabel: string | null;
+}
+
+function isServerTier(tier: ServerTier | null | undefined): tier is ServerTier {
+  return Boolean(tier && typeof tier.currentTierDisplay === "string" && tier.currentTierDisplay);
+}
+
+/** The Progress level pill from GET /me/tier, or null (hide the pill). */
+export function tierPill(tier: ServerTier | null | undefined): TierPill | null {
+  if (!isServerTier(tier)) return null;
+  const next = tier.nextTier ?? null;
+  const raw = next ? Number(next.loopsPercent) : 100;
+  const percent = Number.isFinite(raw) ? Math.min(100, Math.max(0, Math.round(raw))) : 0;
+  return { label: tier.currentTierDisplay, percent, nextLabel: next?.displayName ?? null };
+}
+
+export type TierLadderStatus = "passed" | "current" | "next" | "ahead";
+
+export interface TierIdentity {
+  displayName: string;
+  identityStatement: string;
+  nextTier: ServerTier["nextTier"];
+  ladder: Array<ServerTier["tiers"][number] & { status: TierLadderStatus }>;
+}
+
+/** The Profile identity from GET /me/tier, or null (hide it). */
+export function tierIdentity(tier: ServerTier | null | undefined): TierIdentity | null {
+  if (!isServerTier(tier) || !Array.isArray(tier.tiers)) return null;
+  const currentIdx = tier.tiers.findIndex((t) => t.name === tier.currentTier);
+  if (currentIdx < 0) return null;
+  const current = tier.tiers[currentIdx]!;
+  return {
+    displayName: tier.currentTierDisplay,
+    identityStatement: current.identityStatement,
+    nextTier: tier.nextTier ?? null,
+    ladder: tier.tiers.map((t, i) => ({
+      ...t,
+      status: i < currentIdx ? "passed" : i === currentIdx ? "current" : i === currentIdx + 1 ? "next" : "ahead",
+    })),
+  };
 }
 
 export interface TodayGoal {

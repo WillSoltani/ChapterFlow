@@ -2,25 +2,19 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
-import type { ReaderLevel, StreakData, Milestone } from "./progressTypes";
+import type { StreakData, Milestone, TierPill } from "./progressTypes";
 
 interface PersonalizedGreetingProps {
   name: string;
-  readerLevel: ReaderLevel;
-  readerLevelProgress: number;
+  /** Server tier; null hides the pill (tier read pending or failed). */
+  tier: TierPill | null;
   streak: StreakData;
   goalCompletedToday: boolean;
   nextMilestones: Milestone[];
   completedMinutesToday: number;
-  targetMinutes: number;
 }
 
-const LEVEL_COLORS: Record<ReaderLevel, string> = {
-  "Curious Reader": "var(--accent-cyan)",
-  "Active Learner": "var(--accent-emerald)",
-  "Knowledge Builder": "var(--accent-violet)",
-  "Thought Leader": "var(--accent-amber)",
-};
+const TIER_COLOR = "var(--accent-cyan)";
 
 function getGreeting(): string {
   const h = new Date().getHours();
@@ -33,8 +27,7 @@ function getMotivationLine(
   streak: StreakData,
   goalCompletedToday: boolean,
   nextMilestones: Milestone[],
-  completedMinutesToday: number,
-  targetMinutes: number
+  completedMinutesToday: number
 ): string {
   const readToday = completedMinutesToday > 0;
 
@@ -66,13 +59,11 @@ function getMotivationLine(
 
 export function PersonalizedGreeting({
   name,
-  readerLevel,
-  readerLevelProgress,
+  tier,
   streak,
   goalCompletedToday,
   nextMilestones,
   completedMinutesToday,
-  targetMinutes,
 }: PersonalizedGreetingProps) {
   const prefersReduced = useReducedMotion();
   const greeting = getGreeting();
@@ -80,10 +71,8 @@ export function PersonalizedGreeting({
     streak,
     goalCompletedToday,
     nextMilestones,
-    completedMinutesToday,
-    targetMinutes
+    completedMinutesToday
   );
-  const levelColor = LEVEL_COLORS[readerLevel];
 
   return (
     <div className="flex flex-col gap-2">
@@ -112,42 +101,49 @@ export function PersonalizedGreeting({
         {motivation}
       </motion.p>
 
-      {/* Reader identity tier pill */}
-      <motion.div
-        className="mt-1 flex items-center gap-2"
-        initial={{ opacity: prefersReduced ? 1 : 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: DUR.normal, delay: 0.2 }}
-      >
-        <div
-          className="flex items-center gap-2 rounded-lg px-2.5 py-1"
-          style={{
-            background: "var(--cf-surface-muted)",
-            borderLeft: `3px solid ${levelColor}`,
-          }}
+      {/* Server tier pill (the same ladder as the chapter-complete window) */}
+      {tier && (
+        <motion.div
+          className="mt-1 flex items-center gap-2"
+          initial={{ opacity: prefersReduced ? 1 : 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: DUR.normal, delay: 0.2 }}
         >
-          <span className="text-xs" style={{ color: "var(--text-heading)" }}>
-            {readerLevel}
-          </span>
-          {/* Mini progress bar to next tier */}
           <div
-            className="overflow-hidden rounded-full"
+            className="flex items-center gap-2 rounded-lg px-2.5 py-1"
             style={{
-              width: 48,
-              height: 4,
-              background: "var(--cf-progress-track)",
+              background: "var(--cf-surface-muted)",
+              borderLeft: `3px solid ${TIER_COLOR}`,
             }}
           >
+            <span className="text-xs" style={{ color: "var(--text-heading)" }}>
+              {tier.label}
+            </span>
+            {/* Mini progress bar to next tier */}
             <div
-              className="h-full rounded-full transition-all"
+              className="overflow-hidden rounded-full"
+              role="progressbar"
+              aria-label={tier.nextLabel ? `Progress to ${tier.nextLabel}` : `${tier.label} tier`}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={tier.percent}
               style={{
-                width: `${Math.min(100, readerLevelProgress)}%`,
-                background: levelColor,
+                width: 48,
+                height: 4,
+                background: "var(--cf-progress-track)",
               }}
-            />
+            >
+              <div
+                className="h-full rounded-full transition-all"
+                style={{
+                  width: `${tier.percent}%`,
+                  background: TIER_COLOR,
+                }}
+              />
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 }

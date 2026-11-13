@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { afterEach, test } from "node:test";
 import { cleanup, render } from "@testing-library/react";
 import { PersonalizedGreeting } from "./PersonalizedGreeting";
-import type { StreakData } from "./progressTypes";
+import type { StreakData, TierPill } from "./progressTypes";
 
 afterEach(() => cleanup());
 
@@ -19,17 +19,19 @@ const STREAK: StreakData = {
   atRisk: false,
 };
 
-function renderGreeting(streak: StreakData, completedMinutesToday = 0) {
+function renderGreeting(
+  streak: StreakData,
+  completedMinutesToday = 0,
+  tier: TierPill | null = { label: "Reader", percent: 28, nextLabel: "Analyst" },
+) {
   return render(
     <PersonalizedGreeting
       name="Maya"
-      readerLevel="Active Learner"
-      readerLevelProgress={40}
+      tier={tier}
       streak={streak}
       goalCompletedToday={false}
       nextMilestones={[]}
       completedMinutesToday={completedMinutesToday}
-      targetMinutes={20}
     />,
   );
 }
@@ -51,4 +53,19 @@ test("the at-risk line follows the analytics flag, not today's minutes", () => {
   const view = renderGreeting({ ...STREAK, atRisk: false }, 0);
   assert.equal(view.queryByText(/Read today to keep your/), null);
   assert.equal(view.queryByText(/needs you/), null);
+});
+
+test("the level pill shows the server tier and its progress toward the next tier", () => {
+  const view = renderGreeting(STREAK, 5);
+  assert.ok(view.getByText("Reader"));
+  const bar = view.getByRole("progressbar");
+  assert.equal(bar.getAttribute("aria-valuenow"), "28");
+  assert.equal(bar.getAttribute("aria-label"), "Progress to Analyst");
+  assert.equal(view.queryByText(/Curious Reader|Active Learner/), null);
+});
+
+test("no level pill while the tier read is pending or failed", () => {
+  const view = renderGreeting(STREAK, 5, null);
+  assert.equal(view.queryByRole("progressbar"), null);
+  assert.equal(view.queryByText("Reader"), null);
 });
