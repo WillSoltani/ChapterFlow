@@ -32,6 +32,7 @@ import { BadgeGrid } from "./components/BadgeGrid";
 import { BadgeDetailModal } from "./components/BadgeDetailModal";
 import { BadgeTimeline } from "./components/BadgeTimeline";
 import { BadgeCelebration } from "./components/BadgeCelebration";
+import { SpecialBadges } from "./components/SpecialBadges";
 
 type ActiveEventWithParticipation = EventDefinition & {
   participation?: EventParticipationItem;
@@ -296,6 +297,12 @@ export function BookBadgesClient() {
             onBadgeClick={handleBadgeClick}
           />
         </div>
+
+        {badgeSystem.specialBadges.length > 0 && (
+          <div className="mt-6">
+            <SpecialBadges badges={badgeSystem.specialBadges} />
+          </div>
+        )}
 
         <div className="mt-8">
           <BadgeTimeline earnedBadges={earnedBadges} onBadgeClick={handleBadgeClick} />

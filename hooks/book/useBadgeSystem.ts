@@ -23,6 +23,7 @@ import {
 import { getBookChaptersBundle } from "@/app/book/data/bookChapters";
 import { mergeBadgeProgressStats } from "@/app/book/_lib/badge-stats";
 import { useBookAnalytics } from "@/hooks/book/useBookAnalytics";
+import { buildSpecialBadges, type SpecialBadge } from "@/app/book/badges/lib/special-badges";
 
 const BADGES_KEY = "/app/api/book/me/badges";
 
@@ -79,6 +80,8 @@ type UseBadgeSystemResult = {
   categoryGroups: BadgeGroup[];
   earnedCount: number;
   visibleCount: number;
+  /** Journey and event badges from /me/badges (PROG-11). */
+  specialBadges: SpecialBadge[];
 };
 
 const BADGE_EARNED_KEY = "book-accelerator:badge-earned:v1";
@@ -528,6 +531,11 @@ export function useBadgeSystem({
     invalidateBookCache(BADGES_KEY);
   }, [badges, earnedHistory]);
 
+  const specialBadges = useMemo(
+    () => buildSpecialBadges(badgesQuery.data?.awards ?? []),
+    [badgesQuery.data]
+  );
+
   const visibleBadges = useMemo(() => badges.filter((badge) => badge.isVisible), [badges]);
   const earnedBadges = useMemo(
     () =>
@@ -610,6 +618,7 @@ export function useBadgeSystem({
     categoryGroups,
     earnedCount: earnedBadges.length,
     visibleCount: visibleBadges.length,
+    specialBadges,
   };
 }
 
