@@ -90,7 +90,8 @@ export function useSavedBooks(enabled = true) {
 
       setOptimistic(optimisticList);
       setToggleErrorMessage(null);
-      emitBookStorageChanged("saved-books");
+      // No storage event before the write: it would refetch the old list, and
+      // that stale answer could clear the overlay and flip the bookmark back.
 
       try {
         if (alreadySaved) {

@@ -342,9 +342,11 @@ export function BookDetailClient({
             })
           }
           isSaved={savedSet.has(entry.id)}
-          onToggleSaved={() =>
-            void toggleSaved(entry.id, { source: "book-detail" })
-          }
+          onToggleSaved={() => {
+            void toggleSaved(entry.id, { source: "book-detail" }).then((result) => {
+              if (result.error) setLockedToast("Couldn't update Read Next. Please try again.");
+            });
+          }}
         />
 
         {/* ═══════ Paywall Banner — shown only when this book is actually gated ═══════ */}
