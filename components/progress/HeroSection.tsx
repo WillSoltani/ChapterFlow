@@ -18,8 +18,6 @@ interface HeroSectionProps {
 export function HeroSection({ data, onSwitchBook }: HeroSectionProps) {
   const goalComplete =
     data.todayGoal.completedMinutes >= data.todayGoal.targetMinutes;
-  const hasEndowedProgress =
-    data.todayGoal.completedMinutes === 0 && data.activeBooks.length > 0;
 
   const primaryBook = data.activeBooks[0] ?? null;
   const otherBooks = data.activeBooks.slice(1);
@@ -48,7 +46,6 @@ export function HeroSection({ data, onSwitchBook }: HeroSectionProps) {
             targetMinutes={data.todayGoal.targetMinutes}
             stepsCompleted={data.todayGoal.stepsCompletedToday}
             totalSteps={data.todayGoal.totalStepsToday}
-            hasEndowedProgress={hasEndowedProgress}
             historyOff={data.readingHistoryOff}
           />
         </div>

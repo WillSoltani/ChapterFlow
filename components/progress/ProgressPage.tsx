@@ -16,7 +16,6 @@ import type {
   ProgressPageData,
   ActiveBook,
   CompletedBook,
-  DailyQuest,
   ReviewData,
   StepNumber,
   LearningStep,
@@ -40,6 +39,7 @@ import { KnowledgeReview } from "./KnowledgeReview";
 import { YourBooks } from "./YourBooks";
 import { NextAchievements } from "./NextAchievements";
 import { ProInsightsPreview } from "./ProInsightsPreview";
+import { buildDailyQuests, stepsCompletedToday } from "./daily-quests-core";
 import {
   buildReviewDataFromCards,
   localDateKey,
@@ -49,38 +49,6 @@ import {
 // ──────────────────────────────────────────────────
 // Data transformation: hooks → ProgressPageData
 // ──────────────────────────────────────────────────
-
-// Structural shells for the daily quests. `current`/`completed` are placeholders
-// only — every value is recomputed from real analytics in `buildProgressData`.
-const DAILY_QUEST_TEMPLATES: ReadonlyArray<DailyQuest> = [
-  {
-    id: "q1",
-    title: "Read for 10 minutes",
-    icon: "\u{1F4D6}",
-    current: 0,
-    target: 10,
-    type: "progress",
-    completed: false,
-  },
-  {
-    id: "q2",
-    title: "Complete a quiz",
-    icon: "\u{1F9E0}",
-    current: 0,
-    target: 1,
-    type: "boolean",
-    completed: false,
-  },
-  {
-    id: "q3",
-    title: "Review 5 concepts",
-    icon: "\u{1F504}",
-    current: 0,
-    target: 5,
-    type: "progress",
-    completed: false,
-  },
-];
 
 const LOOP_STEP_MAP: Record<string, { step: LearningStep; stepNumber: StepNumber }> = {
   summary: { step: "summary", stepNumber: 1 },
@@ -129,8 +97,6 @@ function buildProgressData(
   shieldsHeld: number,
   tier: TierPill | null
 ): ProgressPageData {
-  const totalCompletedChapters = analytics.totalCompletedChapters;
-
   // Map active books from analytics
   const activeBooks: ActiveBook[] = analytics.recentlyOpenedSnapshots.map(
     (snapshot) => {
@@ -222,7 +188,7 @@ function buildProgressData(
       chapters: cell.chapters,
     }));
 
-  // Hourly breakdown for today from localStorage
+  // Hourly breakdown for today from this device's localStorage
   const todayHourly = aggregateHourlyForDay(todayKey);
 
   // Map badge milestones
@@ -240,39 +206,9 @@ function buildProgressData(
   // PersonalizedGreeting both handle an empty array gracefully.
   const effectiveMilestones = nextMilestones;
 
-  // Build daily quests with real completion data
-  const wiredQuests = DAILY_QUEST_TEMPLATES
-    .filter((q) => {
-      if (q.id === "q3" && totalCompletedChapters === 0) return false;
-      return true;
-    })
-    .map((q) => {
-      if (q.id === "q1") {
-        return {
-          ...q,
-          current: Math.min(analytics.minutesReadToday, q.target),
-          completed: analytics.minutesReadToday >= q.target,
-          historyOff: analytics.readingHistoryOff,
-        };
-      }
-      if (q.id === "q2") {
-        const todayCell = thisWeekCells.find((c) => c.key === todayKey);
-        const todayChapters = todayCell?.chapters ?? 0;
-        return {
-          ...q,
-          current: Math.min(todayChapters, q.target),
-          completed: todayChapters >= q.target,
-        };
-      }
-      if (q.id === "q3") {
-        return {
-          ...q,
-          current: Math.min(reviewedTodayCount, q.target),
-          completed: reviewedTodayCount >= q.target,
-        };
-      }
-      return q;
-    });
+  // Today's quests: goal-based reading, a finished chapter, and reviews due now.
+  const dueNow = reviewData.overdueCount + reviewData.dueTodayCount;
+  const dailyQuests = buildDailyQuests(analytics, dueNow, todayKey, reviewedTodayCount);
 
   return {
     user: {
@@ -281,23 +217,12 @@ function buildProgressData(
       insightPoints: insightPointsBalance,
       isPro,
     },
-    todayGoal: (() => {
-      // Count today's chapters from heatmap (each = 4 steps through the learning loop)
-      const todayCellForSteps = analytics.heatmapCells.find((c) => c.key === todayKey);
-      const todayChaptersCompleted = todayCellForSteps?.chapters ?? 0;
-      // Partial step progress from the most recently active book
-      const leadBook = analytics.recentlyOpenedSnapshots[0];
-      const partialSteps = leadBook?.currentLoopStep
-        ? (LOOP_STEP_MAP[leadBook.currentLoopStep]?.stepNumber ?? 1) - 1
-        : 0;
-      const stepsToday = todayChaptersCompleted * 4 + partialSteps;
-      return {
-        targetMinutes: analytics.dailyGoalMinutes,
-        completedMinutes: analytics.minutesReadToday,
-        stepsCompletedToday: stepsToday,
-        totalStepsToday: 4,
-      };
-    })(),
+    todayGoal: {
+      targetMinutes: analytics.dailyGoalMinutes,
+      completedMinutes: analytics.minutesReadToday,
+      stepsCompletedToday: stepsCompletedToday(analytics, todayKey),
+      totalStepsToday: 4,
+    },
     streak: {
       currentDays: analytics.streakDays,
       bestDays: analytics.longestStreak,
@@ -325,12 +250,13 @@ function buildProgressData(
     },
     activeBooks,
     completedBooks,
-    dailyQuests: wiredQuests,
+    dailyQuests,
     reviews: reviewData,
     readingActivity: {
       days: readingDays,
       totalDaysWithData: readingDays.length,
       todayHourly,
+      todayMinutes: analytics.minutesReadToday,
     },
     nextMilestones: effectiveMilestones,
     readingHistoryOff: analytics.readingHistoryOff,

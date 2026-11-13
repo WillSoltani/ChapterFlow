@@ -3,14 +3,13 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ProgressRing } from "../ui/ProgressRing";
 import { ReadingHistoryOffNote } from "./ReadingHistoryOffNote";
+import { goalRingCenter } from "./daily-quests-core";
 
 interface DailyGoalRingProps {
   completedMinutes: number;
   targetMinutes: number;
   stepsCompleted: number;
   totalSteps: number;
-  /** Whether user browsed a book today but hasn't started reading */
-  hasEndowedProgress?: boolean;
   /** Settings turned "Save reading history" off: no minutes to show (PROG-26). */
   historyOff?: boolean;
 }
@@ -27,7 +26,6 @@ export function DailyGoalRing({
   targetMinutes,
   stepsCompleted,
   totalSteps,
-  hasEndowedProgress = false,
   historyOff = false,
 }: DailyGoalRingProps) {
   const prefersReduced = useReducedMotion();
@@ -39,12 +37,8 @@ export function DailyGoalRing({
     ? Math.min(100, (stepsCompleted / totalSteps) * 100)
     : 0;
 
-  // Endowed progress: show 5% if user browsed but hasn't read
-  const effectiveOuterPercent =
-    outerPercent === 0 && hasEndowedProgress ? 5 : outerPercent;
-
-  const isGoalComplete = !historyOff && effectiveOuterPercent >= 100;
-  const remaining = Math.max(0, targetMinutes - completedMinutes);
+  const isGoalComplete = !historyOff && outerPercent >= 100;
+  const center = goalRingCenter(completedMinutes, targetMinutes);
 
   // SVG dimensions — responsive
   const desktopSize = 220;
@@ -69,7 +63,7 @@ export function DailyGoalRing({
         className={`relative items-center justify-center ${containerClass}`}
         style={{ width: size, height: size }}
         role="progressbar"
-        aria-valuenow={Math.round(effectiveOuterPercent)}
+        aria-valuenow={Math.round(outerPercent)}
         aria-valuemin={0}
         aria-valuemax={100}
         aria-label={
@@ -90,7 +84,7 @@ export function DailyGoalRing({
           }}
         >
           <ProgressRing
-            percent={effectiveOuterPercent}
+            percent={outerPercent}
             size={size}
             strokeWidth={outerStroke}
             color={CYAN}
@@ -134,32 +128,21 @@ export function DailyGoalRing({
               animate={{ scale: 1 }}
               transition={{ delay: 1.2, type: "spring", stiffness: 300 }}
             >
-              {"✓"} Done!
+              {"✓"} {center.value}
             </motion.span>
-          ) : completedMinutes === 0 ? (
-            <span
-              className="font-(family-name:--font-display) text-2xl font-bold"
-              style={{ color: "var(--text-heading)" }}
-            >
-              0m
-            </span>
           ) : (
             <span
               className="font-(family-name:--font-display) text-2xl font-bold"
               style={{ color: "var(--text-heading)" }}
             >
-              {remaining}m
+              {center.value}
             </span>
           )}
           <span
             className="mt-0.5 text-xs"
             style={{ color: "var(--text-muted)" }}
           >
-            {historyOff
-              ? "reading history"
-              : isGoalComplete
-                ? `${targetMinutes} min goal reached`
-                : `of ${targetMinutes} min goal`}
+            {historyOff ? "reading history" : center.caption}
           </span>
         </div>
 

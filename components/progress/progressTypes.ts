@@ -124,6 +124,8 @@ export interface DailyQuest {
   completed: boolean;
   /** Minutes quest while Settings "Save reading history" is off (PROG-26). */
   historyOff?: boolean;
+  /** Where tapping the quest goes (C13 resume chapter for quests 1 and 2). */
+  href?: string;
 }
 
 export interface ReviewData {
@@ -151,7 +153,10 @@ export interface HourlyReading {
 export interface ReadingActivityData {
   days: ReadingDay[];
   totalDaysWithData: number;
+  /** Hourly minutes recorded on this device only. */
   todayHourly: HourlyReading[];
+  /** Today's total from the account (every device). */
+  todayMinutes: number;
 }
 
 export interface Milestone {

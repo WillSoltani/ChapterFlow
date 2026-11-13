@@ -195,8 +195,11 @@ export function ReadingActivity({
           className="py-6"
         />
       ) : showBarChart ? (
-        /* 24-hour bar chart for today */
+        /* 24-hour bar chart for today, from this device's own record */
         <div className="mt-4">
+          <p className="mb-2 text-xs" style={{ color: "var(--text-muted)" }}>
+            Today by hour · On this device
+          </p>
           <div className="flex items-end gap-px" style={{ height: 100 }}>
             {activity.todayHourly.map((slot, idx) => {
               const barHeight =
@@ -274,10 +277,11 @@ export function ReadingActivity({
               </div>
             ))}
           </div>
-          {/* Summary line */}
+          {/* Summary line: today's total is the account's (every device);
+              the hourly bars only know this device. */}
           <div className="mt-2 flex items-center gap-3">
             <span className="text-xs tabular-nums" style={{ color: "var(--text-secondary)" }}>
-              {activity.todayHourly.reduce((sum, h) => sum + h.minutes, 0)}m total today
+              {activity.todayMinutes}m total today
             </span>
             <span className="text-[10px]" style={{ color: "var(--text-muted)" }}>
               {activity.todayHourly.filter((h) => h.minutes > 0).length} active {activity.todayHourly.filter((h) => h.minutes > 0).length === 1 ? "hour" : "hours"}
