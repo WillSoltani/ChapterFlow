@@ -25,6 +25,7 @@ import {
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { ProgressRing as SharedProgressRing } from "@/components/ui/ProgressRing";
 import {
+  canRetakeFromReview,
   unansweredQuestionIds,
   type QuizAttemptProgress,
   type QuizFeedbackState,
@@ -501,12 +502,14 @@ function ReviewMistakesView({
         );
       })}
 
-      <div className="flex justify-center pt-2">
-        <button type="button" onClick={onRetake}
-          className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90">
-          <RotateCcw className="h-4 w-4" /> Retake Quiz
-        </button>
-      </div>
+      {canRetakeFromReview(session) && (
+        <div className="flex justify-center pt-2">
+          <button type="button" onClick={onRetake}
+            className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90">
+            <RotateCcw className="h-4 w-4" /> Retake Quiz
+          </button>
+        </div>
+      )}
     </div>
   );
 }

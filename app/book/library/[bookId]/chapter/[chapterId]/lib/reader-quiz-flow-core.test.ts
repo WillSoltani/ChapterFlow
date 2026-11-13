@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 
 import {
+  canRetakeFromReview,
   classifyQuizSubmission,
   completionScore,
   createInFlightGuard,
@@ -167,4 +168,13 @@ test("mergeQuizDraft keeps the other half of the draft for the same attempt and 
     answers: { q4: "d" },
     progress: emptyQuizProgress(),
   });
+});
+
+// READER-11: the server keeps a passed quiz passed and issues no new attempt,
+// so the review view must not offer a retake that does nothing.
+test("canRetakeFromReview is false once the attempt passed", () => {
+  assert.equal(canRetakeFromReview({ result: { passed: true, scorePercent: 80 } }), false);
+  assert.equal(canRetakeFromReview({ result: { passed: false, scorePercent: 40 } }), true);
+  assert.equal(canRetakeFromReview({ result: null }), false);
+  assert.equal(canRetakeFromReview(null), false);
 });

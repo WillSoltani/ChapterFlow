@@ -177,3 +177,9 @@ export function mergeQuizDraft(
     progress: patch.progress ?? current.progress,
   };
 }
+
+/** A retake is only real for a graded attempt that did not pass: the server
+ *  keeps a passed quiz passed and never issues a new attempt for it. */
+export function canRetakeFromReview(session: QuizSessionLike): boolean {
+  return Boolean(session?.result) && session?.result?.passed !== true;
+}
