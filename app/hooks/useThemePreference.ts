@@ -10,6 +10,9 @@ import {
   readStoredDocumentThemeSettings,
   resolveDocumentThemeLabel,
 } from "@/app/_lib/document-theme";
+import { fetchBookJson } from "@/lib/client/book-api";
+import { invalidateBookCache } from "@/lib/client/book-api-cache";
+import { SETTINGS_KEY } from "@/lib/client/book-read-keys";
 
 type UseThemePreferenceOptions = {
   persistToServer?: boolean;
@@ -85,11 +88,10 @@ export function useThemePreference(options?: UseThemePreferenceOptions) {
       if (!persistToServer) return;
 
       try {
-        await fetch("/app/api/book/me/settings", {
+        // DATA-11: the shared client (session handling, error on non-OK) and a
+        // fresh settings read afterwards, so no page keeps the old theme cached.
+        await fetchBookJson("/app/api/book/me/settings", {
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
           body: JSON.stringify({
             settings: {
               appearance: {
@@ -98,6 +100,7 @@ export function useThemePreference(options?: UseThemePreferenceOptions) {
             },
           }),
         });
+        invalidateBookCache(SETTINGS_KEY);
       } catch {
         // Keep the client preference even if the signed-in sync is unavailable.
       }
