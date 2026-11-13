@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { ArrowRight } from "lucide-react";
 import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "@/lib/badges/badge-ui-definitions";
-import type { ActiveBook, LearningStep } from "./progressTypes";
+import type { ActiveBook } from "./progressTypes";
 import { getBookHref } from "./book-href";
 import { StepIndicator } from "./StepIndicator";
 import { ChapterProgressBar } from "./ChapterProgressBar";
@@ -21,13 +21,6 @@ interface ContinueLearningCardProps {
   onSwitchBook?: ((bookId: string) => void) | undefined;
 }
 
-const STEP_CTA: Record<LearningStep, string> = {
-  summary: "Read Summary",
-  scenarios: "Explore Scenarios",
-  quiz: "Take Quiz",
-  unlock: "Unlock Next Chapter",
-};
-
 export function ContinueLearningCard({
   primaryBook,
   otherBooks,
@@ -35,7 +28,6 @@ export function ContinueLearningCard({
   onSwitchBook,
 }: ContinueLearningCardProps) {
   const prefersReduced = useReducedMotion();
-  const ctaText = STEP_CTA[primaryBook.currentStep];
   const bookHref = getBookHref(primaryBook);
   // UF-4: nextMilestone.icon is a lucide-react icon NAME; resolve it via the shared map.
   const NextMilestoneIcon = nextMilestone
@@ -166,7 +158,7 @@ export function ContinueLearningCard({
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
-          {ctaText} {"\u2192"}
+          Continue chapter {primaryBook.currentChapterNumber} {"\u2192"}
         </motion.button>
       </Link>
 

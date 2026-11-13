@@ -838,9 +838,6 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                           const progress = parseStoredBookProgress(
                             window.localStorage.getItem(getBookProgressStorageKey(snapshot.book.id))
                           );
-                          const chapter = getBookChaptersBundle(snapshot.book.id).chapters.find(
-                            (c) => c.id === (progress?.currentChapterId || snapshot.resumeChapterId)
-                          );
                           const remainingMinutes = getBookChaptersBundle(snapshot.book.id).chapters
                             .filter((c) => !(progress?.completedChapterIds ?? []).includes(c.id))
                             .reduce((sum, c) => sum + c.minutes, 0);
@@ -853,11 +850,12 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                               coverImage={snapshot.book.coverImage}
                               icon={snapshot.book.icon}
                               progress={snapshot.progressPercent}
-                              chapterLabel={chapter ? `${chapter.code} ${chapter.title}` : snapshot.lastOpenedLabel}
+                              chapterLabel={snapshot.resumeChapterLabel}
+                              chapterNumber={snapshot.resumeChapterNumber}
                               eta={formatMinutes(Math.max(remainingMinutes, 10))}
                               onContinue={() =>
                                 router.push(
-                                  `/book/library/${encodeURIComponent(snapshot.book.id)}/chapter/${encodeURIComponent(progress?.currentChapterId || snapshot.resumeChapterId)}`
+                                  `/book/library/${encodeURIComponent(snapshot.book.id)}/chapter/${snapshot.resumeChapterNumber}`
                                 )
                               }
                             />

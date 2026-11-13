@@ -4,10 +4,10 @@ import { Button } from "@/app/book/components/ui/Button";
 import { BookCover } from "@/components/ui/BookCover";
 
 export function ActiveBookCard({
-  title, author, bookId, coverImage, icon, progress, chapterLabel, eta, onContinue,
+  title, author, bookId, coverImage, icon, progress, chapterLabel, chapterNumber, eta, onContinue,
 }: {
   title: string; author: string; bookId: string; coverImage?: string | undefined; icon: string;
-  progress: number; chapterLabel: string; eta: string; onContinue: () => void;
+  progress: number; chapterLabel: string; chapterNumber: number; eta: string; onContinue: () => void;
 }) {
   return (
     <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface) p-4 shadow-shadow-card">
@@ -22,7 +22,7 @@ export function ActiveBookCard({
           </div>
           <div className="mt-3 flex items-center justify-between gap-3">
             <p className="text-xs text-(--cf-text-3)">{progress}% &bull; {eta}</p>
-            <Button variant="secondary" size="sm" onClick={onContinue}>Continue</Button>
+            <Button variant="secondary" size="sm" onClick={onContinue}>Continue chapter {chapterNumber}</Button>
           </div>
         </div>
       </div>

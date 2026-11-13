@@ -5,7 +5,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   calculateCurrentStreak,
+  isBookStarted,
   readDailyGoal,
+  resumeChapterNumber,
   statusFromCounts,
   streakAtRisk,
 } from "@/hooks/book/useBookAnalytics";
@@ -86,4 +88,26 @@ test("ACCT-03 (C10): read order falls back to dailyGoal, then onboarding, then t
 test("ACCT-03 (C10): the goal is never below 5 minutes", () => {
   assert.equal(readDailyGoal({ extended: { dailyGoalPreset: 2 } }, 10), 5);
   assert.equal(readDailyGoal(null, 0), 5);
+});
+
+test("D3 (C5): a book is started by a completed chapter, a progress row or a chapter-state row", () => {
+  assert.equal(isBookStarted({ completedChapters: 1, hasProgressRow: false, chapterStateCount: 0 }), true);
+  assert.equal(isBookStarted({ completedChapters: 0, hasProgressRow: true, chapterStateCount: 0 }), true);
+  assert.equal(isBookStarted({ completedChapters: 0, hasProgressRow: false, chapterStateCount: 1 }), true);
+});
+
+test("D3 (C5): a book-state row alone (a book-page view) is not started", () => {
+  assert.equal(isBookStarted({ completedChapters: 0, hasProgressRow: false, chapterStateCount: 0 }), false);
+});
+
+test("C13: Continue resumes the server's current chapter, else the one after the last completed", () => {
+  assert.equal(resumeChapterNumber(4, 3, 12), 4);
+  assert.equal(resumeChapterNumber(null, 3, 12), 4);
+  assert.equal(resumeChapterNumber(undefined, 0, 12), 1);
+});
+
+test("C13: the resume chapter is capped at the book's chapter count", () => {
+  assert.equal(resumeChapterNumber(undefined, 12, 12), 12);
+  assert.equal(resumeChapterNumber(15, 9, 12), 12);
+  assert.equal(resumeChapterNumber(0, 0, 12), 1);
 });

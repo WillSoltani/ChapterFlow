@@ -6,7 +6,6 @@ import { useCallback, useEffect, useState } from "react";
 import { getBookErrorMessage } from "@/app/book/_lib/error-messages";
 import { useDashboardQuery, type DashboardQueryPayload } from "@/hooks/book/useDashboardQuery";
 import type { LibraryCatalogBook } from "@/lib/library-data";
-import type { StoredReaderStateSnapshot } from "@/app/book/_lib/reader-storage";
 import { getBookChaptersBundle } from "@/app/book/data/bookChapters";
 import {
   buildLibraryCatalog,
@@ -51,6 +50,10 @@ export type BookProgressSnapshot = {
   lastOpenedLabel: string;
   lastActivityAt: string;
   resumeChapterId: string;
+  /** C13: the chapter number "Continue" opens. */
+  resumeChapterNumber: number;
+  /** Label of the resume chapter ("CH.04 Title", or "Chapter 4" when unknown locally). */
+  resumeChapterLabel: string;
   currentLoopStep: LoopStep | null;
 };
 
@@ -120,33 +123,6 @@ function formatRelativeDayLabel(dayKey: string | null): string {
   return formatDayLabel(dayKey);
 }
 
-function hasMeaningfulReaderActivity(
-  reader: StoredReaderStateSnapshot | Record<string, unknown> | null
-): boolean {
-  if (!reader || typeof reader !== "object") return false;
-
-  const notes = typeof reader.notes === "string" ? reader.notes : "";
-  if (notes.trim().length > 0) return true;
-
-  const quizAnswers =
-    reader.quizAnswers && typeof reader.quizAnswers === "object" && !Array.isArray(reader.quizAnswers)
-      ? (reader.quizAnswers as Record<string, unknown>)
-      : {};
-  if (Object.keys(quizAnswers).length > 0) return true;
-
-  const quizResult = reader.quizResult;
-  if (
-    quizResult &&
-    typeof quizResult === "object" &&
-    typeof (quizResult as { score?: unknown }).score === "number"
-  ) {
-    return true;
-  }
-
-  if (reader.showRecap === true) return true;
-  return false;
-}
-
 function chapterLabelById(bookId: string, chapterId: string): string {
   if (!chapterId) return "Not started";
   const chapter = getBookChaptersBundle(bookId).chapters.find(
@@ -203,6 +179,28 @@ export function readDailyGoal(settings: unknown, fallback: number): number {
   );
   const goal = found ?? fallback;
   return Math.max(MIN_DAILY_GOAL_MINUTES, Number.isFinite(goal) ? Math.round(goal) : 0);
+}
+
+/**
+ * D3 "started" rule (C5): a completed chapter, a progress row or a chapter-state
+ * row. A book-state row alone does not count: viewing the book page writes one.
+ */
+export function isBookStarted(input: {
+  completedChapters: number;
+  hasProgressRow: boolean;
+  chapterStateCount: number;
+}): boolean {
+  return input.completedChapters > 0 || input.hasProgressRow || input.chapterStateCount > 0;
+}
+
+/** C13: the chapter "Continue" opens, capped at the book's chapter count. */
+export function resumeChapterNumber(
+  currentChapterNumber: number | null | undefined,
+  completedChapters: number,
+  totalChapters: number
+): number {
+  const next = currentChapterNumber ?? completedChapters + 1;
+  return Math.max(1, Math.min(Math.max(1, totalChapters), next));
 }
 
 export function statusFromCounts(
@@ -500,14 +498,21 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           });
         });
 
+        const startedBookIds = new Set<string>();
         const bookSnapshots = entries.map((entry): BookProgressSnapshot => {
           const chaptersBundle = getBookChaptersBundle(entry.id);
           const chapters = chaptersBundle.chapters;
-          const totalChapters = chapters.length || entry.chaptersTotal;
+          // Catalog chapterCount, the same total the Library uses.
+          const totalChapters = entry.chaptersTotal;
           const state = stateByBook.get(entry.id);
           const progress = progressByBook.get(entry.id);
+          const chapterStateCount = chapterStatesByBook.get(entry.id)?.length ?? 0;
+          const resumeLabelFor = (chapterNumber: number) => {
+            const chapter = chapters.find((item) => item.order === chapterNumber);
+            return chapter ? `${chapter.code} ${chapter.title}` : `Chapter ${chapterNumber}`;
+          };
 
-          if (!state && !progress) {
+          if (!state && !progress && chapterStateCount === 0) {
             return {
               book: entry,
               status: "not_started",
@@ -519,6 +524,8 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
               lastOpenedLabel: "Not started",
               lastActivityAt: entry.lastActivityAt,
               resumeChapterId: chapters[0]?.id ?? "",
+              resumeChapterNumber: 1,
+              resumeChapterLabel: resumeLabelFor(1),
               currentLoopStep: null,
             };
           }
@@ -538,14 +545,19 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
                     .map((chapterNumber) => chapters.find((chapter) => chapter.order === chapterNumber)?.id ?? "")
                     .filter(Boolean)
                 ).size;
-          // The reader persists a chapter-state row as soon as a chapter is
-          // opened, so any row means reading has started (a book-page view
-          // alone writes none).
-          const status = statusFromCounts(
+          const started = isBookStarted({
             completedChapters,
-            totalChapters,
-            (chapterStatesByBook.get(entry.id)?.length ?? 0) > 0
+            hasProgressRow: Boolean(progress),
+            chapterStateCount,
+          });
+          if (started) startedBookIds.add(entry.id);
+          const status = statusFromCounts(completedChapters, totalChapters, started);
+          const resumeNumber = resumeChapterNumber(
+            progress?.currentChapterNumber,
+            completedChapters,
+            totalChapters
           );
+          const resumeChapterLabel = resumeLabelFor(resumeNumber);
           const progressPercent = totalChapters
             ? Math.min(100, Math.round((completedChapters / totalChapters) * 100))
             : 0;
@@ -595,6 +607,11 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             })
             ?? null;
 
+          const lastReadLabel =
+            state?.lastReadChapterId && state.lastOpenedAt !== epochIso
+              ? chapterLabelById(entry.id, state.lastReadChapterId)
+              : null;
+
           return {
             book: entry,
             status,
@@ -603,14 +620,15 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             progressPercent,
             bestScore,
             avgScore,
-            lastOpenedLabel:
-              state?.lastReadChapterId && state.lastOpenedAt !== epochIso
-                ? chapterLabelById(entry.id, state.lastReadChapterId)
-                : state
-                  ? "Browsed"
-                  : "Not started",
+            lastOpenedLabel: !started
+              ? "Not started"
+              : lastReadLabel && lastReadLabel !== "Not started"
+                ? lastReadLabel
+                : resumeChapterLabel,
             lastActivityAt,
             resumeChapterId,
+            resumeChapterNumber: resumeNumber,
+            resumeChapterLabel,
             currentLoopStep:
               status === "completed"
                 ? null
@@ -621,20 +639,10 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           };
         });
 
-        const engagedBookSnapshots = bookSnapshots.filter((snapshot) => {
-          const state = stateByBook.get(snapshot.book.id);
-          const chapterStates = chapterStatesByBook.get(snapshot.book.id) ?? [];
-          // A persisted server state means the user has opened this book at least once
-          const hasServerState = !!state;
-          const hasCompletedChapter = snapshot.completedChapters > 0;
-          const hasQuizScore = Object.values(state?.chapterScores ?? {}).some(
-            (score) => Number(score) > 0
-          );
-          const hasReaderActivity = chapterStates.some((item) =>
-            hasMeaningfulReaderActivity(item.state as StoredReaderStateSnapshot | null)
-          );
-          return hasServerState || hasCompletedChapter || hasQuizScore || hasReaderActivity;
-        });
+        // Engaged = started (C5); a book-page view alone does not count.
+        const engagedBookSnapshots = bookSnapshots.filter((snapshot) =>
+          startedBookIds.has(snapshot.book.id)
+        );
 
         // Sort by most recently active first
         engagedBookSnapshots.sort((a, b) => {

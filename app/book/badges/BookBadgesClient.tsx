@@ -77,6 +77,11 @@ export function BookBadgesClient() {
     setShowcaseIds(getShowcaseBadgeIds());
   }, []);
 
+  const leadBook = badgeSystem.analytics?.recentlyOpenedSnapshots[0];
+  const continueTo = leadBook
+    ? { bookId: leadBook.book.id, chapterNumber: leadBook.resumeChapterNumber }
+    : null;
+
   // Redirect if onboarding not complete
   useOnboardingRedirect({ hydrated: onboardingHydrated, setupComplete: onboarding.setupComplete });
 
@@ -271,6 +276,7 @@ export function BookBadgesClient() {
             recommendations={recommendations}
             onBadgeClick={handleBadgeClick}
             allEarned={allEarned}
+            continueTo={continueTo}
           />
         </div>
 
