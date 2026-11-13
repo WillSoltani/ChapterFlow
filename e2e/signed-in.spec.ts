@@ -15,14 +15,17 @@ import type { Persona } from "./support/fixtures";
 // deliberately checks no copy, label, count or number a design change would
 // touch, and no request counts.
 
-type Case = { path: string; persona: Persona; showsBookTitle: boolean };
+// `dataGet` is the page's own data read: the test fails unless the mock answered
+// it with 200, so a page whose data never loaded cannot pass on the header's
+// requests or a write alone.
+type Case = { path: string; persona: Persona; showsBookTitle: boolean; dataGet: string };
 
 const CASES: Case[] = [
-  { path: "/dashboard", persona: "returning", showsBookTitle: true },
-  { path: "/dashboard", persona: "new", showsBookTitle: false },
-  { path: "/book/library", persona: "returning", showsBookTitle: true },
-  { path: "/book/progress", persona: "returning", showsBookTitle: true },
-  { path: "/book/settings", persona: "returning", showsBookTitle: false },
+  { path: "/dashboard", persona: "returning", showsBookTitle: true, dataGet: "me/dashboard" },
+  { path: "/dashboard", persona: "new", showsBookTitle: false, dataGet: "me/dashboard" },
+  { path: "/book/library", persona: "returning", showsBookTitle: true, dataGet: "me/dashboard" },
+  { path: "/book/progress", persona: "returning", showsBookTitle: true, dataGet: "me/dashboard" },
+  { path: "/book/settings", persona: "returning", showsBookTitle: false, dataGet: "me/settings" },
 ];
 
 const VIEWPORTS = [
@@ -114,15 +117,15 @@ for (const viewport of VIEWPORTS) {
         await expect(page).toHaveURL(new RegExp(`${c.path.replace(/\//g, "\\/")}(\\?|$)`));
 
         if (c.showsBookTitle) {
-          await expect(page.getByText(FIXTURE_BOOK_TITLE).first()).toBeVisible();
+          await expect(page.getByText(FIXTURE_BOOK_TITLE).filter({ visible: true }).first()).toBeVisible();
         } else {
           // Settings has no <main> landmark, so accept a heading too.
           await expect(page.locator("main, h1").first()).toBeVisible();
         }
         await page.waitForLoadState("networkidle", { timeout: 30_000 }).catch(() => {});
 
-        // A page whose every request failed must not pass.
-        expect(plane.answeredOkCount, "no mocked data endpoint was answered with 200").toBeGreaterThan(0);
+        // A page whose own data read failed or never ran must not pass.
+        expect(plane.answeredGet(c.dataGet), `GET ${c.dataGet} was not answered with 200`).toBe(true);
 
         if (viewport.phone) {
           await expectNoSidewaysScroll(page);

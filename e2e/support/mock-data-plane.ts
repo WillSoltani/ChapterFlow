@@ -34,10 +34,9 @@ export class MockDataPlane {
     this.fx = buildFixtures(persona);
   }
 
-  get answeredOkCount(): number {
-    let n = 0;
-    for (const c of this.answered.values()) n += c;
-    return n;
+  /** Whether `GET <rel>` (e.g. "me/dashboard") got a 2xx answer at least once. */
+  answeredGet(rel: string): boolean {
+    return this.answered.has(`GET ${rel}`);
   }
 
   private bookState(bookId: string): unknown {
