@@ -197,9 +197,25 @@ export function mergeServerChapterState(
   };
 }
 
+// Reader choices kept as they are when changed since the last sync. The quiz
+// counters are not here: they always keep the stricter value.
+const KEPT_WHEN_CHANGED = [
+  "activeTab",
+  "readingDepth",
+  "exampleFilter",
+  "fontScale",
+  "focusMode",
+  "showRecap",
+  "explanationOpen",
+  "quizAnswers",
+  "quizResult",
+] as const;
+
 /**
- * Merge a server copy read while the reader was already open. Notes the reader
- * changed since the last sync (text still being typed) always stay as they are.
+ * Merge a server copy read while the reader was already open. `previousBaseline`
+ * is what the reader last synced (or the copy it opened with): anything the
+ * reader changed since then, such as notes still being typed, an un-bookmark,
+ * a step change or a quiz retake, stays as it is.
  */
 export function mergeRefreshedChapterState(
   local: PersistedChapterState,
@@ -207,8 +223,23 @@ export function mergeRefreshedChapterState(
   previousBaseline: PersistedChapterState | null
 ): PersistedChapterState {
   const merged = mergeServerChapterState(local, server);
-  if (previousBaseline && local.notes !== previousBaseline.notes) {
-    return { ...merged, notes: local.notes, notesUpdatedAt: local.notesUpdatedAt };
+  if (!previousBaseline) return merged;
+  const base = previousBaseline;
+  const changed = (key: keyof PersistedChapterState) =>
+    stableJson(local[key]) !== stableJson(base[key]);
+  const keep = <K extends keyof PersistedChapterState>(key: K) => {
+    merged[key] = local[key];
+  };
+  for (const key of KEPT_WHEN_CHANGED) {
+    if (changed(key)) keep(key);
+  }
+  if (changed("notes")) {
+    keep("notes");
+    keep("notesUpdatedAt");
+  }
+  if (changed("bookmarkedTakeaways") || changed("bookmarkedTakeawayTexts")) {
+    keep("bookmarkedTakeaways");
+    keep("bookmarkedTakeawayTexts");
   }
   return merged;
 }
@@ -316,6 +347,9 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
   // A state the server refused (4xx); not resent until the reader changes it.
   let refusedJson: string | null = null;
   let syncFailed = false;
+  // The reader's state when the chapter opened: the base for a first read, so
+  // changes made before it lands stay as they are.
+  let openedWith: PersistedChapterState | null = null;
   const owner = deps.account();
 
   function stop() {
@@ -397,7 +431,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
         // A read clears the warning only while no save is failing or refused:
         // those changes have still not reached the account.
         if (refusedJson === null && patchFailures === 0) setSyncFailed(false);
-        const previousBaseline = baseline;
+        const previousBaseline = baseline ?? openedWith;
         if (acceptServerCopy(copy) && copy.state) {
           const server = copy.state;
           const merge = (current: PersistedChapterState) =>
@@ -480,6 +514,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
     },
     setLocal(state) {
       local = state;
+      if (openedWith === null) openedWith = state;
       if (disposed || !loaded) return;
       scheduleSave();
     },

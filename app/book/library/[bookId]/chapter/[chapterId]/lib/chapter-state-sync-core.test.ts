@@ -415,6 +415,56 @@ test("refresh takes newer notes from another device when nothing is being typed"
   assert.equal(h.patches.length, 0);
 });
 
+test("refresh keeps an un-bookmark and a step change made since the last sync", async () => {
+  const h = harness();
+  const synced = { activeTab: "quiz" as const, bookmarkedTakeaways: [1], bookmarkedTakeawayTexts: { "1": "One" } };
+  h.open(synced);
+  h.gets[0]!.resolve(server(synced));
+  await h.advance(5_000);
+  assert.equal(h.patches.length, 0);
+  h.edit({ activeTab: "summary", bookmarkedTakeaways: [], bookmarkedTakeawayTexts: {} });
+  h.sync.refresh();
+  h.gets[1]!.resolve(server(synced, "2026-11-10T10:00:00.000Z"));
+  await h.flushPromises();
+  assert.equal(h.current.activeTab, "summary");
+  assert.deepEqual(h.current.bookmarkedTakeaways, []);
+  await h.advance(200);
+  assert.equal(h.patches.length, 1);
+  assert.deepEqual(h.patches[0]!.state.bookmarkedTakeaways, []);
+  assert.equal(h.patches[0]!.state.activeTab, "summary");
+});
+
+test("refresh keeps a quiz retake made since the last sync, and the stricter counters", async () => {
+  const h = harness();
+  const synced = { quizAnswers: { q1: 2 }, quizResult: { score: 40, passed: false }, quizRetakeCount: 1 };
+  h.open(synced);
+  h.gets[0]!.resolve(server(synced));
+  await h.advance(5_000);
+  h.edit({ quizAnswers: {}, quizResult: null, quizRetakeCount: 2 });
+  h.sync.refresh();
+  h.gets[1]!.resolve(server({ ...synced, quizRetakeCount: 3 }, "2026-11-10T10:00:00.000Z"));
+  await h.flushPromises();
+  assert.deepEqual(h.current.quizAnswers, {});
+  assert.equal(h.current.quizResult, null);
+  assert.equal(h.current.quizRetakeCount, 3, "the economy counter keeps the stricter value");
+});
+
+test("a late first read keeps notes typed since the chapter opened", async () => {
+  const h = harness();
+  h.open({ notes: "start", notesUpdatedAt: "2026-11-13T08:00:00.000Z" });
+  h.gets[0]!.reject(new TypeError("offline"));
+  await h.flushPromises();
+  h.edit({ notes: "start, typed offline", notesUpdatedAt: "2026-11-13T08:30:00.000Z" });
+  await h.advance(1_000);
+  assert.equal(h.gets.length, 2);
+  h.gets[1]!.resolve(server({ notes: "other device", notesUpdatedAt: "2026-11-13T09:00:00.000Z" }, "2026-11-13T09:00:00.000Z"));
+  await h.flushPromises();
+  assert.equal(h.current.notes, "start, typed offline");
+  await h.advance(200);
+  assert.equal(h.patches.length, 1);
+  assert.equal(h.patches[0]!.state.notes, "start, typed offline");
+});
+
 test("focus and visible together trigger one re-read", async () => {
   const h = harness();
   h.open();
