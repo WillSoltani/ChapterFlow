@@ -17,7 +17,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { fetchBookJson } from "@/lib/client/book-api";
-import { fetchBookJsonCached } from "@/lib/client/book-api-cache";
+import { fetchBookJsonCached, peekBookCache } from "@/lib/client/book-api-cache";
 
 const NOTIFICATIONS_KEY = "/app/api/book/me/notifications";
 
@@ -114,21 +114,29 @@ function formatRelativeTime(iso: string): string {
   return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
 }
 
+type NotificationsPayload = { notifications: Notification[]; unreadCount: number };
+
 export function NotificationBell() {
-  const [notifications, setNotifications] = useState<Notification[]>([]);
-  const [unreadCount, setUnreadCount] = useState(0);
+  // TopNav remounts on every page, so start from the shared cache instead of an
+  // empty bell.
+  const [notifications, setNotifications] = useState<Notification[]>(
+    () => peekBookCache<NotificationsPayload>(NOTIFICATIONS_KEY)?.notifications ?? []
+  );
+  const [unreadCount, setUnreadCount] = useState(
+    () => peekBookCache<NotificationsPayload>(NOTIFICATIONS_KEY)?.unreadCount ?? 0
+  );
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Every load hits the network (forceRevalidate), but concurrent loads share
-  // one in-flight request — so the dev-mode StrictMode double-mount issues a
-  // single GET, not two (e2e/no-duplicate-endpoint-requests.spec.ts).
-  const load = useCallback(() => {
-    fetchBookJsonCached<{ notifications: Notification[]; unreadCount: number }>(
+  // A mount reuses a reading from the last 30 s; concurrent loads share one
+  // in-flight request (e2e/no-duplicate-endpoint-requests.spec.ts). Poll ticks
+  // and the return to a visible tab force a fresh read.
+  const load = useCallback((force = false) => {
+    fetchBookJsonCached<NotificationsPayload>(
       NOTIFICATIONS_KEY,
       undefined,
-      { forceRevalidate: true }
+      { forceRevalidate: force }
     )
       .then((res) => {
         setNotifications(res.notifications);
@@ -140,8 +148,19 @@ export function NotificationBell() {
 
   useEffect(() => {
     load();
-    const interval = setInterval(load, 60_000);
-    return () => clearInterval(interval);
+    const interval = setInterval(() => {
+      if (!document.hidden) load(true);
+    }, 60_000);
+    let wasHidden = document.hidden;
+    const onVisibilityChange = () => {
+      if (wasHidden && !document.hidden) load(true);
+      wasHidden = document.hidden;
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
   }, [load]);
 
   // Close on outside click and on Escape.
@@ -227,7 +246,7 @@ export function NotificationBell() {
               <p>Couldn&apos;t load notifications.</p>
               <button
                 type="button"
-                onClick={load}
+                onClick={() => load(true)}
                 className="mt-2 text-(--cf-accent) hover:underline"
               >
                 Try again

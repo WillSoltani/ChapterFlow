@@ -21,6 +21,7 @@ import {
   User,
 } from "lucide-react";
 import { useBookQuery } from "@/lib/client/book-api-cache";
+import { useBookViewer } from "@/hooks/book/useBookViewer";
 import { Sheet } from "@/components/ui/Dialog";
 import { SearchBox } from "@/components/navigation/SearchBox";
 import { GlobalSearchPanel } from "@/components/navigation/GlobalSearchPanel";
@@ -33,7 +34,11 @@ import { performLogout } from "@/lib/logout";
 export type BookNavTab = "home" | "library" | "journeys" | "saved" | "progress" | "badges" | "events" | "notebook" | "settings" | "profile" | "rewards";
 
 type TopNavProps = {
-  name: string;
+  /** Kept for callers; the header reads the viewer itself so every page shows
+   *  the same name. */
+  name?: string;
+  /** A page-specific avatar (e.g. one just uploaded on Profile) wins over the
+   *  cached viewer avatar. */
   avatarUrl?: string | null;
   /** Highlighted nav tab. Omit on secondary surfaces (e.g. Notebook) that have
    *  no entry in the main nav so nothing is mis-highlighted. */
@@ -85,8 +90,7 @@ const moreNavItems: NavItem[] = [
 ];
 
 export function TopNav({
-  name,
-  avatarUrl,
+  avatarUrl: avatarUrlProp,
   activeTab,
   searchQuery,
   onSearchChange,
@@ -118,7 +122,17 @@ export function TopNav({
   const profileTriggerRef = useRef<HTMLButtonElement | null>(null);
   const wasProfileMenuOpen = useRef(false);
 
-  const initial = name.trim().charAt(0).toUpperCase() || "R";
+  // One identity for every page: first name on the chip, full name in the menu.
+  // Until the viewer is known, a fixed-width placeholder holds the space instead
+  // of a stand-in name.
+  const viewer = useBookViewer();
+  const identityKnown = viewer.identity.source !== "fallback";
+  const identityPending = !identityKnown && (!viewer.hydrated || viewer.loading);
+  const fullName = viewer.identity.displayName.trim() || "Reader";
+  const firstName =
+    viewer.identity.givenName?.trim().split(/\s+/)[0] || fullName.split(/\s+/)[0] || fullName;
+  const avatarUrl = avatarUrlProp || viewer.identity.avatarDataUrl;
+  const initial = identityPending ? "" : fullName.charAt(0).toUpperCase() || "R";
   const showAvatar = !!avatarUrl && !avatarError;
 
   // Reset error state when avatar URL changes
@@ -217,7 +231,7 @@ export function TopNav({
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={avatarUrl}
-          alt={name}
+          alt={identityPending ? "" : fullName}
           className="h-full w-full object-cover"
           onError={() => setAvatarError(true)}
         />
@@ -250,7 +264,7 @@ export function TopNav({
             <Link
               href="/dashboard"
               className="inline-flex min-w-0 items-center gap-2.5 rounded-xl cf-focus"
-              aria-label="Go to ChapterFlow workspace"
+              aria-label="ChapterFlow home"
             >
               {logoVariant === "dashboard" ? (
                 <>
@@ -403,7 +417,16 @@ export function TopNav({
                 aria-label="Profile"
               >
                 {avatarChip}
-                <span className="hidden text-sm font-medium lg:inline-flex">{name || "Reader"}</span>
+                {identityPending ? (
+                  <span
+                    aria-hidden="true"
+                    className="hidden h-3.5 w-14 rounded-full bg-(--cf-border) lg:inline-block"
+                  />
+                ) : (
+                  <span className="hidden max-w-28 truncate text-sm font-medium lg:inline-block">
+                    {firstName}
+                  </span>
+                )}
               </Link>
 
               <button
@@ -429,7 +452,14 @@ export function TopNav({
               {showProfileMenu ? (
                 <div className="cf-panel-strong absolute right-0 top-11 z-50 w-56 rounded-2xl p-2">
                   <div className="border-b border-(--cf-divider) px-3 py-2.5">
-                    <p className="text-sm font-semibold text-(--cf-text-1)">{name || "Reader"}</p>
+                    {identityPending ? (
+                      <span
+                        aria-hidden="true"
+                        className="my-0.5 block h-3.5 w-24 rounded-full bg-(--cf-border)"
+                      />
+                    ) : (
+                      <p className="truncate text-sm font-semibold text-(--cf-text-1)">{fullName}</p>
+                    )}
                     <p className="text-xs text-(--cf-text-3)">ChapterFlow</p>
                   </div>
                   <div className="mt-1 space-y-0.5">
