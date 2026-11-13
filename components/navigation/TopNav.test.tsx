@@ -172,3 +172,53 @@ test("the search results panel is only brought in once search opens", async () =
     assert.ok(view.container.querySelector("#desktop-global-search-listbox"), "panel loaded"),
   );
 });
+
+test("the profile trigger is a disclosure, not an announced menu", async () => {
+  const view = await renderNav();
+  const trigger = view.getByRole("button", { name: "Open profile menu" });
+  assert.equal(trigger.getAttribute("aria-haspopup"), null);
+  assert.equal(trigger.getAttribute("aria-expanded"), "false");
+  assert.equal(trigger.getAttribute("aria-controls"), "profile-menu");
+  fireEvent.click(trigger);
+  assert.equal(trigger.getAttribute("aria-expanded"), "true");
+  assert.ok(view.container.querySelector("#profile-menu"));
+});
+
+test("only one header popover is open at a time", async () => {
+  const view = await renderNav();
+  const trigger = view.getByRole("button", { name: "Open profile menu" });
+  const bell = view.getByRole("button", { name: /^Notifications/ });
+
+  fireEvent.click(trigger);
+  assert.ok(view.container.querySelector("#profile-menu"));
+
+  fireEvent.click(bell);
+  assert.equal(view.container.querySelector("#profile-menu"), null);
+  assert.ok(view.container.querySelector("#notification-panel"));
+
+  fireEvent.click(trigger);
+  assert.ok(view.container.querySelector("#profile-menu"));
+  assert.equal(view.container.querySelector("#notification-panel"), null);
+});
+
+test("tapping blank page closes the profile menu on pointerdown", async () => {
+  const view = await renderNav();
+  fireEvent.click(view.getByRole("button", { name: "Open profile menu" }));
+  assert.ok(view.container.querySelector("#profile-menu"));
+  fireEvent.pointerDown(document.body);
+  await waitFor(() => assert.equal(view.container.querySelector("#profile-menu"), null));
+});
+
+test("Escape closes the notification panel and returns focus to the bell", async () => {
+  const view = await renderNav();
+  const bell = view.getByRole("button", { name: /^Notifications/ });
+  assert.equal(bell.getAttribute("aria-haspopup"), null);
+  fireEvent.click(bell);
+  assert.ok(view.container.querySelector("#notification-panel"));
+  const link = view.container.querySelector("#notification-panel a, #notification-panel button");
+  (link as HTMLElement | null)?.focus();
+
+  fireEvent.keyDown(document, { key: "Escape" });
+  await waitFor(() => assert.equal(view.container.querySelector("#notification-panel"), null));
+  assert.equal(document.activeElement, bell);
+});

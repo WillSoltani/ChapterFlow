@@ -150,6 +150,7 @@ export function TopNav({
   const [showSearchPanel, setShowSearchPanel] = useState(false);
   const [searchPanelLoaded, setSearchPanelLoaded] = useState(false);
   const [showMoreSheet, setShowMoreSheet] = useState(false);
+  const [showBell, setShowBell] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
   // Cached admin check — dedups and shares across every TopNav mount instead of
   // firing a fresh /me/is-admin request on each. A non-admin/unauthenticated
@@ -213,6 +214,7 @@ export function TopNav({
     setShowSearchPanel(false);
     setShowProfileMenu(false);
     setShowMoreSheet(false);
+    setShowBell(false);
   }, [pathname]);
 
   // Return focus to the trigger whenever the profile menu transitions open → closed
@@ -262,14 +264,15 @@ export function TopNav({
   };
 
   useEffect(() => {
-    function onPointerDown(event: MouseEvent) {
+    function onPointerDown(event: PointerEvent) {
       if (!headerRef.current) return;
       if (headerRef.current.contains(event.target as Node)) return;
       setShowSearchPanel(false);
       setShowProfileMenu(false);
     }
-    window.addEventListener("mousedown", onPointerDown);
-    return () => window.removeEventListener("mousedown", onPointerDown);
+    // pointerdown (not mousedown) so a tap on blank page also closes on iOS.
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
   }, []);
 
   const avatarChip = (
@@ -437,7 +440,13 @@ export function TopNav({
                 the centered desktop search (lg+) isn't present to absorb the free space.
                 shrink-0 keeps the controls whole; the logo is what gives way. */}
             <div className="relative ml-auto flex shrink-0 items-center gap-1.5 lg:ml-0">
-              <NotificationBell />
+              <NotificationBell
+                open={showBell}
+                onOpenChange={(next) => {
+                  setShowBell(next);
+                  if (next) setShowProfileMenu(false);
+                }}
+              />
               <ThemeModeToggle className="h-9" />
 
               <Link
@@ -479,7 +488,11 @@ export function TopNav({
               <button
                 ref={profileTriggerRef}
                 type="button"
-                onClick={() => setShowProfileMenu((prev) => !prev)}
+                onClick={() => {
+                  const next = !showProfileMenu;
+                  setShowProfileMenu(next);
+                  if (next) setShowBell(false);
+                }}
                 className={[
                   "inline-flex min-h-11 min-w-11 items-center justify-center gap-1 rounded-xl border max-sm:px-2 transition",
                   secondaryActive
@@ -487,8 +500,8 @@ export function TopNav({
                     : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
                 ].join(" ")}
                 aria-label="Open profile menu"
-                aria-haspopup="menu"
                 aria-expanded={showProfileMenu}
+                aria-controls="profile-menu"
               >
                 {/* Below sm the Profile chip is hidden (Profile is in this menu), so the
                     avatar rides in this one 44px button instead of a second target. */}
@@ -497,7 +510,7 @@ export function TopNav({
               </button>
 
               {showProfileMenu ? (
-                <div className="cf-panel-strong absolute right-0 top-11 z-50 w-56 rounded-2xl p-2">
+                <div id="profile-menu" className="cf-panel-strong absolute right-0 top-11 z-50 w-56 rounded-2xl p-2">
                   <div className="border-b border-(--cf-divider) px-3 py-2.5">
                     {identityPending ? (
                       <span

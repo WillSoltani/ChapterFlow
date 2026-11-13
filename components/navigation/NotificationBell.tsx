@@ -116,7 +116,14 @@ function formatRelativeTime(iso: string): string {
 
 type NotificationsPayload = { notifications: Notification[]; unreadCount: number };
 
-export function NotificationBell() {
+type NotificationBellProps = {
+  /** Controlled open state. Leave both props off and the bell manages itself;
+   *  TopNav passes them so only one header popover is open at a time. */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+};
+
+export function NotificationBell({ open: openProp, onOpenChange }: NotificationBellProps = {}) {
   // TopNav remounts on every page, so start from the shared cache instead of an
   // empty bell.
   const [notifications, setNotifications] = useState<Notification[]>(
@@ -125,9 +132,23 @@ export function NotificationBell() {
   const [unreadCount, setUnreadCount] = useState(
     () => peekBookCache<NotificationsPayload>(NOTIFICATIONS_KEY)?.unreadCount ?? 0
   );
-  const [open, setOpen] = useState(false);
+  const [openState, setOpenState] = useState(false);
+  const open = openProp ?? openState;
   const [error, setError] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const onOpenChangeRef = useRef(onOpenChange);
+  useEffect(() => {
+    onOpenChangeRef.current = onOpenChange;
+  });
+  const controlled = openProp !== undefined;
+  const setOpen = useCallback(
+    (next: boolean) => {
+      if (!controlled) setOpenState(next);
+      onOpenChangeRef.current?.(next);
+    },
+    [controlled]
+  );
 
   // A mount reuses a reading from the last 30 s; concurrent loads share one
   // in-flight request (e2e/no-duplicate-endpoint-requests.spec.ts). Poll ticks
@@ -163,24 +184,29 @@ export function NotificationBell() {
     };
   }, [load]);
 
-  // Close on outside click and on Escape.
+  // Close on outside tap (pointerdown also fires for touch on iOS Safari, where
+  // mousedown does not reach blank page areas) and on Escape, which puts focus
+  // back on the bell.
   useEffect(() => {
     if (!open) return;
-    const handleClick = (e: MouseEvent) => {
+    const handlePointerDown = (e: PointerEvent) => {
       if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
         setOpen(false);
       }
     };
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
     };
-    document.addEventListener("mousedown", handleClick);
+    document.addEventListener("pointerdown", handlePointerDown);
     document.addEventListener("keydown", handleKey);
     return () => {
-      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("keydown", handleKey);
     };
-  }, [open]);
+  }, [open, setOpen]);
 
   const markRead = useCallback((n: Notification) => {
     if (n.readAt) return;
@@ -206,10 +232,10 @@ export function NotificationBell() {
   return (
     <div className="relative" ref={panelRef}>
       <button
-        onClick={() => setOpen((v) => !v)}
+        ref={buttonRef}
+        onClick={() => setOpen(!open)}
         className="cf-pressable relative flex min-h-11 min-w-11 items-center justify-center rounded-full hover:bg-(--cf-card-hover) transition-colors"
         aria-label={`Notifications${unreadCount > 0 ? ` (${unreadCount} unread)` : ""}`}
-        aria-haspopup="true"
         aria-expanded={open}
         aria-controls="notification-panel"
       >
