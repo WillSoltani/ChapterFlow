@@ -75,3 +75,44 @@ test("ACCT-11: a choice the reader made is kept when the tiers change", () => {
   view.rerender(<SubscriptionCard {...props({ initialInterval: "annual", pricingTiers: TIERS })} />);
   assert.match(checked(view)[0]!, /^Monthly/);
 });
+
+test("ACCT-10: gift Pro shows when it ends and no Manage button", () => {
+  const view = render(
+    <SubscriptionCard
+      {...props({ plan: "PRO", proSource: "gift_code", currentPeriodEnd: "2026-12-04T12:00:00.000Z" })}
+    />,
+  );
+  assert.match(view.container.textContent ?? "", /Pro until/);
+  assert.doesNotMatch(view.container.textContent ?? "", /Next renewal/);
+  assert.equal(view.queryByRole("button", { name: /Manage subscription/ }), null);
+});
+
+test("ACCT-10: license Pro ends on the license expiry; admin Pro shows no billing line", () => {
+  const license = render(
+    <SubscriptionCard
+      {...props({
+        plan: "PRO",
+        proSource: "license",
+        licenseExpiresAt: "2027-03-01T12:00:00.000Z",
+        currentPeriodEnd: "2026-12-04T12:00:00.000Z",
+      })}
+    />,
+  );
+  assert.match(license.container.textContent ?? "", /Pro until .*2027/);
+  assert.equal(license.queryByRole("button", { name: /Manage subscription/ }), null);
+  cleanup();
+
+  const admin = render(<SubscriptionCard {...props({ plan: "PRO", proSource: "admin" })} />);
+  assert.doesNotMatch(admin.container.textContent ?? "", /Monthly billing|renewal|until/);
+  assert.equal(admin.queryByRole("button", { name: /Manage subscription/ }), null);
+});
+
+test("ACCT-10: a Stripe subscriber keeps the renewal date and Manage", () => {
+  const view = render(
+    <SubscriptionCard
+      {...props({ plan: "PRO", proSource: "stripe", currentPeriodEnd: "2026-12-04T12:00:00.000Z" })}
+    />,
+  );
+  assert.match(view.container.textContent ?? "", /Next renewal/);
+  assert.ok(view.getByRole("button", { name: /Manage subscription/ }));
+});

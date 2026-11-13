@@ -1644,6 +1644,7 @@ export function BookSettingsClient({
                   currentPeriodEnd={billingState.payload?.entitlement.currentPeriodEnd}
                   cancelAtPeriodEnd={billingState.payload?.entitlement.cancelAtPeriodEnd}
                   proSource={billingState.payload?.entitlement.proSource}
+                  licenseExpiresAt={billingState.payload?.entitlement.licenseExpiresAt}
                   price={price}
                   pricingTiers={billingState.payload?.paywall.pricingTiers}
                   initialInterval={initialUpgradeInterval}

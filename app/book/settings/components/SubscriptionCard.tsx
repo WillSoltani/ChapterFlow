@@ -15,6 +15,7 @@ import {
   APPLE_MANAGE_SUBSCRIPTIONS_URL,
   APPLE_MANAGED_SUBSCRIPTION_LABEL,
 } from "@/lib/apple-billing";
+import { subscriptionStatus } from "../lib/subscription-status-core";
 
 type SubscriptionCardProps = {
   plan: "FREE" | "PRO";
@@ -24,6 +25,8 @@ type SubscriptionCardProps = {
   /** How the user obtained Pro — drives whether we show the Stripe portal or the
    *  App Store management link for a Pro subscriber. */
   proSource?: EntitlementsResponse["entitlement"]["proSource"] | undefined;
+  /** License Pro ends here (falls back to currentPeriodEnd). */
+  licenseExpiresAt?: string | undefined;
   price: string;
   pricingTiers?: PricingTier[] | undefined;
   /** Billing interval to pre-select (e.g. carried from the landing "Annual"
@@ -58,6 +61,7 @@ export function SubscriptionCard({
   currentPeriodEnd,
   cancelAtPeriodEnd,
   proSource,
+  licenseExpiresAt,
   price,
   pricingTiers,
   initialInterval,
@@ -77,13 +81,12 @@ export function SubscriptionCard({
   const [pickedInterval, setPickedInterval] = useState<BillingInterval | null>(null);
   const selectedInterval = pickedInterval ?? defaultInterval(pricingTiers, initialInterval);
 
-  const formattedDate = currentPeriodEnd
-    ? new Date(currentPeriodEnd).toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : null;
+  const status = subscriptionStatus({
+    proSource,
+    currentPeriodEnd,
+    cancelAtPeriodEnd,
+    licenseExpiresAt,
+  });
 
   async function handleRedeemKey(e: React.FormEvent) {
     e.preventDefault();
@@ -140,19 +143,15 @@ export function SubscriptionCard({
         <p className="mt-0.5 text-xs text-(--cf-text-soft)">
           All {CATALOG_BOOK_COUNT_DISPLAY} books &middot; Full feature access
         </p>
-        <p className="text-sm text-(--cf-text-soft) mt-1">
-          {cancelAtPeriodEnd && formattedDate
-            ? `Cancels on ${formattedDate}`
-            : formattedDate
-              ? `Next renewal: ${formattedDate}`
-              : "Monthly billing"}
-        </p>
-        {cancelAtPeriodEnd && (
+        {status.dateLine && (
+          <p className="text-sm text-(--cf-text-soft) mt-1">{status.dateLine}</p>
+        )}
+        {status.cancelNote && (
           <p className="mt-1 text-xs text-(--cf-warning-text)">
             Your Pro access will end on the date above and won&apos;t auto-renew.
           </p>
         )}
-        {proSource === "apple" ? (
+        {status.manage === "apple" ? (
           // App Store subscriptions can only be managed by Apple — there is no
           // Stripe portal to open. Point the user at Apple's management page
           // instead of the (server-minted) Stripe portal CTA.
@@ -170,7 +169,7 @@ export function SubscriptionCard({
               Manage in the App Store
             </a>
           </>
-        ) : (
+        ) : status.manage === "stripe" ? (
           <Button
             id="subscription-cta"
             variant="secondary"
@@ -185,7 +184,7 @@ export function SubscriptionCard({
               "Manage subscription"
             )}
           </Button>
-        )}
+        ) : null}
         {actionError && (
           <div className="mt-2 flex items-center gap-2 text-xs text-(--cf-danger-text)">
             <XCircle className="h-3.5 w-3.5" />
