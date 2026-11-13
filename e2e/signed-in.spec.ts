@@ -1,0 +1,132 @@
+import { test, expect, type ConsoleMessage, type Page } from "@playwright/test";
+import { FIXED_NOW, FIXTURE_BOOK_TITLE } from "./support/fixtures";
+import { installMockDataPlane, type MockDataPlane } from "./support/mock-data-plane";
+import type { Persona } from "./support/fixtures";
+
+// Signed-in pages against a mocked data plane (e2e/support/mock-data-plane.ts).
+//
+// The dev server in CI has no database, so the smoke suite can only show the
+// logged-in shell. Here the browser answers /app/api/book/ from fixtures, so
+// Home, Library, Progress and Settings render with real-looking data and a
+// broken page, a runtime error or a phone-width overflow fails the test.
+//
+// This spec asserts structure and behaviour only: the page renders, nothing
+// throws, nothing scrolls sideways on a phone, the tab bar is on screen. It
+// deliberately checks no copy, label, count or number a design change would
+// touch, and no request counts.
+
+type Case = { path: string; persona: Persona; showsBookTitle: boolean };
+
+const CASES: Case[] = [
+  { path: "/dashboard", persona: "returning", showsBookTitle: true },
+  { path: "/dashboard", persona: "new", showsBookTitle: false },
+  { path: "/book/library", persona: "returning", showsBookTitle: true },
+  { path: "/book/progress", persona: "returning", showsBookTitle: true },
+  { path: "/book/settings", persona: "returning", showsBookTitle: false },
+];
+
+const VIEWPORTS = [
+  { name: "phone", width: 390, height: 844, phone: true },
+  { name: "desktop", width: 1440, height: 900, phone: false },
+] as const;
+
+// Fixed zone, locale and no service worker: the same render on every machine.
+test.use({ timezoneId: "UTC", locale: "en-US", serviceWorkers: "block" });
+// The first load of a route compiles it in the dev server.
+test.setTimeout(150_000);
+
+/** Console errors the run collects, and what the harness decides to ignore. */
+function collectProblems(page: Page, plane: () => MockDataPlane | null): () => string[] {
+  const problems: string[] = [];
+  page.on("pageerror", (error) => problems.push(`pageerror: ${error.message}`));
+  page.on("console", (message: ConsoleMessage) => {
+    if (message.type() !== "error") return;
+    const text = message.text();
+    // A request the data plane does not know answers 404; the browser logs
+    // that as "Failed to load resource". Those are listed in the test output
+    // instead (see "unmocked endpoints").
+    if (/Failed to load resource.*404/i.test(text)) {
+      const url = message.location().url;
+      if (plane()?.unknownUrls.has(url)) return;
+    }
+    problems.push(`console.error: ${text}`);
+  });
+  return () => problems;
+}
+
+async function expectNoSidewaysScroll(page: Page): Promise<void> {
+  const widths = await page.evaluate(() => ({
+    scroll: document.documentElement.scrollWidth,
+    inner: window.innerWidth,
+  }));
+  expect(widths.scroll, "page is wider than the phone viewport").toBeLessThanOrEqual(widths.inner);
+}
+
+/** The fixed tab bar at the bottom of the phone screen is inside the viewport. */
+async function expectTabBarOnScreen(page: Page): Promise<void> {
+  const bars = await page.evaluate(() => {
+    const out: { top: number; bottom: number; height: number }[] = [];
+    for (const nav of Array.from(document.querySelectorAll("nav"))) {
+      const style = getComputedStyle(nav);
+      const rect = nav.getBoundingClientRect();
+      if (style.position !== "fixed" || style.display === "none" || style.visibility === "hidden") continue;
+      if (rect.height === 0 || rect.width < window.innerWidth * 0.9 || rect.top < window.innerHeight / 2) continue;
+      out.push({ top: rect.top, bottom: rect.bottom, height: rect.height });
+    }
+    return { bars: out, innerHeight: window.innerHeight };
+  });
+  expect(bars.bars.length, "no fixed tab bar found at the bottom of the phone screen").toBeGreaterThan(0);
+  for (const bar of bars.bars) {
+    expect(bar.bottom, "tab bar runs past the bottom of the screen").toBeLessThanOrEqual(bars.innerHeight + 1);
+    expect(bar.top, "tab bar starts above the screen").toBeGreaterThanOrEqual(0);
+  }
+}
+
+for (const viewport of VIEWPORTS) {
+  test.describe(`signed in, ${viewport.name}`, () => {
+    test.use({
+      viewport: { width: viewport.width, height: viewport.height },
+      isMobile: viewport.phone,
+      hasTouch: viewport.phone,
+    });
+
+    for (const c of CASES) {
+      test(`${c.path} renders for a ${c.persona} reader`, async ({ page, context }, testInfo) => {
+        const plane = await installMockDataPlane(context, c.persona);
+        const problems = collectProblems(page, () => plane);
+        // Before any navigation, so every date the app computes starts from the same day.
+        await page.clock.install({ time: new Date(FIXED_NOW) });
+
+        const response = await page.goto(c.path, { waitUntil: "domcontentloaded" });
+        expect(await page.evaluate(() => new Date().toISOString()), "the page clock is the fixed one").toMatch(
+          new RegExp(`^${FIXED_NOW.slice(0, 10)}T`),
+        );
+        expect(response?.ok(), `${c.path} answered ${response?.status()}`).toBe(true);
+        await expect(page).toHaveURL(new RegExp(`${c.path.replace(/\//g, "\\/")}(\\?|$)`));
+
+        if (c.showsBookTitle) {
+          await expect(page.getByText(FIXTURE_BOOK_TITLE).first()).toBeVisible();
+        } else {
+          // Settings has no <main> landmark, so accept a heading too.
+          await expect(page.locator("main, h1").first()).toBeVisible();
+        }
+        await page.waitForLoadState("networkidle", { timeout: 30_000 }).catch(() => {});
+
+        // A page whose every request failed must not pass.
+        expect(plane.answeredOkCount, "no mocked data endpoint was answered with 200").toBeGreaterThan(0);
+
+        if (viewport.phone) {
+          await expectNoSidewaysScroll(page);
+          await expectTabBarOnScreen(page);
+        }
+
+        const unknown = plane.describeUnknown();
+        if (unknown.length) {
+          console.log(`unmocked endpoints on ${c.path} (${viewport.name}, ${c.persona}):\n  ${unknown.join("\n  ")}`);
+          testInfo.annotations.push({ type: "unmocked endpoints", description: unknown.join(", ") });
+        }
+        expect(problems(), problems().join("\n")).toEqual([]);
+      });
+    }
+  });
+}
