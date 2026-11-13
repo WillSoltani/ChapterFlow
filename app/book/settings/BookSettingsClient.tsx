@@ -28,12 +28,19 @@ import { Toast } from "@/components/ui/Toast";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { fetchBookJson, redirectToReauth, isReauthResponse } from "@/app/book/_lib/book-api";
+import { fetchBookJsonCached } from "@/lib/client/book-api-cache";
+import { SETTINGS_KEY } from "@/app/book/hooks/book-read-keys";
 
 // New settings hooks
 import {
   buildReminderSchedulePatch,
   buildReadingReminderTogglePatch,
 } from "./lib/reminder-consent-core";
+import {
+  buildOnboardingProfileSnapshot,
+  diffOnboardingProfile,
+  type OnboardingProfileSnapshot,
+} from "./lib/profile-sync-core";
 import { useSettingsPage } from "./hooks/useSettingsPage";
 import { useSettingsSearch } from "./hooks/useSettingsSearch";
 import { usePersonalizationScore } from "./hooks/usePersonalizationScore";
@@ -276,25 +283,34 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     showToast("Preferences updated!", "success");
   }
 
-  // Persist onboarding-derived prefs to backend
-  const lastOnboardingPrefsRef = useRef<string>("");
+  // Persist onboarding-derived prefs to backend. ACCT-04: the first hydrated
+  // snapshot is this device's copy (defaults on a fresh browser), not a user
+  // edit, so it only becomes the baseline; later edits send just the changed
+  // fields.
+  const onboardingProfileBaselineRef = useRef<OnboardingProfileSnapshot | null>(null);
   useEffect(() => {
     if (!onboardingHydrated) return;
-    const snapshot = JSON.stringify({
+    const snapshot = buildOnboardingProfileSnapshot({
       learningStyle: onboarding.learningStyle,
       quizIntensity: onboarding.quizIntensity,
       streakMode: onboarding.streakMode,
       motivationStyle: onboarding.motivationStyle,
       dailyGoalMinutes: onboarding.dailyGoalMinutes,
-      reminderTime: onboarding.reminderTime.trim() ? onboarding.reminderTime : null,
+      reminderTime: onboarding.reminderTime,
     });
-    if (snapshot === lastOnboardingPrefsRef.current) return;
-    lastOnboardingPrefsRef.current = snapshot;
+    const baseline = onboardingProfileBaselineRef.current;
+    if (baseline === null) {
+      onboardingProfileBaselineRef.current = snapshot;
+      return;
+    }
+    const changed = diffOnboardingProfile(baseline, snapshot);
+    if (!changed) return;
     const timer = setTimeout(() => {
+      onboardingProfileBaselineRef.current = snapshot;
       fetch("/app/api/book/me/profile", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ profile: JSON.parse(snapshot) }),
+        body: JSON.stringify({ profile: changed }),
       }).catch(() => {});
     }, 800);
     return () => clearTimeout(timer);
@@ -307,6 +323,25 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     onboarding.dailyGoalMinutes,
     onboarding.reminderTime,
   ]);
+
+  // ACCT-04: show the reminder time the server actually sends at
+  // (settings.notifications.reminderTimeLocal), not this device's onboarding copy.
+  const [serverReminderTime, setServerReminderTime] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    fetchBookJsonCached<{
+      settings: { notifications?: { reminderTimeLocal?: unknown } } | null;
+    }>(SETTINGS_KEY)
+      .then((payload) => {
+        const time = payload.settings?.notifications?.reminderTimeLocal;
+        if (!cancelled && typeof time === "string") setServerReminderTime(time);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const reminderTime = serverReminderTime ?? onboarding.reminderTime;
 
   // H26: The reading-reminder cron reads the per-user send time exclusively from
   // settings.notifications.reminderTimeLocal / reminderTimezone (defaulting to
@@ -339,14 +374,14 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     const patch = buildReadingReminderTogglePatch(
       enabled,
       detectReminderTimezone(),
-      onboarding.reminderTime || undefined,
+      reminderTime || undefined,
     );
     if (!patch) return;
     fetchBookJson("/app/api/book/me/settings", {
       method: "PATCH",
       body: JSON.stringify(patch),
     }).catch(() => {});
-  }, [onboarding.reminderTime]);
+  }, [reminderTime]);
 
   // H26 backfill: users who chose a reminder time before this fix have
   // profile.reminderTime but no settings.notifications.reminderTimeLocal/zone,
@@ -534,7 +569,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   function getNotificationsSummary() {
     const parts: string[] = [];
     if (preferences.notifications.readingReminderEnabled) {
-      parts.push(`Reminders at ${onboarding.reminderTime || "8:00 PM"}`);
+      parts.push(`Reminders at ${reminderTime || "8:00 PM"}`);
     }
     if (preferences.notifications.streakReminderEnabled && ext.streakMode !== "off") {
       parts.push("Streak alerts on");
@@ -1399,8 +1434,8 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                     description="When to receive your daily reading nudge."
                   >
                     <TimePicker
-                      value={hydrated ? onboarding.reminderTime || "20:00" : "20:00"}
-                      onChange={(v) => { setReminderTime(v); persistReminderSchedule(v); announce(`Reminder time changed to ${v}`); showSavedToast(); }}
+                      value={hydrated ? reminderTime || "20:00" : "20:00"}
+                      onChange={(v) => { setReminderTime(v); setServerReminderTime(v); persistReminderSchedule(v); announce(`Reminder time changed to ${v}`); showSavedToast(); }}
                       label="Reminder time"
                     />
                   </SettingRow>

@@ -15,6 +15,10 @@ type Call = { url: string; method: string; body: unknown };
 
 let calls: Call[] = [];
 let failWrites = false;
+let serverSettings: { settings: Record<string, unknown> | null; updatedAt: string | null } = {
+  settings: null,
+  updatedAt: null,
+};
 
 function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -32,7 +36,7 @@ globalThis.fetch = (async (input: RequestInfo | URL, init: RequestInit = {}) => 
     body: typeof init.body === "string" ? JSON.parse(init.body) : undefined,
   });
   if (method === "GET" && url.endsWith("/me/settings")) {
-    return json({ settings: null, updatedAt: null });
+    return json(serverSettings);
   }
   if (method !== "GET") {
     if (failWrites) return json({ error: "unavailable" }, 503);
@@ -71,7 +75,9 @@ function writes(path: string) {
 }
 
 function section(view: ReturnType<typeof render>, title: string) {
-  const el = view.container.querySelector(`section[aria-label="${title}"]`);
+  const el = Array.from(view.container.querySelectorAll("section")).find(
+    (node) => node.getAttribute("aria-label") === title,
+  );
   assert.ok(el, `section ${title} is rendered`);
   return el as HTMLElement;
 }
@@ -85,6 +91,7 @@ function toggleSection(view: ReturnType<typeof render>, title: string) {
 beforeEach(() => {
   calls = [];
   failWrites = false;
+  serverSettings = { settings: null, updatedAt: null };
   window.localStorage.clear();
   invalidateBookCache("/app/api/book/me");
   document.documentElement.className = "";
@@ -123,4 +130,37 @@ test("ACCT-01: a theme change survives expanding another section and a reload", 
   // Appearance was left expanded, so it reopens expanded.
   const dark = within(section(reloaded, "Appearance")).getByRole("radio", { name: "Dark" });
   assert.equal(dark.getAttribute("aria-checked"), "true", "theme is still Dark after reload");
+});
+
+test("ACCT-04: opening Settings on a fresh browser does not write the profile", async () => {
+  renderSettings();
+  await wait(1300);
+  assert.deepEqual(writes("/me/profile"), []);
+});
+
+test("ACCT-04: changing the daily goal writes only that profile field", async () => {
+  const view = renderSettings();
+  await wait(1000);
+  toggleSection(view, "Goals & Motivation");
+  await wait(20);
+  const goals = within(section(view, "Goals & Motivation"));
+  fireEvent.click(goals.getByRole("radio", { name: /Deep/ }));
+  await wait(1000);
+
+  const sent = writes("/me/profile");
+  assert.equal(sent.length, 1);
+  assert.deepEqual((sent[0]!.body as { profile: unknown }).profile, { dailyGoalMinutes: 30 });
+});
+
+test("ACCT-04: the reminder time shown is the one the server sends at", async () => {
+  serverSettings = {
+    settings: { notifications: { reminderTimeLocal: "07:00", reminderTimezone: "America/Toronto" } },
+    updatedAt: "2026-11-11T00:00:00.000Z",
+  };
+  const view = renderSettings();
+  await wait(100);
+  toggleSection(view, "Notifications");
+  await wait(50);
+  const input = within(section(view, "Notifications")).getByLabelText("Reminder time") as HTMLInputElement;
+  assert.equal(input.value, "07:00");
 });
