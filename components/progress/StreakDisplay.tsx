@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import type { StreakData } from "./progressTypes";
@@ -62,22 +61,15 @@ export function StreakDisplay({ streak }: StreakDisplayProps) {
             </span>
           </div>
 
-          {/* Flow Freeze status */}
-          <div className="text-xs" style={{ color: "var(--text-secondary)" }}>
-            {streak.freezesEquipped > 0 ? (
+          {/* Streak Shields (server streak store), only when some are held */}
+          {streak.freezesEquipped > 0 && (
+            <div className="text-xs" style={{ color: "var(--text-secondary)" }}>
               <span>
-                {"\u2744\uFE0F"} {streak.freezesEquipped} Flow Freeze ready
+                {"\u2744\uFE0F"} {streak.freezesEquipped} Streak{" "}
+                {streak.freezesEquipped === 1 ? "Shield" : "Shields"} ready
               </span>
-            ) : (
-              <Link
-                href="/rewards"
-                className="cf-focus cursor-pointer transition-colors hover:underline rounded"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                Get a Flow Freeze {"\u2192"}
-              </Link>
-            )}
-          </div>
+            </div>
+          )}
 
           {/* Next milestone */}
           {nextMilestone && daysToMilestone !== null && (

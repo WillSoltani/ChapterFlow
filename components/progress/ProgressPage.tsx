@@ -375,10 +375,6 @@ function buildProgressData(
     activeBooks,
     completedBooks,
     dailyQuests: wiredQuests,
-    // Kept for type compatibility (ProgressPageData.questBonusFP) but no longer
-    // surfaced as a currency promise — quests are habit nudges, not an IP award.
-    // Stable full-pool value so it never reads as "+0" if anything consumes it.
-    questBonusFP: wiredQuests.length * 25,
     reviews: reviewData,
     readingActivity: {
       days: readingDays,

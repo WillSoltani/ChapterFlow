@@ -44,13 +44,9 @@ function InsightPointsIcon({ size = 16 }: { size?: number }) {
 
 interface FlowPointsIndicatorProps {
   points: number;
-  availableIPToday?: number;
 }
 
-export function FlowPointsIndicator({
-  points,
-  availableIPToday = 0,
-}: FlowPointsIndicatorProps) {
+export function FlowPointsIndicator({ points }: FlowPointsIndicatorProps) {
   const prefersReduced = useReducedMotion();
 
   return (
@@ -79,11 +75,6 @@ export function FlowPointsIndicator({
           Insight Points (IP)
         </span>
       </div>
-      {availableIPToday > 0 && (
-        <span className="text-xs" style={{ color: "var(--accent-violet)" }}>
-          +{availableIPToday} IP available
-        </span>
-      )}
     </motion.div>
   );
 }

@@ -166,7 +166,6 @@ export interface ProgressPageData {
   activeBooks: ActiveBook[];
   completedBooks: CompletedBook[];
   dailyQuests: DailyQuest[];
-  questBonusFP: number;
   reviews: ReviewData;
   readingActivity: ReadingActivityData;
   nextMilestones: Milestone[];

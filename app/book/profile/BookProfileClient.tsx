@@ -734,8 +734,8 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
     (billingState.payload?.entitlement.remainingFreeStarts ?? 0);
   const moreBooksToUnlock = Math.max(0, CATALOG_BOOK_COUNT - accessibleBookCount);
   const upgradeMessage = statsSummary.booksCompleted > 0
-    ? `You've completed ${statsSummary.totalChaptersCompleted} chapters. Unlock ${moreBooksToUnlock} more books, advanced quizzes, streak freezes, and full reading analytics with Pro.`
-    : `Unlock ${moreBooksToUnlock} more books, advanced quizzes, streak freezes, and full reading analytics.`;
+    ? `You've completed ${statsSummary.totalChaptersCompleted} chapters. Unlock ${moreBooksToUnlock} more books, advanced quizzes, and full reading analytics with Pro.`
+    : `Unlock ${moreBooksToUnlock} more books, advanced quizzes, and full reading analytics.`;
 
   // H4: Last updated
   const lastUpdated = "Stats updated just now";

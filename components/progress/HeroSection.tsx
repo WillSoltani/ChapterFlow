@@ -24,11 +24,6 @@ export function HeroSection({ data, onSwitchBook }: HeroSectionProps) {
   const primaryBook = data.activeBooks[0] ?? null;
   const otherBooks = data.activeBooks.slice(1);
 
-  // Estimate available IP today from incomplete quests
-  const availableIP = data.dailyQuests
-    .filter((q) => !q.completed)
-    .reduce((sum) => sum + 25, 0);
-
   return (
     <section className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.2fr]">
       {/* Left Column — Motivation Cluster */}
@@ -43,10 +38,7 @@ export function HeroSection({ data, onSwitchBook }: HeroSectionProps) {
             nextMilestones={data.nextMilestones}
             completedMinutesToday={data.todayGoal.completedMinutes}
           />
-          <FlowPointsIndicator
-            points={data.user.insightPoints}
-            availableIPToday={availableIP}
-          />
+          <FlowPointsIndicator points={data.user.insightPoints} />
         </div>
 
         {/* Daily Goal Ring — centered */}
