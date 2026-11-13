@@ -34,6 +34,9 @@ export function ThemeModeToggle({
     variant === "site" ? "text-slate-900" : "text-(--cf-text-1)"; // slate-900 intentional: light thumb on site variant
   const inactiveIconClassName =
     variant === "site" ? "text-text-secondary" : "text-(--cf-text-3)";
+  // The product header shows only the current mode's icon below sm (a single 44px
+  // button) so the phone header row fits; the site variant keeps the full slider.
+  const compact = variant === "product";
 
   return (
     <button
@@ -44,9 +47,9 @@ export function ThemeModeToggle({
       aria-pressed={isDark}
       title={`Theme: ${preferenceLabel}`}
       className={[
-        // min-h-11 floors the hit box at 44px (WCAG 2.2 target size) while the
-        // slider below keeps its h-8 visual; the button centers it vertically.
-        "group inline-flex min-h-11 items-center justify-center rounded-full border p-1 transition-colors focus-visible:outline-none focus-visible:ring-2 motion-reduce:transition-none",
+        // min-h-11/min-w-11 floor the hit box at 44px (WCAG 2.2 target size) while
+        // the slider below keeps its h-8 visual; the button centers it.
+        "group inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border p-1 transition-colors focus-visible:outline-none focus-visible:ring-2 motion-reduce:transition-none",
         hydrated ? "opacity-100" : "pointer-events-none opacity-0",
         shellClassName,
         className,
@@ -55,26 +58,37 @@ export function ThemeModeToggle({
       <span className="sr-only">
         {hydrated ? `Current theme ${preferenceLabel}.` : "Theme toggle."}
       </span>
-      <span className="relative flex h-8 w-[4.5rem] items-center">
+      <span
+        className={[
+          "relative flex h-8 items-center",
+          compact ? "w-8 sm:w-[4.5rem]" : "w-[4.5rem]",
+        ].join(" ")}
+      >
         <span
           aria-hidden="true"
           className={[
             "absolute left-0.5 top-0.5 h-7 w-7 rounded-full transition-transform duration-200 ease-out motion-reduce:transition-none",
             thumbClassName,
+            compact ? "max-sm:hidden" : "",
             isDark ? "translate-x-9" : "translate-x-0",
           ].join(" ")}
         />
-        <span className="relative z-10 flex w-full items-center justify-between px-2">
+        <span
+          className={[
+            "relative z-10 flex w-full items-center justify-between px-2",
+            compact ? "max-sm:justify-center max-sm:px-0" : "",
+          ].join(" ")}
+        >
           <Sun
             className={[
               "h-3.5 w-3.5 transition-colors duration-200 motion-reduce:transition-none",
-              !isDark ? activeIconClassName : inactiveIconClassName,
+              !isDark ? activeIconClassName : [inactiveIconClassName, compact ? "max-sm:hidden" : ""].join(" "),
             ].join(" ")}
           />
           <Moon
             className={[
               "h-3.5 w-3.5 transition-colors duration-200 motion-reduce:transition-none",
-              isDark ? activeIconClassName : inactiveIconClassName,
+              isDark ? activeIconClassName : [inactiveIconClassName, compact ? "max-sm:hidden" : ""].join(" "),
             ].join(" ")}
           />
         </span>

@@ -85,7 +85,9 @@ export function SavedBooksClient() {
       />
 
       <section
-        className="mx-auto w-full px-5 pb-24 pt-7 md:px-7"
+        id="main"
+        tabIndex={-1}
+        className="mx-auto w-full px-5 pb-24 pt-7 focus:outline-none md:px-7"
         style={{ maxWidth: 1080 }}
       >
         <div className="mb-6 flex items-end justify-between gap-3">
