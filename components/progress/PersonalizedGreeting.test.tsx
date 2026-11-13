@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { afterEach, test } from "node:test";
 import { cleanup, render } from "@testing-library/react";
 import { PersonalizedGreeting } from "./PersonalizedGreeting";
-import type { StreakData, TierPill } from "./progressTypes";
+import type { Milestone, StreakData, TierPill } from "./progressTypes";
 
 afterEach(() => cleanup());
 
@@ -23,6 +23,7 @@ function renderGreeting(
   streak: StreakData,
   completedMinutesToday = 0,
   tier: TierPill | null = { label: "Reader", percent: 28, nextLabel: "Analyst" },
+  nextMilestones: Milestone[] = [],
 ) {
   return render(
     <PersonalizedGreeting
@@ -30,11 +31,30 @@ function renderGreeting(
       tier={tier}
       streak={streak}
       goalCompletedToday={false}
-      nextMilestones={[]}
+      nextMilestones={nextMilestones}
       completedMinutesToday={completedMinutesToday}
     />,
   );
 }
+
+const NO_STREAK: StreakData = { ...STREAK, currentDays: 0, bestDays: 0, daysActiveLast7: 0 };
+
+function milestone(name: string, current: number, target: number): Milestone {
+  return { id: name, name, icon: "Mountain", description: "", current, target };
+}
+
+test("a badge not started yet is never called one chapter away", () => {
+  // "Hard Finish" needs a whole book: a brand-new reader is not one chapter from it.
+  const view = renderGreeting(NO_STREAK, 0, null, [milestone("Hard Finish", 0, 1)]);
+  assert.equal(view.queryByText(/Hard Finish/), null);
+  assert.ok(view.getByText("Ready to learn something new?"));
+});
+
+test("a badge one step from done is named without claiming what the step is", () => {
+  const view = renderGreeting(NO_STREAK, 0, null, [milestone("Three Books", 2, 3)]);
+  assert.ok(view.getByText("One more to go for the Three Books badge."));
+  assert.equal(view.queryByText(/One more chapter/), null);
+});
 
 test("a streak at risk asks the reader to read today, with the unchanged streak number", () => {
   const view = renderGreeting({ ...STREAK, atRisk: true });
