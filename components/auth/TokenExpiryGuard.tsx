@@ -27,6 +27,13 @@ function getLoginUrl(): string {
   return `/auth/login?returnTo=${returnTo}`;
 }
 
+/** Leave for sign-in. The event goes first so screens holding unsaved input
+ *  can save a draft before the page unloads. */
+function redirectToLogin() {
+  window.dispatchEvent(new CustomEvent("cf:session-expiring"));
+  window.location.assign(getLoginUrl());
+}
+
 function formatCountdown(seconds: number): string {
   const s = Math.max(0, Math.floor(seconds));
   const m = Math.floor(s / 60);
@@ -72,7 +79,7 @@ export function TokenExpiryGuard() {
         // the null cookie and never reach the failed-countdown redirect, leaving
         // the user stranded under a stale banner. Redirect to login right now.
         if (res.status === 401) {
-          window.location.assign(getLoginUrl());
+          redirectToLogin();
           return;
         }
         if (!res.ok) throw new Error(`refresh ${res.status}`);
@@ -102,7 +109,9 @@ export function TokenExpiryGuard() {
 
       if (remaining > RENEW_BEFORE_SECONDS) {
         // Healthy — likely just renewed. Clear any prior warning state.
-        if (mounted && showWarning) setShowWarning(false);
+        // Unconditional: this closure is created once, so it cannot read the
+        // current showWarning; React skips the update when nothing changes.
+        if (mounted) setShowWarning(false);
         failedRef.current = false;
         nextAttemptRef.current = 0;
         return;
@@ -120,7 +129,7 @@ export function TokenExpiryGuard() {
           if (!dismissed) setShowWarning(true);
         }
         if (remaining <= 0) {
-          window.location.assign(getLoginUrl());
+          redirectToLogin();
         }
       }
     }
