@@ -75,7 +75,8 @@ line per book in `<file>.report.jsonl`.
 While `auto` runs, make the book's cover (reference.md section 1C): choose one picture from the book, `CLI cover
 --book <cfg> --concept "..."`, generate it with the Higgsfield CLI (the `generate:` line that command prints), look at
 it, `CLI cover --book <cfg> --image <file>`. Installed before the publish, it ships with the package and the site
-pull request.
+pull request. With a queue, make the cover for every book in the file, in the file's order, as soon as the queue
+is running. `auto` makes no cover itself: when a book's outcome line says `no cover made in this run`, make it then.
 
 Three flags are the owner's rulings and are passed only when the owner gave them, for one book, never with
 `--queue`: `--approve` (yes to the pack they read; taken only while the book waits and the chapters are unchanged),

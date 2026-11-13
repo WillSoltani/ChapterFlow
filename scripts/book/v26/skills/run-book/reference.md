@@ -133,6 +133,10 @@ the next; a usage limit stops the queue (exit 3) and the identical command carri
 Each book adds one line to `<file>.report.jsonl` (outcome, score, band, spend, reasons, pack). `--approve`,
 `--keys-ok`, `--redo` and `--force` are refused with `--queue`: each is one book's ruling. Exit: the worst book
 (0, 1, 2, or 4 for a budget).
+Covers with a queue: as soon as the queue is running, make the cover (section 1C) for every book in the file, in
+the file's order. A cover takes about two minutes and a book far longer, so each is in place before its book
+publishes. A book that published without one has `no cover made in this run` in its reasons, on its outcome line
+and in the report.
 
 After `auto`: show the owner the score table and the one status line or question that SKILL.md's "What the owner
 sees" gives for the outcome, and nothing else (owner's instruction, 2026-11-12: no pack, no sample read, no flag
@@ -244,6 +248,10 @@ and turns the image into the app's files; the picture and the look at the result
    placeholder list. The housekeeping commit adds `public/book-covers/<bookId>.webp`, `.avif` and
    `scripts/book/v26/covers.json`. Send the owner the cover with SendUserFile (one card, no commentary), and add to
    the status line: `Cover: new (<art direction>).`
+
+A cover made after the book published still reaches the public site through the site pull request. For a new
+title the live store's own copy is only uploaded by the publish, so it stays without one until the registration
+runs again: say so and ask the owner.
 
 For a replaced title the public site and the logged-in web app get the new cover through the site pull request;
 the copy in the live store's own cover folder is only written for a title that has none, and which of the two

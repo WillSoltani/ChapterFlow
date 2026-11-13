@@ -184,11 +184,14 @@ export async function autoBook(ctx: PipelineCtx, configPath: string, opts: AutoO
 
   const publish = async (approve: boolean): Promise<AutoState> => {
     if (opts.noPublish) return finish("ready", []);
+    // The cover is the session's step (the `cover` verb), not this command's. A run that reaches its publish without
+    // one says so where the session and the queue report read: on the outcome line.
+    const noCover = fs.existsSync(path.join(ctx.config.runDir, "cover", `${bookId}.webp`)) ? [] : ["no cover made in this run (cover --concept, then cover --image)"];
     const report = await publishBook(ctx, { dryRun: opts.dryRun, approve, publisher: opts.publisher, packagesDir: opts.packagesDir, noGit: opts.noGit, now: opts.now ? () => opts.now!() : undefined });
     state.packageId = report.packageId;
     for (const s of report.steps) say(`${bookId}:   ${s}`);
-    if (report.outcome === "published") return finish("published", report.remaining.map((r) => `still to do: ${r}`));
-    if (report.outcome === "dry-run") return finish("dry-run", report.remaining.map((r) => `still to do: ${r}`));
+    if (report.outcome === "published") return finish("published", [...report.remaining.map((r) => `still to do: ${r}`), ...noCover]);
+    if (report.outcome === "dry-run") return finish("dry-run", [...report.remaining.map((r) => `still to do: ${r}`), ...noCover]);
     return report.outcome === "needs-approval" ? hold(report.reasons) : finish("failed", report.reasons);
   };
 

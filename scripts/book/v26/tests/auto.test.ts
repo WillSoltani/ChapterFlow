@@ -159,6 +159,9 @@ test("auto: keys drafted and checked on the web, chapters written, repairs sent,
   assert.equal(st.outcome, "published", lines.join("\n"));
   assert.equal(st.band, "auto");
   assert.equal(st.score, 100);
+  // The cover is the session's step: a run that publishes without one says so on the outcome line.
+  assert.ok(st.reasons.includes("no cover made in this run (cover --concept, then cover --image)"), st.reasons.join("|"));
+  assert.match(lines.join("\n"), /PUBLISHED[^\n]*no cover made in this run/);
   // What the owner asked to see: every chapter's score and the average, on one line just before the outcome.
   assert.deepEqual(st.chapterScores, [1, 2, 3].map((chapter) => ({ chapter, score: 100 })));
   const at = lines.findIndex((l) => l === "demo: chapter scores: ch01 100, ch02 100, ch03 100; average 100");
@@ -261,8 +264,13 @@ test("auto: a manual band gets one round on what the judge failed, then waits; -
   const before = h.count();
   const st4 = await run(h, { ...opts, approve: true, dryRun: true });
   assert.equal(st4.outcome, "dry-run", st4.reasons.join("|"));
+  assert.ok(st4.reasons.some((r) => /no cover made in this run/.test(r)), "a rehearsal says the cover is missing");
+  // The session installs the cover (cover --image writes <runDir>/cover/<bookId>.webp); the publish then says nothing of it.
+  fs.mkdirSync(path.join(h.runDir, "cover"), { recursive: true });
+  fs.writeFileSync(path.join(h.runDir, "cover", "demo.webp"), "webp");
   const st5 = await run(h, { ...opts, approve: true });
   assert.equal(st5.outcome, "published", st5.reasons.join("|"));
+  assert.ok(!st5.reasons.some((r) => /no cover/.test(r)), st5.reasons.join("|"));
   assert.equal(h.count(), before, "an approved run makes no model call");
   assert.deepEqual(published, ["put book-content/packages/demo.v21.json", "register demo", "verify demo"]);
 });
