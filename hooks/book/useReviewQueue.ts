@@ -69,10 +69,12 @@ export function useReviewQueue(bookId?: string) {
     }
   }, [bookId]);
 
-  const fetchStats = useCallback(async () => {
+  const fetchStats = useCallback(async (force = false) => {
     try {
       const { stats: s } = await fetchBookJsonCached<StatsResponse>(
-        `${REVIEWS_KEY}?mode=stats`
+        `${REVIEWS_KEY}?mode=stats`,
+        undefined,
+        force ? { forceRevalidate: true } : undefined
       );
       setStats(s);
     } catch {
@@ -128,7 +130,12 @@ export function useReviewQueue(bookId?: string) {
   );
 
   const retry = useCallback(() => fetchDueCards(true), [fetchDueCards]);
-  const refresh = useCallback(() => fetchDueCards(), [fetchDueCards]);
+  // "Keep going": re-read the due count too, so the next end screen's
+  // "N more due" counts only the cards still waiting after this page.
+  const refresh = useCallback(
+    () => Promise.all([fetchDueCards(), fetchStats(true)]).then(() => undefined),
+    [fetchDueCards, fetchStats]
+  );
 
   const currentCard = cards[currentIndex] ?? null;
   const isComplete = error === null && currentIndex >= cards.length;

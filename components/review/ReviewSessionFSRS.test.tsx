@@ -34,8 +34,24 @@ function makeCard(id: string) {
 let page = 0;
 let failLoad = false;
 let failRating = false;
-const fetchBookJsonCached = makeSpy(async (url: string) => {
+// "pages": a server with 5 due cards served 2 at a time; the due count drops as
+// cards are rated, so a stale count would repeat on the second end screen.
+let scenario: "default" | "pages" = "default";
+let rated = 0;
+const PAGED_DUE = 5;
+const PAGED_SIZE = 2;
+const fetchBookJsonCached = makeSpy(async (url: string, _init?: unknown, _opts?: unknown) => {
   if (failLoad && !url.includes("mode=stats")) throw new Error("offline");
+  if (scenario === "pages") {
+    const due = PAGED_DUE - rated;
+    if (url.includes("mode=stats")) {
+      return { stats: { totalCards: 60, dueCards: due, avgRetrievability: 0.8, bookIds: ["atomic-habits"] } };
+    }
+    const cards = Array.from({ length: Math.min(PAGED_SIZE, due) }, (_, i) =>
+      makeCard(`c${rated + i + 1}`),
+    );
+    return { cards, count: cards.length, hasMore: due > PAGED_SIZE };
+  }
   if (url.includes("mode=stats")) {
     return { stats: { totalCards: 60, dueCards: 3, avgRetrievability: 0.8, bookIds: ["atomic-habits"] } };
   }
@@ -46,6 +62,7 @@ const fetchBookJsonCached = makeSpy(async (url: string) => {
 });
 const fetchBookJson = makeSpy(async (_url: string, _init?: unknown) => {
   if (failRating) throw new Error("server error");
+  rated += 1;
   return { card: makeCard("rated") };
 });
 
@@ -68,6 +85,8 @@ afterEach(() => {
   page = 0;
   failLoad = false;
   failRating = false;
+  scenario = "default";
+  rated = 0;
   fetchBookJsonCached.calls.length = 0;
 });
 
@@ -95,6 +114,19 @@ test("PROG-08: when more are due, the end screen offers Keep going and loads the
   await rateCurrentCard(view);
   await waitFor(() => assert.ok(view.getByText(/Session Complete!/)));
   assert.equal(view.queryByRole("button", { name: /Keep going/ }), null);
+});
+
+test("PROG-08: after Keep going, the next end screen counts only the cards still due", async () => {
+  scenario = "pages";
+  const view = render(<ReviewSessionFSRS onClose={() => {}} />);
+  await rateCurrentCard(view);
+  await rateCurrentCard(view);
+  fireEvent.click(await view.findByRole("button", { name: /3 more due · Keep going/ }));
+  await view.findByText(/Front c3/);
+  await rateCurrentCard(view);
+  await rateCurrentCard(view);
+  await view.findByRole("button", { name: /1 more due · Keep going/ });
+  assert.equal(view.queryByRole("button", { name: /3 more due/ }), null);
 });
 
 test("DATA-13: a failed load shows an error with Retry, not All caught up", async () => {
