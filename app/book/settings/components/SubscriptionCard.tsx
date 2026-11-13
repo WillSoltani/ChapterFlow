@@ -9,7 +9,7 @@ import type {
   EntitlementsResponse,
   PricingTier,
 } from "@/app/book/hooks/useBookEntitlements";
-import { ANNUAL_SAVINGS_BADGE, TRIAL_CTA_LABEL, PRO_FEATURES } from "@/lib/pricing";
+import { ANNUAL_SAVINGS_BADGE, PRICING, PRO_FEATURES } from "@/lib/pricing";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 import {
   APPLE_MANAGE_SUBSCRIPTIONS_URL,
@@ -321,9 +321,13 @@ export function SubscriptionCard({
           {actionLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            TRIAL_CTA_LABEL
+            "Upgrade to Pro"
           )}
         </button>
+        {/* ACCT-12: Stripe gives the trial only to a first subscription. */}
+        <p className="mt-2 text-center text-xs text-(--cf-text-3)">
+          New subscribers get {PRICING.trialDays} days free.
+        </p>
         {actionError && (
           <div className="mt-2 flex items-center gap-2 text-xs text-(--cf-danger-text)">
             <XCircle className="h-3.5 w-3.5" />

@@ -184,7 +184,13 @@ export function Pricing() {
     : loggedIn
       ? upgradeHrefForInterval(proInterval)
       : upgradeLoginUrlForInterval(proInterval);
-  const proCtaLabel = isPro ? "Manage subscription" : TRIAL_CTA_LABEL;
+  // ACCT-12: the trial goes only to new subscribers, so a signed-in reader
+  // (who may have subscribed before) is offered "Upgrade to Pro".
+  const proCtaLabel = isPro
+    ? "Manage subscription"
+    : loggedIn
+      ? "Upgrade to Pro"
+      : TRIAL_CTA_LABEL;
   // Only the monthly view reads this; the annual view prices the annual-upfront
   // plan from its own figures (never the billed-annually plan's).
   const perMonthAmount = PRICING.monthlyAmount;
@@ -381,7 +387,7 @@ export function Pricing() {
                     className="max-w-[34ch] text-cf-label-sm leading-[1.6] text-(--text-muted)"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
-                    {PRICING.trialDays}-day free trial, then{" "}
+                    New subscribers: {PRICING.trialDays}-day free trial, then{" "}
                     {isAnnual
                       ? `${PRICING_TIER_DISPLAY.annual_upfront.price} ${PRICING.currency}/year`
                       : `${formatAmount(perMonthAmount)} ${PRICING.currency}/month`}

@@ -4,7 +4,7 @@ import { useId, useState } from "react";
 import { X } from "lucide-react";
 import { ProBadge } from "./ProBadge";
 import { Button } from "@/app/book/components/ui/Button";
-import { TRIAL_CTA_LABEL } from "@/lib/pricing";
+import { PRICING } from "@/lib/pricing";
 import { Dialog } from "@/components/ui/Dialog";
 
 type ProFeatureCardProps = {
@@ -92,8 +92,11 @@ export function ProFeatureCard({
                 onUpgrade?.();
               }}
             >
-              {TRIAL_CTA_LABEL}
+              Upgrade to Pro
             </Button>
+            <p className="text-center text-xs text-(--cf-text-3)">
+              New subscribers get {PRICING.trialDays} days free.
+            </p>
             <button
               type="button"
               onClick={() => setShowModal(false)}

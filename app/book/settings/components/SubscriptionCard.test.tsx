@@ -116,3 +116,11 @@ test("ACCT-10: a Stripe subscriber keeps the renewal date and Manage", () => {
   assert.match(view.container.textContent ?? "", /Next renewal/);
   assert.ok(view.getByRole("button", { name: /Manage subscription/ }));
 });
+
+test("ACCT-12: the Free card says Upgrade to Pro and that the trial is for new subscribers", () => {
+  const view = render(<SubscriptionCard {...props({ pricingTiers: TIERS })} />);
+  const cta = view.container.querySelector("#subscription-cta");
+  assert.equal(cta?.textContent, "Upgrade to Pro");
+  assert.match(view.container.textContent ?? "", /New subscribers get 14 days free\./);
+  assert.doesNotMatch(view.container.textContent ?? "", /Start 14-day free trial/);
+});
