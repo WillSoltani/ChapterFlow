@@ -2,17 +2,23 @@ import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
+  assertWithinTotalSize,
   bookOk,
   readJsonBody,
+  SETTINGS_TOTAL_MAX_CHARS,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
+import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import {
   getUserSettingsItem,
-  putUserSettingsItem,
+  updateUserSettingsItem,
 } from "@/app/app/api/book/_lib/repo";
 
 export const runtime = "nodejs";
+
+/** Most keys one progress PATCH may carry (iOS sends three). */
+const MAX_PROGRESS_KEYS = 32;
 
 /**
  * PATCH /api/book/me/onboarding/progress
@@ -29,27 +35,34 @@ export async function PATCH(req: Request) {
     const tableName = await getBookTableName();
 
     const body = await readJsonBody(req);
+    // updatedAt is reserved: the server stamps it below.
+    delete body.updatedAt;
+    if (Object.keys(body).length > MAX_PROGRESS_KEYS) {
+      throw new BookApiError(413, "payload_too_large", "That onboarding update has too many fields.");
+    }
 
-    const existing = await getUserSettingsItem(tableName, user.sub);
-    const currentSettings = existing?.settings ?? {};
-    const currentProgress =
-      (currentSettings.onboarding_progress as Record<string, unknown>) ?? {};
-
-    const mergedProgress: Record<string, unknown> = {
-      ...currentProgress,
-      ...body,
-      updatedAt: new Date().toISOString(),
-    };
-
-    const mergedSettings: Record<string, unknown> = {
-      ...currentSettings,
-      onboarding_progress: mergedProgress,
-    };
-
-    await putUserSettingsItem(tableName, {
-      userId: user.sub,
-      settings: mergedSettings,
-      createdAt: existing?.createdAt,
+    // Optimistic-concurrency read-modify-write, like the settings PATCH, so a
+    // settings change saved at the same time (theme, an email unsubscribe) is
+    // never overwritten. Unknown progress keys are still accepted.
+    await updateUserSettingsItem(tableName, user.sub, (currentSettings) => {
+      const currentProgress =
+        (currentSettings.onboarding_progress as Record<string, unknown>) ?? {};
+      const merged: Record<string, unknown> = {
+        ...currentSettings,
+        onboarding_progress: {
+          ...currentProgress,
+          ...body,
+          updatedAt: new Date().toISOString(),
+        },
+      };
+      // Growth-only cap, as in the settings PATCH.
+      assertWithinTotalSize(
+        merged,
+        SETTINGS_TOTAL_MAX_CHARS,
+        "settings",
+        JSON.stringify(currentSettings).length,
+      );
+      return merged;
     });
 
     return bookOk({ success: true });
