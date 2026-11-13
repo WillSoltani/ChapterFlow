@@ -42,6 +42,9 @@ import { useOnboardingRedirect, useOnboardingState } from "@/app/book/hooks/useO
 import { useToast } from "@/app/book/hooks/useToast";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { useServerTier } from "@/hooks/book/useServerTier";
+import { fetchBookJson } from "@/lib/client/book-api";
+import { fetchBookJsonCached } from "@/lib/client/book-api-cache";
+import { saveTakeaway } from "@/app/book/profile/lib/save-takeaway-core";
 import { tierIdentity } from "@/components/progress/progressTypes";
 import {
   BadgeDetailPanel,
@@ -167,6 +170,8 @@ function toDayKeyLocal(d: Date) {
 
 // ─── Streak microcopy — full lookup table (A5) ───
 
+const NOTEBOOK_KEY = "/app/api/book/me/notebook";
+
 const STREAK_MILESTONES: [number, string][] = [
   [365, "One full year. Legendary. 👑"],
   [200, "200 days of reading. This is who you are now."],
@@ -239,6 +244,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
   const [achievementView, setAchievementView] = useState<"showcase" | "timeline">("showcase");
   const [activeSectionIdx, setActiveSectionIdx] = useState(0);
   const [takeawayText, setTakeawayText] = useState("");
+  const [savingTakeaway, setSavingTakeaway] = useState(false);
   const { toast, showToast } = useToast();
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
@@ -647,34 +653,48 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
 
   const navigateToSettings = () => router.push("/book/settings");
 
-  const handleSaveTakeaway = useCallback(() => {
-    const text = takeawayText.trim();
-    if (!text || !currentSnapshot) return;
+  // The takeaway goes to the chapter shown in Momentum; without a known
+  // chapter number the box is hidden (the account write needs it).
+  const takeawayTarget = useMemo(() => {
+    if (!currentSnapshot) return null;
     const chapterId = currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId;
-    const storageKey = getChapterReaderStorageKey(currentSnapshot.book.id, chapterId);
-    const existing = parseStoredReaderState(window.localStorage.getItem(storageKey));
-    const updated = existing
-      ? { ...existing, notes: existing.notes ? `${existing.notes}\n\n${text}` : text }
-      : {
-          activeTab: "summary" as const,
-          readingDepth: "standard" as const,
-          exampleFilter: "all" as const,
-          quizAnswers: {},
-          quizResult: null,
-          quizRetakeCount: 0,
-          quizFailureStreak: 0,
-          quizCooldownUntil: null,
-          notes: text,
-          focusMode: false,
-          fontScale: "md" as const,
-          showRecap: false,
-          explanationOpen: {},
-        };
-    window.localStorage.setItem(storageKey, JSON.stringify(updated));
-    emitBookStorageChanged("profile:takeaway");
-    setTakeawayText("");
-    showToast("Takeaway saved", "success");
-  }, [takeawayText, currentSnapshot, currentReadingDetails, showToast]);
+    const chapter = getBookChaptersBundle(currentSnapshot.book.id).chapters.find(
+      (c) => c.id === chapterId
+    );
+    return chapter
+      ? { bookId: currentSnapshot.book.id, chapterId: chapter.id, chapterNumber: chapter.order }
+      : null;
+  }, [currentSnapshot, currentReadingDetails]);
+
+  const handleSaveTakeaway = useCallback(async () => {
+    const text = takeawayText.trim();
+    if (!text || !takeawayTarget || savingTakeaway) return;
+    setSavingTakeaway(true);
+    try {
+      await saveTakeaway(
+        {
+          fetchJson: fetchBookJson,
+          refetchNotebook: () =>
+            fetchBookJsonCached(NOTEBOOK_KEY, undefined, { forceRevalidate: true }),
+          readLocal: (key) => window.localStorage.getItem(key),
+          writeLocal: (key, value) => window.localStorage.setItem(key, value),
+          now: () => new Date().toISOString(),
+        },
+        {
+          ...takeawayTarget,
+          text,
+          localKey: getChapterReaderStorageKey(takeawayTarget.bookId, takeawayTarget.chapterId),
+        }
+      );
+      emitBookStorageChanged("profile:takeaway");
+      setTakeawayText("");
+      showToast("Takeaway saved", "success");
+    } catch {
+      showToast("Couldn't save your takeaway. Try again.", "error");
+    } finally {
+      setSavingTakeaway(false);
+    }
+  }, [takeawayText, takeawayTarget, savingTakeaway, showToast]);
 
   // ─── Loading state (H5) ───
 
@@ -1239,23 +1259,27 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                   <p className="mt-2 text-base font-medium text-(--cf-text-1)">
                     What&apos;s one thing from {currentSnapshot?.book.title ?? "your reading"} that stuck with you?
                   </p>
+                  {takeawayTarget ? (
                   <div className="mt-4 flex gap-2">
                     <input
                       type="text"
                       placeholder="Type a quick takeaway..."
                       value={takeawayText}
                       onChange={(e) => setTakeawayText(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && takeawayText.trim() && handleSaveTakeaway()}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && takeawayText.trim()) void handleSaveTakeaway();
+                      }}
                       className="flex-1 rounded-xl border border-(--cf-border) bg-(--cf-surface) px-4 py-2.5 text-sm text-(--cf-text-1) placeholder:text-(--cf-text-soft) outline-none focus:border-(--cf-accent-border)"
                     />
                     <Button
                       variant="primary"
-                      onClick={handleSaveTakeaway}
-                      disabled={!takeawayText.trim()}
+                      onClick={() => void handleSaveTakeaway()}
+                      disabled={!takeawayText.trim() || savingTakeaway}
                     >
                       Save takeaway
                     </Button>
                   </div>
+                  ) : null}
                   {currentSnapshot ? (
                     <button
                       type="button"
