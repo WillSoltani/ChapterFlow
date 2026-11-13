@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import {
@@ -189,8 +189,6 @@ export function BookSettingsClient({
   initialUpgradeInterval,
   openUpgrade = false,
 }: BookSettingsClientProps) {
-  const router = useRouter();
-
   // Existing state hooks
   const bookPreferences = useBookPreferences();
   const { state: preferences, patchSection, hydrated: prefsHydrated } = bookPreferences;
@@ -663,6 +661,14 @@ export function BookSettingsClient({
     return !isSectionVisible(sectionId);
   }
 
+  // ACCT-26: rows matching the search are highlighted.
+  function isMatch(id: string): boolean {
+    return isSearching && results?.matchedIds.has(id) === true;
+  }
+  function matchClass(id: string): string {
+    return isMatch(id) ? " rounded-lg ring-1 ring-(--cf-accent-border) bg-(--cf-accent-muted)" : "";
+  }
+
   // While searching, force-expand a matched (but collapsed) section so the
   // matched row is actually visible instead of hidden behind a collapsed header.
   // Sections opened for an upgrade are shown the same way: held on this page
@@ -726,14 +732,15 @@ export function BookSettingsClient({
       {/* Header */}
       <div className="mx-auto mb-6 flex max-w-5xl items-center justify-between">
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => router.back()}
-            aria-label="Go back"
+          {/* ACCT-26: a fixed link, so returning from the billing portal never
+              sends Back to an outside page. */}
+          <Link
+            href="/dashboard"
+            aria-label="Back to Home"
             className="cf-pressable cf-focus flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) transition hover:bg-(--cf-surface-muted)"
           >
             <ArrowLeft className="h-4 w-4" />
-          </button>
+          </Link>
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-(--cf-text-1)">
               Settings
@@ -814,7 +821,11 @@ export function BookSettingsClient({
             dimmed={isSectionDimmed("reading")}
           >
             {/* 1A. Reading Profiles */}
-            <div className="px-3 py-3">
+            <div
+              id="reading-profile"
+              data-highlighted={isMatch("reading-profile") || undefined}
+              className={`px-3 py-3${matchClass("reading-profile")}`}
+            >
               <p className="text-sm font-medium text-(--cf-text-1)">Reading profiles</p>
               <p className="mt-0.5 text-xs text-(--cf-text-3)">
                 This sets your starting point. Customize anything below.
@@ -849,6 +860,7 @@ export function BookSettingsClient({
             {/* 1C. Font Family */}
             <SettingRow
               id="font-family"
+              highlighted={isMatch("font-family")}
               label="Font family"
               description="Choose the typeface that feels most comfortable for long reads."
             >
@@ -876,6 +888,7 @@ export function BookSettingsClient({
             {/* 1D. Font Size */}
             <SettingRow
               id="font-size"
+              highlighted={isMatch("font-size")}
               label="Font size"
               description="Adjust the reading text size in chapters."
             >
@@ -896,6 +909,7 @@ export function BookSettingsClient({
             {/* 1E. Line Spacing */}
             <SettingRow
               id="line-spacing"
+              highlighted={isMatch("line-spacing")}
               label="Line spacing"
               description="Breathing room between lines of text."
             >
@@ -918,6 +932,7 @@ export function BookSettingsClient({
             {/* 1F. Letter Spacing */}
             <SettingRow
               id="letter-spacing"
+              highlighted={isMatch("letter-spacing")}
               label="Letter spacing"
               description="Space between individual characters."
             >
@@ -940,6 +955,7 @@ export function BookSettingsClient({
             {/* 1G. Focus Mode */}
             <SettingRow
               id="focus-mode"
+              highlighted={isMatch("focus-mode")}
               label="Focus mode"
               description="Just you and the words. Sidebar and header fade away while reading."
             >
@@ -955,6 +971,7 @@ export function BookSettingsClient({
             {/* 1H. Progress Bar */}
             <SettingRow
               id="progress-bar"
+              highlighted={isMatch("progress-bar")}
               label="Progress bar"
               description="A thin bar at the top showing how far you've come in the chapter."
             >
@@ -970,6 +987,7 @@ export function BookSettingsClient({
             {/* 1I. Resume Where You Left Off */}
             <SettingRow
               id="resume-position"
+              highlighted={isMatch("resume-position")}
               label="Pick up where you left off"
               description="Automatically scroll to your last reading position."
             >
@@ -985,8 +1003,9 @@ export function BookSettingsClient({
             {/* 1J. Reading Time Estimates */}
             <SettingRow
               id="reading-time"
+              highlighted={isMatch("reading-time")}
               label="Show reading time"
-              description="Display estimated time to finish each book and chapter."
+              description="Display the estimated time to finish each chapter in the reader."
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.reading.showEstimatedReadingTime : true}
@@ -998,7 +1017,11 @@ export function BookSettingsClient({
             <Divider />
 
             {/* 1K. Text-to-Speech (Pro) */}
-            <div className="px-3 py-3" id="text-to-speech">
+            <div
+              id="text-to-speech"
+              data-highlighted={isMatch("text-to-speech") || undefined}
+              className={`px-3 py-3${matchClass("text-to-speech")}`}
+            >
               {isPro ? (
                 <>
                   <div className="flex items-center gap-2">
@@ -1065,7 +1088,11 @@ export function BookSettingsClient({
             dimmed={isSectionDimmed("goals")}
           >
             {/* 2A. Daily Reading Goal */}
-            <div className="px-3 py-3" id="daily-goal">
+            <div
+              id="daily-goal"
+              data-highlighted={isMatch("daily-goal") || undefined}
+              className={`px-3 py-3${matchClass("daily-goal")}`}
+            >
               <p className="text-sm font-medium text-(--cf-text-1)">Daily reading goal</p>
               <p className="mt-0.5 text-xs text-(--cf-text-3)">
                 How much time you want to invest in learning each day.
@@ -1099,22 +1126,8 @@ export function BookSettingsClient({
 
             <Divider />
 
-            {/* 2B. Weekly Chapter Goal */}
-            <SettingRow
-              id="weekly-chapter-goal"
-              label="Weekly chapter goal"
-              description="Set a weekly chapter target to aim for."
-            >
-              <Stepper
-                value={hydrated ? preferences.goals.weeklyChapterGoal : 3}
-                onChange={(v) => { patchSection("goals", { weeklyChapterGoal: v }); announce(`Weekly chapter goal changed to ${v}`); showSavedToast(); }}
-                min={1}
-                max={10}
-                label="Weekly chapter goal"
-              />
-            </SettingRow>
-
-            <Divider />
+            {/* ACCT-23: "Weekly chapter goal" stays hidden until a weekly
+                chapter count exists; the stored value is kept. */}
 
             {/* 2D. Quiz Preferences Subsection */}
             <SubsectionLabel>Quiz preferences</SubsectionLabel>
@@ -1122,6 +1135,7 @@ export function BookSettingsClient({
             {/* 2D. Question Flow */}
             <SettingRow
               id="question-flow"
+              highlighted={isMatch("question-flow")}
               label="Question flow"
               description="See questions one at a time, or all together like a worksheet."
             >
@@ -1143,6 +1157,7 @@ export function BookSettingsClient({
             {/* 2D-iii. Shuffle Questions */}
             <SettingRow
               id="shuffle-questions"
+              highlighted={isMatch("shuffle-questions")}
               label="Shuffle questions"
               description="Randomize the order each time you retake a quiz."
             >
@@ -1158,6 +1173,7 @@ export function BookSettingsClient({
             {/* 2D-iv. Retry Incorrect Only */}
             <SettingRow
               id="retry-incorrect"
+              highlighted={isMatch("retry-incorrect")}
               label="Retry incorrect only"
               description="When retaking a quiz, focus only on the ones you got wrong."
             >
@@ -1171,7 +1187,11 @@ export function BookSettingsClient({
             <Divider />
 
             {/* 2E. Streak Mode */}
-            <div className="rounded-lg px-3 py-3 transition-colors hover:bg-(--cf-surface-muted)">
+            <div
+              id="streak-mode"
+              data-highlighted={isMatch("streak-mode") || undefined}
+              className={`rounded-lg px-3 py-3 transition-colors hover:bg-(--cf-surface-muted)${matchClass("streak-mode")}`}
+            >
               <div className="flex items-center justify-between gap-4">
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-(--cf-text-1)">Streak mode</p>
@@ -1237,7 +1257,11 @@ export function BookSettingsClient({
             <Divider />
 
             {/* 2F. Motivation Style */}
-            <div className="px-3 py-3" id="motivation-style">
+            <div
+              id="motivation-style"
+              data-highlighted={isMatch("motivation-style") || undefined}
+              className={`px-3 py-3${matchClass("motivation-style")}`}
+            >
               <p className="text-sm font-medium text-(--cf-text-1)">Motivation style</p>
               <p className="mt-0.5 text-xs text-(--cf-text-3)">
                 How ChapterFlow encourages you in nudges, streaks, and progress messages.
@@ -1267,8 +1291,8 @@ export function BookSettingsClient({
                     transition={{ duration: DUR.fast }}
                     className="mx-3 mt-1 mb-2 text-cf-caption italic text-(--cf-text-3)"
                   >
-                    Enables leaderboard-style comparisons with other readers. You can switch
-                    back anytime.
+                    Nudges and progress messages get bolder and more competitive. You can
+                    switch back anytime.
                   </motion.p>
                 )}
               </AnimatePresence>
@@ -1277,7 +1301,11 @@ export function BookSettingsClient({
             <Divider />
 
             {/* 2G. Spaced Repetition (Pro) */}
-            <div className="px-3 py-3" id="spaced-repetition">
+            <div
+              id="spaced-repetition"
+              data-highlighted={isMatch("spaced-repetition") || undefined}
+              className={`px-3 py-3${matchClass("spaced-repetition")}`}
+            >
               {isPro ? (
                 <SettingRow
                   label={
@@ -1329,6 +1357,7 @@ export function BookSettingsClient({
             {/* 3A. Theme */}
             <SettingRow
               id="theme"
+              highlighted={isMatch("theme")}
               label="Theme"
               description="Choose your preferred color scheme."
             >
@@ -1351,6 +1380,7 @@ export function BookSettingsClient({
             {/* 3B. Scheduled Dark Mode */}
             <SettingRow
               id="night-mode-schedule"
+              highlighted={isMatch("night-mode-schedule")}
               label="Night mode schedule"
               description={
                 preferences.appearance.theme === "dark"
@@ -1400,6 +1430,7 @@ export function BookSettingsClient({
             {/* 3C. Reduced Motion */}
             <SettingRow
               id="reduced-motion"
+              highlighted={isMatch("reduced-motion")}
               label="Reduced motion"
               description="Minimize animations and transitions throughout the app."
             >
@@ -1428,6 +1459,7 @@ export function BookSettingsClient({
             {/* 4A. High Contrast */}
             <SettingRow
               id="high-contrast"
+              highlighted={isMatch("high-contrast")}
               label="High contrast"
               description="Sharper colors and stronger borders for improved readability."
             >
@@ -1443,6 +1475,7 @@ export function BookSettingsClient({
             {/* 4C. Color Blind Mode */}
             <SettingRow
               id="color-blind"
+              highlighted={isMatch("color-blind")}
               label="Color vision adjustment"
               description="Adjust colors throughout the app for different types of color vision."
             >
@@ -1462,7 +1495,7 @@ export function BookSettingsClient({
             <Divider />
 
             {/* 4D. Keyboard Navigation Info */}
-            <div id="keyboard-nav" className="mx-3 my-2 flex gap-3 rounded-xl bg-(--cf-surface-muted) px-4 py-3 border border-(--cf-border)" style={{ borderLeftWidth: "2px", borderLeftColor: "var(--cf-accent-border)" }}>
+            <div id="keyboard-nav" data-highlighted={isMatch("keyboard-nav") || undefined} className={`mx-3 my-2 flex gap-3 rounded-xl bg-(--cf-surface-muted) px-4 py-3 border border-(--cf-border)${matchClass("keyboard-nav")}`} style={{ borderLeftWidth: "2px", borderLeftColor: "var(--cf-accent-border)" }}>
               <Keyboard className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-text-soft)" />
               <div>
                 <p className="text-sm font-medium text-(--cf-text-1)">
@@ -1494,6 +1527,7 @@ export function BookSettingsClient({
             {/* 5A. Reading Reminders */}
             <SettingRow
               id="reading-reminders"
+              highlighted={isMatch("reading-reminders")}
               label="Reading reminders"
               description="A friendly nudge at your chosen time to keep your habit alive."
             >
@@ -1515,6 +1549,7 @@ export function BookSettingsClient({
                 >
                   <SettingRow
                     id="reminder-time"
+                    highlighted={isMatch("reminder-time")}
                     label="Reminder time"
                     description="When to receive your daily reading nudge."
                   >
@@ -1541,6 +1576,7 @@ export function BookSettingsClient({
                 >
                   <SettingRow
                     id="streak-alerts"
+                    highlighted={isMatch("streak-alerts")}
                     label="Streak alerts"
                     description="Get a heads-up when your reading streak is about to expire."
                   >
@@ -1558,6 +1594,7 @@ export function BookSettingsClient({
             {/* 5D. Break Reminders */}
             <SettingRow
               id="break-reminders"
+              highlighted={isMatch("break-reminders")}
               label="Break reminders"
               description="A gentle reminder to rest your eyes during long reading sessions."
             >
@@ -1603,6 +1640,7 @@ export function BookSettingsClient({
             {/* 5E. Weekly Summary Email */}
             <SettingRow
               id="weekly-summary"
+              highlighted={isMatch("weekly-summary")}
               label="Weekly summary email"
               description="A brief digest of your reading progress, delivered every Monday."
             >
@@ -1618,6 +1656,7 @@ export function BookSettingsClient({
             {/* 5F. Welcome-back Emails */}
             <SettingRow
               id="welcome-back"
+              highlighted={isMatch("welcome-back")}
               label="Welcome-back emails"
               description="A friendly email if you've been away for a while, with a bonus to welcome you back."
             >
@@ -1644,7 +1683,11 @@ export function BookSettingsClient({
             dimmed={isSectionDimmed("account")}
           >
             {/* 6A. Subscription Status */}
-            <div className="px-3 py-3" id="subscription">
+            <div
+              id="subscription"
+              data-highlighted={isMatch("subscription") || undefined}
+              className={`px-3 py-3${matchClass("subscription")}`}
+            >
               {plan === undefined ? (
                 <PlanPendingRow error={billingState.error} onRetry={refetchBilling} />
               ) : (
@@ -1673,6 +1716,7 @@ export function BookSettingsClient({
 
             <SettingRow
               id="analytics"
+              highlighted={isMatch("analytics")}
               label="Share usage analytics"
               description="Off by default. Help improve ChapterFlow by sharing device, performance, and navigation data, plus an approximate (city-level) location. We never sell this data or use it for ads. See our Privacy Policy for details."
             >
@@ -1687,6 +1731,7 @@ export function BookSettingsClient({
 
             <SettingRow
               id="reading-history"
+              highlighted={isMatch("reading-history")}
               label="Save reading history"
               description="Save your daily reading activity to power your streaks and reading history."
             >
@@ -1702,6 +1747,7 @@ export function BookSettingsClient({
             {/* 6C. Data Export */}
             <SettingRow
               id="export-data"
+              highlighted={isMatch("export-data")}
               label="Export my data"
               description="Download your reading history, notes, bookmarks, and quiz results."
             >
@@ -1719,6 +1765,7 @@ export function BookSettingsClient({
             {/* 6D. Refresh Preferences */}
             <SettingRow
               id="refresh-preferences"
+              highlighted={isMatch("refresh-preferences")}
               label="Refresh my preferences"
               description="Re-run the personalization wizard to update your reading profile."
             >
@@ -1804,6 +1851,7 @@ export function BookSettingsClient({
               {/* ACCT-15: a failure (non-OK or network) throws, so DangerZone
                   keeps its dialog open with the inline error. */}
               <DangerZone
+                highlightedIds={results?.matchedIds}
                 onDeactivate={async () => {
                   const res = await fetch("/app/api/book/me/account/deactivate", { method: "POST" });
                   if (res.ok) {

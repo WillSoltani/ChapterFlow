@@ -467,3 +467,65 @@ test("ACCT-02: finishing the preferences wizard also sets the depth", async () =
   assert.equal(extended.profileCustomized, true);
   assert.equal(extended.contentTone, "gentle");
 });
+
+test("ACCT-20: the Rival style promises no leaderboard", async () => {
+  const view = renderSettings();
+  await wait(100);
+  toggleSection(view, "Goals & Motivation");
+  await wait(20);
+  fireEvent.click(within(section(view, "Goals & Motivation")).getByRole("radio", { name: /Rival/ }));
+  await wait(400);
+  assert.doesNotMatch(view.container.textContent ?? "", /leaderboard/i);
+});
+
+test("ACCT-23: Weekly chapter goal is hidden; the reading-time setting names the reader", async () => {
+  const view = renderSettings();
+  await wait(100);
+  toggleSection(view, "Goals & Motivation");
+  await wait(20);
+  assert.equal(view.queryByText("Weekly chapter goal"), null);
+  const readingTime = view.container.querySelector("#reading-time");
+  assert.match(readingTime?.textContent ?? "", /in the reader/);
+
+  fireEvent.change(view.getByRole("textbox", { name: "Search settings" }), { target: { value: "weekly chapter" } });
+  await wait(20);
+  assert.equal(view.queryByText("Weekly chapter goal"), null, "search does not reveal it either");
+});
+
+test("ACCT-26: Back goes to Home", async () => {
+  const view = renderSettings();
+  await wait(50);
+  const back = view.getByRole("link", { name: "Back to Home" });
+  assert.equal(back.getAttribute("href"), "/dashboard");
+});
+
+test("ACCT-26: every searchable setting has a row on the page", async () => {
+  const { SETTINGS_SEARCH_INDEX } = await import("./constants/searchKeywords");
+  const view = renderSettings();
+  await wait(100);
+  for (const title of ["Goals & Motivation", "Appearance", "Accessibility", "Notifications", "Account & Subscription"]) {
+    toggleSection(view, title);
+    await wait(20);
+  }
+  await wait(400);
+  const missing = SETTINGS_SEARCH_INDEX.map((item) => item.id).filter(
+    (id) => !view.container.querySelector(`[id="${id}"]`),
+  );
+  assert.deepEqual(missing, []);
+});
+
+test("ACCT-26: search highlights the matching rows", async () => {
+  const view = renderSettings();
+  await wait(100);
+  fireEvent.change(view.getByRole("textbox", { name: "Search settings" }), { target: { value: "font size" } });
+  await wait(400);
+  const fontSize = view.container.querySelector("#font-size") as HTMLElement;
+  const fontFamily = view.container.querySelector("#font-family") as HTMLElement;
+  assert.equal(fontSize.dataset.highlighted, "true");
+  assert.notEqual(fontFamily.dataset.highlighted, "true");
+
+  fireEvent.change(view.getByRole("textbox", { name: "Search settings" }), { target: { value: "delete" } });
+  await wait(400);
+  const del = view.container.querySelector("#delete-account") as HTMLElement | null;
+  assert.equal(del?.dataset.highlighted, "true");
+});

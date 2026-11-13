@@ -20,6 +20,7 @@ export function SettingRow({
   return (
     <div
       id={id}
+      data-highlighted={highlighted || undefined}
       className={`flex flex-col items-start gap-2 rounded-lg px-3 py-3 transition-colors hover:bg-(--cf-surface-muted) sm:flex-row sm:items-center sm:justify-between sm:gap-4 ${
         highlighted ? "ring-1 ring-(--cf-accent-border) bg-(--cf-accent-muted)" : ""
       }`}
