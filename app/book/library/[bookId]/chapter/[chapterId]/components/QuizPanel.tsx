@@ -578,7 +578,7 @@ function ResultsScreen({
             onClick={onContinueToPractice}
             className="w-full rounded-2xl bg-(--cr-accent) px-6 py-4 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90 hover:shadow-[0_4px_20px_color-mix(in_srgb,var(--cr-accent)_35%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)"
           >
-            Continue to Practice &rarr;
+            Finish chapter &rarr;
           </button>
         ) : (
           <button

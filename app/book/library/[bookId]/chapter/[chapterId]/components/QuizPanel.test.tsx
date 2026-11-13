@@ -307,3 +307,23 @@ test("the review view of a passed quiz offers no retake", () => {
   assert.ok(view.getByRole("button", { name: /Back to Results/ }));
   assert.equal(view.queryByRole("button", { name: /Retake Quiz/ }), null);
 });
+
+test("READER-13: a passed quiz's main button says Finish chapter", () => {
+  const passed = makeSession(
+    {
+      status: "passed",
+      result: {
+        attemptNumber: 1,
+        scorePercent: 100,
+        correctAnswers: 2,
+        totalQuestions: 2,
+        passed: true,
+        submittedAt: "2026-11-12T00:00:00.000Z",
+      },
+    },
+    2,
+  );
+  const view = render(<Harness session={passed} />);
+  assert.ok(view.getByRole("button", { name: /^Finish chapter/ }));
+  assert.equal(view.queryByRole("button", { name: /Continue to Practice/ }), null);
+});
