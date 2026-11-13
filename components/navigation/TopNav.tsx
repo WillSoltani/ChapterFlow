@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type KeyboardEventHandler, type MutableRefObject } from "react";
+import dynamic from "next/dynamic";
 import { usePathname, useRouter } from "next/navigation";
 import {
   Bookmark,
@@ -24,12 +25,18 @@ import { useBookQuery } from "@/lib/client/book-api-cache";
 import { useBookViewer } from "@/hooks/book/useBookViewer";
 import { Sheet } from "@/components/ui/Dialog";
 import { SearchBox } from "@/components/navigation/SearchBox";
-import { GlobalSearchPanel } from "@/components/navigation/GlobalSearchPanel";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { ChapterFlowMark } from "@/components/brand/ChapterFlowMark";
 import { ThemeModeToggle } from "@/components/ThemeModeToggle";
 import { NotificationBell } from "@/components/navigation/NotificationBell";
 import { performLogout } from "@/lib/logout";
+
+// The results panel carries the catalog fallback, so it loads the first time
+// search opens instead of with every page.
+const GlobalSearchPanel = dynamic(
+  () => import("@/components/navigation/GlobalSearchPanel").then((m) => m.GlobalSearchPanel),
+  { ssr: false },
+);
 
 export type BookNavTab = "home" | "library" | "journeys" | "saved" | "progress" | "badges" | "events" | "notebook" | "settings" | "profile" | "rewards";
 
@@ -141,6 +148,7 @@ export function TopNav({
     activeTab === "profile" || moreNavItems.some((item) => item.id === activeTab);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showSearchPanel, setShowSearchPanel] = useState(false);
+  const [searchPanelLoaded, setSearchPanelLoaded] = useState(false);
   const [showMoreSheet, setShowMoreSheet] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
   // Cached admin check — dedups and shares across every TopNav mount instead of
@@ -229,7 +237,8 @@ export function TopNav({
     setSearchActiveIndex(-1);
   }, [searchQuery]);
   useEffect(() => {
-    if (!showSearchPanel) setSearchActiveIndex(-1);
+    if (showSearchPanel) setSearchPanelLoaded(true);
+    else setSearchActiveIndex(-1);
   }, [showSearchPanel]);
 
   const onSearchKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
@@ -408,7 +417,7 @@ export function TopNav({
                     searchActiveIndex >= 0 ? `desktop-gs-opt-${searchActiveIndex}` : undefined
                   }
                 />
-                {showGlobalSearchPanel ? (
+                {showGlobalSearchPanel && searchPanelLoaded ? (
                   <GlobalSearchPanel
                     open={showSearchPanel}
                     query={searchQuery}
@@ -570,7 +579,7 @@ export function TopNav({
                   searchActiveIndex >= 0 ? `mobile-gs-opt-${searchActiveIndex}` : undefined
                 }
               />
-              {showGlobalSearchPanel ? (
+              {showGlobalSearchPanel && searchPanelLoaded ? (
                 <GlobalSearchPanel
                   open={showSearchPanel}
                   query={searchQuery}

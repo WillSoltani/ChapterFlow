@@ -156,3 +156,19 @@ test("an explicit activeTab wins over the path", async () => {
   const view = await renderNav({ activeTab: "library" });
   assert.equal(primaryLink(view, "Library").getAttribute("aria-current"), "page");
 });
+
+test("the search results panel is only brought in once search opens", async () => {
+  const { TopNav } = await import("./TopNav");
+  const props = {
+    onSearchChange: () => {},
+    searchInputRef: { current: null },
+    activeTab: "library" as const,
+  };
+  const view = render(<TopNav {...props} searchQuery="" />);
+  assert.equal(view.container.querySelector("[role='listbox']"), null);
+
+  view.rerender(<TopNav {...props} searchQuery="habit" />);
+  await waitFor(() =>
+    assert.ok(view.container.querySelector("#desktop-global-search-listbox"), "panel loaded"),
+  );
+});
