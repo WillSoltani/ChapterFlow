@@ -1,7 +1,13 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { bookCtaLabel, continueHref, resumeChapterNumber } from "./book-cta-core";
+import {
+  bookCtaLabel,
+  continueHref,
+  dailyGoalFromSettings,
+  daysAtGoal,
+  resumeChapterNumber,
+} from "./book-cta-core";
 
 // D4 / C13: "Continue" opens the chapter it names.
 
@@ -54,4 +60,52 @@ test("a started book says Continue chapter N", () => {
 
 test("a book not started says Start chapter N", () => {
   assert.equal(bookCtaLabel(1, { allCompleted: false, started: false }), "Start chapter 1");
+});
+
+// HOME-24 + ACCT-03: "~N days at your daily goal" uses the real goal and the
+// minutes still left.
+
+test("a 60-minute book at a 5-minute goal takes 12 days", () => {
+  assert.equal(daysAtGoal({ estimatedMinutes: 60, progressPercent: 0, goalMinutes: 5 }), 12);
+});
+
+test("a 60-minute book at a 10-minute goal takes 6 days, not 12", () => {
+  assert.equal(daysAtGoal({ estimatedMinutes: 60, progressPercent: 0, goalMinutes: 10 }), 6);
+});
+
+test("progress shortens the estimate (rounded up)", () => {
+  assert.equal(daysAtGoal({ estimatedMinutes: 60, progressPercent: 90, goalMinutes: 5 }), 2);
+  assert.equal(daysAtGoal({ estimatedMinutes: 60, progressPercent: 50, goalMinutes: 20 }), 2);
+});
+
+test("the estimate is never below 1 day", () => {
+  assert.equal(daysAtGoal({ estimatedMinutes: 60, progressPercent: 100, goalMinutes: 5 }), 1);
+  assert.equal(daysAtGoal({ estimatedMinutes: 0, progressPercent: 0, goalMinutes: 5 }), 1);
+});
+
+test("a goal below 5 minutes counts as 5", () => {
+  assert.equal(daysAtGoal({ estimatedMinutes: 60, progressPercent: 0, goalMinutes: 1 }), 12);
+});
+
+test("goal: the Settings preset wins, 5 minutes allowed", () => {
+  assert.equal(
+    dailyGoalFromSettings(
+      { extended: { dailyGoalPreset: 5 }, dailyGoal: 20, onboarding: { dailyGoal: 30 } },
+      10,
+    ),
+    5,
+  );
+});
+
+test("goal: then settings.dailyGoal, then onboarding.dailyGoal, then the caller default", () => {
+  assert.equal(dailyGoalFromSettings({ dailyGoal: 20, onboarding: { dailyGoal: 30 } }, 10), 20);
+  assert.equal(dailyGoalFromSettings({ onboarding: { dailyGoal: 30 } }, 10), 30);
+  assert.equal(dailyGoalFromSettings({}, 15), 15);
+  assert.equal(dailyGoalFromSettings(null, 15), 15);
+  assert.equal(dailyGoalFromSettings(undefined, 15), 15);
+});
+
+test("goal: non-numbers are skipped and the result is never below 5", () => {
+  assert.equal(dailyGoalFromSettings({ extended: { dailyGoalPreset: "x" }, dailyGoal: 20 }, 10), 20);
+  assert.equal(dailyGoalFromSettings({ dailyGoal: 0 }, 2), 5);
 });

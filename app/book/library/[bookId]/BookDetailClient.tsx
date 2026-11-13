@@ -20,7 +20,9 @@ import type {
 } from "@/app/book/_lib/library-data";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
 import { freeStartsLeft } from "@/components/library/LibraryContext";
-import { bookCtaLabel } from "@/components/book/book-cta-core";
+import { bookCtaLabel, dailyGoalFromSettings, daysAtGoal } from "@/components/book/book-cta-core";
+import { useBookQuery } from "@/lib/client/book-api-cache";
+import { SETTINGS_KEY } from "@/lib/client/book-read-keys";
 import { BookHero } from "./components/BookHero";
 import { ChapterCard, type ChapterCardStatus } from "./components/ChapterCard";
 import { BackgroundOrbs } from "./components/BackgroundOrbs";
@@ -117,10 +119,12 @@ export function BookDetailClient({
   // a fabricated "560 pages" rendered as an exact attribute misleads readers
   // (the hero already shows real estimatedMinutes + chapter count).
   const pages = book.pages;
-  // Internal length proxy for the "days to finish" projection only; never shown
-  // to the reader as an exact page count.
-  const estimatedLength =
-    book.pages ?? Math.max(120, Math.round(book.estimatedMinutes * 2.8));
+  // C10: the server daily goal (shared settings read), local onboarding as fallback.
+  const { data: settingsPayload } = useBookQuery<{ settings?: unknown }>(SETTINGS_KEY);
+  const dailyGoalMinutes = dailyGoalFromSettings(
+    settingsPayload?.settings,
+    onboarding.dailyGoalMinutes,
+  );
 
   useKeyboardShortcut(
     "/",
@@ -553,13 +557,11 @@ export function BookDetailClient({
           <BookDetails
             entry={entry}
             synopsis={book.synopsis}
-            estimatedDaysToFinish={Math.max(
-              1,
-              Math.ceil(
-                Math.max(estimatedLength / 2.8, 120) /
-                  Math.max(onboarding.dailyGoalMinutes, 10),
-              ),
-            )}
+            estimatedDaysToFinish={daysAtGoal({
+              estimatedMinutes: book.estimatedMinutes,
+              progressPercent,
+              goalMinutes: dailyGoalMinutes,
+            })}
             onResetProgress={() => setShowResetModal(true)}
           />
         </motion.div>
