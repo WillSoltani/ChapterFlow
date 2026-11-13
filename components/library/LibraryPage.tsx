@@ -203,6 +203,12 @@ export function LibraryPage() {
 
   // Search query from navbar / URL → auto-scroll to Browse All
   const navSearchQuery = searchParams.get("q") ?? "";
+  // HOME-17: when ?q goes away ("Clear search"), empty the header box too.
+  const [prevNavSearchQuery, setPrevNavSearchQuery] = useState(navSearchQuery);
+  if (prevNavSearchQuery !== navSearchQuery) {
+    setPrevNavSearchQuery(navSearchQuery);
+    if (!navSearchQuery) setSearchQuery("");
+  }
   useEffect(() => {
     if (navSearchQuery) {
       const t = setTimeout(() => {
