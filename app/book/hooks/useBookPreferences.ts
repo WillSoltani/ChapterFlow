@@ -801,11 +801,23 @@ function applyOnboardingDefaults(settings: Record<string, unknown>): Record<stri
   return { ...settings, extended: ext, reading };
 }
 
+export type PreferencesSaveStatus = "idle" | "saving" | "saved" | "error";
+
+type PreferencesSectionKey = keyof BookPreferencesState;
+
 export function useBookPreferences() {
   const [hydrated, setHydrated] = useState(false);
   const [state, setState] = useState<BookPreferencesState>(defaultBookPreferencesState);
-  // Prevents write-back on the state change caused by loading server settings.
-  const skipNextServerSave = useRef(false);
+  // DATA-02: loading local or server settings is not a user change. Only
+  // patch / patchSection / reset mark sections dirty, and only dirty sections
+  // are ever sent, so a mount (Settings, reader) writes nothing and a stale
+  // device cannot overwrite sections it did not touch.
+  const dirtySections = useRef<Set<PreferencesSectionKey>>(new Set());
+  const [dirtyVersion, setDirtyVersion] = useState(0);
+  // The save waits for the server read so a change cannot race the read.
+  const [serverSettled, setServerSettled] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<PreferencesSaveStatus>("idle");
+  const stateRef = useRef(state);
   // Tracks whether localStorage had saved preferences on mount.
   // If true, server data is applied only when it is strictly newer than the
   // snapshot this device last reconciled with (see lastSyncedAt / H27).
@@ -917,18 +929,24 @@ export function useBookPreferences() {
         }
 
         if (shouldApplyServer) {
-          skipNextServerSave.current = true;
           // Hydrate the reader's tone / chapter-start order / daily goal from the
           // onboarding picks the server persisted (settings.onboarding + hoisted
           // copies) so a fresh device honors them instead of falling back to
           // defaults — the localStorage seed above only covers the same device.
-          setState(
+          const serverState =
             parseStored(JSON.stringify(applyOnboardingDefaults(payload.settings))) ??
-              defaultBookPreferencesState
-          );
+            defaultBookPreferencesState;
+          const keepLocal = [...dirtySections.current];
+          setState((prev) => {
+            // Sections the user changed while the read was in flight win.
+            const next: Record<string, unknown> = { ...serverState };
+            for (const key of keepLocal) next[key] = prev[key];
+            return next as BookPreferencesState;
+          });
         }
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setServerSettled(true));
   }, []);
 
   useEffect(() => {
@@ -1054,39 +1072,71 @@ export function useBookPreferences() {
   // race. See M44.
 
   useEffect(() => {
-    if (!hydrated) return;
-    if (skipNextServerSave.current) {
-      skipNextServerSave.current = false;
-      return;
-    }
-    const timeout = window.setTimeout(() => {
-      fetchBookJson<{ settings: Record<string, unknown>; updatedAt: string | null }>(
-        "/app/api/book/me/settings",
-        {
-          method: "PATCH",
-          body: JSON.stringify({ settings: state }),
+    stateRef.current = state;
+  }, [state]);
+
+  // Sends the dirty sections (only those) from the latest state. On failure the
+  // sections stay dirty, so a retry or the next change sends them again.
+  const flushSave = useCallback(() => {
+    const sections = [...dirtySections.current];
+    if (sections.length === 0) return;
+    dirtySections.current.clear();
+    const current = stateRef.current;
+    const settings: Record<string, unknown> = {};
+    for (const key of sections) settings[key] = current[key];
+    setSaveStatus("saving");
+    fetchBookJson<{ settings: Record<string, unknown>; updatedAt: string | null }>(
+      "/app/api/book/me/settings",
+      {
+        method: "PATCH",
+        body: JSON.stringify({ settings }),
+      }
+    )
+      .then((payload) => {
+        // Remember the server timestamp this save produced so the next load
+        // recognizes the server echoing our own write (and does not re-apply
+        // it as if it were a remote change). See H27.
+        if (typeof payload.updatedAt === "string") {
+          lastSyncedAt.current = payload.updatedAt;
+          window.localStorage.setItem(LAST_SYNCED_KEY, payload.updatedAt);
         }
-      )
-        .then((payload) => {
-          // Remember the server timestamp this save produced so the next load
-          // recognizes the server echoing our own write (and does not re-apply
-          // it as if it were a remote change). See H27.
-          if (typeof payload.updatedAt === "string") {
-            lastSyncedAt.current = payload.updatedAt;
-            window.localStorage.setItem(LAST_SYNCED_KEY, payload.updatedAt);
-          }
-          // Refetch subscribed settings readers from the server echo of our own
-          // write. Ordered AFTER recording lastSyncedAt so the refetch is
-          // recognized as our own save (H27) and not re-applied as remote.
-          invalidateBookCache(SETTINGS_KEY);
-        })
-        .catch((err) => console.error("[settings] server save failed:", err));
-    }, 500);
+        // Refetch subscribed settings readers from the server echo of our own
+        // write. Ordered AFTER recording lastSyncedAt so the refetch is
+        // recognized as our own save (H27) and not re-applied as remote.
+        invalidateBookCache(SETTINGS_KEY);
+        setSaveStatus("saved");
+      })
+      .catch((err) => {
+        console.error("[settings] server save failed:", err);
+        for (const key of sections) dirtySections.current.add(key);
+        setSaveStatus("error");
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated || !serverSettled || dirtySections.current.size === 0) return;
+    const timeout = window.setTimeout(flushSave, 500);
     return () => window.clearTimeout(timeout);
-  }, [hydrated, state]);
+  }, [hydrated, serverSettled, state, dirtyVersion, flushSave]);
+
+  // A change made just before leaving the page is sent now, not dropped with
+  // the debounce timer; a failed save is retried when the browser reconnects.
+  useEffect(() => {
+    window.addEventListener("online", flushSave);
+    return () => {
+      window.removeEventListener("online", flushSave);
+      flushSave();
+    };
+  }, [flushSave]);
+
+  const markDirty = useCallback((sections: PreferencesSectionKey[]) => {
+    for (const key of sections) dirtySections.current.add(key);
+    setDirtyVersion((v) => v + 1);
+  }, []);
 
   const patchSection = useCallback(
     <K extends keyof BookPreferencesState>(section: K, values: Partial<BookPreferencesState[K]>) => {
+      markDirty([section]);
       setState((prev) => {
         const currentSection = prev[section];
         if (typeof currentSection !== "object" || currentSection === null || Array.isArray(currentSection)) {
@@ -1117,14 +1167,18 @@ export function useBookPreferences() {
         return { ...prev, [section]: nextSection };
       });
     },
-    []
+    [markDirty]
   );
 
   const patch = useCallback((values: Partial<BookPreferencesState>) => {
+    markDirty(Object.keys(values) as PreferencesSectionKey[]);
     setState((prev) => ({ ...prev, ...values }));
-  }, []);
+  }, [markDirty]);
 
-  const reset = useCallback(() => setState(defaultBookPreferencesState), []);
+  const reset = useCallback(() => {
+    markDirty(Object.keys(defaultBookPreferencesState) as PreferencesSectionKey[]);
+    setState(defaultBookPreferencesState);
+  }, [markDirty]);
 
   return {
     hydrated,
@@ -1132,5 +1186,7 @@ export function useBookPreferences() {
     patch,
     patchSection,
     reset,
+    saveStatus,
+    retrySave: flushSave,
   };
 }
