@@ -151,10 +151,25 @@ export async function getUserChapterState(
   };
 }
 
+/**
+ * Put a chapter-state row. With `opts.expectedUpdatedAt` the Put is conditional:
+ * a string requires the stored row's `updatedAt` to match, `null` requires no
+ * stored row. A failed condition surfaces as ConditionalCheckFailedException.
+ */
 export async function putUserChapterState(
   tableName: string,
-  item: BookUserChapterStateItem
+  item: BookUserChapterStateItem,
+  opts: { expectedUpdatedAt?: string | null } = {}
 ): Promise<void> {
+  const condition =
+    opts.expectedUpdatedAt === undefined
+      ? {}
+      : opts.expectedUpdatedAt === null
+        ? { ConditionExpression: "attribute_not_exists(PK)" }
+        : {
+            ConditionExpression: "updatedAt = :expectedUpdatedAt",
+            ExpressionAttributeValues: { ":expectedUpdatedAt": opts.expectedUpdatedAt },
+          };
   await ddbDoc.send(
     new PutCommand({
       TableName: tableName,
@@ -164,6 +179,7 @@ export async function putUserChapterState(
         entity: "BOOK_USER_CHAPTER_STATE",
         ...item,
       },
+      ...condition,
     })
   );
 }
