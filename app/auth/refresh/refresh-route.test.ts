@@ -154,6 +154,21 @@ test("a session that is already fresh returns straight away", async () => {
   assert.equal(fetchCalls, 0);
 });
 
+test("no GET response can be cached, since renewals carry session cookies", async () => {
+  const cases: Array<[() => Response, string]> = [
+    [tokens, `auth_expires_at=${EXPIRED}; refresh_token=r`],
+    [() => new Response("{}", { status: 400 }), `refresh_token=r`],
+    [tokens, `auth_expires_at=${EXPIRED}`],
+    [tokens, `id_token=t; auth_expires_at=${FRESH}`],
+    [tokens, `refresh_token=r; ${REFRESH_ATTEMPT_COOKIE}=1`],
+  ];
+  for (const [reply, cookie] of cases) {
+    cognitoReply = reply;
+    const res = await route.GET(get("/dashboard", cookie));
+    assert.equal(res.headers.get("cache-control"), "no-store", cookie);
+  }
+});
+
 test("POST keeps its JSON contract for TokenExpiryGuard", async () => {
   cognitoReply = tokens;
   const res = await route.POST(

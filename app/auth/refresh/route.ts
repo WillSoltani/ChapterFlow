@@ -84,8 +84,16 @@ export async function POST(req: NextRequest) {
  * the sanitized same-origin returnTo; on any failure they go to /auth/login
  * exactly as before. A host-only marker cookie limits this to one exchange per
  * navigation, so a refresh that does not yield a usable session cannot loop.
+ * Every response is no-store: a renewal carries session cookies on a URL that
+ * many readers share (returnTo=/dashboard), so no cache may keep one.
  */
 export async function GET(req: NextRequest) {
+  const res = await refreshOnNavigation(req);
+  res.headers.set("Cache-Control", "no-store");
+  return res;
+}
+
+async function refreshOnNavigation(req: NextRequest): Promise<NextResponse> {
   const origin = resolvePublicOrigin({
     hostHeader: req.headers.get("host"),
     forwardedHostHeader: req.headers.get("x-forwarded-host"),
