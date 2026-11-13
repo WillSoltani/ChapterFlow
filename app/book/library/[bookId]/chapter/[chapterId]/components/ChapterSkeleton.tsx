@@ -21,7 +21,7 @@ export function ChapterSkeleton() {
       </div>
 
       <div
-        className="mx-auto w-full animate-pulse px-5 sm:px-8"
+        className="mx-auto w-full motion-safe:animate-pulse px-5 sm:px-8"
         style={{ maxWidth: "calc(var(--reading-font-size, 18px) * 29 + 4rem)" }}
       >
         {/* Title block */}
