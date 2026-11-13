@@ -5,6 +5,7 @@ import type { BookPackage, ToneKey } from "@/app/book/data/book-package-core";
 import { readJsonFromS3 } from "./storage";
 import { getBookContentBucket } from "./env";
 import { BookApiError } from "./errors";
+import { createExpiringPackageCache } from "./book-package-cache-core";
 
 /**
  * Server-side source for the authored book package (formerly the ~37 MB of
@@ -25,17 +26,18 @@ function packageKey(bookId: string): string {
   return `book-content/packages/${bookId}.v21.json`;
 }
 
-// Module-level caches survive across invocations on a warm Lambda. Packages are
-// immutable within a deploy, so an unbounded cache is safe and bounded by the
-// catalog size. Raw is cached by bookId (tone-agnostic); `null` is a negative
-// cache so a missing package isn't re-fetched every call. Normalized packages are
-// cached per (bookId, tone) since the legacy v13 path is tone-sensitive (v21 is
-// tone-invariant, so this collapses to one entry per book in practice).
-const rawCache = new Map<string, unknown | null>();
-const normalizedCache = new Map<string, BookPackage>();
+// Module-level caches survive across invocations on a warm Lambda. A runtime
+// republish overwrites a package in S3 without a deploy, so a package is reused
+// for 5 minutes and a missing one for 60 seconds (API-15). Raw is cached by
+// bookId (tone-agnostic). Normalized packages are cached per tone on the raw
+// object they came from, so they are dropped together with it (the legacy v13
+// path is tone-sensitive; v21 collapses to one entry per book in practice).
+const rawCache = createExpiringPackageCache<unknown>();
+const normalizedByRaw = new WeakMap<object, Map<ToneKey, BookPackage>>();
 
 async function loadRawPackage(bookId: string): Promise<unknown | null> {
-  if (rawCache.has(bookId)) return rawCache.get(bookId) ?? null;
+  const cached = rawCache.get(bookId);
+  if (cached.hit) return cached.value;
   const bucket = await getBookContentBucket();
   let raw: unknown | null;
   try {
@@ -51,8 +53,8 @@ async function loadRawPackage(bookId: string): Promise<unknown | null> {
     // Transient/other S3 errors: do NOT poison the cache — let the next call retry.
     throw error;
   }
-  rawCache.set(bookId, raw);
-  return raw;
+  rawCache.set(bookId, raw ?? null);
+  return raw ?? null;
 }
 
 /**
@@ -63,13 +65,18 @@ export async function getServerBookPackage(
   bookId: string,
   tone: ToneKey = "direct",
 ): Promise<BookPackage | undefined> {
-  const cacheKey = `${bookId}::${tone}`;
-  const cached = normalizedCache.get(cacheKey);
-  if (cached) return cached;
   const raw = await loadRawPackage(bookId);
   if (raw == null) return undefined;
+  if (typeof raw !== "object") return normalizeAnyPackage(raw, tone);
+  let byTone = normalizedByRaw.get(raw);
+  if (!byTone) {
+    byTone = new Map();
+    normalizedByRaw.set(raw, byTone);
+  }
+  const cached = byTone.get(tone);
+  if (cached) return cached;
   const pkg = normalizeAnyPackage(raw, tone);
-  normalizedCache.set(cacheKey, pkg);
+  byTone.set(tone, pkg);
   return pkg;
 }
 
