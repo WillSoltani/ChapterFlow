@@ -1,7 +1,8 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { DUR, EASE } from "@/lib/motion";
 
 // Client-only "mounted" flag without setState-in-effect (mirrors SectionReveal):
@@ -18,7 +19,7 @@ interface PageTransitionProps {
 }
 
 export function PageTransition({ children, className }: PageTransitionProps) {
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const mounted = useSyncExternalStore(
     subscribeNoop,
     getClientSnapshot,
