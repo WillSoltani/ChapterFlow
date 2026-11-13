@@ -28,17 +28,41 @@ function clearBookReaderStorage(bookId: string): void {
     `${CHAPTER_READER_STORAGE_PREFIX}:${bookId}:`,
     `${PHASE_COMPLETION_STORAGE_PREFIX}:${bookId}:`,
   ];
-  const toRemove: string[] = [];
-  for (let index = 0; index < window.localStorage.length; index += 1) {
-    const key = window.localStorage.key(index);
-    if (key && prefixes.some((prefix) => key.startsWith(prefix))) {
-      toRemove.push(key);
+  try {
+    const toRemove: string[] = [];
+    for (let index = 0; index < window.localStorage.length; index += 1) {
+      const key = window.localStorage.key(index);
+      if (key && prefixes.some((prefix) => key.startsWith(prefix))) {
+        toRemove.push(key);
+      }
     }
-  }
-  for (const key of toRemove) {
-    window.localStorage.removeItem(key);
+    for (const key of toRemove) {
+      window.localStorage.removeItem(key);
+    }
+  } catch {
+    // Storage blocked: nothing local to clear (READER-19).
   }
 }
+
+// READER-19: blocked or full storage (private mode, quota) must not crash the page.
+function readStorage(key: string): string | null {
+  try {
+    return window.localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function writeStorage(key: string, value: string): void {
+  try {
+    window.localStorage.setItem(key, value);
+  } catch {
+    // keep going without the local mirror
+  }
+}
+
+// Browsers cap keepalive request bodies at 64 KB.
+const KEEPALIVE_MAX_BODY_CHARS = 60_000;
 
 type ChapterState = "completed" | "current" | "locked";
 export type ProgressChapter = { id: string };
@@ -289,7 +313,7 @@ export function useBookProgress<TChapter extends ProgressChapter>(
   >({});
 
   useEffect(() => {
-    const parsed = parseStored(window.localStorage.getItem(storageKey), chapters);
+    const parsed = parseStored(readStorage(storageKey), chapters);
     setProgress(
       applyBookProgressFloor(
         parsed ?? initialProgress(chapters),
@@ -366,23 +390,50 @@ export function useBookProgress<TChapter extends ProgressChapter>(
 
   useEffect(() => {
     if (!hydrated) return;
-    window.localStorage.setItem(storageKey, JSON.stringify(progress));
+    writeStorage(storageKey, JSON.stringify(progress));
     emitBookStorageChanged(`progress:${bookId}`);
   }, [bookId, hydrated, progress, storageKey]);
 
+  // Latest values for the flush below, which also runs from unmount / pagehide.
+  const progressRef = useRef(progress);
+  const canWriteRef = useRef(false);
   useEffect(() => {
-    if (!hydrated || !serverReady || !dirtyRef.current) return;
-    const timeout = window.setTimeout(() => {
+    progressRef.current = progress;
+    canWriteRef.current = hydrated && serverReady;
+  }, [progress, hydrated, serverReady]);
+
+  const flushProgress = useCallback(
+    (keepalive: boolean) => {
+      if (!dirtyRef.current || !canWriteRef.current) return;
       dirtyRef.current = false;
+      const body = JSON.stringify({ state: progressRef.current });
       fetchBookJson(stateKey, {
         method: "PATCH",
-        body: JSON.stringify({ state: progress }),
+        body,
+        ...(keepalive && body.length <= KEEPALIVE_MAX_BODY_CHARS ? { keepalive: true } : {}),
       })
         .then(() => invalidateBookCache(stateKey))
         .catch(() => {});
-    }, 200);
+    },
+    [stateKey],
+  );
+
+  useEffect(() => {
+    if (!hydrated || !serverReady || !dirtyRef.current) return;
+    const timeout = window.setTimeout(() => flushProgress(false), 200);
     return () => window.clearTimeout(timeout);
-  }, [stateKey, hydrated, progress, serverReady]);
+  }, [hydrated, progress, serverReady, flushProgress]);
+
+  // DATA-06: leaving inside the debounce window (opening a chapter, Back, closing
+  // the tab) still sends the pending change.
+  useEffect(() => {
+    const onPageHide = () => flushProgress(true);
+    window.addEventListener("pagehide", onPageHide);
+    return () => {
+      window.removeEventListener("pagehide", onPageHide);
+      flushProgress(true);
+    };
+  }, [flushProgress]);
 
   const completedSet = useMemo(
     () => new Set(progress.completedChapterIds),

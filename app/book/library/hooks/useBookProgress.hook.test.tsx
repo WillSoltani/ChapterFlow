@@ -119,3 +119,71 @@ test("a failed server read still ends the wait (serverReady true, no PATCH)", as
   assert.equal(view.result.current.serverReady, true);
   assert.equal(patches().length, 0);
 });
+
+// DATA-06: a change made just before leaving (unmount inside the debounce
+// window, or the page being hidden) still reaches the server, with keepalive.
+
+test("unmounting right after setLastReadChapter flushes one keepalive PATCH", async () => {
+  const view = renderHook(() => useBookProgress("book-1", chapters));
+  await settle();
+  act(() => {
+    view.result.current.setLastReadChapter("ch02");
+  });
+  view.unmount();
+  assert.equal(patches().length, 1);
+  const init = patches()[0]?.[1] as { keepalive?: boolean; body?: string } | undefined;
+  assert.equal(init?.keepalive, true);
+  assert.equal(JSON.parse(init?.body ?? "{}").state?.lastReadChapterId, "ch02");
+  await settle();
+  assert.equal(patches().length, 1, "the debounced write is not sent a second time");
+});
+
+test("pagehide flushes a pending change once", async () => {
+  const view = renderHook(() => useBookProgress("book-1", chapters));
+  await settle();
+  act(() => {
+    view.result.current.setLastReadChapter("ch02");
+  });
+  window.dispatchEvent(new window.Event("pagehide"));
+  assert.equal(patches().length, 1);
+  assert.equal((patches()[0]?.[1] as { keepalive?: boolean })?.keepalive, true);
+  await settle();
+  view.unmount();
+  assert.equal(patches().length, 1);
+});
+
+test("unmounting with nothing pending sends no PATCH", async () => {
+  const view = renderHook(() => useBookProgress("book-1", chapters));
+  await settle();
+  view.unmount();
+  window.dispatchEvent(new window.Event("pagehide"));
+  assert.equal(patches().length, 0);
+});
+
+// READER-19: blocked or full storage must not crash the page.
+
+test("throwing localStorage still hydrates and still PATCHes", async () => {
+  const storage = window.localStorage;
+  const proto = Object.getPrototypeOf(storage) as Storage;
+  const realGet = proto.getItem;
+  const realSet = proto.setItem;
+  proto.getItem = () => {
+    throw new Error("SecurityError");
+  };
+  proto.setItem = () => {
+    throw new Error("QuotaExceededError");
+  };
+  try {
+    const view = renderHook(() => useBookProgress("book-1", chapters));
+    await settle();
+    assert.equal(view.result.current.hydrated, true);
+    act(() => {
+      view.result.current.setLastReadChapter("ch02");
+    });
+    await settle();
+    assert.equal(patches().length, 1);
+  } finally {
+    proto.getItem = realGet;
+    proto.setItem = realSet;
+  }
+});
