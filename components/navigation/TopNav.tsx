@@ -129,8 +129,9 @@ export function TopNav({
   const identityKnown = viewer.identity.source !== "fallback";
   const identityPending = !identityKnown && (!viewer.hydrated || viewer.loading);
   const fullName = viewer.identity.displayName.trim() || "Reader";
-  const firstName =
-    viewer.identity.givenName?.trim().split(/\s+/)[0] || fullName.split(/\s+/)[0] || fullName;
+  const givenName =
+    typeof viewer.identity.givenName === "string" ? viewer.identity.givenName.trim() : "";
+  const firstName = givenName.split(/\s+/)[0] || fullName.split(/\s+/)[0] || fullName;
   const avatarUrl = avatarUrlProp || viewer.identity.avatarDataUrl;
   const initial = identityPending ? "" : fullName.charAt(0).toUpperCase() || "R";
   const showAvatar = !!avatarUrl && !avatarError;
