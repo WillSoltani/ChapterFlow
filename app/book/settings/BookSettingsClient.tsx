@@ -19,6 +19,7 @@ import {
 
 // Existing hooks
 import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
+import type { PreferencesSaveStatus } from "@/app/book/hooks/useBookPreferences";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookEntitlements } from "@/app/book/hooks/useBookEntitlements";
 import type { BillingInterval } from "@/app/book/hooks/useBookEntitlements";
@@ -28,12 +29,19 @@ import { Toast } from "@/components/ui/Toast";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { fetchBookJson, redirectToReauth, isReauthResponse } from "@/app/book/_lib/book-api";
+import { fetchBookJsonCached } from "@/lib/client/book-api-cache";
+import { SETTINGS_KEY } from "@/app/book/hooks/book-read-keys";
 
 // New settings hooks
 import {
   buildReminderSchedulePatch,
   buildReadingReminderTogglePatch,
 } from "./lib/reminder-consent-core";
+import {
+  buildOnboardingProfileSnapshot,
+  diffOnboardingProfile,
+  type OnboardingProfileSnapshot,
+} from "./lib/profile-sync-core";
 import { useSettingsPage } from "./hooks/useSettingsPage";
 import { useSettingsSearch } from "./hooks/useSettingsSearch";
 import { usePersonalizationScore } from "./hooks/usePersonalizationScore";
@@ -136,7 +144,8 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   const router = useRouter();
 
   // Existing state hooks
-  const { state: preferences, patchSection, hydrated: prefsHydrated } = useBookPreferences();
+  const bookPreferences = useBookPreferences();
+  const { state: preferences, patchSection, hydrated: prefsHydrated } = bookPreferences;
   const {
     state: onboarding,
     hydrated: onboardingHydrated,
@@ -151,26 +160,60 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   const { billingState, launchBillingAction, redeemLicenseKey } =
     useBookEntitlements(true);
   const { toast, showToast } = useToast();
-  const saveToastDebounceRef = useRef<number | null>(null);
+
+  // ACCT-13: save feedback follows the writes themselves. Preference writes
+  // report through the hook's saveStatus; the reminder and profile writes that
+  // bypass it report through trackSideWrite. Each kind of write keeps its own
+  // failed attempt, so one write succeeding never hides another that failed.
+  const [sideSaveStatus, setSideSaveStatus] = useState<PreferencesSaveStatus>("idle");
+  const sideFailedRef = useRef(new Map<string, () => void>());
+  const trackSideWrite = useCallback((key: string, run: () => Promise<unknown>) => {
+    const failed = sideFailedRef.current;
+    const attempt = () => {
+      setSideSaveStatus("saving");
+      run()
+        .then(() => {
+          failed.delete(key);
+          setSideSaveStatus(failed.size > 0 ? "error" : "saved");
+        })
+        .catch(() => {
+          failed.set(key, attempt);
+          setSideSaveStatus("error");
+        });
+    };
+    attempt();
+  }, []);
+  const prefsSaveStatus = bookPreferences.saveStatus;
+  const retryPrefsSave = bookPreferences.retrySave;
+  const saveStatus: PreferencesSaveStatus =
+    prefsSaveStatus === "error" || sideSaveStatus === "error"
+      ? "error"
+      : prefsSaveStatus === "saving" || sideSaveStatus === "saving"
+        ? "saving"
+        : prefsSaveStatus === "saved" || sideSaveStatus === "saved"
+          ? "saved"
+          : "idle";
+  // Set by a user change (every control calls showSavedToast); the "Saved"
+  // toast then appears once that change's write has succeeded.
+  const saveFeedbackArmedRef = useRef(false);
   const showSavedToast = useCallback(() => {
-    if (saveToastDebounceRef.current) {
-      window.clearTimeout(saveToastDebounceRef.current);
+    saveFeedbackArmedRef.current = true;
+  }, []);
+  useEffect(() => {
+    if (saveStatus !== "saved" || !saveFeedbackArmedRef.current) return;
+    saveFeedbackArmedRef.current = false;
+    showToast("Saved", "success", {
+      autoDismissMs: 1500,
+      presentation: "saved",
+    });
+  }, [saveStatus, showToast]);
+  const retryFailedSaves = useCallback(() => {
+    saveFeedbackArmedRef.current = true;
+    if (prefsSaveStatus === "error") retryPrefsSave();
+    if (sideSaveStatus === "error") {
+      for (const retry of [...sideFailedRef.current.values()]) retry();
     }
-    saveToastDebounceRef.current = window.setTimeout(() => {
-      showToast("Saved", "success", {
-        autoDismissMs: 1500,
-        presentation: "saved",
-      });
-    }, 400);
-  }, [showToast]);
-  useEffect(
-    () => () => {
-      if (saveToastDebounceRef.current) {
-        window.clearTimeout(saveToastDebounceRef.current);
-      }
-    },
-    [],
-  );
+  }, [prefsSaveStatus, retryPrefsSave, sideSaveStatus]);
 
   // Identity + nav search for the shared TopNav. Settings has its own in-page
   // search (useSettingsSearch); the global search panel stays disabled here.
@@ -186,7 +229,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     patch: patchExt,
     toggleSection,
     isSectionExpanded,
-  } = useSettingsPage();
+  } = useSettingsPage(bookPreferences);
   const { query, setQuery, results, isSearching } = useSettingsSearch();
   const reducedMotion = useReducedMotion(preferences.appearance.reducedMotion);
 
@@ -275,29 +318,43 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     showToast("Preferences updated!", "success");
   }
 
-  // Persist onboarding-derived prefs to backend
-  const lastOnboardingPrefsRef = useRef<string>("");
+  // Persist onboarding-derived prefs to backend. ACCT-04: the first hydrated
+  // snapshot is this device's copy (defaults on a fresh browser), not a user
+  // edit, so it only becomes the baseline; later edits send just the changed
+  // fields. The baseline moves only when a write succeeds, so a field whose
+  // write failed is sent again with the next change.
+  const onboardingProfileBaselineRef = useRef<OnboardingProfileSnapshot | null>(null);
   useEffect(() => {
     if (!onboardingHydrated) return;
-    const snapshot = JSON.stringify({
+    const snapshot = buildOnboardingProfileSnapshot({
       learningStyle: onboarding.learningStyle,
       quizIntensity: onboarding.quizIntensity,
       streakMode: onboarding.streakMode,
       motivationStyle: onboarding.motivationStyle,
       dailyGoalMinutes: onboarding.dailyGoalMinutes,
-      reminderTime: onboarding.reminderTime.trim() ? onboarding.reminderTime : null,
+      reminderTime: onboarding.reminderTime,
     });
-    if (snapshot === lastOnboardingPrefsRef.current) return;
-    lastOnboardingPrefsRef.current = snapshot;
+    const baseline = onboardingProfileBaselineRef.current;
+    if (baseline === null) {
+      onboardingProfileBaselineRef.current = snapshot;
+      return;
+    }
+    const changed = diffOnboardingProfile(baseline, snapshot);
+    if (!changed) return;
     const timer = setTimeout(() => {
-      fetch("/app/api/book/me/profile", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ profile: JSON.parse(snapshot) }),
-      }).catch(() => {});
+      trackSideWrite("profile", () =>
+        fetchBookJson("/app/api/book/me/profile", {
+          method: "PATCH",
+          body: JSON.stringify({ profile: changed }),
+        }).then(() => {
+          const current = onboardingProfileBaselineRef.current;
+          if (current) onboardingProfileBaselineRef.current = { ...current, ...changed };
+        }),
+      );
     }, 800);
     return () => clearTimeout(timer);
   }, [
+    trackSideWrite,
     onboardingHydrated,
     onboarding.learningStyle,
     onboarding.quizIntensity,
@@ -306,6 +363,25 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     onboarding.dailyGoalMinutes,
     onboarding.reminderTime,
   ]);
+
+  // ACCT-04: show the reminder time the server actually sends at
+  // (settings.notifications.reminderTimeLocal), not this device's onboarding copy.
+  const [serverReminderTime, setServerReminderTime] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    fetchBookJsonCached<{
+      settings: { notifications?: { reminderTimeLocal?: unknown } } | null;
+    }>(SETTINGS_KEY)
+      .then((payload) => {
+        const time = payload.settings?.notifications?.reminderTimeLocal;
+        if (!cancelled && typeof time === "string") setServerReminderTime(time);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const reminderTime = serverReminderTime ?? onboarding.reminderTime;
 
   // H26: The reading-reminder cron reads the per-user send time exclusively from
   // settings.notifications.reminderTimeLocal / reminderTimezone (defaulting to
@@ -316,13 +392,15 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   // ride a dedicated PATCH rather than the preferences full-state sync — the
   // settings allow-list already accepts them and mergeSettings preserves them.
   const persistReminderSchedule = useCallback((timeLocal: string) => {
-    fetchBookJson("/app/api/book/me/settings", {
-      method: "PATCH",
-      body: JSON.stringify(
-        buildReminderSchedulePatch(timeLocal, detectReminderTimezone()),
-      ),
-    }).catch(() => {});
-  }, []);
+    trackSideWrite("reminderSchedule", () =>
+      fetchBookJson("/app/api/book/me/settings", {
+        method: "PATCH",
+        body: JSON.stringify(
+          buildReminderSchedulePatch(timeLocal, detectReminderTimezone()),
+        ),
+      }),
+    );
+  }, [trackSideWrite]);
 
   // F4: The reading-reminder cron only sends the reminder EMAIL when the user
   // has opted into the email channel (`settings.notifications.channels.email ===
@@ -338,74 +416,22 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     const patch = buildReadingReminderTogglePatch(
       enabled,
       detectReminderTimezone(),
-      onboarding.reminderTime || undefined,
+      reminderTime || undefined,
     );
     if (!patch) return;
-    fetchBookJson("/app/api/book/me/settings", {
-      method: "PATCH",
-      body: JSON.stringify(patch),
-    }).catch(() => {});
-  }, [onboarding.reminderTime]);
+    trackSideWrite("reminderEmail", () =>
+      fetchBookJson("/app/api/book/me/settings", {
+        method: "PATCH",
+        body: JSON.stringify(patch),
+      }),
+    );
+  }, [reminderTime, trackSideWrite]);
 
-  // H26 backfill: users who chose a reminder time before this fix have
-  // profile.reminderTime but no settings.notifications.reminderTimeLocal/zone,
-  // so the cron defaults them to 20:00 UTC. On first load, if reminders are on
-  // and the canonical fields are absent, seed them from the onboarding time plus
-  // the device timezone. Deferred past the preferences hook's debounced
-  // full-state sync (≤500ms) so the read sees a settled row and the write lands
-  // last (those keys are never carried by the full-state sync, so it can only
-  // preserve them, never overwrite).
-  //
-  // F4 backfill: the same one-shot effect also seeds the email opt-in
-  // (`channels.email: true`) for users who already had reminders ON before the
-  // opt-in was ever written — including those H26 already gave a reminderTime, who
-  // would otherwise short-circuit the seed below. Without this their reminder
-  // email stays gated off forever (the cron requires channels.email === true).
-  const reminderBackfilledRef = useRef(false);
-  useEffect(() => {
-    if (!hydrated || reminderBackfilledRef.current) return;
-    if (!preferences.notifications.readingReminderEnabled) return;
-    reminderBackfilledRef.current = true;
-    let cancelled = false;
-    const timer = window.setTimeout(() => {
-      fetchBookJson<{
-        settings: {
-          notifications?: {
-            reminderTimeLocal?: unknown;
-            reminderTimezone?: unknown;
-            channels?: { email?: unknown };
-          };
-        } | null;
-      }>("/app/api/book/me/settings")
-        .then((payload) => {
-          if (cancelled) return;
-          const notif = payload.settings?.notifications;
-          const hasSchedule =
-            typeof notif?.reminderTimeLocal === "string" &&
-            typeof notif?.reminderTimezone === "string";
-          if (!hasSchedule) {
-            // Seeding the schedule already carries channels.email: true.
-            persistReminderSchedule(onboarding.reminderTime || "20:00");
-            return;
-          }
-          // Schedule already canonical (H26) — only the email opt-in may be missing.
-          if (notif?.channels?.email !== true) {
-            persistReminderEmailOptIn(true);
-          }
-        })
-        .catch(() => {});
-    }, 1200);
-    return () => {
-      cancelled = true;
-      window.clearTimeout(timer);
-    };
-  }, [
-    hydrated,
-    preferences.notifications.readingReminderEnabled,
-    onboarding.reminderTime,
-    persistReminderSchedule,
-    persistReminderEmailOptIn,
-  ]);
+  // ACCT-08: there is deliberately no background write here. A former one-shot
+  // backfill seeded the reminder schedule and `channels.email: true` on any
+  // visit with reminders on (the default), opting visitors in to email without
+  // an action. Email consent is now written only by the reminder toggle and the
+  // reminder-time picker below, and nothing is written on page load.
 
   // Derived state
   const isPro = billingState.payload?.entitlement.plan === "PRO";
@@ -533,7 +559,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   function getNotificationsSummary() {
     const parts: string[] = [];
     if (preferences.notifications.readingReminderEnabled) {
-      parts.push(`Reminders at ${onboarding.reminderTime || "8:00 PM"}`);
+      parts.push(`Reminders at ${reminderTime || "8:00 PM"}`);
     }
     if (preferences.notifications.streakReminderEnabled && ext.streakMode !== "off") {
       parts.push("Streak alerts on");
@@ -1398,8 +1424,8 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                     description="When to receive your daily reading nudge."
                   >
                     <TimePicker
-                      value={hydrated ? onboarding.reminderTime || "20:00" : "20:00"}
-                      onChange={(v) => { setReminderTime(v); persistReminderSchedule(v); announce(`Reminder time changed to ${v}`); showSavedToast(); }}
+                      value={hydrated ? reminderTime || "20:00" : "20:00"}
+                      onChange={(v) => { setReminderTime(v); setServerReminderTime(v); persistReminderSchedule(v); announce(`Reminder time changed to ${v}`); showSavedToast(); }}
                       label="Reminder time"
                     />
                   </SettingRow>
@@ -1759,6 +1785,22 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
         detail={toast.detail}
         presentation={toast.presentation}
       />
+
+      {saveStatus === "error" && (
+        <div
+          role="alert"
+          className="fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-3 rounded-full border border-(--cf-danger-border) bg-(--cf-danger-bg) px-4 py-2 text-sm text-(--cf-danger-text) shadow-shadow-elevated"
+        >
+          <span>Couldn&apos;t save your change.</span>
+          <button
+            type="button"
+            onClick={retryFailedSaves}
+            className="cf-pressable min-h-[44px] font-semibold underline underline-offset-2"
+          >
+            Retry
+          </button>
+        </div>
+      )}
 
       {/* Micro Celebrations */}
       <MicroCelebration event={celebration} reducedMotion={reducedMotion} />
