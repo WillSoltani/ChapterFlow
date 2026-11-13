@@ -1460,7 +1460,7 @@ export async function adjustEngagementPointsAdmin(
       throw new BookApiError(
         400,
         "insufficient_balance",
-        "You don't have enough Insight Points for this yet."
+        "User does not have enough points for this deduction."
       );
     }
     throw error;

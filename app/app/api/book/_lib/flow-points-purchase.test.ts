@@ -135,6 +135,24 @@ test("gift: a retried purchase that then succeeds resolves", async () => {
   assert.equal(fakeDdb.sends, 2);
 });
 
+test("admin deduction over the user's balance keeps the admin-facing message", async () => {
+  fakeDdb.outcomes = [cancelled([FAILED, NONE])];
+  await assert.rejects(
+    repo.adjustEngagementPointsAdmin(TABLE, {
+      userId: "u1",
+      amount: -500,
+      reason: "test",
+      adminUserId: "admin-1",
+    }),
+    (error: unknown) =>
+      error instanceof BookApiError &&
+      error.status === 400 &&
+      error.code === "insufficient_balance" &&
+      error.message === "User does not have enough points for this deduction."
+  );
+  assert.equal(fakeDdb.sends, 1);
+});
+
 test("a non-transaction error is rethrown unchanged and not retried", async () => {
   const boom = Object.assign(new Error("boom"), { name: "InternalServerError" });
   fakeDdb.outcomes = [boom];
