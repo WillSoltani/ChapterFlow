@@ -33,7 +33,7 @@ Object.defineProperty(document, "visibilityState", {
 // mark-read replies can be held back to model a slow network.
 let readIds = new Set<string>();
 let allRead = false;
-let heldPosts: Array<() => void> = [];
+const heldPosts: Array<() => void> = [];
 let holdPosts = false;
 
 function serverPayload() {
