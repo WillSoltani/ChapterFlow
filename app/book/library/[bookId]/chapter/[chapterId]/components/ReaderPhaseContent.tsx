@@ -12,6 +12,7 @@ import type { useReaderPhaseFlow } from "../hooks/useReaderPhaseFlow";
 import type { useReaderProgress } from "../hooks/useReaderProgress";
 import type { useReaderSettings } from "../hooks/useReaderSettings";
 import { getPhaseThresholds } from "../hooks/usePhaseCompletion";
+import { DEPTH_LABELS } from "../lib/reader-flow-core";
 import { CommitmentPrompt } from "./CommitmentPrompt";
 import { ContinueButton } from "./ContinueButton";
 import { ExamplesList } from "./ExamplesList";
@@ -148,6 +149,7 @@ export function ReaderPhaseContent({
             }}
             fontScaleClass={textScaleClass}
             learningMode={learningMode}
+            modeLabel={activeDepth === "deeper" ? DEPTH_LABELS.deeper : undefined}
             activationPrompt={activeActivationPrompt}
             selfCheckPrompts={activeSelfCheckPrompts}
             reflectionPrompts={activeReflectionPrompts}

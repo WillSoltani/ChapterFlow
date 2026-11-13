@@ -20,6 +20,9 @@ type SummaryCardProps = {
   onToggleBookmarkTakeaway: (index: number) => void;
   fontScaleClass: string;
   learningMode?: LearningMode | undefined;
+  /** The depth name the reader sees (Lite / Standard / Deeper), used in the
+   *  no-retries note; omitted, the note names no mode. */
+  modeLabel?: string | undefined;
   activationPrompt?: string | undefined;
   selfCheckPrompts?: string[] | undefined;
   reflectionPrompts?: string[] | undefined;
@@ -41,6 +44,7 @@ export function SummaryCard({
   onToggleBookmarkTakeaway,
   fontScaleClass,
   learningMode = "standard",
+  modeLabel,
   activationPrompt,
   selfCheckPrompts,
   reflectionPrompts,
@@ -110,14 +114,14 @@ export function SummaryCard({
 
   return (
     <div className="cr-reading-content space-y-10">
-      {/* Challenge mode banner — functional indicator, kept minimal */}
+      {/* No-retries note (quiz rule of this mode), kept minimal */}
       {learningMode === "challenge" && (
         <div
           className="text-xs text-(--cr-text-secondary)"
           style={{ animation: "cr-card-enter 200ms ease-out" }}
         >
           <span className="mr-1.5">{"\uD83C\uDFC6"}</span>
-          Challenge mode: no retries on the quiz
+          {modeLabel ? `${modeLabel}: no retries on the quiz` : "No retries on the quiz"}
         </div>
       )}
 
