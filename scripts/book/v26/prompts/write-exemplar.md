@@ -23,7 +23,7 @@ THE PLAN for this chapter, part by part:
 
 PRONOUNS. Give every person a pronoun and use it the way a novelist would after the first mention in each part; repeat the name only where two people share a sentence and a pronoun would be unclear. The author and the people in the book's stories keep the pronouns the book gives them: read them off the author's advice above ("himself", "her mother"), and never turn a real person into "they". An invented person gets he, she or they, chosen to fit the name and kept through the chapter. Never "Maren has just taken over the diner from Maren's father".
 
-VARIETY. The first names, settings and analogies already used in this book are listed between <used> tags. Use none of them. Choose new first names (varied in origin and gender), new workplaces, homes, sports and hobbies, and new everyday objects. Vary the opening rhythm too: do not start the hook or the summaries with the same sentence shape the exemplar uses.
+VARIETY. The first names, settings and analogies already used in this book are listed between <used> tags. Use none of them. Where THE PLAN gives a list of first names, invented people take their names from it; where it gives none, choose new first names (varied in origin and gender). Choose new workplaces, homes, sports and hobbies, and new everyday objects. Vary the opening rhythm too: do not start the hook or the summaries with the same sentence shape the exemplar uses.
 <used>
 @@USED@@
 </used>

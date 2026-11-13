@@ -8,8 +8,10 @@ import { fileURLToPath } from "node:url";
 import { main } from "../cli";
 import { loadBookConfig } from "../src/config";
 import { makeCtx, type PipelineCtx } from "../src/pipeline";
-import { copyAndVarietyIssues, extractNames, fixLanded, formText, loadExemplar, openerSentences, readVariety, runBookChapters, summaryApproachFor, usedText, writeBookChapter } from "../src/book";
+import { copyAndVarietyIssues, extractNames, fixLanded, formText, loadExemplar, namesFor, openerSentences, readVariety, runBookChapters, summaryApproachFor, usedText, writeBookChapter } from "../src/book";
 import { readLedger } from "../src/ledger";
+import { generateVariants } from "../src/variants";
+import { assembleChapter } from "../src/assemble";
 import { draftKeys } from "../src/keys";
 import type { Chapter, Issue } from "../src/types";
 
@@ -254,6 +256,24 @@ test("writeBookChapter blocks an exemplar copy and resumes from status.json; the
   assert.equal(again.stage, "open-issues");
   assert.equal(h.calls("pipe-bwrite").length, 1, "resumed from status.json, not rewritten");
   await assert.rejects(writeBookChapter(h.ctx, 1, ex), /EXEMPLAR_CHAPTER/);
+});
+
+test("writeBookChapter refuses a chapter whose note has no lesson left (KEYS_EMPTY), before any call, on every path that writes one", async () => {
+  const h = harness({ keys: true });
+  const cfg = JSON.parse(fs.readFileSync(h.configPath, "utf8"));
+  cfg.chapters[1].keys = "[2] Law Two\nReversal: none. Story the author tells: none recalled with confidence.";
+  fs.writeFileSync(h.configPath, JSON.stringify(cfg));
+  const ctx = makeCtx(loadBookConfig(h.configPath));
+  await assert.rejects(writeBookChapter(ctx, 2, loadExemplar(ctx)), /^Error: KEYS_EMPTY: ch02's note in the config has no lesson/);
+  const statuses = await runBookChapters(ctx, [2]);
+  assert.equal(statuses[0]!.stage, "failed");
+  assert.match(statuses[0]!.error ?? "", /^KEYS_EMPTY/);
+  // The variants page and assemble write a knowledge-mode chapter (a book's own exemplar) from the same note.
+  await assert.rejects(generateVariants(ctx, 2), /^Error: KEYS_EMPTY: ch02/);
+  await assert.rejects(assembleChapter(ctx, 2, {} as Parameters<typeof assembleChapter>[2]), /^Error: KEYS_EMPTY: ch02/);
+  assert.equal(h.calls().length, 0, "nothing was asked of a model");
+  assert.ok(!fs.existsSync(path.join(h.runDir, "ch02", "book")), "no draft was begun");
+  assert.ok(!fs.existsSync(path.join(h.runDir, "ch02", "variants")), "no variants page was begun");
 });
 
 test("runBookChapters skips the exemplar, runs the rest, and the second chapter's prompts carry the first chapter's lesson and names", async () => {
@@ -535,4 +555,154 @@ test("a house exemplar: exemplarFrom writes every chapter of this book against a
   h.script({ "pipe-bwrite": [{ result: h2copy, cost: 0.6 }] });
   const st2 = await writeBookChapter(ctx, 2, ex);
   assert.ok(st2.open.some((i) => /exemplar copy: "Maya"/.test(i.text)), JSON.stringify(st2.open));
+});
+
+// ---------------------------------------------------------------- the per-book plan: the mark on a first draft, the name list
+
+/** The harness's book under another id (the plan's offsets follow the id). */
+function rebook(h: Harness, bookId: string): PipelineCtx {
+  const cfg = JSON.parse(fs.readFileSync(h.configPath, "utf8"));
+  cfg.bookId = bookId;
+  fs.writeFileSync(h.configPath, JSON.stringify(cfg));
+  return makeCtx(loadBookConfig(h.configPath));
+}
+
+/** Sets the summary pick of the harness's own exemplar (chapter 1). */
+function pickSummary(h: Harness, label: string): void {
+  const f = path.join(h.runDir, "exemplars", "ch01.json");
+  const rec = JSON.parse(fs.readFileSync(f, "utf8"));
+  rec.picks.summary.label = label;
+  fs.writeFileSync(f, JSON.stringify(rec));
+}
+
+test("the plan is the book's: a draft on disk follows its mark, a book with a chapter under the old plan keeps it, and a new book gets its own plan and names", async () => {
+  const id = "tiny-habits";
+  const draft = (h: Harness, salted: boolean): void => {
+    const bdir = path.join(h.runDir, "ch02", "book");
+    fs.mkdirSync(bdir, { recursive: true });
+    fs.writeFileSync(path.join(bdir, "r0.chapter.json"), JSON.stringify(chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] })));
+    fs.writeFileSync(path.join(bdir, "used.json"), JSON.stringify({ names: ["Jonah", "Lena", "Omar"], settings: ["a bakery"], analogies: [], approach: "B", ...(salted ? { salted: true } : {}) }));
+  };
+  const ch3 = { "pipe-bwrite": [{ result: written({ keyTakeaway: "L2b", _used: { names: ["Zara"], settings: [], analogies: [] } }) }], "pipe-vlessons": [{ result: { lessons: [lesson("L2b", 0), ...LESSONS2.lessons.slice(1)] } }] };
+  const h = harness({ approved: ["A", "B", "D"], concurrency: 1 });
+  pickSummary(h, "B");
+  const ctx = rebook(h, id);
+  const ex = loadExemplar(ctx);
+  // Chapter 1 is the book's own exemplar, opened as B. The old plan opens chapter 2 as B as well; this book's plan
+  // starts its turn at the exemplar, so chapter 2 opens as D.
+  assert.equal(summaryApproachFor(ex, 2), "B");
+  assert.equal(summaryApproachFor(ex, 2, id), "D");
+  draft(h, false);
+  const st = await writeBookChapter(ctx, 2, ex);
+  assert.equal(h.calls("pipe-bwrite").length, 0, "the draft on disk is used, not rewritten");
+  assert.ok(!st.open.some((i) => /^opener:/.test(i.text)), JSON.stringify(st.open));
+  assert.equal(JSON.parse(fs.readFileSync(path.join(h.runDir, "ch02", "book", "used.json"), "utf8")).salted, undefined);
+  assert.equal(readVariety(ctx).chapters.ch02.approach, "B");
+
+  // Chapter 3 is written now, next to a chapter written under the old plan: the book keeps that plan, so neighbours
+  // still step once per chapter. No mark, no name list.
+  h.script(ch3);
+  await writeBookChapter(ctx, 3, ex);
+  assert.equal(JSON.parse(fs.readFileSync(path.join(h.runDir, "ch03", "book", "used.json"), "utf8")).salted, undefined);
+  assert.equal(readVariety(ctx).chapters.ch03.salted, undefined);
+  const old = h.calls("pipe-bwrite")[0]!.prompt;
+  assert.ok(old.includes(formText(ex, summaryApproachFor(ex, 3), 3, ctx.config.shape)), "the prompt carries the old plan");
+  assert.doesNotMatch(old, /takes a first name from this list/);
+
+  // A book written under its own plan from the start (a new harness points the fake at its own pipe dir, so it comes
+  // last): the chapter 2 draft with the mark is checked against this book's plan, which asked for D, and chapter 3
+  // written after it carries the mark, the per-book plan and its names.
+  const h2 = harness({ approved: ["A", "B", "D"], concurrency: 1 });
+  pickSummary(h2, "B");
+  const ctx2 = rebook(h2, id);
+  const ex2 = loadExemplar(ctx2);
+  draft(h2, true);
+  const st2 = await writeBookChapter(ctx2, 2, ex2);
+  assert.ok(st2.open.some((i) => /opener: the chapter says it opened as B, the form asked for D/.test(i.text)), JSON.stringify(st2.open));
+  h2.script(ch3);
+  await writeBookChapter(ctx2, 3, ex2);
+  assert.equal(JSON.parse(fs.readFileSync(path.join(h2.runDir, "ch03", "book", "used.json"), "utf8")).salted, true);
+  assert.equal(readVariety(ctx2).chapters.ch03.salted, true);
+  const wp = h2.calls("pipe-bwrite")[0]!.prompt;
+  assert.ok(wp.includes(formText(ex2, summaryApproachFor(ex2, 3, id), 3, ctx2.config.shape, id).split("\n- names:")[0]!), "the prompt carries the per-book plan");
+  assert.match(wp, new RegExp(`THIS chapter opens as ${summaryApproachFor(ex2, 3, id)} instead`));
+  const offered = namesFor(3, id).filter((x) => !["Jonah", "Lena", "Omar"].includes(x));
+  assert.ok(wp.includes(`takes a first name from this list, one name for one person: ${offered.join(", ")}.`), "the chapter's names, less the ones chapter 2 used");
+  assert.match(wp, /Where THE PLAN gives a list of first names, invented people take their names from it; where it gives none, choose new first names/);
+});
+
+test("chapter 25 under the book's plan: chapter 1's twin name is offered and not forbidden; another chapter's name and the book's own people are left off the list", async () => {
+  const id = "tiny-habits";
+  const h = harness({ concurrency: 1 });
+  const cfg = JSON.parse(fs.readFileSync(h.configPath, "utf8"));
+  cfg.chapters = Array.from({ length: 25 }, (_, i) => ({ number: i + 1, title: `Law ${i + 1}` }));
+  fs.writeFileSync(h.configPath, JSON.stringify(cfg));
+  const ctx = rebook(h, id);
+  const [twin, taken, real] = namesFor(25, id) as [string, string, string];
+  assert.ok(namesFor(1, id).includes(twin) && !namesFor(2, id).includes(taken));
+  const entry = (names: string[]) => ({ names, settings: [], analogies: [], salted: true });
+  fs.writeFileSync(path.join(h.runDir, "variety.json"), JSON.stringify({ chapters: { ch01: entry([twin]), ch02: entry([taken]) } }));
+  h.script({
+    "pipe-vlessons": [{ result: { lessons: [{ ...lesson(LESSON2, 0), storyNames: [`${real} Okafor`] }, ...LESSONS2.lessons.slice(1)] } }],
+    "pipe-bwrite": [{ result: { ...chapter("B", { keyTakeaway: LESSON2, names: [twin, "Lena", "Omar"] }), _used: { names: [twin, "Lena", "Omar"], settings: [], analogies: [] } } }],
+  });
+  const st = await writeBookChapter(ctx, 25, loadExemplar(ctx));
+  const wp = h.calls("pipe-bwrite")[0]!.prompt;
+  const usedNames = /<used>\n(names: [^\n]*)/.exec(wp)?.[1] ?? "";
+  assert.doesNotMatch(usedNames, new RegExp(`\\b${twin}\\b`), usedNames);
+  assert.match(usedNames, new RegExp(`\\b${taken}\\b`), usedNames);
+  const list = /takes a first name from this list, one name for one person: ([^.]+)\./.exec(wp)?.[1]?.split(", ") ?? [];
+  assert.ok(list.includes(twin), list.join(", "));
+  assert.ok(!list.includes(taken), "<used> forbids it");
+  assert.ok(!list.includes(real), "a person of the book's own");
+  assert.ok(!st.open.some((i) => i.text.includes(`variety: "${twin}"`)), JSON.stringify(st.open));
+  assert.equal(readVariety(ctx).chapters.ch25!.salted, true);
+});
+
+test("names: a name both chapters were given after the pool wrapped is not a repeat; any other shared name still is", async () => {
+  const id = "tiny-habits";
+  const ex = loadExemplar(harness().ctx);
+  const name = namesFor(25, id)[0]!;
+  assert.ok(namesFor(1, id).includes(name) && !namesFor(2, id).includes(name));
+  const c = chapter("B", { names: [name, "Lena", "Omar"] });
+  const entry = (names: string[], salted = true) => ({ names, settings: [], analogies: [], ...(salted ? { salted: true } : {}) });
+  const reports = (ledger: Parameters<typeof copyAndVarietyIssues>[2], bookId?: string): string[] => copyAndVarietyIssues(c, ex, ledger, 25, { bookId }).reported.map((i) => i.text);
+  const repeat = (x: string) => (t: string) => t.includes(`variety: "${x}" is already used in another chapter`);
+  const twins = { chapters: { ch01: entry([name]), ch03: entry(["Omar"]) } };
+  assert.ok(!reports(twins, id).some(repeat(name)), "both chapters were given it");
+  assert.ok(reports(twins, id).some(repeat("Omar")), "a name off the list is still a repeat");
+  assert.ok(reports(twins).some(repeat(name)), "a chapter written under the old plan was given no list");
+  assert.ok(reports({ chapters: { ch01: entry([name], false) } }, id).some(repeat(name)), "the earlier chapter was given no list");
+  assert.ok(reports({ chapters: { ch02: entry([name]) } }, id).some(repeat(name)), "chapter 2 was not given it");
+  assert.doesNotMatch(usedText(twins, ex, 25, id), new RegExp(`names: .*\\b${name}\\b`));
+  assert.match(usedText(twins, ex, 25), new RegExp(`names: .*\\b${name}\\b`));
+
+  // fixLanded renames a name an earlier chapter used first, but not one both chapters were given.
+  const land = (h: Harness, salted: boolean): PipelineCtx => {
+    const ctx = rebook(h, id);
+    const dir = path.join(h.runDir, "ch25");
+    fs.mkdirSync(path.join(dir, "book"), { recursive: true });
+    fs.writeFileSync(path.join(dir, "final.json"), JSON.stringify(c));
+    fs.writeFileSync(path.join(dir, "lesson.json"), JSON.stringify(lesson(c.keyTakeaway, 25)));
+    fs.writeFileSync(path.join(dir, "status.json"), JSON.stringify({ chapter: 25, stage: "clean", round: 0, rerun: false, lessonRating: "UNKNOWN", open: [], spend: 1, lesson: c.keyTakeaway, book: true, exemplar: 1, fixed: false }));
+    fs.writeFileSync(path.join(h.runDir, "variety.json"), JSON.stringify({ chapters: { ch01: entry([name]), ch25: entry([name, "Lena", "Omar"], salted) } }));
+    return ctx;
+  };
+  const h = harness();
+  const st = await fixLanded(land(h, true), 25);
+  assert.equal(st.round, 0);
+  assert.equal(h.calls("pipe-fix").length, 0, "nothing to rename");
+  const h2 = harness();
+  await fixLanded(land(h2, false), 25);
+  assert.match(h2.calls("pipe-fix")[0]!.prompt, new RegExp(`variety: "${name}" is already used in another chapter`));
+
+  // A rename in a chapter under the book's plan is offered that chapter's own free names first: another pool name may be
+  // on a later chapter's list.
+  const h3 = harness();
+  const ctx3 = land(h3, true);
+  fs.writeFileSync(path.join(h3.runDir, "variety.json"), JSON.stringify({ chapters: { ch01: entry([name, "Omar"]), ch25: entry([name, "Lena", "Omar"]) } }));
+  await fixLanded(ctx3, 25);
+  const taken = new Set([...ex.names, name, "Lena", "Omar"]);
+  const mine = namesFor(25, id).filter((x) => !taken.has(x));
+  assert.ok(h3.calls("pipe-fix")[0]!.prompt.includes(`this book uses): ${mine.join(", ")}, `), h3.calls("pipe-fix")[0]!.prompt);
 });

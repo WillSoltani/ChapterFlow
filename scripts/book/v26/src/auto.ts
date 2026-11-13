@@ -24,7 +24,7 @@ import { BudgetError, UsageLimitError } from "./call";
 import { fixLanded, hookCollisions, loadExemplar, renderPack, runBookChapters } from "./book";
 import { ConfigError, loadBookConfig } from "./config";
 import { draftKeys } from "./keys";
-import { checkKeys, keysChecked } from "./keysCheck";
+import { checkKeys, keysChecked, NO_LESSON, noteProblems } from "./keysCheck";
 import { ledgerTotal } from "./ledger";
 import { guarded, makeCtx, reviewField, type ChapterStatus, type EvalResult, type PipelineCtx } from "./pipeline";
 import { publishBook, type Publisher } from "./publish";
@@ -255,7 +255,13 @@ export async function autoBook(ctx: PipelineCtx, configPath: string, opts: AutoO
         say(`${bookId}: keys ${check.checked ? "checked" : "NOT fully checked"}: ${check.changed} of ${check.chapters} notes edited, ${check.stories} with a story from the book${check.notes.length > 0 ? `; ${check.notes.join("; ")}` : ""}`);
         if (!check.checked) {
           save();
-          return finish("needs-owner", [`the keys could not be checked against the book (${check.notes.join("; ")}); no chapter was written. Run the same command again to try the check once more, or read the notes in the config and pass --keys-ok`]);
+          // The chapter-list problems the finished groups found are named here: --keys-ok skips them later, so the owner
+          // must see them before vouching for the notes.
+          const found = check.problems.filter((p) => !p.endsWith(NO_LESSON));
+          return finish("needs-owner", [
+            ...found,
+            `the keys could not be checked against the book (${check.notes.join("; ")}); no chapter was written. Run the same command again to try the check once more, or read the notes in the config${found.length > 0 ? " and the chapter-list problems above" : ""} and pass --keys-ok`,
+          ]);
         }
         state.keys = "checked";
         delete state.keysDigest;
@@ -264,6 +270,25 @@ export async function autoBook(ctx: PipelineCtx, configPath: string, opts: AutoO
       state.keys = "checked";
     }
     save();
+
+    // 1b. Notes no chapter can be written from. A note left with no lesson is a hard stop whatever anyone vouches for:
+    // nobody can vouch for advice that is not there. A chapter list the check found wrong stops the book until the owner
+    // corrects the list and the check is made again, or vouches for the list as it stands (--keys-ok). An old record
+    // carries no such problems, so a book written before this check existed is not held by it.
+    if (ctx.config.chapters) {
+      const empty = noteProblems(ctx.config.chapters);
+      if (empty.length > 0) {
+        return finish("needs-owner", [...empty, `no chapter was written. Write the chapter's advice into its note ("keys") in ${configPath}, or delete that note so the next run drafts and checks it again`]);
+      }
+      const listProblems = state.keys === "owner" ? [] : (keysChecked(ctx)?.problems ?? []).filter((p) => !p.endsWith(NO_LESSON));
+      if (listProblems.length > 0) {
+        const keysDir = path.join(runDir, "keys");
+        return finish("needs-owner", [
+          ...listProblems,
+          `no chapter was written. Either correct the chapter list in ${configPath} (numbers, titles and the notes under them), delete ${path.join(keysDir, "checked.json")} and ${path.join(keysDir, "check-progress.json")}, and run the same command again to check the notes once more; or, if the list is right as it stands, run the same command with --keys-ok`,
+        ]);
+      }
+    }
 
     // 2. A redo the owner allowed: once per score, and only for a failed book. The list is remembered before anything
     // is removed, so a stopped redo carries on instead of starting over.

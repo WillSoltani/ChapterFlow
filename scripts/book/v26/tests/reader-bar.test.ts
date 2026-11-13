@@ -7,7 +7,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import os from "node:os";
-import { bookTerms, extractNames, formText, hookCollisions, keyPositions, loadExemplar } from "../src/book";
+import { createHash } from "node:crypto";
+import { bookOffset, bookTerms, extractNames, formText, hookCollisions, keyPositions, loadExemplar, namesFor, summaryApproachFor } from "../src/book";
 import { runChecks } from "../src/checks";
 import type { PipelineCtx } from "../src/pipeline";
 import { appPlan } from "../src/publish";
@@ -106,6 +107,137 @@ test("key positions: every position is the key at least twice, the first five us
   }
   assert.deepEqual(keyPositions(25, 7, 3), keyPositions(1, 7, 3));
   assert.deepEqual(keyPositions(1, 7, 3), [0, 2, 1, 1, 0, 2, 0], "the rows the earlier books were written with stay first");
+});
+
+// ---------------------------------------------------------------- the per-book plan
+
+const TEN = [
+  "deep-work", "what-every-body-is-saying", "crucial-conversations", "essentialism", "the-charisma-myth",
+  "the-laws-of-human-nature", "the-power-of-habit", "tiny-habits", "how-to-win-friends-and-influence-people", "the-48-laws-of-power",
+];
+/** The plan's parts, one per wheel, cut out of its text. */
+function wheels(plan: string): Record<string, string> {
+  const line = (start: string): string => plan.split("\n").find((l) => l.startsWith(start)) ?? "";
+  const cut = (re: RegExp, text: string = plan): string => re.exec(text)?.[1] ?? "";
+  // "work (a trade or a workshop (a plumber, a mechanic, a builder)); school (...); personal (...)": a setting holds commas, never "; ".
+  const examples = cut(/in this order: (.+?)\. What makes/, line("- examples")).split("; ");
+  const tagOf = (x: string): string => x.split(" ")[0]!;
+  const settingOf = (tag: string): string => {
+    const x = examples.find((e) => tagOf(e) === tag) ?? "";
+    return x.slice(tag.length + 2, -1);
+  };
+  return {
+    hook: cut(/The hook is built on (.+?)\. The try-this line/),
+    try: cut(/The try-this line asks the reader to (.+?)\. The last sentence/),
+    ending: cut(/states the lesson as (.+?); where the path/),
+    frame: cut(/^- counterintuition frame: (.*)$/m),
+    tags: examples.map(tagOf).join(", "),
+    work: settingOf("work"),
+    school: settingOf("school"),
+    personal: settingOf("personal"),
+    hard: cut(/the harder one: (.+)\.$/, line("- examples")),
+    quizForms: cut(/the forms in this order: ([^.]+)\./, line("- quiz")),
+    keys: cut(/for q1 to q\d+: ([\d, ]+)\./, line("- quiz")),
+    outside: cut(/for this chapter it is: (.+?)\. If that/, line("- quiz")),
+    cardForms: cut(/the forms in this order: ([^.]+)\./, line("- review cards")),
+    cues: cut(/The kinds of cue for this chapter: (.+)\.$/, line("- practice plan")),
+  };
+}
+
+test("bookOffset: no book id gives 0, and the plan without one is byte for byte the plan of the chapter number alone", () => {
+  const ex = house();
+  for (const wheel of ["KEY_ROWS", "COUNTER_FRAMES", "summary", "names"]) assert.equal(bookOffset("", wheel, 24), 0);
+  assert.equal(bookOffset("tiny-habits", "KEY_ROWS", 1), 0, "a wheel of one entry has nowhere to move");
+  for (const id of TEN) {
+    const o = bookOffset(id, "KEY_ROWS", 24);
+    assert.ok(Number.isInteger(o) && o >= 0 && o < 24, `${id}: ${o}`);
+    assert.equal(bookOffset(id, "KEY_ROWS", 24), o, "stable");
+  }
+  // The thirty plans of the house exemplar as they were before the per-book offsets (sha256 of their text, 2026-11-13).
+  const all = Array.from({ length: 30 }, (_, i) => formText(ex, summaryApproachFor(ex, i + 1), i + 1, SHAPE)).join("\n\n");
+  assert.equal(createHash("sha256").update(all).digest("hex"), "553e66cd745c8de5e91740957daa7fbfe5bb5fd7c00dc26e396054abf0c2a37e");
+  for (const n of [1, 2, 7, 25]) assert.equal(formText(ex, "A", n, SHAPE, ""), formText(ex, "A", n, SHAPE));
+  assert.doesNotMatch(all, /^- names:/m, "no book id, no name list");
+});
+
+test("the per-book plan: ten real books at chapter 1 get different key rows, frames and whole plans", () => {
+  const ex = house();
+  const first = TEN.map((id) => wheels(formText(ex, "A", 1, SHAPE, id)));
+  for (const w of first) for (const [k, v] of Object.entries(w)) assert.ok(v !== "", `the ${k} part was found`);
+  assert.ok(new Set(first.map((w) => w.keys)).size >= 7, first.map((w) => w.keys).join(" | "));
+  assert.ok(new Set(first.map((w) => w.frame)).size >= 4, first.map((w) => w.frame).join(" | "));
+  const combos = first.map((w) => [w.keys, w.frame, w.hook, w.ending, w.tags].join(" / "));
+  assert.equal(new Set(combos).size, TEN.length, combos.join("\n"));
+  // Every wheel moves between books, not only the key rows and frames: at chapter 1 the ten books do not all share one
+  // entry of any wheel. Each wheel has at least four entries, so ten books on one entry would be a lost offset.
+  for (const k of Object.keys(first[0]!)) assert.ok(new Set(first.map((w) => w[k])).size >= 2, `the ${k} part is the same in all ten books: ${first[0]![k]}`);
+  // The opener too, for a book whose exemplar is another book's chapter.
+  const shared = { ...ex, own: false, approvedSummary: ["A", "B", "C", "D"] };
+  assert.ok(new Set(TEN.map((id) => summaryApproachFor(shared, 1, id))).size >= 2, "the opener of chapter 1 moves between books");
+  // The key row of the plan is the one keyPositions gives for the book.
+  TEN.forEach((id, i) => assert.equal(first[i]!.keys, keyPositions(1, 7, 3, id).join(", ")));
+  // The author line stays with chapter 1 whatever the book.
+  for (const id of TEN) {
+    assert.match(formText(ex, "A", 1, SHAPE, id), /Where the author is first named, say who they are in a few words\./);
+    assert.match(formText(ex, "A", 2, SHAPE, id), /Name the author by full name at first mention/);
+  }
+});
+
+test("the per-book plan inside one book: every wheel still moves one step per chapter, and the key rows are the balanced ones", () => {
+  const ex = { ...house(), approvedSummary: ["A", "B", "D"] };
+  // A book whose own chapter is the exemplar starts its opener turn there: the chapters either side of it never open
+  // with the exemplar's opener, whatever the book's offset.
+  const own = { ...house(), own: true, chapter: 1, approvedSummary: ["B", "A", "D"], picks: { ...house().picks, summary: { ...house().picks.summary, label: "B" } } };
+  for (const id of TEN) {
+    assert.equal(summaryApproachFor(own, 1, id), "B", id);
+    assert.notEqual(summaryApproachFor(own, 2, id), "B", id);
+  }
+  const rows = new Set(Array.from({ length: 24 }, (_, i) => keyPositions(i + 1, 7, 3).join(",")));
+  for (const id of ["the-power-of-habit", "deep-work", "essentialism"]) {
+    const plans = Array.from({ length: 30 }, (_, i) => wheels(formText(ex, "A", i + 1, SHAPE, id)));
+    for (let n = 1; n < 30; n++) {
+      for (const k of Object.keys(plans[0]!)) assert.notEqual(plans[n - 1]![k], plans[n]![k], `${id}: the ${k} part of chapters ${n} and ${n + 1}`);
+      assert.notEqual(summaryApproachFor(ex, n, id), summaryApproachFor(ex, n + 1, id), `${id}: openers of chapters ${n} and ${n + 1}`);
+    }
+    for (let n = 1; n <= 30; n++) {
+      assert.ok(rows.has(keyPositions(n, 7, 3, id).join(",")), `${id} chapter ${n}: a row of KEY_ROWS`);
+      assert.doesNotMatch(formText(ex, "A", n, SHAPE, id), /in this order: school /, "example 1 is never the school one");
+      const other = keyPositions(n, 4, 4, id);
+      assert.deepEqual([...other].sort(), [0, 1, 2, 3], "other shapes still cycle through every position");
+    }
+    // Twenty-four chapters before a key row comes back, as without the offset.
+    assert.equal(new Set(Array.from({ length: 24 }, (_, i) => keyPositions(i + 1, 7, 3, id).join(","))).size, 24);
+  }
+});
+
+test("namesFor: 240 names in the pool, ten per chapter, none shared by chapters 1 to 24 of a book, and the plan carries them", () => {
+  const pool = namesFor(1, "", 240);
+  assert.equal(new Set(pool).size, 240);
+  // Distinct as a reader hears them too: Wiktor and Viktor are one name.
+  assert.equal(new Set(pool.map((x) => x.toLowerCase().replace(/w/g, "v"))).size, 240);
+  const overused = ["Noor", "Kwame", "Hana", "Rafael", "Ines", "Tomas", "Tomasz", "Theo", "Teo", "Amara", "Lucia", "Tariq"];
+  for (const x of [...overused, ...house().names]) assert.ok(!pool.includes(x), x);
+  // Every name is seen as a name: none is in NOT_NAMES, none is lowercase anywhere in a chapter, each is plain ASCII.
+  const c = house().chapterJson;
+  const roll: Chapter = { ...c, hook: `We met ${pool.join(", ")} today.` };
+  const seen = extractNames(roll, house().bookNames, "invented");
+  assert.deepEqual(pool.filter((x) => !seen.includes(x)), []);
+  for (const id of ["tiny-habits", "deep-work"]) {
+    const lists = Array.from({ length: 24 }, (_, i) => namesFor(i + 1, id));
+    for (const l of lists) assert.equal(l.length, 10);
+    assert.equal(new Set(lists.flat()).size, 240, `${id}: chapters 1 to 24 share no name`);
+    assert.deepEqual(namesFor(25, id), namesFor(1, id), "the pool wraps after 24 chapters");
+  }
+  assert.notDeepEqual(namesFor(1, "tiny-habits"), namesFor(1, "deep-work"));
+  assert.equal(new Set(TEN.map((id) => namesFor(1, id).join(","))).size, TEN.length);
+  assert.deepEqual(namesFor(3, "", 4), pool.slice(8, 12), "count names in a row, chapter after chapter");
+  const plan = formText(house(), "A", 3, SHAPE, "tiny-habits");
+  assert.ok(
+    plan.includes(`- names: every invented person in this chapter (the lead in the summary, the people in the examples, the quiz and the cards) takes a first name from this list, one name for one person: ${namesFor(3, "tiny-habits").join(", ")}. People from the book keep the names the book gives them.`),
+    plan,
+  );
+  const prompt = fs.readFileSync(fileURLToPath(new URL("../prompts/write-exemplar.md", import.meta.url)), "utf8");
+  assert.match(prompt, /Where THE PLAN gives a list of first names, invented people take their names from it; where it gives none, choose new first names/);
 });
 
 // ---------------------------------------------------------------- the house exemplar

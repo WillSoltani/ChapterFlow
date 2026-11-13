@@ -30,7 +30,11 @@ Copy the template and change the fields. Two modes:
 
 - **Knowledge mode** (copyrighted or unavailable text; written from the model's knowledge). Template:
   `books/the-48-laws-of-power-sonnet.json`. `chapters: [{number, title}]`
-  with the chapter titles readers know; no `source`.
+  with the chapter titles readers know; no `source`. Take the chapter count, their order and their titles from the
+  book's table of contents on the web (the publisher's page, a library record, an online preview), never from
+  memory: a wrong chapter list is the one error the notes check cannot repair. On The Charisma Myth (2026-11-13) a
+  list written from memory invented a chapter 10, pushed the next three down a place and dropped the last one, and
+  three chapters were written from notes filed under the wrong titles.
 - **Text mode** (a frozen public-domain text). Template: `books/the-autobiography-of-benjamin-franklin.json`.
   If the book is public domain and the owner asked for knowledge mode, say once that text mode would give a real
   source check, and that it needs a chapter map first; then do what the owner says.
@@ -46,7 +50,8 @@ author teaches, argument for claims with reasons (numbered laws, maxims); the ta
 app's canonical list (Productivity, Self Improvement, Psychology, Business, Leadership, Communication, Strategy,
 Management, Decision Making, Relationships, Philosophy, Behavioral Economics, Entrepreneurship, Innovation,
 Learning, Mental Toughness, Negotiation, Memoir, Classics, Personal Finance, Investing); `tags`; `briefPath`;
-`chapters` with the titles of the standard translation (name it to the owner); `runDir:
+`chapters` with the titles of the standard translation (name it to the owner), the list taken from the book's table
+of contents on the web (publisher page, library record, preview), never from memory; `runDir:
 ~/cf-wt/v26-plan/runs/<bookId>`; `budgetUsd` (twice the estimate below). No `ledgerPath`: the book gets its own
 ledger at `<runDir>/ledger.jsonl` (a shared ledger carries other books' spend and would stop the first call).
 Keep `shape` and `concurrency: 3` as the template; `knownTrapsPath` (text mode, optional) is a top-level field.
@@ -93,6 +98,13 @@ stage reading what is on disk so that the identical command carries on after any
    chapter whose evidence is the author's method in one everyday case, which is allowed. The edited notes are written into the config. If a checker or the editor
    does not answer, the book stops `NEEDS-OWNER` and **no chapter is written**; finished groups are kept
    (`<runDir>/keys/check-progress.json`) and the next run starts at the group that failed.
+   The checkers also say, per chapter, whether the chapter the config names at place N of its list is a real chapter
+   that sits at that place in the book's order (they see the whole list; an introduction counts when the list has one,
+   and the number the book prints does not matter); the
+   check records a problem when both say no (and neither is unsure) or when the editor's note comes back headed with
+   another chapter's title, and a note left with no advice once its doubted sentences are cut. Either stops the book
+   `NEEDS-OWNER` before a chapter is written (failure table). One checker alone doubting a title is a note in the log
+   line, not a stop.
 2. **Chapters** that are not there yet (step 6), then **two fix passes** (step 7), then one round of **repairs**
    code can see: two hooks built on the same object, a quiz whose right choice is the longest or shortest in most
    questions.
@@ -471,6 +483,9 @@ to `~/cf-wt/v26-plan/status/V1-variants.md` and one to the `v26-campaign` memory
 | `NO_FINAL_CHAPTER` from `fix` | a chapter never landed | drop it, rerun `book` for it |
 | `publish`: `no score yet` / `changed after the score` | score missing or stale | run `score`, then `publish` |
 | `publish`: `the score covers only some chapters` | `score` was run with `--chapters` | run `score` on the whole book, then `publish` |
+| `auto`: `chNN: the note has no lesson to write a chapter from` | every advice sentence of that note was cut as doubtful (or drafted empty); only its Reversal and Story lines are left. A hard stop: `--keys-ok` does not pass it | write the chapter's advice into its note in the config (ask the owner, or check the book on the web), or delete that note so the next `auto` drafts and checks it again; then the identical command |
+| `auto`: `chNN: both checkers say "..." is not the book's chapter at place N of the list` or `the checked note came back headed "...", but the config calls chapter N "..."` | the config's chapter list is wrong (written from memory), or the checkers are | check the table of contents on the web. Wrong list: correct the numbers, titles and the notes under them in the config, delete `<runDir>/keys/checked.json` and `<runDir>/keys/check-progress.json` (without that the old record is used again), and run the identical command. List right: ask the owner, and on their word run it with `--keys-ok` |
+| `book`: `KEYS_EMPTY` | the same empty note, on a chapter written by hand | as for `the note has no lesson` above |
 | `publish`: `written from keys that were never checked` | `auto` holds this book for unchecked keys (`auto.json`) | the owner reads the pack and the notes; `--approve` only on their yes |
 | `publish`: `app validator:` or `category ... is not canonical` | the package would be rejected at ingest | fix the config's categories or the chapter it names; score and publish again |
 | `publish`: `register:api failed` | AWS names or credentials | check `AWS_PROFILE=chapterflow` works (`aws sts get-caller-identity --profile chapterflow`) and the SSM names; rerun `publish` (idempotent by packageId) |

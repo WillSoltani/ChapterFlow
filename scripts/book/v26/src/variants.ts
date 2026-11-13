@@ -14,6 +14,7 @@ import type { Example, IfThenPlan, LessonCard, QuizQuestion, ReviewCard, RoleCon
 import { wordsIn } from "./validate";
 import { approachesText } from "./approaches";
 import { keysBlock } from "./keysText";
+import { requireLesson } from "./keysCheck";
 
 export const COMPONENTS = ["summary", "examples", "quiz", "cards", "practice"] as const;
 export type Component = (typeof COMPONENTS)[number];
@@ -337,6 +338,8 @@ export function lessonsPrompt(ctx: PipelineCtx, n: number, earlierLessons: strin
 // ---------------------------------------------------------------- generateVariants
 
 export async function generateVariants(ctx: PipelineCtx, n: number, opts: VariantsOptions = {}): Promise<VariantsRun> {
+  // A knowledge-mode chapter is written from its note, and one with no lesson left is written from nothing.
+  requireLesson(ctx, n);
   const dir = variantsDir(ctx, n);
   fs.mkdirSync(dir, { recursive: true });
   const file = (name: string): string => path.join(dir, `${name}.json`);

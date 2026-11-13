@@ -13,7 +13,7 @@ gates are facts, quiz keys and render; the owner's reading decides the calibrati
 With the house exemplar (`exemplarFrom` in the config, the default for new books: `scripts/book/v26/house`, the
 owner's approved 48 Laws chapter 1 revised to the reader bar) the run has no owner wait at all unless the score
 lands in the manual band or fails. The exemplar sets the bar; a per-chapter plan, computed from the chapter
-number, sets each chapter's order, so no two neighbours share a shape. Only a book that is
+number and the book id, sets each chapter's order, so no two neighbours share a shape. Only a book that is
 to set a new form goes through the pick page (two waits: picks, then approval of the assembled chapter). Everything
 else runs unattended and resumes from files.
 
@@ -50,7 +50,14 @@ The numbers are the `chapter scores:` line `auto` prints just before its outcome
 - **NEEDS-OWNER, band manual**: show the table and the reason in one line (for example "ch06 is under 70" or
   "TRY fails in 5 of 8 chapters"), and ask: "Publish anyway?" Yes: `auto --approve`. No: leave it and stop.
 - **NEEDS-OWNER, keys could not be checked**: run the identical command once more. If it holds again, ask: "The
-  chapter notes could not be checked on the web. Write the book from them as they are?" Yes: `auto --keys-ok`.
+  chapter notes could not be checked on the web. Write the book from them as they are?" Yes: `auto --keys-ok`. When
+  the reason also lists `chNN: both checkers say ...` or `came back headed ...` lines, handle those first as below.
+- **NEEDS-OWNER, chapter list or empty note** (`chNN: both checkers say ...`, `came back headed ...`, `the note has
+  no lesson ...`): check the book's table of contents on the web first. If the config's list is wrong, fix it and
+  the notes under it, delete `<runDir>/keys/checked.json` and `check-progress.json`, and run again; tell the owner
+  in one line. If the list is right, ask: "The checkers doubt chapter N's title (they say "..."). Keep the list as
+  it is?" Yes: `auto --keys-ok`. An empty note is never passed with `--keys-ok`: write its advice in, or delete it
+  so it is drafted again.
 - **FAILED, band fail**: show the table and ask: "Rewrite chapters X, Y?" Yes: `auto --redo`, then show the new
   table. Once; a second fail is reported as it stands.
 - **FAILED on an error, usage limit, budget**: say which in one line and what happens next (the identical command
@@ -64,7 +71,8 @@ read of step 8 is not done unless the owner asks for it.
 
 `CLI` = `env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npx tsx scripts/book/v26/cli.ts`, run from the worktree.
 
-After the preflight and the config and brief (steps 0 and 1), `CLI auto --book <cfg>` runs the rest in one
+After the preflight and the config and brief (steps 0 and 1; the chapter list from the book's table of contents on
+the web, never from memory), `CLI auto --book <cfg>` runs the rest in one
 resumable run: keys drafted and checked against the book on the web, chapters, two fix passes, repairs, the pack,
 the score, one round on what the judge failed in the manual band, and the publish the band allows. Run it in the
 background with a log; after any stop (usage limit, budget, crash) run the identical command again. It ends
@@ -91,7 +99,7 @@ table, do the housekeeping. reference.md section 1A has the details.
 | Step | Command | Owner |
 |---|---|---|
 | 0 Preflight | `git log -1`; `<binary> auth status`; the test suite once | login only if auth fails |
-| 1 Config + brief | copy `books/the-48-laws-of-power-sonnet.json` (knowledge) or `books/the-autobiography-of-benjamin-franklin.json` (text); `CLI status --book <cfg>` loads it | |
+| 1 Config + brief | copy `books/the-48-laws-of-power-sonnet.json` (knowledge) or `books/the-autobiography-of-benjamin-franklin.json` (text); the chapter list from the book's table of contents on the web (publisher page, library record, preview), never from memory; `CLI status --book <cfg>` loads it | |
 | 2 Keys (knowledge mode) | `CLI keys --book <cfg>` (drafted by the fixer, Opus) | skim or edit |
 | 3 Variants (only without `exemplarFrom`) | `CLI variants --book <cfg> --chapters 1` | **pick** one per part, notes, Copy my picks |
 | 4 Assemble (only without `exemplarFrom`) | `CLI assemble --book <cfg> --chapters 1 --picks <runDir>/ch01/variants/picks.txt`, then `CLI fix --book <cfg> --chapters 1` (at most twice) | **approve** the exemplar, name the openers |

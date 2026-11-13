@@ -18,6 +18,7 @@ import { spanText, writerForm, writerFormText } from "./source";
 import type { Chapter, Issue, LessonCard, QuizQuestion } from "./types";
 import { wordsIn } from "./validate";
 import { keysBlock, keysFor } from "./keysText";
+import { requireLesson } from "./keysCheck";
 import { COMPONENTS, callShaped, lessonText, lessonsPrompt, lessonsShapeErrors, sourceVars, type Component, type FactIssue, type LessonCandidate } from "./variants";
 
 export interface Exemplar {
@@ -47,6 +48,9 @@ export interface Variety {
   approach?: string;
   /** Four sentences cut from fastRead: its first, the first that names the book's story, the first of the last paragraph, the last. */
   openers?: string[];
+  /** True when the chapter was written under the per-book plan (`bookOffset`, the name list). A first draft without it was
+   *  written under the plan of the chapter number alone and is checked against that plan. */
+  salted?: boolean;
 }
 export interface VarietyLedger {
   chapters: Record<string, Variety>;
@@ -199,10 +203,15 @@ export function loadExemplar(ctx: PipelineCtx, n?: number): Exemplar {
   };
 }
 
-/** Chapter n's summary approach: the approved openers in turn, so neighbouring chapters never open the same way. */
-export function summaryApproachFor(ex: Exemplar, n: number): string {
+/** Chapter n's summary approach: the approved openers in turn, so neighbouring chapters never open the same way; the turn
+ *  starts at a point of the book's own (`bookOffset`), so chapter 1 of every book does not open the same way. A book whose
+ *  own chapter is the exemplar starts the turn at that chapter's pick instead: the exemplar is not in the variety ledger, so
+ *  an offset that gave its neighbour the exemplar's opener would never be reported. */
+export function summaryApproachFor(ex: Exemplar, n: number, bookId: string = ""): string {
   const k = ex.approvedSummary.length;
-  return ex.approvedSummary[((n - 1) % k + k) % k];
+  const pick = ex.approvedSummary.indexOf(ex.picks.summary.label);
+  const m = bookId === "" ? n - 1 : ex.own && pick >= 0 ? n - ex.chapter + pick : n - 1 + bookOffset(bookId, "summary", k);
+  return ex.approvedSummary[(m % k + k) % k];
 }
 
 function paragraphs(t: string): number {
@@ -323,17 +332,76 @@ const QUIZ_FORMS = ["what do you do", "spot the trap", "predict what happens", "
 const CARD_FORMS = ["situation to move", "why question", "finish the sentence", "what went wrong", "the lesson in the reader's own words"];
 const turn = (n: number, k: number): number => (((n - 1) % k) + k) % k;
 
+/** Where a book's turn of one wheel starts: 0 to k-1, stable for the book id and the wheel's name. With every wheel a
+ *  function of the chapter number alone, chapter 3 of every book got the same hook kind, frame, settings and answer key
+ *  (eight published books, 2026-11-13); shifting each wheel by its own amount per book keeps the step-per-chapter rotation
+ *  inside a book and moves its start between books. The empty id gives 0, so the house exemplar keeps its plan. FNV-1a,
+ *  reduced to 0..k-1 by its high bits (h * k / 2^32): its low bits follow the last characters of the key, and `h % k`
+ *  gave six key rows among ten real books where the high bits give eight. */
+export function bookOffset(bookId: string, wheel: string, k: number): number {
+  if (bookId === "" || k <= 1) return 0;
+  const key = `${bookId}:${wheel}`;
+  let h = 0x811c9dc5;
+  for (let i = 0; i < key.length; i++) {
+    h ^= key.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return Math.floor(((h >>> 0) * k) / 2 ** 32);
+}
+
+/** One wheel's entry for chapter n of a book: the chapter number shifted by the book's offset for that wheel. */
+const wheelAt = <T>(list: T[], wheel: string, n: number, bookId: string): T => list[turn(n + bookOffset(bookId, wheel, list.length), list.length)]!;
+
 /** Where the right choice sits in each question of chapter n. */
-export function keyPositions(n: number, questions: number, choices: number): number[] {
-  if (questions === 7 && choices === 3) return KEY_ROWS[turn(n, KEY_ROWS.length)]!;
-  return Array.from({ length: questions }, (_, i) => (i + turn(n, choices)) % choices);
+export function keyPositions(n: number, questions: number, choices: number, bookId: string = ""): number[] {
+  if (questions === 7 && choices === 3) return wheelAt(KEY_ROWS, "KEY_ROWS", n, bookId);
+  const start = turn(n + bookOffset(bookId, "KEY_ROWS", choices), choices);
+  return Array.from({ length: questions }, (_, i) => (i + start) % choices);
+}
+
+/** First names for the invented people of a chapter: 240, half women's and half men's names, from many places, each easy
+ *  to read, none an ordinary English word, a month, a place or a brand. Left out: the names the writing model fell back on
+ *  in book after book (Noor led chapter 1 of four books) and the house exemplar's own people, which would block as a copy.
+ *  Plain ASCII of three letters or more, so `extractNames` sees every one. Written in a fixed shuffled order, a woman's
+ *  name then a man's, so any ten in a row mix the two and many origins. The fix call's renames pick from it too. */
+const NAME_POOL = (
+  "Halima Lars Lorena Sandro Sigrid Reza Laila Anton Mariam Hassan Alina Mikko Lucy Obinna Zainab Rohan Nadia Rustam Khadija Mateo " +
+  "Helga Nils Keiko Esteban Katja Pablo Rosa Shota Tamika Erik Lara Laszlo Anika Pedro Selin Jomo Yuna Orhan Bushra Arash " +
+  "Deepa Zeki Esther Jamal Nomvula Yusuf Ayesha Carlos Jana Sven Gabriela Chidi Dilnoza Mehmet Thandi Olumide Xiomara Matias Salma Uriel " +
+  "Yasmin Jabari Linnea Piotr Nkechi Dawit Mirela Tunde Inga Oskar Maren Sergei Pooja Quang Elisa Wei Svetlana Chinedu Radhika Sanjay " +
+  "Abena Alejandro Sunita Idris Neha Kamal Natasha Yonatan Akua Farid Simone Ravi Ingrid Nnamdi Sabrina Wiktor Sakura Hiroshi Ananya Jorge " +
+  "Akosua Arvid Yuki Dario Daniela Hamza Fiona Kamau Isabel Zoran Carla Simo Greta Emeka Camila Paulo Monika Nuno Aylin Vusi " +
+  "Ilse Stefan Hafsa Felipe Amina Karim Sana Femi Chinwe Haruto Freya Ibrahim Samira Ahmed Kavya Ruben Beatriz Abdul Chloe Omar " +
+  "Olga Eitan Sadia Lior Chiamaka Daisuke Elena Ajay Valentina Bastien Irina Cyrus Oona Bjorn Adaeze Kofi Tanvi Kojo Hadiya Babak " +
+  "Malia Xavier Wanjiru Emil Emine Goran Shreya Minh Lakshmi Yosef Paola Kenta Tove Andrei Leticia Thabo Luisa Daniel Yetunde Kenji " +
+  "Esra Lukas Saanvi Bongani Dalia Tadeo Marta Anders Zeynep Hamid Hiroko Ricardo Folake Hyun Bianca Tendai Adriana Ivan Soraya Rahul " +
+  "Zuri Gideon Aisha Ugo Elif Takeshi Nanami Kwabena Meera Anand Marisol Luca Amaka Vikram Renata Bilal Farida Arjun Zanele Nikolai " +
+  "Divya Kazuo Joanna Javier Zofia Miro Rania Dmitri Jelena Juan Naledi Jonah Rekha Umar Alejandra Marek Ximena Adebayo Nalani Amadou"
+).split(" ");
+
+/** The names chapter n of a book gives its invented people: `count` in a row from the pool, starting at the book's own
+ *  point, so chapters 1 to 24 of a book never share one and two books do not start on the same ten. A model told "pick
+ *  from these" obeys; one left to choose falls back on the same few names in every book. */
+export function namesFor(n: number, bookId: string = "", count: number = 10): string[] {
+  const k = NAME_POOL.length;
+  const start = bookOffset(bookId, "names", k) + (n - 1) * count;
+  return Array.from({ length: count }, (_, i) => NAME_POOL[(((start + i) % k) + k) % k]!);
+}
+
+/** True when `name` is on the name lists of both chapter n and chapter m of a book. The pool wraps after 24 chapters, so
+ *  chapter 25 is given chapter 1's names, and a chapter that takes one follows its plan rather than repeating another
+ *  chapter. Any other shared name is still a repeat. */
+function givenToBoth(bookId: string, n: number, m: number, name: string): boolean {
+  return bookId !== "" && n !== m && namesFor(n, bookId).includes(name) && namesFor(m, bookId).includes(name);
 }
 
 /** The plan the writer gets for chapter n: the opener and its path, the length ceilings, and the orders that change from
  *  chapter to chapter (counterintuition frame, the form of the last sentence, example tags, quiz and card forms, key
  *  positions and the one outside fix). Everything is a
- *  function of the chapter number, so chapters written in parallel cannot land on the same shape. */
-export function formText(ex: Exemplar, summaryLabel: string = ex.picks.summary.label, n: number = ex.chapter, shape?: BookConfig["shape"]): string {
+ *  function of the chapter number, so chapters written in parallel cannot land on the same shape, shifted per wheel by the
+ *  book's id (`bookOffset`), so chapter n of one book does not share chapter n of every other book's plan. With a book id
+ *  the plan also gives the chapter's list of first names (`namesFor`); with none it is the plan of the chapter number alone. */
+export function formText(ex: Exemplar, summaryLabel: string = ex.picks.summary.label, n: number = ex.chapter, shape?: BookConfig["shape"], bookId: string = "", avoid: string[] = []): string {
   const c = ex.chapterJson;
   const rule = (comp: Component, label: string = ex.picks[comp].label): string => {
     const a = approach(comp, label);
@@ -349,31 +417,37 @@ export function formText(ex: Exemplar, summaryLabel: string = ex.picks.summary.l
     shape
       ? `${t} ${t === "fastRead" ? `${shape[t][0]} to ${shape[t][1]}` : `up to ${shape[t][1]}`} words in at most ${paragraphs(c.breakdown[t])} paragraphs`
       : `${t} up to ${wordsIn(c.breakdown[t])} words in at most ${paragraphs(c.breakdown[t])} paragraphs`;
-  const inOrder = (forms: string[], count: number, id: string): string => {
-    const start = turn(n, forms.length);
+  const inOrder = (forms: string[], count: number, id: string, wheel: string): string => {
+    const start = turn(n + bookOffset(bookId, wheel, forms.length), forms.length);
     return Array.from({ length: count }, (_, i) => `${id}${i + 1} ${forms[(start + i) % forms.length]}`).join("; ");
   };
   const questions = c.quiz.questions.length;
   const choices = c.quiz.questions[0]?.choices.length ?? 3;
-  const quiz = ex.picks.quiz.label === "E" ? `E, "one of each": the forms in this order: ${inOrder(QUIZ_FORMS, questions, "q")}.` : rule("quiz");
-  const cards = ex.picks.cards.label === "E" ? `E, "mixed": the forms in this order: ${inOrder(CARD_FORMS, c.reviewCards.length, "rc")}.` : rule("cards");
-  const tags = TAG_ORDERS[turn(n, TAG_ORDERS.length)]!.slice(0, c.examples.length);
+  const quiz = ex.picks.quiz.label === "E" ? `E, "one of each": the forms in this order: ${inOrder(QUIZ_FORMS, questions, "q", "QUIZ_FORMS")}.` : rule("quiz");
+  const cards = ex.picks.cards.label === "E" ? `E, "mixed": the forms in this order: ${inOrder(CARD_FORMS, c.reviewCards.length, "rc", "CARD_FORMS")}.` : rule("cards");
+  const tags = wheelAt(TAG_ORDERS, "TAG_ORDERS", n, bookId).slice(0, c.examples.length);
   // Strides that share no factor with the list lengths, so the three settings of a chapter move independently.
   const setting = (tag: string): string => {
     const list = SETTINGS[tag] ?? SETTINGS.personal!;
     const stride = tag === "school" ? 5 : tag === "personal" ? 3 : 1;
-    return list[(((n - 1) * stride) % list.length + list.length) % list.length]!;
+    const m = n + bookOffset(bookId, `SETTINGS.${tag}`, list.length);
+    return list[(((m - 1) * stride) % list.length + list.length) % list.length]!;
   };
   // Chapter 1 says who the author is; a reader of the book does not need telling again in every chapter after it.
   const author = n === 1 ? "Where the author is first named, say who they are in a few words." : "Name the author by full name at first mention, with no job title or credentials (the reader met them in chapter 1); where the author is a person in this chapter's own story, say who they were at that point in it, as for anyone else in the story.";
-  const cueKinds = (count: number): string[] => Array.from({ length: count }, (_, i) => CUE_KINDS[(turn(n, CUE_KINDS.length) + i * 2 + (i > 1 ? 1 : 0)) % CUE_KINDS.length]!);
+  const cueStart = turn(n + bookOffset(bookId, "CUE_KINDS", CUE_KINDS.length), CUE_KINDS.length);
+  const cueKinds = (count: number): string[] => Array.from({ length: count }, (_, i) => CUE_KINDS[(cueStart + i * 2 + (i > 1 ? 1 : 0)) % CUE_KINDS.length]!);
+  // The exemplar's own people block as a copy, and `avoid` (the names the <used> block forbids, the book's own people and
+  // terms) would be a repeat or a real person's name on an invented one, so none of them is offered.
+  const names = namesFor(n, bookId).filter((x) => !ex.names.includes(x) && !avoid.includes(x));
   return [
-    `- summary (hook, counterintuition, the three lengths, tryThisNow, memorable line): ${opener.label}, "${opener.name}": ${opener.rule}${opener.path ? ` Path: ${opener.path} ${EVIDENCE_NOTE}` : ""}${openerNote} Ceilings (a chapter with less to say is shorter): hook 25 words; counterintuition 45 words; ${tier("fastRead")}; ${tier("deepRead")}; ${tier("fullRead")}; tryThisNow 25 words. The hook is built on ${HOOK_KINDS[turn(n, HOOK_KINDS.length)]}. The try-this line asks the reader to ${TRY_KINDS[turn(n, TRY_KINDS.length)]}. The last sentence of each length states the lesson as ${ENDINGS[turn(n, ENDINGS.length)]}; where the path ends on a question answered, this sentence is the answer, in this form. ${author}`,
-    `- counterintuition frame: ${COUNTER_FRAMES[turn(n, COUNTER_FRAMES.length)]}`,
-    `- examples: ${c.examples.length} examples, doing the three jobs the field rules give (the ordinary situation, the fix already tried, the harder situation). Scenario about ${avg(c.examples.map((e) => wordsIn(e.scenario)))} words (70 at most), whatToDo about ${avg(c.examples.map((e) => wordsIn(e.whatToDo)))} (30 at most), whyItMatters about ${avg(c.examples.map((e) => wordsIn(e.whyItMatters)))} (25 at most). Tags and settings for examples 1 to ${tags.length}, in this order: ${tags.map((t) => `${t} (${setting(t)})`).join("; ")}. What makes example ${tags.length} the harder one: ${HARD_CASES[turn(n, HARD_CASES.length)]}.`,
-    `- quiz: ${questions} questions with ${choices} choices each; ${quiz} Key positions (the 0-based index of the right choice) for q1 to q${questions}: ${keyPositions(n, questions, choices).join(", ")}. Common advice from outside this chapter may be a wrong choice in one question only, and for this chapter it is: ${OUTSIDE_FIXES[turn(n, OUTSIDE_FIXES.length)]}. If that is part of this chapter's own lesson, or fits no question, use no outside advice.`,
+    `- summary (hook, counterintuition, the three lengths, tryThisNow, memorable line): ${opener.label}, "${opener.name}": ${opener.rule}${opener.path ? ` Path: ${opener.path} ${EVIDENCE_NOTE}` : ""}${openerNote} Ceilings (a chapter with less to say is shorter): hook 25 words; counterintuition 45 words; ${tier("fastRead")}; ${tier("deepRead")}; ${tier("fullRead")}; tryThisNow 25 words. The hook is built on ${wheelAt(HOOK_KINDS, "HOOK_KINDS", n, bookId)}. The try-this line asks the reader to ${wheelAt(TRY_KINDS, "TRY_KINDS", n, bookId)}. The last sentence of each length states the lesson as ${wheelAt(ENDINGS, "ENDINGS", n, bookId)}; where the path ends on a question answered, this sentence is the answer, in this form. ${author}`,
+    `- counterintuition frame: ${wheelAt(COUNTER_FRAMES, "COUNTER_FRAMES", n, bookId)}`,
+    `- examples: ${c.examples.length} examples, doing the three jobs the field rules give (the ordinary situation, the fix already tried, the harder situation). Scenario about ${avg(c.examples.map((e) => wordsIn(e.scenario)))} words (70 at most), whatToDo about ${avg(c.examples.map((e) => wordsIn(e.whatToDo)))} (30 at most), whyItMatters about ${avg(c.examples.map((e) => wordsIn(e.whyItMatters)))} (25 at most). Tags and settings for examples 1 to ${tags.length}, in this order: ${tags.map((t) => `${t} (${setting(t)})`).join("; ")}. What makes example ${tags.length} the harder one: ${wheelAt(HARD_CASES, "HARD_CASES", n, bookId)}.`,
+    `- quiz: ${questions} questions with ${choices} choices each; ${quiz} Key positions (the 0-based index of the right choice) for q1 to q${questions}: ${keyPositions(n, questions, choices, bookId).join(", ")}. Common advice from outside this chapter may be a wrong choice in one question only, and for this chapter it is: ${wheelAt(OUTSIDE_FIXES, "OUTSIDE_FIXES", n, bookId)}. If that is part of this chapter's own lesson, or fits no question, use no outside advice.`,
     `- review cards: ${c.reviewCards.length} cards; ${cards}`,
     `- practice plan: ${c.implementationPlan.ifThenPlans.length} if-then plans; ${rule("practice")} The kinds of cue for this chapter: ${cueKinds(c.implementationPlan.ifThenPlans.length).join("; ")}.`,
+    ...(bookId === "" ? [] : [`- names: every invented person in this chapter (the lead in the summary, the people in the examples, the quiz and the cards) takes a first name from this list, one name for one person: ${names.join(", ")}. People from the book keep the names the book gives them.`]),
   ].join("\n");
 }
 
@@ -389,14 +463,27 @@ function writeVariety(ctx: PipelineCtx, n: number, v: Variety): void {
   writeJson(path.join(ctx.config.runDir, "variety.json"), ledger);
 }
 
-/** The <used> block: everything in the ledger except this chapter's own entry, plus the exemplar's names. */
-export function usedText(ledger: VarietyLedger, ex: Exemplar, except: number): string {
+/** The names the <used> block forbids chapter `except`: the exemplar's and every other chapter's, less those both this
+ *  chapter and a per-book chapter were given. The plan's name list leaves these out too, so the two never disagree. */
+function usedNames(ledger: VarietyLedger, ex: Exemplar, except: number, bookId: string): Set<string> {
   const names = new Set<string>(ex.names);
+  for (const [k, v] of Object.entries(ledger.chapters)) {
+    if (k === chapterName(except)) continue;
+    v.names.forEach((x) => {
+      if (!(v.salted === true && givenToBoth(bookId, except, Number(k.slice(2)), x))) names.add(x);
+    });
+  }
+  return names;
+}
+
+/** The <used> block: everything in the ledger except this chapter's own entry, plus the exemplar's names. A name both this
+ *  chapter and a per-book chapter were given (the pool wrapped) stays off it, so the block never forbids the plan's list. */
+export function usedText(ledger: VarietyLedger, ex: Exemplar, except: number, bookId: string = ""): string {
+  const names = usedNames(ledger, ex, except, bookId);
   const settings = new Set<string>();
   const analogies = new Set<string>();
   for (const [k, v] of Object.entries(ledger.chapters)) {
     if (k === chapterName(except)) continue;
-    v.names.forEach((x) => names.add(x));
     v.settings.forEach((x) => settings.add(x));
     v.analogies.forEach((x) => analogies.add(x));
   }
@@ -471,29 +558,21 @@ function readerLeaves(c: Chapter): Record<string, string[]> {
   return out;
 }
 
-/** First names from many places, for a rename: the fix call picks from the ones this book has not used yet. A model told
- *  "pick from these" obeys; one told "avoid these two hundred" does not. */
-const NAME_POOL = (
-  "Adaeze Aiko Alejandra Amadou Anders Aroha Asel Bao Beatriz Benedek Catalina Cyrus Dagny Damaris Dilnoza Eitan Elif Emeka Enzo Fatou " +
-  "Fenna Gael Giulia Gudrun Hamid Hinata Idris Ilse Isko Jelena Joaquín Jorunn Kaede Kamau Kasia Keanu Lior Lucero Maarten Malak Manon " +
-  "Matteo Mehmet Mirela Nadir Nikolai Oona Orla Paulo Petra Quynh Rosalind Sachin Selin Sigrid Simo Suki Tadeo Tariq Thandi Tomás Tove " +
-  "Umar Valentina Vikram Wren Xiomara Yara Yosef Zanele Zoran Ayla Bastien Chiamaka Dario Esperanza Farida Hugo Leandro Maren Nuru Oskar " +
-  "Priyanka Rutger Saoirse Tendai Ulla Veda Wiktor Yemi Zélie"
-).split(" ");
-
 /** Matches `name` as a whole word: letters, digits and underscores on either side do not count. */
 function wholeWord(name: string): RegExp {
   return new RegExp(`(?<![\\p{L}\\p{N}_])${escapeRe(name)}(?![\\p{L}\\p{N}_])`, "u");
 }
 
 /** Blocking: a name or an eight-word run copied from the exemplar. Reported: a name from the variety ledger (another chapter), a
- *  six-word run shared with another landed chapter's summaries (`earlierTiers`), or an opener that repeats the previous chapter's. */
+ *  six-word run shared with another landed chapter's summaries (`earlierTiers`), or an opener that repeats the previous chapter's.
+ *  With `bookId` (the chapter was written under the per-book plan), a name the plan gave both this chapter and the other
+ *  per-book chapter is not a repeat (`givenToBoth`). */
 export function copyAndVarietyIssues(
   c: Chapter,
   ex: Exemplar,
   ledger: VarietyLedger,
   n: number,
-  opts: { earlierTiers?: Record<string, string>; approach?: string; expectedApproach?: string } = {},
+  opts: { earlierTiers?: Record<string, string>; approach?: string; expectedApproach?: string; bookId?: string } = {},
 ): { blocking: Issue[]; reported: Issue[] } {
   const blocking: Issue[] = [];
   const reported: Issue[] = [];
@@ -524,7 +603,12 @@ export function copyAndVarietyIssues(
   for (const leaves of Object.values(readerLeaves(ex.chapterJson))) for (const leaf of leaves) for (const g of grams8(leaf)) exGrams.add(g);
   const whole = wholeWord;
   const otherNames = new Set<string>();
-  for (const [k, v] of Object.entries(ledger.chapters)) if (k !== chapterName(n)) v.names.forEach((x) => otherNames.add(x));
+  for (const [k, v] of Object.entries(ledger.chapters)) {
+    if (k === chapterName(n)) continue;
+    v.names.forEach((x) => {
+      if (!(v.salted === true && givenToBoth(opts.bookId ?? "", n, Number(k.slice(2)), x))) otherNames.add(x);
+    });
+  }
   for (const [id, leaves] of Object.entries(readerLeaves(c))) {
     const text = leaves.join("\n");
     for (const name of ex.names) {
@@ -630,7 +714,7 @@ async function checkRound(
   lesson: LessonCard,
   ex: Exemplar,
   bdir: string,
-  opts: { approach?: string; expectedApproach?: string; factCheck?: boolean; keySolve?: boolean } = {},
+  opts: { approach?: string; expectedApproach?: string; factCheck?: boolean; keySolve?: boolean; bookId?: string } = {},
 ): Promise<Round> {
   const knowledge = ctx.source.mode === "knowledge";
   const { bookId, title, author, categories, tags, bookType } = ctx.config;
@@ -647,7 +731,7 @@ async function checkRound(
   const reported: Issue[] = [...det.reported];
   if (det.blocking.some((i) => i.text.startsWith("shape:"))) return { chapter, blocking, reported, advisory: det.advisory };
 
-  const copy = copyAndVarietyIssues(chapter, ex, readVariety(ctx), n, { earlierTiers: earlierTiers(ctx, n, ex), approach: opts.approach, expectedApproach: opts.expectedApproach });
+  const copy = copyAndVarietyIssues(chapter, ex, readVariety(ctx), n, { earlierTiers: earlierTiers(ctx, n, ex), approach: opts.approach, expectedApproach: opts.expectedApproach, bookId: opts.bookId });
   blocking.push(...copy.blocking);
   reported.push(...copy.reported);
   // A round that changed no summary tier changed no fact, and one that changed no quiz changed no key: the earlier
@@ -691,6 +775,9 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
   const statusFile = path.join(dir, "status.json");
   const existing = readJson<BookChapterStatus>(statusFile);
   if (existing?.book === true && !opts.force) return existing;
+  // A note whose every sentence was cut leaves only its Reversal and Story lines: a chapter written from it is written
+  // from nothing. Refused here so that the book verb is covered, not only auto (variants and assemble refuse it too).
+  requireLesson(ctx, n);
   if (opts.force) {
     fs.rmSync(bdir, { recursive: true, force: true });
     for (const f of ["final.json", "status.json", "lesson.json"]) fs.rmSync(path.join(dir, f), { force: true });
@@ -717,11 +804,17 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
   }
   const candidate = lessons[0];
   const lesson: LessonCard = { lesson: candidate.lesson, wrongBelief: candidate.wrongBelief, keyPhrase: candidate.keyPhrase, hookQuestion: candidate.hookQuestion, storyNames: candidate.storyNames, evidence: candidate.evidence };
-  const expectedApproach = summaryApproachFor(ex, n);
 
   // 2. The chapter, in the exemplar's form.
   let chapter = readJson<Chapter>(path.join(bdir, "r0.chapter.json"));
   let used = readJson<Variety>(path.join(bdir, "used.json"));
+  // The plan is the book's, not the chapter's: every wheel steps once per chapter only when the whole book follows one
+  // plan. A book with any chapter written under the plan of the chapter number alone keeps that plan for every later
+  // chapter, redo and --force. A first draft on disk is checked against the plan its mark says it was written under.
+  const ledger = readVariety(ctx);
+  const bookPlan = Object.entries(ledger.chapters).every(([k, v]) => k === chapterName(n) || v.salted === true) ? ctx.config.bookId : "";
+  const planId = chapter && used ? (used.salted === true ? ctx.config.bookId : "") : bookPlan;
+  const expectedApproach = summaryApproachFor(ex, n, planId);
   if (!chapter || !used) {
     const titles = Object.fromEntries(ctx.source.spans.map((s) => [s.chapterNumber, s.chapterTitle]));
     const { SOURCE_RULES, QUOTE_RULE, SOURCE_BLOCK } = sourceVars(ctx, n);
@@ -733,8 +826,12 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
       QUOTE_RULE,
       SOURCE_BLOCK,
       NOTES: notes,
-      FORM: formText(ex, expectedApproach, n, ctx.config.shape),
-      USED: usedText(readVariety(ctx), ex, n),
+      // The list leaves out what <used> forbids and the book's own people and terms (a real Daniel next to an invented one).
+      FORM: formText(ex, expectedApproach, n, ctx.config.shape, planId, [
+        ...usedNames(ledger, ex, n, planId),
+        ...[...candidate.storyNames, ...ex.bookNames, ...bookTerms(ctx)].flatMap((x) => x.split(/\s+/)),
+      ]),
+      USED: usedText(ledger, ex, n, planId),
       KEYS: keysBlock(ctx, n),
       MEMORABLE_RULE: knowledge ? "" : ", up to 2 more {\"text\"} objects with the author's exact words from the source that carry the same lesson (most chapters need none)",
       PLAIN: loadPrompt("variants-plain"),
@@ -742,7 +839,7 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
       EXEMPLAR: JSON.stringify(ex.chapterJson, null, 1),
     });
     const raw = (await callShaped(ctx, n, { role: ctx.config.writer, prompt, step: "write", kind: "write", errors: chapterShapeErrors, outPrefix: prefix("write"), ledgerStep: "book-write" })) as Record<string, unknown>;
-    used = usedOf(raw);
+    used = { ...usedOf(raw), ...(planId !== "" ? { salted: true } : {}) };
     const { _used, ...rest } = raw;
     void _used;
     chapter = rest as unknown as Chapter;
@@ -752,7 +849,7 @@ export async function writeBookChapter(ctx: PipelineCtx, n: number, ex: Exemplar
 
   // 3. Checks, one fix round on blocking issues, checks again.
   let round = 0;
-  const checkOpts = { approach: used.approach, expectedApproach };
+  const checkOpts = { approach: used.approach, expectedApproach, bookId: planId };
   let r = await checkRound(ctx, n, round, chapter, lesson, ex, bdir, checkOpts);
   let fixed = false;
   const fixable = r.blocking.filter((i) => !i.text.startsWith("shape:"));
@@ -835,8 +932,15 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
   // the later chapter of a pair renames. Chapters written side by side never saw each other's names, so the ledger is read
   // again here instead of trusting the issues the landing check left.
   const ledger = readVariety(ctx);
+  // A name the per-book plan gave both chapters (the pool wrapped) is not one the earlier chapter used first.
+  const planId = ledger.chapters[chapterName(n)]?.salted === true ? ctx.config.bookId : "";
   const earlierNames = new Set<string>();
-  for (const [k, v] of Object.entries(ledger.chapters)) if (Number(k.slice(2)) < n) v.names.forEach((x) => earlierNames.add(x));
+  for (const [k, v] of Object.entries(ledger.chapters)) {
+    if (Number(k.slice(2)) >= n) continue;
+    v.names.forEach((x) => {
+      if (!(v.salted === true && givenToBoth(planId, n, Number(k.slice(2)), x))) earlierNames.add(x);
+    });
+  }
   const VARIETY = /^variety: "(.+)" is already used in another chapter/;
   const issues: Issue[] = [
     ...(style ? [] : status.open.filter((i) => (i.blocking && !i.text.startsWith("shape:")) || earlierNames.has(VARIETY.exec(i.text)?.[1] ?? ""))),
@@ -862,9 +966,12 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
   const styleNames = style ? [...new Set([...(ledger.chapters[chapterName(n)]?.names ?? []), ...extractNames(chapter, [...lesson.storyNames, ...bookTerms(ctx)], "invented")])].sort() : [];
   if (!style && issues.some((i) => VARIETY.test(i.text))) {
     // The fix call cannot see the ledger, so a rename would land on a name another chapter uses; offered a dozen free
-    // names (rotated by chapter so neighbours get different ones) it picks one of them.
-    const free = NAME_POOL.filter((x) => !used.has(x));
-    const offer = free.length > 0 ? Array.from({ length: Math.min(12, free.length) }, (_, i) => free[(n * 7 + i) % free.length]) : [];
+    // names (rotated by chapter so neighbours get different ones) it picks one of them. A chapter under the per-book plan is
+    // offered its own list's free names first: a name from the rest of the pool may be on a later chapter's list.
+    const mine = planId === "" ? [] : namesFor(n, planId).filter((x) => !used.has(x));
+    const free = NAME_POOL.filter((x) => !used.has(x) && !mine.includes(x));
+    const rest = free.length > 0 ? Array.from({ length: Math.min(12, free.length) }, (_, i) => free[(n * 7 + i) % free.length]) : [];
+    const offer = [...mine, ...rest].slice(0, 12);
     issues.push({ source: "det", blocking: false, field: "(chapter)", text: `for each rename above, replace the name everywhere it appears with one of these names this book has not used yet (or another name that fits the scene and that no other chapter of this book uses): ${offer.join(", ")}` });
   }
   const bdir = path.join(dir, "book");
@@ -875,7 +982,7 @@ export async function fixLanded(ctx: PipelineCtx, n: number, findings: Array<{ f
   // gone), a quiz edited (or a key flag). A rename, a style pass, a card or an example edit leaves the earlier verdicts standing.
   const factCheck = !style && !renameOnly && (TIERS.some((t) => applied.breakdown[t] !== chapter.breakdown[t]) || issues.some((i) => i.source === "fact"));
   const keySolve = !style && !renameOnly && (JSON.stringify(applied.quiz) !== JSON.stringify(chapter.quiz) || issues.some((i) => i.source === "keysolve"));
-  const r = await checkRound(ctx, n, round, applied, lesson, ex, bdir, { factCheck, keySolve });
+  const r = await checkRound(ctx, n, round, applied, lesson, ex, bdir, { factCheck, keySolve, bookId: planId });
   if (style) {
     // How far the pronoun rule got: the invented people's mentions across the three summary lengths, before and after.
     const mentions = (c: Chapter): number => styleNames.reduce((s, nm) => s + (TIERS.map((t) => c.breakdown[t]).join("\n").match(new RegExp(wholeWord(nm).source, "gu")) ?? []).length, 0);

@@ -11,6 +11,7 @@ import { runChecks, type CheckContext } from "./checks";
 import { call, type ChapterStatus, type PipelineCtx } from "./pipeline";
 import { chapterHeader, knownTrapsSection, loadPrompt, renderTemplate } from "./prompts";
 import { keysBlock, keysFor } from "./keysText";
+import { requireLesson } from "./keysCheck";
 import { page, renderChapter } from "./render";
 import { spanText, writerForm, writerFormText } from "./source";
 import type { Chapter, Issue, LessonCard } from "./types";
@@ -186,6 +187,8 @@ export interface AssembleResult {
 }
 
 export async function assembleChapter(ctx: PipelineCtx, n: number, p: Picks): Promise<AssembleResult> {
+  // A knowledge-mode chapter is written from its note, and one with no lesson left is written from nothing.
+  requireLesson(ctx, n);
   const vdir = variantsDir(ctx, n);
   const run = readJson<VariantsRun>(path.join(vdir, "run.json"));
   if (!run) throw new Error(`NO_VARIANTS: ${chapterName(n)} has no variants page yet; run variants first`);
