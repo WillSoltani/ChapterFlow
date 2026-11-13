@@ -285,7 +285,10 @@ const TAG_ORDERS = [
   ["work", "personal", "school"],
   ["personal", "school", "work"],
 ];
-/** Balanced key rows for seven three-choice questions: every position is the key at least twice, the first five use all three, and question 1's key moves from chapter to chapter. */
+/** Balanced key rows for seven three-choice questions: every position is the key at least twice, the first five use all
+ *  three, no position comes three times running, and question 1's key moves from chapter to chapter. Twenty-four rows,
+ *  no two alike in their first five: with six, a nine-chapter book gave chapters 1 and 7 the same letters (The Power of
+ *  Habit, 2026-11-12), which a daily reader can spot. The first six are the rows the earlier books were written with. */
 const KEY_ROWS = [
   [0, 2, 1, 1, 0, 2, 0],
   [1, 0, 2, 0, 1, 2, 1],
@@ -293,6 +296,24 @@ const KEY_ROWS = [
   [0, 1, 2, 0, 2, 1, 2],
   [1, 2, 0, 1, 0, 2, 0],
   [2, 0, 1, 2, 1, 0, 1],
+  [0, 2, 0, 2, 1, 1, 0],
+  [1, 0, 1, 1, 2, 0, 2],
+  [2, 0, 2, 1, 0, 1, 0],
+  [0, 1, 1, 2, 0, 0, 2],
+  [1, 2, 0, 0, 1, 0, 2],
+  [2, 2, 1, 0, 2, 1, 0],
+  [0, 2, 2, 1, 1, 0, 1],
+  [1, 0, 0, 2, 0, 1, 2],
+  [2, 1, 0, 0, 1, 2, 0],
+  [0, 0, 1, 0, 2, 2, 1],
+  [1, 1, 2, 0, 0, 2, 0],
+  [2, 0, 0, 1, 1, 0, 2],
+  [0, 0, 2, 1, 2, 1, 1],
+  [1, 1, 0, 0, 2, 2, 1],
+  [2, 0, 1, 0, 0, 1, 2],
+  [0, 1, 0, 1, 2, 0, 2],
+  [1, 2, 1, 0, 0, 2, 1],
+  [2, 1, 0, 1, 0, 1, 2],
 ];
 /** Five forms for seven questions. Five more were tried in three proofs (2026-11-12) and are gone: "which comes first"
  *  and "what is missing" asked for an order or a piece most lessons do not teach (a checker marked two such questions

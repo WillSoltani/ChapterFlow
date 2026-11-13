@@ -93,6 +93,19 @@ test("key positions: every position is the key at least twice, the first five us
   }
   assert.deepEqual(first.slice(0, 6), [0, 1, 2, 0, 1, 2]);
   assert.deepEqual(keyPositions(2, 4, 4), [1, 2, 3, 0], "other shapes cycle");
+  // Twenty-four chapters before a row comes back, and no two of them share the letters of the five questions most
+  // readers see; with six rows a nine-chapter book gave chapters 1 and 7 the same answer letters.
+  const rows = Array.from({ length: 24 }, (_, i) => keyPositions(i + 1, 7, 3));
+  assert.equal(new Set(rows.map((r) => r.join(""))).size, 24);
+  assert.equal(new Set(rows.map((r) => r.slice(0, 5).join(""))).size, 24);
+  for (const [i, r] of rows.entries()) {
+    for (const p of [0, 1, 2]) assert.ok(r.filter((x) => x === p).length >= 2, `chapter ${i + 1}: position ${p}`);
+    assert.equal(new Set(r.slice(0, 5)).size, 3, `chapter ${i + 1}: the first five`);
+    assert.ok(!r.some((x, k) => k >= 2 && x === r[k - 1] && x === r[k - 2]), `chapter ${i + 1}: never three in a row`);
+    assert.notEqual(r[0], rows[(i + 1) % 24]![0], `chapters ${i + 1} and ${i + 2}: question 1 moves`);
+  }
+  assert.deepEqual(keyPositions(25, 7, 3), keyPositions(1, 7, 3));
+  assert.deepEqual(keyPositions(1, 7, 3), [0, 2, 1, 1, 0, 2, 0], "the rows the earlier books were written with stay first");
 });
 
 // ---------------------------------------------------------------- the house exemplar
