@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { saveTakeaway, type SaveTakeawayDeps } from "./save-takeaway-core";
+import { saveTakeaway, takeawayTarget, type SaveTakeawayDeps } from "./save-takeaway-core";
 
 const NOW = "2026-11-13T10:00:00.000Z";
 const STATE_URL = "/app/api/book/me/books/atomic-habits/chapters/4/state";
@@ -160,4 +160,33 @@ test("DATA-04: a failed save throws, leaves the local copy alone and does not re
   await assert.rejects(saveTakeaway(h.deps, INPUT));
   assert.deepEqual(h.local(), local);
   assert.equal(h.notebookRefetches(), 0);
+});
+
+const CHAPTERS = [
+  { id: "atomic-habits-ch01", order: 1 },
+  { id: "atomic-habits-ch04", order: 4 },
+];
+
+test("takeawayTarget: a book the reader has not started gets no takeaway box", () => {
+  // Saving writes a chapter-state row, which counts as starting the book (C5).
+  assert.equal(
+    takeawayTarget({ bookId: "atomic-habits", status: "not_started", chapterId: "atomic-habits-ch01", chapters: CHAPTERS }),
+    null
+  );
+});
+
+test("takeawayTarget: started and finished books target the known chapter", () => {
+  for (const status of ["in_progress", "completed"] as const) {
+    assert.deepEqual(
+      takeawayTarget({ bookId: "atomic-habits", status, chapterId: "atomic-habits-ch04", chapters: CHAPTERS }),
+      { bookId: "atomic-habits", chapterId: "atomic-habits-ch04", chapterNumber: 4 }
+    );
+  }
+});
+
+test("takeawayTarget: an unknown chapter hides the box", () => {
+  assert.equal(
+    takeawayTarget({ bookId: "atomic-habits", status: "in_progress", chapterId: "missing", chapters: CHAPTERS }),
+    null
+  );
 });

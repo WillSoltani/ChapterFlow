@@ -44,7 +44,10 @@ import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { useServerTier } from "@/hooks/book/useServerTier";
 import { fetchBookJson } from "@/lib/client/book-api";
 import { fetchBookJsonCached } from "@/lib/client/book-api-cache";
-import { saveTakeaway } from "@/app/book/profile/lib/save-takeaway-core";
+import {
+  saveTakeaway,
+  takeawayTarget as resolveTakeawayTarget,
+} from "@/app/book/profile/lib/save-takeaway-core";
 import { tierIdentity } from "@/components/progress/progressTypes";
 import {
   BadgeDetailPanel,
@@ -591,17 +594,16 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
 
   const navigateToSettings = () => router.push("/book/settings");
 
-  // The takeaway goes to the chapter shown in Momentum; without a known
-  // chapter number the box is hidden (the account write needs it).
+  // The takeaway goes to the chapter shown in Momentum, and only for a book
+  // the reader has started or finished (saving would otherwise start it).
   const takeawayTarget = useMemo(() => {
     if (!currentSnapshot) return null;
-    const chapterId = currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId;
-    const chapter = getBookChaptersBundle(currentSnapshot.book.id).chapters.find(
-      (c) => c.id === chapterId
-    );
-    return chapter
-      ? { bookId: currentSnapshot.book.id, chapterId: chapter.id, chapterNumber: chapter.order }
-      : null;
+    return resolveTakeawayTarget({
+      bookId: currentSnapshot.book.id,
+      status: currentSnapshot.status,
+      chapterId: currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId,
+      chapters: getBookChaptersBundle(currentSnapshot.book.id).chapters,
+    });
   }, [currentSnapshot, currentReadingDetails]);
 
   const handleSaveTakeaway = useCallback(async () => {

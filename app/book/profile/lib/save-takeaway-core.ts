@@ -43,6 +43,25 @@ export type SaveTakeawayInput = {
   localKey: string;
 };
 
+export type TakeawayTarget = { bookId: string; chapterId: string; chapterNumber: number };
+
+/**
+ * Where Profile's takeaway box saves, or null to hide the box. Saving writes a
+ * chapter-state row, and that row marks a book as started (C5), so the box is
+ * offered only for a book the reader has started or finished, and only when
+ * the chapter number is known (the account write needs it).
+ */
+export function takeawayTarget(input: {
+  bookId: string;
+  status: "completed" | "in_progress" | "not_started";
+  chapterId: string | null | undefined;
+  chapters: ReadonlyArray<{ id: string; order: number }>;
+}): TakeawayTarget | null {
+  if (input.status === "not_started") return null;
+  const chapter = input.chapters.find((c) => c.id === input.chapterId);
+  return chapter ? { bookId: input.bookId, chapterId: chapter.id, chapterNumber: chapter.order } : null;
+}
+
 type ChapterStateItem = { chapterId?: unknown; state?: unknown } | null;
 
 function asRecord(value: unknown): Record<string, unknown> | null {
