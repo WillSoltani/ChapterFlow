@@ -32,7 +32,10 @@ function makeCard(id: string) {
 }
 
 let page = 0;
+let failLoad = false;
+let failRating = false;
 const fetchBookJsonCached = makeSpy(async (url: string) => {
+  if (failLoad && !url.includes("mode=stats")) throw new Error("offline");
   if (url.includes("mode=stats")) {
     return { stats: { totalCards: 60, dueCards: 3, avgRetrievability: 0.8, bookIds: ["atomic-habits"] } };
   }
@@ -41,7 +44,10 @@ const fetchBookJsonCached = makeSpy(async (url: string) => {
     ? { cards: [makeCard("c1")], count: 1, hasMore: true }
     : { cards: [makeCard("c2")], count: 1, hasMore: false };
 });
-const fetchBookJson = makeSpy(async (_url: string, _init?: unknown) => ({ card: makeCard("rated") }));
+const fetchBookJson = makeSpy(async (_url: string, _init?: unknown) => {
+  if (failRating) throw new Error("server error");
+  return { card: makeCard("rated") };
+});
 
 const harness = installRouteHarness({
   "@/lib/client/book-api": { fetchBookJson },
@@ -60,6 +66,8 @@ before(async () => {
 afterEach(() => {
   cleanup();
   page = 0;
+  failLoad = false;
+  failRating = false;
   fetchBookJsonCached.calls.length = 0;
 });
 
@@ -87,4 +95,23 @@ test("PROG-08: when more are due, the end screen offers Keep going and loads the
   await rateCurrentCard(view);
   await waitFor(() => assert.ok(view.getByText(/Session Complete!/)));
   assert.equal(view.queryByRole("button", { name: /Keep going/ }), null);
+});
+
+test("DATA-13: a failed load shows an error with Retry, not All caught up", async () => {
+  failLoad = true;
+  const view = render(<ReviewSessionFSRS onClose={() => {}} />);
+  await view.findByText(/couldn't load your review cards/);
+  assert.equal(view.queryByText(/All caught up/), null);
+  failLoad = false;
+  fireEvent.click(view.getByRole("button", { name: "Retry" }));
+  await view.findByText(/Front c1/);
+});
+
+test("DATA-13: a failed rating keeps the card and shows a message", async () => {
+  const view = render(<ReviewSessionFSRS onClose={() => {}} />);
+  failRating = true;
+  await rateCurrentCard(view);
+  await view.findByText(/rating didn't save/);
+  assert.ok(await view.findByText(/Back c1/), "the same card stays, answer showing");
+  assert.ok(view.getByRole("button", { name: /Good/ }), "it can be rated again");
 });

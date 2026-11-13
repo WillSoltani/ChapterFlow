@@ -27,6 +27,7 @@ import { fetchBookJson } from "@/lib/client/book-api";
 import {
   fetchBookJsonCached,
   invalidateBookCache,
+  useBookQuery,
 } from "@/lib/client/book-api-cache";
 import { aggregateHourlyForDay } from "@/lib/client/reading-activity-storage";
 import { ReviewSessionFSRS } from "@/components/review/ReviewSessionFSRS";
@@ -373,16 +374,25 @@ export function ProgressPage() {
   // Streak Shield count from the server (FSRS deck + streak store) so this page
   // agrees with the home ReviewDueWidget instead of a per-device localStorage
   // SRS. Re-runs when a review session closes (refreshKey bumps).
-  const [reviewData, setReviewData] = useState<ReviewData | null>(null);
-  const [reviewedTodayCount, setReviewedTodayCount] = useState(0);
+  const reviewsQuery = useBookQuery<{ cards: FSRSCardLite[] }>(REVIEWS_ALL_KEY);
+  const reviewCards = reviewsQuery.data?.cards;
+  const reviewData = useMemo<ReviewData | null>(
+    () => (reviewCards ? buildReviewDataFromCards(reviewCards) : null),
+    [reviewCards]
+  );
+  const reviewedTodayCount = useMemo(
+    () => (reviewCards ? countReviewedToday(reviewCards) : 0),
+    [reviewCards]
+  );
+  // PROG-19: no deck yet is "loading" or "error", never the new-reader empty state.
+  const reviewStatus: "ready" | "loading" | "error" = reviewData
+    ? "ready"
+    : reviewsQuery.error
+      ? "error"
+      : "loading";
+  const refetchReviews = reviewsQuery.refetch;
   const [shieldsHeld, setShieldsHeld] = useState(0);
   useEffect(() => {
-    fetchBookJsonCached<{ cards: FSRSCardLite[] }>(REVIEWS_ALL_KEY)
-      .then(({ cards }) => {
-        setReviewData(buildReviewDataFromCards(cards));
-        setReviewedTodayCount(countReviewedToday(cards));
-      })
-      .catch(() => {});
     fetchBookJsonCached<{ shieldsHeld?: number }>(STREAK_KEY)
       .then((s) => setShieldsHeld(s.shieldsHeld ?? 0))
       .catch(() => {});
@@ -629,6 +639,8 @@ export function ProgressPage() {
         >
           <KnowledgeReview
             reviews={displayData.reviews}
+            status={reviewStatus}
+            onRetry={refetchReviews}
             firstActiveBook={displayData.activeBooks[0] ?? null}
             onStartReview={() => setShowReviewSession(true)}
           />
@@ -678,10 +690,11 @@ export function ProgressPage() {
           key={refreshKey}
           onClose={() => {
             setShowReviewSession(false);
-            // The session mutated the FSRS deck + streak store — drop their cached
-            // reads so the refreshKey-driven refetch pulls fresh data, not a hit.
-            invalidateBookCache(REVIEWS_ALL_KEY);
+            // The session mutated the FSRS deck + streak store. Invalidation does
+            // not refetch mounted readers (C14), so refetch the deck explicitly;
+            // the refreshKey bump re-reads the streak store.
             invalidateBookCache(STREAK_KEY);
+            refetchReviews();
             setRefreshKey((k) => k + 1);
           }}
         />

@@ -9,6 +9,9 @@ interface KnowledgeReviewProps {
   reviews: ReviewData;
   firstActiveBook: ActiveBook | null;
   onStartReview?: () => void;
+  /** PROG-19: the deck read is still pending or failed; never the new-reader state. */
+  status?: "ready" | "loading" | "error";
+  onRetry?: () => void;
 }
 
 function getDayLabel(dateStr: string): string {
@@ -30,6 +33,8 @@ export function KnowledgeReview({
   reviews,
   firstActiveBook,
   onStartReview,
+  status = "ready",
+  onRetry,
 }: KnowledgeReviewProps) {
   const prefersReduced = useReducedMotion();
   const totalDue = reviews.overdueCount + reviews.dueTodayCount;
@@ -70,7 +75,48 @@ export function KnowledgeReview({
       </h2>
 
       <AnimatePresence mode="wait">
-        {!hasReviews ? (
+        {status === "loading" ? (
+          <motion.div
+            key="loading"
+            aria-busy="true"
+            aria-label="Loading your review cards"
+            className="mt-4 flex flex-col gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: DUR.fast }}
+          >
+            <div className="animate-shimmer h-8 w-40 rounded-xl" />
+            <div className="animate-shimmer h-6 w-56 rounded-full" />
+          </motion.div>
+        ) : status === "error" ? (
+          <motion.div
+            key="error"
+            role="alert"
+            className="mt-4 flex flex-col items-start gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: DUR.fast }}
+          >
+            <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
+              We couldn&apos;t load your review cards.
+            </p>
+            {onRetry && (
+              <button
+                type="button"
+                onClick={onRetry}
+                className="cf-pressable cf-focus cursor-pointer rounded-xl px-5 py-2.5 text-sm font-medium transition-colors"
+                style={{
+                  color: "var(--text-secondary)",
+                  border: "1px solid var(--cf-border-strong)",
+                }}
+              >
+                Retry
+              </button>
+            )}
+          </motion.div>
+        ) : !hasReviews ? (
           /* State 1 — No chapters completed yet */
           <motion.div
             key="empty"

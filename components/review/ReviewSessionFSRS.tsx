@@ -93,6 +93,9 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
     hasMore,
     stats,
     refresh,
+    error,
+    ratingError,
+    retry,
   } = useReviewQueue(bookId);
 
   const [flipped, setFlipped] = useState(false);
@@ -102,8 +105,9 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
     async (rating: FSRSRating) => {
       if (submitting) return;
       setSubmitting(true);
-      await submitRating(rating);
-      setFlipped(false);
+      // On failure the answer stays up so the reader can rate the same card again.
+      const saved = await submitRating(rating);
+      if (saved) setFlipped(false);
       setSubmitting(false);
     },
     [submitting, submitRating],
@@ -130,6 +134,34 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
             Loading review cards...
           </p>
         </motion.div>
+      </div>
+    );
+  }
+
+  // ── Load failed (never shown as "all caught up") ──
+  if (error && cards.length === 0) {
+    return (
+      <div className="cf-overlay fixed inset-0 z-50 flex items-center justify-center">
+        <div role="alert" className="cf-panel mx-4 max-w-sm rounded-4xl p-8 text-center">
+          <h2 className="text-xl font-semibold text-(--cf-text-1)">{error}</h2>
+          <p className="mt-2 text-sm leading-relaxed text-(--cf-text-3)">
+            Check your connection and try again.
+          </p>
+          <button
+            type="button"
+            onClick={() => void retry()}
+            className="cf-btn cf-btn-primary mt-6 w-full rounded-2xl text-sm"
+          >
+            Retry
+          </button>
+          <button
+            type="button"
+            onClick={onClose}
+            className="cf-btn cf-btn-secondary mt-3 w-full rounded-2xl text-sm"
+          >
+            Close
+          </button>
+        </div>
       </div>
     );
   }
@@ -420,6 +452,11 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
               </motion.div>
             )}
           </AnimatePresence>
+          {ratingError && (
+            <p role="alert" className="mt-3 text-center text-sm text-(--cf-danger-text)">
+              {ratingError}
+            </p>
+          )}
         </div>
       </div>
     </div>
