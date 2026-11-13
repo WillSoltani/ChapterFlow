@@ -1,123 +1,53 @@
 import { NextRequest, NextResponse } from "next/server";
 import { jsonErrorResponse } from "@/lib/api/error-envelope";
-import { mustServerEnv } from "@/app/app/api/_lib/server-env";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
-import { getAccountStatus } from "@/app/app/api/book/_lib/repo";
-import { BOOK_DEVICE_COOKIE } from "@/app/app/api/book/_lib/abuse";
-import { resolveCognitoDomain } from "../_lib/cognito-domain";
-import { getAuthCookieBase } from "../_lib/auth-cookie";
+import { resolvePublicOrigin } from "@/app/app/_lib/server-origin";
 import {
-  preserveOrCreateAuthCacheGeneration,
-  rotateAuthCacheGeneration,
-} from "../_lib/auth-cache-generation";
+  REFRESH_ATTEMPT_COOKIE,
+  REFRESH_ATTEMPT_MAX_AGE_SECONDS,
+  isSessionCookieFresh,
+} from "@/lib/middleware-auth-core";
+import { getAuthCookieBase } from "../_lib/auth-cookie";
+import { sanitizeReturnTo } from "../_lib/return-to";
+import {
+  REFRESH_DEFAULT_RETURN_TO,
+  loginPathFor,
+  planRefreshGet,
+  resolveRefreshReturnTo,
+} from "./refresh-core";
+import {
+  applyRefreshFailureCookies,
+  applyRefreshedSession,
+  exchangeRefreshToken,
+  type RefreshFailureReason,
+} from "./refresh-exchange";
 
 export const runtime = "nodejs";
 
-// Mirrors the refresh-token validity persisted by the callback. This 30-day
-// lifetime is disclosed in app/legal/cookies/page.tsx — keep that policy in sync.
-const REFRESH_TOKEN_MAX_AGE = 30 * 24 * 60 * 60;
-
-// Lightweight per-instance throttle so a looping/misbehaving first-party client
-// can't hammer Cognito's token endpoint (cookies are SameSite=lax, so a true
-// cross-site amplification isn't possible, but a same-origin loop is). The cap
-// is intentionally generous: TokenExpiryGuard self-throttles with a 30s retry
-// cooldown, so legitimate renewals stay far under this. This is best-effort
-// in-memory state (per server instance, cleared on restart) — Cognito's own
-// throttling remains the hard backstop.
-const RATE_LIMIT_MAX_ATTEMPTS = 10;
-const RATE_LIMIT_WINDOW_MS = 60_000;
-const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>();
-
-// Trusted proxy hops (CloudFront, plus any edge layer) in front of this app.
-// The real client IP is the X-Forwarded-For entry this many positions from the
-// RIGHT — the one our own edge appended. The leftmost entries are supplied by
-// the client and MUST NOT be trusted for throttling: an attacker could rotate a
-// fake leftmost token to mint a fresh limiter bucket per request. Override via
-// env if the deployment adds/removes a hop (too low → clients collapse into one
-// bucket and over-throttle; too high → re-introduces the spoofable left side).
-const TRUSTED_PROXY_HOPS = Number(process.env.RATE_LIMIT_TRUSTED_PROXY_HOPS) || 1;
-
-function readClientIp(req: NextRequest): string | null {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) {
-    const chain = forwarded
-      .split(",")
-      .map((part) => part.trim())
-      .filter(Boolean);
-    if (chain.length > 0) {
-      // Trust the Nth entry from the right (appended by our edge), never the
-      // leftmost client-controlled token.
-      const idx = Math.max(0, chain.length - TRUSTED_PROXY_HOPS);
-      return chain[idx] ?? chain[chain.length - 1] ?? null;
-    }
-  }
-  const realIp = req.headers.get("x-real-ip")?.trim();
-  if (realIp) return realIp;
-  const cloudfrontViewer = req.headers.get("cloudfront-viewer-address")?.trim();
-  if (cloudfrontViewer) {
-    const host = cloudfrontViewer.split(":")[0]?.trim();
-    if (host) return host;
-  }
-  return null;
-}
-
-/**
- * Returns true when this caller has exceeded the per-window attempt cap. Keyed by
- * the EXISTING cf_device cookie, falling back to client IP (then a shared bucket)
- * so a single runaway client is contained without blocking unrelated callers
- * behind the same NAT. Also opportunistically prunes expired buckets to bound
- * memory.
- */
-function isRateLimited(req: NextRequest): boolean {
-  // Read the raw cf_device cookie rather than getOrCreateDeviceId(): the latter
-  // MINTS a fresh random id when the cookie is missing/malformed, so keying on it
-  // would hand a cookieless caller a new bucket every request (never throttled)
-  // and make the IP fallback dead code. Reading the cookie directly makes a
-  // stripped-cookie flood collapse onto its shared IP bucket.
-  const rawDevice = req.cookies.get(BOOK_DEVICE_COOKIE)?.value?.trim() || null;
-  const key = rawDevice || readClientIp(req) || "unknown";
-  const now = Date.now();
-
-  const existing = rateLimitBuckets.get(key);
-  if (!existing || existing.resetAt <= now) {
-    rateLimitBuckets.set(key, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
-    if (rateLimitBuckets.size > 5_000) {
-      for (const [bucketKey, bucket] of rateLimitBuckets) {
-        if (bucket.resetAt <= now) rateLimitBuckets.delete(bucketKey);
-      }
-    }
-    return false;
-  }
-
-  existing.count += 1;
-  return existing.count > RATE_LIMIT_MAX_ATTEMPTS;
-}
-
-function readString(value: unknown): string | null {
-  return typeof value === "string" && value.trim().length > 0 ? value : null;
-}
-
-function unauthorized(req: NextRequest, code: string, message: string) {
-  return jsonErrorResponse(req, 401, code, message);
-}
-
-/**
- * Read the `sub` from a freshly-issued id token. The token came straight from
- * Cognito's token endpoint over TLS in this request, so reading a claim without
- * re-verifying the signature is safe here (we are not trusting client input).
- */
-function subFromIdToken(idToken: string): string | null {
-  try {
-    const payload = idToken.split(".")[1];
-    if (!payload) return null;
-    const json = JSON.parse(
-      Buffer.from(payload.replace(/-/g, "+").replace(/_/g, "/"), "base64").toString("utf8"),
-    ) as Record<string, unknown>;
-    return typeof json.sub === "string" ? json.sub : null;
-  } catch {
-    return null;
-  }
-}
+const FAILURE_RESPONSES: Record<
+  RefreshFailureReason,
+  { status: number; message: string }
+> = {
+  rate_limited: { status: 429, message: "Too many refresh attempts. Please retry shortly." },
+  no_refresh_token: { status: 401, message: "No refresh token was provided." },
+  config_error: {
+    status: 500,
+    message: "Authentication is temporarily misconfigured. Please retry.",
+  },
+  upstream_error: {
+    status: 502,
+    message: "The authentication service is unavailable. Please retry.",
+  },
+  refresh_rejected: { status: 401, message: "Your session has expired. Please sign in again." },
+  bad_upstream_body: {
+    status: 502,
+    message: "The authentication service returned an invalid response. Please retry.",
+  },
+  incomplete_tokens: {
+    status: 401,
+    message: "The refresh response was incomplete. Please sign in again.",
+  },
+  account_deleted: { status: 401, message: "This account is no longer active." },
+};
 
 /**
  * Silent session renewal. TokenExpiryGuard calls this shortly before the access
@@ -128,118 +58,82 @@ function subFromIdToken(idToken: string): string | null {
  * the client should fall back to a full login.
  */
 export async function POST(req: NextRequest) {
-  if (isRateLimited(req)) {
-    return jsonErrorResponse(req, 429, "rate_limited", "Too many refresh attempts. Please retry shortly.", {
-      headers: { "Retry-After": "30" },
-    });
-  }
-
-  const refreshToken = req.cookies.get("refresh_token")?.value;
-  if (!refreshToken) {
-    return unauthorized(req, "no_refresh_token", "No refresh token was provided.");
-  }
-
-  let domain: string;
-  let clientId: string;
-  try {
-    domain = await resolveCognitoDomain();
-    clientId = await mustServerEnv("COGNITO_CLIENT_ID");
-  } catch {
-    return jsonErrorResponse(req, 500, "config_error", "Authentication is temporarily misconfigured. Please retry.");
-  }
-
-  let tokenRes: Response;
-  try {
-    const body = new URLSearchParams({
-      grant_type: "refresh_token",
-      client_id: clientId,
-      refresh_token: refreshToken,
-    });
-    tokenRes = await fetch(`${domain}/oauth2/token`, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      cache: "no-store",
-      body: body.toString(),
-      signal: AbortSignal.timeout(10_000),
-    });
-  } catch {
-    return jsonErrorResponse(req, 502, "upstream_error", "The authentication service is unavailable. Please retry.");
-  }
-
-  if (!tokenRes.ok) {
-    // The refresh token is invalid/expired/revoked — clear it so the client
-    // stops retrying and re-authenticates cleanly.
-    const res = unauthorized(req, "refresh_rejected", "Your session has expired. Please sign in again.");
-    const cookieBase = getAuthCookieBase();
-    res.cookies.set("refresh_token", "", { ...cookieBase, maxAge: 0 });
+  const result = await exchangeRefreshToken(req);
+  if (!result.ok) {
+    const { status, message } = FAILURE_RESPONSES[result.reason];
+    const res = jsonErrorResponse(
+      req,
+      status,
+      result.reason,
+      message,
+      result.reason === "rate_limited" ? { headers: { "Retry-After": "30" } } : undefined,
+    );
+    applyRefreshFailureCookies(res, result.reason);
     return res;
   }
 
-  // Cognito (or an intervening proxy/WAF during a partial outage) can return
-  // HTTP 200 with a non-JSON body (e.g. an HTML maintenance page); .json() then
-  // rejects. Catch it and return a clean 502 instead of letting the route 500.
-  let tokens: Record<string, unknown>;
-  try {
-    tokens = (await tokenRes.json()) as Record<string, unknown>;
-  } catch {
-    return jsonErrorResponse(req, 502, "bad_upstream_body", "The authentication service returned an invalid response. Please retry.");
-  }
-  const idToken = readString(tokens.id_token);
-  const accessToken = readString(tokens.access_token);
-  // Rotation is off by default, so a new refresh_token is usually absent;
-  // keep the existing cookie when Cognito doesn't return one.
-  const rotatedRefresh = readString(tokens.refresh_token);
+  const res = NextResponse.json({ ok: true, expiresAt: result.expiresAt });
+  applyRefreshedSession(req, res, result);
+  return res;
+}
 
-  if (!idToken || !accessToken) {
-    return unauthorized(req, "incomplete_tokens", "The refresh response was incomplete. Please sign in again.");
-  }
-
-  // Refuse to re-mint a session for a deleted account. Soft-delete is a
-  // DynamoDB status (the Cognito principal stays enabled), so the refresh grant
-  // itself keeps succeeding — this is the only place that can stop a revoked
-  // account from silently resurrecting its session cookies. Fail open on a
-  // status-store error: page-level requireActiveBookUser still gates all data.
-  const sub = subFromIdToken(idToken);
-  if (sub) {
-    try {
-      const tableName = await getBookTableName();
-      const status = await getAccountStatus(tableName, sub);
-      if (status?.status === "deleted") {
-        const res = unauthorized(req, "account_deleted", "This account is no longer active.");
-        const cookieBase = getAuthCookieBase();
-        res.cookies.set("refresh_token", "", { ...cookieBase, maxAge: 0 });
-        res.cookies.set("id_token", "", { ...cookieBase, maxAge: 0 });
-        res.cookies.set("access_token", "", { ...cookieBase, maxAge: 0 });
-        res.cookies.set("auth_expires_at", "", { ...cookieBase, httpOnly: false, maxAge: 0 });
-        rotateAuthCacheGeneration(res);
-        return res;
-      }
-    } catch {
-      // ignore — do not lock out on a transient status-store failure
-    }
-  }
-
-  const expiresIn = Number(tokens.expires_in) || 3600;
-  const expiresAt = Math.floor(Date.now() / 1000) + expiresIn;
-
-  const res = NextResponse.json({ ok: true, expiresAt });
-  const cookieBase = getAuthCookieBase();
-  const commonCookie = { ...cookieBase, maxAge: expiresIn };
-
-  res.cookies.set("id_token", idToken, commonCookie);
-  res.cookies.set("access_token", accessToken, commonCookie);
-  if (rotatedRefresh) {
-    res.cookies.set("refresh_token", rotatedRefresh, {
-      ...cookieBase,
-      maxAge: REFRESH_TOKEN_MAX_AGE,
-    });
-  }
-  res.cookies.set("auth_expires_at", String(expiresAt), {
-    ...cookieBase,
-    httpOnly: false,
-    maxAge: REFRESH_TOKEN_MAX_AGE,
+/**
+ * Cold-load renewal (SHELL-01). Middleware sends a document navigation here when
+ * its session cookie is missing or expired but a refresh_token cookie is still
+ * present. On success the session cookies are rewritten and the reader lands on
+ * the sanitized same-origin returnTo; on any failure they go to /auth/login
+ * exactly as before. A host-only marker cookie limits this to one exchange per
+ * navigation, so a refresh that does not yield a usable session cannot loop.
+ */
+export async function GET(req: NextRequest) {
+  const origin = resolvePublicOrigin({
+    hostHeader: req.headers.get("host"),
+    forwardedHostHeader: req.headers.get("x-forwarded-host"),
+    forwardedProtoHeader: req.headers.get("x-forwarded-proto"),
+    fallbackOrigin: req.nextUrl.origin,
   });
-  preserveOrCreateAuthCacheGeneration(req, res);
+  const returnTo = resolveRefreshReturnTo(
+    sanitizeReturnTo(req.nextUrl.searchParams.get("returnTo"), REFRESH_DEFAULT_RETURN_TO),
+  );
+  const toLogin = () => NextResponse.redirect(new URL(loginPathFor(returnTo), origin));
 
+  const plan = planRefreshGet({
+    sessionFresh: isSessionCookieFresh(
+      req.cookies.get("id_token")?.value,
+      req.cookies.get("auth_expires_at")?.value,
+      Math.floor(Date.now() / 1000),
+    ),
+    refreshAttempted: Boolean(req.cookies.get(REFRESH_ATTEMPT_COOKIE)?.value),
+    hasRefreshToken: Boolean(req.cookies.get("refresh_token")?.value),
+  });
+  if (plan === "return") return NextResponse.redirect(new URL(returnTo, origin));
+  if (plan === "login") return toLogin();
+
+  let res: NextResponse;
+  try {
+    const result = await exchangeRefreshToken(req);
+    if (result.ok) {
+      res = NextResponse.redirect(new URL(returnTo, origin));
+      applyRefreshedSession(req, res, result);
+    } else {
+      // A deleted account goes to the deleted-account terminus (which clears
+      // the rest of the session); every other failure signs in as before.
+      res =
+        result.reason === "account_deleted"
+          ? NextResponse.redirect(new URL("/auth/login?reason=deleted", origin))
+          : toLogin();
+      applyRefreshFailureCookies(res, result.reason);
+    }
+  } catch {
+    res = toLogin();
+  }
+
+  // Host-only on purpose: it must stick even if the browser rejects the
+  // domain-scoped session cookies, which is exactly the loop it guards against.
+  const { domain: _domain, ...markerBase } = getAuthCookieBase();
+  res.cookies.set(REFRESH_ATTEMPT_COOKIE, "1", {
+    ...markerBase,
+    maxAge: REFRESH_ATTEMPT_MAX_AGE_SECONDS,
+  });
   return res;
 }
