@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { requireDashboardAccess } from "@/app/_lib/require-dashboard-access";
 import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
@@ -35,6 +36,18 @@ async function loadBook(bookId: string): Promise<LibraryBookDetail | null> {
     }
     throw error;
   }
+}
+
+// Tab title = the book's title (the layout adds "| ChapterFlow"). Same loader as
+// the page; getPublishedLibraryBookDetail is cached per request.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ bookId: string }>;
+}): Promise<Metadata> {
+  const { bookId } = await params;
+  const book = await loadBook(bookId);
+  return book ? { title: book.title } : {};
 }
 
 export default async function BookDetailPage({
