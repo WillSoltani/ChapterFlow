@@ -57,6 +57,11 @@ globalThis.fetch = (async (input: RequestInfo | URL) => {
   return Response.json({ notifications: [], unreadCount: 0 });
 }) as typeof fetch;
 
+// A function boundary so TypeScript does not narrow the variable after a reset.
+function releasePendingProfile() {
+  releaseProfile?.();
+}
+
 async function renderNav(
   props: { name?: string; avatarUrl?: string | null; activeTab?: BookNavTab | null } = {},
 ) {
@@ -243,7 +248,7 @@ test("a name the reader chose in Profile wins over the sign-in first name on the
 
   const view = await renderNav();
   await waitFor(() => assert.ok(releaseProfile, "profile request started"));
-  releaseProfile?.();
+  releasePendingProfile();
   const chip = view.getByRole("link", { name: "Profile" });
   await waitFor(() => assert.equal(chip.textContent, "Sam"));
 });
@@ -264,7 +269,7 @@ test("without a Profile name the chip uses the sign-in first name", async () => 
 
   const view = await renderNav();
   await waitFor(() => assert.ok(releaseProfile, "profile request started"));
-  releaseProfile?.();
+  releasePendingProfile();
   const chip = view.getByRole("link", { name: "Profile" });
   await waitFor(() => assert.equal(chip.textContent, "Robert"));
 });
