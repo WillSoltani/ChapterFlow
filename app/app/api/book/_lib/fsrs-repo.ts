@@ -213,7 +213,8 @@ async function resolveDesiredRetentionForUser(
 export async function getFSRSCard(
   tableName: string,
   userId: string,
-  cardId: string
+  cardId: string,
+  options?: { consistentRead?: boolean }
 ): Promise<FSRSCardState | null> {
   const res = await ddbDoc.send(
     new GetCommand({
@@ -222,6 +223,7 @@ export async function getFSRSCard(
         PK: bookUserPk(userId),
         SK: fsrsCardSk(cardId),
       },
+      ...(options?.consistentRead ? { ConsistentRead: true } : {}),
     })
   );
   return (res.Item as FSRSCardState | undefined) ?? null;
@@ -261,7 +263,7 @@ export async function recordReview(
     );
   } catch (error: unknown) {
     if (!isConditionalCheckFailed(error)) throw error;
-    const latest = await getFSRSCard(tableName, userId, cardId);
+    const latest = await getFSRSCard(tableName, userId, cardId, { consistentRead: true });
     if (!latest) {
       throw new Error(`FSRS card not found: ${cardId}`);
     }

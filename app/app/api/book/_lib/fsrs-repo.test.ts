@@ -35,10 +35,12 @@ function conditionHolds(input: Record<string, unknown>, existing: FakeItem | und
 
 const fakeDdb = {
   gets: 0,
+  getInputs: [] as Array<Record<string, unknown>>,
   beforePut: undefined as ((item: FakeItem) => void) | undefined,
   async send(cmd: FakeCommand) {
     if (cmd.constructor.name === "GetCommand") {
       fakeDdb.gets += 1;
+      fakeDdb.getInputs.push(cmd.input);
       const key = cmd.input.Key as { PK: string; SK: string };
       return { Item: clone(store.get(`${key.PK}|${key.SK}`)) };
     }
@@ -103,6 +105,7 @@ function freshCard(): FSRSCardState {
 beforeEach(() => {
   store.clear();
   fakeDdb.gets = 0;
+  fakeDdb.getInputs = [];
   fakeDdb.beforePut = undefined;
 });
 
@@ -152,4 +155,20 @@ test("recordReview without a card still reads it first (existing callers)", asyn
   assert.equal(updated.reps, card.reps + 1);
   assert.equal(fakeDdb.gets, 1);
   assert.equal(reviewLogs().length, 1);
+});
+
+test("after losing the race the current card is re-read with a strongly consistent read", async () => {
+  const card = freshCard();
+  seedCard(card);
+  fakeDdb.beforePut = (item) => {
+    if (item.SK !== fsrsCardSk(CARD_ID)) return;
+    fakeDdb.beforePut = undefined;
+    seedCard(scheduleCard(card, 4, new Date(), 0.9));
+  };
+  await recordReview(TABLE, USER, CARD_ID, 1, card);
+  const cardReads = fakeDdb.getInputs.filter(
+    (input) => (input.Key as { SK: string }).SK === fsrsCardSk(CARD_ID)
+  );
+  assert.equal(cardReads.length, 1);
+  assert.equal(cardReads[0]?.ConsistentRead, true);
 });

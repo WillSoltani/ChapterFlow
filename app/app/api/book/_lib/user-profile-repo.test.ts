@@ -34,9 +34,11 @@ function conditionHolds(input: Record<string, unknown>, existing: FakeItem | und
 
 const fakeDdb = {
   puts: 0,
+  getInputs: [] as Array<Record<string, unknown>>,
   beforePut: undefined as ((attempt: number) => void) | undefined,
   async send(cmd: FakeCommand) {
     if (cmd.constructor.name === "GetCommand") {
+      fakeDdb.getInputs.push(cmd.input);
       const key = cmd.input.Key as { PK: string; SK: string };
       return { Item: clone(store.get(`${key.PK}|${key.SK}`)) };
     }
@@ -92,6 +94,7 @@ function storedProfile(): Record<string, unknown> {
 beforeEach(() => {
   store.clear();
   fakeDdb.puts = 0;
+  fakeDdb.getInputs = [];
   fakeDdb.beforePut = undefined;
 });
 
@@ -180,4 +183,20 @@ test("updateUserProfileItem skips the write when apply returns null", async () =
   const saved = await repo.updateUserProfileItem(TABLE, USER, () => null);
   assert.equal(fakeDdb.puts, 0);
   assert.equal(saved?.profile.displayName, "Ada");
+});
+
+test("updateUserProfileItem reads the current row with a strongly consistent read", async () => {
+  seed({ displayName: "Ada" });
+  fakeDdb.beforePut = (attempt) => {
+    if (attempt === 1) seed({ displayName: "Ada", bio: "Hi" }, "2026-01-03T00:00:00.000Z");
+  };
+  await repo.updateUserProfileItem(TABLE, USER, (current) => ({ ...current, dailyGoalMinutes: 5 }));
+  assert.equal(fakeDdb.getInputs.length, 2);
+  for (const input of fakeDdb.getInputs) assert.equal(input.ConsistentRead, true);
+});
+
+test("getUserProfileItem keeps its default read for other callers", async () => {
+  seed({ displayName: "Ada" });
+  await repo.getUserProfileItem(TABLE, USER);
+  assert.equal(fakeDdb.getInputs[0]?.ConsistentRead, undefined);
 });

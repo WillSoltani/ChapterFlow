@@ -20,7 +20,8 @@ import {
 
 export async function getUserProfileItem(
   tableName: string,
-  userId: string
+  userId: string,
+  options?: { consistentRead?: boolean }
 ): Promise<BookUserProfileItem | null> {
   const res = await ddbDoc.send(
     new GetCommand({
@@ -29,6 +30,7 @@ export async function getUserProfileItem(
         PK: bookUserPk(userId),
         SK: profileSk(),
       },
+      ...(options?.consistentRead ? { ConsistentRead: true } : {}),
     })
   );
   const item = res.Item;
@@ -112,7 +114,9 @@ export async function updateUserProfileItem(
   maxAttempts = 4
 ): Promise<BookUserProfileItem | null> {
   for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
-    const existing = await getUserProfileItem(tableName, userId);
+    // Read the latest row, so a save right after this reader's own previous
+    // save is not mistaken for a conflict.
+    const existing = await getUserProfileItem(tableName, userId, { consistentRead: true });
     const nextProfile = apply(existing?.profile ?? {});
     if (nextProfile === null) return existing;
     try {
