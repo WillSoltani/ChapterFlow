@@ -47,7 +47,22 @@ const EPOCH_ISO = new Date(0).toISOString();
 export type LibraryUiEntry = LibraryBookEntry & {
   resumeChapterNumber: number;
   continueHref: string;
+  /** Latest chapter completion time (HOME-26); unset without stamps. */
+  completedAt?: string;
 };
+
+function latestIso(stamps: Record<string, string> | undefined): string | undefined {
+  let latest: string | undefined;
+  let latestMs = -Infinity;
+  for (const value of Object.values(stamps ?? {})) {
+    const ms = Date.parse(value);
+    if (Number.isFinite(ms) && ms > latestMs) {
+      latestMs = ms;
+      latest = value;
+    }
+  }
+  return latest;
+}
 
 export type { DashboardCatalogPayload };
 
@@ -93,6 +108,8 @@ export function buildEntries(payload: DashboardCatalogPayload): LibraryUiEntry[]
       chapterCount: book.chapterCount,
     });
 
+    const completedAt = latestIso(state?.chapterCompletedAt);
+
     return {
       ...book,
       // Canonicalize the runtime catalog's category at this entry-construction
@@ -110,6 +127,7 @@ export function buildEntries(payload: DashboardCatalogPayload): LibraryUiEntry[]
       lastActivityAt,
       resumeChapterNumber: resumeChapter,
       continueHref: continueHref(book.id, resumeChapter),
+      ...(completedAt ? { completedAt } : {}),
     };
   });
 }

@@ -20,6 +20,7 @@ export type BadgeType = "staff-pick" | "new";
 
 export interface UserProgress {
   currentChapter: number;
+  chaptersCompleted: number;
   percentComplete: number;
   lastReadAt: Date;
   /** Real insight points earned for this book. Undefined when the backend
@@ -1032,7 +1033,7 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
  */
 export function buildLibraryBookFromCatalog(
   book: LibraryCatalogBook,
-  entry?: LibraryBookEntry & { resumeChapterNumber?: number },
+  entry?: LibraryBookEntry & { resumeChapterNumber?: number; completedAt?: string },
 ): LibraryBook {
   const bookId = book.id;
   const category = inferLibraryCategory(book.categories);
@@ -1045,13 +1046,16 @@ export function buildLibraryBookFromCatalog(
           currentChapter:
             entry.resumeChapterNumber ??
             Math.min(entry.chaptersCompleted + 1, Math.max(1, entry.chaptersTotal)),
+          chaptersCompleted: entry.chaptersCompleted,
           percentComplete: entry.progressPercent,
           lastReadAt: new Date(entry.lastActivityAt),
           // No per-book IP figure in the dashboard payload — leave undefined
           // rather than fabricate a "+0 IP earned" line.
           isCompleted: entry.status === "completed",
           completedAt:
-            entry.status === "completed" ? new Date(entry.lastActivityAt) : undefined,
+            entry.status === "completed"
+              ? new Date(entry.completedAt ?? entry.lastActivityAt)
+              : undefined,
         }
       : undefined;
 
@@ -1126,6 +1130,34 @@ export const CURATED_SECTIONS: CuratedSectionConfig[] = [
 ];
 
 // ── Helpers ──
+
+/** Chapters still to finish: total − completed (HOME-28). */
+export function chaptersLeft(book: LibraryBook): number {
+  return Math.max(0, book.totalChapters - (book.userProgress?.chaptersCompleted ?? 0));
+}
+
+/** Started and not finished, whatever the percent (D3: a started book may be at 0%). */
+export function isInProgress(book: LibraryBook): boolean {
+  return Boolean(book.userProgress && !book.userProgress.isCompleted);
+}
+
+/** "Because you loved X": up to 3 similar books the reader has not started (HOME-26). */
+export function similarRecommendations(
+  completed: LibraryBook[],
+  booksById: ReadonlyMap<string, LibraryBook>,
+): { book: LibraryBook; because: LibraryBook }[] {
+  const recommendations: { book: LibraryBook; because: LibraryBook }[] = [];
+  for (const done of completed) {
+    if (done.similarBookId) {
+      const rec = booksById.get(done.similarBookId);
+      if (rec && !rec.userProgress && !recommendations.some((r) => r.book.id === rec.id)) {
+        recommendations.push({ book: rec, because: done });
+      }
+    }
+    if (recommendations.length >= 3) break;
+  }
+  return recommendations;
+}
 
 export function formatReadingTime(minutes: number): string {
   if (minutes < 60) return `${minutes} min`;

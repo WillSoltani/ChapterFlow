@@ -8,6 +8,7 @@ import { DUR, EASE } from "@/lib/motion";
 import { BookCard } from "./BookCard";
 import {
   SORT_OPTIONS,
+  isInProgress,
   type SortOption,
   type LibraryBook,
   type Category,
@@ -119,7 +120,7 @@ export function BrowseAll({
 
   // Status counts
   const counts = useMemo(() => ({
-    in_progress: books.filter((b) => b.userProgress && !b.userProgress.isCompleted && b.userProgress.percentComplete > 0).length,
+    in_progress: books.filter(isInProgress).length,
     not_started: books.filter((b) => !b.userProgress).length,
     completed: books.filter((b) => b.userProgress?.isCompleted).length,
   }), [books]);
@@ -156,9 +157,7 @@ export function BrowseAll({
 
     // Status
     if (status === "in_progress") {
-      result = result.filter(
-        (b) => b.userProgress && !b.userProgress.isCompleted && b.userProgress.percentComplete > 0
-      );
+      result = result.filter(isInProgress);
     } else if (status === "not_started") {
       result = result.filter((b) => !b.userProgress);
     } else if (status === "completed") {

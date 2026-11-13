@@ -9,6 +9,7 @@ import { BookSaveButton } from "@/components/book/BookSaveButton";
 import { useLibraryContext } from "./LibraryContext";
 import { bookCtaLabel, continueHref } from "@/components/book/book-cta-core";
 import {
+  chaptersLeft,
   formatReadingTime,
   getProgressMicrocopy,
   getProgressTextColor,
@@ -40,9 +41,7 @@ export function HeroRecommendation({
   const detailHref = `/book/library/${encodeURIComponent(heroBook.id)}`;
   const prog = heroBook.userProgress;
   const isInProgress = prog && !prog.isCompleted && prog.percentComplete > 0;
-  const chaptersLeft = isInProgress
-    ? heroBook.totalChapters - prog.currentChapter
-    : 0;
+  const left = isInProgress ? chaptersLeft(heroBook) : 0;
   const timeRemaining = isInProgress
     ? Math.round(
         heroBook.estimatedReadingTimeMinutes * (1 - prog.percentComplete / 100)
@@ -190,7 +189,7 @@ export function HeroRecommendation({
                 Chapter {prog.currentChapter} of {heroBook.totalChapters} · {prog.percentComplete}% complete
               </p>
               <p className="mt-0.5 text-cf-label" style={{ color: getProgressTextColor(prog.percentComplete) }}>
-                {getProgressMicrocopy(prog.percentComplete, chaptersLeft)}
+                {getProgressMicrocopy(prog.percentComplete, left)}
               </p>
             </div>
           )}
