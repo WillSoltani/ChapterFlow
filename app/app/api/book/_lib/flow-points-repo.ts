@@ -34,6 +34,7 @@ import {
   rewardRedemptionSk,
 } from "@/app/app/api/book/_lib/keys";
 import { buildReferralCodePointer } from "@/app/app/api/book/_lib/erasure-pointers-core";
+import { runAwardTransaction } from "@/app/app/api/book/_lib/flow-points-award-core";
 import type {
   BookReferralCodeLookupItem,
   BookUserEngagementItem,
@@ -587,81 +588,85 @@ export async function awardFlowPoints(
   }
 
   const createdAt = params.createdAt ?? nowIso();
-  const transactionId = crypto.randomUUID();
-  try {
-    await ddbDoc.send(
-      new TransactWriteCommand({
-        TransactItems: [
-          {
-            Put: {
-              TableName: tableName,
-              Item: {
-                PK: bookUserPk(params.userId),
-                SK: flowPointsGrantSk(params.sourceType, sourceId),
-                entity: "BOOK_USER_FLOW_POINTS_GRANT",
-                userId: params.userId,
-                sourceType: params.sourceType,
-                sourceId,
-                amount,
-                metadata: params.metadata ?? {},
-                createdAt,
-                updatedAt: createdAt,
-              },
-              ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
-            },
-          },
-          {
-            Update: {
-              TableName: tableName,
-              Key: {
-                PK: bookUserPk(params.userId),
-                SK: engagementSk(),
-              },
-              UpdateExpression:
-                "SET entity = :entity, userId = :userId, createdAt = if_not_exists(createdAt, :createdAt), updatedAt = :updatedAt ADD points :delta, lifetimeEarned :delta, totalEarnEvents :one",
-              ExpressionAttributeValues: {
-                ":entity": "BOOK_USER_ENGAGEMENT",
-                ":userId": params.userId,
-                ":createdAt": createdAt,
-                ":updatedAt": createdAt,
-                ":delta": amount,
-                ":one": 1,
+  let transactionId = crypto.randomUUID();
+  // A cancelled transaction is a duplicate only when the grant marker (index 0)
+  // already exists; conflicts on the shared engagement row and throttling are
+  // retried, then surfaced as a retryable 503 instead of silently dropping points.
+  const outcome = await runAwardTransaction({
+    write: async (attemptNo) => {
+      if (attemptNo > 0) transactionId = crypto.randomUUID();
+      await ddbDoc.send(
+        new TransactWriteCommand({
+          TransactItems: [
+            {
+              Put: {
+                TableName: tableName,
+                Item: {
+                  PK: bookUserPk(params.userId),
+                  SK: flowPointsGrantSk(params.sourceType, sourceId),
+                  entity: "BOOK_USER_FLOW_POINTS_GRANT",
+                  userId: params.userId,
+                  sourceType: params.sourceType,
+                  sourceId,
+                  amount,
+                  metadata: params.metadata ?? {},
+                  createdAt,
+                  updatedAt: createdAt,
+                },
+                ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
               },
             },
-          },
-          {
-            Put: {
-              TableName: tableName,
-              Item: {
-                PK: bookUserPk(params.userId),
-                SK: flowPointsLedgerSk(createdAt, transactionId),
-                entity: "BOOK_USER_FLOW_POINTS_LEDGER",
-                userId: params.userId,
-                transactionId,
-                direction: "earn",
-                amount,
-                sourceType: params.sourceType,
-                sourceId,
-                rewardId: params.rewardId,
-                metadata: params.metadata ?? {},
-                createdAt,
-                updatedAt: createdAt,
+            {
+              Update: {
+                TableName: tableName,
+                Key: {
+                  PK: bookUserPk(params.userId),
+                  SK: engagementSk(),
+                },
+                UpdateExpression:
+                  "SET entity = :entity, userId = :userId, createdAt = if_not_exists(createdAt, :createdAt), updatedAt = :updatedAt ADD points :delta, lifetimeEarned :delta, totalEarnEvents :one",
+                ExpressionAttributeValues: {
+                  ":entity": "BOOK_USER_ENGAGEMENT",
+                  ":userId": params.userId,
+                  ":createdAt": createdAt,
+                  ":updatedAt": createdAt,
+                  ":delta": amount,
+                  ":one": 1,
+                },
               },
-              ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
             },
-          },
-        ],
-      })
-    );
-  } catch (error: unknown) {
-    if (isConditionalCheckFailed(error)) {
-      return {
-        awarded: false,
-        reason: "duplicate",
-        state: await getUserFlowPointsState(tableName, params.userId),
-      };
-    }
-    throw error;
+            {
+              Put: {
+                TableName: tableName,
+                Item: {
+                  PK: bookUserPk(params.userId),
+                  SK: flowPointsLedgerSk(createdAt, transactionId),
+                  entity: "BOOK_USER_FLOW_POINTS_LEDGER",
+                  userId: params.userId,
+                  transactionId,
+                  direction: "earn",
+                  amount,
+                  sourceType: params.sourceType,
+                  sourceId,
+                  rewardId: params.rewardId,
+                  metadata: params.metadata ?? {},
+                  createdAt,
+                  updatedAt: createdAt,
+                },
+                ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+              },
+            },
+          ],
+        })
+      );
+    },
+  });
+  if (outcome === "duplicate") {
+    return {
+      awarded: false,
+      reason: "duplicate",
+      state: await getUserFlowPointsState(tableName, params.userId),
+    };
   }
 
   return {
