@@ -114,8 +114,8 @@ function Harness({
       onToggleExplanation={() => {}}
       learningMode={learningMode}
       questionFlow={questionFlow}
-      loadProgress={loadProgress}
-      onProgressChange={onProgressChange}
+      {...(loadProgress ? { loadProgress } : {})}
+      {...(onProgressChange ? { onProgressChange } : {})}
     />
   );
 }
