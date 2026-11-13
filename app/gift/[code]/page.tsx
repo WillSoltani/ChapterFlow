@@ -21,7 +21,7 @@ export default async function GiftFallbackPage({
   const normalized = code.trim();
   const continueHref = normalized
     ? `/book/gift/${encodeURIComponent(normalized)}`
-    : "/book";
+    : "/dashboard";
 
   return (
     <AppLinkInterstitial
