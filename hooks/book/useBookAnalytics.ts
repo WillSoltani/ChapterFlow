@@ -72,6 +72,8 @@ export type UpcomingReviewItem = {
 
 export type AnalyticsState = {
   streakDays: number;
+  /** Streak counted through yesterday and nothing read yet today. */
+  streakAtRisk: boolean;
   dailyGoalMinutes: number;
   minutesReadToday: number;
   totalMinutesRead: number;
@@ -337,10 +339,15 @@ function buildHeatmap(
   return cells;
 }
 
-function calculateCurrentStreak(activityDays: Set<string>): number {
+export function calculateCurrentStreak(
+  activityDays: Set<string>,
+  today: string = toDayKey(new Date())
+): number {
   if (activityDays.size === 0) return 0;
 
-  let cursor = toDayKey(new Date());
+  // A streak stays alive until the day ends: with no reading yet today, count
+  // back from yesterday (streakAtRisk flags that state).
+  let cursor = activityDays.has(today) ? today : previousDayKey(today);
   let streak = 0;
 
   while (activityDays.has(cursor)) {
@@ -349,6 +356,13 @@ function calculateCurrentStreak(activityDays: Set<string>): number {
   }
 
   return streak;
+}
+
+export function streakAtRisk(
+  activityDays: Set<string>,
+  today: string = toDayKey(new Date())
+): boolean {
+  return !activityDays.has(today) && calculateCurrentStreak(activityDays, today) > 0;
 }
 
 function calculateLongestStreak(dayKeys: string[]): number {
@@ -646,7 +660,8 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           (sum, item) => sum + item.completedChapters,
           0
         );
-        const currentStreak = calculateCurrentStreak(new Set(activityDays));
+        const activityDaySet = new Set(activityDays);
+        const currentStreak = calculateCurrentStreak(activityDaySet, todayKey);
         const longestStreak = calculateLongestStreak(activityDays);
         const heatmapCells = buildHeatmap(readingByDay);
         const completedBookSnapshots = engagedBookSnapshots.filter((item) => item.status === "completed");
@@ -765,6 +780,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
 
         setAnalytics({
           streakDays: currentStreak,
+          streakAtRisk: streakAtRisk(activityDaySet, todayKey),
           dailyGoalMinutes: settingsDailyGoal,
           minutesReadToday: Math.floor(todayStats.activeMs / 60000),
           totalMinutesRead,
