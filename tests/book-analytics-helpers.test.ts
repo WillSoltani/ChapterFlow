@@ -5,6 +5,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   calculateCurrentStreak,
+  readDailyGoal,
   statusFromCounts,
   streakAtRisk,
 } from "@/hooks/book/useBookAnalytics";
@@ -61,4 +62,28 @@ test("statusFromCounts: completion counts still decide the other states", () => 
   assert.equal(statusFromCounts(0, 12), "not_started");
   assert.equal(statusFromCounts(3, 12, false), "in_progress");
   assert.equal(statusFromCounts(12, 12, true), "completed");
+});
+
+test("ACCT-03 (C10): the Settings preset wins over the onboarding goal", () => {
+  assert.equal(
+    readDailyGoal({ extended: { dailyGoalPreset: 5 }, onboarding: { dailyGoal: 20 } }, 10),
+    5
+  );
+  assert.equal(
+    readDailyGoal({ extended: { dailyGoalPreset: 5 }, dailyGoal: 20, onboarding: { dailyGoal: 20 } }, 10),
+    5
+  );
+});
+
+test("ACCT-03 (C10): read order falls back to dailyGoal, then onboarding, then the caller default", () => {
+  assert.equal(readDailyGoal({ dailyGoal: 15, onboarding: { dailyGoal: 20 } }, 10), 15);
+  assert.equal(readDailyGoal({ onboarding: { dailyGoal: 20 } }, 10), 20);
+  assert.equal(readDailyGoal({ extended: { dailyGoalPreset: "5" } }, 10), 10);
+  assert.equal(readDailyGoal(null, 10), 10);
+  assert.equal(readDailyGoal(undefined, 25), 25);
+});
+
+test("ACCT-03 (C10): the goal is never below 5 minutes", () => {
+  assert.equal(readDailyGoal({ extended: { dailyGoalPreset: 2 } }, 10), 5);
+  assert.equal(readDailyGoal(null, 0), 5);
 });

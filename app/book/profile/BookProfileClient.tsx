@@ -780,7 +780,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
             streakMicrocopy={streakMicrocopy}
             booksCompleted={statsSummary.booksCompleted}
             totalHours={formatHours(statsSummary.totalReadingMinutes)}
-            dailyGoalMinutes={onboarding.dailyGoalMinutes}
+            dailyGoalMinutes={analytics?.dailyGoalMinutes ?? onboarding.dailyGoalMinutes}
             minutesReadToday={statsSummary.minutesReadToday}
             onEdit={() => setEditOpen(true)}
             onSettings={navigateToSettings}
@@ -811,7 +811,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                     chapterNumber={currentReadingDetails.chapterNumber}
                     totalChapters={currentReadingDetails.totalChapters}
                     completedSteps={currentReadingDetails.completedSteps}
-                    dailyGoalMinutes={onboarding.dailyGoalMinutes}
+                    dailyGoalMinutes={analytics?.dailyGoalMinutes ?? onboarding.dailyGoalMinutes}
                     onContinue={() =>
                       router.push(
                         `/book/library/${encodeURIComponent(currentSnapshot.book.id)}/chapter/${encodeURIComponent(currentReadingDetails.chapterId)}`

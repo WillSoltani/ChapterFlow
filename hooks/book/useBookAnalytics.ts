@@ -181,6 +181,30 @@ function deriveLoopStep(
   return "summary";
 }
 
+const MIN_DAILY_GOAL_MINUTES = 5;
+
+/**
+ * The daily goal (C10). Settings saves it to `extended.dailyGoalPreset`;
+ * older accounts only have `dailyGoal` or the onboarding answer. The shared
+ * dashboard type does not declare `extended`, so it is read through a local type.
+ */
+export function readDailyGoal(settings: unknown, fallback: number): number {
+  const s =
+    settings && typeof settings === "object"
+      ? (settings as {
+          extended?: { dailyGoalPreset?: unknown } | null;
+          dailyGoal?: unknown;
+          onboarding?: { dailyGoal?: unknown } | null;
+        })
+      : null;
+  const candidates = [s?.extended?.dailyGoalPreset, s?.dailyGoal, s?.onboarding?.dailyGoal];
+  const found = candidates.find(
+    (value): value is number => typeof value === "number" && Number.isFinite(value) && value > 0
+  );
+  const goal = found ?? fallback;
+  return Math.max(MIN_DAILY_GOAL_MINUTES, Number.isFinite(goal) ? Math.round(goal) : 0);
+}
+
 export function statusFromCounts(
   completed: number,
   total: number,
@@ -450,12 +474,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           : [];
         const motivation: string | null =
           typeof onboardingSettings.motivation === "string" ? onboardingSettings.motivation : null;
-        const settingsDailyGoal: number =
-          typeof payload.settings?.dailyGoal === "number"
-            ? payload.settings.dailyGoal
-            : typeof onboardingSettings.dailyGoal === "number"
-              ? onboardingSettings.dailyGoal
-              : dailyGoalMinutes;
+        const settingsDailyGoal = readDailyGoal(payload.settings, dailyGoalMinutes);
         // Prefer the server-published catalog for book identity/metadata
         // (matches the migrated library page); fall back to the local bundle
         // only when the catalog is empty.
