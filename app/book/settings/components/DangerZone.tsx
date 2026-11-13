@@ -125,6 +125,10 @@ export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
             Your reading history, streaks, and progress will be saved. You can
             reactivate anytime by signing back in.
           </p>
+          <p className="mt-2 text-sm text-(--cf-text-3)">
+            If you subscribe on the web, your subscription will stop renewing;
+            you keep Pro until the end of the period you&apos;ve paid for.
+          </p>
           {deactivateError && (
             <p
               role="alert"

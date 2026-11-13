@@ -388,3 +388,40 @@ test("ACCT-09: a Pro feature card opens the subscription card instead of startin
   assert.equal(document.activeElement?.id, "subscription-cta", "the subscription button has focus");
   assert.equal(writes("/me/settings").length, 0, "opening it wrote nothing");
 });
+
+test("ACCT-15: a failed delete keeps the dialog open with its error", async () => {
+  const view = renderSettings();
+  await wait(100);
+  toggleSection(view, "Account & Subscription");
+  await wait(50);
+  failWrites = true;
+  fireEvent.click(view.getByRole("button", { name: /Delete account/ }));
+  await wait(50);
+  let dialog = view.getByRole("dialog");
+  fireEvent.click(within(dialog).getByRole("button", { name: /Continue/ }));
+  await wait(50);
+  dialog = view.getByRole("dialog");
+  fireEvent.change(within(dialog).getByRole("textbox"), { target: { value: "DELETE" } });
+  fireEvent.click(within(dialog).getByRole("button", { name: /Permanently delete/ }));
+  await wait(200);
+
+  assert.equal(calls.filter((c) => c.url.endsWith("/me/account/delete")).length, 1, "the delete was sent");
+  const open = view.getByRole("dialog");
+  assert.match(within(open).getByRole("alert").textContent ?? "", /couldn't delete/);
+});
+
+test("ACCT-15: a failed deactivate keeps the dialog open with its error", async () => {
+  const view = renderSettings();
+  await wait(100);
+  toggleSection(view, "Account & Subscription");
+  await wait(50);
+  failWrites = true;
+  fireEvent.click(view.getByRole("button", { name: /Deactivate account/ }));
+  await wait(50);
+  const dialog = view.getByRole("dialog");
+  fireEvent.click(within(dialog).getByRole("button", { name: /^Deactivate$/ }));
+  await wait(200);
+
+  assert.equal(calls.filter((c) => c.url.endsWith("/me/account/deactivate")).length, 1);
+  assert.match(within(view.getByRole("dialog")).getByRole("alert").textContent ?? "", /couldn't deactivate/);
+});

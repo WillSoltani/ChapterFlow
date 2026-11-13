@@ -1791,41 +1791,35 @@ export function BookSettingsClient({
 
             {/* 6G. Danger Zone */}
             <div className="px-3">
+              {/* ACCT-15: a failure (non-OK or network) throws, so DangerZone
+                  keeps its dialog open with the inline error. */}
               <DangerZone
                 onDeactivate={async () => {
-                  try {
-                    const res = await fetch("/app/api/book/me/account/deactivate", { method: "POST" });
-                    if (res.ok) {
-                      window.location.href = "/auth/logout";
-                    } else if (await isReauthResponse(res)) {
-                      // Step-up auth (#5): stale session → force a fresh login and
-                      // return to settings to retry.
-                      redirectToReauth("/book/settings");
-                    } else {
-                      showToast("Failed to deactivate account. Please try again.", "error");
-                    }
-                  } catch {
-                    showToast("Failed to deactivate account. Please try again.", "error");
+                  const res = await fetch("/app/api/book/me/account/deactivate", { method: "POST" });
+                  if (res.ok) {
+                    window.location.href = "/auth/logout";
+                  } else if (await isReauthResponse(res)) {
+                    // Step-up auth (#5): stale session → force a fresh login and
+                    // return to settings to retry.
+                    redirectToReauth("/book/settings");
+                  } else {
+                    throw new Error(`Deactivate failed (${res.status})`);
                   }
                 }}
                 onDelete={async () => {
-                  try {
-                    const res = await fetch("/app/api/book/me/account/delete", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({ confirm: "DELETE" }),
-                    });
-                    if (res.ok) {
-                      window.location.href = "/auth/logout";
-                    } else if (await isReauthResponse(res)) {
-                      // Step-up auth (#5): self-delete requires a recent sign-in.
-                      // Force a fresh login and return to settings to retry.
-                      redirectToReauth("/book/settings");
-                    } else {
-                      showToast("Failed to delete account. Please try again.", "error");
-                    }
-                  } catch {
-                    showToast("Failed to delete account. Please try again.", "error");
+                  const res = await fetch("/app/api/book/me/account/delete", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ confirm: "DELETE" }),
+                  });
+                  if (res.ok) {
+                    window.location.href = "/auth/logout";
+                  } else if (await isReauthResponse(res)) {
+                    // Step-up auth (#5): self-delete requires a recent sign-in.
+                    // Force a fresh login and return to settings to retry.
+                    redirectToReauth("/book/settings");
+                  } else {
+                    throw new Error(`Delete failed (${res.status})`);
                   }
                 }}
                 reducedMotion={reducedMotion}
