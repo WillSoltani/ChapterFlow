@@ -268,7 +268,9 @@ function ImmediateQuestionCard({
             </span>
           )}
         </div>
-        <p id={promptId} className="flex-1 text-lg font-semibold leading-snug text-(--cr-text-heading)">
+        {/* em, not rem: the quiz follows the reader's font-size setting
+         *  (1em = the reading size, 18px by default). */}
+        <p id={promptId} className="flex-1 font-semibold leading-snug text-(--cr-text-heading)" style={{ fontSize: "1em" }}>
           {question.prompt}
         </p>
       </div>
@@ -326,7 +328,7 @@ function ImmediateQuestionCard({
                   : optionLabel}
               </span>
               <span className="flex-1 text-(--cr-text-primary) leading-relaxed"
-                style={{ fontSize: "1.125rem", fontWeight: 450 }}>
+                style={{ fontSize: "1em", fontWeight: 450 }}>
                 {choice.text}
               </span>
             </button>
