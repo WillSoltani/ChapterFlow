@@ -16,8 +16,6 @@ type AskBookDrawerProps = {
   /** Controlled open state (the reader's top bar owns the Ask button). */
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
-  /** Render the floating "Ask Raymond" launcher (default true). */
-  showLauncher?: boolean;
 };
 
 function sessionKey(bookId: string) {
@@ -107,7 +105,6 @@ export function AskBookDrawer({
   chapterNumber,
   open: openProp,
   onOpenChange,
-  showLauncher = true,
 }: AskBookDrawerProps) {
   const [openState, setOpenState] = useState(false);
   const isControlled = openProp !== undefined;
@@ -322,25 +319,6 @@ export function AskBookDrawer({
 
   return (
     <>
-      {/* Floating chat launcher — a labelled "Ask Raymond" pill (Shape rule:
-       *  rounded-full action pills) so the control reads as Raymond without the
-       *  icon-only ambiguity, while still floating clear of the prose at the
-       *  bottom edge (safe-area aware; the audio bar reserves space to its left).
-       *  aria-label gives it an explicit accessible name (the title attribute
-       *  alone is never announced on touch / by most screen readers). */}
-      {!open && showLauncher && (
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="cf-pressable fixed bottom-[calc(max(env(safe-area-inset-bottom),var(--reader-audio-bar-h,0px))+1rem)] right-4 z-50 flex items-center gap-2 rounded-full bg-(--cr-accent) px-4 py-3 text-(--cr-text-inverse) shadow-lg transition hover:brightness-110 md:bottom-[calc(max(env(safe-area-inset-bottom),var(--reader-audio-bar-h,0px))+1.5rem)] md:right-6 [html[data-reader-fab-hidden]_&]:max-md:pointer-events-none [html[data-reader-fab-hidden]_&]:max-md:translate-y-6 [html[data-reader-fab-hidden]_&]:max-md:opacity-0"
-          title="Ask Raymond"
-          aria-label="Ask Raymond about this chapter"
-        >
-          <Sparkles className="h-5 w-5" />
-          <span className="text-sm font-semibold">Ask Raymond</span>
-        </button>
-      )}
-
       {/* Backdrop overlay */}
       {open ? (
         <div

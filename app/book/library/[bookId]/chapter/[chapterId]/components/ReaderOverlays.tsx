@@ -319,7 +319,6 @@ export function ReaderOverlays({
           chapterNumber={chapter.order}
           open={askOpen}
           onOpenChange={onAskOpenChange}
-          showLauncher={false}
         />
       )}
     </>

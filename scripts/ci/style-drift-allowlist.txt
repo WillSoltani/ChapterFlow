@@ -14,8 +14,6 @@ c	app/book/library/[bookId]/chapter/[chapterId]/components/ReaderOverlays.tsx	rg
 c	app/book/profile/components/IdentityHeroBanner.tsx	rgba(2,6,23,0.18)
 c	app/book/profile/components/MomentumCard.tsx	rgba(0,0,0,0.2)
 c	app/book/profile/components/UpgradeCard.tsx	rgba(0,0,0,0.2)
-c	components/reader/ContinueButton.tsx	rgba(77,182,172,0.3)
-c	components/reader/ContinueButton.tsx	rgba(77,182,172,0.4)
 d	app/app/api/book/_lib/achievement-repo.ts	10+categories
 d	app/app/api/book/_lib/achievement-repo.ts	3categories
 d	app/app/api/book/_lib/achievement-repo.ts	6categories
@@ -84,7 +82,6 @@ e	app/book/library/[bookId]/chapter/[chapterId]/components/AudioPlayer.tsx	text-
 e	app/book/library/[bookId]/chapter/[chapterId]/components/ChapterCompleteModal.tsx	text-[22px]	bfb87b5fcba29ab6	1
 e	app/book/library/[bookId]/chapter/[chapterId]/components/ChapterCompleteModal.tsx	text-[34px]	e21d75e19f96e071	1
 e	app/book/library/[bookId]/chapter/[chapterId]/components/ChapterCompleteModal.tsx	text-[40px]	f826abe5484d916a	1
-e	app/book/library/[bookId]/chapter/[chapterId]/components/ChapterHeader.tsx	text-[28px]	c6fa679b05d6707b	1
 e	app/book/library/[bookId]/chapter/[chapterId]/components/ReaderSettingsMenu.tsx	text-[10px]	550a1fed0fc66f38	1
 e	app/book/library/[bookId]/chapter/[chapterId]/components/ReaderSettingsMenu.tsx	text-[10px]	7c4cac8eddf588e5	1
 e	app/book/pair-accept/page.tsx	text-[22px]	456b68c165862bce	1

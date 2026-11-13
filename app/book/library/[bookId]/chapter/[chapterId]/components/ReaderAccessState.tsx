@@ -6,7 +6,6 @@ import { BookLock, CheckCircle2, CloudOff, FileQuestion } from "lucide-react";
 import { PRICING, MONTHLY_PRICE_WITH_CURRENCY, TRIAL_CTA_LABEL, UPGRADE_RETURN_PATH } from "@/lib/pricing";
 import { buildReauthReturnTo } from "../lib/reader-flow-core";
 import type { useReaderAccess } from "../hooks/useReaderAccess";
-import { ChapterBackgroundOrbs } from "./ChapterBackgroundOrbs";
 import { ChapterSkeleton } from "./ChapterSkeleton";
 
 type Props = {
@@ -24,7 +23,6 @@ type Props = {
 function ReaderSkeleton() {
   return (
     <main className="relative min-h-screen overflow-x-clip bg-(--cr-bg-root)">
-      <ChapterBackgroundOrbs />
       <ChapterSkeleton />
     </main>
   );
@@ -89,7 +87,6 @@ export function ReaderAccessState({
     const showRetry = !isAuthExpired && !isBlocked && !isNotFound;
     return (
       <main className="relative min-h-screen overflow-x-clip bg-(--cr-bg-root)">
-        <ChapterBackgroundOrbs />
         <section className="mx-auto flex min-h-screen w-full max-w-3xl items-center px-4 py-10 sm:px-6">
           <div role="alert" className="w-full cr-glass-reading p-8 text-center">
             <CardIcon className="mx-auto h-10 w-10 text-(--cr-text-disabled)" />
@@ -129,7 +126,6 @@ export function ReaderAccessState({
   if (bookAccessStatus === "blocked") {
     return (
       <main className="relative min-h-screen overflow-x-clip bg-(--cr-bg-root)">
-        <ChapterBackgroundOrbs />
         <section className="mx-auto flex min-h-screen w-full max-w-3xl items-center px-4 py-10 sm:px-6">
           <div className="w-full cr-glass-reading p-8 text-center">
             <BookLock className="mx-auto h-10 w-10 text-(--cr-text-disabled)" />
@@ -212,7 +208,6 @@ export function ReaderAccessState({
   if (isLocked) {
     return (
       <main className="relative min-h-screen overflow-x-clip bg-(--cr-bg-root)">
-        <ChapterBackgroundOrbs />
         <section className="mx-auto flex min-h-screen w-full max-w-3xl items-center px-4 py-10 sm:px-6">
           <div className="w-full cr-glass-reading p-8 text-center">
             <BookLock className="mx-auto h-10 w-10 text-(--cr-text-disabled)" />
