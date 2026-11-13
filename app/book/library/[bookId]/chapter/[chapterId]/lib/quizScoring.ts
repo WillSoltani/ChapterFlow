@@ -101,6 +101,33 @@ export function buildCarryForwardAnswers(
 }
 
 /**
+ * The carry-forward to seat on `next`, the session a retake will display and
+ * submit. Only a fresh attempt (no result) that follows a graded one gets a
+ * carry, and only in retry-incorrect-only mode. In production `next` is the
+ * server session returned by load(), so this must run on that path too.
+ */
+export function planRetakeCarry(params: {
+  graded: Pick<QuizSessionView, "questions" | "result"> | null;
+  next: Pick<QuizSessionView, "questions" | "result"> | null;
+  retryIncorrectOnly: boolean;
+}): Record<string, string> {
+  const { graded, next, retryIncorrectOnly } = params;
+  if (!retryIncorrectOnly || !graded?.result || !next || next.result) return {};
+  return buildCarryForwardAnswers(graded, next);
+}
+
+/** The `/submit` responses: one per session question, null when unanswered. */
+export function buildQuizSubmitResponses(
+  questions: ReadonlyArray<Pick<QuizSessionView["questions"][number], "questionId">>,
+  answers: Record<string, string>,
+): Array<{ questionId: string; selectedChoiceId: string | null }> {
+  return questions.map((question) => ({
+    questionId: question.questionId,
+    selectedChoiceId: answers[question.questionId] ?? null,
+  }));
+}
+
+/**
  * Score an answer map against a session's questions locally. Used as the
  * provisional fallback when the submit API is unreachable (RF-4 D5:
  * celebrate-then-reconcile — show an optimistic result now, let the

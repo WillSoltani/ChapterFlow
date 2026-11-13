@@ -264,6 +264,8 @@ export function ReaderPhaseContent({
             questionFlow={bookPrefs.learning.questionPresentationStyle}
             shuffleQuestions={chapter.isStrictV12 ? false : bookPrefs.learning.shuffleQuestionOrder}
             retryIncorrectOnly={bookPrefs.learning.retryIncorrectOnly}
+            loadProgress={quiz.loadAttemptProgress}
+            onProgressChange={quiz.saveAttemptProgress}
           />
           {quiz.session?.provisional && (
             <p

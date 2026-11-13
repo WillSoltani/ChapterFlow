@@ -12,7 +12,9 @@ import { needsReconcile, reconcileProvisionalPass } from "../lib/quizReconcile";
 import {
   classifyQuizSubmission,
   completionScore,
+  isQuizAttemptInProgress,
   projectIncorrectQuestionReviews,
+  quizSubmitErrorMessage,
   shouldEnrollFlashcards,
 } from "../lib/reader-quiz-flow-core";
 import { useQuizSession } from "./useQuizSession";
@@ -160,7 +162,7 @@ export function useChapterQuiz({
       }
       return outcome;
     } catch (error: unknown) {
-      onToast(error instanceof Error ? error.message : "Unable to submit quiz right now.");
+      onToast(quizSubmitErrorMessage(error));
       return classifyQuizSubmission(null);
     }
   }, [bookId, bookTitle, chapter, chapterId, enabled, motivationPersona, onToast, quiz]);
@@ -171,6 +173,9 @@ export function useChapterQuiz({
     justPassedThisSession,
     submitQuiz,
     retryQuiz: quiz.retry,
+    /** True while answers for an unsubmitted attempt exist; confirm before a
+     *  learning-mode switch discards them. */
+    attemptInProgress: isQuizAttemptInProgress(quiz.session, quiz.answers),
     claimLoopCompleteIP,
     completionScore: completionScore(quiz.session),
   };
