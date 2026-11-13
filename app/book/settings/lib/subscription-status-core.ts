@@ -7,8 +7,8 @@ import type { ProSource } from "@/lib/entitlement-types";
  */
 export type SubscriptionStatus = {
   dateLine: string | null;
-  /** "Your Pro access will end on the date above and won't auto-renew." */
-  cancelNote: boolean;
+  /** Shown when the subscription is set to end instead of renewing. */
+  cancelNote: string | null;
   manage: "stripe" | "apple" | null;
 };
 
@@ -38,20 +38,24 @@ export function subscriptionStatus(
     case "gift_code":
     case "flow_points": {
       const until = format(input.currentPeriodEnd);
-      return { dateLine: until ? `Pro until ${until}` : null, cancelNote: false, manage: null };
+      return { dateLine: until ? `Pro until ${until}` : null, cancelNote: null, manage: null };
     }
     case "license": {
       const until = format(input.licenseExpiresAt ?? input.currentPeriodEnd);
-      return { dateLine: until ? `Pro until ${until}` : null, cancelNote: false, manage: null };
+      return { dateLine: until ? `Pro until ${until}` : null, cancelNote: null, manage: null };
     }
     case "admin":
-      return { dateLine: null, cancelNote: false, manage: null };
+      return { dateLine: null, cancelNote: null, manage: null };
     default: {
       const date = format(input.currentPeriodEnd);
-      const cancels = Boolean(input.cancelAtPeriodEnd && date);
+      const cancels = Boolean(input.cancelAtPeriodEnd);
       return {
         dateLine: date ? (cancels ? `Cancels on ${date}` : `Next renewal: ${date}`) : null,
-        cancelNote: cancels,
+        cancelNote: cancels
+          ? date
+            ? "Your Pro access will end on the date above and won't auto-renew."
+            : "Your Pro access won't auto-renew."
+          : null,
         manage: input.proSource === "apple" ? "apple" : "stripe",
       };
     }

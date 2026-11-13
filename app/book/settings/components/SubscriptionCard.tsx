@@ -147,9 +147,7 @@ export function SubscriptionCard({
           <p className="text-sm text-(--cf-text-soft) mt-1">{status.dateLine}</p>
         )}
         {status.cancelNote && (
-          <p className="mt-1 text-xs text-(--cf-warning-text)">
-            Your Pro access will end on the date above and won&apos;t auto-renew.
-          </p>
+          <p className="mt-1 text-xs text-(--cf-warning-text)">{status.cancelNote}</p>
         )}
         {status.manage === "apple" ? (
           // App Store subscriptions can only be managed by Apple — there is no
