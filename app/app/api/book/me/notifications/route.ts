@@ -2,15 +2,15 @@ import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
-import { bookOk, requireBodyObject, requireString, withBookApiErrors } from "@/app/app/api/book/_lib/http";
+import { bookOk, readJsonBody, requireString, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import {
   listNotificationsPage,
   countUnreadNotifications,
   markNotificationRead,
 } from "@/app/app/api/book/_lib/notifications-repo";
-import { notificationSk } from "@/app/app/api/book/_lib/keys";
+import { bookUserPk, notificationSk } from "@/app/app/api/book/_lib/keys";
 import {
-  decodeListCursor,
+  decodeKeyCursor,
   encodeListCursor,
   parseListPaginationParams,
 } from "@/app/app/api/book/_lib/list-pagination-core";
@@ -36,7 +36,7 @@ export async function GET(req: Request) {
       maxLimit: NOTIFICATION_MAX_PAGE_SIZE,
     });
     const exclusiveStartKey = params.cursor
-      ? decodeListCursor<Record<string, unknown>>(params.cursor)
+      ? decodeKeyCursor(params.cursor, { pk: bookUserPk(user.sub), skPrefix: "NOTIF#" })
       : undefined;
 
     const [page, unreadCount] = await Promise.all([
@@ -57,7 +57,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
-    const body = requireBodyObject(await req.json());
+    const body = await readJsonBody(req);
     const notificationId = requireString(body.notificationId, "notificationId", { maxLength: 100 });
     const createdAt = requireString(body.createdAt, "createdAt", { maxLength: 50 });
 

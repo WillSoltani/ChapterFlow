@@ -6,6 +6,10 @@ import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getCatalogBook, getUserProgress } from "@/app/app/api/book/_lib/repo";
 import { queryDailyReaderMetricsRange } from "@/app/app/api/book/_lib/book-metrics-repo";
+import {
+  aggregateMetrics,
+  type BookReaderMetrics,
+} from "@/app/app/api/book/_lib/book-metrics-core";
 import { collectReaderMetricEntries } from "./reader-metrics-core";
 
 export const runtime = "nodejs";
@@ -22,32 +26,6 @@ export const runtime = "nodejs";
 // it carries no contract weight — `npm run contract:native:generate` is unchanged.
 
 const MAX_BOOK_IDS = 50;
-
-type BookReaderMetrics = {
-  readersToday: number;
-  readersWeek: number;
-  loopsToday: number;
-  loopsWeek: number;
-};
-
-/** Aggregate the daily KPI rows into today/week totals. Mirrors the per-book route. */
-function aggregateMetrics(items: Record<string, unknown>[], today: string): BookReaderMetrics {
-  let readersToday = 0;
-  let readersWeek = 0;
-  let loopsToday = 0;
-  let loopsWeek = 0;
-  for (const item of items) {
-    const readers = typeof item.uniqueReaders === "number" ? item.uniqueReaders : 0;
-    const loops = typeof item.loopCompletions === "number" ? item.loopCompletions : 0;
-    readersWeek += readers;
-    loopsWeek += loops;
-    if (item.dayKey === today) {
-      readersToday = readers;
-      loopsToday = loops;
-    }
-  }
-  return { readersToday, readersWeek, loopsToday, loopsWeek };
-}
 
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {

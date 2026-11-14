@@ -5,7 +5,7 @@ import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookOk,
   bookErr,
-  requireBodyObject,
+  readJsonBody,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
@@ -43,7 +43,7 @@ export async function PATCH(req: Request, ctx: Params) {
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
     const { commitmentId } = await ctx.params;
-    const body = requireBodyObject(await req.json());
+    const body = await readJsonBody(req);
 
     const action = typeof body.action === "string" ? body.action : "";
 

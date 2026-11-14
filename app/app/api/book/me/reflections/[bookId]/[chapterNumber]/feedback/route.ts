@@ -1,7 +1,7 @@
 import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
-import { bookErr, requireSameOrigin } from "@/app/app/api/book/_lib/http";
+import { bookErr, readJsonBody, requireSameOrigin } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookContentBucket } from "@/app/app/api/book/_lib/env";
 import { getUserAccessibleChapter } from "@/app/app/api/book/_lib/content-service";
 import { isBookApiError } from "@/app/app/api/book/_lib/errors";
@@ -46,7 +46,7 @@ export async function POST(req: Request, ctx: Params) {
       return bookErr(req, 400, "invalid_params", "Invalid bookId or chapterNumber");
     }
 
-    const body = await req.json();
+    const body = await readJsonBody(req);
     const exampleId = typeof body.exampleId === "string" ? body.exampleId.trim() : "";
     const reflectionText = typeof body.reflectionText === "string" ? body.reflectionText.trim() : "";
     const scenario = typeof body.scenario === "string" ? body.scenario : "";
@@ -127,7 +127,7 @@ export async function POST(req: Request, ctx: Params) {
       limitTtl,
     );
     if (!claimed) {
-      return bookErr(req, 429, "rate_limited", "Feedback already requested for this example today");
+      return bookErr(req, 429, "rate_limited", "You already asked for feedback on this example today. Try again tomorrow.");
     }
 
     // The rate-limit slot was claimed above to close the concurrent/abort race.
@@ -241,7 +241,7 @@ export async function POST(req: Request, ctx: Params) {
     // client would treat as a logout. (REAUTH_REQUIRED is N/A — no step-up here.)
     if (err instanceof AuthError) {
       if (err.message === "VERIFIER_UNAVAILABLE") {
-        return bookErr(req, 503, "verifier_unavailable", "Authentication is temporarily unavailable. Please retry.");
+        return bookErr(req, 503, "verifier_unavailable", "We couldn't check your sign-in just now. Please try again.");
       }
       return bookErr(req, 401, "unauthenticated", "Authentication is required.");
     }

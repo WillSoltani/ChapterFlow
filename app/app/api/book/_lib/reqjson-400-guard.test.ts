@@ -116,3 +116,81 @@ test("requireBodyObject: non-object → invalid_json(400); {} → accepted", () 
   );
   assert.deepEqual(requireBodyObject({}), {});
 });
+
+// ─── API-24: the shared readJsonBody helper ─────────────────────────────────
+//
+// readJsonBody(req) is the one parse helper for route bodies: a malformed body
+// or a non-object JSON value is a typed 400 invalid_json, never a 500.
+
+type ReadJsonBody = typeof import("./http").readJsonBody;
+
+function jsonPost(body: string): Request {
+  return new Request("https://app.chapterflow.ca/app/api/book/me/commitments", {
+    method: "POST",
+    headers: {
+      "sec-fetch-site": "same-origin",
+      origin: "https://app.chapterflow.ca",
+      "content-type": "application/json",
+    },
+    body,
+  });
+}
+
+async function loadReadJsonBody(): Promise<ReadJsonBody> {
+  return (await import("./http")).readJsonBody;
+}
+
+test("readJsonBody: a malformed body is 400 invalid_json through the wrapper", async () => {
+  const readJsonBody = await loadReadJsonBody();
+  const req = jsonPost("not json at all {");
+  const res = await withBookApiErrors(req, async () => {
+    const body = await readJsonBody(req);
+    const { bookOk } = await import("./http");
+    return bookOk({ body });
+  });
+  assert.equal(res.status, 400);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "invalid_json");
+});
+
+test("readJsonBody: an empty or non-object body is 400 invalid_json", async () => {
+  const readJsonBody = await loadReadJsonBody();
+  for (const raw of ["", "[1,2]", "null", "5"]) {
+    await assert.rejects(
+      readJsonBody(jsonPost(raw)),
+      (err: unknown) =>
+        (err as { code?: string }).code === "invalid_json" &&
+        (err as { status?: number }).status === 400,
+      `body ${JSON.stringify(raw)} must be invalid_json`
+    );
+  }
+});
+
+test("readJsonBody: a JSON object body is returned as-is", async () => {
+  const readJsonBody = await loadReadJsonBody();
+  assert.deepEqual(await readJsonBody(jsonPost('{"a":1,"b":"x"}')), { a: 1, b: "x" });
+});
+
+// The nine routes that used to call `requireBodyObject(await req.json())` (or a
+// bare `await req.json()`) unguarded now parse through readJsonBody.
+test("the API-24 routes parse their body through readJsonBody", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { join } = await import("node:path");
+  const meDir = join(process.cwd(), "app/app/api/book/me");
+  const routes = [
+    "commitments/route.ts",
+    "commitments/[commitmentId]/route.ts",
+    "notifications/route.ts",
+    "onboarding/progress/route.ts",
+    "onboarding/complete/route.ts",
+    "analytics/track/route.ts",
+    "devices/register/route.ts",
+    "devices/unregister/route.ts",
+    "reflections/[bookId]/[chapterNumber]/feedback/route.ts",
+  ];
+  for (const route of routes) {
+    const src = readFileSync(join(meDir, route), "utf8");
+    assert.ok(src.includes("readJsonBody(req)"), `${route} must use readJsonBody(req)`);
+    assert.equal(src.includes("await req.json()"), false, `${route} must not parse req.json() unguarded`);
+  }
+});

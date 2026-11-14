@@ -62,9 +62,8 @@ export async function POST(
     const now = new Date();
 
     // Read the current card first so we can reject duplicate submits before
-    // re-running the (stateful) scheduler. recordReview itself has no
-    // optimistic-concurrency guard, so without this a retry/double-click would
-    // advance the card a second time and write a duplicate review log.
+    // re-running the (stateful) scheduler. recordReview saves only if the card
+    // is unchanged since this read, which covers two submits in flight at once.
     const current = await getFSRSCard(tableName, user.sub, decodedCardId);
     if (!current) {
       throw new BookApiError(404, "card_not_found", "FSRS card not found.");
@@ -89,7 +88,8 @@ export async function POST(
       tableName,
       user.sub,
       decodedCardId,
-      rating as FSRSRating
+      rating as FSRSRating,
+      current
     );
 
     return bookOk({

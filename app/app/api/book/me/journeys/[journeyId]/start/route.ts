@@ -2,8 +2,14 @@ import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
-import { startJourney, listUserJourneys } from "@/app/app/api/book/_lib/journey-repo";
+import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
+import {
+  getJourneyProgress,
+  listUserJourneys,
+  reconcileJourneyCompletedBooks,
+  startJourney,
+} from "@/app/app/api/book/_lib/journey-repo";
+import { logger } from "@/lib/logging/logger";
 import journeyDefinitions from "@/content/journeys/journeys.json";
 import type { JourneyDefinition } from "@/app/app/api/book/_lib/types";
 
@@ -36,7 +42,25 @@ export async function POST(req: Request, ctx: Params) {
       return bookErr(req, 409, "already_started", "You already started this journey");
     }
 
-    const journey = await startJourney(tableName, user.sub, journeyId);
+    let journey = await startJourney(tableName, user.sub, journeyId);
+
+    // Credit journey books the reader already finished (best-effort: a failure
+    // here never fails the start; the next passed quiz reconciles again).
+    try {
+      const contentBucket = await getBookContentBucket();
+      const result = await reconcileJourneyCompletedBooks(
+        tableName,
+        contentBucket,
+        user.sub,
+        journey,
+      );
+      if (result?.advanced) {
+        journey = (await getJourneyProgress(tableName, user.sub, journeyId)) ?? journey;
+      }
+    } catch (error) {
+      logger.warn("journey_start_reconcile_failed", { journeyId, err: error });
+    }
+
     return bookOk({ journey, started: true });
   });
 }

@@ -59,7 +59,7 @@ export function buildSessionResponse(
           loggedIn: null,
           error: {
             code: VERIFIER_UNAVAILABLE_CODE,
-            message: "Authentication is temporarily unavailable. Please retry.",
+            message: "We couldn't check your sign-in just now. Please try again.",
             requestId,
           },
         },

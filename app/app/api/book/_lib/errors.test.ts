@@ -57,3 +57,52 @@ test("isTransactionConditionFailedAt pinpoints the failing item index", () => {
   assert.equal(isTransactionConditionFailedAt(err, 4), false);
   assert.equal(isTransactionConditionFailedAt(new Error("x"), 1), false);
 });
+
+// ── API-25: one published list of reader-facing error codes ──────────────────
+
+test("ERROR_CODES publishes every reader-facing code once, in snake_case", async () => {
+  const { ERROR_CODES } = await import("./errors");
+  const values = Object.values(ERROR_CODES);
+  assert.equal(new Set(values).size, values.length, "codes are unique");
+  for (const code of values) assert.match(code, /^[a-z][a-z0-9_]*$/);
+  for (const code of [
+    "unauthenticated",
+    "chapter_locked",
+    "paywall_book_limit",
+    "server_error",
+    "dashboard_unavailable",
+    "throttled",
+    "verifier_unavailable",
+    "quiz_state_conflict",
+    "quiz_session_stale",
+    "progress_write_contended",
+    "streak_write_contended",
+    "quiz_write_contended",
+    "insufficient_points",
+    "insufficient_balance",
+    "reward_already_claimed",
+    "already_pro",
+    "already_owned",
+    "question_limit",
+    "pro_required",
+    "invalid_answers",
+    "reset_incomplete",
+    "settings_write_conflict",
+    "rate_limited",
+    "invalid_json",
+    "invalid_cursor",
+    "chapter_state_conflict",
+    "profile_write_conflict",
+  ]) {
+    assert.ok((values as string[]).includes(code), `${code} is listed`);
+  }
+});
+
+test("invalidAnswersError gives readers a plain message and keeps the reason for developers", async () => {
+  const { invalidAnswersError } = await import("./errors");
+  const err = invalidAnswersError("responses[2].questionId is required.");
+  assert.equal(err.status, 400);
+  assert.equal(err.code, "invalid_answers");
+  assert.equal(err.message, "Some answers didn't match this quiz. Refresh and try again.");
+  assert.deepEqual(err.details, { reason: "responses[2].questionId is required." });
+});

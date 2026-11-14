@@ -1,4 +1,4 @@
-import { BookApiError } from "./errors";
+import { BookApiError, invalidAnswersError } from "./errors";
 import type { ChapterQuizPayload } from "./types";
 
 // NOTE: The former `scoreQuizSubmission(quiz, number[])` helper was removed
@@ -23,7 +23,7 @@ export function scoreQuizResponsesByQuestionId(
   }>;
 } {
   if (!Array.isArray(responses) || responses.length === 0) {
-    throw new BookApiError(400, "invalid_answers", "responses must include at least one answer.");
+    throw invalidAnswersError("responses must include at least one answer.");
   }
 
   const pool = opts?.questionPool ?? quiz.questions;
@@ -39,16 +39,16 @@ export function scoreQuizResponsesByQuestionId(
 
   for (const [index, response] of responses.entries()) {
     if (!response || typeof response !== "object") {
-      throw new BookApiError(400, "invalid_answers", `responses[${index}] must be an object.`);
+      throw invalidAnswersError(`responses[${index}] must be an object.`);
     }
     const questionId =
       typeof response.questionId === "string" ? response.questionId.trim() : "";
     const selected = response.selectedIndex;
     if (!questionId) {
-      throw new BookApiError(400, "invalid_answers", `responses[${index}].questionId is required.`);
+      throw invalidAnswersError(`responses[${index}].questionId is required.`);
     }
     if (seen.has(questionId)) {
-      throw new BookApiError(400, "invalid_answers", `responses contains duplicate questionId ${questionId}.`);
+      throw invalidAnswersError(`responses contains duplicate questionId ${questionId}.`);
     }
     seen.add(questionId);
     if (
@@ -56,11 +56,11 @@ export function scoreQuizResponsesByQuestionId(
       !Number.isFinite(selected) ||
       Math.floor(selected) !== selected
     ) {
-      throw new BookApiError(400, "invalid_answers", `responses[${index}].selectedIndex must be an integer.`);
+      throw invalidAnswersError(`responses[${index}].selectedIndex must be an integer.`);
     }
     const question = byId.get(questionId);
     if (!question) {
-      throw new BookApiError(400, "invalid_answers", `Unknown questionId ${questionId}.`);
+      throw invalidAnswersError(`Unknown questionId ${questionId}.`);
     }
     const choices: string[] = Array.isArray(question.choices)
       ? question.choices
@@ -80,9 +80,7 @@ export function scoreQuizResponsesByQuestionId(
       );
     }
     if (selected < 0 || selected >= choices.length) {
-      throw new BookApiError(
-        400,
-        "invalid_answers",
+      throw invalidAnswersError(
         `responses[${index}].selectedIndex is out of range for question ${questionId}.`
       );
     }

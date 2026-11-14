@@ -391,7 +391,7 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
 
     const entitlement = await getUserEntitlement(tableName, user.sub);
     if (entitlement?.plan !== "PRO") {
-      return bookErr(req, 403, "pro_required", "Audio mode requires a Pro subscription");
+      return bookErr(req, 403, "pro_required", "Listening to chapters is part of Pro. Upgrade to listen.");
     }
 
     const url = new URL(req.url);

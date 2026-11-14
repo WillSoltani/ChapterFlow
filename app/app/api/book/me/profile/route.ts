@@ -10,7 +10,7 @@ import {
 import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import {
   getUserProfileItem,
-  putUserProfileItem,
+  updateUserProfileItem,
   getUserSettingsItem,
 } from "@/app/app/api/book/_lib/repo";
 import {
@@ -123,7 +123,7 @@ function cleanUsername(value: unknown): string | undefined {
 
 function cleanMinutes(value: unknown): number | undefined {
   if (typeof value !== "number" || !Number.isFinite(value)) return undefined;
-  return Math.min(240, Math.max(10, Math.round(value)));
+  return Math.min(240, Math.max(5, Math.round(value)));
 }
 
 function cleanReminderTime(value: unknown): string | undefined {
@@ -307,7 +307,6 @@ export async function PATCH(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
-    const existing = await getUserProfileItem(tableName, user.sub);
 
     let bodyRaw: unknown;
     try {
@@ -346,37 +345,38 @@ export async function PATCH(req: Request) {
       );
     }
 
-    const previousProfile = sanitizeProfile(existing?.profile ?? null);
     const sanitizedIncoming = sanitizeProfile(incomingProfile);
-    const profile: Record<string, unknown> = {
-      ...previousProfile,
-      ...sanitizedIncoming,
-    };
 
-    const completedOnboardingNow =
-      previousProfile.onboardingCompleted !== true && profile.onboardingCompleted === true;
+    // The merge re-runs on a concurrent write, so it only computes; the side
+    // effects below use the values from the attempt that was saved.
+    let completedOnboardingNow = false;
+    const saved = await updateUserProfileItem(tableName, user.sub, (stored) => {
+      const previousProfile = sanitizeProfile(stored);
+      const profile: Record<string, unknown> = {
+        ...previousProfile,
+        ...sanitizedIncoming,
+      };
 
-    // Terms/Privacy acceptance is server-authoritative. sanitizeProfile strips
-    // these fields from client input, so we carry forward any prior recorded
-    // consent from the stored profile, and stamp it the first time onboarding
-    // completes (the signup gate required acceptance before reaching the app).
-    const priorConsent = (existing?.profile ?? {}) as Record<string, unknown>;
-    if (typeof priorConsent.termsAcceptedAt === "string") {
-      profile.termsAcceptedAt = priorConsent.termsAcceptedAt;
-      if (typeof priorConsent.termsVersion === "string") {
-        profile.termsVersion = priorConsent.termsVersion;
+      completedOnboardingNow =
+        previousProfile.onboardingCompleted !== true && profile.onboardingCompleted === true;
+
+      // Terms/Privacy acceptance is server-authoritative. sanitizeProfile strips
+      // these fields from client input, so we carry forward any prior recorded
+      // consent from the stored profile, and stamp it the first time onboarding
+      // completes (the signup gate required acceptance before reaching the app).
+      if (typeof stored.termsAcceptedAt === "string") {
+        profile.termsAcceptedAt = stored.termsAcceptedAt;
+        if (typeof stored.termsVersion === "string") {
+          profile.termsVersion = stored.termsVersion;
+        }
       }
-    }
-    if (completedOnboardingNow && !profile.termsAcceptedAt) {
-      profile.termsAcceptedAt = nowIso();
-      profile.termsVersion = LEGAL_TERMS_VERSION;
-    }
-
-    const saved = await putUserProfileItem(tableName, {
-      userId: user.sub,
-      profile,
-      createdAt: existing?.createdAt,
+      if (completedOnboardingNow && !profile.termsAcceptedAt) {
+        profile.termsAcceptedAt = nowIso();
+        profile.termsVersion = LEGAL_TERMS_VERSION;
+      }
+      return profile;
     });
+    const profile = saved.profile;
     let riskDevice: Awaited<ReturnType<typeof recordRiskSignals>> | null = null;
     let clearReferralCookie = false;
 

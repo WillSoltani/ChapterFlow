@@ -1,7 +1,7 @@
 import "server-only";
 
 import type { AuthedUser } from "@/app/app/api/_lib/auth";
-import { BookApiError } from "./errors";
+import { BookApiError, invalidAnswersError } from "./errors";
 import {
   getLocalQuizQuestions,
   getPublishedBookManifest,
@@ -49,7 +49,8 @@ import { scoreQuizResponsesByQuestionId } from "./quiz-service";
 import { updateStreakOnLoopComplete } from "./streak-repo";
 import { updateTierOnLoopComplete } from "./tier-repo";
 import { checkAchievementsAfterLoopComplete } from "./achievement-repo";
-import { checkAndAdvanceJourneys } from "./journey-repo";
+import { checkAndAdvanceJourneys, reconcileActiveJourneys } from "./journey-repo";
+import { mergeJourneyResults } from "./journey-reconcile-core";
 import { listUserEvents, recordEventChapter } from "./events-repo";
 import { listEventDefinitions } from "./admin-events-repo";
 import { maybeAwardInsightSpark } from "./insight-spark";
@@ -114,18 +115,14 @@ export type RequestResponse = {
 export function parseResponses(body: Record<string, unknown>): RequestResponse[] {
   const responsesRaw = body.responses;
   if (!Array.isArray(responsesRaw) || responsesRaw.length === 0) {
-    throw new BookApiError(
-      400,
-      "invalid_answers",
+    throw invalidAnswersError(
       "responses must include one answer for every question."
     );
   }
 
   return responsesRaw.map((entry, index) => {
     if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
-      throw new BookApiError(
-        400,
-        "invalid_answers",
+      throw invalidAnswersError(
         `responses[${index}] must be an object.`
       );
     }
@@ -142,16 +139,12 @@ export function parseResponses(body: Record<string, unknown>): RequestResponse[]
         : null;
 
     if (!questionId) {
-      throw new BookApiError(
-        400,
-        "invalid_answers",
+      throw invalidAnswersError(
         `responses[${index}].questionId is required.`
       );
     }
     if (!selectedChoiceId && selectedIndexRaw === null) {
-      throw new BookApiError(
-        400,
-        "invalid_answers",
+      throw invalidAnswersError(
         `responses[${index}] must include selectedChoiceId or selectedIndex.`
       );
     }
@@ -240,7 +233,7 @@ export interface CompleteLearningLoopInput {
  *  30  listUserEvents
  *  31  recordEventChapter × N
  *  32  markLoopStepCompleted(events)
- *  33  checkAndAdvanceJourneys          → pipelineErrors
+ *  33  checkAndAdvanceJourneys (completedBookNow) + reconcileActiveJourneys → pipelineErrors
  *  34  markLoopStepCompleted(journeys)
  *  35  markLoopPipelineCompleted        (only when pipelineErrors empty) → swallowed
  *  Analytics (this fn):
@@ -474,9 +467,7 @@ export async function completeLearningLoop(input: CompleteLearningLoopInput) {
     responses.map((r) => r.questionId)
   );
   if (!answersExactlyCoverAttempt) {
-    throw new BookApiError(
-      400,
-      "invalid_answers",
+    throw invalidAnswersError(
       `responses must answer exactly the ${attemptQuestions.length} assigned question(s).`
     );
   }
@@ -525,9 +516,7 @@ export async function completeLearningLoop(input: CompleteLearningLoopInput) {
           };
         })();
   } catch (error: unknown) {
-    throw new BookApiError(
-      400,
-      "invalid_answers",
+    throw invalidAnswersError(
       error instanceof Error ? error.message : "Quiz answers are invalid."
     );
   }
@@ -692,6 +681,7 @@ export async function completeLearningLoop(input: CompleteLearningLoopInput) {
     incrementDailyMetrics: () =>
       incrementDailyReaderMetrics(tableName, {
         bookId,
+        userId: user.sub,
         dayKey: ts.slice(0, 10),
         ts,
       }),
@@ -772,8 +762,15 @@ export async function completeLearningLoop(input: CompleteLearningLoopInput) {
     listUserEvents: () => listUserEvents(tableName, user.sub),
     recordEventChapter: (eventId, chapterId, eventDef) =>
       recordEventChapter(tableName, user.sub, eventId, chapterId, eventDef),
-    checkAndAdvanceJourneys: () =>
-      checkAndAdvanceJourneys(tableName, user.sub, bookId),
+    // Every passed quiz: credit the book this quiz finished (if any), then
+    // credit journey books finished earlier (e.g. before the journey started).
+    checkAndAdvanceJourneys: async () => {
+      const advanced = completedBookNow
+        ? await checkAndAdvanceJourneys(tableName, user.sub, bookId)
+        : [];
+      const reconciled = await reconcileActiveJourneys(tableName, contentBucket, user.sub);
+      return mergeJourneyResults([...advanced, ...reconciled]);
+    },
     markLoopPipelineCompleted: () =>
       markLoopPipelineCompleted(tableName, user.sub, bookId, chapterNumberInt, ts),
     logError: (...args) => logLoopPipelineError(...args),

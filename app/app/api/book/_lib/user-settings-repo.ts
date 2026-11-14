@@ -123,6 +123,6 @@ export async function updateUserSettingsItem(
   throw new BookApiError(
     409,
     "settings_write_conflict",
-    "Settings were updated concurrently. Please retry."
+    "Your settings changed somewhere else at the same time. Please try again."
   );
 }

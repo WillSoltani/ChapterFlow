@@ -14,6 +14,13 @@ import {
 } from "@/app/app/api/book/_lib/repo";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
+import { isConditionalCheckFailed } from "@/app/app/api/book/_lib/repo-shared";
+import {
+  CHAPTER_STATE_CHAPTER_ID_MAX_CHARS,
+  CHAPTER_STATE_QUIZ_RESULT_MAX_CHARS,
+  isChapterStateStale,
+  mergeChapterState,
+} from "@/app/app/api/book/_lib/chapter-state-merge-core";
 
 export const runtime = "nodejs";
 
@@ -104,6 +111,12 @@ function sanitizeChapterState(input: unknown): Record<string, unknown> {
       case "quizResult": {
         if (value !== null && !isRecord(value)) {
           invalidState("state.quizResult must be an object or null.");
+        }
+        if (
+          value !== null &&
+          JSON.stringify(value).length > CHAPTER_STATE_QUIZ_RESULT_MAX_CHARS
+        ) {
+          invalidState("state.quizResult is too large.");
         }
         next[key] = value;
         break;
@@ -214,37 +227,75 @@ export async function PATCH(
     }
     const body = requireBodyObject(bodyRaw);
     // The client sends { chapterId, state }; tolerate a legacy body-as-state
-    // shape but never let the separately-handled chapterId bleed into state.
+    // shape but never let the separately-handled top-level fields (chapterId,
+    // expectedUpdatedAt) bleed into state.
     const rawStateInput =
       body.state && typeof body.state === "object" && !Array.isArray(body.state)
         ? (body.state as Record<string, unknown>)
         : Object.fromEntries(
-            Object.entries(body).filter(([key]) => key !== "chapterId")
+            Object.entries(body).filter(
+              ([key]) => key !== "chapterId" && key !== "expectedUpdatedAt"
+            )
           );
     const rawState = sanitizeChapterState(rawStateInput);
+    if (
+      typeof body.chapterId === "string" &&
+      body.chapterId.length > CHAPTER_STATE_CHAPTER_ID_MAX_CHARS
+    ) {
+      invalidState("chapterId is too long.");
+    }
+    // Optional optimistic concurrency: a string must match the stored row's
+    // updatedAt; null means the caller expects no stored row yet.
+    const expectedUpdatedAt = body.expectedUpdatedAt;
+    if (
+      expectedUpdatedAt !== undefined &&
+      expectedUpdatedAt !== null &&
+      typeof expectedUpdatedAt !== "string"
+    ) {
+      invalidState("expectedUpdatedAt must be a string or null.");
+    }
 
     const tableName = await getBookTableName();
-    const existing = await getUserChapterState(
-      tableName,
-      user.sub,
-      bookId,
-      Math.floor(parsedChapterNumber)
-    );
+    const chapterNum = Math.floor(parsedChapterNumber);
+    const existing = await getUserChapterState(tableName, user.sub, bookId, chapterNum);
+    const conflict = (current: typeof existing): never => {
+      throw new BookApiError(
+        409,
+        "chapter_state_conflict",
+        "This chapter was updated somewhere else. Reload to see the latest version.",
+        { current: current ?? null }
+      );
+    };
+    if (isChapterStateStale(expectedUpdatedAt, existing?.updatedAt)) {
+      conflict(existing);
+    }
+
     const now = nowIso();
     const state = {
       userId: user.sub,
       bookId,
-      chapterNumber: Math.floor(parsedChapterNumber),
+      chapterNumber: chapterNum,
       chapterId:
         typeof body.chapterId === "string"
           ? body.chapterId
           : existing?.chapterId,
-      state: rawState,
+      // Merge over the stored state so a write that omits a key never erases
+      // it; notes follow last-write-wins on notesUpdatedAt.
+      state: mergeChapterState(existing?.state, rawState),
       createdAt: existing?.createdAt ?? now,
       updatedAt: now,
     };
 
-    await putUserChapterState(tableName, state);
+    try {
+      await putUserChapterState(
+        tableName,
+        state,
+        expectedUpdatedAt === undefined ? {} : { expectedUpdatedAt }
+      );
+    } catch (error) {
+      if (!isConditionalCheckFailed(error)) throw error;
+      conflict(await getUserChapterState(tableName, user.sub, bookId, chapterNum));
+    }
     return bookOk({ state });
   });
 }

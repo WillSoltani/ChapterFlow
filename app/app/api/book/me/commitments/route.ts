@@ -4,7 +4,7 @@ import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookOk,
   bookErr,
-  requireBodyObject,
+  readJsonBody,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
-    const body = requireBodyObject(await req.json());
+    const body = await readJsonBody(req);
 
     const bookId = typeof body.bookId === "string" ? body.bookId.trim() : "";
     const chapterNumber = typeof body.chapterNumber === "number" ? body.chapterNumber : 0;

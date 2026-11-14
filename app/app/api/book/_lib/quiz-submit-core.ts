@@ -26,7 +26,7 @@
 //   Step 5  maybeAwardInsightSpark — awaited, try/catch → pipelineErrors "insight_spark"
 //   ~       createNotification  — FIRE-AND-FORGET (tier / achievements / streak / spark)
 //   Step 6  event tracking      — awaited, try/catch → pipelineErrors "event_tracking"
-//   Step 7  checkAndAdvanceJourneys — only when completedBookNow; → "journey_advancement"
+//   Step 7  checkAndAdvanceJourneys — every passed quiz (advance + reconcile); → "journey_advancement"
 //   markLoopPipelineCompleted   — ONLY when pipelineErrors is empty; try/catch → swallowed
 //
 // Each successful step also stamps a per-step marker via markLoopStep (best-effort;
@@ -431,30 +431,30 @@ export async function runLoopCompletionSaga(
   }
 
   // ── Step 7: Journey advancement ──
+  // Runs on every passed quiz (not only when this quiz finished a book) so the
+  // dep can also credit journey books the reader finished earlier.
   let journeyResults: JourneyAdvancementResult[] = [];
-  if (ctx.completedBookNow) {
-    try {
-      journeyResults = await deps.checkAndAdvanceJourneys();
-      await markStep("journeyAdvancedAt");
+  try {
+    journeyResults = await deps.checkAndAdvanceJourneys();
+    await markStep("journeyAdvancedAt");
 
-      // Fire-and-forget notifications for journey completions.
-      for (const jr of journeyResults) {
-        if (jr.completed) {
-          deps.createNotification({
-            userId,
-            type: "badge_earned",
-            title: "Journey Complete!",
-            body: `You completed a learning journey${jr.bonusIPAwarded > 0 ? ` and earned ${jr.bonusIPAwarded} IP` : ""}!`,
-            metadata: { journeyId: jr.journeyId, ip: jr.bonusIPAwarded },
-          }).catch(() => {});
-        }
+    // Fire-and-forget notifications for journey completions.
+    for (const jr of journeyResults) {
+      if (jr.completed) {
+        deps.createNotification({
+          userId,
+          type: "badge_earned",
+          title: "Journey Complete!",
+          body: `You completed a learning journey${jr.bonusIPAwarded > 0 ? ` and earned ${jr.bonusIPAwarded} IP` : ""}!`,
+          metadata: { journeyId: jr.journeyId, ip: jr.bonusIPAwarded },
+        }).catch(() => {});
       }
-    } catch (e) {
-      pipelineErrors.push("journey_advancement");
-      deps.logError("[loop-pipeline-partial-failure]", {
-        userId, bookId, chapterNumber, failedStep: "journey_advancement", error: String(e),
-      });
     }
+  } catch (e) {
+    pipelineErrors.push("journey_advancement");
+    deps.logError("[loop-pipeline-partial-failure]", {
+      userId, bookId, chapterNumber, failedStep: "journey_advancement", error: String(e),
+    });
   }
 
   // Always build a pipeline result with whatever fields succeeded.

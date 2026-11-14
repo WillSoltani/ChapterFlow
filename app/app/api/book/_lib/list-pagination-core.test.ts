@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 
 import { isBookApiError } from "./errors";
 import {
+  decodeKeyCursor,
+  encodeListCursor,
   paginateArray,
   parseListPaginationParams,
 } from "./list-pagination-core";
@@ -165,4 +167,57 @@ test("a custom cursorKey extractor paginates items whose id/createdAt fields are
   assert.equal(page2.items.length, 5);
   assert.equal(page2.hasMore, false);
   assert.equal(page2.nextCursor, null);
+});
+
+// API-30: a DynamoDB start-key cursor (notifications) was only JSON-parsed, so
+// an edited cursor naming another partition or key shape reached DynamoDB and
+// came back as a 500. decodeKeyCursor checks the key belongs to the caller's
+// partition and list before it is used.
+
+const NOTIF_EXPECT = { pk: "USER#u1", skPrefix: "NOTIF#" };
+
+function assertInvalidCursor(fn: () => unknown) {
+  assert.throws(fn, (err: unknown) => {
+    assert.ok(isBookApiError(err));
+    assert.equal(err.status, 400);
+    assert.equal(err.code, "invalid_cursor");
+    return true;
+  });
+}
+
+test("decodeKeyCursor returns the start key for the caller's own list", () => {
+  const cursor = encodeListCursor({ PK: "USER#u1", SK: "NOTIF#2026-11-13T10:00:00.000Z#n1" });
+  assert.deepEqual(decodeKeyCursor(cursor, NOTIF_EXPECT), {
+    PK: "USER#u1",
+    SK: "NOTIF#2026-11-13T10:00:00.000Z#n1",
+  });
+});
+
+test("decodeKeyCursor rejects another partition", () => {
+  const cursor = encodeListCursor({ PK: "USER#u2", SK: "NOTIF#2026-11-13T10:00:00.000Z#n1" });
+  assertInvalidCursor(() => decodeKeyCursor(cursor, NOTIF_EXPECT));
+});
+
+test("decodeKeyCursor rejects a sort key outside the list", () => {
+  const cursor = encodeListCursor({ PK: "USER#u1", SK: "PROFILE" });
+  assertInvalidCursor(() => decodeKeyCursor(cursor, NOTIF_EXPECT));
+});
+
+test("decodeKeyCursor rejects wrong shapes and garbage", () => {
+  for (const value of [null, [], "x", 5, { PK: "USER#u1" }, { PK: "USER#u1", SK: 7 }]) {
+    assertInvalidCursor(() => decodeKeyCursor(encodeListCursor(value), NOTIF_EXPECT));
+  }
+  assertInvalidCursor(() => decodeKeyCursor("%%%not-base64%%%", NOTIF_EXPECT));
+});
+
+test("decodeKeyCursor drops extra attributes", () => {
+  const cursor = encodeListCursor({
+    PK: "USER#u1",
+    SK: "NOTIF#2026-11-13T10:00:00.000Z#n1",
+    extra: "x",
+  });
+  assert.deepEqual(decodeKeyCursor(cursor, NOTIF_EXPECT), {
+    PK: "USER#u1",
+    SK: "NOTIF#2026-11-13T10:00:00.000Z#n1",
+  });
 });
