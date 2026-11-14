@@ -65,6 +65,18 @@ function Harness({
   );
 }
 
+// A closed layer leaves the document after its exit transition. The check is
+// cheap on purpose: comparing a DOM node with null builds a very large failure
+// message on every retry, which starves the transition on a busy machine.
+async function waitForGone(query: () => HTMLElement | null) {
+  await waitFor(
+    () => {
+      if (query()) throw new Error("still in the document");
+    },
+    { timeout: 10_000 },
+  );
+}
+
 async function openMenu(view: ReturnType<typeof render>) {
   fireEvent.click(view.getByRole("button", { name: "Steps" }));
   return waitFor(() => view.getByRole("dialog", { name: "Chapter steps" }));
@@ -75,7 +87,7 @@ test("desktop popover closes on Escape and returns focus to its trigger", async 
   const view = render(<Harness />);
   await openMenu(view);
   fireEvent.keyDown(document, { key: "Escape" });
-  await waitFor(() => assert.equal(view.queryByRole("dialog", { name: "Chapter steps" }), null));
+  await waitForGone(() => view.queryByRole("dialog", { name: "Chapter steps" }));
   assert.equal(document.activeElement, view.getByRole("button", { name: "Steps" }));
 });
 
@@ -84,7 +96,7 @@ test("desktop popover closes on an outside click and returns focus to its trigge
   const view = render(<Harness />);
   await openMenu(view);
   fireEvent.mouseDown(view.getByRole("button", { name: "Elsewhere" }));
-  await waitFor(() => assert.equal(view.queryByRole("dialog", { name: "Chapter steps" }), null));
+  await waitForGone(() => view.queryByRole("dialog", { name: "Chapter steps" }));
   assert.equal(document.activeElement, view.getByRole("button", { name: "Steps" }));
 });
 
@@ -104,7 +116,7 @@ test("desktop popover leaves Escape to a modal dialog open above it", async () =
     modal.remove();
   }
   fireEvent.keyDown(document, { key: "Escape" });
-  await waitFor(() => assert.equal(view.queryByRole("dialog", { name: "Chapter steps" }), null));
+  await waitForGone(() => view.queryByRole("dialog", { name: "Chapter steps" }));
 });
 
 test("phone step menu is a sheet that closes on Escape", async () => {
@@ -113,7 +125,7 @@ test("phone step menu is a sheet that closes on Escape", async () => {
   const sheet = await openMenu(view);
   assert.equal(sheet.getAttribute("aria-modal"), "true");
   fireEvent.keyDown(document, { key: "Escape" });
-  await waitFor(() => assert.equal(view.queryByRole("dialog", { name: "Chapter steps" }), null));
+  await waitForGone(() => view.queryByRole("dialog", { name: "Chapter steps" }));
 });
 
 // The reader attaches onFollow to the next chapter link once the quiz is
@@ -142,5 +154,5 @@ test("the step menu's next chapter row runs the finish flow and closes the menu"
   const menu = await openMenu(view);
   fireEvent.click(within(menu).getByRole("link", { name: /Next chapter/ }));
   assert.equal(finished, 1);
-  await waitFor(() => assert.equal(view.queryByRole("dialog", { name: "Chapter steps" }), null));
+  await waitForGone(() => view.queryByRole("dialog", { name: "Chapter steps" }));
 });

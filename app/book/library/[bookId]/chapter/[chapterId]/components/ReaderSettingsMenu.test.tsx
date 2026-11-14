@@ -56,6 +56,18 @@ function menu(
 
 // The reader header uses backdrop-filter, which makes it the containing block
 // for position:fixed. On a phone the sheet must therefore live outside it.
+// A closed layer leaves the document after its exit transition. The check is
+// cheap on purpose: comparing a DOM node with null builds a very large failure
+// message on every retry, which starves the transition on a busy machine.
+async function waitForGone(query: () => HTMLElement | null) {
+  await waitFor(
+    () => {
+      if (query()) throw new Error("still in the document");
+    },
+    { timeout: 10_000 },
+  );
+}
+
 test("on a phone the settings sheet renders in document.body, outside the header", async () => {
   setPhone(true);
   const view = render(<header data-testid="hdr">{menu(() => {})}</header>);
@@ -127,7 +139,7 @@ test("a click inside a confirm dialog above the menu keeps the menu open and foc
   const keep = await waitFor(() => view.getByRole("button", { name: "Keep my answers" }));
   fireEvent.mouseDown(keep);
   fireEvent.click(keep);
-  await waitFor(() => assert.equal(view.queryByRole("button", { name: "Keep my answers" }), null));
+  await waitForGone(() => view.queryByRole("button", { name: "Keep my answers" }));
   assert.equal(closed, 0, "the settings menu stays open");
   await waitFor(() => assert.equal(document.activeElement, deeper));
 

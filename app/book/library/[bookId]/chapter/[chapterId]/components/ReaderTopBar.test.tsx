@@ -77,6 +77,18 @@ function Bar({
 const stepTrigger = (view: ReturnType<typeof render>) =>
   view.getByRole("button", { name: /Chapter 4, Summary/ });
 
+// A closed layer leaves the document after its exit transition. The check is
+// cheap on purpose: comparing a DOM node with null builds a very large failure
+// message on every retry, which starves the transition on a busy machine.
+async function waitForGone(query: () => HTMLElement | null) {
+  await waitFor(
+    () => {
+      if (query()) throw new Error("still in the document");
+    },
+    { timeout: 10_000 },
+  );
+}
+
 test("the progress hairline follows the reader's progress-bar setting", () => {
   const shown = render(<Bar />);
   assert.ok(shown.getByRole("progressbar", { name: "Progress through Summary" }));
@@ -120,7 +132,7 @@ test("opening reading settings closes the step menu, and the step menu closes se
   await waitFor(() => view.getByRole("dialog", { name: "Chapter steps" }));
   fireEvent.mouseDown(view.getByRole("button", { name: "Reading settings" }));
   fireEvent.click(view.getByRole("button", { name: "Reading settings" }));
-  await waitFor(() => assert.equal(view.queryByRole("dialog", { name: "Chapter steps" }), null));
+  await waitForGone(() => view.queryByRole("dialog", { name: "Chapter steps" }));
   assert.ok(view.getByRole("dialog", { name: "Reading settings" }));
   // Closing the step menu must not pull focus away from the settings button.
   assert.equal(document.activeElement, view.getByRole("button", { name: "Reading settings" }));
@@ -136,6 +148,6 @@ test("on a phone the step sheet closes on Escape and focus returns to the trigge
   fireEvent.click(stepTrigger(view));
   await waitFor(() => view.getByRole("dialog", { name: "Chapter steps" }));
   fireEvent.keyDown(document, { key: "Escape" });
-  await waitFor(() => assert.equal(view.queryByRole("dialog", { name: "Chapter steps" }), null));
+  await waitForGone(() => view.queryByRole("dialog", { name: "Chapter steps" }));
   await waitFor(() => assert.equal(document.activeElement, stepTrigger(view)));
 });
