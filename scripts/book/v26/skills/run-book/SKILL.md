@@ -126,10 +126,23 @@ book about $100. Each book gets its own ledger (no
 Score = mean over chapters of the share of judge items passed (the judge calibrated on the owner's labels, plus
 one item per quiz question since 2026-11-10: is a wrong choice really tempting). Bands from the config's `gate`
 (default `auto` 80, `manual` 70): 80 and up publishes unread, provided no chapter is under 70, no fact or key flag
-is open, and no kind of item is weak in half the chapters (the repeat rule: a flaw in every chapter costs one
-item in forty, so the mean hides it; a reader does not); 70 to 79 waits for the owner's yes; under 70 fails and is
+is open, and no kind of item is weak in half the chapters (the repeat rule: a flaw in every chapter costs about one
+item in sixty, so the mean hides it; a reader does not); 70 to 79 waits for the owner's yes; under 70 fails and is
 redone only with permission. A wrong fact never publishes unread. Calibration: the owner-approved 48 Laws scored 97 and 100 on its
 first two chapters.
+
+Since 2026-11-13 the judge also asks, per quiz question, whether the keyed choice is the only sound answer
+(`KEY-<q>`) and whether the right choice can be spotted by its wording (`TELL-<q>`), and, per chapter, whether the
+examples and the questions show different sides of the lesson (`VARY-examples`, `VARY-quiz`). The quiz carries four
+items per question (`QUIZ`, `TEMPT`, `KEY`, `TELL`) plus one for the set (`VARY-quiz`), about half of a chapter's
+items. A saved eval from an older judge is asked again, so `score` on a book published before then re-judges every
+chapter (about $0.27 each) and its band can change. `score.json` names its judge too: `publish` refuses a score an
+older judge gave, so score the book again first.
+
+How to read the new scale: a chapter of the published quality scores about 83 where the old judge gave about 94. On
+the 18 reader-rated chapters, chapters strict LLM readers gave 6 of 10 average about 78, 7 about 84, 8 about 86 (averages; the groups overlap widely). The
+writer prompts do not yet carry these rules, so expect a book to land in the manual band with `VARY-quiz fails in k
+of N chapters` (often `VARY-examples`, `TELL` or `PLAIN-summary` too) even when its mean is over 80.
 
 ## Red flags: stop and read reference.md
 

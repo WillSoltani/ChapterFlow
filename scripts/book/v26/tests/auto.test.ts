@@ -46,10 +46,10 @@ const lessons = (k: number) => ({ lessons: [LESSONS[k]!, "Lb", "Lc", "Ld", "Le"]
 const written = (tag: string, k: number, names: [string, string, string], hook: string) => ({ ...chapter(tag, LESSONS[k]!, names, hook), _used: { approach: "A", names, settings: [`a ${tag} bakery`], analogies: [] } });
 const SOLVER_OK = { answers: [0, 1, 2, 0, 1, 2, 0].map((k, i) => ({ questionId: `q${i + 1}`, choice: k, alsoDefensible: [], reason: "the lesson says so" })) };
 const JUDGE_IDS = [
-  "OPENER-hook", "PLAIN-summary", "PLAIN-rest", "COUNTER", "TRY", "LINES-1", "PRACTICE", "SPINE",
+  "OPENER-hook", "PLAIN-summary", "PLAIN-rest", "COUNTER", "TRY", "LINES-1", "PRACTICE", "SPINE", "VARY-examples", "VARY-quiz",
   ...["fastRead", "deepRead", "fullRead"].flatMap((t) => [`OPENER-${t}`, `ARC-${t}`, `END-${t}`]),
   ...[1, 2, 3].flatMap((i) => [`EX-ex0${i}`, `EXFIT-ex0${i}`]),
-  ...[1, 2, 3, 4, 5, 6, 7].flatMap((i) => [`QUIZ-q${i}`, `TEMPT-q${i}`]),
+  ...[1, 2, 3, 4, 5, 6, 7].flatMap((i) => [`QUIZ-q${i}`, `TEMPT-q${i}`, `KEY-q${i}`, `TELL-q${i}`]),
   ...[1, 2, 3, 4, 5].map((i) => `CARD-rc${i}`),
 ];
 const judge = (failing: string[] = []) => ({ lesson: "one lesson", singleLesson: true, items: JUDGE_IDS.map((id) => ({ id, pass: !failing.includes(id), evidence: `evidence for ${id}` })) });
@@ -222,8 +222,8 @@ test("auto: keys drafted and checked on the web, chapters written, repairs sent,
 
 test("auto: a manual band gets one round on what the judge failed, then waits; --approve is a yes to the pack that was read and to nothing else", async () => {
   const h = harness();
-  // Eight items a small edit can answer, and four that would need the chapter rewritten.
-  const failing = ["TRY", "COUNTER", ...[1, 2, 3, 4, 5, 6].map((i) => `TEMPT-q${i}`), "ARC-fullRead", "END-deepRead", "PLAIN-summary", "SPINE"];
+  // Ten items a small edit can answer, and five that would need the chapter rewritten.
+  const failing = ["TRY", "COUNTER", ...[1, 2, 3, 4, 5, 6].map((i) => `TEMPT-q${i}`), "KEY-q2", "TELL-q4", "ARC-fullRead", "END-deepRead", "PLAIN-summary", "SPINE", "VARY-quiz"];
   h.script({ "pipe-review": [{ result: judge(failing), cost: 0.1 }] });
   const published: string[] = [];
   const opts = { publisher: fakePublisher(published), packagesDir: path.join(h.dir, "pkgs"), noGit: true };
@@ -239,7 +239,9 @@ test("auto: a manual band gets one round on what the judge failed, then waits; -
   const judgeRounds = h.calls("pipe-fix").map((c) => c.prompt).filter((p) => /A reader's judge failed this part \(TRY\)/.test(p));
   assert.equal(judgeRounds.length, 3, "one round per chapter");
   assert.match(judgeRounds[0]!, /A reader's judge failed this part \(TEMPT-q3\): evidence for TEMPT-q3 Rewrite a wrong choice/);
-  assert.ok(judgeRounds.every((p) => !/failed this part \((ARC|END|PLAIN|SPINE)/.test(p)), "only what a small edit can answer");
+  assert.match(judgeRounds[0]!, /A reader's judge failed this part \(KEY-q2\): evidence for KEY-q2 Make the keyed choice the only sound answer/);
+  assert.match(judgeRounds[0]!, /A reader's judge failed this part \(TELL-q4\): evidence for TELL-q4 Say the right choice in fresh everyday words/);
+  assert.ok(judgeRounds.every((p) => !/failed this part \((ARC|END|PLAIN|SPINE|VARY)/.test(p)), "only what a small edit can answer");
 
   // A rerun does not repeat the round.
   const fixCalls = h.calls("pipe-fix").length;
@@ -393,7 +395,7 @@ test("auto: a failed band names the chapters to redo; --redo rewrites them once 
   for (const c of cfg.chapters) c.keys = `${ADVICE(c.number)} Reversal: none. Story the author tells: none recalled with confidence.`;
   fs.writeFileSync(h.configPath, JSON.stringify(cfg));
   const opts = { noPublish: true, keysOk: true };
-  const bad = JUDGE_IDS.filter((id) => !id.startsWith("CARD-")).slice(0, 30);
+  const bad = JUDGE_IDS.filter((id) => !id.startsWith("CARD-")).slice(0, 41);
   const [B, C] = GOOD["pipe-bwrite"]! as [unknown, unknown];
   const D = { result: written("D", 3, ["Wren", "Iris", "Hugo"], "Wren opens the bakery door and finds the till empty. One note explains it."), cost: 0.6 };
   // The judge passes chapters 1 (the book's own exemplar) and 4, and fails 2 and 3. The fake answers by call number:
@@ -509,7 +511,7 @@ test("auto: a chapter stopped between its findings and its mending round gets th
 
 test("auto: a judge round that stopped is carried on for the chapters it had not reached, even though its first edit left a flag", async () => {
   const h = harness();
-  const failing = ["TRY", "COUNTER", ...[1, 2, 3, 4, 5, 6, 7].map((i) => `TEMPT-q${i}`)];
+  const failing = ["TRY", "COUNTER", ...[1, 2, 3, 4, 5, 6, 7].flatMap((i) => [`TEMPT-q${i}`, `KEY-q${i}`])];
   const okFix = GOOD["pipe-fix"]![0];
   // Two hook repairs, then the judge round: chapter 1's edit is flagged by the fact checker and its mending round hits a usage limit.
   const fixCh1 = { result: { edits: [{ field: "breakdown.fastRead", find: "wA10", replace: "wA10 more" }], keyChanges: [], declined: [] }, cost: 0.3 };

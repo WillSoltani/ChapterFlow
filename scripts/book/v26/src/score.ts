@@ -4,7 +4,7 @@
  *  config (`gate`, default 80 and 70). */
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { evalChapter, type ChapterStatus, type EvalResult, type PipelineCtx } from "./pipeline";
+import { evalChapter, JUDGE_VERSION, type ChapterStatus, type EvalResult, type PipelineCtx } from "./pipeline";
 
 export interface ChapterScore {
   chapter: number;
@@ -35,6 +35,8 @@ export interface BookScore {
   reasons: string[];
   /** Chapters to write again before another try: under the manual bar, or with an open blocking flag. */
   redo: number[];
+  /** The judge that gave this score (JUDGE_VERSION); the publish gate refuses a score from another judge. */
+  judgeVersion?: number;
 }
 
 const chapterName = (n: number): string => `ch${String(n).padStart(2, "0")}`;
@@ -58,9 +60,9 @@ async function pool<T>(limit: number, thunks: Array<() => Promise<T>>): Promise<
   return out;
 }
 
-/** The kind of a judge item: the per-part families share one kind (EX, EXFIT, QUIZ, TEMPT, CARD); every other id is its own. */
+/** The kind of a judge item: the per-part families share one kind (EX, EXFIT, QUIZ, TEMPT, KEY, TELL, CARD); every other id is its own. */
 export function kindOf(id: string): string {
-  const m = /^(EXFIT|EX|QUIZ|TEMPT|CARD)-/.exec(id);
+  const m = /^(EXFIT|EX|QUIZ|TEMPT|KEY|TELL|CARD)-/.exec(id);
   return m ? m[1]! : id;
 }
 
@@ -94,7 +96,7 @@ export function bandOf(chapters: ChapterScore[], thresholds: { auto: number; man
   const low = chapters.filter((c) => c.score < thresholds.manual).map((c) => c.chapter);
   if (flagged.length > 0) reasons.push(`open blocking flags in ${flagged.map(chapterName).join(", ")}`);
   if (low.length > 0) reasons.push(`under ${thresholds.manual} in ${low.map(chapterName).join(", ")}`);
-  // A flaw repeated across the book costs one item in forty per chapter, so the mean hides it; a reader meets it in
+  // A flaw repeated across the book costs about one item in sixty per chapter, so the mean hides it; a reader meets it in
   // every chapter. A kind that is weak in at least half the chapters holds the book for the owner, by name.
   if (chapters.length >= REPEAT_MIN_CHAPTERS) {
     const counts = new Map<string, number>();
@@ -121,8 +123,9 @@ export async function scoreBook(ctx: PipelineCtx, chapters: number[], opts: { fo
     const evalFile = path.join(evalDir, `${chapterName(n)}.eval.json`);
     const fresh = fs.existsSync(evalFile) && fs.statSync(evalFile).mtimeMs >= fs.statSync(path.join(dir, "final.json")).mtimeMs;
     const saved = opts.force || !fresh ? null : readJson<EvalResult>(evalFile);
-    // A saved eval the judge left incomplete (ids missing, or nothing at all) is asked again, not trusted.
-    const existing = saved && saved.total > 0 && saved.missingIds.length === 0 ? saved : null;
+    // A saved eval the judge left incomplete (ids missing, or nothing at all), or one from another judge version (a
+    // missing stamp counts as another), is asked again, not trusted: one book is never scored by two judges.
+    const existing = saved && saved.total > 0 && saved.missingIds.length === 0 && saved.judgeVersion === JUDGE_VERSION ? saved : null;
     const r = existing ?? (await evalChapter(ctx, path.join(dir, "final.json"), n, chapterName(n), evalDir));
     const status = readJson<ChapterStatus>(path.join(dir, "status.json"));
     const blocking = status ? status.open.filter((i) => i.blocking).length : 0;
@@ -140,7 +143,7 @@ export async function scoreBook(ctx: PipelineCtx, chapters: number[], opts: { fo
     };
   }));
   const thresholds = thresholdsOf(ctx);
-  const book: BookScore = { bookId: ctx.config.bookId, at: new Date().toISOString(), thresholds, chapters: scored, skipped, ...bandOf(scored, thresholds) };
+  const book: BookScore = { bookId: ctx.config.bookId, at: new Date().toISOString(), thresholds, chapters: scored, skipped, ...bandOf(scored, thresholds), judgeVersion: JUDGE_VERSION };
   fs.mkdirSync(ctx.config.runDir, { recursive: true });
   fs.writeFileSync(path.join(ctx.config.runDir, "score.json"), JSON.stringify(book, null, 2) + "\n");
   return book;

@@ -110,7 +110,7 @@ stage reading what is on disk so that the identical command carries on after any
    questions.
 3. **Pack** at `<runDir>/reading/all.html` and the **score** (step 9).
 4. In the **manual** band with nothing open: one round per chapter on the judge's failed items that a small edit
-   can answer (hook, counterintuition, try-this, the line, practice, quiz, cards, examples), then the score again.
+   can answer (hook, counterintuition, try-this, the line, practice, single quiz questions, cards, single examples; not `VARY-quiz` or `VARY-examples`), then the score again.
    Once per book, never a loop.
 5. **By band**: auto publishes (step 10's `publish`); manual ends `NEEDS-OWNER` with the pack; fail ends `FAILED`
    with the redo list.
@@ -409,20 +409,32 @@ behind (`<runDir>/chNN/final.json` per chapter plus the pack), since putting a b
 separate step. A chapter the owner dislikes is not regenerated: `variants --chapters N`, then `assemble`, and it
 becomes an added exemplar (`book --exemplar N` for later rewrites).
 
-## 9. Score (one judge call and three solver runs per chapter, about $0.17 each)
+## 9. Score (one judge call and three solver runs per chapter, about $0.27 each)
 
-`CLI score --book <cfg>` (reuses `<runDir>/eval/chNN.eval.json`; `--force` re-judges). Per chapter: the share of
+`CLI score --book <cfg>` (reuses `<runDir>/eval/chNN.eval.json` when the same judge wrote it; `--force` re-judges). Per chapter: the share of
 the judge's items passed, 0 to 100; the book: the mean. Prints a row per chapter (open flags, "quiz guessable" when
 the no-chapter solver answers 4 or 5 of the first five keys without reading, the failed item ids), then
 `band AUTO|MANUAL|FAIL` with the reasons and the chapters to redo; writes `<runDir>/score.json`. Exit 0, 1, 2.
 The judge's items include one `TEMPT-<q>` per quiz question: at least one wrong choice is something a sensible
-person who has not read the chapter might really pick. The repeat rule (books of four chapters and up): a kind of
+person who has not read the chapter might really pick. Since 2026-11-13 they also include, per quiz question,
+`KEY-<q>` (the keyed choice is the only sound answer: no wrong choice can still be argued for) and `TELL-<q>` (the
+right choice cannot be spotted by its wording or its length), and, per chapter, `VARY-examples` and `VARY-quiz`
+(the examples, and the questions, show different sides of the lesson, not one move in new settings). The quiz
+carries four items per question (`QUIZ`, `TEMPT`, `KEY`, `TELL`) plus one for the set (`VARY-quiz`), about half of
+a chapter's items. Every saved
+eval carries the judge's version; one from an older judge is asked again, so `score` on a book published before
+2026-11-13 re-judges every chapter (about $0.27 each) and its band can change. `score.json` names its judge too:
+`publish` refuses a score an older judge gave, so score the book again first. The repeat rule (books of four chapters and up): a kind of
 item that is weak in at least half the chapters (a single item that fails, or a family such as QUIZ or TEMPT with
 half its items failing) puts the book in the manual band with the reason named, for example `TRY fails in 6 of 8
 chapters`, however high the mean: a reader meets that flaw in every chapter. The evidence for each failed item is
 in `<runDir>/eval/chNN.eval.json`.
 Thresholds are the config's `gate` (`{"auto": 80, "manual": 70}` by default). A chapter edited after the score
 makes the score stale; run `score` again.
+How to read the new scale: a chapter of the published quality scores about 83 where the old judge gave about 94. On
+the 18 reader-rated chapters, chapters strict LLM readers gave 6 of 10 average about 78, 7 about 84, 8 about 86 (averages; the groups overlap widely). The
+writer prompts do not yet carry these rules, so expect a book to land in the manual band with `VARY-quiz fails in k
+of N chapters` (often `VARY-examples`, `TELL` or `PLAIN-summary` too) even when its mean is over 80.
 
 ## 10. Publish, by band (the owner's gate, 2026-11-05)
 
@@ -477,6 +489,8 @@ to `~/cf-wt/v26-plan/status/V1-variants.md` and one to the `v26-campaign` memory
 | a reader says the chapters feel stamped from one mould | mostly the app's fixed chapter format (a myth-and-correction line under the hook, scene then author then fix, an example that stops before the move, the same quiz forms) | tell the owner it is the format, not the run. Three proofs on Tiny Habits (2026-11-12) tried more varied frames, example endings, quiz forms and a quiz cast: what readers noticed as variety also read as forced, and the safe subset scored no fresher than the live book. Kept from that work: the plan's `ENDINGS` and `OUTSIDE_FIXES` lists in `src/book.ts` |
 | the author or a person from the book's stories is called "they" | the writer guessed a pronoun | one `--issues` round naming the person and the pronoun the keys use; check the keys say "he" or "she" somewhere |
 | `score`: `<KIND> fails in k of N chapters` | a flaw repeated across the book (the repeat rule) | read the evidence in `eval/chNN.eval.json`; one `fix --issues` pass if a small edit fixes it, score again; else hand it to the owner |
+| `score`: `KEY fails in k of N chapters` or `TELL fails in k of N chapters` | quiz answers can be argued for (a wrong choice is still sound, or the keyed outcome is not forced) or spotted by their wording | in an `auto` run the judge's round fixes what a small edit can; otherwise, or after it, read the evidence in `eval/chNN.eval.json` and run one `fix --issues` pass on the chapters named |
+| `score`: `VARY-quiz fails in k of N chapters` or `VARY-examples fails in k of N chapters` | most questions key one move, or every example ends in the same move | not a small edit: the judge's round leaves it and the one `fix --issues` pass of step 10 is not for it; the owner reads the pack and decides (approve it as it is, or allow the chapters named to be written again) |
 | an aside about the author or a "softer" note in several chapters | the brief tells the writer to go softer | fix the brief's limit line (step 1), `fix --style` on those chapters |
 | `rename landed on "X"` | the rename picked a used name | `fix` once more on that chapter |
 | lesson over 20 words refused twice | the lessons cap | rerun; the retry carries the error |

@@ -102,16 +102,21 @@ function readJson<T>(file: string): T | null {
   return fs.existsSync(file) ? (JSON.parse(fs.readFileSync(file, "utf8")) as T) : null;
 }
 
-/** The judge's items that one small edit can answer. A summary's arc, its ending, its plainness and the spine are not
- *  here: mending those means rewriting the chapter, which is the redo the owner allows. */
-const SMALL_EDIT = /^(OPENER-hook|COUNTER|TRY|LINES-1|PRACTICE|TEMPT-|QUIZ-|CARD-|EX-|EXFIT-)/;
+/** The judge's items that one small edit can answer. A summary's arc, its ending, its plainness, the spine and the
+ *  variety of the examples and of the quiz (VARY-examples, VARY-quiz) are not here: mending those means rewriting the
+ *  chapter, which is the redo the owner allows. */
+const SMALL_EDIT = /^(OPENER-hook|COUNTER|TRY|LINES-1|PRACTICE|TEMPT-|KEY-|TELL-|QUIZ-|CARD-|EX-|EXFIT-)/;
 
 function judgeFinding(id: string, evidence: string): string {
   const how = id.startsWith("TEMPT-")
     ? " Rewrite a wrong choice (or the stem, if the stem itself rules a choice out) so that at least one wrong choice is something a sensible person who has not read the chapter might really pick: sound advice that fits a different case, or this chapter's own move at the wrong moment, in the wrong order or overdone. Keep the right choice right, and keep the three choices one length."
-    : id === "TRY"
-      ? " Leave one action a reader can do today, with when or where, and nothing else: no reason, no moral."
-      : "";
+    : id.startsWith("KEY-")
+      ? " Make the keyed choice the only sound answer: give the question the fact that rules the other choice out, or replace that wrong choice with one the chapter gives a clear reason against. If the question asks what most likely happens, give it the fact that forces the keyed outcome, or ask instead what the person should do or why the move works. Keep the right choice right and in its place, keep the three choices one length, and make the explanation match."
+      : id.startsWith("TELL-")
+        ? " Say the right choice in fresh everyday words instead of the chapter's own phrase, or give the wrong choices the same kind of wording and detail, so that the right choice does not stand out by its words or its length. Keep the meaning, the key and its place."
+        : id === "TRY"
+          ? " Leave one action a reader can do today, with when or where, and nothing else: no reason, no moral."
+          : "";
   return `A reader's judge failed this part (${id}): ${evidence}${how} Make the smallest edit that answers it and change nothing else.`;
 }
 

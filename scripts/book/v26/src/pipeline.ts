@@ -76,7 +76,11 @@ export interface EvalResult {
   total: number;
   noChapterScores: number[];
   det: Record<string, unknown>;
+  judgeVersion?: number;
 }
+
+/** The judge's version, stamped on every saved eval: bump it when the judge's items change. */
+export const JUDGE_VERSION = 2;
 
 const TIMEOUT_MS = 900000;
 const MAX_FIX_ROUNDS = 2;
@@ -335,11 +339,15 @@ export function reviewField(id: string): string | undefined {
       return `examples.${tail}`;
     case "QUIZ":
     case "TEMPT":
+    case "KEY":
+    case "TELL":
       return `quiz.${tail}`;
     case "CARD":
       return `reviewCards.${tail}`;
     case "PRACTICE":
       return "implementationPlan";
+    case "VARY":
+      return tail === "quiz" ? "quiz" : tail === "examples" ? "examples" : undefined;
     default:
       return undefined;
   }
@@ -733,12 +741,14 @@ export function statusRows(ctx: PipelineCtx): Array<{ chapter: number; stage: st
 // ---------------------------------------------------------------- eval
 
 function expectedIds(c: Chapter): string[] {
-  const ids = ["OPENER-hook", "PLAIN-summary", "PLAIN-rest", "COUNTER", "TRY", "LINES-1", "PRACTICE", "SPINE"];
+  const ids = ["OPENER-hook", "PLAIN-summary", "PLAIN-rest", "COUNTER", "TRY", "LINES-1", "PRACTICE", "SPINE", "VARY-examples", "VARY-quiz"];
   for (const t of TIERS) ids.push(`OPENER-${t}`, `ARC-${t}`, `END-${t}`);
   for (const e of c.examples ?? []) ids.push(`EX-${e.exampleId}`);
   for (const e of c.examples ?? []) ids.push(`EXFIT-${e.exampleId}`);
   for (const q of c.quiz?.questions ?? []) ids.push(`QUIZ-${q.questionId}`);
   for (const q of c.quiz?.questions ?? []) ids.push(`TEMPT-${q.questionId}`);
+  for (const q of c.quiz?.questions ?? []) ids.push(`KEY-${q.questionId}`);
+  for (const q of c.quiz?.questions ?? []) ids.push(`TELL-${q.questionId}`);
   for (const r of c.reviewCards ?? []) ids.push(`CARD-${r.cardId}`);
   return ids;
 }
@@ -812,10 +822,16 @@ export async function evalChapter(ctx: PipelineCtx, chapterPath: string, n: numb
   ])) as [unknown, Awaited<ReturnType<typeof noChapterRuns>>];
 
   const judge = obj(judged);
-  const items = list(judge.items).map((raw) => {
+  // An id the judge answered twice counts once, and a fail in either answer stands.
+  const byId = new Map<string, { id: string; pass: boolean; evidence: string }>();
+  for (const raw of list(judge.items)) {
     const x = obj(raw);
-    return { id: text(x.id), pass: x.pass === true, evidence: text(x.evidence) };
-  });
+    const item = { id: text(x.id), pass: x.pass === true, evidence: text(x.evidence) };
+    const seen = byId.get(item.id);
+    if (!seen) byId.set(item.id, item);
+    else if (seen.pass && !item.pass) byId.set(item.id, item);
+  }
+  const items = [...byId.values()];
   const fraction = (prefix: string): number | null => {
     const group = items.filter((i) => i.id.startsWith(prefix));
     return group.length ? group.filter((i) => i.pass).length / group.length : null;
@@ -838,6 +854,7 @@ export async function evalChapter(ctx: PipelineCtx, chapterPath: string, n: numb
     total: items.length,
     noChapterScores: noChapter.scores,
     det: detMetrics(chapter),
+    judgeVersion: JUDGE_VERSION,
   };
   writeJson(path.join(outDir, `${tag}.eval.json`), result);
   return result;

@@ -302,6 +302,10 @@ test("weak kinds: a family is weak when half its items fail; every other item is
   assert.equal(kindOf("TEMPT-q3"), "TEMPT");
   assert.equal(kindOf("EXFIT-ex02"), "EXFIT");
   assert.equal(kindOf("ARC-fastRead"), "ARC-fastRead");
+  assert.equal(kindOf("KEY-q3"), "KEY");
+  assert.equal(kindOf("TELL-q1"), "TELL");
+  assert.equal(kindOf("VARY-quiz"), "VARY-quiz");
+  assert.equal(kindOf("VARY-examples"), "VARY-examples");
   const items = [
     ...["q1", "q2", "q3", "q4"].map((q, i) => ({ id: `TEMPT-${q}`, pass: i >= 2 })),
     ...["q1", "q2", "q3", "q4"].map((q, i) => ({ id: `QUIZ-${q}`, pass: i >= 1 })),
@@ -309,6 +313,12 @@ test("weak kinds: a family is weak when half its items fail; every other item is
     { id: "SPINE", pass: true },
   ];
   assert.deepEqual(weakKinds(items), ["TEMPT", "TRY"]);
+});
+
+test("the judge prompt has the KEY, TELL and VARY items, and its copy in docs/eval/judge.md is the same file", () => {
+  const prompt = fs.readFileSync(fileURLToPath(new URL("../prompts/review.md", import.meta.url)), "utf8");
+  for (const id of ["KEY-<q>", "TELL-<q>", "VARY-examples", "VARY-quiz"]) assert.ok(prompt.includes(`\n- ${id}: `), id);
+  assert.equal(fs.readFileSync(fileURLToPath(new URL("../docs/eval/judge.md", import.meta.url)), "utf8"), prompt);
 });
 
 test("bandOf: a kind that is weak in half the chapters holds a high-scoring book for the owner, by name", () => {

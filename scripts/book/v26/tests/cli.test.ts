@@ -60,11 +60,13 @@ const CH = {
 
 /** Every id the eval judge has to answer for CH. */
 const JUDGE_IDS = [
-  "OPENER-hook", "PLAIN-summary", "PLAIN-rest", "COUNTER", "TRY", "LINES-1", "PRACTICE", "SPINE",
+  "OPENER-hook", "PLAIN-summary", "PLAIN-rest", "COUNTER", "TRY", "LINES-1", "PRACTICE", "SPINE", "VARY-examples", "VARY-quiz",
   ...["fastRead", "deepRead", "fullRead"].flatMap((t) => [`OPENER-${t}`, `ARC-${t}`, `END-${t}`]),
   "EX-ex1", "EX-ex2", "EXFIT-ex1", "EXFIT-ex2",
   "QUIZ-q1", "QUIZ-q2", "QUIZ-q3",
   "TEMPT-q1", "TEMPT-q2", "TEMPT-q3",
+  "KEY-q1", "KEY-q2", "KEY-q3",
+  "TELL-q1", "TELL-q2", "TELL-q3",
   "CARD-rc1", "CARD-rc2",
 ];
 const judge = (failing: string[] = []) => ({
@@ -1063,6 +1065,7 @@ test("score: every landed chapter is judged once, the book gets a 0-100 score an
   const saved = JSON.parse(fs.readFileSync(path.join(h.runDir, "score.json"), "utf8"));
   assert.deepEqual(saved.chapters.map((c: { chapter: number }) => c.chapter), [1, 2]);
   assert.deepEqual(saved.thresholds, { auto: 80, manual: 70 });
+  assert.equal(saved.judgeVersion, JUDGE_VERSION, "the score names the judge that gave it");
   assert.equal(h.calls("pipe-review").length, 2);
   // A second run reuses the saved evals: no new judge call.
   const again = await h.cli("score", "--book", h.configPath);
@@ -1126,15 +1129,41 @@ test("score: items the judge left out count as failed, and such an eval is judge
   assert.equal(h.calls("pipe-review").length, 3);
 });
 
+test("score: a saved eval from another judge version (or with no stamp) is judged again; one from this judge is reused", async () => {
+  const h = harness();
+  h.script({ "pipe-review": [{ result: judge() }], "pipe-nochapter": [{ result: GUESS_WRONG }] });
+  h.put(1, "final.json", CH);
+  h.put(1, "status.json", landedStatus(1));
+  const evalFile = path.join(h.runDir, "eval", "ch01.eval.json");
+  const r = await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(r.code, 0, r.err + r.out);
+  assert.equal(h.calls("pipe-review").length, 1);
+  assert.equal(JSON.parse(fs.readFileSync(evalFile, "utf8")).judgeVersion, JUDGE_VERSION);
+  // The current judge's eval is reused.
+  await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(h.calls("pipe-review").length, 1);
+  // No stamp: an eval from before the stamp existed is asked again.
+  const { judgeVersion: _v, ...unstamped } = JSON.parse(fs.readFileSync(evalFile, "utf8"));
+  void _v;
+  fs.writeFileSync(evalFile, JSON.stringify(unstamped));
+  await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(h.calls("pipe-review").length, 2);
+  // Another number: asked again too.
+  fs.writeFileSync(evalFile, JSON.stringify({ ...JSON.parse(fs.readFileSync(evalFile, "utf8")), judgeVersion: JUDGE_VERSION - 1 }));
+  await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(h.calls("pipe-review").length, 3);
+  assert.equal(JSON.parse(fs.readFileSync(evalFile, "utf8")).judgeVersion, JUDGE_VERSION);
+});
+
 // ---------------------------------------------------------------- publish (behind the gate)
 
 import { execFileSync } from "node:child_process";
 import { gitCommitPackage, publishBook, type Publisher } from "../src/publish";
-import { makeCtx } from "../src/pipeline";
+import { JUDGE_VERSION, makeCtx } from "../src/pipeline";
 
 const scoreFile = (h: ReturnType<typeof harness>, over: Record<string, unknown> = {}) => {
   const chapters = [1, 2, 3].map((n) => ({ chapter: n, score: 100, passCount: 10, total: 10, failed: [], stage: "clean", blocking: 0, guessable: false }));
-  const s = { bookId: "demo-book", at: new Date(Date.now() + 5000).toISOString(), thresholds: { auto: 80, manual: 70 }, chapters, skipped: [], mean: 100, min: 100, score: 100, band: "auto", reasons: [], redo: [], ...over };
+  const s = { bookId: "demo-book", at: new Date(Date.now() + 5000).toISOString(), thresholds: { auto: 80, manual: 70 }, chapters, skipped: [], mean: 100, min: 100, score: 100, band: "auto", reasons: [], redo: [], judgeVersion: JUDGE_VERSION, ...over };
   fs.writeFileSync(path.join(h.runDir, "score.json"), JSON.stringify(s));
 };
 const landAll = (h: ReturnType<typeof harness>) => {
@@ -1155,6 +1184,13 @@ test("publish: refused without a score, with a stale score, in the fail band, an
   r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
   assert.equal(r.code, 2);
   assert.match(r.out, /changed after the score; run `score` again/);
+  // A score an older judge gave (or one with no judge named) opens nothing, whatever its band.
+  for (const judgeVersion of [JUDGE_VERSION - 1, undefined]) {
+    scoreFile(h, { judgeVersion });
+    r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+    assert.equal(r.code, 2);
+    assert.match(r.out, /the score is from an older judge; run `score` again/);
+  }
   scoreFile(h, { band: "fail", score: 55, mean: 55, reasons: ["mean 55 is under 70"], redo: [2, 3] });
   r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
   assert.equal(r.code, 2);

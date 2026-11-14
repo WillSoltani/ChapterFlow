@@ -9,7 +9,7 @@ import { execFileSync, spawnSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";
-import type { PipelineCtx } from "./pipeline";
+import { JUDGE_VERSION, type PipelineCtx } from "./pipeline";
 import type { BookScore } from "./score";
 import type { Chapter } from "./types";
 import { wordsIn } from "./validate";
@@ -126,11 +126,12 @@ export async function validatePackage(pkg: BookPackage, expectedChapters: number
   return problems;
 }
 
-/** The band from score.json, refused when the score is missing or older than a landed chapter. */
+/** The band from score.json, refused when the score is missing, from an older judge, or older than a landed chapter. */
 export function gateFor(ctx: PipelineCtx): { ok: true; score: BookScore } | { ok: false; reason: string } {
   const file = path.join(ctx.config.runDir, "score.json");
   const score = readJson<BookScore>(file);
   if (!score) return { ok: false, reason: `no score yet: run \`score --book <cfg>\` first (${file})` };
+  if (score.judgeVersion !== JUDGE_VERSION) return { ok: false, reason: "the score is from an older judge; run `score` again (every chapter is judged again)" };
   const at = Date.parse(score.at);
   for (const c of score.chapters) {
     const f = path.join(ctx.config.runDir, chapterName(c.chapter), "final.json");
