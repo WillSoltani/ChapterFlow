@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { Lock } from "lucide-react";
-import { MONTHLY_PRICE_WITH_CURRENCY } from "@/lib/pricing";
+import { MONTHLY_PRICE_WITH_CURRENCY, UPGRADE_RETURN_PATH } from "@/lib/pricing";
 
 interface ProInsightsPreviewProps {
   isPro: boolean;
@@ -149,7 +149,7 @@ export function ProInsightsPreview({ isPro }: ProInsightsPreviewProps) {
           <span style={{ color: "var(--cf-gold-text)", fontWeight: 700 }}>{MONTHLY_PRICE_WITH_CURRENCY}/mo</span>
         </p>
         <Link
-          href="/pricing"
+          href={UPGRADE_RETURN_PATH}
           className="cf-pressable inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-semibold text-black transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
           style={{
             background: "var(--cf-upgrade-accent)",

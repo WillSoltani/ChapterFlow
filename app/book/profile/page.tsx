@@ -2,6 +2,8 @@ import { requireDashboardAccess } from "@/app/_lib/require-dashboard-access";
 import { requireUser } from "@/app/app/api/_lib/auth";
 import { BookProfileClient } from "@/app/book/profile/BookProfileClient";
 
+export const metadata = { title: "Profile" };
+
 export default async function BookProfilePage() {
   await requireDashboardAccess();
 

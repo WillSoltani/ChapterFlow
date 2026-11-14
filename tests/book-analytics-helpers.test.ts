@@ -5,6 +5,13 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   calculateCurrentStreak,
+  countCompletedChapters,
+  isBookStarted,
+  mergeChapterScores,
+  mergeCompletedChapterIds,
+  readDailyGoal,
+  readReadingHistoryOff,
+  resumeChapterNumber,
   statusFromCounts,
   streakAtRisk,
 } from "@/hooks/book/useBookAnalytics";
@@ -61,4 +68,96 @@ test("statusFromCounts: completion counts still decide the other states", () => 
   assert.equal(statusFromCounts(0, 12), "not_started");
   assert.equal(statusFromCounts(3, 12, false), "in_progress");
   assert.equal(statusFromCounts(12, 12, true), "completed");
+});
+
+test("ACCT-03 (C10): the Settings preset wins over the onboarding goal", () => {
+  assert.equal(
+    readDailyGoal({ extended: { dailyGoalPreset: 5 }, onboarding: { dailyGoal: 20 } }, 10),
+    5
+  );
+  assert.equal(
+    readDailyGoal({ extended: { dailyGoalPreset: 5 }, dailyGoal: 20, onboarding: { dailyGoal: 20 } }, 10),
+    5
+  );
+});
+
+test("ACCT-03 (C10): read order falls back to dailyGoal, then onboarding, then the caller default", () => {
+  assert.equal(readDailyGoal({ dailyGoal: 15, onboarding: { dailyGoal: 20 } }, 10), 15);
+  assert.equal(readDailyGoal({ onboarding: { dailyGoal: 20 } }, 10), 20);
+  assert.equal(readDailyGoal({ extended: { dailyGoalPreset: "5" } }, 10), 10);
+  assert.equal(readDailyGoal(null, 10), 10);
+  assert.equal(readDailyGoal(undefined, 25), 25);
+});
+
+test("ACCT-03 (C10): the goal is never below 5 minutes", () => {
+  assert.equal(readDailyGoal({ extended: { dailyGoalPreset: 2 } }, 10), 5);
+  assert.equal(readDailyGoal(null, 0), 5);
+});
+
+test("D3 (C5): a book is started by a completed chapter, a progress row or a chapter-state row", () => {
+  assert.equal(isBookStarted({ completedChapters: 1, hasProgressRow: false, chapterStateCount: 0 }), true);
+  assert.equal(isBookStarted({ completedChapters: 0, hasProgressRow: true, chapterStateCount: 0 }), true);
+  assert.equal(isBookStarted({ completedChapters: 0, hasProgressRow: false, chapterStateCount: 1 }), true);
+});
+
+test("D3 (C5): a book-state row alone (a book-page view) is not started", () => {
+  assert.equal(isBookStarted({ completedChapters: 0, hasProgressRow: false, chapterStateCount: 0 }), false);
+});
+
+test("C13: Continue resumes the server's current chapter, else the one after the last completed", () => {
+  assert.equal(resumeChapterNumber(4, 3, 12), 4);
+  assert.equal(resumeChapterNumber(null, 3, 12), 4);
+  assert.equal(resumeChapterNumber(undefined, 0, 12), 1);
+});
+
+test("C13: the resume chapter is capped at the book's chapter count", () => {
+  assert.equal(resumeChapterNumber(undefined, 12, 12), 12);
+  assert.equal(resumeChapterNumber(15, 9, 12), 12);
+  assert.equal(resumeChapterNumber(0, 0, 12), 1);
+});
+
+test("PROG-26: reading history is off only when Settings turned it off", () => {
+  assert.equal(readReadingHistoryOff({ privacy: { saveReadingHistory: false } }), true);
+  assert.equal(readReadingHistoryOff({ privacy: { saveReadingHistory: true } }), false);
+  assert.equal(readReadingHistoryOff({ privacy: {} }), false);
+  assert.equal(readReadingHistoryOff({}), false);
+  assert.equal(readReadingHistoryOff(null), false);
+});
+
+test("countCompletedChapters takes the larger of the stored book state and the progress row", () => {
+  const chapters = [1, 2, 3].map((order) => ({ id: `b-ch0${order}`, order }));
+  const count = (stateIds: string[] | undefined, progress: number[] | undefined, list = chapters) =>
+    countCompletedChapters({ stateCompletedChapterIds: stateIds, progressCompletedChapters: progress, chapters: list });
+  assert.equal(count(["b-ch01", "b-ch02"], [1, 2]), 2);
+  assert.equal(count([], [1]), 1, "a lagging book state does not hide a passed chapter");
+  assert.equal(count(["b-ch01", "b-ch02"], [1]), 2, "nor does a lagging progress copy");
+  assert.equal(count(["b-ch01", "b-ch01"], undefined), 1, "duplicates count once");
+  assert.equal(count(undefined, [1, 9]), 1, "a chapter number the book does not have is ignored");
+  assert.equal(count(undefined, [1, 2], []), 2, "with no local chapter list the numbers are counted directly");
+  assert.equal(count(undefined, undefined), 0);
+});
+
+test("mergeChapterScores and mergeCompletedChapterIds read the book state and the progress row together", () => {
+  const chapters = [1, 2, 3].map((order) => ({ id: `b-ch0${order}`, order }));
+  assert.deepEqual(
+    mergeChapterScores({
+      stateChapterScores: { "b-ch01": 80 },
+      progressBestScoreByChapter: { "1": 100, "2": 90, "9": 70 },
+      chapters,
+    }),
+    { "b-ch01": 100, "b-ch02": 90 },
+    "the higher score wins, and a chapter passed without Finish chapter is included",
+  );
+  assert.deepEqual(
+    mergeChapterScores({ stateChapterScores: { "b-ch03": 60 }, progressBestScoreByChapter: undefined, chapters }),
+    { "b-ch03": 60 },
+  );
+  assert.deepEqual(
+    [...mergeCompletedChapterIds({ stateCompletedChapterIds: ["b-ch01"], progressCompletedChapters: [1, 2, 9], chapters })].sort(),
+    ["b-ch01", "b-ch02"],
+  );
+  assert.equal(
+    mergeCompletedChapterIds({ stateCompletedChapterIds: undefined, progressCompletedChapters: undefined, chapters }).size,
+    0,
+  );
 });

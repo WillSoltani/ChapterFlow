@@ -15,6 +15,7 @@ import {
 import { useReviewQueue } from "@/hooks/book/useReviewQueue";
 import { getBookById } from "@/lib/books-catalog";
 import { cn } from "@/lib/utils";
+import { moreDueAfterSession } from "@/components/progress/review-data-core";
 import type { FSRSRating } from "@/app/app/api/book/_lib/types";
 
 type Props = {
@@ -89,6 +90,12 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
     cards,
     currentIndex,
     submitRating,
+    hasMore,
+    stats,
+    refresh,
+    error,
+    ratingError,
+    retry,
   } = useReviewQueue(bookId);
 
   const [flipped, setFlipped] = useState(false);
@@ -98,8 +105,9 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
     async (rating: FSRSRating) => {
       if (submitting) return;
       setSubmitting(true);
-      await submitRating(rating);
-      setFlipped(false);
+      // On failure the answer stays up so the reader can rate the same card again.
+      const saved = await submitRating(rating);
+      if (saved) setFlipped(false);
       setSubmitting(false);
     },
     [submitting, submitRating],
@@ -130,6 +138,34 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
     );
   }
 
+  // ── Load failed (never shown as "all caught up") ──
+  if (error && cards.length === 0) {
+    return (
+      <div className="cf-overlay fixed inset-0 z-50 flex items-center justify-center">
+        <div role="alert" className="cf-panel mx-4 max-w-sm rounded-4xl p-8 text-center">
+          <h2 className="text-xl font-semibold text-(--cf-text-1)">{error}</h2>
+          <p className="mt-2 text-sm leading-relaxed text-(--cf-text-3)">
+            Check your connection and try again.
+          </p>
+          <button
+            type="button"
+            onClick={() => void retry()}
+            className="cf-btn cf-btn-primary mt-6 w-full rounded-2xl text-sm"
+          >
+            Retry
+          </button>
+          <button
+            type="button"
+            onClick={onClose}
+            className="cf-btn cf-btn-secondary mt-3 w-full rounded-2xl text-sm"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   // ── Empty state ──
   if (cards.length === 0) {
     return (
@@ -156,7 +192,7 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
             onClick={onClose}
             className="cf-btn cf-btn-primary mt-6 w-full rounded-2xl text-sm"
           >
-            Back to Dashboard
+            Done
           </button>
         </motion.div>
       </div>
@@ -165,6 +201,11 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
 
   // ── Completion screen ──
   if (isComplete) {
+    const more = moreDueAfterSession({
+      hasMore,
+      totalDue: stats?.dueCards ?? null,
+      sessionSize: total,
+    });
     return (
       <div className="cf-overlay fixed inset-0 z-50 flex items-center justify-center">
         <motion.div
@@ -220,13 +261,30 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
               . Your memory is getting stronger with each session.
             </motion.p>
 
+            {more.more && (
+              <motion.button
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: DUR.page, ease: EASE.standard }}
+                type="button"
+                onClick={() => void refresh()}
+                className="cf-btn cf-btn-primary mt-7 w-full rounded-2xl text-sm"
+              >
+                {more.count !== null ? `${more.count} more due` : "More cards due"} · Keep going
+                <ChevronRight className="h-4 w-4" />
+              </motion.button>
+            )}
+
             <motion.button
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: DUR.page, ease: EASE.standard }}
               type="button"
               onClick={onClose}
-              className="cf-btn cf-btn-primary mt-7 w-full rounded-2xl text-sm"
+              className={cn(
+                "cf-btn w-full rounded-2xl text-sm",
+                more.more ? "cf-btn-secondary mt-3" : "cf-btn-primary mt-7",
+              )}
             >
               Done
               <ChevronRight className="h-4 w-4" />
@@ -394,6 +452,11 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
               </motion.div>
             )}
           </AnimatePresence>
+          {ratingError && (
+            <p role="alert" className="mt-3 text-center text-sm text-(--cf-danger-text)">
+              {ratingError}
+            </p>
+          )}
         </div>
       </div>
     </div>

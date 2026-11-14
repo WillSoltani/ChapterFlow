@@ -1,6 +1,6 @@
 "use client";
 
-import { MONTHLY_PRICE_WITH_CURRENCY, TRIAL_CTA_LABEL } from "@/lib/pricing";
+import { MONTHLY_PRICE_WITH_CURRENCY, PRICING } from "@/lib/pricing";
 import { Button } from "@/app/book/components/ui/Button";
 
 export function UpgradeCard({
@@ -25,7 +25,9 @@ export function UpgradeCard({
           {MONTHLY_PRICE_WITH_CURRENCY}/month <span className="text-sm font-normal text-(--cf-text-3)">— less than a single book purchase</span>
         </p>
         <p className="mt-2 text-sm text-(--cf-text-3)">Join readers who chose to go deeper</p>
-        <Button variant="primary" size="lg" fullWidth onClick={onUpgrade} className="mt-5">{TRIAL_CTA_LABEL} &rarr;</Button>
+        <Button variant="primary" size="lg" fullWidth onClick={onUpgrade} className="mt-5">Upgrade to Pro &rarr;</Button>
+        {/* C12: the trial goes only to new subscribers, so it is not promised on the button. */}
+        <p className="mt-2 text-center text-xs text-(--cf-text-3)">New subscribers get {PRICING.trialDays} days free.</p>
         <div className="mt-4 flex flex-wrap justify-center gap-4 text-xs text-(--cf-text-3)">
           <span>Cancel anytime</span><span>&bull;</span><span>No hidden fees</span>
         </div>

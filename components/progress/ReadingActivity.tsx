@@ -5,10 +5,13 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import type { ReadingActivityData } from "./progressTypes";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { ReadingHistoryOffNote } from "./ReadingHistoryOffNote";
 
 interface ReadingActivityProps {
   activity: ReadingActivityData;
   onStartReading?: () => void;
+  /** Settings "Save reading history" is off: nothing is recorded (PROG-26). */
+  historyOff?: boolean;
 }
 
 function getWeekdayName(dateStr: string): string {
@@ -75,6 +78,7 @@ type DataView = "minutes" | "chapters";
 export function ReadingActivity({
   activity,
   onStartReading,
+  historyOff = false,
 }: ReadingActivityProps) {
   const prefersReduced = useReducedMotion();
   const [hoveredDay, setHoveredDay] = useState<string | null>(null);
@@ -180,7 +184,9 @@ export function ReadingActivity({
       </div>
 
       {/* Content */}
-      {!hasData ? (
+      {historyOff ? (
+        <ReadingHistoryOffNote className="mt-4 py-6 text-center" />
+      ) : !hasData ? (
         <EmptyState
           title="Your reading pattern will appear here after your first session"
           description=""
@@ -189,8 +195,11 @@ export function ReadingActivity({
           className="py-6"
         />
       ) : showBarChart ? (
-        /* 24-hour bar chart for today */
+        /* 24-hour bar chart for today, from this device's own record */
         <div className="mt-4">
+          <p className="mb-2 text-xs" style={{ color: "var(--text-muted)" }}>
+            Today by hour · On this device
+          </p>
           <div className="flex items-end gap-px" style={{ height: 100 }}>
             {activity.todayHourly.map((slot, idx) => {
               const barHeight =
@@ -268,10 +277,11 @@ export function ReadingActivity({
               </div>
             ))}
           </div>
-          {/* Summary line */}
+          {/* Summary line: today's total is the account's (every device);
+              the hourly bars only know this device. */}
           <div className="mt-2 flex items-center gap-3">
             <span className="text-xs tabular-nums" style={{ color: "var(--text-secondary)" }}>
-              {activity.todayHourly.reduce((sum, h) => sum + h.minutes, 0)}m total today
+              {activity.todayMinutes}m total today
             </span>
             <span className="text-[10px]" style={{ color: "var(--text-muted)" }}>
               {activity.todayHourly.filter((h) => h.minutes > 0).length} active {activity.todayHourly.filter((h) => h.minutes > 0).length === 1 ? "hour" : "hours"}
@@ -283,17 +293,17 @@ export function ReadingActivity({
         <div className="mt-4">
           <div className="overflow-x-auto pb-2">
             <div className="flex gap-2">
-              {/* Day labels */}
+              {/* Day labels: a fixed-width column so "Mon/Wed/Fri" never clip (LIVE-15) */}
               <div
-                className="grid select-none grid-rows-7 gap-1.5"
-                style={{ gridAutoRows: "1rem" }}
+                className="grid w-8 shrink-0 select-none grid-rows-7 gap-1 sm:gap-1.5"
+                style={{ gridTemplateRows: "repeat(7, 1rem)" }}
               >
                 {/* Row 0 = Sunday (the heatmap leadingPad guarantees this), so
                     Mon/Wed/Fri sit on rows 1/3/5 and line up with real cells. */}
                 {["", "Mon", "", "Wed", "", "Fri", ""].map((label, i) => (
                   <span
                     key={i}
-                    className="flex h-4 w-6 items-center justify-end pr-1 text-cf-caption leading-none"
+                    className="flex h-4 w-8 items-center justify-end whitespace-nowrap pr-1 text-cf-caption leading-none"
                     style={{ color: "var(--text-muted)" }}
                   >
                     {label}
@@ -301,11 +311,14 @@ export function ReadingActivity({
                 ))}
               </div>
 
-              {/* Grid cells */}
-              <div className="inline-grid grid-flow-col grid-rows-7 gap-1.5">
+              {/* Grid cells: the weeks share the card's width (LIVE-15) */}
+              <div
+                className="grid min-w-0 flex-1 grid-flow-col grid-rows-7 gap-1 sm:gap-1.5"
+                style={{ gridTemplateRows: "repeat(7, 1rem)", gridAutoColumns: "minmax(1rem, 1fr)" }}
+              >
                 {heatmapData.map((cell, i) =>
                   cell === null ? (
-                    <span key={`pad-${i}`} className="h-4 w-4" aria-hidden="true" />
+                    <span key={`pad-${i}`} className="h-4 w-full" aria-hidden="true" />
                   ) : (
                     <button
                       key={cell.date}
@@ -313,7 +326,7 @@ export function ReadingActivity({
                       onMouseEnter={() => setHoveredDay(cell.date)}
                       onFocus={() => setHoveredDay(cell.date)}
                       onMouseLeave={() => setHoveredDay(null)}
-                      className="h-4 w-4 transition"
+                      className="h-4 w-full transition"
                       style={{
                         borderRadius: 3,
                         background: HEATMAP_COLORS[dataView === "chapters" ? cell.chapterLevel : cell.level],

@@ -9,26 +9,23 @@ import { useOnboardingRedirect, useOnboardingState } from "@/hooks/book/useOnboa
 import { useBookAnalytics } from "@/hooks/book/useBookAnalytics";
 import { useBookViewer } from "@/hooks/book/useBookViewer";
 import { useInsightPoints } from "@/hooks/book/useInsightPoints";
-import { useBadgeSystem } from "@/hooks/book/useBadgeSystem";
+import { isJustEarned, useBadgeSystem } from "@/hooks/book/useBadgeSystem";
+import { useServerTier } from "@/hooks/book/useServerTier";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import type {
   ProgressPageData,
   ActiveBook,
   CompletedBook,
-  DailyQuest,
   ReviewData,
   StepNumber,
   LearningStep,
+  TierPill,
 } from "./progressTypes";
+import { tierPill } from "./progressTypes";
 import { getBookCoverPath } from "@/lib/book-covers";
-import { deriveReaderLevel, deriveReaderLevelProgress } from "@/lib/reader-levels";
 import { fetchBookJson } from "@/lib/client/book-api";
-import {
-  fetchBookJsonCached,
-  invalidateBookCache,
-} from "@/lib/client/book-api-cache";
+import { fetchBookJsonCached, useBookQuery } from "@/lib/client/book-api-cache";
 import { aggregateHourlyForDay } from "@/lib/client/reading-activity-storage";
-import { ReviewSessionFSRS } from "@/components/review/ReviewSessionFSRS";
 import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { HeroSection } from "./HeroSection";
 import { DailyQuests } from "./DailyQuests";
@@ -38,42 +35,16 @@ import { KnowledgeReview } from "./KnowledgeReview";
 import { YourBooks } from "./YourBooks";
 import { NextAchievements } from "./NextAchievements";
 import { ProInsightsPreview } from "./ProInsightsPreview";
+import { buildDailyQuests, stepsCompletedToday } from "./daily-quests-core";
+import {
+  buildReviewDataFromCards,
+  localDateKey,
+  type FSRSCardLite,
+} from "./review-data-core";
 
 // ──────────────────────────────────────────────────
 // Data transformation: hooks → ProgressPageData
 // ──────────────────────────────────────────────────
-
-// Structural shells for the daily quests. `current`/`completed` are placeholders
-// only — every value is recomputed from real analytics in `buildProgressData`.
-const DAILY_QUEST_TEMPLATES: ReadonlyArray<DailyQuest> = [
-  {
-    id: "q1",
-    title: "Read for 10 minutes",
-    icon: "\u{1F4D6}",
-    current: 0,
-    target: 10,
-    type: "progress",
-    completed: false,
-  },
-  {
-    id: "q2",
-    title: "Complete a quiz",
-    icon: "\u{1F9E0}",
-    current: 0,
-    target: 1,
-    type: "boolean",
-    completed: false,
-  },
-  {
-    id: "q3",
-    title: "Review 5 concepts",
-    icon: "\u{1F504}",
-    current: 0,
-    target: 5,
-    type: "progress",
-    completed: false,
-  },
-];
 
 const LOOP_STEP_MAP: Record<string, { step: LearningStep; stepNumber: StepNumber }> = {
   summary: { step: "summary", stepNumber: 1 },
@@ -89,73 +60,18 @@ const LOOP_STEP_MAP: Record<string, { step: LearningStep; stepNumber: StepNumber
 // source the home ReviewDueWidget uses — instead of the former per-device
 // localStorage SRS, so the two surfaces no longer contradict each other.
 
-const DAY_MS = 86_400_000;
-
 // Cache keys for this page's independent server reads (WS3-022).
 const REVIEWS_ALL_KEY = "/app/api/book/me/reviews?mode=all";
 const STREAK_KEY = "/app/api/book/me/streak";
 
-/** Lite shape of an FSRS card row as returned by GET /me/reviews?mode=all. */
-type FSRSCardLite = { dueAt: string; lastReviewAt: string; reps: number };
-
 const EMPTY_REVIEW_DATA: ReviewData = {
   overdueCount: 0,
   dueTodayCount: 0,
+  laterTodayCount: 0,
   upcomingThisWeekCount: 0,
   totalConceptsLearned: 0,
   forecast: [],
 };
-
-function localDateKey(d: Date): string {
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-}
-
-/** Whole-day offset of a due date from the start of today (negative = overdue). */
-function dayOffsetFromToday(dueAt: string, todayMs: number): number {
-  const dueDayStart = new Date(dueAt);
-  dueDayStart.setHours(0, 0, 0, 0);
-  return Math.round((dueDayStart.getTime() - todayMs) / DAY_MS);
-}
-
-function buildReviewDataFromCards(cards: FSRSCardLite[]): ReviewData {
-  const startOfToday = new Date();
-  startOfToday.setHours(0, 0, 0, 0);
-  const todayMs = startOfToday.getTime();
-
-  // forecast[0] = today (also absorbs overdue, which is actionable now);
-  // forecast[1..6] = each of the next six days.
-  const forecast = Array.from({ length: 7 }, (_, offset) => ({
-    date: localDateKey(new Date(todayMs + offset * DAY_MS)),
-    count: 0,
-  }));
-
-  let overdueCount = 0;
-  let dueTodayCount = 0;
-  let upcomingThisWeekCount = 0;
-
-  // forecast always has 7 buckets (index 0..6); every index below is in-bounds.
-  for (const card of cards) {
-    const offset = dayOffsetFromToday(card.dueAt, todayMs);
-    if (offset < 0) {
-      overdueCount += 1;
-      forecast[0]!.count += 1;
-    } else if (offset === 0) {
-      dueTodayCount += 1;
-      forecast[0]!.count += 1;
-    } else if (offset <= 7) {
-      upcomingThisWeekCount += 1;
-      if (offset <= 6) forecast[offset]!.count += 1;
-    }
-  }
-
-  return {
-    overdueCount,
-    dueTodayCount,
-    upcomingThisWeekCount,
-    totalConceptsLearned: cards.length,
-    forecast,
-  };
-}
 
 /** Distinct cards actually reviewed today (drives the "Review 5 concepts" quest).
  *  Guards on reps > 0 because createNewCard seeds lastReviewAt on unreviewed cards. */
@@ -174,12 +90,9 @@ function buildProgressData(
   isPro: boolean,
   reviewData: ReviewData,
   reviewedTodayCount: number,
-  shieldsHeld: number
+  shieldsHeld: number,
+  tier: TierPill | null
 ): ProgressPageData {
-  const totalCompletedChapters = analytics.totalCompletedChapters;
-  const readerLevel = deriveReaderLevel(totalCompletedChapters);
-  const readerLevelProgress = deriveReaderLevelProgress(totalCompletedChapters);
-
   // Map active books from analytics
   const activeBooks: ActiveBook[] = analytics.recentlyOpenedSnapshots.map(
     (snapshot) => {
@@ -193,8 +106,8 @@ function buildProgressData(
         coverUrl: getBookCoverPath(snapshot.book.id),
         totalChapters: snapshot.totalChapters,
         completedChapters: snapshot.completedChapters,
-        currentChapterNumber: Math.max(snapshot.completedChapters + 1, 1),
-        currentChapterTitle: snapshot.lastOpenedLabel || "Chapter 1",
+        currentChapterNumber: snapshot.resumeChapterNumber,
+        currentChapterTitle: snapshot.resumeChapterLabel,
         currentStep: step,
         currentStepNumber: stepNumber,
         lastActivity: snapshot.lastOpenedLabel,
@@ -271,7 +184,7 @@ function buildProgressData(
       chapters: cell.chapters,
     }));
 
-  // Hourly breakdown for today from localStorage
+  // Hourly breakdown for today from this device's localStorage
   const todayHourly = aggregateHourlyForDay(todayKey);
 
   // Map badge milestones
@@ -289,64 +202,23 @@ function buildProgressData(
   // PersonalizedGreeting both handle an empty array gracefully.
   const effectiveMilestones = nextMilestones;
 
-  // Build daily quests with real completion data
-  const wiredQuests = DAILY_QUEST_TEMPLATES
-    .filter((q) => {
-      if (q.id === "q3" && totalCompletedChapters === 0) return false;
-      return true;
-    })
-    .map((q) => {
-      if (q.id === "q1") {
-        return {
-          ...q,
-          current: Math.min(analytics.minutesReadToday, q.target),
-          completed: analytics.minutesReadToday >= q.target,
-        };
-      }
-      if (q.id === "q2") {
-        const todayCell = thisWeekCells.find((c) => c.key === todayKey);
-        const todayChapters = todayCell?.chapters ?? 0;
-        return {
-          ...q,
-          current: Math.min(todayChapters, q.target),
-          completed: todayChapters >= q.target,
-        };
-      }
-      if (q.id === "q3") {
-        return {
-          ...q,
-          current: Math.min(reviewedTodayCount, q.target),
-          completed: reviewedTodayCount >= q.target,
-        };
-      }
-      return q;
-    });
+  // Today's quests: goal-based reading, a finished chapter, and reviews due now.
+  const dueNow = reviewData.overdueCount + reviewData.dueTodayCount;
+  const dailyQuests = buildDailyQuests(analytics, dueNow, todayKey, reviewedTodayCount);
 
   return {
     user: {
       name: viewerName,
-      readerLevel,
-      readerLevelProgress,
+      tier,
       insightPoints: insightPointsBalance,
       isPro,
     },
-    todayGoal: (() => {
-      // Count today's chapters from heatmap (each = 4 steps through the learning loop)
-      const todayCellForSteps = analytics.heatmapCells.find((c) => c.key === todayKey);
-      const todayChaptersCompleted = todayCellForSteps?.chapters ?? 0;
-      // Partial step progress from the most recently active book
-      const leadBook = analytics.recentlyOpenedSnapshots[0];
-      const partialSteps = leadBook?.currentLoopStep
-        ? (LOOP_STEP_MAP[leadBook.currentLoopStep]?.stepNumber ?? 1) - 1
-        : 0;
-      const stepsToday = todayChaptersCompleted * 4 + partialSteps;
-      return {
-        targetMinutes: analytics.dailyGoalMinutes,
-        completedMinutes: analytics.minutesReadToday,
-        stepsCompletedToday: stepsToday,
-        totalStepsToday: 4,
-      };
-    })(),
+    todayGoal: {
+      targetMinutes: analytics.dailyGoalMinutes,
+      completedMinutes: analytics.minutesReadToday,
+      stepsCompletedToday: stepsCompletedToday(analytics, todayKey),
+      totalStepsToday: 4,
+    },
     streak: {
       currentDays: analytics.streakDays,
       bestDays: analytics.longestStreak,
@@ -361,6 +233,7 @@ function buildProgressData(
         (c) => c.minutes > 0
       ).length,
       daysActiveLast7,
+      atRisk: analytics.streakAtRisk,
     },
     weekSummary: {
       timeReadMinutes: thisWeekMinutes,
@@ -373,18 +246,16 @@ function buildProgressData(
     },
     activeBooks,
     completedBooks,
-    dailyQuests: wiredQuests,
-    // Kept for type compatibility (ProgressPageData.questBonusFP) but no longer
-    // surfaced as a currency promise — quests are habit nudges, not an IP award.
-    // Stable full-pool value so it never reads as "+0" if anything consumes it.
-    questBonusFP: wiredQuests.length * 25,
+    dailyQuests,
     reviews: reviewData,
     readingActivity: {
       days: readingDays,
       totalDaysWithData: readingDays.length,
       todayHourly,
+      todayMinutes: analytics.minutesReadToday,
     },
     nextMilestones: effectiveMilestones,
+    readingHistoryOff: analytics.readingHistoryOff,
   };
 }
 
@@ -462,8 +333,6 @@ export function ProgressPage() {
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [query, setQuery] = useState("");
   const [primaryBookId, setPrimaryBookId] = useState<string | null>(null);
-  const [showReviewSession, setShowReviewSession] = useState(false);
-  const [refreshKey, setRefreshKey] = useState(0);
 
   // ── Hooks ──
   const {
@@ -483,6 +352,9 @@ export function ProgressPage() {
     dailyGoalMinutes: onboarding.dailyGoalMinutes,
   });
 
+  const { data: serverTier } = useServerTier();
+  const tier = useMemo(() => tierPill(serverTier), [serverTier]);
+
   const viewerName = viewerIdentity.displayName || "Reader";
 
   // isPro derives from the dashboard aggregate's `entitlement.plan` (already
@@ -494,21 +366,31 @@ export function ProgressPage() {
   // Source the KnowledgeReview counts, the "Review 5 concepts" quest, and the
   // Streak Shield count from the server (FSRS deck + streak store) so this page
   // agrees with the home ReviewDueWidget instead of a per-device localStorage
-  // SRS. Re-runs when a review session closes (refreshKey bumps).
-  const [reviewData, setReviewData] = useState<ReviewData | null>(null);
-  const [reviewedTodayCount, setReviewedTodayCount] = useState(0);
+  // SRS. The review session is its own page (/book/progress/review); ratings
+  // invalidate the deck, so coming back here mounts a fresh read.
+  const reviewsQuery = useBookQuery<{ cards: FSRSCardLite[] }>(REVIEWS_ALL_KEY);
+  const reviewCards = reviewsQuery.data?.cards;
+  const reviewData = useMemo<ReviewData | null>(
+    () => (reviewCards ? buildReviewDataFromCards(reviewCards) : null),
+    [reviewCards]
+  );
+  const reviewedTodayCount = useMemo(
+    () => (reviewCards ? countReviewedToday(reviewCards) : 0),
+    [reviewCards]
+  );
+  // PROG-19: no deck yet is "loading" or "error", never the new-reader empty state.
+  const reviewStatus: "ready" | "loading" | "error" = reviewData
+    ? "ready"
+    : reviewsQuery.error
+      ? "error"
+      : "loading";
+  const refetchReviews = reviewsQuery.refetch;
   const [shieldsHeld, setShieldsHeld] = useState(0);
   useEffect(() => {
-    fetchBookJsonCached<{ cards: FSRSCardLite[] }>(REVIEWS_ALL_KEY)
-      .then(({ cards }) => {
-        setReviewData(buildReviewDataFromCards(cards));
-        setReviewedTodayCount(countReviewedToday(cards));
-      })
-      .catch(() => {});
     fetchBookJsonCached<{ shieldsHeld?: number }>(STREAK_KEY)
       .then((s) => setShieldsHeld(s.shieldsHeld ?? 0))
       .catch(() => {});
-  }, [refreshKey]);
+  }, []);
 
   useKeyboardShortcut(
     "/",
@@ -534,10 +416,10 @@ export function ProgressPage() {
       isPro,
       reviewData ?? EMPTY_REVIEW_DATA,
       reviewedTodayCount,
-      shieldsHeld
+      shieldsHeld,
+      tier
     );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro, reviewData, reviewedTodayCount, shieldsHeld, refreshKey]);
+  }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro, reviewData, reviewedTodayCount, shieldsHeld, tier]);
 
   // Fetch daily reader metrics for the active books in ONE batched request
   // (WS3-023) instead of an HTTP fan-out of one /books/[id]/metrics call per book.
@@ -591,9 +473,10 @@ export function ProgressPage() {
   // ── Determine which sections to show (progressive disclosure) ──
   const totalDaysWithData = displayData?.readingActivity.totalDaysWithData ?? 0;
 
-  // Recent badge for celebration banner
-  const recentBadgeName = recentlyEarned[0]?.name ?? null;
-  const recentBadgeId = recentlyEarned[0]?.id ?? null;
+  // "Just earned" banner: only a badge earned in the last 48 hours (PROG-18).
+  const recentBadge = recentlyEarned[0] && isJustEarned(recentlyEarned[0].earnedAt) ? recentlyEarned[0] : null;
+  const recentBadgeName = recentBadge?.name ?? null;
+  const recentBadgeId = recentBadge?.id ?? null;
 
   // ── Loading state ──
   if (!onboardingHydrated || !hydrated || !onboarding.setupComplete) {
@@ -695,12 +578,7 @@ export function ProgressPage() {
 
         {/* SECTION 2: Daily Quests */}
         <motion.div variants={sectionVariants}>
-          <DailyQuests
-            quests={displayData.dailyQuests}
-            onQuestClick={(questId) => {
-              if (questId === "q3") setShowReviewSession(true);
-            }}
-          />
+          <DailyQuests quests={displayData.dailyQuests} />
         </motion.div>
 
         {/* SECTION 3: This Week Summary (scroll-triggered) */}
@@ -717,8 +595,8 @@ export function ProgressPage() {
           />
         </motion.div>
 
-        {/* SECTION 4: Reading Activity — hide if truly no data */}
-        {totalDaysWithData > 0 && (
+        {/* SECTION 4: Reading Activity — hide if truly no data (or say history is off) */}
+        {(totalDaysWithData > 0 || displayData.readingHistoryOff) && (
           <motion.div
             initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -727,6 +605,7 @@ export function ProgressPage() {
           >
             <ReadingActivity
               activity={displayData.readingActivity}
+              historyOff={displayData.readingHistoryOff}
               onStartReading={() => {
                 if (displayData.activeBooks[0]) {
                   router.push(
@@ -749,8 +628,9 @@ export function ProgressPage() {
         >
           <KnowledgeReview
             reviews={displayData.reviews}
+            status={reviewStatus}
+            onRetry={refetchReviews}
             firstActiveBook={displayData.activeBooks[0] ?? null}
-            onStartReview={() => setShowReviewSession(true)}
           />
         </motion.div>
 
@@ -792,20 +672,6 @@ export function ProgressPage() {
         </motion.div>
       </motion.div>
       </motion.main>
-
-      {showReviewSession && (
-        <ReviewSessionFSRS
-          key={refreshKey}
-          onClose={() => {
-            setShowReviewSession(false);
-            // The session mutated the FSRS deck + streak store — drop their cached
-            // reads so the refreshKey-driven refetch pulls fresh data, not a hit.
-            invalidateBookCache(REVIEWS_ALL_KEY);
-            invalidateBookCache(STREAK_KEY);
-            setRefreshKey((k) => k + 1);
-          }}
-        />
-      )}
     </div>
   );
 }

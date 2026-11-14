@@ -41,6 +41,14 @@ import { useBookProfile } from "@/app/book/hooks/useBookProfile";
 import { useOnboardingRedirect, useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useToast } from "@/app/book/hooks/useToast";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
+import { useServerTier } from "@/hooks/book/useServerTier";
+import { fetchBookJson } from "@/lib/client/book-api";
+import { fetchBookJsonCached } from "@/lib/client/book-api-cache";
+import {
+  saveTakeaway,
+  takeawayTarget as resolveTakeawayTarget,
+} from "@/app/book/profile/lib/save-takeaway-core";
+import { tierIdentity } from "@/components/progress/progressTypes";
 import {
   BadgeDetailPanel,
   BadgeTimelineItem,
@@ -60,6 +68,17 @@ import { MomentumEmptyState } from "@/app/book/profile/components/MomentumEmptyS
 import { NotePreviewCard } from "@/app/book/profile/components/NotePreviewCard";
 import { PinnedTakeawayCard } from "@/app/book/profile/components/PinnedTakeawayCard";
 import { ProfileSkeleton } from "@/app/book/profile/components/ProfileSkeleton";
+import {
+  buildProfileInsights,
+  buildStatsSummary,
+  exploredCategoriesFrom,
+  readerStateLite,
+  type InsightSource,
+  momentumSteps,
+  pickJournalSnapshot,
+  remainingMinutesFrom,
+} from "@/app/book/profile/lib/profile-stats-core";
+import { useDashboardQuery } from "@/hooks/book/useDashboardQuery";
 import { ProStatusCard } from "@/app/book/profile/components/ProStatusCard";
 import { QuizBarChart } from "@/app/book/profile/components/QuizBarChart";
 import { SectionCard } from "@/app/book/profile/components/SectionCard";
@@ -147,12 +166,6 @@ function firstLine(text: string) {
   return text.split("\n").find((line) => line.trim())?.trim() || text.trim();
 }
 
-function summarizeNote(text: string) {
-  const clean = text.replace(/\s+/g, " ").trim();
-  if (clean.length <= 180) return clean;
-  return `${clean.slice(0, 177)}...`;
-}
-
 function initialsFromName(name: string) {
   const parts = name.trim().split(/\s+/).filter(Boolean).slice(0, 2);
   if (!parts.length) return "R";
@@ -163,19 +176,9 @@ function toDayKeyLocal(d: Date) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
-// ─── Identity label (unchanged) ───
-
-function getIdentityLabel(booksCompleted: number, categoriesCount: number): string {
-  if (booksCompleted === 0) return "Getting Started";
-  if (booksCompleted <= 2) return "Curious Reader";
-  if (booksCompleted <= 5) return "Knowledge Seeker";
-  if (booksCompleted <= 10) return "Dedicated Learner";
-  if (booksCompleted <= 20) return "Knowledge Builder";
-  if (booksCompleted > 20 && categoriesCount >= 5) return "Polymath";
-  return "Knowledge Builder";
-}
-
 // ─── Streak microcopy — full lookup table (A5) ───
+
+const NOTEBOOK_KEY = "/app/api/book/me/notebook";
 
 const STREAK_MILESTONES: [number, string][] = [
   [365, "One full year. Legendary. 👑"],
@@ -249,6 +252,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
   const [achievementView, setAchievementView] = useState<"showcase" | "timeline">("showcase");
   const [activeSectionIdx, setActiveSectionIdx] = useState(0);
   const [takeawayText, setTakeawayText] = useState("");
+  const [savingTakeaway, setSavingTakeaway] = useState(false);
   const { toast, showToast } = useToast();
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
@@ -262,6 +266,9 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
     pronouns: onboarding.pronoun,
     createdAt: onboarding.completedAt,
   });
+  // Identity = the server tier ladder (hidden while the read is pending or failed).
+  const { data: serverTier } = useServerTier();
+  const identity = useMemo(() => tierIdentity(serverTier), [serverTier]);
   const { billingState, launchBillingAction } = useBookEntitlements(
     onboarding.setupComplete
   );
@@ -335,6 +342,9 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
 
   // ─── Derived data ───
 
+  // PROG-13: notes, quiz history and activity come from the account's rows in
+  // the dashboard payload; this device's copy only fills in what is missing.
+  const { data: dashboardData } = useDashboardQuery();
   const localInsights = useMemo(() => {
     if (!analyticsHydrated) {
       return {
@@ -344,112 +354,53 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
         activityLog: [] as ActivityEntry[],
         depthCounts: { simple: 0, standard: 0, deeper: 0 },
         recentOpenedChapters: [] as ActivityEntry[],
-        categoriesSet: new Set<string>(),
       };
     }
-
-    const notes: NoteEntry[] = [];
-    const recentQuizEntries: QuizEntry[] = [];
-    const activityLog: ActivityEntry[] = [];
-    const recentOpenedChapters: ActivityEntry[] = [];
-    const depthCounts = { simple: 0, standard: 0, deeper: 0 };
-    const categoriesSet = new Set<string>();
-    let quizQuestionsAnswered = 0;
     void revision;
 
-    for (const snapshot of analytics?.bookSnapshots ?? []) {
-      if (snapshot.book.category) categoriesSet.add(snapshot.book.category);
+    const snapshots = analytics?.bookSnapshots ?? [];
+    const bundles = new Map<string, ReturnType<typeof getBookChaptersBundle>["chapters"]>();
+    const chaptersOf = (bookId: string) => {
+      let chapters = bundles.get(bookId);
+      if (!chapters) {
+        chapters = getBookChaptersBundle(bookId).chapters;
+        bundles.set(bookId, chapters);
+      }
+      return chapters;
+    };
 
+    const local: InsightSource = { books: [], chapters: [] };
+    for (const snapshot of snapshots) {
       const progress = parseStoredBookProgress(
         window.localStorage.getItem(getBookProgressStorageKey(snapshot.book.id))
       );
-      const chapters = getBookChaptersBundle(snapshot.book.id).chapters;
-      const chapterMap = new Map(chapters.map((ch) => [ch.id, ch]));
-
-      if (progress?.lastReadChapterId) {
-        const chapter = chapterMap.get(progress.lastReadChapterId);
-        const dateStr = progress.lastOpenedAt;
-        const dateKey = dateStr ? toDayKeyLocal(new Date(dateStr)) : "";
-        recentOpenedChapters.push({
-          id: `${snapshot.book.id}:${progress.lastReadChapterId}:opened`,
-          title: chapter ? `${snapshot.book.title} • ${chapter.code}` : `${snapshot.book.title} • Recent chapter`,
-          detail: chapter ? chapter.title : "Recent chapter activity",
-          meta: new Date(dateStr).toLocaleDateString(undefined, { month: "short", day: "numeric" }),
-          sortAt: dateStr,
-          dateKey,
+      if (progress) {
+        local.books.push({
+          bookId: snapshot.book.id,
+          lastReadChapterId: progress.lastReadChapterId,
+          lastOpenedAt: progress.lastOpenedAt,
+          chapterCompletedAt: progress.chapterCompletedAt,
         });
       }
-
-      Object.entries(progress?.chapterCompletedAt ?? {}).forEach(([chapterId, completedAt]) => {
-        const chapter = chapterMap.get(chapterId);
-        if (!chapter) return;
-        const dateKey = toDayKeyLocal(new Date(completedAt));
-        activityLog.push({
-          id: `${snapshot.book.id}:${chapterId}:completed`,
-          title: `${snapshot.book.title} • ${chapter.code}`,
-          detail: `Completed ${chapter.title}`,
-          meta: new Date(completedAt).toLocaleDateString(undefined, { month: "short", day: "numeric" }),
-          sortAt: completedAt,
-          dateKey,
-        });
-      });
-
-      for (const chapter of chapters) {
+      for (const chapter of chaptersOf(snapshot.book.id)) {
         const reader = parseStoredReaderState(
           window.localStorage.getItem(getChapterReaderStorageKey(snapshot.book.id, chapter.id))
         );
-        if (!reader) continue;
-        depthCounts[reader.readingDepth] += 1;
-        quizQuestionsAnswered += Object.keys(reader.quizAnswers).length;
-
-        if (reader.quizResult) {
-          const sortAt = progress?.chapterCompletedAt?.[chapter.id] ?? progress?.lastOpenedAt ?? "1970-01-01T00:00:00.000Z";
-          recentQuizEntries.push({
-            id: `${snapshot.book.id}:${chapter.id}:quiz`,
-            label: `${snapshot.book.title} • ${chapter.code}`,
-            score: reader.quizResult.score,
-            sortAt,
-          });
-        }
-
-        if (reader.notes.trim()) {
-          const sortAt = progress?.lastOpenedAt ?? "1970-01-01T00:00:00.000Z";
-          notes.push({
-            id: `${snapshot.book.id}:${chapter.id}:note`,
-            bookId: snapshot.book.id,
-            chapterId: chapter.id,
-            title: `${snapshot.book.title} • ${chapter.code}`,
-            body: summarizeNote(reader.notes),
-            meta: chapter.title,
-            sortAt,
-          });
-        }
+        if (reader) local.chapters.push({ bookId: snapshot.book.id, chapterId: chapter.id, reader: readerStateLite(reader) });
       }
     }
 
-    notes.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
-    recentQuizEntries.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
-    activityLog.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
-    recentOpenedChapters.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
+    return buildProfileInsights(dashboardData, local, {
+      books: snapshots.map((snapshot) => ({ id: snapshot.book.id, title: snapshot.book.title })),
+      chapter: (bookId, chapterId) => chaptersOf(bookId).find((c) => c.id === chapterId) ?? null,
+      chapterIdFor: (bookId, chapterNumber) => chaptersOf(bookId).find((c) => c.order === chapterNumber)?.id ?? null,
+    });
+  }, [analytics, analyticsHydrated, dashboardData, revision]);
 
-    return { quizQuestionsAnswered, notes, recentQuizEntries, activityLog, depthCounts, recentOpenedChapters, categoriesSet };
-  }, [analytics, analyticsHydrated, revision]);
-
-  const statsSummary = useMemo(() => {
-    const totalReadingMinutes = analytics?.heatmapCells.reduce((sum, cell) => sum + cell.minutes, 0) ?? 0;
-    return {
-      currentStreak: analytics?.streakDays ?? 0,
-      longestStreak: analytics?.longestStreak ?? 0,
-      booksCompleted: analytics?.booksCompleted ?? 0,
-      totalChaptersCompleted: analytics?.totalCompletedChapters ?? 0,
-      quizQuestionsAnswered: localInsights.quizQuestionsAnswered,
-      averageQuizScore: analytics?.avgQuizScore ?? 0,
-      maxQuizScore: analytics?.maxQuizScore ?? 0,
-      totalReadingMinutes,
-      categoriesCount: localInsights.categoriesSet.size,
-      minutesReadToday: analytics?.minutesReadToday ?? 0,
-    };
-  }, [analytics, localInsights.quizQuestionsAnswered, localInsights.categoriesSet.size]);
+  const statsSummary = useMemo(
+    () => buildStatsSummary(analytics, localInsights.quizQuestionsAnswered),
+    [analytics, localInsights.quizQuestionsAnswered]
+  );
 
   const currentSnapshot = useMemo(() => {
     const sorted = [...(analytics?.bookSnapshots ?? [])].sort((a, b) => {
@@ -496,18 +447,10 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
   }, [currentSnapshot, activeBooks, analytics]);
 
   // E2: Category exploration map
-  const exploredCategories = useMemo(() => {
-    const catMap = new Map<string, number>();
-    for (const snapshot of analytics?.bookSnapshots ?? []) {
-      const cat = snapshot.book.category;
-      if (cat && snapshot.completedChapters > 0) {
-        catMap.set(cat, (catMap.get(cat) ?? 0) + snapshot.completedChapters);
-      }
-    }
-    return Array.from(catMap.entries())
-      .map(([name, chapters]) => ({ name, chapters }))
-      .sort((a, b) => b.chapters - a.chapters);
-  }, [analytics]);
+  const exploredCategories = useMemo(
+    () => exploredCategoriesFrom(analytics?.bookSnapshots ?? []),
+    [analytics]
+  );
 
   // B1/B2: Current reading details with learning loop steps + chapter time
   const currentReadingDetails = useMemo(() => {
@@ -517,23 +460,19 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
       window.localStorage.getItem(getBookProgressStorageKey(currentSnapshot.book.id))
     );
     const chapters = getBookChaptersBundle(currentSnapshot.book.id).chapters;
-    const currentChapterId = progress?.currentChapterId || currentSnapshot.resumeChapterId || chapters[0]?.id || "";
+    // C13: the chapter every other "Continue" names (the account's current
+    // chapter); this device's own cursor is only a fallback.
+    const currentChapterId = currentSnapshot.resumeChapterId || progress?.currentChapterId || chapters[0]?.id || "";
     const chapter = chapters.find((c) => c.id === currentChapterId) ?? chapters[0];
-    const completedSet = new Set(progress?.completedChapterIds ?? []);
-    const remainingMinutes = chapters
-      .filter((c) => !completedSet.has(c.id))
-      .reduce((sum, c) => sum + c.minutes, 0);
+    // Steps and minutes left follow the account, like the chapter itself, so
+    // the card reads the same on every device.
+    const finished = currentSnapshot.status === "completed";
+    const remainingMinutes = finished || !chapter ? 0 : remainingMinutesFrom(chapters, chapter.order);
     const reader = chapter
       ? parseStoredReaderState(
           window.localStorage.getItem(getChapterReaderStorageKey(currentSnapshot.book.id, chapter.id))
         )
       : null;
-
-    // B1: Determine 4-step completion
-    const summaryDone = reader != null;
-    const scenariosDone = reader?.showRecap === true;
-    const quizDone = reader?.quizResult != null;
-    const unlockDone = chapter ? completedSet.has(chapter.id) : false;
 
     const chapterIdx = chapter ? chapters.findIndex((c) => c.id === chapter.id) : 0;
 
@@ -544,7 +483,9 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
       chapterMinutes: chapter?.minutes ?? 15,
       chapterNumber: chapterIdx + 1,
       totalChapters: chapters.length,
-      completedSteps: [summaryDone, scenariosDone, quizDone, unlockDone],
+      completedSteps: finished
+        ? momentumSteps(null)
+        : momentumSteps(currentSnapshot.currentLoopStep ?? "summary"),
       chapterId: chapter?.id ?? currentSnapshot.resumeChapterId,
     };
   }, [currentSnapshot, onboarding.learningStyle, revision]);
@@ -654,34 +595,57 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
 
   const navigateToSettings = () => router.push("/book/settings");
 
-  const handleSaveTakeaway = useCallback(() => {
+  // The takeaway card is about a book the reader has started or finished
+  // (saving would otherwise start one): the book in Momentum when there is one
+  // in progress, else the most recently active finished book.
+  const journalSnapshot = useMemo(
+    () => pickJournalSnapshot(analytics?.bookSnapshots ?? []),
+    [analytics]
+  );
+  const journalChapterId = journalSnapshot
+    ? journalSnapshot.book.id === currentSnapshot?.book.id
+      ? (currentReadingDetails?.chapterId ?? journalSnapshot.resumeChapterId)
+      : journalSnapshot.resumeChapterId
+    : "";
+  const takeawayTarget = useMemo(() => {
+    if (!journalSnapshot) return null;
+    return resolveTakeawayTarget({
+      bookId: journalSnapshot.book.id,
+      status: journalSnapshot.status,
+      chapterId: journalChapterId,
+      chapters: getBookChaptersBundle(journalSnapshot.book.id).chapters,
+    });
+  }, [journalSnapshot, journalChapterId]);
+
+  const handleSaveTakeaway = useCallback(async () => {
     const text = takeawayText.trim();
-    if (!text || !currentSnapshot) return;
-    const chapterId = currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId;
-    const storageKey = getChapterReaderStorageKey(currentSnapshot.book.id, chapterId);
-    const existing = parseStoredReaderState(window.localStorage.getItem(storageKey));
-    const updated = existing
-      ? { ...existing, notes: existing.notes ? `${existing.notes}\n\n${text}` : text }
-      : {
-          activeTab: "summary" as const,
-          readingDepth: "standard" as const,
-          exampleFilter: "all" as const,
-          quizAnswers: {},
-          quizResult: null,
-          quizRetakeCount: 0,
-          quizFailureStreak: 0,
-          quizCooldownUntil: null,
-          notes: text,
-          focusMode: false,
-          fontScale: "md" as const,
-          showRecap: false,
-          explanationOpen: {},
-        };
-    window.localStorage.setItem(storageKey, JSON.stringify(updated));
-    emitBookStorageChanged("profile:takeaway");
-    setTakeawayText("");
-    showToast("Takeaway saved", "success");
-  }, [takeawayText, currentSnapshot, currentReadingDetails, showToast]);
+    if (!text || !takeawayTarget || savingTakeaway) return;
+    setSavingTakeaway(true);
+    try {
+      await saveTakeaway(
+        {
+          fetchJson: fetchBookJson,
+          refetchNotebook: () =>
+            fetchBookJsonCached(NOTEBOOK_KEY, undefined, { forceRevalidate: true }),
+          readLocal: (key) => window.localStorage.getItem(key),
+          writeLocal: (key, value) => window.localStorage.setItem(key, value),
+          now: () => new Date().toISOString(),
+        },
+        {
+          ...takeawayTarget,
+          text,
+          localKey: getChapterReaderStorageKey(takeawayTarget.bookId, takeawayTarget.chapterId),
+        }
+      );
+      emitBookStorageChanged("profile:takeaway");
+      setTakeawayText("");
+      showToast("Takeaway saved", "success");
+    } catch {
+      showToast("Couldn't save your takeaway. Try again.", "error");
+    } finally {
+      setSavingTakeaway(false);
+    }
+  }, [takeawayText, takeawayTarget, savingTakeaway, showToast]);
 
   // ─── Loading state (H5) ───
 
@@ -721,8 +685,9 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
   }
 
   const viewerName = profile.displayName || viewerIdentity.displayName || "Reader";
-  const identityLabel = getIdentityLabel(statsSummary.booksCompleted, statsSummary.categoriesCount);
-  const streakMicrocopy = getStreakMicrocopy(statsSummary.currentStreak);
+  const streakMicrocopy = analytics?.streakAtRisk
+    ? `Read today to keep your ${statsSummary.currentStreak}-day streak.`
+    : getStreakMicrocopy(statsSummary.currentStreak);
 
   // C4: Personal best streak indicator
   const isPersonalBest = statsSummary.currentStreak > 0 && statsSummary.currentStreak >= statsSummary.longestStreak;
@@ -740,8 +705,8 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
     (billingState.payload?.entitlement.remainingFreeStarts ?? 0);
   const moreBooksToUnlock = Math.max(0, CATALOG_BOOK_COUNT - accessibleBookCount);
   const upgradeMessage = statsSummary.booksCompleted > 0
-    ? `You've completed ${statsSummary.totalChaptersCompleted} chapters. Unlock ${moreBooksToUnlock} more books, advanced quizzes, streak freezes, and full reading analytics with Pro.`
-    : `Unlock ${moreBooksToUnlock} more books, advanced quizzes, streak freezes, and full reading analytics.`;
+    ? `You've completed ${statsSummary.totalChaptersCompleted} chapters. Unlock ${moreBooksToUnlock} more books, advanced quizzes, and full reading analytics with Pro.`
+    : `Unlock ${moreBooksToUnlock} more books, advanced quizzes, and full reading analytics.`;
 
   // H4: Last updated
   const lastUpdated = "Stats updated just now";
@@ -781,12 +746,12 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
             username={profile.username}
             bio={profile.bio || profile.tagline || "Building a sharper reading practice with ChapterFlow."}
             plan={plan}
-            identityLabel={identityLabel}
+            identity={identity}
             streakDays={statsSummary.currentStreak}
             streakMicrocopy={streakMicrocopy}
             booksCompleted={statsSummary.booksCompleted}
             totalHours={formatHours(statsSummary.totalReadingMinutes)}
-            dailyGoalMinutes={onboarding.dailyGoalMinutes}
+            dailyGoalMinutes={analytics?.dailyGoalMinutes ?? onboarding.dailyGoalMinutes}
             minutesReadToday={statsSummary.minutesReadToday}
             onEdit={() => setEditOpen(true)}
             onSettings={navigateToSettings}
@@ -817,7 +782,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                     chapterNumber={currentReadingDetails.chapterNumber}
                     totalChapters={currentReadingDetails.totalChapters}
                     completedSteps={currentReadingDetails.completedSteps}
-                    dailyGoalMinutes={onboarding.dailyGoalMinutes}
+                    dailyGoalMinutes={analytics?.dailyGoalMinutes ?? onboarding.dailyGoalMinutes}
                     onContinue={() =>
                       router.push(
                         `/book/library/${encodeURIComponent(currentSnapshot.book.id)}/chapter/${encodeURIComponent(currentReadingDetails.chapterId)}`
@@ -844,9 +809,6 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                           const progress = parseStoredBookProgress(
                             window.localStorage.getItem(getBookProgressStorageKey(snapshot.book.id))
                           );
-                          const chapter = getBookChaptersBundle(snapshot.book.id).chapters.find(
-                            (c) => c.id === (progress?.currentChapterId || snapshot.resumeChapterId)
-                          );
                           const remainingMinutes = getBookChaptersBundle(snapshot.book.id).chapters
                             .filter((c) => !(progress?.completedChapterIds ?? []).includes(c.id))
                             .reduce((sum, c) => sum + c.minutes, 0);
@@ -859,11 +821,12 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                               coverImage={snapshot.book.coverImage}
                               icon={snapshot.book.icon}
                               progress={snapshot.progressPercent}
-                              chapterLabel={chapter ? `${chapter.code} ${chapter.title}` : snapshot.lastOpenedLabel}
+                              chapterLabel={snapshot.resumeChapterLabel}
+                              chapterNumber={snapshot.resumeChapterNumber}
                               eta={formatMinutes(Math.max(remainingMinutes, 10))}
                               onContinue={() =>
                                 router.push(
-                                  `/book/library/${encodeURIComponent(snapshot.book.id)}/chapter/${encodeURIComponent(progress?.currentChapterId || snapshot.resumeChapterId)}`
+                                  `/book/library/${encodeURIComponent(snapshot.book.id)}/chapter/${snapshot.resumeChapterNumber}`
                                 )
                               }
                             />
@@ -1170,7 +1133,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                     : "Monthly plan · renews monthly"
                 }
                 booksAccessedCount={billingState.payload?.entitlement.unlockedBooksCount ?? 0}
-                proSinceLabel={profile.createdAt ? `Pro since ${new Date(profile.createdAt).toLocaleDateString(undefined, { month: "short", year: "numeric" })}` : "Pro member"}
+                proSinceLabel="Pro member"
                 proSource={billingState.payload?.entitlement.proSource}
                 onManage={() => handleBillingAction("portal")}
               />
@@ -1236,39 +1199,45 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                     ))}
                   </div>
                 </div>
-              ) : currentSnapshot || statsSummary.totalChaptersCompleted > 0 ? (
-                // G1: Inline takeaway prompt (has chapters but no notes)
+              ) : journalSnapshot ? (
+                // G1: Inline takeaway prompt (a started or finished book, no notes yet)
                 <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) p-6">
                   <p className="text-sm text-(--cf-text-2)">
                     {statsSummary.totalChaptersCompleted > 0
                       ? <>You&apos;ve explored {statsSummary.totalChaptersCompleted} chapter{statsSummary.totalChaptersCompleted !== 1 ? "s" : ""} but haven&apos;t saved any takeaways yet.</>
                       : <>You&apos;re reading but haven&apos;t saved any takeaways yet.</>}
                   </p>
+                  {takeawayTarget ? (
                   <p className="mt-2 text-base font-medium text-(--cf-text-1)">
-                    What&apos;s one thing from {currentSnapshot?.book.title ?? "your reading"} that stuck with you?
+                    What&apos;s one thing from {journalSnapshot.book.title} that stuck with you?
                   </p>
+                  ) : null}
+                  {takeawayTarget ? (
                   <div className="mt-4 flex gap-2">
                     <input
                       type="text"
                       placeholder="Type a quick takeaway..."
                       value={takeawayText}
                       onChange={(e) => setTakeawayText(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && takeawayText.trim() && handleSaveTakeaway()}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && takeawayText.trim()) void handleSaveTakeaway();
+                      }}
                       className="flex-1 rounded-xl border border-(--cf-border) bg-(--cf-surface) px-4 py-2.5 text-sm text-(--cf-text-1) placeholder:text-(--cf-text-soft) outline-none focus:border-(--cf-accent-border)"
                     />
                     <Button
                       variant="primary"
-                      onClick={handleSaveTakeaway}
-                      disabled={!takeawayText.trim()}
+                      onClick={() => void handleSaveTakeaway()}
+                      disabled={!takeawayText.trim() || savingTakeaway}
                     >
                       Save takeaway
                     </Button>
                   </div>
-                  {currentSnapshot ? (
+                  ) : null}
+                  {journalChapterId ? (
                     <button
                       type="button"
                       onClick={() =>
-                        router.push(`/book/library/${encodeURIComponent(currentSnapshot.book.id)}/chapter/${encodeURIComponent(currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId)}`)
+                        router.push(`/book/library/${encodeURIComponent(journalSnapshot.book.id)}/chapter/${encodeURIComponent(journalChapterId)}`)
                       }
                       className="mt-3 text-sm text-(--cf-accent) hover:text-(--cf-accent-strong) transition-colors"
                     >
