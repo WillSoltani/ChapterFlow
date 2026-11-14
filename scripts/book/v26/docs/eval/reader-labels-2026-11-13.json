@@ -1,0 +1,1728 @@
+{
+ "source": "Independent strict readers (Opus subagents with web search) reviewed three chapters each of six published v26 books on 2026-11-13; an Opus agent per book then mapped each finding to the judge item it complains about. Reader labels, not owner labels.",
+ "calibrateOn": [
+  "what-every-body-is-saying",
+  "essentialism",
+  "crucial-conversations",
+  "deep-work"
+ ],
+ "heldOut": [
+  "the-charisma-myth",
+  "the-laws-of-human-nature"
+ ],
+ "chapters": [
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 1,
+   "readerScore": 7,
+   "oldJudgeScore": 97.6
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 3,
+   "readerScore": 7,
+   "oldJudgeScore": 97.6
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 6,
+   "readerScore": 6,
+   "oldJudgeScore": 100.0
+  },
+  {
+   "book": "essentialism",
+   "chapter": 12,
+   "readerScore": 7,
+   "oldJudgeScore": 81.0
+  },
+  {
+   "book": "essentialism",
+   "chapter": 18,
+   "readerScore": 7,
+   "oldJudgeScore": 88.1
+  },
+  {
+   "book": "essentialism",
+   "chapter": 1,
+   "readerScore": 7,
+   "oldJudgeScore": 92.9
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 8,
+   "readerScore": 7,
+   "oldJudgeScore": 88.1
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 1,
+   "readerScore": 6,
+   "oldJudgeScore": 92.9
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 5,
+   "readerScore": 8,
+   "oldJudgeScore": 100.0
+  },
+  {
+   "book": "deep-work",
+   "chapter": 3,
+   "readerScore": 6,
+   "oldJudgeScore": 81.0
+  },
+  {
+   "book": "deep-work",
+   "chapter": 1,
+   "readerScore": 7,
+   "oldJudgeScore": 100.0
+  },
+  {
+   "book": "deep-work",
+   "chapter": 7,
+   "readerScore": 8,
+   "oldJudgeScore": 95.2
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 9,
+   "readerScore": 6,
+   "oldJudgeScore": 88.1
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 1,
+   "readerScore": 7,
+   "oldJudgeScore": 97.6
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 5,
+   "readerScore": 7,
+   "oldJudgeScore": 100.0
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 12,
+   "readerScore": 6,
+   "oldJudgeScore": 92.9
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 1,
+   "readerScore": 8,
+   "oldJudgeScore": 95.2
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 15,
+   "readerScore": 7,
+   "oldJudgeScore": 95.2
+  }
+ ],
+ "note": "the-charisma-myth ch09 and the-laws-of-human-nature ch01 were read in their versions before the 2026-11-13 repair (charisma ch09: <runDir>/replaced-2026-11-13/ch09).",
+ "labels": [
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "KEY-q7"
+   ],
+   "class": "",
+   "reader": "q7: choice 2 ('Deciding from two small signs instead of waiting to see several more') is defensible, because looking for clusters is Navarro's own rule 6. The pipeline's own solver flagged it and i..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "KEY-q3"
+   ],
+   "class": "",
+   "reader": "q3: framed as a prediction ('What is most likely to happen next?'). Choice 0 ('She stays unsure, since silence can mean very different things') can be defended: Navarro says a change shows that som..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "KEY-q6"
+   ],
+   "class": "",
+   "reader": "q6: choice 1 ('Watch today for more signs ... before you decide anything') is also a fair Navarro move (clusters, wait before judging). It is rejected only because it says 'today' and not 'this week'."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "KEY-q4"
+   ],
+   "class": "",
+   "reader": "q4: choice 0 ('Ask her straight out tonight') is sensible real-world advice that the chapter never argues against, so a careful reader could defend it."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 4,
+   "items": [
+    "VARY-quiz"
+   ],
+   "class": "",
+   "reader": "All seven questions key the same move: watch how they act when relaxed. By q3 a reader can pick the 'baseline' choice without thinking, so the set tests pattern-matching, not understanding."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [
+    "ARC-fastRead"
+   ],
+   "class": "",
+   "reader": "The McFadden story in the fastRead is left unconnected: 'What he saw became the basis of a Supreme Court ruling. But before you read anyone...'. It never shows how it relates to baselines and reads..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "On the default path the book's main structure, Navarro's ten rules for observing (context, clusters, comfort vs discomfort, false signals), appears only in the optional fullRead. The fastRead reduc..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [
+    "VARY-examples"
+   ],
+   "class": "",
+   "reader": "The examples all make the same move: someone reads crossed arms or a look away as hostility, and the fix is to learn their normal. That is three versions of one case."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 3,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "KEY-q6"
+   ],
+   "class": "",
+   "reader": "q6: repeats q2 (the knee clasp means they want to wrap up), and is framed as a prediction where choice 2 ('She lets him finish, then turns to her next question') is quite defensible. Wanting to end..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 3,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "KEY-q1"
+   ],
+   "class": "",
+   "reader": "q1: same prediction problem. 'She will cut you off soon' overstates the case, since the chapter itself says polite people nod through things they want to leave. Choice 0 is a throwaway distractor n..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 3,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "TELL-q2"
+   ],
+   "class": "",
+   "reader": "q2: the keyed choice ('Hands on both knees, leaning in, often means he was ready to finish') is the only one that repeats the chapter's own cue in its own words, so it gives itself away."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 3,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "TELL-q7"
+   ],
+   "class": "",
+   "reader": "q7: the keyed answer repeats the examples' 'ask when he has ten minutes' wording. For getting a landlord to fix damp, putting it in writing is arguably better advice than reading his feet, and no c..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 3,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [
+    "SPINE"
+   ],
+   "class": "",
+   "reader": "keyTakeaway and tryThisNow state the rule with no conditions ('When someone's feet turn toward the door, they want to leave'; 'if they turn toward the door, finish your point'). The fastRead, examp..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 3,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The chapter teaches only one cue from a chapter that covers many feet-and-legs signals (happy feet, gravity-defying moves, leg crossing, foot withdrawal, the starter's position). A reader does not ..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 3,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [
+    "PRACTICE"
+   ],
+   "class": "",
+   "reader": "Awkward if-then wording: 'When I notice I kept talking after someone's feet turned toward the door' is a trigger you only notice after the fact."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 6,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "TELL-q2",
+    "KEY-q2"
+   ],
+   "class": "",
+   "reader": "q2: the keyed choice is the only one that mentions the hands ('wherever his hands are'), so it gives itself away. The stem's outcome (a homeowner asks for a second quote on a big bill) is ordinary ..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 6,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "TELL-q5"
+   ],
+   "class": "",
+   "reader": "q5: the keyed choice repeats the chapter's own phrase 'nothing seems held back', which gives it away. Choice 0 ('look calmer than she feels') is the only tempting distractor."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 6,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "KEY-q3",
+    "KEY-q7"
+   ],
+   "class": "",
+   "reader": "q3 and q7: both claim cause and effect from one hand movement ('The buyer starts to doubt', 'They book a different planner'). In q7, choice 0 (they wanted a cheaper planner anyway) is a realistic e..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 6,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "TELL-q4"
+   ],
+   "class": "",
+   "reader": "q4: the keyed choice is the only one that keeps the hands in view the whole time. Choice 0 (eye contact) is the only real temptation."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 6,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The chapter shrinks the book's hands chapter (steepling as a confidence display, hand-wringing, thumbs up or tucked in as status signals, handshakes, hiding hands) down to one tip, 'keep your hands..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 6,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The fastRead never gives the book's own evidence or a story from Navarro ('Joe Navarro says people grow wary...'). The only story is an invented one (Elif at the bank), so the reader learns no spec..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 6,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [
+    "COUNTER"
+   ],
+   "class": "hook-overclaim",
+   "reader": "The hook overstates: 'The people listening already trust you less.' The counterintuition is a straw man with machine-like phrasing: 'We tend to think only our words count... What works is keeping y..."
+  },
+  {
+   "book": "what-every-body-is-saying",
+   "chapter": 6,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [
+    "END-fullRead"
+   ],
+   "class": "repetition",
+   "reader": "The fullRead pads with repetition ('The trouble was never in her sentences', 'Nothing Elif says is wrong', 'every number she gives is true', said several ways), and its idealised ending ('The advis..."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 12,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "KEY-q2"
+   ],
+   "class": "",
+   "reader": "q2: the keyed answer, \"that money goes where her customers already are\", adds a fact the prompt never gives (she redirects the money). Choice A (losing her few app customers lowers total sales a li..."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 12,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "TELL-q3",
+    "TELL-q5"
+   ],
+   "class": "",
+   "reader": "q3 and q5: the right answer is each time the chapter's own test, worded almost exactly as the chapter words it (\"would you begin it today\" / \"whether you'd start it today\"), so it gives itself away..."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 12,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "TELL-q6",
+    "TEMPT-q6"
+   ],
+   "class": "",
+   "reader": "q6: choice B nearly repeats the definition word for word (\"Treating the year already spent as a reason...\"), and A is weak, so there is little pull toward a wrong answer."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 12,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [],
+   "class": "other",
+   "reader": "q7: choice B (stored boxes gain enough value to cover three years of fees) is a throwaway nobody would pick, so the question has really two choices."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 12,
+   "source": "quizProblems",
+   "index": 4,
+   "items": [],
+   "class": "other",
+   "reader": "q4: the scenario's arithmetic is muddled. Comparing what he would pay for the boat as-is with the repairs it still needs is not the comparison that justifies selling. The keyed answer is still fine."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 12,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [
+    "ARC-fastRead"
+   ],
+   "class": "",
+   "reader": "The fastRead's book story is thin: \"The British and French governments kept paying for it for years\" gives no years, no losses and no ending, so the Concorde reads as a label, not a story."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 12,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "hook-overclaim",
+   "reader": "The hook overclaims: \"Walking away from a failing plan wastes nothing.\" Walking away can carry real exit costs, and the chapter itself only argues that past spending should not count."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 12,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [],
+   "class": "template",
+   "reader": "It uses the same counterintuition template as other chapters: \"We tend to ... What works is ...\"."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 12,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The fastRead leaves out the chapter's most usable tools (the reverse pilot, pausing before casual commitments, admitting the mistake). They appear only in the optional fullRead, so the default read..."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 18,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "KEY-q6"
+   ],
+   "class": "",
+   "reader": "q6: the keyed answer, \"She starts wanting to tidy, since the hot drink waits at the end\", overclaims. B (she soon skips straight to the hot drink) is a realistic and defensible prediction, and the..."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 18,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "KEY-q3"
+   ],
+   "class": "",
+   "reader": "q3: C (\"A single chapter feels small enough that he rarely puts it off\") is also a sound reason the habit works (small size is McKeown's own Progress-chapter point), so a second answer can be defen..."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 18,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "KEY-q5"
+   ],
+   "class": "",
+   "reader": "q5: the real trap of an alarm set an hour early is arguably lost sleep (the book's Sleep chapter), which no choice offers. A is long and oddly specific, so it is easy to rule out."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 18,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "TELL-q7"
+   ],
+   "class": "",
+   "reader": "q7: choice A (\"Walk twice as far...\") is a throwaway, and the keyed C is the only one using the chapter's \"tie it to\" wording, so the answer gives itself away."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 18,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [
+    "OPENER-hook"
+   ],
+   "class": "",
+   "reader": "The hook assumes a hobby the reader may not have: \"The drawing you care about most waits on a decision and loses.\" For most readers, the second sentence lands on nothing."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 18,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [
+    "ARC-fastRead"
+   ],
+   "class": "",
+   "reader": "The Phelps story is reduced to \"He followed the routine, and he won\", with no Beijing, no gold medals and none of Bowman's \"videotape\" visualization, which is the concrete story the book actually t..."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 18,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [
+    "VARY-examples"
+   ],
+   "class": "",
+   "reader": "All three examples make the same move (pick a cue: tram stop, door sign, dorm door), and only the third adds anything about the reward."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 18,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [],
+   "class": "template",
+   "reader": "It uses the same counterintuition template as ch12: \"We tend to trust ... What works is ...\"."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 18,
+   "source": "readerProblems",
+   "index": 4,
+   "items": [],
+   "class": "other",
+   "reader": "The fastRead makes the overclaim \"Choose the cue on purpose, and the essential thing happens on its own\"."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "VARY-quiz"
+   ],
+   "class": "",
+   "reader": "q1, q4, q5 and q6 all key the same move (weigh or ask what the yes takes before answering). By the third question, a reader can pick the \"check the cost first\" option without thinking."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "KEY-q6"
+   ],
+   "class": "",
+   "reader": "q6: A (\"List the guests and dates first, to see how big the job is\") is defensible, because you cannot know what a party will crowd out until you know how big it is. The explanation's rebuttal is t..."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "TELL-q1"
+   ],
+   "class": "",
+   "reader": "q1: A is the only choice using the chapter's \"take from you\" wording, and it is a process, not a decision, so it stands out as the answer."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "TEMPT-q7"
+   ],
+   "class": "",
+   "reader": "q7: B and C are weak, so there is little temptation."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [
+    "PLAIN-summary"
+   ],
+   "class": "",
+   "reader": "A non-sequitur sentence, apparently patched in, breaks both the fastRead and the deepRead: \"McKeown would have you go further and cut nearly all that is not vital. Kofi lowers his hand...\". It has..."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The default fastRead leaves out the book's core frame for chapter 1 (Essentialist vs Nonessentialist, explore/eliminate/execute, the clarity paradox) and teaches only \"every yes is a no\", which is..."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [
+    "VARY-examples"
+   ],
+   "class": "",
+   "reader": "All three examples make the same move (ask what it takes, then decline and offer an alternative time)."
+  },
+  {
+   "book": "essentialism",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [],
+   "class": "template",
+   "reader": "It uses a stock template for the counterintuition: \"Many people think ... Actually, ...\"."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 8,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "KEY-q7"
+   ],
+   "class": "",
+   "reader": "q7: choice 0 ('You must be feeling left out over all the wedding plans lately, right?') can be defended. It names her feeling, which is mirroring. The tool's own key-solver flagged it, and the expl..."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 8,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "TELL-q5"
+   ],
+   "class": "",
+   "reader": "q5: the prompt gives the answer away. 'Asking, she feels, would hand him a win' is the belief in choice C, and C repeats the summary's line 'Hearing her story is not agreeing with it' almost word f..."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 8,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "TELL-q3"
+   ],
+   "class": "",
+   "reader": "q3: the keyed choice is the only one using the chapter's key word ('a story about fairness'), so a reader who skimmed can spot it."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 8,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "VARY-quiz"
+   ],
+   "class": "",
+   "reader": "Across q1-q3, q5 and q6 the right answer is always 'ask what they saw', or the outcome where asking works and soothing fails. Only q4 (prime) and q7 test a different tool. Mirror, paraphrase and AB..."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 8,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [
+    "VARY-examples"
+   ],
+   "class": "",
+   "reader": "Examples all make the same move. ex01 ('Ask him what he's noticed... then say it back'), ex02 ('Ask Paulo what he heard... then repeat his answer back') and ex03 are each ask-and-paraphrase. None s..."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 8,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [
+    "TRY"
+   ],
+   "class": "",
+   "reader": "tryThisNow is artificial: 'ask one person at the table what they saw today that bothered them, then say their answer back.' There has been no blow-up or silence, so it doesn't practice the skill th..."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 8,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [],
+   "class": "cross-chapter",
+   "reader": "Every chapter's summary opens with the same 'Kerry Patterson, Joseph Grenny, Ron McMillan and Al Switzler' line (the tool flagged this for all 10 chapters and left it). Someone reading chapter afte..."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 8,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [],
+   "class": "template",
+   "reader": "The fastRead is a list of short parallel sentences ('They ask... They name... They retell... When she still holds back, they offer...'), then three short punchlines in a row ('The fight was never r..."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 8,
+   "source": "readerProblems",
+   "index": 4,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The fastRead names AMPP but never explains 'prime', so 'offer a best guess' is unexplained on the default path. The pump image that makes it stick is only in the fullRead."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "VARY-quiz"
+   ],
+   "class": "",
+   "reader": "Every keyed answer (q1 A, q2 C, q3 B, q4 B, q5 A, q6 C) is some version of the chapter's catchphrase: 'see the stakes, the split and the heat, and call it a big talk'. q1 ('the launch, the blame an..."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "KEY-q4"
+   ],
+   "class": "",
+   "reader": "q4: choice A ('Look up the loan terms first') is sensible and does not go against the chapter. A thoughtful reader could defend it alongside B."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "KEY-q6",
+    "TELL-q6"
+   ],
+   "class": "",
+   "reader": "q6: choice A ('Ask him to email you the numbers behind the rise') is a reasonable, non-avoidant move that can be defended. The key wins only because it uses the chapter's words."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "TELL-q2"
+   ],
+   "class": "",
+   "reader": "q2: the keyed choice C is the longest of the three and echoes the summary's 'just kitchen chat' idea."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The default summary has no story from the book. It is framed around an invented couple (Tomasz and Noor), and the book's own material appears as two bare sentences (the definition and the influence..."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The chapter turns a definitional chapter ('What's a Crucial Conversation? And Who Cares?') into a single tactic: 'name it as crucial before you answer'. The practice plan then stops there ('silentl..."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [
+    "PLAIN-rest"
+   ],
+   "class": "",
+   "reader": "Terms drift: the book's term 'crucial conversation' becomes 'big talk' in the examples, quiz and practice plan, so the reader practices with a different label from the one the rest of the book uses."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [
+    "LINES-1"
+   ],
+   "class": "",
+   "reader": "The memorable line 'Spot the stakes, the split and the heat, then call it crucial before you speak' is a stock slogan with a forced rhyme."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 4,
+   "items": [],
+   "class": "cross-chapter",
+   "reader": "'Kerry Patterson and three coauthors, who spent years training and studying people at work' is the same author boilerplate used in every chapter."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 5,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "QUIZ-q7",
+    "QUIZ-q1",
+    "QUIZ-q2"
+   ],
+   "class": "",
+   "reader": "q7 (apologize vs contrast) and q1 and q2 (contrasting) hinge on tools the default fastRead never teaches. Apology and contrasting appear only in the deepRead and fullRead, so a fastRead-only reader..."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 5,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "TELL-q6"
+   ],
+   "class": "",
+   "reader": "q6: the keyed choice C repeats the deepRead's 'recognize the purpose behind each person's demand'. B is a padded distractor that no one taught by this chapter would pick."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 5,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The fastRead leaves out the chapter's main tools: no contrasting, no apology, no CRIB, and nothing on 'respect is like air'. It gives the diagnosis and one story, and the actual moves are only in t..."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 5,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "repetition",
+   "reader": "The fastRead repeats its conclusion: 'Explaining harder feels like progress, but it fixes your words when the real problem is fear' comes after the opening paragraph has already said this, and the ..."
+  },
+  {
+   "book": "crucial-conversations",
+   "chapter": 5,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [
+    "ARC-fastRead"
+   ],
+   "class": "",
+   "reader": "The Yvonne and Jotham telling is vague ('Underneath, they found the same wish') and never shows the line Yvonne actually said, which is the best concrete moment in the book's version."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 3,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "KEY-q6"
+   ],
+   "class": "",
+   "reader": "Q6 (florist): asks 'How does the meeting most likely go?' but the key is a should, not a likely ('weighs the forty minutes'). 'The team shrugs off the number' is realistic, and the chapter's own Ra..."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 3,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "KEY-q7",
+    "TEMPT-q7"
+   ],
+   "class": "",
+   "reader": "Q7 (law office): the key 'Share the number with your team before any new email rule' answers a question nobody asked, since no rule is pending. The distractors are a joke option (ask for a raise) a..."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 3,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "TELL-q2"
+   ],
+   "class": "",
+   "reader": "Q2: two of the three choices start by agreeing ('Sure...', 'Fine...'), so the one that pushes back gives itself away."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 3,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "TELL-q3"
+   ],
+   "class": "",
+   "reader": "Q3: the key ('turned a cost nobody could see into a number to weigh') repeats the chapter's own wording, and 'faster system for orders' tempts nobody."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 3,
+   "source": "quizProblems",
+   "index": 4,
+   "items": [
+    "TELL-q4"
+   ],
+   "class": "",
+   "reader": "Q4: the 'log screen time for a whole month' distractor is a strawman built to lose. The key repeats the chapter's 'estimate the minutes and share' move."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 3,
+   "source": "quizProblems",
+   "index": 5,
+   "items": [
+    "VARY-quiz"
+   ],
+   "class": "",
+   "reader": "Across Q1-Q7: six of seven questions test the same move (count or time it, then share the number). Nothing checks the chapter's other ideas (principle of least resistance, busyness as a proxy for p..."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 3,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The fastRead turns a chapter about why deep work is rare (three forces: the metric black hole, the principle of least resistance, busyness as a proxy for productivity, plus the cult of the internet..."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 3,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The key takeaway says to price 'the focus it costs', but the method counts only the minutes spent handling messages ('thirty messages at three minutes each'). It never mentions the broken concentra..."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 3,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [
+    "PLAIN-summary"
+   ],
+   "class": "",
+   "reader": "An orphan sentence breaks the summary's flow: 'Newport goes further: he would have you refuse always-on chat and open offices rather than join in because everyone does.' It is not developed anywhere."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 3,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [
+    "VARY-examples"
+   ],
+   "class": "",
+   "reader": "All three examples make the same move about the same thing, a buzzing group chat: count it ('A group chat for the whole garage', 'The volunteer chat that kept buzzing', 'Twenty-two pings')."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 3,
+   "source": "readerProblems",
+   "index": 4,
+   "items": [],
+   "class": "repetition",
+   "reader": "The fast, deep and full reads all end on the same sentence: 'Stop treating a quick message as free, and put a rough number on its cost before you agree to the habit.' It reads as templated."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "TELL-q2"
+   ],
+   "class": "",
+   "reader": "Q2 (architect): the prompt gives the answer away ('her sent folder is full of Friday replies'), so 'She kept her inbox open' needs no understanding."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "TELL-q1"
+   ],
+   "class": "",
+   "reader": "Q1: the key ('Set two mornings a week for the website, with phone and order alerts off') is the only specific choice and copies Noor's exact prescription, so it gives itself away."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "QUIZ-q7",
+    "KEY-q7"
+   ],
+   "class": "",
+   "reader": "Q7 (novelist): nearly the same scenario as example ex02 (phone face down at the kitchen table, trusting willpower), so it tests recall of the example, not transfer. 'Daily hours instead of one morn..."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "KEY-q5"
+   ],
+   "class": "",
+   "reader": "Q5: the 'new room gave her fresh energy' distractor is partly defensible from the book itself (Rule #1's grand gestures, such as Rowling's hotel suite and Gates's cabin, rely on a change of place)."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [
+    "PLAIN-summary"
+   ],
+   "class": "",
+   "reader": "Stilted plain-English swaps sound machine-written: 'Carl Jung, a famous doctor of the mind' (twice)."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The fastRead leaves out Newport's central claim, the deep work hypothesis (the skill is getting rarer just as it gets more valuable). It shrinks the book's career-wide thesis to 'one guarded block ..."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [
+    "EX-ex03"
+   ],
+   "class": "",
+   "reader": "Example ex03 (Tariq sorting his late father's estate papers) is logistical paperwork, close to Newport's definition of shallow work, so it is a poor case of deep work."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [
+    "VARY-examples"
+   ],
+   "class": "",
+   "reader": "The examples all make the same move (book a block and shut off chat): Kwame closes chat, Lucía moves her phone, Tariq mutes the family chat."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 4,
+   "items": [],
+   "class": "repetition",
+   "reader": "The ending repeats the key takeaway word for word in every read: 'Guard a fixed block each week for your hardest work and shut out every interruption, and that work becomes hard to replace.'"
+  },
+  {
+   "book": "deep-work",
+   "chapter": 7,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "KEY-q2"
+   ],
+   "class": "",
+   "reader": "Q2 (illustrator): asks what will 'most likely follow' but keys the ideal outcome ('the kept apps still bring clients'). The prompt never says she kept the client apps, and 'puts all three apps back..."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 7,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "KEY-q4"
+   ],
+   "class": "",
+   "reader": "Q4 (tailor): 'With fewer apps to check, his attention has slowly learned to stay on one thing' is defensible from Newport's own argument that fragmented attention erodes focus. Two answers can stand."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 7,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "KEY-q1",
+    "TELL-q1"
+   ],
+   "class": "",
+   "reader": "Q1 (driver): 'Opening it at every stop instead of saving it for his lunch break' is a defensible reading of the trap. The key is also the longest choice and repeats the chapter's 'without counting ..."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 7,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "KEY-q7"
+   ],
+   "class": "",
+   "reader": "Q7 (potter): a prediction resting on facts the prompt does not give (how many hours the apps take). The key assumes the lesson's conclusion."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 7,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [
+    "ARC-fastRead",
+    "ARC-deepRead",
+    "ARC-fullRead"
+   ],
+   "class": "",
+   "reader": "The Pritchard story, the book's one real-world proof of the craftsman approach, is told without its reason ('its real costs outweighed its value'), so a reader cannot retell why the farmer sold the..."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 7,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The fastRead never mentions the law of the vital few or the two questions to ask after the thirty days (would those days have been notably better with the service, and did anyone notice you were go..."
+  },
+  {
+   "book": "deep-work",
+   "chapter": 7,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [
+    "TRY"
+   ],
+   "class": "",
+   "reader": "The tryThisNow is socially awkward and mostly unneeded: 'Tell one friend today the two goals that matter most to you right now, and name one app that does nothing for them.'"
+  },
+  {
+   "book": "deep-work",
+   "chapter": 7,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [],
+   "class": "repetition",
+   "reader": "The ending repeats the key takeaway near-verbatim in every read: 'Once you keep only the apps that clearly serve your few big goals, your evenings go to those goals.'"
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 9,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "KEY-q3"
+   ],
+   "class": "",
+   "reader": "q3: choice B ('Practice standing tall... hands still and feet wide') can be defended from the book, which recommends exactly this kind of posture warm-up to change your inner state. The keyed answe..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 9,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "KEY-q1"
+   ],
+   "class": "",
+   "reader": "q1: the chapter itself tells readers to keep their hands still for power, so the 'wrong' choice B partly repeats the chapter's own advice. A reader could reasonably be confused about why it is mark..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 9,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "TEMPT-q5"
+   ],
+   "class": "",
+   "reader": "q5: easy because the wrong choice B ('the late delivery truly doesn't matter') contradicts the pen-tapping in the prompt. Only A fits the prompt, so no sensible reader is tempted."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 9,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "TELL-q7",
+    "TEMPT-q7"
+   ],
+   "class": "",
+   "reader": "q7: the keyed answer is the only choice that echoes the chapter's word 'real'. B (matched posture) and C (said the line more slowly) are weak guesses that the prompt gives no support for, so the qu..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 9,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The default fastRead for the book's 'Charismatic Body Language' chapter teaches almost no body language. The power signals (take up space, still hands) and warmth signals (smile that reaches the ey..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 9,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "cross-chapter",
+   "reader": "The lesson repeats ch05 almost word for word. Ch05 says 'A calm mask over a racing heart leaks through busy hands'; ch09 says 'a move with no feeling behind it leaks tiny signs that it is fake'. Th..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 9,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [
+    "PLAIN-summary",
+    "END-fastRead"
+   ],
+   "class": "",
+   "reader": "The fastRead's payoff is unclear. 'the new client, who laughed on the phone about her terrier stealing socks' reads as if the terrier is Farah's. The fastRead also stops before the outcome; the dee..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 9,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [
+    "VARY-examples"
+   ],
+   "class": "",
+   "reader": "All three examples make the same move: find one thing you truly like or respect about the person. The tennis example is tagged 'school' but is about a club match."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "TELL-q3",
+    "TEMPT-q3"
+   ],
+   "class": "",
+   "reader": "q3: wrong choice A ('a shy person can't really change how she comes across') is a strawman that restates the myth the chapter just knocked down. B is also the only positive outcome, so the right an..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "TELL-q4"
+   ],
+   "class": "",
+   "reader": "q4: wrong choice A ('Looks matter most... a sharper outfit') is a strawman the chapter explicitly rejects. The keyed answer echoes the chapter's wording ('It's a few things you do'), so it gives it..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "TELL-q5"
+   ],
+   "class": "",
+   "reader": "q5: wrong choice B ('finally turned into an outgoing person') is a strawman. The keyed answer repeats the summary's phrase 'practiced until it came naturally'."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "TELL-q2",
+    "KEY-q2"
+   ],
+   "class": "",
+   "reader": "q2: the keyed answer ('become a different person before mixers could go well') is the only choice that echoes the chapter's 'you don't need a new personality'. B (mixers are the wrong place for a q..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [
+    "PLAIN-summary"
+   ],
+   "class": "book-coverage",
+   "reader": "The summary says charisma comes from 'a few things you do' and ends with 'Practice a few of these behaviors every day', but it names only one behavior, presence. The book's core model of presence,..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The summary has no concrete material from the book: no named person, story or study, just 'She reports research showing...'. All of the narrative weight rests on the invented Noor."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [
+    "EXFIT-ex03",
+    "EXFIT-ex02"
+   ],
+   "class": "",
+   "reader": "The examples' fix often does not match the problem. Wen froze during a wedding-style toast, and the advice is 'give full attention in a few conversations every day until the wedding'; listening pra..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [
+    "PLAIN-summary"
+   ],
+   "class": "",
+   "reader": "The fastRead jumps from 'charisma can be raised' to 'One behavior to start with is presence' with no bridge, so presence arrives as an aside rather than as part of a model."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 5,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "KEY-q2"
+   ],
+   "class": "",
+   "reader": "q2: wrong choice A ('Run through your speech twice more') can reasonably be defended an hour before a five-minute speech. Nothing in the book says not to rehearse, so the question rests on a false..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 5,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "KEY-q5"
+   ],
+   "class": "",
+   "reader": "q5: wrong choice B ('picture yourself standing tall with steady hands') is itself a visualization. The book also teaches that adopting a confident posture changes your feeling, so the explanation's..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 5,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "TELL-q1",
+    "TELL-q6",
+    "VARY-quiz"
+   ],
+   "class": "",
+   "reader": "q1 and q6: the keyed answers ('Her brain felt the old pride as real', 'Her pride was real') repeat the chapter's catchphrase. Across the set, the correct answer to almost every question is 'relive..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 5,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The chapter covers one technique out of a broad book chapter. 'Creating Charismatic Mental States' also covers gratitude, goodwill, compassion, the warm-hug visualization, playlists and using your..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 5,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "cross-chapter",
+   "reader": "The fastRead teaches 'acting calm fails because your body shows what your mind feels' and then hands the idea to ch09, which repeats it. 'the body shows what the mind feels' is flagged in the tool'..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 5,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [
+    "VARY-examples",
+    "VARY-quiz"
+   ],
+   "class": "",
+   "reader": "All three examples, the review cards and the whole quiz make the same move: relive a proud day before a tense talk. There is no variation such as a case where the memory is weak or the situation ca..."
+  },
+  {
+   "book": "the-charisma-myth",
+   "chapter": 5,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [
+    "OPENER-hook"
+   ],
+   "class": "",
+   "reader": "The hook ('Two people wait outside the same big meeting, equally nervous...') is a generic setup that never hints at what made the difference."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 12,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "VARY-quiz"
+   ],
+   "class": "",
+   "reader": "Every question: the keyed answer is always the one that turns the crush back onto yourself ('partly his', 'set aside in yourself', 'finding his own lightness', 'wish were yours', 'he claimed it')...."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 12,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "KEY-q2"
+   ],
+   "class": "",
+   "reader": "q2: 'She lets the snapping slide, the way she always keeps the peace' is arguably the most likely next step for a woman the prompt describes as raised to keep the peace. It is a prediction question..."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 12,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "KEY-q4"
+   ],
+   "class": "",
+   "reader": "q4: 'Seeing more of her over those weeks slowly showed him her true, everyday self' is a defensible cause, since weeks went by. The explanation rules out only option B."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 12,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "TELL-q5"
+   ],
+   "class": "",
+   "reader": "q5: The keyed answer is the only choice that looks inward, so it gives itself away. The scenario also treats a partner asking your opinion as a let-down, which is an odd premise."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 12,
+   "source": "quizProblems",
+   "index": 4,
+   "items": [
+    "TELL-q1"
+   ],
+   "class": "",
+   "reader": "q1: 'Letting one weekend of fun push aside the steady life he planned' barely tempts, because he has not pushed anything aside yet. The keyed answer is the only one that uses the chapter's wording."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 12,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The default summary has no story from the book. It is all the invented Sanne and Dev, and Caterina Sforza is never mentioned. A reader cannot retell anything Greene actually wrote beyond the defini..."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 12,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [
+    "PRACTICE"
+   ],
+   "class": "",
+   "reader": "The practice plan points to something the reader never made: 'take the quality on your lock screen' (24-hour challenge) and 'look at your lock screen' (weekly practice). Nothing on the default path..."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 12,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "Greene's 'law of gender rigidity' is cut down to advice about crushes. The book's material on masculine and feminine ways of thinking, acting and leading, and on building tolerance for conflict, is..."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 12,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [
+    "TRY"
+   ],
+   "class": "",
+   "reader": "The try-this-now assumes a current crush ('Think of the person you've fallen for'), so a reader in a long relationship, or with no crush, has nothing to do this week."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 12,
+   "source": "readerProblems",
+   "index": 4,
+   "items": [
+    "COUNTER"
+   ],
+   "class": "",
+   "reader": "The counterintuition is clumsy and reads as machine-written: 'What works is asking which buried part of us we see in them, since what we hide in ourselves shows up in other people.'"
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 12,
+   "source": "readerProblems",
+   "index": 5,
+   "items": [
+    "VARY-examples"
+   ],
+   "class": "",
+   "reader": "All three examples make the same move (name the quality and claim it). Only the stakes change: savings, a lab crush, a shift swap."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "KEY-q2"
+   ],
+   "class": "",
+   "reader": "q2: The café owner did exactly what the chapter tells readers to do: she waited a night, reread the email in the morning, then acted. The keyed answer says she 'decided while still angry', which th..."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "KEY-q6"
+   ],
+   "class": "",
+   "reader": "q6: The keyed answer says letting it go 'just buries the feeling'. But example ex02 in this same chapter tells Ines to 'decide if the comment deserves any answer'. Calmly deciding a three-day-old c..."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "KEY-q3"
+   ],
+   "class": "",
+   "reader": "q3: It is a prediction question ('What most likely happens next?'), and the keyed answer adds an outcome the prompt cannot support ('keeps his job'). 'His anger fades, so he lets the note slide' is..."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 1,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "VARY-quiz"
+   ],
+   "class": "",
+   "reader": "Across the quiz, the keyed answer is always the wait-then-act calmly choice, so a reader who has absorbed only the slogan gets all seven right."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [],
+   "class": "repetition",
+   "reader": "The same phrase recurs in the hook, the counterintuition, the fast read and review card rc2: the feeling 'passes itself off as good sense' / 'feels like good sense'. It reads as a template line."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [],
+   "class": "template",
+   "reader": "The counterintuition opens with a stock pivot: 'Many people think... Actually, the first urge is rarely your best thinking.'"
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [],
+   "class": "repetition",
+   "reader": "The deep read repeats the fast read almost sentence for sentence, adding only one paragraph on biases. A reader who opens it gets little new."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 1,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [
+    "VARY-examples"
+   ],
+   "class": "",
+   "reader": "All three examples make the same move (delay a hot reaction). ex02, which shows counting to ten failing against waiting hours, is the only one that adds a new idea."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 15,
+   "source": "quizProblems",
+   "index": 0,
+   "items": [
+    "TELL-q2"
+   ],
+   "class": "",
+   "reader": "q2: The keyed answer is the longest and most specific choice, and the only one that echoes the chapter's wording ('Arrive first and take the heaviest crates yourself, every Saturday, in plain view'..."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 15,
+   "source": "quizProblems",
+   "index": 1,
+   "items": [
+    "KEY-q4",
+    "QUIZ-q4"
+   ],
+   "class": "",
+   "reader": "q4: 'The crew turns on her fast, since one lost race outweighs a year of trust' can be argued from the chapter's own headline ('Loyalty to someone in charge is never settled', 'the people who cheer..."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 15,
+   "source": "quizProblems",
+   "index": 2,
+   "items": [
+    "TELL-q1"
+   ],
+   "class": "",
+   "reader": "q1: The keyed answer repeats the prompt's own words ('Fixing the machine and covering rooms'), which signals it."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 15,
+   "source": "quizProblems",
+   "index": 3,
+   "items": [
+    "VARY-quiz"
+   ],
+   "class": "",
+   "reader": "Every keyed answer is a version of 'work beside them and show you are on their side', so the quiz tests recognition of the slogan more than judgment."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 15,
+   "source": "readerProblems",
+   "index": 0,
+   "items": [
+    "ARC-fastRead"
+   ],
+   "class": "",
+   "reader": "The Elizabeth I story in the default summary has no scene, date or deed a reader could retell: 'she put the country's good ahead of her own, spent its money carefully, and led by example.' The book..."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 15,
+   "source": "readerProblems",
+   "index": 1,
+   "items": [
+    "PLAIN-summary"
+   ],
+   "class": "",
+   "reader": "A garbled term: 'Greene calls this earned standing authority' reads as though the three-word phrase were Greene's term."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 15,
+   "source": "readerProblems",
+   "index": 2,
+   "items": [],
+   "class": "book-coverage",
+   "reader": "The fast read never shows the 'turn' that gives the law its name. No leader in it actually loses people. The Ivo night-crew story that does show it appears only in the optional full read."
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 15,
+   "source": "readerProblems",
+   "index": 3,
+   "items": [],
+   "class": "template",
+   "reader": "The counterintuition opens with a stock line: 'You have probably been told that once you're in charge, people will listen.'"
+  },
+  {
+   "book": "the-laws-of-human-nature",
+   "chapter": 15,
+   "source": "readerProblems",
+   "index": 4,
+   "items": [
+    "SPINE"
+   ],
+   "class": "",
+   "reader": "The 24-hour challenge ('do it yourself where they can see') reads as performing virtue. Example ex03 shows exactly that failing, and the plan does not reconcile the two."
+  }
+ ]
+}

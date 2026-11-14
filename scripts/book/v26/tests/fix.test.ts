@@ -237,3 +237,13 @@ test("an empty fix applies nothing and declined issues are ignored", () => {
   assert.deepEqual(out.errors, []);
   assert.deepEqual(out.chapter, makeChapter());
 });
+
+test("an edit that empties an extra memorable line removes the line; line 1 stays whatever happens to it", () => {
+  // The check's wording is "copy it exactly or remove it", and an empty replacement is how a fix removes it.
+  const out = applyFix(makeChapter(), { edits: [{ field: "memorableLines.1", find: "Line one is memorable.", replace: "" }] });
+  assert.equal(out.applied, 1);
+  assert.deepEqual(out.chapter.memorableLines, [{ text: "Line zero." }]);
+  // An extra line that is only edited stays, and so does the first line even when an edit blanks it (the shape check then says so).
+  const kept = applyFix(makeChapter(), { edits: [{ field: "memorableLines.1", find: "memorable", replace: "kept" }, { field: "memorableLines.0", find: "Line zero.", replace: "" }] });
+  assert.deepEqual(kept.chapter.memorableLines, [{ text: "" }, { text: "Line one is kept." }]);
+});

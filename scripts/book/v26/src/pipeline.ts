@@ -3,7 +3,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { BudgetError, CallFailedError, UsageLimitError, callModel, type CallResult } from "./call";
-import type { BookConfig } from "./config";
+import { ConfigError, preflightBins, type BookConfig } from "./config";
 import { readerFields, runChecks, splitLesson } from "./checks";
 import { applyFix, type FixEdit, type FixError, type FixOutput } from "./fix";
 import { readLedger } from "./ledger";
@@ -19,7 +19,7 @@ import {
 } from "./prompts";
 import { norm, quoteInSource } from "./quotes";
 import { fkGrade } from "./readability";
-import { loadSource, spanText, writerForm, writerFormText, type BookSource } from "./source";
+import { knowledgeSource, loadSource, spanText, writerForm, writerFormText, type BookSource } from "./source";
 import type { Chapter, Issue, LessonCard, QuizQuestion, RoleConfig } from "./types";
 import { wordsIn } from "./validate";
 
@@ -76,7 +76,11 @@ export interface EvalResult {
   total: number;
   noChapterScores: number[];
   det: Record<string, unknown>;
+  judgeVersion?: number;
 }
+
+/** The judge's version, stamped on every saved eval: bump it when the judge's items change. */
+export const JUDGE_VERSION = 2;
 
 const TIMEOUT_MS = 900000;
 const MAX_FIX_ROUNDS = 2;
@@ -110,7 +114,9 @@ function issue(source: Issue["source"], blocking: boolean, field: string | undef
   return field ? { source, blocking, field, text: message } : { source, blocking, text: message };
 }
 
-const isLimit = (e: unknown): e is UsageLimitError | BudgetError => e instanceof UsageLimitError || e instanceof BudgetError;
+/** Errors that stop a whole run: the usage limit, the budget, and a config problem such as a binary that is not there. */
+const isLimit = (e: unknown): e is UsageLimitError | BudgetError | ConfigError =>
+  e instanceof UsageLimitError || e instanceof BudgetError || e instanceof ConfigError;
 
 /** The runBook runs in progress, by ctx. The moment any call of a run hits a usage limit or the budget, `stop` is set and
  *  every call of that run that has not started yet (other chapters, a retry, the rest of a check round) is refused.
@@ -122,6 +128,7 @@ const runs = new WeakMap<object, { stop: Error | null }>();
  *  once a call hits a usage limit or the budget, no call of `fn` that has not started yet is made. */
 export async function guarded<T>(ctx: PipelineCtx, fn: () => Promise<T>): Promise<T> {
   if (runs.has(ctx)) return fn();
+  preflightBins(ctx.config);
   runs.set(ctx, { stop: null });
   try {
     return await fn();
@@ -130,9 +137,9 @@ export async function guarded<T>(ctx: PipelineCtx, fn: () => Promise<T>): Promis
   }
 }
 
-async function call(
+export async function call(
   ctx: PipelineCtx,
-  o: { role: RoleConfig; prompt: string; step: string; n: number | string; kind: "write" | "fix" | "other"; outPrefix: string },
+  o: { role: RoleConfig; prompt: string; step: string; n: number | string; kind: "write" | "fix" | "other"; outPrefix: string; web?: boolean; timeoutMs?: number },
 ): Promise<CallResult> {
   const run = runs.get(ctx);
   if (run?.stop) throw run.stop;
@@ -146,8 +153,9 @@ async function call(
       ledgerPath: ctx.ledgerPath,
       budgetUsd: ctx.config.budgetUsd,
       cwd: ctx.cwd,
-      timeoutMs: TIMEOUT_MS,
+      timeoutMs: o.timeoutMs ?? TIMEOUT_MS,
       outPrefix: o.outPrefix,
+      web: o.web,
     });
   } catch (e) {
     if (run && isLimit(e)) run.stop ??= e;
@@ -170,7 +178,7 @@ function required<T>(v: T | null, what: string): T {
 }
 
 /** Waits for every promise so no call is left running behind a failure, then throws: a usage or budget stop first, else the first error. */
-async function settle(ps: Promise<unknown>[]): Promise<unknown[]> {
+export async function settle(ps: Promise<unknown>[]): Promise<unknown[]> {
   const rs = await Promise.allSettled(ps);
   const bad = rs.flatMap((r) => (r.status === "rejected" ? [r.reason as unknown] : []));
   const fatal = bad.find(isLimit) ?? bad[0];
@@ -198,7 +206,9 @@ function earlierLessons(ctx: PipelineCtx, n: number): string[] {
 // ---------------------------------------------------------------- makeCtx
 
 export function makeCtx(config: BookConfig, opts: { review?: boolean } = {}): PipelineCtx {
-  const source = loadSource(config.source.textPath, config.source.chapterMapPath);
+  const source = config.chapters
+    ? knowledgeSource(config.chapters)
+    : loadSource(config.source!.textPath, config.source!.chapterMapPath);
   const knownTraps: Record<number, string[]> = {};
   if (config.knownTrapsPath) {
     const entries = obj(readJson(config.knownTrapsPath)).entries;
@@ -224,7 +234,15 @@ export function makeCtx(config: BookConfig, opts: { review?: boolean } = {}): Pi
 
 // ---------------------------------------------------------------- write
 
+/** The write, check, fix and eval steps need the source text; only `variants` works without it. */
+function requireText(ctx: PipelineCtx, step: string): void {
+  if (ctx.source.mode === "knowledge") {
+    throw new Error(`KNOWLEDGE_MODE_UNSUPPORTED: ${step} needs the book's source text; only the variants command works for a book without one`);
+  }
+}
+
 export async function writeChapter(ctx: PipelineCtx, n: number, opts: { rerunNote?: string } = {}): Promise<void> {
+  requireText(ctx, "write");
   const dir = chapterDir(ctx, n);
   const titles = Object.fromEntries(ctx.source.spans.map((s) => [s.chapterNumber, s.chapterTitle]));
   const prompt = renderTemplate(loadPrompt("write"), {
@@ -301,7 +319,7 @@ async function noChapterRuns(
 const RATINGS: readonly string[] = ["SUPPORTED", "STRETCHED", "UNSUPPORTED"];
 
 /** Which chapter field a failed review item points at (none for the whole-chapter items). */
-function reviewField(id: string): string | undefined {
+export function reviewField(id: string): string | undefined {
   const [head, ...rest] = id.split("-");
   const tail = rest.join("-");
   switch (head) {
@@ -320,17 +338,23 @@ function reviewField(id: string): string | undefined {
     case "EXFIT":
       return `examples.${tail}`;
     case "QUIZ":
+    case "TEMPT":
+    case "KEY":
+    case "TELL":
       return `quiz.${tail}`;
     case "CARD":
       return `reviewCards.${tail}`;
     case "PRACTICE":
       return "implementationPlan";
+    case "VARY":
+      return tail === "quiz" ? "quiz" : tail === "examples" ? "examples" : undefined;
     default:
       return undefined;
   }
 }
 
 export async function checkChapter(ctx: PipelineCtx, n: number, round: number): Promise<RoundResult> {
+  requireText(ctx, "check");
   const dir = chapterDir(ctx, n);
   const chapterFile = path.join(dir, `r${round}.chapter.json`);
   const chapter = readJson<Chapter>(chapterFile);
@@ -512,6 +536,7 @@ function changesProtected(before: Chapter, after: Chapter, issues: Issue[]): boo
 }
 
 export async function fixChapter(ctx: PipelineCtx, n: number, round: number, issues: Issue[]): Promise<void> {
+  requireText(ctx, "fix");
   const dir = chapterDir(ctx, n);
   const chapter = readJson<Chapter>(path.join(dir, `r${round}.chapter.json`));
   const lesson = readJson<LessonCard>(path.join(dir, "lesson.json"));
@@ -530,7 +555,7 @@ export async function fixChapter(ctx: PipelineCtx, n: number, round: number, iss
   const ask = async (p: string, name: string): Promise<FixOutput> =>
     obj(
       required(
-        await callJson(ctx, { role: ctx.config.writer, prompt: p, step: "fix", n, kind: "fix", outPrefix: path.join(dir, `r${next}.${name}`) }),
+        await callJson(ctx, { role: ctx.config.fixer ?? ctx.config.checker, prompt: p, step: "fix", n, kind: "fix", outPrefix: path.join(dir, `r${next}.${name}`) }),
         `fix of chapter ${n}`,
       ),
     ) as FixOutput;
@@ -661,6 +686,7 @@ export async function runChapter(ctx: PipelineCtx, n: number, opts: { force?: bo
 }
 
 export async function runBook(ctx: PipelineCtx, chapters: number[], opts: { force?: boolean } = {}): Promise<ChapterStatus[]> {
+  preflightBins(ctx.config);
   const out: ChapterStatus[] = new Array(chapters.length);
   const run: { stop: Error | null } = { stop: null };
   runs.set(ctx, run);
@@ -715,11 +741,14 @@ export function statusRows(ctx: PipelineCtx): Array<{ chapter: number; stage: st
 // ---------------------------------------------------------------- eval
 
 function expectedIds(c: Chapter): string[] {
-  const ids = ["OPENER-hook", "PLAIN-summary", "PLAIN-rest", "COUNTER", "TRY", "LINES-1", "PRACTICE", "SPINE"];
+  const ids = ["OPENER-hook", "PLAIN-summary", "PLAIN-rest", "COUNTER", "TRY", "LINES-1", "PRACTICE", "SPINE", "VARY-examples", "VARY-quiz"];
   for (const t of TIERS) ids.push(`OPENER-${t}`, `ARC-${t}`, `END-${t}`);
   for (const e of c.examples ?? []) ids.push(`EX-${e.exampleId}`);
   for (const e of c.examples ?? []) ids.push(`EXFIT-${e.exampleId}`);
   for (const q of c.quiz?.questions ?? []) ids.push(`QUIZ-${q.questionId}`);
+  for (const q of c.quiz?.questions ?? []) ids.push(`TEMPT-${q.questionId}`);
+  for (const q of c.quiz?.questions ?? []) ids.push(`KEY-${q.questionId}`);
+  for (const q of c.quiz?.questions ?? []) ids.push(`TELL-${q.questionId}`);
   for (const r of c.reviewCards ?? []) ids.push(`CARD-${r.cardId}`);
   return ids;
 }
@@ -754,6 +783,8 @@ function detMetrics(c: Chapter): Record<string, unknown> {
 }
 
 export async function evalChapter(ctx: PipelineCtx, chapterPath: string, n: number, tag: string, outDir: string): Promise<EvalResult> {
+  // No source text is read here: the judge sees the reader-visible chapter and the no-chapter solver sees the quiz, so a
+  // knowledge-mode book is evaluated the same way (its facts were checked against the checker's knowledge when it landed).
   const { _lesson, ...c } = obj(readJson(chapterPath));
   void _lesson;
   const chapter = c as unknown as Chapter;
@@ -791,10 +822,16 @@ export async function evalChapter(ctx: PipelineCtx, chapterPath: string, n: numb
   ])) as [unknown, Awaited<ReturnType<typeof noChapterRuns>>];
 
   const judge = obj(judged);
-  const items = list(judge.items).map((raw) => {
+  // An id the judge answered twice counts once, and a fail in either answer stands.
+  const byId = new Map<string, { id: string; pass: boolean; evidence: string }>();
+  for (const raw of list(judge.items)) {
     const x = obj(raw);
-    return { id: text(x.id), pass: x.pass === true, evidence: text(x.evidence) };
-  });
+    const item = { id: text(x.id), pass: x.pass === true, evidence: text(x.evidence) };
+    const seen = byId.get(item.id);
+    if (!seen) byId.set(item.id, item);
+    else if (seen.pass && !item.pass) byId.set(item.id, item);
+  }
+  const items = [...byId.values()];
   const fraction = (prefix: string): number | null => {
     const group = items.filter((i) => i.id.startsWith(prefix));
     return group.length ? group.filter((i) => i.pass).length / group.length : null;
@@ -817,6 +854,7 @@ export async function evalChapter(ctx: PipelineCtx, chapterPath: string, n: numb
     total: items.length,
     noChapterScores: noChapter.scores,
     det: detMetrics(chapter),
+    judgeVersion: JUDGE_VERSION,
   };
   writeJson(path.join(outDir, `${tag}.eval.json`), result);
   return result;

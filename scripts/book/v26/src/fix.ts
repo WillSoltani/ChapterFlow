@@ -83,6 +83,11 @@ export function applyFix(chapter: Chapter, fix: FixOutput): { chapter: Chapter; 
     applied++;
   }
 
+  // A check that finds an extra memorable line is not the author's says "copy it exactly or remove it", and the only way
+  // an edit can remove a line is to replace its text with nothing. The emptied line goes with it: left in place it is a
+  // shape error no later round is allowed to touch. Line 1, the lesson in fresh words, always stays.
+  if (Array.isArray(out.memorableLines)) out.memorableLines = out.memorableLines.filter((m, i) => i === 0 || (typeof m?.text === "string" && m.text.trim() !== ""));
+
   // Key changes run after edits so keyedChoiceText is checked against the final choice text.
   for (const kc of fix.keyChanges ?? []) {
     const q = out.quiz.questions.find((x) => x.questionId === kc.questionId);

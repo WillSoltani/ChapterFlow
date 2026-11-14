@@ -4,6 +4,7 @@ import path from "node:path";
 
 import type { ExecutionProfile } from "../../prompts/chapterflow-v24-author-pipeline/src/runtime/executionPolicyTypes";
 import { createClaudeRoute } from "../../prompts/chapterflow-v24-author-pipeline/src/runtime/claudeRoute";
+import { expandBinGlob } from "./config";
 import { appendLedger, ledgerTotal } from "./ledger";
 import { EFFORTS, type Effort, type RoleConfig } from "./types";
 
@@ -27,9 +28,19 @@ export const READ_ONLY_PROFILE: ExecutionProfile = {
   maxStderrBytes: 1048576,
 };
 
-export function buildArgv(model: string, effort: string): string[] {
+/** The two tools a web call may use. Nothing that runs code, reads files or writes anything. */
+export const WEB_TOOLS = "WebSearch,WebFetch";
+
+/** `web` is for the keys check only: the model may search and fetch the open web to compare a note with the book. The
+ *  no-tools lockdown is swapped for exactly the two web tools; restricted mode and the MCP lockdown stay. */
+export function buildArgv(model: string, effort: string, web = false): string[] {
   // --restricted alone still loads the operator's claude.ai MCP connectors; --strict-mcp-config stops that.
-  return [...createClaudeRoute(model, effort).build(READ_ONLY_PROFILE).args, "--strict-mcp-config"];
+  const args = [...createClaudeRoute(model, effort).build(READ_ONLY_PROFILE).args, "--strict-mcp-config"];
+  if (!web) return args;
+  const lock = args.indexOf("--disallowedTools");
+  if (lock < 0) throw new Error("ARGV_LOCKDOWN_MISSING: the route no longer carries --disallowedTools; a web call cannot be built safely");
+  args.splice(lock, 2, "--tools", WEB_TOOLS, "--allowedTools", WEB_TOOLS);
+  return args;
 }
 
 export function childEnv(base: NodeJS.ProcessEnv = process.env): Record<string, string> {
@@ -54,6 +65,8 @@ export interface CallOptions {
   cwd: string;
   timeoutMs: number;
   outPrefix?: string;
+  /** The model may use web search and web fetch (the keys check). Default: no tools at all. */
+  web?: boolean;
 }
 
 export interface CallResult {
@@ -76,7 +89,7 @@ interface Attempt {
   envelope: Record<string, unknown> | null;
 }
 
-function runClaude(o: CallOptions, effort: string): Promise<Attempt> {
+function runClaude(o: CallOptions, effort: string, bin: string): Promise<Attempt> {
   return new Promise((resolve) => {
     const started = Date.now();
     const out: Buffer[] = [];
@@ -84,21 +97,22 @@ function runClaude(o: CallOptions, effort: string): Promise<Attempt> {
     let timedOut = false;
     let settled = false;
 
+    let timer: NodeJS.Timeout | undefined;
     const finish = (code: number | null, spawnError?: string) => {
       if (settled) return;
       settled = true;
-      clearTimeout(timer);
+      if (timer) clearTimeout(timer);
       const stdout = Buffer.concat(out).toString("utf8");
       const stderr = Buffer.concat(err).toString("utf8") + (spawnError ?? "");
       resolve({ stdout, stderr, code, seconds: (Date.now() - started) / 1000, timedOut, envelope: parseEnvelope(stdout) });
     };
 
-    const child = spawn(o.role.bin, buildArgv(o.role.model, effort), {
+    const child = spawn(bin, buildArgv(o.role.model, effort, o.web === true), {
       cwd: o.cwd,
       env: childEnv(),
       stdio: ["pipe", "pipe", "pipe"],
     });
-    const timer = setTimeout(() => {
+    timer = setTimeout(() => {
       timedOut = true;
       child.kill("SIGKILL");
     }, o.timeoutMs);
@@ -142,12 +156,14 @@ export async function callModel(o: CallOptions): Promise<CallResult> {
     throw new BudgetError(`BUDGET_STOP: spent $${spent.toFixed(2)} + reserve $${reserve.toFixed(2)} exceeds budget $${o.budgetUsd.toFixed(2)}`);
   }
   fs.mkdirSync(o.cwd, { recursive: true });
+  // A glob bin resolves to the newest install now; a bin that matches nothing is a ConfigError, never retried or ledgered.
+  const bin = o.role.bin.includes("/") ? expandBinGlob(o.role.bin, `${o.role.role ?? "role"}.bin`) : o.role.bin;
 
   let effort: string = o.role.effort;
   let retried = false;
 
   for (;;) {
-    const a = await runClaude(o, effort);
+    const a = await runClaude(o, effort, bin);
     const env = a.envelope;
     const isError = env === null || env.is_error === true;
     const usage = env?.usage as { output_tokens?: unknown } | undefined;

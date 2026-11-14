@@ -1,0 +1,5 @@
+THE BOOK: The Laws of Human Nature by Robert Greene (2018), an argument book. Each of its 18 chapters states one law of human behaviour, shows it through one or two long historical portraits (a person ruled by the law, and often one who mastered it), then explains the keys to reading that law in others and in yourself, and ends by describing the ideal of the person who has mastered it.
+- The lesson is the law as a reader can use it today: one concrete way to read people or to master yourself at work and at home, with Greene's reason for it. Keep his edge: people are driven by forces they do not see, and the same forces are at work in you.
+- The chapter's portraits and Greene's reasoning are the evidence. Tell them in plain words and in the right order, naming only who the lesson needs, and never add a person, date, number or outcome the chapter does not give.
+- There is no source text here, so no quotations: put his terms (the law's name, the shadow, the primal inclination) in your own words and explain each where it first appears.
+- Tell Greene's advice as he gives it. Add no limit of your own.

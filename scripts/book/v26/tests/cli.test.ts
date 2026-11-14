@@ -60,10 +60,13 @@ const CH = {
 
 /** Every id the eval judge has to answer for CH. */
 const JUDGE_IDS = [
-  "OPENER-hook", "PLAIN-summary", "PLAIN-rest", "COUNTER", "TRY", "LINES-1", "PRACTICE", "SPINE",
+  "OPENER-hook", "PLAIN-summary", "PLAIN-rest", "COUNTER", "TRY", "LINES-1", "PRACTICE", "SPINE", "VARY-examples", "VARY-quiz",
   ...["fastRead", "deepRead", "fullRead"].flatMap((t) => [`OPENER-${t}`, `ARC-${t}`, `END-${t}`]),
   "EX-ex1", "EX-ex2", "EXFIT-ex1", "EXFIT-ex2",
   "QUIZ-q1", "QUIZ-q2", "QUIZ-q3",
+  "TEMPT-q1", "TEMPT-q2", "TEMPT-q3",
+  "KEY-q1", "KEY-q2", "KEY-q3",
+  "TELL-q1", "TELL-q2", "TELL-q3",
   "CARD-rc1", "CARD-rc2",
 ];
 const judge = (failing: string[] = []) => ({
@@ -1011,7 +1014,7 @@ test("render: with no final chapter it exits 1 and says what to do", async () =>
 
 // ---------------------------------------------------------------- the committed book configs
 
-test("the committed book configs load, use canonical categories, and give the shape W1c measured", () => {
+test("the committed book configs load, use canonical categories, point at the runs dir, and give the shape W1c measured", () => {
   for (const name of ["the-autobiography-of-benjamin-franklin", "how-to-live-on-24-hours-a-day"]) {
     const cfg = loadBookConfig(path.join(BOOKS, `${name}.json`));
     assert.equal(cfg.bookId, name);
@@ -1020,13 +1023,16 @@ test("the committed book configs load, use canonical categories, and give the sh
       examples: 3, quizQuestions: 7, choices: 3, reviewCards: 5, memorableLines: 3, ifThenPlans: 2,
       fastRead: [150, 220], deepRead: [350, 500], fullRead: [800, 1100],
     });
-    assert.deepEqual([cfg.writer.model, cfg.writer.effort], ["claude-opus-5-5", "high"]);
+    // From the next book on (owner, 2026-11-05): Sonnet writes, Opus checks and fixes.
+    assert.deepEqual([cfg.writer.model, cfg.writer.effort], ["claude-sonnet-5-5", "high"]);
     assert.deepEqual([cfg.checker.model, cfg.checker.effort], ["claude-opus-5-5", "high"]);
-    assert.deepEqual([cfg.solver.model, cfg.solver.effort], ["claude-sonnet-5", "medium"]);
+    assert.deepEqual([cfg.fixer?.model, cfg.fixer?.effort], ["claude-opus-5-5", "high"]);
+    assert.deepEqual([cfg.solver.model, cfg.solver.effort], ["claude-sonnet-5-5", "medium"]);
     assert.ok(cfg.writer.bin.endsWith("native-binary/claude"));
-    assert.equal(cfg.budgetUsd, 80);
-    assert.equal(cfg.runDir, path.join(os.homedir(), "cf-wt/v26-plan/scratch/W1c/run", name));
-    assert.equal(cfg.ledgerPath, path.join(os.homedir(), "cf-wt/v26-plan/scratch/W1c/ledger.jsonl"));
+    assert.equal(cfg.budgetUsd, 60);
+    assert.equal(cfg.runDir, path.join(os.homedir(), "cf-wt/v26-plan/runs", name));
+    // Each book keeps its own ledger (run-book skill, 2026-11-05): a shared one carries other books' spend into the cap.
+    assert.equal(cfg.ledgerPath, undefined);
     assert.equal(cfg.briefPath, path.resolve(BOOKS, "../briefs", `${name}.md`));
   }
   const franklin = loadBookConfig(path.join(BOOKS, "the-autobiography-of-benjamin-franklin.json"));
@@ -1037,4 +1043,283 @@ test("the committed book configs load, use canonical categories, and give the sh
   assert.equal(bennett.bookType, "how-to");
   assert.deepEqual(bennett.categories, ["Productivity", "Self Improvement"]);
   assert.equal(bennett.knownTrapsPath, undefined);
+});
+
+// ---------------------------------------------------------------- score (the publish gate)
+
+const landedStatus = (n: number, open: Array<{ source: string; blocking: boolean; field: string; text: string }> = []) => ({
+  chapter: n, stage: open.some((i) => i.blocking) ? "open-issues" : "clean", round: 0, rerun: false, lessonRating: "UNKNOWN", open, spend: 1, lesson: KEY,
+});
+
+test("score: every landed chapter is judged once, the book gets a 0-100 score and the auto band, score.json lands", async () => {
+  const h = harness();
+  h.script({ "pipe-review": [{ result: judge() }, { result: judge() }], "pipe-nochapter": [{ result: GUESS_WRONG }] });
+  h.put(1, "final.json", CH);
+  h.put(1, "status.json", landedStatus(1));
+  h.put(2, "final.json", CH);
+  h.put(2, "status.json", landedStatus(2));
+  const r = await h.cli("score", "--book", h.configPath);
+  assert.equal(r.code, 0, r.err + r.out);
+  assert.match(r.out, /book demo-book: score 100 \(mean 100, lowest 100\); band AUTO/);
+  assert.match(r.out, /not landed, skipped: ch03/);
+  const saved = JSON.parse(fs.readFileSync(path.join(h.runDir, "score.json"), "utf8"));
+  assert.deepEqual(saved.chapters.map((c: { chapter: number }) => c.chapter), [1, 2]);
+  assert.deepEqual(saved.thresholds, { auto: 80, manual: 70 });
+  assert.equal(saved.judgeVersion, JUDGE_VERSION, "the score names the judge that gave it");
+  assert.equal(h.calls("pipe-review").length, 2);
+  // A second run reuses the saved evals: no new judge call.
+  const again = await h.cli("score", "--book", h.configPath);
+  assert.equal(again.code, 0);
+  assert.equal(h.calls("pipe-review").length, 2);
+});
+
+test("score: an open blocking flag keeps a perfect book in the manual band and names the chapter to redo", async () => {
+  const h = harness();
+  h.script({ "pipe-review": [{ result: judge() }, { result: judge() }], "pipe-nochapter": [{ result: GUESS_WRONG }] });
+  h.put(1, "final.json", CH);
+  h.put(1, "status.json", landedStatus(1));
+  h.put(2, "final.json", CH);
+  h.put(2, "status.json", landedStatus(2, [{ source: "fact", blocking: true, field: "breakdown.deepRead", text: "WHY (UNSUPPORTED): x" }]));
+  const r = await h.cli("score", "--book", h.configPath, "--chapters", "1,2");
+  assert.equal(r.code, 1, r.err + r.out);
+  assert.match(r.out, /band MANUAL: open blocking flags in ch02/);
+  assert.match(r.out, /redo before the next try: ch02/);
+});
+
+test("score: a book whose mean is under the manual bar fails, and the gate thresholds come from the config", async () => {
+  const h = harness();
+  const failing = JUDGE_IDS.slice(0, Math.ceil(JUDGE_IDS.length * 0.4));
+  h.script({ "pipe-review": [{ result: judge(failing) }], "pipe-nochapter": [{ result: GUESS_WRONG }] });
+  h.put(1, "final.json", CH);
+  h.put(1, "status.json", landedStatus(1));
+  const r = await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(r.code, 2, r.err + r.out);
+  assert.match(r.out, /band FAIL: mean \d+(\.\d)? is under 70/);
+  // Lower thresholds in the config move the same book into the manual band.
+  const cfg = JSON.parse(fs.readFileSync(h.configPath, "utf8"));
+  cfg.gate = { auto: 95, manual: 50 };
+  fs.writeFileSync(h.configPath, JSON.stringify(cfg));
+  const r2 = await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(r2.code, 1, r2.err + r2.out);
+  assert.match(r2.out, /band MANUAL: mean \d+(\.\d)? is under 95/);
+  cfg.gate = { auto: 50, manual: 80 };
+  fs.writeFileSync(h.configPath, JSON.stringify(cfg));
+  const r3 = await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.match(r3.err + r3.out, /CONFIG_INVALID.*gate.*manual must not be above auto/);
+});
+
+test("score: items the judge left out count as failed, and such an eval is judged again on the next run", async () => {
+  const h = harness();
+  const full = judge();
+  const partial = { ...full, items: full.items.slice(0, Math.floor(full.items.length / 2)) };
+  // The judge is asked once more when items are missing; here it leaves them out both times, then answers in full.
+  h.script({ "pipe-review": [{ result: partial }, { result: partial }, { result: full }], "pipe-nochapter": [{ result: GUESS_WRONG }] });
+  h.put(1, "final.json", CH);
+  h.put(1, "status.json", landedStatus(1));
+  // Half the items answered, all of them passing: without the rule this chapter would score 100.
+  const r = await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(r.code, 2, r.err + r.out);
+  assert.match(r.out, /band FAIL/);
+  const saved = JSON.parse(fs.readFileSync(path.join(h.runDir, "score.json"), "utf8"));
+  assert.equal(saved.chapters[0].total, JUDGE_IDS.length);
+  assert.ok(saved.chapters[0].score < 60, String(saved.chapters[0].score));
+  // The incomplete eval is not trusted on the next run: the judge is asked again and the full answer stands.
+  const r2 = await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(r2.code, 0, r2.err + r2.out);
+  assert.equal(h.calls("pipe-review").length, 3);
+});
+
+test("score: a saved eval from another judge version (or with no stamp) is judged again; one from this judge is reused", async () => {
+  const h = harness();
+  h.script({ "pipe-review": [{ result: judge() }], "pipe-nochapter": [{ result: GUESS_WRONG }] });
+  h.put(1, "final.json", CH);
+  h.put(1, "status.json", landedStatus(1));
+  const evalFile = path.join(h.runDir, "eval", "ch01.eval.json");
+  const r = await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(r.code, 0, r.err + r.out);
+  assert.equal(h.calls("pipe-review").length, 1);
+  assert.equal(JSON.parse(fs.readFileSync(evalFile, "utf8")).judgeVersion, JUDGE_VERSION);
+  // The current judge's eval is reused.
+  await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(h.calls("pipe-review").length, 1);
+  // No stamp: an eval from before the stamp existed is asked again.
+  const { judgeVersion: _v, ...unstamped } = JSON.parse(fs.readFileSync(evalFile, "utf8"));
+  void _v;
+  fs.writeFileSync(evalFile, JSON.stringify(unstamped));
+  await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(h.calls("pipe-review").length, 2);
+  // Another number: asked again too.
+  fs.writeFileSync(evalFile, JSON.stringify({ ...JSON.parse(fs.readFileSync(evalFile, "utf8")), judgeVersion: JUDGE_VERSION - 1 }));
+  await h.cli("score", "--book", h.configPath, "--chapters", "1");
+  assert.equal(h.calls("pipe-review").length, 3);
+  assert.equal(JSON.parse(fs.readFileSync(evalFile, "utf8")).judgeVersion, JUDGE_VERSION);
+});
+
+// ---------------------------------------------------------------- publish (behind the gate)
+
+import { execFileSync } from "node:child_process";
+import { gitCommitPackage, publishBook, type Publisher } from "../src/publish";
+import { JUDGE_VERSION, makeCtx } from "../src/pipeline";
+
+const scoreFile = (h: ReturnType<typeof harness>, over: Record<string, unknown> = {}) => {
+  const chapters = [1, 2, 3].map((n) => ({ chapter: n, score: 100, passCount: 10, total: 10, failed: [], stage: "clean", blocking: 0, guessable: false }));
+  const s = { bookId: "demo-book", at: new Date(Date.now() + 5000).toISOString(), thresholds: { auto: 80, manual: 70 }, chapters, skipped: [], mean: 100, min: 100, score: 100, band: "auto", reasons: [], redo: [], judgeVersion: JUDGE_VERSION, ...over };
+  fs.writeFileSync(path.join(h.runDir, "score.json"), JSON.stringify(s));
+};
+const landAll = (h: ReturnType<typeof harness>) => {
+  for (const n of [1, 2, 3]) {
+    h.put(n, "final.json", CH);
+    h.put(n, "status.json", landedStatus(n));
+  }
+};
+
+test("publish: refused without a score, with a stale score, in the fail band, and manual without --approve", async () => {
+  const h = harness();
+  landAll(h);
+  const out = path.join(h.dir, "pkgs");
+  let r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+  assert.equal(r.code, 2);
+  assert.match(r.out, /no score yet/);
+  scoreFile(h, { at: new Date(Date.now() - 60_000).toISOString() });
+  r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+  assert.equal(r.code, 2);
+  assert.match(r.out, /changed after the score; run `score` again/);
+  // A score an older judge gave (or one with no judge named) opens nothing, whatever its band.
+  for (const judgeVersion of [JUDGE_VERSION - 1, undefined]) {
+    scoreFile(h, { judgeVersion });
+    r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+    assert.equal(r.code, 2);
+    assert.match(r.out, /the score is from an older judge; run `score` again/);
+  }
+  scoreFile(h, { band: "fail", score: 55, mean: 55, reasons: ["mean 55 is under 70"], redo: [2, 3] });
+  r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+  assert.equal(r.code, 2);
+  assert.match(r.out, /band FAIL: REFUSED/);
+  assert.match(r.out, /redo ch02, ch03 with the owner's permission/);
+  scoreFile(h, { band: "manual", score: 75, mean: 75, reasons: ["mean 75 is under 80"] });
+  r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+  assert.equal(r.code, 1);
+  assert.match(r.out, /NEEDS-APPROVAL/);
+  assert.match(r.out, /publish --approve/);
+  assert.ok(!fs.existsSync(path.join(out, "demo-book.v21.json")), "nothing is written before the gate opens");
+});
+
+test("publish --dry-run: the auto band builds the app-validated package with the three added fields, and touches nothing else", async () => {
+  const h = harness();
+  landAll(h);
+  scoreFile(h);
+  const out = path.join(h.dir, "pkgs");
+  const r = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+  assert.equal(r.code, 0, r.err + r.out);
+  assert.match(r.out, /band AUTO: DRY-RUN/);
+  assert.match(r.out, /package: 3 chapters, demo-book-v26-\d+/);
+  assert.match(r.out, /dry run: no git, no S3, no catalog registration/);
+  const pkg = JSON.parse(fs.readFileSync(path.join(out, "demo-book.v21.json"), "utf8"));
+  assert.equal(pkg.schemaVersion, "chapterflow-v21-authored");
+  assert.equal(pkg.contentOwner, "chapterflow");
+  assert.deepEqual(pkg.chapters.map((c: { chapterId: string; number: number }) => [c.chapterId, c.number]), [["demo-book-ch01", 1], ["demo-book-ch02", 2], ["demo-book-ch03", 3]]);
+  assert.ok(pkg.chapters.every((c: { readingTimeMinutes: number }) => Number.isInteger(c.readingTimeMinutes) && c.readingTimeMinutes >= 1));
+  assert.ok(!("_lesson" in pkg.chapters[0]));
+  // The practice plan goes out in the app's form: a tag in the chip, the cue and the action as one sentence.
+  const plans = pkg.chapters.flatMap((c: { implementationPlan: { ifThenPlans: Array<{ context: string; plan: string }> } }) => c.implementationPlan.ifThenPlans);
+  assert.ok(plans.length > 0 && plans.every((p: { context: string }) => ["work", "school", "personal"].includes(p.context)), JSON.stringify(plans));
+  assert.ok(plans.every((p: { plan: string }) => !/^then\b/i.test(p.plan)), JSON.stringify(plans));
+  assert.ok(!fs.existsSync(path.join(h.runDir, "publish.json")), "a dry run leaves no publish record");
+  // A chapter that has not landed refuses the package.
+  fs.rmSync(h.file(3, "final.json"));
+  scoreFile(h);
+  const r2 = await h.cli("publish", "--book", h.configPath, "--dry-run", "--out", out);
+  assert.equal(r2.code, 2);
+  assert.match(r2.out, /2 of 3 chapters have landed/);
+});
+
+test("publishBook: the auto band runs S3, the catalog registration and the live check through the publisher, and records publish.json", async () => {
+  const h = harness();
+  landAll(h);
+  scoreFile(h);
+  const calls: string[] = [];
+  const fake: Publisher = {
+    async names() { return { table: "T", contentBucket: "content-bucket", ingestBucket: "ingest-bucket", region: "us-east-1", profile: "chapterflow" }; },
+    async putPackage(names, key, body) { calls.push(`put ${names.contentBucket}/${key} ${body.length > 100 ? "body" : "empty"}`); },
+    async register(_names, bookId) { calls.push(`register ${bookId}`); return "demo-book: PUBLISHED v000001"; },
+    async liveVersion(bookId) { calls.push(`version ${bookId}`); return 3; },
+    async verifyLive(bookId, packageId, expect) { calls.push(`verify ${bookId} ${packageId} ${expect.chapters} above ${expect.versionAbove}`); return { ok: true, detail: `live: ${bookId} serves ${packageId}` }; },
+  };
+  const ctx = makeCtx(loadBookConfig(h.configPath));
+  const r = await publishBook(ctx, { packagesDir: path.join(h.dir, "pkgs"), noGit: true, publisher: fake });
+  assert.equal(r.outcome, "published", JSON.stringify(r));
+  assert.deepEqual(calls, ["version demo-book", `put content-bucket/book-content/packages/demo-book.v21.json body`, "register demo-book", `verify demo-book ${r.packageId} 3 above 3`]);
+  assert.ok(r.steps.some((s) => s.startsWith("verified live:")), r.steps.join("|"));
+  const rec = JSON.parse(fs.readFileSync(path.join(h.runDir, "publish.json"), "utf8"));
+  assert.equal(rec.packageId, r.packageId);
+  assert.equal(rec.band, "auto");
+  // The manual band with --approve publishes the same way and says the owner approved it.
+  scoreFile(h, { band: "manual", score: 76, mean: 76, reasons: ["mean 76 is under 80"] });
+  const r2 = await publishBook(ctx, { packagesDir: path.join(h.dir, "pkgs"), noGit: true, publisher: fake, approve: true });
+  assert.equal(r2.outcome, "published");
+  assert.match(r2.reasons[0]!, /approved by the owner/);
+});
+
+test("publishBook: the AWS names are resolved before anything is committed, so a publish that cannot reach AWS leaves no commit behind", async () => {
+  const h = harness();
+  landAll(h);
+  scoreFile(h);
+  const calls: string[] = [];
+  const fake: Publisher = {
+    async names() { calls.push("names"); throw new Error("AWS_UNREACHABLE: no credentials"); },
+    async putPackage() { calls.push("put"); },
+    async register() { calls.push("register"); return ""; },
+    async liveVersion() { calls.push("version"); return null; },
+    async verifyLive() { calls.push("verify"); return { ok: true, detail: "" }; },
+  };
+  const ctx = makeCtx(loadBookConfig(h.configPath));
+  // Git is on here, and the package sits outside the repo: a commit attempted first would fail with a git error instead.
+  await assert.rejects(publishBook(ctx, { packagesDir: path.join(h.dir, "pkgs"), publisher: fake }), /AWS_UNREACHABLE/);
+  assert.deepEqual(calls, ["names"]);
+  assert.ok(!fs.existsSync(path.join(h.runDir, "publish.json")));
+});
+
+test("publishBook: a score that covers only some chapters is refused, however good it is", async () => {
+  const h = harness();
+  landAll(h);
+  scoreFile(h, { chapters: [{ chapter: 1, score: 100, passCount: 10, total: 10, failed: [], stage: "clean", blocking: 0, guessable: false }] });
+  const calls: string[] = [];
+  const fake: Publisher = {
+    async names() { calls.push("names"); return { table: "T", contentBucket: "c", ingestBucket: "i", region: "us-east-1", profile: "chapterflow" }; },
+    async putPackage() { calls.push("put"); },
+    async register() { calls.push("register"); return ""; },
+    async liveVersion() { return null; },
+    async verifyLive() { return { ok: true, detail: "" }; },
+  };
+  const r = await publishBook(makeCtx(loadBookConfig(h.configPath)), { packagesDir: path.join(h.dir, "pkgs"), noGit: true, publisher: fake });
+  assert.equal(r.outcome, "refused");
+  assert.match(r.reasons.join(" "), /the score covers only some chapters \(not ch02, ch03\)/);
+  assert.deepEqual(calls, []);
+});
+
+test("publish's commit takes the package alone: whatever else is staged stays staged and uncommitted", () => {
+  const repo = fs.mkdtempSync(path.join(os.tmpdir(), "v26-git-"));
+  try {
+    const git = (...a: string[]): string => execFileSync("git", a, { cwd: repo, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    git("init", "-q");
+    git("config", "user.email", "test@example.test");
+    git("config", "user.name", "Test");
+    git("config", "commit.gpgsign", "false");
+    fs.writeFileSync(path.join(repo, "seed.txt"), "seed\n");
+    git("add", "seed.txt");
+    git("commit", "-q", "-m", "seed");
+    // Someone's own work sits in the index when the publish runs.
+    fs.writeFileSync(path.join(repo, "other.txt"), "the operator's own work\n");
+    git("add", "other.txt");
+    fs.mkdirSync(path.join(repo, "book-packages"));
+    const file = path.join(repo, "book-packages", "demo.v21.json");
+    fs.writeFileSync(file, "{}\n");
+    const steps: string[] = [];
+    gitCommitPackage(file, "chore(books): publish demo", steps, repo);
+    assert.equal(git("show", "--name-only", "--format=", "HEAD").trim(), "book-packages/demo.v21.json");
+    assert.match(git("status", "--porcelain"), /^A  other\.txt$/m);
+    assert.match(steps.join("|"), /git: committed book-packages\/demo\.v21\.json as [0-9a-f]+\|git: push failed/);
+  } finally {
+    fs.rmSync(repo, { recursive: true, force: true });
+  }
 });

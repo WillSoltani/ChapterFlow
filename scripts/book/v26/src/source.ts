@@ -7,6 +7,8 @@ export interface BookSource {
   text: string;
   spans: ChapterSpan[];
   sha256: string;
+  /** "text": a frozen source text backs every chapter. "knowledge": no text; only titles, and the writer uses what it knows. */
+  mode: "text" | "knowledge";
   title(n: number): string;
 }
 
@@ -28,11 +30,18 @@ export function loadSource(textPath: string, mapPath: string): BookSource {
     throw new Error(`SOURCE_SHA_MISMATCH: ${textPath} hashes to ${sha256} but ${mapPath} was made for ${map.sourceTextSha256}`);
   }
   const spans = map.spans as ChapterSpan[];
-  return { text, spans, sha256, title: (n) => findSpan(spans, n).chapterTitle };
+  return { text, spans, sha256, mode: "text", title: (n) => findSpan(spans, n).chapterTitle };
+}
+
+/** A book with no source text: chapter numbers and titles only (a published title whose text cannot be used). */
+export function knowledgeSource(chapters: Array<{ number: number; title: string }>): BookSource {
+  const spans: ChapterSpan[] = chapters.map((c) => ({ chapterNumber: c.number, chapterTitle: c.title, startOffset: 0, endOffset: 0 }));
+  return { text: "", spans, sha256: "", mode: "knowledge", title: (n) => findSpan(spans, n).chapterTitle };
 }
 
 /** The exact characters of chapter n. */
 export function spanText(src: BookSource, n: number): string {
+  if (src.mode === "knowledge") throw new Error(`NO_SOURCE_TEXT: chapter ${n} has no source text (knowledge mode)`);
   return chapterSpanText(src.text, findSpan(src.spans, n));
 }
 

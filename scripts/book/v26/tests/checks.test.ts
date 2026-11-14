@@ -1,5 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import { fileURLToPath } from "node:url";
 import type { Chapter, LessonCard, Issue } from "../src/types";
 import { readerFields, runChecks, splitLesson, type CheckContext } from "../src/checks";
 
@@ -105,7 +107,7 @@ function chapter(): Chapter {
         q(
           1,
           "Sam keeps missing deadlines and feels ashamed of it. What helps most as a first step?",
-          ["Promise to try harder next week", "Note which deadlines slipped", "Stop thinking about it completely"],
+          ["Promise to try harder next week", "Note which deadlines have slipped", "Stop thinking about it completely"],
           1,
           "Writing the fault down is the first move.",
         ),
@@ -591,6 +593,7 @@ test("outside facts: breakdown text and ordinary numbers are not reported", asyn
   const c = edit((x) => {
     x.breakdown.fastRead += " In 1730 he began; 80% of nights he wrote.";
     x.examples[0].whatToDo = "Write for 10 minutes on day 3.";
+    x.examples[1].scenario = "Dev joins a study group to study for the statistics exam, and they study every night."; // the verb, a study group and a school subject are not research claims
     x.hook = "He was born in 1706."; // 1706 is a year => reported (control)
   });
   const r = await runChecks(c, lessonCard(), ctx());
@@ -883,4 +886,18 @@ test("quotes: memorableLines[1..] without quote marks must still be the author's
   const bad = edit((x) => (x.memorableLines[1].text = "a fault you name is half fixed"));
   const r = await runChecks(bad, lessonCard(), ctx());
   assert.ok(find(r.blocking, /not in the author's text/, "memorableLines.1"));
+});
+
+test("prompt vocabulary in reader text is reported, not blocking", async () => {
+  const { runChecks } = await import("../src/checks");
+  const base = JSON.parse(fs.readFileSync(fileURLToPath(new URL("./fixtures/reference-chapter.json", import.meta.url)), "utf8"));
+  base.quiz.questions[0].explanation = "The first choice acts out the wrong belief, and the second is a near-miss.";
+  base.reviewCards[0].back = "The lesson is softer in only one way: you may aim higher later.";
+  const lesson = { lesson: base.keyTakeaway, wrongBelief: "w", keyPhrase: "k", hookQuestion: "h", storyNames: [], evidence: [] };
+  const r = await runChecks(base, lesson, { n: 1, book: { bookId: "b", title: "T", author: "A", categories: [], tags: [], bookType: "memoir" }, authorText: "a fault named is half mended", shape: { examples: 1, quizQuestions: 1, choices: 3, reviewCards: 1, memorableLines: 1, ifThenPlans: 1, fastRead: [1, 999], deepRead: [1, 999], fullRead: [1, 999] }, earlierLessons: [] });
+  const leaks = r.reported.filter((i) => /prompt vocabulary/.test(i.text));
+  assert.equal(leaks.length, 2, JSON.stringify(r.reported));
+  assert.match(leaks[0].text, /"acts out"/);
+  assert.match(leaks[1].text, /"The lesson is softer"/);
+  assert.ok(!r.blocking.some((i) => /prompt vocabulary/.test(i.text)));
 });
