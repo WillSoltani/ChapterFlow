@@ -124,6 +124,39 @@ test("HOME-15 / C13: total chapters come from the catalog and Continue names the
   assert.match(snap.resumeChapterLabel, /^CH\.04 /);
 });
 
+test("a quiz passed without Finish chapter: the stored book state lags, counts and the resume chapter follow the progress row", async () => {
+  // The book state was written when chapter 1 opened; the pass only moved the
+  // progress row. Home, Progress and Profile must agree with the Library.
+  const analytics = await snapshotsFor({
+    catalog: [catalogBook("atomic-habits", 20)],
+    progress: [{ bookId: "atomic-habits", currentChapterNumber: 2, completedChapters: [1], bestScoreByChapter: { "1": 100 }, lastActiveAt: RECENT }],
+    bookStates: [bookStateRow("atomic-habits", { lastOpenedAt: RECENT })],
+  });
+  const snap = analytics.bookSnapshots[0]!;
+  assert.equal(snap.completedChapters, 1);
+  assert.equal(snap.progressPercent, 5);
+  assert.equal(snap.status, "in_progress");
+  assert.equal(snap.resumeChapterNumber, 2);
+  assert.equal(snap.resumeChapterId, "atomic-habits-ch02", "the id names the same chapter as the number");
+  assert.equal(analytics.totalCompletedChapters, 1);
+});
+
+test("a book finished without Finish chapter on the last quiz counts as completed", async () => {
+  const analytics = await snapshotsFor({
+    catalog: [catalogBook("atomic-habits", 20)],
+    progress: [{ bookId: "atomic-habits", currentChapterNumber: 20, completedChapters: Array.from({ length: 20 }, (_, i) => i + 1), bestScoreByChapter: {}, lastActiveAt: RECENT }],
+    bookStates: [bookStateRow("atomic-habits", {
+      completedChapterIds: Array.from({ length: 19 }, (_, i) => `atomic-habits-ch${String(i + 1).padStart(2, "0")}`),
+      currentChapterId: "atomic-habits-ch20",
+      lastOpenedAt: RECENT,
+    })],
+  });
+  const snap = analytics.bookSnapshots[0]!;
+  assert.equal(snap.completedChapters, 20);
+  assert.equal(snap.status, "completed");
+  assert.equal(analytics.booksCompleted, 1);
+});
+
 test("PROG-26: analytics carry readingHistoryOff from settings.privacy", async () => {
   const off = await snapshotsFor({ settings: { privacy: { saveReadingHistory: false } } });
   assert.equal(off.readingHistoryOff, true);

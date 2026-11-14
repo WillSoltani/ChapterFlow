@@ -5,7 +5,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   calculateCurrentStreak,
+  countCompletedChapters,
   isBookStarted,
+  mergeChapterScores,
+  mergeCompletedChapterIds,
   readDailyGoal,
   readReadingHistoryOff,
   resumeChapterNumber,
@@ -119,4 +122,42 @@ test("PROG-26: reading history is off only when Settings turned it off", () => {
   assert.equal(readReadingHistoryOff({ privacy: {} }), false);
   assert.equal(readReadingHistoryOff({}), false);
   assert.equal(readReadingHistoryOff(null), false);
+});
+
+test("countCompletedChapters takes the larger of the stored book state and the progress row", () => {
+  const chapters = [1, 2, 3].map((order) => ({ id: `b-ch0${order}`, order }));
+  const count = (stateIds: string[] | undefined, progress: number[] | undefined, list = chapters) =>
+    countCompletedChapters({ stateCompletedChapterIds: stateIds, progressCompletedChapters: progress, chapters: list });
+  assert.equal(count(["b-ch01", "b-ch02"], [1, 2]), 2);
+  assert.equal(count([], [1]), 1, "a lagging book state does not hide a passed chapter");
+  assert.equal(count(["b-ch01", "b-ch02"], [1]), 2, "nor does a lagging progress copy");
+  assert.equal(count(["b-ch01", "b-ch01"], undefined), 1, "duplicates count once");
+  assert.equal(count(undefined, [1, 9]), 1, "a chapter number the book does not have is ignored");
+  assert.equal(count(undefined, [1, 2], []), 2, "with no local chapter list the numbers are counted directly");
+  assert.equal(count(undefined, undefined), 0);
+});
+
+test("mergeChapterScores and mergeCompletedChapterIds read the book state and the progress row together", () => {
+  const chapters = [1, 2, 3].map((order) => ({ id: `b-ch0${order}`, order }));
+  assert.deepEqual(
+    mergeChapterScores({
+      stateChapterScores: { "b-ch01": 80 },
+      progressBestScoreByChapter: { "1": 100, "2": 90, "9": 70 },
+      chapters,
+    }),
+    { "b-ch01": 100, "b-ch02": 90 },
+    "the higher score wins, and a chapter passed without Finish chapter is included",
+  );
+  assert.deepEqual(
+    mergeChapterScores({ stateChapterScores: { "b-ch03": 60 }, progressBestScoreByChapter: undefined, chapters }),
+    { "b-ch03": 60 },
+  );
+  assert.deepEqual(
+    [...mergeCompletedChapterIds({ stateCompletedChapterIds: ["b-ch01"], progressCompletedChapters: [1, 2, 9], chapters })].sort(),
+    ["b-ch01", "b-ch02"],
+  );
+  assert.equal(
+    mergeCompletedChapterIds({ stateCompletedChapterIds: undefined, progressCompletedChapters: undefined, chapters }).size,
+    0,
+  );
 });

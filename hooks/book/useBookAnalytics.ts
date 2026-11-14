@@ -202,6 +202,67 @@ export function isBookStarted(input: {
   return input.completedChapters > 0 || input.hasProgressRow || input.chapterStateCount > 0;
 }
 
+/**
+ * Chapters finished in a book. The stored book state can lag behind the
+ * progress row (a quiz passed without "Finish chapter", or in another app), so
+ * the larger of the two counts is used: the same rule as the Library.
+ */
+export function countCompletedChapters(input: {
+  stateCompletedChapterIds: readonly string[] | null | undefined;
+  progressCompletedChapters: readonly number[] | null | undefined;
+  chapters: ReadonlyArray<{ id: string; order: number }>;
+}): number {
+  const fromState = new Set(input.stateCompletedChapterIds ?? []).size;
+  const numbers = input.progressCompletedChapters ?? [];
+  const fromProgress =
+    input.chapters.length === 0
+      ? // Server book with no local chapter bundle: count the numbers directly
+        // (mapping them to ids could only give 0).
+        new Set(numbers).size
+      : new Set(
+          numbers
+            .map((number) => input.chapters.find((chapter) => chapter.order === number)?.id ?? "")
+            .filter(Boolean)
+        ).size;
+  return Math.max(fromState, fromProgress);
+}
+
+/**
+ * Best quiz score per chapter id, from the stored book state and the progress
+ * row together (the progress row is keyed by chapter number). Where both have
+ * a chapter, the higher score is kept.
+ */
+export function mergeChapterScores(input: {
+  stateChapterScores: Record<string, number> | null | undefined;
+  progressBestScoreByChapter: Record<string, number> | null | undefined;
+  chapters: ReadonlyArray<{ id: string; order: number }>;
+}): Record<string, number> {
+  const merged: Record<string, number> = {};
+  for (const [chapterNumber, score] of Object.entries(input.progressBestScoreByChapter ?? {})) {
+    const chapterId = input.chapters.find((chapter) => chapter.order === Number(chapterNumber))?.id;
+    if (chapterId) merged[chapterId] = Number(score);
+  }
+  for (const [chapterId, score] of Object.entries(input.stateChapterScores ?? {})) {
+    const value = Number(score);
+    merged[chapterId] = Math.max(merged[chapterId] ?? value, value);
+  }
+  return merged;
+}
+
+/** Completed chapter ids from the stored book state and the progress row together. */
+export function mergeCompletedChapterIds(input: {
+  stateCompletedChapterIds: readonly string[] | null | undefined;
+  progressCompletedChapters: readonly number[] | null | undefined;
+  chapters: ReadonlyArray<{ id: string; order: number }>;
+}): Set<string> {
+  const ids = new Set<string>(input.stateCompletedChapterIds ?? []);
+  for (const number of input.progressCompletedChapters ?? []) {
+    const chapterId = input.chapters.find((chapter) => chapter.order === number)?.id;
+    if (chapterId) ids.add(chapterId);
+  }
+  return ids;
+}
+
 /** C13: the chapter "Continue" opens, capped at the book's chapter count. */
 export function resumeChapterNumber(
   currentChapterNumber: number | null | undefined,
@@ -543,17 +604,11 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           const activities = buildActivities(entry.id, chapterCompletedAt);
           allActivities.push(...activities);
 
-          const completedChapters = state?.completedChapterIds
-            ? new Set(state.completedChapterIds).size
-            : chapters.length === 0
-              ? // Server book with no local chapter bundle — count numeric
-                // progress directly (the id-mapping below can only yield 0).
-                (progress?.completedChapters ?? []).length
-              : new Set(
-                  (progress?.completedChapters ?? [])
-                    .map((chapterNumber) => chapters.find((chapter) => chapter.order === chapterNumber)?.id ?? "")
-                    .filter(Boolean)
-                ).size;
+          const completedChapters = countCompletedChapters({
+            stateCompletedChapterIds: state?.completedChapterIds,
+            progressCompletedChapters: progress?.completedChapters,
+            chapters,
+          });
           const started = isBookStarted({
             completedChapters,
             hasProgressRow: Boolean(progress),
@@ -572,27 +627,23 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             : 0;
 
           const scoreValues = Object.values(
-            state?.chapterScores ??
-              Object.fromEntries(
-                Object.entries(progress?.bestScoreByChapter ?? {}).map(([chapterNumber, score]) => {
-                  const chapterId = chapters.find(
-                    (chapter) => chapter.order === Number(chapterNumber)
-                  )?.id;
-                  return chapterId ? [chapterId, score] : null;
-                }).filter((item): item is [string, number] => Boolean(item))
-              )
-          ).map((value) => Number(value));
+            mergeChapterScores({
+              stateChapterScores: state?.chapterScores,
+              progressBestScoreByChapter: progress?.bestScoreByChapter,
+              chapters,
+            })
+          );
 
           const bestScore = scoreValues.length ? Math.max(...scoreValues) : 0;
           const avgScore = scoreValues.length
             ? Math.round(scoreValues.reduce((sum, value) => sum + value, 0) / scoreValues.length)
             : 0;
 
+          // C13: the id of the chapter the Continue label names, so links,
+          // labels and the step shown for it all point at one chapter.
           const resumeChapterId =
+            chapters.find((chapter) => chapter.order === resumeNumber)?.id ||
             state?.currentChapterId ||
-            chapters.find(
-              (chapter) => chapter.order === (progress?.currentChapterNumber ?? 1)
-            )?.id ||
             chapters[0]?.id ||
             "";
 
@@ -606,7 +657,11 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             progress?.lastOpenedAt ||
             entry.lastActivityAt;
 
-          const completedChapterIdSet = new Set(state?.completedChapterIds ?? []);
+          const completedChapterIdSet = mergeCompletedChapterIds({
+            stateCompletedChapterIds: state?.completedChapterIds,
+            progressCompletedChapters: progress?.completedChapters,
+            chapters,
+          });
           const resumeChapterStates = chapterStatesByBook.get(entry.id) ?? [];
           const resumeChapterState =
             resumeChapterStates.find((cs) => cs.chapterId === resumeChapterId)
@@ -709,25 +764,18 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           const state = stateByBook.get(entry.id);
           const progress = progressByBook.get(entry.id);
           const bundleChapters = getBookChaptersBundle(entry.id).chapters;
-          const completedIds = new Set<string>(
-            state?.completedChapterIds ??
-              (progress?.completedChapters ?? [])
-                .map((n) => bundleChapters.find((c) => c.order === n)?.id ?? "")
-                .filter(Boolean)
-          );
-          // chapterScores is keyed by chapterId on bookState, but the
-          // progress-table fallback (bestScoreByChapter) is keyed by chapter
-          // NUMBER — map it to ids so progress-only quiz scores aren't dropped.
-          const chapterScores: Record<string, number> =
-            state?.chapterScores ??
-            Object.fromEntries(
-              Object.entries(progress?.bestScoreByChapter ?? {})
-                .map(([num, score]) => {
-                  const cid = bundleChapters.find((c) => c.order === Number(num))?.id;
-                  return cid ? ([cid, Number(score)] as const) : null;
-                })
-                .filter((e): e is readonly [string, number] => e !== null)
-            );
+          // The stored book state can lag behind the progress row, so both
+          // are read together (the progress row is keyed by chapter number).
+          const completedIds = mergeCompletedChapterIds({
+            stateCompletedChapterIds: state?.completedChapterIds,
+            progressCompletedChapters: progress?.completedChapters,
+            chapters: bundleChapters,
+          });
+          const chapterScores: Record<string, number> = mergeChapterScores({
+            stateChapterScores: state?.chapterScores,
+            progressBestScoreByChapter: progress?.bestScoreByChapter,
+            chapters: bundleChapters,
+          });
           const stateByChapterId = new Map<string, unknown>();
           for (const cs of chapterStatesByBook.get(entry.id) ?? []) {
             const cid =

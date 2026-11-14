@@ -457,7 +457,9 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
       window.localStorage.getItem(getBookProgressStorageKey(currentSnapshot.book.id))
     );
     const chapters = getBookChaptersBundle(currentSnapshot.book.id).chapters;
-    const currentChapterId = progress?.currentChapterId || currentSnapshot.resumeChapterId || chapters[0]?.id || "";
+    // C13: the chapter every other "Continue" names (the account's current
+    // chapter); this device's own cursor is only a fallback.
+    const currentChapterId = currentSnapshot.resumeChapterId || progress?.currentChapterId || chapters[0]?.id || "";
     const chapter = chapters.find((c) => c.id === currentChapterId) ?? chapters[0];
     const completedSet = new Set(progress?.completedChapterIds ?? []);
     const remainingMinutes = chapters
