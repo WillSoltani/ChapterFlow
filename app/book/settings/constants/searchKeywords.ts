@@ -6,8 +6,8 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     id: "reading-profile",
     section: "reading",
     label: "Reading profiles",
-    description: "Quick Learner, Balanced Reader, Deep Diver",
-    keywords: ["profile", "preset", "bundle", "mode"],
+    description: "Lite, Standard, Deeper",
+    keywords: ["profile", "preset", "bundle", "mode", "depth", "quick", "balanced", "deep"],
   },
   {
     id: "font-family",
@@ -62,7 +62,7 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     id: "reading-time",
     section: "reading",
     label: "Show reading time",
-    description: "Display estimated time to finish each book and chapter",
+    description: "Display the estimated time to finish each chapter in the reader",
     keywords: ["time", "estimate", "duration", "minutes", "reading"],
   },
   {
@@ -80,13 +80,6 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     label: "Daily reading goal",
     description: "How much time you want to invest each day",
     keywords: ["daily", "goal", "minutes", "time", "habit"],
-  },
-  {
-    id: "weekly-chapter-goal",
-    section: "goals",
-    label: "Weekly chapter goal",
-    description: "Chapters to complete each week",
-    keywords: ["weekly", "chapter", "goal", "target"],
   },
   {
     id: "question-flow",
@@ -179,6 +172,13 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
 
   // Section 5: Notifications
   {
+    id: "email-channel",
+    section: "notifications",
+    label: "Email",
+    description: "Reminders, the weekly summary and welcome-back emails",
+    keywords: ["email", "mail", "unsubscribe", "inbox", "notification"],
+  },
+  {
     id: "reading-reminders",
     section: "notifications",
     label: "Reading reminders",
@@ -210,7 +210,7 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     id: "weekly-summary",
     section: "notifications",
     label: "Weekly summary email",
-    description: "A brief digest of your reading progress every Monday",
+    description: "A brief digest of your reading progress once a week",
     keywords: ["weekly", "summary", "email", "digest", "progress"],
   },
   {
@@ -235,13 +235,6 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     label: "Share usage analytics",
     description: "Help improve ChapterFlow by sharing device, performance, and navigation data",
     keywords: ["analytics", "privacy", "tracking", "data", "telemetry", "consent", "usage"],
-  },
-  {
-    id: "recommendations",
-    section: "account",
-    label: "Personalized recommendations",
-    description: "Use reading history to suggest books",
-    keywords: ["recommendations", "suggest", "personalized", "books"],
   },
   {
     id: "reading-history",

@@ -66,6 +66,14 @@ export default function AccountDeletedPage() {
           </Link>
         </div>
 
+        {/* ACCT-25: a Google or Apple sign-in keeps the same identity, which
+            still belongs to the closed account. */}
+        <p className="mx-auto mt-4 max-w-sm text-cf-label leading-relaxed text-(--cf-text-3)">
+          Used Google or Apple to sign in? Signing up again with that same
+          account won&apos;t work: contact support to reopen it, or create a new
+          account with a different email.
+        </p>
+
         <p className="mt-6 text-cf-label text-(--cf-text-3)">
           Think this was a mistake?{" "}
           <a

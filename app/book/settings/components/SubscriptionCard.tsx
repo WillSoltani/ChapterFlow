@@ -9,12 +9,13 @@ import type {
   EntitlementsResponse,
   PricingTier,
 } from "@/app/book/hooks/useBookEntitlements";
-import { ANNUAL_SAVINGS_BADGE, TRIAL_CTA_LABEL, PRO_FEATURES } from "@/lib/pricing";
+import { ANNUAL_SAVINGS_BADGE, PRICING, PRO_FEATURES } from "@/lib/pricing";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 import {
   APPLE_MANAGE_SUBSCRIPTIONS_URL,
   APPLE_MANAGED_SUBSCRIPTION_LABEL,
 } from "@/lib/apple-billing";
+import { subscriptionStatus } from "../lib/subscription-status-core";
 
 type SubscriptionCardProps = {
   plan: "FREE" | "PRO";
@@ -24,6 +25,8 @@ type SubscriptionCardProps = {
   /** How the user obtained Pro — drives whether we show the Stripe portal or the
    *  App Store management link for a Pro subscriber. */
   proSource?: EntitlementsResponse["entitlement"]["proSource"] | undefined;
+  /** License Pro ends here (falls back to currentPeriodEnd). */
+  licenseExpiresAt?: string | undefined;
   price: string;
   pricingTiers?: PricingTier[] | undefined;
   /** Billing interval to pre-select (e.g. carried from the landing "Annual"
@@ -41,12 +44,24 @@ const TIER_DISPLAY: Record<BillingInterval, { name: string; badge?: string }> = 
   annual_upfront: { name: "Annual upfront", badge: "Best value" },
 };
 
+/** Honor a deep-link interval hint, but ONLY if it's actually offered (its
+ *  Stripe Price ID is configured), so an unpurchasable tier is never selected. */
+function defaultInterval(
+  pricingTiers: PricingTier[] | undefined,
+  initialInterval: BillingInterval | undefined,
+): BillingInterval {
+  const offered = (pricingTiers ?? []).some((t) => t.interval === initialInterval);
+  if (initialInterval && offered) return initialInterval;
+  return pricingTiers && pricingTiers.length > 1 ? "annual" : "monthly";
+}
+
 export function SubscriptionCard({
   plan,
   freeBookSlots,
   currentPeriodEnd,
   cancelAtPeriodEnd,
   proSource,
+  licenseExpiresAt,
   price,
   pricingTiers,
   initialInterval,
@@ -61,22 +76,17 @@ export function SubscriptionCard({
   const [keyMessage, setKeyMessage] = useState("");
   const [actionLoading, setActionLoading] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
-  const [selectedInterval, setSelectedInterval] = useState<BillingInterval>(() => {
-    // Honor a deep-link interval hint, but ONLY if it's actually offered (its
-    // Stripe Price ID is configured) — otherwise fall back to the default so we
-    // never pre-select an unpurchasable tier.
-    const offered = (pricingTiers ?? []).some((t) => t.interval === initialInterval);
-    if (initialInterval && offered) return initialInterval;
-    return pricingTiers && pricingTiers.length > 1 ? "annual" : "monthly";
-  });
+  // ACCT-11: the selection follows the deep-link hint and the offered tiers
+  // (which may arrive after mount) until the reader picks one themselves.
+  const [pickedInterval, setPickedInterval] = useState<BillingInterval | null>(null);
+  const selectedInterval = pickedInterval ?? defaultInterval(pricingTiers, initialInterval);
 
-  const formattedDate = currentPeriodEnd
-    ? new Date(currentPeriodEnd).toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : null;
+  const status = subscriptionStatus({
+    proSource,
+    currentPeriodEnd,
+    cancelAtPeriodEnd,
+    licenseExpiresAt,
+  });
 
   async function handleRedeemKey(e: React.FormEvent) {
     e.preventDefault();
@@ -133,19 +143,13 @@ export function SubscriptionCard({
         <p className="mt-0.5 text-xs text-(--cf-text-soft)">
           All {CATALOG_BOOK_COUNT_DISPLAY} books &middot; Full feature access
         </p>
-        <p className="text-sm text-(--cf-text-soft) mt-1">
-          {cancelAtPeriodEnd && formattedDate
-            ? `Cancels on ${formattedDate}`
-            : formattedDate
-              ? `Next renewal: ${formattedDate}`
-              : "Monthly billing"}
-        </p>
-        {cancelAtPeriodEnd && (
-          <p className="mt-1 text-xs text-(--cf-warning-text)">
-            Your Pro access will end on the date above and won&apos;t auto-renew.
-          </p>
+        {status.dateLine && (
+          <p className="text-sm text-(--cf-text-soft) mt-1">{status.dateLine}</p>
         )}
-        {proSource === "apple" ? (
+        {status.cancelNote && (
+          <p className="mt-1 text-xs text-(--cf-warning-text)">{status.cancelNote}</p>
+        )}
+        {status.manage === "apple" ? (
           // App Store subscriptions can only be managed by Apple — there is no
           // Stripe portal to open. Point the user at Apple's management page
           // instead of the (server-minted) Stripe portal CTA.
@@ -154,6 +158,7 @@ export function SubscriptionCard({
               {APPLE_MANAGED_SUBSCRIPTION_LABEL}.
             </p>
             <a
+              id="subscription-cta"
               href={APPLE_MANAGE_SUBSCRIPTIONS_URL}
               target="_blank"
               rel="noreferrer"
@@ -162,8 +167,9 @@ export function SubscriptionCard({
               Manage in the App Store
             </a>
           </>
-        ) : (
+        ) : status.manage === "stripe" ? (
           <Button
+            id="subscription-cta"
             variant="secondary"
             size="sm"
             className="mt-4"
@@ -176,7 +182,7 @@ export function SubscriptionCard({
               "Manage subscription"
             )}
           </Button>
-        )}
+        ) : null}
         {actionError && (
           <div className="mt-2 flex items-center gap-2 text-xs text-(--cf-danger-text)">
             <XCircle className="h-3.5 w-3.5" />
@@ -245,7 +251,7 @@ export function SubscriptionCard({
                   type="button"
                   role="radio"
                   aria-checked={isSelected}
-                  onClick={() => setSelectedInterval(tier.interval)}
+                  onClick={() => setPickedInterval(tier.interval)}
                   className={`cf-pressable flex items-center justify-between rounded-lg border px-3 py-2.5 text-left transition-colors ${
                     isSelected
                       ? "border-(--cf-accent) bg-(--cf-accent-muted)"
@@ -301,6 +307,7 @@ export function SubscriptionCard({
             ramp is darkened at the start for exactly this) and an amber focus
             ring, so this reads identically to every other "Upgrade"/"Go Pro" CTA. */}
         <button
+          id="subscription-cta"
           type="button"
           disabled={actionLoading}
           onClick={handleUpgrade}
@@ -312,9 +319,13 @@ export function SubscriptionCard({
           {actionLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            TRIAL_CTA_LABEL
+            "Upgrade to Pro"
           )}
         </button>
+        {/* ACCT-12: Stripe gives the trial only to a first subscription. */}
+        <p className="mt-2 text-center text-xs text-(--cf-text-3)">
+          New subscribers get {PRICING.trialDays} days free.
+        </p>
         {actionError && (
           <div className="mt-2 flex items-center gap-2 text-xs text-(--cf-danger-text)">
             <XCircle className="h-3.5 w-3.5" />

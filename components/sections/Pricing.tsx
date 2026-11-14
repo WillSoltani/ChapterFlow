@@ -15,14 +15,18 @@ import {
   formatAmount,
   TRIAL_CTA_LABEL,
   FREE_OFFER_LABEL,
-  UPGRADE_RETURN_PATH,
-  UPGRADE_LOGIN_URL,
+  upgradeLoginUrlForInterval,
   PRICING_TIER_DISPLAY,
   PRO_FEATURES,
   ANNUAL_UPFRONT_MONTHLY_AMOUNT,
   ANNUAL_UPFRONT_SAVINGS_PCT,
 } from "@/lib/pricing";
 import { gatedRoutePrefetchProps } from "@/components/landing/recall/RecallNavModel";
+import {
+  saveUpgradeIntent,
+  sessionStorageOrNull,
+  upgradeHrefForInterval,
+} from "@/app/_lib/upgrade-intent-core";
 
 /**
  * Public pricing and plan comparison.
@@ -174,12 +178,19 @@ export function Pricing() {
   // charged when the trial ends" promise — so it must land on the trial-start
   // (Stripe checkout) surface, not the free reader. Already-Pro users go to
   // settings to MANAGE, never a second checkout (CHECKOUT-DOUBLE).
+  const proInterval = isAnnual ? "annual_upfront" : "monthly";
   const proHref = isPro
     ? "/book/settings"
     : loggedIn
-      ? UPGRADE_RETURN_PATH
-      : UPGRADE_LOGIN_URL;
-  const proCtaLabel = isPro ? "Manage subscription" : TRIAL_CTA_LABEL;
+      ? upgradeHrefForInterval(proInterval)
+      : upgradeLoginUrlForInterval(proInterval);
+  // ACCT-12: the trial goes only to new subscribers, so a signed-in reader
+  // (who may have subscribed before) is offered "Upgrade to Pro".
+  const proCtaLabel = isPro
+    ? "Manage subscription"
+    : loggedIn
+      ? "Upgrade to Pro"
+      : TRIAL_CTA_LABEL;
   // Only the monthly view reads this; the annual view prices the annual-upfront
   // plan from its own figures (never the billed-annually plan's).
   const perMonthAmount = PRICING.monthlyAmount;
@@ -232,7 +243,10 @@ export function Pricing() {
               className="mt-4 max-w-xl text-cf-body-lg leading-[1.6] text-(--text-secondary)"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Read {FREE_OFFER_LABEL} with no card. Start a {PRICING.trialDays}-day
+              {/* ACCT-12: the trial goes only to new subscribers, so a signed-in
+                  reader (who may have subscribed before) is told so. */}
+              Read {FREE_OFFER_LABEL} with no card.{" "}
+              {loggedIn ? "New subscribers can start" : "Start"} a {PRICING.trialDays}-day
               Pro trial for unlimited access and the deepest reading mode — cancel
               before it ends and you won&apos;t be charged.
             </p>
@@ -352,11 +366,16 @@ export function Pricing() {
                   data-public-sticky-cta-suppress
                   href={proHref}
                   {...gatedRoutePrefetchProps(proHref, loggedIn === true)}
-                  onClick={() =>
+                  onClick={() => {
                     track("cta_click", {
                       source: isPro ? "pricing_manage" : "pricing_pro",
-                    })
-                  }
+                    });
+                    // A new reader goes through sign-up and onboarding first;
+                    // onboarding then finishes on the subscription card.
+                    if (!loggedIn) {
+                      saveUpgradeIntent(sessionStorageOrNull(), proInterval, Date.now());
+                    }
+                  }}
                   className="inline-flex w-full items-center justify-center rounded-xl bg-(--accent-cyan) px-5 py-3 text-cf-body font-semibold text-(--primary-foreground) transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
@@ -371,7 +390,7 @@ export function Pricing() {
                     className="max-w-[34ch] text-cf-label-sm leading-[1.6] text-(--text-muted)"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
-                    {PRICING.trialDays}-day free trial, then{" "}
+                    New subscribers: {PRICING.trialDays}-day free trial, then{" "}
                     {isAnnual
                       ? `${PRICING_TIER_DISPLAY.annual_upfront.price} ${PRICING.currency}/year`
                       : `${formatAmount(perMonthAmount)} ${PRICING.currency}/month`}

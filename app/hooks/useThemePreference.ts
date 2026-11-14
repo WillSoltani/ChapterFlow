@@ -8,8 +8,11 @@ import {
   applyAndPersistDocumentTheme,
   createSystemThemeChangeHandler,
   readStoredDocumentThemeSettings,
-  resolveDocumentThemeLabel,
+  resolveStoredThemeLabel,
 } from "@/app/_lib/document-theme";
+import { fetchBookJson } from "@/lib/client/book-api";
+import { invalidateBookCache } from "@/lib/client/book-api-cache";
+import { SETTINGS_KEY } from "@/lib/client/book-read-keys";
 
 type UseThemePreferenceOptions = {
   persistToServer?: boolean;
@@ -31,7 +34,8 @@ function readThemeState(): {
   );
   return {
     themePreference: settings.theme,
-    resolvedTheme: resolveDocumentThemeLabel(settings.theme),
+    // SHELL-07: an active night schedule decides what the page shows.
+    resolvedTheme: resolveStoredThemeLabel(settings),
   };
 }
 
@@ -78,26 +82,35 @@ export function useThemePreference(options?: UseThemePreferenceOptions) {
 
   const setThemePreference = useCallback(
     async (nextTheme: ThemePreference) => {
-      const next = applyAndPersistDocumentTheme({ theme: nextTheme });
+      // SHELL-07: while the night schedule is in charge a theme tap would do
+      // nothing visible, so the tap turns the schedule off and applies the choice.
+      const current = readStoredDocumentThemeSettings(
+        window.localStorage.getItem(BOOK_THEME_STORAGE_KEY)
+      );
+      const scheduleInCharge = current.scheduledDarkMode && current.theme !== "dark";
+      const next = applyAndPersistDocumentTheme(
+        scheduleInCharge ? { theme: nextTheme, scheduledDarkMode: false } : { theme: nextTheme }
+      );
       setThemePreferenceState(next.theme);
-      setResolvedTheme(resolveDocumentThemeLabel(next.theme));
+      setResolvedTheme(resolveStoredThemeLabel(next));
 
       if (!persistToServer) return;
 
       try {
-        await fetch("/app/api/book/me/settings", {
+        // DATA-11: the shared client (session handling, error on non-OK) and a
+        // fresh settings read afterwards, so no page keeps the old theme cached.
+        await fetchBookJson("/app/api/book/me/settings", {
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
           body: JSON.stringify({
             settings: {
               appearance: {
                 theme: nextTheme,
               },
+              ...(scheduleInCharge ? { extended: { scheduledDarkMode: false } } : {}),
             },
           }),
         });
+        invalidateBookCache(SETTINGS_KEY);
       } catch {
         // Keep the client preference even if the signed-in sync is unavailable.
       }

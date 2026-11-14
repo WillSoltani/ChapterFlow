@@ -61,3 +61,25 @@ test("disabling reading reminders does NOT mutate email consent", () => {
   assert.equal(buildReadingReminderTogglePatch(false, "Europe/London", "21:00"), null);
   assert.equal(buildReadingReminderTogglePatch(false, "Europe/London"), null);
 });
+
+// ── ACCT-21: the explicit "Email" master switch ────────────────────────────
+
+test("the Email switch writes exactly the email channel, on or off", async () => {
+  const { buildEmailChannelPatch } = await import("./reminder-consent-core");
+  assert.deepEqual(buildEmailChannelPatch(true), {
+    settings: { notifications: { channels: { email: true } } },
+  });
+  assert.deepEqual(buildEmailChannelPatch(false), {
+    settings: { notifications: { channels: { email: false } } },
+  });
+});
+
+test("the Email switch shows on only for an explicit opt-in", async () => {
+  const { readEmailChannelConsent } = await import("./reminder-consent-core");
+  assert.equal(readEmailChannelConsent({ notifications: { channels: { email: true } } }), true);
+  assert.equal(readEmailChannelConsent({ notifications: { channels: { email: false } } }), false);
+  // Never set: the senders treat this as no consent, so the switch shows off.
+  assert.equal(readEmailChannelConsent({ notifications: { weeklyDigestEnabled: true } }), false);
+  assert.equal(readEmailChannelConsent(null), false);
+  assert.equal(readEmailChannelConsent({ notifications: { channels: { email: "yes" } } }), false);
+});

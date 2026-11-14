@@ -4,7 +4,7 @@ import { useId, useState } from "react";
 import { X } from "lucide-react";
 import { ProBadge } from "./ProBadge";
 import { Button } from "@/app/book/components/ui/Button";
-import { TRIAL_CTA_LABEL } from "@/lib/pricing";
+import { PRICING } from "@/lib/pricing";
 import { Dialog } from "@/components/ui/Dialog";
 
 type ProFeatureCardProps = {
@@ -31,7 +31,10 @@ export function ProFeatureCard({
     <>
       <div className="relative overflow-hidden rounded-2xl border border-(--cf-border) bg-gradient-to-br from-(--accent-amber)/3 to-(--accent-rose)/3 p-4">
         {/* Shimmer border */}
-        <div className="absolute inset-0 rounded-2xl border border-transparent bg-gradient-to-r from-(--accent-amber)/10 via-(--accent-rose)/10 to-(--accent-rose)/10 opacity-40" />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 rounded-2xl border border-transparent bg-gradient-to-r from-(--accent-amber)/10 via-(--accent-rose)/10 to-(--accent-rose)/10 opacity-40"
+        />
 
         <div className="relative flex items-start justify-between">
           <div className="flex-1">
@@ -84,9 +87,19 @@ export function ProFeatureCard({
           </p>
 
           <div className="mt-6 space-y-3">
-            <Button variant="primary" fullWidth onClick={onUpgrade}>
-              {TRIAL_CTA_LABEL}
+            <Button
+              variant="primary"
+              fullWidth
+              onClick={() => {
+                setShowModal(false);
+                onUpgrade?.();
+              }}
+            >
+              Upgrade to Pro
             </Button>
+            <p className="text-center text-xs text-(--cf-text-3)">
+              New subscribers get {PRICING.trialDays} days free.
+            </p>
             <button
               type="button"
               onClick={() => setShowModal(false)}
