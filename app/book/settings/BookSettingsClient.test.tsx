@@ -524,6 +524,51 @@ test("ACCT-02: finishing the preferences wizard also sets the depth", async () =
   assert.equal(extended.contentTone, "gentle");
 });
 
+async function finishWizardUntouched(view: ReturnType<typeof renderSettings>) {
+  toggleSection(view, "Account & Subscription");
+  await wait(50);
+  fireEvent.click(view.getByRole("button", { name: "Refresh" }));
+  await wait(50);
+  for (let i = 0; i < 3; i += 1) {
+    fireEvent.click(within(view.getByRole("dialog")).getByRole("button", { name: "Next" }));
+    await wait(30);
+  }
+  fireEvent.click(within(view.getByRole("dialog")).getByRole("button", { name: /Update my preferences/ }));
+  await wait(900);
+}
+
+for (const [mode, profile] of [
+  ["standard", "balanced"],
+  ["challenge", "deep"],
+] as const) {
+  test(`finishing the preferences wizard without a change keeps a ${mode} reader's choices`, async () => {
+    // The wizard is mounted before the saved settings load; it must start from
+    // the reader's current choices each time it opens, not from the defaults.
+    serverSettings = {
+      settings: {
+        extended: {
+          learningMode: mode,
+          profileCustomized: true,
+          readingProfile: profile,
+          dailyGoalPreset: 20,
+          motivationPersona: "partner",
+        },
+      },
+      updatedAt: new Date().toISOString(),
+    };
+    const view = renderSettings();
+    await wait(200);
+    await finishWizardUntouched(view);
+
+    const extended = lastExtendedWrite();
+    assert.ok(extended, "the wizard saved");
+    assert.equal(extended.learningMode, mode);
+    assert.equal(extended.readingProfile, profile);
+    assert.equal(extended.dailyGoalPreset, 20);
+    assert.equal(extended.motivationPersona, "partner");
+  });
+}
+
 test("ACCT-20: the Rival style promises no leaderboard", async () => {
   const view = renderSettings();
   await wait(100);

@@ -24,7 +24,8 @@ type CardOption<T extends string> = {
 
 type CardSelectorProps<T extends string> = {
   options: CardOption<T>[];
-  value: T;
+  /** null: nothing is ticked yet (the saved value has not loaded). */
+  value: T | null;
   onChange: (value: T) => void;
   label?: string;
   columns?: 2 | 3 | 4;

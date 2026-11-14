@@ -915,7 +915,8 @@ export function BookSettingsClient({
                   }))}
                   // The ticked card is the depth the reader actually gets
                   // (the reader's own mode menu saves the mode, not the profile).
-                  value={hydrated ? effectiveReadingProfile(ext) : "quick"}
+                  // Nothing is ticked until the saved settings are in.
+                  value={hydrated ? effectiveReadingProfile(ext) : null}
                   onChange={handleProfileChange}
                   label="Reading profiles"
                   columns={3}
