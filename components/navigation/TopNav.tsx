@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type KeyboardEventHandler, type MutableRefObject } from "react";
+import dynamic from "next/dynamic";
 import { usePathname, useRouter } from "next/navigation";
 import {
   Bookmark,
@@ -21,22 +22,32 @@ import {
   User,
 } from "lucide-react";
 import { useBookQuery } from "@/lib/client/book-api-cache";
+import { useBookViewer } from "@/hooks/book/useBookViewer";
 import { Sheet } from "@/components/ui/Dialog";
 import { SearchBox } from "@/components/navigation/SearchBox";
-import { GlobalSearchPanel } from "@/components/navigation/GlobalSearchPanel";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { ChapterFlowMark } from "@/components/brand/ChapterFlowMark";
 import { ThemeModeToggle } from "@/components/ThemeModeToggle";
 import { NotificationBell } from "@/components/navigation/NotificationBell";
 import { performLogout } from "@/lib/logout";
 
+// The results panel carries the catalog fallback, so it loads the first time
+// search opens instead of with every page.
+const GlobalSearchPanel = dynamic(
+  () => import("@/components/navigation/GlobalSearchPanel").then((m) => m.GlobalSearchPanel),
+  { ssr: false },
+);
+
 export type BookNavTab = "home" | "library" | "journeys" | "saved" | "progress" | "badges" | "events" | "notebook" | "settings" | "profile" | "rewards";
 
 type TopNavProps = {
-  name: string;
+  /** Kept for callers; the header reads the viewer itself so every page shows
+   *  the same name. */
+  name?: string;
+  /** A page-specific avatar (e.g. one just uploaded on Profile) wins over the
+   *  cached viewer avatar. */
   avatarUrl?: string | null;
-  /** Highlighted nav tab. Omit on secondary surfaces (e.g. Notebook) that have
-   *  no entry in the main nav so nothing is mis-highlighted. */
+  /** Highlighted nav tab. When omitted it is derived from the current path. */
   activeTab?: BookNavTab;
   searchQuery: string;
   onSearchChange: (value: string) => void;
@@ -84,10 +95,42 @@ const moreNavItems: NavItem[] = [
   { id: "settings", label: "Settings", href: "/book/settings", icon: Settings },
 ];
 
+/** Which nav entry a path belongs to (a nested path counts for its section). */
+export function navTabFromPathname(pathname: string | null | undefined): BookNavTab | undefined {
+  if (!pathname) return undefined;
+  const entries: Array<[string, BookNavTab]> = [
+    ["/dashboard", "home"],
+    ["/book/library", "library"],
+    ["/book/progress", "progress"],
+    ["/book/badges", "badges"],
+    ["/book/journeys", "journeys"],
+    ["/book/events", "events"],
+    ["/book/saved", "saved"],
+    ["/book/notebook", "notebook"],
+    ["/book/settings", "settings"],
+    ["/book/profile", "profile"],
+    ["/rewards", "rewards"],
+  ];
+  for (const [prefix, tab] of entries) {
+    if (pathname === prefix || pathname.startsWith(`${prefix}/`)) return tab;
+  }
+  return undefined;
+}
+
+/** Rows of the profile dropdown (desktop), in display order. */
+const menuItems: NavItem[] = [
+  { id: "profile", label: "Profile", href: "/book/profile", icon: User },
+  { id: "rewards", label: "Rewards", href: "/rewards", icon: Gift },
+  { id: "journeys", label: "Journeys", href: "/book/journeys", icon: Map },
+  { id: "events", label: "Events", href: "/book/events", icon: Trophy },
+  { id: "saved", label: "Read Next", href: "/book/saved", icon: Bookmark },
+  { id: "notebook", label: "Notebook", href: "/book/notebook", icon: NotebookPen },
+  { id: "settings", label: "Settings", href: "/book/settings", icon: Settings },
+];
+
 export function TopNav({
-  name,
-  avatarUrl,
-  activeTab,
+  avatarUrl: avatarUrlProp,
+  activeTab: activeTabProp,
   searchQuery,
   onSearchChange,
   searchInputRef,
@@ -98,9 +141,16 @@ export function TopNav({
 }: TopNavProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const activeTab = activeTabProp ?? navTabFromPathname(pathname);
+  // The profile menu holds every secondary page, so its trigger lights up
+  // whenever the reader is on one of them (or on Profile itself).
+  const secondaryActive =
+    activeTab === "profile" || moreNavItems.some((item) => item.id === activeTab);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showSearchPanel, setShowSearchPanel] = useState(false);
+  const [searchPanelLoaded, setSearchPanelLoaded] = useState(false);
   const [showMoreSheet, setShowMoreSheet] = useState(false);
+  const [showBell, setShowBell] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
   // Cached admin check — dedups and shares across every TopNav mount instead of
   // firing a fresh /me/is-admin request on each. A non-admin/unauthenticated
@@ -118,7 +168,24 @@ export function TopNav({
   const profileTriggerRef = useRef<HTMLButtonElement | null>(null);
   const wasProfileMenuOpen = useRef(false);
 
-  const initial = name.trim().charAt(0).toUpperCase() || "R";
+  // One identity for every page: first name on the chip, full name in the menu.
+  // Until the viewer is known, a fixed-width placeholder holds the space instead
+  // of a stand-in name.
+  const viewer = useBookViewer();
+  const identityKnown = viewer.identity.source !== "fallback";
+  const identityPending = !identityKnown && (!viewer.hydrated || viewer.loading);
+  const fullName = viewer.identity.displayName.trim() || "Reader";
+  const givenName =
+    typeof viewer.identity.givenName === "string" ? viewer.identity.givenName.trim() : "";
+  const fullFirstWord = fullName.split(/\s+/)[0] || fullName;
+  // A name the reader set in Profile wins; the sign-in given name is only for
+  // readers who never set one.
+  const firstName =
+    viewer.identity.source === "profile"
+      ? fullFirstWord
+      : givenName.split(/\s+/)[0] || fullFirstWord;
+  const avatarUrl = avatarUrlProp || viewer.identity.avatarDataUrl;
+  const initial = identityPending ? "" : fullName.charAt(0).toUpperCase() || "R";
   const showAvatar = !!avatarUrl && !avatarError;
 
   // Reset error state when avatar URL changes
@@ -153,6 +220,7 @@ export function TopNav({
     setShowSearchPanel(false);
     setShowProfileMenu(false);
     setShowMoreSheet(false);
+    setShowBell(false);
   }, [pathname]);
 
   // Return focus to the trigger whenever the profile menu transitions open → closed
@@ -177,7 +245,8 @@ export function TopNav({
     setSearchActiveIndex(-1);
   }, [searchQuery]);
   useEffect(() => {
-    if (!showSearchPanel) setSearchActiveIndex(-1);
+    if (showSearchPanel) setSearchPanelLoaded(true);
+    else setSearchActiveIndex(-1);
   }, [showSearchPanel]);
 
   const onSearchKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
@@ -201,14 +270,15 @@ export function TopNav({
   };
 
   useEffect(() => {
-    function onPointerDown(event: MouseEvent) {
+    function onPointerDown(event: PointerEvent) {
       if (!headerRef.current) return;
       if (headerRef.current.contains(event.target as Node)) return;
       setShowSearchPanel(false);
       setShowProfileMenu(false);
     }
-    window.addEventListener("mousedown", onPointerDown);
-    return () => window.removeEventListener("mousedown", onPointerDown);
+    // pointerdown (not mousedown) so a tap on blank page also closes on iOS.
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
   }, []);
 
   const avatarChip = (
@@ -217,7 +287,7 @@ export function TopNav({
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={avatarUrl}
-          alt={name}
+          alt={identityPending ? "" : fullName}
           className="h-full w-full object-cover"
           onError={() => setAvatarError(true)}
         />
@@ -250,7 +320,7 @@ export function TopNav({
             <Link
               href="/dashboard"
               className="inline-flex min-w-0 items-center gap-2.5 rounded-xl cf-focus"
-              aria-label="Go to ChapterFlow workspace"
+              aria-label="ChapterFlow home"
             >
               {logoVariant === "dashboard" ? (
                 <>
@@ -356,7 +426,7 @@ export function TopNav({
                     searchActiveIndex >= 0 ? `desktop-gs-opt-${searchActiveIndex}` : undefined
                   }
                 />
-                {showGlobalSearchPanel ? (
+                {showGlobalSearchPanel && searchPanelLoaded ? (
                   <GlobalSearchPanel
                     open={showSearchPanel}
                     query={searchQuery}
@@ -376,7 +446,17 @@ export function TopNav({
                 the centered desktop search (lg+) isn't present to absorb the free space.
                 shrink-0 keeps the controls whole; the logo is what gives way. */}
             <div className="relative ml-auto flex shrink-0 items-center gap-1.5 lg:ml-0">
-              <NotificationBell />
+              <NotificationBell
+                open={showBell}
+                onOpenChange={(next) => {
+                  setShowBell(next);
+                  if (next) {
+                    // Focus stays on the bell; skip the menu's return-focus step.
+                    wasProfileMenuOpen.current = false;
+                    setShowProfileMenu(false);
+                  }
+                }}
+              />
               <ThemeModeToggle className="h-9" />
 
               <Link
@@ -403,22 +483,35 @@ export function TopNav({
                 aria-label="Profile"
               >
                 {avatarChip}
-                <span className="hidden text-sm font-medium lg:inline-flex">{name || "Reader"}</span>
+                {identityPending ? (
+                  <span
+                    aria-hidden="true"
+                    className="hidden h-3.5 w-14 rounded-full bg-(--cf-border) lg:inline-block"
+                  />
+                ) : (
+                  <span className="hidden max-w-28 truncate text-sm font-medium lg:inline-block">
+                    {firstName}
+                  </span>
+                )}
               </Link>
 
               <button
                 ref={profileTriggerRef}
                 type="button"
-                onClick={() => setShowProfileMenu((prev) => !prev)}
+                onClick={() => {
+                  const next = !showProfileMenu;
+                  setShowProfileMenu(next);
+                  if (next) setShowBell(false);
+                }}
                 className={[
                   "inline-flex min-h-11 min-w-11 items-center justify-center gap-1 rounded-xl border max-sm:px-2 transition",
-                  activeTab === "profile"
+                  secondaryActive
                     ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
                     : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
                 ].join(" ")}
                 aria-label="Open profile menu"
-                aria-haspopup="menu"
                 aria-expanded={showProfileMenu}
+                aria-controls="profile-menu"
               >
                 {/* Below sm the Profile chip is hidden (Profile is in this menu), so the
                     avatar rides in this one 44px button instead of a second target. */}
@@ -427,61 +520,44 @@ export function TopNav({
               </button>
 
               {showProfileMenu ? (
-                <div className="cf-panel-strong absolute right-0 top-11 z-50 w-56 rounded-2xl p-2">
+                <div id="profile-menu" className="cf-panel-strong absolute right-0 top-11 z-50 w-56 rounded-2xl p-2">
                   <div className="border-b border-(--cf-divider) px-3 py-2.5">
-                    <p className="text-sm font-semibold text-(--cf-text-1)">{name || "Reader"}</p>
+                    {identityPending ? (
+                      <span
+                        aria-hidden="true"
+                        className="my-0.5 block h-3.5 w-24 rounded-full bg-(--cf-border)"
+                      />
+                    ) : (
+                      <p className="truncate text-sm font-semibold text-(--cf-text-1)">{fullName}</p>
+                    )}
                     <p className="text-xs text-(--cf-text-3)">ChapterFlow</p>
                   </div>
                   <div className="mt-1 space-y-0.5">
-                    <Link
-                      href="/book/profile"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <User className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Profile
-                    </Link>
-                    <Link
-                      href="/rewards"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <Gift className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Rewards
-                    </Link>
-                    <Link
-                      href="/book/journeys"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <Map className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Journeys
-                    </Link>
-                    <Link
-                      href="/book/events"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <Trophy className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Events
-                    </Link>
-                    <Link
-                      href="/book/saved"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <Bookmark className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Read Next
-                    </Link>
-                    <Link
-                      href="/book/notebook"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <NotebookPen className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Notebook
-                    </Link>
-                    <Link
-                      href="/book/settings"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-                    >
-                      <Settings className="h-3.5 w-3.5 text-(--cf-text-3)" />
-                      Settings
-                    </Link>
+                    {menuItems.map((item) => {
+                      const active = item.id === activeTab;
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.id}
+                          href={item.href}
+                          aria-current={active ? "page" : undefined}
+                          className={[
+                            "flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm transition",
+                            active
+                              ? "bg-(--cf-accent-soft) font-medium text-(--cf-accent)"
+                              : "text-(--cf-text-2) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
+                          ].join(" ")}
+                        >
+                          <Icon
+                            className={[
+                              "h-3.5 w-3.5",
+                              active ? "text-(--cf-accent)" : "text-(--cf-text-3)",
+                            ].join(" ")}
+                          />
+                          {item.label}
+                        </Link>
+                      );
+                    })}
                     {isAdmin && (
                       <Link
                         href="/book/admin"
@@ -526,7 +602,7 @@ export function TopNav({
                   searchActiveIndex >= 0 ? `mobile-gs-opt-${searchActiveIndex}` : undefined
                 }
               />
-              {showGlobalSearchPanel ? (
+              {showGlobalSearchPanel && searchPanelLoaded ? (
                 <GlobalSearchPanel
                   open={showSearchPanel}
                   query={searchQuery}

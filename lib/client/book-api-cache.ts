@@ -11,6 +11,7 @@
 //   - useBookQuery<T>         React hook: cached-first data with background revalidation
 //   - subscribeBookCache      subscribe a callback to a key's updates
 //   - invalidateBookCache     drop cached keys after a mutation
+//   - updateBookCache<T>      apply a just-made write to a cached value
 //   - peekBookCache<T>        synchronous cached read
 //
 // Only GETs are ever cached here. POST/PATCH/PUT/DELETE stay on `fetchBookJson`
@@ -172,6 +173,18 @@ export function subscribeBookCache(key: string, listener: BookCacheListener): ()
 export function invalidateBookCache(prefix: string): void {
   reconcileBookCacheAuthGeneration();
   cache.invalidate(prefix);
+}
+
+/**
+ * Apply a write the caller just made to the cached value for `key`, so a screen
+ * that mounts before the next GET shows it. Nothing happens when `key` has no
+ * cached value. Callers still invalidate the key once the write settles.
+ */
+export function updateBookCache<T>(key: string, update: (current: T) => T): void {
+  reconcileBookCacheAuthGeneration();
+  const current = cache.peek(key);
+  if (current === undefined) return;
+  cache.set(key, update(current.value as T));
 }
 
 /** Synchronous cached read (fresh or stale), or undefined if nothing is cached. */
