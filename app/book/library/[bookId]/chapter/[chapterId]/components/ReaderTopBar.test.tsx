@@ -103,8 +103,8 @@ test("Listen has no single-key hint in its tooltip", () => {
 test("Back honours only the known ?from= origin", async () => {
   window.history.replaceState(null, "", "/?from=dashboard");
   const fromDashboard = render(<Bar />);
-  await waitFor(() => fromDashboard.getByRole("link", { name: "Back to dashboard" }));
-  assert.equal(fromDashboard.getByRole("link", { name: "Back to dashboard" }).getAttribute("href"), "/dashboard");
+  await waitFor(() => fromDashboard.getByRole("link", { name: "Back to Home" }));
+  assert.equal(fromDashboard.getByRole("link", { name: "Back to Home" }).getAttribute("href"), "/dashboard");
   fromDashboard.unmount();
 
   window.history.replaceState(null, "", "/?from=https%3A%2F%2Fexample.com");

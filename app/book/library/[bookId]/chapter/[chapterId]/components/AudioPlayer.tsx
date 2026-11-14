@@ -44,7 +44,15 @@ type AudioFailure = { message: string; retry: boolean };
 
 /** Plain words for the audio GET's error codes. Dead ends offer no retry. */
 function audioFailure(status: number, code: string | undefined): AudioFailure {
-  if (code === "rate_limited" || (!code && status === 429)) {
+  // The audio GET's own rate_limited is the daily cap on new chapter audio:
+  // a retry cannot succeed until tomorrow.
+  if (code === "rate_limited") {
+    return {
+      message: "You've reached today's limit for new chapter audio. Try again tomorrow.",
+      retry: false,
+    };
+  }
+  if (!code && status === 429) {
     return { message: "Too many audio requests. Wait a minute, then try again.", retry: true };
   }
   if (code === "tts_unavailable") {

@@ -32,7 +32,7 @@ function useBackLink(bookId: string) {
   const [back, setBack] = useState({ href: library, label: "Back to book" });
   useEffect(() => {
     const libraryHref = `/book/library/${encodeURIComponent(bookId)}`;
-    const dashboard = { href: "/dashboard", label: "Back to dashboard" };
+    const dashboard = { href: "/dashboard", label: "Back to Home" };
     if (new URLSearchParams(window.location.search).get("from") === "dashboard") {
       setBack(dashboard);
       return;

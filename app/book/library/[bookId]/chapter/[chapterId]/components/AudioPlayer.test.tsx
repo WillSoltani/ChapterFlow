@@ -119,8 +119,17 @@ test("a pro_required answer shows the Pro offer, not an error", async () => {
   assert.equal(view.queryByRole("button", { name: "Try again" }), null);
 });
 
-test("a rate-limited request says so in plain words and offers a retry", async () => {
+test("the daily limit for new chapter audio says so and offers no retry", async () => {
+  // The audio GET's own 429 rate_limited is the per-day cap on new audio, so
+  // "wait a minute" would be wrong: every retry fails until tomorrow.
   stubFetch(() => errorResponse(429, "rate_limited"));
+  const view = openRow("PRO");
+  await view.findByText("You've reached today's limit for new chapter audio. Try again tomorrow.");
+  assert.equal(view.queryByRole("button", { name: "Try again" }), null);
+});
+
+test("a 429 with no code says so in plain words and offers a retry", async () => {
+  stubFetch(() => new Response("slow down", { status: 429 }));
   const view = openRow("PRO");
   await view.findByText("Too many audio requests. Wait a minute, then try again.");
   fireEvent.click(view.getByRole("button", { name: "Try again" }));
