@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { UPGRADE_RETURN_PATH } from "@/lib/pricing";
 import {
   CATALOG_BOOK_COUNT_DISPLAY,
   CATALOG_CATEGORY_COUNT_DISPLAY,
@@ -10,7 +10,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { LearningLoopIndicator } from "./LearningLoopIndicator";
 import { BOOKS_CATALOG } from "@/lib/books-catalog";
-import { getBookCoverPath } from "@/lib/book-covers";
+import { BookCover } from "@/components/ui/BookCover";
+import { bookCtaLabel, continueHref } from "@/components/book/book-cta-core";
 
 type LoopStep = "summary" | "scenarios" | "quiz" | "unlock";
 
@@ -50,11 +51,16 @@ interface HeroSessionCardProps {
 }
 
 const DECORATIVE_FALLBACK_BOOKS = BOOKS_CATALOG.slice(0, 2).map((book, index) => ({
-  src: getBookCoverPath(book.id),
+  bookId: book.id,
+  title: book.title,
   rot: index === 0 ? -8 : 8,
   href: "/book/library",
   alt: "",
 }));
+
+// Shown by BookCover when a book has no cover image (HOME-22).
+const COVER_FALLBACK_GRADIENT =
+  "linear-gradient(135deg, var(--cf-cover-fallback-start) 0%, var(--cf-cover-fallback-end) 100%)";
 
 function getStatusBadge(userState: UserState): {
   label: string;
@@ -102,13 +108,11 @@ function getCTAHref(userState: UserState, book: CurrentBook | null): string {
     case "active_reader":
     case "quiz_pending":
     case "returning":
-      return book
-        ? `/book/library/${book.id}/chapter/${book.currentChapter}`
-        : "/book/library";
+      return book ? continueHref(book.id, book.currentChapter) : "/book/library";
     case "between_books":
       return "/book/library";
     case "free_limit_reached":
-      return "/pricing";
+      return UPGRADE_RETURN_PATH;
     default:
       return "/book/library";
   }
@@ -119,7 +123,7 @@ function getCTAText(userState: UserState, book: CurrentBook | null): string {
     case "new_user":
       return "Pick your first book";
     case "active_reader":
-      return `Continue chapter ${book?.currentChapter ?? 1}`;
+      return bookCtaLabel(book?.currentChapter ?? 1);
     case "quiz_pending":
       return "Take the quiz";
     case "between_books":
@@ -136,7 +140,7 @@ function getCTAText(userState: UserState, book: CurrentBook | null): string {
 /**
  * Append `?from=dashboard` to in-app chapter-reader hrefs so the reader's
  * context-aware Back (ChapterHeader, batch 04) returns to /dashboard. Only
- * touches `/book/library/{id}/chapter/{n}` — leaves /pricing and the
+ * touches `/book/library/{id}/chapter/{n}` — leaves the upgrade link and the
  * /book/library browse target unchanged.
  */
 function withDashboardReturn(href: string): string {
@@ -209,7 +213,7 @@ export function HeroSessionCard({
     ? "Your shelf is ready"
     : getHeroTitle(userState, currentBook, firstName);
   const subtitle = hasPersonalizedShelf
-    ? `We picked ${starterShelfBooks.length} books based on your interests`
+    ? `We picked ${starterShelfBooks.length} ${starterShelfBooks.length === 1 ? "book" : "books"} based on your interests`
     : getHeroSubtitle(userState, currentBook);
   const showBookCover =
     currentBook && userState !== "new_user" && userState !== "between_books";
@@ -219,9 +223,6 @@ export function HeroSessionCard({
     currentBook?.currentLoopStep &&
     (userState === "active_reader" || userState === "quiz_pending");
 
-  const coverSrc = currentBook
-    ? currentBook.coverUrl || getBookCoverPath(currentBook.id)
-    : "";
   return (
     <motion.div
       className="group rounded-2xl"
@@ -432,18 +433,23 @@ export function HeroSessionCard({
                   {...(prefersReducedMotion ? {} : { whileHover: { rotateY: -8, scale: 1.03 } })}
                   {...(prefersReducedMotion ? {} : { transition: { type: "spring", stiffness: 300, damping: 20 } })}
                 >
-                  <Link href={`/book/library/${currentBook.id}`}>
-                    <Image
-                      src={coverSrc}
-                      alt={`${currentBook.title} by ${currentBook.author}`}
+                  <Link
+                    href={`/book/library/${currentBook.id}`}
+                    aria-label={`${currentBook.title} by ${currentBook.author}`}
+                    className="block rounded-lg ring-1 ring-white/[0.08]"
+                    style={{
+                      boxShadow:
+                        "0 25px 50px -12px color-mix(in srgb, var(--cf-palette-black) 60%, transparent), 0 0 30px -5px var(--accent-cyan-glow)",
+                    }}
+                  >
+                    <BookCover
+                      bookId={currentBook.id}
+                      title={currentBook.title}
+                      coverGradient={currentBook.gradient ?? COVER_FALLBACK_GRADIENT}
                       width={200}
                       height={300}
+                      borderRadius={8}
                       priority
-                      className="rounded-lg object-cover ring-1 ring-white/[0.08]"
-                      style={{
-                        boxShadow:
-                          "0 25px 50px -12px color-mix(in srgb, var(--cf-palette-black) 60%, transparent), 0 0 30px -5px var(--accent-cyan-glow)",
-                      }}
                     />
                   </Link>
                 </motion.div>
@@ -464,14 +470,15 @@ export function HeroSessionCard({
             <div className="flex gap-3">
               {(hasPersonalizedShelf
                 ? starterShelfBooks.slice(0, 3).map((book, i) => ({
-                    src: book.coverUrl || getBookCoverPath(book.id),
+                    bookId: book.id,
+                    title: book.title,
                     rot: i === 0 ? -8 : i === 1 ? 0 : 8,
                     href: `/book/library/${book.id}`,
                     alt: `${book.title} by ${book.author}`,
                   }))
                 : DECORATIVE_FALLBACK_BOOKS
               ).map((item, i) => (
-                <Link key={i} href={item.href}>
+                <Link key={i} href={item.href} aria-label={item.alt || undefined}>
                   <motion.div
                     className="overflow-hidden rounded-lg shadow-shadow-elevated ring-1 ring-white/[0.08]"
                     style={{
@@ -484,12 +491,13 @@ export function HeroSessionCard({
                     {...(prefersReducedMotion ? {} : { whileHover: { scale: 1.08, rotate: 0 } })}
                     {...(prefersReducedMotion ? {} : { transition: { duration: DUR.page, delay: 0.3 + i * 0.1, ease: EASE.standard } })}
                   >
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
+                    <BookCover
+                      bookId={item.bookId}
+                      title={item.title}
+                      coverGradient={COVER_FALLBACK_GRADIENT}
                       width={hasPersonalizedShelf ? 90 : 70}
                       height={hasPersonalizedShelf ? 130 : 100}
-                      className="h-full w-full object-cover"
+                      priority
                     />
                   </motion.div>
                 </Link>

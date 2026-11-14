@@ -1,17 +1,26 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { BookCard } from "./BookCard";
 import {
   SORT_OPTIONS,
+  isInProgress,
   type SortOption,
   type LibraryBook,
   type Category,
   type Difficulty,
 } from "./libraryData";
+import {
+  parseBrowseParams,
+  rankBooks,
+  serializeBrowseParams,
+  type BrowseParams,
+  type StatusFilter,
+} from "./browse-params-core";
 
 interface BrowseAllProps {
   books: LibraryBook[];
@@ -21,8 +30,6 @@ interface BrowseAllProps {
   /** Text search query from the navbar / `?q=` URL param */
   searchQuery?: string;
 }
-
-type StatusFilter = "all" | "in_progress" | "not_started" | "completed";
 
 const CATEGORIES: Category[] = [
   "Psychology",
@@ -83,17 +90,37 @@ export function BrowseAll({
   searchQuery = "",
 }: BrowseAllProps) {
   const prefersReduced = useReducedMotion();
-  const [status, setStatus] = useState<StatusFilter>("all");
-  const [category, setCategory] = useState<Category | null>(initialCategory ?? null);
-  const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
-  const [sort, setSort] = useState<SortOption>("featured");
-  const [showAll, setShowAll] = useState(false);
-  const [moodFilter, setMoodFilter] = useState<string | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const searchKey = searchParams.toString();
+  // HOME-17: filters, sort and "Show all" start from the URL (so Back restores
+  // them) and are written back to it. State stays the immediate source of
+  // truth; the URL only follows it, so the two cannot loop.
+  const [browse, setBrowse] = useState<BrowseParams>(() =>
+    parseBrowseParams(searchParams, initialCategory),
+  );
+  const { status, category, difficulty, sort, showAll, mood: moodFilter } = browse;
+  const update = useCallback(
+    (patch: Partial<BrowseParams>) => setBrowse((prev) => ({ ...prev, ...patch })),
+    [],
+  );
+  const setStatus = (value: StatusFilter) => update({ status: value });
+  const setCategory = (value: Category | null) => update({ category: value });
+  const setDifficulty = (value: Difficulty | null) => update({ difficulty: value });
+  const setSort = (value: SortOption) => update({ sort: value });
+  const setShowAll = (value: boolean) => update({ showAll: value });
+
+  useEffect(() => {
+    const next = serializeBrowseParams(new URLSearchParams(searchKey), browse);
+    if (next === searchKey) return;
+    router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
+  }, [browse, searchKey, pathname, router]);
   const trimmedQuery = searchQuery.trim();
 
   // Status counts
   const counts = useMemo(() => ({
-    in_progress: books.filter((b) => b.userProgress && !b.userProgress.isCompleted && b.userProgress.percentComplete > 0).length,
+    in_progress: books.filter(isInProgress).length,
     not_started: books.filter((b) => !b.userProgress).length,
     completed: books.filter((b) => b.userProgress?.isCompleted).length,
   }), [books]);
@@ -102,13 +129,10 @@ export function BrowseAll({
   const filtered = useMemo(() => {
     let result = [...books];
 
-    // Text search
+    // Text search: same matcher and ranking as the header search (HOME-18);
+    // the "featured" sort keeps this best-first order.
     if (trimmedQuery) {
-      const q = trimmedQuery.toLowerCase();
-      result = result.filter((b) => {
-        const searchable = `${b.title} ${b.author} ${b.category} ${b.hook}`.toLowerCase();
-        return searchable.includes(q);
-      });
+      result = rankBooks(result, trimmedQuery);
     }
 
     // Mood filter — every option is an honest, derivable signal
@@ -133,9 +157,7 @@ export function BrowseAll({
 
     // Status
     if (status === "in_progress") {
-      result = result.filter(
-        (b) => b.userProgress && !b.userProgress.isCompleted && b.userProgress.percentComplete > 0
-      );
+      result = result.filter(isInProgress);
     } else if (status === "not_started") {
       result = result.filter((b) => !b.userProgress);
     } else if (status === "completed") {
@@ -179,11 +201,8 @@ export function BrowseAll({
   const hasFilters = status !== "all" || category || difficulty || moodFilter;
 
   const clearAll = useCallback(() => {
-    setStatus("all");
-    setCategory(null);
-    setDifficulty(null);
-    setMoodFilter(null);
-  }, []);
+    update({ status: "all", category: null, difficulty: null, mood: null });
+  }, [update]);
 
   // Active filter summary — System Status Visibility (Nielsen)
   const summaryText = useMemo(() => {
@@ -269,18 +288,17 @@ export function BrowseAll({
           What are you in the mood for?
         </p>
         <div className="mt-2.5 flex flex-wrap gap-2">
-          {[
+          {([
             { key: "quick", label: "Something quick" },
             { key: "deep", label: "A deep dive" },
             { key: "staff", label: "Staff picks" },
             { key: "decide", label: "Help me decide" },
-          ].map((opt) => (
+          ] as const).map((opt) => (
             <button
               key={opt.key}
               type="button"
               onClick={() => {
-                setMoodFilter(moodFilter === opt.key ? null : opt.key);
-                setShowAll(false);
+                update({ mood: moodFilter === opt.key ? null : opt.key, showAll: false });
               }}
               className="cursor-pointer rounded-full px-4 py-2 text-cf-label font-medium transition-all"
               style={

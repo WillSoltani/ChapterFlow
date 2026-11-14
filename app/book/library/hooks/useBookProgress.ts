@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
 import {
@@ -28,17 +28,41 @@ function clearBookReaderStorage(bookId: string): void {
     `${CHAPTER_READER_STORAGE_PREFIX}:${bookId}:`,
     `${PHASE_COMPLETION_STORAGE_PREFIX}:${bookId}:`,
   ];
-  const toRemove: string[] = [];
-  for (let index = 0; index < window.localStorage.length; index += 1) {
-    const key = window.localStorage.key(index);
-    if (key && prefixes.some((prefix) => key.startsWith(prefix))) {
-      toRemove.push(key);
+  try {
+    const toRemove: string[] = [];
+    for (let index = 0; index < window.localStorage.length; index += 1) {
+      const key = window.localStorage.key(index);
+      if (key && prefixes.some((prefix) => key.startsWith(prefix))) {
+        toRemove.push(key);
+      }
     }
-  }
-  for (const key of toRemove) {
-    window.localStorage.removeItem(key);
+    for (const key of toRemove) {
+      window.localStorage.removeItem(key);
+    }
+  } catch {
+    // Storage blocked: nothing local to clear (READER-19).
   }
 }
+
+// READER-19: blocked or full storage (private mode, quota) must not crash the page.
+function readStorage(key: string): string | null {
+  try {
+    return window.localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function writeStorage(key: string, value: string): void {
+  try {
+    window.localStorage.setItem(key, value);
+  } catch {
+    // keep going without the local mirror
+  }
+}
+
+// Browsers cap keepalive request bodies at 64 KB.
+const KEEPALIVE_MAX_BODY_CHARS = 60_000;
 
 type ChapterState = "completed" | "current" | "locked";
 export type ProgressChapter = { id: string };
@@ -276,6 +300,10 @@ export function useBookProgress<TChapter extends ProgressChapter>(
     )
   );
   const [serverReady, setServerReady] = useState(false);
+  // Set only by the setters below (a chapter opened, made current or completed)
+  // and cleared when the PATCH is sent. Hydration and the GET merge never set
+  // it, so viewing a book does not write progress (HOME-01 / DATA-12).
+  const dirtyRef = useRef(false);
   // Two-axis completion (feedback #4): the application axis is SERVER-ONLY and
   // read-only. It lives in its OWN state — never merged into `progress`, never
   // reconstructed from local data — so the progress union-merge below cannot clobber
@@ -285,7 +313,7 @@ export function useBookProgress<TChapter extends ProgressChapter>(
   >({});
 
   useEffect(() => {
-    const parsed = parseStored(window.localStorage.getItem(storageKey), chapters);
+    const parsed = parseStored(readStorage(storageKey), chapters);
     setProgress(
       applyBookProgressFloor(
         parsed ?? initialProgress(chapters),
@@ -362,22 +390,50 @@ export function useBookProgress<TChapter extends ProgressChapter>(
 
   useEffect(() => {
     if (!hydrated) return;
-    window.localStorage.setItem(storageKey, JSON.stringify(progress));
+    writeStorage(storageKey, JSON.stringify(progress));
     emitBookStorageChanged(`progress:${bookId}`);
   }, [bookId, hydrated, progress, storageKey]);
 
+  // Latest values for the flush below, which also runs from unmount / pagehide.
+  const progressRef = useRef(progress);
+  const canWriteRef = useRef(false);
   useEffect(() => {
-    if (!hydrated || !serverReady) return;
-    const timeout = window.setTimeout(() => {
+    progressRef.current = progress;
+    canWriteRef.current = hydrated && serverReady;
+  }, [progress, hydrated, serverReady]);
+
+  const flushProgress = useCallback(
+    (keepalive: boolean) => {
+      if (!dirtyRef.current || !canWriteRef.current) return;
+      dirtyRef.current = false;
+      const body = JSON.stringify({ state: progressRef.current });
       fetchBookJson(stateKey, {
         method: "PATCH",
-        body: JSON.stringify({ state: progress }),
+        body,
+        ...(keepalive && body.length <= KEEPALIVE_MAX_BODY_CHARS ? { keepalive: true } : {}),
       })
         .then(() => invalidateBookCache(stateKey))
         .catch(() => {});
-    }, 200);
+    },
+    [stateKey],
+  );
+
+  useEffect(() => {
+    if (!hydrated || !serverReady || !dirtyRef.current) return;
+    const timeout = window.setTimeout(() => flushProgress(false), 200);
     return () => window.clearTimeout(timeout);
-  }, [stateKey, hydrated, progress, serverReady]);
+  }, [hydrated, progress, serverReady, flushProgress]);
+
+  // DATA-06: leaving inside the debounce window (opening a chapter, Back, closing
+  // the tab) still sends the pending change.
+  useEffect(() => {
+    const onPageHide = () => flushProgress(true);
+    window.addEventListener("pagehide", onPageHide);
+    return () => {
+      window.removeEventListener("pagehide", onPageHide);
+      flushProgress(true);
+    };
+  }, [flushProgress]);
 
   const completedSet = useMemo(
     () => new Set(progress.completedChapterIds),
@@ -437,6 +493,7 @@ export function useBookProgress<TChapter extends ProgressChapter>(
   const setLastReadChapter = useCallback((chapterId: string) => {
     setProgress((prev) => {
       if (!chapters.some((chapter) => chapter.id === chapterId)) return prev;
+      dirtyRef.current = true;
       return {
         ...prev,
         lastReadChapterId: chapterId,
@@ -450,6 +507,7 @@ export function useBookProgress<TChapter extends ProgressChapter>(
       setProgress((prev) => {
         const allowed = prev.completedChapterIds.includes(chapterId) || prev.unlockedChapterIds.includes(chapterId);
         if (!allowed) return prev;
+        dirtyRef.current = true;
         return {
           ...prev,
           currentChapterId: chapterId,
@@ -467,6 +525,7 @@ export function useBookProgress<TChapter extends ProgressChapter>(
 
       setProgress((prev) => {
         if (!chapters.some((chapter) => chapter.id === chapterId)) return prev;
+        dirtyRef.current = true;
 
         const alreadyCompleted = prev.completedChapterIds.includes(chapterId);
         const completedChapterIds = alreadyCompleted
@@ -541,6 +600,9 @@ export function useBookProgress<TChapter extends ProgressChapter>(
 
   return {
     hydrated,
+    // True once the server copy has been merged (or its read failed); until
+    // then progress reflects this device only (HOME-09 / DATA-16).
+    serverReady,
     progress,
     applicationStates,
     appliedCount,

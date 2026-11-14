@@ -2,9 +2,11 @@ import { Flame } from "lucide-react";
 
 interface StreakBadgeProps {
   count: number;
+  /** Streak alive through yesterday, nothing read yet today (C2). */
+  atRisk?: boolean;
 }
 
-export function StreakBadge({ count }: StreakBadgeProps) {
+export function StreakBadge({ count, atRisk = false }: StreakBadgeProps) {
   // Show the earned streak whenever count > 0 — even for a brand-new user whose
   // day-1 streak (1) was just granted at onboarding. Conflating "new user" with
   // "no streak" hid the just-awarded reward one screen after the celebration.
@@ -19,7 +21,10 @@ export function StreakBadge({ count }: StreakBadgeProps) {
   }
 
   return (
-    <div className="flex items-center gap-1.5" aria-label={`${count} day streak`}>
+    <div
+      className="flex items-center gap-1.5"
+      aria-label={atRisk ? undefined : `${count} day streak`}
+    >
       <span className="relative inline-flex" aria-hidden="true">
         <Flame
           size={18}
@@ -33,12 +38,18 @@ export function StreakBadge({ count }: StreakBadgeProps) {
           style={{ background: "var(--accent-amber-glow)" }}
         />
       </span>
-      <span
-        className="text-sm font-semibold tabular-nums"
-        style={{ color: "var(--cf-text-1)" }}
-      >
-        {count}
-      </span>
+      {atRisk ? (
+        <span className="text-sm tabular-nums" style={{ color: "var(--cf-text-2)" }}>
+          Read today to keep your {count}-day streak.
+        </span>
+      ) : (
+        <span
+          className="text-sm font-semibold tabular-nums"
+          style={{ color: "var(--cf-text-1)" }}
+        >
+          {count}
+        </span>
+      )}
     </div>
   );
 }

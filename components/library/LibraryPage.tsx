@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
+import { UPGRADE_RETURN_PATH } from "@/lib/pricing";
 import { useSearchParams } from "next/navigation";
 import { TriangleAlert } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,8 +13,8 @@ import { useLibraryDashboard } from "@/hooks/book/useLibraryDashboard";
 import { emitBookStorageChanged } from "@/lib/client/book-storage-events";
 import { useBookViewer } from "@/hooks/book/useBookViewer";
 import { useSavedBooks } from "@/hooks/book/useSavedBooks";
+import { useFreeBookAllowance } from "@/hooks/book/useFreeBookAllowance";
 import { BookCover } from "@/components/ui/BookCover";
-import { deriveReaderLevel } from "@/lib/reader-levels";
 import { HeroRecommendation } from "./HeroRecommendation";
 import { ActiveReads } from "./ActiveReads";
 import { WeeklyChallenge } from "./WeeklyChallenge";
@@ -52,6 +53,7 @@ export function LibraryPage() {
     useLibraryDashboard();
   const { identity } = useBookViewer();
   const { savedSet, toggleSaved } = useSavedBooks(true);
+  const allowance = useFreeBookAllowance();
 
   const firstName = useMemo(
     () => (identity.givenName || identity.displayName || "Reader").split(" ")[0] ?? "Reader",
@@ -64,17 +66,6 @@ export function LibraryPage() {
     [entitlement, entries, insightPointsBalance, firstName],
   );
   const weeklyChallenge = WEEKLY_CHALLENGE;
-
-  // Named reader tier (NAMED TIERS, not numeric "Level N") — shared derivation
-  // with the Progress page via deriveReaderLevel, keyed on the same basis
-  // (total completed chapters across the reader's library).
-  const readerLevel = useMemo(
-    () =>
-      deriveReaderLevel(
-        entries.reduce((sum, entry) => sum + (entry.chaptersCompleted ?? 0), 0),
-      ),
-    [entries],
-  );
 
   const booksById = useMemo(() => new Map(books.map((b) => [b.id, b])), [books]);
   const isFreeUser = !userStats.isPro;
@@ -103,8 +94,8 @@ export function LibraryPage() {
   );
 
   const libraryContext = useMemo<LibraryContextValue>(
-    () => ({ booksById, isFreeUser, unlockedBookIds, savedSet, onToggleSave }),
-    [booksById, isFreeUser, unlockedBookIds, savedSet, onToggleSave],
+    () => ({ booksById, isFreeUser, unlockedBookIds, allowance, savedSet, onToggleSave }),
+    [booksById, isFreeUser, unlockedBookIds, allowance, savedSet, onToggleSave],
   );
 
   // "Active read" = any started, not-yet-completed book.
@@ -167,7 +158,7 @@ export function LibraryPage() {
     document.getElementById("browse-all")?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
-  const freeExhausted = isFreeUser && userStats.freeBooksUsed >= userStats.freeBooksLimit;
+  const freeExhausted = allowance?.plan === "FREE" && allowance.remainingFreeStarts === 0;
   const [bannerDismissed, setBannerDismissed] = useState(false);
 
   // Completion celebration (Change 11) — fires once per newly completed book
@@ -194,13 +185,20 @@ export function LibraryPage() {
     const xp = celebratedBookData.userProgress?.xpEarned ?? 0;
     showToast(`You've mastered ${celebratedBookData.title}!`, "success", {
       autoDismissMs: 5000,
-      detail: `${xp > 0 ? `+${xp} IP earned · ` : ""}${readerLevel}`,
+      // D6: no client reading level here; the server tier ladder is the only one.
+      ...(xp > 0 ? { detail: `+${xp} IP earned` } : {}),
       presentation: "celebration",
     });
-  }, [celebratedBookData, celebrationBook, readerLevel, showToast]);
+  }, [celebratedBookData, celebrationBook, showToast]);
 
   // Search query from navbar / URL → auto-scroll to Browse All
   const navSearchQuery = searchParams.get("q") ?? "";
+  // HOME-17: when ?q goes away ("Clear search"), empty the header box too.
+  const [prevNavSearchQuery, setPrevNavSearchQuery] = useState(navSearchQuery);
+  if (prevNavSearchQuery !== navSearchQuery) {
+    setPrevNavSearchQuery(navSearchQuery);
+    if (!navSearchQuery) setSearchQuery("");
+  }
   useEffect(() => {
     if (navSearchQuery) {
       const t = setTimeout(() => {
@@ -321,7 +319,7 @@ export function LibraryPage() {
                           </div>
                         ))}
                         <a
-                          href="/pricing"
+                          href={UPGRADE_RETURN_PATH}
                           className="ml-2 rounded-lg px-4 py-2 text-cf-label font-semibold text-black transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
                           style={{ background: "var(--cf-upgrade-accent)" }}
                         >

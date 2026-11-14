@@ -5,7 +5,9 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { BookCover } from "@/components/ui/BookCover";
 import { LibraryProgressRing } from "./LibraryProgressRing";
+import { bookCtaLabel, continueHref } from "@/components/book/book-cta-core";
 import {
+  chaptersLeft,
   formatReadingTime,
   getProgressMicrocopy,
   getPerChapterMinutes,
@@ -41,7 +43,7 @@ export function ActiveReads({ books }: ActiveReadsProps) {
       <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {sorted.slice(0, 3).map((book, i) => {
           const prog = book.userProgress!;
-          const chaptersLeft = book.totalChapters - prog.currentChapter;
+          const left = chaptersLeft(book);
           const timeLeft = Math.round(
             book.estimatedReadingTimeMinutes * (1 - prog.percentComplete / 100)
           );
@@ -59,7 +61,7 @@ export function ActiveReads({ books }: ActiveReadsProps) {
               transition={{ duration: DUR.normal, delay: 0.5 + i * 0.12 }}
             >
               <Link
-                href={`/book/library/${encodeURIComponent(book.id)}`}
+                href={continueHref(book.id, prog.currentChapter)}
                 className="group flex gap-4 overflow-hidden rounded-2xl p-4 transition-all duration-200 cf-focus"
                 style={{
                   background: "var(--bg-glass)",
@@ -141,7 +143,7 @@ export function ActiveReads({ books }: ActiveReadsProps) {
                             : "var(--accent-cyan)",
                       }}
                     >
-                      {getProgressMicrocopy(prog.percentComplete, chaptersLeft)}
+                      {getProgressMicrocopy(prog.percentComplete, left)}
                     </p>
 
                     <div className="mt-2 flex items-center justify-between">
@@ -152,7 +154,7 @@ export function ActiveReads({ books }: ActiveReadsProps) {
                         className="text-cf-label font-semibold transition-colors"
                         style={{ color: "var(--accent-cyan)" }}
                       >
-                        Resume
+                        {bookCtaLabel(prog.currentChapter)}
                         <span className="ml-0.5 inline-block transition-transform duration-200 group-hover:translate-x-0.5">
                           →
                         </span>

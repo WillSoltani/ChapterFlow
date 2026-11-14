@@ -31,7 +31,14 @@ interface ProBookData {
 
 type BookCardWorkspaceProps =
   | { variant: "user"; book: UserBookData }
-  | { variant: "pro"; book: ProBookData };
+  | {
+      variant: "pro";
+      book: ProBookData;
+      /** D7: show the Pro badge only when the free reader has no free books left. */
+      showProBadge?: boolean;
+      /** D7: "Free with your plan (N left)" when free books remain. */
+      freeCaption?: string | null;
+    };
 
 const statusConfig = {
   in_progress: { label: "In Progress", color: "var(--cf-accent)" },
@@ -95,7 +102,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
             </div>
           )}
         </div>
-        {variant === "pro" && (
+        {props.variant === "pro" && props.showProBadge && (
           <div className="absolute right-2 top-2">
             <ProBadge />
           </div>
@@ -202,6 +209,11 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
               <span>{(book as ProBookData).category}</span>
             )}
           </div>
+        )}
+        {props.variant === "pro" && props.freeCaption && (
+          <p className="mt-1 text-cf-caption font-medium text-(--cf-text-3)">
+            {props.freeCaption}
+          </p>
         )}
       </div>
     </motion.div>

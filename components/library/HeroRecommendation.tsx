@@ -7,7 +7,9 @@ import { BookCover } from "@/components/ui/BookCover";
 import { LibraryProgressRing } from "./LibraryProgressRing";
 import { BookSaveButton } from "@/components/book/BookSaveButton";
 import { useLibraryContext } from "./LibraryContext";
+import { bookCtaLabel, continueHref } from "@/components/book/book-cta-core";
 import {
+  chaptersLeft,
   formatReadingTime,
   getProgressMicrocopy,
   getProgressTextColor,
@@ -39,9 +41,7 @@ export function HeroRecommendation({
   const detailHref = `/book/library/${encodeURIComponent(heroBook.id)}`;
   const prog = heroBook.userProgress;
   const isInProgress = prog && !prog.isCompleted && prog.percentComplete > 0;
-  const chaptersLeft = isInProgress
-    ? heroBook.totalChapters - prog.currentChapter
-    : 0;
+  const left = isInProgress ? chaptersLeft(heroBook) : 0;
   const timeRemaining = isInProgress
     ? Math.round(
         heroBook.estimatedReadingTimeMinutes * (1 - prog.percentComplete / 100)
@@ -189,7 +189,7 @@ export function HeroRecommendation({
                 Chapter {prog.currentChapter} of {heroBook.totalChapters} · {prog.percentComplete}% complete
               </p>
               <p className="mt-0.5 text-cf-label" style={{ color: getProgressTextColor(prog.percentComplete) }}>
-                {getProgressMicrocopy(prog.percentComplete, chaptersLeft)}
+                {getProgressMicrocopy(prog.percentComplete, left)}
               </p>
             </div>
           )}
@@ -197,7 +197,7 @@ export function HeroRecommendation({
           {/* CTAs — larger primary button (Fitts' Law) with glow */}
           <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
-              href={detailHref}
+              href={isInProgress ? continueHref(heroBook.id, prog.currentChapter) : detailHref}
               className="cta-shine flex w-full cursor-pointer items-center justify-center rounded-xl px-8 text-cf-body-lg font-semibold transition-all sm:w-auto"
               style={{
                 height: 52,
@@ -206,7 +206,7 @@ export function HeroRecommendation({
                 boxShadow: "0 4px 20px color-mix(in srgb, var(--accent-cyan) 30%, transparent), 0 0 40px color-mix(in srgb, var(--accent-cyan) 10%, transparent)",
               }}
             >
-              {isInProgress ? "Continue Reading →" : "Start Reading →"}
+              {isInProgress ? `${bookCtaLabel(prog.currentChapter)} →` : "Start Reading →"}
             </Link>
             <Link
               href={detailHref}
