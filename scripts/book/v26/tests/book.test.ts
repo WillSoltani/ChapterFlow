@@ -196,6 +196,8 @@ test("writeBookChapter: lessons, write, fact check and key solver; the prompt ca
   assert.match(wp, /<exemplar>\n\{\n "title": "A A title"/);
   assert.match(wp, /Lessons already taught by other chapters of this book/);
   assert.match(wp, /"_used": \{"approach": "A", "names"/);
+  assert.match(wp, /\n  - One sound answer: exactly one choice is right/);
+  assert.match(wp, /their whatToDo lines are three different instructions/);
   const fp = h.calls("pipe-vfactcheck")[0].prompt;
   assert.match(fp, /\[fastRead\]\n/);
   const kp = h.calls("pipe-keysolve")[0].prompt;

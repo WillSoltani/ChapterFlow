@@ -12,6 +12,7 @@ import { bookOffset, bookTerms, extractNames, formText, hookCollisions, keyPosit
 import { runChecks } from "../src/checks";
 import type { PipelineCtx } from "../src/pipeline";
 import { appPlan } from "../src/publish";
+import { approach } from "../src/approaches";
 import { bandOf, kindOf, weakKinds, type ChapterScore } from "../src/score";
 import type { Chapter, LessonCard } from "../src/types";
 
@@ -31,8 +32,9 @@ test("the plan is a function of the chapter number: neighbours differ, the same 
     assert.notEqual(line(2, start), line(3, start), `${start} differs between chapters 2 and 3`);
   }
   assert.match(plan(2), /fastRead 150 to 220 words in at most 3 paragraphs; deepRead up to 500 words/);
-  assert.match(plan(1), /the forms in this order: q1 what do you do; q2 spot the trap; q3 predict what happens; q4 best reply; q5 why does this work; q6 what do you do; q7 spot the trap\./);
-  assert.match(plan(2), /the forms in this order: q1 spot the trap; q2 predict what happens;/);
+  assert.match(plan(1), /the forms in this order: q1 what do you do, in an ordinary case; q2 spot the trap: which of the person's own thoughts led them wrong; q3 best reply to a friend who is about to make the usual mistake; q4 why does this work; q5 what do you do when something makes the move harder; q6 best reply to a friend who made part of the move and thinks that is enough; q7 why did the usual fix fail\./);
+  assert.match(plan(2), /the forms in this order: q1 spot the trap: which of the person's own thoughts led them wrong; q2 best reply to a friend who is about to make the usual mistake;/);
+  assert.match(plan(1), /doing the three jobs the field rules give \(the ordinary situation, the fix already tried, the harder situation\), with three different whatToDo instructions\./);
   assert.match(plan(1), /Tags and settings for examples 1 to 3, in this order: work \(an office or a sales team\); school \(a teenager at school\); personal \(family/);
   // The first example is the one a reader sees: never the school one.
   for (let n = 1; n <= 12; n++) assert.doesNotMatch(plan(n), /in this order: school /);
@@ -72,7 +74,18 @@ test("the plan against sameness: what three proofs showed to help stays, what di
   assert.equal(new Set(eight.map((n) => line(n, "- counterintuition frame"))).size, 6);
   assert.doesNotMatch(eight.map(plan).join("\n"), /scenario stops|Two people face|walks of life|what would you change|which comes first|who got it right|what is missing|where does it apply/);
   const forms = (n: number): string[] => (/the forms in this order: ([^.]+)\./.exec(line(n, "- quiz"))?.[1] ?? "").split("; ").map((x) => x.replace(/^q\d+ /, ""));
-  for (const n of eight) assert.equal(new Set(forms(n)).size, 5, `chapter ${n}`);
+  for (const n of eight) assert.equal(new Set(forms(n)).size, 7, `chapter ${n}`);
+  // Gone 2026-11-13: the forecast question ("predict what happens"), which the recalibrated judge fails when the facts do not force it.
+  assert.deepEqual(forms(1), [
+    "what do you do, in an ordinary case",
+    "spot the trap: which of the person's own thoughts led them wrong",
+    "best reply to a friend who is about to make the usual mistake",
+    "why does this work",
+    "what do you do when something makes the move harder",
+    "best reply to a friend who made part of the move and thinks that is enough",
+    "why did the usual fix fail",
+  ]);
+  for (const n of eight) assert.doesNotMatch(plan(n), /predict|most likely/i, `chapter ${n}`);
 });
 
 test("the writer prompt: the ending and the outside advice come from the plan, and no stock wrong answer is listed", () => {
@@ -81,6 +94,11 @@ test("the writer prompt: the ending and the outside advice come from the plan, a
   assert.match(prompt, /only the kind THE PLAN names; if that kind is part of this chapter's own lesson or fits no question, use none/);
   // A list of stock fixes in a rule became every chapter's wrong answers; a rule that every summary returns to its opening closed each one on a slogan.
   assert.doesNotMatch(prompt, /want it more, be stricter|returning to the opening/);
+  // The writer rules of 2026-11-13: one sound answer, no forecast, three different instructions in the examples.
+  for (const x of ["One sound answer", "forecast", "three different instructions"]) assert.ok(prompt.includes(x), x);
+  assert.ok(!prompt.includes("The seven questions test different parts"), "the old one-sentence quiz rule is gone");
+  assert.equal(approach("quiz", "C").name, "explain what happened");
+  assert.doesNotMatch(approach("quiz", "E").rule, /predict/);
 });
 
 test("key positions: every position is the key at least twice, the first five use all three, and question 1 moves", () => {
@@ -153,9 +171,11 @@ test("bookOffset: no book id gives 0, and the plan without one is byte for byte 
     assert.ok(Number.isInteger(o) && o >= 0 && o < 24, `${id}: ${o}`);
     assert.equal(bookOffset(id, "KEY_ROWS", 24), o, "stable");
   }
-  // The thirty plans of the house exemplar as they were before the per-book offsets (sha256 of their text, 2026-11-13).
+  // The thirty plans of the house exemplar as they were before the per-book offsets (sha256 of their text, 2026-11-13),
+  // with the seven quiz forms and the examples line of the writer rules (2026-11-13) and the revised exemplar's example
+  // lengths (whyItMatters about 22), the reworded evidence note and fourth try-this kind, and nothing else changed.
   const all = Array.from({ length: 30 }, (_, i) => formText(ex, summaryApproachFor(ex, i + 1), i + 1, SHAPE)).join("\n\n");
-  assert.equal(createHash("sha256").update(all).digest("hex"), "553e66cd745c8de5e91740957daa7fbfe5bb5fd7c00dc26e396054abf0c2a37e");
+  assert.equal(createHash("sha256").update(all).digest("hex"), "b13340d3ad594a68f7ab9cf7ae3156ec659529f9bec95e16c2998b571cd52fda");
   for (const n of [1, 2, 7, 25]) assert.equal(formText(ex, "A", n, SHAPE, ""), formText(ex, "A", n, SHAPE));
   assert.doesNotMatch(all, /^- names:/m, "no book id, no name list");
 });
@@ -371,4 +391,16 @@ test("hookCollisions names two chapters whose hooks open on the same object, and
   const ctx = { config: { runDir, title: "Tiny Habits", author: "BJ Fogg", chapters: [] } } as unknown as PipelineCtx;
   assert.deepEqual(hookCollisions(ctx, [1, 2, 3, 4]), [{ words: "yoga mat", chapters: ["ch02", "ch03"] }]);
   fs.rmSync(runDir, { recursive: true, force: true });
+});
+
+test("what the writer learns from: no forecast question, three different example instructions, a concrete detail asked of the keys", () => {
+  const c = house().chapterJson;
+  for (const q of c.quiz.questions) assert.doesNotMatch(q.prompt, /most likely|happens next/i, q.questionId);
+  const moves = c.examples.map((e) => e.whatToDo);
+  assert.equal(new Set(moves).size, moves.length, "no two examples give the same instruction");
+  const prompts = fileURLToPath(new URL("../prompts", import.meta.url));
+  assert.match(fs.readFileSync(path.join(prompts, "keys-knowledge.md"), "utf8"), /one concrete detail the book gives/);
+  const writer = fs.readFileSync(path.join(prompts, "write-exemplar.md"), "utf8");
+  assert.match(writer, /The right choice and the explanation use only facts the stem gives\./);
+  assert.match(writer, /Each whyItMatters gives a reason the summaries already give/);
 });

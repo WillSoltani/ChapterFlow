@@ -28,9 +28,9 @@ export const APPROACHES: Record<Component, Approach[]> = {
   quiz: [
     { label: "A", name: "what do you do", rule: "every question puts the reader in a situation and asks what to do (apply)." },
     { label: "B", name: "spot the trap", rule: "every question shows someone's reasoning and asks which thought is the trap, or which belief led them wrong (analyze)." },
-    { label: "C", name: "predict what happens", rule: "every question describes a choice someone made and asks what most likely happens next (understand or apply)." },
+    { label: "C", name: "explain what happened", rule: "every question tells what someone did and how it turned out, and asks why it went that way (understand or analyze)." },
     { label: "D", name: "best reply", rule: "every question quotes something a friend or coworker says that carries the wrong belief, and asks which reply uses the lesson (apply)." },
-    { label: "E", name: "one of each", rule: "one question in each of the forms A to D (what do you do; spot the trap; predict what happens; best reply), plus one \"why does this work?\" question (understand); further questions repeat the forms in that order." },
+    { label: "E", name: "one of each", rule: "one question in each of the forms A to D (what do you do; spot the trap; explain what happened; best reply), plus one \"why does this work?\" question (understand); further questions repeat the forms in that order." },
   ],
   cards: [
     { label: "A", name: "situation to move", rule: "the front is a short modern situation; the back is the move to make and why." },

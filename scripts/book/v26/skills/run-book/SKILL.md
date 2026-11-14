@@ -140,9 +140,13 @@ chapter (about $0.27 each) and its band can change. `score.json` names its judge
 older judge gave, so score the book again first.
 
 How to read the new scale: a chapter of the published quality scores about 83 where the old judge gave about 94. On
-the 18 reader-rated chapters, chapters strict LLM readers gave 6 of 10 average about 78, 7 about 84, 8 about 86 (averages; the groups overlap widely). The
-writer prompts do not yet carry these rules, so expect a book to land in the manual band with `VARY-quiz fails in k
-of N chapters` (often `VARY-examples`, `TELL` or `PLAIN-summary` too) even when its mean is over 80.
+the 18 reader-rated chapters, chapters strict LLM readers gave 6 of 10 average about 78, 7 about 84, 8 about 86 (averages; the groups overlap widely).
+The writer has carried these rules since 2026-11-13 (no forecast questions, one sound answer per question, three
+different example instructions). In the proof on six chapters answer-key (`KEY`) fails fell from 22 of 42 to 6 and
+same-move examples from 5 of 6 chapters to 1, while wrong choices a reader can strike out unread rose clearly and
+give-away wording rose a little, so still expect a book to land in the manual band with `VARY-quiz` or
+`PLAIN-summary fails in k of N chapters` (often `TELL` too) even when its mean is over 80; the judge's round of an
+`auto` run then answers what a small edit can.
 
 ## Red flags: stop and read reference.md
 

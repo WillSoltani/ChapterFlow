@@ -11,7 +11,7 @@ Rules:
 - If a new reader could not answer q1-q5 from the hook, counterintuition, fastRead, memorable lines, tryThisNow and first example, make fastRead state the lesson more clearly. Never add more story.
 - "field" is the field id as it appears in brackets in the chapter text, for example breakdown.fullRead, quiz.q3.explanation, quiz.q3.choices.1, examples.ex01.scenario, reviewCards.rc2.back, implementationPlan.ifThenPlans.0.plan or memorableLines.1. You may also replace a whole short field (find = its full text).
 - "find" must be copied exactly from that field, be long enough to be unique, and stay inside one paragraph. To rewrite a tier's opener, its ending or a whole paragraph, use one edit per paragraph with find = that paragraph's full text. "replace" is the new text.
-- If an issue says the lesson sentence is repeated in too many fields, reword those sentences around the lesson card's keyPhrase instead of the whole sentence.
+- If an issue says the lesson sentence is repeated in too many fields, reword those sentences around the lesson card's keyPhrase instead of the whole sentence (never in a quiz choice: a choice says it in the situation's own words).
 - A key change names the new index and repeats that choice's full text exactly as it reads after your edits.
 
 Output only this JSON (no code fence):

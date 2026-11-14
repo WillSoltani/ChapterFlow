@@ -218,7 +218,7 @@ function paragraphs(t: string): number {
   return t.split(/\n\s*\n/).filter((p) => p.trim()).length;
 }
 
-const EVIDENCE_NOTE = `"The book's evidence" is the chapter's story told plainly or, when the chapter has no story of its own, the author's method worked through one everyday case.`;
+const EVIDENCE_NOTE = `"The book's evidence" is the chapter's story told plainly or, when the chapter has no story of its own, the author's method worked through one everyday case. Where the book's text or the author's advice above gives too little of a story to retell it (who, what they did, one concrete detail, how it ended), the evidence is the author's reasoning in his own terms, worked through the everyday case.`;
 /** The line under the hook: six frames, all belief, then correction, then reason. Eight frames of different builds were
  *  tried (2026-11-12, three proofs): readers of one chapter scored the first screen 0.3 to 0.4 lower every time, and
  *  readers of the whole book still saw the same myth-then-correction move, so the plain six stay. */
@@ -278,7 +278,7 @@ const TRY_KINDS = [
   "do the smallest version of the move once, now or at a named moment today",
   "move, set out or put away one object",
   "say or ask one thing to one person today",
-  "write one line and put it where it will be seen",
+  "write the one line the move calls for (a number, a message, a list) and put it where it will be used",
 ];
 /** The kinds of moment an if-then cue names. */
 const CUE_KINDS = [
@@ -324,11 +324,26 @@ const KEY_ROWS = [
   [1, 2, 1, 0, 0, 2, 1],
   [2, 1, 0, 1, 0, 1, 2],
 ];
-/** Five forms for seven questions. Five more were tried in three proofs (2026-11-12) and are gone: "which comes first"
+/** Seven forms for seven questions. Five more were tried in three proofs (2026-11-12) and are gone: "which comes first"
  *  and "what is missing" asked for an order or a piece most lessons do not teach (a checker marked two such questions
  *  wrong), "who got it right" turned into one right-person-wrong-reason trick in chapter after chapter, "where does it
- *  apply" left wrong choices a reader could rule out on sight, and "what would you change" won nothing with readers. */
-const QUIZ_FORMS = ["what do you do", "spot the trap", "predict what happens", "best reply", "why does this work"];
+ *  apply" left wrong choices a reader could rule out on sight, and "what would you change" won nothing with readers.
+ *  "predict what happens" went on 2026-11-13: the recalibrated judge fails a forecast the facts do not force. Three
+ *  forms ask for the lesson's move (the ordinary case, the harder case, the reply to a friend); the second reply names
+ *  the part of the move still missing. Two more forms were tried in the writer
+ *  proofs of 2026-11-13 and are gone: a second "spot the trap" gave two belief questions of one build with choices a
+ *  reader could strike out, and a look-alike case (a situation that does not call for the move) left wrong choices
+ *  only an over-learner would pick and a right choice a reader could argue with. Of the forms kept, the reply was the
+ *  cleanest in those proofs. */
+const QUIZ_FORMS = [
+  "what do you do, in an ordinary case",
+  "spot the trap: which of the person's own thoughts led them wrong",
+  "best reply to a friend who is about to make the usual mistake",
+  "why does this work",
+  "what do you do when something makes the move harder",
+  "best reply to a friend who made part of the move and thinks that is enough",
+  "why did the usual fix fail",
+];
 const CARD_FORMS = ["situation to move", "why question", "finish the sentence", "what went wrong", "the lesson in the reader's own words"];
 const turn = (n: number, k: number): number => (((n - 1) % k) + k) % k;
 
@@ -443,7 +458,7 @@ export function formText(ex: Exemplar, summaryLabel: string = ex.picks.summary.l
   return [
     `- summary (hook, counterintuition, the three lengths, tryThisNow, memorable line): ${opener.label}, "${opener.name}": ${opener.rule}${opener.path ? ` Path: ${opener.path} ${EVIDENCE_NOTE}` : ""}${openerNote} Ceilings (a chapter with less to say is shorter): hook 25 words; counterintuition 45 words; ${tier("fastRead")}; ${tier("deepRead")}; ${tier("fullRead")}; tryThisNow 25 words. The hook is built on ${wheelAt(HOOK_KINDS, "HOOK_KINDS", n, bookId)}. The try-this line asks the reader to ${wheelAt(TRY_KINDS, "TRY_KINDS", n, bookId)}. The last sentence of each length states the lesson as ${wheelAt(ENDINGS, "ENDINGS", n, bookId)}; where the path ends on a question answered, this sentence is the answer, in this form. ${author}`,
     `- counterintuition frame: ${wheelAt(COUNTER_FRAMES, "COUNTER_FRAMES", n, bookId)}`,
-    `- examples: ${c.examples.length} examples, doing the three jobs the field rules give (the ordinary situation, the fix already tried, the harder situation). Scenario about ${avg(c.examples.map((e) => wordsIn(e.scenario)))} words (70 at most), whatToDo about ${avg(c.examples.map((e) => wordsIn(e.whatToDo)))} (30 at most), whyItMatters about ${avg(c.examples.map((e) => wordsIn(e.whyItMatters)))} (25 at most). Tags and settings for examples 1 to ${tags.length}, in this order: ${tags.map((t) => `${t} (${setting(t)})`).join("; ")}. What makes example ${tags.length} the harder one: ${wheelAt(HARD_CASES, "HARD_CASES", n, bookId)}.`,
+    `- examples: ${c.examples.length} examples, doing the three jobs the field rules give (the ordinary situation, the fix already tried, the harder situation), with three different whatToDo instructions. Scenario about ${avg(c.examples.map((e) => wordsIn(e.scenario)))} words (70 at most), whatToDo about ${avg(c.examples.map((e) => wordsIn(e.whatToDo)))} (30 at most), whyItMatters about ${avg(c.examples.map((e) => wordsIn(e.whyItMatters)))} (25 at most). Tags and settings for examples 1 to ${tags.length}, in this order: ${tags.map((t) => `${t} (${setting(t)})`).join("; ")}. What makes example ${tags.length} the harder one: ${wheelAt(HARD_CASES, "HARD_CASES", n, bookId)}.`,
     `- quiz: ${questions} questions with ${choices} choices each; ${quiz} Key positions (the 0-based index of the right choice) for q1 to q${questions}: ${keyPositions(n, questions, choices, bookId).join(", ")}. Common advice from outside this chapter may be a wrong choice in one question only, and for this chapter it is: ${wheelAt(OUTSIDE_FIXES, "OUTSIDE_FIXES", n, bookId)}. If that is part of this chapter's own lesson, or fits no question, use no outside advice.`,
     `- review cards: ${c.reviewCards.length} cards; ${cards}`,
     `- practice plan: ${c.implementationPlan.ifThenPlans.length} if-then plans; ${rule("practice")} The kinds of cue for this chapter: ${cueKinds(c.implementationPlan.ifThenPlans.length).join("; ")}.`,
