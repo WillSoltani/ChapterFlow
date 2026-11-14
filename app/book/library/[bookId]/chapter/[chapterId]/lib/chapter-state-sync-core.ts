@@ -18,8 +18,9 @@ import type { ChapterTab, ExampleFilter, FontScale } from "@/lib/reader-state-ty
 //    shows "Changes saved on this device only." until a request succeeds.
 //  - Only the opening read may move the reader to the step the account saved.
 //    A read that lands later (tab focused again, back online, or a retry after
-//    the opening read failed) keeps the reader's step, depth and other view
-//    choices. Keeping them is not an edit, so such a read alone sends nothing;
+//    the opening read failed and the reader's state had already loaded) keeps
+//    the reader's step, depth and other view choices. Keeping them, or this
+//    device's focus mode, is not an edit, so such a read alone sends nothing;
 //    they are saved with the reader's next real change.
 //  - A sync belongs to the account signed in when it was created. Once another
 //    account (or none) is signed in, it stops: nothing more is read, written or
@@ -247,6 +248,8 @@ function withHeldView(
     if (!previous || stableJson(local[key]) === stableJson(previous[key])) next[key] = local[key];
   };
   for (const key of VIEW_FIELDS) hold(key);
+  // Focus mode always stays as this device has it (see mergeServerChapterState).
+  hold("focusMode");
   return next;
 }
 

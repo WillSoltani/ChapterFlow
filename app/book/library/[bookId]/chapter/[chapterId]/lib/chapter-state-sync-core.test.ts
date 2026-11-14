@@ -703,6 +703,27 @@ test("returning to the tab sends nothing by itself; the reader's next step chang
   assert.equal(h.patches[0]!.state.readingDepth, "standard");
 });
 
+test("another device's focus mode does not make this one save when the tab is focused", async () => {
+  // Focus mode always stays as this device has it, so a difference there is
+  // not an edit either. Toggling it here is, and is saved.
+  const h = harness();
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.advance(5_000);
+
+  h.sync.refresh();
+  h.gets[1]!.resolve(server({ activeTab: "quiz", focusMode: true }, "2026-11-13T09:30:00.000Z"));
+  await h.advance(5_000);
+  assert.equal(h.current.focusMode, false);
+  assert.equal(h.current.activeTab, "summary");
+  assert.equal(h.patches.length, 0);
+
+  h.edit({ focusMode: true });
+  await h.advance(200);
+  assert.equal(h.patches.length, 1);
+  assert.equal(h.patches[0]!.state.focusMode, true);
+});
+
 test("a step change made just before returning to the tab is still saved", async () => {
   const h = harness();
   h.open();
