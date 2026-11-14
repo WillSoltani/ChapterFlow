@@ -55,6 +55,12 @@ export type BookProgressSnapshot = {
   /** Label of the resume chapter ("CH.04 Title", or "Chapter 4" when unknown locally). */
   resumeChapterLabel: string;
   currentLoopStep: LoopStep | null;
+  /**
+   * The chapter before the resume chapter had its quiz passed but "Finish
+   * chapter" was not pressed: its three steps were done although Continue
+   * already names the next chapter.
+   */
+  previousChapterAwaitingFinish?: boolean;
 };
 
 export type HeatmapCell = {
@@ -671,6 +677,27 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             })
             ?? null;
 
+          const previousChapter =
+            resumeNumber > 1
+              ? chapters.find((chapter) => chapter.order === resumeNumber - 1)
+              : undefined;
+          const previousChapterState = previousChapter
+            ? resumeChapterStates.find(
+                (cs) =>
+                  cs.chapterId === previousChapter.id ||
+                  cs.chapterNumber === previousChapter.order
+              )
+            : undefined;
+          const previousQuizResult = previousChapterState?.state?.quizResult as
+            | { passed?: unknown }
+            | null
+            | undefined;
+          const previousChapterAwaitingFinish = Boolean(
+            previousChapter &&
+              previousQuizResult?.passed === true &&
+              !(state?.completedChapterIds ?? []).includes(previousChapter.id)
+          );
+
           const lastReadLabel =
             state?.lastReadChapterId && state.lastOpenedAt !== epochIso
               ? chapterLabelById(entry.id, state.lastReadChapterId)
@@ -700,6 +727,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
                     resumeChapterState?.state as Record<string, unknown> | null ?? null,
                     completedChapterIdSet.has(resumeChapterId)
                   ),
+            previousChapterAwaitingFinish: status === "completed" ? false : previousChapterAwaitingFinish,
           };
         });
 

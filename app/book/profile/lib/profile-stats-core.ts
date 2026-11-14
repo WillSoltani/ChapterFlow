@@ -35,6 +35,44 @@ export function exploredCategoriesFrom(
     .sort((a, b) => b.chapters - a.chapters);
 }
 
+type LoopStepName = "summary" | "scenarios" | "quiz" | "unlock";
+
+/**
+ * The four step marks on Profile's current-reading card (Summary, Examples,
+ * Quiz, Practice), from the account's step for the chapter Continue opens.
+ * `null` is a finished book: every step is done.
+ */
+export function momentumSteps(step: LoopStepName | null): [boolean, boolean, boolean, boolean] {
+  if (step === null) return [true, true, true, true];
+  const done = { summary: 0, scenarios: 1, quiz: 2, unlock: 3 }[step];
+  return [done >= 1, done >= 2, done >= 3, false];
+}
+
+/** Reading minutes left in a book, counted from the chapter Continue opens. */
+export function remainingMinutesFrom(
+  chapters: ReadonlyArray<{ order: number; minutes: number }>,
+  resumeOrder: number
+): number {
+  return chapters
+    .filter((chapter) => chapter.order >= resumeOrder)
+    .reduce((sum, chapter) => sum + chapter.minutes, 0);
+}
+
+/**
+ * The book the takeaway card is about: one in progress, else the most recently
+ * active finished one. Never a book the reader has not started.
+ */
+export function pickJournalSnapshot<
+  T extends { status: "in_progress" | "completed" | "not_started"; lastActivityAt: string },
+>(snapshots: readonly T[]): T | null {
+  const started = snapshots.filter((snapshot) => snapshot.status !== "not_started");
+  const rank = (snapshot: T) => (snapshot.status === "in_progress" ? 0 : 1);
+  const sorted = [...started].sort(
+    (a, b) => rank(a) - rank(b) || b.lastActivityAt.localeCompare(a.lastActivityAt)
+  );
+  return sorted[0] ?? null;
+}
+
 export function buildStatsSummary(analytics: StatsAnalytics | null | undefined, quizQuestionsAnswered: number) {
   return {
     currentStreak: analytics?.streakDays ?? 0,

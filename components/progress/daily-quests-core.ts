@@ -19,7 +19,10 @@ const STEP_BEFORE: Record<NonNullable<BookProgressSnapshot["currentLoopStep"]>, 
 export type QuestAnalytics = Pick<AnalyticsState, "dailyGoalMinutes" | "minutesReadToday" | "readingHistoryOff"> & {
   heatmapCells: Array<Pick<AnalyticsState["heatmapCells"][number], "key" | "chapters">>;
   recentlyOpenedSnapshots: Array<
-    { book: { id: string } } & Pick<BookProgressSnapshot, "resumeChapterNumber" | "currentLoopStep" | "lastActivityAt">
+    { book: { id: string } } & Pick<
+      BookProgressSnapshot,
+      "resumeChapterNumber" | "currentLoopStep" | "lastActivityAt" | "previousChapterAwaitingFinish"
+    >
   >;
 };
 
@@ -101,10 +104,16 @@ export function goalRingCenter(
 /**
  * Learning steps done today: 4 per chapter finished today, plus the lead
  * book's steps before its current one, only when that book was active today.
+ * A chapter whose quiz was passed without "Finish chapter" adds its three
+ * steps: Continue already names the next chapter, so they would be lost.
  */
 export function stepsCompletedToday(analytics: QuestAnalytics, todayKey: string): number {
   const lead = analytics.recentlyOpenedSnapshots[0];
   const activeToday = lead ? localDateKey(new Date(lead.lastActivityAt)) === todayKey : false;
-  const partial = activeToday && lead?.currentLoopStep ? STEP_BEFORE[lead.currentLoopStep] : 0;
+  const partial =
+    activeToday && lead
+      ? (lead.previousChapterAwaitingFinish ? 3 : 0) +
+        (lead.currentLoopStep ? STEP_BEFORE[lead.currentLoopStep] : 0)
+      : 0;
   return chaptersFinishedToday(analytics, todayKey) * 4 + partial;
 }

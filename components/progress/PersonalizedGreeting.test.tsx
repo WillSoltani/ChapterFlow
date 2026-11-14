@@ -50,10 +50,12 @@ test("a badge not started yet is never called one chapter away", () => {
   assert.ok(view.getByText("Ready to learn something new?"));
 });
 
-test("a badge one step from done is named without claiming what the step is", () => {
+test("a badge nearly earned is named without claiming how much is left", async () => {
+  // Some badges count days in a row or an average score, where "one more"
+  // would be wrong: the line only says the reader is close.
   const view = renderGreeting(NO_STREAK, 0, null, [milestone("Three Books", 2, 3)]);
-  assert.ok(view.getByText("One more to go for the Three Books badge."));
-  assert.equal(view.queryByText(/One more chapter/), null);
+  assert.ok(view.getByText("You're close to the Three Books badge."));
+  assert.equal(view.queryByText(/One more/), null);
 });
 
 test("a streak at risk asks the reader to read today, with the unchanged streak number", () => {

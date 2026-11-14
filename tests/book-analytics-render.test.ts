@@ -139,6 +139,39 @@ test("a quiz passed without Finish chapter: the stored book state lags, counts a
   assert.equal(snap.resumeChapterNumber, 2);
   assert.equal(snap.resumeChapterId, "atomic-habits-ch02", "the id names the same chapter as the number");
   assert.equal(analytics.totalCompletedChapters, 1);
+  assert.equal(snap.previousChapterAwaitingFinish, false, "no chapter-state row says the quiz was passed here");
+});
+
+test("a chapter passed without Finish chapter is flagged, and the step shown is the next chapter's", async () => {
+  const analytics = await snapshotsFor({
+    catalog: [catalogBook("atomic-habits", 20)],
+    progress: [{ bookId: "atomic-habits", currentChapterNumber: 2, completedChapters: [1], bestScoreByChapter: { "1": 100 }, lastActiveAt: RECENT }],
+    bookStates: [bookStateRow("atomic-habits", { lastOpenedAt: RECENT })],
+    chapterStates: [{
+      bookId: "atomic-habits", chapterNumber: 1, chapterId: "atomic-habits-ch01",
+      state: { activeTab: "quiz", quizResult: { score: 100, passed: true } },
+    }],
+  });
+  const snap = analytics.bookSnapshots[0]!;
+  assert.equal(snap.resumeChapterNumber, 2);
+  assert.equal(snap.currentLoopStep, "summary");
+  assert.equal(snap.previousChapterAwaitingFinish, true);
+});
+
+test("a chapter finished the usual way is not flagged", async () => {
+  const analytics = await snapshotsFor({
+    catalog: [catalogBook("atomic-habits", 20)],
+    progress: [{ bookId: "atomic-habits", currentChapterNumber: 2, completedChapters: [1], bestScoreByChapter: { "1": 100 }, lastActiveAt: RECENT }],
+    bookStates: [bookStateRow("atomic-habits", {
+      completedChapterIds: ["atomic-habits-ch01"], currentChapterId: "atomic-habits-ch02", lastOpenedAt: RECENT,
+      chapterCompletedAt: { "atomic-habits-ch01": RECENT },
+    })],
+    chapterStates: [{
+      bookId: "atomic-habits", chapterNumber: 1, chapterId: "atomic-habits-ch01",
+      state: { activeTab: "quiz", quizResult: { score: 100, passed: true } },
+    }],
+  });
+  assert.equal(analytics.bookSnapshots[0]!.previousChapterAwaitingFinish, false);
 });
 
 test("a book finished without Finish chapter on the last quiz counts as completed", async () => {

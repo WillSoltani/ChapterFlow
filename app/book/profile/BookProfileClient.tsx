@@ -74,6 +74,9 @@ import {
   exploredCategoriesFrom,
   readerStateLite,
   type InsightSource,
+  momentumSteps,
+  pickJournalSnapshot,
+  remainingMinutesFrom,
 } from "@/app/book/profile/lib/profile-stats-core";
 import { useDashboardQuery } from "@/hooks/book/useDashboardQuery";
 import { ProStatusCard } from "@/app/book/profile/components/ProStatusCard";
@@ -461,21 +464,15 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
     // chapter); this device's own cursor is only a fallback.
     const currentChapterId = currentSnapshot.resumeChapterId || progress?.currentChapterId || chapters[0]?.id || "";
     const chapter = chapters.find((c) => c.id === currentChapterId) ?? chapters[0];
-    const completedSet = new Set(progress?.completedChapterIds ?? []);
-    const remainingMinutes = chapters
-      .filter((c) => !completedSet.has(c.id))
-      .reduce((sum, c) => sum + c.minutes, 0);
+    // Steps and minutes left follow the account, like the chapter itself, so
+    // the card reads the same on every device.
+    const finished = currentSnapshot.status === "completed";
+    const remainingMinutes = finished || !chapter ? 0 : remainingMinutesFrom(chapters, chapter.order);
     const reader = chapter
       ? parseStoredReaderState(
           window.localStorage.getItem(getChapterReaderStorageKey(currentSnapshot.book.id, chapter.id))
         )
       : null;
-
-    // B1: Determine 4-step completion
-    const summaryDone = reader != null;
-    const scenariosDone = reader?.showRecap === true;
-    const quizDone = reader?.quizResult != null;
-    const unlockDone = chapter ? completedSet.has(chapter.id) : false;
 
     const chapterIdx = chapter ? chapters.findIndex((c) => c.id === chapter.id) : 0;
 
@@ -486,7 +483,9 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
       chapterMinutes: chapter?.minutes ?? 15,
       chapterNumber: chapterIdx + 1,
       totalChapters: chapters.length,
-      completedSteps: [summaryDone, scenariosDone, quizDone, unlockDone],
+      completedSteps: finished
+        ? momentumSteps(null)
+        : momentumSteps(currentSnapshot.currentLoopStep ?? "summary"),
       chapterId: chapter?.id ?? currentSnapshot.resumeChapterId,
     };
   }, [currentSnapshot, onboarding.learningStyle, revision]);
@@ -596,17 +595,27 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
 
   const navigateToSettings = () => router.push("/book/settings");
 
-  // The takeaway goes to the chapter shown in Momentum, and only for a book
-  // the reader has started or finished (saving would otherwise start it).
+  // The takeaway card is about a book the reader has started or finished
+  // (saving would otherwise start one): the book in Momentum when there is one
+  // in progress, else the most recently active finished book.
+  const journalSnapshot = useMemo(
+    () => pickJournalSnapshot(analytics?.bookSnapshots ?? []),
+    [analytics]
+  );
+  const journalChapterId = journalSnapshot
+    ? journalSnapshot.book.id === currentSnapshot?.book.id
+      ? (currentReadingDetails?.chapterId ?? journalSnapshot.resumeChapterId)
+      : journalSnapshot.resumeChapterId
+    : "";
   const takeawayTarget = useMemo(() => {
-    if (!currentSnapshot) return null;
+    if (!journalSnapshot) return null;
     return resolveTakeawayTarget({
-      bookId: currentSnapshot.book.id,
-      status: currentSnapshot.status,
-      chapterId: currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId,
-      chapters: getBookChaptersBundle(currentSnapshot.book.id).chapters,
+      bookId: journalSnapshot.book.id,
+      status: journalSnapshot.status,
+      chapterId: journalChapterId,
+      chapters: getBookChaptersBundle(journalSnapshot.book.id).chapters,
     });
-  }, [currentSnapshot, currentReadingDetails]);
+  }, [journalSnapshot, journalChapterId]);
 
   const handleSaveTakeaway = useCallback(async () => {
     const text = takeawayText.trim();
@@ -1190,8 +1199,8 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                     ))}
                   </div>
                 </div>
-              ) : currentSnapshot || statsSummary.totalChaptersCompleted > 0 ? (
-                // G1: Inline takeaway prompt (has chapters but no notes)
+              ) : journalSnapshot ? (
+                // G1: Inline takeaway prompt (a started or finished book, no notes yet)
                 <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) p-6">
                   <p className="text-sm text-(--cf-text-2)">
                     {statsSummary.totalChaptersCompleted > 0
@@ -1200,7 +1209,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                   </p>
                   {takeawayTarget ? (
                   <p className="mt-2 text-base font-medium text-(--cf-text-1)">
-                    What&apos;s one thing from {currentSnapshot?.book.title ?? "your reading"} that stuck with you?
+                    What&apos;s one thing from {journalSnapshot.book.title} that stuck with you?
                   </p>
                   ) : null}
                   {takeawayTarget ? (
@@ -1224,11 +1233,11 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                     </Button>
                   </div>
                   ) : null}
-                  {currentSnapshot ? (
+                  {journalChapterId ? (
                     <button
                       type="button"
                       onClick={() =>
-                        router.push(`/book/library/${encodeURIComponent(currentSnapshot.book.id)}/chapter/${encodeURIComponent(currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId)}`)
+                        router.push(`/book/library/${encodeURIComponent(journalSnapshot.book.id)}/chapter/${encodeURIComponent(journalChapterId)}`)
                       }
                       className="mt-3 text-sm text-(--cf-accent) hover:text-(--cf-accent-strong) transition-colors"
                     >

@@ -36,13 +36,14 @@ function getMotivationLine(
     return `Read today to keep your ${streak.currentDays}-day streak.`;
   }
 
-  // A badge the reader has started and is one step from. The step is not
-  // always a chapter (some badges count books or days), so it is not named.
+  // A badge the reader has started and is nearly at. What is left is not
+  // always one chapter (some badges count books, days in a row or an average
+  // score), so the line names the badge and no amount.
   const closesMilestone = nextMilestones.find(
     (m) => m.current > 0 && m.target - m.current === 1
   );
   if (closesMilestone) {
-    return `One more to go for the ${closesMilestone.name} badge.`;
+    return `You're close to the ${closesMilestone.name} badge.`;
   }
 
   // Streak active and read today

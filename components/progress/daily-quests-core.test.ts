@@ -101,3 +101,25 @@ test("PROG-14: partial steps count only when the lead book was active today", ()
   });
   assert.equal(stepsCompletedToday(yesterday, TODAY), 0);
 });
+
+test("steps today count a chapter passed without Finish chapter", () => {
+  // The quiz of chapter 3 was passed and the reader left before "Finish
+  // chapter": Continue already names chapter 4 at its first step, but three
+  // steps were done.
+  const steps = stepsCompletedToday(
+    analytics({
+      recentlyOpenedSnapshots: [lead({ currentLoopStep: "summary", previousChapterAwaitingFinish: true })],
+    }),
+    TODAY,
+  );
+  assert.equal(steps, 3);
+  const notToday = stepsCompletedToday(
+    analytics({
+      recentlyOpenedSnapshots: [
+        lead({ currentLoopStep: "summary", previousChapterAwaitingFinish: true, lastActivityAt: "2026-11-10T09:00:00" }),
+      ],
+    }),
+    TODAY,
+  );
+  assert.equal(notToday, 0);
+});

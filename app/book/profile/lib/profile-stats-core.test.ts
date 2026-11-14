@@ -5,6 +5,9 @@ import {
   buildStatsSummary,
   exploredCategoriesFrom,
   type StatsAnalytics,
+  momentumSteps,
+  remainingMinutesFrom,
+  pickJournalSnapshot,
 } from "./profile-stats-core";
 
 function snap(id: string, category: string, completedChapters: number) {
@@ -153,4 +156,43 @@ test("PROG-13: a book page view (no open time) is not recent reading", () => {
     CATALOG
   );
   assert.equal(insights.recentOpenedChapters.length, 0);
+});
+
+test("momentumSteps: the four step marks follow the account's step for the chapter", () => {
+  assert.deepEqual(momentumSteps("summary"), [false, false, false, false]);
+  assert.deepEqual(momentumSteps("scenarios"), [true, false, false, false]);
+  assert.deepEqual(momentumSteps("quiz"), [true, true, false, false]);
+  assert.deepEqual(momentumSteps("unlock"), [true, true, true, false]);
+  assert.deepEqual(momentumSteps(null), [true, true, true, true], "a finished book has every step done");
+});
+
+test("remainingMinutesFrom: minutes left count from the chapter Continue opens", () => {
+  const chapters = [1, 2, 3, 4].map((order) => ({ order, minutes: 10 }));
+  assert.equal(remainingMinutesFrom(chapters, 3), 20);
+  assert.equal(remainingMinutesFrom(chapters, 1), 40);
+  assert.equal(remainingMinutesFrom(chapters, 9), 0);
+});
+
+test("pickJournalSnapshot: the takeaway card is about a book the reader has started or finished", () => {
+  const snap = (id: string, status: "in_progress" | "completed" | "not_started", lastActivityAt: string) =>
+    ({ book: { id }, status, lastActivityAt });
+  assert.equal(
+    pickJournalSnapshot([
+      snap("never-opened", "not_started", "2026-11-13T10:00:00.000Z"),
+      snap("finished", "completed", "2026-11-01T10:00:00.000Z"),
+      snap("reading", "in_progress", "2026-11-05T10:00:00.000Z"),
+    ])?.book.id,
+    "reading",
+  );
+  assert.equal(
+    pickJournalSnapshot([
+      snap("never-opened", "not_started", "2026-11-13T10:00:00.000Z"),
+      snap("finished-old", "completed", "2026-10-01T10:00:00.000Z"),
+      snap("finished-new", "completed", "2026-11-01T10:00:00.000Z"),
+    ])?.book.id,
+    "finished-new",
+    "with nothing in progress, the most recently active finished book",
+  );
+  assert.equal(pickJournalSnapshot([snap("never-opened", "not_started", "2026-11-13T10:00:00.000Z")]), null);
+  assert.equal(pickJournalSnapshot([]), null);
 });
