@@ -7,34 +7,42 @@ import { DUR, EASE } from "@/lib/motion";
 import { X } from "lucide-react";
 import type { LearningMode, FontFamily } from "@/app/book/settings/types/settings";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
+import { DEPTH_LABELS } from "../lib/reader-flow-core";
+import { modalOpenAbove } from "./ReaderChapterNav";
 
+// The learning modes under the depth names Settings uses (Lite / Standard /
+// Deeper). Each mode sets the depth the reader gets (modeToDepth).
 const MODE_OPTIONS: Array<{
   id: LearningMode;
   icon: string;
   label: string;
   description: string;
-  recommended?: boolean;
 }> = [
   {
     id: "guided",
     icon: "\uD83C\uDF31",
-    label: "Guided",
-    description: "More guidance and pacing support",
+    label: DEPTH_LABELS.simple,
+    description: "Shorter summaries, more pacing support",
   },
   {
     id: "standard",
     icon: "\uD83D\uDCDA",
-    label: "Standard",
-    description: "Balanced pacing and feedback",
-    recommended: true,
+    label: DEPTH_LABELS.standard,
+    description: "Balanced depth and pacing",
   },
   {
     id: "challenge",
     icon: "\uD83C\uDFC6",
-    label: "Challenge",
-    description: "Faster pace with fewer interruptions",
+    label: DEPTH_LABELS.deeper,
+    description: "Longer summaries, faster pace",
   },
 ];
+
+const MODE_FOR_DEPTH: Record<ReadingDepth, LearningMode> = {
+  simple: "guided",
+  standard: "standard",
+  deeper: "challenge",
+};
 
 const DEPTH_OPTIONS: Array<{
   id: ReadingDepth;
@@ -50,7 +58,7 @@ export type LineSpacingPref = "compact" | "comfortable" | "relaxed";
 
 const LINE_SPACING_OPTIONS: Array<{ id: LineSpacingPref; label: string }> = [
   { id: "compact", label: "Compact" },
-  { id: "comfortable", label: "Cozy" },
+  { id: "comfortable", label: "Comfortable" },
   { id: "relaxed", label: "Relaxed" },
 ];
 
@@ -60,14 +68,12 @@ const WIDTH_OPTIONS: Array<{ id: "narrow" | "medium" | "wide"; label: string; px
   { id: "wide", label: "Wide", px: 960 },
 ];
 
-// NS-2: first-class typeface control (Apple Books / Kindle style). The binary
-// toggle only ever sets serif vs. sans; the accessibility "opendyslexic" option
-// stays reachable on the full Settings page and maps to "Sans" lit here so the
-// toggle never appears empty.
-type TypefaceToggle = "serif" | "sans-serif";
-const TYPEFACE_OPTIONS: Array<{ id: TypefaceToggle; label: string }> = [
+// NS-2: first-class typeface control, with the same three faces and names as
+// Settings.
+const TYPEFACE_OPTIONS: Array<{ id: FontFamily; label: string }> = [
   { id: "serif", label: "Serif" },
-  { id: "sans-serif", label: "Sans" },
+  { id: "sans-serif", label: "Sans-Serif" },
+  { id: "opendyslexic", label: "OpenDyslexic" },
 ];
 
 const FONT_MIN = 12;
@@ -93,7 +99,8 @@ export type ReaderSettingsMenuProps = {
   open: boolean;
   onClose: () => void;
   anchorClassName?: string | undefined;
-  learningMode: LearningMode;
+  /** The depth the reader gets now: its mode is the highlighted option. */
+  activeDepth: ReadingDepth;
   onChangeLearningMode: (mode: LearningMode) => void;
   showDepthSelector: boolean;
   readingDepth?: ReadingDepth | undefined;
@@ -118,7 +125,7 @@ export function ReaderSettingsMenu({
   open,
   onClose,
   anchorClassName,
-  learningMode,
+  activeDepth,
   onChangeLearningMode,
   showDepthSelector,
   readingDepth,
@@ -139,10 +146,12 @@ export function ReaderSettingsMenu({
   const isPhone = useIsPhone();
   const [advancedOpen, setAdvancedOpen] = useState(false);
 
-  // Close on outside click
+  // Close on outside click; a click in a modal dialog above (the mode confirm)
+  // belongs to that dialog.
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent) => {
+      if (modalOpenAbove(popoverRef.current)) return;
       if (popoverRef.current && !popoverRef.current.contains(e.target as Node)) {
         onClose();
       }
@@ -159,7 +168,7 @@ export function ReaderSettingsMenu({
   useEffect(() => {
     if (!open) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape" && !modalOpenAbove(popoverRef.current)) onClose();
     };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
@@ -233,7 +242,7 @@ export function ReaderSettingsMenu({
             <SettingsSection label="Mode">
               <RadioGroup
                 options={MODE_OPTIONS}
-                value={learningMode}
+                value={MODE_FOR_DEPTH[activeDepth]}
                 onChange={onChangeLearningMode}
               />
               {/* RF-2 / D8: the Mode RadioGroup above is the single depth lever.
@@ -338,16 +347,15 @@ export function ReaderSettingsMenu({
                     />
                   </div>
 
-                  {/* Typeface (NS-2) — first-class Serif/Sans, Apple Books style.
-                      Rendered only once the prefs instance is wired through
-                      (batch-05 handoff). opendyslexic shows "Sans" lit. */}
+                  {/* Typeface (NS-2). Rendered only once the prefs instance is
+                      wired through (batch-05 handoff). */}
                   {onChangeFontFamily && (
                     <div>
                       <p className="mb-1.5 text-xs font-medium text-(--cr-text-secondary)">Typeface</p>
                       <Segmented
                         ariaLabel="Typeface"
                         options={TYPEFACE_OPTIONS}
-                        value={fontFamily === "serif" ? "serif" : "sans-serif"}
+                        value={fontFamily ?? "sans-serif"}
                         onChange={onChangeFontFamily}
                       />
                     </div>
@@ -359,7 +367,7 @@ export function ReaderSettingsMenu({
             <div className="border-t border-(--cr-glass-border) pt-3">
               <ToggleRow
                 label="Focus mode"
-                description="Hide stepper and chrome"
+                description="Hide Listen, Ask and Notes"
                 value={focusMode}
                 onChange={onToggleFocus}
               />
@@ -392,7 +400,6 @@ type RadioOption<T extends string> = {
   icon?: string;
   label: string;
   description?: string;
-  recommended?: boolean;
 };
 
 function RadioGroup<T extends string>({
@@ -430,11 +437,6 @@ function RadioGroup<T extends string>({
                 ].join(" ")}
               >
                 {option.label}
-                {option.recommended && (
-                  <span className="rounded-full bg-(--cr-accent-muted) px-1.5 py-0.5 text-cf-caption font-bold text-(--cr-accent)">
-                    REC
-                  </span>
-                )}
               </p>
               {option.description && (
                 <p className="mt-0.5 text-cf-caption text-(--cr-text-disabled)">

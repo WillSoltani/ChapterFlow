@@ -410,10 +410,6 @@ export function ChapterCompleteModal({
             ))}
           </div>
 
-          {children && (
-            <div className="mb-6 mt-2 border-t border-(--cr-glass-border) pt-6">{children}</div>
-          )}
-
           <div className="flex flex-col gap-3">
             {hasNextChapter && (
               <button
@@ -462,6 +458,11 @@ export function ChapterCompleteModal({
               Back to Library
             </button>
           </div>
+
+          {/* Practice is optional and long: it sits below the way forward. */}
+          {children && (
+            <div className="mt-6 border-t border-(--cr-glass-border) pt-6">{children}</div>
+          )}
         </div>
       </Dialog>
     </>

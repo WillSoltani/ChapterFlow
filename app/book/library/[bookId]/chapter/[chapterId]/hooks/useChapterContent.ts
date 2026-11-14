@@ -39,6 +39,8 @@ type ChapterContentState = {
   error: Error | null;
   /** HTTP status when the error was a BookClientError (e.g. 402, 403, 404). */
   status: number | null;
+  /** Server error code when the error was a BookClientError (e.g. "chapter_locked"). */
+  code: string | null;
   source: "api" | "local" | null;
   /** Route whose content produced `chapter`; never inferred from mutable props. */
   loadedRouteKey: string | null;
@@ -69,6 +71,7 @@ function buildChapterSeed(
     hydrated: true,
     error: null,
     status: null,
+    code: null,
     source: "api",
     loadedRouteKey,
   };
@@ -152,6 +155,7 @@ export function useChapterContent(params: {
         hydrated: false,
         error: null,
         status: null,
+        code: null,
         source: null,
         loadedRouteKey: null,
       },
@@ -182,6 +186,7 @@ export function useChapterContent(params: {
         hydrated: true,
         error: null,
         status: null,
+        code: null,
         source: local ? "local" : null,
         loadedRouteKey: local ? requestedRouteKey : null,
       });
@@ -237,6 +242,7 @@ export function useChapterContent(params: {
             hydrated: false,
             error: null,
             status: null,
+            code: null,
             source: null,
             loadedRouteKey: null,
           },
@@ -268,6 +274,7 @@ export function useChapterContent(params: {
             hydrated: true,
             error: usableLocal ? null : new Error("Chapter content was empty."),
             status: null,
+            code: null,
             source: usableLocal ? "local" : null,
             loadedRouteKey: usableLocal ? activeRouteKey : null,
           });
@@ -280,6 +287,7 @@ export function useChapterContent(params: {
           hydrated: true,
           error: null,
           status: null,
+          code: null,
           source: "api",
           loadedRouteKey: activeRouteKey,
         });
@@ -288,6 +296,7 @@ export function useChapterContent(params: {
         if (!mounted) return;
         const error = err instanceof Error ? err : new Error("Failed to load chapter content.");
         const status = err instanceof BookClientError ? err.status : null;
+        const code = err instanceof BookClientError ? (err.code ?? null) : null;
         // Dev/CI: fall back to local package content so the reader never gets
         // stuck with no AWS data plane. Prod: NEVER substitute local content —
         // leave `chapter` undefined and surface `error` + `status` so the reader
@@ -315,6 +324,7 @@ export function useChapterContent(params: {
               hydrated: true,
               error,
               status,
+              code,
             };
           }
           return {
@@ -324,6 +334,7 @@ export function useChapterContent(params: {
             hydrated: true,
             error,
             status,
+            code,
             source: local ? "local" : null,
             loadedRouteKey: local ? activeRouteKey : null,
           };
@@ -346,6 +357,7 @@ export function useChapterContent(params: {
       hydrated: false,
       error: null,
       status: null,
+      code: null,
       source: null,
       loadedRouteKey: null,
     };

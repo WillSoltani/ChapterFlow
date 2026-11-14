@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useId, useRef } from "react";
 import { Download, Pin, Plus, X } from "lucide-react";
 import { Sheet } from "@/components/ui/Dialog";
+import { CHAPTER_NOTES_MAX_CHARS } from "@/app/app/api/book/_lib/http-guards-core";
 
 type NotesDrawerProps = {
   open: boolean;
@@ -12,6 +13,8 @@ type NotesDrawerProps = {
   onAddNote: () => void;
   onExport: () => void;
   onPinTakeaway: () => void;
+  /** The account copy could not be reached; edits are kept on this device. */
+  syncFailed?: boolean;
 };
 
 export function NotesDrawer({
@@ -22,8 +25,11 @@ export function NotesDrawer({
   onAddNote,
   onExport,
   onPinTakeaway,
+  syncFailed = false,
 }: NotesDrawerProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const counterId = useId();
+  const overLimit = notes.length > CHAPTER_NOTES_MAX_CHARS;
 
   return (
     <Sheet open={open} onClose={onClose} ariaLabel="Chapter notes" initialFocusRef={textareaRef}>
@@ -78,9 +84,26 @@ export function NotesDrawer({
           ref={textareaRef}
           value={notes}
           onChange={(event) => onNotesChange(event.target.value)}
+          maxLength={CHAPTER_NOTES_MAX_CHARS}
+          aria-describedby={counterId}
           placeholder="Write your notes here..."
           className="h-[48vh] max-h-[60dvh] w-full resize-none rounded-2xl border border-(--cr-glass-border) bg-(--cr-bg-surface-1) p-4 text-sm text-(--cr-text-primary) placeholder:text-(--cr-text-disabled) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_45%,transparent)]"
         />
+        <div className="mt-2 flex items-start justify-between gap-3 text-cf-caption">
+          {syncFailed ? (
+            <p className="text-(--cr-warning)" role="status">
+              Changes saved on this device only.
+            </p>
+          ) : (
+            <span />
+          )}
+          <p
+            id={counterId}
+            className={`shrink-0 tabular-nums ${overLimit ? "text-(--cr-warning)" : "text-(--cr-text-disabled)"}`}
+          >
+            {notes.length.toLocaleString()} / {CHAPTER_NOTES_MAX_CHARS.toLocaleString()}
+          </p>
+        </div>
       </div>
     </Sheet>
   );

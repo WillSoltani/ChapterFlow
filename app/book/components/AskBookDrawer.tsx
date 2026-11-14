@@ -13,6 +13,9 @@ type AskBookDrawerProps = {
   bookId: string;
   bookTitle: string;
   chapterNumber?: number;
+  /** Controlled open state (the reader's top bar owns the Ask button). */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 };
 
 function sessionKey(bookId: string) {
@@ -96,14 +99,30 @@ function TypingIndicator() {
   );
 }
 
-export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawerProps) {
-  const [open, setOpen] = useState(false);
+export function AskBookDrawer({
+  bookId,
+  bookTitle,
+  chapterNumber,
+  open: openProp,
+  onOpenChange,
+}: AskBookDrawerProps) {
+  const [openState, setOpenState] = useState(false);
+  const isControlled = openProp !== undefined;
+  const open = isControlled ? openProp : openState;
+  const setOpen = useCallback(
+    (next: boolean) => {
+      if (!isControlled) setOpenState(next);
+      onOpenChange?.(next);
+    },
+    [isControlled, onOpenChange],
+  );
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [streaming, setStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
   const abortRef = useRef<AbortController | null>(null);
   const messagesRef = useRef<Message[]>(messages);
   // Keep the latest-messages ref in sync after commit (instead of writing it
@@ -149,13 +168,27 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
   const handleClose = useCallback(() => {
     handleAbort();
     setOpen(false);
-  }, [handleAbort]);
+  }, [handleAbort, setOpen]);
 
-  // Close on Escape key
+  // Return focus to whatever opened the drawer (e.g. the top bar's Ask button).
+  useEffect(() => {
+    if (!open) return;
+    const opener = document.activeElement as HTMLElement | null;
+    return () => {
+      if (opener && document.contains(opener)) opener.focus({ preventScroll: true });
+    };
+  }, [open]);
+
+  // Close on Escape key, unless a modal opened above the drawer (the notes
+  // sheet, a dialog) owns this press.
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") handleClose();
+      if (e.key !== "Escape") return;
+      const modalAbove = Array.from(document.querySelectorAll('[aria-modal="true"]')).some(
+        (el) => el !== drawerRef.current,
+      );
+      if (!modalAbove) handleClose();
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
@@ -286,25 +319,6 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
 
   return (
     <>
-      {/* Floating chat launcher — a labelled "Ask Raymond" pill (Shape rule:
-       *  rounded-full action pills) so the control reads as Raymond without the
-       *  icon-only ambiguity, while still floating clear of the prose at the
-       *  bottom edge (safe-area aware; the audio bar reserves space to its left).
-       *  aria-label gives it an explicit accessible name (the title attribute
-       *  alone is never announced on touch / by most screen readers). */}
-      {!open && (
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="cf-pressable fixed bottom-[calc(max(env(safe-area-inset-bottom),var(--reader-audio-bar-h,0px))+1rem)] right-4 z-50 flex items-center gap-2 rounded-full bg-(--cr-accent) px-4 py-3 text-(--cr-text-inverse) shadow-lg transition hover:brightness-110 md:bottom-[calc(max(env(safe-area-inset-bottom),var(--reader-audio-bar-h,0px))+1.5rem)] md:right-6 [html[data-reader-fab-hidden]_&]:max-md:pointer-events-none [html[data-reader-fab-hidden]_&]:max-md:translate-y-6 [html[data-reader-fab-hidden]_&]:max-md:opacity-0"
-          title="Ask Raymond"
-          aria-label="Ask Raymond about this chapter"
-        >
-          <Sparkles className="h-5 w-5" />
-          <span className="text-sm font-semibold">Ask Raymond</span>
-        </button>
-      )}
-
       {/* Backdrop overlay */}
       {open ? (
         <div
@@ -316,6 +330,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
 
       {/* Drawer */}
       <aside
+        ref={drawerRef}
         className={[
           "fixed z-[60] flex flex-col border-(--cf-border) bg-(--cf-surface-strong) shadow-(--shadow-modal) transition-transform duration-200",
           "inset-x-0 bottom-0 h-[70dvh] max-h-[90dvh] rounded-t-3xl border md:inset-y-0 md:right-0 md:left-auto md:h-full md:max-h-none md:w-[400px] md:rounded-none md:border-l md:border-t-0",

@@ -19,12 +19,18 @@ import { useReaderAccess } from "./hooks/useReaderAccess";
 import { useReaderExamples } from "./hooks/useReaderExamples";
 import { useReaderPhaseFlow } from "./hooks/useReaderPhaseFlow";
 import { useReaderProgress } from "./hooks/useReaderProgress";
+import { useQuizDepthHold } from "./hooks/useQuizDepthHold";
 import { useReaderSettings } from "./hooks/useReaderSettings";
 import type { InitialChapterReaderSeed } from "./lib/chapterFromApi";
 import {
+  buildChapterNeighbours,
   buildNextChapterRoute,
+  chapterDoneOnServer,
+  DEPTH_LABELS,
+  learningModeTapIsNoop,
   mapLearningStyleToDepth,
   modeToDepth,
+  quizStepProgress,
 } from "./lib/reader-flow-core";
 
 const READER_LOOP_COACHMARK_KEY = "cf-reader-loop-coachmark-seen:v1";
@@ -35,18 +41,21 @@ export function ChapterReaderClient({
   chapterOrder,
   initialBook,
   initialSeed,
+  initialDepth,
 }: {
   bookId: string;
   chapterId: string;
   chapterOrder?: number | undefined;
   initialBook?: LibraryBookDetail | undefined;
   initialSeed?: InitialChapterReaderSeed | undefined;
+  /** Server-resolved first depth (undefined when the settings read failed). */
+  initialDepth?: ReadingDepth | undefined;
 }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const prefersReducedMotion = useReducedMotion();
-  const readerSettings = useReaderSettings();
+  const readerSettings = useReaderSettings(initialDepth);
   const {
     bookPrefs,
     patchBookPrefs,
@@ -56,11 +65,14 @@ export function ChapterReaderClient({
     learningMode,
     contentTone,
     defaultToFastPath,
+    activeDepth,
     preferredActiveTab,
     preferredExampleFilter,
     preferredFocusMode,
     preferredFontScale,
     dailyGoalMinutes,
+    saveStatus,
+    retrySave,
   } = readerSettings;
   const readerAccess = useReaderAccess({
     bookId,
@@ -85,7 +97,15 @@ export function ChapterReaderClient({
     bookAccessStatus,
   } = readerAccess;
   const [notesOpen, setNotesOpen] = useState(false);
+  const [askOpen, setAskOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  // An action shown only while its own toast text is on screen.
+  const [toastAction, setToastAction] = useState<{
+    toast: string;
+    label: string;
+    onClick: () => void;
+  } | null>(null);
+  const [confirmMode, setConfirmMode] = useState<LearningMode | null>(null);
   const [sessionMode, setSessionMode] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
@@ -100,6 +120,7 @@ export function ChapterReaderClient({
   const readerProgress = useReaderProgress({
     bookId,
     chapterId,
+    chapterNumber,
     chapter,
     chapters,
     initialProgressFloor,
@@ -141,14 +162,23 @@ export function ChapterReaderClient({
     } catch {}
   }, []);
 
-  const activeDepth: ReadingDepth = defaultToFastPath ? "simple" : modeToDepth(learningMode);
+  const { quizDepth, quizTone, changeOnQuiz } = useQuizDepthHold({
+    activeDepth,
+    activeTone: contentTone,
+    saveStatus,
+    onSaveFailed: () => {
+      const message = "Couldn't save your reading mode. The quiz stays as it is.";
+      setToast(message);
+      setToastAction({ toast: message, label: "Try again", onClick: () => retrySave() });
+    },
+  });
   const chapterQuiz = useChapterQuiz({
     bookId,
     chapterId,
     chapter,
     chapterNumber: chapter?.order ?? baseChapter?.order ?? 1,
-    activeDepth,
-    contentTone,
+    activeDepth: quizDepth,
+    contentTone: quizTone,
     enabled: Boolean(chapter) && readerInteractionsReady,
     showQuiz: state.activeTab === "quiz",
     retryIncorrectOnly: bookPrefs.learning.retryIncorrectOnly,
@@ -185,6 +215,7 @@ export function ChapterReaderClient({
     enabled: readerInteractionsReady,
     focusReady: chapterHydrated,
     quizPassed,
+    chapterDone: chapterDoneOnServer(readerProgress.chapterState, quizPassed),
     sessionMode,
   });
   const { phaseCompletion, setActiveTab } = phaseFlow;
@@ -252,14 +283,33 @@ export function ChapterReaderClient({
     progressHydrated: hydrated,
     chapterHydrated,
     isLocked,
+    currentChapterNumber: hydrated ? bookProgress.currentChapter?.order : undefined,
     access: readerAccess,
   };
   if (!chapter) return <ReaderAccessState {...accessStateProps} />;
 
   const chapterIndex = chapters.findIndex((item) => item.id === chapter.id);
-  const nextChapter = chapters[chapterIndex + 1];
+  const nextChapter = chapterIndex >= 0 ? chapters[chapterIndex + 1] : undefined;
+  const neighbours = buildChapterNeighbours({
+    bookId,
+    chapters,
+    chapterId: chapter.id,
+    sessionMode,
+    getChapterState: bookProgress.getChapterState,
+    quizPassed,
+    chapterCompleted: readerProgress.chapterState === "completed",
+    onFinishChapter: () => finishChapter(),
+  });
+  const quizProgress = quizStepProgress(state.activeTab, quiz.session, quiz.answers);
   const handleLearningModeChange = (mode: LearningMode) => {
-    if (mode === learningMode) return;
+    if (learningModeTapIsNoop(mode, learningMode, defaultToFastPath)) return;
+    // READER-12: on the Quiz tab the quiz keeps its depth until the change is
+    // saved; an attempt in progress asks first, since the reload clears it.
+    if (state.activeTab !== "quiz") applyLearningModeChange(mode);
+    else if (chapterQuiz.attemptInProgress) setConfirmMode(mode);
+    else changeOnQuiz(() => applyLearningModeChange(mode));
+  };
+  const applyLearningModeChange = (mode: LearningMode) => {
     const toneByMode: Record<LearningMode, ContentTone> = {
       guided: "gentle",
       standard: "gentle",
@@ -280,24 +330,29 @@ export function ChapterReaderClient({
     });
     setReadingDepth(nextDepth);
     const messages: Record<LearningMode, string> = {
-      guided: "Switched to Guided. Shorter summaries, more pacing support.",
-      standard: "Switched to Standard. Balanced depth and pacing.",
-      challenge: "Switched to Challenge. Deeper summaries, faster pace.",
+      guided: "Shorter summaries, more pacing support.",
+      standard: "Balanced depth and pacing.",
+      challenge: "Longer summaries, faster pace.",
     };
-    setToast(messages[mode]);
+    setToast(`Switched to ${DEPTH_LABELS[nextDepth]}. ${messages[mode]}`);
   };
   const handleSubmitQuiz = async () => {
     if (!readerInteractionsReady) return;
     const outcome = await submitQuiz();
     if (outcome.kind === "passed") phaseCompletion.markPhaseCompleted("quiz");
   };
-  const handleContinueToPractice = () => {
-    if (!readerInteractionsReady) return;
+  // "Finish chapter", also run by the next chapter link after a pass so the
+  // chapter is marked finished and its loop-complete points are claimed.
+  const finishChapter = () => {
+    if (!readerInteractionsReady) return false;
     phaseCompletion.markPhaseCompleted("quiz");
     phaseCompletion.markPhaseCompleted("practice");
     markChapterComplete(chapter.id, chapterQuiz.completionScore);
-    setShowCompleteModal(true);
     claimLoopCompleteIP().catch(() => {});
+    return true;
+  };
+  const handleContinueToPractice = () => {
+    if (finishChapter()) setShowCompleteModal(true);
   };
   const handleRetryQuiz = () => {
     if (readerInteractionsReady) void retryQuiz();
@@ -336,6 +391,10 @@ export function ChapterReaderClient({
         onDismissLoopCoachmark={dismissLoopCoachmark}
         onOpenNotes={() => setNotesOpen(true)}
         onOpenShortcuts={() => setShowShortcuts(true)}
+        askOpen={askOpen}
+        onOpenAsk={() => setAskOpen(true)}
+        neighbours={neighbours}
+        progressOverride={quizProgress}
         onChangeLearningMode={handleLearningModeChange}
         access={readerAccess}
         settings={readerSettings}
@@ -368,6 +427,8 @@ export function ChapterReaderClient({
             nextChapter={nextChapter}
             notesOpen={notesOpen}
             onNotesOpenChange={setNotesOpen}
+            askOpen={askOpen}
+            onAskOpenChange={setAskOpen}
             sessionMode={sessionMode}
             onSessionTourDone={handleSessionTourDone}
             showCompleteModal={showCompleteModal}
@@ -376,6 +437,17 @@ export function ChapterReaderClient({
             onShortcutsOpenChange={setShowShortcuts}
             toast={toast}
             onToastChange={setToast}
+            toastAction={toastAction?.toast === toast ? toastAction : null}
+            modeConfirm={
+              confirmMode && {
+                label: DEPTH_LABELS[modeToDepth(confirmMode)],
+                onCancel: () => setConfirmMode(null),
+                onConfirm: () => {
+                  setConfirmMode(null);
+                  changeOnQuiz(() => applyLearningModeChange(confirmMode));
+                },
+              }
+            }
             onChapterCompleteNext={handleChapterCompleteNext}
             onChapterCompleteLibrary={handleChapterCompleteLibrary}
             access={readerAccess}

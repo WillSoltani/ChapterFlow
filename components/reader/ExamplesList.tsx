@@ -65,13 +65,6 @@ type ExamplesListProps = {
   chapterTitle: string;
 };
 
-const SCOPE_ICONS: Record<string, string> = {
-  work: "\uD83D\uDCBC",
-  school: "\uD83C\uDF93",
-  personal: "\uD83C\uDFE0",
-  all: "\uD83C\uDF10",
-};
-
 const CARD_TREATMENT: React.CSSProperties = {
   borderLeft: "3px solid var(--cr-accent)",
 };
@@ -377,13 +370,13 @@ export function ExamplesList({
     <section className="cr-reading-content">
       {/* ── Title row ── */}
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-        <h2 data-phase-heading className="text-2xl font-bold text-(--cr-text-heading)">
+        <h2 data-phase-heading className="font-(family-name:--font-reading) text-[1.625rem] font-medium leading-tight text-(--cr-text-heading)">
           Real-world examples
         </h2>
         <button
           type="button"
           onClick={() => setShowModal(true)}
-          className="inline-flex items-center gap-1.5 rounded-full border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-3.5 py-1.5 text-sm font-semibold text-(--cr-accent) transition hover:bg-(--cr-accent-glow)"
+          className="-mx-2 inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2 font-(family-name:--font-body) text-sm text-(--cr-text-secondary) transition-colors hover:text-(--cr-text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
         >
           <Plus className="h-3.5 w-3.5" />
           Add a Scenario
@@ -406,16 +399,8 @@ export function ExamplesList({
         </button>
       )}
 
-      {/* ── Filter row (sticky) ── */}
-      <div
-        className="sticky top-(--cr-header-h,64px) z-20 -mx-5 sm:-mx-8 px-5 sm:px-8 mb-5 flex flex-wrap items-center gap-2 py-2"
-        style={{
-          background:
-            "color-mix(in srgb, var(--cr-bg-root) 92%, transparent)",
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-        }}
-      >
+      {/* ── Filter row (scrolls with the page: the top bar is the only pinned chrome) ── */}
+      <div className="mb-5 flex flex-wrap items-center gap-2">
         {FILTER_OPTIONS.map((option) => {
           const active = option.id === filter;
           return (
@@ -428,16 +413,13 @@ export function ExamplesList({
                 onFilterChange(option.id);
               }}
               className={[
-                "rounded-full border px-3 py-1.5 text-cf-label font-medium transition",
+                "min-h-11 rounded-full border px-4 font-(family-name:--font-body) text-cf-label transition-colors",
                 active
-                  ? "border-(--cr-accent) bg-(--cr-accent) text-(--cr-text-inverse)"
-                  : "border-(--cr-glass-border) bg-(--cr-glass-nav) text-(--cr-text-secondary) hover:border-(--cr-accent)/40",
+                  ? "border-(--cr-text-heading) text-(--cr-text-heading)"
+                  : "border-(--cr-glass-border) text-(--cr-text-secondary) hover:text-(--cr-text-primary)",
               ].join(" ")}
               aria-pressed={active}
             >
-              <span className="mr-1" aria-hidden="true">
-                {SCOPE_ICONS[option.id] ?? ""}
-              </span>
               {option.label}
             </button>
           );

@@ -1,50 +1,42 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchBookJson } from "@/lib/client/book-api";
+import { LOCAL_DATA_OWNER_COOKIE, readCookieValue } from "@/lib/auth-cache-generation";
 import { getChapterReaderStorageKey } from "@/app/book/_lib/reader-storage";
 import type { ReadingDepth } from "@/lib/reader-content-types";
 import { emitBookStorageChanged } from "@/lib/client/book-storage-events";
 import type { ChapterTab, ExampleFilter, FontScale } from "@/lib/reader-state-types";
+import { safeGetItem, safeSetItem } from "../lib/safe-storage";
+import {
+  canSendWithKeepalive,
+  createChapterStateSync,
+  defaultChapterState,
+  type ChapterStateSync,
+  type PersistedChapterState,
+  type QuizResult,
+  type ServerChapterCopy,
+} from "../lib/chapter-state-sync-core";
 export type { ChapterTab, ExampleFilter, FontScale } from "@/lib/reader-state-types";
+export type { QuizResult } from "../lib/chapter-state-sync-core";
 
-export type QuizResult = {
-  score: number;
-  passed: boolean;
+type ServerChapterStateItem = {
+  state?: Partial<PersistedChapterState>;
+  updatedAt?: string;
 };
 
-type PersistedChapterState = {
-  activeTab: ChapterTab;
-  readingDepth: ReadingDepth;
-  exampleFilter: ExampleFilter;
-  quizAnswers: Record<string, number>;
-  quizResult: QuizResult | null;
-  quizRetakeCount: number;
-  quizFailureStreak: number;
-  quizCooldownUntil: string | null;
-  notes: string;
-  notesUpdatedAt: string | null;
-  focusMode: boolean;
-  fontScale: FontScale;
-  showRecap: boolean;
-  explanationOpen: Record<string, boolean>;
-  bookmarkedTakeaways: number[];
-  // Takeaway text keyed by its bookmarked index. Parallel companion to
-  // bookmarkedTakeaways (the indices drive the SummaryCard highlight + the
-  // save-to-notes / practice resolution); this captures the text the reader
-  // actually saw so the /me/notebook feed can render the bookmark without
-  // loading chapter content. Keyed by index (not a positional array) so it
-  // stays robust across the union-merge and legacy data.
-  //
-  // The text is a SNAPSHOT at the reading depth active when bookmarking. Because
-  // the index points at different prose per depth (takeawaysByDepth[depth]), the
-  // notebook shows the depth-phrasing the reader saw when they bookmarked, which
-  // can differ from the live in-reader Practice list at another depth. That is
-  // intentional — the notebook reflects what was bookmarked.
-  bookmarkedTakeawayTexts: Record<string, string>;
-};
+const defaultState = defaultChapterState;
 
 const PREFS_KEY = "book-accelerator:reader-prefs:v1";
+
+// A read or save that has not answered by then counts as failed and is retried.
+const SYNC_REQUEST_TIMEOUT_MS = 15_000;
+
+function requestTimeoutSignal(): AbortSignal | null {
+  return typeof AbortSignal !== "undefined" && typeof AbortSignal.timeout === "function"
+    ? AbortSignal.timeout(SYNC_REQUEST_TIMEOUT_MS)
+    : null;
+}
 
 // Mirror the server cap (state/route.ts MAX_BOOKMARK_TEXT_LENGTH) so the client
 // never stores a takeaway text the PATCH validator would reject — a rejection
@@ -55,25 +47,6 @@ const MAX_BOOKMARK_TEXT_LENGTH = 2000;
 type ReaderPrefs = {
   focusMode: boolean;
   fontScale: FontScale;
-};
-
-const defaultState: PersistedChapterState = {
-  activeTab: "summary",
-  readingDepth: "standard",
-  exampleFilter: "all",
-  quizAnswers: {},
-  quizResult: null,
-  quizRetakeCount: 0,
-  quizFailureStreak: 0,
-  quizCooldownUntil: null,
-  notes: "",
-  notesUpdatedAt: null,
-  focusMode: false,
-  fontScale: "md",
-  showRecap: false,
-  explanationOpen: {},
-  bookmarkedTakeaways: [],
-  bookmarkedTakeawayTexts: {},
 };
 
 function isTab(value: unknown): value is ChapterTab {
@@ -223,153 +196,38 @@ export function inferChapterNumber(chapterId: string) {
   return result;
 }
 
-function uniqueInts(values: number[]): number[] {
-  const seen = new Set<number>();
-  const result: number[] = [];
-  for (const value of values) {
-    if (!seen.has(value)) {
-      seen.add(value);
-      result.push(value);
-    }
-  }
-  return result;
-}
-
-function laterTimestamp(a: string | null, b: string | null): string | null {
-  if (a && b) return a > b ? a : b;
-  return a ?? b;
-}
-
-function chooseQuizResult(
-  local: QuizResult | null,
-  server: QuizResult | null
-): QuizResult | null {
-  if (!local) return server;
-  if (!server) return local;
-  // Never lose a recorded pass: prefer a passing result, then the higher score.
-  if (local.passed !== server.passed) return local.passed ? local : server;
-  return server.score > local.score ? server : local;
-}
-
-// Reconcile the freshly-hydrated local state with the server copy fetched on
-// mount. Mirrors useBookProgress's union / last-write-wins merge so a newer
-// local edit is never silently clobbered by stale server data. By category:
-//  - User-authored content (notes, bookmarked takeaways): preserved — notes via
-//    last-write-wins on notesUpdatedAt, takeaways via union.
-//  - Economy / abuse counters (retakes, failure streak, cooldown): take the more
-//    restrictive value; the server is the source of truth for the quiz economy.
-//  - Quiz progress: keep local in-progress answers; keep the better result.
-//  - UI preferences: adopt the server value only where local is still at default.
-function mergeServerChapterState(
-  local: PersistedChapterState,
-  server: PersistedChapterState
-): PersistedChapterState {
-  // Notes: last-write-wins on notesUpdatedAt; never let an empty or stale server
-  // copy overwrite notes the user has authored on this device.
-  let notes = local.notes;
-  let notesUpdatedAt = local.notesUpdatedAt;
-  if (local.notesUpdatedAt && server.notesUpdatedAt) {
-    if (server.notesUpdatedAt > local.notesUpdatedAt) {
-      notes = server.notes;
-      notesUpdatedAt = server.notesUpdatedAt;
-    }
-  } else if (server.notesUpdatedAt && !local.notesUpdatedAt) {
-    // Only the server is timestamped: adopt it unless doing so would drop
-    // unstamped (legacy) local notes the user wrote on this device.
-    if (server.notes.trim() || !local.notes.trim()) {
-      notes = server.notes;
-      notesUpdatedAt = server.notesUpdatedAt;
-    }
-  } else if (!local.notesUpdatedAt && !server.notesUpdatedAt) {
-    // Neither side is timestamped (legacy data): keep local content, only
-    // filling in from the server when local has nothing.
-    if (!local.notes.trim() && server.notes.trim()) {
-      notes = server.notes;
-    }
-  }
-  // (local timestamped, server not) → keep the newer local notes as-is.
-
-  const mergedBookmarks = uniqueInts([
-    ...local.bookmarkedTakeaways,
-    ...server.bookmarkedTakeaways,
-  ]);
-
-  return {
-    // UI preferences: the server fills in only where local is still at default.
-    activeTab:
-      local.activeTab === defaultState.activeTab ? server.activeTab : local.activeTab,
-    readingDepth:
-      local.readingDepth === defaultState.readingDepth
-        ? server.readingDepth
-        : local.readingDepth,
-    exampleFilter:
-      local.exampleFilter === defaultState.exampleFilter
-        ? server.exampleFilter
-        : local.exampleFilter,
-    fontScale:
-      local.fontScale === defaultState.fontScale ? server.fontScale : local.fontScale,
-    focusMode: local.focusMode,
-    showRecap: local.showRecap || server.showRecap,
-    explanationOpen:
-      Object.keys(local.explanationOpen).length > 0
-        ? local.explanationOpen
-        : server.explanationOpen,
-    // Quiz progress: keep local in-progress answers; keep the better result.
-    quizAnswers:
-      Object.keys(local.quizAnswers).length > 0 ? local.quizAnswers : server.quizAnswers,
-    quizResult: chooseQuizResult(local.quizResult, server.quizResult),
-    // Economy / abuse counters: take the more restrictive value (server-truth).
-    quizRetakeCount: Math.max(local.quizRetakeCount, server.quizRetakeCount),
-    quizFailureStreak: Math.max(local.quizFailureStreak, server.quizFailureStreak),
-    quizCooldownUntil: laterTimestamp(local.quizCooldownUntil, server.quizCooldownUntil),
-    // User-authored content.
-    notes,
-    notesUpdatedAt,
-    bookmarkedTakeaways: mergedBookmarks,
-    // Keep the text map aligned with the merged index set: union the texts
-    // (local wins on a key collision, matching the notes last-write-wins bias)
-    // then prune to the MERGED index set so the map never carries a text for an
-    // index that isn't bookmarked. NOTE: like all union-merges here, this can't
-    // propagate a removal — an index the user un-bookmarked locally is re-added
-    // (with its text) from the server copy on the next merge; that pre-existing
-    // can't-delete behavior is unchanged by this fix.
-    bookmarkedTakeawayTexts: Object.fromEntries(
-      mergedBookmarks
-        .map((index) => {
-          const key = String(index);
-          const text =
-            local.bookmarkedTakeawayTexts[key] ?? server.bookmarkedTakeawayTexts[key];
-          return [key, text] as const;
-        })
-        .filter((entry): entry is readonly [string, string] => typeof entry[1] === "string" && entry[1].trim().length > 0)
-    ),
-  };
-}
-
+// `chapterNumber` is the route's real chapter number (from the book manifest).
+// The account copy is read and written only once it is known: guessing it
+// from the chapterId could write to another chapter's slot.
 export function useChapterState(
   bookId: string,
   chapterId: string,
-  chapterNumber?: number,
+  chapterNumber: number | undefined,
   preferredReadingDepth: ReadingDepth = "standard",
   preferredActiveTab: ChapterTab = "summary",
   preferredExampleFilter: ExampleFilter = "all",
   preferredFocusMode: boolean = false,
-  preferredFontScale: FontScale = "md"
+  preferredFontScale: FontScale = "md",
+  // Hold writes until the reader's preferred depth/tab have settled, so a
+  // first open writes the state the reader actually gets, once.
+  writesReady: boolean = true
 ) {
   const storageKey = useMemo(
     () => getChapterReaderStorageKey(bookId, chapterId),
     [bookId, chapterId]
   );
-  const resolvedChapterNumber = chapterNumber ?? inferChapterNumber(chapterId);
   const [hydrated, setHydrated] = useState(false);
   const [state, setState] = useState<PersistedChapterState>(defaultState);
-  const [serverReady, setServerReady] = useState(false);
+  // The storage key `state` was hydrated for; differs from storageKey for one
+  // render after a chapter change.
+  const [stateKey, setStateKey] = useState<string | null>(null);
+  const syncRef = useRef<ChapterStateSync | null>(null);
   const [hasPersistedState, setHasPersistedState] = useState(false);
   const [syncFailed, setSyncFailed] = useState(false);
 
   useEffect(() => {
-    const parsed = parseStored(window.localStorage.getItem(storageKey));
-    const prefs = parsePrefs(window.localStorage.getItem(PREFS_KEY));
+    const parsed = parseStored(safeGetItem(storageKey));
+    const prefs = parsePrefs(safeGetItem(PREFS_KEY));
     setState({
       ...(
         parsed ?? {
@@ -383,6 +241,7 @@ export function useChapterState(
       fontScale: prefs?.fontScale ?? parsed?.fontScale ?? preferredFontScale,
     });
     setHasPersistedState(Boolean(parsed));
+    setStateKey(storageKey);
     setHydrated(true);
     // preferredFocusMode/preferredFontScale intentionally excluded: this
     // effect must hydrate exactly once per storageKey (mount / chapter
@@ -434,60 +293,84 @@ export function useChapterState(
   }, [hydrated, preferredFocusMode]);
 
   useEffect(() => {
-    let mounted = true;
-    fetchBookJson<{ state: { state?: Partial<PersistedChapterState>; chapterId?: string } | null }>(
-      `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${resolvedChapterNumber}/state`
-    )
-      .then((payload) => {
-        if (!mounted) return;
-        const serverState = payload.state?.state;
-        if (serverState) {
-          const parsed = parseStored(JSON.stringify(serverState));
-          if (parsed) {
-            setHasPersistedState(true);
-            // Per-field merge (last-write-wins on notes, union of bookmarks,
-            // restrictive economy counters) instead of a blind server-wins
-            // spread, so newer local edits are never clobbered.
-            setState((prev) => mergeServerChapterState(prev, parsed));
-          }
+    if (!chapterNumber) return;
+    const url = `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${chapterNumber}/state`;
+    const toCopy = (item: ServerChapterStateItem | null | undefined): ServerChapterCopy => ({
+      state: item?.state ? parseStored(JSON.stringify(item.state)) : null,
+      updatedAt: typeof item?.updatedAt === "string" ? item.updatedAt : null,
+    });
+    const sync = createChapterStateSync({
+      get: () =>
+        fetchBookJson<{ state: ServerChapterStateItem | null }>(url, {
+          signal: requestTimeoutSignal(),
+        }).then((payload) => toCopy(payload.state)),
+      patch: (next, { keepalive }) => {
+        const body = JSON.stringify({ chapterId, state: next });
+        return fetchBookJson<{ state: ServerChapterStateItem }>(url, {
+          method: "PATCH",
+          body,
+          keepalive: keepalive && canSendWithKeepalive(body),
+          signal: requestTimeoutSignal(),
+        }).then((payload) => {
+          const copy = toCopy(payload.state);
+          return copy.state ? copy : { state: next, updatedAt: copy.updatedAt };
+        });
+      },
+      applyServer: (_server, merge) => {
+        setHasPersistedState(true);
+        setState((prev) => merge(prev));
+      },
+      onSyncFailedChange: setSyncFailed,
+      // The account the reader's notes belong to: once another one signs in
+      // (here or in another tab), this sync stops reading and writing.
+      account: () => {
+        try {
+          return readCookieValue(document.cookie, LOCAL_DATA_OWNER_COOKIE);
+        } catch {
+          return null;
         }
-        // Always mark the server reachable so the save effect can persist this
-        // chapter's state even on a first read (no server copy yet).
-        setServerReady(true);
-      })
-      .catch(() => {
-        if (!mounted) return;
-        setServerReady(true);
-      });
-    return () => {
-      mounted = false;
+      },
+      setTimer: (callback, ms) => window.setTimeout(callback, ms),
+      clearTimer: (handle) => window.clearTimeout(handle as number),
+      now: () => Date.now(),
+    });
+    syncRef.current = sync;
+    sync.start();
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "hidden") sync.flush();
+      else sync.refresh();
     };
-  }, [bookId, resolvedChapterNumber]);
+    const onFocus = () => sync.refresh();
+    const onPageHide = () => sync.flush();
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    window.addEventListener("focus", onFocus);
+    // Back online: try now rather than after the retry backoff.
+    window.addEventListener("online", onFocus);
+    window.addEventListener("pagehide", onPageHide);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      window.removeEventListener("focus", onFocus);
+      window.removeEventListener("online", onFocus);
+      window.removeEventListener("pagehide", onPageHide);
+      sync.flush();
+      sync.dispose();
+      syncRef.current = null;
+      setSyncFailed(false);
+    };
+  }, [bookId, chapterId, chapterNumber]);
 
   useEffect(() => {
     if (!hydrated) return;
-    window.localStorage.setItem(storageKey, JSON.stringify(state));
+    safeSetItem(storageKey, JSON.stringify(state));
     emitBookStorageChanged(`chapter-reader:${bookId}:${chapterId}`);
   }, [bookId, chapterId, hydrated, state, storageKey]);
 
+  // The sync only ever sees state hydrated for its own chapter: on a chapter
+  // change it waits for the render that holds the new chapter's state.
   useEffect(() => {
-    if (!hydrated || !serverReady) return;
-    const timeout = window.setTimeout(() => {
-      fetchBookJson(
-        `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${resolvedChapterNumber}/state`,
-        {
-          method: "PATCH",
-          body: JSON.stringify({
-            chapterId,
-            state,
-          }),
-        }
-      )
-        .then(() => setSyncFailed(false))
-        .catch(() => setSyncFailed(true));
-    }, 200);
-    return () => window.clearTimeout(timeout);
-  }, [bookId, chapterId, hydrated, resolvedChapterNumber, serverReady, state]);
+    if (!hydrated || !writesReady || stateKey !== storageKey) return;
+    syncRef.current?.setLocal(state);
+  }, [chapterNumber, hydrated, state, stateKey, storageKey, writesReady]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -496,7 +379,7 @@ export function useChapterState(
       focusMode: false,
       fontScale: state.fontScale,
     };
-    window.localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+    safeSetItem(PREFS_KEY, JSON.stringify(prefs));
   }, [hydrated, state.fontScale]);
 
   const setActiveTab = useCallback((activeTab: ChapterTab) => {

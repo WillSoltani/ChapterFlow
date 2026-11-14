@@ -1,8 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { TTS_SPEED_OPTIONS, snapTtsSpeedToOption } from "@/app/book/settings/constants/tts";
+import { UPGRADE_RETURN_PATH } from "@/lib/pricing";
 import {
   Headphones,
   Loader2,
@@ -26,7 +28,44 @@ type AudioPlayerProps = {
   // adjusts speed here, at which point onSpeedChange persists their choice back.
   initialSpeed?: number;
   onSpeedChange?: (speed: number) => void;
+  /** Controlled open state. When set, the host owns the Listen trigger. */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  /** "inline": no launcher of its own; when open, a slim in-flow player row
+   *  (the reader's top bar hosts it). "floating" keeps the legacy round
+   *  launcher + card. */
+  layout?: "floating" | "inline";
+  /** The reader's plan. FREE: the row offers Pro and no audio is requested.
+   *  null / undefined (unknown or failed read): request audio as before. */
+  plan?: "FREE" | "PRO" | null | undefined;
 };
+
+type AudioFailure = { message: string; retry: boolean };
+
+/** Plain words for the audio GET's error codes. Dead ends offer no retry. */
+function audioFailure(status: number, code: string | undefined): AudioFailure {
+  // The audio GET's own rate_limited is the daily cap on new chapter audio:
+  // a retry cannot succeed until tomorrow.
+  if (code === "rate_limited") {
+    return {
+      message: "You've reached today's limit for new chapter audio. Try again tomorrow.",
+      retry: false,
+    };
+  }
+  if (!code && status === 429) {
+    return { message: "Too many audio requests. Wait a minute, then try again.", retry: true };
+  }
+  if (code === "tts_unavailable") {
+    return { message: "Audio for this chapter isn't ready yet.", retry: true };
+  }
+  if (code === "chapter_locked" || code === "book_not_started") {
+    return { message: "Audio opens once this chapter is unlocked.", retry: false };
+  }
+  if (code === "no_audio" || code === "book_not_found" || status === 404) {
+    return { message: "This chapter has no audio yet.", retry: false };
+  }
+  return { message: "Audio couldn't load. Try again.", retry: true };
+}
 
 export function AudioPlayer({
   bookId,
@@ -36,10 +75,13 @@ export function AudioPlayer({
   variant,
   initialSpeed,
   onSpeedChange,
+  open: openProp,
+  onOpenChange,
+  layout = "floating",
+  plan,
 }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
-  const minimizedBarRef = useRef<HTMLDivElement>(null);
   const autoPlayedRef = useRef(false);
   const loadedParamsRef = useRef("");
   const knownDurationRef = useRef(0);
@@ -53,7 +95,16 @@ export function AudioPlayer({
   // pref (initialSpeed) so a late prefs hydration can't override their choice.
   const userAdjustedSpeedRef = useRef(false);
 
-  const [open, setOpen] = useState(false);
+  const [openState, setOpenState] = useState(false);
+  const isControlled = openProp !== undefined;
+  const open = isControlled ? openProp : openState;
+  const setOpen = useCallback(
+    (next: boolean) => {
+      if (!isControlled) setOpenState(next);
+      onOpenChange?.(next);
+    },
+    [isControlled, onOpenChange],
+  );
   const [minimized, setMinimized] = useState(false);
   const [loading, setLoading] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -62,27 +113,16 @@ export function AudioPlayer({
   const [speed, setSpeed] = useState(() =>
     typeof initialSpeed === "number" ? snapTtsSpeedToOption(initialSpeed) : 1,
   );
-  const [error, setError] = useState<string | null>(null);
+  const [failure, setFailure] = useState<AudioFailure | null>(null);
+  const error = failure?.message ?? null;
+  // The server said Pro is required although the plan read did not (stale or
+  // unknown plan): show the same offer as for a known free reader.
+  const [proRequired, setProRequired] = useState(false);
+  const showProOffer = plan === "FREE" || proRequired;
+  // Inline row: Play (or the Pro offer link) takes focus when the row opens.
+  const focusTargetRef = useRef<HTMLElement | null>(null);
   const [audioReady, setAudioReady] = useState(false);
   const [loadedParams, setLoadedParams] = useState("");
-
-  // While the minimized bar is showing, publish its height so the floating
-  // "Ask" button can sit above it instead of covering its Expand/Close buttons.
-  const barShowing = open && minimized;
-  useEffect(() => {
-    if (!barShowing) return;
-    const root = document.documentElement;
-    const publish = () => {
-      const h = minimizedBarRef.current?.offsetHeight ?? 0;
-      root.style.setProperty("--reader-audio-bar-h", `${h}px`);
-    };
-    publish();
-    window.addEventListener("resize", publish);
-    return () => {
-      window.removeEventListener("resize", publish);
-      root.style.removeProperty("--reader-audio-bar-h");
-    };
-  }, [barShowing]);
 
   const paramsKey = `${bookId}:${chapterNumber}:${tone}:${variant}`;
   const audioMatchesCurrent = !audioReady || loadedParams === paramsKey;
@@ -108,9 +148,10 @@ export function AudioPlayer({
   // ── Load audio ─────────────────────────────────────────────────────
   const loadAudio = useCallback(async () => {
     if (loadedParamsRef.current === paramsKey && audioReady) return;
+    if (plan === "FREE") return;
 
     setLoading(true);
-    setError(null);
+    setFailure(null);
     setAudioReady(false);
     setCurrentTime(0);
     setDuration(0);
@@ -120,12 +161,17 @@ export function AudioPlayer({
     try {
       const res = await fetch(audioUrl);
       if (!res.ok) {
-        let msg = "Failed to generate audio";
+        let code: string | undefined;
         try {
           const body = await res.json();
-          msg = (body as { error?: { message?: string } })?.error?.message ?? msg;
+          code = (body as { error?: { code?: string } })?.error?.code;
         } catch {}
-        setError(msg);
+        if (code === "pro_required") {
+          setProRequired(true);
+          setFailure({ message: "Listening is part of Pro.", retry: false });
+        } else {
+          setFailure(audioFailure(res.status, code));
+        }
         setLoading(false);
         return;
       }
@@ -176,10 +222,13 @@ export function AudioPlayer({
         setLoadedParams(paramsKey);
       }
     } catch {
-      setError("Network error — check your connection and try again");
+      setFailure({
+        message: "Audio couldn't load. Check your connection and try again.",
+        retry: true,
+      });
       setLoading(false);
     }
-  }, [paramsKey, audioReady, audioUrl]);
+  }, [paramsKey, audioReady, audioUrl, plan]);
 
   // ── Audio events ───────────────────────────────────────────────────
   useEffect(() => {
@@ -233,7 +282,7 @@ export function AudioPlayer({
     const onError = () => {
       if (!audio.src || audio.src === window.location.href) return;
       setLoading(false);
-      setError("Audio playback failed — try again");
+      setFailure({ message: "Audio stopped playing. Try again.", retry: true });
     };
 
     audio.addEventListener("canplay", onCanPlay);
@@ -299,20 +348,48 @@ export function AudioPlayer({
   const handleOpen = useCallback(() => {
     setOpen(true);
     setMinimized(false);
-    loadAudio();
-  }, [loadAudio]);
+    // Controlled: the open-effect below loads once the host flips `open`.
+    if (!isControlled) loadAudio();
+  }, [isControlled, loadAudio, setOpen]);
 
   const handleClose = useCallback(() => {
     audioRef.current?.pause();
     setOpen(false);
     setMinimized(false);
     setPlaying(false);
-  }, []);
+  }, [setOpen]);
+
+  // Controlled mode: the host's Listen button opens/closes the player.
+  const loadAudioRef = useRef(loadAudio);
+  useEffect(() => {
+    loadAudioRef.current = loadAudio;
+  }, [loadAudio]);
+  useEffect(() => {
+    if (!isControlled) return;
+    if (openProp) {
+      void loadAudioRef.current();
+    } else {
+      audioRef.current?.pause();
+      setPlaying(false);
+    }
+  }, [isControlled, openProp]);
 
   useEffect(() => {
     const audioEl = audioRef.current;
     return () => { audioEl?.pause(); };
   }, []);
+
+  // Inline row: opening moves focus to Play (or the Pro offer); closing hands
+  // it back to whatever opened the row (the top bar's Listen button).
+  useEffect(() => {
+    if (layout !== "inline" || !open) return;
+    const opener = document.activeElement as HTMLElement | null;
+    focusTargetRef.current?.focus();
+    return () => {
+      const active = document.activeElement;
+      if (!active || active === document.body) opener?.focus?.();
+    };
+  }, [layout, open, showProOffer]);
 
   useKeyboardShortcut("l", () => {
     if (!open) handleOpen();
@@ -328,6 +405,135 @@ export function AudioPlayer({
 
   const progress = duration > 0 ? Math.min((currentTime / duration) * 100, 100) : 0;
 
+  // ── Inline row (hosted by the reader's top bar) ────────────────────
+  // No launcher of its own: the top bar's Listen button opens it. One quiet
+  // row: play, title + scrubber, time, speed, close.
+  if (layout === "inline") {
+    if (!open) return null;
+    const reload = () => {
+      loadedParamsRef.current = "";
+      setLoadedParams("");
+      loadAudio();
+    };
+    const closeButton = (
+      <button
+        type="button"
+        onClick={handleClose}
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary)"
+        aria-label="Stop and close audio"
+      >
+        <X className="h-4 w-4" />
+      </button>
+    );
+    if (showProOffer) {
+      return (
+        <>
+          <audio ref={audioRef} preload="auto" />
+          <div className="flex items-center gap-2 py-1.5" role="group" aria-label="Chapter audio">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center text-(--cr-text-secondary)">
+              <Headphones className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <p className="min-w-0 flex-1 text-cf-label-sm leading-snug text-(--cr-text-secondary)">
+              Listening is part of Pro
+            </p>
+            <Link
+              ref={(node) => {
+                focusTargetRef.current = node;
+              }}
+              href={UPGRADE_RETURN_PATH}
+              className="flex h-11 shrink-0 items-center rounded-lg px-2 text-cf-label-sm font-medium text-(--cr-accent) transition hover:bg-(--cr-bg-surface-3) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
+            >
+              Upgrade to Pro
+            </Link>
+            {closeButton}
+          </div>
+        </>
+      );
+    }
+    return (
+      <>
+        <audio ref={audioRef} preload="auto" />
+        <div className="flex items-center gap-2 py-1.5" role="group" aria-label="Chapter audio">
+          <button
+            ref={(node) => {
+              focusTargetRef.current = node;
+            }}
+            type="button"
+            onClick={togglePlay}
+            // aria-disabled, not disabled: Play takes focus as the row opens,
+            // even while the audio is still loading.
+            aria-disabled={loading || Boolean(error) || undefined}
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-(--cr-accent) transition hover:bg-(--cr-bg-surface-3) aria-disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
+            aria-label={loading ? "Preparing audio" : playing ? "Pause" : "Play"}
+          >
+            {loading ? (
+              <Loader2 className="h-5 w-5 motion-safe:animate-spin" />
+            ) : playing ? (
+              <Pause className="h-5 w-5" />
+            ) : (
+              <Play className="ml-0.5 h-5 w-5" />
+            )}
+          </button>
+          <div className="min-w-0 flex-1">
+            {error ? (
+              <p className="text-cf-label-sm leading-snug text-(--cr-text-secondary)" role="status">
+                {error}
+              </p>
+            ) : !audioMatchesCurrent && !loading ? (
+              <button type="button" onClick={reload} className="truncate text-cf-label-sm text-(--cr-text-secondary) underline-offset-2 hover:underline">
+                Reading settings changed. Reload audio
+              </button>
+            ) : (
+              <div
+                ref={progressBarRef}
+                className="flex cursor-pointer items-center py-[18px] -my-[18px]"
+                onClick={handleProgressClick}
+                role="slider"
+                aria-label="Audio progress"
+                aria-valuenow={Math.round(currentTime)}
+                aria-valuemin={0}
+                aria-valuemax={Math.round(duration)}
+                aria-valuetext={`${fmt(currentTime)} of ${fmt(duration)}`}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowRight") seekTo(currentTime + 10);
+                  if (e.key === "ArrowLeft") seekTo(currentTime - 10);
+                }}
+              >
+                <div className="relative h-0.5 w-full rounded-full bg-(--cr-glass-border)">
+                  <div className="absolute inset-y-0 left-0 rounded-full bg-(--cr-text-secondary)" style={{ width: `${progress}%` }} />
+                </div>
+              </div>
+            )}
+          </div>
+          {failure?.retry ? (
+            <button
+              type="button"
+              onClick={reload}
+              className="flex h-11 shrink-0 items-center rounded-lg px-2 text-cf-label-sm font-medium text-(--cr-text-primary) transition hover:bg-(--cr-bg-surface-3)"
+            >
+              Try again
+            </button>
+          ) : error ? null : (
+            <span className="shrink-0 text-cf-caption tabular-nums text-(--cr-text-secondary)">
+              {loading ? "Preparing…" : `${fmt(currentTime)} / ${duration > 0 ? fmt(duration) : "--:--"}`}
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={cycleSpeed}
+            hidden={Boolean(error)}
+            className="flex h-11 min-w-11 shrink-0 items-center justify-center rounded-lg text-cf-caption font-semibold tabular-nums text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary)"
+            aria-label={`Playback speed ${speed}x`}
+          >
+            {speed}x
+          </button>
+          {closeButton}
+        </div>
+      </>
+    );
+  }
+
   // ── Collapsed ──────────────────────────────────────────────────────
   // Round icon-only trigger that visually matches the AskBookDrawer chat
   // button, so the two floating controls feel like a coherent set.
@@ -338,7 +544,7 @@ export function AudioPlayer({
         onClick={handleOpen}
         title="Listen to this chapter"
         aria-label="Listen to this chapter"
-        className="pointer-events-auto ml-auto flex h-12 w-12 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) shadow-lg transition hover:brightness-110 [html[data-reader-fab-hidden]_&]:max-md:pointer-events-none [html[data-reader-fab-hidden]_&]:max-md:translate-y-6 [html[data-reader-fab-hidden]_&]:max-md:opacity-0"
+        className="pointer-events-auto ml-auto flex h-12 w-12 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) shadow-lg transition hover:brightness-110"
       >
         <Headphones className="h-5 w-5" />
       </button>
@@ -350,7 +556,7 @@ export function AudioPlayer({
     return (
       <>
         <audio ref={audioRef} preload="auto" />
-        <div ref={minimizedBarRef} className="pointer-events-auto fixed bottom-0 left-0 right-0 z-50 border-t border-(--cr-glass-border) bg-(--cr-bg-root)/95 backdrop-blur-lg px-4 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-4px_24px_rgba(0,0,0,0.12)]">
+        <div className="pointer-events-auto fixed bottom-0 left-0 right-0 z-50 border-t border-(--cr-glass-border) bg-(--cr-bg-root)/95 backdrop-blur-lg px-4 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-4px_24px_rgba(0,0,0,0.12)]">
           <div className="mx-auto flex max-w-3xl items-center gap-3">
             <button type="button" onClick={togglePlay} className="cf-pressable flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) transition hover:brightness-110" aria-label={playing ? "Pause" : "Play"}>
               {playing ? <Pause className="h-4 w-4" /> : <Play className="ml-0.5 h-4 w-4" />}

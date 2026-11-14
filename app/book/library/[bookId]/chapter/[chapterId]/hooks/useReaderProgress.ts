@@ -16,6 +16,7 @@ type ProgressChapter = { id: string; order: number; title: string };
 export function useReaderProgress({
   bookId,
   chapterId,
+  chapterNumber,
   chapter,
   chapters,
   initialProgressFloor,
@@ -35,6 +36,8 @@ export function useReaderProgress({
 }: {
   bookId: string;
   chapterId: string;
+  /** The route's chapter number from the book manifest (useReaderAccess). */
+  chapterNumber: number | undefined;
   chapter?: BookChapter | undefined;
   chapters: ProgressChapter[];
   initialProgressFloor?: BookProgressFloor | null | undefined;
@@ -56,12 +59,13 @@ export function useReaderProgress({
   const chapterProgress = useChapterState(
     bookId,
     chapterId,
-    chapter?.order,
+    chapterNumber,
     preferredReadingDepth,
     preferredActiveTab,
     preferredExampleFilter,
     preferredFocusMode,
     preferredFontScale,
+    onboardingHydrated && bookPrefsHydrated && Boolean(chapter),
   );
 
   const chapterState = chapter ? bookProgress.getChapterState(chapter.id) : "locked";
@@ -98,12 +102,21 @@ export function useReaderProgress({
   });
 
   const dailyGoalCelebrated = useRef(false);
+  const { dailyGoalReached, claimDailyGoalCelebration } = readingSession;
   useEffect(() => {
-    if (!readingSession.dailyGoalReached || dailyGoalCelebrated.current) return;
+    if (!dailyGoalReached || dailyGoalCelebrated.current) return;
     dailyGoalCelebrated.current = true;
+    // Once per day across chapters and visits, not once per chapter open.
+    if (!claimDailyGoalCelebration()) return;
     const persona = bookPrefs.extended.motivationPersona || "coach";
     onToast(getMotivationMessage(persona, "daily_goal", { goal: dailyGoalMinutes }));
-  }, [bookPrefs.extended.motivationPersona, dailyGoalMinutes, onToast, readingSession.dailyGoalReached]);
+  }, [
+    bookPrefs.extended.motivationPersona,
+    claimDailyGoalCelebration,
+    dailyGoalMinutes,
+    dailyGoalReached,
+    onToast,
+  ]);
 
   useBreakReminder({
     enabled: bookPrefs.extended.breakReminders && readerInteractionsReady,
