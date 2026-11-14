@@ -95,9 +95,10 @@ function friendlyPairError(status: number | null, raw: string): { title: string;
 }
 
 // What a pairing shares, matching the partner card on Home (name, streak,
-// books in progress, last active day).
+// books in progress, last active day). Home shows that card, with its "End
+// partnership" control, only once a book has been started.
 const SHARED_COPY =
-  "You and your partner will see each other's name, reading streak, how many books you're reading and when you last read. You can end the pairing from Home at any time.";
+  "You and your partner will see each other's name, reading streak, how many books you're reading and when you last read. You can end the pairing from the partner card on Home, which appears once you have started a book.";
 
 function normalizeCode(raw: string): string {
   return raw.trim().toUpperCase();

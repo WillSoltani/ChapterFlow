@@ -73,6 +73,7 @@ import type { RefreshResult } from "./components/RefreshPreferencesModal";
 
 // Constants
 import { READING_PROFILES, DAILY_GOAL_OPTIONS, MOTIVATION_OPTIONS } from "./constants/profiles";
+import { effectiveReadingProfile } from "./lib/reading-profile-core";
 import {
   QUIZ_STYLE_TO_INTENSITY,
   DAILY_GOAL_TIERS,
@@ -668,7 +669,7 @@ export function BookSettingsClient({
   // --- Section summaries ---
   function getReadingSummary() {
     // Finding A: collapsed-section preview uses the canonical depth name too.
-    const profileLabel = DEPTH_DISPLAY[ext.readingProfile] ?? "Custom";
+    const profileLabel = DEPTH_DISPLAY[effectiveReadingProfile(ext)] ?? "Custom";
     return `${profileLabel} · ${preferences.reading.fontSize}px`;
   }
 
@@ -912,7 +913,9 @@ export function BookSettingsClient({
                     tint: p.tint,
                     selectedTint: p.selectedTint,
                   }))}
-                  value={hydrated ? ext.readingProfile : "balanced"}
+                  // The ticked card is the depth the reader actually gets
+                  // (the reader's own mode menu saves the mode, not the profile).
+                  value={hydrated ? effectiveReadingProfile(ext) : "quick"}
                   onChange={handleProfileChange}
                   label="Reading profiles"
                   columns={3}
@@ -1999,7 +2002,7 @@ export function BookSettingsClient({
         onClose={() => setRefreshModalOpen(false)}
         onComplete={handleRefreshComplete}
         reducedMotion={reducedMotion}
-        currentProfile={ext.readingProfile}
+        currentProfile={effectiveReadingProfile(ext)}
         currentGoal={ext.dailyGoalPreset}
         currentMotivation={ext.motivationPersona}
         currentDyslexia={preferences.accessibility.dyslexiaFriendlyFont}

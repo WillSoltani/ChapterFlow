@@ -480,6 +480,27 @@ test("ACCT-02: choosing Deeper sets the reading depth the reader and quizzes use
   assert.equal(extended.contentTone, "competitive");
 });
 
+test("the ticked reading profile is the depth the reader gets: Lite until a depth is chosen", async () => {
+  const view = renderSettings();
+  await wait(100);
+  const reading = within(section(view, "Reading Experience"));
+  assert.equal(reading.getByRole("radio", { name: /Lite/ }).getAttribute("aria-checked"), "true");
+  assert.equal(reading.getByRole("radio", { name: /Standard/ }).getAttribute("aria-checked"), "false");
+});
+
+test("a depth picked in the reader shows as the ticked profile in Settings", async () => {
+  // The reader's mode menu saves the learning mode, not the profile id.
+  serverSettings = {
+    settings: { extended: { learningMode: "challenge", profileCustomized: true, readingProfile: "balanced" } },
+    updatedAt: new Date().toISOString(),
+  };
+  const view = renderSettings();
+  await wait(200);
+  const reading = within(section(view, "Reading Experience"));
+  assert.equal(reading.getByRole("radio", { name: /Deeper/ }).getAttribute("aria-checked"), "true");
+  assert.equal(reading.getByRole("radio", { name: /Standard/ }).getAttribute("aria-checked"), "false");
+});
+
 test("ACCT-02: finishing the preferences wizard also sets the depth", async () => {
   const view = renderSettings();
   await wait(100);
@@ -496,7 +517,9 @@ test("ACCT-02: finishing the preferences wizard also sets the depth", async () =
 
   const extended = lastExtendedWrite();
   assert.ok(extended);
-  assert.equal(extended.learningMode, "standard");
+  // The wizard starts from the depth this untouched account already reads
+  // (Lite), so finishing it without a change keeps that depth.
+  assert.equal(extended.learningMode, "guided");
   assert.equal(extended.profileCustomized, true);
   assert.equal(extended.contentTone, "gentle");
 });
