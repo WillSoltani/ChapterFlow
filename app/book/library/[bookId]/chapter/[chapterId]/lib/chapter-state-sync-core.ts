@@ -398,8 +398,9 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
   // The reader's state when the chapter opened: the base for a first read, so
   // changes made before it lands stay as they are.
   let openedWith: PersistedChapterState | null = null;
-  // Once the opening read has failed, the reader has been on the page for a
-  // while when a read finally succeeds: it must not move them.
+  // Once the opening read has failed, the reader may have been on the page for
+  // a while when a read finally succeeds: it must not move them (unless their
+  // state has not even reached the sync yet).
   let openingReadFailed = false;
   // Null means not known yet (sessions from before the owner cookie existed
   // get it on their next refresh): the first known account is adopted.
@@ -485,7 +486,10 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
           return;
         }
         getFailures = 0;
-        const openingRead = !loaded && !openingReadFailed;
+        // The opening read, or a retry of it that lands before the reader's
+        // state has reached the sync (the page is still loading, so nobody is
+        // reading yet): it may open the chapter at the saved step.
+        const openingRead = !loaded && (!openingReadFailed || local === null);
         loaded = true;
         refreshWanted = false;
         lastGetAt = deps.now();

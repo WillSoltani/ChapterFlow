@@ -771,6 +771,22 @@ test("a save answered with a different step keeps the reader where they are", as
   assert.deepEqual(h.current.bookmarkedTakeaways, [1]);
 });
 
+test("a retried opening read that lands before the reader's state is ready still opens at the saved step", async () => {
+  // The page is still loading (no state has reached the sync) when the first
+  // read fails and its retry succeeds: nobody is reading yet, so the chapter
+  // opens where the account left it, and nothing is saved.
+  const h = harness();
+  h.sync.start();
+  h.gets[0]!.reject(new TypeError("offline"));
+  await h.advance(1_000);
+  assert.equal(h.gets.length, 2);
+  h.gets[1]!.resolve(server({ activeTab: "quiz", readingDepth: "deeper" }));
+  await h.advance(5_000);
+  assert.equal(h.current.activeTab, "quiz");
+  assert.equal(h.current.readingDepth, "deeper");
+  assert.equal(h.patches.length, 0, "this device's defaults are not saved over the account's step");
+});
+
 test("focus and visible together trigger one re-read", async () => {
   const h = harness();
   h.open();
