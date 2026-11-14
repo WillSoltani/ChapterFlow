@@ -674,10 +674,82 @@ test("a re-read never moves the reader to the step or depth another device saved
   assert.equal(h.current.readingDepth, "standard", "the text does not change depth");
   assert.equal(h.current.exampleFilter, "all");
   assert.equal(h.current.fontScale, "md");
-  assert.equal(h.current.showRecap, false);
   assert.deepEqual(h.current.explanationOpen, {});
+  assert.equal(h.current.showRecap, true, "a recap seen on another device stays seen");
   assert.equal(h.current.notes, "from the other device", "notes still arrive");
   assert.deepEqual(h.current.bookmarkedTakeaways, [3], "bookmarks still arrive");
+});
+
+test("returning to the tab sends nothing by itself; the reader's next step change is saved", async () => {
+  const h = harness();
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.advance(5_000);
+
+  // Another device moved on and saved its step.
+  h.sync.refresh();
+  h.gets[1]!.resolve(server({ activeTab: "quiz", readingDepth: "deeper" }, "2026-11-13T09:30:00.000Z"));
+  await h.advance(5_000);
+  assert.equal(h.current.activeTab, "summary");
+  assert.equal(h.patches.length, 0, "keeping this device's step is not an edit");
+
+  h.sync.flush();
+  assert.equal(h.patches.length, 0, "nor is leaving the page");
+
+  h.edit({ activeTab: "examples" });
+  await h.advance(200);
+  assert.equal(h.patches.length, 1);
+  assert.equal(h.patches[0]!.state.activeTab, "examples");
+  assert.equal(h.patches[0]!.state.readingDepth, "standard");
+});
+
+test("a step change made just before returning to the tab is still saved", async () => {
+  const h = harness();
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.advance(5_000);
+
+  // The reader moves to Examples; the re-read starts before that was saved.
+  h.edit({ activeTab: "examples" });
+  h.sync.refresh();
+  h.gets[1]!.resolve(server({ activeTab: "quiz" }, "2026-11-13T09:30:00.000Z"));
+  await h.advance(5_000);
+  assert.equal(h.current.activeTab, "examples");
+  assert.equal(h.patches.length, 1, "the reader's own step change reaches the account");
+  assert.equal(h.patches[0]!.state.activeTab, "examples");
+});
+
+test("a recap seen on this device is still saved after a re-read", async () => {
+  const h = harness();
+  h.open();
+  h.gets[0]!.resolve(server({}));
+  await h.advance(5_000);
+  h.sync.refresh();
+  h.gets[1]!.resolve(server({ activeTab: "quiz" }, "2026-11-13T09:30:00.000Z"));
+  await h.advance(5_000);
+  h.edit({ showRecap: true });
+  await h.advance(200);
+  assert.equal(h.patches.length, 1);
+  assert.equal(h.patches[0]!.state.showRecap, true);
+});
+
+test("after the opening read failed, a late read brings the account's notes but does not move the reader", async () => {
+  const h = harness();
+  h.open();
+  h.gets[0]!.reject(new TypeError("offline"));
+  await h.advance(1_000);
+  assert.equal(h.gets.length, 2);
+  // The reader has been on the page for a while by the time a read succeeds.
+  h.gets[1]!.resolve(
+    server(
+      { activeTab: "quiz", notes: "account notes", notesUpdatedAt: "2026-11-13T09:00:00.000Z" },
+      "2026-11-13T09:00:00.000Z"
+    )
+  );
+  await h.advance(5_000);
+  assert.equal(h.current.activeTab, "summary", "the reader stays on their step");
+  assert.equal(h.current.notes, "account notes");
+  assert.equal(h.patches.length, 0);
 });
 
 test("a save answered with a different step keeps the reader where they are", async () => {

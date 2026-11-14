@@ -16,6 +16,11 @@ import type { ChapterTab, ExampleFilter, FontScale } from "@/lib/reader-state-ty
 //    a server that keeps its own notes can never cause a resend loop.
 //  - Failures retry with backoff; after two in a row (or a refusal) the reader
 //    shows "Changes saved on this device only." until a request succeeds.
+//  - Only the opening read may move the reader to the step the account saved.
+//    A read that lands later (tab focused again, back online, or a retry after
+//    the opening read failed) keeps the reader's step, depth and other view
+//    choices. Keeping them is not an edit, so such a read alone sends nothing;
+//    they are saved with the reader's next real change.
 //  - A sync belongs to the account signed in when it was created. Once another
 //    account (or none) is signed in, it stops: nothing more is read, written or
 //    merged. An empty read after an account copy was seen stops it too, instead
@@ -214,17 +219,36 @@ const KEPT_WHEN_CHANGED = [
   "quizResult",
 ] as const;
 
-// Where the reader is and how the page looks. Only the first read may fill
+// Where the reader is and how the page looks. Only the opening read may fill
 // these in from the account (so a chapter reopens at the saved step); a later
-// read or a save answer never changes them under the reader.
+// read or a save answer never changes them under the reader. `showRecap` is
+// not here: it records that the recap was seen, and stays true once true.
 const VIEW_FIELDS = [
   "activeTab",
   "readingDepth",
   "exampleFilter",
   "fontScale",
-  "showRecap",
   "explanationOpen",
 ] as const;
+
+/**
+ * The account copy, with this device's view choices in place of the account's
+ * wherever the reader has not changed them since `previous` (the last sync).
+ * Used as the baseline after a later read: a view the reader merely kept
+ * counts as synced, while a view the reader changed still differs and is saved.
+ */
+function withHeldView(
+  server: PersistedChapterState,
+  local: PersistedChapterState,
+  previous: PersistedChapterState | null
+): PersistedChapterState {
+  const next = { ...server };
+  const hold = <K extends keyof PersistedChapterState>(key: K) => {
+    if (!previous || stableJson(local[key]) === stableJson(previous[key])) next[key] = local[key];
+  };
+  for (const key of VIEW_FIELDS) hold(key);
+  return next;
+}
 
 /**
  * Merge a server copy read while the reader was already open. `previousBaseline`
@@ -374,6 +398,9 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
   // The reader's state when the chapter opened: the base for a first read, so
   // changes made before it lands stay as they are.
   let openedWith: PersistedChapterState | null = null;
+  // Once the opening read has failed, the reader has been on the page for a
+  // while when a read finally succeeds: it must not move them.
+  let openingReadFailed = false;
   // Null means not known yet (sessions from before the owner cookie existed
   // get it on their next refresh): the first known account is adopted.
   let owner = deps.account();
@@ -458,7 +485,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
           return;
         }
         getFailures = 0;
-        const firstRead = !loaded;
+        const openingRead = !loaded && !openingReadFailed;
         loaded = true;
         refreshWanted = false;
         lastGetAt = deps.now();
@@ -471,10 +498,14 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
         if (accepted && copy.state) {
           const server = copy.state;
           const merge = (current: PersistedChapterState) =>
-            mergeRefreshedChapterState(current, server, previousBaseline, !firstRead);
+            mergeRefreshedChapterState(current, server, previousBaseline, !openingRead);
           // Write from the merged state now; the reader's own copy catches up
           // on its next render.
           if (local) local = merge(local);
+          // Keeping this device's view after a later read is not an edit: it
+          // counts as synced. A view the reader changed since the last sync
+          // still differs from the baseline and is saved.
+          if (!openingRead && local) baseline = withHeldView(server, local, previousBaseline);
           deps.applyServer(server, merge);
         }
         scheduleSave();
@@ -483,6 +514,7 @@ export function createChapterStateSync(deps: ChapterStateSyncDeps): ChapterState
         if (disposed) return;
         getInFlight = false;
         if (!sameAccount()) return;
+        if (!loaded) openingReadFailed = true;
         if (!isRetryableSyncError(error)) {
           setSyncFailed(true);
           // A refused first read stops here (the next focus tries again); a
