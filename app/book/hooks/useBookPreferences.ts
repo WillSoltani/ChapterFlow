@@ -1281,6 +1281,8 @@ export function useBookPreferences() {
 
   return {
     hydrated,
+    /** The account's saved settings have been read (or that read failed). */
+    serverSettled,
     state,
     patch,
     patchSection,

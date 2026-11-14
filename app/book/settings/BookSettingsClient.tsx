@@ -348,7 +348,17 @@ export function BookSettingsClient({
     // Inline the logic from individual handlers to avoid duplicate toasts,
     // redundant state updates, and unwanted celebrations during a bulk refresh.
     const preset = READING_PROFILES.find((p) => p.id === result.profile);
-    if (preset) {
+    // The profile step starts on the depth in use. Leaving it there changes
+    // nothing about depth: not the mode, its quiz rules, nor the preset's
+    // text size. Only a profile the reader picked is applied.
+    const profilePicked = Boolean(preset) && result.profile !== effectiveReadingProfile(ext);
+    patchExt({
+      dailyGoalPreset: result.goal,
+      motivationPersona: result.motivation,
+      colorBlindMode: result.colorBlind,
+      personalizationDismissed: false,
+    });
+    if (preset && profilePicked) {
       const learningMode = LEARNING_MODE_BY_STYLE[preset.defaults.learningStyle] ?? "standard";
       patchExt({
         readingProfile: result.profile,
@@ -356,10 +366,6 @@ export function BookSettingsClient({
         contentTone: TONE_BY_LEARNING_MODE[learningMode],
         quizStyle: preset.defaults.quizStyle,
         learningMode,
-        dailyGoalPreset: result.goal,
-        motivationPersona: result.motivation,
-        colorBlindMode: result.colorBlind,
-        personalizationDismissed: false,
       });
       setLearningStyle(preset.defaults.learningStyle);
       setQuizIntensity(
@@ -915,7 +921,7 @@ export function BookSettingsClient({
                   }))}
                   // The ticked card is the depth the reader actually gets
                   // (the reader's own mode menu saves the mode, not the profile).
-                  // Nothing is ticked until the saved settings are in.
+                  // Nothing is ticked until this device's saved copy has loaded.
                   value={hydrated ? effectiveReadingProfile(ext) : null}
                   onChange={handleProfileChange}
                   label="Reading profiles"
@@ -1860,10 +1866,12 @@ export function BookSettingsClient({
               label="Refresh my preferences"
               description="Re-run the personalization wizard to update your reading profile."
             >
+              {/* The wizard starts from the saved settings, so it waits for them. */}
               <button
                 type="button"
                 onClick={() => setRefreshModalOpen(true)}
-                className="cf-pressable cf-btn-secondary rounded-xl px-4 py-2 text-sm font-medium"
+                disabled={!bookPreferences.serverSettled}
+                className="cf-pressable cf-btn-secondary rounded-xl px-4 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Refresh
               </button>

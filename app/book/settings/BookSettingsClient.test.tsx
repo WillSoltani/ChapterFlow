@@ -20,6 +20,8 @@ let serverSettings: { settings: Record<string, unknown> | null; updatedAt: strin
   updatedAt: null,
 };
 let entitlements: unknown = null;
+// When set, the settings read waits for it (a slow connection).
+let holdSettingsRead: Promise<void> | null = null;
 
 function entitlementsPayload(plan: "FREE" | "PRO", extra: Record<string, unknown> = {}) {
   return {
@@ -60,6 +62,7 @@ globalThis.fetch = (async (input: RequestInfo | URL, init: RequestInit = {}) => 
     body: typeof init.body === "string" ? JSON.parse(init.body) : undefined,
   });
   if (method === "GET" && url.endsWith("/me/settings")) {
+    if (holdSettingsRead) await holdSettingsRead;
     return json(serverSettings);
   }
   if (method === "GET" && url.endsWith("/me/entitlements") && entitlements) {
@@ -129,6 +132,7 @@ beforeEach(() => {
   calls = [];
   failWrites = false;
   serverSettings = { settings: null, updatedAt: null };
+  holdSettingsRead = null;
   entitlements = null;
   window.localStorage.clear();
   invalidateBookCache("/app/api/book/me");
@@ -501,13 +505,14 @@ test("a depth picked in the reader shows as the ticked profile in Settings", asy
   assert.equal(reading.getByRole("radio", { name: /Standard/ }).getAttribute("aria-checked"), "false");
 });
 
-test("ACCT-02: finishing the preferences wizard also sets the depth", async () => {
+test("ACCT-02: picking a profile in the preferences wizard sets the depth", async () => {
   const view = renderSettings();
   await wait(100);
   toggleSection(view, "Account & Subscription");
   await wait(50);
   fireEvent.click(view.getByRole("button", { name: "Refresh" }));
   await wait(50);
+  fireEvent.click(within(view.getByRole("dialog")).getByRole("radio", { name: /Deep Diver/ }));
   for (let i = 0; i < 3; i += 1) {
     fireEvent.click(within(view.getByRole("dialog")).getByRole("button", { name: "Next" }));
     await wait(30);
@@ -517,11 +522,45 @@ test("ACCT-02: finishing the preferences wizard also sets the depth", async () =
 
   const extended = lastExtendedWrite();
   assert.ok(extended);
-  // The wizard starts from the depth this untouched account already reads
-  // (Lite), so finishing it without a change keeps that depth.
-  assert.equal(extended.learningMode, "guided");
+  assert.equal(extended.learningMode, "challenge");
+  assert.equal(extended.readingProfile, "deep");
   assert.equal(extended.profileCustomized, true);
-  assert.equal(extended.contentTone, "gentle");
+  assert.equal(extended.contentTone, "competitive");
+});
+
+test("finishing the preferences wizard without a change leaves an untouched account's depth alone", async () => {
+  // An account that never chose a depth reads on the short path with its own
+  // quiz rules. Confirming the wizard without picking a profile must not move
+  // it to another depth or change those rules.
+  const view = renderSettings();
+  await wait(100);
+  await finishWizardUntouched(view);
+
+  const extended = lastExtendedWrite();
+  assert.ok(extended, "the wizard saved the other choices");
+  assert.equal(extended.profileCustomized, false);
+  assert.equal(extended.learningMode, "standard");
+  assert.equal(extended.readingProfile, "balanced");
+});
+
+test("the preferences wizard cannot be opened before the saved settings have arrived", async () => {
+  let release!: () => void;
+  holdSettingsRead = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  const view = renderSettings();
+  await wait(100);
+  toggleSection(view, "Account & Subscription");
+  await wait(50);
+  const refresh = view.getByRole("button", { name: "Refresh" }) as HTMLButtonElement;
+  try {
+    assert.equal(refresh.disabled, true, "disabled while the saved settings are loading");
+  } finally {
+    release();
+    holdSettingsRead = null;
+  }
+  await wait(100);
+  assert.equal(refresh.disabled, false);
 });
 
 async function finishWizardUntouched(view: ReturnType<typeof renderSettings>) {
