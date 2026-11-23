@@ -769,6 +769,134 @@
         "docs/FILM_REEL.md: Claims and where they come from",
         "app/public-claims.test.ts"
       ]
+    },
+    {
+      "recordId": "06c28591fd9a48cd70cbff6cccba693d40349b92f9519326311678591e10ddeb",
+      "changeId": "wave2-api-shared-files-2026-11-23",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/book-metrics-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": "c366297b2606f38cd84f637fff180870bd5b79755b8b1c9fb832d287464efe44",
+      "repairedBlobSha256": "39432bfb576e2491f75828016a2ccd3e379880025d3e0d97fc7fa52d85205c7a",
+      "evidenceRefs": [
+        "WillSoltani/ChapterFlow#639",
+        "ux/2f-api",
+        "chore/shared-file-approval-records"
+      ]
+    },
+    {
+      "recordId": "ce9f1fd129f526c6693d375310a52e35a056614050bdff2b633248f91f67e152",
+      "changeId": "wave2-api-shared-files-2026-11-23",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/book-package-source.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "771330bde0e86acb76d0f1209ec13e300c083b41c8af1b7c8feaa5c17413832a",
+      "evidenceRefs": [
+        "WillSoltani/ChapterFlow#639",
+        "ux/2f-api",
+        "chore/shared-file-approval-records"
+      ]
+    },
+    {
+      "recordId": "68535581d41980d0d6166abb49ed711b7c15e9111ac22b5b8b8bf913be48fee5",
+      "changeId": "wave2-api-shared-files-2026-11-23",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/book-state-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": "7cadaa910789cf6ad0da2fb4f3c41d995300d9060c270e36f01ba68ce6cbdc4e",
+      "repairedBlobSha256": "56e71ab9797cb633fe07e66e381337071a5dd724a41d4acfa06dc2733d6bf10f",
+      "evidenceRefs": [
+        "WillSoltani/ChapterFlow#639",
+        "ux/2f-api",
+        "chore/shared-file-approval-records"
+      ]
+    },
+    {
+      "recordId": "9ca75fb42744b40eb57a8519c871c0550d8755dda498b9780feb70217816798e",
+      "changeId": "wave2-api-shared-files-2026-11-23",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/errors.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "9f54cab8f6a14ce90ee36c0671e7c5c2efa7b963eca4835a553090551aee2c0b",
+      "evidenceRefs": [
+        "WillSoltani/ChapterFlow#639",
+        "ux/2f-api",
+        "chore/shared-file-approval-records"
+      ]
+    },
+    {
+      "recordId": "541137d55cb87b7c061b04630e19d0ce98e367b03dd9912129ee9929602fef2a",
+      "changeId": "wave2-api-shared-files-2026-11-23",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/fsrs-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": "0411e3d279a46a511a37a11232dde23c12dc48a75b54bbbdcd1ae3774a48ab2f",
+      "repairedBlobSha256": "3466125bde9b96f50131dcd18ee8451752fd572c8828290e7bd311a41ccb8a06",
+      "evidenceRefs": [
+        "WillSoltani/ChapterFlow#639",
+        "ux/2f-api",
+        "chore/shared-file-approval-records"
+      ]
+    },
+    {
+      "recordId": "6ec719fbfcace9e6a0b9b17acd7c9c020243b44161e0ac13917090fab7cdcb57",
+      "changeId": "wave2-api-shared-files-2026-11-23",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/progress-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": "1c54e59b921cbb2eeabf4af52165268ddeebcc18f8ea5de07fba383f8a918c5d",
+      "repairedBlobSha256": "a8cb26d15892c0a1eb7cb1b1dc71b1e29fd4aa49ccdd06ad2bf3e773c6b68154",
+      "evidenceRefs": [
+        "WillSoltani/ChapterFlow#639",
+        "ux/2f-api",
+        "chore/shared-file-approval-records"
+      ]
+    },
+    {
+      "recordId": "77e9b49fafa7493c045ad90099768c39db855b908825e4efdca6cd20460a8885",
+      "changeId": "wave2-api-shared-files-2026-11-23",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/user-profile-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": "162255778270420d58913d5c0614ac32cfddf6da36f96186c0e06d8805ca1ad3",
+      "repairedBlobSha256": "a4cd74202b6d8c7e6e5cacc24ec511467275636ebaa909f048c2897219130fc5",
+      "evidenceRefs": [
+        "WillSoltani/ChapterFlow#639",
+        "ux/2f-api",
+        "chore/shared-file-approval-records"
+      ]
+    },
+    {
+      "recordId": "e614019834ea2e827cea6743c1ba6248be94a969333dc2eca01df1a317fc2a92",
+      "changeId": "wave2-api-shared-files-2026-11-23",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/user-settings-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": "3e1bc07a344c0c7a4bfa958cec21dfbe259bb26976ee065ee448ed3f1d223b62",
+      "repairedBlobSha256": "421973bc89f0c0b573a1c6113060eef9dfff3ad59a44d99b56eaf3f60e8b179a",
+      "evidenceRefs": [
+        "WillSoltani/ChapterFlow#639",
+        "ux/2f-api",
+        "chore/shared-file-approval-records"
+      ]
     }
   ]
 }
