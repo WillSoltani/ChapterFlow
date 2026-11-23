@@ -1,4 +1,6 @@
 // This module was split out of repo.ts (WS3-004). Code moved verbatim.
+// Shared with the book pipeline's TypeScript build. A change to this file needs an approval
+// record in scripts/ci/ws7-shared-repair-approvals.json, added in the same pull request.
 
 import {
   GetCommand,

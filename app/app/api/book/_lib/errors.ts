@@ -1,3 +1,6 @@
+// Shared with the book pipeline's TypeScript build. A change to this file needs an approval
+// record in scripts/ci/ws7-shared-repair-approvals.json, added in the same pull request.
+
 export class BookApiError extends Error {
   public readonly status: number;
   public readonly code: string;
