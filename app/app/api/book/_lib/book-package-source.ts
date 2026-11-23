@@ -1,3 +1,6 @@
+// Shared with the book pipeline's TypeScript build. A change to this file needs an approval
+// record in scripts/ci/ws7-shared-repair-approvals.json, added in the same pull request.
+
 import "server-only";
 
 import { normalizeAnyPackage, isStrictReaderSchema } from "@/app/book/data/book-package-core";
