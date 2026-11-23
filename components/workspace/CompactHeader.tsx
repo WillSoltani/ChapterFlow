@@ -9,6 +9,7 @@ import { DailyGoalRing } from "./DailyGoalRing";
 interface CompactHeaderProps {
   firstName: string;
   streakCount: number;
+  streakAtRisk?: boolean;
   dailyProgress: number;
   insightPoints: number;
   subtitle: string;
@@ -22,6 +23,7 @@ function getTimeOfDay() {
 export function CompactHeader({
   firstName,
   streakCount,
+  streakAtRisk = false,
   dailyProgress,
   insightPoints,
   subtitle,
@@ -64,13 +66,13 @@ export function CompactHeader({
 
       {/* Right: Inline metrics */}
       <motion.div
-        className="flex items-center gap-4"
+        className="flex flex-wrap items-center gap-x-4 gap-y-2"
         {...(prefersReducedMotion ? {} : { initial: { opacity: 0 } })}
         {...(prefersReducedMotion ? {} : { animate: { opacity: 1 } })}
         {...(prefersReducedMotion ? {} : { transition: { duration: DUR.slow, delay: 0.2, ease: EASE.standard } })}
       >
         <Link href="/book/progress" className="inline-flex">
-          <StreakBadge count={streakCount} />
+          <StreakBadge count={streakCount} atRisk={streakAtRisk} />
         </Link>
 
         {hasRewards && (

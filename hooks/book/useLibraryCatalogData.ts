@@ -11,6 +11,7 @@ import {
   type LibraryCatalogBook,
 } from "@/lib/library-data";
 import { canonicalizeCategory } from "@/lib/category-taxonomy";
+import { continueHref, resumeChapterNumber } from "@/components/book/book-cta-core";
 
 type DashboardCatalogPayload = {
   catalog: LibraryCatalogBook[];
@@ -34,15 +35,41 @@ type DashboardCatalogPayload = {
     lastOpenedAt: string;
     updatedAt: string;
   }>;
+  chapterStates: Array<{
+    bookId: string;
+    chapterNumber: number;
+  }>;
 };
 
 const EPOCH_ISO = new Date(0).toISOString();
 
+/** A library entry plus where its "Continue" goes (D4 / C13). */
+export type LibraryUiEntry = LibraryBookEntry & {
+  resumeChapterNumber: number;
+  continueHref: string;
+  /** Latest chapter completion time (HOME-26); unset without stamps. */
+  completedAt?: string;
+};
+
+function latestIso(stamps: Record<string, string> | undefined): string | undefined {
+  let latest: string | undefined;
+  let latestMs = -Infinity;
+  for (const value of Object.values(stamps ?? {})) {
+    const ms = Date.parse(value);
+    if (Number.isFinite(ms) && ms > latestMs) {
+      latestMs = ms;
+      latest = value;
+    }
+  }
+  return latest;
+}
+
 export type { DashboardCatalogPayload };
 
-export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry[] {
+export function buildEntries(payload: DashboardCatalogPayload): LibraryUiEntry[] {
   const progressByBook = new Map(payload.progress.map((item) => [item.bookId, item]));
   const stateByBook = new Map(payload.bookStates.map((item) => [item.bookId, item]));
+  const booksWithChapterState = new Set(payload.chapterStates.map((item) => item.bookId));
 
   return payload.catalog.map((book) => {
     const progress = progressByBook.get(book.id);
@@ -56,10 +83,15 @@ export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry
       100,
       Math.round((chaptersCompleted / chaptersTotal) * 100)
     );
+    // D3: started = a chapter completed, or a progress row, or a chapter-state
+    // row. A book-state row alone does not count: older clients wrote one when
+    // the book page was only viewed.
+    const started =
+      chaptersCompleted > 0 || Boolean(progress) || booksWithChapterState.has(book.id);
     const status =
       chaptersCompleted >= chaptersTotal
         ? "completed"
-        : chaptersCompleted > 0 || Boolean(state || progress)
+        : started
           ? "in_progress"
           : "not_started";
 
@@ -70,15 +102,22 @@ export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry
       progress?.lastOpenedAt ||
       EPOCH_ISO;
 
+    const resumeChapter = resumeChapterNumber({
+      currentChapterNumber: progress?.currentChapterNumber,
+      chaptersCompleted,
+      chapterCount: book.chapterCount,
+    });
+
+    const completedAt = latestIso(state?.chapterCompletedAt);
+
     return {
       ...book,
       // Canonicalize the runtime catalog's category at this entry-construction
       // boundary so the options (buildLibraryCategoryOptions), the filter match
       // (useLibraryFilters: entry.category === filters.category) and the per-card
-      // tag of THIS library-data surface stay internally consistent. (This
-      // surface currently has no live consumer — the shipped in-app library uses
-      // the closed-enum components/library path — so the edit is drift-proofing,
-      // not load-bearing; kept for the named LM-4 builder.) See lib/category-taxonomy.ts.
+      // tag of THIS library-data surface stay internally consistent. Live:
+      // useLibraryDashboard feeds these entries to LibraryPage and the Saved
+      // page. See lib/category-taxonomy.ts.
       category: canonicalizeCategory(book.category),
       status,
       progressPercent,
@@ -86,6 +125,9 @@ export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry
       chaptersCompleted,
       isNew: status === "not_started",
       lastActivityAt,
+      resumeChapterNumber: resumeChapter,
+      continueHref: continueHref(book.id, resumeChapter),
+      ...(completedAt ? { completedAt } : {}),
     };
   });
 }
@@ -101,6 +143,7 @@ export function useLibraryCatalogData(enabled = true) {
       catalog: data.catalog ?? [],
       progress: data.progress ?? [],
       bookStates: data.bookStates ?? [],
+      chapterStates: data.chapterStates ?? [],
     });
   }, [data]);
 

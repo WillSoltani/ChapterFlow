@@ -4,7 +4,9 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { BookCardWorkspace } from "./BookCardWorkspace";
-import { MONTHLY_PRICE } from "@/lib/pricing";
+import { freeCaptionFor, isFreeLimitLocked } from "@/components/library/LibraryContext";
+import type { FreeBookAllowance } from "@/hooks/book/useFreeBookAllowance";
+import { MONTHLY_PRICE, UPGRADE_RETURN_PATH } from "@/lib/pricing";
 import {
   CATALOG_BOOK_COUNT_DISPLAY,
   CATALOG_CATEGORY_COUNT_DISPLAY,
@@ -25,9 +27,11 @@ interface ProBook {
 interface DiscoveryRowProps {
   books: ProBook[];
   isPro: boolean;
+  /** Free books left (D7); null while unknown. */
+  allowance?: FreeBookAllowance | null;
 }
 
-export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
+export function DiscoveryRow({ books, isPro, allowance = null }: DiscoveryRowProps) {
   const prefersReducedMotion = useReducedMotion();
 
   if (books.length === 0) return null;
@@ -81,6 +85,8 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
               <BookCardWorkspace
                 variant="pro"
                 book={book}
+                showProBadge={isFreeLimitLocked(book.id, allowance)}
+                freeCaption={freeCaptionFor(book.id, allowance)}
               />
             )}
           </motion.div>
@@ -106,7 +112,7 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
             Unlock your full library — {CATALOG_BOOK_COUNT_DISPLAY} books across{" "}
             {CATALOG_CATEGORY_COUNT_DISPLAY} categories
           </p>
-          <Link href="/pricing">
+          <Link href={UPGRADE_RETURN_PATH}>
           <motion.span
             className="mt-3 inline-flex cursor-pointer items-center rounded-xl px-6 py-2.5 text-sm font-semibold text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
             style={{

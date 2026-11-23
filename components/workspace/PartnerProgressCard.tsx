@@ -101,9 +101,15 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
         { method: "POST" },
       );
       setInviteUrl(data.inviteUrl);
-      await navigator.clipboard.writeText(data.inviteUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      // The invite exists now. Copying can fail (Safari blocks it after an
+      // await); the card's Copy Link button is then the way to copy it.
+      try {
+        await navigator.clipboard.writeText(data.inviteUrl);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch {
+        // not an invite failure
+      }
     } catch (err) {
       if (err instanceof BookClientError && err.status === 409) {
         refreshPair();

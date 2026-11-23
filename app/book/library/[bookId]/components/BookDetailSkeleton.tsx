@@ -39,6 +39,17 @@ function ChapterRowSkeleton() {
   );
 }
 
+/** Chapter rows only — shown in the real page until server progress is known. */
+export function ChapterListSkeleton({ rows = 6 }: { rows?: number }) {
+  return (
+    <div className="animate-pulse" aria-hidden="true">
+      {Array.from({ length: rows }).map((_, i) => (
+        <ChapterRowSkeleton key={i} />
+      ))}
+    </div>
+  );
+}
+
 export function BookDetailSkeleton({ rows = 6 }: { rows?: number }) {
   return (
     <div
@@ -87,11 +98,7 @@ export function BookDetailSkeleton({ rows = 6 }: { rows?: number }) {
       </div>
 
       {/* Chapter rows */}
-      <div className="animate-pulse">
-        {Array.from({ length: rows }).map((_, i) => (
-          <ChapterRowSkeleton key={i} />
-        ))}
-      </div>
+      <ChapterListSkeleton rows={rows} />
     </div>
   );
 }

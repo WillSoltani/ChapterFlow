@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { BookCover } from "@/components/ui/BookCover";
 import { useLibraryContext } from "./LibraryContext";
-import { type LibraryBook } from "./libraryData";
+import { similarRecommendations, type LibraryBook } from "./libraryData";
 
 interface CompletedShelfProps {
   books: LibraryBook[];
@@ -18,20 +18,7 @@ export function CompletedShelf({ books }: CompletedShelfProps) {
   if (books.length === 0) return null;
 
   // Recommendations resolved against the LIVE catalog (not static MOCK_BOOKS)
-  const recommendations: { book: LibraryBook; because: LibraryBook }[] = [];
-  for (const completed of books) {
-    if (completed.similarBookId) {
-      const rec = booksById.get(completed.similarBookId);
-      if (
-        rec &&
-        !rec.userProgress?.isCompleted &&
-        !recommendations.some((r) => r.book.id === rec.id)
-      ) {
-        recommendations.push({ book: rec, because: completed });
-      }
-    }
-    if (recommendations.length >= 3) break;
-  }
+  const recommendations = similarRecommendations(books, booksById);
 
   return (
     <motion.section

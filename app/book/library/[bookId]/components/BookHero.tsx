@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { UPGRADE_RETURN_PATH } from "@/lib/pricing";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { ArrowRight, RefreshCw, Clock, Sparkles } from "lucide-react";
 import { BookCover } from "@/components/ui/BookCover";
 import { BookSaveButton } from "@/app/book/components/BookSaveButton";
 import { BookHeroProgressRing } from "./BookHeroProgressRing";
+import { bookCtaLabel } from "@/components/book/book-cta-core";
 import type { LibraryBookEntry } from "@/app/book/_lib/library-data";
 
 type BookHeroProps = {
@@ -29,6 +31,12 @@ type BookHeroProps = {
   onToggleSaved: () => void;
   /** Free-book limit reached for this not-yet-started book — gate the start CTA. */
   accessBlocked: boolean;
+  /** HOME-21: free books a FREE reader has left when starting this book uses one. */
+  freeStartsLeft?: number | null;
+  /** Server progress merged (or timed out): progress numbers can show (HOME-09). */
+  progressReady?: boolean;
+  /** Progress and plan both known: the CTA can commit to Start / Continue / Upgrade (HOME-08). */
+  ctaReady?: boolean;
 };
 
 function difficultyPillStyle(value: LibraryBookEntry["difficulty"]): { background: string; color: string } {
@@ -52,6 +60,9 @@ export function BookHero({
   isSaved,
   onToggleSaved,
   accessBlocked,
+  freeStartsLeft = null,
+  progressReady = true,
+  ctaReady = true,
 }: BookHeroProps) {
   const prefersReducedMotion = useReducedMotion();
   const [synopsisExpanded, setSynopsisExpanded] = useState(false);
@@ -59,11 +70,7 @@ export function BookHero({
   const hasProgress = progressPercent > 0 || completedCount > 0;
   const allCompleted = completedCount >= totalCount && totalCount > 0;
 
-  const ctaText = allCompleted
-    ? "Review book"
-    : hasProgress
-      ? `Continue Chapter ${currentChapterOrder}`
-      : `Start Chapter ${currentChapterOrder}`;
+  const ctaText = bookCtaLabel(currentChapterOrder, { allCompleted, started: hasProgress });
 
   const ctaIcon = allCompleted ? (
     <RefreshCw className="h-4.5 w-4.5" />
@@ -193,9 +200,18 @@ export function BookHero({
               }
               className="mt-5 flex items-center gap-3"
             >
-              {accessBlocked ? (
+              {!ctaReady ? (
+                <button
+                  type="button"
+                  disabled
+                  aria-busy="true"
+                  className="cf-btn cf-btn-primary rounded-xl px-7 py-3 text-base font-semibold opacity-60"
+                >
+                  <span>Loading…</span>
+                </button>
+              ) : accessBlocked ? (
                 <Link
-                  href="/pricing"
+                  href={UPGRADE_RETURN_PATH}
                   className="cf-btn cf-btn-primary rounded-xl px-7 py-3 text-base font-semibold cf-focus"
                 >
                   <Sparkles className="h-4.5 w-4.5" />
@@ -213,9 +229,17 @@ export function BookHero({
               )}
               <BookSaveButton saved={isSaved} onToggle={onToggleSaved} className="h-11 w-11 rounded-xl" />
             </motion.div>
+            {ctaReady && !accessBlocked && !hasProgress && freeStartsLeft !== null && freeStartsLeft > 0 && (
+              <p className="mt-2 text-sm text-(--cf-text-3)">
+                {freeStartsLeft === 1
+                  ? "Starting this book uses your last free book"
+                  : `Starting this book uses 1 of your ${freeStartsLeft} free books`}
+              </p>
+            )}
 
-            {/* Progress (real data only) vs. forward-looking zero-state */}
-            {hasProgress ? (
+            {/* Progress (real data only) vs. forward-looking zero-state; nothing
+                until the server copy is known, so 0% never jumps to N%. */}
+            {!progressReady ? null : hasProgress ? (
               <div className="mt-5 flex flex-wrap items-center justify-center gap-4 md:justify-start">
                 <BookHeroProgressRing percent={progressPercent} size={56} strokeWidth={4} />
                 <div className="flex flex-wrap items-center gap-3">
