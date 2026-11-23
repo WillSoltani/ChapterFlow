@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { BookOpen, Brain, RotateCcw, Check } from "lucide-react";
 import type { DailyQuest } from "./progressTypes";
+import { ReadingHistoryOffNote } from "./ReadingHistoryOffNote";
 
 interface DailyQuestsProps {
   quests: DailyQuest[];
@@ -91,22 +93,16 @@ export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
           const progressPct = quest.target > 0 ? (quest.current / quest.target) * 100 : 0;
           const almostThere = progressPct > 80 && !quest.completed;
 
-          const isClickable = !!onQuestClick && quest.id === "q3";
+          const isClickable = !quest.href && !!onQuestClick && quest.id === "q3";
+          const rowClass = `flex items-center gap-3 rounded-xl px-3 py-2${isClickable || quest.href ? " cursor-pointer transition-colors hover:brightness-110" : ""}`;
+          const rowStyle = {
+            background: quest.completed
+              ? "color-mix(in srgb, var(--accent-emerald) 6%, transparent)"
+              : "var(--cf-surface-muted)",
+          };
 
-          return (
-            <div
-              key={quest.id}
-              role={isClickable ? "button" : undefined}
-              tabIndex={isClickable ? 0 : undefined}
-              onClick={isClickable ? () => onQuestClick(quest.id) : undefined}
-              onKeyDown={isClickable ? (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onQuestClick(quest.id); } } : undefined}
-              className={`flex items-center gap-3 rounded-xl px-3 py-2${isClickable ? " cursor-pointer transition-colors hover:brightness-110" : ""}`}
-              style={{
-                background: quest.completed
-                  ? "color-mix(in srgb, var(--accent-emerald) 6%, transparent)"
-                  : "var(--cf-surface-muted)",
-              }}
-            >
+          const content = (
+            <>
               {/* Colored circle icon */}
               <div
                 className="flex shrink-0 items-center justify-center rounded-full"
@@ -135,6 +131,7 @@ export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
                 >
                   {quest.title}
                 </span>
+                {quest.historyOff && !quest.href && <ReadingHistoryOffNote />}
                 {almostThere && (
                   <span
                     className="text-[10px] font-medium"
@@ -188,6 +185,37 @@ export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
                   </span>
                 </div>
               )}
+            </>
+          );
+
+          if (quest.href) {
+            const row = (
+              <Link key={quest.id} href={quest.href} className={rowClass} style={rowStyle}>
+                {content}
+              </Link>
+            );
+            // The Settings link sits under the row, never inside the row's link.
+            return quest.historyOff ? (
+              <div key={quest.id}>
+                {row}
+                <ReadingHistoryOffNote className="mt-1 pl-14" />
+              </div>
+            ) : (
+              row
+            );
+          }
+
+          return (
+            <div
+              key={quest.id}
+              role={isClickable ? "button" : undefined}
+              tabIndex={isClickable ? 0 : undefined}
+              onClick={isClickable ? () => onQuestClick(quest.id) : undefined}
+              onKeyDown={isClickable ? (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onQuestClick(quest.id); } } : undefined}
+              className={rowClass}
+              style={rowStyle}
+            >
+              {content}
             </div>
           );
         })}

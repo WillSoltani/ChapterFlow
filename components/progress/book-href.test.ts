@@ -25,32 +25,28 @@ function makeBook(overrides: Partial<ActiveBook> = {}): ActiveBook {
   };
 }
 
-// ─── G3: empty resumeChapterId must not build a malformed /chapter/ href ──────
+// ─── C13: Continue opens the resume chapter by number ─────────────────────────
 
-test("getBookHref: deep-links to the resume chapter when resumeChapterId is present and the user has progressed", () => {
-  const href = getBookHref(
-    makeBook({ completedChapters: 2, resumeChapterId: "atomic-habits-ch03" })
-  );
-  assert.equal(href, "/book/library/atomic-habits/chapter/atomic-habits-ch03");
+test("getBookHref: opens the resume chapter by its number", () => {
+  const href = getBookHref(makeBook({ completedChapters: 2, currentChapterNumber: 3 }));
+  assert.equal(href, "/book/library/atomic-habits/chapter/3");
 });
 
-test("getBookHref: deep-links when past the summary step even with zero completed chapters", () => {
-  const href = getBookHref(
-    makeBook({ currentStep: "quiz", resumeChapterId: "atomic-habits-ch01" })
-  );
-  assert.equal(href, "/book/library/atomic-habits/chapter/atomic-habits-ch01");
-});
-
-test("getBookHref: falls back to the book detail page when resumeChapterId is empty even though the user has progressed", () => {
-  const href = getBookHref(
-    makeBook({ completedChapters: 3, currentStep: "quiz", resumeChapterId: "" })
-  );
-  // Before the fix this returned "/book/library/atomic-habits/chapter/" — a
-  // malformed URL with an empty chapter segment.
-  assert.equal(href, "/book/library/atomic-habits");
-});
-
-test("getBookHref: book detail page for a fresh book still on the summary step", () => {
+test("getBookHref: a started book still on the summary step opens chapter 1, not the book page", () => {
   const href = getBookHref(makeBook());
-  assert.equal(href, "/book/library/atomic-habits");
+  assert.equal(href, "/book/library/atomic-habits/chapter/1");
+});
+
+test("getBookHref: does not depend on resumeChapterId being known locally", () => {
+  const href = getBookHref(
+    makeBook({ completedChapters: 3, currentChapterNumber: 4, currentStep: "quiz", resumeChapterId: "" })
+  );
+  assert.equal(href, "/book/library/atomic-habits/chapter/4");
+});
+
+// ─── G3: never build a malformed /chapter/ href ──────────────────────────────
+
+test("getBookHref: falls back to the book page when there is no valid chapter number", () => {
+  assert.equal(getBookHref(makeBook({ currentChapterNumber: 0 })), "/book/library/atomic-habits");
+  assert.equal(getBookHref(makeBook({ currentChapterNumber: Number.NaN })), "/book/library/atomic-habits");
 });

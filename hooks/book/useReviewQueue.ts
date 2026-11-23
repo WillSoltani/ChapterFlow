@@ -8,12 +8,17 @@ import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-
 import type { FSRSCardState, FSRSRating } from "@/app/app/api/book/_lib/types";
 
 const REVIEWS_KEY = "/app/api/book/me/reviews";
+// The server's largest page; `hasMore` says whether more cards are due after it.
+const SESSION_PAGE_SIZE = 50;
+const LOAD_ERROR = "We couldn't load your review cards.";
+const RATING_ERROR = "That rating didn't save. Check your connection and try again.";
 
 type CardWithRetrievability = FSRSCardState & { retrievability: number };
 
 type DueResponse = {
   cards: CardWithRetrievability[];
   count: number;
+  hasMore?: boolean;
 };
 
 type ReviewResponse = {
@@ -34,28 +39,42 @@ export function useReviewQueue(bookId?: string) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<StatsResponse["stats"] | null>(null);
+  const [hasMore, setHasMore] = useState(false);
+  // Load failure (never shown as "all caught up") and the last failed rating.
+  const [error, setError] = useState<string | null>(null);
+  const [ratingError, setRatingError] = useState<string | null>(null);
 
-  const fetchDueCards = useCallback(async () => {
+  const fetchDueCards = useCallback(async (force = false) => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
       if (bookId) params.set("bookId", bookId);
-      const { cards: dueCards } = await fetchBookJsonCached<DueResponse>(
-        `${REVIEWS_KEY}?${params.toString()}`
+      params.set("limit", String(SESSION_PAGE_SIZE));
+      const { cards: dueCards, hasMore: more } = await fetchBookJsonCached<DueResponse>(
+        `${REVIEWS_KEY}?${params.toString()}`,
+        undefined,
+        force ? { forceRevalidate: true } : undefined
       );
       setCards(dueCards);
+      setHasMore(more === true);
       setCurrentIndex(0);
+      setError(null);
+      setRatingError(null);
     } catch {
       setCards([]);
+      setHasMore(false);
+      setError(LOAD_ERROR);
     } finally {
       setLoading(false);
     }
   }, [bookId]);
 
-  const fetchStats = useCallback(async () => {
+  const fetchStats = useCallback(async (force = false) => {
     try {
       const { stats: s } = await fetchBookJsonCached<StatsResponse>(
-        `${REVIEWS_KEY}?mode=stats`
+        `${REVIEWS_KEY}?mode=stats`,
+        undefined,
+        force ? { forceRevalidate: true } : undefined
       );
       setStats(s);
     } catch {
@@ -71,10 +90,10 @@ export function useReviewQueue(bookId?: string) {
   const submittingRef = useRef(false);
 
   const submitRating = useCallback(
-    async (rating: FSRSRating) => {
-      if (submittingRef.current) return;
+    async (rating: FSRSRating): Promise<boolean> => {
+      if (submittingRef.current) return false;
       const card = cards[currentIndex];
-      if (!card) return;
+      if (!card) return false;
 
       submittingRef.current = true;
       try {
@@ -93,11 +112,16 @@ export function useReviewQueue(bookId?: string) {
         });
 
         setCurrentIndex((i) => i + 1);
+        setRatingError(null);
         // Prefix invalidation drops both the due key (any ?bookId= variant) and
         // the stats key so the next mount refetches fresh counts.
         invalidateBookCache(REVIEWS_KEY);
+        return true;
       } catch (err) {
+        // Keep the card on screen so the reader can rate it again.
         console.error("Failed to submit review:", err);
+        setRatingError(RATING_ERROR);
+        return false;
       } finally {
         submittingRef.current = false;
       }
@@ -105,8 +129,16 @@ export function useReviewQueue(bookId?: string) {
     [cards, currentIndex]
   );
 
+  const retry = useCallback(() => fetchDueCards(true), [fetchDueCards]);
+  // "Keep going": re-read the due count too, so the next end screen's
+  // "N more due" counts only the cards still waiting after this page.
+  const refresh = useCallback(
+    () => Promise.all([fetchDueCards(), fetchStats(true)]).then(() => undefined),
+    [fetchDueCards, fetchStats]
+  );
+
   const currentCard = cards[currentIndex] ?? null;
-  const isComplete = currentIndex >= cards.length;
+  const isComplete = error === null && currentIndex >= cards.length;
   const remaining = Math.max(0, cards.length - currentIndex);
 
   return {
@@ -117,7 +149,11 @@ export function useReviewQueue(bookId?: string) {
     remaining,
     loading,
     stats,
+    hasMore,
     submitRating,
-    refresh: fetchDueCards,
+    refresh,
+    error,
+    ratingError,
+    retry,
   };
 }

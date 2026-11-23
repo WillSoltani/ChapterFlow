@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { Button } from "@/app/book/components/ui/Button";
 import { cn } from "@/lib/utils";
+import type { TierIdentity } from "@/components/progress/progressTypes";
 import { IdentityTooltip } from "./IdentityTooltip";
 import { StreakFlame } from "./StreakFlame";
 
@@ -16,7 +17,7 @@ export function IdentityHeroBanner({
   username,
   bio,
   plan,
-  identityLabel,
+  identity,
   streakDays,
   streakMicrocopy,
   booksCompleted,
@@ -32,7 +33,8 @@ export function IdentityHeroBanner({
   username: string;
   bio: string;
   plan: "FREE" | "PRO";
-  identityLabel: string;
+  /** Server tier; null hides it (tier read pending or failed). */
+  identity: TierIdentity | null;
   streakDays: number;
   streakMicrocopy: string;
   booksCompleted: number;
@@ -87,7 +89,7 @@ export function IdentityHeroBanner({
               )}>
                 {isPro ? <span className="text-accent-amber">PRO</span> : "FREE"}
               </span>
-              <IdentityTooltip currentLabel={identityLabel} booksCompleted={booksCompleted} />
+              {identity ? <IdentityTooltip identity={identity} /> : null}
             </div>
 
             {/* Name + A1 streak flame */}

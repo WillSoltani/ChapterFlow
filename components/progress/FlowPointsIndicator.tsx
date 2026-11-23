@@ -44,14 +44,13 @@ function InsightPointsIcon({ size = 16 }: { size?: number }) {
 
 interface FlowPointsIndicatorProps {
   points: number;
-  availableIPToday?: number;
+  /** Pro readers cannot spend points on bonus books or Pro passes (PROG-23). */
+  isPro?: boolean;
 }
 
-export function FlowPointsIndicator({
-  points,
-  availableIPToday = 0,
-}: FlowPointsIndicatorProps) {
+export function FlowPointsIndicator({ points, isPro = false }: FlowPointsIndicatorProps) {
   const prefersReduced = useReducedMotion();
+  const earnCopy = "earned when you pass a quiz or finish a book";
 
   return (
     <motion.div
@@ -62,8 +61,8 @@ export function FlowPointsIndicator({
     >
       <div
         className="flex items-center gap-1.5"
-        title="Insight Points (IP) — earned when you pass a quiz or finish a book. Spend them on bonus books and Pro passes."
-        aria-label={`${points.toLocaleString()} Insight Points (IP). Insight Points are earned by passing quizzes and finishing books, and spent on bonus books and Pro passes.`}
+        title={`Insight Points (IP) — ${earnCopy}.${isPro ? "" : " Spend them on bonus books and Pro passes."}`}
+        aria-label={`${points.toLocaleString()} Insight Points (IP). Insight Points are earned by passing quizzes and finishing books${isPro ? "" : ", and spent on bonus books and Pro passes"}.`}
       >
         <InsightPointsIcon size={16} />
         <span
@@ -79,11 +78,6 @@ export function FlowPointsIndicator({
           Insight Points (IP)
         </span>
       </div>
-      {availableIPToday > 0 && (
-        <span className="text-xs" style={{ color: "var(--accent-violet)" }}>
-          +{availableIPToday} IP available
-        </span>
-      )}
     </motion.div>
   );
 }

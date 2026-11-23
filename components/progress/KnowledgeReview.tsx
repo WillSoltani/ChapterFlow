@@ -4,11 +4,14 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import type { ReviewData, ActiveBook } from "./progressTypes";
+import { REVIEW_PAGE_PATH } from "./daily-quests-core";
 
 interface KnowledgeReviewProps {
   reviews: ReviewData;
   firstActiveBook: ActiveBook | null;
-  onStartReview?: () => void;
+  /** PROG-19: the deck read is still pending or failed; never the new-reader state. */
+  status?: "ready" | "loading" | "error";
+  onRetry?: () => void;
 }
 
 function getDayLabel(dateStr: string): string {
@@ -29,7 +32,8 @@ function isToday(dateStr: string): boolean {
 export function KnowledgeReview({
   reviews,
   firstActiveBook,
-  onStartReview,
+  status = "ready",
+  onRetry,
 }: KnowledgeReviewProps) {
   const prefersReduced = useReducedMotion();
   const totalDue = reviews.overdueCount + reviews.dueTodayCount;
@@ -70,7 +74,48 @@ export function KnowledgeReview({
       </h2>
 
       <AnimatePresence mode="wait">
-        {!hasReviews ? (
+        {status === "loading" ? (
+          <motion.div
+            key="loading"
+            aria-busy="true"
+            aria-label="Loading your review cards"
+            className="mt-4 flex flex-col gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: DUR.fast }}
+          >
+            <div className="animate-shimmer h-8 w-40 rounded-xl" />
+            <div className="animate-shimmer h-6 w-56 rounded-full" />
+          </motion.div>
+        ) : status === "error" ? (
+          <motion.div
+            key="error"
+            role="alert"
+            className="mt-4 flex flex-col items-start gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: DUR.fast }}
+          >
+            <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
+              We couldn&apos;t load your review cards.
+            </p>
+            {onRetry && (
+              <button
+                type="button"
+                onClick={onRetry}
+                className="cf-pressable cf-focus cursor-pointer rounded-xl px-5 py-2.5 text-sm font-medium transition-colors"
+                style={{
+                  color: "var(--text-secondary)",
+                  border: "1px solid var(--cf-border-strong)",
+                }}
+              >
+                Retry
+              </button>
+            )}
+          </motion.div>
+        ) : !hasReviews ? (
           /* State 1 — No chapters completed yet */
           <motion.div
             key="empty"
@@ -150,6 +195,11 @@ export function KnowledgeReview({
                     : `${reviews.dueTodayCount} due today`}
                 </span>
               )}
+              {reviews.laterTodayCount > 0 && (
+                <span className="cf-pill cf-pill-info px-3 py-1 text-xs font-medium">
+                  {reviews.laterTodayCount} later today
+                </span>
+              )}
               {reviews.upcomingThisWeekCount > 0 && (
                 <span className="cf-pill cf-pill-info px-3 py-1 text-xs font-medium">
                   {reviews.upcomingThisWeekCount} upcoming
@@ -159,9 +209,8 @@ export function KnowledgeReview({
 
             {/* Start Review button */}
             {totalDue > 0 && (
-              <button
-                type="button"
-                onClick={onStartReview}
+              <Link
+                href={REVIEW_PAGE_PATH}
                 className="cf-pressable cf-focus cursor-pointer rounded-xl px-5 py-2.5 text-sm font-semibold transition-all"
                 style={{
                   background: "var(--accent-cyan)",
@@ -172,7 +221,7 @@ export function KnowledgeReview({
                 }}
               >
                 Start Review {"\u2192"}
-              </button>
+              </Link>
             )}
 
             {/* 7-day forecast strip */}

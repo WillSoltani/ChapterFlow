@@ -36,6 +36,8 @@ type BookProfileSeed = {
 };
 
 const STORAGE_KEY = "book-accelerator:profile:v1";
+// Browsers cap keepalive request bodies at 64 KB; a large avatar goes without it.
+const KEEPALIVE_MAX_BYTES = 60_000;
 const ACCENTS = ["sky", "emerald", "amber", "rose"] as const;
 
 function sanitizeUsername(value: string) {
@@ -183,6 +185,7 @@ export function useBookProfile(seed: BookProfileSeed) {
   useEffect(() => {
     if (!hydrated || !serverReady || !dirtyRef.current) return;
     const timeout = window.setTimeout(() => {
+      if (!dirtyRef.current) return; // already sent by a leave-page flush
       dirtyRef.current = false;
       setLastSaveError(null);
       fetchBookJson(PROFILE_KEY, {
@@ -200,6 +203,40 @@ export function useBookProfile(seed: BookProfileSeed) {
     }, 250);
     return () => window.clearTimeout(timeout);
   }, [hydrated, serverReady, state]);
+
+  // DATA-06: an edit still inside the debounce is sent when the page is left
+  // (unmount, pagehide, tab hidden), with keepalive so the request survives.
+  const latestRef = useRef({ state, ready: false });
+  useEffect(() => {
+    latestRef.current = { state, ready: hydrated && serverReady };
+  }, [hydrated, serverReady, state]);
+
+  const flushPending = useCallback(() => {
+    const { state: pending, ready } = latestRef.current;
+    if (!dirtyRef.current || !ready) return;
+    dirtyRef.current = false;
+    const body = JSON.stringify({ profile: pending });
+    fetchBookJson(PROFILE_KEY, {
+      method: "PATCH",
+      body,
+      keepalive: body.length <= KEEPALIVE_MAX_BYTES,
+    })
+      .then(() => invalidateBookCache(PROFILE_KEY))
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") flushPending();
+    };
+    window.addEventListener("pagehide", flushPending);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      window.removeEventListener("pagehide", flushPending);
+      document.removeEventListener("visibilitychange", onVisibility);
+      flushPending();
+    };
+  }, [flushPending]);
 
   const patch = useCallback((values: Partial<BookProfileState>) => {
     dirtyRef.current = true;

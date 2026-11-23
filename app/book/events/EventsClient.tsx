@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Calendar, ArrowRight, Trophy, Check } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
@@ -29,12 +29,18 @@ export function EventsClient() {
   // as /book/badges. The page is also guarded server-side by requireDashboardAccess.
   useOnboardingRedirect({ hydrated: onboardingHydrated, setupComplete: onboarding.setupComplete });
 
-  useEffect(() => {
+  const load = useCallback(() => {
+    setLoading(true);
+    setError(null);
     fetchBookJson<EventsResponse>("/app/api/book/events/active")
       .then((data) => setEvents(data.events))
-      .catch(() => setError("Something went wrong loading events. Please try again later."))
+      .catch(() => setError("We couldn't load events. Check your connection and try again."))
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    load();
+  }, [load]);
 
   if (!onboardingHydrated || !onboarding.setupComplete) {
     return (
@@ -82,9 +88,16 @@ export function EventsClient() {
           Time-limited reading challenges with exclusive rewards
         </p>
 
-        {error && (
-          <div className="mt-4 rounded-2xl border border-(--cf-danger-border) bg-(--cf-danger-bg) px-4 py-3 text-sm text-(--cf-danger-text)">
-            {error}
+        {error && !loading && (
+          <div role="alert" className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-(--cf-danger-border) bg-(--cf-danger-bg) px-4 py-3 text-sm text-(--cf-danger-text)">
+            <span>{error}</span>
+            <button
+              type="button"
+              onClick={load}
+              className="cf-pressable rounded-xl border border-(--cf-danger-border) px-3 py-1.5 text-sm font-semibold"
+            >
+              Retry
+            </button>
           </div>
         )}
 
@@ -98,7 +111,7 @@ export function EventsClient() {
                 />
               ))}
             </div>
-          ) : events.length === 0 ? (
+          ) : error ? null : events.length === 0 ? (
             <div className="cf-panel rounded-3xl p-8 text-center">
               <Calendar className="mx-auto h-8 w-8 text-(--cf-text-3)" />
               <p className="mt-3 text-sm text-(--cf-text-3)">

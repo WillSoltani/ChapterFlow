@@ -32,6 +32,7 @@ import { BadgeGrid } from "./components/BadgeGrid";
 import { BadgeDetailModal } from "./components/BadgeDetailModal";
 import { BadgeTimeline } from "./components/BadgeTimeline";
 import { BadgeCelebration } from "./components/BadgeCelebration";
+import { SpecialBadges } from "./components/SpecialBadges";
 
 type ActiveEventWithParticipation = EventDefinition & {
   participation?: EventParticipationItem;
@@ -76,6 +77,11 @@ export function BookBadgesClient() {
   useEffect(() => {
     setShowcaseIds(getShowcaseBadgeIds());
   }, []);
+
+  const leadBook = badgeSystem.analytics?.recentlyOpenedSnapshots[0];
+  const continueTo = leadBook
+    ? { bookId: leadBook.book.id, chapterNumber: leadBook.resumeChapterNumber }
+    : null;
 
   // Redirect if onboarding not complete
   useOnboardingRedirect({ hydrated: onboardingHydrated, setupComplete: onboarding.setupComplete });
@@ -271,6 +277,7 @@ export function BookBadgesClient() {
             recommendations={recommendations}
             onBadgeClick={handleBadgeClick}
             allEarned={allEarned}
+            continueTo={continueTo}
           />
         </div>
 
@@ -290,6 +297,12 @@ export function BookBadgesClient() {
             onBadgeClick={handleBadgeClick}
           />
         </div>
+
+        {badgeSystem.specialBadges.length > 0 && (
+          <div className="mt-6">
+            <SpecialBadges badges={badgeSystem.specialBadges} />
+          </div>
+        )}
 
         <div className="mt-8">
           <BadgeTimeline earnedBadges={earnedBadges} onBadgeClick={handleBadgeClick} />

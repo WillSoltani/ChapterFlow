@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Gift, Lock, TrendingUp, Users, Zap, Copy } from "lucide-react";
 import { TopNav, type BookNavTab } from "@/app/book/home/components/TopNav";
@@ -69,7 +69,7 @@ function BalanceHeader({ summary }: { summary: InsightPointsPayload["summary"] }
   );
 }
 
-function RewardCard({
+export function RewardCard({
   reward,
   redeeming,
   onRedeem,
@@ -81,6 +81,25 @@ function RewardCard({
   const isAvailable = reward.status === "available";
   const isClaimed = reward.status === "claimed";
   const isLocked = reward.status === "locked";
+  // PROG-23: spending points cannot be undone here, so Redeem asks first.
+  const [confirming, setConfirming] = useState(false);
+  const questionId = useId();
+  const redeemRef = useRef<HTMLButtonElement>(null);
+  const confirmRef = useRef<HTMLButtonElement>(null);
+  // Focus follows the question: Confirm when it opens, Redeem after a cancel.
+  const focusRedeemNext = useRef(false);
+  useEffect(() => {
+    if (confirming) {
+      confirmRef.current?.focus();
+    } else if (focusRedeemNext.current) {
+      focusRedeemNext.current = false;
+      redeemRef.current?.focus();
+    }
+  }, [confirming]);
+  const cancel = () => {
+    focusRedeemNext.current = true;
+    setConfirming(false);
+  };
 
   return (
     <div
@@ -110,14 +129,53 @@ function RewardCard({
         <p className="text-cf-label-sm font-medium text-(--cf-accent)">{reward.highlight}</p>
       )}
 
-      {isAvailable && (
+      {isAvailable && !confirming && (
         <button
-          onClick={onRedeem}
+          ref={redeemRef}
+          onClick={() => setConfirming(true)}
           disabled={redeeming}
           className="cf-btn cf-btn-primary mt-auto w-full rounded-xl text-cf-body-sm"
         >
           {redeeming ? "Redeeming…" : "Redeem"}
         </button>
+      )}
+
+      {isAvailable && confirming && (
+        <div
+          className="mt-auto space-y-2"
+          role="group"
+          aria-label={`Confirm redeeming ${reward.name}`}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              e.stopPropagation();
+              cancel();
+            }
+          }}
+        >
+          <p id={questionId} className="text-cf-label text-(--cf-text-2)">
+            Spend {reward.costPoints.toLocaleString()} IP on {reward.name}?
+          </p>
+          <div className="flex gap-2">
+            <button
+              ref={confirmRef}
+              aria-describedby={questionId}
+              disabled={redeeming}
+              onClick={() => {
+                setConfirming(false);
+                onRedeem();
+              }}
+              className="cf-btn cf-btn-primary flex-1 rounded-xl text-cf-body-sm"
+            >
+              Confirm
+            </button>
+            <button
+              onClick={cancel}
+              className="cf-btn cf-btn-secondary flex-1 rounded-xl text-cf-body-sm"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
       )}
 
       {isClaimed && (

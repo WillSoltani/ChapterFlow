@@ -8,6 +8,8 @@ type BadgeRecommendationsProps = {
   recommendations: BadgeWithProgress[];
   onBadgeClick: (badge: BadgeWithProgress) => void;
   allEarned: boolean;
+  /** The reader's lead started book; "Continue" opens its resume chapter (C13). */
+  continueTo?: { bookId: string; chapterNumber: number } | null;
 };
 
 function getCtaHref(badge: BadgeWithProgress): string {
@@ -55,6 +57,7 @@ export function BadgeRecommendations({
   recommendations,
   onBadgeClick,
   allEarned,
+  continueTo = null,
 }: BadgeRecommendationsProps) {
   if (allEarned) {
     return (
@@ -80,7 +83,9 @@ export function BadgeRecommendations({
       <div className="scrollbar-hide -mx-4 mt-4 flex gap-3 overflow-x-auto px-4 pb-1 snap-x sm:mx-0 sm:px-0">
         {recommendations.map((badge) => {
           const message = getProgressMessage(badge);
-          const ctaHref = getCtaHref(badge);
+          const ctaHref = continueTo
+            ? `/book/library/${encodeURIComponent(continueTo.bookId)}/chapter/${continueTo.chapterNumber}`
+            : getCtaHref(badge);
           const Icon = BADGE_ICONS[badge.icon] ?? FALLBACK_BADGE_ICON;
 
           return (
@@ -137,7 +142,7 @@ export function BadgeRecommendations({
                 className="mt-auto block pt-3 text-xs font-medium underline-offset-2 transition hover:underline group-hover:translate-y-[-1px]"
                 style={{ color: "var(--accent-cyan)" }}
               >
-                Continue reading &rarr;
+                {continueTo ? `Continue chapter ${continueTo.chapterNumber}` : "Continue reading"} &rarr;
               </Link>
             </div>
           );

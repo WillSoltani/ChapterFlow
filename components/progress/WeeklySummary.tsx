@@ -105,11 +105,11 @@ export function WeeklySummary({
       zeroMessage: "Complete your first chapter!",
     },
     {
-      label: "Quiz accuracy",
+      label: "Average quiz score",
       value: week.quizAccuracy,
       suffix: "%",
       trend: null,
-      trendLabel: week.quizAccuracy === null ? "No quizzes yet" : "this week",
+      trendLabel: week.quizAccuracy === null ? "No quizzes yet" : "all time",
       zeroMessage: null,
     },
     {

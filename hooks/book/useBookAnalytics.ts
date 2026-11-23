@@ -6,7 +6,6 @@ import { useCallback, useEffect, useState } from "react";
 import { getBookErrorMessage } from "@/app/book/_lib/error-messages";
 import { useDashboardQuery, type DashboardQueryPayload } from "@/hooks/book/useDashboardQuery";
 import type { LibraryCatalogBook } from "@/lib/library-data";
-import type { StoredReaderStateSnapshot } from "@/app/book/_lib/reader-storage";
 import { getBookChaptersBundle } from "@/app/book/data/bookChapters";
 import {
   buildLibraryCatalog,
@@ -51,7 +50,17 @@ export type BookProgressSnapshot = {
   lastOpenedLabel: string;
   lastActivityAt: string;
   resumeChapterId: string;
+  /** C13: the chapter number "Continue" opens. */
+  resumeChapterNumber: number;
+  /** Label of the resume chapter ("CH.04 Title", or "Chapter 4" when unknown locally). */
+  resumeChapterLabel: string;
   currentLoopStep: LoopStep | null;
+  /**
+   * The chapter before the resume chapter had its quiz passed but "Finish
+   * chapter" was not pressed: its three steps were done although Continue
+   * already names the next chapter.
+   */
+  previousChapterAwaitingFinish?: boolean;
 };
 
 export type HeatmapCell = {
@@ -91,6 +100,8 @@ export type AnalyticsState = {
   interests: string[];
   motivation: string | null;
   badgeStats: BadgeProgressStats;
+  /** Settings "Save reading history" is off: the server returns no reading days. */
+  readingHistoryOff: boolean;
 };
 
 const EMPTY_ACTIVITY_LABEL = "No activity yet";
@@ -118,33 +129,6 @@ function formatRelativeDayLabel(dayKey: string | null): string {
   if (dayKey === today) return "Today";
   if (dayKey === previousDayKey(today)) return "Yesterday";
   return formatDayLabel(dayKey);
-}
-
-function hasMeaningfulReaderActivity(
-  reader: StoredReaderStateSnapshot | Record<string, unknown> | null
-): boolean {
-  if (!reader || typeof reader !== "object") return false;
-
-  const notes = typeof reader.notes === "string" ? reader.notes : "";
-  if (notes.trim().length > 0) return true;
-
-  const quizAnswers =
-    reader.quizAnswers && typeof reader.quizAnswers === "object" && !Array.isArray(reader.quizAnswers)
-      ? (reader.quizAnswers as Record<string, unknown>)
-      : {};
-  if (Object.keys(quizAnswers).length > 0) return true;
-
-  const quizResult = reader.quizResult;
-  if (
-    quizResult &&
-    typeof quizResult === "object" &&
-    typeof (quizResult as { score?: unknown }).score === "number"
-  ) {
-    return true;
-  }
-
-  if (reader.showRecap === true) return true;
-  return false;
 }
 
 function chapterLabelById(bookId: string, chapterId: string): string {
@@ -179,6 +163,120 @@ function deriveLoopStep(
   if (activeTab === "quiz") return "quiz";
   if (activeTab === "examples") return "scenarios";
   return "summary";
+}
+
+const MIN_DAILY_GOAL_MINUTES = 5;
+
+/**
+ * The daily goal (C10). Settings saves it to `extended.dailyGoalPreset`;
+ * older accounts only have `dailyGoal` or the onboarding answer. The shared
+ * dashboard type does not declare `extended`, so it is read through a local type.
+ */
+export function readDailyGoal(settings: unknown, fallback: number): number {
+  const s =
+    settings && typeof settings === "object"
+      ? (settings as {
+          extended?: { dailyGoalPreset?: unknown } | null;
+          dailyGoal?: unknown;
+          onboarding?: { dailyGoal?: unknown } | null;
+        })
+      : null;
+  const candidates = [s?.extended?.dailyGoalPreset, s?.dailyGoal, s?.onboarding?.dailyGoal];
+  const found = candidates.find(
+    (value): value is number => typeof value === "number" && Number.isFinite(value) && value > 0
+  );
+  const goal = found ?? fallback;
+  return Math.max(MIN_DAILY_GOAL_MINUTES, Number.isFinite(goal) ? Math.round(goal) : 0);
+}
+
+/** PROG-26: Settings turned "Save reading history" off (default on). */
+export function readReadingHistoryOff(settings: unknown): boolean {
+  if (!settings || typeof settings !== "object") return false;
+  const privacy = (settings as { privacy?: { saveReadingHistory?: unknown } | null }).privacy;
+  return privacy?.saveReadingHistory === false;
+}
+
+/**
+ * D3 "started" rule (C5): a completed chapter, a progress row or a chapter-state
+ * row. A book-state row alone does not count: viewing the book page writes one.
+ */
+export function isBookStarted(input: {
+  completedChapters: number;
+  hasProgressRow: boolean;
+  chapterStateCount: number;
+}): boolean {
+  return input.completedChapters > 0 || input.hasProgressRow || input.chapterStateCount > 0;
+}
+
+/**
+ * Chapters finished in a book. The stored book state can lag behind the
+ * progress row (a quiz passed without "Finish chapter", or in another app), so
+ * the larger of the two counts is used: the same rule as the Library.
+ */
+export function countCompletedChapters(input: {
+  stateCompletedChapterIds: readonly string[] | null | undefined;
+  progressCompletedChapters: readonly number[] | null | undefined;
+  chapters: ReadonlyArray<{ id: string; order: number }>;
+}): number {
+  const fromState = new Set(input.stateCompletedChapterIds ?? []).size;
+  const numbers = input.progressCompletedChapters ?? [];
+  const fromProgress =
+    input.chapters.length === 0
+      ? // Server book with no local chapter bundle: count the numbers directly
+        // (mapping them to ids could only give 0).
+        new Set(numbers).size
+      : new Set(
+          numbers
+            .map((number) => input.chapters.find((chapter) => chapter.order === number)?.id ?? "")
+            .filter(Boolean)
+        ).size;
+  return Math.max(fromState, fromProgress);
+}
+
+/**
+ * Best quiz score per chapter id, from the stored book state and the progress
+ * row together (the progress row is keyed by chapter number). Where both have
+ * a chapter, the higher score is kept.
+ */
+export function mergeChapterScores(input: {
+  stateChapterScores: Record<string, number> | null | undefined;
+  progressBestScoreByChapter: Record<string, number> | null | undefined;
+  chapters: ReadonlyArray<{ id: string; order: number }>;
+}): Record<string, number> {
+  const merged: Record<string, number> = {};
+  for (const [chapterNumber, score] of Object.entries(input.progressBestScoreByChapter ?? {})) {
+    const chapterId = input.chapters.find((chapter) => chapter.order === Number(chapterNumber))?.id;
+    if (chapterId) merged[chapterId] = Number(score);
+  }
+  for (const [chapterId, score] of Object.entries(input.stateChapterScores ?? {})) {
+    const value = Number(score);
+    merged[chapterId] = Math.max(merged[chapterId] ?? value, value);
+  }
+  return merged;
+}
+
+/** Completed chapter ids from the stored book state and the progress row together. */
+export function mergeCompletedChapterIds(input: {
+  stateCompletedChapterIds: readonly string[] | null | undefined;
+  progressCompletedChapters: readonly number[] | null | undefined;
+  chapters: ReadonlyArray<{ id: string; order: number }>;
+}): Set<string> {
+  const ids = new Set<string>(input.stateCompletedChapterIds ?? []);
+  for (const number of input.progressCompletedChapters ?? []) {
+    const chapterId = input.chapters.find((chapter) => chapter.order === number)?.id;
+    if (chapterId) ids.add(chapterId);
+  }
+  return ids;
+}
+
+/** C13: the chapter "Continue" opens, capped at the book's chapter count. */
+export function resumeChapterNumber(
+  currentChapterNumber: number | null | undefined,
+  completedChapters: number,
+  totalChapters: number
+): number {
+  const next = currentChapterNumber ?? completedChapters + 1;
+  return Math.max(1, Math.min(Math.max(1, totalChapters), next));
 }
 
 export function statusFromCounts(
@@ -450,12 +548,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           : [];
         const motivation: string | null =
           typeof onboardingSettings.motivation === "string" ? onboardingSettings.motivation : null;
-        const settingsDailyGoal: number =
-          typeof payload.settings?.dailyGoal === "number"
-            ? payload.settings.dailyGoal
-            : typeof onboardingSettings.dailyGoal === "number"
-              ? onboardingSettings.dailyGoal
-              : dailyGoalMinutes;
+        const settingsDailyGoal = readDailyGoal(payload.settings, dailyGoalMinutes);
         // Prefer the server-published catalog for book identity/metadata
         // (matches the migrated library page); fall back to the local bundle
         // only when the catalog is empty.
@@ -481,14 +574,21 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           });
         });
 
+        const startedBookIds = new Set<string>();
         const bookSnapshots = entries.map((entry): BookProgressSnapshot => {
           const chaptersBundle = getBookChaptersBundle(entry.id);
           const chapters = chaptersBundle.chapters;
-          const totalChapters = chapters.length || entry.chaptersTotal;
+          // Catalog chapterCount, the same total the Library uses.
+          const totalChapters = entry.chaptersTotal;
           const state = stateByBook.get(entry.id);
           const progress = progressByBook.get(entry.id);
+          const chapterStateCount = chapterStatesByBook.get(entry.id)?.length ?? 0;
+          const resumeLabelFor = (chapterNumber: number) => {
+            const chapter = chapters.find((item) => item.order === chapterNumber);
+            return chapter ? `${chapter.code} ${chapter.title}` : `Chapter ${chapterNumber}`;
+          };
 
-          if (!state && !progress) {
+          if (!state && !progress && chapterStateCount === 0) {
             return {
               book: entry,
               status: "not_started",
@@ -500,6 +600,8 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
               lastOpenedLabel: "Not started",
               lastActivityAt: entry.lastActivityAt,
               resumeChapterId: chapters[0]?.id ?? "",
+              resumeChapterNumber: 1,
+              resumeChapterLabel: resumeLabelFor(1),
               currentLoopStep: null,
             };
           }
@@ -508,51 +610,46 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           const activities = buildActivities(entry.id, chapterCompletedAt);
           allActivities.push(...activities);
 
-          const completedChapters = state?.completedChapterIds
-            ? new Set(state.completedChapterIds).size
-            : chapters.length === 0
-              ? // Server book with no local chapter bundle — count numeric
-                // progress directly (the id-mapping below can only yield 0).
-                (progress?.completedChapters ?? []).length
-              : new Set(
-                  (progress?.completedChapters ?? [])
-                    .map((chapterNumber) => chapters.find((chapter) => chapter.order === chapterNumber)?.id ?? "")
-                    .filter(Boolean)
-                ).size;
-          // The reader persists a chapter-state row as soon as a chapter is
-          // opened, so any row means reading has started (a book-page view
-          // alone writes none).
-          const status = statusFromCounts(
+          const completedChapters = countCompletedChapters({
+            stateCompletedChapterIds: state?.completedChapterIds,
+            progressCompletedChapters: progress?.completedChapters,
+            chapters,
+          });
+          const started = isBookStarted({
             completedChapters,
-            totalChapters,
-            (chapterStatesByBook.get(entry.id)?.length ?? 0) > 0
+            hasProgressRow: Boolean(progress),
+            chapterStateCount,
+          });
+          if (started) startedBookIds.add(entry.id);
+          const status = statusFromCounts(completedChapters, totalChapters, started);
+          const resumeNumber = resumeChapterNumber(
+            progress?.currentChapterNumber,
+            completedChapters,
+            totalChapters
           );
+          const resumeChapterLabel = resumeLabelFor(resumeNumber);
           const progressPercent = totalChapters
             ? Math.min(100, Math.round((completedChapters / totalChapters) * 100))
             : 0;
 
           const scoreValues = Object.values(
-            state?.chapterScores ??
-              Object.fromEntries(
-                Object.entries(progress?.bestScoreByChapter ?? {}).map(([chapterNumber, score]) => {
-                  const chapterId = chapters.find(
-                    (chapter) => chapter.order === Number(chapterNumber)
-                  )?.id;
-                  return chapterId ? [chapterId, score] : null;
-                }).filter((item): item is [string, number] => Boolean(item))
-              )
-          ).map((value) => Number(value));
+            mergeChapterScores({
+              stateChapterScores: state?.chapterScores,
+              progressBestScoreByChapter: progress?.bestScoreByChapter,
+              chapters,
+            })
+          );
 
           const bestScore = scoreValues.length ? Math.max(...scoreValues) : 0;
           const avgScore = scoreValues.length
             ? Math.round(scoreValues.reduce((sum, value) => sum + value, 0) / scoreValues.length)
             : 0;
 
+          // C13: the id of the chapter the Continue label names, so links,
+          // labels and the step shown for it all point at one chapter.
           const resumeChapterId =
+            chapters.find((chapter) => chapter.order === resumeNumber)?.id ||
             state?.currentChapterId ||
-            chapters.find(
-              (chapter) => chapter.order === (progress?.currentChapterNumber ?? 1)
-            )?.id ||
             chapters[0]?.id ||
             "";
 
@@ -566,7 +663,11 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             progress?.lastOpenedAt ||
             entry.lastActivityAt;
 
-          const completedChapterIdSet = new Set(state?.completedChapterIds ?? []);
+          const completedChapterIdSet = mergeCompletedChapterIds({
+            stateCompletedChapterIds: state?.completedChapterIds,
+            progressCompletedChapters: progress?.completedChapters,
+            chapters,
+          });
           const resumeChapterStates = chapterStatesByBook.get(entry.id) ?? [];
           const resumeChapterState =
             resumeChapterStates.find((cs) => cs.chapterId === resumeChapterId)
@@ -576,6 +677,32 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             })
             ?? null;
 
+          const previousChapter =
+            resumeNumber > 1
+              ? chapters.find((chapter) => chapter.order === resumeNumber - 1)
+              : undefined;
+          const previousChapterState = previousChapter
+            ? resumeChapterStates.find(
+                (cs) =>
+                  cs.chapterId === previousChapter.id ||
+                  cs.chapterNumber === previousChapter.order
+              )
+            : undefined;
+          const previousQuizResult = previousChapterState?.state?.quizResult as
+            | { passed?: unknown }
+            | null
+            | undefined;
+          const previousChapterAwaitingFinish = Boolean(
+            previousChapter &&
+              previousQuizResult?.passed === true &&
+              !(state?.completedChapterIds ?? []).includes(previousChapter.id)
+          );
+
+          const lastReadLabel =
+            state?.lastReadChapterId && state.lastOpenedAt !== epochIso
+              ? chapterLabelById(entry.id, state.lastReadChapterId)
+              : null;
+
           return {
             book: entry,
             status,
@@ -584,14 +711,15 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             progressPercent,
             bestScore,
             avgScore,
-            lastOpenedLabel:
-              state?.lastReadChapterId && state.lastOpenedAt !== epochIso
-                ? chapterLabelById(entry.id, state.lastReadChapterId)
-                : state
-                  ? "Browsed"
-                  : "Not started",
+            lastOpenedLabel: !started
+              ? "Not started"
+              : lastReadLabel && lastReadLabel !== "Not started"
+                ? lastReadLabel
+                : resumeChapterLabel,
             lastActivityAt,
             resumeChapterId,
+            resumeChapterNumber: resumeNumber,
+            resumeChapterLabel,
             currentLoopStep:
               status === "completed"
                 ? null
@@ -599,23 +727,14 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
                     resumeChapterState?.state as Record<string, unknown> | null ?? null,
                     completedChapterIdSet.has(resumeChapterId)
                   ),
+            previousChapterAwaitingFinish: status === "completed" ? false : previousChapterAwaitingFinish,
           };
         });
 
-        const engagedBookSnapshots = bookSnapshots.filter((snapshot) => {
-          const state = stateByBook.get(snapshot.book.id);
-          const chapterStates = chapterStatesByBook.get(snapshot.book.id) ?? [];
-          // A persisted server state means the user has opened this book at least once
-          const hasServerState = !!state;
-          const hasCompletedChapter = snapshot.completedChapters > 0;
-          const hasQuizScore = Object.values(state?.chapterScores ?? {}).some(
-            (score) => Number(score) > 0
-          );
-          const hasReaderActivity = chapterStates.some((item) =>
-            hasMeaningfulReaderActivity(item.state as StoredReaderStateSnapshot | null)
-          );
-          return hasServerState || hasCompletedChapter || hasQuizScore || hasReaderActivity;
-        });
+        // Engaged = started (C5); a book-page view alone does not count.
+        const engagedBookSnapshots = bookSnapshots.filter((snapshot) =>
+          startedBookIds.has(snapshot.book.id)
+        );
 
         // Sort by most recently active first
         engagedBookSnapshots.sort((a, b) => {
@@ -673,25 +792,18 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           const state = stateByBook.get(entry.id);
           const progress = progressByBook.get(entry.id);
           const bundleChapters = getBookChaptersBundle(entry.id).chapters;
-          const completedIds = new Set<string>(
-            state?.completedChapterIds ??
-              (progress?.completedChapters ?? [])
-                .map((n) => bundleChapters.find((c) => c.order === n)?.id ?? "")
-                .filter(Boolean)
-          );
-          // chapterScores is keyed by chapterId on bookState, but the
-          // progress-table fallback (bestScoreByChapter) is keyed by chapter
-          // NUMBER — map it to ids so progress-only quiz scores aren't dropped.
-          const chapterScores: Record<string, number> =
-            state?.chapterScores ??
-            Object.fromEntries(
-              Object.entries(progress?.bestScoreByChapter ?? {})
-                .map(([num, score]) => {
-                  const cid = bundleChapters.find((c) => c.order === Number(num))?.id;
-                  return cid ? ([cid, Number(score)] as const) : null;
-                })
-                .filter((e): e is readonly [string, number] => e !== null)
-            );
+          // The stored book state can lag behind the progress row, so both
+          // are read together (the progress row is keyed by chapter number).
+          const completedIds = mergeCompletedChapterIds({
+            stateCompletedChapterIds: state?.completedChapterIds,
+            progressCompletedChapters: progress?.completedChapters,
+            chapters: bundleChapters,
+          });
+          const chapterScores: Record<string, number> = mergeChapterScores({
+            stateChapterScores: state?.chapterScores,
+            progressBestScoreByChapter: progress?.bestScoreByChapter,
+            chapters: bundleChapters,
+          });
           const stateByChapterId = new Map<string, unknown>();
           for (const cs of chapterStatesByBook.get(entry.id) ?? []) {
             const cid =
@@ -721,7 +833,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             // auto-PATCHed to the server the moment a detail page is viewed, so
             // `Boolean(state)` alone falsely marks browsed-but-unread books as
             // started, inflating "Book in Motion" and the level for zero-read
-            // accounts. Mirrors the localStorage deriver in useBadgeSystem.ts.
+            // accounts.
             isStarted:
               completedIds.size > 0 ||
               Object.keys(chapterScores).length > 0 ||
@@ -777,6 +889,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           interests,
           motivation,
           badgeStats,
+          readingHistoryOff: readReadingHistoryOff(payload.settings),
         });
         setError(null);
         setHydrated(true);
