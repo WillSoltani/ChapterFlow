@@ -4,8 +4,8 @@ import { useRef, useEffect, useState } from "react";
 import {
   useInView,
   animate,
-  useReducedMotion,
 } from "framer-motion";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
 interface CounterAnimationProps {
   target: number;
@@ -24,7 +24,7 @@ export function CounterAnimation({
 }: CounterAnimationProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const [displayValue, setDisplayValue] = useState(
     prefersReducedMotion ? target : 0
   );

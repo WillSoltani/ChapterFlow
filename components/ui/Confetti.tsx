@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
 export interface ConfettiProps {
   /**
@@ -72,8 +72,8 @@ interface Particle {
  * this change) and is the intended replacement for the onboarding CanvasConfetti
  * — whose `mixBlendMode:"screen"` made particles invisible on the default light
  * theme — which downstream migrates onto this in a later wave. Honors reduced
- * motion (renders nothing) via framer's useReducedMotion(), which MotionProvider
- * wires to the OS setting AND the in-app reduce-motion toggle.
+ * motion (renders nothing) via usePrefersReducedMotion(), which reads the OS
+ * setting AND the in-app reduce-motion toggle (html[data-motion]).
  */
 export function Confetti({
   trigger,
@@ -84,7 +84,7 @@ export function Confetti({
   zIndex = 50,
   className = "",
 }: ConfettiProps) {
-  const prefersReduced = useReducedMotion();
+  const prefersReduced = usePrefersReducedMotion();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [fireKey, setFireKey] = useState(0);
   const prevTrigger = useRef(false);

@@ -77,6 +77,11 @@ export interface BookCache {
   load(key: string, options?: BookCacheLoadOptions): Promise<unknown>;
   /** Subscribe to successful, failed, invalidated, and cleared reads for `key`. */
   subscribe(key: string, listener: BookCacheListener): () => void;
+  /**
+   * Store `value` for `key` as a fresh read and notify its subscribers. For a
+   * write the caller has just made, so other screens show it before the next GET.
+   */
+  set(key: string, value: unknown): void;
   /** Drop every entry whose key starts with `prefix`, notifying its subscribers. */
   invalidate(prefix: string): void;
   /** Drop all private entries and tell every live subscriber to clear local data. */
@@ -231,6 +236,14 @@ export function createBookCache(options: BookCacheOptions): BookCache {
     };
   }
 
+  function set(key: string, value: unknown): void {
+    const entry = ensureEntry(key);
+    entry.value = value;
+    entry.hasValue = true;
+    entry.storedAt = now();
+    notify(key, { type: "success" });
+  }
+
   function invalidate(prefix: string): void {
     const touched: string[] = [];
     for (const key of entries.keys()) {
@@ -262,6 +275,7 @@ export function createBookCache(options: BookCacheOptions): BookCache {
     peek,
     load,
     subscribe,
+    set,
     invalidate,
     clear,
     reconcileAuthGeneration,

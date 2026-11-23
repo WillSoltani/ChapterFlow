@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import type { ReactNode } from "react";
 import { DUR, EASE } from "@/lib/motion";
 
@@ -39,8 +40,8 @@ export interface ProgressRingProps {
  * role="progressbar" + ARIA, reduced-motion-aware spring fill, completion glow,
  * fully parameterized (size / stroke / color tokens / decorative / center slot).
  *
- * Honors reduced motion via framer's useReducedMotion(), which MotionProvider
- * wires to BOTH the OS prefers-reduced-motion media query AND the in-app
+ * Honors reduced motion via usePrefersReducedMotion(), which reads BOTH the OS
+ * prefers-reduced-motion media query AND the in-app
  * reduce-motion toggle.
  */
 export function ProgressRing({
@@ -59,7 +60,7 @@ export function ProgressRing({
   ariaLabel,
   children,
 }: ProgressRingProps) {
-  const prefersReduced = useReducedMotion();
+  const prefersReduced = usePrefersReducedMotion();
   const clamped = Math.max(0, Math.min(percent, 100));
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;

@@ -22,7 +22,7 @@ export const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>(
     {
       value,
       onChange,
-      placeholder = "Search books... (press / to focus)",
+      placeholder = "Search books",
       onFocus,
       onKeyDown,
       expanded,
@@ -50,6 +50,15 @@ export const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>(
           aria-controls={expanded ? controlsId : undefined}
           aria-activedescendant={expanded ? activeDescendantId : undefined}
         />
+        {/* The "/" shortcut only exists on keyboards, so phones never see it. */}
+        {value ? null : (
+          <kbd
+            aria-hidden="true"
+            className="pointer-events-none absolute right-3.5 top-1/2 hidden h-5 min-w-5 -translate-y-1/2 items-center justify-center rounded border border-(--cf-border) px-1 font-sans text-xs text-(--cf-text-3) md:inline-flex"
+          >
+            /
+          </kbd>
+        )}
       </label>
     );
   }

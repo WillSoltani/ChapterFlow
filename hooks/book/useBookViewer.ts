@@ -3,7 +3,7 @@
 // Canonical shared book-viewer hook (WS3-001).
 
 import { useEffect, useMemo, useState } from "react";
-import { useBookQuery } from "@/lib/client/book-api-cache";
+import { peekBookCache, useBookQuery } from "@/lib/client/book-api-cache";
 
 export type BookViewerIdentity = {
   sub: string;
@@ -41,6 +41,7 @@ type StoredViewer = {
 };
 
 const STORAGE_KEY = "book-accelerator:viewer:v1";
+const VIEWER_KEY = "/app/api/book/me/profile";
 
 const defaultIdentity: BookViewerIdentity = {
   sub: "unknown",
@@ -94,44 +95,56 @@ export function formatViewerLocation(location: BookViewerLocation | null | undef
   return location.countryName || location.countryCode || null;
 }
 
+function identityFromPayload(
+  payload: ViewerPayload,
+  prev: BookViewerIdentity
+): BookViewerIdentity {
+  const avatarFromProfile =
+    typeof payload.profile?.avatarDataUrl === "string"
+      ? payload.profile.avatarDataUrl
+      : null;
+  if (!payload.identity) return { ...prev, avatarDataUrl: avatarFromProfile };
+  return {
+    ...defaultIdentity,
+    ...payload.identity,
+    avatarDataUrl: avatarFromProfile,
+    displayName:
+      typeof payload.identity.displayName === "string" && payload.identity.displayName.trim()
+        ? payload.identity.displayName
+        : defaultIdentity.displayName,
+  };
+}
+
 export function useBookViewer() {
   const [hydrated, setHydrated] = useState(false);
-  const [identity, setIdentity] = useState<BookViewerIdentity>(defaultIdentity);
-  const [inferredLocation, setInferredLocation] = useState<BookViewerLocation | null>(null);
+  // Seed from the shared request cache so a page reached by client navigation
+  // shows the viewer on its first render instead of the "Reader" fallback.
+  const [identity, setIdentity] = useState<BookViewerIdentity>(() => {
+    const cached = peekBookCache<ViewerPayload>(VIEWER_KEY);
+    return cached ? identityFromPayload(cached, defaultIdentity) : defaultIdentity;
+  });
+  const [inferredLocation, setInferredLocation] = useState<BookViewerLocation | null>(
+    () => peekBookCache<ViewerPayload>(VIEWER_KEY)?.inferredLocation ?? null
+  );
 
   useEffect(() => {
     const stored = parseStored(window.localStorage.getItem(STORAGE_KEY));
     if (stored) {
-      setIdentity(stored.identity);
-      setInferredLocation(stored.inferredLocation);
+      // Never replace an identity already seeded from the cache with an older copy.
+      setIdentity((prev) => (prev.source === "fallback" ? stored.identity : prev));
+      setInferredLocation((prev) => prev ?? stored.inferredLocation);
     }
     setHydrated(true);
   }, []);
 
   // Cached GET — dedups with useBookProfile's /me/profile read when co-mounted.
-  const viewerQuery = useBookQuery<ViewerPayload>("/app/api/book/me/profile");
+  const viewerQuery = useBookQuery<ViewerPayload>(VIEWER_KEY);
   const loading = viewerQuery.loading;
 
   useEffect(() => {
     const payload = viewerQuery.data;
     if (!payload) return;
-    const avatarFromProfile =
-      typeof payload.profile?.avatarDataUrl === "string"
-        ? payload.profile.avatarDataUrl
-        : null;
-    if (payload.identity) {
-      setIdentity({
-        ...defaultIdentity,
-        ...payload.identity,
-        avatarDataUrl: avatarFromProfile,
-        displayName:
-          typeof payload.identity.displayName === "string" && payload.identity.displayName.trim()
-            ? payload.identity.displayName
-            : defaultIdentity.displayName,
-      });
-    } else {
-      setIdentity((prev) => ({ ...prev, avatarDataUrl: avatarFromProfile }));
-    }
+    setIdentity((prev) => identityFromPayload(payload, prev));
     setInferredLocation(payload.inferredLocation ?? null);
   }, [viewerQuery.data]);
 

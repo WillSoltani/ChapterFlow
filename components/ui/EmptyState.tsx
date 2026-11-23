@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import type { LucideIcon } from "lucide-react";
 import { DUR } from "@/lib/motion";
 
@@ -67,7 +68,7 @@ export function EmptyState({
   variant,
   className = "",
 }: EmptyStateProps) {
-  const prefersReduced = useReducedMotion();
+  const prefersReduced = usePrefersReducedMotion();
 
   const iconIsComponent = icon != null && isComponentIcon(icon);
   // Default to the admin panel treatment when a Lucide component icon is supplied,

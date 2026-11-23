@@ -103,8 +103,11 @@ export async function performShare(opts: {
         void trackShareEvent({ ...opts.tracking, destination: "clipboard" });
       }
       return "shared";
-    } catch {
-      // User cancelled or share failed — fall through to clipboard
+    } catch (error) {
+      // Cancelling the share sheet is a choice, not a failure: leave the
+      // clipboard alone.
+      if ((error as { name?: unknown } | null)?.name === "AbortError") return "unsupported";
+      // The share itself failed — fall through to clipboard
     }
   }
 
@@ -127,10 +130,11 @@ function trackShareEvent(data: {
   badgeId?: string;
   referralCode?: string;
 }): void {
-  fetch("/api/book/me/share-events", {
+  fetch("/app/api/book/me/share-events", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
+    keepalive: true,
   }).catch(() => {
     // Fire-and-forget — don't block the UI on tracking failures
   });

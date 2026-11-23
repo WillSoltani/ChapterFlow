@@ -1,6 +1,7 @@
 "use client";
 
-import { AnimatePresence, m, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode, type RefObject } from "react";
 import { createPortal } from "react-dom";
 import { DUR } from "@/lib/motion";
@@ -60,8 +61,8 @@ interface OverlayShellProps extends BaseOverlayProps {
  * initial focus + focus restore on close, Escape, backdrop-click close, body
  * scroll lock, and CONDITIONAL render (the panel only exists in the DOM while
  * open / exiting — never an always-mounted aria-modal hidden by transform).
- * Reduced motion is honored via framer's useReducedMotion(), which
- * MotionProvider wires to the OS setting AND the in-app reduce-motion toggle.
+ * Reduced motion is honored via usePrefersReducedMotion(), which reads the OS
+ * setting AND the in-app reduce-motion toggle (html[data-motion]).
  */
 function OverlayShell({
   open,
@@ -79,7 +80,7 @@ function OverlayShell({
 }: OverlayShellProps) {
   const mounted = useSyncExternalStore(noSubscribe, onClient, onServer);
   const panelRef = useRef<HTMLDivElement>(null);
-  const prefersReduced = useReducedMotion();
+  const prefersReduced = usePrefersReducedMotion();
   // Under a MotionFeatureGate (the landing) the feature bundle loads when an
   // overlay first opens; elsewhere this is a no-op (features load at mount).
   useMotionFeaturesWhen(open);

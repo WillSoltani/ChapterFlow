@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useSyncExternalStore } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { DUR, EASE } from "@/lib/motion";
 
 // Client-only "mounted" flag without setState-in-effect: returns false during
@@ -25,7 +26,7 @@ export function SectionReveal({
 }: SectionRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.15 });
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   // No-JS / hydration robustness: SSR and the first client render are visible
   // (opacity:1). Only after the component mounts on the client do we arm the
