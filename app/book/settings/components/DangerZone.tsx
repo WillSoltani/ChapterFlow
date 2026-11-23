@@ -10,9 +10,15 @@ type DangerZoneProps = {
   onDelete: () => Promise<void>;
   /** Retained for call-site compatibility; Dialog owns motion now. */
   reducedMotion?: boolean;
+  /** Settings search matches; "deactivate" / "delete-account" highlight a row. */
+  highlightedIds?: ReadonlySet<string> | undefined;
 };
 
-export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
+const MATCH_CLASS = " ring-1 ring-(--cf-accent-border) bg-(--cf-accent-muted)";
+
+export function DangerZone({ onDeactivate, onDelete, highlightedIds }: DangerZoneProps) {
+  const deactivateMatch = highlightedIds?.has("deactivate") === true;
+  const deleteMatch = highlightedIds?.has("delete-account") === true;
   const [deleteModal, setDeleteModal] = useState(false);
   const [deactivateModal, setDeactivateModal] = useState(false);
   const [confirmText, setConfirmText] = useState("");
@@ -77,12 +83,14 @@ export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
         </p>
         <div className="mt-3 space-y-2">
           <button
+            id="deactivate"
             type="button"
+            data-highlighted={deactivateMatch || undefined}
             onClick={() => {
               setDeactivateError(null);
               setDeactivateModal(true);
             }}
-            className="cf-pressable flex w-full items-center gap-2.5 rounded-xl border border-(--cf-danger-border) px-4 py-3 text-left text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-danger-bg) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-danger-border)"
+            className={`cf-pressable flex w-full items-center gap-2.5 rounded-xl border border-(--cf-danger-border) px-4 py-3 text-left text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-danger-bg) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-danger-border)${deactivateMatch ? MATCH_CLASS : ""}`}
           >
             <LogOut className="h-4 w-4 text-(--cf-danger-text)" />
             <div>
@@ -93,9 +101,11 @@ export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
             </div>
           </button>
           <button
+            id="delete-account"
             type="button"
+            data-highlighted={deleteMatch || undefined}
             onClick={handleStartDelete}
-            className="cf-pressable flex w-full items-center gap-2.5 rounded-xl border border-(--cf-danger-border) px-4 py-3 text-left text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-danger-bg) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-danger-border)"
+            className={`cf-pressable flex w-full items-center gap-2.5 rounded-xl border border-(--cf-danger-border) px-4 py-3 text-left text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-danger-bg) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-danger-border)${deleteMatch ? MATCH_CLASS : ""}`}
           >
             <Trash2 className="h-4 w-4 text-(--cf-danger-text)" />
             <div>
@@ -124,6 +134,10 @@ export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
           <p className="mt-2 text-sm text-(--cf-text-3)">
             Your reading history, streaks, and progress will be saved. You can
             reactivate anytime by signing back in.
+          </p>
+          <p className="mt-2 text-sm text-(--cf-text-3)">
+            If you subscribe on the web, your subscription will stop renewing;
+            you keep Pro until the end of the period you&apos;ve paid for.
           </p>
           {deactivateError && (
             <p

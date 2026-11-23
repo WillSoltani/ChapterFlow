@@ -109,7 +109,7 @@ export const MOTIVATION_OPTIONS: MotivationOption[] = [
     emoji: "\u2694\uFE0F",
     persona: "Rival",
     description:
-      "Competitive edge. Leaderboard energy and bold challenges.",
+      "Competitive edge. Bolder nudges and bold challenges.",
     tint: "from-red-500/[0.07] to-orange-500/[0.03]",
     selectedTint: "border-red-400/30 shadow-[0_0_20px_rgba(248,113,113,0.12)]",
   },

@@ -65,6 +65,24 @@ export function RefreshPreferencesModal({
   const [highContrast, setHighContrast] = useState(currentHighContrast);
   const [colorBlind, setColorBlind] = useState<ColorBlindMode>(currentColorBlind);
 
+  // The wizard is mounted once, before the saved settings have loaded, so it
+  // starts from the reader's current choices each time it opens. Without this
+  // an untouched finish would save the defaults over them.
+  const [seededForOpen, setSeededForOpen] = useState(open);
+  if (open !== seededForOpen) {
+    setSeededForOpen(open);
+    if (open) {
+      setProfile(currentProfile);
+      setGoal(currentGoal);
+      setMotivation(currentMotivation);
+      setDyslexia(currentDyslexia);
+      setHighContrast(currentHighContrast);
+      setColorBlind(currentColorBlind);
+      setStep(1);
+      setDirection(1);
+    }
+  }
+
   function goNext() {
     if (step < TOTAL_STEPS) {
       setDirection(1);

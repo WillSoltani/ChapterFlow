@@ -13,6 +13,7 @@ import StepInterests from "./StepInterests";
 import StepPace from "./StepPace";
 import StepStarterShelf from "./StepStarterShelf";
 import StepFirstLoop from "./StepFirstLoop";
+import { sessionStorageOrNull, takeUpgradeIntentHref } from "@/app/_lib/upgrade-intent-core";
 
 export function OnboardingFlow() {
   const router = useRouter();
@@ -142,7 +143,10 @@ export function OnboardingFlow() {
       root.style.transition = "opacity var(--duration-page, 400ms) var(--ease-out)";
       root.style.opacity = "0";
     }
-    setTimeout(() => router.push("/dashboard"), 400);
+    // A reader who started from the /pricing Pro button finishes on the
+    // subscription card with the plan they picked.
+    const destination = takeUpgradeIntentHref(sessionStorageOrNull(), Date.now()) ?? "/dashboard";
+    setTimeout(() => router.push(destination), 400);
   }, [router, clearOnboarding, onboarding]);
 
   return (

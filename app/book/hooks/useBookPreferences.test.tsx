@@ -3,14 +3,16 @@ import "../../../tests/_lib/dom";
 import assert from "node:assert/strict";
 import { afterEach, beforeEach, test } from "node:test";
 import { act, cleanup, renderHook } from "@testing-library/react";
-import { invalidateBookCache } from "@/lib/client/book-api-cache";
+import { fetchBookJsonCached, invalidateBookCache, peekBookCache } from "@/lib/client/book-api-cache";
+import { applyAndPersistDocumentTheme } from "@/app/_lib/document-theme";
+import { useThemePreference } from "@/app/hooks/useThemePreference";
 import { useReaderSettings } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderSettings";
 import { defaultBookPreferencesState, useBookPreferences } from "./useBookPreferences";
 
 const STORAGE_KEY = "book-accelerator:preferences:v2";
 const LAST_SYNCED_KEY = "book-accelerator:preferences:last-synced-at:v2";
 
-type Call = { url: string; method: string; body: unknown };
+type Call = { url: string; method: string; body: unknown; keepalive?: boolean | undefined };
 
 let calls: Call[] = [];
 let serverSettings: { settings: Record<string, unknown> | null; updatedAt: string | null } = {
@@ -35,6 +37,7 @@ globalThis.fetch = (async (input: RequestInfo | URL, init: RequestInit = {}) => 
     url,
     method,
     body: typeof init.body === "string" ? JSON.parse(init.body) : undefined,
+    keepalive: init.keepalive,
   });
   if (method === "GET" && url.endsWith("/me/settings")) {
     if (settingsGetGate) await settingsGetGate;
@@ -171,4 +174,70 @@ test("SHELL-08: changing the theme keeps colour-blind mode on", async () => {
   act(() => result.current.patchSection("appearance", { theme: "dark" }));
   await wait(20);
   assert.equal(document.documentElement.dataset.colorBlindMode, "protanopia");
+});
+
+test("SHELL-06 / DATA-11: the header theme switch is taken in without a write and kept by the next change", async () => {
+  const { result } = renderHook(() => useBookPreferences());
+  await wait(50);
+
+  act(() => {
+    applyAndPersistDocumentTheme({ theme: "dark" });
+  });
+  await wait(700);
+  assert.equal(result.current.state.appearance.theme, "dark", "the hook took in the switch");
+  assert.deepEqual(writes(), [], "taking it in is not a change of its own");
+
+  act(() => result.current.patchSection("reading", { fontSize: 20 }));
+  await wait(700);
+  const sent = writes();
+  assert.equal(sent.length, 1);
+  assert.deepEqual(Object.keys((sent[0]!.body as { settings: Record<string, unknown> }).settings), ["reading"]);
+  const stored = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? "{}");
+  assert.equal(stored.appearance?.theme, "dark", "the local copy keeps the switched theme");
+  assert.equal(document.documentElement.classList.contains("dark"), true, "the page stays dark");
+});
+
+test("SHELL-06: a theme change from another tab is taken in", async () => {
+  const { result } = renderHook(() => useBookPreferences());
+  await wait(50);
+  const other = { ...result.current.state, appearance: { ...result.current.state.appearance, theme: "dark" } };
+  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(other));
+  act(() => {
+    // tests/_lib/dom does not expose StorageEvent as a global; jsdom's window has it.
+    const { StorageEvent: JsdomStorageEvent } = window as unknown as { StorageEvent: typeof StorageEvent };
+    window.dispatchEvent(new JsdomStorageEvent("storage", { key: STORAGE_KEY }));
+  });
+  await wait(700);
+  assert.equal(result.current.state.appearance.theme, "dark");
+  assert.deepEqual(writes(), []);
+});
+
+test("DATA-06: a change pending when the page is hidden is sent with keepalive", async () => {
+  const { result } = renderHook(() => useBookPreferences());
+  await wait(50);
+  act(() => result.current.patchSection("reading", { fontSize: 23 }));
+  act(() => {
+    window.dispatchEvent(new Event("pagehide"));
+  });
+  await wait(20);
+  const sent = writes();
+  assert.equal(sent.length, 1);
+  assert.equal(sent[0]!.keepalive, true);
+  assert.equal(((sent[0]!.body as { settings: { reading: { fontSize: number } } }).settings.reading).fontSize, 23);
+  await wait(700);
+  assert.equal(writes().length, 1, "the debounced save does not send it again");
+});
+
+test("DATA-11: the header theme switch saves through the shared client and refreshes the settings cache", async () => {
+  await fetchBookJsonCached("/app/api/book/me/settings");
+  assert.ok(peekBookCache("/app/api/book/me/settings"), "settings are cached");
+  const { result } = renderHook(() => useThemePreference());
+  await wait(50);
+  await act(async () => {
+    await result.current.setThemePreference("dark");
+  });
+  const sent = writes();
+  assert.equal(sent.length, 1);
+  assert.deepEqual(sent[0]!.body, { settings: { appearance: { theme: "dark" } } });
+  assert.equal(peekBookCache("/app/api/book/me/settings"), undefined, "the cached settings were dropped");
 });

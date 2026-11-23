@@ -95,3 +95,27 @@ export function buildReadingReminderTogglePatch(
     },
   };
 }
+
+/**
+ * ACCT-21: the PATCH body for the explicit "Email" master switch in Settings.
+ * It writes only `channels.email`; the server deep-merges, so the other
+ * channels and every category toggle are left as they are.
+ */
+export function buildEmailChannelPatch(enabled: boolean): {
+  settings: { notifications: { channels: { email: boolean } } };
+} {
+  return { settings: { notifications: { channels: { email: enabled } } } };
+}
+
+/**
+ * Whether the stored settings record an email opt-in. Only an explicit `true`
+ * counts, matching the senders' consent gate, so an unset value reads as off.
+ */
+export function readEmailChannelConsent(settings: unknown): boolean {
+  if (!settings || typeof settings !== "object") return false;
+  const notifications = (settings as { notifications?: unknown }).notifications;
+  if (!notifications || typeof notifications !== "object") return false;
+  const channels = (notifications as { channels?: unknown }).channels;
+  if (!channels || typeof channels !== "object") return false;
+  return (channels as { email?: unknown }).email === true;
+}

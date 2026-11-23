@@ -6,6 +6,8 @@ import {
   buildDocumentThemeBootstrapScript,
   createSystemThemeChangeHandler,
   isWithinDarkWindow,
+  persistDocumentThemeSettings,
+  resolveStoredThemeLabel,
 } from "./document-theme";
 
 // SET-8 / D3: scheduled night mode applies app-wide. The window math lives in
@@ -240,4 +242,58 @@ test("createSystemThemeChangeHandler: OS flip back to light untoggles .dark on t
     assert.equal(root.hasDark(), false);
     assert.equal(root.colorScheme(), "light");
   });
+});
+
+// --- SHELL-07: the header switch shows what the night schedule shows ---
+
+test("resolveStoredThemeLabel: an active night schedule decides the shown theme", () => {
+  const base = {
+    theme: "light" as const,
+    reducedMotion: false,
+    highContrastMode: false,
+    colorBlindMode: "off" as const,
+    scheduledDarkMode: true,
+    darkModeFrom: "20:00",
+    darkModeTo: "07:00",
+  };
+  assert.equal(resolveStoredThemeLabel(base, at(22, 0)), "dark", "inside the window");
+  assert.equal(resolveStoredThemeLabel(base, at(12, 0)), "light", "outside the window");
+  assert.equal(
+    resolveStoredThemeLabel({ ...base, theme: "dark" }, at(12, 0)),
+    "dark",
+    "permanent dark ignores the schedule",
+  );
+  assert.equal(
+    resolveStoredThemeLabel({ ...base, scheduledDarkMode: false }, at(22, 0)),
+    "light",
+    "schedule off: the base theme",
+  );
+});
+
+test("persistDocumentThemeSettings keeps the night schedule fields it is given", () => {
+  const store = new Map<string, string>();
+  store.set(
+    BOOK_THEME_STORAGE_KEY,
+    JSON.stringify({ appearance: { theme: "light" }, extended: { scheduledDarkMode: true, colorBlindMode: "tritanopia" } }),
+  );
+  const g = globalThis as unknown as { window?: unknown };
+  const prevWindow = g.window;
+  g.window = {
+    localStorage: {
+      getItem: (k: string) => store.get(k) ?? null,
+      setItem: (k: string, v: string) => void store.set(k, v),
+    },
+  };
+  try {
+    persistDocumentThemeSettings({ theme: "dark", scheduledDarkMode: false });
+    persistDocumentThemeSettings({ darkModeFrom: "21:00", darkModeTo: "06:30" });
+  } finally {
+    g.window = prevWindow;
+  }
+  const stored = JSON.parse(store.get(BOOK_THEME_STORAGE_KEY)!);
+  assert.equal(stored.appearance.theme, "dark");
+  assert.equal(stored.extended.scheduledDarkMode, false);
+  assert.equal(stored.extended.darkModeFrom, "21:00");
+  assert.equal(stored.extended.darkModeTo, "06:30");
+  assert.equal(stored.extended.colorBlindMode, "tritanopia", "other fields are kept");
 });

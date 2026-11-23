@@ -173,6 +173,19 @@ export function resolveDocumentThemeLabel(theme: ThemePreference): ResolvedTheme
   return resolveDocumentThemeMode(theme) ? "dark" : "light";
 }
 
+/**
+ * SHELL-07: the theme the page actually shows for stored settings, including
+ * an active night schedule (same rule as applyDocumentTheme).
+ */
+export function resolveStoredThemeLabel(
+  settings: ActiveThemeSettings,
+  now: Date = new Date(),
+): ResolvedThemeMode {
+  const scheduleActive = settings.scheduledDarkMode && settings.theme !== "dark";
+  if (!scheduleActive) return resolveDocumentThemeLabel(settings.theme);
+  return isWithinDarkWindow(settings.darkModeFrom, settings.darkModeTo, now) ? "dark" : "light";
+}
+
 export function applyDocumentTheme(settings: DocumentThemeSettings, animate = false) {
   if (typeof document === "undefined") return;
 
@@ -254,6 +267,11 @@ function mergeStoredThemePayload(
   if (settings.colorBlindMode !== undefined) {
     nextExtended.colorBlindMode = settings.colorBlindMode;
   }
+  if (settings.scheduledDarkMode !== undefined) {
+    nextExtended.scheduledDarkMode = settings.scheduledDarkMode;
+  }
+  if (settings.darkModeFrom !== undefined) nextExtended.darkModeFrom = settings.darkModeFrom;
+  if (settings.darkModeTo !== undefined) nextExtended.darkModeTo = settings.darkModeTo;
 
   return {
     ...current,

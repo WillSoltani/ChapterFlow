@@ -803,6 +803,67 @@ function applyOnboardingDefaults(settings: Record<string, unknown>): Record<stri
 
 export type PreferencesSaveStatus = "idle" | "saving" | "saved" | "error";
 
+// Browsers cap keepalive request bodies at 64 KB; stay under it.
+const KEEPALIVE_MAX_BODY_CHARS = 60_000;
+
+/**
+ * SHELL-06 / DATA-11: the header theme switch and other tabs write the theme
+ * fields of the shared preferences key directly. Returns `prev` with those
+ * fields taken from the stored copy, or `prev` itself when nothing differs.
+ */
+function mergeStoredThemeSubset(prev: BookPreferencesState, raw: string | null): BookPreferencesState {
+  const isObject = (v: unknown): v is Record<string, unknown> =>
+    typeof v === "object" && v !== null && !Array.isArray(v);
+  let stored: unknown;
+  try {
+    stored = raw ? JSON.parse(raw) : null;
+  } catch {
+    return prev;
+  }
+  if (!isObject(stored)) return prev;
+  const appearance = isObject(stored.appearance) ? stored.appearance : {};
+  const accessibility = isObject(stored.accessibility) ? stored.accessibility : {};
+  const extended = isObject(stored.extended) ? stored.extended : {};
+
+  const theme =
+    appearance.theme === "light" || appearance.theme === "dark" || appearance.theme === "system"
+      ? appearance.theme
+      : prev.appearance.theme;
+  const reducedMotion =
+    typeof appearance.reducedMotion === "boolean" ? appearance.reducedMotion : prev.appearance.reducedMotion;
+  const highContrastMode =
+    typeof accessibility.highContrastMode === "boolean"
+      ? accessibility.highContrastMode
+      : prev.accessibility.highContrastMode;
+  const colorBlindMode =
+    extended.colorBlindMode === "off" ||
+    extended.colorBlindMode === "protanopia" ||
+    extended.colorBlindMode === "deuteranopia" ||
+    extended.colorBlindMode === "tritanopia"
+      ? extended.colorBlindMode
+      : prev.extended.colorBlindMode;
+  const scheduledDarkMode =
+    typeof extended.scheduledDarkMode === "boolean"
+      ? extended.scheduledDarkMode
+      : prev.extended.scheduledDarkMode;
+
+  if (
+    theme === prev.appearance.theme &&
+    reducedMotion === prev.appearance.reducedMotion &&
+    highContrastMode === prev.accessibility.highContrastMode &&
+    colorBlindMode === prev.extended.colorBlindMode &&
+    scheduledDarkMode === prev.extended.scheduledDarkMode
+  ) {
+    return prev;
+  }
+  return {
+    ...prev,
+    appearance: { ...prev.appearance, theme, reducedMotion },
+    accessibility: { ...prev.accessibility, highContrastMode },
+    extended: { ...prev.extended, colorBlindMode, scheduledDarkMode },
+  };
+}
+
 type PreferencesSectionKey = keyof BookPreferencesState;
 
 export function useBookPreferences() {
@@ -954,6 +1015,31 @@ export function useBookPreferences() {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [hydrated, state]);
 
+  // Theme changes made outside this hook (header switch, another tab) are
+  // taken in without marking a section dirty: they were saved by whoever made
+  // them, and this hook's own writes then carry them instead of reverting them.
+  useEffect(() => {
+    if (!hydrated) return;
+    const takeInStoredTheme = () => {
+      let raw: string | null = null;
+      try {
+        raw = window.localStorage.getItem(STORAGE_KEY);
+      } catch {
+        return;
+      }
+      setState((prev) => mergeStoredThemeSubset(prev, raw));
+    };
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === null || event.key === STORAGE_KEY) takeInStoredTheme();
+    };
+    window.addEventListener("book-theme-change", takeInStoredTheme);
+    window.addEventListener("storage", onStorage);
+    return () => {
+      window.removeEventListener("book-theme-change", takeInStoredTheme);
+      window.removeEventListener("storage", onStorage);
+    };
+  }, [hydrated]);
+
   // Single source of truth for the document theme. The scheduled-dark-mode
   // evaluation is folded INTO this effect (instead of a second, independent
   // classList toggle) so the two no longer race: every appearance change and
@@ -1080,7 +1166,7 @@ export function useBookPreferences() {
 
   // Sends the dirty sections (only those) from the latest state. On failure the
   // sections stay dirty, so a retry or the next change sends them again.
-  const flushSave = useCallback(() => {
+  const flushSave = useCallback((options?: { keepalive?: boolean }) => {
     const sections = [...dirtySections.current];
     if (sections.length === 0) return;
     dirtySections.current.clear();
@@ -1088,11 +1174,15 @@ export function useBookPreferences() {
     const settings: Record<string, unknown> = {};
     for (const key of sections) settings[key] = current[key];
     setSaveStatus("saving");
+    const body = JSON.stringify({ settings });
+    // DATA-06: a save sent as the page goes away must outlive it.
+    const keepalive = options?.keepalive === true && body.length <= KEEPALIVE_MAX_BODY_CHARS;
     fetchBookJson<{ settings: Record<string, unknown>; updatedAt: string | null }>(
       "/app/api/book/me/settings",
       {
         method: "PATCH",
-        body: JSON.stringify({ settings }),
+        body,
+        ...(keepalive ? { keepalive: true } : {}),
       }
     )
       .then((payload) => {
@@ -1125,12 +1215,18 @@ export function useBookPreferences() {
   // A change made just before leaving the page is sent now, not dropped with
   // the debounce timer; a failed save is retried when the browser reconnects.
   useEffect(() => {
-    window.addEventListener("online", flushSave);
+    const onOnline = () => flushSave();
+    const onPageHide = () => flushSave({ keepalive: true });
+    window.addEventListener("online", onOnline);
+    window.addEventListener("pagehide", onPageHide);
     return () => {
-      window.removeEventListener("online", flushSave);
+      window.removeEventListener("online", onOnline);
+      window.removeEventListener("pagehide", onPageHide);
       flushSave();
     };
   }, [flushSave]);
+
+  const retrySave = useCallback(() => flushSave(), [flushSave]);
 
   const markDirty = useCallback((sections: PreferencesSectionKey[]) => {
     for (const key of sections) dirtySections.current.add(key);
@@ -1185,11 +1281,13 @@ export function useBookPreferences() {
 
   return {
     hydrated,
+    /** The account's saved settings have been read (or that read failed). */
+    serverSettled,
     state,
     patch,
     patchSection,
     reset,
     saveStatus,
-    retrySave: flushSave,
+    retrySave,
   };
 }

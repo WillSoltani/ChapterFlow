@@ -5,6 +5,10 @@ import { isUserInAdminGroup } from "@/app/app/api/book/_lib/admin-group-core";
 import { BookSettingsClient } from "@/app/book/settings/BookSettingsClient";
 import type { BillingInterval } from "@/app/book/hooks/useBookEntitlements";
 import packageJson from "@/package.json";
+import type { Metadata } from "next";
+
+// SHELL-18: the /book layout's template adds " | ChapterFlow".
+export const metadata: Metadata = { title: "Settings" };
 
 /** The upgrade deep-link (e.g. from the landing "Annual" toggle) may carry a
  *  `plan` hint so the billing card pre-selects that interval. Validate it before
@@ -21,7 +25,11 @@ export default async function BookSettingsPage({
 }) {
   await requireDashboardAccess();
 
-  const initialUpgradeInterval = parsePlanHint((await searchParams).plan);
+  const params = await searchParams;
+  const initialUpgradeInterval = parsePlanHint(params.plan);
+  // `upgrade=1` (UPGRADE_RETURN_PATH): open Account and focus the subscription card.
+  const upgradeParam = Array.isArray(params.upgrade) ? params.upgrade[0] : params.upgrade;
+  const openUpgrade = upgradeParam === "1";
 
   let userEmail: string | null = null;
   let isAdmin = false;
@@ -48,6 +56,7 @@ export default async function BookSettingsPage({
       userEmail={userEmail}
       appVersion={packageJson.version}
       initialUpgradeInterval={initialUpgradeInterval}
+      openUpgrade={openUpgrade}
     />
   );
 }

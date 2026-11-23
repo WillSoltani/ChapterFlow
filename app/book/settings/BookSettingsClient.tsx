@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import {
@@ -29,13 +29,15 @@ import { Toast } from "@/components/ui/Toast";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { fetchBookJson, redirectToReauth, isReauthResponse } from "@/app/book/_lib/book-api";
-import { fetchBookJsonCached } from "@/lib/client/book-api-cache";
+import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
 import { SETTINGS_KEY } from "@/app/book/hooks/book-read-keys";
 
 // New settings hooks
 import {
+  buildEmailChannelPatch,
   buildReminderSchedulePatch,
   buildReadingReminderTogglePatch,
+  readEmailChannelConsent,
 } from "./lib/reminder-consent-core";
 import {
   buildOnboardingProfileSnapshot,
@@ -71,6 +73,7 @@ import type { RefreshResult } from "./components/RefreshPreferencesModal";
 
 // Constants
 import { READING_PROFILES, DAILY_GOAL_OPTIONS, MOTIVATION_OPTIONS } from "./constants/profiles";
+import { effectiveReadingProfile } from "./lib/reading-profile-core";
 import {
   QUIZ_STYLE_TO_INTENSITY,
   DAILY_GOAL_TIERS,
@@ -103,6 +106,20 @@ const DEPTH_DISPLAY: Record<ReadingProfile, string> = {
   deep: "Deeper",
 };
 
+// ACCT-02: a reading profile picked here sets the depth exactly as the
+// reader's own mode switch does: the learning mode, its tone, and
+// profileCustomized (without it the reader and quizzes stay on the short path).
+const LEARNING_MODE_BY_STYLE: Record<string, "guided" | "standard" | "challenge"> = {
+  concise: "guided",
+  balanced: "standard",
+  deep: "challenge",
+};
+const TONE_BY_LEARNING_MODE = {
+  guided: "gentle",
+  standard: "gentle",
+  challenge: "competitive",
+} as const;
+
 // Finding C: the in-page section index (sticky left rail ≥lg, horizontal pill
 // row <lg). ids + icons mirror the six SettingsSection blocks below; `title`
 // matches each SettingsSection's aria-label so goToSection can find its anchor
@@ -127,9 +144,41 @@ function detectReminderTimezone(): string {
   }
 }
 
+/** Stands in for plan-dependent controls until the plan is known (ACCT-14). */
+function PlanPendingRow({ error, onRetry }: { error: string | null; onRetry: () => void }) {
+  if (error) {
+    return (
+      <div className="flex items-center justify-between gap-3 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
+        <p className="text-sm text-(--cf-text-2)">Couldn&apos;t load your plan.</p>
+        <button
+          type="button"
+          onClick={onRetry}
+          className="cf-pressable cf-focus min-h-11 shrink-0 rounded-xl px-3 text-sm font-semibold text-(--cf-accent)"
+        >
+          Try again
+        </button>
+      </div>
+    );
+  }
+  return (
+    <div
+      aria-busy="true"
+      className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3 text-sm text-(--cf-text-3)"
+    >
+      Loading your plan&hellip;
+    </div>
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Main Component
 // ---------------------------------------------------------------------------
+
+// Where an upgrade scroll places the subscription card: below the sticky header
+// (html scroll-padding-top in globals.css), with the button kept clear of the
+// phone tab bar at the bottom.
+const SUBSCRIPTION_SCROLL_TOP = 88;
+const SUBSCRIPTION_SCROLL_BOTTOM = 96;
 
 type BookSettingsClientProps = {
   isAdmin: boolean;
@@ -138,11 +187,17 @@ type BookSettingsClientProps = {
   /** Optional billing-interval pre-selection carried from an upgrade deep-link
    *  (e.g. the landing "Annual" toggle). Clamped to an available tier downstream. */
   initialUpgradeInterval?: BillingInterval | undefined;
+  /** `upgrade=1` on the URL: open Account & Subscription and focus its button. */
+  openUpgrade?: boolean | undefined;
 };
 
-export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgradeInterval }: BookSettingsClientProps) {
-  const router = useRouter();
-
+export function BookSettingsClient({
+  isAdmin,
+  userEmail,
+  appVersion,
+  initialUpgradeInterval,
+  openUpgrade = false,
+}: BookSettingsClientProps) {
   // Existing state hooks
   const bookPreferences = useBookPreferences();
   const { state: preferences, patchSection, hydrated: prefsHydrated } = bookPreferences;
@@ -157,8 +212,12 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     setMotivationStyle: _setOnboardingMotivationStyle,
     resetSetup: _resetSetup,
   } = useOnboardingState();
-  const { billingState, launchBillingAction, redeemLicenseKey } =
-    useBookEntitlements(true);
+  const {
+    billingState,
+    launchBillingAction,
+    redeemLicenseKey,
+    refetch: refetchBilling,
+  } = useBookEntitlements(true);
   const { toast, showToast } = useToast();
 
   // ACCT-13: save feedback follows the writes themselves. Preference writes
@@ -289,19 +348,24 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     // Inline the logic from individual handlers to avoid duplicate toasts,
     // redundant state updates, and unwanted celebrations during a bulk refresh.
     const preset = READING_PROFILES.find((p) => p.id === result.profile);
-    if (preset) {
-      const learningModeMap: Record<string, "guided" | "standard" | "challenge"> = {
-        concise: "guided", balanced: "standard", deep: "challenge",
-      };
+    // The profile step starts on the depth in use. Leaving it there changes
+    // nothing about depth: not the mode, its quiz rules, nor the preset's
+    // text size. Only a profile the reader picked is applied.
+    const profilePicked = Boolean(preset) && result.profile !== effectiveReadingProfile(ext);
+    patchExt({
+      dailyGoalPreset: result.goal,
+      motivationPersona: result.motivation,
+      colorBlindMode: result.colorBlind,
+      personalizationDismissed: false,
+    });
+    if (preset && profilePicked) {
+      const learningMode = LEARNING_MODE_BY_STYLE[preset.defaults.learningStyle] ?? "standard";
       patchExt({
         readingProfile: result.profile,
-        profileCustomized: false,
+        profileCustomized: true,
+        contentTone: TONE_BY_LEARNING_MODE[learningMode],
         quizStyle: preset.defaults.quizStyle,
-        learningMode: learningModeMap[preset.defaults.learningStyle] ?? "standard",
-        dailyGoalPreset: result.goal,
-        motivationPersona: result.motivation,
-        colorBlindMode: result.colorBlind,
-        personalizationDismissed: false,
+        learningMode,
       });
       setLearningStyle(preset.defaults.learningStyle);
       setQuizIntensity(
@@ -367,14 +431,18 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   // ACCT-04: show the reminder time the server actually sends at
   // (settings.notifications.reminderTimeLocal), not this device's onboarding copy.
   const [serverReminderTime, setServerReminderTime] = useState<string | null>(null);
+  // ACCT-21: the "Email" switch shows the stored consent (null until read).
+  const [emailConsent, setEmailConsent] = useState<boolean | null>(null);
   useEffect(() => {
     let cancelled = false;
     fetchBookJsonCached<{
       settings: { notifications?: { reminderTimeLocal?: unknown } } | null;
     }>(SETTINGS_KEY)
       .then((payload) => {
+        if (cancelled) return;
         const time = payload.settings?.notifications?.reminderTimeLocal;
-        if (!cancelled && typeof time === "string") setServerReminderTime(time);
+        if (typeof time === "string") setServerReminderTime(time);
+        setEmailConsent(readEmailChannelConsent(payload.settings));
       })
       .catch(() => {});
     return () => {
@@ -382,6 +450,13 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     };
   }, []);
   const reminderTime = serverReminderTime ?? onboarding.reminderTime;
+
+  // The reminder writes also record the email opt-in (F4), so the Email
+  // switch follows them once they succeed.
+  const markEmailOptedIn = useCallback(() => {
+    setEmailConsent(true);
+    invalidateBookCache(SETTINGS_KEY);
+  }, []);
 
   // H26: The reading-reminder cron reads the per-user send time exclusively from
   // settings.notifications.reminderTimeLocal / reminderTimezone (defaulting to
@@ -398,9 +473,9 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
         body: JSON.stringify(
           buildReminderSchedulePatch(timeLocal, detectReminderTimezone()),
         ),
-      }),
+      }).then(markEmailOptedIn),
     );
-  }, [trackSideWrite]);
+  }, [trackSideWrite, markEmailOptedIn]);
 
   // F4: The reading-reminder cron only sends the reminder EMAIL when the user
   // has opted into the email channel (`settings.notifications.channels.email ===
@@ -423,9 +498,20 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
       fetchBookJson("/app/api/book/me/settings", {
         method: "PATCH",
         body: JSON.stringify(patch),
-      }),
+      }).then(markEmailOptedIn),
     );
-  }, [reminderTime, trackSideWrite]);
+  }, [reminderTime, trackSideWrite, markEmailOptedIn]);
+
+  // ACCT-21: the explicit "Email" master switch writes only channels.email.
+  const persistEmailConsent = useCallback((enabled: boolean) => {
+    setEmailConsent(enabled);
+    trackSideWrite("emailChannel", () =>
+      fetchBookJson("/app/api/book/me/settings", {
+        method: "PATCH",
+        body: JSON.stringify(buildEmailChannelPatch(enabled)),
+      }).then(() => invalidateBookCache(SETTINGS_KEY)),
+    );
+  }, [trackSideWrite]);
 
   // ACCT-08: there is deliberately no background write here. A former one-shot
   // backfill seeded the reminder schedule and `channels.email: true` on any
@@ -433,9 +519,69 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   // an action. Email consent is now written only by the reminder toggle and the
   // reminder-time picker below, and nothing is written on page load.
 
-  // Derived state
-  const isPro = billingState.payload?.entitlement.plan === "PRO";
-  const plan = billingState.payload?.entitlement.plan ?? "FREE";
+  // ACCT-06: open Account & Subscription (without writing section states),
+  // then bring the subscription card's main button into view and focus it.
+  // The button exists once the plan is known, so this waits for it.
+  const [forceOpenSections, setForceOpenSections] = useState<ReadonlySet<string>>(
+    () => new Set(openUpgrade ? ["account"] : []),
+  );
+  const subscriptionFocusPendingRef = useRef(openUpgrade);
+  const [subscriptionFocusRequest, setSubscriptionFocusRequest] = useState(0);
+  // ACCT-09: Pro feature cards send the reader to the subscription card, where
+  // the interval choice and checkout errors are shown.
+  const openSubscription = useCallback(() => {
+    setForceOpenSections((prev) => (prev.has("account") ? prev : new Set([...prev, "account"])));
+    subscriptionFocusPendingRef.current = true;
+    setSubscriptionFocusRequest((n) => n + 1);
+  }, []);
+  useEffect(() => {
+    if (!subscriptionFocusPendingRef.current) return;
+    if (!document.getElementById("subscription-cta")) return;
+    // Scroll once the page has stopped moving. A Pro feature dialog closing in
+    // this same commit releases the page scroll and returns focus to its
+    // opener, and a section opened just now grows for DUR.fast; until it has
+    // grown the page is too short to reach the button, so an earlier scroll
+    // stops short. The card's top goes under the header when the button then
+    // still clears the bottom (tab bar included); otherwise the button is
+    // centred. Either way the focused button is on screen.
+    let frame = 0;
+    let lastHeight = -1;
+    let framesLeft = 60;
+    const scrollWhenStill = () => {
+      const height = document.documentElement.scrollHeight;
+      if (height !== lastHeight && framesLeft > 0) {
+        lastHeight = height;
+        framesLeft -= 1;
+        frame = window.requestAnimationFrame(scrollWhenStill);
+        return;
+      }
+      const button = document.getElementById("subscription-cta");
+      if (!button) return;
+      subscriptionFocusPendingRef.current = false;
+      const card = document.getElementById("subscription");
+      const buttonBottomInCard = card
+        ? button.getBoundingClientRect().bottom - card.getBoundingClientRect().top
+        : Infinity;
+      if (card && SUBSCRIPTION_SCROLL_TOP + buttonBottomInCard + SUBSCRIPTION_SCROLL_BOTTOM <= window.innerHeight) {
+        card.scrollIntoView?.({ block: "start" });
+      } else {
+        button.scrollIntoView?.({ block: "center" });
+      }
+      button.focus({ preventScroll: true });
+    };
+    const timer = window.setTimeout(() => {
+      frame = window.requestAnimationFrame(scrollWhenStill);
+    }, reducedMotion ? 0 : DUR.fast * 1000);
+    return () => {
+      window.clearTimeout(timer);
+      window.cancelAnimationFrame(frame);
+    };
+  }, [subscriptionFocusRequest, billingState.loading, billingState.payload, forceOpenSections, isSearching, reducedMotion]);
+
+  // Derived state. ACCT-14: the plan is unknown until entitlements load; Pro
+  // controls need a known PRO and upsells a known FREE (never a default).
+  const plan = billingState.payload?.entitlement.plan;
+  const isPro = plan === "PRO";
   const price = billingState.payload?.paywall.price ?? MONTHLY_PRICE_WITH_CURRENCY;
   // Free-tier slot count is server-driven (BOOK_FREE_SLOTS_DEFAULT, per-user
   // overridable) — never hardcode it in the UI.
@@ -445,17 +591,14 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   function handleProfileChange(profile: ReadingProfile) {
     const preset = READING_PROFILES.find((p) => p.id === profile);
     if (!preset) return;
-    const learningModeMap: Record<string, "guided" | "standard" | "challenge"> = {
-      concise: "guided",
-      balanced: "standard",
-      deep: "challenge",
-    };
+    const learningMode = LEARNING_MODE_BY_STYLE[preset.defaults.learningStyle] ?? "standard";
     patchExt({
       readingProfile: profile,
-      profileCustomized: false,
+      profileCustomized: true,
+      contentTone: TONE_BY_LEARNING_MODE[learningMode],
       quizStyle: preset.defaults.quizStyle,
       dailyGoalPreset: preset.defaults.dailyGoalPreset,
-      learningMode: learningModeMap[preset.defaults.learningStyle] ?? "standard",
+      learningMode,
     });
     setLearningStyle(preset.defaults.learningStyle);
     setQuizIntensity(
@@ -532,7 +675,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   // --- Section summaries ---
   function getReadingSummary() {
     // Finding A: collapsed-section preview uses the canonical depth name too.
-    const profileLabel = DEPTH_DISPLAY[ext.readingProfile] ?? "Custom";
+    const profileLabel = DEPTH_DISPLAY[effectiveReadingProfile(ext)] ?? "Custom";
     return `${profileLabel} · ${preferences.reading.fontSize}px`;
   }
 
@@ -556,6 +699,8 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     return active.length > 0 ? active.join(" · ") : "No adjustments active";
   }
 
+  const emailOffHint = emailConsent === false ? " Email is off, so this isn't sent." : "";
+
   function getNotificationsSummary() {
     const parts: string[] = [];
     if (preferences.notifications.readingReminderEnabled) {
@@ -574,9 +719,9 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   }
 
   function getAccountSummary() {
-    return plan === "PRO"
-      ? "Pro plan"
-      : `Free plan · ${freeBookSlots} book${freeBookSlots === 1 ? "" : "s"}`;
+    if (plan === "PRO") return "Pro plan";
+    if (plan === "FREE") return `Free plan · ${freeBookSlots} book${freeBookSlots === 1 ? "" : "s"}`;
+    return billingState.error ? "Plan details unavailable" : "";
   }
 
   // --- Search helpers ---
@@ -590,11 +735,37 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     return !isSectionVisible(sectionId);
   }
 
+  // ACCT-26: rows matching the search are highlighted.
+  function isMatch(id: string): boolean {
+    return isSearching && results?.matchedIds.has(id) === true;
+  }
+  function matchClass(id: string): string {
+    return isMatch(id) ? " rounded-lg ring-1 ring-(--cf-accent-border) bg-(--cf-accent-muted)" : "";
+  }
+
   // While searching, force-expand a matched (but collapsed) section so the
   // matched row is actually visible instead of hidden behind a collapsed header.
+  // Sections opened for an upgrade are shown the same way: held on this page
+  // only, never written to the stored section states.
   function isSectionShown(sectionId: string) {
     if (isSearching && results?.matchedSections.has(sectionId)) return true;
+    if (forceOpenSections.has(sectionId)) return true;
     return isSectionExpanded(sectionId);
+  }
+
+  // A header tap on a force-opened section closes it without a write when the
+  // stored state is already closed.
+  function handleSectionToggle(sectionId: string) {
+    if (forceOpenSections.has(sectionId)) {
+      setForceOpenSections((prev) => {
+        const next = new Set(prev);
+        next.delete(sectionId);
+        return next;
+      });
+      if (isSectionExpanded(sectionId)) toggleSection(sectionId);
+      return;
+    }
+    toggleSection(sectionId);
   }
 
   // Finding C: section-index jump. Expand the target (a non-mutating UI toggle)
@@ -615,7 +786,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   // ---------------------------------------------------------------------------
 
   return (
-    <PageTransition className="cf-app-shell min-h-screen pb-10">
+    <div className="cf-app-shell min-h-screen pb-10">
       <TopNav
         name={viewerName}
         avatarUrl={viewerIdentity.avatarDataUrl}
@@ -627,6 +798,9 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
         showGlobalSearchPanel={false}
         logoVariant="dashboard"
       />
+      {/* SHELL-22: only the page content animates in. A transformed ancestor
+          would carry the fixed header, tab bar and toasts with it. */}
+      <PageTransition>
       {/* Skip-link target (TopNav renders the shared "Skip to main content"
           link to the #main anchor). This is the first content element AFTER
           TopNav, so focusing it actually bypasses the nav (per batch 12 / PR 148:
@@ -635,14 +809,15 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
       {/* Header */}
       <div className="mx-auto mb-6 flex max-w-5xl items-center justify-between">
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => router.back()}
-            aria-label="Go back"
-            className="cf-pressable cf-focus flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) transition hover:bg-(--cf-surface-muted)"
+          {/* ACCT-26: a fixed link, so returning from the billing portal never
+              sends Back to an outside page. */}
+          <Link
+            href="/dashboard"
+            aria-label="Back to Home"
+            className="cf-pressable cf-focus flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) transition hover:bg-(--cf-surface-muted)"
           >
             <ArrowLeft className="h-4 w-4" />
-          </button>
+          </Link>
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-(--cf-text-1)">
               Settings
@@ -718,12 +893,16 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             title="Reading Experience"
             summary={getReadingSummary()}
             expanded={isSectionShown("reading")}
-            onToggle={() => toggleSection("reading")}
+            onToggle={() => handleSectionToggle("reading")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("reading")}
           >
             {/* 1A. Reading Profiles */}
-            <div className="px-3 py-3">
+            <div
+              id="reading-profile"
+              data-highlighted={isMatch("reading-profile") || undefined}
+              className={`px-3 py-3${matchClass("reading-profile")}`}
+            >
               <p className="text-sm font-medium text-(--cf-text-1)">Reading profiles</p>
               <p className="mt-0.5 text-xs text-(--cf-text-3)">
                 This sets your starting point. Customize anything below.
@@ -740,7 +919,10 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                     tint: p.tint,
                     selectedTint: p.selectedTint,
                   }))}
-                  value={hydrated ? ext.readingProfile : "balanced"}
+                  // The ticked card is the depth the reader actually gets
+                  // (the reader's own mode menu saves the mode, not the profile).
+                  // Nothing is ticked until this device's saved copy has loaded.
+                  value={hydrated ? effectiveReadingProfile(ext) : null}
                   onChange={handleProfileChange}
                   label="Reading profiles"
                   columns={3}
@@ -758,6 +940,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 1C. Font Family */}
             <SettingRow
               id="font-family"
+              highlighted={isMatch("font-family")}
               label="Font family"
               description="Choose the typeface that feels most comfortable for long reads."
             >
@@ -785,6 +968,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 1D. Font Size */}
             <SettingRow
               id="font-size"
+              highlighted={isMatch("font-size")}
               label="Font size"
               description="Adjust the reading text size in chapters."
             >
@@ -805,6 +989,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 1E. Line Spacing */}
             <SettingRow
               id="line-spacing"
+              highlighted={isMatch("line-spacing")}
               label="Line spacing"
               description="Breathing room between lines of text."
             >
@@ -827,6 +1012,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 1F. Letter Spacing */}
             <SettingRow
               id="letter-spacing"
+              highlighted={isMatch("letter-spacing")}
               label="Letter spacing"
               description="Space between individual characters."
             >
@@ -849,6 +1035,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 1G. Focus Mode */}
             <SettingRow
               id="focus-mode"
+              highlighted={isMatch("focus-mode")}
               label="Focus mode"
               description="Just you and the words. Sidebar and header fade away while reading."
             >
@@ -864,6 +1051,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 1H. Progress Bar */}
             <SettingRow
               id="progress-bar"
+              highlighted={isMatch("progress-bar")}
               label="Progress bar"
               description="A thin bar at the top showing how far you've come in the chapter."
             >
@@ -879,6 +1067,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 1I. Resume Where You Left Off */}
             <SettingRow
               id="resume-position"
+              highlighted={isMatch("resume-position")}
               label="Pick up where you left off"
               description="Automatically scroll to your last reading position."
             >
@@ -894,8 +1083,9 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 1J. Reading Time Estimates */}
             <SettingRow
               id="reading-time"
+              highlighted={isMatch("reading-time")}
               label="Show reading time"
-              description="Display estimated time to finish each book and chapter."
+              description="Display the estimated time to finish each chapter in the reader."
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.reading.showEstimatedReadingTime : true}
@@ -907,7 +1097,11 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             <Divider />
 
             {/* 1K. Text-to-Speech (Pro) */}
-            <div className="px-3 py-3" id="text-to-speech">
+            <div
+              id="text-to-speech"
+              data-highlighted={isMatch("text-to-speech") || undefined}
+              className={`px-3 py-3${matchClass("text-to-speech")}`}
+            >
               {isPro ? (
                 <>
                   <div className="flex items-center gap-2">
@@ -944,6 +1138,8 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                     </SettingRow>
                   </div>
                 </>
+              ) : plan !== "FREE" ? (
+                <PlanPendingRow error={billingState.error} onRetry={refetchBilling} />
               ) : (
                 <ProFeatureCard
                   icon="&#128266;"
@@ -951,7 +1147,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                   description="Listen to chapters read aloud while you walk, cook, or commute."
                   detailDescription="Text-to-speech lets you listen to any chapter read aloud with natural-sounding narration. Open any chapter in the reader and tap the speaker to start, so you can learn hands-free while you walk, cook, or commute."
                   reducedMotion={reducedMotion}
-                  onUpgrade={() => launchBillingAction("upgrade")}
+                  onUpgrade={openSubscription}
                 />
               )}
             </div>
@@ -967,12 +1163,16 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             title="Goals & Motivation"
             summary={getGoalsSummary()}
             expanded={isSectionShown("goals")}
-            onToggle={() => toggleSection("goals")}
+            onToggle={() => handleSectionToggle("goals")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("goals")}
           >
             {/* 2A. Daily Reading Goal */}
-            <div className="px-3 py-3" id="daily-goal">
+            <div
+              id="daily-goal"
+              data-highlighted={isMatch("daily-goal") || undefined}
+              className={`px-3 py-3${matchClass("daily-goal")}`}
+            >
               <p className="text-sm font-medium text-(--cf-text-1)">Daily reading goal</p>
               <p className="mt-0.5 text-xs text-(--cf-text-3)">
                 How much time you want to invest in learning each day.
@@ -1006,22 +1206,8 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
 
             <Divider />
 
-            {/* 2B. Weekly Chapter Goal */}
-            <SettingRow
-              id="weekly-chapter-goal"
-              label="Weekly chapter goal"
-              description="Set a weekly chapter target to aim for."
-            >
-              <Stepper
-                value={hydrated ? preferences.goals.weeklyChapterGoal : 3}
-                onChange={(v) => { patchSection("goals", { weeklyChapterGoal: v }); announce(`Weekly chapter goal changed to ${v}`); showSavedToast(); }}
-                min={1}
-                max={10}
-                label="Weekly chapter goal"
-              />
-            </SettingRow>
-
-            <Divider />
+            {/* ACCT-23: "Weekly chapter goal" stays hidden until a weekly
+                chapter count exists; the stored value is kept. */}
 
             {/* 2D. Quiz Preferences Subsection */}
             <SubsectionLabel>Quiz preferences</SubsectionLabel>
@@ -1029,6 +1215,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 2D. Question Flow */}
             <SettingRow
               id="question-flow"
+              highlighted={isMatch("question-flow")}
               label="Question flow"
               description="See questions one at a time, or all together like a worksheet."
             >
@@ -1050,6 +1237,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 2D-iii. Shuffle Questions */}
             <SettingRow
               id="shuffle-questions"
+              highlighted={isMatch("shuffle-questions")}
               label="Shuffle questions"
               description="Randomize the order each time you retake a quiz."
             >
@@ -1065,6 +1253,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 2D-iv. Retry Incorrect Only */}
             <SettingRow
               id="retry-incorrect"
+              highlighted={isMatch("retry-incorrect")}
               label="Retry incorrect only"
               description="When retaking a quiz, focus only on the ones you got wrong."
             >
@@ -1078,7 +1267,11 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             <Divider />
 
             {/* 2E. Streak Mode */}
-            <div className="rounded-lg px-3 py-3 transition-colors hover:bg-(--cf-surface-muted)">
+            <div
+              id="streak-mode"
+              data-highlighted={isMatch("streak-mode") || undefined}
+              className={`rounded-lg px-3 py-3 transition-colors hover:bg-(--cf-surface-muted)${matchClass("streak-mode")}`}
+            >
               <div className="flex items-center justify-between gap-4">
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-(--cf-text-1)">Streak mode</p>
@@ -1144,7 +1337,11 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             <Divider />
 
             {/* 2F. Motivation Style */}
-            <div className="px-3 py-3" id="motivation-style">
+            <div
+              id="motivation-style"
+              data-highlighted={isMatch("motivation-style") || undefined}
+              className={`px-3 py-3${matchClass("motivation-style")}`}
+            >
               <p className="text-sm font-medium text-(--cf-text-1)">Motivation style</p>
               <p className="mt-0.5 text-xs text-(--cf-text-3)">
                 How ChapterFlow encourages you in nudges, streaks, and progress messages.
@@ -1174,8 +1371,8 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                     transition={{ duration: DUR.fast }}
                     className="mx-3 mt-1 mb-2 text-cf-caption italic text-(--cf-text-3)"
                   >
-                    Enables leaderboard-style comparisons with other readers. You can switch
-                    back anytime.
+                    Nudges and progress messages get bolder and more competitive. You can
+                    switch back anytime.
                   </motion.p>
                 )}
               </AnimatePresence>
@@ -1184,7 +1381,11 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             <Divider />
 
             {/* 2G. Spaced Repetition (Pro) */}
-            <div className="px-3 py-3" id="spaced-repetition">
+            <div
+              id="spaced-repetition"
+              data-highlighted={isMatch("spaced-repetition") || undefined}
+              className={`px-3 py-3${matchClass("spaced-repetition")}`}
+            >
               {isPro ? (
                 <SettingRow
                   label={
@@ -1204,6 +1405,8 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                     label="Spaced repetition target"
                   />
                 </SettingRow>
+              ) : plan !== "FREE" ? (
+                <PlanPendingRow error={billingState.error} onRetry={refetchBilling} />
               ) : (
                 <ProFeatureCard
                   icon="&#128202;"
@@ -1211,7 +1414,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                   description="ChapterFlow can intelligently schedule quiz reviews so you never forget what you learned."
                   detailDescription="Spaced repetition uses cognitive science to schedule review sessions at optimal intervals. Set your retention target and ChapterFlow will automatically remind you to review chapters before you forget them."
                   reducedMotion={reducedMotion}
-                  onUpgrade={() => launchBillingAction("upgrade")}
+                  onUpgrade={openSubscription}
                 />
               )}
             </div>
@@ -1227,13 +1430,14 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             title="Appearance"
             summary={getAppearanceSummary()}
             expanded={isSectionShown("appearance")}
-            onToggle={() => toggleSection("appearance")}
+            onToggle={() => handleSectionToggle("appearance")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("appearance")}
           >
             {/* 3A. Theme */}
             <SettingRow
               id="theme"
+              highlighted={isMatch("theme")}
               label="Theme"
               description="Choose your preferred color scheme."
             >
@@ -1256,6 +1460,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 3B. Scheduled Dark Mode */}
             <SettingRow
               id="night-mode-schedule"
+              highlighted={isMatch("night-mode-schedule")}
               label="Night mode schedule"
               description={
                 preferences.appearance.theme === "dark"
@@ -1305,6 +1510,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 3C. Reduced Motion */}
             <SettingRow
               id="reduced-motion"
+              highlighted={isMatch("reduced-motion")}
               label="Reduced motion"
               description="Minimize animations and transitions throughout the app."
             >
@@ -1326,13 +1532,14 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             title="Accessibility"
             summary={getAccessibilitySummary()}
             expanded={isSectionShown("accessibility")}
-            onToggle={() => toggleSection("accessibility")}
+            onToggle={() => handleSectionToggle("accessibility")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("accessibility")}
           >
             {/* 4A. High Contrast */}
             <SettingRow
               id="high-contrast"
+              highlighted={isMatch("high-contrast")}
               label="High contrast"
               description="Sharper colors and stronger borders for improved readability."
             >
@@ -1348,6 +1555,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 4C. Color Blind Mode */}
             <SettingRow
               id="color-blind"
+              highlighted={isMatch("color-blind")}
               label="Color vision adjustment"
               description="Adjust colors throughout the app for different types of color vision."
             >
@@ -1367,7 +1575,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             <Divider />
 
             {/* 4D. Keyboard Navigation Info */}
-            <div id="keyboard-nav" className="mx-3 my-2 flex gap-3 rounded-xl bg-(--cf-surface-muted) px-4 py-3 border border-(--cf-border)" style={{ borderLeftWidth: "2px", borderLeftColor: "var(--cf-accent-border)" }}>
+            <div id="keyboard-nav" data-highlighted={isMatch("keyboard-nav") || undefined} className={`mx-3 my-2 flex gap-3 rounded-xl bg-(--cf-surface-muted) px-4 py-3 border border-(--cf-border)${matchClass("keyboard-nav")}`} style={{ borderLeftWidth: "2px", borderLeftColor: "var(--cf-accent-border)" }}>
               <Keyboard className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-text-soft)" />
               <div>
                 <p className="text-sm font-medium text-(--cf-text-1)">
@@ -1392,13 +1600,31 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             title="Notifications"
             summary={getNotificationsSummary()}
             expanded={isSectionShown("notifications")}
-            onToggle={() => toggleSection("notifications")}
+            onToggle={() => handleSectionToggle("notifications")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("notifications")}
           >
+            {/* ACCT-21: the master email switch (settings.notifications.channels.email). */}
+            <SettingRow
+              id="email-channel"
+              highlighted={isMatch("email-channel")}
+              label="Email"
+              description="Lets ChapterFlow email you reminders, the weekly summary and welcome-back notes."
+            >
+              <ToggleSwitch
+                checked={emailConsent === true}
+                onChange={(v) => { persistEmailConsent(v); announce(`Email ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
+                disabled={emailConsent === null}
+                label="Email"
+              />
+            </SettingRow>
+
+            <Divider />
+
             {/* 5A. Reading Reminders */}
             <SettingRow
               id="reading-reminders"
+              highlighted={isMatch("reading-reminders")}
               label="Reading reminders"
               description="A friendly nudge at your chosen time to keep your habit alive."
             >
@@ -1420,6 +1646,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                 >
                   <SettingRow
                     id="reminder-time"
+                    highlighted={isMatch("reminder-time")}
                     label="Reminder time"
                     description="When to receive your daily reading nudge."
                   >
@@ -1446,6 +1673,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                 >
                   <SettingRow
                     id="streak-alerts"
+                    highlighted={isMatch("streak-alerts")}
                     label="Streak alerts"
                     description="Get a heads-up when your reading streak is about to expire."
                   >
@@ -1463,6 +1691,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 5D. Break Reminders */}
             <SettingRow
               id="break-reminders"
+              highlighted={isMatch("break-reminders")}
               label="Break reminders"
               description="A gentle reminder to rest your eyes during long reading sessions."
             >
@@ -1508,8 +1737,9 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 5E. Weekly Summary Email */}
             <SettingRow
               id="weekly-summary"
+              highlighted={isMatch("weekly-summary")}
               label="Weekly summary email"
-              description="A brief digest of your reading progress, delivered every Monday."
+              description={`A brief digest of your reading progress, once a week.${emailOffHint}`}
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.notifications.weeklyDigestEnabled : true}
@@ -1523,8 +1753,9 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 5F. Welcome-back Emails */}
             <SettingRow
               id="welcome-back"
+              highlighted={isMatch("welcome-back")}
               label="Welcome-back emails"
-              description="A friendly email if you've been away for a while, with a bonus to welcome you back."
+              description={`A friendly email if you've been away for a while, with a bonus to welcome you back.${emailOffHint}`}
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.notifications.welcomeBackEnabled : true}
@@ -1544,26 +1775,35 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             title="Account & Subscription"
             summary={getAccountSummary()}
             expanded={isSectionShown("account")}
-            onToggle={() => toggleSection("account")}
+            onToggle={() => handleSectionToggle("account")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("account")}
           >
             {/* 6A. Subscription Status */}
-            <div className="px-3 py-3" id="subscription">
-              <SubscriptionCard
-                plan={plan}
-                freeBookSlots={freeBookSlots}
-                currentPeriodEnd={billingState.payload?.entitlement.currentPeriodEnd}
-                cancelAtPeriodEnd={billingState.payload?.entitlement.cancelAtPeriodEnd}
-                proSource={billingState.payload?.entitlement.proSource}
-                price={price}
-                pricingTiers={billingState.payload?.paywall.pricingTiers}
-                initialInterval={initialUpgradeInterval}
-                onUpgrade={(interval) => launchBillingAction("upgrade", interval)}
-                onManage={() => launchBillingAction("portal")}
-                onRedeemKey={redeemLicenseKey}
-                reducedMotion={reducedMotion}
-              />
+            <div
+              id="subscription"
+              data-highlighted={isMatch("subscription") || undefined}
+              className={`px-3 py-3${matchClass("subscription")}`}
+            >
+              {plan === undefined ? (
+                <PlanPendingRow error={billingState.error} onRetry={refetchBilling} />
+              ) : (
+                <SubscriptionCard
+                  plan={plan}
+                  freeBookSlots={freeBookSlots}
+                  currentPeriodEnd={billingState.payload?.entitlement.currentPeriodEnd}
+                  cancelAtPeriodEnd={billingState.payload?.entitlement.cancelAtPeriodEnd}
+                  proSource={billingState.payload?.entitlement.proSource}
+                  licenseExpiresAt={billingState.payload?.entitlement.licenseExpiresAt}
+                  price={price}
+                  pricingTiers={billingState.payload?.paywall.pricingTiers}
+                  initialInterval={initialUpgradeInterval}
+                  onUpgrade={(interval) => launchBillingAction("upgrade", interval)}
+                  onManage={() => launchBillingAction("portal")}
+                  onRedeemKey={redeemLicenseKey}
+                  reducedMotion={reducedMotion}
+                />
+              )}
             </div>
 
             <Divider />
@@ -1573,6 +1813,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
 
             <SettingRow
               id="analytics"
+              highlighted={isMatch("analytics")}
               label="Share usage analytics"
               description="Off by default. Help improve ChapterFlow by sharing device, performance, and navigation data, plus an approximate (city-level) location. We never sell this data or use it for ads. See our Privacy Policy for details."
             >
@@ -1587,6 +1828,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
 
             <SettingRow
               id="reading-history"
+              highlighted={isMatch("reading-history")}
               label="Save reading history"
               description="Save your daily reading activity to power your streaks and reading history."
             >
@@ -1602,6 +1844,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 6C. Data Export */}
             <SettingRow
               id="export-data"
+              highlighted={isMatch("export-data")}
               label="Export my data"
               description="Download your reading history, notes, bookmarks, and quiz results."
             >
@@ -1619,13 +1862,16 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             {/* 6D. Refresh Preferences */}
             <SettingRow
               id="refresh-preferences"
+              highlighted={isMatch("refresh-preferences")}
               label="Refresh my preferences"
               description="Re-run the personalization wizard to update your reading profile."
             >
+              {/* The wizard starts from the saved settings, so it waits for them. */}
               <button
                 type="button"
                 onClick={() => setRefreshModalOpen(true)}
-                className="cf-pressable cf-btn-secondary rounded-xl px-4 py-2 text-sm font-medium"
+                disabled={!bookPreferences.serverSettled}
+                className="cf-pressable cf-btn-secondary rounded-xl px-4 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Refresh
               </button>
@@ -1701,41 +1947,36 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
 
             {/* 6G. Danger Zone */}
             <div className="px-3">
+              {/* ACCT-15: a failure (non-OK or network) throws, so DangerZone
+                  keeps its dialog open with the inline error. */}
               <DangerZone
+                highlightedIds={results?.matchedIds}
                 onDeactivate={async () => {
-                  try {
-                    const res = await fetch("/app/api/book/me/account/deactivate", { method: "POST" });
-                    if (res.ok) {
-                      window.location.href = "/auth/logout";
-                    } else if (await isReauthResponse(res)) {
-                      // Step-up auth (#5): stale session → force a fresh login and
-                      // return to settings to retry.
-                      redirectToReauth("/book/settings");
-                    } else {
-                      showToast("Failed to deactivate account. Please try again.", "error");
-                    }
-                  } catch {
-                    showToast("Failed to deactivate account. Please try again.", "error");
+                  const res = await fetch("/app/api/book/me/account/deactivate", { method: "POST" });
+                  if (res.ok) {
+                    window.location.href = "/auth/logout";
+                  } else if (await isReauthResponse(res)) {
+                    // Step-up auth (#5): stale session → force a fresh login and
+                    // return to settings to retry.
+                    redirectToReauth("/book/settings");
+                  } else {
+                    throw new Error(`Deactivate failed (${res.status})`);
                   }
                 }}
                 onDelete={async () => {
-                  try {
-                    const res = await fetch("/app/api/book/me/account/delete", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({ confirm: "DELETE" }),
-                    });
-                    if (res.ok) {
-                      window.location.href = "/auth/logout";
-                    } else if (await isReauthResponse(res)) {
-                      // Step-up auth (#5): self-delete requires a recent sign-in.
-                      // Force a fresh login and return to settings to retry.
-                      redirectToReauth("/book/settings");
-                    } else {
-                      showToast("Failed to delete account. Please try again.", "error");
-                    }
-                  } catch {
-                    showToast("Failed to delete account. Please try again.", "error");
+                  const res = await fetch("/app/api/book/me/account/delete", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ confirm: "DELETE" }),
+                  });
+                  if (res.ok) {
+                    window.location.href = "/auth/logout";
+                  } else if (await isReauthResponse(res)) {
+                    // Step-up auth (#5): self-delete requires a recent sign-in.
+                    // Force a fresh login and return to settings to retry.
+                    redirectToReauth("/book/settings");
+                  } else {
+                    throw new Error(`Delete failed (${res.status})`);
                   }
                 }}
                 reducedMotion={reducedMotion}
@@ -1754,6 +1995,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
         </div>{/* section-rail grid */}
       </div>{/* max-w-5xl */}
       </div>{/* #main skip-target */}
+      </PageTransition>
 
       {/* Export Modal */}
       <ExportModal
@@ -1769,7 +2011,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
         onClose={() => setRefreshModalOpen(false)}
         onComplete={handleRefreshComplete}
         reducedMotion={reducedMotion}
-        currentProfile={ext.readingProfile}
+        currentProfile={effectiveReadingProfile(ext)}
         currentGoal={ext.dailyGoalPreset}
         currentMotivation={ext.motivationPersona}
         currentDyslexia={preferences.accessibility.dyslexiaFriendlyFont}
@@ -1809,6 +2051,6 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
       <div className="sr-only" aria-live="polite" aria-atomic="true">
         {liveAnnouncement}
       </div>
-    </PageTransition>
+    </div>
   );
 }
