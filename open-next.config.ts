@@ -79,6 +79,17 @@ const config: OpenNextConfig = {
   },
   imageOptimization: {
     loader: "s3",
+    // The image function runs on x86_64 (see ImageFn in
+    // infra/lib/chapterflow-frontend-stack.ts). OpenNext installs sharp for
+    // arm64 unless told otherwise, and sharp ships one native build per CPU, so
+    // the build target is stated here and has to match that function. The sharp
+    // version is OpenNext's own default; keep the two in step when updating
+    // @opennextjs/aws.
+    install: {
+      packages: ["sharp@0.35.5"],
+      arch: "x64",
+      libc: "glibc",
+    },
   },
   buildCommand: "npm run build",
 };
