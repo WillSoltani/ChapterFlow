@@ -227,8 +227,9 @@ Ongoing: merging to `main` auto-syncs **dev** only.
 
 - [ ] **Privacy policy is reconciled with behavior** — location is now disclosed
       and collected only when "Share Usage Analytics" is on (opt-in, default off),
-      and ip-api.com + Anthropic are listed as processors. Re-verify if the
-      analytics/location code changes.
+      and ip-api.com, Anthropic, and ElevenLabs (chapter audio) are listed as
+      processors. Re-verify if the analytics/location or chapter-audio code
+      changes.
 - [ ] Confirm there is no stale generated build output committed (the
       `.next*`/`.open-next/` dirs are gitignored; nothing under them should be
       tracked).
