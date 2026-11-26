@@ -195,3 +195,69 @@ test("admin Function URL lambda carries ORIGIN_VERIFY_SECRET env + wrapper when 
   assert.ok(verifyHeader, "admin origin missing x-origin-verify header");
   assert.equal(verifyHeader.HeaderValue, ORIGIN_SECRET);
 });
+
+// Hard erasure (admin function only) removes every stored version of a reader's
+// spoken-name greeting clips from the versioned content bucket. Only the admin
+// role may delete or list versions there, and only under the clip prefix.
+const CONTENT_BUCKET = "chapterflow-content-dev";
+const GREETING_PREFIX = "book-content/audio-segments/names/*";
+
+function asList(value: unknown): unknown[] {
+  return Array.isArray(value) ? value : [value];
+}
+
+function contentBucketResource(suffix: string): unknown {
+  return {
+    "Fn::Join": ["", ["arn:", { Ref: "AWS::Partition" }, `:s3:::${CONTENT_BUCKET}${suffix}`]],
+  };
+}
+
+function touchesContentBucket(statement: Record<string, unknown>): boolean {
+  return JSON.stringify(statement.Resource).includes(CONTENT_BUCKET);
+}
+
+function deleteOrListActions(statement: Record<string, unknown>): string[] {
+  return (asList(statement.Action) as string[]).filter(
+    (action) => action.startsWith("s3:Delete") || action.startsWith("s3:List"),
+  );
+}
+
+test("admin role may delete greeting clip versions and list versions under the clip prefix only", () => {
+  const { resources } = synthFrontendTemplate();
+  const statements = statementsForRole(resources, "AdminRole");
+
+  const del = statements.find(({ Sid }) => Sid === "AdminGreetingAudioDelete");
+  assert.ok(del, "admin role is missing the AdminGreetingAudioDelete statement");
+  assert.equal(del.Effect, "Allow");
+  assert.deepEqual([...(asList(del.Action) as string[])].sort(), ["s3:DeleteObject", "s3:DeleteObjectVersion"]);
+  assert.deepEqual(asList(del.Resource), [contentBucketResource(`/${GREETING_PREFIX}`)]);
+  assert.equal(del.Condition, undefined);
+
+  const list = statements.find(({ Sid }) => Sid === "AdminGreetingAudioListVersions");
+  assert.ok(list, "admin role is missing the AdminGreetingAudioListVersions statement");
+  assert.equal(list.Effect, "Allow");
+  assert.deepEqual(asList(list.Action), ["s3:ListBucketVersions"]);
+  assert.deepEqual(asList(list.Resource), [contentBucketResource("")]);
+  assert.deepEqual(list.Condition, { StringLike: { "s3:prefix": [GREETING_PREFIX] } });
+});
+
+test("no other admin statement grants delete or list on the content bucket", () => {
+  const { resources } = synthFrontendTemplate();
+  const statements = statementsForRole(resources, "AdminRole");
+  const others = statements.filter(
+    ({ Sid }) => Sid !== "AdminGreetingAudioDelete" && Sid !== "AdminGreetingAudioListVersions",
+  );
+  for (const statement of others.filter(touchesContentBucket)) {
+    assert.deepEqual(deleteOrListActions(statement), [], `statement ${String(statement.Sid)}`);
+  }
+});
+
+test("public server role has no delete or list action on the content bucket", () => {
+  const { resources } = synthFrontendTemplate();
+  const statements = statementsForRole(resources, "LambdaRole");
+  const onContent = statements.filter(touchesContentBucket);
+  assert.ok(onContent.length > 0, "the server role reads the content bucket");
+  for (const statement of onContent) {
+    assert.deepEqual(deleteOrListActions(statement), [], `statement ${String(statement.Sid)}`);
+  }
+});

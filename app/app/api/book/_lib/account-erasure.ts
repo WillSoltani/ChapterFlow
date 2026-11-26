@@ -35,6 +35,7 @@ import { getStripeClient } from "./stripe-service";
 import { getUserEntitlement, setAccountStatus } from "./repo";
 import { recordOpsFailure } from "./ops-failure-repo";
 import { putOpsMetric } from "./cloudwatch-metrics";
+import { eraseUserGreetingAudio } from "./erasure-greeting-audio";
 import { logger } from "@/lib/logging/logger";
 
 /** Outcome of a per-store erasure step. */
@@ -51,6 +52,8 @@ export type ErasureResult = {
   pairInviteItemsDeleted: number;
   /** Externally-keyed items (risk/referral/pair/Apple) deleted via pointers. */
   pointerTargetItemsDeleted: number;
+  /** Spoken-name greeting clips in the content bucket, every stored version. */
+  greetingAudio: StepOutcome;
   stripeCustomer: StepOutcome;
   cognitoUser: StepOutcome;
   /** Items that survived all BatchWrite retries — they were NOT deleted. */
@@ -129,7 +132,13 @@ function pairInviteKeysFromUserItems(items: Record<string, unknown>[]): DdbKey[]
 /**
  * Permanently erase ALL of a user's data we can reach: the user's main-table
  * partition, their derived quiz-attempt partitions, their analytics partition,
- * the Stripe customer (and reverse map), and the Cognito user. Irreversible.
+ * every stored version of their spoken-name greeting clips in the content
+ * bucket, the Stripe customer (and reverse map), and the Cognito user.
+ * Irreversible.
+ *
+ * Best-effort on the greeting clips: a storage failure there is reported in
+ * `residualWarnings` (error name only, never the user id or clip name) and
+ * marks the erasure partial; a re-run retries it.
  *
  * Best-effort on external systems (Stripe/Cognito): a failure there is recorded
  * as an ops-failure (and a CloudWatch metric) and reported in the result rather
@@ -283,6 +292,27 @@ export async function eraseUserData(
     fail("Analytics table not configured — analytics data was NOT erased.");
   }
 
+  // 5b. Spoken-name greeting clips in the content bucket (every stored version
+  //     and delete marker). Never throws and never stops the erasure. The
+  //     warning and log line carry the error name only: the audit is permanent
+  //     and must not hold the user id, which the clip name contains.
+  let greetingAudio: StepOutcome;
+  try {
+    const greeting = await eraseUserGreetingAudio(userId);
+    greetingAudio = greeting.outcome;
+    if (greeting.outcome === "failed") {
+      fail(greeting.warning ?? "Spoken-name audio clips were NOT fully removed from storage.");
+      logger.error("account_erase_greeting_audio_failed", { errorName: greeting.errorName });
+    }
+  } catch {
+    // The step promises never to throw; guard anyway so a surprise cannot stop
+    // an irreversible erasure half-way. The caught error is not reported: its
+    // message or name could carry the clip name.
+    greetingAudio = "failed";
+    fail("Spoken-name audio clips were NOT fully removed from storage (unknown). Run the erasure again to retry.");
+    logger.error("account_erase_greeting_audio_failed", { errorName: "unknown" });
+  }
+
   // 6. Stripe customer object (best-effort).
   let stripeCustomer: StepOutcome = "skipped";
   if (stripeCustomerId) {
@@ -422,6 +452,7 @@ export async function eraseUserData(
     analyticsItemsDeleted,
     pairInviteItemsDeleted,
     pointerTargetItemsDeleted,
+    greetingAudio,
     stripeCustomer,
     cognitoUser,
     unprocessedItems,

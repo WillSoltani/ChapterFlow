@@ -20,8 +20,9 @@ const ERASE_MAX_AUTH_AGE_MINUTES = 5;
  * POST /app/api/book/admin/users/[userId]/erase
  *
  * IRREVERSIBLE hard erasure of a user's data across the main table, analytics
- * table, Stripe, and Cognito — for honouring "complete erasure" requests
- * (the privacy policy points users at support for this).
+ * table, the content bucket's spoken-name audio clips, Stripe, and Cognito — for
+ * honouring "complete erasure" requests (the privacy policy points users at
+ * support for this).
  *
  * Requires body: { confirm: "ERASE" } as a server-side safety guard.
  * Admin-only. Returns a per-store summary including residual warnings.

@@ -57,9 +57,10 @@ Non-book `auth/session` and `me` already degrade gracefully and are left as-is. 
   1. main partition `BOOKUSER#<userId>` (all personal data)
   2. derived `QUIZATTEMPT#<userId>#…` partitions
   3. analytics partition `USER#<userId>` (snapshot + events)
-  4. Stripe customer object + reverse map
-  5. Cognito user (resolve `Username` by `sub` filter → `AdminDeleteUser`)
-  Stripe/Cognito steps are best-effort: a failure is recorded as an ops-failure (+ CloudWatch metric) and surfaced in the returned summary's `residualWarnings`, never hidden. A permanent record is written to `BOOKERASURE#LOG` (outside the deleted user partition).
+  4. spoken-name greeting clips in the content bucket (`book-content/audio-segments/names/<userId>-<timeOfDay>.…mp3`, the "Good evening, <name>." audio; `erasure-greeting-audio.ts`). The bucket is versioned, so every stored version and delete marker is deleted by version id rather than leaving the audio as a hidden old version. Only the admin role holds the delete and list-versions rights this needs, limited to that prefix.
+  5. Stripe customer object + reverse map
+  6. Cognito user (resolve `Username` by `sub` filter → `AdminDeleteUser`)
+  Stripe/Cognito steps are best-effort: a failure is recorded as an ops-failure (+ CloudWatch metric) and surfaced in the returned summary's `residualWarnings`, never hidden. The greeting-clip step is best-effort too: a storage error or its 10-second limit adds a `residualWarnings` entry naming the error only (never the user id or clip name), marks the erasure `partial` (which raises the ops metric), and the erasure continues; running the erasure again retries it. A soft delete keeps the clips, like the rest of the account's data. A permanent record is written to `BOOKERASURE#LOG` (outside the deleted user partition).
   - **Known residuals** (no `userId` GSI in the single-table design): risk/fraud events keyed by device fingerprint, and any referral-code reverse index, are **not** auto-erased.
 
 ## Operational alerting (Stripe / erasure failures)

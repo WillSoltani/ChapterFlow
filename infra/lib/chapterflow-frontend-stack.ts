@@ -530,6 +530,28 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     });
     addAppRuntimePolicies(adminRole, { includeAppScan: true });
 
+    // Hard erasure removes every stored version of a reader's spoken-name
+    // greeting clips from the versioned content bucket. Only the admin function
+    // runs erasure, so only this role may delete there, and only under the clip
+    // prefix. The public server role keeps get/put only.
+    adminRole.addToPolicy(
+      new iam.PolicyStatement({
+        sid: "AdminGreetingAudioDelete",
+        actions: ["s3:DeleteObject", "s3:DeleteObjectVersion"],
+        resources: [`${contentBucketArn}/book-content/audio-segments/names/*`],
+      }),
+    );
+    adminRole.addToPolicy(
+      new iam.PolicyStatement({
+        sid: "AdminGreetingAudioListVersions",
+        actions: ["s3:ListBucketVersions"],
+        resources: [contentBucketArn],
+        conditions: {
+          StringLike: { "s3:prefix": ["book-content/audio-segments/names/*"] },
+        },
+      }),
+    );
+
     // -------------------------------------------------------------------
     // Common Lambda environment variables
     // -------------------------------------------------------------------
