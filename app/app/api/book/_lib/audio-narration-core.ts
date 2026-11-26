@@ -115,6 +115,19 @@ export function chapterNumberS3Key(chapterNumber: number): string {
   return `${AUDIO_SEGMENTS_PREFIX}/chapters/chapter-${chapterNumber}.mp3`;
 }
 
+const TIMES_OF_DAY: Record<TimeOfDay, true> = { morning: true, afternoon: true, evening: true };
+
+/** Every time of day a reader's spoken greeting clip can be recorded for. */
+export const GREETING_TIMES_OF_DAY = Object.keys(TIMES_OF_DAY) as TimeOfDay[];
+
+/**
+ * Start of every name a reader's greeting clip for that time of day can have:
+ * the fixed name `<prefix>mp3` and a content name `<prefix><16 hex>.mp3`.
+ */
+export function userGreetingClipPrefix(userId: string, timeOfDay: TimeOfDay): string {
+  return `${AUDIO_SEGMENTS_PREFIX}/names/${userId}-${timeOfDay}.`;
+}
+
 // ── Speech clips (generated on the fly) ──────────────────────────────
 
 /**

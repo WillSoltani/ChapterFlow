@@ -772,6 +772,7 @@ function EraseSummaryView({ summary }: { summary: Record<string, unknown> }) {
         <StatBox label="Unprocessed items" value={asString(s.unprocessedItems)} />
         <StatBox label="Stripe customer" value={asString(s.stripeCustomer)} />
         <StatBox label="Cognito user" value={asString(s.cognitoUser)} />
+        <StatBox label="Spoken-name audio" value={asString(s.greetingAudio)} />
       </div>
 
       {warnings.length > 0 && (
