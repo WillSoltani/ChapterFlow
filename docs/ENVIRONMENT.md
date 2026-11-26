@@ -128,6 +128,17 @@ These are consumed by the app via `getServerEnv` but are **not** in
 `serverEnv`. To enable them in a deployed env, create the SSM parameter
 `/chapterflow/<env>/<KEY>` (SecureString for secrets).
 
+The five runtime secrets (`AUTH_STATE_SECRET`, `BOOK_STRIPE_SECRET_KEY`,
+`BOOK_STRIPE_WEBHOOK_SECRET`, `ANTHROPIC_API_KEY`, `ELEVENLABS_API_KEY`) are
+kept as secrets in the GitHub environment and copied into these parameters by
+the manual **Sync runtime secrets to SSM** workflow
+(`.github/workflows/sync-runtime-secrets.yml`, which runs
+`scripts/ci/sync-runtime-secrets.sh`). Its default mode `missing` only creates
+parameters that do not exist yet and never changes an existing value. After
+changing one of these secrets in the GitHub environment, run it with mode
+`overwrite`. Then redeploy the app, because running servers keep the values
+they read at start.
+
 | Variable | Req | Source | Purpose |
 |---|---|---|---|
 | `AUTH_STATE_SECRET` | R | ssm (SecureString) | HKDF key for AES-256-GCM OAuth-state encryption. Production boot fails closed unless it resolves and is at least 32 characters. |

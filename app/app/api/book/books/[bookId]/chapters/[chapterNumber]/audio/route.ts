@@ -36,6 +36,7 @@ import {
   userGreetingS3Key,
   getUserGreetingScript,
   buildTakeawayText,
+  selectBodySegmentsToGenerate,
   BODY_SEGMENT_TYPES,
   type BodySegmentType,
   type TimeOfDay,
@@ -514,6 +515,17 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
 
     const elevenLabsKey = await getServerEnv("ELEVENLABS_API_KEY");
 
+    // The chapter's text for each body segment, read once per request. A body
+    // segment with no text can never be generated, so it is not missing audio:
+    // it never causes 503 and never reserves a daily generation unit.
+    const bodyTexts: Partial<Record<BodySegmentType, string>> = {};
+    const variantContent = await resolveVariantContent(bookId, chapterNumber, tone, variant);
+    if (variantContent) {
+      for (const seg of BODY_SEGMENT_TYPES) {
+        bodyTexts[seg] = extractSegmentText(variantContent as Record<string, unknown>, seg, tone);
+      }
+    }
+
     // ── mode=plan: personalized segment MANIFEST as JSON ─────────────────
     //
     // Additive native-client contract (docs/ios/AUDIO-CONTRACT.md §8). It shares
@@ -566,6 +578,10 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
             return null;
           },
           canGenerate: Boolean(elevenLabsKey),
+          hasContent: (d) =>
+            d.type === "summary" || d.type === "takeaways" || d.type === "recap"
+              ? Boolean(bodyTexts[d.type])
+              : true,
         },
         { ttlSeconds: PLAN_URL_TTL_SECONDS, nowMs: Date.now() },
       );
@@ -654,8 +670,8 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
       }
     }
 
-    // Generate missing body segments in parallel
-    const missingBody = loadResults.filter((r) => !r.buffer && r.bodyType !== null);
+    // Generate missing body segments in parallel (only those with text)
+    const missingBody = selectBodySegmentsToGenerate(loadResults, bodyTexts);
     if (missingBody.length > 0 && !elevenLabsKey) {
       logger.error("audio_body_segments_missing_no_api_key", { bookId, chapterNumber });
       return bookErr(req, 503, "tts_unavailable", "Audio generation is not available — chapter audio has not been cached yet");

@@ -367,6 +367,137 @@ test("buildAudioPlan: missing body + no TTS key → 503 tts_unavailable", async 
   assert.equal(result.code, "tts_unavailable");
 });
 
+// ── buildAudioPlan: body segments the chapter has no text for ────────────────
+//
+// A body segment whose text is empty for this chapter/variant/tone can never be
+// generated, so it is not missing audio: it never causes 503 and is never
+// passed to generate.
+
+test("buildAudioPlan: missing recap without text and no TTS key → plan without recap, nothing generated", async () => {
+  const descriptors = getSegmentDescriptors(makePlan(), makeCtx(), "direct", "medium");
+  const recapKey = descriptors.find((d) => d.type === "recap")!.key;
+  const present = allPresent(descriptors);
+  delete present[recapKey];
+
+  let generateCalls = 0;
+  const result = await buildAudioPlan(
+    descriptors,
+    META,
+    {
+      headContentLength: fakeHead(present),
+      presign: fakePresign(),
+      generate: async () => {
+        generateCalls += 1;
+        return 1;
+      },
+      canGenerate: false,
+      hasContent: (d) => d.type !== "recap",
+    },
+    { ttlSeconds: TTL, nowMs: NOW_MS },
+  );
+
+  assert.equal(result.ok, true);
+  if (!result.ok) return;
+  assert.equal(generateCalls, 0);
+  assert.ok(!result.plan.segments.some((s) => s.type === "recap"));
+  assert.equal(result.plan.segments.length, 9);
+});
+
+test("buildAudioPlan: missing recap without text and a TTS key → only the text-bearing summary is generated", async () => {
+  const descriptors = getSegmentDescriptors(makePlan(), makeCtx(), "direct", "medium");
+  const recapKey = descriptors.find((d) => d.type === "recap")!.key;
+  const summaryKey = descriptors.find((d) => d.type === "summary")!.key;
+  const present = allPresent(descriptors);
+  delete present[recapKey];
+  delete present[summaryKey];
+
+  const generated: SegmentDescriptor[] = [];
+  const result = await buildAudioPlan(
+    descriptors,
+    META,
+    {
+      headContentLength: fakeHead(present),
+      presign: fakePresign(),
+      generate: async (d) => {
+        generated.push(d);
+        return 16000;
+      },
+      canGenerate: true,
+      hasContent: (d) => d.type !== "recap",
+    },
+    { ttlSeconds: TTL, nowMs: NOW_MS },
+  );
+
+  assert.equal(result.ok, true);
+  if (!result.ok) return;
+  assert.deepEqual(generated.map((d) => d.type), ["summary"]);
+  assert.ok(!result.plan.segments.some((s) => s.type === "recap"));
+  assert.ok(result.plan.segments.some((s) => s.type === "summary"));
+});
+
+test("buildAudioPlan: missing summary with text and no TTS key → still 503 tts_unavailable", async () => {
+  const descriptors = getSegmentDescriptors(makePlan(), makeCtx(), "direct", "medium");
+  const recapKey = descriptors.find((d) => d.type === "recap")!.key;
+  const summaryKey = descriptors.find((d) => d.type === "summary")!.key;
+  const present = allPresent(descriptors);
+  delete present[recapKey];
+  delete present[summaryKey];
+
+  let generateCalls = 0;
+  const result = await buildAudioPlan(
+    descriptors,
+    META,
+    {
+      headContentLength: fakeHead(present),
+      presign: fakePresign(),
+      generate: async () => {
+        generateCalls += 1;
+        return 1;
+      },
+      canGenerate: false,
+      hasContent: (d) => d.type !== "recap",
+    },
+    { ttlSeconds: TTL, nowMs: NOW_MS },
+  );
+
+  assert.equal(result.ok, false);
+  if (result.ok) return;
+  assert.equal(result.status, 503);
+  assert.equal(result.code, "tts_unavailable");
+  assert.equal(
+    result.message,
+    "Audio generation is not available — chapter audio has not been cached yet",
+  );
+  assert.equal(generateCalls, 0);
+});
+
+test("buildAudioPlan: a cached recap stays in the plan although the chapter has no recap text", async () => {
+  const descriptors = getSegmentDescriptors(makePlan(), makeCtx(), "direct", "medium");
+
+  let generateCalls = 0;
+  const result = await buildAudioPlan(
+    descriptors,
+    META,
+    {
+      headContentLength: fakeHead(allPresent(descriptors)),
+      presign: fakePresign(),
+      generate: async () => {
+        generateCalls += 1;
+        return 1;
+      },
+      canGenerate: false,
+      hasContent: (d) => d.type !== "recap",
+    },
+    { ttlSeconds: TTL, nowMs: NOW_MS },
+  );
+
+  assert.equal(result.ok, true);
+  if (!result.ok) return;
+  assert.equal(generateCalls, 0);
+  assert.ok(result.plan.segments.some((s) => s.type === "recap"));
+  assert.equal(result.plan.segments.length, 10);
+});
+
 test("buildAudioPlan: nothing available → 404 no_audio", async () => {
   const descriptors = getSegmentDescriptors(makePlan(), makeCtx(), "direct", "medium");
   const result = await buildAudioPlan(
