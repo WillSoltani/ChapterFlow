@@ -5,10 +5,13 @@ import {
   buildSegmentPlan,
   getSegmentKeys,
   buildTakeawayText,
-  chapterBodySegmentS3Key,
+  chapterBodyClipS3Key,
+  splitSpeechText,
   userGreetingS3Key,
   selectBodySegmentsToGenerate,
   BODY_SEGMENT_TYPES,
+  SPEECH_RECIPE_VERSION,
+  SPEECH_CHUNK_MAX_CHARS,
   type BodySegmentType,
   type NarrationContext,
   type SegmentPlan,
@@ -60,10 +63,17 @@ function makePlan(overrides: Partial<SegmentPlan> = {}): SegmentPlan {
   };
 }
 
+// Body clip keys as the route computes them: one per segment that has text.
+const BODY_KEYS: Record<BodySegmentType, string> = {
+  summary: chapterBodyClipS3Key("crucial-conversations", 4, "summary", ["Summary text."]),
+  takeaways: chapterBodyClipS3Key("crucial-conversations", 4, "takeaways", ["Takeaways text."]),
+  recap: chapterBodyClipS3Key("crucial-conversations", 4, "recap", ["Recap text."]),
+};
+
 test("getSegmentKeys: full plan produces the documented order (with name + score)", () => {
   const ctx = makeCtx();
   const plan = makePlan();
-  const keys = getSegmentKeys(plan, ctx, "direct", "medium");
+  const keys = getSegmentKeys(plan, ctx, BODY_KEYS);
 
   assert.deepEqual(keys, [
     // 1. per-user greeting clip ("Good evening, Ada.")
@@ -76,21 +86,21 @@ test("getSegmentKeys: full plan produces the documented order (with name + score
     "book-content/audio-segments/scores/score-90.mp3",
     // 5. chapter-number lead-in
     "book-content/audio-segments/chapters/chapter-4.mp3",
-    // 6. SUMMARY body (TTS, tone+variant scoped)
-    "book-content/audio/crucial-conversations/ch0004.direct.medium.summary.mp3",
+    // 6. SUMMARY body (speech clip named by its content)
+    BODY_KEYS.summary,
     // 7. transition
     "book-content/audio-segments/transitions/ctx-challenge.mp3",
     // 8. TAKEAWAYS body
-    "book-content/audio/crucial-conversations/ch0004.direct.medium.takeaways.mp3",
+    BODY_KEYS.takeaways,
     // 9. RECAP body
-    "book-content/audio/crucial-conversations/ch0004.direct.medium.recap.mp3",
+    BODY_KEYS.recap,
     // 10. closing CTA
     "book-content/audio-segments/closings/generic-01.mp3",
   ]);
 });
 
 test("getSegmentKeys: no userName omits the leading per-user greeting clip", () => {
-  const keys = getSegmentKeys(makePlan(), makeCtx({ userName: null }), "direct", "medium");
+  const keys = getSegmentKeys(makePlan(), makeCtx({ userName: null }), BODY_KEYS);
   assert.equal(keys.length, 9);
   assert.ok(
     !keys.some((k) => k.startsWith("book-content/audio-segments/names/")),
@@ -101,7 +111,7 @@ test("getSegmentKeys: no userName omits the leading per-user greeting clip", () 
 });
 
 test("getSegmentKeys: null scoreId omits the score callout", () => {
-  const keys = getSegmentKeys(makePlan({ scoreId: null }), makeCtx(), "direct", "medium");
+  const keys = getSegmentKeys(makePlan({ scoreId: null }), makeCtx(), BODY_KEYS);
   assert.equal(keys.length, 9);
   assert.ok(
     !keys.some((k) => k.startsWith("book-content/audio-segments/scores/")),
@@ -109,29 +119,148 @@ test("getSegmentKeys: null scoreId omits the score callout", () => {
   );
 });
 
-test("getSegmentKeys: tone/variant flow into the three body-segment keys only", () => {
-  const keys = getSegmentKeys(makePlan(), makeCtx(), "gentle", "hard");
+test("getSegmentKeys: the given body keys are used as is, in body order", () => {
+  const keys = getSegmentKeys(makePlan(), makeCtx(), BODY_KEYS);
   const bodyKeys = keys.filter((k) => k.startsWith("book-content/audio/"));
   assert.deepEqual(
     bodyKeys,
-    BODY_SEGMENT_TYPES.map((seg) =>
-      chapterBodySegmentS3Key("crucial-conversations", 4, "gentle", "hard", seg),
-    ),
+    BODY_SEGMENT_TYPES.map((seg) => BODY_KEYS[seg]),
   );
-  // Pre-generated segments (greetings/scores/etc.) are tone/variant-agnostic.
-  const segmentKeys = keys.filter((k) => k.startsWith("book-content/audio-segments/"));
-  assert.ok(segmentKeys.every((k) => !k.includes("gentle") && !k.includes("hard")));
 });
 
-test("chapterBodySegmentS3Key: chapter number is zero-padded to 4 digits", () => {
-  assert.equal(
-    chapterBodySegmentS3Key("b", 4, "direct", "medium", "summary"),
-    "book-content/audio/b/ch0004.direct.medium.summary.mp3",
+test("getSegmentKeys: a body segment without a key has no entry", () => {
+  const keys = getSegmentKeys(makePlan(), makeCtx(), {
+    summary: BODY_KEYS.summary,
+    takeaways: BODY_KEYS.takeaways,
+  });
+  assert.equal(keys.length, 9);
+  const bodyKeys = keys.filter((k) => k.startsWith("book-content/audio/"));
+  assert.deepEqual(bodyKeys, [BODY_KEYS.summary, BODY_KEYS.takeaways]);
+
+  const summaryOnly = getSegmentKeys(makePlan(), makeCtx(), { summary: BODY_KEYS.summary });
+  assert.deepEqual(
+    summaryOnly.filter((k) => k.startsWith("book-content/audio/")),
+    [BODY_KEYS.summary],
   );
+});
+
+// ── chapterBodyClipS3Key: body clips are named by their content ─────────────
+
+const GOLDEN_CHUNKS = ["First paragraph.", "Second paragraph."];
+
+test("chapterBodyClipS3Key: a fixed input gives one exact key", () => {
+  assert.equal(SPEECH_RECIPE_VERSION, 1);
   assert.equal(
-    chapterBodySegmentS3Key("b", 123, "direct", "medium", "recap"),
-    "book-content/audio/b/ch0123.direct.medium.recap.mp3",
+    chapterBodyClipS3Key("golden-book", 7, "summary", GOLDEN_CHUNKS),
+    "book-content/audio/golden-book/ch0007.summary.e3c8b2418c4c29ea.mp3",
   );
+});
+
+test("chapterBodyClipS3Key: text, segment, chapter and recipe number each change the key", () => {
+  const golden = chapterBodyClipS3Key("golden-book", 7, "summary", GOLDEN_CHUNKS);
+  const variants = [
+    chapterBodyClipS3Key("golden-book", 7, "summary", ["First paragraph!", "Second paragraph."]),
+    chapterBodyClipS3Key("golden-book", 7, "summary", ["First paragraph.", "Second paragraph"]),
+    chapterBodyClipS3Key("golden-book", 7, "summary", ["First paragraph.\n\nSecond paragraph."]),
+    chapterBodyClipS3Key("golden-book", 7, "takeaways", GOLDEN_CHUNKS),
+    chapterBodyClipS3Key("golden-book", 8, "summary", GOLDEN_CHUNKS),
+    chapterBodyClipS3Key("golden-book", 7, "summary", GOLDEN_CHUNKS, SPEECH_RECIPE_VERSION + 1),
+  ];
+  for (const key of variants) assert.notEqual(key, golden);
+  assert.equal(new Set(variants).size, variants.length);
+  // The same input always gives the same key.
+  assert.equal(chapterBodyClipS3Key("golden-book", 7, "summary", [...GOLDEN_CHUNKS]), golden);
+});
+
+test("chapterBodyClipS3Key: zero-padded chapter, .mp3 ending, no tone or variant", () => {
+  const key = chapterBodyClipS3Key("b", 123, "recap", ["Some recap."]);
+  assert.match(key, /^book-content\/audio\/b\/ch0123\.recap\.[0-9a-f]{16}\.mp3$/);
+  for (const word of ["gentle", "direct", "competitive", "easy", "medium", "hard", "precise", "balanced", "challenging"]) {
+    assert.ok(!key.includes(word), `key must not carry ${word}`);
+  }
+});
+
+// ── splitSpeechText: the text chunks sent to speech ─────────────────────────
+
+// The splitting loop the route used before body clips were named by content,
+// kept as a reference: the new function must give exactly the same chunks.
+function referenceSplit(ttsText: string): string[] {
+  const MAX_CHUNK = 4096;
+  const textChunks: string[] = [];
+  if (ttsText.length <= MAX_CHUNK) {
+    textChunks.push(ttsText);
+  } else {
+    const paragraphs = ttsText.split("\n\n");
+    let current = "";
+    for (const para of paragraphs) {
+      if (current && (current.length + para.length + 2) > MAX_CHUNK) {
+        textChunks.push(current.trim());
+        current = para;
+      } else {
+        current = current ? `${current}\n\n${para}` : para;
+      }
+    }
+    if (current.trim()) textChunks.push(current.trim());
+  }
+  return textChunks;
+}
+
+function words(prefix: string, length: number): string {
+  let out = "";
+  let i = 0;
+  while (out.length < length) {
+    out += `${out ? " " : ""}${prefix}${i}`;
+    i += 1;
+  }
+  return out.slice(0, length).trim();
+}
+
+test("splitSpeechText: text within the limit is one chunk", () => {
+  assert.equal(SPEECH_CHUNK_MAX_CHARS, 4096);
+  assert.deepEqual(splitSpeechText("One paragraph.\n\nTwo paragraph."), [
+    "One paragraph.\n\nTwo paragraph.",
+  ]);
+  const exact = "x".repeat(4096);
+  assert.deepEqual(splitSpeechText(exact), [exact]);
+});
+
+test("splitSpeechText: a long text splits on blank lines into trimmed chunks within the limit", () => {
+  const a = words("alpha", 2500);
+  const b = words("beta", 2500);
+  const c = words("gamma", 1000);
+  const chunks = splitSpeechText(`${a}\n\n ${b}\n\n${c}  `);
+  assert.deepEqual(chunks, [a, `${b}\n\n${c}`]);
+  for (const chunk of chunks) {
+    assert.ok(chunk.length <= 4096);
+    assert.equal(chunk, chunk.trim());
+  }
+});
+
+test("splitSpeechText: a single paragraph over the limit stays whole", () => {
+  const big = words("long", 5000);
+  assert.deepEqual(splitSpeechText(big), [big]);
+  const small = words("small", 100);
+  assert.deepEqual(splitSpeechText(`${small}\n\n${big}`), [small, big]);
+});
+
+test("splitSpeechText: same chunks as the previous splitting loop", () => {
+  const p = (prefix: string, n: number) => words(prefix, n);
+  const cases = [
+    "",
+    "short",
+    "x".repeat(4096),
+    "x".repeat(4097),
+    `${p("a", 2047)}\n\n${p("b", 2047)}`,
+    `${p("a", 2047)}\n\n${p("b", 2048)}`,
+    `${p("a", 3000)}\n\n${p("b", 3000)}\n\n${p("c", 3000)}`,
+    `${p("a", 4000)}\n\n\n\n${p("b", 200)}`,
+    `${p("a", 100)}\n\n${p("b", 9000)}\n\n${p("c", 100)}`,
+    `  ${p("a", 3000)}  \n\n  ${p("b", 3000)}  `,
+    `${p("a", 1500)}\n\n${p("b", 1500)}\n\n${p("c", 1500)}\n\n${p("d", 1500)}\n\n${p("e", 1500)}`,
+  ];
+  for (const text of cases) {
+    assert.deepEqual(splitSpeechText(text), referenceSplit(text), `length ${text.length}`);
+  }
 });
 
 test("userGreetingS3Key: keyed by userId + time-of-day", () => {
