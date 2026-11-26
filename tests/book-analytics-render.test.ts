@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { after, afterEach, before, test } from "node:test";
 import { cleanup, renderHook, waitFor } from "@testing-library/react";
 import { installRouteHarness, makeSpy } from "./_lib/route-harness";
+import chapterMeta from "@/app/book/data/book-chapter-meta.json";
 
 // PROG-07 / DATA-07: analytics render from the dashboard payload alone; no
 // other request may hold them back.
@@ -97,7 +98,11 @@ test("D3 (C5): a progress row with nothing completed is started and resumes chap
   const snap = analytics.bookSnapshots[0]!;
   assert.equal(snap.status, "in_progress");
   assert.equal(snap.resumeChapterNumber, 1);
-  assert.equal(snap.resumeChapterLabel, "CH.01 The Surprising Power of Atomic Habits");
+  // The title comes from the generated chapter metadata, so a republished package does not break this test.
+  const firstChapter = (chapterMeta as Record<string, { chapters: Array<{ code: string; title: string }> }>)["atomic-habits"]!.chapters[0]!;
+  assert.equal(firstChapter.code, "CH.01");
+  assert.ok(firstChapter.title.length > 0);
+  assert.equal(snap.resumeChapterLabel, `${firstChapter.code} ${firstChapter.title}`);
   assert.notEqual(snap.lastOpenedLabel, "Browsed");
   assert.deepEqual(analytics.engagedBookSnapshots.map((s) => s.book.id), ["atomic-habits"]);
 });
