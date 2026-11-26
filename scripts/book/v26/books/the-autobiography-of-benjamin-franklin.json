@@ -1,0 +1,54 @@
+{
+  "bookId": "the-autobiography-of-benjamin-franklin",
+  "title": "The Autobiography of Benjamin Franklin",
+  "author": "Benjamin Franklin",
+  "bookType": "memoir",
+  "categories": [
+    "Memoir",
+    "Classics",
+    "Self Improvement"
+  ],
+  "tags": [
+    "memoir",
+    "virtue",
+    "habits",
+    "character",
+    "learning"
+  ],
+  "source": {
+    "textPath": "~/cf-wt/v26-plan/data/franklin/source-text.txt",
+    "chapterMapPath": "~/cf-wt/v26-plan/data/franklin/chapter-map.json"
+  },
+  "knownTrapsPath": "~/cf-wt/v26-plan/data/franklin/known-traps.json",
+  "briefPath": "../briefs/the-autobiography-of-benjamin-franklin.md",
+  "shape": {
+    "examples": 3,
+    "quizQuestions": 7,
+    "choices": 3,
+    "reviewCards": 5,
+    "memorableLines": 3,
+    "ifThenPlans": 2,
+    "fastRead": [150, 220],
+    "deepRead": [350, 500],
+    "fullRead": [800, 1100]
+  },
+  "writer": {
+    "bin": "~/.vscode/extensions/anthropic.claude-code-2.1.282-darwin-arm64/resources/native-binary/claude",
+    "model": "claude-opus-5-5",
+    "effort": "high"
+  },
+  "checker": {
+    "bin": "~/.vscode/extensions/anthropic.claude-code-2.1.282-darwin-arm64/resources/native-binary/claude",
+    "model": "claude-opus-5-5",
+    "effort": "high"
+  },
+  "solver": {
+    "bin": "~/.vscode/extensions/anthropic.claude-code-2.1.282-darwin-arm64/resources/native-binary/claude",
+    "model": "claude-sonnet-5",
+    "effort": "medium"
+  },
+  "concurrency": 3,
+  "budgetUsd": 80,
+  "runDir": "~/cf-wt/v26-plan/scratch/W1c/run/the-autobiography-of-benjamin-franklin",
+  "ledgerPath": "~/cf-wt/v26-plan/scratch/W1c/ledger.jsonl"
+}
