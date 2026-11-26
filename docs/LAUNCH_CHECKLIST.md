@@ -92,7 +92,10 @@ secrets fail only their documented feature path. See
 - [ ] `ANTHROPIC_API_KEY` — **required at production boot** for the production
       AI paths; provision as a SecureString.
 - [ ] `ELEVENLABS_API_KEY` — optional SecureString for audio/TTS; audio routes
-      fail locally when it is absent.
+      fail locally when it is absent. Set it in the GitHub environment, run the
+      **Sync runtime secrets to SSM** workflow (default mode `missing` adds it
+      without touching the other secrets; use `overwrite` after changing a
+      value in GitHub), then redeploy.
 
 - [ ] `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` — **⚠ launch-blocking for web push**.
 - [ ] `SES_SENDER_EMAIL` — **⚠ launch-blocking for email** (the app server reads

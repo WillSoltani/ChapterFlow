@@ -78,7 +78,13 @@ Default env is **`dev`**: a bare `cdk deploy` / `cdk synth` never touches prod.
    `AUTH_STATE_SECRET`, `BOOK_STRIPE_SECRET_KEY`, `BOOK_STRIPE_WEBHOOK_SECRET`,
    `ANTHROPIC_API_KEY`, and `ELEVENLABS_API_KEY` are SecureStrings under
    `/chapterflow/<env>/`, not GitHub-to-Lambda environment values. prod uses
-   today's live values. The current workflows read `AWS_ACCOUNT_ID` from the
+   today's live values. Keep them as secrets in the GitHub environment and copy
+   them with the manual **Sync runtime secrets to SSM** workflow
+   (`.github/workflows/sync-runtime-secrets.yml`). Its default mode `missing`
+   only adds parameters that do not exist yet and keeps existing values; after
+   changing a secret in the GitHub environment, run it with mode `overwrite`.
+   Redeploy afterwards, because running servers keep the values they read at
+   start. The current workflows read `AWS_ACCOUNT_ID` from the
    GitHub environment-secret channel for compatibility, but the account id is
    an identifier, not an authentication secret.
 3. **OIDC role** (`AWS_DEPLOY_ROLE_ARN`): configure the role ARN in every GitHub
