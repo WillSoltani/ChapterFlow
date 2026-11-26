@@ -94,10 +94,12 @@ export interface RenderOpts {
   defaultDepth?: Depth;
   uid?: string;
   newReaderQuestions?: number;
+  /** Knowledge mode: the chapter's advice as the author gives it, shown under the takeaway so the owner can spot a softened law. */
+  authorAdvice?: string;
 }
 
 export function renderChapter(c: Chapter & { number?: number; readingTimeMinutes?: number }, opts: RenderOpts = {}): string {
-  const { label = "", bookLine = "", defaultDepth = "fullRead", uid = "v", newReaderQuestions = 5 } = opts;
+  const { label = "", bookLine = "", defaultDepth = "fullRead", uid = "v", newReaderQuestions = 5, authorAdvice = "" } = opts;
   const b: Partial<Chapter["breakdown"]> = c.breakdown ?? {};
   const rt = c.readingTimeMinutes || Math.max(1, Math.round(words(b.fullRead) / 230));
   const out: string[] = [`<section class="version" id="${esc(uid)}">`];
@@ -161,6 +163,7 @@ export function renderChapter(c: Chapter & { number?: number; readingTimeMinutes
   // Practice
   out.push('<div class="phase">4 · Practice</div>');
   if (c.keyTakeaway) out.push(`<div class="card"><div class="muted">THE ONE TAKEAWAY</div>${esc(c.keyTakeaway)}</div>`);
+  if (authorAdvice) out.push(`<div class="card"><div class="muted">WHAT THE AUTHOR ADVISES (blunt, for comparison)</div>${ptags(authorAdvice)}</div>`);
   if (Object.keys(ip).length) {
     out.push(
       '<div class="card"><div class="muted">IMPLEMENTATION PLAN</div>' +

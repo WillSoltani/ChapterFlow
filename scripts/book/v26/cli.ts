@@ -1,7 +1,10 @@
 /** The v26 chapter tool's command line. See README.md.
- *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render> --book <config.json>
+ *    npx tsx scripts/book/v26/cli.ts <write|check|fix|run|status|eval|render|variants|assemble|book|pack|keys|score|publish|auto|site> --book <config.json>
+ *    npx tsx scripts/book/v26/cli.ts auto --queue <books.txt>     (every book of a list, one after another)
  *      [--chapters 1,13] [--force] [--review] [--issues <findings.json>] [--finish] [--file <chapter.json> --tag <t> --out <dir>]
- *  Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget. */
+ *    npx tsx scripts/book/v26/cli.ts site --book <config.json> --repo <checkout of main> [--synopsis <text>] [--dry-run]
+ *    npx tsx scripts/book/v26/cli.ts cover --book <config.json> [--concept <text> [--style <name>] | --image <file>]
+ *  Exit codes: 0 ok, 1 open issues or a usage error, 2 a SITE_ or COVER_ refusal (and score/publish/auto: fail), 3 usage limit, 4 budget. */
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { parseArgs } from "node:util";
@@ -24,20 +27,73 @@ import {
 } from "./src/pipeline";
 import { page, renderChapter } from "./src/render";
 import type { Chapter, Issue, LessonCard } from "./src/types";
+import { COMPONENTS, generateVariants, variantsDir, type Component } from "./src/variants";
+import { renderVariantsPage } from "./src/variantsRender";
+import { assembleChapter, parsePicks } from "./src/assemble";
+import { duplicateNames, fixLanded, hookCollisions, loadExemplar, renderPack, runBookChapters } from "./src/book";
+import { draftKeys } from "./src/keys";
+import { scoreBook } from "./src/score";
+import { publishBook } from "./src/publish";
+import { autoBook, autoQueue, type AutoOptions, type AutoOutcome } from "./src/auto";
+import { keysFor } from "./src/keysText";
+import { siteBook, type PackageStore, type Runner } from "./src/site";
+import { COVER_GENERATION, coverBrief, coverCommand, coverStatus, installCover } from "./src/cover";
 
-const VERBS = ["write", "check", "fix", "run", "status", "eval", "render"] as const;
+const VERBS = ["write", "check", "fix", "run", "status", "eval", "render", "variants", "assemble", "book", "pack", "keys", "score", "publish", "auto", "site", "cover"] as const;
 type Verb = (typeof VERBS)[number];
 
 const USAGE = `Usage: npx tsx scripts/book/v26/cli.ts <${VERBS.join("|")}> --book <config.json> [options]
   --chapters 1,13   chapter numbers (default: every chapter; eval takes exactly one)
   --force           write/run: start the chapter again (the old run is kept as chNN.prev-<time>)
+                    auto: run again a book this command already published (it is published again)
   --review          check/fix/run: also run the editor review and send its failed items to the fix call
   --issues <f>      fix: reader findings, a JSON array of {"field","text"}; one extra "reader" fix round on one chapter (--chapters N), which then becomes its final.json
   --finish          fix: one finish round (--chapters N), once, after the reader round: sends only the blocking issues the reader round left (plus the --issues findings, if given), and the result becomes final.json
+  --style           fix (knowledge mode): the style pass on landed chapters (pronouns for the invented people, no sentence about "the lesson" being gentler, plus --issues findings if given); no checker or solver re-roll
   --file <f>        eval: the chapter JSON to judge (default <runDir>/chNN/final.json)
   --tag <t>         eval: name for the output files (default chNN, so each chapter keeps its own)
   --out <dir>       eval: where <tag>.eval.json goes (default <runDir>/eval)
-Exit codes: 0 ok, 1 open issues or a usage error, 3 usage limit, 4 budget.
+  --only <list>     variants: components to (re)generate, from summary,examples,quiz,cards,practice (default all)
+  --lesson <k>      variants: which candidate lesson drives the components, 1-5 (default 1, the writer's best)
+  --reference <f>   variants: a chapter JSON to fold at the bottom of the pick page for comparison
+  --picks <f>       assemble: the owner's picks, the "Copy my picks" text (or JSON {picks, notes}); one chapter (--chapters N)
+  --exemplar <k>    book: the approved chapter to write against (default: the newest under <runDir>/exemplars)
+  --out <f>         pack: where the one-page reading pack goes (default <runDir>/reading/pack.html); publish, auto: a folder for the
+                    package in place of the repo's book-packages (then no git)
+  score             the publish gate: every landed chapter through eval (reused unless --force), the book's 0-100 score and band
+                    (auto / manual / fail; thresholds from the config's gate, default 80 and 70) into <runDir>/score.json
+  publish           after score: the landed chapters become book-packages/<bookId>.v21.json (app-validated), committed and pushed,
+                    uploaded to the content bucket and registered in the API catalog; auto band publishes, manual needs --approve,
+                    fail refuses. --dry-run builds and validates only; --out <dir> puts the package elsewhere (then no git).
+  --approve         publish: the owner has read the pack and said yes (the manual band). auto: the same yes, taken only for a book
+                    that was waiting for the owner and whose chapters have not changed since that pack; such a run edits nothing
+  --keys-ok         auto: the owner has read the keys in the config and vouches for them; no web check
+  --dry-run         publish, auto: everything but git, S3 and the catalog; site: reports what would change and writes nothing
+  auto              one book from its config to a published book, resumable: keys drafted and checked against the book (two checkers
+                    with web search and an editor), every chapter, two fix passes, one round of repairs (hooks that share an object,
+                    a key that stands out by length), the pack, the score, one round on what the judge failed in the manual band,
+                    and the publish the band allows. <runDir>/auto.json holds the outcome: published, dry-run, ready, needs-owner, failed.
+  --queue <file>    auto: a list of book configs (a JSON array, or one path per line) run one after another, in place of --book;
+                    one line per book in <file>.report.jsonl; a usage limit stops the queue, the same command carries on later
+  --no-publish      auto: stop after the score; nothing is published
+  --redo            auto: the owner allows the chapters on a failed book's redo list to be written again (once per score)
+                    --approve, --keys-ok, --redo and --force are one book's rulings: they do not go with --queue
+  site              after publish: the file edits a checkout of main needs so the public site shows the book, for a session to
+                    commit and open as a pull request (the verb never commits or pushes). Every package in the checkout that
+                    differs from the live store is brought up to the live bytes (a deploy re-uploads them all); a new title is
+                    wired into app/book/data/bookPackages.ts with its approval record; the catalog and chapter metadata are
+                    regenerated. Writes <runDir>/site.json and <runDir>/site-pr.md (the pull request body).
+  --repo <dir>      site: a clean checkout of main to edit (required)
+  --synopsis <t>    site: the authored synopsis for a new title (default: the catalog's generic fallback)
+  cover             the book's cover, made by an image model the session calls (the tool calls none). Alone: the art directions
+                    with how many books use each, and the pictures already taken (scripts/book/v26/covers.json). With --concept:
+                    <runDir>/cover/prompt.txt for the image model, and the book's entry in covers.json. With --image: the
+                    returned image as the app's 600x900 WebP and AVIF pair, in <runDir>/cover and the repo's public/book-covers,
+                    which the next publish uploads and the site step carries into the checkout of main.
+  --concept <t>     cover: the one picture on the cover, in a sentence (at most 60 words, one line)
+  --style <name>    cover, with --concept: the art direction (default: the one the fewest other books use)
+  --image <f>       cover: the image the model returned (portrait 2:3, at least 600x900); not with --concept
+Exit codes: 0 ok (score: the auto band; publish, auto: published, dry run or ready), 1 open issues or a usage error (score: manual; publish, auto: needs the owner), 2 score/publish/auto: fail (site: a SITE_ refusal; cover: a COVER_ refusal), 3 usage limit, 4 budget.
 `;
 
 export interface Io {
@@ -46,6 +102,17 @@ export interface Io {
 }
 
 class UsageError extends Error {}
+
+/** What the site and cover verbs reach outside the process, replaceable so tests run without AWS, the repo's generators,
+ *  the shared covers.json or the repo's public/book-covers. */
+export interface Deps {
+  store?: PackageStore;
+  run?: Runner;
+  /** The tool repo's cover folder (cover --image writes to it, site reads from it). */
+  coversDir?: string;
+  /** covers.json. */
+  coverLedger?: string;
+}
 
 /** A step stops at 2 fix rounds, as in the pipeline's run. */
 const MAX_FIX_ROUNDS = 2;
@@ -158,8 +225,19 @@ async function cmdCheck(ctx: PipelineCtx, chapters: number[], io: Io): Promise<n
   return code;
 }
 
-async function cmdFix(ctx: PipelineCtx, chapters: number[], findings: Finding[] | undefined, io: Io): Promise<number> {
+async function cmdFix(ctx: PipelineCtx, chapters: number[], findings: Finding[] | undefined, io: Io, style = false): Promise<number> {
   if (findings && chapters.length !== 1) throw new UsageError("--issues needs exactly one chapter: --chapters N");
+  if (style && ctx.source.mode !== "knowledge") throw new UsageError("--style is for a book without source text (landed chapters)");
+  if (ctx.source.mode === "knowledge") {
+    // No source text: the fix round runs on the landed chapter's open issues (an assembled or book-written chapter).
+    let code = 0;
+    for (const n of chapters) {
+      const st = await fixLanded(ctx, n, findings, { style });
+      printStatus(io, st);
+      if (st.stage !== "clean") code = 1;
+    }
+    return code;
+  }
   let code = 0;
   for (const n of chapters) {
     const dir = chDir(ctx, n);
@@ -195,6 +273,29 @@ async function cmdFix(ctx: PipelineCtx, chapters: number[], findings: Finding[] 
     if (next.blocking.length > 0) code = 1;
   }
   return code;
+}
+
+async function cmdScore(ctx: PipelineCtx, chapters: number[], force: boolean, io: Io): Promise<number> {
+  const s = await scoreBook(ctx, chapters, { force });
+  for (const c of s.chapters) {
+    const extra = [c.blocking > 0 ? `${c.blocking} open` : "", c.guessable ? "quiz guessable" : "", c.failed.length > 0 ? `fails ${c.failed.join(" ")}` : ""].filter(Boolean).join("; ");
+    io.out(`${chName(c.chapter)}  ${String(c.score).padStart(5)}  ${c.passCount}/${c.total}${extra ? `  (${extra})` : ""}\n`);
+  }
+  if (s.skipped.length > 0) io.out(`not landed, skipped: ${s.skipped.map(chName).join(", ")}\n`);
+  io.out(`book ${s.bookId}: score ${s.score} (mean ${s.mean}, lowest ${s.min}); band ${s.band.toUpperCase()}${s.reasons.length > 0 ? `: ${s.reasons.join("; ")}` : ""}\n`);
+  if (s.redo.length > 0) io.out(`redo before the next try: ${s.redo.map(chName).join(", ")}\n`);
+  io.out(`${path.join(ctx.config.runDir, "score.json")}\n`);
+  return s.band === "auto" ? 0 : s.band === "manual" ? 1 : 2;
+}
+
+async function cmdPublish(ctx: PipelineCtx, opts: { approve: boolean; dryRun: boolean; out?: string }, io: Io): Promise<number> {
+  const r = await publishBook(ctx, { approve: opts.approve, dryRun: opts.dryRun, packagesDir: opts.out, noGit: opts.out !== undefined });
+  io.out(`${r.bookId}: score ${r.score}, band ${r.band.toUpperCase()}: ${r.outcome.toUpperCase()}\n`);
+  for (const x of r.reasons) io.out(`  ${x}\n`);
+  for (const x of r.steps) io.out(`  ${x}\n`);
+  if (r.packageId) io.out(`  packageId ${r.packageId}\n`);
+  for (const x of r.remaining) io.out(`  still to do: ${x}\n`);
+  return r.outcome === "published" || r.outcome === "dry-run" ? 0 : r.outcome === "needs-approval" ? 1 : 2;
 }
 
 /** The finish round: once per chapter, after its reader round. It sends only the blocking issues the reader round's check left
@@ -313,7 +414,7 @@ function cmdRender(ctx: PipelineCtx, chapters: number[], io: Io): number {
     if (!chapter) continue;
     const status = readJson<ChapterStatus>(path.join(chDir(ctx, n), "status.json"));
     const label = status && status.stage !== "clean" ? `${status.stage}: ${status.open.length} open` : "";
-    const body = renderChapter({ ...chapter, number: n }, { label, bookLine: `${title} by ${author}`, uid: `v${n}` });
+    const body = renderChapter({ ...chapter, number: n }, { label, bookLine: `${title} by ${author}`, uid: `v${n}`, authorAdvice: keysFor(ctx, n) });
     fs.mkdirSync(outDir, { recursive: true });
     const file = path.join(outDir, `${chName(n)}.html`);
     fs.writeFileSync(file, page(`${title}: chapter ${n}`, body));
@@ -324,27 +425,244 @@ function cmdRender(ctx: PipelineCtx, chapters: number[], io: Io): number {
   return 0;
 }
 
+/** Five versions of each component for the owner to pick from, and the pick page. */
+async function cmdVariants(
+  ctx: PipelineCtx,
+  chapters: number[],
+  opts: { only?: string; lesson?: string; reference?: string; force: boolean },
+  io: Io,
+): Promise<number> {
+  let only: Component[] | undefined;
+  if (opts.only !== undefined) {
+    only = opts.only.split(",").map((x) => x.trim()) as Component[];
+    const bad = only.filter((c) => !(COMPONENTS as readonly string[]).includes(c));
+    if (bad.length > 0) throw new UsageError(`--only: unknown component ${bad.join(", ")} (choose from ${COMPONENTS.join(", ")})`);
+  }
+  let lessonIndex: number | undefined;
+  if (opts.lesson !== undefined) {
+    if (!/^[1-5]$/.test(opts.lesson)) throw new UsageError(`--lesson must be 1 to 5 (got "${opts.lesson}")`);
+    lessonIndex = Number(opts.lesson) - 1;
+  }
+  const reference = opts.reference === undefined ? undefined : readJson<Chapter>(opts.reference);
+  if (opts.reference !== undefined && !reference) throw new UsageError(`--reference ${opts.reference}: no such file`);
+  const { bookId, title, author } = ctx.config;
+  for (const n of chapters) {
+    const run = await generateVariants(ctx, n, { only, lessonIndex, force: opts.force });
+    const file = path.join(variantsDir(ctx, n), "pack.html");
+    fs.writeFileSync(file, renderVariantsPage(run, { bookId, title, author, ...(reference ? { reference } : {}) }));
+    const flags = run.factcheck.issues.length + run.factcheck.det.length;
+    io.out(`${chName(n)}: lesson ${run.lessonIndex + 1} of ${run.lessons.length}: ${clip(run.lesson.lesson, 90)}\n`);
+    io.out(`${chName(n)}: ${COMPONENTS.map((c) => `${c} ${run[c].length}`).join(", ")}; ${flags} fact flag${flags === 1 ? "" : "s"} on the summaries; spend ${money(run.spend)}\n`);
+    io.out(`${file}\n`);
+  }
+  return 0;
+}
+
+/** The full chapter from the owner's picks: one writer call, the checks, final.json, the reading page and the exemplar. */
+async function cmdAssemble(ctx: PipelineCtx, chapters: number[], picksFile: string | undefined, io: Io): Promise<number> {
+  const [n] = chapters;
+  if (chapters.length !== 1 || n === undefined) throw new UsageError("assemble needs exactly one chapter: --chapters N");
+  if (picksFile === undefined) throw new UsageError("assemble needs --picks <file> (the \"Copy my picks\" text)");
+  let picks;
+  try {
+    picks = parsePicks(fs.readFileSync(picksFile, "utf8"));
+  } catch (e) {
+    throw new UsageError(`--picks ${picksFile}: ${(e as Error).message}`);
+  }
+  const r = await assembleChapter(ctx, n, picks);
+  io.out(`${chName(n)}: assembled from ${COMPONENTS.map((c) => `${c} ${picks.picks[c]}`).join(", ")}\n`);
+  io.out(`${chName(n)}: ${r.status.stage}; ${r.status.open.filter((i) => i.blocking).length} blocking, ${r.status.open.filter((i) => !i.blocking).length} reported; spend ${money(r.status.spend)}\n`);
+  listIssues(io, r.status.open);
+  io.out(`${r.files.final}\n${r.files.reading}\n${r.files.exemplar}\n`);
+  return r.status.stage === "clean" ? 0 : 1;
+}
+
+/** Every chapter in the exemplar's form: lessons, write, checks, fact check, key solver, one fix round, land. */
+async function cmdBook(ctx: PipelineCtx, chapters: number[], opts: { exemplar?: string; force: boolean }, io: Io): Promise<number> {
+  let exemplar: number | undefined;
+  if (opts.exemplar !== undefined) {
+    if (!/^\d+$/.test(opts.exemplar)) throw new UsageError(`--exemplar must be a chapter number (got "${opts.exemplar}")`);
+    exemplar = Number(opts.exemplar);
+  }
+  const ex = loadExemplar(ctx, exemplar);
+  io.out(`exemplar: ${chName(ex.chapter)} (${COMPONENTS.map((c) => `${c} ${ex.picks[c].label}`).join(", ")}); openers rotate ${ex.approvedSummary.join("/")}; names off limits: ${ex.names.join(", ") || "(none)"}\n`);
+  const statuses = await runBookChapters(ctx, chapters, { exemplar: ex.chapter, force: opts.force });
+  for (const s of statuses) {
+    io.out(`${chName(s.chapter)}  ${s.stage}${s.fixed ? " (after one fix round)" : ""}, spend ${money(s.spend)}: ${clip(s.lesson, 90)}\n`);
+    listIssues(io, s.open.filter((i) => i.blocking));
+  }
+  const dups = duplicateNames(ctx, ex);
+  if (dups.length > 0) io.out(`names used in more than one chapter: ${dups.map((d) => `${d.name} (${d.chapters.join(", ")})`).join("; ")}\n`);
+  const hooks = hookCollisions(ctx, ctx.source.spans.map((s) => s.chapterNumber));
+  if (hooks.length > 0) io.out(`hooks that share words: ${hooks.map((h) => `"${h.words}" (${h.chapters.join(", ")})`).join("; ")}\n`);
+  const clean = statuses.filter((s) => s.stage === "clean").length;
+  io.out(`${clean} of ${statuses.length} chapters clean; ledger ${money(ledgerTotal(ctx.ledgerPath))} of ${money(ctx.config.budgetUsd)}; reading pages under ${path.join(ctx.config.runDir, "reading")}\n`);
+  return clean === statuses.length ? 0 : 1;
+}
+
+/** One reading page with the given chapters, for the owner to read side by side. */
+function cmdPack(ctx: PipelineCtx, chapters: number[], out: string | undefined, io: Io): number {
+  const file = out ?? path.join(ctx.config.runDir, "reading", "pack.html");
+  const html = renderPack(ctx, chapters, `${ctx.config.title}: chapters ${chapters.join(", ")}`);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, html);
+  io.out(`${file}\n`);
+  return 0;
+}
+
+/** Drafts every chapter's `keys` (the author's advice in blunt words) into the config file, for the owner to edit. */
+async function cmdKeys(ctx: PipelineCtx, configPath: string, force: boolean, io: Io): Promise<number> {
+  const n = await draftKeys(ctx, configPath, { force });
+  io.out(n === 0 ? `every chapter already has keys (use --force to draft them again)\n` : `drafted keys for ${n} chapters into ${configPath}; read and edit them before writing the book\n`);
+  return 0;
+}
+
+/** 0 for a book that is published, built in a dry run or ready; 1 when it waits for the owner; 2 when it failed; 4 when its budget stopped it. */
+const autoCode = (outcome: AutoOutcome | "budget" | "error" | undefined): number =>
+  outcome === "published" || outcome === "dry-run" || outcome === "ready" ? 0 : outcome === "needs-owner" ? 1 : outcome === "budget" ? 4 : 2;
+
+/** One book from its config to the publish its band allows. */
+async function cmdAuto(ctx: PipelineCtx, configPath: string, opts: AutoOptions, io: Io): Promise<number> {
+  const st = await autoBook(ctx, configPath, opts, (line) => io.out(`${line}\n`));
+  io.out(`${path.join(ctx.config.runDir, "auto.json")}\n`);
+  return autoCode(st.outcome);
+}
+
+/** Every book of a queue file in turn. A usage limit stops the queue with exit 3; otherwise the worst outcome decides (4 when a book's budget stopped it). */
+async function cmdAutoQueue(queueFile: string, opts: AutoOptions, io: Io): Promise<number> {
+  if (!fs.existsSync(queueFile)) throw new UsageError(`--queue ${queueFile}: no such file`);
+  const { rows, stopped } = await autoQueue(queueFile, opts, (line) => io.out(`${line}\n`));
+  io.out(`${queueFile}.report.jsonl\n`);
+  if (stopped) return 3;
+  return rows.reduce((worst, r) => Math.max(worst, autoCode(r.outcome)), 0);
+}
+
+/** The public-site edits in a checkout of main. A SITE_ refusal is exit 2 with its message; the checkout is left as it was
+ *  unless the message says otherwise. */
+async function cmdSite(ctx: PipelineCtx, opts: { repo: string; synopsis?: string; dryRun: boolean }, deps: Deps, io: Io): Promise<number> {
+  let r;
+  try {
+    r = await siteBook(ctx, {
+      repo: path.resolve(opts.repo),
+      dryRun: opts.dryRun,
+      ...(opts.synopsis !== undefined ? { synopsis: opts.synopsis } : {}),
+      ...(deps.store ? { store: deps.store } : {}),
+      ...(deps.run ? { run: deps.run } : {}),
+      ...(deps.coversDir !== undefined ? { coversDir: deps.coversDir } : {}),
+    });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    if (!msg.startsWith("SITE_")) throw e;
+    io.err(`error: ${msg}\n`);
+    return 2;
+  }
+  io.out(`${r.bookId}: site ${r.kind.toUpperCase()}${r.dryRun ? ", dry run" : ""}\n`);
+  for (const s of r.synced) io.out(`  synced ${s.file}: md5 ${s.oldMd5 ?? "(missing)"} -> ${s.newMd5}${s.bookId === r.bookId ? "" : " (revert guard)"}\n`);
+  for (const a of r.ahead) io.out(`  main is ahead of the live store for ${a.bookId} (main ${a.repoCreatedAt}, live ${a.liveCreatedAt}): left alone; a prod deploy of main puts it live\n`);
+  io.out(`  ${r.equal} package${r.equal === 1 ? "" : "s"} already equal the live store\n`);
+  if (r.repoOnly.length > 0) io.out(`  repo only, left alone: ${r.repoOnly.join(", ")}\n`);
+  io.out(`  synopsis: ${r.synopsis === "authored" ? "authored" : "generic fallback"}; cover: ${r.cover}\n`);
+  if (r.coverCopied) io.out(`  cover ${r.dryRun ? "to carry in" : "carried in"}: ${r.coverFiles.map((c) => `${c.file} (${c.size} bytes)`).join(", ")}\n`);
+  if (r.generatorPathFixed) io.out("  generator output path fixed to lib/books-catalog.metadata.json\n");
+  io.out(r.ledgerRecordId ? `  approval record ${r.ledgerRecordId} (supersedes ${r.supersedesRecordId})\n` : "  no approval record (bookPackages.ts unchanged)\n");
+  if (r.drift.metadata.length > 0) io.out(`  catalog rows that also changed: ${r.drift.metadata.join(", ")}\n`);
+  if (r.drift.chapterMeta.length > 0) io.out(`  chapter lists that also changed: ${r.drift.chapterMeta.length}\n`);
+  for (const n of r.notes) io.out(`  note: ${n}\n`);
+  io.out(`  files${r.dryRun ? " that would change" : " changed"}: ${r.filesChanged.length === 0 ? "none" : r.filesChanged.join(" ")}\n`);
+  io.out("  next:\n");
+  for (const c of r.next) io.out(`    ${c}\n`);
+  if (r.prBody) io.out(`${r.prBody}\n`);
+  return 0;
+}
+
+/** The cover: what is taken (alone), the prompt for the image model (--concept), or the returned image installed (--image).
+ *  A COVER_ refusal is exit 2 with its message. */
+async function cmdCover(ctx: PipelineCtx, opts: { concept?: string; style?: string; image?: string }, deps: Deps, io: Io): Promise<number> {
+  const { bookId, title, author } = ctx.config;
+  try {
+    if (opts.image !== undefined) {
+      const r = await installCover(ctx, { image: opts.image, ...(deps.coversDir !== undefined ? { coversDir: deps.coversDir } : {}) });
+      io.out(`${bookId}: cover installed from ${path.resolve(opts.image)} (${r.sourceWidth}x${r.sourceHeight})\n`);
+      for (const [file, size] of [[r.webp, r.webpBytes], [r.avif, r.avifBytes], [r.coversWebp, r.webpBytes], [r.coversAvif, r.avifBytes]] as const) io.out(`  ${file} (${size} bytes)\n`);
+      io.out(`  ${r.source} (the source, kept)\n`);
+      io.out(`  the next publish uploads ${r.coversWebp} with the package, and the site step carries the pair into the checkout of main\n`);
+      return 0;
+    }
+    if (opts.concept !== undefined) {
+      const r = coverBrief(ctx, { concept: opts.concept, ...(opts.style !== undefined ? { style: opts.style } : {}), ...(deps.coverLedger !== undefined ? { ledgerPath: deps.coverLedger } : {}) });
+      io.out(`${bookId}: style ${r.style}${opts.style === undefined ? " (the one the fewest other books use)" : ""}\n`);
+      io.out(`generate: ${coverCommand(r.promptFile)}\n`);
+      io.out(`  after two tries with wrong lettering: --quality ${COVER_GENERATION.retryQuality}\n`);
+      io.out(`${r.briefFile}\n`);
+      io.out(`${r.promptFile}\n`);
+      return 0;
+    }
+    const s = coverStatus(ctx, deps.coverLedger !== undefined ? { ledgerPath: deps.coverLedger } : {});
+    io.out(`${title} by ${author} (${bookId})\n`);
+    io.out("styles, fewest books first (a new cover gets the first):\n");
+    for (const x of s.styles) io.out(`  ${x.style.padEnd(18)} ${String(x.count).padStart(2)}  ${x.description}\n`);
+    io.out(s.entries.length === 0 ? "pictures already taken: none yet\n" : "pictures already taken:\n");
+    for (const e of s.entries) io.out(`  ${e.bookId} (${e.style}): ${e.concept}\n`);
+    io.out(`next: cover --book <config.json> --concept "<the one picture, unlike those above>" [--style <name>], then give prompt.txt to the image model and run cover --image <the image it returns>\n`);
+    return 0;
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    if (!msg.startsWith("COVER_")) throw e;
+    io.err(`error: ${msg}\n`);
+    return 2;
+  }
+}
+
 // ---------------------------------------------------------------- main
 
-export async function main(argv: string[], io: Io = { out: (s) => void process.stdout.write(s), err: (s) => void process.stderr.write(s) }): Promise<number> {
+const OPTIONS = {
+  book: { type: "string" },
+  chapters: { type: "string" },
+  force: { type: "boolean" },
+  review: { type: "boolean" },
+  issues: { type: "string" },
+  finish: { type: "boolean" },
+  style: { type: "boolean" },
+  approve: { type: "boolean" },
+  "dry-run": { type: "boolean" },
+  file: { type: "string" },
+  tag: { type: "string" },
+  out: { type: "string" },
+  only: { type: "string" },
+  lesson: { type: "string" },
+  reference: { type: "string" },
+  picks: { type: "string" },
+  exemplar: { type: "string" },
+  queue: { type: "string" },
+  "no-publish": { type: "boolean" },
+  redo: { type: "boolean" },
+  "keys-ok": { type: "boolean" },
+  repo: { type: "string" },
+  synopsis: { type: "string" },
+  concept: { type: "string" },
+  image: { type: "string" },
+  "cover-style": { type: "string" },
+} as const;
+
+/** `--style` is a switch on fix and takes a style name on cover, and one parse cannot give a flag both types: on the cover
+ *  verb it is read as --cover-style. The verb is found by a lenient first parse, so a value of --book or --concept is
+ *  never mistaken for it. */
+function coverStyleArgs(argv: string[]): string[] {
+  let positionals: string[];
+  try {
+    positionals = parseArgs({ args: argv, allowPositionals: true, strict: false, options: OPTIONS }).positionals;
+  } catch {
+    return argv;
+  }
+  if (positionals.find((p) => (VERBS as readonly string[]).includes(p)) !== "cover") return argv;
+  return argv.map((a) => (a === "--style" ? "--cover-style" : a.startsWith("--style=") ? `--cover-style=${a.slice("--style=".length)}` : a));
+}
+
+export async function main(argv: string[], io: Io = { out: (s) => void process.stdout.write(s), err: (s) => void process.stderr.write(s) }, deps: Deps = {}): Promise<number> {
   try {
     let parsed;
     try {
-      parsed = parseArgs({
-        args: argv,
-        allowPositionals: true,
-        options: {
-          book: { type: "string" },
-          chapters: { type: "string" },
-          force: { type: "boolean" },
-          review: { type: "boolean" },
-          issues: { type: "string" },
-          finish: { type: "boolean" },
-          file: { type: "string" },
-          tag: { type: "string" },
-          out: { type: "string" },
-        },
-      });
+      parsed = parseArgs({ args: coverStyleArgs(argv), allowPositionals: true, options: OPTIONS });
     } catch (e) {
       throw new UsageError((e as Error).message);
     }
@@ -353,9 +671,38 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
     if (positionals.length !== 1 || !(VERBS as readonly string[]).includes(verb ?? "")) {
       throw new UsageError(verb === undefined ? "no command given" : `unknown command or extra argument: ${positionals.join(" ")}`);
     }
-    if (!values.book) throw new UsageError("--book <config.json> is required");
+    for (const k of ["queue", "no-publish", "redo", "keys-ok"] as const) {
+      if (values[k] !== undefined && verb !== "auto") throw new UsageError(`--${k} only goes with the auto command`);
+    }
+    if (values.approve === true && verb !== "publish" && verb !== "auto") throw new UsageError("--approve only goes with the publish and auto commands");
+    const autoOpts: AutoOptions = { dryRun: values["dry-run"] === true, noPublish: values["no-publish"] === true, approve: values.approve === true, keysOk: values["keys-ok"] === true, redo: values.redo === true, force: values.force === true, ...(values.out !== undefined ? { packagesDir: values.out, noGit: true } : {}) };
+    if (verb === "auto" && values.chapters !== undefined) throw new UsageError("auto runs the whole book: --chapters does not go with it");
     if (values.issues !== undefined && verb !== "fix") throw new UsageError("--issues only goes with the fix command");
     if (values.finish === true && verb !== "fix") throw new UsageError("--finish only goes with the fix command");
+    if (values.style === true && verb !== "fix") throw new UsageError("--style only goes with the fix command (as a switch) and the cover command (with a style name)");
+    for (const k of ["concept", "image"] as const) {
+      if (values[k] !== undefined && verb !== "cover") throw new UsageError(`--${k} only goes with the cover command`);
+    }
+    if (values["cover-style"] !== undefined && verb !== "cover") throw new UsageError("--style <name> only goes with the cover command");
+    if (values.concept !== undefined && values.image !== undefined) throw new UsageError("cover takes --concept (write the prompt) or --image (install the cover), not both");
+    if (values["cover-style"] !== undefined && values.concept === undefined) throw new UsageError("--style <name> goes with --concept: the style is chosen when the prompt is written");
+    for (const k of ["only", "lesson", "reference"] as const) {
+      if (values[k] !== undefined && verb !== "variants") throw new UsageError(`--${k} only goes with the variants command`);
+    }
+    if (values.picks !== undefined && verb !== "assemble") throw new UsageError("--picks only goes with the assemble command");
+    if (values.exemplar !== undefined && verb !== "book") throw new UsageError("--exemplar only goes with the book command");
+    for (const k of ["repo", "synopsis"] as const) {
+      if (values[k] !== undefined && verb !== "site") throw new UsageError(`--${k} only goes with the site command`);
+    }
+    if (verb === "site" && values.repo === undefined) throw new UsageError("site needs --repo <checkout of main>");
+    if (verb === "auto" && values.queue !== undefined) {
+      if (values.book) throw new UsageError("auto takes --book or --queue, not both");
+      for (const k of ["approve", "keys-ok", "redo", "force"] as const) {
+        if (values[k] === true) throw new UsageError(`--${k} is one book's ruling: give it with auto --book <config.json>, not with --queue`);
+      }
+      return await cmdAutoQueue(values.queue, autoOpts, io);
+    }
+    if (!values.book) throw new UsageError("--book <config.json> is required");
     const findings = values.issues === undefined ? undefined : readFindings(values.issues);
 
     const ctx = makeCtx(loadBookConfig(values.book), { review: values.review === true });
@@ -368,7 +715,7 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
       case "check":
         return await guarded(ctx, () => cmdCheck(ctx, chapters, io));
       case "fix":
-        return await guarded(ctx, () => (values.finish === true ? cmdFinish(ctx, chapters, findings, io) : cmdFix(ctx, chapters, findings, io)));
+        return await guarded(ctx, () => (values.finish === true ? cmdFinish(ctx, chapters, findings, io) : cmdFix(ctx, chapters, findings, io, values.style === true)));
       case "run":
         return await cmdRun(ctx, chapters, force, io);
       case "status":
@@ -377,6 +724,26 @@ export async function main(argv: string[], io: Io = { out: (s) => void process.s
         return await guarded(ctx, () => cmdEval(ctx, chapters, values, io));
       case "render":
         return cmdRender(ctx, chapters, io);
+      case "variants":
+        return await guarded(ctx, () => cmdVariants(ctx, chapters, { only: values.only, lesson: values.lesson, reference: values.reference, force }, io));
+      case "assemble":
+        return await guarded(ctx, () => cmdAssemble(ctx, chapters, values.picks, io));
+      case "book":
+        return await guarded(ctx, () => cmdBook(ctx, chapters, { exemplar: values.exemplar, force }, io));
+      case "score":
+        return await guarded(ctx, () => cmdScore(ctx, chapters, force, io));
+      case "publish":
+        return await cmdPublish(ctx, { approve: values.approve === true, dryRun: values["dry-run"] === true, out: values.out }, io);
+      case "pack":
+        return cmdPack(ctx, chapters, values.out, io);
+      case "keys":
+        return await guarded(ctx, () => cmdKeys(ctx, values.book!, force, io));
+      case "auto":
+        return await guarded(ctx, () => cmdAuto(ctx, values.book!, autoOpts, io));
+      case "site":
+        return await cmdSite(ctx, { repo: values.repo!, synopsis: values.synopsis, dryRun: values["dry-run"] === true }, deps, io);
+      case "cover":
+        return await cmdCover(ctx, { concept: values.concept, style: values["cover-style"], image: values.image }, deps, io);
     }
   } catch (e) {
     if (e instanceof UsageLimitError || e instanceof BudgetError) {

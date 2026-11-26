@@ -1,0 +1,710 @@
+import test, { after } from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+import { main } from "../cli";
+import { loadBookConfig } from "../src/config";
+import { makeCtx, type PipelineCtx } from "../src/pipeline";
+import { copyAndVarietyIssues, extractNames, fixLanded, formText, loadExemplar, namesFor, openerSentences, readVariety, runBookChapters, summaryApproachFor, usedText, writeBookChapter } from "../src/book";
+import { readLedger } from "../src/ledger";
+import { generateVariants } from "../src/variants";
+import { assembleChapter } from "../src/assemble";
+import { draftKeys } from "../src/keys";
+import type { Chapter, Issue } from "../src/types";
+
+// ---------------------------------------------------------------- fixtures
+
+const FAKE = fileURLToPath(new URL("./fixtures/fake-claude.mjs", import.meta.url));
+const LESSON1 = "Name the fault in writing before you try to mend it.";
+const LESSON2 = "Ask one question before you give advice, so the advice fits.";
+
+const para = (tag: string, k: number, n = 70): string => Array.from({ length: n }, (_, w) => `w${tag}${k}${w}`).join(" ");
+/** The same sentence with the chapter's tag every five words, so two chapters never share an eight-word run. */
+const vary = (tag: string, text: string): string => text.split(" ").map((w, i) => (i > 0 && i % 5 === 0 ? `${tag} ${w}` : w)).join(" ");
+const q = (id: number, prompt: string, key: number) => ({ questionId: `q${id}`, prompt, choices: ["Scold yourself", "Write it down", "Ignore it"], correctIndex: key, explanation: "Naming the fault starts the mending.", bloomsLevel: "apply" });
+
+/** A chapter in the exemplar's shape. `tag` keeps its filler words apart from another chapter's. */
+function chapter(tag: string, over: Partial<Chapter> & { names?: [string, string, string] } = {}): Chapter {
+  const [n1, n2, n3] = over.names ?? ["Maya", "Priya", "Marcus"];
+  const tiers = (k: number): string => Array.from({ length: k }, (_, i) => para(tag, i + 1)).join("\n\n");
+  const { names: _n, ...rest } = over;
+  void _n;
+  return {
+    title: `A ${tag} title`,
+    hook: vary(tag, `${n1} has just landed the biggest client the team has ever had. What does ${n1} tell the meeting?`),
+    counterintuition: vary(tag, "Many people think good work speaks for itself. Actually it pays off when it makes the boss look good."),
+    keyTakeaway: LESSON1,
+    tryThisNow: vary(tag, "Write one line today that names how your boss helped with the win."),
+    memorableLines: [{ text: vary(tag, "Tell your wins so the person above you looks smart for backing you.") }],
+    breakdown: { fastRead: tiers(2), deepRead: tiers(4), fullRead: tiers(8) },
+    examples: ["work", "school", "personal"].map((t, i) => ({ exampleId: `ex0${i + 1}`, title: `Example ${tag}${i}`, tags: [t], scenario: `At ${t}, ${[n1, n2, n3][i]} faces a choice (${tag}).`, whatToDo: `Thank the ${tag} manager first.`, whyItMatters: `The manager looks smart for backing you (${tag}).` })),
+    quiz: { passingScorePercent: 70, questions: [0, 1, 2, 0, 1, 2, 0].map((k, i) => q(i + 1, `Question ${tag}${i}: what do you do?`, k)) },
+    reviewCards: [1, 2, 3, 4, 5].map((i) => ({ cardId: `rc${i}`, front: `Front ${tag}${i}`, back: `Back ${tag}${i}`, difficulty: "easy" })),
+    implementationPlan: { coreSkill: `Share credit upward (${tag}).`, ifThenPlans: [{ context: `When I finish a ${tag} task`, plan: "then I name the help" }, { context: "When someone praises me", plan: `then I credit my ${tag} boss` }], twentyFourHourChallenge: `Send one ${tag} note of credit.`, weeklyPractice: `Review your ${tag} credits on Sunday.` },
+    ...rest,
+  };
+}
+
+const lesson = (text: string, k: number) => ({ lesson: text, wrongBelief: "Good work is enough.", keyPhrase: `move ${k}`, hookQuestion: "Why?", storyNames: ["Galileo"], evidence: ["the moons"], whyThisOne: "why" });
+const LESSONS2 = { lessons: [LESSON2, "L2b", "L2c", "L2d", "L2e"].map((l, i) => lesson(l, i)) };
+const written = (over: Record<string, unknown> = {}) => ({ ...chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] }), _used: { names: ["Jonah", "Lena", "Omar"], settings: ["a bakery"], analogies: ["a flashlight"] }, ...over });
+const SOLVER_OK = { answers: [0, 1, 2, 0, 1, 2, 0].map((k, i) => ({ questionId: `q${i + 1}`, choice: k, alsoDefensible: [], reason: "the lesson says so" })) };
+const FACT_OK = { sentencesChecked: 30, issues: [] };
+
+const GOOD: Record<string, unknown[]> = {
+  "pipe-vlessons": [{ result: LESSONS2, cost: 0.1 }],
+  "pipe-bwrite": [{ result: written(), cost: 0.6 }],
+  "pipe-vfactcheck": [{ result: FACT_OK, cost: 0.15 }],
+  "pipe-keysolve": [{ result: SOLVER_OK, cost: 0.05 }],
+  "pipe-fix": [{ result: { edits: [], keyChanges: [], declined: [] }, cost: 0.3 }],
+};
+
+// ---------------------------------------------------------------- harness
+
+const roots: string[] = [];
+after(() => {
+  delete process.env.V26_PROMPT_DIR;
+  delete process.env.FAKE_PIPE_DIR;
+  for (const d of roots) fs.rmSync(d, { recursive: true, force: true });
+});
+
+interface Harness {
+  ctx: PipelineCtx;
+  configPath: string;
+  runDir: string;
+  script(over: Record<string, unknown[]>): void;
+  calls(scenario?: string): Array<{ scenario: string; index: number; effort: string; prompt: string }>;
+}
+
+/** A knowledge-mode book with three chapters whose ch01 is an approved exemplar (final.json + exemplars/ch01.json). */
+function harness(opts: { concurrency?: number; approved?: string[]; keys?: boolean; candidates?: boolean } = {}): Harness {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "v26-book-"));
+  roots.push(dir);
+  const pipeDir = path.join(dir, "pipe");
+  fs.mkdirSync(pipeDir);
+  delete process.env.V26_PROMPT_DIR;
+  process.env.FAKE_PIPE_DIR = pipeDir;
+  fs.writeFileSync(path.join(dir, "brief.md"), "THE BOOK: a test argument book.\n");
+  const runDir = path.join(dir, "run");
+  const configPath = path.join(dir, "book.json");
+  const role = (model: string) => ({ bin: FAKE, model, effort: "high" });
+  fs.writeFileSync(
+    configPath,
+    JSON.stringify({
+      bookId: "demo", title: "Demo Book", author: "A. Author", bookType: "argument", categories: ["Productivity"], tags: ["demo"],
+      chapters: [{ number: 1, title: "Law One" }, { number: 2, title: "Law Two", ...(opts.keys ? { keys: "Make the boss shine. Never look smarter than him. Reversal: a falling boss cannot punish you." } : {}) }, { number: 3, title: "Law Three" }],
+      briefPath: "brief.md",
+      shape: { examples: 3, quizQuestions: 7, choices: 3, reviewCards: 5, memorableLines: 1, ifThenPlans: 2, fastRead: [100, 220], deepRead: [250, 500], fullRead: [500, 1100] },
+      writer: role("claude-opus-5-5"), checker: role("claude-opus-5-5"), solver: role("claude-sonnet-5-5"),
+      concurrency: opts.concurrency ?? 2, budgetUsd: 100, runDir, ledgerPath: path.join(dir, "ledger.jsonl"),
+    }),
+  );
+  // The approved exemplar.
+  const ex = chapter("A");
+  fs.mkdirSync(path.join(runDir, "ch01"), { recursive: true });
+  fs.writeFileSync(path.join(runDir, "ch01", "final.json"), JSON.stringify(ex));
+  fs.writeFileSync(path.join(runDir, "ch01", "lesson.json"), JSON.stringify({ lesson: LESSON1, wrongBelief: "w", keyPhrase: "k", hookQuestion: "h", storyNames: ["Galileo"], evidence: ["e"] }));
+  fs.writeFileSync(path.join(runDir, "ch01", "status.json"), JSON.stringify({ chapter: 1, stage: "clean", round: 0, rerun: false, lessonRating: "UNKNOWN", open: [], spend: 2, lesson: LESSON1, assembled: true }));
+  fs.mkdirSync(path.join(runDir, "exemplars"), { recursive: true });
+  fs.writeFileSync(
+    path.join(runDir, "exemplars", "ch01.json"),
+    JSON.stringify({
+      bookId: "demo", chapter: 1, lesson: { lesson: LESSON1, storyNames: ["Galileo"] },
+      picks: { summary: { label: "A", approach: "problem scene" }, examples: { label: "A", approach: "one decision moment" }, quiz: { label: "E", approach: "one of each" }, cards: { label: "E", approach: "mixed" }, practice: { label: "B", approach: "specific cues" } },
+      notes: { summary: "A: excellent", general: "keep it plain" },
+      ...(opts.approved ? { approved: { summary: opts.approved } } : {}),
+    }),
+  );
+  if (opts.candidates) {
+    fs.mkdirSync(path.join(runDir, "ch01", "variants"), { recursive: true });
+    fs.writeFileSync(path.join(runDir, "ch01", "variants", "lessons.json"), JSON.stringify({ lessons: [{ storyNames: ["Galileo", "Nicolas Fouquet"] }, { storyNames: ["Louis XIV"] }] }));
+  }
+  const h: Harness = {
+    ctx: makeCtx(loadBookConfig(configPath)),
+    configPath,
+    runDir,
+    script: (over) => fs.writeFileSync(path.join(pipeDir, "script.json"), JSON.stringify({ ...GOOD, ...over })),
+    calls: (scenario) => fs.readdirSync(pipeDir).filter((f) => f.endsWith(".call.json") && (scenario === undefined || f.startsWith(`${scenario}.`))).map((f) => JSON.parse(fs.readFileSync(path.join(pipeDir, f), "utf8"))),
+  };
+  h.script({});
+  return h;
+}
+
+// ---------------------------------------------------------------- 0-call helpers
+
+test("extractNames finds the exemplar's first names and leaves story names, weekdays and sentence openers out", () => {
+  const names = extractNames(chapter("A"), ["Galileo", "Jupiter"]);
+  assert.deepEqual(names, ["Marcus", "Maya", "Priya"]);
+  assert.deepEqual(extractNames(chapter("A", { breakdown: { fastRead: "Fouquet threw a party for Louis. The king had Fouquet arrested.", deepRead: "x", fullRead: "y" } }), ["Galileo"], "all"), ["Fouquet", "Louis", "Marcus", "Maya", "Priya"]);
+  assert.deepEqual(extractNames(chapter("A", { breakdown: { fastRead: "Fouquet threw a party for Louis. The king had Fouquet arrested.", deepRead: "x", fullRead: "y" } }), ["Galileo"], "invented"), ["Marcus", "Maya", "Priya"]);
+});
+
+test("loadExemplar reads the picks, notes, chapter and names; formText carries the picked rules and the measurements", () => {
+  const h = harness();
+  const ex = loadExemplar(h.ctx);
+  assert.equal(ex.chapter, 1);
+  assert.deepEqual(ex.names, ["Marcus", "Maya", "Priya"]);
+  assert.equal(ex.picks.quiz.label, "E");
+  const form = formText(ex);
+  assert.match(form, /summary .*: A, "problem scene": open on a modern everyday moment/);
+  assert.match(form, /Path: the scene; why the obvious move fails here; .* the lesson in one line\./);
+  assert.match(form, /Ceilings \(a chapter with less to say is shorter\): hook 25 words; counterintuition 45 words; fastRead up to 140 words in at most 2 paragraphs; deepRead up to 280 words in at most 4 paragraphs; fullRead up to 560 words in at most 8 paragraphs; tryThisNow 25 words\./);
+  assert.match(form, /quiz: 7 questions with 3 choices each; E, "one of each"/);
+  assert.match(form, /practice plan: 2 if-then plans; B, "specific cues"/);
+  assert.throws(() => loadExemplar(h.ctx, 7), /NO_EXEMPLAR/);
+});
+
+test("copyAndVarietyIssues blocks an exemplar name or an eight-word run, and reports a name from another chapter", () => {
+  const h = harness();
+  const ex = loadExemplar(h.ctx);
+  const clean = chapter("B", { names: ["Jonah", "Lena", "Omar"] });
+  assert.deepEqual(copyAndVarietyIssues(clean, ex, { chapters: {} }, 2), { blocking: [], reported: [] });
+  const copied = chapter("B", { names: ["Maya", "Lena", "Omar"], tryThisNow: chapter("A").hook });
+  const r = copyAndVarietyIssues(copied, ex, { chapters: { ch03: { names: ["Omar"], settings: [], analogies: [] } } }, 2);
+  assert.ok(r.blocking.some((i) => i.field === "hook" && /"Maya" is a name from the approved chapter/.test(i.text)));
+  assert.ok(r.blocking.some((i) => i.field === "tryThisNow" && /also appear in the approved chapter/.test(i.text)));
+  assert.ok(r.reported.some((i) => /"Omar" is already used in another chapter/.test(i.text)));
+  const scene = { ...ex, sceneNames: ["Fouquet"] };
+  const r2 = copyAndVarietyIssues(chapter("B", { names: ["Jonah", "Lena", "Omar"], hook: vary("B", "Fouquet threw a party and the boss did not smile at all.") }), scene, { chapters: {} }, 2);
+  assert.equal(r2.blocking.length, 0);
+  assert.ok(r2.reported.some((i) => /exemplar scene: "Fouquet"/.test(i.text)));
+  assert.match(usedText({ chapters: { ch03: { names: ["Omar"], settings: ["a bakery"], analogies: [] } } }, ex, 2), /names: Marcus, Maya, Omar, Priya\nsettings: a bakery\nanalogies: \(none yet\)/);
+});
+
+// ---------------------------------------------------------------- writeBookChapter
+
+test("writeBookChapter: lessons, write, fact check and key solver; the prompt carries the exemplar, the form, the notes and the ledger; files land", async () => {
+  const h = harness();
+  const ex = loadExemplar(h.ctx);
+  const st = await writeBookChapter(h.ctx, 2, ex);
+  assert.equal(st.stage, "clean", JSON.stringify(st.open));
+  assert.equal(st.fixed, false);
+  assert.equal(st.lesson, LESSON2);
+  assert.deepEqual(h.calls().map((c) => c.scenario).sort(), ["pipe-bwrite", "pipe-keysolve", "pipe-vfactcheck", "pipe-vlessons"]);
+
+  const lp = h.calls("pipe-vlessons")[0].prompt;
+  assert.match(lp, /Lessons already taught in earlier chapters \(teach none of these again\):\n- Name the fault in writing/);
+  const wp = h.calls("pipe-bwrite")[0].prompt;
+  assert.doesNotMatch(wp, /@@[A-Z_]+@@/);
+  assert.match(wp, /THERE IS NO SOURCE TEXT/);
+  assert.match(wp, /The owner's notes on the exemplar: summary: A: excellent \| general: keep it plain/);
+  assert.match(wp, /A, "problem scene": open on a modern everyday moment/);
+  assert.match(wp, /names: Marcus, Maya, Priya/);
+  assert.match(wp, /<exemplar>\n\{\n "title": "A A title"/);
+  assert.match(wp, /Lessons already taught by other chapters of this book/);
+  assert.match(wp, /"_used": \{"approach": "A", "names"/);
+  assert.match(wp, /\n  - One sound answer: exactly one choice is right/);
+  assert.match(wp, /their whatToDo lines are three different instructions/);
+  const fp = h.calls("pipe-vfactcheck")[0].prompt;
+  assert.match(fp, /\[fastRead\]\n/);
+  const kp = h.calls("pipe-keysolve")[0].prompt;
+  assert.match(kp, /PART 1: questions q1, q2, q3, q4, q5/);
+  assert.match(kp, /PART 2: questions q6, q7/);
+
+  for (const f of ["final.json", "status.json", "lesson.json"]) assert.ok(fs.existsSync(path.join(h.runDir, "ch02", f)), f);
+  assert.ok(fs.existsSync(path.join(h.runDir, "reading", "ch02.html")));
+  const ledger = readVariety(h.ctx);
+  assert.deepEqual(ledger.chapters.ch02.settings, ["a bakery"]);
+  assert.deepEqual(ledger.chapters.ch02.names, ["Jonah", "Lena", "Omar"]);
+  assert.deepEqual([...new Set(readLedger(h.ctx.ledgerPath).map((r) => r.step))].sort(), ["book-factcheck", "book-keysolve", "book-lessons", "book-write"]);
+  const final = JSON.parse(fs.readFileSync(path.join(h.runDir, "ch02", "final.json"), "utf8"));
+  assert.equal("_used" in final, false);
+});
+
+test("writeBookChapter: a wrong key and a fact flag start one fix round, then the checks run again; leftovers stay open", async () => {
+  const h = harness();
+  const ex = loadExemplar(h.ctx);
+  // The solver reads q2 as choice 0; the fix moves the key to 0, and the solver then agrees with the new key.
+  const solverSaysZero = { answers: SOLVER_OK.answers.map((a, i) => (i === 1 ? { ...a, choice: 0 } : a)) };
+  h.script({
+    "pipe-keysolve": [{ result: solverSaysZero }, { result: solverSaysZero }],
+    "pipe-vfactcheck": [{ result: { sentencesChecked: 3, issues: [{ variant: "fullRead", kind: "WHO", field: "summary", chapterText: "wB80", verdict: "CONTRADICTED", sourceText: "none", fix: "name the father" }] } }, { result: FACT_OK }],
+    "pipe-fix": [{ result: { edits: [{ field: "breakdown.fullRead", find: "wB80", replace: "the father" }], keyChanges: [{ questionId: "q2", newIndex: 0, keyedChoiceText: "Scold yourself" }], declined: [] } }],
+  });
+  const st = await writeBookChapter(h.ctx, 2, ex);
+  assert.equal(st.fixed, true);
+  assert.equal(st.round, 1);
+  assert.equal(st.stage, "clean", JSON.stringify(st.open));
+  const fixPrompt = h.calls("pipe-fix")[0].prompt;
+  assert.match(fixPrompt, /^You wrote the ChapterFlow chapter below for a published book whose text is not available here/);
+  assert.match(fixPrompt, /1\. \[breakdown\.fullRead\] WHO \(CONTRADICTED\)/);
+  assert.match(fixPrompt, /\[quiz\.q2\] the solver picked choice 0, the key is 1/);
+  assert.equal(h.calls("pipe-keysolve").length, 2);
+  assert.equal(h.calls("pipe-vfactcheck").length, 2);
+  const final = JSON.parse(fs.readFileSync(path.join(h.runDir, "ch02", "final.json"), "utf8"));
+  assert.equal(final.quiz.questions[1].correctIndex, 0);
+  assert.match(final.breakdown.fullRead, /the father/);
+
+  // A flag the fix did not clear stays open.
+  const h2 = harness();
+  h2.script({ "pipe-vfactcheck": [{ result: { sentencesChecked: 3, issues: [{ variant: "deepRead", kind: "WHY", field: "summary", chapterText: "wB20", verdict: "UNSUPPORTED", sourceText: "none", fix: "cut it" }] } }] });
+  const st2 = await writeBookChapter(h2.ctx, 2, loadExemplar(h2.ctx));
+  assert.equal(st2.stage, "open-issues");
+  assert.ok(st2.open.some((i) => i.source === "fact" && i.field === "breakdown.deepRead"));
+});
+
+test("writeBookChapter blocks an exemplar copy and resumes from status.json; the exemplar itself is never rewritten", async () => {
+  const h = harness();
+  const ex = loadExemplar(h.ctx);
+  h.script({ "pipe-bwrite": [{ result: written({ hook: chapter("A").hook }) }] });
+  const st = await writeBookChapter(h.ctx, 2, ex);
+  assert.equal(st.stage, "open-issues");
+  assert.ok(st.open.some((i) => /exemplar copy: "Maya"/.test(i.text)));
+  assert.equal(h.calls("pipe-fix").length, 1, "a copy is sent to the fix round");
+  const again = await writeBookChapter(h.ctx, 2, ex);
+  assert.equal(again.stage, "open-issues");
+  assert.equal(h.calls("pipe-bwrite").length, 1, "resumed from status.json, not rewritten");
+  await assert.rejects(writeBookChapter(h.ctx, 1, ex), /EXEMPLAR_CHAPTER/);
+});
+
+test("writeBookChapter refuses a chapter whose note has no lesson left (KEYS_EMPTY), before any call, on every path that writes one", async () => {
+  const h = harness({ keys: true });
+  const cfg = JSON.parse(fs.readFileSync(h.configPath, "utf8"));
+  cfg.chapters[1].keys = "[2] Law Two\nReversal: none. Story the author tells: none recalled with confidence.";
+  fs.writeFileSync(h.configPath, JSON.stringify(cfg));
+  const ctx = makeCtx(loadBookConfig(h.configPath));
+  await assert.rejects(writeBookChapter(ctx, 2, loadExemplar(ctx)), /^Error: KEYS_EMPTY: ch02's note in the config has no lesson/);
+  const statuses = await runBookChapters(ctx, [2]);
+  assert.equal(statuses[0]!.stage, "failed");
+  assert.match(statuses[0]!.error ?? "", /^KEYS_EMPTY/);
+  // The variants page and assemble write a knowledge-mode chapter (a book's own exemplar) from the same note.
+  await assert.rejects(generateVariants(ctx, 2), /^Error: KEYS_EMPTY: ch02/);
+  await assert.rejects(assembleChapter(ctx, 2, {} as Parameters<typeof assembleChapter>[2]), /^Error: KEYS_EMPTY: ch02/);
+  assert.equal(h.calls().length, 0, "nothing was asked of a model");
+  assert.ok(!fs.existsSync(path.join(h.runDir, "ch02", "book")), "no draft was begun");
+  assert.ok(!fs.existsSync(path.join(h.runDir, "ch02", "variants")), "no variants page was begun");
+});
+
+test("runBookChapters skips the exemplar, runs the rest, and the second chapter's prompts carry the first chapter's lesson and names", async () => {
+  const h = harness({ concurrency: 1 });
+  h.script({ "pipe-bwrite": [{ result: written() }, { result: written({ keyTakeaway: "L2b", _used: { names: ["Zara"], settings: ["a gym"], analogies: [] } }) }], "pipe-vlessons": [{ result: LESSONS2 }, { result: { lessons: [lesson("L2b", 0), ...LESSONS2.lessons.slice(1)] } }] });
+  const statuses = await runBookChapters(h.ctx, [1, 2, 3]);
+  assert.deepEqual(statuses.map((s) => s.chapter), [2, 3]);
+  const third = h.calls("pipe-bwrite")[1].prompt;
+  assert.match(third, /names: Jonah, Lena, Marcus, Maya, Omar, Priya/);
+  assert.match(third, /settings: a bakery/);
+  const thirdLessons = h.calls("pipe-vlessons")[1].prompt;
+  assert.match(thirdLessons, /- Name the fault in writing/);
+  assert.match(thirdLessons, /- Ask one question before you give advice/);
+});
+
+// ---------------------------------------------------------------- cli
+
+test("cli: book prints the exemplar, each chapter and the duplicate-name report; pack renders chosen chapters into one page", async () => {
+  const h = harness({ concurrency: 1 });
+  const io = { out: "", err: "" };
+  const sink = { out: (s: string) => void (io.out += s), err: (s: string) => void (io.err += s) };
+  assert.equal(await main(["book", "--book", h.configPath, "--chapters", "2"], sink), 0, io.err);
+  assert.match(io.out, /exemplar: ch01 \(summary A, examples A, quiz E, cards E, practice B\); openers rotate A; names off limits: Marcus, Maya, Priya/);
+  assert.match(io.out, /ch02  clean, spend \$0\.90: Ask one question/);
+  assert.match(io.out, /1 of 1 chapters clean/);
+
+  const pk = { out: "", err: "" };
+  const out = path.join(h.runDir, "reading", "pilot.html");
+  assert.equal(await main(["pack", "--book", h.configPath, "--chapters", "1,2", "--out", out], { out: (s) => void (pk.out += s), err: (s) => void (pk.err += s) }), 0, pk.err);
+  const html = fs.readFileSync(out, "utf8");
+  assert.match(html, /id="v1"/);
+  assert.match(html, /id="v2"/);
+  assert.match(html, /A A title/);
+  assert.match(html, /A B title/);
+
+  const bad = { out: "", err: "" };
+  const badSink = { out: (s: string) => void (bad.out += s), err: (s: string) => void (bad.err += s) };
+  assert.equal(await main(["variants", "--book", h.configPath, "--exemplar", "1"], badSink), 1);
+  assert.match(bad.err, /--exemplar only goes with the book command/);
+  assert.equal(await main(["book", "--book", h.configPath, "--chapters", "3", "--exemplar", "x"], badSink), 1);
+  assert.match(bad.err, /--exemplar must be a chapter number/);
+});
+
+// ---------------------------------------------------------------- critique changes: openers, names, keys, leak
+
+test("the summary opener rotates through the approved approaches; the form sheet says which one this chapter opens as", () => {
+  const h = harness({ approved: ["A", "B", "D"] });
+  const ex = loadExemplar(h.ctx);
+  assert.deepEqual(ex.approvedSummary, ["A", "B", "D"]);
+  assert.deepEqual([1, 2, 3, 4, 24, 48].map((n) => summaryApproachFor(ex, n)), ["A", "B", "D", "A", "D", "D"]);
+  assert.match(formText(ex, "B"), /B, "question or puzzle": open with a sharp question .* \(The exemplar opens as A, "problem scene"; THIS chapter opens as B instead\./);
+  assert.doesNotMatch(formText(ex, "A"), /THIS chapter opens as/);
+  const one = loadExemplar(harness().ctx);
+  assert.deepEqual(one.approvedSummary, ["A"], "no approved list: the pick alone");
+});
+
+test("book names from the candidate lessons: a summary-only invented name blocks, the book's own people pass", () => {
+  const h = harness({ candidates: true });
+  const ex = loadExemplar(h.ctx);
+  assert.deepEqual(ex.bookNames, ["Galileo", "Louis XIV", "Nicolas Fouquet"]);
+  assert.deepEqual(ex.sceneNames, []);
+  const withScene = chapter("A", { breakdown: { fastRead: "Maya has landed a client. Fouquet threw a party for Louis, and Maya smiled.", deepRead: "x", fullRead: "y" } });
+  fs.writeFileSync(path.join(h.runDir, "ch01", "final.json"), JSON.stringify(withScene));
+  const ex2 = loadExemplar(h.ctx);
+  assert.ok(ex2.names.includes("Maya"), "Maya is invented, so it blocks");
+  assert.ok(!ex2.names.includes("Fouquet") && !ex2.names.includes("Louis"), "the book's people pass");
+});
+
+test("the writer prompt carries the chapter's keys and the opener; _used.approach and the openers land in the ledger; a repeated opener and a shared six-word run are reported", async () => {
+  const h = harness({ approved: ["A", "B"], keys: true, concurrency: 1 });
+  const ex = loadExemplar(h.ctx);
+  h.script({ "pipe-bwrite": [{ result: written({ _used: { approach: "B", names: ["Jonah"], settings: [], analogies: [] } }) }] });
+  const st = await writeBookChapter(h.ctx, 2, ex);
+  assert.equal(st.stage, "clean", JSON.stringify(st.open));
+  const wp = h.calls("pipe-bwrite")[0].prompt;
+  assert.match(wp, /WHAT THE AUTHOR ADVISES IN THIS CHAPTER, in blunt plain words .*\nMake the boss shine\. Never look smarter than him\./);
+  assert.match(wp, /THIS chapter opens as B instead/);
+  assert.match(wp, /tell it as he gives it, even where it is harsh/);
+  assert.match(h.calls("pipe-vlessons")[0].prompt, /Make the boss shine/);
+  assert.match(h.calls("pipe-vfactcheck")[0].prompt, /Make the boss shine/);
+  const v = readVariety(h.ctx).chapters.ch02;
+  assert.equal(v.approach, "B");
+  assert.ok(v.openers && v.openers.length >= 2 && v.openers[0].startsWith("wB10"), JSON.stringify(v.openers));
+  assert.match(fs.readFileSync(path.join(h.runDir, "reading", "ch02.html"), "utf8"), /WHAT THE AUTHOR ADVISES/);
+
+  // Chapter 3 is asked to open as A (3-1 mod 2 = 0); the writer says it opened as B, and copies six words of chapter 2's summary.
+  const copy6 = written({ keyTakeaway: "L2b", _used: { approach: "B", names: ["Zara"], settings: [], analogies: [] } });
+  (copy6 as { breakdown: { fastRead: string } }).breakdown.fastRead = `${para("C", 1)} wB10 wB11 wB12 wB13 wB14 wB15 and so on.`;
+  h.script({ "pipe-bwrite": [{ result: copy6 }], "pipe-vlessons": [{ result: { lessons: [lesson("L2b", 0), ...LESSONS2.lessons.slice(1)] } }] });
+  const st3 = await writeBookChapter(h.ctx, 3, ex);
+  assert.equal(st3.stage, "clean");
+  const texts = st3.open.map((i) => i.text);
+  assert.ok(texts.some((x) => /opener: the chapter says it opened as B, the form asked for A/.test(x)), texts.join("\n"));
+  assert.ok(texts.some((x) => /variety: the words "wb10 wb11 wb12 wb13 wb14 wb15" also appear in ch02's summaries/.test(x)), texts.join("\n"));
+  assert.match(h.calls("pipe-bwrite")[1].prompt, /do not start or end like these \(recent chapters\):\n- ch02: wB10/);
+});
+
+test("openerSentences cuts the first, the story, the last-paragraph and the last sentences of fastRead", () => {
+  const c = chapter("A", { breakdown: { fastRead: "One sentence here. Galileo did a thing. Another line.\n\nLast paragraph starts. It ends here.", deepRead: "x", fullRead: "y" } });
+  assert.deepEqual(openerSentences(c, ["Galileo"]), ["One sentence here.", "Galileo did a thing.", "Last paragraph starts.", "It ends here."]);
+});
+
+test("draftKeys writes keys for the chapters that lack them into the config file and leaves the others alone", async () => {
+  const h = harness({ keys: true });
+  h.script({ "pipe-keys": [{ result: { chapters: [{ number: 1, keys: "Law one, blunt." }, { number: 3, keys: "Law three, blunt. Reversal: none." }] }, cost: 0.4 }] });
+  assert.equal(await draftKeys(h.ctx, h.configPath), 2);
+  const cfg = JSON.parse(fs.readFileSync(h.configPath, "utf8"));
+  assert.deepEqual(cfg.chapters.map((c: { keys?: string }) => c.keys), ["Law one, blunt.", "Make the boss shine. Never look smarter than him. Reversal: a falling boss cannot punish you.", "Law three, blunt. Reversal: none."]);
+  assert.match(h.calls("pipe-keys")[0].prompt, /CHAPTERS:\n1\. Law One\n3\. Law Three/);
+  assert.equal(await draftKeys(h.ctx, h.configPath), 0, "nothing left to draft");
+  const io = { out: "", err: "" };
+  assert.equal(await main(["keys", "--book", h.configPath], { out: (x) => void (io.out += x), err: (x) => void (io.err += x) }), 0, io.err);
+  assert.match(io.out, /every chapter already has keys/);
+});
+
+test("extractNames: a word that only ever starts sentences is an opener, unless it also takes a possessive", () => {
+  const c = chapter("A", { hook: "Within a week it was done. Within a month it was gone. Kenji's shift ran late. Cut the talk. Cut it again." });
+  const names = extractNames(c, ["Galileo"]);
+  assert.ok(names.includes("Kenji"), names.join(","));
+  assert.ok(!names.includes("Within") && !names.includes("Cut"), names.join(","));
+  assert.ok(!extractNames(chapter("A", { hook: "We meet on Fridays. Fridays are slow." }), ["Galileo"]).includes("Fridays"));
+  // A terminator inside a closing quote still ends the sentence, and example titles (Title Case) do not count.
+  const quoted = chapter("A", { hook: 'She added "unless that is a problem." Within a day, half the parents agreed.' });
+  assert.ok(!extractNames(quoted, ["Galileo"]).includes("Within"), extractNames(quoted, ["Galileo"]).join(","));
+  const titled = chapter("A");
+  titled.examples[0].title = "Keep the Plan Within Reach";
+  assert.ok(!extractNames(titled, ["Galileo"]).includes("Within") && !extractNames(titled, ["Galileo"]).includes("Reach"));
+});
+
+/** A chapter landed by the book writer: final.json, lesson.json and status.json, with the open issues given. */
+function landed(h: Harness, n: number, c: Chapter, open: Issue[] = []): string {
+  const dir = path.join(h.runDir, `ch0${n}`);
+  fs.mkdirSync(path.join(dir, "book"), { recursive: true });
+  fs.writeFileSync(path.join(dir, "final.json"), JSON.stringify(c));
+  fs.writeFileSync(path.join(dir, "lesson.json"), JSON.stringify(lesson(c.keyTakeaway, n)));
+  const stage = open.some((i) => i.blocking) ? "open-issues" : "clean";
+  fs.writeFileSync(path.join(dir, "status.json"), JSON.stringify({ chapter: n, stage, round: 0, rerun: false, lessonRating: "UNKNOWN", open, spend: 1, lesson: c.keyTakeaway, book: true, exemplar: 1, fixed: false }));
+  return dir;
+}
+
+test("fixLanded: a name an earlier chapter used first is renamed on the ledger's say-so, the ledger follows, and the earlier chapter is left alone", async () => {
+  const h = harness();
+  // ch02 and ch03 were written side by side: both use Jonah, and neither status knows.
+  landed(h, 2, chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] }));
+  landed(h, 3, chapter("C", { keyTakeaway: "Keep the plan quiet until it is moving.", names: ["Jonah", "Nia", "Teo"] }));
+  const entry = (names: string[]) => ({ names, settings: ["a bakery"], analogies: ["a flashlight"], approach: "A" });
+  fs.writeFileSync(path.join(h.runDir, "variety.json"), JSON.stringify({ chapters: { ch02: entry(["Jonah", "Lena", "Omar"]), ch03: entry(["Jonah", "Nia", "Teo"]) } }));
+  h.script({
+    "pipe-fix": [{ result: { edits: [
+      { field: "hook", find: "Jonah has just landed", replace: "Tariq has just landed" },
+      { field: "hook", find: "What does Jonah", replace: "What does Tariq" },
+      { field: "examples.ex01.scenario", find: "At work, Jonah", replace: "At work, Tariq" },
+    ], keyChanges: [], declined: [] } }],
+  });
+  // The earlier chapter owns the name: nothing to do, no call.
+  const st2 = await fixLanded(h.ctx, 2);
+  assert.equal(st2.round, 0);
+  assert.equal(h.calls("pipe-fix").length, 0);
+  const st3 = await fixLanded(h.ctx, 3);
+  assert.equal(st3.stage, "clean", JSON.stringify(st3.open));
+  assert.equal(st3.round, 1);
+  const fixPrompt = h.calls("pipe-fix")[0].prompt;
+  assert.match(fixPrompt, /\[hook\] variety: "Jonah" is already used in another chapter of this book/);
+  assert.match(fixPrompt, /\[examples\.ex01\] variety: "Jonah"/);
+  assert.match(fixPrompt, /replace the name everywhere it appears with one of these names this book has not used yet/);
+  const offered = /not used yet \(or [^:]+\): ([^\n]+)/.exec(fixPrompt)?.[1]?.split(", ") ?? [];
+  assert.equal(offered.length, 12, fixPrompt);
+  for (const x of ["Jonah", "Lena", "Omar", "Nia", "Teo", "Maya", "Priya", "Marcus"]) assert.ok(!offered.includes(x), offered.join(","));
+  // A rename changes no fact and no key: the checker and the solver are not rolled again.
+  assert.equal(h.calls("pipe-vfactcheck").length, 0);
+  assert.equal(h.calls("pipe-keysolve").length, 0);
+  const final = JSON.parse(fs.readFileSync(path.join(h.runDir, "ch03", "final.json"), "utf8"));
+  assert.ok(!/Jonah/.test(JSON.stringify(final)) && /Tariq/.test(final.hook));
+  assert.deepEqual(readVariety(h.ctx).chapters.ch03.names, ["Nia", "Tariq", "Teo"]);
+  assert.deepEqual(readVariety(h.ctx).chapters.ch02.names, ["Jonah", "Lena", "Omar"]);
+});
+
+test("fixLanded: a takeaway over 20 words may be trimmed, and the lesson card follows it", async () => {
+  const h = harness();
+  const long = "When someone offers you something free, ask what it will cost you later, and pay your own way when you can.";
+  const short = "When someone offers you something free, ask what it will cost you later, and pay your own way.";
+  const dir = landed(h, 2, chapter("B", { keyTakeaway: long, names: ["Jonah", "Lena", "Omar"] }), [{ source: "det", blocking: true, field: "keyTakeaway", text: "keyTakeaway is 21 words; it must be 1 to 20 words" }]);
+  h.script({ "pipe-fix": [{ result: { edits: [{ field: "keyTakeaway", find: long, replace: short }], keyChanges: [], declined: [] } }] });
+  const st = await fixLanded(h.ctx, 2, [{ field: "hook", text: "the hook asks the question twice" }]);
+  assert.equal(st.stage, "clean", JSON.stringify(st.open));
+  assert.match(h.calls("pipe-fix")[0].prompt, /shorten it to 20 words or fewer/);
+  assert.match(h.calls("pipe-fix")[0].prompt, /2\. \[hook\] the hook asks the question twice/);
+  assert.equal(JSON.parse(fs.readFileSync(path.join(dir, "lesson.json"), "utf8")).lesson, short);
+  assert.equal(JSON.parse(fs.readFileSync(path.join(dir, "final.json"), "utf8")).keyTakeaway, short);
+  // Neither a summary tier nor the quiz changed, so neither the checker nor the solver was rolled again.
+  assert.equal(h.calls("pipe-vfactcheck").length, 0);
+  assert.equal(h.calls("pipe-keysolve").length, 0);
+});
+
+test("fixLanded: a reader finding that edits a summary tier rolls the checker again, and one that edits the quiz rolls the solver", async () => {
+  const h = harness();
+  landed(h, 2, chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] }));
+  h.script({ "pipe-fix": [{ result: { edits: [{ field: "breakdown.fullRead", find: "wB80", replace: "the father" }], keyChanges: [], declined: [] } }] });
+  const st = await fixLanded(h.ctx, 2, [{ field: "breakdown.fullRead", text: "the father is never named" }]);
+  assert.equal(st.stage, "clean", JSON.stringify(st.open));
+  assert.equal(h.calls("pipe-vfactcheck").length, 1);
+  assert.equal(h.calls("pipe-keysolve").length, 0);
+  const h2 = harness();
+  landed(h2, 2, chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] }));
+  h2.script({ "pipe-fix": [{ result: { edits: [{ field: "quiz.q2.explanation", find: "Naming the fault", replace: "Writing the fault" }], keyChanges: [], declined: [] } }] });
+  await fixLanded(h2.ctx, 2, [{ field: "quiz.q2", text: "the explanation repeats the stem" }]);
+  assert.equal(h2.calls("pipe-vfactcheck").length, 0);
+  assert.equal(h2.calls("pipe-keysolve").length, 1);
+});
+
+test("fixLanded style pass: the style prompt names the invented people, runs with no findings, rolls neither checker nor solver, and lands the edits", async () => {
+  const h = harness();
+  landed(h, 2, chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] }));
+  fs.writeFileSync(path.join(h.runDir, "variety.json"), JSON.stringify({ chapters: { ch02: { names: ["Jonah", "Lena", "Omar"], settings: ["a bakery"], analogies: ["a flashlight"], approach: "A" } } }));
+  h.script({ "pipe-fix": [{ result: { edits: [{ field: "hook", find: "What does Jonah B tell", replace: "What does he B tell" }], keyChanges: [], declined: [] } }] });
+  const st = await fixLanded(h.ctx, 2, [], { style: true });
+  assert.equal(st.stage, "clean", JSON.stringify(st.open));
+  assert.equal(st.round, 1);
+  const prompt = h.calls("pipe-fix")[0].prompt;
+  assert.match(prompt, /^You wrote the ChapterFlow chapter below for a published book whose text is not available here\. It teaches one lesson \(see the lesson card\)\. Three style rules/);
+  assert.match(prompt, /are: Jonah, Lena, Omar\./);
+  assert.match(prompt, /ISSUES:\n\(none\)/);
+  assert.equal(h.calls("pipe-vfactcheck").length, 0);
+  assert.equal(h.calls("pipe-keysolve").length, 0);
+  const final = JSON.parse(fs.readFileSync(path.join(h.runDir, "ch02", "final.json"), "utf8"));
+  assert.match(final.hook, /What does he B tell/);
+  assert.ok(st.open.some((i) => /^style: the invented people are named \d+ times in the summaries, down from \d+/.test(i.text)), JSON.stringify(st.open));
+  // A finding rides along in the same call.
+  const h2 = harness();
+  landed(h2, 2, chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] }));
+  h2.script({ "pipe-fix": [{ result: { edits: [{ field: "hook", find: "What does Jonah B tell", replace: "What does he B tell" }], keyChanges: [], declined: [] } }] });
+  await fixLanded(h2.ctx, 2, [{ field: "hook", text: "the hook repeats another chapter's hook" }], { style: true });
+  assert.match(h2.calls("pipe-fix")[0].prompt, /ISSUES:\n1\. \[hook\] the hook repeats another chapter's hook/);
+});
+
+test("fixLanded style pass: an open fact flag the skipped checker never looked at stays open", async () => {
+  const h = harness();
+  const flag: Issue = { source: "fact", blocking: true, field: "breakdown.deepRead", text: "WHY (UNSUPPORTED): \"wB20\" | book: none | fix: cut it" };
+  landed(h, 2, chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] }), [flag]);
+  h.script({ "pipe-fix": [{ result: { edits: [{ field: "hook", find: "What does Jonah B tell", replace: "What does he B tell" }], keyChanges: [], declined: [] } }] });
+  const st = await fixLanded(h.ctx, 2, [], { style: true });
+  assert.equal(st.stage, "open-issues");
+  assert.ok(st.open.some((i) => i.source === "fact" && i.blocking), JSON.stringify(st.open));
+  assert.equal(h.calls("pipe-vfactcheck").length, 0);
+});
+
+test("a house exemplar: exemplarFrom writes every chapter of this book against another book's approved chapter, its names blocked", async () => {
+  const h = harness({ candidates: true });
+  // A second book whose config points at the first book's exemplar.
+  const dir2 = fs.mkdtempSync(path.join(os.tmpdir(), "v26-house-"));
+  roots.push(dir2);
+  const cfg = JSON.parse(fs.readFileSync(h.configPath, "utf8"));
+  cfg.bookId = "other-book";
+  cfg.title = "Other Book";
+  cfg.runDir = path.join(dir2, "run");
+  cfg.ledgerPath = path.join(dir2, "ledger.jsonl");
+  cfg.briefPath = path.resolve(path.dirname(h.configPath), cfg.briefPath);
+  cfg.exemplarFrom = { runDir: h.runDir, chapter: 1 };
+  const configPath = path.join(dir2, "other.json");
+  fs.writeFileSync(configPath, JSON.stringify(cfg));
+  const ctx = makeCtx(loadBookConfig(configPath));
+  const ex = loadExemplar(ctx);
+  assert.equal(ex.own, false);
+  assert.equal(ex.chapter, 1);
+  assert.deepEqual(ex.names, ["Marcus", "Maya", "Priya"]);
+  assert.equal(ex.picks.quiz.label, "E");
+  // Chapter 1 of this book is written like any other, against the foreign exemplar.
+  h.script({ "pipe-bwrite": [{ result: written(), cost: 0.6 }] });
+  const statuses = await runBookChapters(ctx, [1]);
+  assert.equal(statuses.length, 1);
+  assert.equal(statuses[0]!.chapter, 1);
+  assert.equal(statuses[0]!.stage, "clean", JSON.stringify(statuses[0]!.open));
+  assert.ok(fs.existsSync(path.join(cfg.runDir, "ch01", "final.json")));
+  const prompt = h.calls("pipe-bwrite")[0]!.prompt;
+  assert.match(prompt, /<exemplar>/);
+  assert.match(prompt, /These people belong to another chapter's story/);
+  // A chapter that reuses the house exemplar's invented name is blocked as an exemplar copy.
+  const h2copy = { ...written(), hook: "Maya has just landed the B biggest client. What does Maya tell the meeting?" };
+  h.script({ "pipe-bwrite": [{ result: h2copy, cost: 0.6 }] });
+  const st2 = await writeBookChapter(ctx, 2, ex);
+  assert.ok(st2.open.some((i) => /exemplar copy: "Maya"/.test(i.text)), JSON.stringify(st2.open));
+});
+
+// ---------------------------------------------------------------- the per-book plan: the mark on a first draft, the name list
+
+/** The harness's book under another id (the plan's offsets follow the id). */
+function rebook(h: Harness, bookId: string): PipelineCtx {
+  const cfg = JSON.parse(fs.readFileSync(h.configPath, "utf8"));
+  cfg.bookId = bookId;
+  fs.writeFileSync(h.configPath, JSON.stringify(cfg));
+  return makeCtx(loadBookConfig(h.configPath));
+}
+
+/** Sets the summary pick of the harness's own exemplar (chapter 1). */
+function pickSummary(h: Harness, label: string): void {
+  const f = path.join(h.runDir, "exemplars", "ch01.json");
+  const rec = JSON.parse(fs.readFileSync(f, "utf8"));
+  rec.picks.summary.label = label;
+  fs.writeFileSync(f, JSON.stringify(rec));
+}
+
+test("the plan is the book's: a draft on disk follows its mark, a book with a chapter under the old plan keeps it, and a new book gets its own plan and names", async () => {
+  const id = "tiny-habits";
+  const draft = (h: Harness, salted: boolean): void => {
+    const bdir = path.join(h.runDir, "ch02", "book");
+    fs.mkdirSync(bdir, { recursive: true });
+    fs.writeFileSync(path.join(bdir, "r0.chapter.json"), JSON.stringify(chapter("B", { keyTakeaway: LESSON2, names: ["Jonah", "Lena", "Omar"] })));
+    fs.writeFileSync(path.join(bdir, "used.json"), JSON.stringify({ names: ["Jonah", "Lena", "Omar"], settings: ["a bakery"], analogies: [], approach: "B", ...(salted ? { salted: true } : {}) }));
+  };
+  const ch3 = { "pipe-bwrite": [{ result: written({ keyTakeaway: "L2b", _used: { names: ["Zara"], settings: [], analogies: [] } }) }], "pipe-vlessons": [{ result: { lessons: [lesson("L2b", 0), ...LESSONS2.lessons.slice(1)] } }] };
+  const h = harness({ approved: ["A", "B", "D"], concurrency: 1 });
+  pickSummary(h, "B");
+  const ctx = rebook(h, id);
+  const ex = loadExemplar(ctx);
+  // Chapter 1 is the book's own exemplar, opened as B. The old plan opens chapter 2 as B as well; this book's plan
+  // starts its turn at the exemplar, so chapter 2 opens as D.
+  assert.equal(summaryApproachFor(ex, 2), "B");
+  assert.equal(summaryApproachFor(ex, 2, id), "D");
+  draft(h, false);
+  const st = await writeBookChapter(ctx, 2, ex);
+  assert.equal(h.calls("pipe-bwrite").length, 0, "the draft on disk is used, not rewritten");
+  assert.ok(!st.open.some((i) => /^opener:/.test(i.text)), JSON.stringify(st.open));
+  assert.equal(JSON.parse(fs.readFileSync(path.join(h.runDir, "ch02", "book", "used.json"), "utf8")).salted, undefined);
+  assert.equal(readVariety(ctx).chapters.ch02.approach, "B");
+
+  // Chapter 3 is written now, next to a chapter written under the old plan: the book keeps that plan, so neighbours
+  // still step once per chapter. No mark, no name list.
+  h.script(ch3);
+  await writeBookChapter(ctx, 3, ex);
+  assert.equal(JSON.parse(fs.readFileSync(path.join(h.runDir, "ch03", "book", "used.json"), "utf8")).salted, undefined);
+  assert.equal(readVariety(ctx).chapters.ch03.salted, undefined);
+  const old = h.calls("pipe-bwrite")[0]!.prompt;
+  assert.ok(old.includes(formText(ex, summaryApproachFor(ex, 3), 3, ctx.config.shape)), "the prompt carries the old plan");
+  assert.doesNotMatch(old, /takes a first name from this list/);
+
+  // A book written under its own plan from the start (a new harness points the fake at its own pipe dir, so it comes
+  // last): the chapter 2 draft with the mark is checked against this book's plan, which asked for D, and chapter 3
+  // written after it carries the mark, the per-book plan and its names.
+  const h2 = harness({ approved: ["A", "B", "D"], concurrency: 1 });
+  pickSummary(h2, "B");
+  const ctx2 = rebook(h2, id);
+  const ex2 = loadExemplar(ctx2);
+  draft(h2, true);
+  const st2 = await writeBookChapter(ctx2, 2, ex2);
+  assert.ok(st2.open.some((i) => /opener: the chapter says it opened as B, the form asked for D/.test(i.text)), JSON.stringify(st2.open));
+  h2.script(ch3);
+  await writeBookChapter(ctx2, 3, ex2);
+  assert.equal(JSON.parse(fs.readFileSync(path.join(h2.runDir, "ch03", "book", "used.json"), "utf8")).salted, true);
+  assert.equal(readVariety(ctx2).chapters.ch03.salted, true);
+  const wp = h2.calls("pipe-bwrite")[0]!.prompt;
+  assert.ok(wp.includes(formText(ex2, summaryApproachFor(ex2, 3, id), 3, ctx2.config.shape, id).split("\n- names:")[0]!), "the prompt carries the per-book plan");
+  assert.match(wp, new RegExp(`THIS chapter opens as ${summaryApproachFor(ex2, 3, id)} instead`));
+  const offered = namesFor(3, id).filter((x) => !["Jonah", "Lena", "Omar"].includes(x));
+  assert.ok(wp.includes(`takes a first name from this list, one name for one person: ${offered.join(", ")}.`), "the chapter's names, less the ones chapter 2 used");
+  assert.match(wp, /Where THE PLAN gives a list of first names, invented people take their names from it; where it gives none, choose new first names/);
+});
+
+test("chapter 25 under the book's plan: chapter 1's twin name is offered and not forbidden; another chapter's name and the book's own people are left off the list", async () => {
+  const id = "tiny-habits";
+  const h = harness({ concurrency: 1 });
+  const cfg = JSON.parse(fs.readFileSync(h.configPath, "utf8"));
+  cfg.chapters = Array.from({ length: 25 }, (_, i) => ({ number: i + 1, title: `Law ${i + 1}` }));
+  fs.writeFileSync(h.configPath, JSON.stringify(cfg));
+  const ctx = rebook(h, id);
+  const [twin, taken, real] = namesFor(25, id) as [string, string, string];
+  assert.ok(namesFor(1, id).includes(twin) && !namesFor(2, id).includes(taken));
+  const entry = (names: string[]) => ({ names, settings: [], analogies: [], salted: true });
+  fs.writeFileSync(path.join(h.runDir, "variety.json"), JSON.stringify({ chapters: { ch01: entry([twin]), ch02: entry([taken]) } }));
+  h.script({
+    "pipe-vlessons": [{ result: { lessons: [{ ...lesson(LESSON2, 0), storyNames: [`${real} Okafor`] }, ...LESSONS2.lessons.slice(1)] } }],
+    "pipe-bwrite": [{ result: { ...chapter("B", { keyTakeaway: LESSON2, names: [twin, "Lena", "Omar"] }), _used: { names: [twin, "Lena", "Omar"], settings: [], analogies: [] } } }],
+  });
+  const st = await writeBookChapter(ctx, 25, loadExemplar(ctx));
+  const wp = h.calls("pipe-bwrite")[0]!.prompt;
+  const usedNames = /<used>\n(names: [^\n]*)/.exec(wp)?.[1] ?? "";
+  assert.doesNotMatch(usedNames, new RegExp(`\\b${twin}\\b`), usedNames);
+  assert.match(usedNames, new RegExp(`\\b${taken}\\b`), usedNames);
+  const list = /takes a first name from this list, one name for one person: ([^.]+)\./.exec(wp)?.[1]?.split(", ") ?? [];
+  assert.ok(list.includes(twin), list.join(", "));
+  assert.ok(!list.includes(taken), "<used> forbids it");
+  assert.ok(!list.includes(real), "a person of the book's own");
+  assert.ok(!st.open.some((i) => i.text.includes(`variety: "${twin}"`)), JSON.stringify(st.open));
+  assert.equal(readVariety(ctx).chapters.ch25!.salted, true);
+});
+
+test("names: a name both chapters were given after the pool wrapped is not a repeat; any other shared name still is", async () => {
+  const id = "tiny-habits";
+  const ex = loadExemplar(harness().ctx);
+  const name = namesFor(25, id)[0]!;
+  assert.ok(namesFor(1, id).includes(name) && !namesFor(2, id).includes(name));
+  const c = chapter("B", { names: [name, "Lena", "Omar"] });
+  const entry = (names: string[], salted = true) => ({ names, settings: [], analogies: [], ...(salted ? { salted: true } : {}) });
+  const reports = (ledger: Parameters<typeof copyAndVarietyIssues>[2], bookId?: string): string[] => copyAndVarietyIssues(c, ex, ledger, 25, { bookId }).reported.map((i) => i.text);
+  const repeat = (x: string) => (t: string) => t.includes(`variety: "${x}" is already used in another chapter`);
+  const twins = { chapters: { ch01: entry([name]), ch03: entry(["Omar"]) } };
+  assert.ok(!reports(twins, id).some(repeat(name)), "both chapters were given it");
+  assert.ok(reports(twins, id).some(repeat("Omar")), "a name off the list is still a repeat");
+  assert.ok(reports(twins).some(repeat(name)), "a chapter written under the old plan was given no list");
+  assert.ok(reports({ chapters: { ch01: entry([name], false) } }, id).some(repeat(name)), "the earlier chapter was given no list");
+  assert.ok(reports({ chapters: { ch02: entry([name]) } }, id).some(repeat(name)), "chapter 2 was not given it");
+  assert.doesNotMatch(usedText(twins, ex, 25, id), new RegExp(`names: .*\\b${name}\\b`));
+  assert.match(usedText(twins, ex, 25), new RegExp(`names: .*\\b${name}\\b`));
+
+  // fixLanded renames a name an earlier chapter used first, but not one both chapters were given.
+  const land = (h: Harness, salted: boolean): PipelineCtx => {
+    const ctx = rebook(h, id);
+    const dir = path.join(h.runDir, "ch25");
+    fs.mkdirSync(path.join(dir, "book"), { recursive: true });
+    fs.writeFileSync(path.join(dir, "final.json"), JSON.stringify(c));
+    fs.writeFileSync(path.join(dir, "lesson.json"), JSON.stringify(lesson(c.keyTakeaway, 25)));
+    fs.writeFileSync(path.join(dir, "status.json"), JSON.stringify({ chapter: 25, stage: "clean", round: 0, rerun: false, lessonRating: "UNKNOWN", open: [], spend: 1, lesson: c.keyTakeaway, book: true, exemplar: 1, fixed: false }));
+    fs.writeFileSync(path.join(h.runDir, "variety.json"), JSON.stringify({ chapters: { ch01: entry([name]), ch25: entry([name, "Lena", "Omar"], salted) } }));
+    return ctx;
+  };
+  const h = harness();
+  const st = await fixLanded(land(h, true), 25);
+  assert.equal(st.round, 0);
+  assert.equal(h.calls("pipe-fix").length, 0, "nothing to rename");
+  const h2 = harness();
+  await fixLanded(land(h2, false), 25);
+  assert.match(h2.calls("pipe-fix")[0]!.prompt, new RegExp(`variety: "${name}" is already used in another chapter`));
+
+  // A rename in a chapter under the book's plan is offered that chapter's own free names first: another pool name may be
+  // on a later chapter's list.
+  const h3 = harness();
+  const ctx3 = land(h3, true);
+  fs.writeFileSync(path.join(h3.runDir, "variety.json"), JSON.stringify({ chapters: { ch01: entry([name, "Omar"]), ch25: entry([name, "Lena", "Omar"]) } }));
+  await fixLanded(ctx3, 25);
+  const taken = new Set([...ex.names, name, "Lena", "Omar"]);
+  const mine = namesFor(25, id).filter((x) => !taken.has(x));
+  assert.ok(h3.calls("pipe-fix")[0]!.prompt.includes(`this book uses): ${mine.join(", ")}, `), h3.calls("pipe-fix")[0]!.prompt);
+});

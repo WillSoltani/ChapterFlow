@@ -61,14 +61,14 @@ test("loadBookConfig: relative paths resolve against the config file's directory
   const dir = tmp();
   const file = writeConfig(dir, validConfig());
   const cfg = loadBookConfig(file);
-  assert.equal(cfg.source.textPath, path.join(dir, "source/book.txt"));
-  assert.equal(cfg.source.chapterMapPath, path.join(dir, "source/map.json"));
+  assert.equal(cfg.source!.textPath, path.join(dir, "source/book.txt"));
+  assert.equal(cfg.source!.chapterMapPath, path.join(dir, "source/map.json"));
   assert.equal(cfg.briefPath, path.join(dir, "brief.md"));
   assert.equal(cfg.runDir, path.join(dir, "runs/example"));
   assert.equal(cfg.knownTrapsPath, undefined);
   assert.equal(cfg.bookType, "memoir");
   assert.deepEqual(cfg.shape.fastRead, [90, 140]);
-  assert.deepEqual(cfg.writer, { bin: "claude", model: "opus", effort: "high" });
+  assert.deepEqual(cfg.writer, { bin: "claude", model: "opus", effort: "high", role: "writer" });
 });
 
 test("loadBookConfig: ~ is expanded in every path field, absolute paths are untouched", () => {
@@ -83,8 +83,8 @@ test("loadBookConfig: ~ is expanded in every path field, absolute paths are unto
   raw.solver.bin = "~/bin/solver";
   const cfg = loadBookConfig(writeConfig(dir, raw));
   const home = os.homedir();
-  assert.equal(cfg.source.textPath, `${home}/src/book.txt`);
-  assert.equal(cfg.source.chapterMapPath, "/abs/map.json");
+  assert.equal(cfg.source!.textPath, `${home}/src/book.txt`);
+  assert.equal(cfg.source!.chapterMapPath, "/abs/map.json");
   assert.equal(cfg.knownTrapsPath, `${home}/traps.md`);
   assert.equal(cfg.briefPath, `${home}/brief.md`);
   assert.equal(cfg.runDir, `${home}/runs/x`);
@@ -361,4 +361,25 @@ test("writerFormText: with notes it appends the editor's-notes block", () => {
       "\n\nEDITOR'S NOTES (a later editor's words, not the author's; never quote them as the author)\n\n" +
       "[1] The note.\n\n[Illustration: map]",
   );
+});
+
+test("an optional fixer role parses like the others and is absent when not given", () => {
+  const dir = tmp();
+  const raw = validConfig();
+  assert.equal(loadBookConfig(writeConfig(dir, raw)).fixer, undefined);
+  raw.fixer = { bin: "claude", model: "claude-opus-5-5", effort: "high" };
+  const cfg = loadBookConfig(writeConfig(dir, raw, "with-fixer.json"));
+  assert.equal(cfg.fixer?.model, "claude-opus-5-5");
+  assert.equal(cfg.fixer?.role, "fixer");
+});
+
+test("exemplarFrom names another book's run dir and chapter, resolved like other paths, and is validated", () => {
+  const dir = tmp();
+  const raw = validConfig();
+  raw.exemplarFrom = { runDir: "~/cf-wt/v26-plan/runs/the-48-laws-of-power", chapter: 1 };
+  const cfg = loadBookConfig(writeConfig(dir, raw));
+  assert.equal(cfg.exemplarFrom?.chapter, 1);
+  assert.ok(cfg.exemplarFrom?.runDir.endsWith("cf-wt/v26-plan/runs/the-48-laws-of-power"));
+  raw.exemplarFrom = { runDir: "x", chapter: 0 };
+  assert.throws(() => loadBookConfig(writeConfig(dir, raw, "bad.json")), /exemplarFrom\.chapter/);
 });

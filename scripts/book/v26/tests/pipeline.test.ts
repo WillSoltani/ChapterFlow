@@ -13,7 +13,9 @@ import {
   checkChapter,
   evalChapter,
   fixChapter,
+  JUDGE_VERSION,
   makeCtx,
+  reviewField,
   runBook,
   runChapter,
   statusRows,
@@ -1328,10 +1330,13 @@ test("statusRows: one row per chapter of the book, with stage, open count, spend
 // ---------------------------------------------------------------- evalChapter
 
 function idsFor(c: Chapter): string[] {
-  const ids = ["OPENER-hook", "PLAIN-summary", "PLAIN-rest", "COUNTER", "TRY", "LINES-1", "PRACTICE", "SPINE"];
+  const ids = ["OPENER-hook", "PLAIN-summary", "PLAIN-rest", "COUNTER", "TRY", "LINES-1", "PRACTICE", "SPINE", "VARY-examples", "VARY-quiz"];
   for (const t of ["fastRead", "deepRead", "fullRead"]) ids.push(`OPENER-${t}`, `ARC-${t}`, `END-${t}`);
   for (const e of c.examples) ids.push(`EX-${e.exampleId}`, `EXFIT-${e.exampleId}`);
   for (const q of c.quiz.questions) ids.push(`QUIZ-${q.questionId}`);
+  for (const q of c.quiz.questions) ids.push(`TEMPT-${q.questionId}`);
+  for (const q of c.quiz.questions) ids.push(`KEY-${q.questionId}`);
+  for (const q of c.quiz.questions) ids.push(`TELL-${q.questionId}`);
   for (const r of c.reviewCards) ids.push(`CARD-${r.cardId}`);
   return ids;
 }
@@ -1340,7 +1345,7 @@ const judgeItems = (ids: string[], failing: string[]) => ids.map((id) => ({ id, 
 test("evalChapter: judge items, aggregates, no-chapter scores and code metrics; a judge answer with ids missing is retried once", async () => {
   const h = harness();
   const ids = idsFor(chapter());
-  assert.equal(ids.length, 8 + 9 + 4 + 3 + 3);
+  assert.equal(ids.length, 10 + 9 + 4 + 3 + 3 + 3 + 3 + 3);
   const chapterPath = path.join(h.dir, "chapter.json");
   fs.writeFileSync(chapterPath, JSON.stringify({ ...chapter(), _lesson: lessonCard() }));
   const out = path.join(h.dir, "evalout");
@@ -1374,9 +1379,28 @@ test("evalChapter: judge items, aggregates, no-chapter scores and code metrics; 
   assert.ok(fs.existsSync(path.join(out, "T1.judge.incomplete.json")));
   assert.ok(fs.existsSync(path.join(out, "T1.nochapter-2.json")));
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(out, "T1.eval.json"), "utf8")), r);
+  assert.equal(r.judgeVersion, JUDGE_VERSION, "the eval is stamped with the judge that wrote it");
   const rows = readLedger(h.ledgerPath);
   assert.ok(rows.every((x) => x.chapter === "demo-book/ch01/eval:T1"), "eval spend is not counted in the chapter's own spend");
   assert.deepEqual(new Set(rows.map((x) => x.step)), new Set(["eval:judge", "eval:judge-retry", "nochapter"]));
+});
+
+test("evalChapter: an id the judge answers twice counts once, and a fail in either answer stands", async () => {
+  const h = harness();
+  const ids = idsFor(chapter());
+  const chapterPath = path.join(h.dir, "chapter.json");
+  fs.writeFileSync(chapterPath, JSON.stringify(chapter()));
+  const twice = [
+    ...judgeItems(ids, []),
+    { id: "ARC-fastRead", pass: false, evidence: "second answer: the real case is a bare label" },
+    { id: "TRY", pass: true, evidence: "second answer agrees" },
+  ];
+  h.script({ "pipe-review": [{ result: { lesson: "x", singleLesson: true, items: twice } }], "pipe-nochapter": [{ result: GUESS_WRONG }] });
+  const r = await evalChapter(h.ctx, chapterPath, 1, "T2", path.join(h.dir, "evalout"));
+  assert.equal(r.total, ids.length, "no id is counted twice");
+  assert.equal(r.passCount, ids.length - 1);
+  assert.deepEqual(r.items.filter((i) => !i.pass).map((i) => [i.id, i.evidence]), [["ARC-fastRead", "second answer: the real case is a bare label"]]);
+  assert.equal(h.calls("pipe-review").length, 1, "a repeated id is not a missing id: no retry");
 });
 
 test("evalChapter: ids still missing after the retry are reported", async () => {
@@ -1389,6 +1413,13 @@ test("evalChapter: ids still missing after the retry are reported", async () => 
   assert.equal(h.calls("pipe-review").length, 2, "retried exactly once");
   assert.deepEqual(r.missingIds, ids.slice(0, 2));
   assert.equal(r.singleLesson, false);
+});
+
+test("reviewField: KEY and TELL point at their question, VARY-quiz at the quiz, VARY-examples at the examples", () => {
+  assert.equal(reviewField("KEY-q3"), "quiz.q3");
+  assert.equal(reviewField("TELL-q1"), "quiz.q1");
+  assert.equal(reviewField("VARY-quiz"), "quiz");
+  assert.equal(reviewField("VARY-examples"), "examples");
 });
 
 test("evalChapter: det metrics report keyTakeaway repeats", async () => {
