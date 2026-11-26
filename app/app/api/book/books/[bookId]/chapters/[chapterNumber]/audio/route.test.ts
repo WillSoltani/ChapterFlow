@@ -10,7 +10,9 @@ import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 import {
   buildTakeawayText,
   chapterBodyClipS3Key,
+  getUserGreetingScript,
   splitSpeechText,
+  userGreetingS3Key,
   SPEECH_SETTINGS,
   TTS_UNAVAILABLE_MESSAGE,
   type BodySegmentType,
@@ -145,8 +147,16 @@ function oldStyleBodyKey(chapter: number, segment: BodySegmentType): string {
   return `book-content/audio/${BOOK_ID}/ch${String(chapter).padStart(4, "0")}.direct.medium.${segment}.mp3`;
 }
 
-function greetingKeys(): string[] {
-  return ["morning", "afternoon", "evening"].map((tod) => `${GREETING_PREFIX}${USER_ID}-${tod}.mp3`);
+const TIMES_OF_DAY = ["morning", "afternoon", "evening"] as const;
+
+// The name a greeting clip had before clips were named by their content.
+function oldStyleGreetingKeys(): string[] {
+  return TIMES_OF_DAY.map((tod) => `${GREETING_PREFIX}${USER_ID}-${tod}.mp3`);
+}
+
+// The names of the three greeting clips for a display name.
+function greetingKeys(name: string = READER_NAME): string[] {
+  return TIMES_OF_DAY.map((tod) => userGreetingS3Key(USER_ID, tod, name));
 }
 
 // ── Fake state ───────────────────────────────────────────────────────────────
@@ -164,6 +174,8 @@ const fake = {
   failWrites: false,
   /** The per-user greeting clips are absent from storage. */
   greetingsAbsent: false,
+  /** When set, exactly these greeting clips exist in storage (overrides greetingsAbsent). */
+  presentGreetingKeys: null as Set<string> | null,
   /** Today's daily generation count before the request. */
   dailyCount: 0,
   /** Texts sent to the speech endpoint, in call order. */
@@ -180,6 +192,7 @@ function resetFakes(opts: {
   dailyCount?: number;
   failWrites?: boolean;
   greetingsAbsent?: boolean;
+  presentGreetingKeys?: string[];
   speechFailure?: (text: string, call: number) => SpeechFailure;
 }): void {
   fake.presentBodyKeys = new Set(opts.presentBodyKeys ?? []);
@@ -187,6 +200,7 @@ function resetFakes(opts: {
   fake.writes = [];
   fake.failWrites = opts.failWrites ?? false;
   fake.greetingsAbsent = opts.greetingsAbsent ?? false;
+  fake.presentGreetingKeys = opts.presentGreetingKeys ? new Set(opts.presentGreetingKeys) : null;
   fake.dailyCount = opts.dailyCount ?? 0;
   fake.speechTexts = [];
   fake.speechFailure = opts.speechFailure ?? null;
@@ -199,7 +213,9 @@ function resetFakes(opts: {
 // cannot change the outcome. Only the chapter body clips vary per case.
 function isPresent(key: string): boolean {
   if (fake.stored.has(key)) return true;
-  if (key.startsWith(GREETING_PREFIX)) return !fake.greetingsAbsent;
+  if (key.startsWith(GREETING_PREFIX)) {
+    return fake.presentGreetingKeys ? fake.presentGreetingKeys.has(key) : !fake.greetingsAbsent;
+  }
   return key.startsWith("book-content/audio-segments/") || fake.presentBodyKeys.has(key);
 }
 
@@ -374,6 +390,8 @@ type RouteResult = {
   planTypes: string[] | undefined;
   /** type → S3 key each plan URL points at. */
   planKeys: Record<string, string> | undefined;
+  /** type → caption text of each plan segment that has one. */
+  planTexts: Record<string, string> | undefined;
   /** Keys whose write had completed when the handler returned its response. */
   writesAtResponse: string[];
   /** Log lines written during this request. */
@@ -399,15 +417,19 @@ async function callRoute(
   let errorMessage: string | undefined;
   let planTypes: string[] | undefined;
   let planKeys: Record<string, string> | undefined;
+  let planTexts: Record<string, string> | undefined;
   if (contentType.includes("json")) {
     const json = JSON.parse(text) as {
       error?: { code?: string; message?: string };
-      segments?: Array<{ type: string; url: string }>;
+      segments?: Array<{ type: string; url: string; text?: string }>;
     };
     errorCode = json.error?.code;
     errorMessage = json.error?.message;
     planTypes = json.segments?.map((s) => s.type);
     if (json.segments) {
+      planTexts = Object.fromEntries(
+        json.segments.flatMap((s) => (s.text === undefined ? [] : [[s.type, s.text] as const])),
+      );
       planKeys = Object.fromEntries(
         json.segments.map((s) => [s.type, decodeURIComponent(new URL(s.url).pathname.slice(1))]),
       );
@@ -421,6 +443,7 @@ async function callRoute(
     errorMessage,
     planTypes,
     planKeys,
+    planTexts,
     writesAtResponse,
     logs: logEvents.slice(logStart),
   };
@@ -857,6 +880,39 @@ test("mode=plan: a missing greeting clip is generated and stored before the resp
 
 for (const plan of [false, true]) {
   const path = plan ? "mode=plan" : "stream";
+
+  test(`${path}: a greeting clip stored for another name is not used`, async () => {
+    useSpeechKey();
+    const otherName = "Someone Else";
+    const otherClips = greetingKeys(otherName);
+    resetFakes({
+      presentBodyKeys: [bodyKey(1, "summary"), bodyKey(1, "takeaways")],
+      presentGreetingKeys: [...oldStyleGreetingKeys(), ...otherClips],
+    });
+    const mine = greetingKeys();
+    const myGreetings = TIMES_OF_DAY.map((tod) => getUserGreetingScript(READER_NAME, tod));
+
+    const res = await callRoute(1, { plan });
+
+    assert.equal(res.status, 200, `got ${res.status} ${res.errorCode ?? ""}`);
+    assert.ok(fake.speechTexts.length > 0);
+    assert.ok(fake.speechTexts.every((t) => myGreetings.includes(t)));
+    if (plan) {
+      assert.equal(res.writesAtResponse.length, 1);
+      const written = res.writesAtResponse[0]!;
+      assert.ok(mine.includes(written));
+      assert.equal(res.planKeys?.userGreeting, written);
+      assert.ok(myGreetings.includes(res.planTexts?.userGreeting ?? ""));
+    } else {
+      assert.deepEqual([...res.writesAtResponse].sort(), [...mine].sort());
+      assert.ok(res.text.includes("speech-"));
+      for (const key of [...otherClips, ...oldStyleGreetingKeys()]) {
+        assert.ok(!res.text.includes(clipBytes(key)), `answer carries the clip ${key}`);
+      }
+    }
+    assertNoPersonalData(res);
+    assertNoUnexpectedCalls();
+  });
 
   test(`${path}: daily limit reached, greeting missing, body clips stored → 200 without the greeting`, async () => {
     useSpeechKey();

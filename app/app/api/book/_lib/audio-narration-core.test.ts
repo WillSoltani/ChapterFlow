@@ -8,6 +8,8 @@ import {
   chapterBodyClipS3Key,
   splitSpeechText,
   userGreetingS3Key,
+  getUserGreetingScript,
+  getSegmentDescriptors,
   selectBodySegmentsToGenerate,
   BODY_SEGMENT_TYPES,
   SPEECH_RECIPE_VERSION,
@@ -77,7 +79,7 @@ test("getSegmentKeys: full plan produces the documented order (with name + score
 
   assert.deepEqual(keys, [
     // 1. per-user greeting clip ("Good evening, Ada.")
-    "book-content/audio-segments/names/user-123-evening.mp3",
+    userGreetingS3Key("user-123", "evening", "Ada"),
     // 2. contextual greeting
     "book-content/audio-segments/greetings/ctx-weekend.mp3",
     // 3. book intro (title + author)
@@ -263,11 +265,77 @@ test("splitSpeechText: same chunks as the previous splitting loop", () => {
   }
 });
 
-test("userGreetingS3Key: keyed by userId + time-of-day", () => {
+const GREETING_KEY_SHAPE =
+  /^book-content\/audio-segments\/names\/user-123-morning\.[0-9a-f]{16}\.mp3$/;
+
+function greetingHash(key: string): string {
+  const match = /\.([0-9a-f]{16})\.mp3$/.exec(key);
+  assert.ok(match, `no hash in ${key}`);
+  return match[1]!;
+}
+
+test("userGreetingS3Key: has the shape names/<userId>-<timeOfDay>.<16 hex>.mp3", () => {
+  assert.match(userGreetingS3Key("user-123", "morning", "Ada"), GREETING_KEY_SHAPE);
+});
+
+test("userGreetingS3Key: its hash is the one chapter clips get for the same chunk list", () => {
+  const chapterKey = chapterBodyClipS3Key("b", 1, "summary", [
+    getUserGreetingScript("Ada", "morning"),
+  ]);
   assert.equal(
-    userGreetingS3Key("user-123", "morning"),
-    "book-content/audio-segments/names/user-123-morning.mp3",
+    greetingHash(userGreetingS3Key("user-123", "morning", "Ada")),
+    greetingHash(chapterKey),
   );
+});
+
+test("userGreetingS3Key: the same input gives the same name", () => {
+  assert.equal(
+    userGreetingS3Key("user-123", "morning", "Ada"),
+    userGreetingS3Key("user-123", "morning", "Ada"),
+  );
+});
+
+test("userGreetingS3Key: pinned name for a fixed input", () => {
+  assert.equal(
+    userGreetingS3Key("user-123", "morning", "Ada"),
+    "book-content/audio-segments/names/user-123-morning.94dde59a54515750.mp3",
+  );
+});
+
+test("userGreetingS3Key: a different display name gives a different name", () => {
+  assert.notEqual(
+    userGreetingS3Key("user-123", "morning", "Ada"),
+    userGreetingS3Key("user-123", "morning", "Grace"),
+  );
+});
+
+test("userGreetingS3Key: a different time of day gives a different name", () => {
+  assert.notEqual(
+    userGreetingS3Key("user-123", "morning", "Ada"),
+    userGreetingS3Key("user-123", "evening", "Ada"),
+  );
+});
+
+test("userGreetingS3Key: a different user gives a different name", () => {
+  assert.notEqual(
+    userGreetingS3Key("user-123", "morning", "Ada"),
+    userGreetingS3Key("user-456", "morning", "Ada"),
+  );
+});
+
+test("userGreetingS3Key: a different recipe number gives a different name", () => {
+  assert.notEqual(
+    userGreetingS3Key("user-123", "morning", "Ada", SPEECH_RECIPE_VERSION),
+    userGreetingS3Key("user-123", "morning", "Ada", SPEECH_RECIPE_VERSION + 1),
+  );
+});
+
+test("getSegmentDescriptors: the per-user greeting is keyed by the user's display name", () => {
+  const ctx = makeCtx();
+  const plan = makePlan();
+  const first = getSegmentDescriptors(plan, ctx, BODY_KEYS)[0]!;
+  assert.equal(first.type, "userGreeting");
+  assert.equal(first.key, userGreetingS3Key(ctx.userId, plan.timeOfDay, "Ada"));
 });
 
 test("buildSegmentPlan: context-driven branches are deterministic", () => {

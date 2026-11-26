@@ -122,7 +122,7 @@ silence segment despite the code comment; `SILENCE_S3_KEY` is exported but unuse
 
 | # | Segment | S3 key pattern | Present when | Auto-generated on miss? |
 |---|---------|----------------|--------------|--------------------------|
-| 1 | Per-user greeting | `book-content/audio-segments/names/{userId}-{tod}.mp3` | `userName` is known | ✅ yes (ElevenLabs; the stream generates all 3 TODs, `mode=plan` the current one) |
+| 1 | Per-user greeting | `book-content/audio-segments/names/{userId}-{tod}.{h16}.mp3` | `userName` is known | ✅ yes (ElevenLabs; the stream generates all 3 TODs, `mode=plan` the current one) |
 | 2 | Contextual greeting | `book-content/audio-segments/greetings/{greetingId}.mp3` | always | ❌ must be pre-generated |
 | 3 | Book intro (title + author) | `book-content/audio-segments/books/{bookId}.mp3` | always | ❌ pre-generated |
 | 4 | Score callout | `book-content/audio-segments/scores/{scoreId}.mp3` | `plan.scoreId != null` | ❌ pre-generated |
@@ -141,6 +141,9 @@ silence segment despite the code comment; `SILENCE_S3_KEY` is exported but unuse
   `variant` are **not** part of the name: they only select the text, so every `tone`/`variant` that
   resolves to the same text shares one clip. When a chapter's text changes, the name changes and the
   new text is generated on the next listen. Clips stored under earlier names are not read.
+- **The per-user greeting clip is named the same way**, with `{h16}` computed over the greeting text
+  ([`userGreetingS3Key`](../../app/app/api/book/_lib/audio-narration-core.ts)), so a changed display
+  name gives a new clip name. Clips stored under earlier names are not read.
 - **Skip behavior:** any narration segment whose S3 object is missing **and** cannot be generated is
   **silently dropped** from the stitch. So the number of segments in the output is **not fixed** —
   a chapter with an un-pre-generated `scores`/`books` clip simply omits it. Only if *every*
@@ -264,7 +267,7 @@ generate-missing-on-first-play behavior (§4, §6 cold-start). Only the response
     {
       "segmentId": "greeting-user-evening",       // stable, unique within this manifest
       "type": "userGreeting",
-      "url": "https://<bucket>.s3.<region>.amazonaws.com/book-content/audio-segments/names/<userId>-evening.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Expires=21600&X-Amz-Signature=…",
+      "url": "https://<bucket>.s3.<region>.amazonaws.com/book-content/audio-segments/names/<userId>-evening.<h16>.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Expires=21600&X-Amz-Signature=…",
       "contentLength": 40213,                     // exact bytes of the S3 object
       "durationSeconds": 2.5,                      // present only on 128kbps-CBR segments (bytes/16000)
       "text": "Good evening, Ada.",               // caption; omitted for body segments
@@ -349,7 +352,8 @@ and verified end-to-end by the opt-in integration test `app/app/api/book/_lib/au
   any context-triggered clip are stable across refreshes for the same user state + chapter text +
   tone + variant + time of day. **Treat each freshly fetched manifest as authoritative** and key any
   per-segment byte cache by each segment's `url` path without the query string (it changes when the
-  audio behind a slot changes), not by `segmentId`.
+  audio behind a slot changes), not by `segmentId`. The `userGreeting` URL path also changes when
+  the reader's display name changes, so a byte cache keyed by URL path picks up the new greeting.
 - **Republished narration and offline downloads.** When a chapter's text is republished, its body
   clips get new names and new URLs on the next manifest; the old clips are not changed. A client
   that keeps a complete offline download of a chapter keeps playing the old narration until it
@@ -384,4 +388,4 @@ work), cacheable, and refreshable by re-`GET`ting `?mode=plan`.
 6. To replay, just re-`GET` (no URL expiry). Do not cache the stitched body as a stable chapter
    asset — it's `no-cache` and non-deterministic.
 
-_Last updated: 2026-11-26 (body clips named by content; 503/404 rules; error table and `mode` param corrected; cache by URL path, not `segmentId`)._
+_Last updated: 2026-11-26 (body clips and the per-user greeting clip named by content; 503/404 rules; error table and `mode` param corrected; cache by URL path, not `segmentId`)._
