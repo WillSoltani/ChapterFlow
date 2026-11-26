@@ -86,6 +86,7 @@ export default function PrivacyPolicyPage() {
             <li><strong style={{ color: "var(--text-heading)" }}>Stripe:</strong> Payment processing and subscription management.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>AWS (DynamoDB, S3, SES):</strong> Secure data storage, content delivery, and transactional email.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Anthropic:</strong> When you submit your own scenario, the text you write is sent to Anthropic&apos;s API for automated quality and safety review before it can be published. Don&apos;t include personal or sensitive information in submissions.</li>
+            <li><strong style={{ color: "var(--text-heading)" }}>ElevenLabs:</strong> Text-to-speech for chapter audio (a Pro feature). When you play a chapter&apos;s audio, the chapter text being read aloud and a short greeting containing your display name (or, if you haven&apos;t set one, a name taken from your sign-in account or the first part of your email address) are sent to ElevenLabs&apos; API to generate the audio. This happens only when we don&apos;t already have that audio stored.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>ip-api.com:</strong> An IP-geolocation provider used only when you enable usage analytics, to derive an approximate (city-level) location from your IP address.</li>
           </ul>
           <p className="mt-3">We do not sell your personal information to third parties. We do not use third-party advertising or tracking services.</p>
