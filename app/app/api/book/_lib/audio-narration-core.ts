@@ -103,8 +103,20 @@ export function segmentS3Key(type: string, id: string): string {
   return `${AUDIO_SEGMENTS_PREFIX}/${type}/${id}.mp3`;
 }
 
-export function userGreetingS3Key(userId: string, timeOfDay: TimeOfDay): string {
-  return `${AUDIO_SEGMENTS_PREFIX}/names/${userId}-${timeOfDay}.mp3`;
+/**
+ * S3 key of a reader's spoken greeting clip, named by its content in the same way
+ * as a chapter body clip: the hash covers the recipe number, the speech settings
+ * and the exact greeting text. A changed display name, voice setting or recipe
+ * number gives a new name; the same greeting gives the same name.
+ */
+export function userGreetingS3Key(
+  userId: string,
+  timeOfDay: TimeOfDay,
+  name: string,
+  recipe: number = SPEECH_RECIPE_VERSION,
+): string {
+  const h16 = speechClipHash([getUserGreetingScript(name, timeOfDay)], recipe);
+  return `${AUDIO_SEGMENTS_PREFIX}/names/${userId}-${timeOfDay}.${h16}.mp3`;
 }
 
 export function bookIntroS3Key(bookId: string): string {
@@ -118,8 +130,8 @@ export function chapterNumberS3Key(chapterNumber: number): string {
 // ── Speech clips (generated on the fly) ──────────────────────────────
 
 /**
- * Bump by hand to re-voice every chapter body clip: the number is part of each
- * clip's name, so a new value makes every stored body clip a miss.
+ * Bump by hand to re-voice every chapter body clip and every greeting clip: the
+ * number is part of each clip's name, so a new value makes every stored clip a miss.
  */
 export const SPEECH_RECIPE_VERSION = 1;
 
@@ -164,6 +176,23 @@ export function splitSpeechText(text: string): string[] {
 }
 
 /**
+ * First 16 hex characters of SHA-256 over the recipe number, the speech settings
+ * and the exact text chunks sent to speech.
+ */
+function speechClipHash(chunks: readonly string[], recipe: number): string {
+  const hashInput = JSON.stringify([
+    recipe,
+    SPEECH_SETTINGS.voiceId,
+    SPEECH_SETTINGS.modelId,
+    SPEECH_SETTINGS.voiceSettings.stability,
+    SPEECH_SETTINGS.voiceSettings.similarity_boost,
+    SPEECH_SETTINGS.outputFormat,
+    chunks,
+  ]);
+  return createHash("sha256").update(hashInput).digest("hex").slice(0, 16);
+}
+
+/**
  * S3 key of a chapter body clip, named by its content: the first 16 hex
  * characters of SHA-256 over a fixed-order array of the recipe number, the
  * speech settings and the exact text chunks sent to speech. Changed text gives
@@ -177,16 +206,7 @@ export function chapterBodyClipS3Key(
   chunks: readonly string[],
   recipe: number = SPEECH_RECIPE_VERSION,
 ): string {
-  const hashInput = JSON.stringify([
-    recipe,
-    SPEECH_SETTINGS.voiceId,
-    SPEECH_SETTINGS.modelId,
-    SPEECH_SETTINGS.voiceSettings.stability,
-    SPEECH_SETTINGS.voiceSettings.similarity_boost,
-    SPEECH_SETTINGS.outputFormat,
-    chunks,
-  ]);
-  const h16 = createHash("sha256").update(hashInput).digest("hex").slice(0, 16);
+  const h16 = speechClipHash(chunks, recipe);
   return `book-content/audio/${bookId}/ch${String(chapterNumber).padStart(4, "0")}.${segment}.${h16}.mp3`;
 }
 
@@ -304,7 +324,7 @@ export function getSegmentDescriptors(
   // 1. Per-user greeting ("Good evening, Will.") — only when a name is known.
   if (ctx.userName) {
     descriptors.push({
-      key: userGreetingS3Key(ctx.userId, plan.timeOfDay),
+      key: userGreetingS3Key(ctx.userId, plan.timeOfDay, ctx.userName),
       type: "userGreeting",
       segmentId: `greeting-user-${plan.timeOfDay}`,
       text: getUserGreetingScript(ctx.userName, plan.timeOfDay),

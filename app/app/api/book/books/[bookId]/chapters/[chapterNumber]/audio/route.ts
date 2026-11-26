@@ -498,7 +498,7 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
       );
 
     // Auto-generate greeting clip if missing and we have a name + API key
-    const greetingKey = userName ? userGreetingS3Key(user.sub, narrationCtx.timeOfDay) : null;
+    const greetingKey = userName ? userGreetingS3Key(user.sub, narrationCtx.timeOfDay, userName) : null;
 
     // Log what loaded and what's missing (debug-only). The per-user greeting key
     // carries the user id, so it is logged by its time of day only.
@@ -532,7 +532,7 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
             tod,
             clip: await generateGreetingClip(
               bucket,
-              userGreetingS3Key(user.sub, tod),
+              userGreetingS3Key(user.sub, tod, userName),
               tod,
               getUserGreetingScript(userName, tod),
               elevenLabsKey,
