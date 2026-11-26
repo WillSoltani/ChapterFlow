@@ -13,6 +13,8 @@
  * the segment order this module produces.
  */
 
+import { createHash } from "node:crypto";
+
 // ── Segment types ────────────────────────────────────────────────────
 
 export type TimeOfDay = "morning" | "afternoon" | "evening";
@@ -113,14 +115,79 @@ export function chapterNumberS3Key(chapterNumber: number): string {
   return `${AUDIO_SEGMENTS_PREFIX}/chapters/chapter-${chapterNumber}.mp3`;
 }
 
-export function chapterBodySegmentS3Key(
+// ── Speech clips (generated on the fly) ──────────────────────────────
+
+/**
+ * Bump by hand to re-voice every chapter body clip: the number is part of each
+ * clip's name, so a new value makes every stored body clip a miss.
+ */
+export const SPEECH_RECIPE_VERSION = 1;
+
+/** The single definition of how speech clips are generated. */
+export const SPEECH_SETTINGS = {
+  voiceId: "UgBBYS2sOqTuMpoF3BR0",
+  modelId: "eleven_turbo_v2_5",
+  voiceSettings: { stability: 0.5, similarity_boost: 0.75 },
+  outputFormat: "mp3_44100_128",
+} as const;
+
+/** Most characters sent to speech in one call. */
+export const SPEECH_CHUNK_MAX_CHARS = 4096;
+
+/** Message of every 503 tts_unavailable answer of the chapter audio route. */
+export const TTS_UNAVAILABLE_MESSAGE = "Chapter audio is not ready yet. Try again in a moment.";
+
+/**
+ * Split a body text into the chunks sent to speech: a text within the limit is
+ * one chunk; a longer text is packed paragraph by paragraph (split on blank
+ * lines) into trimmed chunks of at most {@link SPEECH_CHUNK_MAX_CHARS}. A single
+ * paragraph longer than the limit stays whole.
+ */
+export function splitSpeechText(text: string): string[] {
+  const chunks: string[] = [];
+  if (text.length <= SPEECH_CHUNK_MAX_CHARS) {
+    chunks.push(text);
+  } else {
+    const paragraphs = text.split("\n\n");
+    let current = "";
+    for (const para of paragraphs) {
+      if (current && (current.length + para.length + 2) > SPEECH_CHUNK_MAX_CHARS) {
+        chunks.push(current.trim());
+        current = para;
+      } else {
+        current = current ? `${current}\n\n${para}` : para;
+      }
+    }
+    if (current.trim()) chunks.push(current.trim());
+  }
+  return chunks;
+}
+
+/**
+ * S3 key of a chapter body clip, named by its content: the first 16 hex
+ * characters of SHA-256 over a fixed-order array of the recipe number, the
+ * speech settings and the exact text chunks sent to speech. Changed text gives
+ * a new name; the same text (whatever the tone or variant that selected it)
+ * gives the same name.
+ */
+export function chapterBodyClipS3Key(
   bookId: string,
   chapterNumber: number,
-  tone: string,
-  variant: string,
   segment: BodySegmentType,
+  chunks: readonly string[],
+  recipe: number = SPEECH_RECIPE_VERSION,
 ): string {
-  return `book-content/audio/${bookId}/ch${String(chapterNumber).padStart(4, "0")}.${tone}.${variant}.${segment}.mp3`;
+  const hashInput = JSON.stringify([
+    recipe,
+    SPEECH_SETTINGS.voiceId,
+    SPEECH_SETTINGS.modelId,
+    SPEECH_SETTINGS.voiceSettings.stability,
+    SPEECH_SETTINGS.voiceSettings.similarity_boost,
+    SPEECH_SETTINGS.outputFormat,
+    chunks,
+  ]);
+  const h16 = createHash("sha256").update(hashInput).digest("hex").slice(0, 16);
+  return `book-content/audio/${bookId}/ch${String(chapterNumber).padStart(4, "0")}.${segment}.${h16}.mp3`;
 }
 
 // ── Time of day ──────────────────────────────────────────────────────
@@ -224,11 +291,13 @@ export function buildSegmentPlan(ctx: NarrationContext): SegmentPlan {
 //  10. RECAP body          [oneMinuteRecap audio]
 //  11. CLOSING CTA         "Another chapter down, another day on your streak..."
 
+/** Body clip key per body segment, present only for segments that have text. */
+export type BodyClipKeys = Partial<Record<BodySegmentType, string>>;
+
 export function getSegmentDescriptors(
   plan: SegmentPlan,
   ctx: NarrationContext,
-  tone: string,
-  variant: string,
+  bodyKeys: BodyClipKeys,
 ): SegmentDescriptor[] {
   const descriptors: SegmentDescriptor[] = [];
 
@@ -278,12 +347,11 @@ export function getSegmentDescriptors(
     text: getChapterNumberScript(ctx.chapterNumber),
   });
 
-  // 6. Summary body (TTS, tone+variant-scoped). Long-form → no caption.
-  descriptors.push({
-    key: chapterBodySegmentS3Key(ctx.bookId, ctx.chapterNumber, tone, variant, "summary"),
-    type: "summary",
-    segmentId: "summary",
-  });
+  // 6. Summary body (speech clip named by its content). Long-form → no
+  // caption. A body segment without text has no key and no descriptor.
+  if (bodyKeys.summary) {
+    descriptors.push({ key: bodyKeys.summary, type: "summary", segmentId: "summary" });
+  }
 
   // 7. Transition (between summary and takeaways).
   descriptors.push({
@@ -294,18 +362,14 @@ export function getSegmentDescriptors(
   });
 
   // 8. Takeaways body (with connectors baked in).
-  descriptors.push({
-    key: chapterBodySegmentS3Key(ctx.bookId, ctx.chapterNumber, tone, variant, "takeaways"),
-    type: "takeaways",
-    segmentId: "takeaways",
-  });
+  if (bodyKeys.takeaways) {
+    descriptors.push({ key: bodyKeys.takeaways, type: "takeaways", segmentId: "takeaways" });
+  }
 
   // 9. Recap body.
-  descriptors.push({
-    key: chapterBodySegmentS3Key(ctx.bookId, ctx.chapterNumber, tone, variant, "recap"),
-    type: "recap",
-    segmentId: "recap",
-  });
+  if (bodyKeys.recap) {
+    descriptors.push({ key: bodyKeys.recap, type: "recap", segmentId: "recap" });
+  }
 
   // 10. Closing CTA.
   descriptors.push({
@@ -324,17 +388,16 @@ export function getSegmentDescriptors(
 export function getSegmentKeys(
   plan: SegmentPlan,
   ctx: NarrationContext,
-  tone: string,
-  variant: string,
+  bodyKeys: BodyClipKeys,
 ): string[] {
-  return getSegmentDescriptors(plan, ctx, tone, variant).map((d) => d.key);
+  return getSegmentDescriptors(plan, ctx, bodyKeys).map((d) => d.key);
 }
 
 // ── Body segments that need generation (stream path) ─────────────────
 //
 // A body segment needs generation only when it has no cached clip AND the
-// chapter has text for it. A segment without text can never be produced, so it
-// is not missing audio (a cached clip of it still plays). Returns the same
+// chapter has text for it. A segment without text has no clip name, so it is
+// never loaded and never generated, and it is not missing audio. Returns the same
 // objects, in order, so the caller can patch generated bytes in place.
 
 export function selectBodySegmentsToGenerate<
@@ -536,7 +599,7 @@ const ELEVENLABS_CBR_TYPES: ReadonlySet<PlanSegmentType> = new Set<PlanSegmentTy
   "recap",
 ]);
 
-// The three tone/variant-scoped chapter bodies. A missing body with no way to
+// The three chapter body clips (named by their text). A missing body with no way to
 // generate it means the chapter audio is not ready → 503 (stream parity).
 const PLAN_BODY_TYPES: ReadonlySet<PlanSegmentType> = new Set<PlanSegmentType>([
   "summary",
@@ -580,10 +643,12 @@ export type BuildAudioPlanDeps = {
   presign: (key: string) => Promise<string>;
   /**
    * Generate + DURABLY cache a generatable segment (body or user greeting);
-   * resolves to its byte length, or null when it can't be produced (no content
-   * / TTS failure / cache-write failure). Must await the S3 write so the
-   * presigned URL is immediately fetchable. Only ever called for
-   * {@link ELEVENLABS_CBR_TYPES} segments that are currently missing.
+   * resolves to its byte length, or null when it can't be produced (TTS
+   * failure / cache-write failure). A null body segment makes the plan a 503;
+   * a null user greeting is dropped. A thrown error (the daily-limit 429)
+   * propagates to the caller. Must await the S3 write so the presigned URL is
+   * immediately fetchable. Only ever called for {@link ELEVENLABS_CBR_TYPES}
+   * segments that are currently missing.
    */
   generate: (descriptor: SegmentDescriptor) => Promise<number | null>;
   /** Whether on-the-fly TTS generation is possible (ELEVENLABS_API_KEY set). */
@@ -609,7 +674,9 @@ export type BuildAudioPlanResult =
  *  - a missing BODY segment with text and no TTS key → `503 tts_unavailable`;
  *  - missing generatable segments (body with text + user greeting) are
  *    generated and durably cached, then presigned;
- *  - any segment still missing is silently dropped (as the stream skips it);
+ *  - a BODY segment with text that could not be generated → `503
+ *    tts_unavailable` (parts generated in the same request stay stored);
+ *  - any other segment still missing is silently dropped (as the stream skips it);
  *  - zero surviving segments → `404 no_audio`.
  */
 export async function buildAudioPlan(
@@ -629,16 +696,12 @@ export async function buildAudioPlan(
   //    generate means the chapter audio has not been produced yet.
   const bodyMissing = descriptors.some(isMissingBody);
   if (bodyMissing && !deps.canGenerate) {
-    return {
-      ok: false,
-      status: 503,
-      code: "tts_unavailable",
-      message: "Audio generation is not available — chapter audio has not been cached yet",
-    };
+    return { ok: false, status: 503, code: "tts_unavailable", message: TTS_UNAVAILABLE_MESSAGE };
   }
 
   // 3. Generate the missing generatable segments (body + user greeting) in
   //    parallel, awaiting durable S3 writes so their presigned URLs are valid.
+  //    Errors thrown by generate (the daily-limit 429) are not caught here.
   await Promise.all(
     descriptors.map(async (d, i) => {
       if (lengths[i] !== null) return;
@@ -647,6 +710,13 @@ export async function buildAudioPlan(
       lengths[i] = await deps.generate(d);
     }),
   );
+
+  // A body segment with text that still could not be produced (speech failed
+  // or the clip could not be stored) means the chapter audio is not ready:
+  // answer 503 rather than a manifest with a hole in it.
+  if (descriptors.some(isMissingBody)) {
+    return { ok: false, status: 503, code: "tts_unavailable", message: TTS_UNAVAILABLE_MESSAGE };
+  }
 
   // 4. Presign every segment that now exists, preserving descriptor order;
   //    silently drop the rest (parity with the stream skipping a missing clip).

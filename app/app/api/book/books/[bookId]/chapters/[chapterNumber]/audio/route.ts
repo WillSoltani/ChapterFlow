@@ -32,12 +32,16 @@ import {
   getSegmentDescriptors,
   buildAudioPlan,
   getTimeOfDay,
-  chapterBodySegmentS3Key,
+  chapterBodyClipS3Key,
+  splitSpeechText,
   userGreetingS3Key,
   getUserGreetingScript,
   buildTakeawayText,
   selectBodySegmentsToGenerate,
   BODY_SEGMENT_TYPES,
+  SPEECH_SETTINGS,
+  TTS_UNAVAILABLE_MESSAGE,
+  type BodyClipKeys,
   type BodySegmentType,
   type TimeOfDay,
   type NarrationContext,
@@ -69,12 +73,9 @@ function audioDebug(message: string): void {
 
 type Params = { params: Promise<{ bookId: string; chapterNumber: string }> };
 
-// The tone/variant query params are interpolated into S3 keys used to both read
-// and (on cache miss) write TTS segments, so they must be constrained to the
-// known key sets. An unvalidated variant lets a caller mint unlimited distinct
-// values, each forcing a fresh billable ElevenLabs generation and a new cached
-// S3 object (cost amplification / S3 pollution). Validate against the allowed
-// sets and 400 on anything else before either value is used in a key.
+// The tone/variant query params select the chapter text that is spoken; they
+// are not part of any S3 key (body clips are named by the text itself). They
+// are still constrained to the known sets and answer 400 on anything else.
 const VALID_TONES = new Set<ToneKey>(["gentle", "direct", "competitive"]);
 const VALID_VARIANTS = new Set<VariantKey>([
   "easy",
@@ -113,46 +114,6 @@ async function headContentLength(bucket: string, key: string): Promise<number | 
   try {
     const head = await s3.send(new HeadObjectCommand({ Bucket: bucket, Key: key }));
     return typeof head.ContentLength === "number" ? head.ContentLength : null;
-  } catch {
-    return null;
-  }
-}
-
-// Generate ONE user-greeting clip and DURABLY cache it before returning (the
-// plan path presigns a URL to this object, so unlike the fire-and-forget stream
-// greeting write we must await the PutObject). Returns null on TTS or cache
-// failure so the caller drops the segment rather than handing out a dead URL.
-async function generateAndCacheGreetingClip(
-  bucket: string,
-  key: string,
-  script: string,
-  elevenLabsKey: string,
-): Promise<Buffer | null> {
-  try {
-    const res = await fetch(
-      `https://api.elevenlabs.io/v1/text-to-speech/UgBBYS2sOqTuMpoF3BR0?output_format=mp3_44100_128`,
-      {
-        method: "POST",
-        headers: { "xi-api-key": elevenLabsKey, "Content-Type": "application/json", Accept: "audio/mpeg" },
-        body: JSON.stringify({
-          text: script,
-          model_id: "eleven_turbo_v2_5",
-          voice_settings: { stability: 0.5, similarity_boost: 0.75 },
-        }),
-      },
-    );
-    if (!res.ok) return null;
-    const buf = Buffer.from(await res.arrayBuffer());
-    await s3.send(
-      new PutObjectCommand({
-        Bucket: bucket,
-        Key: key,
-        Body: buf,
-        ContentType: "audio/mpeg",
-        CacheControl: "public, max-age=31536000",
-      }),
-    );
-    return buf;
   } catch {
     return null;
   }
@@ -275,104 +236,6 @@ function extractSegmentText(
   return parts.join("\n\n").trim();
 }
 
-async function generateAndCacheBodySegment(
-  bucket: string,
-  cacheKey: string,
-  bookId: string,
-  chapterNumber: number,
-  tone: ToneKey,
-  variant: string,
-  segment: BodySegmentType,
-  elevenLabsKey: string,
-  opts?: { awaitCache?: boolean },
-): Promise<Buffer | null> {
-  const v = await resolveVariantContent(bookId, chapterNumber, tone, variant);
-  if (!v) return null;
-
-  const ttsText = extractSegmentText(v as Record<string, unknown>, segment, tone);
-  if (!ttsText) return null;
-
-  // Chunk at 4096 chars on paragraph boundaries
-  const MAX_CHUNK = 4096;
-  const textChunks: string[] = [];
-  if (ttsText.length <= MAX_CHUNK) {
-    textChunks.push(ttsText);
-  } else {
-    const paragraphs = ttsText.split("\n\n");
-    let current = "";
-    for (const para of paragraphs) {
-      if (current && (current.length + para.length + 2) > MAX_CHUNK) {
-        textChunks.push(current.trim());
-        current = para;
-      } else {
-        current = current ? `${current}\n\n${para}` : para;
-      }
-    }
-    if (current.trim()) textChunks.push(current.trim());
-  }
-
-  // Generate TTS for each chunk
-  const audioChunks: Buffer[] = [];
-  for (const chunk of textChunks) {
-    const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/UgBBYS2sOqTuMpoF3BR0?output_format=mp3_44100_128`, {
-      method: "POST",
-      headers: {
-        "xi-api-key": elevenLabsKey,
-        "Content-Type": "application/json",
-        Accept: "audio/mpeg",
-      },
-      body: JSON.stringify({
-        text: chunk,
-        model_id: "eleven_turbo_v2_5",
-        voice_settings: { stability: 0.5, similarity_boost: 0.75 },
-      }),
-    });
-    if (!res.ok) {
-      let errBody = "";
-      try { errBody = await res.text(); } catch {}
-      logger.error("audio_tts_failed", { segment, status: res.status, errBody: errBody.slice(0, 300) });
-      return null;
-    }
-    audioChunks.push(Buffer.from(await res.arrayBuffer()));
-  }
-
-  const buffer = Buffer.concat(audioChunks);
-
-  const put = s3.send(
-    new PutObjectCommand({
-      Bucket: bucket,
-      Key: cacheKey,
-      Body: buffer,
-      ContentType: "audio/mpeg",
-      CacheControl: "public, max-age=31536000",
-    }),
-  );
-
-  // The stream path fires-and-forgets the cache write (it already holds the
-  // buffer it needs). The plan path passes awaitCache:true so the object is
-  // DURABLY in S3 before we presign a URL to it — a write failure then drops the
-  // segment (return null) rather than yielding a URL that would 404.
-  if (opts?.awaitCache) {
-    try {
-      await put;
-      audioDebug(`[audio] Cached ${segment}: ${cacheKey} (${buffer.length} bytes)`);
-    } catch (err) {
-      logger.error("audio_s3_cache_write_failed", { segment, cacheKey, err });
-      return null;
-    }
-  } else {
-    put
-      .then(() => {
-        audioDebug(`[audio] Cached ${segment}: ${cacheKey} (${buffer.length} bytes)`);
-      })
-      .catch((err) => {
-        logger.error("audio_s3_cache_write_failed", { segment, cacheKey, err });
-      });
-  }
-
-  return buffer;
-}
-
 // ── Main handler ─────────────────────────────────────────────────────
 
 export async function GET(req: Request, ctx: Params) {
@@ -422,6 +285,30 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
       chapterNumber,
     });
 
+    // The chapter's text for each body segment, read once per request, with the
+    // chunks sent to speech and the clip name derived from them. A body segment
+    // with no text gets no name: it is not missing audio, never causes 503 and
+    // never reserves a daily generation unit.
+    const bodyTexts: Partial<Record<BodySegmentType, string>> = {};
+    const bodyChunks: Partial<Record<BodySegmentType, string[]>> = {};
+    const bodyKeys: BodyClipKeys = {};
+    const variantContent = await resolveVariantContent(bookId, chapterNumber, tone, variant);
+    if (variantContent) {
+      for (const seg of BODY_SEGMENT_TYPES) {
+        const text = extractSegmentText(variantContent as Record<string, unknown>, seg, tone);
+        bodyTexts[seg] = text;
+        if (!text) continue;
+        const chunks = splitSpeechText(text);
+        bodyChunks[seg] = chunks;
+        bodyKeys[seg] = chapterBodyClipS3Key(bookId, chapterNumber, seg, chunks);
+      }
+    }
+
+    // A chapter without summary text has no chapter audio to offer.
+    if (!bodyTexts.summary) {
+      return bookErr(req, 404, "no_audio", "No audio segments available");
+    }
+
     // Paid speech generation is capped per user per day. Cached clips are free;
     // a request that generates anything reserves one unit, once.
     const reserveGeneration = createGenerationReservation(() =>
@@ -434,6 +321,19 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
         resource: "new chapter audio",
       }),
     );
+
+    // A greeting never blocks a listen: when the daily limit refuses the
+    // reservation, the greeting is skipped. A body clip that still needs
+    // generation is then refused by the same (remembered) reservation.
+    const reserveForGreeting = async (): Promise<boolean> => {
+      try {
+        await reserveGeneration();
+        return true;
+      } catch (err) {
+        if (isBookApiError(err) && err.status === 429) return false;
+        throw err;
+      }
+    };
 
     // Gather user context in parallel
     const [profile, streak, tier, userSettings, prevQuizState, prevPrevQuizState] =
@@ -498,7 +398,7 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
 
     // Build narration plan and get ordered segment keys
     const plan = buildSegmentPlan(narrationCtx);
-    const segmentKeys = getSegmentKeys(plan, narrationCtx, tone, variant);
+    const segmentKeys = getSegmentKeys(plan, narrationCtx, bodyKeys);
 
     audioDebug(
       `[audio] Plan: greeting=${plan.greetingId} score=${plan.scoreId} transition=${plan.transitionId} closing=${plan.closingId} segments=${segmentKeys.length}`,
@@ -507,24 +407,11 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
     // Identify which body segments might need on-the-fly generation
     const bodySegmentKeyMap = new Map<string, BodySegmentType>();
     for (const seg of BODY_SEGMENT_TYPES) {
-      bodySegmentKeyMap.set(
-        chapterBodySegmentS3Key(bookId, chapterNumber, tone, variant, seg),
-        seg,
-      );
+      const key = bodyKeys[seg];
+      if (key) bodySegmentKeyMap.set(key, seg);
     }
 
     const elevenLabsKey = await getServerEnv("ELEVENLABS_API_KEY");
-
-    // The chapter's text for each body segment, read once per request. A body
-    // segment with no text can never be generated, so it is not missing audio:
-    // it never causes 503 and never reserves a daily generation unit.
-    const bodyTexts: Partial<Record<BodySegmentType, string>> = {};
-    const variantContent = await resolveVariantContent(bookId, chapterNumber, tone, variant);
-    if (variantContent) {
-      for (const seg of BODY_SEGMENT_TYPES) {
-        bodyTexts[seg] = extractSegmentText(variantContent as Record<string, unknown>, seg, tone);
-      }
-    }
 
     // ── mode=plan: personalized segment MANIFEST as JSON ─────────────────
     //
@@ -534,7 +421,7 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
     // shape differs: per-segment presigned Range-capable URLs instead of one
     // stitched MP3. The default (no `mode`) stream path below is left untouched.
     if (url.searchParams.get("mode") === "plan") {
-      const descriptors = getSegmentDescriptors(plan, narrationCtx, tone, variant);
+      const descriptors = getSegmentDescriptors(plan, narrationCtx, bodyKeys);
       const result = await buildAudioPlan(
         descriptors,
         { bookId, chapterNumber, tone, variant },
@@ -546,34 +433,28 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
             }),
           // Generate the only on-the-fly-generatable segments (the three TTS
           // bodies + the user greeting) when missing, awaiting the durable S3
-          // write so the presigned URL is immediately valid.
+          // write so the presigned URL is immediately valid. A clip that was
+          // not stored has no object to link, so it counts as not produced.
           generate: async (d) => {
             if (d.type === "userGreeting") {
               if (!elevenLabsKey || !userName) return null;
-              await reserveGeneration();
-              const buf = await generateAndCacheGreetingClip(
+              if (!(await reserveForGreeting())) return null;
+              const clip = await generateGreetingClip(
                 bucket,
                 d.key,
+                narrationCtx.timeOfDay,
                 getUserGreetingScript(userName, narrationCtx.timeOfDay),
                 elevenLabsKey,
               );
-              return buf ? buf.length : null;
+              return clip.audio && clip.stored ? clip.audio.length : null;
             }
             if (d.type === "summary" || d.type === "takeaways" || d.type === "recap") {
-              if (!elevenLabsKey) return null;
+              const chunks = bodyChunks[d.type];
+              if (!elevenLabsKey || !chunks) return null;
+              // A daily-limit refusal (429) propagates out of buildAudioPlan.
               await reserveGeneration();
-              const buf = await generateAndCacheBodySegment(
-                bucket,
-                d.key,
-                bookId,
-                chapterNumber,
-                tone,
-                variant,
-                d.type,
-                elevenLabsKey,
-                { awaitCache: true },
-              );
-              return buf ? buf.length : null;
+              const clip = await generateBodyClip(bucket, d.key, d.type, chunks, elevenLabsKey);
+              return clip.audio && clip.stored ? clip.audio.length : null;
             }
             return null;
           },
@@ -619,15 +500,17 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
     // Auto-generate greeting clip if missing and we have a name + API key
     const greetingKey = userName ? userGreetingS3Key(user.sub, narrationCtx.timeOfDay) : null;
 
-    // Log what loaded and what's missing (debug-only — keys can embed user.sub).
+    // Log what loaded and what's missing (debug-only). The per-user greeting key
+    // carries the user id, so it is logged by its time of day only.
     if (AUDIO_DEBUG) {
       for (const { key, buffer, bodyType } of loadResults) {
+        const label = key === greetingKey ? `user greeting (${narrationCtx.timeOfDay})` : key;
         if (buffer) {
-          audioDebug(`[audio] Loaded: ${key} (${buffer.length} bytes)`);
+          audioDebug(`[audio] Loaded: ${label} (${buffer.length} bytes)`);
         } else if (bodyType) {
           audioDebug(`[audio] Missing body segment: ${key} (${bodyType})`);
         } else if (key === greetingKey) {
-          audioDebug(`[audio] Missing greeting clip: ${key} (will auto-generate)`);
+          audioDebug(`[audio] Missing greeting clip: ${label} (will auto-generate)`);
         } else {
           audioDebug(`[audio] Missing narration segment: ${key}`);
         }
@@ -637,34 +520,30 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
     // Auto-generate missing greeting clip on-the-fly
     if (greetingKey && elevenLabsKey && userName) {
       const greetingResult = loadResults.find((r) => r.key === greetingKey);
-      if (greetingResult && !greetingResult.buffer) {
-        await reserveGeneration();
+      if (greetingResult && !greetingResult.buffer && (await reserveForGreeting())) {
         // Never log the user's display name (PII). The presence of a name is
         // implied by reaching this branch.
         audioDebug(`[audio] Generating greeting clip (${narrationCtx.timeOfDay})...`);
         const allTods: TimeOfDay[] = ["morning", "afternoon", "evening"];
-        // Generate all 3 time-of-day greetings in parallel so they're cached for next time
-        const greetingResults = await Promise.allSettled(
-          allTods.map(async (tod) => {
-            const script = getUserGreetingScript(userName, tod);
-            const key = userGreetingS3Key(user.sub, tod);
-            const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/UgBBYS2sOqTuMpoF3BR0?output_format=mp3_44100_128`, {
-              method: "POST",
-              headers: { "xi-api-key": elevenLabsKey, "Content-Type": "application/json", Accept: "audio/mpeg" },
-              body: JSON.stringify({ text: script, model_id: "eleven_turbo_v2_5", voice_settings: { stability: 0.5, similarity_boost: 0.75 } }),
-            });
-            if (!res.ok) return null;
-            const buf = Buffer.from(await res.arrayBuffer());
-            // Cache to S3
-            s3.send(new PutObjectCommand({ Bucket: bucket, Key: key, Body: buf, ContentType: "audio/mpeg", CacheControl: "public, max-age=31536000" })).catch(() => {});
-            return { tod, buf };
-          }),
+        // Generate all 3 time-of-day greetings in parallel so they're cached for
+        // next time; every write is awaited before the response.
+        const greetingResults = await Promise.all(
+          allTods.map(async (tod) => ({
+            tod,
+            clip: await generateGreetingClip(
+              bucket,
+              userGreetingS3Key(user.sub, tod),
+              tod,
+              getUserGreetingScript(userName, tod),
+              elevenLabsKey,
+            ),
+          })),
         );
         // Patch the current greeting into loadResults
-        for (const r of greetingResults) {
-          if (r.status === "fulfilled" && r.value && r.value.tod === narrationCtx.timeOfDay) {
-            greetingResult.buffer = r.value.buf;
-            audioDebug(`[audio] Generated greeting (${r.value.buf.length} bytes)`);
+        for (const { tod, clip } of greetingResults) {
+          if (clip.audio && tod === narrationCtx.timeOfDay) {
+            greetingResult.buffer = clip.audio;
+            audioDebug(`[audio] Generated greeting (${clip.audio.length} bytes)`);
           }
         }
       }
@@ -674,33 +553,33 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
     const missingBody = selectBodySegmentsToGenerate(loadResults, bodyTexts);
     if (missingBody.length > 0 && !elevenLabsKey) {
       logger.error("audio_body_segments_missing_no_api_key", { bookId, chapterNumber });
-      return bookErr(req, 503, "tts_unavailable", "Audio generation is not available — chapter audio has not been cached yet");
+      return bookErr(req, 503, "tts_unavailable", TTS_UNAVAILABLE_MESSAGE);
     }
     if (missingBody.length > 0 && elevenLabsKey) {
       await reserveGeneration();
       audioDebug(`[audio] Generating ${missingBody.length} missing body segments in parallel...`);
-      const generated = await Promise.allSettled(
-        missingBody.map((r) =>
-          generateAndCacheBodySegment(
-            bucket, r.key, bookId, chapterNumber, tone, variant, r.bodyType!, elevenLabsKey,
-          ),
-        ),
+      const generated = await Promise.all(
+        missingBody.map((r) => {
+          const chunks = r.bodyType ? bodyChunks[r.bodyType] : undefined;
+          if (!r.bodyType || !chunks) return Promise.resolve<GeneratedClip>({ audio: null, stored: false });
+          return generateBodyClip(bucket, r.key, r.bodyType, chunks, elevenLabsKey);
+        }),
       );
-      // Patch results — handle both fulfilled and rejected
-      for (let i = 0; i < missingBody.length; i++) {
-        const result = generated[i];
-        const seg = missingBody[i];
-        if (result === undefined || seg === undefined) continue; // i ∈ [0, missingBody.length)
-        const idx = loadResults.indexOf(seg);
-        const target = idx >= 0 ? loadResults[idx] : undefined;
-        if (target && result.status === "fulfilled" && result.value) {
-          target.buffer = result.value;
-          audioDebug(`[audio] Generated ${seg.bodyType}: ${seg.key} (${result.value.length} bytes)`);
-        } else if (result.status === "rejected") {
-          logger.error("audio_generate_segment_failed", { bodyType: seg.bodyType, err: result.reason });
+      // Patch the generated audio in place. A segment with text that could not
+      // be spoken means the chapter audio is not ready: answer 503 rather than
+      // audio with a part missing. Parts spoken in this request stay stored.
+      let allGenerated = true;
+      missingBody.forEach((seg, i) => {
+        const audio = generated[i]?.audio;
+        if (audio) {
+          seg.buffer = audio;
+          audioDebug(`[audio] Generated ${seg.bodyType}: ${seg.key} (${audio.length} bytes)`);
         } else {
-          audioDebug(`[audio] No content for ${seg.bodyType} (empty chapter section)`);
+          allGenerated = false;
         }
+      });
+      if (!allGenerated) {
+        return bookErr(req, 503, "tts_unavailable", TTS_UNAVAILABLE_MESSAGE);
       }
     }
 
@@ -710,7 +589,9 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
       if (buffer) {
         segmentBuffers.push(buffer);
       } else {
-        audioDebug(`[audio] Segment skipped: ${key}`);
+        audioDebug(
+          `[audio] Segment skipped: ${key === greetingKey ? `user greeting (${narrationCtx.timeOfDay})` : key}`,
+        );
       }
     }
 
@@ -731,7 +612,7 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
     // stale on the next play and was never read back — the previous write-only
     // PutObject under an audio-stitched/<user.sub> key only accumulated dead
     // objects with no lifecycle. The expensive TTS body segments are still
-    // cached and reused via chapterBodySegmentS3Key; only the cheap final
+    // cached and reused via chapterBodyClipS3Key; only the cheap final
     // concat happens per request.
 
     // Return the full MP3 directly
@@ -751,4 +632,151 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
     logger.error("audio_unexpected_error", { err });
     return bookErr(req, 500, "internal_error", "Audio generation failed");
   }
+}
+
+// ── Speech clips ─────────────────────────────────────────────────────
+
+const SPEECH_URL = `https://api.elevenlabs.io/v1/text-to-speech/${SPEECH_SETTINGS.voiceId}?output_format=${SPEECH_SETTINGS.outputFormat}`;
+
+// The one speech call of this route (body clips and greetings). Speaks the
+// chunks in order and returns the joined audio, or null on any failure. Never
+// throws: a network error or an answer without audio is a failure like a
+// non-2xx answer. Logs one
+// audio_tts_ok or audio_tts_failed line; never the text, the key, a user id or
+// a name.
+async function synthesizeClip(
+  segment: string,
+  chunks: readonly string[],
+  elevenLabsKey: string,
+): Promise<Buffer | null> {
+  const started = Date.now();
+  const characters = chunks.reduce((total, chunk) => total + chunk.length, 0);
+  const audioChunks: Buffer[] = [];
+  for (let i = 0; i < chunks.length; i++) {
+    let res: Response;
+    try {
+      res = await fetch(SPEECH_URL, {
+        method: "POST",
+        headers: { "xi-api-key": elevenLabsKey, "Content-Type": "application/json", Accept: "audio/mpeg" },
+        body: JSON.stringify({
+          text: chunks[i],
+          model_id: SPEECH_SETTINGS.modelId,
+          voice_settings: SPEECH_SETTINGS.voiceSettings,
+        }),
+      });
+      if (res.ok) {
+        const audio = Buffer.from(await res.arrayBuffer());
+        if (audio.length > 0) {
+          audioChunks.push(audio);
+          continue;
+        }
+        // A 2xx answer without audio is a failure too: an empty clip must
+        // never be stored under a content name, where it would stay.
+        logger.error("audio_tts_failed", {
+          segment,
+          kind: "empty",
+          status: res.status,
+          chunk: i,
+          characters,
+          ms: Date.now() - started,
+        });
+        return null;
+      }
+    } catch {
+      logger.error("audio_tts_failed", {
+        segment,
+        kind: "network",
+        chunk: i,
+        characters,
+        ms: Date.now() - started,
+      });
+      return null;
+    }
+    try {
+      await res.body?.cancel();
+    } catch {}
+    logger.error("audio_tts_failed", {
+      segment,
+      kind: "http",
+      status: res.status,
+      chunk: i,
+      characters,
+      ms: Date.now() - started,
+    });
+    return null;
+  }
+  logger.info("audio_tts_ok", {
+    segment,
+    chunks: chunks.length,
+    characters,
+    ms: Date.now() - started,
+  });
+  return Buffer.concat(audioChunks);
+}
+
+// Write a generated clip and wait for the write to finish.
+async function storeClip(
+  bucket: string,
+  key: string,
+  audio: Buffer,
+): Promise<{ stored: true } | { stored: false; err: unknown }> {
+  try {
+    await s3.send(
+      new PutObjectCommand({
+        Bucket: bucket,
+        Key: key,
+        Body: audio,
+        ContentType: "audio/mpeg",
+        CacheControl: "public, max-age=31536000",
+      }),
+    );
+    return { stored: true };
+  } catch (err) {
+    return { stored: false, err };
+  }
+}
+
+type GeneratedClip = { audio: Buffer | null; stored: boolean };
+
+// Speak a chapter body clip and store it under its content name. audio is
+// null when speech failed; stored is false when the write failed (logged).
+async function generateBodyClip(
+  bucket: string,
+  key: string,
+  segment: BodySegmentType,
+  chunks: readonly string[],
+  elevenLabsKey: string,
+): Promise<GeneratedClip> {
+  const audio = await synthesizeClip(segment, chunks, elevenLabsKey);
+  if (!audio) return { audio: null, stored: false };
+  const write = await storeClip(bucket, key, audio);
+  if (!write.stored) {
+    logger.error("audio_s3_cache_write_failed", { segment, cacheKey: key, err: write.err });
+    return { audio, stored: false };
+  }
+  audioDebug(`[audio] Cached ${segment}: ${key} (${audio.length} bytes)`);
+  return { audio, stored: true };
+}
+
+// Speak one per-user greeting clip and store it. The key and the script carry
+// the user id and name, so a failure logs the time of day only.
+async function generateGreetingClip(
+  bucket: string,
+  key: string,
+  timeOfDay: TimeOfDay,
+  script: string,
+  elevenLabsKey: string,
+): Promise<GeneratedClip> {
+  const audio = await synthesizeClip("userGreeting", [script], elevenLabsKey);
+  if (!audio) return { audio: null, stored: false };
+  const write = await storeClip(bucket, key, audio);
+  if (!write.stored) {
+    logger.error("audio_s3_cache_write_failed", {
+      segment: "userGreeting",
+      timeOfDay,
+      errorName: write.err instanceof Error ? write.err.name : "unknown",
+    });
+    return { audio, stored: false };
+  }
+  return { audio, stored: true };
 }

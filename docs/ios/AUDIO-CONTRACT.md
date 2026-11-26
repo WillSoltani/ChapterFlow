@@ -1,6 +1,6 @@
 # B5 — Chapter audio delivery contract (for the native iOS client)
 
-**Status:** documents the endpoint **exactly as it exists today** (`feat/ios-b5b`). §1–§7 describe
+**Status:** documents the endpoint **exactly as it exists today**. §1–§7 describe
 the **default** stitched-stream response; **§8b** documents the additive **`?mode=plan`** JSON
 manifest, now implemented (B5b). Every field below is derived from the route source, not from an
 intended design. Where a behavior is a poor fit for a native player, it is called out under
@@ -43,18 +43,18 @@ Source of truth:
 
 ### Query params
 
-There are exactly **two** query params. There is **no `mode` param** (despite what a plan-style
-contract would imply).
+There are **three** query params.
 
 | Param | Default | Allowed values | On invalid |
 |-------|---------|----------------|-----------|
 | `tone` | `direct` | `gentle` \| `direct` \| `competitive` | `400 invalid_params` ("Invalid tone") |
 | `variant` | `medium` | `easy` \| `medium` \| `hard` \| `precise` \| `balanced` \| `challenging` | `400 invalid_params` ("Invalid variant") |
+| `mode` | (none) | `plan` → JSON segment manifest ([§8b](#8b-modeplan-segment-manifest-contract-implemented--b5b)); any other value or absent → the stitched stream | — |
 
-`tone`/`variant` are validated against fixed sets **before** use because they are interpolated
-into S3 keys that are both read and (on cache miss) written — an unvalidated value would let a
-caller mint unlimited billable TTS generations. Pass the same `tone`/`variant` the reader is
-using so the audio matches the on-screen chapter content.
+`tone`/`variant` are validated against fixed sets and select the chapter text that is spoken. They
+do **not** shape any stored object name: chapter body clips are named by their text (§4), so every
+`tone`/`variant` that resolves to the same text shares one clip. Pass the same `tone`/`variant` the
+reader is using so the audio matches the on-screen chapter content.
 
 ---
 
@@ -63,8 +63,9 @@ using so the audio matches the on-screen chapter content.
 | Requirement | Detail |
 |---|---|
 | **Auth** | `requireActiveBookUser()` → `requireUser()`. Native clients use **`Authorization: Bearer <Cognito id_token>`** (shipped in B1). This is a `GET`, so it is **never** subject to the CSRF/same-origin guard. |
-| **Entitlement** | **Pro only.** `entitlement.plan !== "PRO"` → `403 pro_required` ("Audio mode requires a Pro subscription"). |
-| **Account status** | Deleted accounts are blocked inside the auth guard (see §3 note — the code is currently `500`, not `403`). |
+| **Entitlement** | **Pro only.** `entitlement.plan !== "PRO"` → `403 pro_required` ("Listening to chapters is part of Pro. Upgrade to listen."). |
+| **Account status** | Deleted accounts are blocked inside the auth guard → `403 account_deleted`. |
+| **Chapter access** | Same check as the chapter text route: `403 book_not_started` or `403 chapter_locked`. |
 
 ---
 
@@ -89,20 +90,20 @@ All errors use the standard envelope `{ "error": { "code", "message", "requestId
 | HTTP | `error.code` | Cause |
 |------|--------------|-------|
 | `400` | `invalid_params` | Bad `bookId`/`chapterNumber`, or invalid `tone`/`variant`. |
+| `401` | `unauthenticated` / `invalid_token` | No `Bearer` token, or an expired/invalid one. Refresh the token and retry. |
 | `403` | `pro_required` | Caller is not on the Pro plan. |
+| `403` | `account_deleted` | The account is deleted. |
+| `403` | `book_not_started` | The reader has not started this book. |
+| `403` | `chapter_locked` | This chapter is not unlocked for the reader yet. |
 | `404` | `book_not_found` | No book package for `bookId`+`tone`. |
-| `404` | `no_audio` | Zero segments were available to stitch (see §4 skip behavior). |
-| `503` | `tts_unavailable` | Body segments the chapter has text for are uncached **and** the server has no `ELEVENLABS_API_KEY` to generate them. Chapter audio has not been pre-generated yet. |
-| `500` | `internal_error` | Any thrown error — **including auth failures** (see the trap below). |
+| `404` | `no_audio` | The chapter has no summary text for the requested `variant` (also when the chapter is not in the package or has no variant content; a `variant` the chapter lacks plays another variant's text), or zero segments were available to stitch (see §4 skip behavior). |
+| `429` | `rate_limited` | A chapter body clip has to be generated but the reader has used today's generation allowance (20 requests per day that generate audio). Cached audio is never limited. |
+| `503` | `verifier_unavailable` | The sign-in check is briefly unavailable. Retry; the session is still valid. |
+| `503` | `tts_unavailable` | Message: "Chapter audio is not ready yet. Try again in a moment." Two causes: (1) a body clip the chapter has text for is not stored and the server has no speech key; (2) generating such a clip failed (the speech service answered non-2xx, answered without audio, or could not be reached; on `?mode=plan` also when the clip could not be stored). Clips generated before the failure stay stored, so a retry only generates what is still missing. |
+| `500` | `internal_error` | Any other unexpected error. |
 
-> ⚠️ **Auth-error trap (documented as-is; fix tracked in §8).** This route does **not** use the
-> shared `withBookApiErrors` wrapper. Its generic `catch` maps *every* thrown error to
-> `500 internal_error`. So a **missing / expired / invalid `Bearer` token** — which
-> `requireUser()` raises as `AuthError("UNAUTHENTICATED"|"INVALID_TOKEN")` — currently returns
-> **`500 internal_error`, not `401`**. A deleted account (`BookApiError(403)`) likewise returns
-> `500`. **Today the iOS client cannot distinguish "refresh your token" from "server broke" on
-> this endpoint.** Until the §8 fix lands, treat a `500` from this route defensively (retry once;
-> if it persists and other endpoints return `401`, force a token refresh).
+Auth errors and the other `BookApiError`s carry their own status through the shared
+`withBookApiErrors` wrapper; they are no longer collapsed into `500`.
 
 ---
 
@@ -121,29 +122,38 @@ silence segment despite the code comment; `SILENCE_S3_KEY` is exported but unuse
 
 | # | Segment | S3 key pattern | Present when | Auto-generated on miss? |
 |---|---------|----------------|--------------|--------------------------|
-| 1 | Per-user greeting | `book-content/audio-segments/names/{userId}-{tod}.mp3` | `userName` is known | ✅ yes (all 3 TODs, via ElevenLabs) |
+| 1 | Per-user greeting | `book-content/audio-segments/names/{userId}-{tod}.mp3` | `userName` is known | ✅ yes (ElevenLabs; the stream generates all 3 TODs, `mode=plan` the current one) |
 | 2 | Contextual greeting | `book-content/audio-segments/greetings/{greetingId}.mp3` | always | ❌ must be pre-generated |
 | 3 | Book intro (title + author) | `book-content/audio-segments/books/{bookId}.mp3` | always | ❌ pre-generated |
 | 4 | Score callout | `book-content/audio-segments/scores/{scoreId}.mp3` | `plan.scoreId != null` | ❌ pre-generated |
 | 5 | Chapter-number lead-in | `book-content/audio-segments/chapters/chapter-{n}.mp3` | always | ❌ pre-generated |
-| 6 | **Summary body** | `book-content/audio/{bookId}/ch{NNNN}.{tone}.{variant}.summary.mp3` | chapter has text for it, or the clip is cached | ✅ yes (ElevenLabs) |
+| 6 | **Summary body** | `book-content/audio/{bookId}/ch{NNNN}.summary.{h16}.mp3` | always (a chapter without summary text answers `404 no_audio`) | ✅ yes (ElevenLabs) |
 | 7 | Transition | `book-content/audio-segments/transitions/{transitionId}.mp3` | always | ❌ pre-generated |
-| 8 | **Takeaways body** | `…/ch{NNNN}.{tone}.{variant}.takeaways.mp3` | chapter has text for it, or the clip is cached | ✅ yes (ElevenLabs) |
-| 9 | **Recap body** | `…/ch{NNNN}.{tone}.{variant}.recap.mp3` | chapter has text for it, or the clip is cached | ✅ yes (ElevenLabs) |
+| 8 | **Takeaways body** | `…/ch{NNNN}.takeaways.{h16}.mp3` | chapter has text for it | ✅ yes (ElevenLabs) |
+| 9 | **Recap body** | `…/ch{NNNN}.recap.{h16}.mp3` | chapter has text for it | ✅ yes (ElevenLabs) |
 | 10 | Closing CTA | `book-content/audio-segments/closings/{closingId}.mp3` | always | ❌ pre-generated |
 
-- `{NNNN}` = `chapterNumber` zero-padded to 4 digits (`ch0004`). Only the three **body** segments
-  are `tone`/`variant`-scoped; all `audio-segments/*` clips are tone/variant-agnostic.
-- **Skip behavior:** any segment whose S3 object is missing **and** cannot be generated is
+- `{NNNN}` = `chapterNumber` zero-padded to 4 digits (`ch0004`).
+- **Body clips are named by their content.** `{h16}` is the first 16 lowercase hex characters of
+  SHA-256 over a fixed-order list: a recipe number (bumped by hand to re-voice every chapter), the
+  voice, model, voice settings and output format, and the exact text chunks sent to speech
+  ([`chapterBodyClipS3Key`](../../app/app/api/book/_lib/audio-narration-core.ts)). `tone` and
+  `variant` are **not** part of the name: they only select the text, so every `tone`/`variant` that
+  resolves to the same text shares one clip. When a chapter's text changes, the name changes and the
+  new text is generated on the next listen. Clips stored under earlier names are not read.
+- **Skip behavior:** any narration segment whose S3 object is missing **and** cannot be generated is
   **silently dropped** from the stitch. So the number of segments in the output is **not fixed** —
   a chapter with an un-pre-generated `scores`/`books` clip simply omits it. Only if *every*
-  segment is unavailable do you get `404 no_audio`.
+  segment is unavailable do you get `404 no_audio`. A **body** segment with text is never dropped:
+  if it cannot be produced the request answers `503 tts_unavailable` (§3).
 - **Body segments without text:** a body segment is offered only when the chapter has text for it
-  (for this tone and variant) or its clip already exists. One without text is skipped: it is never
-  generated and never causes `503`. Current books carry no recap text, so `recap` is normally absent.
+  (for this tone and variant). One without text has no name, is never generated and never causes
+  `503`. Current books carry no recap text, so `recap` is normally absent.
 - The three body segments and the per-user greeting are the only pieces generated on the fly
   (ElevenLabs `eleven_turbo_v2_5`, `mp3_44100_128` = 44.1 kHz / 128 kbps). Generated bytes are
-  cached back to S3 with `Cache-Control: public, max-age=31536000` (server-side reuse only).
+  written to S3 with `Cache-Control: public, max-age=31536000` (server-side reuse only), and the
+  write finishes before the response. On the stream path a failed write is logged and the audio is
+  still served.
 
 **Determinism:** the greeting, transition, and closing fall back to `generic-01…10` chosen with
 `Math.random()`, and the greeting/score also vary with user state and clock. **Two requests for
@@ -186,12 +196,13 @@ natively — and is **now exposed via [`?mode=plan`](#8b-modeplan-segment-manife
 | **Refresh** | To get audio again, simply **re-`GET` the same endpoint**. There is no refresh token / re-sign step because no signed URL is ever handed to the client. |
 | **Server-side cache** | The expensive body segments (and per-user greeting clips) are cached in S3 for reuse across users/plays. This is invisible to the client. |
 
-**Cold-start latency:** the **first** `GET` for a `(bookId, chapter, tone, variant)` whose body
-segments aren't cached will synchronously call ElevenLabs to generate them (and generate the
-user's greeting clips) before responding — this can take **several seconds**. Subsequent plays are
-fast (S3 cache hits). Show a "generating audio…" state on first play, and set a generous client
-timeout. If body segments the chapter has text for are missing and the server has no TTS key, you
-get `503 tts_unavailable`.
+**Cold-start latency:** the **first** `GET` for a chapter text whose body clips aren't stored will
+synchronously call ElevenLabs to generate them (and generate the user's greeting clips) before
+responding — this can take **several seconds**. Subsequent plays are fast (S3 hits), for every
+`tone`/`variant` that resolves to the same text. Show a "generating audio…" state on first play, and
+set a generous client timeout. If a body clip cannot be produced you get `503 tts_unavailable`
+(§3); retry later. A greeting never blocks a listen: if it cannot be generated (including when the
+daily allowance is used up), the audio plays without it.
 
 ---
 
@@ -219,17 +230,13 @@ mixed stitch.
 
 ## 8. Known gaps & follow-ups
 
-These are the deltas between "what a great native player wants" and "what ships today." Per the B5
-scope decision, this PR **documents** them; building them is deferred.
+These were the deltas between "what a great native player wants" and what first shipped. Both are
+now addressed (8a resolved, 8b implemented) and are kept here as reference.
 
-### 8a. Auth errors return `500` instead of `401`/`403` (recommended quick fix)
+### 8a. Auth errors (resolved)
 
-As noted in §3, this route's bare `try/catch` maps `AuthError`/`BookApiError` to `500`. The fix is
-small, additive, and error-path-only (it cannot affect the web player's happy path, which treats
-any non-`2xx` identically): map `AuthError` → `401 invalid_token`/`unauthenticated` and
-`BookApiError` → its own status, matching the shared `withBookApiErrors` behavior every other Book
-API route already uses. This is the single most impactful change for the iOS Bearer flow, because
-it lets the client detect an expired `id_token` and refresh.
+The route now runs inside the shared `withBookApiErrors` wrapper: a missing or bad token answers
+`401 unauthenticated` / `401 invalid_token`, and `BookApiError`s keep their own status (§3).
 
 ### 8b. `?mode=plan` segment-manifest contract (IMPLEMENTED — B5b)
 
@@ -275,15 +282,15 @@ generate-missing-on-first-play behavior (§4, §6 cold-start). Only the response
 | `version` | `1` | Manifest schema version. Bump on a breaking change. |
 | `bookId`, `chapterNumber`, `tone`, `variant` | | Echo the resolved request scope. `segmentId`s are unique **within** this scope. |
 | `expiresAt` | ISO-8601 UTC | Request time **+ 6h** — the nominal instant the presigned URLs stop working. See the credential caveat under *Refresh*. |
-| `segments` | array | Ordered exactly as the stitched stream (§4). Length is **not fixed** — a segment whose object is missing and cannot be generated is dropped (same skip behavior as the stream). |
+| `segments` | array | Ordered exactly as the stitched stream (§4). Length is **not fixed** — a narration segment whose object is missing and cannot be generated is dropped (same skip behavior as the stream). |
 
 **Per-segment fields**
 
 | Field | Type | Notes |
 |-------|------|-------|
-| `segmentId` | string | **Stable**, deterministic id for this segment object; unique within the manifest → safe as a client cache key. Not globally unique — scope it by `bookId`+`chapterNumber`+`tone`+`variant`. |
+| `segmentId` | string | Names a **slot** in the narration (e.g. `summary`), unique within the manifest. Not globally unique — scope it by `bookId`+`chapterNumber`+`tone`+`variant`. It does **not** identify the audio bytes: a body slot's audio changes when the chapter text changes while its `segmentId` stays the same. Key cached bytes by the `url` path without the query string. |
 | `type` | enum | One of: `userGreeting`, `greeting`, `bookIntro`, `score`, `chapterNumber`, `summary`, `transition`, `takeaways`, `recap`, `closing`. At most one of each per manifest. |
-| `url` | string | **Presigned S3 `GET`** signed with the route's IAM role (`X-Amz-Expires=21600` = 6h). Points straight at the private content bucket — no proxy. Natively **Range-capable** (see below). |
+| `url` | string | **Presigned S3 `GET`** signed with the route's IAM role (`X-Amz-Expires=21600` = 6h). Points straight at the private content bucket — no proxy. Natively **Range-capable** (see below). **Opaque:** do not parse it. A body segment's URL points at a clip named by the chapter text (§4), so it changes when that text changes; the `segmentId` (`summary`, `takeaways`, `recap`) does not. |
 | `contentLength` | number | Exact byte length of the S3 object (S3 `HEAD` for pre-existing objects; known directly for freshly generated ones). |
 | `durationSeconds` | number? | Present **only** for the four ElevenLabs-generated 128 kbps-CBR segments (`userGreeting`, `summary`, `takeaways`, `recap`), as a byte-derived estimate (`contentLength / 16000`, ±~1 frame). **Omitted** for the pre-generated `audio-segments/*` clips (unguaranteed bitrate — see §7). Prefer the exact on-device `AVAsset.duration` when you need precision. |
 | `text` | string? | Short caption/script for the narration segments (`userGreeting`, `greeting`, `bookIntro`, `score`, `chapterNumber`, `transition`, `closing`). **Omitted** for the long-form body segments (`summary`, `takeaways`, `recap`) — that copy already lives in the reader. |
@@ -298,10 +305,10 @@ generate-missing-on-first-play behavior (§4, §6 cold-start). Only the response
 | 3 | `bookIntro` | `book-intro` | always |
 | 4 | `score` | `score-{bucket}` (e.g. `score-90`, `score-100-improved`, `score-first-chapter`) | `plan.scoreId != null` |
 | 5 | `chapterNumber` | `chapter-number-{n}` | always |
-| 6 | `summary` | `summary` | chapter has text for it, or the clip is cached |
+| 6 | `summary` | `summary` | always (a chapter without summary text answers `404 no_audio`) |
 | 7 | `transition` | `transition-{transitionId}` | always |
-| 8 | `takeaways` | `takeaways` | chapter has text for it, or the clip is cached |
-| 9 | `recap` | `recap` | chapter has text for it, or the clip is cached (current books: absent) |
+| 8 | `takeaways` | `takeaways` | chapter has text for it |
+| 9 | `recap` | `recap` | chapter has text for it (current books: absent) |
 | 10 | `closing` | `closing-{closingId}` | always |
 
 **Range / seeking.** Unlike the stitched stream (§5), each `url` is a **stable, individually
@@ -317,13 +324,15 @@ and verified end-to-end by the opt-in integration test `app/app/api/book/_lib/au
   therefore **slow** (cold-start TTS) — show a generating state, use a generous timeout.
 - Missing **pre-generated** clips (`greeting`/`bookIntro`/`score`/`chapterNumber`/`transition`/`closing`)
   are **dropped** from the manifest (never generated), exactly as the stream skips them.
-- Missing body segment the chapter has text for **and no `ELEVENLABS_API_KEY`** → `503 tts_unavailable`.
-  A missing body segment without text is dropped silently and never generated.
-- **Zero** surviving segments → `404 no_audio`.
-- All other errors match §3, **including the §8a auth-error trap**: `mode=plan` runs inside the same
-  `try/catch`, so a missing/expired/invalid `Bearer` token currently returns **`500 internal_error`,
-  not `401`**, until §8a lands. Treat a `500` defensively (retry once; if it persists and other
-  endpoints `401`, refresh the token).
+- A missing body segment the chapter has text for that cannot be produced → `503 tts_unavailable`
+  (no speech key, speech failed, or the clip could not be stored; §3). The manifest is never
+  returned with a body segment missing. A body segment without text has no descriptor at all.
+- A missing body segment that needs generation when the daily allowance is used up → `429 rate_limited`.
+  A missing **user greeting** in that case is simply dropped. Each chapter manifest that generates
+  anything uses one unit, so downloading a whole book whose chapters are not yet generated can reach
+  the allowance (20 per day) partway through.
+- **Zero** surviving segments → `404 no_audio`; a chapter without summary text → `404 no_audio`.
+- All other errors match §3 (auth errors answer `401`).
 
 **Caching & refresh.**
 - The manifest is `Cache-Control: private, no-cache` — it is per-user and embeds presigned URLs, so
@@ -337,9 +346,14 @@ and verified end-to-end by the opt-in integration test `app/app/api/book/_lib/au
 - A refresh recomputes the plan, and the `greeting`/`transition`/`closing` **generic** fallbacks are
   chosen with `Math.random` (§4), so those slots may resolve to a **different clip — and thus a
   different `segmentId`** — on the new manifest. The body segments, `bookIntro`, `chapterNumber`, and
-  any context-triggered clip are stable across refreshes for the same user state + chapter + tone +
-  variant + time of day. **Treat each freshly fetched manifest as authoritative** and re-key any
-  per-segment cache off the new `segmentId`s.
+  any context-triggered clip are stable across refreshes for the same user state + chapter text +
+  tone + variant + time of day. **Treat each freshly fetched manifest as authoritative** and key any
+  per-segment byte cache by each segment's `url` path without the query string (it changes when the
+  audio behind a slot changes), not by `segmentId`.
+- **Republished narration and offline downloads.** When a chapter's text is republished, its body
+  clips get new names and new URLs on the next manifest; the old clips are not changed. A client
+  that keeps a complete offline download of a chapter keeps playing the old narration until it
+  downloads the chapter again; a byte cache keyed by `segmentId` would keep it indefinitely.
 
 **Why it's genuinely additive:** the default stitched-MP3 path is unchanged for the web player,
 while native clients opt in to a manifest whose individual S3 objects are stable (so Range/seek
@@ -362,10 +376,12 @@ work), cacheable, and refreshable by re-`GET`ting `?mode=plan`.
 4. On `200`, read the **whole** body (`audio/mpeg`), write it to a temp `file://` (or hold as
    `Data`), and play with `AVAudioPlayer`/`AVURLAsset`. Seek **locally**; do not rely on network
    Range.
-5. Error handling: `403 pro_required` → upsell; `503 tts_unavailable` → "not ready yet, try
-   later"; `500 internal_error` → retry once, and (until §8a lands) treat a persistent `500` as a
-   possible auth failure and refresh the token.
+5. Error handling: `401` → refresh the token and retry; `403 pro_required` → upsell;
+   `403 book_not_started` / `chapter_locked` → the chapter is not available to the reader;
+   `404 no_audio` → no audio for this chapter; `429 rate_limited` → today's allowance is used up,
+   try tomorrow; `503 tts_unavailable` → show the server message ("Chapter audio is not ready yet.
+   Try again in a moment.") and retry later; `500 internal_error` → retry once.
 6. To replay, just re-`GET` (no URL expiry). Do not cache the stitched body as a stable chapter
    asset — it's `no-cache` and non-deterministic.
 
-_Last updated: 2026-07-02._
+_Last updated: 2026-11-26 (body clips named by content; 503/404 rules; error table and `mode` param corrected; cache by URL path, not `segmentId`)._
