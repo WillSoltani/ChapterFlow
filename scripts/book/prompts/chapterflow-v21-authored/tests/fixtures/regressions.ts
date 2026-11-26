@@ -19,7 +19,10 @@
  * verbatim against the right source:
  *   • "tiny-habits-regen" → tests/fixtures/regression-tiny-habits-regen.json
  *       (the REVERTED package — fixtured here because it is no longer in book-packages/).
- *   • "willpower" / "atomic-habits" → book-packages/<book>.v21.json
+ *   • "atomic-habits" → tests/fixtures/regression-atomic-habits-v21-ch13.json
+ *       (chapter 13 of the v21 package — fixtured here because the v26 rewrite replaced
+ *       that package in book-packages/ on 2026-11-26).
+ *   • "willpower" → book-packages/willpower.v21.json
  *       (LIVE + committed; verified best-effort, skipped if the dir is absent in CI).
  *
  * EMPTY arrays = a structural / passage-level / quiz-shaped finding that its
@@ -61,16 +64,20 @@ export type SourceBook = "tiny-habits-regen" | "willpower" | "atomic-habits";
 /** Absolute path to the recovered tiny-habits regen package (full book, verbatim). */
 export const REGEN_FIXTURE_PATH = resolve(__dirname, "regression-tiny-habits-regen.json");
 
+/** Absolute path to chapter 13 of the v21 atomic-habits package (verbatim), kept after the v26 rewrite replaced it. */
+export const ATOMIC_HABITS_V21_FIXTURE_PATH = resolve(__dirname, "regression-atomic-habits-v21-ch13.json");
+
 /** book-packages/ from the pipeline dir (…/chapterflow-v21-authored/tests/fixtures → repo root). */
 const BOOK_PACKAGES_DIR = resolve(__dirname, "../../../../../../book-packages");
 
 function bookPath(book: SourceBook): string {
   if (book === "tiny-habits-regen") return REGEN_FIXTURE_PATH;
+  if (book === "atomic-habits") return ATOMIC_HABITS_V21_FIXTURE_PATH;
   return resolve(BOOK_PACKAGES_DIR, `${book}.v21.json`);
 }
 
 /** Raw text of a source book. Returns null when a live package is absent (CI); the
- *  regen fixture is always present. The self-test skip()s a null book. */
+ *  two fixtures are always present. The self-test skip()s a null book. */
 export function bookText(book: SourceBook): string | null {
   const p = bookPath(book);
   return existsSync(p) ? readFileSync(p, "utf8") : null;
